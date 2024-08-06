@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BF1BC52D6F
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 19:28:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F28C52D71
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 19:28:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41FDA10E3F4;
-	Tue,  6 Aug 2024 19:28:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB4E10E3F5;
+	Tue,  6 Aug 2024 19:28:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K7pC1YC+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dL0ISY61";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53B5210E3F4
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 19:28:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3F9F10E3E1
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 19:28:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722972489; x=1754508489;
+ t=1722972491; x=1754508491;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SbS+29hkwttPmFeKAzLvgoNOQ2HZeh9BAv7vcjQXZlk=;
- b=K7pC1YC+6CAo/AiilAUGET1rmInrFiisbK8TQbUgbZWKpazWwlX31wqS
- UUNWWjBIjb8SgnXDFeCT5Hoh5MxJJkrHM1qRqm6TpPicFNiupcpV4GtcK
- zco2TLs/ypTN9WXdh/wy2DdbGYrH0J/oSEBc8tHmM5uBML8df/JjXcugx
- vJZrmp1WNpA4Z941giTxHdGSDIZZ+wpczGWihvow1ZWWH7iB3+srJVyh9
- U43OubodsnOEh7ZfdooNigwVXLlKTE4IG7fkx8AEia4DvsOjDBbVh7UJY
- +jdIA0FDK953tu470wBFxvgQWXOngv2wi/cWaN7aQ67g/JpxOVBE+HMhq A==;
-X-CSE-ConnectionGUID: /eIDc+qdSlG70WRXptE4sg==
-X-CSE-MsgGUID: 72UDnf52TQSwJkJUpdhWjQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="31682132"
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="31682132"
+ bh=Pn2TPje+tgqjXcPMpmTk1cURJxfFjUSviTKAKl8LiFo=;
+ b=dL0ISY61Cj4D4PiJ4uJYY5gKd6Q1bj5JvSR5xfHJ7iMS7UmJVAsJqqRN
+ 7Y2C9C1v9EilYaII8e9wctU1oQR7uhOva9K4djJ8G4rml9w+fZHmADjEO
+ TM4otq2OtFzMNRWRXnGxrMQ6EgnpmfdVYTEq0r/fb9EB7DY2fn7hUckgV
+ b5QtJ136pkVjQHS8uYQppM+8kZHgmCCHQoNG/+4MzdUYoOYXcjNdAf3tW
+ LSk2aYuHElV5p1jQUQw22SDsKg8fvFaO18bLnvgnf4G4RiMBEs6TryifS
+ 0kBVOT6Fy4TGbmkWcX564RdVbLp2JHufDYehhlNMbJI4KWwZ/02d0jodn g==;
+X-CSE-ConnectionGUID: Eq6KCK5oQymAFYZ+eBFJ0w==
+X-CSE-MsgGUID: cHBYQ9ZJRy2erj7X0ZyLxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="31682133"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="31682133"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 12:28:09 -0700
-X-CSE-ConnectionGUID: sc02vxkbRL+qi0FXsAbHWg==
-X-CSE-MsgGUID: Td47zYy1TQKdbhF+qfsbMg==
+ 06 Aug 2024 12:28:11 -0700
+X-CSE-ConnectionGUID: b1wusITeRGeuUQfP5jwjWA==
+X-CSE-MsgGUID: ScI3B5T2TqefAQbfvBwnZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56585090"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56585094"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.245.246.51])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 12:28:08 -0700
+ 06 Aug 2024 12:28:09 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v6 08/13] drm/xe/hw_engine_group: Ensure safe transition
- between execution modes
-Date: Tue,  6 Aug 2024 21:27:06 +0200
-Message-ID: <20240806192739.1076344-9-francois.dugast@intel.com>
+Subject: [PATCH v6 09/13] drm/xe/exec: Switch hw engine group execution mode
+ upon job submission
+Date: Tue,  6 Aug 2024 21:27:07 +0200
+Message-ID: <20240806192739.1076344-10-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240806192739.1076344-1-francois.dugast@intel.com>
 References: <20240806192739.1076344-1-francois.dugast@intel.com>
@@ -69,119 +69,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Provide a way to safely transition execution modes of the hw engine group
-ahead of the actual execution. When necessary, either wait for running
-jobs to complete or preempt them, thus ensuring mutual exclusion between
-execution modes.
+If the job about to be submitted is a dma-fence job, update the current
+execution mode of the hw engine group. This triggers the required
+operations to ensure mutual exclusion of executions modes in this hw
+engine group.
 
-Unlike a mutex, the rw_semaphore used in this context allows multiple
-submissions in the same mode.
-
-v2: Use lockdep_assert_held_write, add annotations (Matt Brost)
-
-v3: Fix kernel doc, remove redundant code (Matt Brost)
+v2: Change execution mode in exec IOCTL only when submitted job is
+    dma-fence (Matt Brost)
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine_group.c | 75 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine_group.h |  5 ++
- 2 files changed, 80 insertions(+)
+ drivers/gpu/drm/xe/xe_exec.c            | 17 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hw_engine_group.c | 13 +++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine_group.h |  3 +++
+ 3 files changed, 32 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index f36980aa26e6..2169fbf766d3 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -14,6 +14,7 @@
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_exec_queue.h"
++#include "xe_hw_engine_group.h"
+ #include "xe_macros.h"
+ #include "xe_ring_ops_types.h"
+ #include "xe_sched_job.h"
+@@ -124,6 +125,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	bool write_locked, skip_retry = false;
+ 	ktime_t end = 0;
+ 	int err = 0;
++	struct xe_hw_engine_group *group;
++	enum xe_hw_engine_group_execution_mode mode, previous_mode;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->extensions) ||
+ 	    XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
+@@ -182,6 +185,15 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		}
+ 	}
+ 
++	group = q->hwe->hw_engine_group;
++	mode = xe_hw_engine_group_find_exec_mode(q);
++
++	if (mode == EXEC_MODE_DMA_FENCE) {
++		err = xe_hw_engine_group_get_mode(group, mode, &previous_mode);
++		if (err)
++			goto err_syncs;
++	}
++
+ retry:
+ 	if (!xe_vm_in_lr_mode(vm) && xe_vm_userptr_check_repin(vm)) {
+ 		err = down_write_killable(&vm->lock);
+@@ -199,7 +211,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		downgrade_write(&vm->lock);
+ 		write_locked = false;
+ 		if (err)
+-			goto err_unlock_list;
++			goto err_hw_exec_mode;
+ 	}
+ 
+ 	if (!args->num_batch_buffer) {
+@@ -324,6 +336,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	up_read(&vm->lock);
+ 	if (err == -EAGAIN && !skip_retry)
+ 		goto retry;
++err_hw_exec_mode:
++	if (mode == EXEC_MODE_DMA_FENCE)
++		xe_hw_engine_group_put(group);
+ err_syncs:
+ 	while (num_syncs--)
+ 		xe_sync_entry_cleanup(&syncs[num_syncs]);
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-index 7ff470eb850e..e7cb27a38424 100644
+index e7cb27a38424..472d05709c31 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-@@ -211,3 +211,78 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
- 
- 	return 0;
+@@ -286,3 +286,16 @@ __releases(&group->mode_sem)
+ {
+ 	up_read(&group->mode_sem);
  }
 +
-+static int switch_mode(struct xe_hw_engine_group *group)
-+{
-+	int err = 0;
-+	enum xe_hw_engine_group_execution_mode new_mode;
-+
-+	lockdep_assert_held_write(&group->mode_sem);
-+
-+	switch (group->cur_mode) {
-+	case EXEC_MODE_LR:
-+		new_mode = EXEC_MODE_DMA_FENCE;
-+		xe_hw_engine_group_suspend_faulting_lr_jobs(group);
-+		break;
-+	case EXEC_MODE_DMA_FENCE:
-+		new_mode = EXEC_MODE_LR;
-+		err = xe_hw_engine_group_wait_for_dma_fence_jobs(group);
-+		break;
-+	}
-+
-+	if (err)
-+		return err;
-+
-+	group->cur_mode = new_mode;
-+
-+	return 0;
-+}
-+
 +/**
-+ * xe_hw_engine_group_get_mode() - Get the group to execute in the new mode
-+ * @group: The hw engine group
-+ * @new_mode: The new execution mode
-+ * @previous_mode: Pointer to the previous mode provided for use by caller
-+ *
-+ * Return: 0 if successful, -EINTR if locking failed.
++ * xe_hw_engine_group_find_exec_mode() - Find the execution mode for this exec queue
++ * @q: The exec_queue
 + */
-+int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
-+				enum xe_hw_engine_group_execution_mode new_mode,
-+				enum xe_hw_engine_group_execution_mode *previous_mode)
-+__acquires(&group->mode_sem)
++enum xe_hw_engine_group_execution_mode
++xe_hw_engine_group_find_exec_mode(struct xe_exec_queue *q)
 +{
-+	int err = down_read_interruptible(&group->mode_sem);
-+
-+	if (err)
-+		return err;
-+
-+	*previous_mode = group->cur_mode;
-+
-+	if (new_mode != group->cur_mode) {
-+		up_read(&group->mode_sem);
-+		err = down_write_killable(&group->mode_sem);
-+		if (err)
-+			return err;
-+
-+		if (new_mode != group->cur_mode) {
-+			err = switch_mode(group);
-+			if (err) {
-+				up_write(&group->mode_sem);
-+				return err;
-+			}
-+		}
-+		downgrade_write(&group->mode_sem);
-+	}
-+
-+	return err;
-+}
-+
-+/**
-+ * xe_hw_engine_group_put() - Put the group
-+ * @group: The hw engine group
-+ */
-+void xe_hw_engine_group_put(struct xe_hw_engine_group *group)
-+__releases(&group->mode_sem)
-+{
-+	up_read(&group->mode_sem);
++	if (xe_vm_in_lr_mode(q->vm))
++		return EXEC_MODE_LR;
++	else
++		return EXEC_MODE_DMA_FENCE;
 +}
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.h b/drivers/gpu/drm/xe/xe_hw_engine_group.h
-index 857a83787504..e0deb7c7bb5b 100644
+index e0deb7c7bb5b..0f196c0ad98d 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine_group.h
 +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.h
-@@ -17,4 +17,9 @@ int xe_hw_engine_setup_groups(struct xe_gt *gt);
- int xe_hw_engine_group_add_exec_queue(struct xe_hw_engine_group *group, struct xe_exec_queue *q);
- void xe_hw_engine_group_del_exec_queue(struct xe_hw_engine_group *group, struct xe_exec_queue *q);
+@@ -22,4 +22,7 @@ int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
+ 				enum xe_hw_engine_group_execution_mode *previous_mode);
+ void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
  
-+int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
-+				enum xe_hw_engine_group_execution_mode new_mode,
-+				enum xe_hw_engine_group_execution_mode *previous_mode);
-+void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
++enum xe_hw_engine_group_execution_mode
++xe_hw_engine_group_find_exec_mode(struct xe_exec_queue *q);
 +
  #endif
 -- 
