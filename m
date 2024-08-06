@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE986C52D71
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 15:42:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC5E5C52D70
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 16:03:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A77610E3A7;
-	Tue,  6 Aug 2024 15:42:23 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46A5610E14B;
- Tue,  6 Aug 2024 15:42:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7536729298020542961=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_GuC_based_regi?=
- =?utf-8?q?ster_capture_for_error_capture_=28rev15=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B592410E3A7;
+	Tue,  6 Aug 2024 16:03:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="StdphQqM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3FEC10E3A7
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 16:03:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722960200; x=1754496200;
+ h=date:from:to:cc:subject:message-id;
+ bh=Mm9JznexpvfgKR4x/9fpMhXqsvaR0+orXdx/aAJ3WEI=;
+ b=StdphQqMbXiSwBnRCQtwlwxbIPwfTzGmd7C2iCzCOzLeI9F2w0ydfBsY
+ HIaB48LGoHtWbvISUW7bG8ag43bWsugVV659Wv+cmYIIslKf45KXblYIJ
+ 8p9E6Ck0s+sLEOPTjaVtlIvZ1/spk7++q2w6ZgFxBy+GGWT+CAdLUJulV
+ yWS+S18Dl15Kbh/+xvPgQxx3aUWsw2briFeV/+xGeeAReklxZLHAvMsnc
+ IQNuQptXkGEjXr35PsKVitFg0RyfPPjKFwfmRFOX5FS7YCiNhb2SXYDbc
+ G0a2kKQJkdY+WpHELObFcQT6PRFxsKzgLFEk4wSahVUSxULWfMHU9eNCJ A==;
+X-CSE-ConnectionGUID: Ht5enOP7RLGrnFb3HLKRdw==
+X-CSE-MsgGUID: Ny6iUFxnQ5uYrkl2Ql0ToA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="21138364"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="21138364"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 09:03:19 -0700
+X-CSE-ConnectionGUID: 3uZT9rHiTn+4F/XR1PuAgQ==
+X-CSE-MsgGUID: Bl8yRXPURPy4eMmVtvUZ1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="61190897"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+ by fmviesa004.fm.intel.com with ESMTP; 06 Aug 2024 09:03:16 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sbMeY-0004dI-2V;
+ Tue, 06 Aug 2024 16:03:14 +0000
+Date: Wed, 07 Aug 2024 00:02:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Aug 2024 15:42:22 -0000
-Message-ID: <172295894228.543564.1688871675457357079@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240806145704.165231-1-zhanjun.dong@intel.com>
-In-Reply-To: <20240806145704.165231-1-zhanjun.dong@intel.com>
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 8d5309b7f67571bc0c95d430f4722a99d38f3b79
+Message-ID: <202408070053.IG8jMtGT-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +61,278 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7536729298020542961==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 8d5309b7f67571bc0c95d430f4722a99d38f3b79  drm/xe: Only check last fence on user binds
 
-== Series Details ==
+elapsed time: 964m
 
-Series: drm/xe/guc: Add GuC based register capture for error capture (rev15)
-URL   : https://patchwork.freedesktop.org/series/128077/
-State : success
+configs tested: 256
+configs skipped: 5
 
-== Summary ==
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-CI Bug Log - changes from xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8_BAT -> xe-pw-128077v15_BAT
-====================================================
+tested configs:
+alpha                             allnoconfig   gcc-13.2.0
+alpha                            allyesconfig   gcc-13.3.0
+alpha                               defconfig   gcc-13.2.0
+arc                              allmodconfig   gcc-13.2.0
+arc                               allnoconfig   gcc-13.2.0
+arc                              allyesconfig   gcc-13.2.0
+arc                                 defconfig   gcc-13.2.0
+arc                        nsimosci_defconfig   gcc-13.2.0
+arc                   randconfig-001-20240806   gcc-13.2.0
+arc                   randconfig-002-20240806   gcc-13.2.0
+arm                              allmodconfig   gcc-13.2.0
+arm                              allmodconfig   gcc-14.1.0
+arm                               allnoconfig   gcc-13.2.0
+arm                              allyesconfig   gcc-13.2.0
+arm                              allyesconfig   gcc-14.1.0
+arm                                 defconfig   gcc-13.2.0
+arm                            dove_defconfig   gcc-13.2.0
+arm                          ep93xx_defconfig   gcc-13.2.0
+arm                           imxrt_defconfig   clang-20
+arm                          ixp4xx_defconfig   clang-20
+arm                         orion5x_defconfig   gcc-13.2.0
+arm                          pxa3xx_defconfig   clang-20
+arm                            qcom_defconfig   gcc-13.2.0
+arm                   randconfig-001-20240806   clang-20
+arm                   randconfig-001-20240806   gcc-13.2.0
+arm                   randconfig-002-20240806   gcc-13.2.0
+arm                   randconfig-002-20240806   gcc-14.1.0
+arm                   randconfig-003-20240806   gcc-13.2.0
+arm                   randconfig-003-20240806   gcc-14.1.0
+arm                   randconfig-004-20240806   gcc-13.2.0
+arm                   randconfig-004-20240806   gcc-14.1.0
+arm                           spitz_defconfig   clang-20
+arm64                            alldefconfig   clang-20
+arm64                            allmodconfig   clang-20
+arm64                            allmodconfig   gcc-13.2.0
+arm64                             allnoconfig   gcc-13.2.0
+arm64                               defconfig   gcc-13.2.0
+arm64                 randconfig-001-20240806   clang-20
+arm64                 randconfig-001-20240806   gcc-13.2.0
+arm64                 randconfig-002-20240806   clang-20
+arm64                 randconfig-002-20240806   gcc-13.2.0
+arm64                 randconfig-003-20240806   clang-14
+arm64                 randconfig-003-20240806   gcc-13.2.0
+arm64                 randconfig-004-20240806   gcc-13.2.0
+arm64                 randconfig-004-20240806   gcc-14.1.0
+csky                              allnoconfig   gcc-13.2.0
+csky                                defconfig   gcc-13.2.0
+csky                  randconfig-001-20240806   gcc-13.2.0
+csky                  randconfig-001-20240806   gcc-14.1.0
+csky                  randconfig-002-20240806   gcc-13.2.0
+csky                  randconfig-002-20240806   gcc-14.1.0
+hexagon                          allmodconfig   clang-20
+hexagon                          allyesconfig   clang-20
+hexagon               randconfig-001-20240806   clang-20
+hexagon               randconfig-002-20240806   clang-17
+i386                             allmodconfig   clang-18
+i386                             allmodconfig   gcc-12
+i386                              allnoconfig   clang-18
+i386                              allnoconfig   gcc-12
+i386                             allyesconfig   clang-18
+i386                             allyesconfig   gcc-12
+i386         buildonly-randconfig-001-20240806   gcc-11
+i386         buildonly-randconfig-002-20240806   gcc-11
+i386         buildonly-randconfig-002-20240806   gcc-12
+i386         buildonly-randconfig-003-20240806   gcc-11
+i386         buildonly-randconfig-003-20240806   gcc-12
+i386         buildonly-randconfig-004-20240806   gcc-11
+i386         buildonly-randconfig-004-20240806   gcc-12
+i386         buildonly-randconfig-005-20240806   clang-18
+i386         buildonly-randconfig-005-20240806   gcc-11
+i386         buildonly-randconfig-006-20240806   gcc-11
+i386         buildonly-randconfig-006-20240806   gcc-12
+i386                                defconfig   clang-18
+i386                  randconfig-001-20240806   clang-18
+i386                  randconfig-001-20240806   gcc-11
+i386                  randconfig-002-20240806   gcc-11
+i386                  randconfig-002-20240806   gcc-12
+i386                  randconfig-003-20240806   gcc-11
+i386                  randconfig-003-20240806   gcc-12
+i386                  randconfig-004-20240806   gcc-11
+i386                  randconfig-004-20240806   gcc-12
+i386                  randconfig-005-20240806   clang-18
+i386                  randconfig-005-20240806   gcc-11
+i386                  randconfig-006-20240806   clang-18
+i386                  randconfig-006-20240806   gcc-11
+i386                  randconfig-011-20240806   clang-18
+i386                  randconfig-011-20240806   gcc-11
+i386                  randconfig-012-20240806   gcc-11
+i386                  randconfig-012-20240806   gcc-12
+i386                  randconfig-013-20240806   clang-18
+i386                  randconfig-013-20240806   gcc-11
+i386                  randconfig-014-20240806   clang-18
+i386                  randconfig-014-20240806   gcc-11
+i386                  randconfig-015-20240806   clang-18
+i386                  randconfig-015-20240806   gcc-11
+i386                  randconfig-016-20240806   clang-18
+i386                  randconfig-016-20240806   gcc-11
+loongarch                        allmodconfig   gcc-14.1.0
+loongarch                         allnoconfig   gcc-13.2.0
+loongarch                           defconfig   gcc-13.2.0
+loongarch             randconfig-001-20240806   gcc-13.2.0
+loongarch             randconfig-001-20240806   gcc-14.1.0
+loongarch             randconfig-002-20240806   gcc-13.2.0
+loongarch             randconfig-002-20240806   gcc-14.1.0
+m68k                             allmodconfig   gcc-14.1.0
+m68k                              allnoconfig   gcc-13.2.0
+m68k                             allyesconfig   gcc-14.1.0
+m68k                                defconfig   gcc-13.2.0
+microblaze                       allmodconfig   gcc-14.1.0
+microblaze                        allnoconfig   gcc-13.2.0
+microblaze                       allyesconfig   gcc-14.1.0
+microblaze                          defconfig   gcc-13.2.0
+mips                              allnoconfig   gcc-13.2.0
+mips                          ath25_defconfig   clang-20
+mips                     cu1830-neo_defconfig   gcc-13.2.0
+mips                 decstation_r4k_defconfig   clang-20
+mips                          eyeq5_defconfig   clang-20
+mips                           ip28_defconfig   gcc-13.2.0
+nios2                         10m50_defconfig   gcc-13.2.0
+nios2                             allnoconfig   gcc-13.2.0
+nios2                               defconfig   gcc-13.2.0
+nios2                 randconfig-001-20240806   gcc-13.2.0
+nios2                 randconfig-001-20240806   gcc-14.1.0
+nios2                 randconfig-002-20240806   gcc-13.2.0
+nios2                 randconfig-002-20240806   gcc-14.1.0
+openrisc                          allnoconfig   gcc-14.1.0
+openrisc                         allyesconfig   gcc-14.1.0
+openrisc                            defconfig   gcc-14.1.0
+parisc                           allmodconfig   gcc-14.1.0
+parisc                            allnoconfig   gcc-14.1.0
+parisc                           allyesconfig   gcc-14.1.0
+parisc                              defconfig   gcc-14.1.0
+parisc                randconfig-001-20240806   gcc-13.2.0
+parisc                randconfig-001-20240806   gcc-14.1.0
+parisc                randconfig-002-20240806   gcc-13.2.0
+parisc                randconfig-002-20240806   gcc-14.1.0
+parisc64                            defconfig   gcc-13.2.0
+powerpc                          allmodconfig   gcc-14.1.0
+powerpc                           allnoconfig   gcc-14.1.0
+powerpc                          allyesconfig   gcc-14.1.0
+powerpc                        cell_defconfig   clang-20
+powerpc                       ebony_defconfig   gcc-13.2.0
+powerpc                 mpc836x_rdk_defconfig   clang-20
+powerpc                 mpc837x_rdb_defconfig   gcc-13.2.0
+powerpc                  mpc866_ads_defconfig   gcc-13.2.0
+powerpc                  mpc885_ads_defconfig   gcc-13.2.0
+powerpc               randconfig-001-20240806   gcc-13.2.0
+powerpc               randconfig-001-20240806   gcc-14.1.0
+powerpc               randconfig-002-20240806   clang-20
+powerpc               randconfig-003-20240806   clang-20
+powerpc               randconfig-003-20240806   gcc-13.2.0
+powerpc                     tqm5200_defconfig   gcc-13.2.0
+powerpc                     tqm8540_defconfig   gcc-13.2.0
+powerpc                        warp_defconfig   clang-20
+powerpc64             randconfig-001-20240806   gcc-13.2.0
+powerpc64             randconfig-001-20240806   gcc-14.1.0
+powerpc64             randconfig-002-20240806   clang-16
+powerpc64             randconfig-002-20240806   gcc-13.2.0
+powerpc64             randconfig-003-20240806   gcc-13.2.0
+riscv                            allmodconfig   gcc-14.1.0
+riscv                             allnoconfig   gcc-14.1.0
+riscv                            allyesconfig   gcc-14.1.0
+riscv                               defconfig   clang-20
+riscv                               defconfig   gcc-14.1.0
+riscv                 randconfig-001-20240806   gcc-13.2.0
+riscv                 randconfig-001-20240806   gcc-14.1.0
+riscv                 randconfig-002-20240806   clang-20
+riscv                 randconfig-002-20240806   gcc-13.2.0
+s390                             allmodconfig   clang-20
+s390                              allnoconfig   clang-20
+s390                              allnoconfig   gcc-14.1.0
+s390                             allyesconfig   clang-20
+s390                             allyesconfig   gcc-14.1.0
+s390                                defconfig   gcc-14.1.0
+s390                  randconfig-001-20240806   clang-20
+s390                  randconfig-001-20240806   gcc-13.2.0
+s390                  randconfig-002-20240806   clang-20
+s390                  randconfig-002-20240806   gcc-13.2.0
+sh                               allmodconfig   gcc-14.1.0
+sh                                allnoconfig   gcc-13.2.0
+sh                               allyesconfig   gcc-14.1.0
+sh                                  defconfig   gcc-14.1.0
+sh                    randconfig-001-20240806   gcc-13.2.0
+sh                    randconfig-001-20240806   gcc-14.1.0
+sh                    randconfig-002-20240806   gcc-13.2.0
+sh                    randconfig-002-20240806   gcc-14.1.0
+sh                           se7343_defconfig   gcc-13.2.0
+sparc                            allmodconfig   gcc-14.1.0
+sparc                       sparc32_defconfig   gcc-13.2.0
+sparc64                             defconfig   gcc-14.1.0
+sparc64               randconfig-001-20240806   gcc-13.2.0
+sparc64               randconfig-001-20240806   gcc-14.1.0
+sparc64               randconfig-002-20240806   gcc-13.2.0
+sparc64               randconfig-002-20240806   gcc-14.1.0
+um                               allmodconfig   clang-20
+um                               allmodconfig   gcc-13.3.0
+um                                allnoconfig   clang-17
+um                                allnoconfig   gcc-14.1.0
+um                               allyesconfig   gcc-12
+um                               allyesconfig   gcc-13.3.0
+um                                  defconfig   gcc-14.1.0
+um                             i386_defconfig   gcc-14.1.0
+um                    randconfig-001-20240806   clang-20
+um                    randconfig-001-20240806   gcc-13.2.0
+um                    randconfig-002-20240806   gcc-12
+um                    randconfig-002-20240806   gcc-13.2.0
+um                           x86_64_defconfig   gcc-14.1.0
+x86_64                            allnoconfig   clang-18
+x86_64                           allyesconfig   clang-18
+x86_64       buildonly-randconfig-001-20240806   clang-18
+x86_64       buildonly-randconfig-002-20240806   clang-18
+x86_64       buildonly-randconfig-003-20240806   clang-18
+x86_64       buildonly-randconfig-004-20240806   clang-18
+x86_64       buildonly-randconfig-005-20240806   clang-18
+x86_64       buildonly-randconfig-005-20240806   gcc-12
+x86_64       buildonly-randconfig-006-20240806   clang-18
+x86_64       buildonly-randconfig-006-20240806   gcc-12
+x86_64                              defconfig   clang-18
+x86_64                              defconfig   gcc-11
+x86_64                randconfig-001-20240806   clang-18
+x86_64                randconfig-001-20240806   gcc-12
+x86_64                randconfig-002-20240806   clang-18
+x86_64                randconfig-002-20240806   gcc-11
+x86_64                randconfig-003-20240806   clang-18
+x86_64                randconfig-003-20240806   gcc-12
+x86_64                randconfig-004-20240806   clang-18
+x86_64                randconfig-005-20240806   clang-18
+x86_64                randconfig-006-20240806   clang-18
+x86_64                randconfig-011-20240806   clang-18
+x86_64                randconfig-011-20240806   gcc-12
+x86_64                randconfig-012-20240806   clang-18
+x86_64                randconfig-012-20240806   gcc-12
+x86_64                randconfig-013-20240806   clang-18
+x86_64                randconfig-014-20240806   clang-18
+x86_64                randconfig-014-20240806   gcc-12
+x86_64                randconfig-015-20240806   clang-18
+x86_64                randconfig-015-20240806   gcc-12
+x86_64                randconfig-016-20240806   clang-18
+x86_64                randconfig-016-20240806   gcc-12
+x86_64                randconfig-071-20240806   clang-18
+x86_64                randconfig-071-20240806   gcc-12
+x86_64                randconfig-072-20240806   clang-18
+x86_64                randconfig-073-20240806   clang-18
+x86_64                randconfig-073-20240806   gcc-11
+x86_64                randconfig-074-20240806   clang-18
+x86_64                randconfig-074-20240806   gcc-12
+x86_64                randconfig-075-20240806   clang-18
+x86_64                randconfig-075-20240806   gcc-12
+x86_64                randconfig-076-20240806   clang-18
+x86_64                          rhel-8.3-rust   clang-18
+xtensa                           alldefconfig   gcc-13.2.0
+xtensa                            allnoconfig   gcc-13.2.0
+xtensa                randconfig-001-20240806   gcc-13.2.0
+xtensa                randconfig-001-20240806   gcc-14.1.0
+xtensa                randconfig-002-20240806   gcc-13.2.0
+xtensa                randconfig-002-20240806   gcc-14.1.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-128077v15_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v15/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * Linux: xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8 -> xe-pw-128077v15
-
-  IGT_7957: cb9121cf18a2fa8dfa1f663484f3a460b95e1b41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8: fbea69172f4a0da3170a3fa7f444d3924eef30e8
-  xe-pw-128077v15: 128077v15
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v15/index.html
-
---===============7536729298020542961==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add GuC based register capture for error capture (rev15)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128077/">https://patchwork.freedesktop.org/series/128077/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v15/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v15/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8_BAT -&gt; xe-pw-128077v15_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-128077v15_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v15/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8 -&gt; xe-pw-128077v15</li>
-</ul>
-<p>IGT_7957: cb9121cf18a2fa8dfa1f663484f3a460b95e1b41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1721-fbea69172f4a0da3170a3fa7f444d3924eef30e8: fbea69172f4a0da3170a3fa7f444d3924eef30e8<br />
-  xe-pw-128077v15: 128077v15</p>
-
-</body>
-</html>
-
---===============7536729298020542961==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
