@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58D32C49EA1
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 14:57:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66197C52D76
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 14:57:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2649310E39C;
-	Tue,  6 Aug 2024 14:57:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3457810E39E;
+	Tue,  6 Aug 2024 14:57:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h18YwsVB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OAEoRpgZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74AEA10E39C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F8F10E39D
  for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 14:57:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1722956227; x=1754492227;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+HvLz3DPYjZxvvIzsdWA+U108rNvRKpFMtZf1F2MWK4=;
- b=h18YwsVB1ScH7k9rrILxrgdLio8RFJvL0hrQoenCThZ2lDQLV5hatRuH
- x4ZZEEjjzAOWXuLVj+CSydC8qGeptu8PrRWuB2EpBoAqW/Bg2/frG+RBd
- 3t++DzdykrckTQzJik1AQd+a6Y7RFAz+XKEm4Pq4fy5g8+MPwW0KkLEwy
- OEMGd/GHQtnTvOKOde5TKfW/Mz1V4cCHeSLwn9W96TUAernv4Am+vYMej
- 9jYeqmj50l9hF4rmtOVfKpdQG4pFi+I94SMA1+mhCWh9y47w+E6T8K4mC
- AYn7vwxsasepUPIklsayTs+jxctla9TBZC6Y0/KIVGqz9y6ZiziFH4M4g g==;
-X-CSE-ConnectionGUID: zx2OWn2BSC660N1XqiWiRw==
-X-CSE-MsgGUID: fdkC1OZTSsOcFkBw6iMVDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="21129792"
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="21129792"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=PMwrBmJ6QUa191pttGUwCI1KtnGDzsOYrGntWHj+Mp0=;
+ b=OAEoRpgZ9EnZo1Oh8Fs9ltPdL6dpHhCbfMHKHiccQgK1a85T2cBZF8MS
+ mMUdjUaEnVNsVo9yVVip7yGJT+RNvZ6tYAysh6czJvThaLqkYOE2QGdkh
+ v1WE+gw/wlzAKlz49EwI9W+IifKjxMFakS2MsqYgSOPKhp3l0MlTx/UEa
+ qu9H7i2xlmo90Jjhj1VRRABTpxkwlnI601iuNY3PWsPjpBL1jlu1aLZ0/
+ LyLxNRLhbuXHVgrnNzv0fJrFm/jidq8G/ALS/tOrBIRlD0z3Yb8tm7xKc
+ 8AmUl5hvJgtBmmJu0jE9osio25AvJyQNwsHFvKijXSNmjHoi7dAe2/PV+ Q==;
+X-CSE-ConnectionGUID: /gaUDtxzQruuxP1iUAX8WQ==
+X-CSE-MsgGUID: 7P58450GTiSv3RrN0wsnUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="21129796"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="21129796"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 07:57:06 -0700
-X-CSE-ConnectionGUID: r/9CUrO6QZioUhU+MtwX2g==
-X-CSE-MsgGUID: h2YN5LkZSiSILnOrPQ+NEA==
+ 06 Aug 2024 07:57:07 -0700
+X-CSE-ConnectionGUID: y9hZ9FzTToOtVtAMLeenyA==
+X-CSE-MsgGUID: ZMaEzuTcQF2qdxEWST8eFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56509221"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56509231"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
  by fmviesa009.fm.intel.com with ESMTP; 06 Aug 2024 07:57:05 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH v15 0/5] drm/xe/guc: Add GuC based register capture for error
- capture
-Date: Tue,  6 Aug 2024 07:56:59 -0700
-Message-Id: <20240806145704.165231-1-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v15 3/5] drm/xe/guc: Add capture size check in GuC log buffer
+Date: Tue,  6 Aug 2024 07:57:02 -0700
+Message-Id: <20240806145704.165231-4-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240806145704.165231-1-zhanjun.dong@intel.com>
+References: <20240806145704.165231-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,110 +66,267 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Port GuC based register capture for error capture from i915 to Xe.
-
-There are 3 parts inside:
-. Prepare for capture registers
-    There is a bo create at guc ads init time, that is very early
-    and engi  ne map is not ready, make it hard to calculate the
-    capture buffer size, new function created for worst case size
-    caluation. Other than that, this part basically follows the i915
-    design.
-. Process capture notification message
-    Basically follows i915 design
-. Sysfs command process.
-    Xe switched to devcoredump, adopted command line process with
-    captured node list.
+Capture-nodes generated by GuC are placed in the GuC capture ring
+buffer which is a sub-region of the larger Guc-Log-buffer.
+Add capture output size check before allocating the shared buffer.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-
-Changes from prior revs:
- v15:-  Optimized guc log size code, remove the unnecessary init structure.
-        Fix a rebase line number alignment error
- v14:-  Fixed ring buffer wrap around offset issue
- v13:-  Move guc_mmio_reg structure define to guc_capture_abi.h
-        Remove duplicated crash/debug/capture unit check
-        Remove unnecessary guc_capture_data_extracted
-        Update u32 align check in guc_capture_log_remove_bytes
- v12:-  Rewrite guc log size init from runtime to compile time implementation.
-        Change log buffer flush to file from structure bitfield to genmask.
-        Change the capture log data copy from u32 copy to size copy
-        There are 3 types of engine class refrenced in this series, hw engine
-        class, GuC class and GuC capture class, update function parameter type
-        to enum for easy to read.
-        Update macro names to follow GuC interface specification.
- v11:-  Fixed a bug of missing captured check on register snapshot pre-capture
-        Fixed kernel-doc warnings
- v10:-  Resync with updated job timed out follow
-        Add pre-capture by read from hw engine if GuC capture data is not
-        ready, the pre-captured data will be refereshed if GuC capture is
-        ready at later time.
-        Add xe_guc_capture_is_ready_for to check if GuC capture is ready
-        for a job.
-        Re-orgnize some header files to xe abi folder
-        Reduce some meesage level from warn/info to debug
-        Remove duplicated enum of GuC log type.
-  v9:-  Merged snapshot register list into capture register lists
-        Optimized devcoredump timing to take snapshot after guc reset
-        Add global and engine class registers into capture list
-        Fixed bug of incorrect matching guc class id with guc capture class id
-  v8:-  Reorgnize the order of patches
-        Change the capture size check from worst min size to worst size
-        Replace the kernel alloc with drm managed alloc
-        Replace the memcpy with xe_map_memcpy_from
-        Free GuC capture outlist as part of xe_devcoredump_free
-  v7:-  Kconfig CONFIG_DRM_XE_CAPTURE_ERROR removed
-  v6:-  Change hardcoded register snapshot fill to follow mapping tables
-        When capture is empty, take snapshot from engine
-  v5:-  Split dss helper code out as an standalone patch
-        Remove old platform registers definition.
-        Split register map table to 32 and 64bit each
-  v4:-  Move register map table to xe_hw_engine.c
-  v3:-  Remove condition compilation in code
-  v2:-  Split into multiple chunks
-
-Zhanjun Dong (5):
-  drm/xe/guc: Prepare GuC register list and update ADS size for error
-    capture
-  drm/xe/guc: Add XE_LP steered register lists
-  drm/xe/guc: Add capture size check in GuC log buffer
-  drm/xe/guc: Extract GuC error capture lists
-  drm/xe/guc: Plumb GuC-capture into dev coredump
-
- drivers/gpu/drm/xe/Makefile               |    1 +
- drivers/gpu/drm/xe/abi/guc_actions_abi.h  |    8 +
- drivers/gpu/drm/xe/abi/guc_capture_abi.h  |  186 +++
- drivers/gpu/drm/xe/abi/guc_log_abi.h      |   75 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |    2 +
- drivers/gpu/drm/xe/xe_devcoredump.c       |   16 +-
- drivers/gpu/drm/xe/xe_devcoredump_types.h |    2 +
- drivers/gpu/drm/xe/xe_guc.c               |    5 +
- drivers/gpu/drm/xe/xe_guc.h               |    5 +
- drivers/gpu/drm/xe/xe_guc_ads.c           |  151 +-
- drivers/gpu/drm/xe/xe_guc_ads_types.h     |    2 +
- drivers/gpu/drm/xe/xe_guc_capture.c       | 1631 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_capture.h       |   68 +
- drivers/gpu/drm/xe/xe_guc_capture_types.h |   59 +
- drivers/gpu/drm/xe/xe_guc_ct.c            |    2 +
- drivers/gpu/drm/xe/xe_guc_fwif.h          |   26 +-
- drivers/gpu/drm/xe/xe_guc_log.c           |  106 ++
- drivers/gpu/drm/xe/xe_guc_log.h           |   10 +-
- drivers/gpu/drm/xe/xe_guc_log_types.h     |    7 +
- drivers/gpu/drm/xe/xe_guc_submit.c        |   83 +-
- drivers/gpu/drm/xe/xe_guc_submit.h        |    2 +
- drivers/gpu/drm/xe/xe_guc_types.h         |    2 +
- drivers/gpu/drm/xe/xe_hw_engine.c         |  240 ++-
- drivers/gpu/drm/xe/xe_hw_engine.h         |    2 +
- drivers/gpu/drm/xe/xe_hw_engine_types.h   |  180 ++-
- drivers/gpu/drm/xe/xe_lrc.h               |    1 +
- 26 files changed, 2670 insertions(+), 202 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_capture_abi.h
+---
+ drivers/gpu/drm/xe/abi/guc_log_abi.h | 20 +++++++
+ drivers/gpu/drm/xe/xe_guc_capture.c  | 83 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_log.c      | 70 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_log.h      |  7 ++-
+ 4 files changed, 178 insertions(+), 2 deletions(-)
  create mode 100644 drivers/gpu/drm/xe/abi/guc_log_abi.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_types.h
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+new file mode 100644
+index 000000000000..10db4ffaa17f
+--- /dev/null
++++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef _ABI_GUC_LOG_ABI_H
++#define _ABI_GUC_LOG_ABI_H
++
++#include <linux/types.h>
++
++/* GuC logging buffer types */
++enum guc_log_buffer_type {
++	GUC_LOG_BUFFER_CRASH_DUMP,
++	GUC_LOG_BUFFER_DEBUG,
++	GUC_LOG_BUFFER_CAPTURE,
++};
++
++#define GUC_LOG_BUFFER_TYPE_MAX		3
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index bf11cd2aaf25..72abba8f7bf8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -22,6 +22,7 @@
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_printk.h"
+ #include "xe_guc.h"
++#include "xe_guc_ads.h"
+ #include "xe_guc_capture.h"
+ #include "xe_guc_capture_types.h"
+ #include "xe_guc_ct.h"
+@@ -588,7 +589,86 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc)
+ 	return PAGE_ALIGN(total_size);
+ }
+ 
+-/**
++static int guc_capture_output_size_est(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++
++	int capture_size = 0;
++	size_t tmp = 0;
++
++	if (!guc->capture)
++		return -ENODEV;
++
++	/*
++	 * If every single engine-instance suffered a failure in quick succession but
++	 * were all unrelated, then a burst of multiple error-capture events would dump
++	 * registers for every one engine instance, one at a time. In this case, GuC
++	 * would even dump the global-registers repeatedly.
++	 *
++	 * For each engine instance, there would be 1 x guc_state_capture_group_t output
++	 * followed by 3 x guc_state_capture_t lists. The latter is how the register
++	 * dumps are split across different register types (where the '3' are global vs class
++	 * vs instance).
++	 */
++	for_each_hw_engine(hwe, gt, id) {
++		enum guc_capture_list_class_type capture_class;
++
++		capture_class = xe_engine_class_to_guc_capture_class(hwe->class);
++		capture_size += sizeof(struct guc_state_capture_group_header_t) +
++					 (3 * sizeof(struct guc_state_capture_header_t));
++
++		if (!guc_capture_getlistsize(guc, 0, GUC_STATE_CAPTURE_TYPE_GLOBAL,
++					     0, &tmp, true))
++			capture_size += tmp;
++		if (!guc_capture_getlistsize(guc, 0, GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
++					     capture_class, &tmp, true))
++			capture_size += tmp;
++		if (!guc_capture_getlistsize(guc, 0, GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE,
++					     capture_class, &tmp, true))
++			capture_size += tmp;
++	}
++
++	return capture_size;
++}
++
++/*
++ * Add on a 3x multiplier to allow for multiple back-to-back captures occurring
++ * before the Xe can read the data out and process it
++ */
++#define GUC_CAPTURE_OVERBUFFER_MULTIPLIER 3
++
++static void check_guc_capture_size(struct xe_guc *guc)
++{
++	int capture_size = guc_capture_output_size_est(guc);
++	int spare_size = capture_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
++	u32 buffer_size = xe_guc_log_section_size_capture(&guc->log);
++
++	/*
++	 * NOTE: capture_size is much smaller than the capture region
++	 * allocation (DG2: <80K vs 1MB).
++	 * Additionally, its based on space needed to fit all engines getting
++	 * reset at once within the same G2H handler task slot. This is very
++	 * unlikely. However, if GuC really does run out of space for whatever
++	 * reason, we will see an separate warning message when processing the
++	 * G2H event capture-notification, search for:
++	 * xe_guc_STATE_CAPTURE_EVENT_STATUS_NOSPACE.
++	 */
++	if (capture_size < 0)
++		xe_gt_dbg(guc_to_gt(guc),
++			  "Failed to calculate error state capture buffer minimum size: %d!\n",
++			  capture_size);
++	if (capture_size > buffer_size)
++		xe_gt_dbg(guc_to_gt(guc), "Error state capture buffer maybe small: %d < %d\n",
++			  buffer_size, capture_size);
++	else if (spare_size > buffer_size)
++		xe_gt_dbg(guc_to_gt(guc),
++			  "Error state capture buffer lacks spare size: %d < %d (min = %d)\n",
++			  buffer_size, spare_size, capture_size);
++}
++
++/*
+  * xe_guc_capture_init - Init for GuC register capture
+  * @guc: The GuC object
+  *
+@@ -605,5 +685,6 @@ int xe_guc_capture_init(struct xe_guc *guc)
+ 
+ 	guc->capture->reglists = guc_capture_get_device_reglist(guc);
+ 
++	check_guc_capture_size(guc);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index a37ee3419428..250696df92cc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -12,6 +12,11 @@
+ #include "xe_map.h"
+ #include "xe_module.h"
+ 
++static inline struct xe_guc *log_to_guc(struct xe_guc_log *log)
++{
++	return container_of(log, struct xe_guc, log);
++}
++
+ static struct xe_gt *
+ log_to_gt(struct xe_guc_log *log)
+ {
+@@ -96,3 +101,68 @@ int xe_guc_log_init(struct xe_guc_log *log)
+ 
+ 	return 0;
+ }
++
++static u32 xe_guc_log_section_size_crash(struct xe_guc_log *log)
++{
++	return CRASH_BUFFER_SIZE;
++}
++
++static u32 xe_guc_log_section_size_debug(struct xe_guc_log *log)
++{
++	return DEBUG_BUFFER_SIZE;
++}
++
++/**
++ * xe_guc_log_section_size_capture - Get capture buffer size within log sections.
++ * @log: The log object.
++ *
++ * This function will return the capture buffer size within log sections.
++ *
++ * Return: capture buffer size.
++ */
++u32 xe_guc_log_section_size_capture(struct xe_guc_log *log)
++{
++	return CAPTURE_BUFFER_SIZE;
++}
++
++/**
++ * xe_guc_get_log_buffer_size - Get log buffer size for a type.
++ * @log: The log object.
++ * @type: The log buffer type
++ *
++ * Return: buffer size.
++ */
++u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type)
++{
++	switch (type) {
++	case GUC_LOG_BUFFER_CRASH_DUMP:
++		return xe_guc_log_section_size_crash(log);
++	case GUC_LOG_BUFFER_DEBUG:
++		return xe_guc_log_section_size_debug(log);
++	case GUC_LOG_BUFFER_CAPTURE:
++		return xe_guc_log_section_size_capture(log);
++	}
++	return 0;
++}
++
++/**
++ * xe_guc_get_log_buffer_offset - Get offset in log buffer for a type.
++ * @log: The log object.
++ * @type: The log buffer type
++ *
++ * This function will return the offset in the log buffer for a type.
++ * Return: buffer offset.
++ */
++u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type)
++{
++	enum guc_log_buffer_type i;
++	u32 offset = PAGE_SIZE;/* for the log_buffer_states */
++
++	for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < GUC_LOG_BUFFER_TYPE_MAX; ++i) {
++		if (i == type)
++			break;
++		offset += xe_guc_get_log_buffer_size(log, i);
++	}
++
++	return offset;
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+index 2d25ab28b4b3..87ecd1814854 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.h
++++ b/drivers/gpu/drm/xe/xe_guc_log.h
+@@ -7,6 +7,7 @@
+ #define _XE_GUC_LOG_H_
+ 
+ #include "xe_guc_log_types.h"
++#include "abi/guc_log_abi.h"
+ 
+ struct drm_printer;
+ 
+@@ -17,7 +18,7 @@ struct drm_printer;
+ #else
+ #define CRASH_BUFFER_SIZE	SZ_8K
+ #define DEBUG_BUFFER_SIZE	SZ_64K
+-#define CAPTURE_BUFFER_SIZE	SZ_16K
++#define CAPTURE_BUFFER_SIZE	SZ_1M
+ #endif
+ /*
+  * While we're using plain log level in i915, GuC controls are much more...
+@@ -45,4 +46,8 @@ xe_guc_log_get_level(struct xe_guc_log *log)
+ 	return log->level;
+ }
+ 
++u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
++u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type);
++u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type);
++
+ #endif
 -- 
 2.34.1
 
