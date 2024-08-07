@@ -4,62 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35E93C3DA7F
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 08:26:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2E67C52D6F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 08:26:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3F0A10E454;
-	Wed,  7 Aug 2024 08:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4DF10E45A;
+	Wed,  7 Aug 2024 08:26:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZl9jkW8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5HWOORJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83AD010E454
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Aug 2024 08:26:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5177C10E45A
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Aug 2024 08:26:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723019164; x=1754555164;
+ t=1723019214; x=1754555214;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=TUaGoEB3JsEQ5KOE50ughcQzcVV/8tZZwgszARVakRw=;
- b=kZl9jkW8CYFLy5bFe2FM2qUXslBVplv5LkqcY90weO2gjIPQSgVAI2AK
- rgbCurGCTbH0xtARDxQjO+QE5S3BZ0sqgXMG2IR2LWrhjmrrG5pAcqMbs
- ta3JbvI/XtGpQeGrHGgnyu1hN7VNx66AvznJeTR4+1xRiDz9xOmH+WXli
- T8423/L5g/VoqUS9LJv3I9Bis6tICnM8EH+HEuUvn9T7id5cryIAX6Nmu
- 6HMhZuHyNGMBCY5GE9to0eVy6bUcTGEqNkIx1ZOBYkML7xz9HzBmlqKU7
- ixya42I50EUtMdaGAc7+SGyVOJF7UjrLQtJEpIn+eyFSuIlf4iJXHpHqj g==;
-X-CSE-ConnectionGUID: eU6ZA2WETsewzXfefpn5GQ==
-X-CSE-MsgGUID: 8CGiHZ+uRVm4+SrupkYS7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="21196641"
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208,217";a="21196641"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 01:26:04 -0700
-X-CSE-ConnectionGUID: Spiyno3kQkqklzc7rkzqbA==
-X-CSE-MsgGUID: wbbSWKK/QyWow8qxcoc7zw==
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=95/IbZb7WaZ6MffQrDA80sj0wWEH71/dV69PDt/v0BQ=;
+ b=C5HWOORJiWwAA2DgjoNY3pALV4N7U8mJai/2jmK5n/EKGQtpMnJu3s6N
+ eR1FN402ZTbs001crbWu/XVjg+GlGm0AVse6Wb1scvWCUBEjP6CpF0JfC
+ luaPWzHJq57aAIebDdQVaBrhLRxecEfUnZOxWr7+vxOC9Q+wqTobBtMO9
+ Y9T2dctvlx4T6+q3AYFREM1KMM8DMaqb3mOILq5cVAhGJRts2yGjy/TVH
+ Hef0lqNYvujszcN/yRhwEjv12Lzb8j7kW7meNbIe+e+urkzMQfAEYaTF/
+ 0WPLqkSkPyH9BTqcchoDeBp6EdxowAmg6ENK/E+HdtutGxHkqscZiLs4G g==;
+X-CSE-ConnectionGUID: EjDvT+MeRvuscKRo37zz0A==
+X-CSE-MsgGUID: B6fXdWgLQI2KNZl3BPBQqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="21047996"
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="21047996"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 01:26:54 -0700
+X-CSE-ConnectionGUID: JMYEurVtQI+KeTLXMe06oA==
+X-CSE-MsgGUID: m7HRSYvjSGqBU2dq99XsaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208,217";a="61667125"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 Aug 2024 01:26:03 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="57469723"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Aug 2024 01:26:54 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 7 Aug 2024 01:26:02 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 7 Aug 2024 01:26:53 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 7 Aug 2024 01:26:02 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 7 Aug 2024 01:26:53 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 7 Aug 2024 01:26:53 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 7 Aug 2024 01:26:01 -0700
+ 15.1.2507.39; Wed, 7 Aug 2024 01:26:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=byWf6m5JgxRxv11MTcJWMBayJI35NTafox3UMoSSf1VQtZinTe3vE2adDVIyfD8WOeU8DAcjpGlmhzPWF6Gijqwa6+RRdpuc1gqRzK3oTobj1jyvM2yKAIDYTKnYnqcQNKUMNjVqYtCO9PqegCAvTNgtb71qPljrh6TBmynxY1y9iD4e3wGfE30+sYTFsugvxPCUGefhQJhYQkdeRcyUwnT3BVzmIWEBiSxhsba4CQOTHoN/zHphK7wkaXrEiOcIPLIvcwpQ/Q6o0xteSr3jxsVuWZQk1a2+wVSrQN8nlED/1JxFMkQrNNt5Pj58IH1YeKjPIZbk3WZliQdPAbDTNg==
+ b=K0vZ2SgRITcbO8toDleiD9SzB9fJGw4rdyb6KnCwcXxn//IHEMLGoEwpL8hpXKdkpnzjxruByy00Jdcc+TjDY/j5oeUMLeHwiDAzdO5DmYqjZPk5rOgO2cowkPo0xGXDMugQFHvqW5/aFFI8xMzireEpgpJxI/Ju1pDN8CsUWZ0K0/BvzAxWq2ZE2O+DlBiJL4mMx09ns3KolMqbJlM5pStdYUKsOaUjMwTrYNfW1rBypCTRBmCvcnL/oPTCw5kKtZeKoAiRSmM5ryz0Zg7ELYnMW+K2C/l+C4tRR3IK5T+TcX5dnpnikuUc7J/pKt699+G0cJVISpaKc8NF+us8pg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CfBZPU9GMzx8HbaSJMcAf2K+n2ACmZbCcY9PbSJ6E8o=;
- b=wc+jRtux8oLNEnn2tWY/3aetzB21YoHryxIyvFJKN16M3WpHfGUlp4RbUYPoUFTfHyLTnZYoTSAGrN5tSmUUxzEPSnvqItOtlWEMf57d7CskR3dBZlYsK7eOX52x7EGaTg8fAm1+7vEf8OCl982A0uzdJMtsus0tTIUm/x0qbmQkwI4320SbD6mM/Fxdj3DYTVY6F3Ms8P8mUh1xtgLrJ1RC4NZS54Lj5mKBfrwyoPnT6+CXcgCN96Dwr8bqi5/0Gt9qXUVuoqyc0p3G00exCEPw/gndbpokCDFJNeIuh2mA+93h4xbjQpkWbK5ctIHjtSZcU7cDfzK8P9XxLetalQ==
+ bh=MhhlFcBddRyp6KqaUCgiaOK7sG2UnZs6mz7A8NIk6d4=;
+ b=ObKupHUzX4eOidmC3lSjmxc9z6TdB6oVGT+JuIligqEajahjKB/GWi/VrxH73zY14BY7Xq2dF4HLxN7zSlqzKbPYKZnow4922UKmUYz9B/siGgJfNcC80uSiT248UCb227fC+l4fis5CnaApMXl5RM4AmZb3iQb94ddWNlSIexlhFrYv4dcHzhMOdXO3dwba085CaH6Ko2CGQRGsYC1RGArKwciPkqXTdixygUgTR9WI42lMMnfMpseiYvDmUO1du3PYC1EDcGau0R0m457AAmIk+pG+Y9PgLLDt28EuIBmSaRLl4lVgloZzGDvsW8qqDWp9faOMz2qZ6T7QoPBY1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,114 +73,116 @@ Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
  IA0PR11MB8334.namprd11.prod.outlook.com (2603:10b6:208:483::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.26; Wed, 7 Aug
- 2024 08:25:59 +0000
+ 2024 08:26:50 +0000
 Received: from DS0PR11MB6541.namprd11.prod.outlook.com
  ([fe80::e268:87f2:3bd1:1347]) by DS0PR11MB6541.namprd11.prod.outlook.com
  ([fe80::e268:87f2:3bd1:1347%5]) with mapi id 15.20.7828.023; Wed, 7 Aug 2024
- 08:25:59 +0000
-Content-Type: multipart/alternative;
- boundary="------------BMVXdq5faHJiq0i6Y6d06v0n"
-Message-ID: <45f905b1-13c0-4209-a158-b9d1c788af6e@intel.com>
-Date: Wed, 7 Aug 2024 10:25:54 +0200
+ 08:26:50 +0000
+Message-ID: <e80c76f4-c405-4595-9086-df0c65279ed4@intel.com>
+Date: Wed, 7 Aug 2024 10:26:45 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe/gt: Add APIs for printing stats over debugfs
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe: Add stats for tlb invalidation count
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Brost, Matthew" <matthew.brost@intel.com>, "Wajdeczko, Michal"
+ <Michal.Wajdeczko@intel.com>
 References: <20240806194510.13044-1-nirmoy.das@intel.com>
- <ZrKJ9wvhLTq/Eu7x@DUT025-TGLU.fm.intel.com>
+ <20240806194510.13044-2-nirmoy.das@intel.com>
+ <SJ1PR11MB6204957D8FAC83421E7F3FD481B82@SJ1PR11MB6204.namprd11.prod.outlook.com>
 Content-Language: en-US
 From: Nirmoy Das <nirmoy.das@intel.com>
-In-Reply-To: <ZrKJ9wvhLTq/Eu7x@DUT025-TGLU.fm.intel.com>
-X-ClientProxiedBy: ZR0P278CA0117.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:20::14) To DS0PR11MB6541.namprd11.prod.outlook.com
+In-Reply-To: <SJ1PR11MB6204957D8FAC83421E7F3FD481B82@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0112.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:20::9) To DS0PR11MB6541.namprd11.prod.outlook.com
  (2603:10b6:8:d3::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|IA0PR11MB8334:EE_
-X-MS-Office365-Filtering-Correlation-Id: be88834d-ae29-4179-e7e8-08dcb6ba90b9
+X-MS-Office365-Filtering-Correlation-Id: bfc22b9f-325f-4989-c367-08dcb6baaf82
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WkhKeExHd3Q2RWVYR1dTNWJXTmlTMm11OXRjdHgxOVRhZXhRQmdWZXRTdWRo?=
- =?utf-8?B?c041SzJCZlFTSVVrSzZ3NU5nMXZmZ1licytzQWRWeXhPdXZpTG53cVZHajhK?=
- =?utf-8?B?SnVibmlOZnhhblBuRnlHQ0NnZGJDNm1uakFlbkFhNkdhU0JQVjhTak1WV3JP?=
- =?utf-8?B?d1h6UGhSbmVMTHc0S2tyZHJESHhxSms5Mk5tMGU2aTZqU2tDN1NVbjgrL0N3?=
- =?utf-8?B?VlhEMjJUWlFnS1pKc3JTdDNkTXNCd2JJTW52SjlTQ3Nla1R6LytFVDZ6UXF5?=
- =?utf-8?B?U1lQaWZOSWNOS2o1cjBqWVpXUUdaTkRuNGxaUFN1ajdOQVNhMXJuZUVncGhE?=
- =?utf-8?B?T0t1bU9BMzNFZDRzMER6WCtkSGYyZ2lUU2JERjRIOElJUXk3dnBQZGN6RC8w?=
- =?utf-8?B?VFVMZnBGMTFXTTQwWVJzSlIrTGhuWEEwM0JYOFVyTnBrdklSY2NzZEZkRkNv?=
- =?utf-8?B?WEt1TG9mbWJEQjJ1VjZCWFpEM0lnTEFwNlo3M3hZS0QwWlhGcnFtMnBtRlpa?=
- =?utf-8?B?WGU2Mzh5TzcxT09xUldFSmJRcFRiWXNTTGV6QTdSUjcybVZ1a1FlRzlKWk5E?=
- =?utf-8?B?L0ZUOStDQUVkM1VIMXZneUtzRjFBaXJ5NUdYR1A1VHRHVGJ6emFseW5vaWlC?=
- =?utf-8?B?dm5DdFhXM0lVcEQyc1NyVzM0TjdHaWt2cFpzQmkveU84VllsbStRWWVhbFl2?=
- =?utf-8?B?aHZUNEJnaVRMSjY2dEs5djBWU3hMbzJVbU9iTmxhbnE0Ujl1TkNPYVNlSkVo?=
- =?utf-8?B?RU9PbU5VaUh5RlA3RmlESGVVcGxCdWlJNFFPUFRxVFFVMS9laCsyNlJ2Rmkz?=
- =?utf-8?B?alpFMDg1NlQ1QVBSVVBrVGM3b3h4UVpLK2V6eXc3UCs4clBHa2E0bmVXUG45?=
- =?utf-8?B?a3Y4U1dHNGJ0aDRLQmVOM29CMnJYT1h1Wi82U2w5ZXprcW0zTHdpU0NrMVd1?=
- =?utf-8?B?RmJMS2UxaE11ZWFaQUhIeCt4aW9zTmV5RjBRV0E0eFVZcnFsNllzOHdIZTVk?=
- =?utf-8?B?YUZtNjBrWnpHVU5nTjNwMHVOUjZtQyt2VEQyTkw5cHFDMi9BZ1IvRDkzSEhC?=
- =?utf-8?B?OW9Fcy9uTHpwTkxpZDJmU2llQTZ2dlc0ZUMwVHR1OG1jVDBkb3d0dGJ1cEJi?=
- =?utf-8?B?RGhmNDlsNFN4aG5rNmdpMkYyMkRjdEs1c3BFdk1oNVpqSThOVG5Sck9hVWc5?=
- =?utf-8?B?a1NJQ3BKQnhQbGZSSlozK0dlejhJenB4VTRKL3dqVFhPbUNndnRndFRaally?=
- =?utf-8?B?d3F4WEVsMWt4M0lqODdMaFhEZnRnNTFEbUh3OWNxR2IwUklMR0puZmJHaEZP?=
- =?utf-8?B?YjFFQkpBSmhDQ0tQdExpMWRnOUloeDdaeGJSdVdjc3BBQ015RU40aXFqTTZn?=
- =?utf-8?B?blhBbHUrMmhTaFBGdEh4dVluSVlJamVyTlNwSmlSbGZVR2gzVHpVeVQyMllr?=
- =?utf-8?B?WWdncXMyNUFBcTJoKzRDK2I5Tjg0TVFRamVsNmkvOGNBZUdya2FBWlRNblhj?=
- =?utf-8?B?SkM4c1V4cEZkSW1vMHlOS3JsbGtEUmJxT2U3MzdVM3ZXRjZ3Um1WYU56Qzlu?=
- =?utf-8?B?TVV2dnNEMGhneGVPTEUxTlhKMnEyM2hYYVB3eUhKakJ4UzV0Qkw5bGZNZDFz?=
- =?utf-8?B?TlpvSUpzV0VDdUNLSC9RSE1BWTZyV3FwV0QrdGpva2E5YTI4RE5wbG50L2FX?=
- =?utf-8?B?djczYlh0amYxMGdQT3I3UXE4ckt5YzNKZnVPZUxHZFVLWUtiOGRTa3VOcTV4?=
- =?utf-8?B?bmluMURYa3VxRHp6WG9SUGJYQ3hHa0ZSWDBuaW8wTWFnTGRMckFjelFsbm9o?=
- =?utf-8?B?V3kvbU5KS3llNENreU5PZz09?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NU85emNCeUhtbDJHSHdVUWVzSlpxcG15ZGR3bFBWd1cxZEVzQWs5L2NGUmVT?=
+ =?utf-8?B?cnUwMXBmUkh4K2tLZUdNMFJrU0hKdmVQOXRTaEQ2V1hKL2xNRnMyMEY5NU9H?=
+ =?utf-8?B?R3h0VFZCb0IvcTl0bzI5VSt3S1lzQU9qNk4zNHREOVZJT2c4cjI3d1Vsdzlo?=
+ =?utf-8?B?eW9iTVErZmEzZHNJbFowaFB2eHlaSzNGdld3N2szbi9LVTZETGpneXFZQ1RF?=
+ =?utf-8?B?L3BPMnZ6a1BKcHJNZzF6R1U3QzBTUkZGaTkvbFE0ZWdYUVdzcGlRUXdEaHBa?=
+ =?utf-8?B?YkoyMk5kL1NDUTV5cVA3M2FLRzJOeDh2ZkYzbE02dGxNUGQ0WFR5amlNRlhW?=
+ =?utf-8?B?V1F0VERFRTE3a01aRlBrREtpeGQrSnBKKzJlS09LYW9OcVo5MGkvcEFBZ2E1?=
+ =?utf-8?B?b2MzdVdZcGViUzNvWnpMbjZRK2ZJeEJmRHBhR2wyUUVKUXFCcVdBczJma28v?=
+ =?utf-8?B?ZHlhbTRPa210MjNDTHJjZ2R1NFJnTHF4MEJCUklkYzNiVjVhWlBaUHdvaEVW?=
+ =?utf-8?B?UTRQQU81YlBWeWFneWQ5bXpSSmhDSkFUSjRJd1k5NFgxbEtpcGFRcy9lZDVi?=
+ =?utf-8?B?UkJpVUZsMm5iVWVydXFqSWdJbzF6LzNWM1NkVkx2dXNtdVFaemFBNFVOMTU5?=
+ =?utf-8?B?a2wvVFdjbWlNeWVqQUxnajZ5NXNJNkliSmV2cVFRL05BSEV3T2N0MU9Gc1ZY?=
+ =?utf-8?B?UDh4N2VTWG5ZL2lIU3R1VDh4RDJzVGlLcEhMSkVOdml2eTkvc2s4V2VUa011?=
+ =?utf-8?B?UW50NUZBYk5zZ3pWMVFtZG5SUjcwUmRiR2tMUGs0ekk3bk9QN2FLY05wU2sy?=
+ =?utf-8?B?YlkxbnJiTHpaT1o3Rkk5YStLTE40c1RkbDR6eDQyL3pzS0tsRnJCQi9xWXE0?=
+ =?utf-8?B?Rm1KaEg1NGhjU0xTWCs2ejJlZkdIYjdPU014WXhEUXRxa0ZvNjZFLzFhc05I?=
+ =?utf-8?B?alFGUHAzMHVZTktjb1ptQmN1djA2a0srTlhRcGRyRnd4MkpMZFhyVWtUa3Bm?=
+ =?utf-8?B?OFpubmI4NmxXWDQzMG94OGM3ZGxqZ0JLTXVkTXJKd3dKanBRZDQ2dTM1NUtF?=
+ =?utf-8?B?RVNEdWR5Mmc1NnZMdW45a2w2ZW9oeFJsMiszM2NSR2U3NmRrd1dUSzJ4VmtQ?=
+ =?utf-8?B?aWpUdzVnNFphbHM2SXNQRzZweTRPdVJQRWVkdkhUMzJCT2J3dGxBQWh5KzUr?=
+ =?utf-8?B?N203dTgvUCtqVkc0amdQVmt6bFpLbmN6SXEvb0MvUDdBSVd2SnptNjRwU21z?=
+ =?utf-8?B?TGJlUW1ISllIaWt4R3J6TExVd2dnL2RYSHRMb01YTHM2aVhabTV1Q2QyZ1g4?=
+ =?utf-8?B?REZZTWs0bnZYeDFaek0vNVVoVkxvR1B2WlRqbHl4MndqWHlTUVNyR1Z2RVFU?=
+ =?utf-8?B?eURUT0U0eFpya3owTCtBdUdrZnZlVWhaK0tjbFVGaStoN24yUmlNU05NUDNI?=
+ =?utf-8?B?K3JuTG5oMnIzNERMTXJ0cG5kSVZ6cURlTjk1bGlSWDhjRE9qcHpuQUpVUWtW?=
+ =?utf-8?B?Ky9pN1VnMWZkN1Z0WTV6ZGxROCtuU24rUnowblpCVzBmZ1ZwcXlacW5rR0pK?=
+ =?utf-8?B?dkhCYUMwUTRwT091alJGK0dFSnBDREhVVjM1YWc2VXRGQVVHSUlwenJ4alhI?=
+ =?utf-8?B?ZW1kazdJNEVCQUlXYnJrS3ArY0JCc2lqYkM4UG45Mk81K0NtZFFmaktRWkND?=
+ =?utf-8?B?dWxmVmt5QWtyMExKeGVEbTZWNmhyRSsxRVJIQU9KbXVkMkFEbTlpK2Yyb3ZJ?=
+ =?utf-8?B?TzZ3dU5sTk9icVYvU2svQVM4SkorMHE3SGpCdUt1My9tcVloWW0rNjJOLzQ1?=
+ =?utf-8?B?Yy9jVStQa3BYSHl4VThxdz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Nnd1Zk80aDNFdjMwOUMrWHlRL0EvcFVZVGVuWHdpaUV0WFQvMklTYnd5eUV0?=
- =?utf-8?B?dXBvbmltUWhNYTNPcmh6eUhZM0I1WENOK1JJeUVqR05UTlZXWEdHUTBxVTVs?=
- =?utf-8?B?VlFBQStXZUVhRzAzdmI4cjNSdFBHdjlzVFBpUEhxMFdXUHpnQTVHR2NQQVpU?=
- =?utf-8?B?Mk1PYlZzKzhjcnl1QkxSMmtXb0FmL05UVHNyUHcraGlySGhtdXp4SDlqQ3BN?=
- =?utf-8?B?NElsVkZUVXdzS3VOSUhuZGVZTEtXT0NXYUdRUzhEYllYZmkrT0VsbGg3UnVS?=
- =?utf-8?B?OW1EY1pUUDdUWXFuK0FxbU1qaEwwUHJGdkx4M3J2OWJHd1E2Y1lDS0NlWHRD?=
- =?utf-8?B?OU9IS05laWtObDNZdlhVemNNRWdhWnJ3eVhodHp3em5CWjhYVk5DRXBTSFJE?=
- =?utf-8?B?anZJYWhEMFI2VmcvVXpuNlR6OVhrdFpRVnYrYTFBeW1MNGF1RzZKQWlKandL?=
- =?utf-8?B?clFNRlF5NytIaHZzVmF0Z21waHNxRHhLTHpLRTU3RkFtZjNHNG84QzhkQkQ2?=
- =?utf-8?B?Rm9ueTJwb2d4cDhad21OMHgzU1VzU3BEcnFJcTFzcTBuTXRyYmNicUlCRHBY?=
- =?utf-8?B?Q0NnNDVhdjdEODQ4LzF0SFZwdHIvaCtBNWtXTXVNLzZQWTl4cEh0dm9QVGNq?=
- =?utf-8?B?cHdLK3JTVC9tc0VUWHlVdWc3NVI2c1I2WHNuRDNVdW04SVowTXpvSTV2QmRE?=
- =?utf-8?B?YzNCelFLZFBzSGVDQTJnWkdPKzdSczBha2FkeitMMjc4Z0ZTQnhrV2FoRTAv?=
- =?utf-8?B?SWlxZU1iMkt4d0t6QUFpbHBHMkhNcVRzTWJ5Ylpid2pEY2VwaTl5cmNXb0s4?=
- =?utf-8?B?ZXlMdVVFMWRFNkZHMXBmTDN4VWJsZ20xWWFCNlY4dWNzRk91Qy9RRFN4Ty9T?=
- =?utf-8?B?MUEwS20vRUpCMmpGV2UzQ3JIT3Y1VUp4SjgwSW5ZaXprSFhId05USlRpZnVt?=
- =?utf-8?B?Ky9IemNubVBRNEphMXJYVWFrMGNMdktqQTJzczkvRWZwMjN4S3V6ckw0MTZp?=
- =?utf-8?B?aUVJMjBBWUhyZlYzWkl6NTBqUFdtOHNwYXZUR2hnd2VKZGlWRG0xVkxOQUd1?=
- =?utf-8?B?bWRRMUJhQjlSaG9tY2RhYWJZMjVBbEJzblNCRHVHZFEzaU40OWF4eEtxNE1I?=
- =?utf-8?B?MlpGTGpPaHRRditJMU1TYnJiUVJuZTAvZlJxWG5ZNFl6V08yekNyU0IvK2Fp?=
- =?utf-8?B?L3NnWW9vRllsK1dXZ2dOZlRPbWJZWm5xOUt1TTdXT3ppbDNPVDVIZ1pET1R1?=
- =?utf-8?B?ZXh5N0l2Z0RpUlhMM1lCUkNTMTdLaWtDUURid0tZcXYvRlcyb05DVldKQkJq?=
- =?utf-8?B?cG80cnpqN1VtY1RiYWVQRHV4V1dyNWdZTGRZcG04WDd1Nng3SWZUZDMzLzQv?=
- =?utf-8?B?WlNNMk01Z0dySDZzKy91QXZuNTZGVVdISXdKUWhpaHpNVWp6eGFXemdST3BZ?=
- =?utf-8?B?UjJaRThtOWt0Ri9nV1hYS213eGE4RTg5dWlMWi9KUllzVUxxWGs5UVJNc1hY?=
- =?utf-8?B?cm5mZ2lOY0pEdks1NllkSUNHN1kyR0lzcDZTdW1ZVnVXenJBTzZNTjMrNmpP?=
- =?utf-8?B?YllaOWo1RUhndDJKQjlMOGFzbnJINjVGSDhjbSs3ZWU0eU02VjBVbHRjOVZM?=
- =?utf-8?B?TU83QWRkN0s0cE90Z084REk5azdid01kbkV1MlFBMzJnek92bXpDNHBKZ0VO?=
- =?utf-8?B?Y05qVU82Y0dNZWNCaUdDY3Rsbkl0SlI0czNlYVo1WndXdVVnZnpFb05BLzNQ?=
- =?utf-8?B?d052eTJQM1pkbmJ1TVhrUjZIdXh2VWc4UVhoem1BemUzTDNaUUxpODhqU25x?=
- =?utf-8?B?UnJWY0JiQ01SanZIL2c4bDhrMU00ODFUSlBhTnlQcDAwZTJ6Vm13Nk5HOE9z?=
- =?utf-8?B?Nk8yYnoyeFdRVkFoWUlaZkNmYWlvdWFoaGxvRE1MbjdNMGtSQ0IvWnMyWHpy?=
- =?utf-8?B?TlRZUlQrTUk3ZkFaOFRUdDNUdzIyU3NvZXJMcG5WdWhZWXRPVEltK2xQZ1d0?=
- =?utf-8?B?SE1IOFEyT3JxYjY0S045R0tGc0Zqa2wyT0pzeDV6SU51NDZLQlpkTDNhU3VG?=
- =?utf-8?B?YlZOMEM4a290RVZ4cmZZcHJBOE5OcDZtb2RxemZNTmd5Q0ZlWUhrMTQ1SThz?=
- =?utf-8?Q?wBDVGMxjIkceL/HmrXRZenD4v?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: be88834d-ae29-4179-e7e8-08dcb6ba90b9
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SVRhMExGWitZdGo1WUgxVFFLSUdidHJDenpNdGlBc2RiMlVuZGhIOUoyeEwy?=
+ =?utf-8?B?Z1licG9ORldUSjF0bnYxbEt4RmF4Q3NaNUFMbGl4UTF6b1NUUVpUWHBKb211?=
+ =?utf-8?B?S0tld0pCUDNMeFZ0UUtZMjA1STBCcHRJNjNnUnpaWVJZRnJSQTUxd2RjaHdT?=
+ =?utf-8?B?STh4VmRTUGxuZ3pUeWQwdlV5QVdNQ0dWZ2R6UU5XcG1oOUc3bGtvSWtvelJk?=
+ =?utf-8?B?Mll6MUpFd1hoUTJsVjlyd3VqSFdGdWhVWmZDSWRaS25IYXpaeTBOQ1ZicnVk?=
+ =?utf-8?B?U2grdDg2enJzK0gxb2tuTWJENEJjbVc4Zzk1bzdrNzEyNkp4Z2w5U3RLS0g0?=
+ =?utf-8?B?VVArZE5yVXNVcGN2SHVKWFZKNzkrd1ljbHNEa2hiT0FkZTRmdm5Wckt4YjJo?=
+ =?utf-8?B?Nk0rRjNLekd4VEFUbmdNdFBSVFQ4QWdrRzR0Z0NSajdUejdsYVgwZStVOU0x?=
+ =?utf-8?B?cnk0TWVYMjRHcEpLdE9xbm96bjVKbjBTNUVGa3JtN0FidWpueGVpd1pieGV0?=
+ =?utf-8?B?TG1KcVZZQzJUcVo1VGFMWlovMVR0N0xXclVYaHRkRlFSdFg5eWJBVTM2NUZj?=
+ =?utf-8?B?QWRReDhrak9jWUUwSTZvZjk5Wlc4NmZUL2RETkFZK29aTTFmbVBWcHE5STdm?=
+ =?utf-8?B?VTJnTUJEOGcvajVLQlZVak5yZnVGUEczTktwcmYvVExWZkluREplb1M0VTBy?=
+ =?utf-8?B?TFVRdmtRWlFpVkNtV1V5eGV4NUttR2REelVpVzJYMkQzczlBQ2pYYm5LODVn?=
+ =?utf-8?B?RjVrVWFQb20zL2xHWG9USlpqWTB2NVVzMGFzRHREUk1lL2J3Vmh2YkswL2JY?=
+ =?utf-8?B?KzR0OGNCSUk5NXVMbjNEWU5iY0VMUk9WS2JqbkVUU3d3WXQxUlBaOVFmeG1Y?=
+ =?utf-8?B?VmR1ZnhCc0x5NnRHTFZtaTZyMTY2RW1ERUVHSHpVd3FUV0drYVMxV2RNQVoy?=
+ =?utf-8?B?V1U5RU5NS2YrSm9CcHp2WXFIYWhzd0NzeUFYYzM2UmV2TkRyNW8wWlJRYTNk?=
+ =?utf-8?B?TWVTU1A4bGlXTUgxVmV0WkJ2VExqZUdnTFlTUnd5Nk5aOGJkSzZmM1IxaDhZ?=
+ =?utf-8?B?eEhBYVoya0JxRHBza2g3T3JSays1SVpDdUFTOXFFSC9lZ1hhWGZYUUJpbmQx?=
+ =?utf-8?B?UHE2b3NpdmkwZUNNdWpGblY2aDRnL0dsc21yL2hSeHpRUGNtN1U4THM2MXRU?=
+ =?utf-8?B?NnE2OGZyM3poQzdkUXE0Tis0N1lVWDFGdDcyZnJmTnNhc2p3NEJ1eUZwSjVi?=
+ =?utf-8?B?Y0tsWDBrNzFOQ2t2ZTkvT1ZQMldSM3NNcDQ1SWl6dnFqSVVncEZ4SWJHbExh?=
+ =?utf-8?B?cWkzWC9CUThYTlhQZlBORXVsNmtEdWkvd2N1NTRaT0g3T0hSMWNBZkpDR05o?=
+ =?utf-8?B?ZFE0cGNZaU85bWw0bDNsQkFQczM3bWVsNjNnYWEyNjN2b3YyWmFPZ3NrbFNJ?=
+ =?utf-8?B?OGFsTUxFY0FiWEEwRkdwcGtYTTNVaEkwclNYOW4zcnFCdmphdjVEakNkaHFu?=
+ =?utf-8?B?S29kV3ZqcHRQOHZuWG1iK29QQ0k5ZXJlWkZkRTd0aHVnVDIwUnk4Nkc1R05V?=
+ =?utf-8?B?QzVsYWtTYU5JSVkwOWlvTmQ4eUxMVWQ3VlRoWTBrV2I5VGRIc05sOXNIcnlV?=
+ =?utf-8?B?emR0eG02TXVnMlhRYjdrWG5aRHdRWnBnTjVCMWl1cFF1ZWdwTXQ5Um5Gcy9h?=
+ =?utf-8?B?L3BPekhMMUdQdnQ1bW5OeEUzVU9pb2gvblBvS05CblhGemJDZ1JFS3BZeXN5?=
+ =?utf-8?B?bnBwazFXMnlLdmRQc21SdDR1dUpwK2ZXMEs5RE11eDdQVHJFR3hTSm05YS9J?=
+ =?utf-8?B?dnE4eTVXVnFwNmR6TVp3T1dENDh5UVpjbitsQ1JCZVdLNWxhdzdQMG04U05j?=
+ =?utf-8?B?aGxENStIUW5zQnpSVkV3dkduQnJnc3JSbUhyOTliZzhlMXVqOW5RVmdZVk1x?=
+ =?utf-8?B?UVR6Vk4vTkV2Ukk3ZWNNTTFlcWdsRmRzcWE1R01xQkJhOU1kVXlpTFVEbnlu?=
+ =?utf-8?B?Z045ZlNTS1dRNzZVK0c3TmNZTDdOOGNYck9wRjRyRnBVSGFXRG9BNzZncSt1?=
+ =?utf-8?B?dGV1dy9yek5kdHI2aXNRODIzZEtyYzR6YkxkcU9IT3FDMGt3OEJ2TmhRYklz?=
+ =?utf-8?Q?JqfgZQz0/8nURCuzsB0/+XJXq?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfc22b9f-325f-4989-c367-08dcb6baaf82
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2024 08:25:59.0050 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2024 08:26:50.6676 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b7vm5T9ZYIDQtxZ4Hl8kINXjMQMWnvsQIzbaAro6SubJKfiLxhkreaUOLPbpaTHEKa2GtQKW0Ns4+KuQ5OrU2Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4qc+PPWZB2jR0J83k/GubCEzkTyFZc5v+KSviVO9ssVdD95rV9NHa+w0PUJSzHF5mZMe7BwvOqjyfpyyfPAfuw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8334
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -193,441 +199,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------BMVXdq5faHJiq0i6Y6d06v0n
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
 
-
-On 8/6/2024 10:39 PM, Matthew Brost wrote:
-> On Tue, Aug 06, 2024 at 09:45:03PM +0200, Nirmoy Das wrote:
->> Add skeleton APIs for recording and printing various stats over
->> debugfs. This currently only added counter types stats which is backed
->> by atomic_t and wrapped with CONFIG_DRM_XE_STATS so this can be disabled
->> on production system.
->>
-> Yes, kernel doc which you pointed out.
+On 8/7/2024 7:47 AM, Upadhyay, Tejas wrote:
 >
->> Cc: Matthew Brost<matthew.brost@intel.com>
->> Cc: Michal Wajdeczko<michal.wajdeczko@intel.com>
->> Signed-off-by: Nirmoy Das<nirmoy.das@intel.com>
+>> -----Original Message-----
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Nirmoy
+>> Das
+>> Sent: Wednesday, August 7, 2024 1:15 AM
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: Das, Nirmoy <nirmoy.das@intel.com>; Brost, Matthew
+>> <matthew.brost@intel.com>; Wajdeczko, Michal
+>> <Michal.Wajdeczko@intel.com>
+>> Subject: [PATCH 2/2] drm/xe: Add stats for tlb invalidation count
+>>
+>> Add stats for tlb invalidadtion count which can be viewed with per GT stat
+>> debugfs file.
+>>
+>> Example output:
+>> cat /sys/kernel/debug/dri/0/gt0/stats
+>> tlb_inval_count: 22
+>>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/Kconfig.debug   | 11 +++++++++++
->>   drivers/gpu/drm/xe/Makefile        |  2 ++
->>   drivers/gpu/drm/xe/xe_gt_debugfs.c |  4 ++++
->>   drivers/gpu/drm/xe/xe_gt_stats.c   | 30 +++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_gt_stats.h   | 31 ++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_gt_types.h   |  7 +++++++
->>   6 files changed, 85 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.c
->>   create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.h
+>>   drivers/gpu/drm/xe/xe_gt_stats.c            | 1 +
+>>   drivers/gpu/drm/xe/xe_gt_stats.h            | 1 +
+>>   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 2 ++
+>>   3 files changed, 4 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
->> index bc177368af6c..4db6d707c1af 100644
->> --- a/drivers/gpu/drm/xe/Kconfig.debug
->> +++ b/drivers/gpu/drm/xe/Kconfig.debug
->> @@ -94,3 +94,14 @@ config DRM_XE_USERPTR_INVAL_INJECT
->>   
->>   	 Recomended for driver developers only.
->>   	 If in doubt, say "N".
->> +
->> +config DRM_XE_STATS
->> +	bool "Enable XE statistics"
->> +	default n
->> +	help
->> +	  Choose this option to enable support for collecting and
->> +	  displaying XE statistics as debugfs.
->> +
->> +	  Recommended for driver developers only.
->> +
->> +	  If in doubt, say "N".
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index 1ff9602a52f6..b0bbb248f644 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -143,6 +143,8 @@ xe-$(CONFIG_PCI_IOV) += \
->>   	xe_pci_sriov.o \
->>   	xe_sriov_pf.o
->>   
->> +xe-$(CONFIG_DRM_XE_STATS) += xe_gt_stats.o
->> +
->>   # include helpers for tests even when XE is built-in
->>   ifdef CONFIG_DRM_XE_KUNIT_TEST
->>   xe-y += tests/xe_kunit_helpers.o
->> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> index 5e7fd937917a..3765c04919dc 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> @@ -17,6 +17,7 @@
->>   #include "xe_gt_mcr.h"
->>   #include "xe_gt_sriov_pf_debugfs.h"
->>   #include "xe_gt_sriov_vf_debugfs.h"
->> +#include "xe_gt_stats.h"
->>   #include "xe_gt_topology.h"
->>   #include "xe_hw_engine.h"
->>   #include "xe_lrc.h"
->> @@ -286,6 +287,9 @@ static const struct drm_info_list debugfs_list[] = {
->>   	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
->>   	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
->>   	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
->> +#if IS_ENABLED(CONFIG_DRM_XE_STATS)
->> +	{"stats", .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
->> +#endif
->>   };
->>   
->>   void xe_gt_debugfs_register(struct xe_gt *gt)
->> diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
->> new file mode 100644
->> index 000000000000..cc69d748e8f6
->> --- /dev/null
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c
+>> b/drivers/gpu/drm/xe/xe_gt_stats.c
+>> index cc69d748e8f6..adb5a9aa6bd3 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_stats.c
 >> +++ b/drivers/gpu/drm/xe/xe_gt_stats.c
->> @@ -0,0 +1,30 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#include <linux/atomic.h>
->> +
->> +#include "xe_gt.h"
->> +#include "xe_gt_stats.h"
->> +
->> +#ifdef CONFIG_DRM_XE_STATS
->> +void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_counter_stats id, int incr)
->> +{
->> +	atomic_add(incr, &gt->stats.counters[id]);
->> +}
->> +
->> +static const char *const stat_description[] = {
->> +};
->> +
->> +int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
->> +{
->> +	enum xe_gt_counter_stats id;
->> +
->> +	for (id = 0; id < XE_GT_COUNTER_STATS_NUM; ++id)
->> +		drm_printf(p, "%s: %d\n", stat_description[id],
->> +			   atomic_read(&gt->stats.counters[id]));
->> +
->> +	return 0;
->> +}
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
->> new file mode 100644
->> index 000000000000..e83155ab1fdb
->> --- /dev/null
+>> @@ -15,6 +15,7 @@ void xe_gt_stats_incr(struct xe_gt *gt, enum
+>> xe_gt_counter_stats id, int incr)  }
+>>
+>>   static const char *const stat_description[] = {
+>> +	"tlb_inval_count",
+>>   };
+>>
+>>   int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p) diff --git
+>> a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
+>> index e83155ab1fdb..11b8ed17f9d9 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_stats.h
 >> +++ b/drivers/gpu/drm/xe/xe_gt_stats.h
->> @@ -0,0 +1,31 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_GT_STATS_H_
->> +#define _XE_GT_STATS_H_
->> +
->> +#include <drm/drm_print.h>
->> +
->> +struct xe_gt;
->> +//struct drm_printer;
->> +
->> +enum xe_gt_counter_stats {
->> +	XE_GT_COUNTER_STATS_NUM,
->> +};
->> +
->> +#ifdef CONFIG_DRM_XE_STATS
->> +int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
->> +void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_counter_stats stat, int incr);
->> +#else
->> +int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
-> static inline int xe_gt_stats_print_info(...
+>> @@ -12,6 +12,7 @@ struct xe_gt;
+>>   //struct drm_printer;
+>>
+>>   enum xe_gt_counter_stats {
+>> +	XE_GT_COUNTER_TLB_INVAL,
+>>   	XE_GT_COUNTER_STATS_NUM,
+>>   };
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>> b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>> index 87cb76a8718c..e3cdb0e041af 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>> @@ -16,6 +16,7 @@
+>>   #include "xe_pm.h"
+>>   #include "xe_sriov.h"
+>>   #include "xe_trace.h"
+>> +#include "xe_gt_stats.h"
+> nit: include alphabetical order
 >
-> This will fix CI too.
+>>   #include "regs/xe_guc_regs.h"
+>>
+>>   #define FENCE_STACK_BIT		DMA_FENCE_FLAG_USER_BITS
+>> @@ -213,6 +214,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+>>   			gt->tlb_invalidation.seqno = 1;
+>>   	}
+>>   	mutex_unlock(&guc->ct.lock);
+>> +	xe_gt_stats_incr(gt, XE_GT_COUNTER_TLB_INVAL, 1);
+> Apart from above nit, LGTM :
+> Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
 
-missed build test without CONFIG_DRM_XE_STATS :/
+Thanks, will fix the ordering in the next version.
 
-> But overall LGTM and pretty much what I had in mind. We can device level
-> stats too with this series being a template.
-
-
-I will resend with Michal's suggestions and more docs.
-
-Thanks,
 
 Nirmoy
 
 >
-> Matt
->   
->> +{
->> +}
->> +
->> +void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_counter_stats stat, int incr)
->> +{
->> +}
->> +
->> +#endif /* CONFIG_DRM_XE_STATS */
->> +#endif /* _XE_GT_STATS_H_ */
->> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
->> index 631928258d71..0ded57b56628 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
->> @@ -10,6 +10,7 @@
->>   #include "xe_gt_idle_types.h"
->>   #include "xe_gt_sriov_pf_types.h"
->>   #include "xe_gt_sriov_vf_types.h"
->> +#include "xe_gt_stats.h"
->>   #include "xe_hw_engine_types.h"
->>   #include "xe_hw_fence_types.h"
->>   #include "xe_oa.h"
->> @@ -133,6 +134,12 @@ struct xe_gt {
->>   		u8 has_indirect_ring_state:1;
->>   	} info;
->>   
->> +#if IS_ENABLED(CONFIG_DRM_XE_STATS)
->> +	struct {
->> +		atomic_t counters[XE_GT_COUNTER_STATS_NUM];
->> +	} stats;
->> +#endif
->> +
->>   	/**
->>   	 * @mmio: mmio info for GT.  All GTs within a tile share the same
->>   	 * register space, but have their own copy of GSI registers at a
->> -- 
+>>   	return ret;
+>>   }
+>> --
 >> 2.42.0
->>
---------------BMVXdq5faHJiq0i6Y6d06v0n
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 8/6/2024 10:39 PM, Matthew Brost
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:ZrKJ9wvhLTq%2FEu7x@DUT025-TGLU.fm.intel.com">
-      <pre wrap="" class="moz-quote-pre">On Tue, Aug 06, 2024 at 09:45:03PM +0200, Nirmoy Das wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Add skeleton APIs for recording and printing various stats over
-debugfs. This currently only added counter types stats which is backed
-by atomic_t and wrapped with CONFIG_DRM_XE_STATS so this can be disabled
-on production system.
-
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Yes, kernel doc which you pointed out.
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Cc: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
-Cc: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
-Signed-off-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
----
- drivers/gpu/drm/xe/Kconfig.debug   | 11 +++++++++++
- drivers/gpu/drm/xe/Makefile        |  2 ++
- drivers/gpu/drm/xe/xe_gt_debugfs.c |  4 ++++
- drivers/gpu/drm/xe/xe_gt_stats.c   | 30 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_stats.h   | 31 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_types.h   |  7 +++++++
- 6 files changed, 85 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.h
-
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index bc177368af6c..4db6d707c1af 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -94,3 +94,14 @@ config DRM_XE_USERPTR_INVAL_INJECT
- 
- 	 Recomended for driver developers only.
- 	 If in doubt, say &quot;N&quot;.
-+
-+config DRM_XE_STATS
-+	bool &quot;Enable XE statistics&quot;
-+	default n
-+	help
-+	  Choose this option to enable support for collecting and
-+	  displaying XE statistics as debugfs.
-+
-+	  Recommended for driver developers only.
-+
-+	  If in doubt, say &quot;N&quot;.
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 1ff9602a52f6..b0bbb248f644 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -143,6 +143,8 @@ xe-$(CONFIG_PCI_IOV) += \
- 	xe_pci_sriov.o \
- 	xe_sriov_pf.o
- 
-+xe-$(CONFIG_DRM_XE_STATS) += xe_gt_stats.o
-+
- # include helpers for tests even when XE is built-in
- ifdef CONFIG_DRM_XE_KUNIT_TEST
- xe-y += tests/xe_kunit_helpers.o
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 5e7fd937917a..3765c04919dc 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -17,6 +17,7 @@
- #include &quot;xe_gt_mcr.h&quot;
- #include &quot;xe_gt_sriov_pf_debugfs.h&quot;
- #include &quot;xe_gt_sriov_vf_debugfs.h&quot;
-+#include &quot;xe_gt_stats.h&quot;
- #include &quot;xe_gt_topology.h&quot;
- #include &quot;xe_hw_engine.h&quot;
- #include &quot;xe_lrc.h&quot;
-@@ -286,6 +287,9 @@ static const struct drm_info_list debugfs_list[] = {
- 	{&quot;default_lrc_bcs&quot;, .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
- 	{&quot;default_lrc_vcs&quot;, .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
- 	{&quot;default_lrc_vecs&quot;, .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
-+#if IS_ENABLED(CONFIG_DRM_XE_STATS)
-+	{&quot;stats&quot;, .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
-+#endif
- };
- 
- void xe_gt_debugfs_register(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-new file mode 100644
-index 000000000000..cc69d748e8f6
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include &lt;linux/atomic.h&gt;
-+
-+#include &quot;xe_gt.h&quot;
-+#include &quot;xe_gt_stats.h&quot;
-+
-+#ifdef CONFIG_DRM_XE_STATS
-+void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_counter_stats id, int incr)
-+{
-+	atomic_add(incr, &amp;gt-&gt;stats.counters[id]);
-+}
-+
-+static const char *const stat_description[] = {
-+};
-+
-+int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
-+{
-+	enum xe_gt_counter_stats id;
-+
-+	for (id = 0; id &lt; XE_GT_COUNTER_STATS_NUM; ++id)
-+		drm_printf(p, &quot;%s: %d\n&quot;, stat_description[id],
-+			   atomic_read(&amp;gt-&gt;stats.counters[id]));
-+
-+	return 0;
-+}
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
-new file mode 100644
-index 000000000000..e83155ab1fdb
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.h
-@@ -0,0 +1,31 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_STATS_H_
-+#define _XE_GT_STATS_H_
-+
-+#include &lt;drm/drm_print.h&gt;
-+
-+struct xe_gt;
-+//struct drm_printer;
-+
-+enum xe_gt_counter_stats {
-+	XE_GT_COUNTER_STATS_NUM,
-+};
-+
-+#ifdef CONFIG_DRM_XE_STATS
-+int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
-+void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_counter_stats stat, int incr);
-+#else
-+int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-static inline int xe_gt_stats_print_info(...
-
-This will fix CI too.
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>missed build test without <span style="white-space: pre-wrap">CONFIG_DRM_XE_STATS :/</span></p>
-    <blockquote type="cite" cite="mid:ZrKJ9wvhLTq%2FEu7x@DUT025-TGLU.fm.intel.com">
-      <pre wrap="" class="moz-quote-pre">
-But overall LGTM and pretty much what I had in mind. We can device level
-stats too with this series being a template.</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>I will resend with Michal's suggestions and more docs.</p>
-    <p>Thanks,<br>
-    </p>
-    <p>Nirmoy<br>
-    </p>
-    <blockquote type="cite" cite="mid:ZrKJ9wvhLTq%2FEu7x@DUT025-TGLU.fm.intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-Matt
- 
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+{
-+}
-+
-+void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_counter_stats stat, int incr)
-+{
-+}
-+
-+#endif /* CONFIG_DRM_XE_STATS */
-+#endif /* _XE_GT_STATS_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 631928258d71..0ded57b56628 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -10,6 +10,7 @@
- #include &quot;xe_gt_idle_types.h&quot;
- #include &quot;xe_gt_sriov_pf_types.h&quot;
- #include &quot;xe_gt_sriov_vf_types.h&quot;
-+#include &quot;xe_gt_stats.h&quot;
- #include &quot;xe_hw_engine_types.h&quot;
- #include &quot;xe_hw_fence_types.h&quot;
- #include &quot;xe_oa.h&quot;
-@@ -133,6 +134,12 @@ struct xe_gt {
- 		u8 has_indirect_ring_state:1;
- 	} info;
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_STATS)
-+	struct {
-+		atomic_t counters[XE_GT_COUNTER_STATS_NUM];
-+	} stats;
-+#endif
-+
- 	/**
- 	 * @mmio: mmio info for GT.  All GTs within a tile share the same
- 	 * register space, but have their own copy of GSI registers at a
--- 
-2.42.0
-
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------BMVXdq5faHJiq0i6Y6d06v0n--
