@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7715C52D71
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 15:35:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3E77C3DA7F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 15:45:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6747B10E577;
-	Wed,  7 Aug 2024 15:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A9AF10E567;
+	Wed,  7 Aug 2024 15:45:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ATifhC0X";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZSCK7VKG";
 	dkim-atps=neutral
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18FE510E577;
- Wed,  7 Aug 2024 15:35:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB27710E179;
+ Wed,  7 Aug 2024 15:45:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 2D71F611E2;
- Wed,  7 Aug 2024 15:35:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B564C4AF49;
- Wed,  7 Aug 2024 15:35:19 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 1EB0F611E9;
+ Wed,  7 Aug 2024 15:45:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C63BC4AF49;
+ Wed,  7 Aug 2024 15:45:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1723044919;
- bh=wm+VWb1rIQaode09oZdE3sEothizpQCW8kQNxXyWPUY=;
+ s=k20201202; t=1723045500;
+ bh=62DRcqqeC5v6AnH2Jdg1gao0bSakZspPdgIljEIRA+8=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=ATifhC0Xqq0fEe+6e3QBEUliaGC/RbH+BLtwnYSFm80CEEuXHBNyAhkdxqzD7/He2
- PwBneWqEUKypiverT0BJeASdXPA4xWYAl2Fkgm10SugKbi+AvScSanh1joAX8Lfmdz
- KNRPzst2mgF9+1hD/hVdNmv6TzqF0PgyyUodxI6txDAuQNXQBWeHjjnRiNj0hi9VFR
- 4s6ZMFW5SFkhmRGf+WuQyky1G/K5ad5iSm4yfiVc+3668PKhJ6odz+5QYopqnVL/FP
- XR95KBjUkyyEZlo8paXYX4cQdTts2wfmd+JcEtHB6KS9KmZ7swK2irnC/LQ+FHdEOK
- ieljN71TadH9g==
-Received: by mail-lf1-f49.google.com with SMTP id
- 2adb3069b0e04-52ed741fe46so2014093e87.0; 
- Wed, 07 Aug 2024 08:35:19 -0700 (PDT)
+ b=ZSCK7VKGfrUUYWa85qY72U563KSZ7oAWK9C1SmiKZTS4h5x/6E+ew0qyMMpdk0yRF
+ DSqC6UEiFpc1jg5j0fuU8saCQs9kAViz9G2Unej4kLqNynQmW11z2S+AY47JGjFs+n
+ 7jIuFifNc4j4X9JmQQr+BCSh1JKh2wM46HqL9F/ruVsehCMwvQt/LMof/yq/W2znap
+ 03pzS1oK0CBWdcohdlosPgDPUF1aT15QwrDYa+r+DDKdBxtm1Rl7xuFGNFkC+uK6e/
+ p5VarmwbzVjNmwq3yV+sPnQtCf/hhzyAcPNHztwXh5KpYrJG9E3YiskeZLPQsZ3nY8
+ gLgSmBZ4cCJpg==
+Received: by mail-lf1-f52.google.com with SMTP id
+ 2adb3069b0e04-52f04b3cb33so4526924e87.0; 
+ Wed, 07 Aug 2024 08:45:00 -0700 (PDT)
 X-Forwarded-Encrypted: i=1;
- AJvYcCWDltbqqGrBcikkgONxvX+Mpgk7+ExMLu7MjvTphB3CVGfK2K7eagT32bJBvFy3KO4tcYfhZKLKfxcJui0P03NSsKAn21HZifCIatj+TaFtYr8+6/NIwXQdpVcU+wVn1GOyGjeah3PTxCPBtlr5/bs=
-X-Gm-Message-State: AOJu0Yw1fTW5JTt63qVf3M6g3391gzfqcMjlYaPj5KNIvThFG7WxWv79
- knilA8YPO56e3mpRhCMlHg3XNSg//Si2kW3vbWIIkGUPPAbtmLut9SoskdmiyWEgx8knFrFn28G
- bbftMlt0dypvm1r7Mn722i6TfChk=
-X-Google-Smtp-Source: AGHT+IE/eDS6clCryBkFSzKDJUwO/cLwR+b8LrrNB5prXOgRnnwpkLjNgCVKxPqUzynolVNIM+yIL57HzFJ8CFIwBnI=
-X-Received: by 2002:a05:6512:3e1e:b0:52c:df51:20bc with SMTP id
- 2adb3069b0e04-530bb3b1531mr13674055e87.16.1723044917569; Wed, 07 Aug 2024
- 08:35:17 -0700 (PDT)
+ AJvYcCVoV6ckYfykK4e0i8LXKrroS/Es/eJbsCuNJz8C7py4da8O0rs4WZ1HKlhekPM+zImGY0E/C2ygJtMdZA0kVisOs3Amjr1xvA9So9AFN7Wlc2TFWl+rc/e/VVHU3mzpbhLXITrD3vCOT6v6HOFXML4=
+X-Gm-Message-State: AOJu0YypEcLk609NEd9lhzBpvPS5PD7Nlw9glqmNqsGoJPzpNY59jOg+
+ zRCVrW3igi/JUPP9vMxogmSUajz3aIJNKyrdi6wIyzR0k1boImdNESrFnmdtMWAxmAinyehwIV6
+ /vh/Y3oiscop3+s9Efp92KvE6mAQ=
+X-Google-Smtp-Source: AGHT+IEkoeCcq7YGXm+baiHlwfmxdsFq0ZRVrTrB1cw7IHXDs0yss2GR/vUuBkAzPzYypMT+IeV+DjGwfXLBANG7Jew=
+X-Received: by 2002:a05:6512:b8d:b0:52e:8071:e89d with SMTP id
+ 2adb3069b0e04-530bb3b45f5mr17596549e87.40.1723045498671; Wed, 07 Aug 2024
+ 08:44:58 -0700 (PDT)
 MIME-Version: 1.0
 References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <20240807-macos-build-support-v1-5-4cd1ded85694@samsung.com>
-In-Reply-To: <20240807-macos-build-support-v1-5-4cd1ded85694@samsung.com>
+ <20240807-macos-build-support-v1-6-4cd1ded85694@samsung.com>
+ <20240807-outgoing-charcoal-collie-0ee37e@lindesnes>
+In-Reply-To: <20240807-outgoing-charcoal-collie-0ee37e@lindesnes>
 From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Thu, 8 Aug 2024 00:34:41 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQ4kTWSDuGz-EM2p5vXcu9G4_WoEa4ovAWZ95VTfbreHA@mail.gmail.com>
-Message-ID: <CAK7LNAQ4kTWSDuGz-EM2p5vXcu9G4_WoEa4ovAWZ95VTfbreHA@mail.gmail.com>
-Subject: Re: [PATCH 05/12] accessiblity/speakup: genmap and makemapdata
- require linux/version.h
-To: da.gomez@samsung.com
-Cc: Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
+Date: Thu, 8 Aug 2024 00:44:22 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQ21o+cQQaLD1xkwSX0ma8hvB29DMDquy5VjHcBWwhGPw@mail.gmail.com>
+Message-ID: <CAK7LNAQ21o+cQQaLD1xkwSX0ma8hvB29DMDquy5VjHcBWwhGPw@mail.gmail.com>
+Subject: Re: [PATCH 06/12] selinux/genheaders: include bitsperlong and
+ posix_types headers
+To: Nicolas Schier <nicolas@fjasle.eu>
+Cc: da.gomez@samsung.com, Nathan Chancellor <nathan@kernel.org>, 
  Lucas De Marchi <lucas.demarchi@intel.com>, 
  =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>, 
@@ -97,69 +98,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-genmap and makemapdata DO NOT require linux/version.h
+On Thu, Aug 8, 2024 at 12:39=E2=80=AFAM Nicolas Schier <nicolas@fjasle.eu> =
+wrote:
+>
+> On Wed, Aug 07, 2024 at 01:09:20AM +0200, Daniel Gomez via B4 Relay wrote=
+:
+> > From: Daniel Gomez <da.gomez@samsung.com>
+> >
+> > The genheaders requires the bitsperlong.h and posix_types.h headers.
+> > To ensure these headers are found during compilation on macOS hosts,
+> > add usr/include to HOST_EXTRACFLAGS in the genheaders Makefile. This
+> > adjustment allows the compiler to locate all necessary headers when the=
+y
+> > are not available by default on macOS.
+> >
+> > Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+> > ---
+> >  scripts/selinux/genheaders/Makefile | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/scripts/selinux/genheaders/Makefile b/scripts/selinux/genh=
+eaders/Makefile
+> > index 1faf7f07e8db..017149c90f8e 100644
+> > --- a/scripts/selinux/genheaders/Makefile
+> > +++ b/scripts/selinux/genheaders/Makefile
+> > @@ -2,4 +2,5 @@
+> >  hostprogs-always-y +=3D genheaders
+> >  HOST_EXTRACFLAGS +=3D \
+> >       -I$(srctree)/include/uapi -I$(srctree)/include \
+> > -     -I$(srctree)/security/selinux/include
+> > +     -I$(srctree)/security/selinux/include \
+> > +     -I$(srctree)/usr/include
+>
+> 'make headers' composes the UAPI header tree in $(objtree)/usr/include.
+> So, if you build out-of-source, -I$(srctree)/usr/include will not match.
+> Just remove the '$(srctree)/' prefix as '$(objtree)/' is always '.'.
 
 
-Removing bogus "#include <linux/version.h>" is the right fix.
+Right.
 
 
+> But I am suspecting that this break cross-building.
 
 
+Right.
 
-
-On Wed, Aug 7, 2024 at 8:10=E2=80=AFAM Daniel Gomez via B4 Relay
-<devnull+da.gomez.samsung.com@kernel.org> wrote:
->
-> From: Daniel Gomez <da.gomez@samsung.com>
->
-> Both genmap and makemapdata require the linux/version.h header. To
-> ensure successful builds on macOS hosts, make sure usr/include is
-> included in the HOSTCFLAGS.
->
-> Fixes errors:
-> drivers/accessibility/speakup/genmap.c:13:10: fatal error: 'linux/version=
-.h' file not found
->    13 | #include <linux/version.h>
->       |          ^~~~~~~~~~~~~~~~~
-> 1 error generated.
->
-> drivers/accessibility/speakup/makemapdata.c:13:10: fatal error: 'linux/ve=
-rsion.h' file not found
->    13 | #include <linux/version.h>
->       |          ^~~~~~~~~~~~~~~~~
-> 1 error generated.
->
-> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-> ---
->  drivers/accessibility/speakup/Makefile | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/accessibility/speakup/Makefile b/drivers/accessibili=
-ty/speakup/Makefile
-> index 6f6a83565c0d..74ee0c31370f 100644
-> --- a/drivers/accessibility/speakup/Makefile
-> +++ b/drivers/accessibility/speakup/Makefile
-> @@ -38,6 +38,7 @@ clean-files :=3D mapdata.h speakupmap.h
->  # Generate mapdata.h from headers
->  hostprogs +=3D makemapdata
->  makemapdata-objs :=3D makemapdata.o
-> +HOSTCFLAGS_makemapdata.o +=3D -I$(srctree)/usr/include
->
->  quiet_cmd_mkmap =3D MKMAP   $@
->        cmd_mkmap =3D TOPDIR=3D$(srctree) \
-> @@ -51,6 +52,7 @@ $(obj)/mapdata.h: $(obj)/makemapdata
->  # Generate speakupmap.h from mapdata.h
->  hostprogs +=3D genmap
->  genmap-objs :=3D genmap.o
-> +HOSTCFLAGS_genmap.o +=3D -I$(srctree)/usr/include
->  $(obj)/genmap.o: $(obj)/mapdata.h
->
->  quiet_cmd_genmap =3D GENMAP  $@
->
-> --
-> Git-146)
->
->
+We cannot do this.
 
 
 --
