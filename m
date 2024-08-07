@@ -4,171 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE75C3DA7F
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 16:52:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 995B9C3DA7F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 16:58:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1210010E190;
-	Wed,  7 Aug 2024 16:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 595AD89755;
+	Wed,  7 Aug 2024 16:58:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mjYWNZ++";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LpqFsil9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8591510E190;
- Wed,  7 Aug 2024 16:52:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 970CF89755
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Aug 2024 16:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723049557; x=1754585557;
+ t=1723049920; x=1754585920;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=OK2ToQVmbBX8ubUjudYf69Bj4qikoq3mOjvlh8zlLU0=;
- b=mjYWNZ++yh7H1vjn39WNbtnk9XA+xyumiXQnwY06s+htaqXrJfExZo1K
- 2gpFPbQmujkay+M9avSt6XhqEVW+T52wLtPHQoWCr9hLKUiiVx3osCgdX
- yyXA75O4LvXl+MrH/dX0ROrzOPhHICf7Xry4IqO9Yp18w7x3liVqpx9i1
- 6VLMSn0abXT4z+wwCDWnTkMi6BcjceuwmmULWa3Pk/i/Lm6zbTFedtWAH
- xFpOi4+dkGOFEGPK+dJ4WjIEnrZgQpcqzO+PPcNqDsWpxc6y4GH3Y0XFn
- YDSyZp2gYcbnQd1LE9m5Pl0a+4jcjUJPaEPTzX0QIAHxX85xsETYEU7Oo A==;
-X-CSE-ConnectionGUID: iv51pywlRdOJ7PvqQHOSOg==
-X-CSE-MsgGUID: myvdN6o3Rc+WAYUHOAR9ug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="32536369"
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="32536369"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 09:52:20 -0700
-X-CSE-ConnectionGUID: 7QRwzw5ORgaEA5thIdwb6w==
-X-CSE-MsgGUID: BqMl4LIeQ/yKN8aoT0Ikxg==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=K8/xMNpMV4/ZRCJHxH4KYM9mXFL61LoIMiCIUXTQtEE=;
+ b=LpqFsil9+muujzRUiG7U6IhqvE2szPn1DXis1AwFsjOTa+DmgcrykJoK
+ ZvyT9e7qGN8WgLTBZ6mgAoeDAzJzFyNOXrEtp2jA36ODF3t04aOcJhFG8
+ su5II7PNhrB8EAM9S7qbFEFkKpdytJPGhuWB0j3QbJJHb5KRt0AS9tCiR
+ Gyhj6wJ4kk+1aaDEJYylmg6RRr09Es//34HziHQM8/GHwzQ2BDhS7WBq2
+ rhW2qnVnJFNm/qrltBtEG4BUzW1vtdRSWfItwDqu0CiirTEkQx5M7TXo4
+ l0XIO3X9U3+d6s1BtHR6MbTNt8jdpMra0ccR8Pl8X1gaZ6haPWDL4rHoC g==;
+X-CSE-ConnectionGUID: YXcQA4SBQAKPTAoYSrKTUQ==
+X-CSE-MsgGUID: D9magYbPT2Gsidx+txnpxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="21281636"
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="21281636"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 09:58:40 -0700
+X-CSE-ConnectionGUID: f4e7PS3cS52ARAqdLZZJBg==
+X-CSE-MsgGUID: 2mh6E70MSkiGomZp9vaDdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="61851592"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 Aug 2024 09:52:20 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 7 Aug 2024 09:52:19 -0700
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="61748783"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Aug 2024 09:58:39 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 7 Aug 2024 09:52:18 -0700
+ 15.1.2507.39; Wed, 7 Aug 2024 09:58:38 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 7 Aug 2024 09:52:18 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
+ 15.1.2507.39 via Frontend Transport; Wed, 7 Aug 2024 09:58:38 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.42) by
  edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 7 Aug 2024 09:52:18 -0700
+ 15.1.2507.39; Wed, 7 Aug 2024 09:58:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GiwR7/UYUeJYEgIJ2/Am7IXMX+czdupF9l27UmLkFZ/u0FFwhr2asBbLjf28MabFjSKJsaQBFnpMt3f9tK3fbwU8Yn0pIx2PHSpQymNPZU3tSD2uDSmXnkUGSfoyhdjaD67E9MnQxxgcE9PxIvyXq6I1vVJXdugktD0ldmnmz5Rn/putuVUIkMDTg0BwXOvjBRW4wrqIy87tBj2hi0dSixrXrGHm8hAY2niJWcQRPOxVsbNY+Vd67dWufV/wLwBH5MaRrAk+CaX8FLKfVx0YJC6aFyb+UBkv6vKTcAMQBATjixdWjLbNiM2cmq9y9MMXQQ91Qlp4mSpJNEYYfp+bVA==
+ b=FXrErdcJmKpyNJXEFoBuCwd15jsZuZ8iRCi4Xb9ex36UAGVf6zVO1a8EUThtBOayAWCkj6TWRBOun56k0nCqodNrWE5ux0ktIJJk/hjLzteGLxpbF070u+zBB4dlhb8vXrhTQtltb6PIQUgzbCcIZJUHmw4iedGI7TqDMkLIlw9R6+/UFvz3diu2hEBh4xNOHc2eOoOR2fG2K11dHjDgmZWv8ZZbjrU1XF41iB1LhduYJCXuKLjMhokiz01r4h/dmwx8ml6F+UIP7gjzMs9iHaGsuoP8cQSddZrKWzoFqxn1erV1Uk67iUwRor8MIoAIFMUS7dpqq8kbIlXuV3zgZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4H0ysOfoD9gu5A6egH3Yk8Yskw4Bbpin+bd/7SZPiGc=;
- b=tm5zRM4me2yGBhqWUBN1rhes/CawQai4U4qga/JAC1k098jCddMlx29pkhxVA9F9fxeq54pkEZo7IJzdxKqPCYnVej3o748vYybfEuhcuPAAL0Pf9xIMOZ0hLuBbjsrfwE67TDew3nLHipZXqgf2iMlC4lNDzrfxwUzmnMDx9/pYaf0r/dyc7f558bTHJDkNcCYopDZJ08M4jG6QOxAC5LQUrPz/NrnoK9ulIEJ35iGl22Tdb744fvYoIYIeseeP3HPundm5SNBd9516V70WCzVajRiINHH1SVl+uh3T0dfDMZqAMJsWDFnlzXbPvf5pfMmjwUhavZ0uQJlFpPM5YA==
+ bh=EKoJK3XlkhyCor8PsMwgl/e27bFu7eBlxxNsefV9K+I=;
+ b=eoKmfkOmDCUcGBG+x+C7HGq6lXu7hBhDm1GZYfAHSK1kTOdcg1N8x4yguX53mq1NGkYv/LhGbrCHqHU0LSUHlTo0ajCw1K6p784KFQzbT40kLy5D9eEMqq/TMYAgiiNIu5V2k7zuTz/pJIAwh68aNEPfdxKcMxRfGszzIvNjC/Z/NUg5Y+At98zGyZdggYorg73K3yc5gm8SzAQqQvdD9hhlavz9gwRWXxaCrwqfZVS8sJJxD1FHgKdGmkdn8B7OCUbBkfyqEVrWXArscteMsW9F7te3TJxIpYQ4NW3XHbxTl1K6PXAdz2mDXRIZzhloqd1E0+jQWJTnNNNb/rY6Rg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA1PR11MB7038.namprd11.prod.outlook.com (2603:10b6:806:2b3::22)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SN7PR11MB7115.namprd11.prod.outlook.com (2603:10b6:806:29a::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.22; Wed, 7 Aug
- 2024 16:52:15 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7828.023; Wed, 7 Aug 2024
- 16:52:15 +0000
-Date: Wed, 7 Aug 2024 11:52:09 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: Gustavo Sousa <gustavo.sousa@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Michal
- Wajdeczko" <michal.wajdeczko@intel.com>, Jonathan Cavitt
- <jonathan.cavitt@intel.com>
-Subject: Re: [PATCH 03/10] drm/xe/tests: fix drvdata usage
-Message-ID: <l3uht2t6d4mcsgytnomjhnf3j3esqmtngyuosdbomoakvrqjwb@qmft35y54vjk>
-References: <cover.1722263308.git.jani.nikula@intel.com>
- <66f8959522a679d80eb71ba8dae47b86d94e71d9.1722263308.git.jani.nikula@intel.com>
- <172253145846.5121.4226200139944139785@gjsousa-mobl2>
- <87h6bx6e94.fsf@intel.com> <87ed716e7p.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ 2024 16:58:34 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7828.023; Wed, 7 Aug 2024
+ 16:58:34 +0000
+Date: Wed, 7 Aug 2024 16:57:17 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: Nirmoy Das <nirmoy.das@intel.com>, <intel-xe@lists.freedesktop.org>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, Sai Gowtham Ch
+ <sai.gowtham.ch@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/xe/gt: Add APIs for printing stats over debugfs
+Message-ID: <ZrOnbbp8LQn1ueiF@DUT025-TGLU.fm.intel.com>
+References: <20240807110802.13385-1-nirmoy.das@intel.com>
+ <gos5am5tdkhozpwidgopru33w33hgt5dd4wqcn4xkjkllkl6im@bkldffzsasvv>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <87ed716e7p.fsf@intel.com>
-X-ClientProxiedBy: MW4PR03CA0082.namprd03.prod.outlook.com
- (2603:10b6:303:b6::27) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <gos5am5tdkhozpwidgopru33w33hgt5dd4wqcn4xkjkllkl6im@bkldffzsasvv>
+X-ClientProxiedBy: SJ0PR03CA0066.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::11) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB7038:EE_
-X-MS-Office365-Filtering-Correlation-Id: 366a2ae1-9d2c-4c80-e8d0-08dcb7014a6c
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SN7PR11MB7115:EE_
+X-MS-Office365-Filtering-Correlation-Id: f42b943c-27f6-46d5-a9a3-08dcb7022c91
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?v+LmwoY9UKSv99j3R1ALfVf2U0Y3O9SVefOZXSokxABdwKsfYo2KsihAWl7J?=
- =?us-ascii?Q?LGUQhluIviA38vctqfN6IDRybI8tpD7JMLTO35OJbH4kiBHMPOSkXcJd7E2Q?=
- =?us-ascii?Q?XKkBEf5E676opnnpkKgW8oQWePfte5+j1Qo4fbAMI7gjCSOQ1DMgQTjfmkSZ?=
- =?us-ascii?Q?GddItn5N15z662fQKz6fo+hbHtKpXny5fb49czXi765cIFacERmAFQKVSibZ?=
- =?us-ascii?Q?sh6ZPxyi31jEkrtttX0OWBKCyOlgOqoNkG9qScTJJXVlxPdCYNgb0HDtVOEX?=
- =?us-ascii?Q?zMk0qqEYXGQeIzlN5IzsgTTVgtxnY/AMcQAly7Be92DyoUrTEsBaW6lfXzCJ?=
- =?us-ascii?Q?bD4Ro1wopWdc2QFLEDga1Jmak9EgLo9CCjw/DJk5FzDaHiUR7ttG91TF4n4S?=
- =?us-ascii?Q?ynDuwG7K21aHSFuLNanitFEl8hsy5PgzP9jy7Dwt0SdlCKgPT9JVsSxAUCsr?=
- =?us-ascii?Q?tmRBNMuY51Nbw6vi9J4T8U16yC/AaCcjNXuKJMJGIPtBLvY6b0P//E/ii+pO?=
- =?us-ascii?Q?86FxG9TCByH+MWqubVgevZkpJe7PTmeraB9w5ofB0zQHCSbMGK+u5DdcaaUH?=
- =?us-ascii?Q?vGJ511mhWT5DuyBSdApIuG6UaXJI9waCU/tbSAQEidZAGqcC32jvMnC2/mhw?=
- =?us-ascii?Q?8EoVXpGgQRwrtQW/f+Yuuf9Qsnxwvocbos6D0DgxoWSIIF6qEfrXaolb+USj?=
- =?us-ascii?Q?4cyxh06nazimQ7Mka/BNeap6QUuAr1ap+d+ERCQLunQ2vH15/hPR1vyJ3nuh?=
- =?us-ascii?Q?uBmoaGLuEYTC2NRybgwOaZ4R2oGsRSEwpG6OU6RLcQUfMphSHD+x6Ly5GZhG?=
- =?us-ascii?Q?gYq9g3rHYBfuOI60v7VAnYi2Gara2+2yK7Kc+dTZZHQfBc6lqhhIMUA8ioZL?=
- =?us-ascii?Q?gKEMEXEdu1v1yk65Q+ZZliXI3Ulyr7uI0M1/vBS4sBlvQnJvmk2ciZYVTr4I?=
- =?us-ascii?Q?fdd0pKb9V9Uhoh3JHz4EGAlSl5eMwqaOJPhO69IXO9V6uTAehJT0BRI0Cbc5?=
- =?us-ascii?Q?h6gejvyqtce1NnzO0hXULPlvxj/SHLgYO1VZauHboeGo1GmnWHLuAu/RFHBD?=
- =?us-ascii?Q?pw0R3YIN0Zokrzm0UiYMSMgoIm3Em1+mB01NtN2NylEChkFhexqkhfjO2/QU?=
- =?us-ascii?Q?GnbPpZ8tkBEU2S2vvoFwIl8qDVSRE0K5wnwEXFtjBzN6lt4d9dpZOokQCSSg?=
- =?us-ascii?Q?5eZ5kQkF7WCoy0DDVQwwd+GS31atM5zA6fRh2C8VmIfUGRy9+ijssyMG3FDu?=
- =?us-ascii?Q?VuJe07pDb3f1DMEoREox6YTWnvpXBwayG69tnOBvdt7u3IIr/0R4uumZSABP?=
- =?us-ascii?Q?2E5M+CnjeUo3eH3pAGJOviRRtIP+Q5svw6XjgH/axCaqxQ=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?RxAJFIUFWTHho1l7gZFz8X6z7eNOzCg2tSBF/iJec7amp9OJZZVYghOLVt?=
+ =?iso-8859-1?Q?qJ/jzCX5/9h6xlD1MUkXDNqCGp0Ekmlx2YbRMuZJ0UNhxKzxLDlhRtpuLD?=
+ =?iso-8859-1?Q?9ENrgVX0iGPmycNcx4JblL4N/GQaBPFGZoIqLH4mQtxU5tjgVt+NCHFD7v?=
+ =?iso-8859-1?Q?JEHvpi5jaf6HgESQ78kvEHX6WtFkvKDWTnjv1zBXWvvl0fgMai9fEhCL1H?=
+ =?iso-8859-1?Q?Jm8xV15pkppRFFPClMmuK3VdFYi/pGiYSnzEyncsglHa2Rnf/65W4an0qO?=
+ =?iso-8859-1?Q?qsS2i+C/Ag2Z89/lKNvodftsog2Bvsn7BHFUNQ9H+RFPhKBQZdMwBj6e0c?=
+ =?iso-8859-1?Q?adabAI/ihuzefwuZf5hbVb2fjYfy8pjb+uslBEh+y2QaJXdZpSSoJATGYA?=
+ =?iso-8859-1?Q?co3iW47n3V5O2DJlTpTmoSULqD+6S0ytIqVeVlvKo3l2liTutIdCv2lhmg?=
+ =?iso-8859-1?Q?0fFR3zDjQQBvQ9kEjZq9su9jcsCT3sUspu/0GwU6TETMUnE+7lXsz8FcNJ?=
+ =?iso-8859-1?Q?B68Lp2vHrLUawzqrVO5I2j98rhnokL52eUi3eg0CfLxXlGOHq8XHuaBbU3?=
+ =?iso-8859-1?Q?T7w/Be8QmNIRMkTK1bNqCOfAyAcTSTl98Ivw34KVknVEJKBCc+PxUjrUPb?=
+ =?iso-8859-1?Q?sB21SvdnghrbVCyzd6aiAu7OIQqmeA8jh4UT6yVcmZFYdc2iYXEzhXODZo?=
+ =?iso-8859-1?Q?8/6KjOQxBVD3elpwJqZXDORJHXLEPyQtU+DesBuR0BCwrUvZ4DlhaYbk4+?=
+ =?iso-8859-1?Q?7U4v6+3r6P1y/kbMAlw/Mnwhme2YdcHBpP+pyS2WuPQR1vSkBc88yArbun?=
+ =?iso-8859-1?Q?JmMcmDdCSXyhKOw8O+OBNGifOrDHGEqH3Q1UMtE1YsxTYbqbuG3LcAcS/b?=
+ =?iso-8859-1?Q?mMmFX2e/VacwWroTi9uKju65DAZ+1jtI/jE3x7NEE8sc/39Jc43P84/RLL?=
+ =?iso-8859-1?Q?5PrneqWdbpH0c0hIz850Yfu3vbXKHYWe5EgdxECTurTOq/vawpo4inSE0I?=
+ =?iso-8859-1?Q?XNfXzi3QUIvWJaUtFWIOt7RZKl255WPGkKsIUpIjbB+TEJaMXk9tEnOtVk?=
+ =?iso-8859-1?Q?bErMDFfjA4uvQRqKY5YZGqTXwb9PJfcjebYVLVuggw1X5kc+Dx4GeZAoe6?=
+ =?iso-8859-1?Q?9ay/1PAm3xTclv1EHDBnUfxoAW/VuRnbUUpxEsIuwbs1cLwEI8HBXkXeyE?=
+ =?iso-8859-1?Q?TI7835m38kBGC1m6f3NHxvCSrTG/9xbQwm+VjCCnlYVm7dtY7gRkEiiAg2?=
+ =?iso-8859-1?Q?KSCpLVQ8tDLRWtz4Xc4SGzkKoKIPYjWpMra8nP13OwCeytxOGSfDvtUCNF?=
+ =?iso-8859-1?Q?G7I4qFxSRcp1sMoTbrR6WiPU3iu41NQe07IzGJjp3ccJwTFUdcv7WiG85H?=
+ =?iso-8859-1?Q?waCYRp2D9rNaI+ehFxd/9WYtgb9H72DQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?n6pi/D8VSLTfEdVw3bONxoGFZAMOMVckfH655PQ6cE4Eqrc+UsmqFm5KwvuX?=
- =?us-ascii?Q?5s7ixj2fMbZlCzMO3w8BK0Cq9QcIclf/a/6yPp2FXLOv8hrzC+oyzybNcjBQ?=
- =?us-ascii?Q?YPGQ6mdZPRbg1hGCstFnOdyTPsCXn2VHn2d89K5Rv2T/PvWNyeP0fhjbV/it?=
- =?us-ascii?Q?sw4spq8BevMCp4qPxo3iNGoNV0llvjNcYgVoMynBUHJ3hPPuKPkxMZtjfkc/?=
- =?us-ascii?Q?6ijXyG+8hsxOr8ej0K1RsZ8e7GNmiWqqCg4l2RHmCWtsqg6araHDwvyoQ2Q7?=
- =?us-ascii?Q?KwkppE/EO+N8zd6p5i17IOlSm6gTIIX0hk+TPEE39B27iVCAq0FOplRqzEVR?=
- =?us-ascii?Q?CLCtNaEPAIFLpsaRofvuVEXrTZfO9VapxrZ+VB4OGC1NpeiiGe717kpMQMCO?=
- =?us-ascii?Q?r7d7/Rqc3p1scXCFL1xtMYN6/MZa0Znro6lfl1P9AVJJbe/o5Eng0JOA3lXJ?=
- =?us-ascii?Q?DHooXWdMitWSuNG7EHi8lOpNOBPXUFn/RIQMQtMDMYyaiTdddA1DkRaTrGUL?=
- =?us-ascii?Q?nKnYcgludDZCa3WlxoHqdu6Cd0SF8jfQFOh++HTDhtXHt6ZH0YzHLx8VYlUz?=
- =?us-ascii?Q?x0f2HwWwlSDI1PFJX3c+T0vsjANidULfYhrcfcCPd/UDEowS6z+KOiomuMK+?=
- =?us-ascii?Q?W28HL+XDJaWjG1QecyL+8xWTcUTt236r+7PfrBVzbq2Z3wHzsLG9Wu8tr0nc?=
- =?us-ascii?Q?ws+gxPkRBYRlC6E9Ok/Trq4Zud2KzDb6l/4qlGaPs9AbcZaKiHggiAzHmLk4?=
- =?us-ascii?Q?GehirV04B2G+WNVbegsk+htdduyJRIXct6Unh1hHPMN767xqD7D2quxaIv7h?=
- =?us-ascii?Q?JXI+q44dyFONYvMr+Ban1ymsI+/oMkctqBNWX1veDIyVAjH6ZKw9opidJ//D?=
- =?us-ascii?Q?IpzfzqKDuBlTWo2uwMzYEH1ZfhQssE61mmwzwtTKoD3rLaEIjKZJ9OqsjF5p?=
- =?us-ascii?Q?rZ8qBQfF6bohzkIqY/Xi5vXt7h6XHWo0TP/4wd9b2gercK5yfSLO3XDcJhLo?=
- =?us-ascii?Q?9eIRku8eEYMFxiez9zIPYe1Jic83En5KMv3tCk9OryV6mNfdXPxQlhFPpPUx?=
- =?us-ascii?Q?iJ1b1K73+3zMxEH5+6bSPQBZwj0egR2cSlTAbk3hOEu50vVkwxx4LbJ9mIdj?=
- =?us-ascii?Q?8zdJllsnOu//cSbvdmG1dy0y0N+STgVG9XkWgNn+Lak/qKdAJE4uzHi1djkh?=
- =?us-ascii?Q?1JsrWstmgCLRzVP5u1+zGypY4Ehq073jjohw/CP4+hh3wxB88ed5hGZA6Tgl?=
- =?us-ascii?Q?cl2LjyI13YOr97fuJHrQUjSVE6h6TBl8GcAO/HziYmFZVGv8SAw6yoS6vvSn?=
- =?us-ascii?Q?U+zSvwtH+hVdlcX9zu/Wbb8u6p6wsBzMsw+sGlPdDE1XzgtPWe8qaJD63XMz?=
- =?us-ascii?Q?P3lZCeqwe0fpJi15SqjplwL0/yGpSJQ8REO0pG0kK93NPd+6WgGELZIxpk7c?=
- =?us-ascii?Q?4Ak82JhkDyyv8dmJ0dYDXOQXxQZeNTQDB9guPHGUTYIAO4YxVJM9cbd1sDfB?=
- =?us-ascii?Q?6Zx0/rD7zZigIdXTXMwe4GKtIkYUzM79wJur5nuD3rvjxcSgVgPkEMp2dCVX?=
- =?us-ascii?Q?yHEUVTdgAWt73Y6Qb5uqe78x/iiof4Wz2oLEKfSBZsbmm/98Xe54lHCgx9T4?=
- =?us-ascii?Q?Ww=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 366a2ae1-9d2c-4c80-e8d0-08dcb7014a6c
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?KyVQUMFhmHqKekDKtWKVxSYDA8zIpOniuABOBQC27j64vMlwkVzAjwTopX?=
+ =?iso-8859-1?Q?3UKTmFvqFEPly0mgXbwPplm1/vRhnykSIYldK7T4j3/7YjBldqT9jTY3Kp?=
+ =?iso-8859-1?Q?vhXqkISA9KFu9mxiXcLf+9/UkDGHiuzPZuun4oc1dYnQ68HINwriN3WbAJ?=
+ =?iso-8859-1?Q?9IZjLvR8KC33Z+1xZq+aGDeeas4wEqwZ+g1bTXVEemSnjx3gfzC7+U91JO?=
+ =?iso-8859-1?Q?N7i15o2JIOlOWoj/HefcGVUlRBW2Dpa/Luma1RXHBkFB2ZCslG01wNX80s?=
+ =?iso-8859-1?Q?2KAV1gAOuZxf6+geHhgKt0nKA40ZtI1wxqQgdMg7Do/j6yRUqwvRs0jT5R?=
+ =?iso-8859-1?Q?UTH4hNQOYHi4VQ2Lefk7FZo5bjGtR0gyRbPMcCEiZ1QfpPxm6Od5/blV5o?=
+ =?iso-8859-1?Q?6HKVXyAArYyRhoSprOSiksX2qfFMA1w4pXyJjiQwF2C5y1MfWaQHS/Lvv+?=
+ =?iso-8859-1?Q?vLB/5v3x4vFkcrTZoloaz6iomZDQCfdpnhSP1SVKDzgrEBU6JyNtgIVwTp?=
+ =?iso-8859-1?Q?7d4LqSeewgn4FH8vrmCA2qyOULNcUd0EBldFbh3WQZCY0gjGkPi1MnlEAe?=
+ =?iso-8859-1?Q?PZvbYfcwERn8hdjiw/9g3qf2qpTfsqir2L06iWSBIekY4fmPkXKEdsyiHY?=
+ =?iso-8859-1?Q?HxS8VVxerJ2GInJXydFsGPhY3krGSmSF0qMIrfaY47sdRXlpkUYfFid/VT?=
+ =?iso-8859-1?Q?RZeYXtgwlU2ryLxoDzC+Oei4b79JBHTHwzaK07geD33yl9JufSHML+rdI0?=
+ =?iso-8859-1?Q?nbD7N6ef9rQUaMnt09+YY3Tz3bYPCQZVifRsUGrtEsPCgNGws1a0Pp6WJn?=
+ =?iso-8859-1?Q?46zAsmAGuDFj5mGG/9HFMRynwA5mPij9srztnktKVzM5Y318QyEVlIwEc1?=
+ =?iso-8859-1?Q?pLKLoyZQcNjSPhZvjbiYSS+Ijl62I1bB7EgdlnelhZ57wAXTbiL88J+4mW?=
+ =?iso-8859-1?Q?Pi2GuH3RBiJOYKk7QwiMytYaRN+G1HE7gw4J1c8SQ4w16u2jLNRchbg7+N?=
+ =?iso-8859-1?Q?8tHvS84lfht7LD2/Hi5HYbAmQsYBX3FxnxQyTQIME3YHjdzRD/qmWecIRj?=
+ =?iso-8859-1?Q?doHzaDqJfFIp36nILvRHKnOPVoBpuMThsvq4kMo5iazhyJ1mca+MkBpjPI?=
+ =?iso-8859-1?Q?YUV9RoMY/roz2r8pT3PaoSlOPWvtewN3fBmfSt3GXI6CX/a+IxQ3t0o+Yq?=
+ =?iso-8859-1?Q?rC7AzYfNyRYhpw6LPNEy/A4WH74CEGxGLUs/52QdkE/5VQbjGPc22G0Tin?=
+ =?iso-8859-1?Q?v6Z84Z9eCEAuVGwifJ+Ha6uVJWYf+1n3PW6SHU6CNLP8ks6KUBHwPK8a5p?=
+ =?iso-8859-1?Q?6CBX6qEnC8SNaq3zR5V+F3LvvaBVLGpk+3x//9VudwgSKqqsuIz5UO4BJB?=
+ =?iso-8859-1?Q?OuVL2i2v7jCsfTd0SQX19FaclXd+2c6+goauM+i0uwiPXYgvJ7PVc012Dg?=
+ =?iso-8859-1?Q?kEzT/V5Fpg+xH6yxHc0niuIX72pGzNueXXH2VOK6sWw8sdII0XJ2dHl5ml?=
+ =?iso-8859-1?Q?LeApU0vVlbBsWFAgTo0+c8tt1+K8v2OFpKJz2Mt+O+SANK+hScEdoia+1T?=
+ =?iso-8859-1?Q?5hkdby6YOJFO6BNaGLgSfiMJOHch3qwg2z0XmjtOiccgtuIyrjKLWu4ab9?=
+ =?iso-8859-1?Q?ZCgz11jeyCLRP4k22XECHZZ2qYMq1UE22lUkKf66yDjupUku6d+hcMDg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f42b943c-27f6-46d5-a9a3-08dcb7022c91
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2024 16:52:15.3621 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2024 16:58:34.6648 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u7oQ6AilZGjV08vPcbfXK73IYsVc7bm/xZmoqb/PfvuA1WlOymOCzJ0GyVAey8h5ggjSK5uXlJJr3htQ3zXpZJDOi8UiZxIzf2Ys6roBjk0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7038
+X-MS-Exchange-CrossTenant-UserPrincipalName: q0MhWne4sCpbl1r2VAYfADj1xHha4Kp6fWyVe7aINUWwoM4VdDbjPgEfk4BckGfPyAdOhz3YLakigyuwpiaCCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7115
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,81 +179,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 06, 2024 at 03:14:02PM GMT, Jani Nikula wrote:
->On Tue, 06 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
->> On Thu, 01 Aug 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->>> Quoting Jani Nikula (2024-07-29 11:30:04-03:00)
->>>>The test code seems to assume struct drm_device * is stored in
->>>>drvdata. This is (currently) not the case. Use the proper helper to get
->>>>at the xe device.
->>>>
->>>>This has not been an issue, because struct drm_device is embedded in
->>>>struct xe_device at offset 0.
->>>>
->>>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>>
->>> The fix looks correct, so:
->>>
->>> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
->>>
->>> I noticed that xe_call_for_each_device() stopped being used as of commit
->>> 57ecead343e7 ("drm/xe/tests: Convert xe_mocs live tests"), so we could
->>> also have a patch removing it and dev_to_xe_device_fn().
->>
->> Cc: people involved with that commit.
->
->And now actually Cc. *facepalm*
->
->>
->> Do you want xe_call_for_each_device() removed or retained?
+On Wed, Aug 07, 2024 at 08:59:34AM -0500, Lucas De Marchi wrote:
+> On Wed, Aug 07, 2024 at 01:07:58PM GMT, Nirmoy Das wrote:
+> > Add skeleton APIs for recording and printing various stats over
+> > debugfs. This currently only added counter types stats which is backed
+> > by atomic_t and wrapped with CONFIG_DRM_XE_STATS so this can be disabled
+> > on production system.
+> > 
+> > v2: add missing docs
+> >    Add boundary checks for stats id and other improvements (Michal)
+> >    Fix build when CONFIG_DRM_XE_STATS is disabled(Matt)
+> 
+> I don't understand why we are even adding a config here.
+> This should just be compiled out if build is without debugfs.
+> 
 
-removed... it should had been removed as part of that series as it only
-reflects the previous approach. My bad for not catching it during
-review. 
+I don't know enough about how compilers work these days but would the
+atomic increment compile out without debugfs. If the answer is yes, then
+agree we can drop this Kconfig.
 
-struct kunit_test_data and dev_to_xe_device_fn() should be gone too. 
+Also does debugfs havea Kconfig, did a quick search and not seeing one.
 
-Lucas De Marchi
+Matt
 
->>
->> BR,
->> Jani.
->>
->>
->>>
->>> --
->>> Gustavo Sousa
->>>
->>>>---
->>>> drivers/gpu/drm/xe/tests/xe_pci.c | 6 +++---
->>>> 1 file changed, 3 insertions(+), 3 deletions(-)
->>>>
->>>>diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
->>>>index 577ee7d14381..2046789f62bd 100644
->>>>--- a/drivers/gpu/drm/xe/tests/xe_pci.c
->>>>+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
->>>>@@ -20,15 +20,15 @@ struct kunit_test_data {
->>>> static int dev_to_xe_device_fn(struct device *dev, void *__data)
->>>>
->>>> {
->>>>-        struct drm_device *drm = dev_get_drvdata(dev);
->>>>+        struct xe_device *xe = kdev_to_xe_device(dev);
->>>>         struct kunit_test_data *data = __data;
->>>>         int ret = 0;
->>>>         int idx;
->>>>
->>>>         data->ndevs++;
->>>>
->>>>-        if (drm_dev_enter(drm, &idx))
->>>>-                ret = data->xe_fn(to_xe_device(dev_get_drvdata(dev)));
->>>>+        if (drm_dev_enter(&xe->drm, &idx))
->>>>+                ret = data->xe_fn(xe);
->>>>         drm_dev_exit(idx);
->>>>
->>>>         return ret;
->>>>--
->>>>2.39.2
->>>>
->
->-- 
->Jani Nikula, Intel
+> 
+> > 
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
+> > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/Kconfig.debug   | 11 +++++++
+> > drivers/gpu/drm/xe/Makefile        |  2 ++
+> > drivers/gpu/drm/xe/xe_gt_debugfs.c |  4 +++
+> > drivers/gpu/drm/xe/xe_gt_stats.c   | 51 ++++++++++++++++++++++++++++++
+> > drivers/gpu/drm/xe/xe_gt_stats.h   | 32 +++++++++++++++++++
+> > drivers/gpu/drm/xe/xe_gt_types.h   |  9 ++++++
+> > 6 files changed, 109 insertions(+)
+> > create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.c
+> > create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.h
+> > 
+> > diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+> > index bc177368af6c..4db6d707c1af 100644
+> > --- a/drivers/gpu/drm/xe/Kconfig.debug
+> > +++ b/drivers/gpu/drm/xe/Kconfig.debug
+> > @@ -94,3 +94,14 @@ config DRM_XE_USERPTR_INVAL_INJECT
+> > 
+> > 	 Recomended for driver developers only.
+> > 	 If in doubt, say "N".
+> > +
+> > +config DRM_XE_STATS
+> > +	bool "Enable XE statistics"
+> > +	default n
+> > +	help
+> > +	  Choose this option to enable support for collecting and
+> > +	  displaying XE statistics as debugfs.
+> > +
+> > +	  Recommended for driver developers only.
+> > +
+> > +	  If in doubt, say "N".
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index 1ff9602a52f6..b0bbb248f644 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -143,6 +143,8 @@ xe-$(CONFIG_PCI_IOV) += \
+> > 	xe_pci_sriov.o \
+> > 	xe_sriov_pf.o
+> > 
+> > +xe-$(CONFIG_DRM_XE_STATS) += xe_gt_stats.o
+> > +
+> > # include helpers for tests even when XE is built-in
+> > ifdef CONFIG_DRM_XE_KUNIT_TEST
+> > xe-y += tests/xe_kunit_helpers.o
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> > index 5e7fd937917a..3765c04919dc 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> > @@ -17,6 +17,7 @@
+> > #include "xe_gt_mcr.h"
+> > #include "xe_gt_sriov_pf_debugfs.h"
+> > #include "xe_gt_sriov_vf_debugfs.h"
+> > +#include "xe_gt_stats.h"
+> > #include "xe_gt_topology.h"
+> > #include "xe_hw_engine.h"
+> > #include "xe_lrc.h"
+> > @@ -286,6 +287,9 @@ static const struct drm_info_list debugfs_list[] = {
+> > 	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
+> > 	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
+> > 	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
+> > +#if IS_ENABLED(CONFIG_DRM_XE_STATS)
+> > +	{"stats", .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
+> > +#endif
+> > };
+> > 
+> > void xe_gt_debugfs_register(struct xe_gt *gt)
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+> > new file mode 100644
+> > index 000000000000..b13aee5488d5
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+> > @@ -0,0 +1,51 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright © 2024 Intel Corporation
+> > + */
+> > +
+> > +#include <linux/atomic.h>
+> > +
+> > +#include <drm/drm_print.h>
+> > +
+> > +#include "xe_gt.h"
+> > +#include "xe_gt_stats.h"
+> > +
+> > +#ifdef CONFIG_DRM_XE_STATS
+> > +
+> > +/**
+> > + * xe_gt_stats_incr - Increments the specified stats counter
+> > + * @gt: graphics tile
+> > + * @id: xe_gt_stats_id type id that needs to be incremented
+> > + * @incr: value to be incremented with
+> > + *
+> > + * Increments the specified stats counter if that is within expected range.
+> > + */
+> > +void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, int incr)
+> > +{
+> > +	if (id >= __XE_GT_STATS_NUM_IDS)
+> > +		return;
+> > +
+> > +	atomic_add(incr, &gt->stats.counters[id]);
+> > +}
+> > +
+> > +static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+> > +};
+> > +
+> > +/**
+> > + * xe_gt_stats_print_info - Print the GT stats
+> > + * @gt: graphics tile
+> > + * @p: drm_printer where it will be printed out.
+> > + *
+> > + * This prints out all the available GT stats.
+> > + */
+> > +int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
+> > +{
+> > +	enum xe_gt_stats_id id;
+> > +
+> > +	for (id = 0; id < __XE_GT_STATS_NUM_IDS; ++id)
+> > +		drm_printf(p, "%s: %d\n", stat_description[id],
+> > +			   atomic_read(&gt->stats.counters[id]));
+> > +
+> > +	return 0;
+> > +}
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
+> > new file mode 100644
+> > index 000000000000..04a1d61ce1fb
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_gt_stats.h
+> > @@ -0,0 +1,32 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2024 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_GT_STATS_H_
+> > +#define _XE_GT_STATS_H_
+> > +
+> > +struct xe_gt;
+> > +struct drm_printer;
+> > +
+> > +enum xe_gt_stats_id {
+> > +	/* must be the last entry */
+> > +	__XE_GT_STATS_NUM_IDS,
+> > +};
+> > +
+> > +#ifdef CONFIG_DRM_XE_STATS
+> > +int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
+> > +void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, int incr);
+> > +#else
+> > +static inline int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
+> > +{
+> > +	return 0;
+> > +}
+> > +
+> > +static inline void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id,
+> > +				    int incr)
+> > +{
+> > +}
+> 
+> Is there a reason not to force id to always be a compile-time constant?
+> The only use case added in patch 2 pass it as a constant.
+> This way the id is checked at build time, the penalty with debugfs is
+> just an atomic_add() and the penalty without debugfs is none.
+> 
+> I think this is largely different from e.g. CONFIG_SCHEDSTATS and may
+> not deserve a separate kernel config: just handle the no-debugfs case,
+> which is mostly implemented already by not building
+> drivers/gpu/drm/xe/xe_gt_debugfs.c, with the remaining part being only
+> the dummy implementations in the header.
+> 
+> 
+> Lucas De Marchi
+> 
+> > +
+> > +#endif
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> > index 631928258d71..4955612fb01d 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> > @@ -10,6 +10,7 @@
+> > #include "xe_gt_idle_types.h"
+> > #include "xe_gt_sriov_pf_types.h"
+> > #include "xe_gt_sriov_vf_types.h"
+> > +#include "xe_gt_stats.h"
+> > #include "xe_hw_engine_types.h"
+> > #include "xe_hw_fence_types.h"
+> > #include "xe_oa.h"
+> > @@ -133,6 +134,14 @@ struct xe_gt {
+> > 		u8 has_indirect_ring_state:1;
+> > 	} info;
+> > 
+> > +#if IS_ENABLED(CONFIG_DRM_XE_STATS)
+> > +	/** @stats: GT stats */
+> > +	struct {
+> > +		/** @stats.counters: counters for various GT stats */
+> > +		atomic_t counters[__XE_GT_STATS_NUM_IDS];
+> > +	} stats;
+> > +#endif
+> > +
+> > 	/**
+> > 	 * @mmio: mmio info for GT.  All GTs within a tile share the same
+> > 	 * register space, but have their own copy of GSI registers at a
+> > -- 
+> > 2.42.0
+> > 
