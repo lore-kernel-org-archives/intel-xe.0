@@ -4,52 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5EA9C52D7C
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA356C531DF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 19:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6405910E5A3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0A5510E5AA;
 	Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
-X-Greylist: delayed 413 seconds by postgrey-1.36 at gabe;
- Tue, 06 Aug 2024 09:30:00 UTC
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E17AE10E1E7;
- Tue,  6 Aug 2024 09:30:00 +0000 (UTC)
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
- by APP-03 (Coremail) with SMTP id rQCowABXfQBq67Fm3g3cAw--.39396S2;
- Tue, 06 Aug 2024 17:22:57 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, ville.syrjala@linux.intel.com,
- stanislav.lisovskiy@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ma Ke <make24@iscas.ac.cn>, stable@vger.kernel.org
-Subject: [PATCH] drm/i915: Fix NULL ptr deref in intel_async_flip_check_uapi()
-Date: Tue,  6 Aug 2024 17:22:49 +0800
-Message-Id: <20240806092249.2407555-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="Hgcni6Ox";
+	dkim-atps=neutral
+X-Greylist: delayed 970 seconds by postgrey-1.36 at gabe;
+ Wed, 07 Aug 2024 15:26:14 UTC
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0FF10E18A;
+ Wed,  7 Aug 2024 15:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fjasle.eu; 
+ s=ds202307;
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=8p+8xkYytY0kAtRIiarGiLqc+3CeFPeAk9BYp1+Be+o=; b=Hgcni6Ox2D8FDaPA4MfcZbKN6U
+ 9lLSq3Q7GUU3+GllOyhCeZHbJA0tL14j23d4QDpMTl4w/aXYprIt1HdcW/FwqeS04X0pozycGo8im
+ ZG7XpFmgej1m1/Wx1k4TniZ4dzo4Zke7LDpuRIaTpB7yIjPjLjTnZHh5hvzoqvtxxNPxlV14qvR9h
+ 6JOTX9FjdEiSNbs9g4oD/BRv04kpaHEALD2ttmeHLVEVftdyLZ6JtwnavADmeYTL2jzkNEuhkuB7A
+ aHsxYe0qWQ1MMw1F3+LCEHGCE8aeFHNlPAHElLODPwPnr9hrxMTSLQUbpM7aq1d8KhP01oubv1FeU
+ 03Wqun1A==;
+Received: from [2001:9e8:9f8:5201:3235:adff:fed0:37e6] (port=36192
+ helo=lindesnes.fjasle.eu)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <nicolas@fjasle.eu>) id 1sbiW1-009bha-HL;
+ Wed, 07 Aug 2024 17:23:53 +0200
+Date: Wed, 7 Aug 2024 17:23:27 +0200
+From: Nicolas Schier <nicolas@fjasle.eu>
+To: da.gomez@samsung.com
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ William Hubbs <w.d.hubbs@gmail.com>,
+ Chris Brannon <chris@the-brannons.com>, Kirk Reiser <kirk@reisers.ca>,
+ Samuel Thibault <samuel.thibault@ens-lyon.org>,
+ Paul Moore <paul@paul-moore.com>,
+ Stephen Smalley <stephen.smalley.work@gmail.com>,
+ Ondrej Mosnacek <omosnace@redhat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Zenghui Yu <yuzenghui@huawei.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, linux-kernel@vger.kernel.org,
+ linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, speakup@linux-speakup.org,
+ selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kvmarm@lists.linux.dev, linux-serial@vger.kernel.org,
+ llvm@lists.linux.dev, Finn Behrens <me@kloenk.dev>,
+ "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com
+Subject: Re: [PATCH 02/12] kbuild: add header_install dependency to scripts
+Message-ID: <20240807-witty-warm-hummingbird-20c9a7@lindesnes>
+References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
+ <20240807-macos-build-support-v1-2-4cd1ded85694@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowABXfQBq67Fm3g3cAw--.39396S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrKFy3JF48Aw4UCF1rury3Jwb_yoWkKrgEgF
- 1UArnayry5AFs0va17Crs3uFyFka4qvFWxZ340qa4ava42k348u3yfur1rWw1S9FyjyrWU
- Za1jgF92kwsa9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUbSkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
- Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr
- 0_Cr1UM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
- Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
- W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI2
- 0VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28Icx
- kI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2Iq
- xVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42
- IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY
- 6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aV
- CY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbQVy7UUUUU==
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240807-macos-build-support-v1-2-4cd1ded85694@samsung.com>
 X-Mailman-Approved-At: Wed, 07 Aug 2024 19:48:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,31 +94,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_atomic_get_new_crtc_state can return NULL, unless crtc state wasn't
-obtained previously with intel_atomic_get_crtc_state. We should check it
-for NULLness here, just as in many other places, where we can't guarantee
-that intel_atomic_get_crtc_state was called.
+On Wed, Aug 07, 2024 at 01:09:16AM +0200, Daniel Gomez via B4 Relay wrote:
+> From: Daniel Gomez <da.gomez@samsung.com>
+> 
+> Export kernel headers necessary for the tools located in scripts/. This
+> ensures kernel headers are generated before building scripts/selinux.
+> 
+> Kernel headers required for building are: asm/types.h, asm/bitsperlong.h
+> and asm/poix_types.h.
+> 
+> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+> ---
+>  Makefile | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Makefile b/Makefile
+> index 44c02a6f60a1..7ac079955a94 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -1173,7 +1173,7 @@ include/config/kernel.release: FORCE
+>  # Carefully list dependencies so we do not try to build scripts twice
+>  # in parallel
+>  PHONY += scripts
+> -scripts: scripts_basic scripts_dtc
+> +scripts: headers_install scripts_basic scripts_dtc
+>  	$(Q)$(MAKE) $(build)=$(@)
 
-Cc: stable@vger.kernel.org
-Fixes: b0b2bed2a130 ("drm/i915: Check async flip capability early on")
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
----
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Since commit 59b2bd05f5f4 ("kbuild: add 'headers' target to build up
+uapi headers in usr/include", 2019-06-04), composing the user-space
+header tree is separated from the actual installation to
+$(INSTALL_HDR_PATH)/include.  Thus, you do not want to depend in
+'headers_install' but on 'headers' instead.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c2c388212e2e..9dd7b5985d57 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6115,7 +6115,7 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
- 		return -EINVAL;
- 	}
- 
--	if (intel_crtc_needs_modeset(new_crtc_state)) {
-+	if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
- 		drm_dbg_kms(&i915->drm,
- 			    "[CRTC:%d:%s] modeset required\n",
- 			    crtc->base.base.id, crtc->base.name);
--- 
-2.25.1
+Nevertheless, I am suspecting that this leads to trouble.  E.g.: if
+scripts/* include $(objtree)/usr/include/asm/*.h this will probably
+break cross-arch-building.
 
+Kind regards,
+Nicolas
