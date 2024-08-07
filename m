@@ -4,52 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48B11C3DA7F
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 17:39:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92E80C52D73
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 17:46:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0747A10E15A;
-	Wed,  7 Aug 2024 17:39:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 587BF10E193;
+	Wed,  7 Aug 2024 17:46:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IxSaCgbZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HG6YwSEW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DD2F10E15A
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Aug 2024 17:39:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A77CE10E193
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Aug 2024 17:46:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723052362; x=1754588362;
- h=date:from:to:cc:subject:message-id;
- bh=mN4Zw6WX5Uxm0XwIt0PHTtYj6qDTXwh9Fls7NLChfOk=;
- b=IxSaCgbZNzlRJnQJNitREt0qVeqojHmjTwznLag2n9X5ojEUoBHZftjj
- ig1KSsDayCI9C9QL3bm7LCnOgvyoAfZU9Xq2RJpIBX10uuE6Jwil/PAOX
- VXmOf3+8RzT0ZvFwjiHzsPYyY44liuQhM9daq1/aoKVCPvbWReQa/NxXY
- mK0eXD/8Eg/yWWIybcJvN9I/wjqF97mLVH0LKm/ep15lOGIbIFcEl10Os
- f3yeX5kUTVsCkCVSe2kitoJl26p/Nbvdan+EUH2fcyXIKg+9L9KaKRtoB
- 0pPHXa7uvu7cK6VPO28OiW74Rv5IwpitSdXpA4qUtYJdi6CIbCmup7++I A==;
-X-CSE-ConnectionGUID: gvE1mTY9TEK/W0dfIcm8Lg==
-X-CSE-MsgGUID: L80FyW3zQO2RkbnGlqD89g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="24931067"
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="24931067"
+ t=1723052785; x=1754588785;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=W6XtXCsNySIpR5csUDrtMUHLbdAtv8uEdo/53ERlOAA=;
+ b=HG6YwSEW1tMdSDZqTek3o0Qq1eziSIc59lX16fHdXssWYGkTjLbuYOur
+ pZPrsEsl5EFErXUrTkY0LnL1ovlrMvs6ifZbEdAHf4WS7ma8YN9idSzFK
+ nzmHC1aGt1z33FDtk3SRYanCO5gUb0MRuFn67NqAp3AraNRtPWESD6A17
+ CPTnhetR4c1wD+WQUQajmsSCb4Gk5bgLGE2grfn7c16rQ5Sex17KK9Tek
+ Z9XTLcoxI8x76LJ7PpGI6/dMRQc2zrniSr78/cPCQE2rDOJwt5kXIvQsA
+ bMbeqka87LbVjDkAkHzcyOelUikjz2RlVaEL/7kZdsuVyGyFqHFAcKh8y g==;
+X-CSE-ConnectionGUID: JwWXgHvxQna0edZ2H0ZZsQ==
+X-CSE-MsgGUID: z1ushJ7ISCaR2wiS0AwAlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="24932086"
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="24932086"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 10:39:22 -0700
-X-CSE-ConnectionGUID: /CgIYMMCSjSaRk7MzsOF6w==
-X-CSE-MsgGUID: 2od7Zh9TQ1avzg1GUT9Lcg==
+ 07 Aug 2024 10:46:24 -0700
+X-CSE-ConnectionGUID: lf1VAGfoQoeEwdbwR3qHmg==
+X-CSE-MsgGUID: G9TwoM/eSBeVYW17iSbr1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="61584629"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
- by fmviesa004.fm.intel.com with ESMTP; 07 Aug 2024 10:39:19 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sbkd3-0005bY-0d;
- Wed, 07 Aug 2024 17:39:17 +0000
-Date: Thu, 08 Aug 2024 01:39:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:topic/xe-for-CI] BUILD SUCCESS
- 2d5e5ecf0a3f43221fd39fc24f18be6872bc97d1
-Message-ID: <202408080111.BQ45lJK7-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="61587139"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Aug 2024 10:46:23 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 7 Aug 2024 10:46:23 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 7 Aug 2024 10:45:59 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 7 Aug 2024 10:45:59 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 7 Aug 2024 10:45:59 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eA/Y0syuOHfsjNmV/hy5evY3rKQSn+6yR1+D+M4iOhMNZCLoeRhF3ymK7SHK6W9bZTl1lPoaElVJ3hqQzAggD+kBi6muud40v/pDdth/7M/pGUMkwLnu9EOM21mNWKRLwUygElplYGLtqnfGqREDUT6wIN/kh4RjJDdmfcBxQHTD2ZWivPTfi0EB+Nk+KC1S4Te3vdaON5muIsVJvleHgEWW1sdyp3ewozjYLIx99/ZsAdBIU43JOcuRl4bSReQ/iikYYXxcXo6aNNt5d5eCOjJYnk4wuW1updVRmBA4AAeovVPXv4eYd1bPRmge9QQUflkvZhnhUCfjr1Fda16FlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QEVBxZdhfABKwi7y78WqU2BotnwXAxz2ypefG5GNIC4=;
+ b=dDSq00JE8VDN7MXuTONa8jzRcjMbXHuD2YiJei6SnBYqEEnYSbCtjILC8BxE7FZFz/M93qNWTHoilNsgzvdxLzN+fB5X9PPqOCC8rWSf70MEnDb8mIHGtFiOT2ibpNS5LmrXxHuW5+RwSAtstcpPuDo2clDH0weygLdQdnYKoiv3Mk2GSQZ+ZszlwbVxAnUhpm7/687hWhISBUG2cH/tUyykTdIoJORuc/mAI8nUyxrhG1ViQ11Fm1jJBo77hugB3Z57NjkD0ukPAfFqCNFqzSAFrtJkDKgAlEB0QaMPZw4ACizsv9w4Eo2tbx7Lo0rD6/J9raNYFDX2brIhka/97A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH8PR11MB6928.namprd11.prod.outlook.com (2603:10b6:510:224::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.24; Wed, 7 Aug
+ 2024 17:45:56 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7828.023; Wed, 7 Aug 2024
+ 17:45:56 +0000
+Date: Wed, 7 Aug 2024 12:45:50 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: Nirmoy Das <nirmoy.das@intel.com>, <intel-xe@lists.freedesktop.org>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, Sai Gowtham Ch
+ <sai.gowtham.ch@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/xe/gt: Add APIs for printing stats over debugfs
+Message-ID: <yu3lrzj4k762rwttnhidnooi6nqj665dr3h5vcag3zahol6576@4d7t2j7ivomc>
+References: <20240807110802.13385-1-nirmoy.das@intel.com>
+ <gos5am5tdkhozpwidgopru33w33hgt5dd4wqcn4xkjkllkl6im@bkldffzsasvv>
+ <ZrOnbbp8LQn1ueiF@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZrOnbbp8LQn1ueiF@DUT025-TGLU.fm.intel.com>
+X-ClientProxiedBy: MW4PR04CA0041.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::16) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH8PR11MB6928:EE_
+X-MS-Office365-Filtering-Correlation-Id: 331273a0-afad-41a4-762f-08dcb708ca14
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?etPJvCj7sqXwXtsPTVdHykLQY8KePLqBj35hGhr3q/BHmIGC4iPxJdzuIb?=
+ =?iso-8859-1?Q?avblDrUtRVx/uQSs4ZKLAaU5Agv9c1HifB3te2naEk3nWZ5VO+379l9oio?=
+ =?iso-8859-1?Q?6XWmkZzb0y0HVzUyxmtqi1eom8irK/T3WhzhBL0M2Kx0cmPSy7kPTVJROf?=
+ =?iso-8859-1?Q?hGLojeIsE4h/vTrmqtrldGNWcXjKNnphqZyU5K1/yW0ZxO8tiYOGISRQ2P?=
+ =?iso-8859-1?Q?gv84iSfYyVLzkEL9ohDkLPsqsEQksxzuhcUm9s862OsoY54ei3/xVLBX7f?=
+ =?iso-8859-1?Q?7W8yqK7trqMBa+KtkqGTBCEeFi9GPPNTuGsr2Y00cwkQkMZRh1nWcE+tXf?=
+ =?iso-8859-1?Q?bEG5HaTCTMY+kKV3Syw4vE/Vj08KyxMczX8pGNfdJsumSxGn0zXkNQVYJA?=
+ =?iso-8859-1?Q?A3QbAZCh1Wf3jdyjwz7xZm2RSJLvhDWc4HdLwD2XpXFkhY9X4O3D3EXd+1?=
+ =?iso-8859-1?Q?PwN54UURfC/obd+2STxhr2e6/hswkKV3WqhrbpvHR1oYNLDVLBoL+msHNe?=
+ =?iso-8859-1?Q?BSN9FX9fl/QUJiOkTd0Kf1WH+eFm1B1AhE144aVxj6Vfb5GT+yrSL34Sna?=
+ =?iso-8859-1?Q?vY/95UAZs69B59V5ZgGh1tKRBl7wzXJeJmiKp6ygwPvqFukHLqQqxgyddi?=
+ =?iso-8859-1?Q?gNSHcRYT/DS6wWt98Os1L3xRL0hNx7XjNHC2rR1v55zf8f/3g+squJpGnN?=
+ =?iso-8859-1?Q?SCWHCaurqdmep1+HaKPoXWcYsqrF0EVWayJPionRypyrJMsyLDto/Yv3rE?=
+ =?iso-8859-1?Q?9tKRdFzH2ofGvFEXjLTpzLS1FVPlrbsz/x+KzkS3LxzgSEtsihbwcIOb+N?=
+ =?iso-8859-1?Q?6ed8VkcWPsLwWi0ysh1brBA644F8fSByunH6hoYzfB1mC2qLN+E8wsk4i0?=
+ =?iso-8859-1?Q?GbOZJy6lahXR4TiDWk4cL/EpLlSmlUmhnZ/MWcfGOScPKO2UPSrKiT/WZM?=
+ =?iso-8859-1?Q?3O96qyHldffE0XdbOXG5r6PM2H/qOSYDInu3mjdKOGCnNN1vjXFts50Vak?=
+ =?iso-8859-1?Q?njW5xXhRuM1jJtQ5/FkOE5QYWPJVrsTVbM1tsIAxUHLg0tzsvToMV7r3SV?=
+ =?iso-8859-1?Q?ffR0rcGhx2vx8g9x5xXGbq9G+bEEzb/8V/FmaTqepXVbW3x1ubOXkOHtf9?=
+ =?iso-8859-1?Q?cqPPt42c7hZ+mIr9FxmQ178AjvlKp0HqlZtUK9i0kJ8i1TKeVRmLc9iuiJ?=
+ =?iso-8859-1?Q?Aqf5xAMXsXPOoIbAGSwiH8Gl6Ibme79U5SvHb3KpGpEbmBMfOipY0M/4Mt?=
+ =?iso-8859-1?Q?uguOWmtpCShQsGZOCYI7EcFJU4c1lI6dxxh1TZ2zhUYKd1Xn9NNvcEQvyo?=
+ =?iso-8859-1?Q?M3ZJWsnmswCtIXZUUZiqPWYBFeYookSpJUZAtpstScFFne7FXhwKkQegC6?=
+ =?iso-8859-1?Q?CMy/s7kVovhdtYT/eEEk6r68V/uzy89A=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?an4pGlgeQGbGIs576bYLlEZb4KORMpH4da3dSMOHAFb1ypghwxYBUNRXUJ?=
+ =?iso-8859-1?Q?onDL1ke5xT469W67S50XtT/pBmFMd5y3VRg7L1dw9ckk7jdZ+wmIO1foPQ?=
+ =?iso-8859-1?Q?r3UZDWaYX600dMs9oGzRSQ9b2pe0q4rDFXZqZVq9R73FzHlqLJG1WPQ1Op?=
+ =?iso-8859-1?Q?pIYB0yWRKvsGLUjtiCKaLYd5HAgaCVvK8pGkUK1n5cNxtnAMcwaAmqKOaJ?=
+ =?iso-8859-1?Q?bJdZCDB+tTwJD4+fjQdaCKDlRkdoYhgMOEzCa8K8adMmorf74nVPkwFBXZ?=
+ =?iso-8859-1?Q?63JEsUBtW4uCMcNHHrsFaGRRhiUEld8LyICB3MWx/Buy0gbHyN39Tvgsax?=
+ =?iso-8859-1?Q?9BCafZXDL2cxtMqVN/GJtoFuXRdPHZJ/HkfSTQ4EnypcJGFkJPWBsraluN?=
+ =?iso-8859-1?Q?uA9UUVvgzcYpMr2KZ7f1JQwwW5GaZ6+bwr8tXvq5cFEzQAimZrXPast8w8?=
+ =?iso-8859-1?Q?AgIywgdpI6lxa20xIjiRj9+Nr97f44p4WrHoIqDTVOljtRpKl2Lpji18ah?=
+ =?iso-8859-1?Q?t3aiFQssxDANq4dHcBqxOMTlwdsgKvcVJxzxVvl8wL7+PwRw3xP1N6tIA3?=
+ =?iso-8859-1?Q?/yEJrJbdm860L9FaggEDM+iz38pwD2DTfXTk/ANYLP7ylkKrSxNOTiqElM?=
+ =?iso-8859-1?Q?yYW9nNBxiwV3tb5Wcw+hml1Yy5bHaMvPuKGr9igUAiszk31cpXmKy9iU89?=
+ =?iso-8859-1?Q?aHTAAowCDL3aNG7EYa+DB72kxRoZUzxZnrACYFlDH3zlAfVRQ48zdaZfvn?=
+ =?iso-8859-1?Q?YKx/PcADfhvpoXSpkmJiXgooHwt303QQOAQHGtG9c7W3Tr4S4Bo0gqaU+U?=
+ =?iso-8859-1?Q?qog9wNyGlSMOOvybidMD5ECyQA22n3YKquz8lwU7srzfD1/ghLvp+NJc4u?=
+ =?iso-8859-1?Q?9fi6naA9ajCASDz0MOYnN43UaH1BPCnhgYQl/LdGpHo2d9wuEurwknk+R7?=
+ =?iso-8859-1?Q?cEKL2/QsakVqGTP9Cudy3EkoK9cO8FeMYiQFkerA56QLbTkSFoCGmBjLbf?=
+ =?iso-8859-1?Q?nLVYFg8f+NskeVzeqPz1fwNnTxOg+tDDhA4MnQ1BiCy9yGwRlMmqotP9dd?=
+ =?iso-8859-1?Q?cSx0JmpHO3VbHDwRc/BYp7LS4JORIvHlFbb9ISs7T3wSV7dCbpeDNH/VN+?=
+ =?iso-8859-1?Q?N1OhidLgzPtS80ieaCVqK2/fr0TCc9ripAxT6Z7BslcTUYogQZVsMaVQF/?=
+ =?iso-8859-1?Q?t3q18ZUT7DCxp0danQXfebpbNTmnbCRxH9KtiEDKx5Bt1Jk/CdNvHSVW+F?=
+ =?iso-8859-1?Q?rbxoND2WXPml+TUHKKuOieT0uXAGpicNv9YPwb8fPzs54xVd4cFOW0KPXB?=
+ =?iso-8859-1?Q?xRpn03s0bW+5VdpTxPdcdv2CG3DlSJ1LqVAhgXd8IvNdp0TfRs9sCJpcSB?=
+ =?iso-8859-1?Q?W2thRZER1Eq6ddzdnadk8J5h8wR+lkrqHye869FNokLfHj1muYs6Aa7d/L?=
+ =?iso-8859-1?Q?CfMYeldrMtxHO9TQjAyEasDfrqzf878Nmx5KU/BTctdd9BfduXztZEBwz2?=
+ =?iso-8859-1?Q?m2SdLR/tWMMjTfQM7taliFzByCyHLLwRVDkR6RUjUwelcBTOxta4MigKmP?=
+ =?iso-8859-1?Q?DeccBd8aYcUVFoJd9PIjkGw0TzA90WRKV7DMUonkolauBrtd1ypXYDLMZS?=
+ =?iso-8859-1?Q?Ihl/ALWFK/HWhiEWDV7Tu/YqfzVjPZWU0qsvMUdRHoinTzMV+ASxPh8w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 331273a0-afad-41a4-762f-08dcb708ca14
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2024 17:45:55.9943 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 50N+lO3Xefe7c65vIMsajWQuNnN1naWEID3pxL+C1WtodPfbJn9gV0m8cgq3B+4RiXfp71BUJvzOnnXool/IwfPN1FPt7QfkBaziBBw1AkE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6928
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,242 +184,277 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git topic/xe-for-CI
-branch HEAD: 2d5e5ecf0a3f43221fd39fc24f18be6872bc97d1  drm/xe/guc: Pre-release GuC firmware v70.29.2 for PVC
+On Wed, Aug 07, 2024 at 04:57:17PM GMT, Matthew Brost wrote:
+>On Wed, Aug 07, 2024 at 08:59:34AM -0500, Lucas De Marchi wrote:
+>> On Wed, Aug 07, 2024 at 01:07:58PM GMT, Nirmoy Das wrote:
+>> > Add skeleton APIs for recording and printing various stats over
+>> > debugfs. This currently only added counter types stats which is backed
+>> > by atomic_t and wrapped with CONFIG_DRM_XE_STATS so this can be disabled
+>> > on production system.
+>> >
+>> > v2: add missing docs
+>> >    Add boundary checks for stats id and other improvements (Michal)
+>> >    Fix build when CONFIG_DRM_XE_STATS is disabled(Matt)
+>>
+>> I don't understand why we are even adding a config here.
+>> This should just be compiled out if build is without debugfs.
+>>
+>
+>I don't know enough about how compilers work these days but would the
+>atomic increment compile out without debugfs. If the answer is yes, then
+>agree we can drop this Kconfig.
 
-elapsed time: 1115m
+either this:
 
-configs tested: 223
-configs skipped: 10
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+static inline void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, ...)
+{
+#ifdef CONFIG_DEBUG_FS
+	atomic_add(...)
+#endif
+}
 
-tested configs:
-alpha                             allnoconfig   gcc-13.2.0
-alpha                             allnoconfig   gcc-13.3.0
-alpha                            allyesconfig   gcc-13.3.0
-alpha                               defconfig   gcc-13.2.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                         haps_hs_defconfig   gcc-13.2.0
-arc                        nsim_700_defconfig   gcc-13.2.0
-arc                   randconfig-001-20240807   gcc-13.2.0
-arc                   randconfig-002-20240807   gcc-13.2.0
-arm                              allmodconfig   gcc-13.2.0
-arm                              allmodconfig   gcc-14.1.0
-arm                               allnoconfig   clang-20
-arm                               allnoconfig   gcc-13.2.0
-arm                              allyesconfig   gcc-13.2.0
-arm                              allyesconfig   gcc-14.1.0
-arm                                 defconfig   gcc-13.2.0
-arm                           h3600_defconfig   gcc-13.2.0
-arm                           h3600_defconfig   gcc-14.1.0
-arm                         lpc18xx_defconfig   gcc-13.2.0
-arm                         mv78xx0_defconfig   gcc-14.1.0
-arm                           omap1_defconfig   gcc-14.1.0
-arm                          pxa910_defconfig   gcc-13.2.0
-arm                             pxa_defconfig   gcc-14.1.0
-arm                   randconfig-001-20240807   gcc-13.2.0
-arm                   randconfig-002-20240807   gcc-13.2.0
-arm                   randconfig-003-20240807   gcc-13.2.0
-arm                   randconfig-004-20240807   gcc-13.2.0
-arm                           sama7_defconfig   gcc-13.2.0
-arm                           sunxi_defconfig   gcc-13.2.0
-arm64                            allmodconfig   clang-20
-arm64                            allmodconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-14.1.0
-arm64                               defconfig   gcc-13.2.0
-arm64                               defconfig   gcc-14.1.0
-arm64                 randconfig-001-20240807   gcc-13.2.0
-arm64                 randconfig-002-20240807   gcc-13.2.0
-arm64                 randconfig-003-20240807   gcc-13.2.0
-arm64                 randconfig-004-20240807   gcc-13.2.0
-csky                              allnoconfig   gcc-13.2.0
-csky                              allnoconfig   gcc-14.1.0
-csky                                defconfig   gcc-13.2.0
-csky                  randconfig-001-20240807   gcc-13.2.0
-csky                  randconfig-002-20240807   gcc-13.2.0
-hexagon                          allmodconfig   clang-20
-hexagon                           allnoconfig   clang-20
-hexagon                          allyesconfig   clang-20
-i386                             allmodconfig   clang-18
-i386                              allnoconfig   clang-18
-i386                              allnoconfig   gcc-12
-i386                             allyesconfig   clang-18
-i386                             allyesconfig   gcc-12
-i386         buildonly-randconfig-001-20240807   clang-18
-i386         buildonly-randconfig-002-20240807   clang-18
-i386         buildonly-randconfig-003-20240807   clang-18
-i386         buildonly-randconfig-003-20240807   gcc-12
-i386         buildonly-randconfig-004-20240807   clang-18
-i386         buildonly-randconfig-005-20240807   clang-18
-i386         buildonly-randconfig-006-20240807   clang-18
-i386         buildonly-randconfig-006-20240807   gcc-12
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240807   clang-18
-i386                  randconfig-001-20240807   gcc-12
-i386                  randconfig-002-20240807   clang-18
-i386                  randconfig-003-20240807   clang-18
-i386                  randconfig-004-20240807   clang-18
-i386                  randconfig-004-20240807   gcc-12
-i386                  randconfig-005-20240807   clang-18
-i386                  randconfig-005-20240807   gcc-12
-i386                  randconfig-006-20240807   clang-18
-i386                  randconfig-011-20240807   clang-18
-i386                  randconfig-012-20240807   clang-18
-i386                  randconfig-012-20240807   gcc-11
-i386                  randconfig-013-20240807   clang-18
-i386                  randconfig-014-20240807   clang-18
-i386                  randconfig-015-20240807   clang-18
-i386                  randconfig-016-20240807   clang-18
-i386                  randconfig-016-20240807   gcc-12
-loongarch                        allmodconfig   gcc-14.1.0
-loongarch                         allnoconfig   gcc-13.2.0
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch             randconfig-001-20240807   gcc-13.2.0
-loongarch             randconfig-002-20240807   gcc-13.2.0
-m68k                             allmodconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-13.2.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                             allyesconfig   gcc-14.1.0
-m68k                          amiga_defconfig   gcc-13.2.0
-m68k                                defconfig   gcc-13.2.0
-m68k                        m5307c3_defconfig   gcc-13.2.0
-m68k                            mac_defconfig   gcc-13.2.0
-microblaze                       allmodconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-13.2.0
-microblaze                        allnoconfig   gcc-14.1.0
-microblaze                       allyesconfig   gcc-14.1.0
-microblaze                          defconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-14.1.0
-mips                          eyeq5_defconfig   gcc-14.1.0
-mips                           gcw0_defconfig   gcc-14.1.0
-mips                     loongson1c_defconfig   gcc-14.1.0
-mips                malta_qemu_32r6_defconfig   gcc-14.1.0
-nios2                             allnoconfig   gcc-13.2.0
-nios2                             allnoconfig   gcc-14.1.0
-nios2                               defconfig   gcc-13.2.0
-nios2                 randconfig-001-20240807   gcc-13.2.0
-nios2                 randconfig-002-20240807   gcc-13.2.0
-openrisc                          allnoconfig   gcc-14.1.0
-openrisc                         allyesconfig   gcc-14.1.0
-openrisc                            defconfig   gcc-14.1.0
-parisc                           allmodconfig   gcc-14.1.0
-parisc                            allnoconfig   gcc-14.1.0
-parisc                           allyesconfig   gcc-14.1.0
-parisc                              defconfig   gcc-14.1.0
-parisc                randconfig-001-20240807   gcc-13.2.0
-parisc                randconfig-002-20240807   gcc-13.2.0
-parisc64                            defconfig   gcc-13.2.0
-powerpc                          allmodconfig   gcc-14.1.0
-powerpc                           allnoconfig   gcc-14.1.0
-powerpc                          allyesconfig   clang-20
-powerpc                          allyesconfig   gcc-14.1.0
-powerpc                   bluestone_defconfig   gcc-14.1.0
-powerpc                   currituck_defconfig   gcc-13.2.0
-powerpc                       eiger_defconfig   gcc-14.1.0
-powerpc                     mpc5200_defconfig   gcc-14.1.0
-powerpc                         ps3_defconfig   gcc-13.2.0
-powerpc               randconfig-001-20240807   gcc-13.2.0
-powerpc               randconfig-003-20240807   gcc-13.2.0
-powerpc64             randconfig-001-20240807   gcc-13.2.0
-powerpc64             randconfig-002-20240807   gcc-13.2.0
-powerpc64             randconfig-003-20240807   gcc-13.2.0
-riscv                            allmodconfig   clang-20
-riscv                            allmodconfig   gcc-14.1.0
-riscv                             allnoconfig   gcc-14.1.0
-riscv                            allyesconfig   clang-20
-riscv                            allyesconfig   gcc-14.1.0
-riscv                               defconfig   gcc-14.1.0
-riscv                 randconfig-001-20240807   gcc-13.2.0
-riscv                 randconfig-002-20240807   gcc-13.2.0
-s390                             allmodconfig   clang-20
-s390                              allnoconfig   clang-20
-s390                              allnoconfig   gcc-14.1.0
-s390                             allyesconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   gcc-14.1.0
-s390                  randconfig-001-20240807   gcc-13.2.0
-s390                  randconfig-002-20240807   gcc-13.2.0
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-13.2.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                                  defconfig   gcc-14.1.0
-sh                     magicpanelr2_defconfig   gcc-14.1.0
-sh                    randconfig-001-20240807   gcc-13.2.0
-sh                    randconfig-002-20240807   gcc-13.2.0
-sh                          sdk7786_defconfig   gcc-14.1.0
-sh                           se7705_defconfig   gcc-14.1.0
-sh                           se7750_defconfig   gcc-13.2.0
-sh                          urquell_defconfig   gcc-13.2.0
-sparc                            allmodconfig   gcc-14.1.0
-sparc64                             defconfig   gcc-14.1.0
-sparc64               randconfig-001-20240807   gcc-13.2.0
-sparc64               randconfig-002-20240807   gcc-13.2.0
-um                               allmodconfig   clang-20
-um                               allmodconfig   gcc-13.3.0
-um                                allnoconfig   clang-17
-um                                allnoconfig   gcc-14.1.0
-um                               allyesconfig   gcc-12
-um                               allyesconfig   gcc-13.3.0
-um                                  defconfig   gcc-14.1.0
-um                             i386_defconfig   gcc-13.2.0
-um                             i386_defconfig   gcc-14.1.0
-um                    randconfig-001-20240807   gcc-13.2.0
-um                    randconfig-002-20240807   gcc-13.2.0
-um                           x86_64_defconfig   gcc-14.1.0
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240807   clang-18
-x86_64       buildonly-randconfig-002-20240807   clang-18
-x86_64       buildonly-randconfig-003-20240807   clang-18
-x86_64       buildonly-randconfig-004-20240807   clang-18
-x86_64       buildonly-randconfig-005-20240807   clang-18
-x86_64       buildonly-randconfig-006-20240807   clang-18
-x86_64                              defconfig   clang-18
-x86_64                              defconfig   gcc-11
-x86_64                randconfig-001-20240807   clang-18
-x86_64                randconfig-002-20240807   clang-18
-x86_64                randconfig-002-20240807   gcc-12
-x86_64                randconfig-003-20240807   clang-18
-x86_64                randconfig-004-20240807   clang-18
-x86_64                randconfig-004-20240807   gcc-12
-x86_64                randconfig-005-20240807   clang-18
-x86_64                randconfig-005-20240807   gcc-12
-x86_64                randconfig-006-20240807   clang-18
-x86_64                randconfig-006-20240807   gcc-12
-x86_64                randconfig-011-20240807   clang-18
-x86_64                randconfig-012-20240807   clang-18
-x86_64                randconfig-012-20240807   gcc-12
-x86_64                randconfig-013-20240807   clang-18
-x86_64                randconfig-013-20240807   gcc-12
-x86_64                randconfig-014-20240807   clang-18
-x86_64                randconfig-014-20240807   gcc-12
-x86_64                randconfig-015-20240807   clang-18
-x86_64                randconfig-016-20240807   clang-18
-x86_64                randconfig-071-20240807   clang-18
-x86_64                randconfig-072-20240807   clang-18
-x86_64                randconfig-073-20240807   clang-18
-x86_64                randconfig-073-20240807   gcc-12
-x86_64                randconfig-074-20240807   clang-18
-x86_64                randconfig-075-20240807   clang-18
-x86_64                randconfig-075-20240807   gcc-12
-x86_64                randconfig-076-20240807   clang-18
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-13.2.0
-xtensa                            allnoconfig   gcc-14.1.0
-xtensa                  cadence_csp_defconfig   gcc-14.1.0
-xtensa                randconfig-001-20240807   gcc-13.2.0
-xtensa                randconfig-002-20240807   gcc-13.2.0
-xtensa                         virt_defconfig   gcc-14.1.0
+or a dummy implementation separately would work.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+We can also use
+
+	if (!IS_ENABLED(CONFIG_DEBUG_FS))
+		return;
+
+Compiler would still constant fold  and drop it. See
+Documentation/process/coding-style.rst - 21) Conditional Compilation
+
+But in this last case we wouldn't be able to remove the symbol from the
+gt struct, which may or may not be relevant since it's just a few bytes.
+
+>
+>Also does debugfs havea Kconfig, did a quick search and not seeing one.
+>
+
+see above. And we already check it in drivers/gpu/drm/xe/Makefile:
+
+ifeq ($(CONFIG_DEBUG_FS),y)                                                      
+         xe-$(CONFIG_DRM_XE_DISPLAY) += \                                         
+                 i915-display/intel_display_debugfs.o \                           
+                 i915-display/intel_display_debugfs_params.o \                    
+                 i915-display/intel_pipe_crc.o                                    
+endif  
+
+oddly we are not compiling out xe_gt_debugfs, which we probably should
+since otherwise we will just see a warning "Create GT directory failed"
+
+Lucas De Marchi
+
+>Matt
+>
+>>
+>> >
+>> > Cc: Matthew Brost <matthew.brost@intel.com>
+>> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> > Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
+>> > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> > ---
+>> > drivers/gpu/drm/xe/Kconfig.debug   | 11 +++++++
+>> > drivers/gpu/drm/xe/Makefile        |  2 ++
+>> > drivers/gpu/drm/xe/xe_gt_debugfs.c |  4 +++
+>> > drivers/gpu/drm/xe/xe_gt_stats.c   | 51 ++++++++++++++++++++++++++++++
+>> > drivers/gpu/drm/xe/xe_gt_stats.h   | 32 +++++++++++++++++++
+>> > drivers/gpu/drm/xe/xe_gt_types.h   |  9 ++++++
+>> > 6 files changed, 109 insertions(+)
+>> > create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.c
+>> > create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.h
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+>> > index bc177368af6c..4db6d707c1af 100644
+>> > --- a/drivers/gpu/drm/xe/Kconfig.debug
+>> > +++ b/drivers/gpu/drm/xe/Kconfig.debug
+>> > @@ -94,3 +94,14 @@ config DRM_XE_USERPTR_INVAL_INJECT
+>> >
+>> > 	 Recomended for driver developers only.
+>> > 	 If in doubt, say "N".
+>> > +
+>> > +config DRM_XE_STATS
+>> > +	bool "Enable XE statistics"
+>> > +	default n
+>> > +	help
+>> > +	  Choose this option to enable support for collecting and
+>> > +	  displaying XE statistics as debugfs.
+>> > +
+>> > +	  Recommended for driver developers only.
+>> > +
+>> > +	  If in doubt, say "N".
+>> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> > index 1ff9602a52f6..b0bbb248f644 100644
+>> > --- a/drivers/gpu/drm/xe/Makefile
+>> > +++ b/drivers/gpu/drm/xe/Makefile
+>> > @@ -143,6 +143,8 @@ xe-$(CONFIG_PCI_IOV) += \
+>> > 	xe_pci_sriov.o \
+>> > 	xe_sriov_pf.o
+>> >
+>> > +xe-$(CONFIG_DRM_XE_STATS) += xe_gt_stats.o
+>> > +
+>> > # include helpers for tests even when XE is built-in
+>> > ifdef CONFIG_DRM_XE_KUNIT_TEST
+>> > xe-y += tests/xe_kunit_helpers.o
+>> > diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> > index 5e7fd937917a..3765c04919dc 100644
+>> > --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> > +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> > @@ -17,6 +17,7 @@
+>> > #include "xe_gt_mcr.h"
+>> > #include "xe_gt_sriov_pf_debugfs.h"
+>> > #include "xe_gt_sriov_vf_debugfs.h"
+>> > +#include "xe_gt_stats.h"
+>> > #include "xe_gt_topology.h"
+>> > #include "xe_hw_engine.h"
+>> > #include "xe_lrc.h"
+>> > @@ -286,6 +287,9 @@ static const struct drm_info_list debugfs_list[] = {
+>> > 	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
+>> > 	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
+>> > 	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
+>> > +#if IS_ENABLED(CONFIG_DRM_XE_STATS)
+>> > +	{"stats", .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
+>> > +#endif
+>> > };
+>> >
+>> > void xe_gt_debugfs_register(struct xe_gt *gt)
+>> > diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+>> > new file mode 100644
+>> > index 000000000000..b13aee5488d5
+>> > --- /dev/null
+>> > +++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+>> > @@ -0,0 +1,51 @@
+>> > +// SPDX-License-Identifier: MIT
+>> > +/*
+>> > + * Copyright © 2024 Intel Corporation
+>> > + */
+>> > +
+>> > +#include <linux/atomic.h>
+>> > +
+>> > +#include <drm/drm_print.h>
+>> > +
+>> > +#include "xe_gt.h"
+>> > +#include "xe_gt_stats.h"
+>> > +
+>> > +#ifdef CONFIG_DRM_XE_STATS
+>> > +
+>> > +/**
+>> > + * xe_gt_stats_incr - Increments the specified stats counter
+>> > + * @gt: graphics tile
+>> > + * @id: xe_gt_stats_id type id that needs to be incremented
+>> > + * @incr: value to be incremented with
+>> > + *
+>> > + * Increments the specified stats counter if that is within expected range.
+>> > + */
+>> > +void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, int incr)
+>> > +{
+>> > +	if (id >= __XE_GT_STATS_NUM_IDS)
+>> > +		return;
+>> > +
+>> > +	atomic_add(incr, &gt->stats.counters[id]);
+>> > +}
+>> > +
+>> > +static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+>> > +};
+>> > +
+>> > +/**
+>> > + * xe_gt_stats_print_info - Print the GT stats
+>> > + * @gt: graphics tile
+>> > + * @p: drm_printer where it will be printed out.
+>> > + *
+>> > + * This prints out all the available GT stats.
+>> > + */
+>> > +int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
+>> > +{
+>> > +	enum xe_gt_stats_id id;
+>> > +
+>> > +	for (id = 0; id < __XE_GT_STATS_NUM_IDS; ++id)
+>> > +		drm_printf(p, "%s: %d\n", stat_description[id],
+>> > +			   atomic_read(&gt->stats.counters[id]));
+>> > +
+>> > +	return 0;
+>> > +}
+>> > +#endif
+>> > diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
+>> > new file mode 100644
+>> > index 000000000000..04a1d61ce1fb
+>> > --- /dev/null
+>> > +++ b/drivers/gpu/drm/xe/xe_gt_stats.h
+>> > @@ -0,0 +1,32 @@
+>> > +/* SPDX-License-Identifier: MIT */
+>> > +/*
+>> > + * Copyright © 2024 Intel Corporation
+>> > + */
+>> > +
+>> > +#ifndef _XE_GT_STATS_H_
+>> > +#define _XE_GT_STATS_H_
+>> > +
+>> > +struct xe_gt;
+>> > +struct drm_printer;
+>> > +
+>> > +enum xe_gt_stats_id {
+>> > +	/* must be the last entry */
+>> > +	__XE_GT_STATS_NUM_IDS,
+>> > +};
+>> > +
+>> > +#ifdef CONFIG_DRM_XE_STATS
+>> > +int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
+>> > +void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, int incr);
+>> > +#else
+>> > +static inline int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
+>> > +{
+>> > +	return 0;
+>> > +}
+>> > +
+>> > +static inline void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id,
+>> > +				    int incr)
+>> > +{
+>> > +}
+>>
+>> Is there a reason not to force id to always be a compile-time constant?
+>> The only use case added in patch 2 pass it as a constant.
+>> This way the id is checked at build time, the penalty with debugfs is
+>> just an atomic_add() and the penalty without debugfs is none.
+>>
+>> I think this is largely different from e.g. CONFIG_SCHEDSTATS and may
+>> not deserve a separate kernel config: just handle the no-debugfs case,
+>> which is mostly implemented already by not building
+>> drivers/gpu/drm/xe/xe_gt_debugfs.c, with the remaining part being only
+>> the dummy implementations in the header.
+>>
+>>
+>> Lucas De Marchi
+>>
+>> > +
+>> > +#endif
+>> > +#endif
+>> > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>> > index 631928258d71..4955612fb01d 100644
+>> > --- a/drivers/gpu/drm/xe/xe_gt_types.h
+>> > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>> > @@ -10,6 +10,7 @@
+>> > #include "xe_gt_idle_types.h"
+>> > #include "xe_gt_sriov_pf_types.h"
+>> > #include "xe_gt_sriov_vf_types.h"
+>> > +#include "xe_gt_stats.h"
+>> > #include "xe_hw_engine_types.h"
+>> > #include "xe_hw_fence_types.h"
+>> > #include "xe_oa.h"
+>> > @@ -133,6 +134,14 @@ struct xe_gt {
+>> > 		u8 has_indirect_ring_state:1;
+>> > 	} info;
+>> >
+>> > +#if IS_ENABLED(CONFIG_DRM_XE_STATS)
+>> > +	/** @stats: GT stats */
+>> > +	struct {
+>> > +		/** @stats.counters: counters for various GT stats */
+>> > +		atomic_t counters[__XE_GT_STATS_NUM_IDS];
+>> > +	} stats;
+>> > +#endif
+>> > +
+>> > 	/**
+>> > 	 * @mmio: mmio info for GT.  All GTs within a tile share the same
+>> > 	 * register space, but have their own copy of GSI registers at a
+>> > --
+>> > 2.42.0
+>> >
