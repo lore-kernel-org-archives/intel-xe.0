@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA31AC52D7F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDE18C5320C
 	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 19:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 651D510E5A4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07AB910E59C;
 	Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="o1McUFKd";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="tqaoiq2A";
 	dkim-atps=neutral
 Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95AFD10E57B;
- Wed,  7 Aug 2024 15:46:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3D8810E574;
+ Wed,  7 Aug 2024 15:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fjasle.eu; 
  s=ds202307;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
@@ -23,23 +23,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fjasle.eu;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tRmMETb/7MTV1QXR0Clr7A+ZjYv8xAw5xIefPC+Km8g=; b=o1McUFKdqARZXK+LGc9Xon/OZZ
- 24j/7x3GXKWGNfkEijI/F8U6fj8xMFo4kzPtc02UVpxP/9N5m+G28WExZpe40/56wiEHmKryaosKu
- EI8vksXXSuHrdEdJyavO66yj+Q+iq5X61CAX+NpaFRz5Yctg1tZzEhLE8yVCiRGjvJCUEPvRw/kn2
- krVT44JnJFYYLntaxgYdTdB8i96vi4blU1il/nO9xT0wcZmtYUfGNu5xWr/iOqDbQcAwnPhvYcR0f
- V/mhK4W4QCFjIHOd/mU0855K6DFdc3PhyEI0xpV34am+jwnN3OV7rNwUtJ8vK7AWp3bf/aB+4CqZ+
- Pax12xQQ==;
-Received: from [2001:9e8:9f8:5201:3235:adff:fed0:37e6] (port=37118
+ bh=bmezRMJwJIOfJvOwy4Ikx2uLzuT9FLzTpWA8tgf02+w=; b=tqaoiq2AR6LnOkwe1QCAitZ+am
+ 9+qRb3JfKNLRiJ4tHYu4osmnmWGbtJND2vwQOIGneseuQyPfO7mp1npoBrtS5YRVNqOdMc+5jSPru
+ yi41wXW4UDb3Ukc6rgN8iJT4t43GW5MhgIcWUYUuJG70AnfiNoRoT7HSo3vP2vtLVPrKm5jFjNCAk
+ 1124knagj3mvchPN+0TWXp9bcNidZn3ocfUSjEgfqIqfUpNDhnTGk3tMd0qKgfmOfUT/A/vtUvFL4
+ wDzkzMy4QEit1ZVdyUjw6LNxVupaeiAeiwLXDuMbSH0Q8Bqv5T5mRTfwBvboYYd4fPLer6FHk13bV
+ FesHCR3Q==;
+Received: from [2001:9e8:9f8:5201:3235:adff:fed0:37e6] (port=34060
  helo=lindesnes.fjasle.eu)
  by smtp.domeneshop.no with esmtpsa (TLS1.3) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <nicolas@fjasle.eu>) id 1sbirg-009hPI-OI;
- Wed, 07 Aug 2024 17:46:16 +0200
-Date: Wed, 7 Aug 2024 17:46:03 +0200
+ (envelope-from <nicolas@fjasle.eu>) id 1sbicj-009dZ2-RP;
+ Wed, 07 Aug 2024 17:30:49 +0200
+Date: Wed, 7 Aug 2024 17:30:40 +0200
 From: Nicolas Schier <nicolas@fjasle.eu>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Daniel Gomez <da.gomez@samsung.com>,
- Masahiro Yamada <masahiroy@kernel.org>,
+To: da.gomez@samsung.com
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
  Nathan Chancellor <nathan@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
@@ -58,34 +57,26 @@ Cc: Daniel Gomez <da.gomez@samsung.com>,
  Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
  Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>,
  Suzuki K Poulose <suzuki.poulose@arm.com>,
- Zenghui Yu <yuzenghui@huawei.com>, Jiri Slaby <jirislaby@kernel.org>,
+ Zenghui Yu <yuzenghui@huawei.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
  Nick Desaulniers <ndesaulniers@google.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "speakup@linux-speakup.org" <speakup@linux-speakup.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
- "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
- Finn Behrens <me@kloenk.dev>,
- "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- "gost.dev@samsung.com" <gost.dev@samsung.com>
-Subject: Re: [PATCH 08/12] include: add elf.h support
-Message-ID: <20240807-mottled-stoic-degu-d1e4cb@lindesnes>
+ Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, linux-kernel@vger.kernel.org,
+ linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, speakup@linux-speakup.org,
+ selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kvmarm@lists.linux.dev, linux-serial@vger.kernel.org,
+ llvm@lists.linux.dev, Finn Behrens <me@kloenk.dev>,
+ "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com
+Subject: Re: [PATCH 03/12] file2alias: fix uuid_t definitions for macos
+Message-ID: <20240807-sexy-roadrunner-of-acceptance-a84bbf@lindesnes>
 References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <20240807-macos-build-support-v1-8-4cd1ded85694@samsung.com>
- <CGME20240807110435eucas1p2eca071b0a0122b8686d43c57bd94dc8c@eucas1p2.samsung.com>
- <2024080717-cross-retiree-862e@gregkh>
- <dxkmmrlhlhsrjulnyabfgcr37ojway2dxaypelf3uchkmhw4jn@z54e33jdpxmr>
- <2024080720-skyline-recapture-d80d@gregkh>
+ <20240807-macos-build-support-v1-3-4cd1ded85694@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2024080720-skyline-recapture-d80d@gregkh>
+In-Reply-To: <20240807-macos-build-support-v1-3-4cd1ded85694@samsung.com>
 X-Mailman-Approved-At: Wed, 07 Aug 2024 19:48:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,29 +92,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 07, 2024 at 04:18:54PM +0200, Greg Kroah-Hartman wrote:
-> On Wed, Aug 07, 2024 at 02:13:57PM +0000, Daniel Gomez wrote:
-> > > Also, as this is not internal for the kernel, but rather for userspace
-> > > builds, shouldn't the include/ path be different?
-> > 
-> > Can you suggest an alternative path or provide documentation that could help
-> > identify the correct location? Perhaps usr/include?
+On Wed, Aug 07, 2024 at 01:09:17AM +0200, Daniel Gomez via B4 Relay wrote:
+> From: Daniel Gomez <da.gomez@samsung.com>
 > 
-> That is better than the generic include path as you are attempting to
-> mix userspace and kernel headers in the same directory :(
+> The uuid_t struct defined in sys/types.h on macOS hosts conflicts with
+> the one defined in file2alias, resulting in the typedef redefinition
+> error below. To resolve this conflict, redefine the uuid_t specifically
+> for macOS hosts.
+> 
+> Error:
+>   HOSTCC  scripts/mod/file2alias.o scripts/mod/file2alias.c:45:3:
+> error: typedef redefinition with different types ('struct uuid_t' vs
+> '__darwin_uuid_t' (aka 'unsigned char[16]'))    45 | } uuid_t;       |
+> ^
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    sys/_types/_uuid_t.h:31:25: note: previous definition is here 31 |
+>    typedef __darwin_uuid_t uuid_t;    |                         ^
+> scripts/mod/file2alias.c:1354:7: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1354 |
+>  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1354:19: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1354 |
+>  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1354:31: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1354 |
+>  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1354:43: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1354 |
+>  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1354:55: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1354 |
+>  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1355:7: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1355 |
+>  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1355:19: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1355 |
+>  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1355:31: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1355 |
+>  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1355:43: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1355 |
+>  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1355:55: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1355 |
+>  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1356:7: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1356 |
+>  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1356:20: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1356 |
+>  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1356:33: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1356 |
+>  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1356:46: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1356 |
+>  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1356:59: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1356 |
+>  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      |
+>  ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> scripts/mod/file2alias.c:1357:7: error: member reference base
+>  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+>  'unsigned char[16]') is not a structure or union 1357 |
+>  uuid->b[15]);      |                 ~~~~^ ~
+> /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+>    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+>    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+>    |                                                        ^~~~~~~~~~~
+> 17 errors generated.
+> 
+> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+> ---
+>  scripts/mod/file2alias.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/scripts/mod/file2alias.c b/scripts/mod/file2alias.c
+> index 99dce93a4188..ab743f6d60ef 100644
+> --- a/scripts/mod/file2alias.c
+> +++ b/scripts/mod/file2alias.c
+> @@ -11,6 +11,9 @@
+>   */
+>  
+>  #include "modpost.h"
+> +#ifdef __APPLE__
+> +#define uuid_t sys_uuid_t
+> +#endif
+>  #include "devicetable-offsets.h"
+>  
+>  /* We use the ELF typedefs for kernel_ulong_t but bite the bullet and
+> 
 
-Please keep in mind, that usr/include/ currently does not hold a single
-header file but is used for dynamically composing the UAPI header tree.
+Have you tried to incorporate something like
 
-In general, I do not like the idea of keeping a elf.h file here that
-possibly is out-of-sync with the actual system's version (even though
-elf.h should not see that much changes).  Might it be more helpful to
-provide a "development kit" for Linux devs that need to build on MacOS
-that provides necessary missing system header files, instead of merging
-those into upstream?
+  HOST_EXTRACFLAGS_file2alias.o += -D_UUID_T -D__GETHOSTUUID_H
+
+for MacOS-based builds into scripts/mod/Makefile (cp. [1])?
+
+I think it would be nice to keep cross-os build dependencies in
+Makefiles as far as possible.
 
 Kind regards,
 Nicolas
 
--- 
-Nicolas
+
+[1]: https://kloenk.eu/posts/build-linux-on-m1-macos/
