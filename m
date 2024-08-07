@@ -4,19 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA356C531DF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA31AC52D7F
 	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 19:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0A5510E5AA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 651D510E5A4;
 	Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="Hgcni6Ox";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="o1McUFKd";
 	dkim-atps=neutral
-X-Greylist: delayed 970 seconds by postgrey-1.36 at gabe;
- Wed, 07 Aug 2024 15:26:14 UTC
 Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0FF10E18A;
- Wed,  7 Aug 2024 15:26:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95AFD10E57B;
+ Wed,  7 Aug 2024 15:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fjasle.eu; 
  s=ds202307;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
@@ -25,22 +23,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fjasle.eu;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=8p+8xkYytY0kAtRIiarGiLqc+3CeFPeAk9BYp1+Be+o=; b=Hgcni6Ox2D8FDaPA4MfcZbKN6U
- 9lLSq3Q7GUU3+GllOyhCeZHbJA0tL14j23d4QDpMTl4w/aXYprIt1HdcW/FwqeS04X0pozycGo8im
- ZG7XpFmgej1m1/Wx1k4TniZ4dzo4Zke7LDpuRIaTpB7yIjPjLjTnZHh5hvzoqvtxxNPxlV14qvR9h
- 6JOTX9FjdEiSNbs9g4oD/BRv04kpaHEALD2ttmeHLVEVftdyLZ6JtwnavADmeYTL2jzkNEuhkuB7A
- aHsxYe0qWQ1MMw1F3+LCEHGCE8aeFHNlPAHElLODPwPnr9hrxMTSLQUbpM7aq1d8KhP01oubv1FeU
- 03Wqun1A==;
-Received: from [2001:9e8:9f8:5201:3235:adff:fed0:37e6] (port=36192
+ bh=tRmMETb/7MTV1QXR0Clr7A+ZjYv8xAw5xIefPC+Km8g=; b=o1McUFKdqARZXK+LGc9Xon/OZZ
+ 24j/7x3GXKWGNfkEijI/F8U6fj8xMFo4kzPtc02UVpxP/9N5m+G28WExZpe40/56wiEHmKryaosKu
+ EI8vksXXSuHrdEdJyavO66yj+Q+iq5X61CAX+NpaFRz5Yctg1tZzEhLE8yVCiRGjvJCUEPvRw/kn2
+ krVT44JnJFYYLntaxgYdTdB8i96vi4blU1il/nO9xT0wcZmtYUfGNu5xWr/iOqDbQcAwnPhvYcR0f
+ V/mhK4W4QCFjIHOd/mU0855K6DFdc3PhyEI0xpV34am+jwnN3OV7rNwUtJ8vK7AWp3bf/aB+4CqZ+
+ Pax12xQQ==;
+Received: from [2001:9e8:9f8:5201:3235:adff:fed0:37e6] (port=37118
  helo=lindesnes.fjasle.eu)
  by smtp.domeneshop.no with esmtpsa (TLS1.3) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <nicolas@fjasle.eu>) id 1sbiW1-009bha-HL;
- Wed, 07 Aug 2024 17:23:53 +0200
-Date: Wed, 7 Aug 2024 17:23:27 +0200
+ (envelope-from <nicolas@fjasle.eu>) id 1sbirg-009hPI-OI;
+ Wed, 07 Aug 2024 17:46:16 +0200
+Date: Wed, 7 Aug 2024 17:46:03 +0200
 From: Nicolas Schier <nicolas@fjasle.eu>
-To: da.gomez@samsung.com
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Daniel Gomez <da.gomez@samsung.com>,
+ Masahiro Yamada <masahiroy@kernel.org>,
  Nathan Chancellor <nathan@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
@@ -59,26 +58,34 @@ Cc: Masahiro Yamada <masahiroy@kernel.org>,
  Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
  Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>,
  Suzuki K Poulose <suzuki.poulose@arm.com>,
- Zenghui Yu <yuzenghui@huawei.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>,
+ Zenghui Yu <yuzenghui@huawei.com>, Jiri Slaby <jirislaby@kernel.org>,
  Nick Desaulniers <ndesaulniers@google.com>,
- Bill Wendling <morbo@google.com>,
- Justin Stitt <justinstitt@google.com>, linux-kernel@vger.kernel.org,
- linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, speakup@linux-speakup.org,
- selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kvmarm@lists.linux.dev, linux-serial@vger.kernel.org,
- llvm@lists.linux.dev, Finn Behrens <me@kloenk.dev>,
- "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com
-Subject: Re: [PATCH 02/12] kbuild: add header_install dependency to scripts
-Message-ID: <20240807-witty-warm-hummingbird-20c9a7@lindesnes>
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "speakup@linux-speakup.org" <speakup@linux-speakup.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+ "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
+ "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
+ Finn Behrens <me@kloenk.dev>,
+ "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
+ "gost.dev@samsung.com" <gost.dev@samsung.com>
+Subject: Re: [PATCH 08/12] include: add elf.h support
+Message-ID: <20240807-mottled-stoic-degu-d1e4cb@lindesnes>
 References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <20240807-macos-build-support-v1-2-4cd1ded85694@samsung.com>
+ <20240807-macos-build-support-v1-8-4cd1ded85694@samsung.com>
+ <CGME20240807110435eucas1p2eca071b0a0122b8686d43c57bd94dc8c@eucas1p2.samsung.com>
+ <2024080717-cross-retiree-862e@gregkh>
+ <dxkmmrlhlhsrjulnyabfgcr37ojway2dxaypelf3uchkmhw4jn@z54e33jdpxmr>
+ <2024080720-skyline-recapture-d80d@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240807-macos-build-support-v1-2-4cd1ded85694@samsung.com>
+In-Reply-To: <2024080720-skyline-recapture-d80d@gregkh>
 X-Mailman-Approved-At: Wed, 07 Aug 2024 19:48:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,41 +101,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 07, 2024 at 01:09:16AM +0200, Daniel Gomez via B4 Relay wrote:
-> From: Daniel Gomez <da.gomez@samsung.com>
+On Wed, Aug 07, 2024 at 04:18:54PM +0200, Greg Kroah-Hartman wrote:
+> On Wed, Aug 07, 2024 at 02:13:57PM +0000, Daniel Gomez wrote:
+> > > Also, as this is not internal for the kernel, but rather for userspace
+> > > builds, shouldn't the include/ path be different?
+> > 
+> > Can you suggest an alternative path or provide documentation that could help
+> > identify the correct location? Perhaps usr/include?
 > 
-> Export kernel headers necessary for the tools located in scripts/. This
-> ensures kernel headers are generated before building scripts/selinux.
-> 
-> Kernel headers required for building are: asm/types.h, asm/bitsperlong.h
-> and asm/poix_types.h.
-> 
-> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-> ---
->  Makefile | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index 44c02a6f60a1..7ac079955a94 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1173,7 +1173,7 @@ include/config/kernel.release: FORCE
->  # Carefully list dependencies so we do not try to build scripts twice
->  # in parallel
->  PHONY += scripts
-> -scripts: scripts_basic scripts_dtc
-> +scripts: headers_install scripts_basic scripts_dtc
->  	$(Q)$(MAKE) $(build)=$(@)
+> That is better than the generic include path as you are attempting to
+> mix userspace and kernel headers in the same directory :(
 
-Since commit 59b2bd05f5f4 ("kbuild: add 'headers' target to build up
-uapi headers in usr/include", 2019-06-04), composing the user-space
-header tree is separated from the actual installation to
-$(INSTALL_HDR_PATH)/include.  Thus, you do not want to depend in
-'headers_install' but on 'headers' instead.
+Please keep in mind, that usr/include/ currently does not hold a single
+header file but is used for dynamically composing the UAPI header tree.
 
-Nevertheless, I am suspecting that this leads to trouble.  E.g.: if
-scripts/* include $(objtree)/usr/include/asm/*.h this will probably
-break cross-arch-building.
+In general, I do not like the idea of keeping a elf.h file here that
+possibly is out-of-sync with the actual system's version (even though
+elf.h should not see that much changes).  Might it be more helpful to
+provide a "development kit" for Linux devs that need to build on MacOS
+that provides necessary missing system header files, instead of merging
+those into upstream?
 
 Kind regards,
+Nicolas
+
+-- 
 Nicolas
