@@ -4,54 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46B0AC52D6F
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 06:32:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E480AC52D6F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 06:37:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B36DC10E0BF;
-	Wed,  7 Aug 2024 06:32:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VZdKEBYn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE0A10E036;
- Wed,  7 Aug 2024 06:32:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723012353; x=1754548353;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VVcQf7t40PXCoixwJWoFwhw8ItzgWTw9eBsxidzVFOE=;
- b=VZdKEBYnPIxq+2uKpwf9nTrJece1uuN+m2V9ej0oQyQmduK0FWbebHBi
- Jg9GxZzzNArMedPSRLd+rpOE6dhmj7TjKLmq9eui8H1MZ2FG7s/Jf9ZvY
- jTztMDIod9TBLiSVoqdZfJ9Fa5Wets+TwMbYcpqutVGwFk45rq/lUgqO2
- CQVzjIarhuOqyQbOofDoLR3S5iAQ+h7y2QRvTXkTEhBlVq+NWapH46Iq+
- C43b9XBhTy/2hnqKYeF52UNV+4mDNB81V2PUOlcTvywt5gOvqwwDSOUtD
- pmzCrr57wKsHo1BTzTgErHyASyu2YGVD0KavRLRd6n9mMZ/Jp6LEYzgFk A==;
-X-CSE-ConnectionGUID: Jmu+3ZqARiSPoAPl8uXNYA==
-X-CSE-MsgGUID: /dbVQ4OHRUC5OIS0fOYuwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="21237018"
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="21237018"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 23:32:32 -0700
-X-CSE-ConnectionGUID: uMSTuno9QwiC4lqxoNZozA==
-X-CSE-MsgGUID: jJ4ihRbFRzCBQw/yCV/zuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="56437025"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa007.fm.intel.com with ESMTP; 06 Aug 2024 23:32:30 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: luciano.coelho@intel.com, jani.saarinen@intel.com,
- chaitanya.kumar.borah@intel.com
-Subject: [core-for-CI PATCH] usb: typec: ucsi: Fix a potential deadlock in
- ucsi_send_command_common()
-Date: Wed,  7 Aug 2024 11:57:29 +0530
-Message-Id: <20240807062729.3159701-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA2810E03B;
+	Wed,  7 Aug 2024 06:37:36 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F9FE10E03B;
+ Wed,  7 Aug 2024 06:37:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_usb=3A_typec=3A_ucsi?=
+ =?utf-8?q?=3A_Fix_a_potential_deadlock_in_ucsi=5Fsend=5Fcommand=5Fcommon=28?=
+ =?utf-8?q?=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 07 Aug 2024 06:37:36 -0000
+Message-ID: <172301265625.545143.14251757508536273998@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240807062729.3159701-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20240807062729.3159701-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,48 +37,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+== Series Details ==
 
-The function returns with the ppm_lock held if there's an
-error or the PPM reports BUSY condition.
+Series: usb: typec: ucsi: Fix a potential deadlock in ucsi_send_command_common() (rev2)
+URL   : https://patchwork.freedesktop.org/series/136889/
+State : success
 
-This is a core-for-ci patch for [1]
+== Summary ==
 
-[1] https://lore.kernel.org/linux-usb/20240806112029.2984319-1-heikki.krogerus@linux.intel.com/
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 194dde5bb583 drm-tip: 2024y-08m-07d-05h-22m-45s UTC integration manifest
+=== git am output follows ===
+Applying: usb: typec: ucsi: Fix a potential deadlock in ucsi_send_command_common()
 
-Reported-by: Luciano Coelho <luciano.coelho@intel.com>
-Fixes: 5e9c1662a89b ("usb: typec: ucsi: rework command execution functions")
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11849
-Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
----
- drivers/usb/typec/ucsi/ucsi.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
-index dcd3765cc1f5..432a2d6266d7 100644
---- a/drivers/usb/typec/ucsi/ucsi.c
-+++ b/drivers/usb/typec/ucsi/ucsi.c
-@@ -238,13 +238,10 @@ static int ucsi_send_command_common(struct ucsi *ucsi, u64 cmd,
- 	mutex_lock(&ucsi->ppm_lock);
- 
- 	ret = ucsi_run_command(ucsi, cmd, &cci, data, size, conn_ack);
--	if (cci & UCSI_CCI_BUSY) {
--		ret = ucsi_run_command(ucsi, UCSI_CANCEL, &cci, NULL, 0, false);
--		return ret ? ret : -EBUSY;
--	}
--
--	if (cci & UCSI_CCI_ERROR)
--		return ucsi_read_error(ucsi, connector_num);
-+	if (cci & UCSI_CCI_BUSY)
-+		ret = ucsi_run_command(ucsi, UCSI_CANCEL, &cci, NULL, 0, false) ?: -EBUSY;
-+	else if (cci & UCSI_CCI_ERROR)
-+		ret = ucsi_read_error(ucsi, connector_num);
- 
- 	mutex_unlock(&ucsi->ppm_lock);
- 	return ret;
--- 
-2.25.1
 
