@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C866C52D7B
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 20:35:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BE6FC3DA7F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 20:40:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA67A10E202;
-	Wed,  7 Aug 2024 20:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DE510E1EF;
+	Wed,  7 Aug 2024 20:40:34 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A985310E1EF;
- Wed,  7 Aug 2024 20:35:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7440276878211580774=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFB0C10E1EF;
+ Wed,  7 Aug 2024 20:40:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_Fix_NULL_ptr_deref_i?=
- =?utf-8?q?n_intel=5Fasync=5Fflip=5Fcheck=5Fuapi=28=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Enable_build_system_?=
+ =?utf-8?q?on_macOS_hosts?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ma Ke" <make24@iscas.ac.cn>
+To: "Daniel Gomez via B4 Relay" <devnull+da.gomez.samsung.com@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 07 Aug 2024 20:35:48 -0000
-Message-ID: <172306294868.546579.515783002869429385@2413ebb6fbb6>
+Date: Wed, 07 Aug 2024 20:40:32 -0000
+Message-ID: <172306323297.547558.6291657804464934903@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240806092249.2407555-1-make24@iscas.ac.cn>
-In-Reply-To: <20240806092249.2407555-1-make24@iscas.ac.cn>
+References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
+In-Reply-To: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,224 +40,33 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7440276878211580774==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Fix NULL ptr deref in intel_async_flip_check_uapi()
-URL   : https://patchwork.freedesktop.org/series/137006/
-State : success
+Series: Enable build system on macOS hosts
+URL   : https://patchwork.freedesktop.org/series/137005/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-1731-4f5d551409fb5562ab0d732120e7ac9b698b5864_BAT -> xe-pw-137006v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (6 -> 7)
-------------------------------
-
-  Additional (1): bat-adlp-7 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-137006v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         NOTRUN -> [DMESG-FAIL][2] ([Intel XE#324])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
-    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#688]) +1 other test skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#288]) +32 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#2229] / [Intel XE#455])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#2229]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-adlp-7:         NOTRUN -> [SKIP][8] ([Intel XE#1008])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-adlp-7:         NOTRUN -> [SKIP][9] ([Intel XE#977])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-adlp-7:         NOTRUN -> [SKIP][10] ([Intel XE#979]) +1 other test skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
-
-  
-  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 4f5d551409fb drm-tip: 2024y-08m-07d-12h-38m-22s UTC integration manifest
+=== git am output follows ===
+error: include/endian/endian.h: does not exist in index
+error: include/endian/bits/uintn-identity.h: does not exist in index
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+hint: When you have resolved this problem, run "git am --continue".
+hint: If you prefer to skip this patch, run "git am --skip" instead.
+hint: To restore the original branch and stop patching, run "git am --abort".
+hint: Disable this message with "git config advice.mergeConflict false"
+Applying: scripts: subarch.include: fix SUBARCH on MacOS hosts
+Applying: kbuild: add header_install dependency to scripts
+Applying: file2alias: fix uuid_t definitions for macos
+Applying: drm/xe: xe_gen_wa_oob: fix program_invocation_short_name for macos
+Applying: accessiblity/speakup: genmap and makemapdata require linux/version.h
+Applying: selinux/genheaders: include bitsperlong and posix_types headers
+Applying: selinux/mdp: include bitsperlong and posix_types headers
+Applying: include: add elf.h support
+Applying: include: add endian.h support
+Patch failed at 0009 include: add endian.h support
 
 
-Build changes
--------------
-
-  * IGT: IGT_7960 -> IGT_7962
-  * Linux: xe-1731-4f5d551409fb5562ab0d732120e7ac9b698b5864 -> xe-pw-137006v1
-
-  IGT_7960: 7960
-  IGT_7962: 7962
-  xe-1731-4f5d551409fb5562ab0d732120e7ac9b698b5864: 4f5d551409fb5562ab0d732120e7ac9b698b5864
-  xe-pw-137006v1: 137006v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/index.html
-
---===============7440276878211580774==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix NULL ptr deref in intel_async_flip_check_uapi()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137006/">https://patchwork.freedesktop.org/series/137006/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1731-4f5d551409fb5562ab0d732120e7ac9b698b5864_BAT -&gt; xe-pw-137006v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (6 -&gt; 7)</h2>
-<p>Additional (1): bat-adlp-7 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137006v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137006v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7960 -&gt; IGT_7962</li>
-<li>Linux: xe-1731-4f5d551409fb5562ab0d732120e7ac9b698b5864 -&gt; xe-pw-137006v1</li>
-</ul>
-<p>IGT_7960: 7960<br />
-  IGT_7962: 7962<br />
-  xe-1731-4f5d551409fb5562ab0d732120e7ac9b698b5864: 4f5d551409fb5562ab0d732120e7ac9b698b5864<br />
-  xe-pw-137006v1: 137006v1</p>
-
-</body>
-</html>
-
---===============7440276878211580774==--
