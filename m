@@ -4,78 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52568C52D73
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 14:19:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D109CC3DA7F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 14:20:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 201A910E542;
-	Wed,  7 Aug 2024 14:19:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5B710E537;
+	Wed,  7 Aug 2024 14:20:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="YAczGrJM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OhSqS3oz";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1A8710E537;
- Wed,  7 Aug 2024 14:19:46 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 0DD5261179;
- Wed,  7 Aug 2024 14:19:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E804C4AF0E;
- Wed,  7 Aug 2024 14:19:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1723040385;
- bh=wkgLS15kdTLvliT36oyzsisWKqBnPHwCzUiy0yCqFCQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YAczGrJMpAyxr/f9jMPRPSOGy5+QP2UgLWDtprDt4SHUXFWtjm6k8ab/4XyffRL93
- TJzwQEOdv0lfhHsHhkcsxfTj8RJ9vQwhIHPQ1sRIBFbnZ05b0+alKHuwjos4btuiel
- zsvVDu9TZrQn9IB5ZxXT8uzfgAEIcnHyoGBXl5Hw=
-Date: Wed, 7 Aug 2024 16:19:42 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Daniel Gomez <da.gomez@samsung.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- William Hubbs <w.d.hubbs@gmail.com>,
- Chris Brannon <chris@the-brannons.com>, Kirk Reiser <kirk@reisers.ca>,
- Samuel Thibault <samuel.thibault@ens-lyon.org>,
- Paul Moore <paul@paul-moore.com>,
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Zenghui Yu <yuzenghui@huawei.com>, Jiri Slaby <jirislaby@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "speakup@linux-speakup.org" <speakup@linux-speakup.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
- "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
- Finn Behrens <me@kloenk.dev>,
- "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- "gost.dev@samsung.com" <gost.dev@samsung.com>,
- Nick Desaulniers <nick.desaulniers@gmail.com>
-Subject: Re: [PATCH 00/12] Enable build system on macOS hosts
-Message-ID: <2024080758-dedicator-smoky-44be@gregkh>
-References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <CGME20240807110114eucas1p2e1ca4cbd352c6cd9d60688b1570df8d4@eucas1p2.samsung.com>
- <2024080753-debug-roulette-8cb1@gregkh>
- <3jnp6tnkjpvnisefomxagazu2u3uzzt7rcon3r5jssraxzwegb@gsxc7c5sfh7v>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E60510E537;
+ Wed,  7 Aug 2024 14:20:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723040417; x=1754576417;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wXqsEtts3S3/oVZXwF0k96dr9Hfqud9bJeY00ZXcQ6U=;
+ b=OhSqS3oz7v8xlEt/exJBtyiDZnqV9vudAcF6pzYJ1UdFebAi4le0w8Eo
+ mT1cQ6z1ho3LiGYJrFSsfhOLJzJ1pzmZLQyX5M2PekS9ftKY9k1rSo/iD
+ PpRP4tGX09AmoVtGVkqAWm9L3PIi1K2h2y0gNGL3T1banAsjbkNg2qMmP
+ E7TR7I74tLkaNRiiO/qKH/Cw5EczhiQyq5x8FGGqxOoSoSAUKWev0K+NV
+ ENm4/v2Ta2LY4w4ITAPOXHVd3slu4T/OqS34EqEa6wkv/564Enl6Ore3S
+ Bqac7G9CvA3EtIJiyFefDlETalZi2H3SvjJwHyuRpSELuyieiZGo2nuue w==;
+X-CSE-ConnectionGUID: OqhSUrnCQH6PtFcVrQ+F2w==
+X-CSE-MsgGUID: aOxlyBaUSWexhE2tyIk7RQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="43634563"
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="43634563"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 07:20:16 -0700
+X-CSE-ConnectionGUID: aEIsocaGSuWxsm54f/GS2A==
+X-CSE-MsgGUID: VvmNkcOpQHC25CRfv8TndQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="57085119"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa006.jf.intel.com with ESMTP; 07 Aug 2024 07:20:14 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: 
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: [PATCH v3] drm/i915/bmg: Read display register timeout
+Date: Wed,  7 Aug 2024 19:51:05 +0530
+Message-ID: <20240807142106.1270213-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240807040307.1246114-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20240807040307.1246114-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3jnp6tnkjpvnisefomxagazu2u3uzzt7rcon3r5jssraxzwegb@gsxc7c5sfh7v>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,23 +66,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 07, 2024 at 01:56:38PM +0000, Daniel Gomez wrote:
-> On Wed, Aug 07, 2024 at 01:01:08PM GMT, Greg Kroah-Hartman wrote:
-> > On Wed, Aug 07, 2024 at 01:09:14AM +0200, Daniel Gomez via B4 Relay wrote:
-> > > This patch set allows for building the Linux kernel for arm64 in macOS with
-> > > LLVM.
-> > 
-> > Is this a requirement somewhere that this must work?  It seems like an
-> > odd request, what workflows require cross-operating-system builds like
-> > this?
-> 
-> This isn't a requirement, but it would, for example, support workflows for QEMU
-> users and developers on macOS. They could build/compile the kernel natively and
-> use it to launch QEMU instances, simplifying their process.
+Log the address of the register that caused the timeout
+interrupt by reading RMTIMEOUTREG_CAPTURE
 
-But that's not a real workload of anyone?  How often does this ever come
-up?  Who is going to maintain this cross-build functionality over time?
+--v2:
+- Update RMTIMEOUTREG_CAPTURE naming (Suraj)
 
-thanks,
+--v3:
+- XeLpdp naming convention.
+- Use if condition instead of else if
 
-greg k-h
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 9 ++++++++-
+ drivers/gpu/drm/i915/i915_reg.h                  | 2 ++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 5219ba295c74..9f452d92f6d4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -906,6 +906,13 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+ 			intel_pmdemand_irq_handler(dev_priv);
+ 			found = true;
+ 		}
++
++		if (iir & XELPDP_RM_TIMEOUT) {
++			u32 val = intel_uncore_read(&dev_priv->uncore,
++						    RM_TIMEOUT_REG_CAPTURE);
++			drm_warn(&dev_priv->drm, "Register Access Timeout = 0x%x\n", val);
++			found = true;
++		}
+ 	} else if (iir & GEN8_DE_MISC_GSE) {
+ 		intel_opregion_asle_intr(dev_priv);
+ 		found = true;
+@@ -1710,7 +1717,7 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 14) {
+ 		de_misc_masked |= XELPDP_PMDEMAND_RSPTOUT_ERR |
+-				  XELPDP_PMDEMAND_RSP;
++				  XELPDP_PMDEMAND_RSP | XELPDP_RM_TIMEOUT;
+ 	} else if (DISPLAY_VER(dev_priv) >= 11) {
+ 		enum port port;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 0e3d79227e3c..569b461022c5 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2396,6 +2396,7 @@
+ 
+ /* Display Internal Timeout Register */
+ #define RM_TIMEOUT		_MMIO(0x42060)
++#define RM_TIMEOUT_REG_CAPTURE	_MMIO(0x420E0)
+ #define  MMIO_TIMEOUT_US(us)	((us) << 0)
+ 
+ /* interrupts */
+@@ -2574,6 +2575,7 @@
+ #define GEN8_DE_MISC_IMR _MMIO(0x44464)
+ #define GEN8_DE_MISC_IIR _MMIO(0x44468)
+ #define GEN8_DE_MISC_IER _MMIO(0x4446c)
++#define  XELPDP_RM_TIMEOUT		REG_BIT(29)
+ #define  XELPDP_PMDEMAND_RSPTOUT_ERR	REG_BIT(27)
+ #define  GEN8_DE_MISC_GSE		REG_BIT(27)
+ #define  GEN8_DE_EDP_PSR		REG_BIT(19)
+-- 
+2.45.2
+
