@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06D15C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 11:06:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC035C3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 11:08:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBFFD10E6D4;
-	Thu,  8 Aug 2024 11:06:37 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACD7610E6D4;
- Thu,  8 Aug 2024 11:06:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0669271648219865630=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD8FC10E6D5;
+	Thu,  8 Aug 2024 11:08:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L7Rrgiig";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 705D510E6D5
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Aug 2024 11:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723115303; x=1754651303;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=d/99xhZ+a9/lEO17Mff3pYrpO/qqKDZpxkoXBUp/Htw=;
+ b=L7RrgiigkEH9mx3lpo6zr2vOA3j5Q6l2XC5j1ypHKoFuEdRyUJkDk0Jq
+ baNKu7xQzDdTy6S/360FWHEuSkhTbGyQ0X/4n75C0PC9Qo7SvSBCEZRyn
+ s/3bMlDEoGFS1WxEX/Sa9/fvuGQM9+SSc+r9E42+t0MFv48bqpQOJBN8d
+ RxPn5523emplgeZcQV+YRO3zzn+m/dFuNH4XIG+z8pGUUI1E3KsUrikaw
+ KXPQNSKcr7HbdGOX4T5MZyd9zMu5FypePeZGWPOB+y8LG7jGlCqjDp3XI
+ 3TqC49vaFKHT0F5qcwWYkRFpb7ifGZcqe1iu2ffoH1ggkw7AtOQ+M2TAn Q==;
+X-CSE-ConnectionGUID: JidvSJ9uQYeTKDY0aVWbAw==
+X-CSE-MsgGUID: 5oW7/E/2Rh2yR6PUdWoaqg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="25025765"
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="25025765"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 04:08:22 -0700
+X-CSE-ConnectionGUID: n5L5EcC7QbGSuQXpRizc4Q==
+X-CSE-MsgGUID: 08XS7iMBR22ljpXJv37oKA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="57104703"
+Received: from dneilan-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.245.71])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 04:08:20 -0700
+Date: Thu, 8 Aug 2024 12:08:07 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Subject: Re: [PATCH 02/21] drm/xe: Move and export xe_hw_engine lookup.
+Message-ID: <ZrSnFyYI6U28hWsF@ashyti-mobl2.lan>
+References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
+ <20240726140818.54304-3-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv3=2C1/2?=
- =?utf-8?q?=5D_drm/xe/gt=3A_Add_APIs_for_printing_stats_over_debugfs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Aug 2024 11:06:36 -0000
-Message-ID: <172311519670.549452.1865692317876449497@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240808091917.5761-1-nirmoy.das@intel.com>
-In-Reply-To: <20240808091917.5761-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240726140818.54304-3-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0669271648219865630==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jul 26, 2024 at 05:07:59PM +0300, Mika Kuoppala wrote:
+> From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+> 
+> Move and export xe_hw_engine lookup. This is in preparation
+> to use this in eudebug code where we want to find active
+> engine.
+> 
+> v2: s/tile/gt due to uapi changes (Mika)
+> 
+> Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-== Series Details ==
+I see this is already appled, so that I'm too late to add my rb
+here.
 
-Series: series starting with [v3,1/2] drm/xe/gt: Add APIs for printing stats over debugfs
-URL   : https://patchwork.freedesktop.org/series/137032/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9_BAT -> xe-pw-137032v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9 -> xe-pw-137032v1
-
-  IGT_7962: 7962
-  xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9: b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9
-  xe-pw-137032v1: 137032v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137032v1/index.html
-
---===============0669271648219865630==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/xe/gt: Add APIs for printing stats over debugfs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137032/">https://patchwork.freedesktop.org/series/137032/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137032v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137032v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9_BAT -&gt; xe-pw-137032v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9 -&gt; xe-pw-137032v1</li>
-</ul>
-<p>IGT_7962: 7962<br />
-  xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9: b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9<br />
-  xe-pw-137032v1: 137032v1</p>
-
-</body>
-</html>
-
---===============0669271648219865630==--
+Thanks,
+Andi
