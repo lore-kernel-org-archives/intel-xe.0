@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBAB7C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 06:58:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90EDDC3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 07:06:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 992FC10E664;
-	Thu,  8 Aug 2024 06:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD3410E668;
+	Thu,  8 Aug 2024 07:06:39 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA54410E664;
- Thu,  8 Aug 2024 06:58:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6228F10E668;
+ Thu,  8 Aug 2024 07:06:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/pm=3A_Change_?=
- =?utf-8?q?HPD_to_polling_on_runtime_suspend_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display_suspe?=
+ =?utf-8?q?nd/resume_fixes=2E_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Aug 2024 06:58:51 -0000
-Message-ID: <172310033195.548969.11795543691987002362@2413ebb6fbb6>
+Date: Thu, 08 Aug 2024 07:06:38 -0000
+Message-ID: <172310079839.548990.8350542874753574833@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240806085513.3051107-1-arun.r.murthy@intel.com>
-In-Reply-To: <20240806085513.3051107-1-arun.r.murthy@intel.com>
+References: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,23 +42,16 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe/pm: Change HPD to polling on runtime suspend (rev2)
-URL   : https://patchwork.freedesktop.org/series/136916/
-State : failure
+Series: drm/xe/display suspend/resume fixes. (rev3)
+URL   : https://patchwork.freedesktop.org/series/136891/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 4f5d551409fb drm-tip: 2024y-08m-07d-12h-38m-22s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/display/xe_display.c:315
-error: drivers/gpu/drm/xe/display/xe_display.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-hint: When you have resolved this problem, run "git am --continue".
-hint: If you prefer to skip this patch, run "git am --skip" instead.
-hint: To restore the original branch and stop patching, run "git am --abort".
-hint: Disable this message with "git config advice.mergeConflict false"
-Applying: drm/xe/display: Change HPD to polling on runtime suspend
-Patch failed at 0001 drm/xe/display: Change HPD to polling on runtime suspend
+Applying: drm/xe/display: Match i915 driver suspend/resume sequences better
+Applying: drm/xe/display: Make display suspend/resume work on discrete
 
 
