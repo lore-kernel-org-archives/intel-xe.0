@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5E1BC3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 15:16:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10DD9C52D7B
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 15:21:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A65CA10E779;
-	Thu,  8 Aug 2024 15:16:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aT4RTHHJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35C3510E775;
- Thu,  8 Aug 2024 15:16:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723130204; x=1754666204;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XBo4gHOxC9DvlTM8t32KK/8UkfFv+75lKg2Xy3LeRI4=;
- b=aT4RTHHJmtNrOvvhdXxE8TSNMEB4TArqiGo30V29vi+ip3LJVPwpCqnh
- 0m1/p90bpd3gp8gIJKjspF72cCetsQgjcblVls92wpxrGhAeicd7cKD+w
- HdyuOLTdMe5Du8xMXhURw4FgJPNvt58CKNJOhQuSp2uhG0cyIV+QJxXs+
- gHj3ymV4hG3HCG9pdHJHB0nEHXM0K81zoVWLgw+tIFBidlW5JZcvSYGij
- wrSg1DzgJ/zvxeTsGQKD2EegBVKZPxe0GBNQ+GwBuldJzLF4saZu1mpzu
- C84vjsYOETSnqJyHXAYMdwA3QMAmFshSDjPV91IdHzAnKxwLxJyY4HB0u Q==;
-X-CSE-ConnectionGUID: qI39FNb8TLejDarS0KUGTg==
-X-CSE-MsgGUID: YGK49G3FRWCTIxqeFTBslQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="46667109"
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="46667109"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 08:16:44 -0700
-X-CSE-ConnectionGUID: i/kwH5G0RnqWevWvgqEPCw==
-X-CSE-MsgGUID: cG6+JtUFSiK9z1s2Odwblg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="56920204"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 08:16:42 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, lucas.demarchi@intel.com,
- jani.nikula@intel.com
-Subject: [PATCH v2 10/10] drm/xe/display: remove unused compat kdev_to_i915()
- and pdev_to_i915()
-Date: Thu,  8 Aug 2024 18:15:55 +0300
-Message-Id: <706c3893f11ec3bd1e49e704a48c03cd5c987b84.1723129920.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1723129920.git.jani.nikula@intel.com>
-References: <cover.1723129920.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D27C810E06F;
+	Thu,  8 Aug 2024 15:21:37 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8C3892F8;
+ Thu,  8 Aug 2024 15:21:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe_=26_drm/i915?=
+ =?utf-8?q?=3A_drvdata_usage_changes_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 08 Aug 2024 15:21:37 -0000
+Message-ID: <172313049731.550184.12078713087814930144@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1723129920.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1723129920.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,44 +36,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The display code no longer uses kdev_to_i915() or pdev_to_i915()
-helpers. Remove them.
+== Series Details ==
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 8 --------
- 1 file changed, 8 deletions(-)
+Series: drm/xe & drm/i915: drvdata usage changes (rev2)
+URL   : https://patchwork.freedesktop.org/series/136622/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 766fba88a3c8..e1d6ce829a0b 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -21,13 +21,6 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- 	return container_of(dev, struct drm_i915_private, drm);
- }
- 
--static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
--{
--	struct drm_device *drm = dev_get_drvdata(kdev);
--
--	return drm ? to_i915(drm) : NULL;
--}
--
- #define IS_PLATFORM(xe, x) ((xe)->info.platform == x)
- #define INTEL_INFO(dev_priv)	(&((dev_priv)->info))
- #define IS_I830(dev_priv)	(dev_priv && 0)
-@@ -117,7 +110,6 @@ struct i915_sched_attr {
- };
- #define i915_gem_fence_wait_priority(fence, attr) do { (void) attr; } while (0)
- 
--#define pdev_to_i915 pdev_to_xe_device
- #define RUNTIME_INFO(xe)		(&(xe)->info.i915_runtime)
- 
- #define FORCEWAKE_ALL XE_FORCEWAKE_ALL
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b6a72e1d0a6e drm-tip: 2024y-08m-08d-08h-37m-52s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/tests: remove unused leftover xe_call_for_each_device()
+Applying: drm/xe: use pdev_to_xe_device() instead of pci_get_drvdata() directly
+Applying: drm/xe: add kdev_to_xe_device() helper and use it
+Applying: drm/i915: use pdev_to_i915() instead of pci_get_drvdata() directly
+Applying: drm/i915 & drm/xe: save struct drm_device to drvdata
+Applying: drm/i915: support struct device and pci_dev in to_intel_display()
+Applying: drm/i915/audio: migrate away from kdev_to_i915()
+Applying: drm/i915/hdcp: migrate away from kdev_to_i915() in bind/unbind
+Applying: drm/i915/hdcp: migrate away from kdev_to_i915() in GSC messaging
+Applying: drm/xe/display: remove unused compat kdev_to_i915() and pdev_to_i915()
+
 
