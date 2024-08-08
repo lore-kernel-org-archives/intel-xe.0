@@ -4,110 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 117AFC52D6F
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 11:28:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78E9FC3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 11:48:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E8BE10E6DD;
-	Thu,  8 Aug 2024 11:28:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=smtpservice.net header.i=@smtpservice.net header.b="Vmgxnpum";
-	dkim=pass (2048-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="cQl78Nft";
-	dkim=pass (1024-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="BG0muSlj";
-	dkim-atps=neutral
-X-Greylist: delayed 913 seconds by postgrey-1.36 at gabe;
- Thu, 08 Aug 2024 11:28:44 UTC
-Received: from e3i64.smtp2go.com (e3i64.smtp2go.com [158.120.84.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C003510E6E3
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Aug 2024 11:28:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smtpservice.net;
- i=@smtpservice.net; q=dns/txt; s=a1-4; t=1723115606; h=feedback-id :
- x-smtpcorp-track : date : message-id : to : subject : from : reply-to
- : sender : list-unsubscribe : list-unsubscribe-post;
- bh=DWvwT7MwWty/w8bZJf5PhzT0d4KUoUgQ/VKY8SN+v/4=;
- b=VmgxnpumdmYDqm7SjpDyjIog6OxO3U62pQOsNoHlQzO1yqh8eec1v1vZdFNrYuUb+LaPo
- zdOR3NhnUXTfAq/n9p8NqpucIQ23tEnk1+G94LvJQOQoImZPQgWz3sL9+pbhO+vbTnHAviN
- ziJBwjaQX8Q6DXAwKxFPQM7coprIuUkNarTjTa0jZMf1fVmgkYdZz5EKopx9UoSOXqeg6cW
- fMwaQXIHro654kkQnMU5tKNvN8Jo8dyCjDc79HE5gEGII6i7//y9f4ndaEZIaKp1elxsx7J
- /mLk3diljTLKZAn6pcHwkhrQQvmvJ/Zg8WBtCsUoifs5+MSj5Ee/b23T1yJQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fjasle.eu;
- i=@fjasle.eu; q=dns/txt; s=s1174286; t=1723115606; h=from : subject :
- to : message-id : date;
- bh=DWvwT7MwWty/w8bZJf5PhzT0d4KUoUgQ/VKY8SN+v/4=;
- b=cQl78Nftd7Rd/fyPUMu8GPI8d/Dp2XY36AslBnfGKx50FnnR4k2Z2rJlHUszt47n15iB8
- +nfSheQtmDKa9q95diJexR/0ZJC9b4ZnRqTGpNBgxlWvz6FfSPF+kvpB8sf9WOauU38urrR
- /bKr+DcB8QfOCdjwCUSY7pdbXCo2TmcwSnhCrHosdoqviHuF3+H1BH4iA/LhxPwbaPcsc34
- wlzi4z1xOFl5ZINrih6thaccOPjK4YWCSN9CalkSKMMLMEKrZ7MjlDmZb7qnzyBFttl0PFf
- 0gSgu/iCsKes7wTdFtaA7nJgt51iByu8FqodvdXcv7mEyKzSXKJWIL93Claw==
-Received: from [10.85.249.164] (helo=leknes.fjasle.eu)
- by smtpcorp.com with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.97.1-S2G) (envelope-from <nicolas@fjasle.eu>)
- id 1sc14u-FnQW0hPl8lT-kBTA; Thu, 08 Aug 2024 11:13:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fjasle.eu; s=mail;
- t=1723115576; bh=o7bhdwNQ62EoS95sx84tEhwI9oeEmv+6fwfOAXB/f5s=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BG0muSlj6GOKpUkPtJ0qd52efWk+CoW4jZdWTKnne+jdIvvJKqC3ltvtnGmjhM6mI
- ntIjsexl1m6K1i0KpZ0pMoOd7MLa/iz7heBW4/RbRrqhv+BTvbijSHbfD0DPQ3Cb8B
- WgqVLiFWs+fL3QDohjEbAtCBnj/mEdqJorCqp/58=
-Received: by leknes.fjasle.eu (Postfix, from userid 1000)
- id 82E5742DD9; Thu,  8 Aug 2024 13:12:56 +0200 (CEST)
-Date: Thu, 8 Aug 2024 13:12:56 +0200
-From: Nicolas Schier <nicolas@fjasle.eu>
-To: Daniel Gomez <da.gomez@samsung.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- William Hubbs <w.d.hubbs@gmail.com>,
- Chris Brannon <chris@the-brannons.com>, Kirk Reiser <kirk@reisers.ca>,
- Samuel Thibault <samuel.thibault@ens-lyon.org>,
- Paul Moore <paul@paul-moore.com>,
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Zenghui Yu <yuzenghui@huawei.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "speakup@linux-speakup.org" <speakup@linux-speakup.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
- "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
- Finn Behrens <me@kloenk.dev>,
- "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- "gost.dev@samsung.com" <gost.dev@samsung.com>
-Subject: Re: [PATCH 06/12] selinux/genheaders: include bitsperlong and
- posix_types headers
-Message-ID: <ZrSoOM9z4VnqhOf2@fjasle.eu>
-References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <20240807-macos-build-support-v1-6-4cd1ded85694@samsung.com>
- <CGME20240807153904eucas1p2264f7363ae2474c20c6dc1b84a232815@eucas1p2.samsung.com>
- <20240807-outgoing-charcoal-collie-0ee37e@lindesnes>
- <sbj3c3tlafewy2n4pylbnpb4gwylpnyxovdykfy3dhk2wqmpry@ekhhe3mgqnd6>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E17A10E6E5;
+	Thu,  8 Aug 2024 11:48:29 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D68ED10E6E3;
+ Thu,  8 Aug 2024 11:48:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7389507127624731683=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="VxNEXc5Vg6IlyTm+"
-Content-Disposition: inline
-In-Reply-To: <sbj3c3tlafewy2n4pylbnpb4gwylpnyxovdykfy3dhk2wqmpry@ekhhe3mgqnd6>
-X-Report-Abuse: Please forward a copy of this message, including all headers,
- to <abuse-report@smtp2go.com>
-Feedback-ID: 1174286m:1174286a9YXZ7r:1174286stAICZmwpS
-X-smtpcorp-track: Ij_1tXIOjAmu.AdiufAa8qJ5U.S3H5oQ7Pa9B
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_AS=5FSDP_to_fastset?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 08 Aug 2024 11:48:27 -0000
+Message-ID: <172311770787.549452.13910368671772347393@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240808094849.1299028-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20240808094849.1299028-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,168 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7389507127624731683==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---VxNEXc5Vg6IlyTm+
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Am Wed, Aug 07, 2024 at 09:41:00PM +0000 schrieb Daniel Gomez:
-> Date: Wed, 7 Aug 2024 21:41:00 +0000
-> From: Daniel Gomez <da.gomez@samsung.com>
-> To: Nicolas Schier <nicolas@fjasle.eu>
-> CC: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor
->  <nathan@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>, Thomas
->  Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi
->  <rodrigo.vivi@intel.com>, Maarten Lankhorst
->  <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
->  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com=
->,
->  Daniel Vetter <daniel@ffwll.ch>, William Hubbs <w.d.hubbs@gmail.com>,
->  Chris Brannon <chris@the-brannons.com>, Kirk Reiser <kirk@reisers.ca>,
->  Samuel Thibault <samuel.thibault@ens-lyon.org>, Paul Moore
->  <paul@paul-moore.com>, Stephen Smalley <stephen.smalley.work@gmail.com>,
->  Ondrej Mosnacek <omosnace@redhat.com>, Catalin Marinas
->  <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Marc Zyngier
->  <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, James Morse
->  <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui
->  Yu <yuzenghui@huawei.com>, Greg Kroah-Hartman
->  <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Nick
->  Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
->  Justin Stitt <justinstitt@google.com>, "linux-kernel@vger.kernel.org"
->  <linux-kernel@vger.kernel.org>, "linux-kbuild@vger.kernel.org"
->  <linux-kbuild@vger.kernel.org>, "intel-xe@lists.freedesktop.org"
->  <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
->  <dri-devel@lists.freedesktop.org>, "speakup@linux-speakup.org"
->  <speakup@linux-speakup.org>, "selinux@vger.kernel.org"
->  <selinux@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
->  <linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
->  <kvmarm@lists.linux.dev>, "linux-serial@vger.kernel.org"
->  <linux-serial@vger.kernel.org>, "llvm@lists.linux.dev"
->  <llvm@lists.linux.dev>, Finn Behrens <me@kloenk.dev>, "Daniel Gomez
->  (Samsung)" <d+samsung@kruces.com>, "gost.dev@samsung.com"
->  <gost.dev@samsung.com>
-> Subject: Re: [PATCH 06/12] selinux/genheaders: include bitsperlong and
->  posix_types headers
-> Message-ID: <sbj3c3tlafewy2n4pylbnpb4gwylpnyxovdykfy3dhk2wqmpry@ekhhe3mgq=
-nd6>
->=20
-> On Wed, Aug 07, 2024 at 05:38:28PM GMT, Nicolas Schier wrote:
-> > On Wed, Aug 07, 2024 at 01:09:20AM +0200, Daniel Gomez via B4 Relay wro=
-te:
-> > > From: Daniel Gomez <da.gomez@samsung.com>
-> > >=20
-> > > The genheaders requires the bitsperlong.h and posix_types.h headers.
-> > > To ensure these headers are found during compilation on macOS hosts,
-> > > add usr/include to HOST_EXTRACFLAGS in the genheaders Makefile. This
-> > > adjustment allows the compiler to locate all necessary headers when t=
-hey
-> > > are not available by default on macOS.
-> > >=20
-> > > Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-> > > ---
-> > >  scripts/selinux/genheaders/Makefile | 3 ++-
-> > >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/scripts/selinux/genheaders/Makefile b/scripts/selinux/ge=
-nheaders/Makefile
-> > > index 1faf7f07e8db..017149c90f8e 100644
-> > > --- a/scripts/selinux/genheaders/Makefile
-> > > +++ b/scripts/selinux/genheaders/Makefile
-> > > @@ -2,4 +2,5 @@
-> > >  hostprogs-always-y +=3D genheaders
-> > >  HOST_EXTRACFLAGS +=3D \
-> > >  	-I$(srctree)/include/uapi -I$(srctree)/include \
-> > > -	-I$(srctree)/security/selinux/include
-> > > +	-I$(srctree)/security/selinux/include \
-> > > +	-I$(srctree)/usr/include
-> >=20
-> > 'make headers' composes the UAPI header tree in $(objtree)/usr/include.
-> > So, if you build out-of-source, -I$(srctree)/usr/include will not match.
-> > Just remove the '$(srctree)/' prefix as '$(objtree)/' is always '.'.
->=20
-> The 'headers' target also deploys installs the headers in arch/$(SRCARCH)/
-> include/uapi, so I've updated selinux/genheaders/Makefile to the followin=
-g:
->=20
-> diff --git a/scripts/selinux/genheaders/Makefile b/scripts/selinux/genhea=
-ders/Makefile
-> index 1faf7f07e8db..ae1f195b6f67 100644
-> --- a/scripts/selinux/genheaders/Makefile
-> +++ b/scripts/selinux/genheaders/Makefile
-> @@ -2,4 +2,6 @@
->  hostprogs-always-y +=3D genheaders
->  HOST_EXTRACFLAGS +=3D \
->         -I$(srctree)/include/uapi -I$(srctree)/include \
-> -       -I$(srctree)/security/selinux/include
-> +       -I$(srctree)/security/selinux/include \
-> +       -I$(objtree)/arch/$(SRCARCH)/include/generated/uapi \
-> +       -I$(objtree)/arch/$(SRCARCH)/include/uapi
+Series: Add AS_SDP to fastset
+URL   : https://patchwork.freedesktop.org/series/137034/
+State : success
 
-SRCARCH is not derived from the host but from $(ARCH) (cp. top-level
-Makefile), thus you must not use arch/$(SRCARCH)/include/* for building
-host progs as this breaks cross-building (e.g. consider build Linux for
-32bit m68k on a arm64 host).
+== Summary ==
 
->=20
-> The include path -I$(objtree)/arch/$(SRCARCH)/include/generated/uapi
-> enables locating the asm/types.h.
->=20
-> The include path -I$(objtree)/arch/$(SRCARCH)/include/uapi enables
-> locating the asm/bitsperlong.h and asm/posix_types.h.
->=20
-> >=20
-> > But I am suspecting that this break cross-building.
->=20
-> I=E2=80=99ve tested this change on macOS with ARCH=3Darm64, as well as on=
- Debian with
-> ARCH=3Darm64 and ARCH=3Dx86_64. Is it enough to just confirm that cross-b=
-uilding
-> still works after this change?
+CI Bug Log - changes from xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9_BAT -> xe-pw-137034v1_BAT
+====================================================
 
-No, it isn't.  asm/bitsperlong.h is probably similar (enough) for current
-64-bit systems, but 32-bit platforms will have different versions.
-Anyway, we must not use target arch/platform-specific header files for
-host progs.  If we do, it will break.
+Summary
+-------
 
-You want to use arm64 specific header files for building your arm64 host
-progs, as MacOS does not provide these (thus, it's a missing build
-dependency).  As this is not common (yet), such a build hack should be limi=
-ted
-to MacOS/Darwin only to not accidentally break other platforms.  (Do you al=
-so
-have MacOS/amd64 in mind?)
+  **SUCCESS**
 
-As written elsewhere, another approach could be to create and maintain a Li=
-nux
-kernel dev kit for MacOS, that delivers (fetches, downloads, generates) all
-missing header files.
+  No regressions found.
 
-Kind regards,
-Nicolas
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
 
 
---VxNEXc5Vg6IlyTm+
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes
+-------
 
------BEGIN PGP SIGNATURE-----
+  No changes found
 
-iQIzBAABCAAdFiEEh0E3p4c3JKeBvsLGB1IKcBYmEmkFAma0qC4ACgkQB1IKcBYm
-EmlXFA//QK4VblCu85gKzeuSZduI65fyEghlP3E7HDD3wm89ScPK97QA6E3/18Eq
-KBbtW4cg56lb2YdCbv9kuIbh4xGhW9+w8lOMrTBK2CKHtVT83hO+Oyd2ZYN1F6W/
-9dBu+x09VAhWc01GPCM+1518klpvgEM9E6nmTh1xRSLaIjtlGPsiNXGaUcpMO4w2
-TEAs9SSczQa/vazzKdd71q3e2eTpLEYOuIi6+07Iny4nWjWFPwK60OxmeDfXe0un
-zZyapckz2FVMcAujnUVd8yxoaIrhlZ5K2e9GSk9BpH3LKpoTTqIhQUYFoI9Y7tHL
-RSZA5igzUTBAcSIIegyBGa5D2NzkfiNSI+MxN5hqRbZclmll5fEyvu0ej+ZJTmLC
-jDATEufQxckE3a1Q1qxxuoM3keRi7LUWPu/RZnU09BNIQFZGlOquPOmIGHyR6Vux
-wfCr4WHohktugmKMwhLf4g6nxrdOy5H4Rd3RskWyBz2xkYSFKnm2zoaJZCBq8D2/
-v/fWGHeswRzLjWqxbPsMdFfd8QuuaYYXf4wBrG9k02eAXH1Q+dOu/MZJ4Do4mCp+
-O/+FGuyln0lUjxwG80YQslhSRNjov6VlrHSXTGNHNhcUffJYXAcBABbSYg2+NCYW
-4AVxeP5dRxvjQYDCraWpTSnPOvQGnKo3Jy7++TppRl4ra4DxfC0=
-=UoyI
------END PGP SIGNATURE-----
 
---VxNEXc5Vg6IlyTm+--
+Build changes
+-------------
+
+  * Linux: xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9 -> xe-pw-137034v1
+
+  IGT_7962: 7962
+  xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9: b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9
+  xe-pw-137034v1: 137034v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137034v1/index.html
+
+--===============7389507127624731683==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add AS_SDP to fastset</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137034/">https://patchwork.freedesktop.org/series/137034/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137034v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137034v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9_BAT -&gt; xe-pw-137034v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9 -&gt; xe-pw-137034v1</li>
+</ul>
+<p>IGT_7962: 7962<br />
+  xe-1733-b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9: b6a72e1d0a6ee0aad5bb0da07b050228c815a5f9<br />
+  xe-pw-137034v1: 137034v1</p>
+
+</body>
+</html>
+
+--===============7389507127624731683==--
