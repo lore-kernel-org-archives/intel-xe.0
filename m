@@ -4,62 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CE21C52D71
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 19:24:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB691C3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 19:50:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 499C510E7F2;
-	Thu,  8 Aug 2024 19:24:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8288A10E0DA;
+	Thu,  8 Aug 2024 19:50:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="DDYYIdZ8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ltbtpRKt";
 	dkim-atps=neutral
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E42410E7F2
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Aug 2024 19:24:54 +0000 (UTC)
-Received: by mail-ed1-f41.google.com with SMTP id
- 4fb4d7f45d1cf-5b8c2a61386so1718861a12.2
- for <intel-xe@lists.freedesktop.org>; Thu, 08 Aug 2024 12:24:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1723145093; x=1723749893; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=BefN6BDnBRHzpDEQx8TByDS7w0MrtEcoR3Gz9t8Hnyw=;
- b=DDYYIdZ8J61a1JcHklebNk7/ttWzRa9zq/jTcgdWLHmNnJ3TK4j6OsRyxpMMpBQXn3
- AJ2B+s15bGv/+eokXltDmSxBCROJxJQ+IDby23EzFbaCQ5P2TwNol7GGDYJsKGl4ptuT
- XjA8gK3IuDlSpfF84nMHsIfSrBsuwuJ0aQdrFfvJY+hrVLG1mBLEewE0SxKkkMZ0vbeZ
- tc3t4liwr0+8b4ycIgv+03UDH6ZSQG/kSUQBWFQ11YkXCYojaz2brnfg1GgwQaX8m7sR
- hT9J6/OvuL8tehiyZ4WGIC0ueMCi0q52jtaP9Kxw35o9VFInnD4rXJIhabc2pbMKHp+A
- /FEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1723145093; x=1723749893;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=BefN6BDnBRHzpDEQx8TByDS7w0MrtEcoR3Gz9t8Hnyw=;
- b=mkKiIX5nposFvRAXCHCfurSYhgBU+Gtt+45pRnW7u/n3bDh0iclUj3Vz8pNF0fgceO
- LBYnO27YqPqnMUXpuT7XUg6FFS5Rt/LgNGUSPiggwYMf4k7Xbs02WoD5DlFckAyQUHnH
- yip6Yh6RAy/Mr9dIlvTWsvRQcEAbCOCzXoxkf+XsxwjRdeZSiA/3nqLMLKdsDpWPKOk3
- wgw9bC0kABDA+iRQeMxyQW6FEgCPa+10hIPohifn/1snEbvRNmuind+EIy6bx7McYep9
- 8navpEdjJ0vIhp1Wq/vMXwUd/Njp8uPoq6VqLfuc3XQY+lGZNen/oU9YcAfsqq3a1Eu5
- WshA==
-X-Gm-Message-State: AOJu0YxOBWlYtDLSczFc63mfw+EUEDg90N8NOQEfkIjqpOW1k1FT4eCf
- 48NxZ3jf/Kwtt6SB7PpQOhOOkKugCb/UysKapGqkTptxSXiQ12eI4CBYBHmcBec=
-X-Google-Smtp-Source: AGHT+IGdwggxhquXhtSTOIQ+BhlQCsXkmEcTzUoPlgxeCHjUve2HcJGHJBzhTZ2wIuL+56XdO7v5xA==
-X-Received: by 2002:a05:6402:2714:b0:5a3:283d:b05a with SMTP id
- 4fb4d7f45d1cf-5bbb223117bmr2126729a12.17.1723145092563; 
- Thu, 08 Aug 2024 12:24:52 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5bbb2d35533sm887348a12.61.2024.08.08.12.24.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Aug 2024 12:24:52 -0700 (PDT)
-Date: Thu, 8 Aug 2024 22:24:46 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [bug report] drm/xe: Minor cleanup in LRC handling
-Message-ID: <fe538b44-1859-4f50-920c-33a4b1a9a728@stanley.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C31D010E0DA
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Aug 2024 19:50:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723146601; x=1754682601;
+ h=message-id:subject:from:reply-to:to:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=ApvlyAKnBUqMVzZPLzFNvRkYG2JGzDNaE+CRWJPjVSs=;
+ b=ltbtpRKtiPJvj5rVo8zA3kvWWRBzLkcQoIBp2D4ATJP/MP/5ljICMIUI
+ OB9teAo5lErXqKB/TrMqvU/XU1nYYt+O/v5Hd1+58w5HSrLfxqOMPca5c
+ fEyjMvU/w9ra1tvwt0CKAZosnnILwxb6360cGPClyyfpZ3TvoYbAv+JTl
+ nBXTJKkt2j0qminbQAQA62K44MIS8/HHNX/VZRJngh1X56MPb4Vq3rWxI
+ 60Gfj94kY7zi2webGQPnSmQXSs7gZDgLnFOHSjdV/S/Bs/rJBpVdCKPA5
+ l2Gqceq7rkmwq7h6rEr0IPB4ZHIGs6V6DwbBjQEFGMehQvH8iULjydOd5 A==;
+X-CSE-ConnectionGUID: hdUkyROiQ7+JdpQ3cKkDdA==
+X-CSE-MsgGUID: +9+9EVCpTDiLB7/1Cb0XKg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="21459108"
+X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; d="scan'208";a="21459108"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 12:49:59 -0700
+X-CSE-ConnectionGUID: 3VdhwoO/SWSqC5vQDK4zPg==
+X-CSE-MsgGUID: sq8uqEErSJeopVeeSrKb/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; d="scan'208";a="57408306"
+Received: from inaky-mobl1.amr.corp.intel.com ([10.125.108.133])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 12:49:58 -0700
+Message-ID: <e70a44a24b1404a000e302a444a41c286538f3f9.camel@linux.intel.com>
+Subject: Re: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT base
+ adjust
+From: "David E. Box" <david.e.box@linux.intel.com>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>, 
+ intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
+ ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com, 
+ andriy.shevchenko@linux.intel.com
+Date: Thu, 08 Aug 2024 12:49:58 -0700
+In-Reply-To: <20240725122346.4063913-6-michael.j.ruhl@intel.com>
+References: <20240725122346.4063913-1-michael.j.ruhl@intel.com>
+ <20240725122346.4063913-6-michael.j.ruhl@intel.com>
+Organization: David E. Box
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0-1build2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,50 +69,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: david.e.box@linux.intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Niranjana Vishwanathapura,
+Hi Mike
 
-Commit 85cfc412579c ("drm/xe: Minor cleanup in LRC handling") from
-May 7, 2024 (linux-next), leads to the following Smatch static
-checker warning:
+On Thu, 2024-07-25 at 08:23 -0400, Michael J. Ruhl wrote:
+> DVSEC offsets are based on the endpoint BAR.=C2=A0 If an endpoint is
+> not available allow the offset information to be adjusted by the
+> parent driver.
 
-	drivers/gpu/drm/xe/xe_lrc.c:1640 xe_lrc_snapshot_capture()
-	error: we previously assumed 'lrc->bo' could be null (see line 1637)
+I know I wrote the original version of these patches but I no longer like t=
+his
+solution. The s32 is too small for a 64 bit address and calculating the off=
+set
+just to add it back in the PMT driver is unnecessary. Instead, I sent you
+replacement patches for 5 and 6 that allow passing the telemetry region add=
+ress
+directly to the PMT driver.
 
-drivers/gpu/drm/xe/xe_lrc.c
-    1630 struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
-    1631 {
-    1632         struct xe_lrc_snapshot *snapshot = kmalloc(sizeof(*snapshot), GFP_NOWAIT);
-    1633 
-    1634         if (!snapshot)
-    1635                 return NULL;
-    1636 
-    1637         if (lrc->bo && lrc->bo->vm)
-                     ^^^^^^^
-The check assumes that lrc->bo can be NULL
+David
 
-    1638                 xe_vm_get(lrc->bo->vm);
-    1639 
---> 1640         snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
-                                                           ^^^
-Dereferenced without checking inside the xe_lrc_ggtt_addr() function.
+>=20
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> ---
+> =C2=A0drivers/platform/x86/intel/pmt/class.h=C2=A0=C2=A0=C2=A0=C2=A0 | 1 =
++
+> =C2=A0drivers/platform/x86/intel/pmt/telemetry.c | 9 +++++++++
+> =C2=A0drivers/platform/x86/intel/vsec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 1 +
+> =C2=A0include/linux/intel_vsec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 3 +++
+> =C2=A04 files changed, 14 insertions(+)
+>=20
+> diff --git a/drivers/platform/x86/intel/pmt/class.h
+> b/drivers/platform/x86/intel/pmt/class.h
+> index a267ac964423..984cd40ee814 100644
+> --- a/drivers/platform/x86/intel/pmt/class.h
+> +++ b/drivers/platform/x86/intel/pmt/class.h
+> @@ -46,6 +46,7 @@ struct intel_pmt_entry {
+> =C2=A0	void __iomem		*base;
+> =C2=A0	struct pmt_callbacks	*cb;
+> =C2=A0	unsigned long		base_addr;
+> +	s32			base_adjust;
+> =C2=A0	size_t			size;
+> =C2=A0	u32			guid;
+> =C2=A0	int			devid;
+> diff --git a/drivers/platform/x86/intel/pmt/telemetry.c
+> b/drivers/platform/x86/intel/pmt/telemetry.c
+> index c9feac859e57..88e4f1315097 100644
+> --- a/drivers/platform/x86/intel/pmt/telemetry.c
+> +++ b/drivers/platform/x86/intel/pmt/telemetry.c
+> @@ -78,6 +78,13 @@ static int pmt_telem_header_decode(struct intel_pmt_en=
+try
+> *entry,
+> =C2=A0	header->access_type =3D TELEM_ACCESS(readl(disc_table));
+> =C2=A0	header->guid =3D readl(disc_table + TELEM_GUID_OFFSET);
+> =C2=A0	header->base_offset =3D readl(disc_table + TELEM_BASE_OFFSET);
+> +	if (entry->base_adjust) {
+> +		u32 new_base =3D header->base_offset + entry->base_adjust;
+> +
+> +		dev_dbg(dev, "Adjusting base offset from 0x%x to 0x%x\n",
+> +			header->base_offset, new_base);
+> +		header->base_offset =3D new_base;
+> +	}
+> =C2=A0
+> =C2=A0	/* Size is measured in DWORDS, but accessor returns bytes */
+> =C2=A0	header->size =3D TELEM_SIZE(readl(disc_table));
+> @@ -302,6 +309,8 @@ static int pmt_telem_probe(struct auxiliary_device
+> *auxdev, const struct auxilia
+> =C2=A0	for (i =3D 0; i < intel_vsec_dev->num_resources; i++) {
+> =C2=A0		struct intel_pmt_entry *entry =3D &priv->entry[priv-
+> >num_entries];
+> =C2=A0
+> +		entry->base_adjust =3D intel_vsec_dev->base_adjust;
+> +
+> =C2=A0		mutex_lock(&ep_lock);
+> =C2=A0		ret =3D intel_pmt_dev_create(entry, &pmt_telem_ns,
+> intel_vsec_dev, i);
+> =C2=A0		mutex_unlock(&ep_lock);
+> diff --git a/drivers/platform/x86/intel/vsec.c
+> b/drivers/platform/x86/intel/vsec.c
+> index 7b5cc9993974..be079d62a7bc 100644
+> --- a/drivers/platform/x86/intel/vsec.c
+> +++ b/drivers/platform/x86/intel/vsec.c
+> @@ -212,6 +212,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, s=
+truct
+> intel_vsec_header *he
+> =C2=A0	intel_vsec_dev->num_resources =3D header->num_entries;
+> =C2=A0	intel_vsec_dev->quirks =3D info->quirks;
+> =C2=A0	intel_vsec_dev->base_addr =3D info->base_addr;
+> +	intel_vsec_dev->base_adjust =3D info->base_adjust;
+> =C2=A0	intel_vsec_dev->priv_data =3D info->priv_data;
+> =C2=A0
+> =C2=A0	if (header->id =3D=3D VSEC_ID_SDSI)
+> diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+> index 11ee185566c3..75d17fa10d05 100644
+> --- a/include/linux/intel_vsec.h
+> +++ b/include/linux/intel_vsec.h
+> @@ -88,6 +88,7 @@ struct pmt_callbacks {
+> =C2=A0 * @caps:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bitmask of PMT capabilities=
+ for the given headers
+> =C2=A0 * @quirks:=C2=A0=C2=A0=C2=A0 bitmask of VSEC device quirks
+> =C2=A0 * @base_addr: allow a base address to be specified (rather than de=
+rived)
+> + * @base_adjust: allow adjustment to base offset information
+> =C2=A0 */
+> =C2=A0struct intel_vsec_platform_info {
+> =C2=A0	struct device *parent;
+> @@ -96,6 +97,7 @@ struct intel_vsec_platform_info {
+> =C2=A0	unsigned long caps;
+> =C2=A0	unsigned long quirks;
+> =C2=A0	u64 base_addr;
+> +	s32 base_adjust;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
+> @@ -121,6 +123,7 @@ struct intel_vsec_device {
+> =C2=A0	size_t priv_data_size;
+> =C2=A0	unsigned long quirks;
+> =C2=A0	u64 base_addr;
+> +	s32 base_adjust;
+> =C2=A0};
+> =C2=A0
+> =C2=A0int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
 
-    1641         snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
-    1642         snapshot->head = xe_lrc_ring_head(lrc);
-    1643         snapshot->tail.internal = lrc->ring.tail;
-    1644         snapshot->tail.memory = xe_lrc_ring_tail(lrc);
-    1645         snapshot->start_seqno = xe_lrc_start_seqno(lrc);
-    1646         snapshot->seqno = xe_lrc_seqno(lrc);
-    1647         snapshot->lrc_bo = xe_bo_get(lrc->bo);
-    1648         snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
-    1649         snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset;
-    1650         snapshot->lrc_snapshot = NULL;
-    1651         snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
-    1652         snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
-    1653         return snapshot;
-    1654 }
-
-regards,
-dan carpenter
