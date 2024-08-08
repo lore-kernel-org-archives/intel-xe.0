@@ -4,58 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA460C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 09:35:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89F12C52D73
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Aug 2024 09:35:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 661AD10E6A1;
-	Thu,  8 Aug 2024 09:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5205310E6A2;
+	Thu,  8 Aug 2024 09:35:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jfhTDGR8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SwKWr8ft";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 174A810E6A1
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Aug 2024 09:35:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBDCF10E6A2
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Aug 2024 09:35:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723109712; x=1754645712;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5VJw5AUTRAFcyddPpyS/dl0HNjYLxnW+zRvuHcpC2Ic=;
- b=jfhTDGR8PHTJxb2E6Bwo/OSgVAZYCIqryeHCPNgejh4d5fJ/LgOrVbmG
- nIalpiM6QBeCWmAqwpzsHYPP8WRd4P+A20ECUtGXr7hzdeCfVEFPeGEP/
- scQCqDWS140ykqpTidYP7JEFqxXghH3rQMlTPr04E5qaPIiPAVZyGvVds
- r+6PGbO/SwyPKE+DW7TK4PSEX9wJgPX2963GfSIALJqESIuwv2Y9XpLZP
- 0+PrP0RKXqi3fbQKD9A4lz5CwivgbmiuD8R9e9NY6Lo6BZTiZL04JSZnJ
- xJZjG/FIjNz7GR3Ql/rmkyaGzXUHFN6rhdMth20zSGbqnG27n0HFAJnze A==;
-X-CSE-ConnectionGUID: fKKV0IBxQ2iZ6IfPW9C45w==
-X-CSE-MsgGUID: t3XXXTqkR1e7R8qwgsUCxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="21384427"
-X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="21384427"
+ t=1723109714; x=1754645714;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ULJpDBRt2dgTb2q4VYUx+k/cchYo1ZdU1HbbOVVGJ6I=;
+ b=SwKWr8ftXVRLIUGcpMw/gFiDOof6Aa0/2y9mBML8EpeNUShZJELTVooN
+ EU9/vvbK7f+d6dwg6AYttl3Voq6YzALEi7Gy+x1N4CQwRP+hzeOgX2AtU
+ 4cm2VhE5P/SUACZ3sUvz24WQhN/3hoTg3roq9pn1BdHEovJf1YKtgqknj
+ fpn7lABp/Uf/NPh/BjdQnvxlaKW6RaSZ9j7fsuxrJPO8aNAydZMK6ZnBy
+ Zrr4RuR6hIZ0cyt65knHDxTmTSVWnE8hW8hdP7zEZJQawT5TSXojY41xY
+ 3FHKHQly+Oi+f6wwXWIX6cRgUHtevOqGUjpVXqUzIOpvPUC0d52e3d0Jr w==;
+X-CSE-ConnectionGUID: AFo45Y+HRkqTL5BZlAnJAA==
+X-CSE-MsgGUID: eb8rCIIeQnuyCs9Eem873A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="21384429"
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="21384429"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 02:35:11 -0700
-X-CSE-ConnectionGUID: 0PnvnrDAQvOBBVPyFS4QtQ==
-X-CSE-MsgGUID: Yq0uY6QVQmyDvtKojOfung==
+ 08 Aug 2024 02:35:13 -0700
+X-CSE-ConnectionGUID: y+j6A17gS4+7x5dN9XUzdQ==
+X-CSE-MsgGUID: 5dTYjek4RB2z67Eej0r7lQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="61262200"
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="61262226"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 02:35:09 -0700
+ 08 Aug 2024 02:35:11 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Sai Gowtham Ch <sai.gowtham.ch@intel.com>
-Subject: [PATCH v3 1/2] drm/xe/gt: Add APIs for printing stats over debugfs
-Date: Thu,  8 Aug 2024 11:19:14 +0200
-Message-ID: <20240808091917.5761-1-nirmoy.das@intel.com>
+ Sai Gowtham Ch <sai.gowtham.ch@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v3 2/2] drm/xe: Add stats for tlb invalidation count
+Date: Thu,  8 Aug 2024 11:19:15 +0200
+Message-ID: <20240808091917.5761-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20240808091917.5761-1-nirmoy.das@intel.com>
+References: <20240808091917.5761-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,183 +73,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add skeleton APIs for recording and printing various stats over
-debugfs. This currently only added counter types stats which is backed
-by atomic_t and wrapped with CONFIG_DRM_XE_STATS so this can be disabled
-on production system.
+Add stats for tlb invalidation count which can be viewed with per GT
+stat debugfs file.
 
-v3: s/CONFIG_DRM_XE_STATS/CONFIG_DEBUG_FS(Lucas)
-v2: add missing docs
-    Add boundary checks for stats id and other improvements (Michal)
-    Fix build when CONFIG_DRM_XE_STATS is disabled(Matt)
+Example output:
+cat /sys/kernel/debug/dri/0/gt0/stats
+tlb_inval_count: 22
+
+v2: fix #include order(Tejas)
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile        |  2 ++
- drivers/gpu/drm/xe/xe_gt_debugfs.c |  2 ++
- drivers/gpu/drm/xe/xe_gt_stats.c   | 48 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_stats.h   | 32 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_types.h   |  9 ++++++
- 5 files changed, 93 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.h
+ drivers/gpu/drm/xe/xe_gt_stats.c            | 1 +
+ drivers/gpu/drm/xe/xe_gt_stats.h            | 1 +
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 2 ++
+ 3 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 1ff9602a52f6..390e5652cd89 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -287,6 +287,8 @@ ifeq ($(CONFIG_DEBUG_FS),y)
- 		i915-display/intel_pipe_crc.o
- endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+index 74ed9342af91..d6a8afbb8192 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.c
++++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+@@ -27,6 +27,7 @@ void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, int incr)
+ }
  
-+xe-$(CONFIG_DEBUG_FS) += xe_gt_stats.o
-+
- obj-$(CONFIG_DRM_XE) += xe.o
- obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 5e7fd937917a..5125d76ccfac 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -17,6 +17,7 @@
- #include "xe_gt_mcr.h"
- #include "xe_gt_sriov_pf_debugfs.h"
- #include "xe_gt_sriov_vf_debugfs.h"
-+#include "xe_gt_stats.h"
- #include "xe_gt_topology.h"
- #include "xe_hw_engine.h"
- #include "xe_lrc.h"
-@@ -286,6 +287,7 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
- 	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
- 	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
-+	{"stats", .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
+ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
++	"tlb_inval_count",
  };
  
- void xe_gt_debugfs_register(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-new file mode 100644
-index 000000000000..74ed9342af91
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-@@ -0,0 +1,48 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <linux/atomic.h>
-+
-+#include <drm/drm_print.h>
-+
-+#include "xe_gt.h"
-+#include "xe_gt_stats.h"
-+
-+/**
-+ * xe_gt_stats_incr - Increments the specified stats counter
-+ * @gt: graphics tile
-+ * @id: xe_gt_stats_id type id that needs to be incremented
-+ * @incr: value to be incremented with
-+ *
-+ * Increments the specified stats counter.
-+ */
-+void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, int incr)
-+{
-+	if (id >= __XE_GT_STATS_NUM_IDS)
-+		return;
-+
-+	atomic_add(incr, &gt->stats.counters[id]);
-+}
-+
-+static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
-+};
-+
-+/**
-+ * xe_gt_stats_print_info - Print the GT stats
-+ * @gt: graphics tile
-+ * @p: drm_printer where it will be printed out.
-+ *
-+ * This prints out all the available GT stats.
-+ */
-+int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
-+{
-+	enum xe_gt_stats_id id;
-+
-+	for (id = 0; id < __XE_GT_STATS_NUM_IDS; ++id)
-+		drm_printf(p, "%s: %d\n", stat_description[id],
-+			   atomic_read(&gt->stats.counters[id]));
-+
-+	return 0;
-+}
+ /**
 diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
-new file mode 100644
-index 000000000000..b97363e99ba7
---- /dev/null
+index b97363e99ba7..816e81c69b2e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.h
 +++ b/drivers/gpu/drm/xe/xe_gt_stats.h
-@@ -0,0 +1,32 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_STATS_H_
-+#define _XE_GT_STATS_H_
-+
-+struct xe_gt;
-+struct drm_printer;
-+
-+enum xe_gt_stats_id {
-+	/* must be the last entry */
-+	__XE_GT_STATS_NUM_IDS,
-+};
-+
-+#ifdef CONFIG_DEBUG_FS
-+int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
-+void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id, int incr);
-+#else
-+static inline int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
-+{
-+	return 0;
-+}
-+
-+static inline void xe_gt_stats_incr(struct xe_gt *gt, enum xe_gt_stats_id id,
-+				    int incr)
-+{
-+}
-+
-+#endif
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 631928258d71..8e46c0969bc7 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -10,6 +10,7 @@
- #include "xe_gt_idle_types.h"
- #include "xe_gt_sriov_pf_types.h"
- #include "xe_gt_sriov_vf_types.h"
-+#include "xe_gt_stats.h"
- #include "xe_hw_engine_types.h"
- #include "xe_hw_fence_types.h"
- #include "xe_oa.h"
-@@ -133,6 +134,14 @@ struct xe_gt {
- 		u8 has_indirect_ring_state:1;
- 	} info;
+@@ -10,6 +10,7 @@ struct xe_gt;
+ struct drm_printer;
  
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+	/** @stats: GT stats */
-+	struct {
-+		/** @stats.counters: counters for various GT stats */
-+		atomic_t counters[__XE_GT_STATS_NUM_IDS];
-+	} stats;
-+#endif
-+
- 	/**
- 	 * @mmio: mmio info for GT.  All GTs within a tile share the same
- 	 * register space, but have their own copy of GSI registers at a
+ enum xe_gt_stats_id {
++	XE_GT_STATS_ID_TLB_INVAL,
+ 	/* must be the last entry */
+ 	__XE_GT_STATS_NUM_IDS,
+ };
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 87cb76a8718c..cca9cf536f76 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -12,6 +12,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
++#include "xe_gt_stats.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+@@ -213,6 +214,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 			gt->tlb_invalidation.seqno = 1;
+ 	}
+ 	mutex_unlock(&guc->ct.lock);
++	xe_gt_stats_incr(gt, XE_GT_STATS_ID_TLB_INVAL, 1);
+ 
+ 	return ret;
+ }
 -- 
 2.42.0
 
