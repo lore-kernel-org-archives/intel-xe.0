@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D921C3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 23:07:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51369C52D7D
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 23:08:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E099710EA26;
-	Fri,  9 Aug 2024 23:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0392810EA27;
+	Fri,  9 Aug 2024 23:08:06 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9593E10EA26;
- Fri,  9 Aug 2024 23:07:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7DF410EA27;
+ Fri,  9 Aug 2024 23:08:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_user-defined_wor?=
- =?utf-8?q?kqueue_lockdep_map_for_drm_sched_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Use_user-defined_workqueu?=
+ =?utf-8?q?e_lockdep_map_for_drm_sched_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Aug 2024 23:07:51 -0000
-Message-ID: <172324487160.558655.3436733823692613018@2413ebb6fbb6>
+Date: Fri, 09 Aug 2024 23:08:04 -0000
+Message-ID: <172324488481.558655.15654762816530579633@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240809222827.3211998-1-matthew.brost@intel.com>
 In-Reply-To: <20240809222827.3211998-1-matthew.brost@intel.com>
@@ -48,13 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2ff5a7c32f9d drm-tip: 2024y-08m-09d-20h-11m-26s UTC integration manifest
-=== git am output follows ===
-Applying: workqueue: Split alloc_workqueue into internal function and lockdep init
-Applying: workqueue: Change workqueue lockdep map to pointer
-Applying: workqueue: Add interface for user-defined workqueue lockdep map
-Applying: drm/sched: Use drm sched lockdep map for submit_wq
-Applying: drm/xe: Drop GuC submit_wq pool
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+dc547930fbb1350eaf6bde84653b9ac973a411db
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a259e3d151f2bc3f4a8568aa3ceea5906382e14e
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Aug 9 15:28:27 2024 -0700
+
+    drm/xe: Drop GuC submit_wq pool
+    
+    Now that drm sched uses a single lockdep map for all submit_wq, drop the
+    GuC submit_wq pool hack.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 2ff5a7c32f9dca872aa50bc52dbb2bde6001c808 drm-intel
+239beae2667b workqueue: Split alloc_workqueue into internal function and lockdep init
+ed4e2afaacc2 workqueue: Change workqueue lockdep map to pointer
+ca918d8818fa workqueue: Add interface for user-defined workqueue lockdep map
+7bb2785df954 drm/sched: Use drm sched lockdep map for submit_wq
+a259e3d151f2 drm/xe: Drop GuC submit_wq pool
 
 
