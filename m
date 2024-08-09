@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34DC8C3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 16:52:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CC02C52D7C
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 16:52:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0254F10E99B;
-	Fri,  9 Aug 2024 16:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4534E10E99D;
+	Fri,  9 Aug 2024 16:52:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d2Y1kDzT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n+tj5aGT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E13910E999
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 16:52:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D433A10E99B
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 16:52:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723222348; x=1754758348;
+ t=1723222349; x=1754758349;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J/9loFlUOJ+Oi1+GsuwGNfN9OHhBjwnGot1jE6ZzVoY=;
- b=d2Y1kDzTeJQvthgTpEAbK678F3M1YpoltDFMkyqDOSioCU/uJaLcTdGw
- YBsZWNyVfrkb702Bmu/OTc0tO2klAFPg3d8T+CkmRVeWNt3eNdQtWcUN/
- wjsc1dZaBgC4Vklc1wec9Wiyvahf4jrSl0DuRvTY+3q2Vh9Vc68sQ5Tc3
- kbTPIl9Zr8xDaXwNQ6snoLkR7ooB5iAJGT25uZ6/sCfHDEGSUMjBC+myt
- nXpkXqhMLwotlN1301ydOhwem6oe6R12BYRXwCdckL+DNPHOslzmFJiaQ
- RNYrkomuLAbDNbjqpv4osKRvvetjtYpSwCc9Lh/N7SG1XEqcjEj/Ca218 A==;
-X-CSE-ConnectionGUID: zimozLx0RcWq8YFy0gQivg==
-X-CSE-MsgGUID: qoEK8vEwR7ad0n1YVpzq0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21379430"
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="21379430"
+ bh=kAA8AJpJ7tit9mM6vf0I2qr3cCVtGwo4nfO2zXVbLtI=;
+ b=n+tj5aGTMhqdstC2mBZfZg3RiQAp7dYjB/xxMhzHtF2Z94w/MA7uxpUp
+ qsZCNfTC1AHMCO6hNm95SHkWZO49svSrh8exxAM/4tOSrwFuWqQextdts
+ pmrHqI7RZ3Qg7bfUlh6Oy4lG8QQqirDq3vEUlctFpRrXTHY9aDqXWPAuY
+ HMkiaKmAgXWPfQAAgGILLVsIkdxNmNCK5arBK1I5XDpLiaY3pqPAnvGZr
+ OTT6aRKE9MaORRLOXwn396ZuCaoBGGJfpnMmTdsXI5EghgMXbEmdI2Q5d
+ 3DPmBceieQ2vqFl4sq5zYfuojaW82gYSoW77fxjeepSKghh6wIM08iEYd g==;
+X-CSE-ConnectionGUID: 24/06ZMCRnGijCXgknotPw==
+X-CSE-MsgGUID: WAEybmYtTKmu4Yl/q0ZDmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21379436"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="21379436"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 09:52:28 -0700
-X-CSE-ConnectionGUID: 85IZO5plTrWDMMRi+3xApQ==
-X-CSE-MsgGUID: hqT+jPMHRkyEMb5cMgqM/g==
+ 09 Aug 2024 09:52:29 -0700
+X-CSE-ConnectionGUID: w6NwP3WMSf2gu9WhpX5H8w==
+X-CSE-MsgGUID: teKzp1tqSeOJ8oGLpLZ8iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="57569333"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="57569342"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.1.253])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 09:52:26 -0700
+ 09 Aug 2024 09:52:28 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 07/12] drm/xe/tests: Add helpers to call stubs out of KUnit
- context
-Date: Fri,  9 Aug 2024 18:51:54 +0200
-Message-Id: <20240809165159.662-8-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 08/12] drm/xe/guc: Define stub for xe_guc_ct_send_recv()
+Date: Fri,  9 Aug 2024 18:51:55 +0200
+Message-Id: <20240809165159.662-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240809165159.662-1-michal.wajdeczko@intel.com>
 References: <20240809165159.662-1-michal.wajdeczko@intel.com>
@@ -68,107 +66,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The KUNIT_STATIC_STUB_REDIRECT() allows to redirect function call but will
-work only if the caller is in a KUnit context. To allow implementation of
-the more complex test cases, add helpers that allow calling stubs also out
-of a KUnit context.
+For some advanced KUnit test cases we may want to use replacement
+function instead of the real xe_guc_ct_send_recv().
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_test.h | 74 ++++++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_ct.c       | 2 ++
+ drivers/gpu/drm/xe/xe_guc_ct_types.h | 5 +++++
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_test.h b/drivers/gpu/drm/xe/tests/xe_test.h
-index b8fa409ce2b1..ffa8fa6c96f0 100644
---- a/drivers/gpu/drm/xe/tests/xe_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_test.h
-@@ -54,11 +54,85 @@ xe_cur_kunit_priv(enum xe_test_priv_id id)
- 	return priv->id == id ? priv : NULL;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index beeeb120d1fc..30536f7021fc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -938,6 +938,8 @@ int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 			u32 *response_buffer)
+ {
+ 	KUNIT_STATIC_STUB_REDIRECT(xe_guc_ct_send_recv, ct, action, len, response_buffer);
++	XE_TEST_REDIRECT(ct->send_recv, ct, action, len, response_buffer);
++
+ 	return guc_ct_send_recv(ct, action, len, response_buffer, false);
  }
  
-+/**
-+ * XE_TEST_REDIRECT() - Call a function stub if one exists.
-+ * @stub: The pointer to the function stub
-+ * @args: All of the arguments passed to this stub
-+ *
-+ * This is a function prologue which is used to allow calls to the current
-+ * function to be redirected if a KUnit is running. If the stub is NULL or
-+ * the KUnit is not running the function will continue execution as normal.
-+ *
-+ * Unlikely the KUNIT_STATIC_STUB_REDIRECT(), this redirection will work
-+ * even if the caller is not in a KUnit context (like a worker thread).
-+ *
-+ * Example:
-+ *
-+ * .. code-block:: c
-+ *
-+ *	int (*stub)(int n);
-+ *
-+ *	int real_func(int n)
-+ *	{
-+ *		XE_TEST_REDIRECT(stub, n);
-+ *		return n + 1;
-+ *	}
-+ *
-+ *	int replacement_func(int n)
-+ *	{
-+ *		return n + 100;
-+ *	}
-+ *
-+ *	void example_test(struct kunit *test)
-+ *	{
-+ *		stub = replacement_func;
-+ *		KUNIT_EXPECT_EQ(test, real_func(1), 101);
-+ *		KUNIT_EXPECT_EQ(test, real_func(1), 101);
-+ *	}
-+ */
-+#define XE_TEST_REDIRECT(stub, args...)							\
-+do {											\
-+	typeof(stub) replacement = (stub);						\
-+	if (XE_TEST_RUNNING()) {							\
-+		if (unlikely(replacement)) {						\
-+			pr_info(KUNIT_SUBTEST_INDENT "# %s: calling stub %ps\n",	\
-+				__func__, replacement);					\
-+			return replacement(args);					\
-+		}									\
-+	}										\
-+} while (0)
-+
-+static inline void __nullify_pointer(void *data)
-+{
-+	void **ptr = data;
-+
-+	*ptr = NULL;
-+}
-+
-+/**
-+ * XE_TEST_ACTIVATE_STUB() - Setup a function stub.
-+ * @test: Test case that wants to setup a function stub
-+ * @stub: The function stub pointer
-+ * @replacement: The replacement function
-+ *
-+ * This helper setups a function stub with the replacement function.
-+ * It will also automatically restore stub to NULL at the test end.
-+ */
-+#define XE_TEST_ACTIVATE_STUB(test, stub, replacement)	({					\
-+	typeof(test) __test = (test);								\
-+	typeof(stub) *__ptr = &(stub);								\
-+	typecheck_pointer(*__ptr);								\
-+	*__ptr = (replacement);									\
-+	kunit_info(__test, "activated stub %s with %ps\n", __stringify(stub), *__ptr);		\
-+	kunit_add_action_or_reset(__test, __nullify_pointer, __ptr);				\
-+})
-+
- #else /* if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST) */
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index 761cb9031298..50c024b0227d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -13,6 +13,7 @@
+ #include <linux/xarray.h>
  
- #define XE_TEST_DECLARE(x)
- #define XE_TEST_ONLY(x) 0
- #define XE_TEST_RUNNING() false
-+#define XE_TEST_REDIRECT(...) do { } while (0)
+ #include "abi/guc_communication_ctb_abi.h"
++#include "tests/xe_test.h"
  
- #define xe_cur_kunit_priv(_id) NULL
+ struct xe_bo;
  
+@@ -128,6 +129,10 @@ struct xe_guc_ct {
+ 	u32 msg[GUC_CTB_MSG_MAX_LEN];
+ 	/** @fast_msg: Message buffer */
+ 	u32 fast_msg[GUC_CTB_MSG_MAX_LEN];
++
++	XE_TEST_DECLARE(int (*send_recv)(struct xe_guc_ct *ct,
++					 const u32 *action, u32 len,
++					 u32 *response_buffer));
+ };
+ 
+ #endif
 -- 
 2.43.0
 
