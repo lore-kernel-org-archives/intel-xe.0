@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDB94C52D7C
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 22:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE285C531DC
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 22:27:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5AC910EA11;
-	Fri,  9 Aug 2024 22:27:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6C610EA15;
+	Fri,  9 Aug 2024 22:27:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k0fjWZvB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TBKRwJjM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5A4210EA11;
- Fri,  9 Aug 2024 22:27:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53EFF10EA11;
+ Fri,  9 Aug 2024 22:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723242464; x=1754778464;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5NsFxeHz5H781GU70fSvGb8d+biJ1SrQI5t3Iz1xhm4=;
- b=k0fjWZvBnj+OPNxItE2+e3o4JyIqI2391mNEbsYyblxrbHYeGaHi8xdf
- 2LxAWsI5EJwQjgzJZaFoT/b8wdnc4/MT7zXM3dcR41l7pc1nfS5lICZZn
- vgqydZzkpQgcpVJmV9fVx/gPlERz0bbmsXpxivYUd2CHcBq7s840VLLTx
- /BrSx/h7hkBf2OWCMnBfI3mZ3Ln0zBL6PlRyJqjIBETARKYFLEGkvcVJk
- Ct2HGRj6TvvInYxhqFsh/poYviHLiuAhx4nrwPDjz4ZPAvR9UmoSXZBwo
- iYD0Zkk71X7zEw0MoCesgS/cYH/dzSGBIBXhmdUTlFaF22lDZC7IzPjjI w==;
-X-CSE-ConnectionGUID: fhmsjkq6R32HHLBzYgCaNg==
-X-CSE-MsgGUID: A4GLeNRzSaqS9Ab4F0SjmA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="25229650"
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="25229650"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eXVnnnar9saKdQimYvtgB6nNuDPP7ZZqNvvDa0T9rQ4=;
+ b=TBKRwJjMvLJWsrJDcNfp16QD7jp/0nY9CR8MNFFeHFusS8V0rWo8MB+V
+ 8KmxUsZUhy9gCy232NvbP3RUUqDvA0/vueEAmNL4hWf85OyRmB9EZu/W0
+ 9DLqcNsxwcb86CvUEQNvpdO6+Q0uaDH18veNAorhEnSftLN6jDBwIIE+W
+ emacTzRMIrPlmt53RY9aTdBPxTHGlcmW2SaHT2VD+VxXxj+vq76Vpi6Cj
+ FFhvYHu/e9rhu5bln4MHKlqnJoDh6nbYgX/a/c0D8gPAbn9S/KkeRTs+b
+ utq9Uhhhc4RlDCvXto1E4eIodMdxEKgm4fyTNvV6SAeEW+ftUKf5DyBfU A==;
+X-CSE-ConnectionGUID: M7VvV6mfSaa0YV7ohO37zw==
+X-CSE-MsgGUID: LBTFT9JuRkmfQAFdV0x+5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="25229637"
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="25229637"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Aug 2024 15:27:43 -0700
-X-CSE-ConnectionGUID: FOR7/2yKRCiAdYThcoZIyA==
-X-CSE-MsgGUID: gVoIWKkETiKThh1mDYVCPA==
+X-CSE-ConnectionGUID: +Wr2FzcjTtudxBeyHgq/XQ==
+X-CSE-MsgGUID: ySeNZa6ZR7qYyxhmgGEDeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="62641783"
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="62641781"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Aug 2024 15:27:43 -0700
@@ -46,13 +46,12 @@ To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 Cc: tj@kernel.org, jiangshanlai@gmail.com, christian.koenig@amd.com,
  ltuikov89@gmail.com, daniel@ffwll.ch
-Subject: [PATCH v3 2/5] workqueue: Change workqueue lockdep map to pointer
-Date: Fri,  9 Aug 2024 15:28:24 -0700
-Message-Id: <20240809222827.3211998-3-matthew.brost@intel.com>
+Subject: [PATCH v3 0/5] Use user-defined workqueue lockdep map for drm sched
+Date: Fri,  9 Aug 2024 15:28:22 -0700
+Message-Id: <20240809222827.3211998-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240809222827.3211998-1-matthew.brost@intel.com>
-References: <20240809222827.3211998-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,77 +67,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Will help enable user-defined lockdep maps for workqueues.
+By default, each DRM scheduler instance creates an ordered workqueue for
+submission, and each workqueue creation allocates a new lockdep map.
+This becomes problematic when a DRM scheduler is created for every user
+queue (e.g., in DRM drivers with firmware schedulers like Xe) due to the
+limited number of available lockdep maps. With numerous user queues
+being created and destroyed, lockdep may run out of maps, leading to
+lockdep being disabled. Xe mitigated this by creating a pool of
+workqueues for DRM scheduler use. However, this approach also encounters
+issues if the driver is unloaded and reloaded multiple times or if many
+VFs are probed.
 
-Cc: Tejun Heo <tj@kernel.org>
-Cc: Lai Jiangshan <jiangshanlai@gmail.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- kernel/workqueue.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+To address this, we propose creating a single lockdep map for all DRM
+scheduler workqueues, which will also resolve issues for other DRM
+drivers that create a DRM scheduler per user queue.
 
-diff --git a/kernel/workqueue.c b/kernel/workqueue.c
-index 90a98c9b0ac6..24df85589dc0 100644
---- a/kernel/workqueue.c
-+++ b/kernel/workqueue.c
-@@ -364,7 +364,8 @@ struct workqueue_struct {
- #ifdef CONFIG_LOCKDEP
- 	char			*lock_name;
- 	struct lock_class_key	key;
--	struct lockdep_map	lockdep_map;
-+	struct lockdep_map	__lockdep_map;
-+	struct lockdep_map	*lockdep_map;
- #endif
- 	char			name[WQ_NAME_LEN]; /* I: workqueue name */
- 
-@@ -3203,7 +3204,7 @@ __acquires(&pool->lock)
- 	lockdep_start_depth = lockdep_depth(current);
- 	/* see drain_dead_softirq_workfn() */
- 	if (!bh_draining)
--		lock_map_acquire(&pwq->wq->lockdep_map);
-+		lock_map_acquire(pwq->wq->lockdep_map);
- 	lock_map_acquire(&lockdep_map);
- 	/*
- 	 * Strictly speaking we should mark the invariant state without holding
-@@ -3237,7 +3238,7 @@ __acquires(&pool->lock)
- 	pwq->stats[PWQ_STAT_COMPLETED]++;
- 	lock_map_release(&lockdep_map);
- 	if (!bh_draining)
--		lock_map_release(&pwq->wq->lockdep_map);
-+		lock_map_release(pwq->wq->lockdep_map);
- 
- 	if (unlikely((worker->task && in_atomic()) ||
- 		     lockdep_depth(current) != lockdep_start_depth ||
-@@ -3873,8 +3874,8 @@ static void touch_wq_lockdep_map(struct workqueue_struct *wq)
- 	if (wq->flags & WQ_BH)
- 		local_bh_disable();
- 
--	lock_map_acquire(&wq->lockdep_map);
--	lock_map_release(&wq->lockdep_map);
-+	lock_map_acquire(wq->lockdep_map);
-+	lock_map_release(wq->lockdep_map);
- 
- 	if (wq->flags & WQ_BH)
- 		local_bh_enable();
-@@ -3908,7 +3909,7 @@ void __flush_workqueue(struct workqueue_struct *wq)
- 	struct wq_flusher this_flusher = {
- 		.list = LIST_HEAD_INIT(this_flusher.list),
- 		.flush_color = -1,
--		.done = COMPLETION_INITIALIZER_ONSTACK_MAP(this_flusher.done, wq->lockdep_map),
-+		.done = COMPLETION_INITIALIZER_ONSTACK_MAP(this_flusher.done, (*wq->lockdep_map)),
- 	};
- 	int next_color;
- 
-@@ -4768,7 +4769,8 @@ static void wq_init_lockdep(struct workqueue_struct *wq)
- 		lock_name = wq->name;
- 
- 	wq->lock_name = lock_name;
--	lockdep_init_map(&wq->lockdep_map, lock_name, &wq->key, 0);
-+	wq->lockdep_map = &wq->__lockdep_map;
-+	lockdep_init_map(wq->lockdep_map, lock_name, &wq->key, 0);
- }
- 
- static void wq_unregister_lockdep(struct workqueue_struct *wq)
+This solution has been tested by unloading and reloading the Xe driver.
+Before this series, around 30 driver reloads would result in lockdep
+being turned off. After implementing the series, the driver can be
+unloaded and reloaded hundreds of times without issues.
+
+v2:
+ - Split workqueue changes into multiple patches
+ - Add alloc_workqueue_lockdep_map (Tejun)
+ - Drop RFC
+v3:
+ - Drop __WQ_USER_OWNED_LOCKDEP (Tejun)
+ - static inline alloc_ordered_workqueue_lockdep_map (Tejun)
+
+Matt
+
+Matthew Brost (5):
+  workqueue: Split alloc_workqueue into internal function and lockdep
+    init
+  workqueue: Change workqueue lockdep map to pointer
+  workqueue: Add interface for user-defined workqueue lockdep map
+  drm/sched: Use drm sched lockdep map for submit_wq
+  drm/xe: Drop GuC submit_wq pool
+
+ drivers/gpu/drm/scheduler/sched_main.c | 11 ++++
+ drivers/gpu/drm/xe/xe_guc_submit.c     | 60 +--------------------
+ drivers/gpu/drm/xe/xe_guc_types.h      |  7 ---
+ include/linux/workqueue.h              | 52 ++++++++++++++++++
+ kernel/workqueue.c                     | 75 ++++++++++++++++++++------
+ 5 files changed, 124 insertions(+), 81 deletions(-)
+
 -- 
 2.34.1
 
