@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7542DC3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 19:51:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42236C52D7C
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 20:00:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A5C710E9F6;
-	Fri,  9 Aug 2024 19:51:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fl/2kyjv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33DD010E9F6
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 19:51:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723233064; x=1754769064;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=iXYUKZqabGz/x1mxi71l3qDro11hMbbWOeR1G8baI/w=;
- b=Fl/2kyjv8ZSnBBprVBetDD0G9nZJ0FwajkTHbL2NnVmTKqd+/s7YpaRf
- hP8XjdWVvcBAHe2MQji6iTj0uesilF1eaHjwg3o2B7k2DmFc1cVUz7xjc
- hg6UyeZut86HDyIWTLt5VUldYfX+RMBtXK4unyEqkLHnIkEoKCQugVE2z
- DQ6udzjc5KsZuzGWOYE/zrABVUPFsvVUfDKF7fM8Yisnb4PEPj59fSs9N
- vCnVl+vc6N7Ns87v1LKOkj6U5JpWrW9sqY/CGW41TAMmKKUtL4hzn3zjI
- 9eZc4UfV7N9AZgRAZ3arNTDTcCzt1ZY44/ieOBBhDUM5aIXKP+yaOF1Y+ g==;
-X-CSE-ConnectionGUID: uu+4BasFRnS+0kkMXXWLDg==
-X-CSE-MsgGUID: gydx2YBLSnWPJiXyWCsH7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="43941661"
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="43941661"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 12:51:03 -0700
-X-CSE-ConnectionGUID: AS6EntzDRfe2rGTVI/iZRg==
-X-CSE-MsgGUID: G97kepBJRXGXWnKQWlFuWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="62313719"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.245.192])
- ([10.245.245.192])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 12:51:02 -0700
-Message-ID: <5e48b665-dd7f-4707-a963-9d5e8fd53e14@linux.intel.com>
-Date: Fri, 9 Aug 2024 21:50:39 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 128C410E9E0;
+	Fri,  9 Aug 2024 20:00:59 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05A7510E9E0;
+ Fri,  9 Aug 2024 20:00:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6745158316632319589=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Move VM dma-resv lock from xe_exec_queue_create
- to __xe_exec_queue_init
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240724152831.1848325-1-matthew.brost@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240724152831.1848325-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Allow_exec_queue_backend_ops_whi?=
+ =?utf-8?q?ch_issue_message_to_be_called_multiple_times?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 09 Aug 2024 20:00:58 -0000
+Message-ID: <172323365801.552626.5668283967669347867@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240809191929.3138956-1-matthew.brost@intel.com>
+In-Reply-To: <20240809191929.3138956-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,81 +36,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+--===============6745158316632319589==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Den 2024-07-24 kl. 17:28, skrev Matthew Brost:
-> The critical section which requires the VM dma-resv is the call
-> xe_lrc_create in __xe_exec_queue_init. Move this lock to
-> __xe_exec_queue_init holding it just around xe_lrc_create. Not only is
-> good practice, this also fixes a locking double of the VM dma-resv in
-> the error paths of __xe_exec_queue_init as xe_lrc_put tries to acquire
-> this too resulting in a deadlock.
-> 
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Matthw Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_exec_queue.c | 23 ++++++++++++++---------
->   1 file changed, 14 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 69867a7b7c77..0d72846af9bf 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -105,22 +105,35 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
->   
->   static int __xe_exec_queue_init(struct xe_exec_queue *q)
->   {
-> +	struct xe_vm *vm = q->vm;
->   	int i, err;
->   
-> +	if (vm) {
-> +		err = xe_vm_lock(vm, true);
-> +		if (err)
-> +			return err;
-> +	}
-> +
->   	for (i = 0; i < q->width; ++i) {
->   		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K);
->   		if (IS_ERR(q->lrc[i])) {
->   			err = PTR_ERR(q->lrc[i]);
-> -			goto err_lrc;
-> +			goto err_unlock;
->   		}
->   	}
->   
-> +	if (vm)
-> +		xe_vm_unlock(vm);
-> +
->   	err = q->ops->init(q);
->   	if (err)
->   		goto err_lrc;
->   
->   	return 0;
->   
-> +err_unlock:
-> +	if (vm)
-> +		xe_vm_unlock(vm);
->   err_lrc:
->   	for (i = i - 1; i >= 0; --i)
->   		xe_lrc_put(q->lrc[i]);
-> @@ -140,15 +153,7 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
->   	if (IS_ERR(q))
->   		return q;
->   
-> -	if (vm) {
-> -		err = xe_vm_lock(vm, true);
-> -		if (err)
-> -			goto err_post_alloc;
-> -	}
-> -
->   	err = __xe_exec_queue_init(q);
-> -	if (vm)
-> -		xe_vm_unlock(vm);
->   	if (err)
->   		goto err_post_alloc;
->   
+== Series Details ==
 
+Series: Allow exec queue backend ops which issue message to be called multiple times
+URL   : https://patchwork.freedesktop.org/series/137102/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d_BAT -> xe-pw-137102v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-137102v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-137102v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-137102v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] +2 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137102v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7964 -> IGT_7965
+  * Linux: xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d -> xe-pw-137102v1
+
+  IGT_7964: 0dabf88262c0349d261248638064b97da35369f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7965: 965de1e69e91e331eee9d9f53e46b4652ba157c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d: 13384fb5b1e76e7012902cc10b1e49023358dc1d
+  xe-pw-137102v1: 137102v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137102v1/index.html
+
+--===============6745158316632319589==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Allow exec queue backend ops which issue message to be called multiple times</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137102/">https://patchwork.freedesktop.org/series/137102/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137102v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137102v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d_BAT -&gt; xe-pw-137102v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-137102v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-137102v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-137102v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137102v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +2 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7964 -&gt; IGT_7965</li>
+<li>Linux: xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d -&gt; xe-pw-137102v1</li>
+</ul>
+<p>IGT_7964: 0dabf88262c0349d261248638064b97da35369f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7965: 965de1e69e91e331eee9d9f53e46b4652ba157c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1742-13384fb5b1e76e7012902cc10b1e49023358dc1d: 13384fb5b1e76e7012902cc10b1e49023358dc1d<br />
+  xe-pw-137102v1: 137102v1</p>
+
+</body>
+</html>
+
+--===============6745158316632319589==--
