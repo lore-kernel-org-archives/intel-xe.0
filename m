@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAD1EC52D7C
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 17:28:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2E29C52D7C
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 17:29:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA4910E0E2;
-	Fri,  9 Aug 2024 17:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B38BF10E9B0;
+	Fri,  9 Aug 2024 17:29:08 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF36910E0E2;
- Fri,  9 Aug 2024 17:28:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A15010E9B0;
+ Fri,  9 Aug 2024 17:29:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Improve_VF_con?=
- =?utf-8?q?trol_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PF=3A_Improve_VF_control_?=
+ =?utf-8?q?=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Aug 2024 17:28:35 -0000
-Message-ID: <172322451584.552626.3328050517602277134@2413ebb6fbb6>
+Date: Fri, 09 Aug 2024 17:29:07 -0000
+Message-ID: <172322454736.552689.10807318817595488157@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240809165159.662-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240809165159.662-1-michal.wajdeczko@intel.com>
@@ -44,24 +44,141 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: PF: Improve VF control (rev2)
 URL   : https://patchwork.freedesktop.org/series/137095/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 13384fb5b1e7 drm-tip: 2024y-08m-09d-16h-57m-03s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pf: Add function to sanitize VF resources
-Applying: drm/xe/pf: Fix documentation formatting
-Applying: drm/xe/pf: Drop GuC notifications for non-existing VF
-Applying: drm/xe/pf: Improve VF control
-Applying: drm/xe/tests: Allow deferred function call during KUnit test
-Applying: drm/xe/tests: Add helper macro to detect if KUnit is running
-Applying: drm/xe/tests: Add helpers to call stubs out of KUnit context
-Applying: drm/xe/guc: Define stub for xe_guc_ct_send_recv()
-Applying: drm/xe/pf: Define stub for pf_sanitize_vf_resources()
-Applying: drm/xe/pf: Define stub for pf_send_vf_control_cmd()
-Applying: drm/xe/tests: Add KUnit tests for VF control state machines
-Applying: drm/xe/tests: Add KUnit tests for VF control GuC messages
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+dc547930fbb1350eaf6bde84653b9ac973a411db
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 212c7364eedabdf4b150159217ed04cddfbe3938
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Fri Aug 9 18:51:59 2024 +0200
+
+    drm/xe/tests: Add KUnit tests for VF control GuC messages
+    
+    Add KUnit tests (~50) to cover all possible VF control messages
+    that could be seen by the PF, either expected or corrupted.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 13384fb5b1e76e7012902cc10b1e49023358dc1d drm-intel
+0a484014e46f drm/xe/pf: Add function to sanitize VF resources
+9f652709710d drm/xe/pf: Fix documentation formatting
+8578b29fcb67 drm/xe/pf: Drop GuC notifications for non-existing VF
+e279e187175d drm/xe/pf: Improve VF control
+-:1368: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1368: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1449 lines checked
+e040e86a370b drm/xe/tests: Allow deferred function call during KUnit test
+-:228: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'func' - possible side-effects?
+#228: FILE: drivers/gpu/drm/xe/tests/xe_kunit_helpers.h:47:
++#define xe_kunit_helper_delayed_call(test, delay, func, args...)	\
++	_Generic(func,							\
++		 void (*)(struct xe_device *) :				\
++			xe_kunit_helper_delayed_call_void_xe_device,	\
++		 void (*)(struct xe_gt *) :				\
++			xe_kunit_helper_delayed_call_void_xe_gt,	\
++		 int (*)(struct xe_gt *, unsigned int) :		\
++			xe_kunit_helper_delayed_call_int_xe_gt_uint	\
++	)(test, delay, func, args)
+
+-:229: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#229: FILE: drivers/gpu/drm/xe/tests/xe_kunit_helpers.h:48:
++	_Generic(func,							\
+
+-:230: CHECK:SPACING: No space is necessary after a cast
+#230: FILE: drivers/gpu/drm/xe/tests/xe_kunit_helpers.h:49:
++		 void (*)(struct xe_device *) :				\
+
+-:232: CHECK:SPACING: No space is necessary after a cast
+#232: FILE: drivers/gpu/drm/xe/tests/xe_kunit_helpers.h:51:
++		 void (*)(struct xe_gt *) :				\
+
+total: 0 errors, 0 warnings, 4 checks, 199 lines checked
+98602ffea42f drm/xe/tests: Add helper macro to detect if KUnit is running
+04c60e3bd72b drm/xe/tests: Add helpers to call stubs out of KUnit context
+-:58: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
+#58: FILE: drivers/gpu/drm/xe/tests/xe_test.h:93:
++#define XE_TEST_REDIRECT(stub, args...)							\
++do {											\
++	typeof(stub) replacement = (stub);						\
++	if (XE_TEST_RUNNING()) {							\
++		if (unlikely(replacement)) {						\
++			pr_info(KUNIT_SUBTEST_INDENT "# %s: calling stub %ps\n",	\
++				__func__, replacement);					\
++			return replacement(args);					\
++		}									\
++	}										\
++} while (0)
+
+total: 0 errors, 1 warnings, 0 checks, 85 lines checked
+c0262a6eb9dd drm/xe/guc: Define stub for xe_guc_ct_send_recv()
+d5ec33588fae drm/xe/pf: Define stub for pf_sanitize_vf_resources()
+9af0ff056bee drm/xe/pf: Define stub for pf_send_vf_control_cmd()
+218db1d2315c drm/xe/tests: Add KUnit tests for VF control state machines
+-:14: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#14: 
+new file mode 100644
+
+-:309: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'X' - possible side-effects?
+#309: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_control_kunit.c:291:
++#define MAKE_STATE_PARAM(X) { .name = #X, .bits = X, .num_bits = ARRAY_SIZE(X) }
+
+total: 0 errors, 1 warnings, 1 checks, 1382 lines checked
+212c7364eeda drm/xe/tests: Add KUnit tests for VF control GuC messages
+-:21: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#21: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_control_kunit.c:1362:
++#define PREP_MSG_0_VF_STATE_NOTIFY(mbz)							\
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC) |			\
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |			\
++	FIELD_PREP_CONST(GUC_HXG_EVENT_MSG_0_DATA0, (mbz)) |				\
++	FIELD_PREP_CONST(GUC_HXG_EVENT_MSG_0_ACTION, GUC_ACTION_GUC2PF_VF_STATE_NOTIFY)
+
+-:27: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#27: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_control_kunit.c:1368:
++#define PREP_MSG_VF_STATE_NOTIFY(mbz, vfid, e)						\
++	PREP_MSG_0_VF_STATE_NOTIFY(mbz),						\
++	FIELD_PREP_CONST(GUC2PF_VF_STATE_NOTIFY_EVENT_MSG_1_VFID, (vfid)),		\
++	FIELD_PREP_CONST(GUC2PF_VF_STATE_NOTIFY_EVENT_MSG_2_EVENT, (e))
+
+-:118: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'X' - possible side-effects?
+#118: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_control_kunit.c:1459:
++#define MAKE_MSG_PARAM(X) { .name = #X, .msg = X, .len = ARRAY_SIZE(X) }
+
+-:120: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#120: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_control_kunit.c:1461:
++#define LIST_MSG_PARAM_VALID			\
++	MAKE_MSG_PARAM(msg_pf_enable),		\
++	MAKE_MSG_PARAM(msg_vf_flr),		\
++	MAKE_MSG_PARAM(msg_vf_flr_done),	\
++	MAKE_MSG_PARAM(msg_vf_pause_done),	\
++	MAKE_MSG_PARAM(msg_vf_fixup)
+
+-:127: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#127: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_control_kunit.c:1468:
++#define LIST_MSG_PARAM_INVALID			\
++	MAKE_MSG_PARAM(msg_no_data),		\
++	MAKE_MSG_PARAM(msg_pf_too_long),	\
++	MAKE_MSG_PARAM(msg_pf_too_short),	\
++	MAKE_MSG_PARAM(msg_pf_bad_mbz),		\
++	MAKE_MSG_PARAM(msg_pf_invalid_event),	\
++	MAKE_MSG_PARAM(msg_pf_unknown_event),	\
++	MAKE_MSG_PARAM(msg_vf_too_long),	\
++	MAKE_MSG_PARAM(msg_vf_too_short),	\
++	MAKE_MSG_PARAM(msg_vf_bad_mbz),		\
++	MAKE_MSG_PARAM(msg_vf_bad_vfid),	\
++	MAKE_MSG_PARAM(msg_vf_invalid_event),	\
++	MAKE_MSG_PARAM(msg_vf_unknown_event)
+
+total: 4 errors, 0 warnings, 1 checks, 197 lines checked
 
 
