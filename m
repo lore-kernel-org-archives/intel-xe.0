@@ -4,170 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BE6FC49EA1
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 04:51:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 419F4C3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 07:12:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52FE810E861;
-	Fri,  9 Aug 2024 04:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A28B410E068;
+	Fri,  9 Aug 2024 07:12:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nc9ztWAm";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="x/AvmDJn";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="pUQyeNn8";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="x/AvmDJn";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="pUQyeNn8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6469810E85B
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 04:51:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723179111; x=1754715111;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=WLW/ckWaSCguEFSp1AIZPQmsbfpL2jFylaJtfMuhuYo=;
- b=Nc9ztWAmeVJQWu8n4gCL5INNu7wZhKUWc3WIofCE0lsDthyMVN1I+9je
- m4OHTrdJV5u1UL8v2vowP+sazNeoANhBqqBaAWlnn0r6Rjfgnoq5taPu6
- do5sTzxzSb36dmaCtEafQswD99vKHZ60vXxLhHNFHZjNp7ohurNQhsZDy
- L5Bbi8oSceaxzdDFjmiCkRHlVJ9kb4B2J7ykiRUsyPuxr+21A+KEzDst1
- XQzpFiLXQe2b2fgEfO666OzorVNUpSlyIrDdGp8Wn5oXwy5aLgf2nkTn1
- q3KVFYHqdskkSQITzm9eFHfCucq9ByNxpKYqr+Cy+o7SWoGEBgWnldIW5 Q==;
-X-CSE-ConnectionGUID: chGlEFRkTzaBb14daeiqqg==
-X-CSE-MsgGUID: /wQXkf1aS5iMuUAD1JrIvw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="25134110"
-X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="25134110"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 21:51:50 -0700
-X-CSE-ConnectionGUID: 1SG2zXgEQ5amrMjNosu7FQ==
-X-CSE-MsgGUID: ViNwDpJ5TxKpObnUKHbTpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="61568163"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Aug 2024 21:51:50 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 8 Aug 2024 21:51:49 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 8 Aug 2024 21:51:49 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 8 Aug 2024 21:51:49 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 8 Aug 2024 21:51:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TxpaQ732Av0hr3nKsIuBbby9dc7QEBOg+7YDGUq/ZAan2+iOti8354q89E69wiJXiOdZbAPcNYBql06qQ9BczeDe2CfQv6jZB4ahbgz73DTWBrPuuSehYAbU8Mf5jMcGe7j/Hi9kfDpIDFjEi+TqhTFqRterpXo1bPHATrAERra5Y3U358AYvVYYdlypNDqHdWbkjZo4fvJqy+leYMEQE1oIz3bNRQNXnnvC99MGTs1Pe3VeJWH6X4EYbNvOg7DL0z1bCgq0TlyIXYdwoeZNIq84M7sio9Hn3JMbC4EbxO7hfvRBTdIRMeD5Nh3X5g77BJzQnaaQRVtAYwRy4vuaRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qWt8expNs1uM6ZhoBVIfEMv/7b0ELYMX+4EF9+VkJPk=;
- b=gvp672q13SiMpVrQf0AroNlpnvXYZh5oHPpc9DV+zaRf97K1r4RyErbGGphj9r2+7ui/h3MnrJss0QD1b6nfnjE9ANKzAvQcdjc845OiQscEns3Yl16HWyLuE+MBPHakRVw/NTMt+tMmkdgK9sbnKEG7sdIqbYYiVvH9iUQTtjVsFnVdAtRa/Iim9i32Jo8yDr1kNaHh83Fpj6iX3+TqRod/3WGblPkr3RGBe8YzdzUvltY0T3l3RmbZYkOinjCNW8kYkT0SHRLHP1yL1eJeQJPc2qSDlnyYg9xetG1Bi+Va7234RZCgnpPvBru+YHYn3TxaE+h0EVKH1g6kBoks7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA2PR11MB4827.namprd11.prod.outlook.com (2603:10b6:806:11f::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.21; Fri, 9 Aug
- 2024 04:51:46 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7828.031; Fri, 9 Aug 2024
- 04:51:46 +0000
-Date: Fri, 9 Aug 2024 04:50:23 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Umesh Nerlige Ramappa
- <umesh.nerlige.ramappa@intel.com>, Jose Souza <jose.souza@intel.com>, "Lionel
- Landwerlin" <lionel.g.landwerlin@intel.com>
-Subject: Re: [PATCH 5/8] drm/xe/oa: Signal output fences
-Message-ID: <ZrWgD7cytpu8NIdR@DUT025-TGLU.fm.intel.com>
-References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>
- <20240808174139.4027534-6-ashutosh.dixit@intel.com>
- <ZrVSgjTbzPameTeb@DUT025-TGLU.fm.intel.com>
- <87mslmcoxi.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87mslmcoxi.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0264.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::29) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3E410E042;
+ Fri,  9 Aug 2024 07:12:45 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id A5D14219CB;
+ Fri,  9 Aug 2024 07:12:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1723187563; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=w071fiM7L3tuhJ1q6MDJ6CUnmo4/yjURXUym4vUqqM8=;
+ b=x/AvmDJnU3VmORYeE6LsCjcR5T7egScbAUpauYCnXlwxn9xXUYEKuekK4OZCJQ79s025Kb
+ WjsnUJ0tku+hGMsjP7wiFLIgYubXO5dDHNtkQhZpIntwxrk+kIEcAfGaWn6peur2sZg602
+ shZmFgNG7FwvD5WNRXHSCRsSvnXvfXY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1723187563;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=w071fiM7L3tuhJ1q6MDJ6CUnmo4/yjURXUym4vUqqM8=;
+ b=pUQyeNn89vA8DDirHXTZgU9iRhn8vX70pGE8p89WulHQa6ZgX46d/4YUB7gbu4kiK19vSe
+ bigYdSjgLfJYHGAQ==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b="x/AvmDJn";
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=pUQyeNn8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1723187563; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=w071fiM7L3tuhJ1q6MDJ6CUnmo4/yjURXUym4vUqqM8=;
+ b=x/AvmDJnU3VmORYeE6LsCjcR5T7egScbAUpauYCnXlwxn9xXUYEKuekK4OZCJQ79s025Kb
+ WjsnUJ0tku+hGMsjP7wiFLIgYubXO5dDHNtkQhZpIntwxrk+kIEcAfGaWn6peur2sZg602
+ shZmFgNG7FwvD5WNRXHSCRsSvnXvfXY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1723187563;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=w071fiM7L3tuhJ1q6MDJ6CUnmo4/yjURXUym4vUqqM8=;
+ b=pUQyeNn89vA8DDirHXTZgU9iRhn8vX70pGE8p89WulHQa6ZgX46d/4YUB7gbu4kiK19vSe
+ bigYdSjgLfJYHGAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3876713A7D;
+ Fri,  9 Aug 2024 07:12:43 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id yPN9DGvBtWb7DQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 09 Aug 2024 07:12:43 +0000
+Date: Fri, 9 Aug 2024 09:12:41 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20240809071241.GA222501@localhost.localdomain>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA2PR11MB4827:EE_
-X-MS-Office365-Filtering-Correlation-Id: e24477f3-562a-41ed-e15e-08dcb82ef904
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?XQ23CgYMk5rausstldGIjNzJ9zup729F3U8rs9mZzKoguWyvUzfkdldEvf7O?=
- =?us-ascii?Q?1NVKhRflCQD6pq6h0E8xGF2NMlYjLX4hcjZfH+eBg7TlRU1yuuFTfBeudWhw?=
- =?us-ascii?Q?EWJJDEbVhglA+u9t4mmlg+Hx0Zn8UZt+bhXZAiyNTPClk7W3uqa9hAoFzyiJ?=
- =?us-ascii?Q?Udz5z9bPevUBTPcNxYIdZLDOyyT/jQTmIvfX/pGSTjxsHnGWgU5CxAXA0JY+?=
- =?us-ascii?Q?q2KmOS1PP954CvxEtM6HB9kJSG06WUHMqhI/HceWa/y2WrxrAD13ovWCMivD?=
- =?us-ascii?Q?tXB4w+W0WSkY21w8gMGonulR/T1Iwuu49HKmrNV3XaS8fKGWfIt853LcBzkb?=
- =?us-ascii?Q?Jx/zVFIh8boOa54oNV5TJOyjo6WxKiM3052auLvkN7GSclnkjz8bKeh8FOxV?=
- =?us-ascii?Q?7IcQUCFoSSIomwGnWHi2d8J2LxSyhr+Vf8UQ8/DPVQnjeQt6ca4Dq7mBm9hE?=
- =?us-ascii?Q?d2+YZUnfOPEfI2R6hLlU+gdzsTav6E1p8kH3A/e1A2iLJchYn5yeHX+pY0Fj?=
- =?us-ascii?Q?fJtDPGA3WfU4hzUvX3h5NeBNKG/HxcrMYM29YfO5vf153HXLX6iRHRelvqvD?=
- =?us-ascii?Q?4Y7e//pYCeRDdhj8NICatOdDLohS5gLr0bXgk16+Wh55nlTrHs0GU5f6FHyo?=
- =?us-ascii?Q?fl5JXIwGWTvSHzE5wyBmftaaIhlFC/5v6dy/sIoav/I1WXdEA5/I1aaBghhc?=
- =?us-ascii?Q?JWx5Q+1epJk6ucccteWLKGM/6kZwIlPrL0Hh34N3iUZNJmV9Pl++5DOO/QlD?=
- =?us-ascii?Q?sOYMOZJCnqQ1WTSjZG+F7v/VWjX/8XM1m+K0EAFAr18+GaC3kY8SuJGq6x66?=
- =?us-ascii?Q?yo1zud75ZUXjsUHgDTnuoQrv3/gJ94dL5bjL/GA/bIsvkmSdw6wZBIFoH4Tm?=
- =?us-ascii?Q?l8z28yf10VcPFMky80vEmUatAidMMoFwPXqaOmTIDFsVeswfNSd9N6Exjim3?=
- =?us-ascii?Q?Mvz3miZaSWsOmOtH07KfhWr20u4m3pBEfBFrbaz4pL1r+WVJcKNA2y/QyAzQ?=
- =?us-ascii?Q?2NL7nSxw2/o3/quBgLtk+qlUlEvgcNUtFP8C68mb4HF9pWDV2bi6P/iqlt2k?=
- =?us-ascii?Q?LOpEKIRIpPOz6fYoaRrMyU2YWB4tnCMqVQlFSnpyjKzwBwG17y0n1SIclcBH?=
- =?us-ascii?Q?irxveyPuc/YSoDksnISz1bYiZAuKDsLxJ6yxBjJ0UpPHHuxND7H9wqO9PJ4z?=
- =?us-ascii?Q?XQ6C1/17m3QIDx7NKZJqbWZMlppVwKa2h+Gp6b6cRY5mqQkENAtP1IuRnk+A?=
- =?us-ascii?Q?dUVDZQA420hA958qBf0E3o1CmQcCiJhMeG8JttwPoMAS2zCAB9vWpbyD20pP?=
- =?us-ascii?Q?VyUYngTNpKrCRyEsP1R8qkqNwg6tb/hATeWJj3g+urrnYA=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FSEUfde7ZIcwPjAByr1ejBGb9AF2Bdr7+yue2HustpjdOLaNb165GwAdAmS8?=
- =?us-ascii?Q?559tKdmBySb6bqQm+K90MPwMT3AtoN4BQCwIwiobabpzyoXXEVHankENKINF?=
- =?us-ascii?Q?6Fa3PtCLfZ38gDnWSBHx4Dyvivr//wKjezUWlxD4WFuE/NXMq7Aq/4Eik16d?=
- =?us-ascii?Q?/7HdDMpS5nTo2VZLEqHeB9IQ8UWgmVMuxe7nViU2vQWYLdHjlgaIeN72k7/2?=
- =?us-ascii?Q?/5Ce8wyDD9CAzTBgS2EuEDoBLl8699g9PUWn++EE7cIwsoB/Y2CmQ0zMasmX?=
- =?us-ascii?Q?tMVsXWIRPwKKqiIn1tdyheUVOJIDVzPVMGeeSiIqT/61RamLKqyi2yom2Xjw?=
- =?us-ascii?Q?xYE2pgUNZXy8H/elkxqD0++7gbFgU2J6vGcpNkTGOCVWOOk8rrhCSkWwgnpD?=
- =?us-ascii?Q?Jrm2oqULcoBC8OoiVE8nse8V1Xk8IfVMOTzMmJtBoy9+U+01XpPEuayFO5xI?=
- =?us-ascii?Q?yOqUVCHRcmsn9KcEIpBSDmjtFtPcUN/KMfKKc31Ou7JGRyY6JOHRO/Ijc3eS?=
- =?us-ascii?Q?7VDM6fEa4O1JNIDGoBXdVyBzuLW8Q+KhjRRnZflBKv36tad2pM6fXsrGxODe?=
- =?us-ascii?Q?vl0t3yJKmcJRRxEkEd1Cgsj6ubXccCmRvbR487vvWkMsdyGGfSe73wykEz7N?=
- =?us-ascii?Q?lb4Vc+ZygGIlv8mh5OOnsdBnY1YXvwsPK+77d9NaYSrOt+Ui33SXKDMiSnrN?=
- =?us-ascii?Q?egIpVwSSsTRM8dMpiVBxgE6VSbvU53DT9rC9dUgsI+31dEiZvXxPycPmGMWd?=
- =?us-ascii?Q?88R2qDHfdInSWOpq8rtX8geR0r8Y/NN0nihHbkySFFKRVFmG8aAlY+WzkjZ0?=
- =?us-ascii?Q?7oOBvQPuAuYn9PDMA1pYvWJ8FvqK30/CIqmt5wjsqDYfDAAsHPd2mO8HU4yL?=
- =?us-ascii?Q?wwysoybDMnnDRVW996gXWmP2PdEzzHQ1WGLmhX0yOxNxHXHCyeMQQEBSzvP+?=
- =?us-ascii?Q?Dh2rovB4YQjg9nR/V9QKEi+/Sd8bwlxqKFXhv2R3Z7wtpeeK5YNmksIZ6Q3M?=
- =?us-ascii?Q?V6Cfjgs2LKs3mQbCLrUz1WWP1Z/uxiH2f4E7Y6HMHDoMCKKlFsLTWwy9T3Oj?=
- =?us-ascii?Q?GLeqR9RP+5AmK7ydeaKlfp7gFd78pVt54FUS6fTTm584UtpL9s3ytnAFaOep?=
- =?us-ascii?Q?PJW8q7x233Yrzc9LuS6NuxrA7xuDAZNzedJBNJ5ozwIaKLk0pZ54nGO9kIeK?=
- =?us-ascii?Q?OvVmPa82WoDxA5yoeQRhAFxncdYgSRYKJw726hn4OwzT4j0zc/CjIQ8KrxQk?=
- =?us-ascii?Q?bqjYjFbke9J8yxUAjJ0M3z44i3e4UwgvIgLFQy/VIE35v+KXMfMG2ma4U5mX?=
- =?us-ascii?Q?23QwzeitEZKH718IPPYstw6JgEyF7HZpPvMNUixIe8XYj/0YV4JdLz/g2+I8?=
- =?us-ascii?Q?bljIg8ouvKAiaepeovmAoJezbO8tS9heHaBkjRHF+HrR7P9II2MrjlUT8jm7?=
- =?us-ascii?Q?fOLWe/LqOatV0ocdh7ZH1QeCqMBu/WlIrTvCqVjgN9wA8gMP1tRtKA947t0c?=
- =?us-ascii?Q?NDLej0/AGMwegD3nSD7fLrut3Lk5c3fiH6VJvxGsGZq1dQKqovPqDT3z9Fq8?=
- =?us-ascii?Q?a9vhsy5ZJx2A8BdUaGUgdQAIcx9mDYyUITWrq9uP5GvZtAYzpSb5KzRkHADm?=
- =?us-ascii?Q?uw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e24477f3-562a-41ed-e15e-08dcb82ef904
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2024 04:51:46.6644 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kpqiRdG26RUklMODLd254+YyRX/+Qdo+DUEotbUt4EktNfkJ0Y/zP+PWQVgz9lJuhzr90kxt6Z5GXh74sb1Rcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4827
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-3.51 / 50.00];
+ DWL_DNSWL_MED(-2.00)[suse.de:dkim];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[16];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: A5D14219CB
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,183 +124,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 08, 2024 at 09:15:05PM -0700, Dixit, Ashutosh wrote:
-> On Thu, 08 Aug 2024 16:19:30 -0700, Matthew Brost wrote:
-> >
-> 
-> Hi Matt,
-> 
-> > On Thu, Aug 08, 2024 at 10:41:36AM -0700, Ashutosh Dixit wrote:
-> > > Complete 'struct xe_oa_fence' to include the dma_fence used to signal
-> > > output fences in the xe_sync array. The fences are signalled
-> > > asynchronously. When there are no output fences to signal, the OA
-> > > configuration wait is synchronously re-introduced into the ioctl.
-> > >
-> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_oa.c | 46 +++++++++++++++++++++++++++++++++++---
-> > >  1 file changed, 43 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> > > index 416e031ac454b..bc421cd0af6ba 100644
-> > > --- a/drivers/gpu/drm/xe/xe_oa.c
-> > > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > > @@ -96,6 +96,10 @@ struct xe_oa_config_bo {
-> > >  };
-> > >
-> > >  struct xe_oa_fence {
-> >
-> > I don't think you need this at all.
-> >
-> > The fence from the job can directly be installed via
-> > xe_sync_entry_signal between xe_sched_job_arm and
-> > xe_sched_job_push.
-> 
-> I think I understand what you are saying here, that
-> job->drm.s_fence->finished can be used to signal the output fences. But the
-> complication in OA is that an additional delay is needed after the register
-> programming batch has executed (see below where I point this out) before we
-> signal the output fences. So the sequence is:
-> 
-> * Submit a register programming batch
-> * Wait till this completes (signaled by the finished fence)
-> * Wait for an additional delay
-> * Now signal output fences after this delay (signal ofence->base)
-> 
-> So 'struct xe_oa_fence' is needed because of this additional
-> delay. Otherwise I agree, we could just have used the finished fence.
-> 
+Hi Dave, Sima,
 
-Thanks, this makes more sense now.
+here's a fairly small PR for drm-misc-next for this this week. The
+controversial Power Saving Policy has been removed. Mgag200 finally
+has good support for the BMC output. CI added some more drivers.
 
-Waiting in system workers has been proven to be a bad idea so let's avoid that.
+Best regards
+Thomas
 
-How about...
+drm-misc-next-2024-08-09:
+drm-misc-next for v6.12:
 
-struct xe_oa_fence {
-	struct dma_fence user_signal;
-	/* No per fence spin lock, global OA one for user_signal */
-	struct delayed_work worker_to_wait_for_delay;
-	struct dma_fence_cb cb;
-};
+UAPI Changes:
 
-- Install user_signal in syncs
-- Attach xe_oa_fence.cb to jobs fence
-- xe_oa_fence.cb kicks xe_oa_fence.worker_to_wait_for_delay with required delay
-- xe_oa_fence.worker_to_wait_for_delay signals xe_oa_fence.user_signal
+- remove Power Saving Policy property
 
-> > Then before xe_sync_entry_cleanup check for !num_signal and directly
-> > wait on the job's fence.
-> 
-> Here also, we never want to wait in the direct ioctl call, we always want
-> to do the wait in the work item (so it has to be an asychronous wait).
-> 
+Core Changes:
 
-Here wait on xe_oa_fence.user_signal.
+- update connector documentation
 
-Matt
+CI:
+- add tests for mediatek, meson, rockchip
 
-> >
-> > Matt
-> >
-> > > +	/* @base: dma fence base */
-> > > +	struct dma_fence base;
-> > > +	/* @lock: lock for the fence */
-> > > +	spinlock_t lock;
-> > >	/* @xe: pointer to xe device */
-> > >	struct xe_device *xe;
-> > >	/* @work: work to signal that OA configuration is applied */
-> > > @@ -953,9 +957,26 @@ static void xe_oa_fence_work_fn(struct work_struct *w)
-> > >	/* Additional empirical delay needed for NOA programming after registers are written */
-> > >	usleep_range(us, 2 * us);
-> 
-> This is the additional delay after which we signal output fences.
-> 
-> Please let me know if you agree with this or if there's another way to do
-> this.
-> 
-> Thanks.
-> --
-> Ashutosh
-> 
-> 
-> 
-> > >
-> > > -	kfree(ofence);
-> > > +	/* Now signal fence to indicate new OA configuration is active */
-> > > +	dma_fence_signal(&ofence->base);
-> > > +	dma_fence_put(&ofence->base);
-> > >  }
-> > >
-> > > +static const char *xe_oa_get_driver_name(struct dma_fence *fence)
-> > > +{
-> > > +	return "xe_oa";
-> > > +}
-> > > +
-> > > +static const char *xe_oa_get_timeline_name(struct dma_fence *fence)
-> > > +{
-> > > +	return "unbound";
-> > > +}
-> > > +
-> > > +static const struct dma_fence_ops xe_oa_fence_ops = {
-> > > +	.get_driver_name = xe_oa_get_driver_name,
-> > > +	.get_timeline_name = xe_oa_get_timeline_name,
-> > > +};
-> > > +
-> > >  static struct xe_oa_fence *xe_oa_fence_init(struct xe_device *xe, struct dma_fence *config_fence)
-> > >  {
-> > >	struct xe_oa_fence *ofence;
-> > > @@ -967,6 +988,8 @@ static struct xe_oa_fence *xe_oa_fence_init(struct xe_device *xe, struct dma_fen
-> > >	ofence->xe = xe;
-> > >	INIT_WORK(&ofence->work, xe_oa_fence_work_fn);
-> > >	ofence->config_fence = config_fence;
-> > > +	spin_lock_init(&ofence->lock);
-> > > +	dma_fence_init(&ofence->base, &xe_oa_fence_ops, &ofence->lock, 0, 0);
-> > >
-> > >	return ofence;
-> > >  }
-> > > @@ -975,8 +998,8 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
-> > >  {
-> > >	struct xe_oa_config_bo *oa_bo;
-> > >	struct xe_oa_fence *ofence;
-> > > +	int i, err, num_signal = 0;
-> > >	struct dma_fence *fence;
-> > > -	int err;
-> > >
-> > >	/* Emit OA configuration batch */
-> > >	oa_bo = xe_oa_alloc_config_buffer(stream, config);
-> > > @@ -989,13 +1012,30 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
-> > >	if (err)
-> > >		goto exit;
-> > >
-> > > +	/* Initialize and set fence to signal */
-> > >	ofence = xe_oa_fence_init(stream->oa->xe, fence);
-> > >	if (IS_ERR(ofence)) {
-> > >		err = PTR_ERR(ofence);
-> > >		goto put_fence;
-> > >	}
-> > >
-> > > -	xe_oa_fence_work_fn(&ofence->work);
-> > > +	for (i = 0; i < stream->num_syncs; i++)
-> > > +		xe_sync_entry_signal(&stream->syncs[i], &ofence->base);
-> > > +
-> > > +	/* Schedule work to signal the fence */
-> > > +	queue_work(system_unbound_wq, &ofence->work);
-> > > +
-> > > +	/* If nothing needs to be signaled we wait synchronously */
-> > > +	for (i = 0; i < stream->num_syncs; i++)
-> > > +		if (stream->syncs[i].flags & DRM_XE_SYNC_FLAG_SIGNAL)
-> > > +			num_signal++;
-> > > +	if (!num_signal)
-> > > +		flush_work(&ofence->work);
-> > > +
-> > > +	/* Done with syncs */
-> > > +	for (i = 0; i < stream->num_syncs; i++)
-> > > +		xe_sync_entry_cleanup(&stream->syncs[i]);
-> > > +	kfree(stream->syncs);
-> > >
-> > >	return 0;
-> > >  put_fence:
-> > > --
-> > > 2.41.0
-> > >
+Driver Changes:
+
+amdgpu:
+- revert support for Power Saving Policy property
+
+bridge:
+- lt9611uxc: require DRM_BRIDGE_ATTACH_NO_CONNECTOR
+
+mgag200:
+- transparently support BMC outputs
+
+omapdrm:
+- use common helper for_each_endpoint_of_node()
+
+panel:
+- panel-edp: fix name for HKC MB116AN01
+
+vkms:
+- clean up endianess warnings
+The following changes since commit d97e71e449373efbd2403f1d7a32d416599f32ac:
+
+  drm/bridge: synopsys: dw-mipi-dsi: enable EoTp by default (2024-08-01 13:34:18 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-08-09
+
+for you to fetch changes up to 219b45d023ed0902b05c5902a4f31c2c38bcf68c:
+
+  drm/mgag200: Remove BMC output (2024-08-09 08:13:48 +0200)
+
+----------------------------------------------------------------
+drm-misc-next for v6.12:
+
+UAPI Changes:
+
+- remove Power Saving Policy property
+
+Core Changes:
+
+- update connector documentation
+
+CI:
+- add tests for mediatek, meson, rockchip
+
+Driver Changes:
+
+amdgpu:
+- revert support for Power Saving Policy property
+
+bridge:
+- lt9611uxc: require DRM_BRIDGE_ATTACH_NO_CONNECTOR
+
+mgag200:
+- transparently support BMC outputs
+
+omapdrm:
+- use common helper for_each_endpoint_of_node()
+
+panel:
+- panel-edp: fix name for HKC MB116AN01
+
+vkms:
+- clean up endianess warnings
+
+----------------------------------------------------------------
+Dmitry Baryshkov (2):
+      drm/bridge: lt9611uxc: properly attach to a next bridge
+      drm/bridge: lt9611uxc: drop support for !DRM_BRIDGE_ATTACH_NO_CONNECTOR
+
+Hamza Mahfooz (2):
+      Revert "drm: Introduce 'power saving policy' drm property"
+      Revert "drm/amd: Add power_saving_policy drm property to eDP connectors"
+
+José Expósito (2):
+      drm/connector: Document destroy hook in drmm init functions
+      drm/vkms: Fix cpu_to_le16()/le16_to_cpu() warnings
+
+Kuninori Morimoto (1):
+      gpu: drm: use for_each_endpoint_of_node()
+
+Terry Hsiao (1):
+      drm/panel-edp: Fix HKC MB116AN01 name
+
+Thomas Zimmermann (5):
+      drm/mgag200: Add VGA-BMC output
+      drm/mgag200: vga-bmc: Transparently handle BMC
+      drm/mgag200: vga-bmc: Control CRTC VIDRST flag from encoder
+      drm/mgag200: vga-bmc: Control BMC scanout from encoder
+      drm/mgag200: Remove BMC output
+
+Vignesh Raman (6):
+      drm/ci: arm64.config: Enable CONFIG_DRM_ANALOGIX_ANX7625
+      drm/ci: skip tools_test on non-intel platforms
+      drm/ci: mediatek: add tests for mediatek display driver
+      drm/ci: mediatek: add tests for powervr gpu driver
+      drm/ci: meson: add tests for meson display driver
+      drm/ci: rockchip: add tests for rockchip display driver
+
+ MAINTAINERS                                        |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |   4 -
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  52 +------
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |   2 -
+ drivers/gpu/drm/bridge/lontium-lt9611uxc.c         | 103 ++------------
+ drivers/gpu/drm/ci/arm64.config                    |   1 +
+ drivers/gpu/drm/ci/gitlab-ci.yml                   |   3 +-
+ drivers/gpu/drm/ci/igt_runner.sh                   |  10 --
+ drivers/gpu/drm/ci/test.yml                        | 123 ++++++++++++----
+ drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt  |   1 -
+ drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt  |   1 +
+ .../gpu/drm/ci/xfails/mediatek-mt8173-fails.txt    |   1 -
+ .../gpu/drm/ci/xfails/mediatek-mt8173-skips.txt    |   1 +
+ .../gpu/drm/ci/xfails/mediatek-mt8183-fails.txt    |  28 +++-
+ .../gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt   |  20 +++
+ .../gpu/drm/ci/xfails/mediatek-mt8183-skips.txt    |   5 +-
+ drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt     |  19 ++-
+ drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt     |   5 +-
+ drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt    |   1 -
+ drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt    |   1 +
+ drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt    |   1 -
+ drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt    |   1 +
+ .../xfails/msm-sc7180-trogdor-kingoftown-fails.txt |   1 -
+ .../xfails/msm-sc7180-trogdor-kingoftown-skips.txt |   1 +
+ .../msm-sc7180-trogdor-lazor-limozeen-fails.txt    |   1 -
+ .../msm-sc7180-trogdor-lazor-limozeen-skips.txt    |   1 +
+ drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt     |   1 -
+ drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt     |   1 +
+ drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt  |   1 +
+ drivers/gpu/drm/ci/xfails/panfrost-g12b-skips.txt  |  23 +++
+ .../gpu/drm/ci/xfails/panfrost-mt8183-fails.txt    |   1 +
+ .../gpu/drm/ci/xfails/panfrost-mt8183-skips.txt    |  23 +++
+ .../gpu/drm/ci/xfails/panfrost-rk3288-fails.txt    |   1 +
+ .../gpu/drm/ci/xfails/panfrost-rk3288-skips.txt    |  26 ++++
+ .../gpu/drm/ci/xfails/panfrost-rk3399-fails.txt    |   1 +
+ .../gpu/drm/ci/xfails/panfrost-rk3399-flakes.txt   |   6 +
+ .../gpu/drm/ci/xfails/panfrost-rk3399-skips.txt    |  26 ++++
+ .../gpu/drm/ci/xfails/rockchip-rk3288-fails.txt    |  22 ++-
+ .../gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt   |   6 +
+ .../gpu/drm/ci/xfails/rockchip-rk3288-skips.txt    |  55 +-------
+ .../gpu/drm/ci/xfails/rockchip-rk3399-fails.txt    |  90 +++++++++++-
+ .../gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt   |  50 ++++++-
+ .../gpu/drm/ci/xfails/rockchip-rk3399-skips.txt    |   8 +-
+ .../gpu/drm/ci/xfails/virtio_gpu-none-fails.txt    |   1 -
+ .../gpu/drm/ci/xfails/virtio_gpu-none-skips.txt    |   1 +
+ drivers/gpu/drm/ci/xfails/vkms-none-fails.txt      |   1 -
+ drivers/gpu/drm/ci/xfails/vkms-none-skips.txt      |   1 +
+ drivers/gpu/drm/drm_connector.c                    |  52 +------
+ drivers/gpu/drm/mgag200/Makefile                   |   1 +
+ drivers/gpu/drm/mgag200/mgag200_bmc.c              | 102 --------------
+ drivers/gpu/drm/mgag200/mgag200_drv.h              |  13 +-
+ drivers/gpu/drm/mgag200/mgag200_g200eh.c           |   6 +-
+ drivers/gpu/drm/mgag200/mgag200_g200eh3.c          |   6 +-
+ drivers/gpu/drm/mgag200/mgag200_g200er.c           |   9 +-
+ drivers/gpu/drm/mgag200/mgag200_g200ev.c           |   9 +-
+ drivers/gpu/drm/mgag200/mgag200_g200ew3.c          |   6 +-
+ drivers/gpu/drm/mgag200/mgag200_g200se.c           |   9 +-
+ drivers/gpu/drm/mgag200/mgag200_g200wb.c           |   6 +-
+ drivers/gpu/drm/mgag200/mgag200_mode.c             |   9 --
+ drivers/gpu/drm/mgag200/mgag200_vga_bmc.c          | 156 +++++++++++++++++++++
+ drivers/gpu/drm/omapdrm/dss/base.c                 |   3 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |   2 +-
+ drivers/gpu/drm/vkms/vkms_formats.c                |  14 +-
+ include/drm/drm_connector.h                        |   2 -
+ include/drm/drm_mode_config.h                      |   5 -
+ include/uapi/drm/drm_mode.h                        |   7 -
+ 66 files changed, 630 insertions(+), 521 deletions(-)
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-g12b-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8183-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8183-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt
+ create mode 100644 drivers/gpu/drm/mgag200/mgag200_vga_bmc.c
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
