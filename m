@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18405C52D7C
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 15:52:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 301A5C3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 15:52:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB45110E96B;
-	Fri,  9 Aug 2024 15:52:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3D3A10E96E;
+	Fri,  9 Aug 2024 15:52:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YC4mx3HK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FTUOHLBo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7261710E96C
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 15:52:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 623B610E96D
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 15:52:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723218739; x=1754754739;
+ t=1723218741; x=1754754741;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QCfClXNnQsMrbKF//3MapDETzv0N5Qg6w9r5l/uHjt4=;
- b=YC4mx3HKiKwjkw0RrP4C+lHQv6cOdzRf/7DjOfdsTcCh+d10yN5ZTu7i
- +4ScS7uMrpRPVxetBBguKvHqGPpP+TMbtSlnN7e8xftAVJVBUkpA04u02
- N3qoy05frNPGL1o0WFE5pb5oayYY3o3Gdag50NyrnXpOBk3mFP6uGkj/k
- Z9PC4JyzO1ytP6UfCoeTkD1nisDr3Uzr3PT6zqU1C8Gu5ezUPL/Ej4KR/
- /m3I+B3aG4OJwT5Hz8l7LIT+b6fLB9rGsIobh3jI4f4+DphOTEUgJGM5o
- m+PU8RIOTSmP5q6jrQpFdsq9dveU7fD9CQvgKtsZnxqCUPE92CM1U5aFB Q==;
-X-CSE-ConnectionGUID: Jt+M2WhYTI6grtuFgTeZZA==
-X-CSE-MsgGUID: zhO2+aNxSjes0ODEc6cS7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21207393"
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="21207393"
+ bh=x1n7kgFrswEDFS8HTgGMK19Dc0UkK7MQ1NFwkppqKFk=;
+ b=FTUOHLBoRM38hKX7ulMyRsBHpweVhHP/cKjKrNkMO9f3nrqr11z40NB6
+ LCYTtsU8lOuJgLQznJ+J4ZlEurOUPoojthNSqOuCUPPFldS9alt2gYPko
+ Z2DShtrcRwqrKe3aj6S2Zse+FkO6rG05ZXeik5EGInMWu/cINrp+6obIB
+ QXIrzyryS004Zv0ffHIxTPgSZE6i84Cnjd0q94GD4QV518VGt2ZAEqIN+
+ ZZGGTE87UZylft41Rttd0t+TbnyVvl/oCBCfxBrmIh6GqJWQ2A3o7xHcU
+ 671XjheXvzb4rKPMklsWQtWU783RYEGjHYfTU9GVwabls1A3hkpkx0/oo A==;
+X-CSE-ConnectionGUID: Ses3PLAgTtKpbQsei4VoOQ==
+X-CSE-MsgGUID: PtM8RHWcReWni0d2ttHPag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21207401"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="21207401"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 08:52:18 -0700
-X-CSE-ConnectionGUID: DApmxzZzS0SJU+GFMObcmw==
-X-CSE-MsgGUID: RvLK7gmEQKyeEg2MTZMUvg==
+ 09 Aug 2024 08:52:21 -0700
+X-CSE-ConnectionGUID: Puwx9bh3SeSxeqpw6mO5VA==
+X-CSE-MsgGUID: UJX3O3hSTh2Do+1OZBA3RA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="61728807"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="61728829"
 Received: from sbutnari-mobl1.ti.intel.com (HELO fdugast-desk.intel.com)
  ([10.245.246.16])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 08:52:17 -0700
+ 09 Aug 2024 08:52:20 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v9 05/11] drm/xe/exec_queue: Remove duplicated code
-Date: Fri,  9 Aug 2024 17:51:30 +0200
-Message-ID: <20240809155156.1955925-6-francois.dugast@intel.com>
+Subject: [PATCH v9 07/11] drm/xe/hw_engine_group: Add helper to wait for dma
+ fence jobs
+Date: Fri,  9 Aug 2024 17:51:32 +0200
+Message-ID: <20240809155156.1955925-8-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240809155156.1955925-1-francois.dugast@intel.com>
 References: <20240809155156.1955925-1-francois.dugast@intel.com>
@@ -68,32 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This code section is the same as the body of
-xe_exec_queue_last_fence_put_unlocked() so call the function instead and
-remove duplicated code to make maintenance easier.
+This is a required feature for faulting long running jobs not to be
+submitted while dma fence jobs are running on the hw engine group.
+
+v2: Switch to lockdep_assert_held_write in worker, get a proper reference
+    for the last fence (Matt Brost)
+
+v3: Directly call dma_fence_put with the fence ref (Matt Brost)
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine_group.c | 33 +++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 0a0a15ee5e2b..588cf5836798 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -834,10 +834,7 @@ void xe_exec_queue_last_fence_put(struct xe_exec_queue *q, struct xe_vm *vm)
- {
- 	xe_exec_queue_last_fence_lockdep_assert(q, vm);
- 
--	if (q->last_fence) {
--		dma_fence_put(q->last_fence);
--		q->last_fence = NULL;
--	}
-+	xe_exec_queue_last_fence_put_unlocked(q);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+index 8659332012dd..8d3ddfc4ee82 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+@@ -202,3 +202,36 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+ 	up_write(&group->mode_sem);
+ 	return err;
  }
- 
- /**
++
++/**
++ * xe_hw_engine_group_wait_for_dma_fence_jobs() - Wait for dma fence jobs to complete
++ * @group: The hw engine group
++ *
++ * This function is not meant to be called directly from a user IOCTL as dma_fence_wait()
++ * is not interruptible.
++ *
++ * Return: 0 on success,
++ *	   -ETIME if waiting for one job failed
++ */
++static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group *group)
++{
++	long timeout;
++	struct xe_exec_queue *q;
++	struct dma_fence *fence;
++
++	lockdep_assert_held_write(&group->mode_sem);
++
++	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
++		if (xe_vm_in_lr_mode(q->vm))
++			continue;
++
++		fence = xe_exec_queue_last_fence_get_for_resume(q, q->vm);
++		timeout = dma_fence_wait(fence, false);
++		dma_fence_put(fence);
++
++		if (timeout < 0)
++			return -ETIME;
++	}
++
++	return 0;
++}
 -- 
 2.43.0
 
