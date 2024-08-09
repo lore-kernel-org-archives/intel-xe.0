@@ -4,63 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18EC3C52D7C
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 13:54:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C0A3C52D7D
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 14:27:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D947410E90B;
-	Fri,  9 Aug 2024 13:54:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2236010E09D;
+	Fri,  9 Aug 2024 14:27:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RrzpVtRE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+4JYyOS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA4010E90B;
- Fri,  9 Aug 2024 13:54:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD7CE10E09D;
+ Fri,  9 Aug 2024 14:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723211642; x=1754747642;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=HKCBa32ax2IqSlbKwZ588yNgdKaXC2+ejCZBHAL8PCY=;
- b=RrzpVtREFomoBXnEU1OF3CrU6v21TK9QspJR1S71rORXkev1K1DUQpv+
- iarVuRyrAqgKUCPXB6IHgCxnMFk2BE9/MyqCiqgtpbP6+horOq3z+0eUT
- apqVWPBkSiKexMSoxUo+ie0hGriINJXSCsdBCUFdRgEPNjiW85C0uHTM5
- wJqhMXR8ASxrkrvCak3qDhtLj0GUPhmCMenfFJUWZMnPOSk7+VBdMTYJb
- NmwPbm3EUradv63Jtch+U7qKZgiedqKX3s5u7XLD1qg+r1ptHkAHF+c0T
- HKb9yD8BBE2/xJfNKAb+ieN7aC0cQx2iCyZDgP0ztxAjHCzdRo7oOgs41 Q==;
-X-CSE-ConnectionGUID: ZfKw0E9LQcah/2KT2yHYCg==
-X-CSE-MsgGUID: DIowxMJTSN6Ngn/0dc1FUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="21359047"
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="21359047"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 06:54:02 -0700
-X-CSE-ConnectionGUID: w1iB9DHYQdmiXJ4/TQn6ZA==
-X-CSE-MsgGUID: 9j49b05nSvGqq7hcUmKsrw==
+ t=1723213649; x=1754749649;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GYAsRiLMkBnu7D2BFWW53DRRa8F2R2Mh4uB4csl3jY4=;
+ b=Y+4JYyOSbMNj2RmL50HLwMGTViAH216pfC6ih6iR04ulq38JKhgDhWNl
+ jW/Qesxy4iaAPxBoTSth9bQtKdceUTzuF27ahErUH8Fw1KqlwZ8AWXVnz
+ oHPn/9KHjpW7RA9td1tKKkCmszr9OG4KWvhUAYJ0q10Yti/j/TfjPDtEj
+ 33Z+rYLjWEdHvDgbHrQ6i/+Kf+zD42P9bFTI6AZIkF7KIhJaa00GT+TYp
+ G3utnvhYkWNvkNW3/HP0r8t/K3On9mMuEOKPo7tLUrAKF79cgT0+LgWsz
+ wGdkoGdlfeAgN3l1Q3xzCXX7nrwxX5NXcMvHFpQwh/r1k4Y+TL3PanfMZ g==;
+X-CSE-ConnectionGUID: viQ5MmmuSTOshf6eiOwvng==
+X-CSE-MsgGUID: 9vzzNsUQT+6GUqcyc2OrwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="32013700"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="32013700"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 07:27:15 -0700
+X-CSE-ConnectionGUID: ZMWt6KLiRs20TB1xi8QgJA==
+X-CSE-MsgGUID: I6yLeKzzQLyM89Vt/qE+8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="62529262"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.150])
- ([10.245.245.150])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 06:54:00 -0700
-Message-ID: <a1acfa3f9333e6917f7de85706db00e84abda68a.camel@linux.intel.com>
-Subject: Re: [PATCH v6 12/12] drm/xe: Increase the XE_PL_TT watermark
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Somalapuram Amaranath
- <Amaranath.Somalapuram@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org
-Date: Fri, 09 Aug 2024 15:53:57 +0200
-In-Reply-To: <ZrQG4l9I1KTZZwwl@DUT025-TGLU.fm.intel.com>
-References: <20240703153813.182001-1-thomas.hellstrom@linux.intel.com>
- <20240703153813.182001-13-thomas.hellstrom@linux.intel.com>
- <ZrQG4l9I1KTZZwwl@DUT025-TGLU.fm.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="57471438"
+Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.18])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 07:27:12 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	imre.deak@intel.com
+Subject: [PATCH v2 0/4] drm/i915: struct intel_display conversions
+Date: Fri,  9 Aug 2024 17:27:02 +0300
+Message-Id: <cover.1723213547.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,55 +68,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-08-07 at 23:44 +0000, Matthew Brost wrote:
-> On Wed, Jul 03, 2024 at 05:38:13PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > The XE_PL_TT watermark was set to 50% of system memory.
-> > The idea behind that was unclear since the net effect is that
-> > TT memory will be evicted to TTM_PL_SYSTEM memory if that
-> > watermark is exceeded, requiring PPGTT rebinds and dma
-> > remapping. But there is no similar watermark for TTM_PL_SYSTEM
-> > memory.
-> >=20
-> > The TTM functionality that tries to swap out system memory to
-> > shmem objects if a 50% limit of total system memory is reached
-> > is orthogonal to this, and with the shrinker added, it's no
-> > longer in effect.
-> >=20
-> > Replace the 50% TTM_PL_TT limit with a 100% limit, in effect
-> > allowing all graphics memory to be bound to the device unless it
-> > has been swapped out by the shrinker.
-> >=20
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->=20
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+v2 of https://lore.kernel.org/r/cover.1722444150.git.jani.nikula@intel.com
 
-Thanks for reviewing!
-/Thomas
+Cc: Imre Deak <imre.deak@intel.com>
 
+Jani Nikula (4):
+  drm/i915/acpi: convert to struct intel_display
+  drm/i915/opregion: unify intel_encoder/intel_connector naming
+  drm/i915/opregion: convert to struct intel_display
+  drm/i915/bios: convert to struct intel_display
 
->=20
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 3 +--
-> > =C2=A01 file changed, 1 insertion(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> > b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> > index 9844a8edbfe1..d38b91872da3 100644
-> > --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> > +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> > @@ -108,9 +108,8 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
-> > =C2=A0	u64 gtt_size;
-> > =C2=A0
-> > =C2=A0	si_meminfo(&si);
-> > +	/* Potentially restrict amount of TT memory here. */
-> > =C2=A0	gtt_size =3D (u64)si.totalram * si.mem_unit;
-> > -	/* TTM limits allocation of all TTM devices by 50% of
-> > system memory */
-> > -	gtt_size /=3D 2;
-> > =C2=A0
-> > =C2=A0	man->use_tt =3D true;
-> > =C2=A0	man->func =3D &xe_ttm_sys_mgr_func;
-> > --=20
-> > 2.44.0
-> >=20
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   3 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |   3 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   3 +-
+ drivers/gpu/drm/i915/display/intel_acpi.c     |  17 +-
+ drivers/gpu/drm/i915/display/intel_acpi.h     |  18 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     | 846 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_bios.h     |  28 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |   8 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
+ drivers/gpu/drm/i915/display/intel_ddi.h      |   3 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   9 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   7 +-
+ .../drm/i915/display/intel_display_device.c   |   8 +-
+ .../drm/i915/display/intel_display_driver.c   |  22 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  27 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   8 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c | 320 +++----
+ drivers/gpu/drm/i915/display/intel_opregion.h |  62 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +-
+ drivers/gpu/drm/i915/display/intel_tv.c       |   3 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   5 +-
+ drivers/gpu/drm/i915/i915_driver.c            |  22 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |  19 +-
+ 24 files changed, 765 insertions(+), 687 deletions(-)
+
+-- 
+2.39.2
 
