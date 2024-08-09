@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E72CC531DA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46EA3C3DA4A
 	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 22:43:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F06F10EA22;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1901F10EA21;
 	Fri,  9 Aug 2024 22:43:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H4ZyaRYR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hDUv8CJZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D669110EA21
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 22:43:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E1FC10EA22
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 22:43:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723243413; x=1754779413;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CuuCJK/Z3M42BN03Ixa7sFf6Kc09zojTjtP5UdZp0fY=;
- b=H4ZyaRYRn579cM6LxHIcgDvDgi/ct5Vx3uCHTg4hyxZQvO1Avk2Oy5Wj
- jgwPdwomxKBO7nFgKNwCcCUcLE+1CH9XjjHxGthldrCxeGb8MBh8wpQQa
- ZM2lmQtRq2mVe9IzCblAKEnCvC/AFqcUlgzUkZjskuJfl0nCh10mkFFjb
- AdnKV1qv0sgp7lasrMTn5eda+S6uQxZ/Ii5bnRt/ohcshrfDlMuKUV4Aq
- FdBm0EAg5drMk1ASHdJ2aAVuFooT1GorPhkzFeQfYCpkGVlt81zYrJoX8
- sA4dLMWlkN/jFIlNCkbvv6nLG1CFA49AVqg6xJstgvVg0XfLxyIduzI6i Q==;
-X-CSE-ConnectionGUID: 2CwO4v9sTTqw18OHi9JSxA==
-X-CSE-MsgGUID: BVSUp3nSQEOi36Y/aEoteQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="24337543"
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="24337543"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=pngMKdhPC/yD8QDNkJ2DSi3msOcINSCYk/lQr1ucw8Q=;
+ b=hDUv8CJZCqrKq4VscSZ28Y22fRckVw1zj1t+QS/eQT2kqzBTPK2I8SRw
+ XJfcuPAxoG7znTz9YW6XWLKc4s49kz1nAddz5BDd4Swt2pDLFrHVhO5Y+
+ 9tUQ7RGDB2JrGXDJfnFDjJjkqMZ/tIqQjY6CTNmtvHDrGNcjeBkGslfeD
+ yQP6YZn2aTHZEs4d6bUFONhyT1B1pk9yKrjbQFJHAyQfv7KVXfE3/qoIH
+ vYk+WNGvpQwTNkjdzN2oeQlCYvw39c0879IvDY//mcjhHCmA6aNcM4NzN
+ 988AC1ElQe0uogdmXMJmCgoJn6SXNbErr+gG5S5NpkfW0GAkx5yemNfh2 w==;
+X-CSE-ConnectionGUID: V9g0fOmoSnOlgiVEKrjwsA==
+X-CSE-MsgGUID: S/xJ7pL9QvG1FdwooolXSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="24337544"
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="24337544"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Aug 2024 15:43:32 -0700
-X-CSE-ConnectionGUID: e5n8biFfRmafUxtev3OO7g==
-X-CSE-MsgGUID: 9UEnqZ7zTFWp3hX1Qvg+OA==
+X-CSE-ConnectionGUID: GRrchaoZSeKmr+szhw3Yxg==
+X-CSE-MsgGUID: 5sjNjiGzRVmQORzZBpCHbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="57605077"
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="57605078"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Aug 2024 15:43:32 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [RFC PATCH 0/1] Add driver load error injection
-Date: Fri,  9 Aug 2024 15:44:23 -0700
-Message-Id: <20240809224424.3212551-1-matthew.brost@intel.com>
+Subject: [RFC PATCH 1/1] drm/xe: Add driver load error injection
+Date: Fri,  9 Aug 2024 15:44:24 -0700
+Message-Id: <20240809224424.3212551-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240809224424.3212551-1-matthew.brost@intel.com>
+References: <20240809224424.3212551-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,105 +65,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start porting over driver load error injectin from the i915. Eventually
-idea would be make this error injection a bit more generic (drm level,
-or kernel level) but to ensure a stable driver starting with the i915
-implementation.
+Port over i915 driver load error injection.
 
-Not complete as many more injection points need to be added.
-
-Can be tested with:
-for i in {1..200}; do echo "Run $i"; modprobe xe inject_driver_load_error=$i; rmmod xe; done
-
-Will need to a version of this series [1] to avoid lockdep turning off
-after 30ish module loads.
-
-Kernel is currently blowing up on injection point #11 on TGL w/o
-display, will need to start debug their. Stack trace below.
-
-[  196.326118] Setting dangerous option inject_driver_load_error - tainting kernel
-[  196.328408] xe 0000:00:02.0: vgaarb: deactivate vga console
-[  196.328975] xe 0000:00:02.0: [drm:xe_pci_probe [xe]] TIGERLAKE  9a49:0001 dgfx:0 gfx:Xe_LP (12.00) media:Xe_M (12.00) display:no dma_m_s:39 tc:1 gscfi:0 cscfi:0
-[  196.329016] xe 0000:00:02.0: [drm:xe_pci_probe [xe]] Stepping = (G:B0, M:B0, D:D0, B:**)
-[  196.329039] xe 0000:00:02.0: [drm:xe_pci_probe [xe]] SR-IOV support: no (mode: none)
-[  196.330746] xe 0000:00:02.0: [drm] Using GuC firmware from i915/tgl_guc_70.bin version 70.30.0
-[  196.331047] xe 0000:00:02.0: [drm] Injecting failure -19 at checkpoint 11 [xe_guc_log_init:98]
-[  196.331050] xe 0000:00:02.0: [drm] *ERROR* GT0: GuC init failed with -ENODEV
-[  196.338208] xe 0000:00:02.0: [drm] *ERROR* GT0: Failed to initialize uC (-ENODEV)
-[  196.347009] BUG: unable to handle page fault for address: 000000000000a188
-[  196.353903] #PF: supervisor write access in kernel mode
-[  196.359138] #PF: error_code(0x0002) - not-present page
-[  196.364289] PGD 0 P4D 0
-[  196.366842] Oops: Oops: 0002 [#1] PREEMPT SMP NOPTI
-[  196.371735] CPU: 6 UID: 0 PID: 1233 Comm: modprobe Tainted: G     U             6.11.0-rc2-xe+ #3796
-[  196.380875] Tainted: [U]=USER
-[  196.383857] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.3243.A01.2006102133 06/10/2020
-[  196.397237] RIP: 0010:xe_mmio_write32+0x67/0x290 [xe]
-[  196.402332] Code: 48 0f a3 05 c3 c9 5b e2 0f 82 c6 00 00 00 45 89 e6 41 c1 ee 18 41 f7 c4 00 00 00 40 74 7f 45 84 f6 78 74 49 8b 47 28 48 01 c3 <44> 89 2b 48 83 c4 58 5b 5d 41 5c 41 5d 41 5e 41 5f c3 cc cc cc cc
-[  196.421085] RSP: 0018:ffffc9000152b820 EFLAGS: 00010006
-[  196.426322] RAX: 0000000000000000 RBX: 000000000000a188 RCX: 0000000000000000
-[  196.433466] RDX: 0000000000010001 RSI: ffffffff82426f19 RDI: ffffffff824343c6
-[  196.440608] RBP: ffff888152678028 R08: 00000000000d6398 R09: 0000000000000001
-[  196.447748] R10: 00000000ffffffff R11: ffff888152628000 R12: 000000000000a188
-[  196.454893] R13: 0000000000010001 R14: 0000000000000000 R15: ffff88815262a308
-[  196.462037] FS:  00007ff3ae103000(0000) GS:ffff88849fb80000(0000) knlGS:0000000000000000
-[  196.470137] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  196.475893] CR2: 000000000000a188 CR3: 0000000156d2a004 CR4: 0000000000f70ef0
-[  196.483036] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  196.490177] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  196.497323] PKRU: 55555554
-[  196.500051] Call Trace:
-[  196.502517]  <TASK>
-[  196.504640]  ? __die+0x1f/0x70
-[  196.507719]  ? page_fault_oops+0x155/0x470
-[  196.511831]  ? stack_trace_save+0x49/0x70
-[  196.515861]  ? do_user_addr_fault+0x63/0x720
-[  196.520151]  ? exc_page_fault+0x63/0x1d0
-[  196.524091]  ? asm_exc_page_fault+0x26/0x30
-[  196.528293]  ? xe_mmio_write32+0x67/0x290 [xe]
-[  196.532777]  xe_force_wake_get+0xc8/0x2b0 [xe]
-[  196.537260]  ? lock_acquire+0xcd/0x300
-[  196.541031]  xe_gt_tlb_invalidation_ggtt+0xa8/0x310 [xe]
-[  196.546380]  ? rcu_is_watching+0x11/0x50
-[  196.550322]  ? __mutex_lock+0x12f/0xd70
-[  196.554179]  ? find_held_lock+0x2b/0x80
-[  196.558031]  ? xe_ggtt_remove_node+0xbf/0xf0 [xe]
-[  196.562772]  xe_ggtt_invalidate+0x19/0x80 [xe]
-[  196.567251]  xe_ggtt_remove_node+0xdf/0xf0 [xe]
-[  196.571818]  xe_ttm_bo_destroy+0x11a/0x220 [xe]
-[  196.576388]  drm_managed_release+0xb0/0x160
-[  196.580593]  devm_drm_dev_init_release+0x54/0x70
-[  196.585232]  release_nodes+0x2e/0xf0
-[  196.588827]  devres_release_all+0x8a/0xc0
-[  196.592858]  device_unbind_cleanup+0x9/0x70
-[  196.597058]  really_probe+0x1a0/0x380
-[  196.600740]  __driver_probe_device+0x73/0x150
-[  196.605108]  driver_probe_device+0x19/0x90
-[  196.609222]  __driver_attach+0xd5/0x1d0
-[  196.613073]  ? __pfx___driver_attach+0x10/0x10
-[  196.617534]  bus_for_each_dev+0x77/0xd0
-[  196.621389]  bus_add_driver+0x110/0x240
-[  196.625238]  driver_register+0x5b/0x110
-[  196.629086]  xe_init+0x3b/0x80 [xe]
-[  196.632615]  ? __pfx_xe_init+0x10/0x10 [xe]
-[  196.636829]  do_one_initcall+0x5e/0x2b0
-[  196.640683]  ? rcu_is_watching+0x11/0x50
-[  196.644622]  ? __kmalloc_cache_noprof+0x24e/0x2f0
-[  196.649343]  do_init_module+0x5f/0x210
-[  196.653113]  init_module_from_file+0x86/0xd0
-[  196.657402]  idempotent_init_module+0x17c/0x230
-[  196.661946]  __x64_sys_finit_module+0x59/0xb0
-[  196.666323]  do_syscall_64+0x68/0x140
-[  196.670006]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-
-Matt
-
-[1] https://patchwork.freedesktop.org/series/136701/
-
-
-Matthew Brost (1):
-  drm/xe: Add driver load error injection
-
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
  drivers/gpu/drm/xe/xe_device.c       | 31 ++++++++++++++++++++++++++++
  drivers/gpu/drm/xe/xe_device.h       | 15 ++++++++++++++
  drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
@@ -183,6 +90,426 @@ Matthew Brost (1):
  drivers/gpu/drm/xe/xe_wopcm.c        |  4 ++++
  19 files changed, 135 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 1aba6f9eaa19..f6cd13ed6d20 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -374,6 +374,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (WARN_ON(err))
+ 		goto err;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		goto err;
++
+ 	return xe;
+ 
+ err:
+@@ -477,6 +481,10 @@ static int xe_set_dma_info(struct xe_device *xe)
+ 	if (err)
+ 		goto mask_err;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		goto mask_err;
++
+ 	return 0;
+ 
+ mask_err:
+@@ -580,6 +588,10 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	xe->wedged.mode = xe_modparam.wedged_mode;
+ 
+ 	return 0;
+@@ -995,3 +1007,22 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_declare_wedged(gt);
+ }
++
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++int __xe_device_inject_driver_load_error(struct xe_device *xe, int err,
++					 const char *func, int line)
++{
++        if (xe->inject_driver_load_error >= xe_modparam.inject_driver_load_error)
++                return 0;
++
++        if (++xe->inject_driver_load_error < xe_modparam.inject_driver_load_error)
++                return 0;
++
++        drm_info(&xe->drm, "Injecting failure %d at checkpoint %u [%s:%d]\n",
++                 err, xe->inject_driver_load_error, func, line);
++
++        xe_modparam.inject_driver_load_error = 0;
++        return err;
++
++}
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index db6cc8d0d6b8..4f7e9cdac9fe 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -179,4 +179,19 @@ void xe_device_declare_wedged(struct xe_device *xe);
+ struct xe_file *xe_file_get(struct xe_file *xef);
+ void xe_file_put(struct xe_file *xef);
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++
++int __xe_device_inject_driver_load_error(struct xe_device *xe, int err,
++					 const char *func, int line);
++
++#define xe_device_inject_driver_load_error(__xe) \
++	__xe_device_inject_driver_load_error(__xe, -ENODEV, __func__, __LINE__)
++
++#else
++
++#define xe_device_inject_driver_load_error(__xe) \
++	({ BUILD_BUG_ON_INVALID(__xe); 0; })
++
++#endif
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 5b7292a9a66d..3e620314eec2 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -484,6 +484,10 @@ struct xe_device {
+ 		int mode;
+ 	} wedged;
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++	int inject_driver_load_error;
++#endif
++
+ #ifdef TEST_VM_OPS_ERROR
+ 	/**
+ 	 * @vm_inject_error_position: inject errors at different places in VM
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 58895ed22f6e..8209079c0334 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -389,6 +389,10 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 	xe_pcode_init(gt);
+ 	spin_lock_init(&gt->global_invl_lock);
+ 
++	err = xe_device_inject_driver_load_error(gt_to_xe(gt));
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+@@ -570,6 +574,7 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	xe_gt_topology_init(gt);
+ 	xe_gt_mcr_init(gt);
+ 
++	err = xe_device_inject_driver_load_error(gt_to_xe(gt));
+ out_fw:
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ out:
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index ef239440963c..897815ddf954 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -57,6 +57,10 @@ int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_device_inject_driver_load_error(gt_to_xe(gt));
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index de0fe9e65746..980691c178c4 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -354,6 +354,10 @@ int xe_guc_init(struct xe_guc *guc)
+ 	if (ret)
+ 		goto out;
+ 
++	ret = xe_device_inject_driver_load_error(guc_to_xe(guc));
++	if (ret)
++		goto out;
++
+ 	guc_init_params(guc);
+ 
+ 	xe_guc_comm_init_early(guc);
+@@ -411,6 +415,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = xe_device_inject_driver_load_error(guc_to_xe(guc));
++	if (ret)
++		return ret;
++
+ 	return xe_guc_ads_init_post_hwconfig(&guc->ads);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index d1902a8581ca..1944912ef9b8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -402,6 +402,7 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+ 	struct xe_gt *gt = ads_to_gt(ads);
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_bo *bo;
++	int err;
+ 
+ 	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
+ 	ads->regset_size = calculate_regset_size(gt);
+@@ -416,6 +417,10 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+ 
+ 	ads->bo = bo;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index beeeb120d1fc..76a26aaabb13 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -197,6 +197,10 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	xe_gt_assert(gt, ct->state == XE_GUC_CT_STATE_NOT_INITIALIZED);
+ 	ct->state = XE_GUC_CT_STATE_DISABLED;
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index a37ee3419428..f26c37e3ee3a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -82,6 +82,7 @@ int xe_guc_log_init(struct xe_guc_log *log)
+ 	struct xe_device *xe = log_to_xe(log);
+ 	struct xe_tile *tile = gt_to_tile(log_to_gt(log));
+ 	struct xe_bo *bo;
++	int err;
+ 
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_log_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+@@ -94,5 +95,9 @@ int xe_guc_log_init(struct xe_guc_log *log)
+ 	log->bo = bo;
+ 	log->level = xe_modparam.guc_log_level;
+ 
++	err = xe_device_inject_driver_load_error(log_to_xe(log));
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index bdcc7282385c..1d52b1f57f4c 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -136,6 +136,11 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
+ {
+ 	size_t tile_mmio_size = SZ_16M;
+ 	size_t tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
++	int err;
++
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
+ 
+ 	mmio_multi_tile_setup(xe, tile_mmio_size);
+ 	mmio_extension_setup(xe, tile_mmio_size, tile_mmio_ext_size);
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 7bb99e451fcc..972b64a9f514 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -53,6 +53,11 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
+ MODULE_PARM_DESC(force_probe,
+ 		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++module_param_named_unsafe(inject_driver_load_error, xe_modparam.inject_driver_load_error, int, 0600);
++MODULE_PARM_DESC(inject_driver_load_error, "Inject driver load error");
++#endif
++
+ #ifdef CONFIG_PCI_IOV
+ module_param_named(max_vfs, xe_modparam.max_vfs, uint, 0400);
+ MODULE_PARM_DESC(max_vfs,
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 61a0d28a28c8..409ea10be942 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -20,6 +20,9 @@ struct xe_modparam {
+ 	char *force_probe;
+ #ifdef CONFIG_PCI_IOV
+ 	unsigned int max_vfs;
++#endif
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++	int inject_driver_load_error;
+ #endif
+ 	int wedged_mode;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index f818aa69f3ca..8b278c83128a 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -629,6 +629,10 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	if (err)
+ 		return err;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+@@ -645,6 +649,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	u32 graphics_gmdid_revid = 0, media_gmdid_revid = 0;
+ 	struct xe_tile *tile;
+ 	struct xe_gt *gt;
++	int err;
+ 	u8 id;
+ 
+ 	/*
+@@ -745,6 +750,10 @@ static int xe_info_init(struct xe_device *xe,
+ 		gt->info.id = xe->info.gt_count++;
+ 	}
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 9f3c14fd9f33..64d992c12364 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -231,6 +231,10 @@ int xe_pm_init_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+@@ -264,6 +268,10 @@ int xe_pm_init(struct xe_device *xe)
+ 
+ 	xe_pm_runtime_init(xe);
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 5a1d65e4f19f..1e738f1d80df 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -102,11 +102,17 @@ static void fini_sriov(struct drm_device *drm, void *arg)
+  */
+ int xe_sriov_init(struct xe_device *xe)
+ {
++	int err;
++
+ 	if (!IS_SRIOV(xe))
+ 		return 0;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	if (IS_SRIOV_PF(xe)) {
+-		int err = xe_sriov_pf_init_early(xe);
++		err = xe_sriov_pf_init_early(xe);
+ 
+ 		if (err)
+ 			return err;
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 15ea0a942f67..2d25c7b59b0d 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -124,6 +124,10 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
+ 	if (IS_ERR(tile->primary_gt))
+ 		return PTR_ERR(tile->primary_gt);
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 0d073a9987c2..a3786020838b 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -62,6 +62,10 @@ int xe_uc_init(struct xe_uc *uc)
+ 	if (ret)
+ 		goto err;
+ 
++	ret = xe_device_inject_driver_load_error(uc_to_xe(uc));
++	if (ret)
++		goto err;
++
+ 	return 0;
+ 
+ err:
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 564e32e44e3b..e558715d8027 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -821,6 +821,7 @@ int xe_wa_init(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	size_t n_oob, n_lrc, n_engine, n_gt, total;
+ 	unsigned long *p;
++	int err;
+ 
+ 	n_gt = BITS_TO_LONGS(ARRAY_SIZE(gt_was));
+ 	n_engine = BITS_TO_LONGS(ARRAY_SIZE(engine_was));
+@@ -840,6 +841,10 @@ int xe_wa_init(struct xe_gt *gt)
+ 	p += n_lrc;
+ 	gt->wa_active.oob = p;
+ 
++	err = xe_device_inject_driver_load_error(xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+index d3a99157e523..edaad1c93e58 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm.c
++++ b/drivers/gpu/drm/xe/xe_wopcm.c
+@@ -263,6 +263,10 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
+ 		return -E2BIG;
+ 	}
+ 
++	ret = xe_device_inject_driver_load_error(xe);
++	if (ret)
++		return ret;
++
+ 	if (!locked)
+ 		ret = __wopcm_init_regs(xe, gt, wopcm);
+ 
 -- 
 2.34.1
 
