@@ -4,56 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87987C52D71
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 08:09:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E04C3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 08:35:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 433C010E86E;
-	Fri,  9 Aug 2024 08:09:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D1C5898A4;
+	Fri,  9 Aug 2024 08:35:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PbYYfiFL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XW6BwU75";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 886B210E86B;
- Fri,  9 Aug 2024 08:09:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60A15898A4;
+ Fri,  9 Aug 2024 08:35:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723190967; x=1754726967;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=od8v6A6ppKSQrOwPYMMlWnnUj3X6rmcG0KTTGsd6OLk=;
- b=PbYYfiFLcXtwm4XTpGd5At9yK435FmKHWb/EUBKMZbMJCzBSipmc/XET
- hiNLhEn8Os3NjiEtZVu4L4WXpkRVE9AbfgVzYvplEUYMiyjApmCM7NlNM
- G8TXce0/3WlqYw6gjwOIhTGchkNjn+Jz4iVRx2HRiDruB4Gt6jl/XHMqL
- 517W8exm/rJ9YNBLz+4uijTpve5SNlVBAjMxRiRprTlgPp4KX1aADFXsF
- 9ZeEwvGHQPE1bd3wn8erjW8f+w7j05RbllnPVuaRP2smw+qaFzgEbyYH/
- RzYDCMes7PacosIKcM9I8Tqh8OPT9PPdQ/J6oGPqUXe2ygGIwbEqv6ZDw w==;
-X-CSE-ConnectionGUID: TCtdnfkXTda4O1jTft+fGA==
-X-CSE-MsgGUID: Ez+T6R+SRjWI3MVHzzeLIQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="25225149"
-X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="25225149"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 01:09:27 -0700
-X-CSE-ConnectionGUID: Pbf6H4E2SzmFE5LGn51+JA==
-X-CSE-MsgGUID: ZGh3RtIqScq2W57aWjanRw==
+ t=1723192534; x=1754728534;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=IxIAuTATFbgSNxUVw+Di74EcQOhyvZJXvTlffW4uQv4=;
+ b=XW6BwU75eyQT5DN0lahNx+T2KWLlLB82jev0ROFWs9aHRmVNSyphl0en
+ kYWsz/IjVtVBwCsMU4depnYEMF8/fDSqmwBQVKF2HAnRhoXeXaIApu8UO
+ 0ApHvi4Au17ewxsPHtBeiiZDz/agyOpef5KuMBpjtGy7Sw5HyzdTXLEwd
+ RXvr7EwyoI1ZJR4hiAj7RHx3eNMa0L9E1EJExnwsa9WMk/nUHej/a01NY
+ XviehDBQKbpOaTyqj3Micz+NpJgW9wH55btcsk+m2rnhEyOwOBwgVyA9i
+ n7XqiH1ycc6n5Xj5CcTEvhEWkf9bu+Kmk1hs5HcaHVKSzV70DVusbelVT A==;
+X-CSE-ConnectionGUID: b9ToXPfiRcSQDAwziFVxhw==
+X-CSE-MsgGUID: 5IjThUyRQ5+lTqLKRdC9og==
+X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="12931197"
+X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="12931197"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 01:35:33 -0700
+X-CSE-ConnectionGUID: H0OaZmenSyGcWMVWrzteqg==
+X-CSE-MsgGUID: 7EXSLM+pQQ2ZP0IJSruhGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="61888254"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.226])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 01:09:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCHv2] drm/xe/display: Change HPD to polling on runtime suspend
-In-Reply-To: <20240808070037.3187006-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240808070037.3187006-1-arun.r.murthy@intel.com>
-Date: Fri, 09 Aug 2024 11:09:20 +0300
-Message-ID: <87v80a2k3z.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="62143851"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.235])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 01:35:28 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <3b87c155-f35d-4812-a4b3-ac5e0bfe0c18@kernel.org>
+References: <ZrSFpj20b1LbBhCJ@linux>
+ <8f7c531a-ecb9-4c30-b4bb-2bdf3056ff34@kernel.org>
+ <3b87c155-f35d-4812-a4b3-ac5e0bfe0c18@kernel.org>
+Subject: Re: [PULL] drm-intel-fixes
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Tvrtko Ursulin <tursulin@igalia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Fri, 09 Aug 2024 11:35:23 +0300
+Message-ID: <172319252380.21349.12392253333144037613@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.10
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,45 +80,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 08 Aug 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> HPD is interrupt based and on runtime suspend change it to polling as
-> HPD is not a wakeup event. A worker thread is scheduled for doing this
-> polling and it keeps polling for HPD live status on an internval of 10s.
-> On runtime resume disable polling and fallback to interrupt mechanism.
->
-> v2: move poll_enable() to xe_display(Imre)
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/xe/display/xe_display.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 78cccbe28947..989022d21052 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -315,6 +315,10 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  
->  	intel_hpd_cancel_work(xe);
->  
-> +	/* Enable hpd polling on runtime suspend */
+Quoting Krzysztof Kozlowski (2024-08-08 21:44:39)
+> On 08/08/2024 20:35, Krzysztof Kozlowski wrote:
+> > On 08/08/2024 10:45, Tvrtko Ursulin wrote:
+> >>
+> >> Hi Dave, Sima,
+> >>
+> >> A small bunch of fixes for the weekly cycle:
+> >=20
+> > ...
+> >=20
+> >>
+> >> ----------------------------------------------------------------
+> >> Andi Shyti (2):
+> >>       drm/i915/gem: Adjust vma offset for framebuffer mmap offset
+> >>       drm/i915/gem: Fix Virtual Memory mapping boundaries calculation
+> >>
+> >> David Gow (2):
+> >>       drm/i915: Allow evicting to use the requested placement
+> >>       drm/i915: Attempt to get pages without eviction first
+> >>
+> >> Dnyaneshwar Bhadane (1):
+> >>       drm/i915/display: correct dual pps handling for MTL_PCH+
+> >=20
+> > Several commits have issues. Look:
+> >=20
+> >     Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> >     Link: https://patchwork.freedesktop.org/patch/msgid ...
+> >     (cherry picked from commit 97b6784753da06d9d40232328efc5c5367e53417)
+> >     Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> >=20
+> >=20
+> > 1. Duplicated committer SoB.
+> > You added SoB. No need to add two. It does not get stronger. You do not
+> > change the DCO rules by adding two SoBs. You cannot confirm something
+> > more or twice. Read DCO one more time...
 
-What information does this comment add that is not obvious from the
-code?
+Hi Krzysztof,
 
-I'm not against helpful comments, but they need to be something more
-than just explaining the same code in English.
+As a self-proclaimed quite active kernel developer (by a quick web search)
+you might have already ventured to look at the GIT history of the subsytem =
 
-BR,
-Jani.
+tree for the patch in question. If you did that, you might have implied that
+the second S-o-b is added by automation -- and it indeed is.
 
+While appreciating the report, maybe not so much the the condescending
+style of the communication. You now slightly come through as a troll
+hoping to be fed - I hope that is not the case.
 
-> +	if (runtime)
-> +		intel_hpd_poll_enable(xe);
-> +
->  	intel_suspend_encoders(xe);
->  
->  	intel_opregion_suspend(xe, s2idle ? PCI_D1 : PCI_D3cold);
+Seems like we've had such a double S-o-b regularly generated by DIM (Drm
+Inglorious Maintainer scripts) at least since 2016 as the first occurrance
+seems to have been in ccda3a728f70 . So rest of the ecosystem seems to
+deal with them just fine.
 
--- 
-Jani Nikula, Intel
+Is the double S-o-b issue purely cosmetic for you? Not a lawyer but I don't
+think there is any legal problem in stating the same thing twice. [1]
+
+Or are you maybe running into some more concrete issues with upstream kernel
+process related scripts or other automation processing of the commit?
+
+Regards, Joonas
+
+[1] When it comes to the commit rights model in DRM subsystem, stripping
+the final S-o-b after the cherry-pick would make it less obvious who did
+the pick. If there are multiple S-o-bs and the cherry-picking person
+happened to be one of them, that information would be lost. Less
+predictable outcome for the patch form for no actual gain in my opinion.
+
+On the other hand, removing the S-o-b line from above the "(cherry-picked.."
+line would modify the cherry-picked commit description itself and I
+would assume everyone agrees that should not be done.
