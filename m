@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 552C4C3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 15:09:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39A43C3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 15:52:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22C3010E94C;
-	Fri,  9 Aug 2024 15:09:49 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63FE310E94B;
- Fri,  9 Aug 2024 15:09:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3089581177500128000=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AFF210E967;
+	Fri,  9 Aug 2024 15:52:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hf2J4id/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C84810E967
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 15:52:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723218731; x=1754754731;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5vi3w/41kjBi0yfnGGYGSbZudqnvWv+DkNPxNV497p0=;
+ b=Hf2J4id/qbN6ngQQtU6TjPOjWDIUPcUpDs1KKzqctJx1h5Lh2JQ3LoCt
+ nRStlygqQiQGEgXgVmrinBwlrKyTOkPsIOpYNBDb/cSb8qE+w+0ojSpRi
+ 2ScuCzB/DAIasZ8uYEVUbvZ93M4B1RdRFKtdVODFJbSxUSAXNZcKGvPFj
+ VTB4n89ekASITcw4lPNR/CA45+CEJ7g5LRVNMyN+tkrImEq7uQZKHKSD+
+ cvFnRfdd1H9lEYDeSd6TYyX1xUFRHYNIjgzkRm2a98EQAl5Fi2CCWNA3H
+ Eh2FdqVYOwy8xpSko3qkNxQ+TuLTK8tPH+HkCeVhJB6tDOWL10UfHtpIH g==;
+X-CSE-ConnectionGUID: dOmEUSMaQ1u8Met773v4Hw==
+X-CSE-MsgGUID: j7KxOFRMQiin79EE0l4VNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21207369"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="21207369"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 08:52:11 -0700
+X-CSE-ConnectionGUID: +GjlsEStTLq8KSw8GW+mAw==
+X-CSE-MsgGUID: /Pjc0FKaQZuWltwWmv1Nag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="61728691"
+Received: from sbutnari-mobl1.ti.intel.com (HELO fdugast-desk.intel.com)
+ ([10.245.246.16])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 08:52:09 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com,
+	Francois Dugast <francois.dugast@intel.com>
+Subject: [PATCH v9 00/11] Parallel submission of dma fence jobs and LR jobs
+ with shared hardware resources
+Date: Fri,  9 Aug 2024 17:51:25 +0200
+Message-ID: <20240809155156.1955925-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_struct_intel=5Fdispl?=
- =?utf-8?q?ay_conversions_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Aug 2024 15:09:48 -0000
-Message-ID: <172321618840.552626.13310871332878148276@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1723213547.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1723213547.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +64,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3089581177500128000==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v9: s/xe_vm_in_lr_mode/xe_vm_in_fault_mode/ in patch #9
 
-== Series Details ==
+Francois Dugast (11):
+  drm/xe/hw_engine_group: Introduce xe_hw_engine_group
+  drm/xe/guc_submit: Make suspend_wait interruptible
+  'drm/xe/hw_engine_group: Register hw engine group's exec queues
+  drm/xe/hw_engine_group: Add helper to suspend faulting LR jobs
+  drm/xe/exec_queue: Remove duplicated code
+  drm/xe/exec_queue: Prepare last fence for hw engine group resume
+    context
+  drm/xe/hw_engine_group: Add helper to wait for dma fence jobs
+  drm/xe/hw_engine_group: Ensure safe transition between execution modes
+  drm/xe/exec: Switch hw engine group execution mode upon job submission
+  drm/xe/vm: Remove restriction that all VMs must be faulting if one is
+  drm/xe/device: Remove unused xe_device::usm::num_vm_in_*
 
-Series: drm/i915: struct intel_display conversions (rev2)
-URL   : https://patchwork.freedesktop.org/series/136757/
-State : success
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_device.c                |   3 +
+ drivers/gpu/drm/xe/xe_device.h                |  10 -
+ drivers/gpu/drm/xe/xe_device_types.h          |   4 -
+ drivers/gpu/drm/xe/xe_exec.c                  |  20 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c            |  49 ++-
+ drivers/gpu/drm/xe/xe_exec_queue.h            |   2 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h      |   2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  12 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             |   4 +
+ drivers/gpu/drm/xe/xe_hw_engine_group.c       | 372 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine_group.h       |  29 ++
+ drivers/gpu/drm/xe/xe_hw_engine_group_types.h |  51 +++
+ drivers/gpu/drm/xe/xe_hw_engine_types.h       |   2 +
+ drivers/gpu/drm/xe/xe_vm.c                    |  20 -
+ 15 files changed, 534 insertions(+), 47 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group.h
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group_types.h
 
-== Summary ==
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1_BAT -> xe-pw-136757v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136757v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [FAIL][1] ([Intel XE#886]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * IGT: IGT_7963 -> IGT_7964
-  * Linux: xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1 -> xe-pw-136757v2
-
-  IGT_7963: 3f8b9bc4d3f292f788935243bf0a26a4284d8f18 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7964: 0dabf88262c0349d261248638064b97da35369f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1: 8d0f83b389ec64b9f7f9b2ee241fc352346868f1
-  xe-pw-136757v2: 136757v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v2/index.html
-
---===============3089581177500128000==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: struct intel_display conversions (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136757/">https://patchwork.freedesktop.org/series/136757/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1_BAT -&gt; xe-pw-136757v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136757v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7963 -&gt; IGT_7964</li>
-<li>Linux: xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1 -&gt; xe-pw-136757v2</li>
-</ul>
-<p>IGT_7963: 3f8b9bc4d3f292f788935243bf0a26a4284d8f18 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7964: 0dabf88262c0349d261248638064b97da35369f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1740-8d0f83b389ec64b9f7f9b2ee241fc352346868f1: 8d0f83b389ec64b9f7f9b2ee241fc352346868f1<br />
-  xe-pw-136757v2: 136757v2</p>
-
-</body>
-</html>
-
---===============3089581177500128000==--
