@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6257C3DA4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ED2BC531DD
 	for <intel-xe@archiver.kernel.org>; Fri,  9 Aug 2024 19:18:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0D5910E9E5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B124A10E9E6;
 	Fri,  9 Aug 2024 19:18:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AjrPJ5e7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cmvylBRG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CB9910E9E4
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 19:18:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E87A610E9E2
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 19:18:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723231120; x=1754767120;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zdjXHVcu2vAwBQXQw+aIAVUUWqjRui9ZYczQ9Z+L3Kc=;
- b=AjrPJ5e7/+VzokenBb7ky6MRK0ywbFzBkwG6xmdnTkeYo/2BstIlZH3e
- JDOHueb8Axqk0OjriThG3VTSfD+frM0GZ42WOBrzVj0okRmhUD064vUWa
- KQ7l1rDMkn7+4VxxORpKixQEqrJfZOzrMdok+uz2x2lN04woV9D5BHlsL
- yRu9nsa0sDDfIOWAjq6pnbrNbZjAtGYLC2OUFkw8ZPVvHeu1NGtzE2izN
- TDT+EafnPJ00B8Hwkof/0Ov7961esa1Wy7r3Bh+OgPJ1b3pCP1eiAdU7c
- SglcNJZE+6h2f7Nv6FfwMdivV/OpGIEulSgI+MviYHbasTsfPyWNeCP+D A==;
-X-CSE-ConnectionGUID: ox0URrylTCq02QDCBSriVQ==
-X-CSE-MsgGUID: kdBuCACQRNWteXAMSS49nQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="32566812"
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="32566812"
+ bh=7HLiXqA3pyAYSgCvv8/SKl6uPc0yaf3gkAd/jxCHO6o=;
+ b=cmvylBRGTwti/Ex1161+1dxfPK0vfpyd8ZPtVw6usidvZxkwb1XXATzM
+ EnCMIfXCPG1E40FuxaKAuesEZNAB83EANeKt8dx5T/v5KsgV2Fr4wDLXC
+ Y6tK+C3KE2uOm+vYxZUUU1U5MqdGr9kksMAwgaXybR5GcBY+f74Rv+TRk
+ wyNyFZ5D/ZFBm7iy2OGSfQ+7LfBlKClskt5n6gXQ83bG4wqt7ez5uIFzC
+ leDHuRbhaoUEUzvcjJTv4iAgr28UXHi5LqSUWllAW/VkmUlzmbIhc7XP8
+ 6u/kRYUwuIaQ/ItfIO7qk1MjsWP1+NzaZyKiQnYn+FAgIIYtDfe9/X9+9 Q==;
+X-CSE-ConnectionGUID: /3i7lEHMTsCkVKG5DPYsRg==
+X-CSE-MsgGUID: 6F36qZhHQHKKNlp+PCMINA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="32566815"
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="32566815"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Aug 2024 12:18:38 -0700
-X-CSE-ConnectionGUID: yC5FVvcRRACBLaSkM5U/PQ==
-X-CSE-MsgGUID: cDK7mFoSTdaik/x6P2Nogg==
+X-CSE-ConnectionGUID: NyivS5W/QsimzfasozmQ3g==
+X-CSE-MsgGUID: mjDe8YKfSlG3ploj/xQsvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="88294752"
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; d="scan'208";a="88294759"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Aug 2024 12:18:38 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com
-Subject: [PATCH 1/5] drm/xe: Add xe_sched_msg_lock/unlock helper
-Date: Fri,  9 Aug 2024 12:19:25 -0700
-Message-Id: <20240809191929.3138956-2-matthew.brost@intel.com>
+Subject: [PATCH 5/5] drm/xe: Allow suspend / resume to be safely called
+ multiple times
+Date: Fri,  9 Aug 2024 12:19:29 -0700
+Message-Id: <20240809191929.3138956-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240809191929.3138956-1-matthew.brost@intel.com>
 References: <20240809191929.3138956-1-matthew.brost@intel.com>
@@ -66,80 +67,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Will help callers to own locking when adding messages to scheduler.
+Switching modes between LR and dma-fence can result in multiple calls to
+suspend / resume. Make these calls safe while still enforcing call
+order.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gpu_scheduler.c | 12 ++++++------
- drivers/gpu/drm/xe/xe_gpu_scheduler.h | 10 ++++++++++
- 2 files changed, 16 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 40 ++++++++++++++++++++++++------
+ 1 file changed, 33 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index e4ad1d6ce1d5..eea71c67cf2a 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -15,11 +15,11 @@ static void xe_sched_process_msg_queue_if_ready(struct xe_gpu_scheduler *sched)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index a9af33ff8aa7..c5a824981362 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1388,6 +1388,8 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+ #define SET_SCHED_PROPS	2
+ #define SUSPEND		3
+ #define RESUME		4
++#define OPCODE_MASK	0xf
++#define MSG_LOCKED	(1 << 8)
+ 
+ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
  {
- 	struct xe_sched_msg *msg;
+@@ -1432,7 +1434,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	struct xe_guc_exec_queue *ge;
+ 	long timeout;
+-	int err;
++	int err, i;
  
--	spin_lock(&sched->base.job_list_lock);
-+	xe_sched_msg_lock(sched);
- 	msg = list_first_entry_or_null(&sched->msgs, struct xe_sched_msg, link);
- 	if (msg)
- 		xe_sched_process_msg_queue(sched);
--	spin_unlock(&sched->base.job_list_lock);
-+	xe_sched_msg_unlock(sched);
- }
+ 	xe_assert(xe, xe_device_uc_enabled(guc_to_xe(guc)));
  
- static struct xe_sched_msg *
-@@ -27,12 +27,12 @@ xe_sched_get_msg(struct xe_gpu_scheduler *sched)
- {
- 	struct xe_sched_msg *msg;
+@@ -1444,6 +1446,9 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	ge->q = q;
+ 	init_waitqueue_head(&ge->suspend_wait);
  
--	spin_lock(&sched->base.job_list_lock);
-+	xe_sched_msg_lock(sched);
- 	msg = list_first_entry_or_null(&sched->msgs,
- 				       struct xe_sched_msg, link);
- 	if (msg)
- 		list_del(&msg->link);
--	spin_unlock(&sched->base.job_list_lock);
-+	xe_sched_msg_unlock(sched);
++	for (i = 0; i < MAX_STATIC_MSG_TYPE; ++i)
++		INIT_LIST_HEAD(&ge->static_msgs[i].link);
++
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+ 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+@@ -1506,11 +1511,26 @@ static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg
+ 	xe_pm_runtime_get_noresume(guc_to_xe(exec_queue_to_guc(q)));
  
- 	return msg;
- }
-@@ -93,9 +93,9 @@ void xe_sched_submission_stop(struct xe_gpu_scheduler *sched)
- void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
- 		      struct xe_sched_msg *msg)
- {
--	spin_lock(&sched->base.job_list_lock);
-+	xe_sched_msg_lock(sched);
- 	list_add_tail(&msg->link, &sched->msgs);
--	spin_unlock(&sched->base.job_list_lock);
-+	xe_sched_msg_unlock(sched);
+ 	INIT_LIST_HEAD(&msg->link);
+-	msg->opcode = opcode;
++	msg->opcode = opcode & OPCODE_MASK;
+ 	msg->private_data = q;
  
- 	xe_sched_process_msg_queue(sched);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index 10c6bb9c9386..a54038fb3094 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -25,6 +25,16 @@ void xe_sched_submission_stop(struct xe_gpu_scheduler *sched);
- void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
- 		      struct xe_sched_msg *msg);
- 
-+static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
-+{
-+	spin_lock(&sched->base.job_list_lock);
+ 	trace_xe_sched_msg_add(msg);
+-	xe_sched_add_msg(&q->guc->sched, msg);
++	if (opcode & MSG_LOCKED)
++		xe_sched_add_msg_locked(&q->guc->sched, msg);
++	else
++		xe_sched_add_msg(&q->guc->sched, msg);
 +}
 +
-+static inline void xe_sched_msg_unlock(struct xe_gpu_scheduler *sched)
++static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
++				       struct xe_sched_msg *msg,
++				       u32 opcode)
 +{
-+	spin_unlock(&sched->base.job_list_lock);
-+}
++	if (!list_empty(&msg->link))
++		return false;
 +
- static inline void xe_sched_stop(struct xe_gpu_scheduler *sched)
++	guc_exec_queue_add_msg(q, msg, opcode | MSG_LOCKED);
++
++	return true;
+ }
+ 
+ #define STATIC_MSG_CLEANUP	0
+@@ -1584,13 +1604,16 @@ static int guc_exec_queue_set_preempt_timeout(struct xe_exec_queue *q,
+ 
+ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
  {
- 	drm_sched_stop(&sched->base, NULL);
++	struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_SUSPEND;
+ 
+-	if (exec_queue_killed_or_banned_or_wedged(q) || q->guc->suspend_pending)
++	if (exec_queue_killed_or_banned_or_wedged(q))
+ 		return -EINVAL;
+ 
+-	q->guc->suspend_pending = true;
+-	guc_exec_queue_add_msg(q, msg, SUSPEND);
++	xe_sched_msg_lock(sched);
++	if (guc_exec_queue_try_add_msg(q, msg, SUSPEND))
++		q->guc->suspend_pending = true;
++	xe_sched_msg_unlock(sched);
+ 
+ 	return 0;
+ }
+@@ -1624,13 +1647,16 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ 
+ static void guc_exec_queue_resume(struct xe_exec_queue *q)
+ {
++	struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_RESUME;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+ 	xe_assert(xe, !q->guc->suspend_pending);
+ 
+-	guc_exec_queue_add_msg(q, msg, RESUME);
++	xe_sched_msg_lock(sched);
++	guc_exec_queue_try_add_msg(q, msg, RESUME);
++	xe_sched_msg_unlock(sched);
+ }
+ 
+ static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
 -- 
 2.34.1
 
