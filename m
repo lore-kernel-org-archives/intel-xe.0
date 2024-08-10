@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA1BCC52D7D
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 00:01:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 762F8C52D7D
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 00:06:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9923A10EA3F;
-	Sat, 10 Aug 2024 00:01:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 496DB10EA40;
+	Sat, 10 Aug 2024 00:06:31 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12C6E10EA3F;
- Sat, 10 Aug 2024 00:01:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5FB410EA40;
+ Sat, 10 Aug 2024 00:06:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Add_driver_load_error_injectio?=
- =?utf-8?q?n?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_uC-related_drmm_vs_d?=
+ =?utf-8?q?evm_fixes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 10 Aug 2024 00:01:10 -0000
-Message-ID: <172324807007.558587.13363235833439419564@2413ebb6fbb6>
+Date: Sat, 10 Aug 2024 00:06:29 -0000
+Message-ID: <172324838974.558655.5375769407578415222@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240809224424.3212551-1-matthew.brost@intel.com>
-In-Reply-To: <20240809224424.3212551-1-matthew.brost@intel.com>
+References: <20240809231237.1503796-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20240809231237.1503796-1-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,64 +42,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Add driver load error injection
-URL   : https://patchwork.freedesktop.org/series/137111/
-State : failure
+Series: uC-related drmm vs devm fixes
+URL   : https://patchwork.freedesktop.org/series/137112/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_sriov_pf.c: In function ‘xe_gt_sriov_pf_init_early’:
-../drivers/gpu/drm/xe/xe_gt_sriov_pf.c:60:8: error: implicit declaration of function ‘xe_device_inject_driver_load_error’ [-Werror=implicit-function-declaration]
-   60 |  err = xe_device_inject_driver_load_error(gt_to_xe(gt));
-      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_gt_sriov_pf.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1925: .] Error 2
-make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
-
-[00:00:41] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[00:00:45] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 99ad64bdf35c drm-tip: 2024y-08m-09d-23h-41m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: use devm instead of drmm for managed bo
+Applying: drm/xe/uc: Use managed bo for HuC and GSC objects
+Applying: drm/xe/uc: Use devm to register cleanup that includes exec_queues
 
 
