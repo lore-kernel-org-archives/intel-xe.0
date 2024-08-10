@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 942BAC3DA4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B697EC531DB
 	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 01:55:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5938C10EA5F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 615D210EA62;
 	Sat, 10 Aug 2024 01:55:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UwV04U4l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LJ3DiDSl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B642410EA55
- for <intel-xe@lists.freedesktop.org>; Sat, 10 Aug 2024 01:54:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7F710EA58
+ for <intel-xe@lists.freedesktop.org>; Sat, 10 Aug 2024 01:54:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723254894; x=1754790894;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=9RpLEFnL6UJY6OveZQ310T7xyX6jZhRLmuFUyUxdZW0=;
- b=UwV04U4lBZGUwT/q7XOBqVrKv7WiVJKrDbG2e2hoWL9YuWw4JGgGwIBZ
- 5KevO7pZAEXdmOv7vqCgerP1XhmoZ5TpYJmdrXtK5xcuXGO8PE4gxgnO/
- I3oOsH4UYx2i3GQN9Xedfn7dXzZJyu2VIlA5s9dmtI26prhwNSvGer5Fa
- wWM0aCMzD5sETLfu2504I2FdXf/eaiRbIwb/QINq9CuWP+uHr1OJyrU0L
- e7Wz0SR0vbWx1LgnuJCqO1T7HkFIsE8EYILNQKjfMur+vbMKOYdhhAJ2W
- te9uAoHG8pMhptyyfPSCOO3q2+Uu5AuMSErJZ437nHPbQZFbUttHen2dS Q==;
-X-CSE-ConnectionGUID: JEggglXyQbuIwM14xP0aKg==
-X-CSE-MsgGUID: IUMoCVTxT4OqHCz85+U0aA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21420022"
-X-IronPort-AV: E=Sophos;i="6.09,278,1716274800"; d="scan'208";a="21420022"
+ bh=cQQqPMJCHGvbFHO7qwThdRHuE8XiU+LPGyiYxWRjKw0=;
+ b=LJ3DiDSlzRm1bVEP294zm0vyYq0itk+WhLWCK/O9sLFJm6EyR8C6uium
+ Cal2vGTIYGGiV3pxnBVB1dBe8rxamkqX8ZCKmVA7OVnX5SR7y6pW+1Wgo
+ zfTjI70o7gBljD8luzYb76kNr0C9HxCpgPZEOUqwD9FwN/n+74vPsc7eR
+ uS+0kdtQXf+N5vjrjj82hd1In7G4N2ugBZPskIK/6xmWWZ3YmrhVEA7LY
+ Nn+Zaxsqo8bi1qcqq/oQ20+w8DKsD1LcxsqPKEZk89QgeNGrIboTJpSPI
+ Dg6LzEWl67fv3hSGWBnMU0vva6iimDmERTKO1KzStfCZcwmlBEhyHOjbf w==;
+X-CSE-ConnectionGUID: m6PCfjUcR5iO5C/XTJjKVQ==
+X-CSE-MsgGUID: eRLXJW8+T12y5qSw1bO4gQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21420034"
+X-IronPort-AV: E=Sophos;i="6.09,278,1716274800"; d="scan'208";a="21420034"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 18:54:53 -0700
-X-CSE-ConnectionGUID: XQzxahVmSRSPKt1noCOsKQ==
-X-CSE-MsgGUID: FjfwbpVfRR6PJ8avGaDlDA==
+ 09 Aug 2024 18:54:54 -0700
+X-CSE-ConnectionGUID: 0ZYExq2TRcCWuuW1fTay3Q==
+X-CSE-MsgGUID: Or2JFVybTxOOA6HsxnhVMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,278,1716274800"; d="scan'208";a="57813381"
+X-IronPort-AV: E=Sophos;i="6.09,278,1716274800"; d="scan'208";a="57813389"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 18:54:52 -0700
+ 09 Aug 2024 18:54:53 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 01/11] drm/xe: use devm instead of drmm for managed bo
-Date: Fri,  9 Aug 2024 18:55:34 -0700
-Message-Id: <20240810015544.3443258-2-matthew.brost@intel.com>
+Subject: [PATCH 09/11] drm/xe: Move hw_engine_fini to devm managed
+Date: Fri,  9 Aug 2024 18:55:42 -0700
+Message-Id: <20240810015544.3443258-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240810015544.3443258-1-matthew.brost@intel.com>
 References: <20240810015544.3443258-1-matthew.brost@intel.com>
@@ -65,52 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Kernel BOs are destroyed with GGTT mappings, this is hardware
+interaction so use devm.
 
-The BO cleanup touches the GGTT and therefore requires the HW to be
-available, so we need to use devm instead of drmm.
-
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1160
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 3295bc92d7aa..45652d7e6fa6 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1576,7 +1576,7 @@ struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
- 	return bo;
- }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 402dfa748e16..50c192293e7e 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -266,7 +266,7 @@ static const struct engine_info engine_infos[] = {
+ 	},
+ };
  
--static void __xe_bo_unpin_map_no_vm(struct drm_device *drm, void *arg)
-+static void __xe_bo_unpin_map_no_vm(void *arg)
+-static void hw_engine_fini(struct drm_device *drm, void *arg)
++static void hw_engine_fini(void *arg)
  {
- 	xe_bo_unpin_map_no_vm(arg);
- }
-@@ -1591,7 +1591,7 @@ struct xe_bo *xe_managed_bo_create_pin_map(struct xe_device *xe, struct xe_tile
- 	if (IS_ERR(bo))
- 		return bo;
+ 	struct xe_hw_engine *hwe = arg;
  
--	ret = drmm_add_action_or_reset(&xe->drm, __xe_bo_unpin_map_no_vm, bo);
-+	ret = devm_add_action_or_reset(xe->drm.dev, __xe_bo_unpin_map_no_vm, bo);
- 	if (ret)
- 		return ERR_PTR(ret);
+@@ -584,7 +584,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	if (xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY)
+ 		gt->usm.reserved_bcs_instance = hwe->instance;
  
-@@ -1639,7 +1639,7 @@ int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, str
- 	if (IS_ERR(bo))
- 		return PTR_ERR(bo);
+-	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
++	return devm_add_action_or_reset(xe->drm.dev, hw_engine_fini, hwe);
  
--	drmm_release_action(&xe->drm, __xe_bo_unpin_map_no_vm, *src);
-+	devm_release_action(xe->drm.dev, __xe_bo_unpin_map_no_vm, *src);
- 	*src = bo;
- 
- 	return 0;
+ err_kernel_lrc:
+ 	xe_lrc_put(hwe->kernel_lrc);
 -- 
 2.34.1
 
