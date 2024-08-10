@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A296AC3DA4A
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 19:08:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9FD7C3DA7F
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 19:08:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6C810E155;
-	Sat, 10 Aug 2024 19:08:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61E8D10E152;
+	Sat, 10 Aug 2024 19:08:40 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 219F110E152;
- Sat, 10 Aug 2024 19:08:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E063310E152;
+ Sat, 10 Aug 2024 19:08:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/migrate=3A_Pa?=
- =?utf-8?q?rameterize_ccs_and_bo_data_clear_in_xe=5Fmigrate=5Fclear=28=29_?=
- =?utf-8?q?=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/migrate=3A_Paramet?=
+ =?utf-8?q?erize_ccs_and_bo_data_clear_in_xe=5Fmigrate=5Fclear=28=29_=28rev2?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 10 Aug 2024 19:08:27 -0000
-Message-ID: <172331690712.565456.4130800456540629985@2413ebb6fbb6>
+Date: Sat, 10 Aug 2024 19:08:38 -0000
+Message-ID: <172331691891.565457.5035257715249039867@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240809220347.25330-1-nirmoy.das@intel.com>
 In-Reply-To: <20240809220347.25330-1-nirmoy.das@intel.com>
@@ -49,9 +49,37 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a95e3e46063d drm-tip: 2024y-08m-10d-04h-20m-54s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/migrate: Parameterize ccs and bo data clear in xe_migrate_clear()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+dc547930fbb1350eaf6bde84653b9ac973a411db
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 62e2c40d0c2a9c142af4b7ee8c2f5faf776d8b92
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Sat Aug 10 00:03:47 2024 +0200
+
+    drm/xe/migrate: Parameterize ccs and bo data clear in xe_migrate_clear()
+    
+    Parameterize clearing ccs and bo data in xe_migrate_clear() which  higher
+    layers can utilize. This patch will be used later on when doing bo data
+    clear for igfx as well.
+    
+    v2: Replace multiple params with flags in xe_migrate_clear (Matt B)
+    v3: s/CLEAR_BO_DATA_FLAG_*/XE_MIGRATE_CLEAR_FLAG_* and move to
+        xe_migrate.h. other nits(Matt B)
+    
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+    Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch a95e3e46063ddcea598b2ac865173debffba13fe drm-intel
+62e2c40d0c2a drm/xe/migrate: Parameterize ccs and bo data clear in xe_migrate_clear()
 
 
