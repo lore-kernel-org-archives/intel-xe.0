@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11931C3DA7F
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 19:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C05F0C3DA7F
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 19:45:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEA4610E167;
-	Sat, 10 Aug 2024 19:31:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ba8o0+Pr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5BEF10E167
- for <intel-xe@lists.freedesktop.org>; Sat, 10 Aug 2024 19:31:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723318278; x=1754854278;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PIgeNS28FK5akl7aDVxM3t3al07VMjKAzjGzxMpNwCU=;
- b=ba8o0+PrRJf1bcpdVvsu2HoyazStfseVVK9M648sMMcF8cIwJR3v6wRL
- zIhhtv7Z7+FDygE5/d9367W30QlfqAUTjVcKqXIm0RErPFHXX0YRgjmFQ
- D9O9PxxHIbLPy7hResrFlXLf52eMOx2mfh4hGIsgMggzdaQRtl6XrRb/N
- 9hlzKl4p7XzRQu9sGiMRICn6pNvW8pFD4niQvjW6/aitfKEMcvMOly6Z+
- WffTzm1pVAbk3tBIkkW17tV5fXp+roUBJoYJ2EdCFDo9oSizpQu7N042E
- SeTDuzGkfMbnJAfSI3+AVlRyL7y0w7tbU/wgTdSET+BzxT2HxDArhIU++ g==;
-X-CSE-ConnectionGUID: l5D/Ul5VT5CeqQ3n86enhA==
-X-CSE-MsgGUID: UA3ZlDNZS0GhzFJZK4i8Wg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11160"; a="38980155"
-X-IronPort-AV: E=Sophos;i="6.09,279,1716274800"; d="scan'208";a="38980155"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2024 12:31:18 -0700
-X-CSE-ConnectionGUID: SUlvWzvBQ6GR6PpBWTsJ2w==
-X-CSE-MsgGUID: E4r4MmUuQQKR0TX2+L+Aeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,279,1716274800"; d="scan'208";a="62707944"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2024 12:31:17 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Sai Gowtham Ch <sai.gowtham.ch@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v4 2/2] drm/xe: Add stats for tlb invalidation count
-Date: Sat, 10 Aug 2024 21:15:19 +0200
-Message-ID: <20240810191522.18616-2-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20240810191522.18616-1-nirmoy.das@intel.com>
-References: <20240810191522.18616-1-nirmoy.das@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 509EF10E168;
+	Sat, 10 Aug 2024 19:45:19 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93E2110E168;
+ Sat, 10 Aug 2024 19:45:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1434232610872074580=="
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/migrate=3A_Parameterize_c?=
+ =?utf-8?q?cs_and_bo_data_clear_in_xe=5Fmigrate=5Fclear=28=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 10 Aug 2024 19:45:17 -0000
+Message-ID: <172331911759.565456.1950898117426679724@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240809220347.25330-1-nirmoy.das@intel.com>
+In-Reply-To: <20240809220347.25330-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,74 +36,194 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add stats for tlb invalidation count which can be viewed with per GT
-stat debugfs file.
+--===============1434232610872074580==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Example output:
-cat /sys/kernel/debug/dri/0/gt0/stats
-tlb_inval_count: 22
+== Series Details ==
 
-v2: fix #include order(Tejas)
+Series: drm/xe/migrate: Parameterize ccs and bo data clear in xe_migrate_clear() (rev2)
+URL   : https://patchwork.freedesktop.org/series/137107/
+State : success
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_stats.c            | 1 +
- drivers/gpu/drm/xe/xe_gt_stats.h            | 1 +
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 2 ++
- 3 files changed, 4 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-index a054cd52329c..c7364a5aef8f 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats.c
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-@@ -27,6 +27,7 @@ void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr)
- }
- 
- static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
-+	"tlb_inval_count",
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
-index 1be71ce533db..91d944f6c4e4 100644
---- a/drivers/gpu/drm/xe/xe_gt_stats.h
-+++ b/drivers/gpu/drm/xe/xe_gt_stats.h
-@@ -10,6 +10,7 @@ struct xe_gt;
- struct drm_printer;
- 
- enum xe_gt_stats_id {
-+	XE_GT_STATS_ID_TLB_INVAL,
- 	/* must be the last entry */
- 	__XE_GT_STATS_NUM_IDS,
- };
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 87cb76a8718c..cca9cf536f76 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -12,6 +12,7 @@
- #include "xe_gt_printk.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
-+#include "xe_gt_stats.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
- #include "xe_sriov.h"
-@@ -213,6 +214,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 			gt->tlb_invalidation.seqno = 1;
- 	}
- 	mutex_unlock(&guc->ct.lock);
-+	xe_gt_stats_incr(gt, XE_GT_STATS_ID_TLB_INVAL, 1);
- 
- 	return ret;
- }
--- 
-2.42.0
+CI Bug Log - changes from xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe_BAT -> xe-pw-137107v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-137107v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229]) +1 other test skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [FAIL][3] ([Intel XE#886]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#358]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [SKIP][7] ([Intel XE#1192]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][9] ([Intel XE#1192]) -> [SKIP][10] ([Intel XE#455])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/358
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe -> xe-pw-137107v2
+
+  IGT_7965: 965de1e69e91e331eee9d9f53e46b4652ba157c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe: a95e3e46063ddcea598b2ac865173debffba13fe
+  xe-pw-137107v2: 137107v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/index.html
+
+--===============1434232610872074580==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/migrate: Parameterize ccs and bo data clear in xe_migrate_clear() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137107/">https://patchwork.freedesktop.org/series/137107/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe_BAT -&gt; xe-pw-137107v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-137107v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/358">Intel XE#358</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137107v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe -&gt; xe-pw-137107v2</li>
+</ul>
+<p>IGT_7965: 965de1e69e91e331eee9d9f53e46b4652ba157c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1747-a95e3e46063ddcea598b2ac865173debffba13fe: a95e3e46063ddcea598b2ac865173debffba13fe<br />
+  xe-pw-137107v2: 137107v2</p>
+
+</body>
+</html>
+
+--===============1434232610872074580==--
