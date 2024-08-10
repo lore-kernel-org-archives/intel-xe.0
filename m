@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3942C52D7F
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 01:55:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A60D6C3DA4A
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Aug 2024 02:01:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8606F10EA64;
-	Sat, 10 Aug 2024 01:55:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l5bMDeuu";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD8010EA59
- for <intel-xe@lists.freedesktop.org>; Sat, 10 Aug 2024 01:54:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723254894; x=1754790894;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=eTFwaRsmiOx9rM8pjF7grRgJwMyQNr0J8/2gYIB+xXI=;
- b=l5bMDeuuUQqtfaG5iGyvDBmUxM0C2mFAqZiohMHRV7FWmKVSUqNrDsuV
- U0sJocerQw5FzpT5kk1MBDOgcK8viLNyNl86fC5G9yVXz8OnEhWtInK45
- SPvupQmrFyjxxLSXu2d239GggfBgv3hjsyBicQ8qYDPCSmsdA6TxruO4y
- QYQHMFMA0YbjLYkUvQALbGWZjS0vp6DLZIbhC8lYQxoEyXSKwEYnKspdt
- OrSjGrB2arQ3/p+3Y9c6bn8mPXFcH4FjuKN7raw3dBp//uz+a+/gw8dV3
- X+PHacC085pK4cigJ5i4oRZHPcrFIzAqsNVG04YxVjeyeN+5NlKZtTymR Q==;
-X-CSE-ConnectionGUID: wTcecYrvRZuRv5drYMhLVA==
-X-CSE-MsgGUID: hDetqp1jR9+6tuyGv/GcQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21420036"
-X-IronPort-AV: E=Sophos;i="6.09,278,1716274800"; d="scan'208";a="21420036"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 18:54:54 -0700
-X-CSE-ConnectionGUID: UC/k1x9RRg+WmZXt3s64qQ==
-X-CSE-MsgGUID: LpcDrABhTka/4wvXErAzBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,278,1716274800"; d="scan'208";a="57813390"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 18:54:53 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 10/11] drm/xe: Move HuC init before GuC init
-Date: Fri,  9 Aug 2024 18:55:43 -0700
-Message-Id: <20240810015544.3443258-11-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240810015544.3443258-1-matthew.brost@intel.com>
-References: <20240810015544.3443258-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B81410EA65;
+	Sat, 10 Aug 2024 02:01:08 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663E610EA5C;
+ Sat, 10 Aug 2024 02:01:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Fix_error_paths_in_d?=
+ =?utf-8?q?river_load?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 10 Aug 2024 02:01:07 -0000
+Message-ID: <172325526741.558587.18187541331380022712@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240810015544.3443258-1-matthew.brost@intel.com>
+In-Reply-To: <20240810015544.3443258-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +36,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC fini, also fini the HuC so move HuC init first.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_uc.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Series: Fix error paths in driver load
+URL   : https://patchwork.freedesktop.org/series/137114/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index a3786020838b..732d57875701 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -36,6 +36,10 @@ int xe_uc_init(struct xe_uc *uc)
- {
- 	int ret;
- 
-+	ret = xe_huc_init(&uc->huc);
-+	if (ret)
-+		goto err;
-+
- 	/*
- 	 * We call the GuC/HuC/GSC init functions even if GuC submission is off
- 	 * to correctly move our tracking of the FW state to "disabled".
-@@ -44,10 +48,6 @@ int xe_uc_init(struct xe_uc *uc)
- 	if (ret)
- 		goto err;
- 
--	ret = xe_huc_init(&uc->huc);
--	if (ret)
--		goto err;
--
- 	ret = xe_gsc_init(&uc->gsc);
- 	if (ret)
- 		goto err;
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 99ad64bdf35c drm-tip: 2024y-08m-09d-23h-41m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: use devm instead of drmm for managed bo
+Applying: drm/xe/uc: Use managed bo for HuC and GSC objects
+Applying: drm/xe/uc: Use devm to register cleanup that includes exec_queues
+Applying: drm/xe: Fix tile fini sequence
+Applying: drm/xe: Add driver load error injection
+Applying: drm/xe: Move ggtt_fini to devm managed
+Applying: drm/xe: Set firmware state to loadable before registering guc_fini_hw
+Applying: drm/xe: Drop warn on xe_guc_pc_gucrc_disable in guc pc fini
+Applying: drm/xe: Move hw_engine_fini to devm managed
+Applying: drm/xe: Move HuC init before GuC init
+Applying: drm/xe: Update xe_sa to use xe_managed_bo_create_pin_map
+
 
