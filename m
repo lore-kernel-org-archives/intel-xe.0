@@ -4,52 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21396C3DA4A
-	for <intel-xe@archiver.kernel.org>; Sun, 11 Aug 2024 00:20:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C5F6C3DA4A
+	for <intel-xe@archiver.kernel.org>; Sun, 11 Aug 2024 09:41:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8273710E0E0;
-	Sun, 11 Aug 2024 00:20:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 532C410E180;
+	Sun, 11 Aug 2024 09:41:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FmU3Sa1C";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="w1nJHBAl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BDB010E0E0
- for <intel-xe@lists.freedesktop.org>; Sun, 11 Aug 2024 00:20:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723335615; x=1754871615;
- h=date:from:to:cc:subject:message-id;
- bh=9OP6qH50mv1RbBpqqJVZ4N1TqhNsTkF8PDcS8Fib/VU=;
- b=FmU3Sa1C20RFiMbNh9+U03lY3Kv1ioPfXkb0Ivc59POj7Q6xsOyiY3Ir
- ew+oS59ZN5oNwEnxXR+fFWWSuA1Umna2loG+nYabHJaAf6ju5k6hq3LEC
- U1jQQPvKbOJKktjI12ezTnUXCxiG60yDrBkZ0oIJZVpj/eWLxWOYHXpnl
- IFS4ZkuUpa+sqGQhqe/3z3mxEAg6eyqUCaxCV+Ao+epVA4FJJDiTBozoq
- iBUNMNBIg9zGM7P9lG5XoEgcPXfx83l/Wbtyny162RHSu+3xVVxKFV7ew
- 8IpnE4vO5GM2n1BwHlFLPz3GoAFMKjc8qUYfQnBwK/Knfa2R5soiIPMQr A==;
-X-CSE-ConnectionGUID: esEv0P5lRF+TD40Kw0KxIA==
-X-CSE-MsgGUID: X6YJk11AS1Kf9tuOXfLlUA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11160"; a="21453041"
-X-IronPort-AV: E=Sophos;i="6.09,280,1716274800"; d="scan'208";a="21453041"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2024 17:20:14 -0700
-X-CSE-ConnectionGUID: Ptt/XYluSJCsG85ds+aqQg==
-X-CSE-MsgGUID: T3pl1M1XSdGjQFozlBtFRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,280,1716274800"; d="scan'208";a="88755201"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
- by fmviesa001.fm.intel.com with ESMTP; 10 Aug 2024 17:20:12 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1scwJe-000APn-1N;
- Sun, 11 Aug 2024 00:20:10 +0000
-Date: Sun, 11 Aug 2024 08:19:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 08b5a4798713f4331317272752b27b1c4f6a246d
-Message-ID: <202408110835.1StwkevP-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 115C810E180
+ for <intel-xe@lists.freedesktop.org>; Sun, 11 Aug 2024 09:41:09 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1723369261; bh=HuUpMMF8ZQJn0xqXnIo8zaQK36NSwiQO6newOkVBeG8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=w1nJHBAl2Ud0QNMYmeuAUl30HuvomiCjt2l6tNnr/G9UkV38jRfLDog1FKRzlmWil
+ 2Kzb/e1hQLBo3/jNy4BjBBBvMTCyR+Jr0LXSgvO1/OOvHVRTLoj/41iHivmm5qap4E
+ mq+rdHRXhlvgaNdYTgy2gkpGP9gryf/JhvIL7JLYhNlQyCmJCUtSXwKoqQSTeIgnFD
+ PCn7CZnl1JTLwpTPz/3LnvY54BN5h2iKE27qFQQ7qAob+Ywf3EywZ/iakEJUv1XGEc
+ 5dgqoOM5toooNQ8rE9iwbQmSeSVRC4hd3CpsO+Qc+u1l7WCYm1pwSzXLdo6STMBpnx
+ k/clVvsvmfbkg==
+Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ SMTP id 47B9evin2063220; Sun, 11 Aug 2024 12:40:57 +0300
+Date: Sun, 11 Aug 2024 12:40:57 +0300
+From: Dafna Hirschfeld <dhirschfeld@habana.ai>
+To: Stuart Summers <stuart.summers@intel.com>
+Cc: matthew.brost@intel.com, John.C.Harrison@intel.com, brian.welty@intel.com, 
+ rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
+Subject: Re: [CI 2/3] drm/xe: Use topology to determine page fault queue size
+Message-ID: <pw7gmewl75vjcapsk7as4lkymiq5vkt4j2iedwp4b5kfezbn6s@4wpuwrh2qgfj>
+References: <cover.1722269793.git.stuart.summers@intel.com>
+ <1fbe39c6503b5fa15aeb49d803f0e0edb6525a95.1722269793.git.stuart.summers@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <1fbe39c6503b5fa15aeb49d803f0e0edb6525a95.1722269793.git.stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,247 +55,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 08b5a4798713f4331317272752b27b1c4f6a246d  drm/xe: Allow to compile out debugfs
+On 29.07.2024 16:19, Stuart Summers wrote:
+>Currently the page fault queue size is hard coded. However
+>the hardware supports faulting for each EU and each CS.
+>For some applications running on hardware with a large
+>number of EUs and CSs, this can result in an overflow of
+>the page fault queue.
+>
+>Add a small calculation to determine the page fault queue
+>size based on the number of EUs and CSs in the platform as
+>detmined by fuses.
+>
+>Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+>Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_gt_pagefault.c | 54 +++++++++++++++++++++-------
+> drivers/gpu/drm/xe/xe_gt_types.h     |  9 +++--
+> 2 files changed, 49 insertions(+), 14 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>index b2a7fa55bd18..6bfc60c0274a 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>@@ -287,7 +287,7 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+> 			PFD_VIRTUAL_ADDR_LO_SHIFT;
+>
+> 		pf_queue->tail = (pf_queue->tail + PF_MSG_LEN_DW) %
+>-			PF_QUEUE_NUM_DW;
+>+			pf_queue->pf_queue_num_dw;
+> 		ret = true;
+> 	}
+> 	spin_unlock_irq(&pf_queue->lock);
+>@@ -299,7 +299,8 @@ static bool pf_queue_full(struct pf_queue *pf_queue)
+> {
+> 	lockdep_assert_held(&pf_queue->lock);
+>
+>-	return CIRC_SPACE(pf_queue->head, pf_queue->tail, PF_QUEUE_NUM_DW) <=
+>+	return CIRC_SPACE(pf_queue->head, pf_queue->tail,
+>+			  pf_queue->pf_queue_num_dw) <=
+> 		PF_MSG_LEN_DW;
+> }
+>
+>@@ -312,22 +313,23 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+> 	u32 asid;
+> 	bool full;
+>
+>-	/*
+>-	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
+>-	 */
+>-	BUILD_BUG_ON(PF_QUEUE_NUM_DW % PF_MSG_LEN_DW);
+>-
+> 	if (unlikely(len != PF_MSG_LEN_DW))
+> 		return -EPROTO;
+>
+> 	asid = FIELD_GET(PFD_ASID, msg[1]);
+> 	pf_queue = gt->usm.pf_queue + (asid % NUM_PF_QUEUE);
+>
+>+	/*
+>+	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
+>+	 */
+>+	xe_gt_assert(gt, !(pf_queue->pf_queue_num_dw % PF_MSG_LEN_DW));
 
-elapsed time: 1157m
+hi,
+I think this check should be done once at initialization and not every time the handler is called.
 
-configs tested: 228
-configs skipped: 9
+>+
+> 	spin_lock_irqsave(&pf_queue->lock, flags);
+> 	full = pf_queue_full(pf_queue);
+> 	if (!full) {
+> 		memcpy(pf_queue->data + pf_queue->head, msg, len * sizeof(u32));
+>-		pf_queue->head = (pf_queue->head + len) % PF_QUEUE_NUM_DW;
+>+		pf_queue->head = (pf_queue->head + len) %
+>+			pf_queue->pf_queue_num_dw;
+> 		queue_work(gt->usm.pf_wq, &pf_queue->worker);
+> 	} else {
+> 		drm_warn(&xe->drm, "PF Queue full, shouldn't be possible");
+>@@ -386,26 +388,54 @@ static void pagefault_fini(void *arg)
+> {
+> 	struct xe_gt *gt = arg;
+> 	struct xe_device *xe = gt_to_xe(gt);
+>+	int i;
+>
+> 	if (!xe->info.has_usm)
+> 		return;
+>
+> 	destroy_workqueue(gt->usm.acc_wq);
+> 	destroy_workqueue(gt->usm.pf_wq);
+>+
+>+	for (i = 0; i < NUM_PF_QUEUE; ++i)
+>+		kfree(gt->usm.pf_queue[i].data);
+>+}
+>+
+>+static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
+>+{
+>+	xe_dss_mask_t all_dss;
+>+	int num_dss, num_eus;
+>+
+>+	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
+>+		  XE_MAX_DSS_FUSE_BITS);
+>+
+>+	num_dss = bitmap_weight(all_dss, XE_MAX_DSS_FUSE_BITS);
+>+	num_eus = bitmap_weight(gt->fuse_topo.eu_mask_per_dss,
+>+				XE_MAX_EU_FUSE_BITS) * num_dss;
+>+
+>+	/* user can issue separate page faults per EU and per CS */
+>+	pf_queue->pf_queue_num_dw =
+>+		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW;
+>+
+>+	pf_queue->gt = gt;
+>+	pf_queue->data = kzalloc(pf_queue->pf_queue_num_dw, GFP_KERNEL);
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+you should check that data != NULL
 
-tested configs:
-alpha                             allnoconfig   gcc-13.2.0
-alpha                             allnoconfig   gcc-13.3.0
-alpha                            allyesconfig   gcc-13.3.0
-alpha                               defconfig   gcc-13.2.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                         haps_hs_defconfig   gcc-13.2.0
-arc                   randconfig-001-20240810   gcc-13.2.0
-arc                   randconfig-002-20240810   gcc-13.2.0
-arm                              allmodconfig   gcc-13.2.0
-arm                              allmodconfig   gcc-14.1.0
-arm                               allnoconfig   clang-20
-arm                               allnoconfig   gcc-13.2.0
-arm                              allyesconfig   gcc-13.2.0
-arm                              allyesconfig   gcc-14.1.0
-arm                                 defconfig   gcc-13.2.0
-arm                            hisi_defconfig   gcc-13.2.0
-arm                       imx_v4_v5_defconfig   gcc-14.1.0
-arm                      integrator_defconfig   gcc-13.2.0
-arm                        mvebu_v7_defconfig   gcc-13.2.0
-arm                             mxs_defconfig   gcc-14.1.0
-arm                       omap2plus_defconfig   gcc-13.2.0
-arm                          pxa168_defconfig   gcc-14.1.0
-arm                   randconfig-001-20240810   gcc-13.2.0
-arm                   randconfig-002-20240810   gcc-13.2.0
-arm                   randconfig-003-20240810   gcc-13.2.0
-arm                   randconfig-004-20240810   gcc-13.2.0
-arm                        shmobile_defconfig   gcc-13.2.0
-arm                    vt8500_v6_v7_defconfig   gcc-14.1.0
-arm64                            allmodconfig   clang-20
-arm64                            allmodconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-14.1.0
-arm64                               defconfig   gcc-13.2.0
-arm64                 randconfig-001-20240810   gcc-13.2.0
-arm64                 randconfig-002-20240810   gcc-13.2.0
-arm64                 randconfig-003-20240810   gcc-13.2.0
-arm64                 randconfig-004-20240810   gcc-13.2.0
-csky                              allnoconfig   gcc-13.2.0
-csky                              allnoconfig   gcc-14.1.0
-csky                                defconfig   gcc-13.2.0
-csky                  randconfig-001-20240810   gcc-13.2.0
-csky                  randconfig-002-20240810   gcc-13.2.0
-hexagon                          allmodconfig   clang-20
-hexagon                           allnoconfig   clang-20
-hexagon                          allyesconfig   clang-20
-i386                             allmodconfig   clang-18
-i386                             allmodconfig   gcc-12
-i386                              allnoconfig   clang-18
-i386                              allnoconfig   gcc-12
-i386                             allyesconfig   clang-18
-i386                             allyesconfig   gcc-12
-i386         buildonly-randconfig-001-20240810   clang-18
-i386         buildonly-randconfig-001-20240811   gcc-12
-i386         buildonly-randconfig-002-20240810   clang-18
-i386         buildonly-randconfig-002-20240811   gcc-12
-i386         buildonly-randconfig-003-20240810   clang-18
-i386         buildonly-randconfig-003-20240811   gcc-12
-i386         buildonly-randconfig-004-20240810   clang-18
-i386         buildonly-randconfig-004-20240811   gcc-12
-i386         buildonly-randconfig-005-20240810   clang-18
-i386         buildonly-randconfig-005-20240810   gcc-12
-i386         buildonly-randconfig-005-20240811   gcc-12
-i386         buildonly-randconfig-006-20240810   clang-18
-i386         buildonly-randconfig-006-20240810   gcc-12
-i386         buildonly-randconfig-006-20240811   gcc-12
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240810   clang-18
-i386                  randconfig-001-20240811   gcc-12
-i386                  randconfig-002-20240810   clang-18
-i386                  randconfig-002-20240810   gcc-12
-i386                  randconfig-002-20240811   gcc-12
-i386                  randconfig-003-20240810   clang-18
-i386                  randconfig-003-20240811   gcc-12
-i386                  randconfig-004-20240810   clang-18
-i386                  randconfig-004-20240810   gcc-12
-i386                  randconfig-004-20240811   gcc-12
-i386                  randconfig-005-20240810   clang-18
-i386                  randconfig-005-20240810   gcc-12
-i386                  randconfig-005-20240811   gcc-12
-i386                  randconfig-006-20240810   clang-18
-i386                  randconfig-006-20240811   gcc-12
-i386                  randconfig-011-20240810   clang-18
-i386                  randconfig-011-20240810   gcc-12
-i386                  randconfig-011-20240811   gcc-12
-i386                  randconfig-012-20240810   clang-18
-i386                  randconfig-012-20240810   gcc-12
-i386                  randconfig-012-20240811   gcc-12
-i386                  randconfig-013-20240810   clang-18
-i386                  randconfig-013-20240811   gcc-12
-i386                  randconfig-014-20240810   clang-18
-i386                  randconfig-014-20240810   gcc-12
-i386                  randconfig-014-20240811   gcc-12
-i386                  randconfig-015-20240810   clang-18
-i386                  randconfig-015-20240810   gcc-12
-i386                  randconfig-015-20240811   gcc-12
-i386                  randconfig-016-20240810   clang-18
-i386                  randconfig-016-20240810   gcc-12
-i386                  randconfig-016-20240811   gcc-12
-loongarch                        allmodconfig   gcc-14.1.0
-loongarch                         allnoconfig   gcc-13.2.0
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch             randconfig-001-20240810   gcc-13.2.0
-loongarch             randconfig-002-20240810   gcc-13.2.0
-m68k                             allmodconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-13.2.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                             allyesconfig   gcc-14.1.0
-m68k                                defconfig   gcc-13.2.0
-m68k                           sun3_defconfig   gcc-13.2.0
-microblaze                       allmodconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-13.2.0
-microblaze                        allnoconfig   gcc-14.1.0
-microblaze                       allyesconfig   gcc-14.1.0
-microblaze                          defconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-14.1.0
-mips                          ath25_defconfig   gcc-14.1.0
-mips                        bcm63xx_defconfig   gcc-14.1.0
-mips                         bigsur_defconfig   gcc-13.2.0
-mips                     cu1830-neo_defconfig   gcc-14.1.0
-mips                           ip27_defconfig   gcc-14.1.0
-nios2                             allnoconfig   gcc-13.2.0
-nios2                             allnoconfig   gcc-14.1.0
-nios2                               defconfig   gcc-13.2.0
-nios2                 randconfig-001-20240810   gcc-13.2.0
-nios2                 randconfig-002-20240810   gcc-13.2.0
-openrisc                          allnoconfig   gcc-14.1.0
-openrisc                         allyesconfig   gcc-14.1.0
-openrisc                            defconfig   gcc-14.1.0
-parisc                           allmodconfig   gcc-14.1.0
-parisc                            allnoconfig   gcc-14.1.0
-parisc                           allyesconfig   gcc-14.1.0
-parisc                              defconfig   gcc-14.1.0
-parisc                randconfig-001-20240810   gcc-13.2.0
-parisc                randconfig-002-20240810   gcc-13.2.0
-parisc64                            defconfig   gcc-13.2.0
-powerpc                          allmodconfig   gcc-14.1.0
-powerpc                           allnoconfig   gcc-14.1.0
-powerpc                          allyesconfig   gcc-14.1.0
-powerpc                     ep8248e_defconfig   gcc-14.1.0
-powerpc                     ksi8560_defconfig   gcc-14.1.0
-powerpc                 mpc834x_itx_defconfig   gcc-13.2.0
-powerpc                     stx_gp3_defconfig   gcc-14.1.0
-powerpc                     tqm8541_defconfig   gcc-13.2.0
-powerpc                        warp_defconfig   gcc-14.1.0
-powerpc64                        alldefconfig   gcc-13.2.0
-powerpc64             randconfig-001-20240810   gcc-13.2.0
-powerpc64             randconfig-002-20240810   gcc-13.2.0
-powerpc64             randconfig-003-20240810   gcc-13.2.0
-riscv                            allmodconfig   gcc-14.1.0
-riscv                             allnoconfig   gcc-14.1.0
-riscv                            allyesconfig   gcc-14.1.0
-riscv                               defconfig   gcc-14.1.0
-riscv                 randconfig-001-20240810   gcc-13.2.0
-riscv                 randconfig-002-20240810   gcc-13.2.0
-s390                             allmodconfig   clang-20
-s390                              allnoconfig   clang-20
-s390                              allnoconfig   gcc-14.1.0
-s390                             allyesconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   gcc-14.1.0
-s390                  randconfig-001-20240810   gcc-13.2.0
-s390                  randconfig-002-20240810   gcc-13.2.0
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-13.2.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                        apsh4ad0a_defconfig   gcc-14.1.0
-sh                                  defconfig   gcc-14.1.0
-sh                          kfr2r09_defconfig   gcc-13.2.0
-sh                    randconfig-001-20240810   gcc-13.2.0
-sh                    randconfig-002-20240810   gcc-13.2.0
-sh                          rsk7269_defconfig   gcc-13.2.0
-sh                          urquell_defconfig   gcc-14.1.0
-sparc                            allmodconfig   gcc-14.1.0
-sparc                       sparc32_defconfig   gcc-13.2.0
-sparc64                             defconfig   gcc-14.1.0
-sparc64               randconfig-001-20240810   gcc-13.2.0
-sparc64               randconfig-002-20240810   gcc-13.2.0
-um                               allmodconfig   clang-20
-um                               allmodconfig   gcc-13.3.0
-um                                allnoconfig   clang-17
-um                                allnoconfig   gcc-14.1.0
-um                               allyesconfig   gcc-12
-um                               allyesconfig   gcc-13.3.0
-um                                  defconfig   gcc-14.1.0
-um                             i386_defconfig   gcc-14.1.0
-um                    randconfig-001-20240810   gcc-13.2.0
-um                    randconfig-002-20240810   gcc-13.2.0
-um                           x86_64_defconfig   gcc-14.1.0
-x86_64                           alldefconfig   gcc-14.1.0
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240810   gcc-12
-x86_64       buildonly-randconfig-002-20240810   gcc-12
-x86_64       buildonly-randconfig-003-20240810   gcc-12
-x86_64       buildonly-randconfig-004-20240810   gcc-12
-x86_64       buildonly-randconfig-005-20240810   gcc-12
-x86_64       buildonly-randconfig-006-20240810   gcc-12
-x86_64                              defconfig   clang-18
-x86_64                              defconfig   gcc-11
-x86_64                randconfig-001-20240810   gcc-12
-x86_64                randconfig-002-20240810   gcc-12
-x86_64                randconfig-003-20240810   gcc-12
-x86_64                randconfig-004-20240810   gcc-12
-x86_64                randconfig-005-20240810   gcc-12
-x86_64                randconfig-006-20240810   gcc-12
-x86_64                randconfig-011-20240810   gcc-12
-x86_64                randconfig-012-20240810   gcc-12
-x86_64                randconfig-013-20240810   gcc-12
-x86_64                randconfig-014-20240810   gcc-12
-x86_64                randconfig-015-20240810   gcc-12
-x86_64                randconfig-016-20240810   gcc-12
-x86_64                randconfig-071-20240810   gcc-12
-x86_64                randconfig-072-20240810   gcc-12
-x86_64                randconfig-073-20240810   gcc-12
-x86_64                randconfig-074-20240810   gcc-12
-x86_64                randconfig-075-20240810   gcc-12
-x86_64                randconfig-076-20240810   gcc-12
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-13.2.0
-xtensa                            allnoconfig   gcc-14.1.0
-xtensa                randconfig-001-20240810   gcc-13.2.0
-xtensa                randconfig-002-20240810   gcc-13.2.0
+>+	spin_lock_init(&pf_queue->lock);
+>+	INIT_WORK(&pf_queue->worker, pf_queue_work_func);
+>+
+>+	return 0;
+> }
+>
+> int xe_gt_pagefault_init(struct xe_gt *gt)
+> {
+> 	struct xe_device *xe = gt_to_xe(gt);
+>-	int i;
+>+	int i, ret = 0;
+>
+> 	if (!xe->info.has_usm)
+> 		return 0;
+>
+> 	for (i = 0; i < NUM_PF_QUEUE; ++i) {
+>-		gt->usm.pf_queue[i].gt = gt;
+>-		spin_lock_init(&gt->usm.pf_queue[i].lock);
+>-		INIT_WORK(&gt->usm.pf_queue[i].worker, pf_queue_work_func);
+>+		ret = xe_alloc_pf_queue(gt, &gt->usm.pf_queue[i]);
+>+		if (ret)
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+and here you should free previous allocations
+thanks,
+Dafna
+
+>+			return ret;
+
+
+> 	}
+> 	for (i = 0; i < NUM_ACC_QUEUE; ++i) {
+> 		gt->usm.acc_queue[i].gt = gt;
+>diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>index 631928258d71..331d783a0a2d 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_types.h
+>+++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>@@ -238,9 +238,14 @@ struct xe_gt {
+> 		struct pf_queue {
+> 			/** @usm.pf_queue.gt: back pointer to GT */
+> 			struct xe_gt *gt;
+>-#define PF_QUEUE_NUM_DW	128
+> 			/** @usm.pf_queue.data: data in the page fault queue */
+>-			u32 data[PF_QUEUE_NUM_DW];
+>+			u32 *data;
+>+			/**
+>+			 * @usm.pf_queue_num_dw: number of DWORDS in the page
+>+			 * fault queue. Dynamically calculated based on the number
+>+			 * of compute resources available.
+>+			 */
+>+			u32 pf_queue_num_dw;
+> 			/**
+> 			 * @usm.pf_queue.tail: tail pointer in DWs for page fault queue,
+> 			 * moved by worker which processes faults (consumer).
+>-- 
+>2.34.1
+>
