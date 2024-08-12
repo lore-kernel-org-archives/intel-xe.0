@@ -4,64 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC7C2C531DC
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 09:05:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D6CBC3DA7F
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 09:22:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84F8E10E071;
-	Mon, 12 Aug 2024 09:05:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9CA10E076;
+	Mon, 12 Aug 2024 09:22:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GOLQWmg4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AzNrEKxv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5A610E088
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 09:05:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D75B10E076
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 09:22:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723453502; x=1754989502;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=L6sXtqMK4bTFA94DcLgb1bWY98UbDx/Gy+pKK/xef+c=;
- b=GOLQWmg4ZvijwXA01xlePEB4j3Jpo1V/qdDRsgM9wRVeKjYSbtw9AtvB
- 7YYb8BqmRnDR1TyoaxrC27Gk7I8oDq55mTRk9/lD2JMVj+7NZtwYbnCpc
- 9VwMiAwKn9Em2wlxOvqStUA0zxBLTc0XEC3uMbM0P+t4qAJvvDk/Oe0y8
- DEOP8kGga455E9medf68Xh28QXPa5cWXgq20mnApNDboMpxrk6rOJ/til
- KjHfhrqKAR7FURx2dt7J90zYGlwNdif7juXOn4Buocs7t+S8zRLIP9zvG
- 66pH6i6zyO7iY9wsOMIIAWHKB0n1kgIOQj3opNtNMr8gUOwhF2qCC4/FO A==;
-X-CSE-ConnectionGUID: JYvvgaN3RraDW3IwG233wA==
-X-CSE-MsgGUID: XX0N3YgyRGqnfJHt3ay2bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="44069044"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="44069044"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 02:05:01 -0700
-X-CSE-ConnectionGUID: u6v4Lz7OTCyIvPrIqq9ghQ==
-X-CSE-MsgGUID: kCbsgwztTQaZL3Jn8FAiyg==
+ t=1723454563; x=1754990563;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=5kOWTQs9LkDBQ3UAPdkHffzhhqcHmgIW+dmYbpmZagI=;
+ b=AzNrEKxvYfqyjh/ZFlmxSF2OQuOtxTS07+D6QE6GqL3Lv/ksyuxIiwTR
+ bq3nccWd3XbLHN+eR8yxtCpdQxwvTLsUxrhUPi+DkB3a1R1SKMA715vv5
+ p34cQNC4FfN+iIo5FO3o71AhQRem+i2en46RpfCrhrmhLNW1VUGOJtH7A
+ 6smWIc/1O0dWTEvuu5DLncg/tcADA0CtSz3fdSGkwgShocS3VsnnGsNeM
+ kaEJFt6DM9uObmO6CalqSVfO3MxrOZoWMSp28GwY2s6L0/kxZil3lsdJs
+ uNnPKtchN2i1FhCQd9kUurx1sgZ+ruRAhBnIxBMt5mHbEkuTSRrqj1F3X Q==;
+X-CSE-ConnectionGUID: e2R917tYSA6wnP8NEMrQFw==
+X-CSE-MsgGUID: OCjkMNIsSAS0K0uYi44s+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21404588"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21404588"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 02:22:43 -0700
+X-CSE-ConnectionGUID: ZtqKSWqJRLG5RHbdsyb1vg==
+X-CSE-MsgGUID: 0q04ll+zSQ+JtOOp6NxV1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="88853740"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.146.109])
- ([10.245.146.109])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 02:04:59 -0700
-Message-ID: <64e70498-f38d-498b-985b-4b2ade3115ff@linux.intel.com>
-Date: Mon, 12 Aug 2024 11:04:55 +0200
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="58915208"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.25])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 02:22:39 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Mon, 12 Aug 2024 12:22:36 +0300 (EEST)
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>, 
+ Hans de Goede <hdegoede@redhat.com>
+cc: "david.e.box@linux.intel.com" <david.e.box@linux.intel.com>, 
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>, 
+ "Brost, Matthew" <matthew.brost@intel.com>, 
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
+Subject: RE: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT base
+ adjust
+In-Reply-To: <IA1PR11MB64188E3342EB3C26BC30EDD5C1BA2@IA1PR11MB6418.namprd11.prod.outlook.com>
+Message-ID: <ed0c857f-9224-4495-bd24-4ad9bc0e7aee@linux.intel.com>
+References: <20240725122346.4063913-1-michael.j.ruhl@intel.com>
+ <20240725122346.4063913-6-michael.j.ruhl@intel.com>
+ <e70a44a24b1404a000e302a444a41c286538f3f9.camel@linux.intel.com>
+ <ZrUyH6vZpShdacjx@intel.com>
+ <fe23eb2ef30e4a867668a221f3f02dbe9d322edc.camel@linux.intel.com>
+ <IA1PR11MB64188E3342EB3C26BC30EDD5C1BA2@IA1PR11MB6418.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/migrate: Parameterize ccs and bo data clear in
- xe_migrate_clear()
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-References: <20240809220347.25330-1-nirmoy.das@intel.com>
- <ef360a74-72c3-42a9-9553-76f2d165613e@intel.com>
- <fbae468accaa4ca50550dec93af5a118699bc7e5.camel@linux.intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <fbae468accaa4ca50550dec93af5a118699bc7e5.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; BOUNDARY="8323328-1485091447-1723454000=:1039"
+Content-ID: <19b16c69-62a7-f94f-b37e-cf45a213db60@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,303 +79,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-On 8/12/2024 10:55 AM, Thomas Hellström wrote:
-> On Sat, 2024-08-10 at 00:23 +0200, Nirmoy Das wrote:
->> Extracting this from
->> https://patchwork.freedesktop.org/series/136277/ as
->> there is a regression in performance number on drm-tip.
->>
->> I think it will take some time to find out what is going on. This
->> patch
->> can be applied independently sending it separately.
-> Hi, Nirmoy.
->
-> What's the regression
+--8323328-1485091447-1723454000=:1039
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <372539f3-34b3-e16c-1959-42a940a20859@linux.intel.com>
 
-Offloading zeroing  pages to GPU seems to provide worse performance than 
-existing CPU page zeroing.
+On Fri, 9 Aug 2024, Ruhl, Michael J wrote:
 
-This wasn't the case when I was testing the series on kernel before 6.10.
+> > -----Original Message-----
+> > From: David E. Box <david.e.box@linux.intel.com>
+> > Sent: Thursday, August 8, 2024 8:57 PM
+> > To: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > Cc: Ruhl, Michael J <michael.j.ruhl@intel.com>; intel-xe@lists.freedesk=
+top.org;
+> > platform-driver-x86@vger.kernel.org; ilpo.jarvinen@linux.intel.com; Bro=
+st,
+> > Matthew <matthew.brost@intel.com>; andriy.shevchenko@linux.intel.com
+> > Subject: Re: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT
+> > base adjust
+> >=20
+> > On Thu, 2024-08-08 at 17:01 -0400, Rodrigo Vivi wrote:
+> > > On Thu, Aug 08, 2024 at 12:49:58PM -0700, David E. Box wrote:
+> > > > Hi Mike
+> > > >
+> > > > On Thu, 2024-07-25 at 08:23 -0400, Michael J. Ruhl wrote:
+> > > > > DVSEC offsets are based on the endpoint BAR.=A0 If an endpoint is
+> > > > > not available allow the offset information to be adjusted by the
+> > > > > parent driver.
+> > > >
+> > > > I know I wrote the original version of these patches but I no longe=
+r
+> > > > like this solution. The s32 is too small for a 64 bit address and
+> > > > calculating the offset just to add it back in the PMT driver is
+> > > > unnecessary.
+> > >
+> > > yeap, 64bit sounds better indeed.
+> > >
+> > > > Instead, I sent you
+> > > > replacement patches for 5 and 6 that allow passing the telemetry
+> > > > region address directly to the PMT driver.
+> > >
+> > > Was these replacements sent straight to PMT list or to Mike so he can
+> > > adjust the series?
+> > >
+> > > I'm wondering if we should merge this through our drm-xe-next or
+> > > through PMT channels. Thoughts?
+> > >
+> > > In any case, ack from my side to get the xe patches merged together
+> > > through PMT.
+> > >
+> > > But if someone prefer to get this merged through drm-xe-next, then we
+> > > need to act fast and get this ready with the final patches and acked
+> > > by you PMT maintainers, in the next 2 weeks because our window under
+> > > drm closes much earlier.
+> > >
+> > > Around 6.11-rc5 is when we close the drm window towards 6.12 and we
+> > > are almost within 6.11-rc3.
+> > >
+> > > Thoughts?
+> >=20
+> > For me Patches 1-4 are good to go for BMG support. Patches 5 and 6 add =
+DG2
+> > support but need some work. They should wait.
+>=20
+>=20
+> David, Ilpo,
+>=20
+> The DG2 patches are a nice to have.
+>=20
+> Please take patch 1 - 4.
+>=20
+> I will revisit 5 and 6 (with David's suggested changes) in the future.
 
->   and do we have a Fixes: tag for this patch?
+Hans is the one handling pdx86 for-next patches in this cycle (we as the=20
+pdx86 maintainers alternate it on every other kernel release). Please=20
+remember to add him into receipient list when you send the next version
+with my comments on 4th patch addressed (always include all relevant=20
+maintainers when sending patches).
 
-
-Unfortunately, I don't have an answer yet. I am still trying to figure 
-out what has changed.
-
-Regards,
-
-Nirmoy
-
-> /Thomas
->
->
->>
->> Regards,
->>
->> Nirmoy
->>
->> On 8/10/2024 12:03 AM, Nirmoy Das wrote:
->>> Parameterize clearing ccs and bo data in xe_migrate_clear() which
->>> higher
->>> layers can utilize. This patch will be used later on when doing bo
->>> data
->>> clear for igfx as well.
->>>
->>> v2: Replace multiple params with flags in xe_migrate_clear (Matt B)
->>> v3: s/CLEAR_BO_DATA_FLAG_*/XE_MIGRATE_CLEAR_FLAG_* and move to
->>>       xe_migrate.h. other nits(Matt B)
->>>
->>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
->>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/tests/xe_bo.c      |  3 ++-
->>>    drivers/gpu/drm/xe/tests/xe_migrate.c | 12 ++++++++----
->>>    drivers/gpu/drm/xe/xe_bo.c            | 12 ++++++++++--
->>>    drivers/gpu/drm/xe/xe_migrate.c       | 27 +++++++++++++++++++---
->>> -----
->>>    drivers/gpu/drm/xe/xe_migrate.h       |  7 ++++++-
->>>    5 files changed, 45 insertions(+), 16 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c
->>> b/drivers/gpu/drm/xe/tests/xe_bo.c
->>> index 1768483da1b7..df9fd907edd4 100644
->>> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
->>> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
->>> @@ -36,7 +36,8 @@ static int ccs_test_migrate(struct xe_tile *tile,
->>> struct xe_bo *bo,
->>>    
->>>    	/* Optionally clear bo *and* CCS data in VRAM. */
->>>    	if (clear) {
->>> -		fence = xe_migrate_clear(tile->migrate, bo, bo-
->>>> ttm.resource);
->>> +		fence = xe_migrate_clear(tile->migrate, bo, bo-
->>>> ttm.resource,
->>> +					
->>> XE_MIGRATE_CLEAR_FLAG_FULL);
->>>    		if (IS_ERR(fence)) {
->>>    			KUNIT_FAIL(test, "Failed to submit bo
->>> clear.\n");
->>>    			return PTR_ERR(fence);
->>> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c
->>> b/drivers/gpu/drm/xe/tests/xe_migrate.c
->>> index 4344a1724029..47ae9d0b8864 100644
->>> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
->>> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
->>> @@ -105,7 +105,8 @@ static void test_copy(struct xe_migrate *m,
->>> struct xe_bo *bo,
->>>    	}
->>>    
->>>    	xe_map_memset(xe, &remote->vmap, 0, 0xd0, remote->size);
->>> -	fence = xe_migrate_clear(m, remote, remote->ttm.resource);
->>> +	fence = xe_migrate_clear(m, remote, remote->ttm.resource,
->>> +				 XE_MIGRATE_CLEAR_FLAG_FULL);
->>>    	if (!sanity_fence_failed(xe, fence, big ? "Clearing remote
->>> big bo" :
->>>    				 "Clearing remote small bo",
->>> test)) {
->>>    		retval = xe_map_rd(xe, &remote->vmap, 0, u64);
->>> @@ -279,7 +280,8 @@ static void xe_migrate_sanity_test(struct
->>> xe_migrate *m, struct kunit *test)
->>>    	kunit_info(test, "Clearing small buffer object\n");
->>>    	xe_map_memset(xe, &tiny->vmap, 0, 0x22, tiny->size);
->>>    	expected = 0;
->>> -	fence = xe_migrate_clear(m, tiny, tiny->ttm.resource);
->>> +	fence = xe_migrate_clear(m, tiny, tiny->ttm.resource,
->>> +				 XE_MIGRATE_CLEAR_FLAG_FULL);
->>>    	if (sanity_fence_failed(xe, fence, "Clearing small bo",
->>> test))
->>>    		goto out;
->>>    
->>> @@ -300,7 +302,8 @@ static void xe_migrate_sanity_test(struct
->>> xe_migrate *m, struct kunit *test)
->>>    	kunit_info(test, "Clearing big buffer object\n");
->>>    	xe_map_memset(xe, &big->vmap, 0, 0x11, big->size);
->>>    	expected = 0;
->>> -	fence = xe_migrate_clear(m, big, big->ttm.resource);
->>> +	fence = xe_migrate_clear(m, big, big->ttm.resource,
->>> +				 XE_MIGRATE_CLEAR_FLAG_FULL);
->>>    	if (sanity_fence_failed(xe, fence, "Clearing big bo",
->>> test))
->>>    		goto out;
->>>    
->>> @@ -603,7 +606,8 @@ static void test_clear(struct xe_device *xe,
->>> struct xe_tile *tile,
->>>    
->>>    	kunit_info(test, "Clear vram buffer object\n");
->>>    	expected = 0x0000000000000000;
->>> -	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo-
->>>> ttm.resource);
->>> +	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo-
->>>> ttm.resource,
->>> +				 XE_MIGRATE_CLEAR_FLAG_FULL);
->>>    	if (sanity_fence_failed(xe, fence, "Clear vram_bo", test))
->>>    		return;
->>>    	dma_fence_put(fence);
->>> diff --git a/drivers/gpu/drm/xe/xe_bo.c
->>> b/drivers/gpu/drm/xe/xe_bo.c
->>> index 3295bc92d7aa..56a089aa3916 100644
->>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>> @@ -793,8 +793,16 @@ static int xe_bo_move(struct ttm_buffer_object
->>> *ttm_bo, bool evict,
->>>    			}
->>>    		}
->>>    	} else {
->>> -		if (move_lacks_source)
->>> -			fence = xe_migrate_clear(migrate, bo,
->>> new_mem);
->>> +		if (move_lacks_source) {
->>> +			u32 flags = 0;
->>> +
->>> +			if (mem_type_is_vram(new_mem->mem_type))
->>> +				flags |=
->>> XE_MIGRATE_CLEAR_FLAG_FULL;
->>> +			else if (handle_system_ccs)
->>> +				flags |=
->>> XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
->>> +
->>> +			fence = xe_migrate_clear(migrate, bo,
->>> new_mem, flags);
->>> +		}
->>>    		else
->>>    			fence = xe_migrate_copy(migrate, bo, bo,
->>> old_mem,
->>>    						new_mem,
->>> handle_system_ccs);
->>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
->>> b/drivers/gpu/drm/xe/xe_migrate.c
->>> index 6f24aaf58252..a2d0ce3c59bf 100644
->>> --- a/drivers/gpu/drm/xe/xe_migrate.c
->>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->>> @@ -1037,9 +1037,11 @@ static void emit_clear(struct xe_gt *gt,
->>> struct xe_bb *bb, u64 src_ofs,
->>>     * @m: The migration context.
->>>     * @bo: The buffer object @dst is currently bound to.
->>>     * @dst: The dst TTM resource to be cleared.
->>> + * @clear_flags: flags to specify which data to clear: CCS, BO, or
->>> both.
->>>     *
->>> - * Clear the contents of @dst to zero. On flat CCS devices,
->>> - * the CCS metadata is cleared to zero as well on VRAM
->>> destinations.
->>> + * Clear the contents of @dst to zero when
->>> XE_MIGRATE_CLEAR_FLAG_BO_DATA is set.
->>> + * On flat CCS devices, the CCS metadata is cleared to zero with
->>> XE_MIGRATE_CLEAR_FLAG_CCS_DATA.
->>> + * Set XE_MIGRATE_CLEAR_FLAG_FULL to clear bo as well as CCS
->>> metadata.
->>>     * TODO: Eliminate the @bo argument.
->>>     *
->>>     * Return: Pointer to a dma_fence representing the last clear
->>> batch, or
->>> @@ -1048,18 +1050,27 @@ static void emit_clear(struct xe_gt *gt,
->>> struct xe_bb *bb, u64 src_ofs,
->>>     */
->>>    struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->>>    				   struct xe_bo *bo,
->>> -				   struct ttm_resource *dst)
->>> +				   struct ttm_resource *dst,
->>> +				   u32 clear_flags)
->>>    {
->>>    	bool clear_vram = mem_type_is_vram(dst->mem_type);
->>> +	bool clear_bo_data = XE_MIGRATE_CLEAR_FLAG_BO_DATA &
->>> clear_flags;
->>> +	bool clear_ccs = XE_MIGRATE_CLEAR_FLAG_CCS_DATA &
->>> clear_flags;
->>>    	struct xe_gt *gt = m->tile->primary_gt;
->>>    	struct xe_device *xe = gt_to_xe(gt);
->>> -	bool clear_system_ccs = (xe_bo_needs_ccs_pages(bo) &&
->>> !IS_DGFX(xe)) ? true : false;
->>> +	bool clear_only_system_ccs = false;
->>>    	struct dma_fence *fence = NULL;
->>>    	u64 size = bo->size;
->>>    	struct xe_res_cursor src_it;
->>>    	struct ttm_resource *src = dst;
->>>    	int err;
->>>    
->>> +	if (WARN_ON(!clear_bo_data && !clear_ccs))
->>> +		return NULL;
->>> +
->>> +	if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
->>> +		clear_only_system_ccs = true;
->>> +
->>>    	if (!clear_vram)
->>>    		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size,
->>> &src_it);
->>>    	else
->>> @@ -1085,7 +1096,7 @@ struct dma_fence *xe_migrate_clear(struct
->>> xe_migrate *m,
->>>    		batch_size = 2 +
->>>    			pte_update_size(m, pte_flags, src,
->>> &src_it,
->>>    					&clear_L0, &clear_L0_ofs,
->>> &clear_L0_pt,
->>> -					clear_system_ccs ? 0 :
->>> emit_clear_cmd_len(gt), 0,
->>> +					clear_bo_data ?
->>> emit_clear_cmd_len(gt) : 0, 0,
->>>    					avail_pts);
->>>    
->>>    		if (xe_migrate_needs_ccs_emit(xe))
->>> @@ -1107,13 +1118,13 @@ struct dma_fence *xe_migrate_clear(struct
->>> xe_migrate *m,
->>>    		if (clear_vram &&
->>> xe_migrate_allow_identity(clear_L0, &src_it))
->>>    			xe_res_next(&src_it, clear_L0);
->>>    		else
->>> -			emit_pte(m, bb, clear_L0_pt, clear_vram,
->>> clear_system_ccs,
->>> +			emit_pte(m, bb, clear_L0_pt, clear_vram,
->>> clear_only_system_ccs,
->>>    				 &src_it, clear_L0, dst);
->>>    
->>>    		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
->>>    		update_idx = bb->len;
->>>    
->>> -		if (!clear_system_ccs)
->>> +		if (clear_bo_data)
->>>    			emit_clear(gt, bb, clear_L0_ofs, clear_L0,
->>> XE_PAGE_SIZE, clear_vram);
->>>    
->>>    		if (xe_migrate_needs_ccs_emit(xe)) {
->>> @@ -1172,7 +1183,7 @@ struct dma_fence *xe_migrate_clear(struct
->>> xe_migrate *m,
->>>    		return ERR_PTR(err);
->>>    	}
->>>    
->>> -	if (clear_system_ccs)
->>> +	if (clear_ccs)
->>>    		bo->ccs_cleared = true;
->>>    
->>>    	return fence;
->>> diff --git a/drivers/gpu/drm/xe/xe_migrate.h
->>> b/drivers/gpu/drm/xe/xe_migrate.h
->>> index 453e0ecf5034..7929cc2425e8 100644
->>> --- a/drivers/gpu/drm/xe/xe_migrate.h
->>> +++ b/drivers/gpu/drm/xe/xe_migrate.h
->>> @@ -102,9 +102,14 @@ struct dma_fence *xe_migrate_copy(struct
->>> xe_migrate *m,
->>>    				  struct ttm_resource *dst,
->>>    				  bool copy_only_ccs);
->>>    
->>> +#define XE_MIGRATE_CLEAR_FLAG_BO_DATA		BIT(0)
->>> +#define XE_MIGRATE_CLEAR_FLAG_CCS_DATA		BIT(1)
->>> +#define
->>> XE_MIGRATE_CLEAR_FLAG_FULL	(XE_MIGRATE_CLEAR_FLAG_BO_DATA | \
->>> +					XE_MIGRATE_CLEAR_FLAG_CCS_
->>> DATA)
->>>    struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->>>    				   struct xe_bo *bo,
->>> -				   struct ttm_resource *dst);
->>> +				   struct ttm_resource *dst,
->>> +				   u32 clear_flags);
->>>    
->>>    struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m);
->>>    
+--=20
+ i.
+--8323328-1485091447-1723454000=:1039--
