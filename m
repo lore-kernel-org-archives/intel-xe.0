@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60785C3DA7F
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 20:06:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D355DC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 20:11:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E22210E2A0;
-	Mon, 12 Aug 2024 20:06:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CBA610E2AA;
+	Mon, 12 Aug 2024 20:11:16 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B32AC10E19B;
- Mon, 12 Aug 2024 20:06:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCB0210E2A6;
+ Mon, 12 Aug 2024 20:11:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/vsec=3A_Suppo?=
- =?utf-8?q?rt_BMG_devices_=28rev2=29?=
+ =?utf-8?q?rt_BMG_devices_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Aug 2024 20:06:34 -0000
-Message-ID: <172349319472.596344.4454846436122665523@2413ebb6fbb6>
+Date: Mon, 12 Aug 2024 20:11:14 -0000
+Message-ID: <172349347482.596344.3452965081327277007@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240812200142.444063-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20240812200142.444063-1-michael.j.ruhl@intel.com>
+References: <20240812200422.444078-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20240812200422.444078-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,7 +42,7 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe/vsec: Support BMG devices (rev2)
+Series: drm/xe/vsec: Support BMG devices (rev3)
 URL   : https://patchwork.freedesktop.org/series/137199/
 State : failure
 
