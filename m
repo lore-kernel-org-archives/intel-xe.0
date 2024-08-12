@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62D33C52D7C
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 20:12:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A285C52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 20:12:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ACF910E2A7;
-	Mon, 12 Aug 2024 20:12:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 504FE10E2A8;
+	Mon, 12 Aug 2024 20:12:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F3U97ska";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MYLnrfG4";
 	dkim-atps=neutral
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
- [209.85.210.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5591310E2A7
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 20:12:32 +0000 (UTC)
-Received: by mail-pf1-f180.google.com with SMTP id
- d2e1a72fcca58-710dc3015bfso2129286b3a.0
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 13:12:32 -0700 (PDT)
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
+ [209.85.167.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 622C710E2A8
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 20:12:36 +0000 (UTC)
+Received: by mail-oi1-f180.google.com with SMTP id
+ 5614622812f47-3db1d0fca58so3210664b6e.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 13:12:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1723493552; x=1724098352; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1723493555; x=1724098355; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=x7hE1RgLy8mX4J8hF3W1OJ9Lh99mP7nU/Guto6WhUSA=;
- b=F3U97ska4t2t79OZxfdDRDEy9QmR583CqTOnDI8HFPVMBmjLSV+Kwf+1296XzooVtj
- wDf+P477JGOaF7cYjfkQkbR17qkF3nguqHrgwZeBhDaSrpjpn/8dvlE+K9fOplFlxaQH
- H2yxpb+FXmTErWr/4KE9TpTkl2r+7LMEqQRSky8NDbwCPLSSzhU84VCWfOeg+JE8nm6D
- h3AAKgoMXIip0Eh6cXdB48LKWn6oHRGUAHGbeBukGtLiXxPH5U5Yt2lLFTtuA+06UVr/
- gV3T3Rkbn7OajxitOmG6+EbweqNFqXF15FGHskEWUnojBcNcIIJhbdHU+q89zD9CgsVY
- gcOA==
+ bh=dATszDia9XGt8okKDBFzEDH3NBau2UVqGjVmcVm8iHw=;
+ b=MYLnrfG4hK53elb7eBvex2ph6cRa+K7UFAEpkdwFp0Hns4yLiyiUU0MGBtHJ/26WBx
+ PO+Kje/w2a01PqChEzBpMylzT+BA9nz48E6PmKtoPLPjQtxHrIa2giS7mT2XFEwgxKnR
+ PZIoFRo+tl9gLhMjn2xKXpDZprwVMFp8yz4jcQsjWlP/4P0qRqhp86J3o06IUN7VU0a9
+ onOuN/k16THP0ePDMVALhBEot/ivTELkwQKxh/A6FEoJXapIUgiZRN+9n42UUAcNMCXq
+ 1wcgBwFsMyqx+kBbTHsuM3O5Yp+6yBKP55O58M4TseMZid8m15rs3M8fuLLM64s/7eEb
+ 8/Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1723493552; x=1724098352;
+ d=1e100.net; s=20230601; t=1723493555; x=1724098355;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=x7hE1RgLy8mX4J8hF3W1OJ9Lh99mP7nU/Guto6WhUSA=;
- b=Gi4UDifHoVEKkYprePhcgoXVVD7GAhjtXbcmF2yxSqqQuC9N9AbIpx03cD9SGBU9fv
- TVg++kKnk5RDIlGsDOiNDrofKPl0x7YeusOgpXvP20ttwu3IYy1k+4Kl+h5w96f1SKPa
- 0x/g+igBm3uR/cqY5QNAqzBcKs5zxCNQ/KErar3iggoJ/UBjwGlhDqwVEK+B7QjLtmG1
- 0YYYC3yZpuxy37Nx2hSwXhDaPA6VZBD6e48S7I+ct3nO5ak5hNuhIYvH1DTNcVKwr7zh
- 5YzPOkSZ2RQTYZ7DWmUIrlbygEiFQ8WwhpUM2COwCJbfq4P7G3EY8OEC1s3UGHXSNoH+
- tnFA==
-X-Gm-Message-State: AOJu0Yz4nneXQPr1qByWaxt5M6WuP01TgRaLd9QpAyI2n/Zw8i1eR883
- vRmASmUwYV/IZnFasUFAkg02y0KsE+iqUYOjdvgTrKd6BXBd45Vk0o7I5gYpl2yQhLBg
-X-Google-Smtp-Source: AGHT+IFFlEnTzCxxLU+Sdb+k0xr0Qqg0RFEWayWW2VPRdx2nENDHtIkBiMAPTMvU9Sg3Ac/eEu4KYA==
-X-Received: by 2002:a05:6a20:4c94:b0:1c3:acd1:5caf with SMTP id
- adf61e73a8af0-1c8da30c77emr898573637.23.1723493551504; 
- Mon, 12 Aug 2024 13:12:31 -0700 (PDT)
+ bh=dATszDia9XGt8okKDBFzEDH3NBau2UVqGjVmcVm8iHw=;
+ b=wWc5BiRWEf+cOAldnmBl3gfLDJK+0E2sCl3W0SQl9Tx0QteffJhD08yoVyTiIlsLti
+ xi4t47/119B+FrhroMozorKiOIomWtk1LSNJs4LqR1l8UP7tDyCLvgBB1pu12kR0Gr1Z
+ GNINX/M7B5IC1Vgw5S4ZvRrjbe0kTgdUDQZ5pNzXEzent9YlEbrywI762TdhyQDZhWJI
+ QFS0mNQeErLrs6grEbSndx5RlR2r7BzOB9sy8IRvdAa26f+/UWYCKFvf5D7htwtnT9XC
+ Hl5VcRKcpyTkJbdZXJND51WVMQUwJFgToSmJ2UeXfxSxQJOCavB3520CySlDov2L3zKi
+ CoIw==
+X-Gm-Message-State: AOJu0YyZdxqdjZO7Q9szZuLXgsRlQ3ujbRMIXaXoG3d9fR7TP6mfSR1H
+ ORA7HJ+wawWkFof1IujTriY0IU/HIOMYZJcX62WAP53s/9chU7eJaqNJBPeEyyE0RKDx
+X-Google-Smtp-Source: AGHT+IGpeuLfNC0/ru0//GXLAmh9OCE+RQt+RFCzo/E54j/d1uJwBIww6ekyuLvZzwAKU6Y+bGrk7g==
+X-Received: by 2002:a05:6808:2223:b0:3d9:2b45:1585 with SMTP id
+ 5614622812f47-3dd1ee30795mr1431977b6e.22.1723493555310; 
+ Mon, 12 Aug 2024 13:12:35 -0700 (PDT)
 Received: from localhost ([134.134.139.69]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-7c697a4b9f1sm81822a12.75.2024.08.12.13.12.30
+ d2e1a72fcca58-710e5ab3054sm4390664b3a.188.2024.08.12.13.12.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Aug 2024 13:12:31 -0700 (PDT)
+ Mon, 12 Aug 2024 13:12:35 -0700 (PDT)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH 1/3] drm/i915/display: Don't enable decompression on Xe2 with
- Tile4
-Date: Mon, 12 Aug 2024 23:14:35 +0300
-Message-ID: <20240812201549.2014168-2-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 2/3] drm/fourcc: define Intel Xe2 related tile4 ccs modifiers
+Date: Mon, 12 Aug 2024 23:14:36 +0300
+Message-ID: <20240812201549.2014168-3-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240812201549.2014168-1-juhapekka.heikkila@gmail.com>
 References: <20240812201549.2014168-1-juhapekka.heikkila@gmail.com>
@@ -79,29 +78,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From now on expect Tile4 not to be using compression
+Add Tile4 type ccs modifiers to indicate presence of compression on Xe2.
+Here is defined I915_FORMAT_MOD_4_TILED_LNL_CCS which is meant for
+integrated graphics with igpu related limitations
+Here is also defined I915_FORMAT_MOD_4_TILED_BMG_CCS which is meant
+for discrete graphics with dgpu related limitations
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 5 -----
- 1 file changed, 5 deletions(-)
+ include/uapi/drm/drm_fourcc.h | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ba5a628b4757..a1ab64db0130 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1085,11 +1085,6 @@ static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
- 	if (DISPLAY_VER(dev_priv) == 13)
- 		plane_ctl |= adlp_plane_ctl_arb_slots(plane_state);
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index 2d84a8052b15..b7f0cc536626 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -702,6 +702,31 @@ extern "C" {
+  */
+ #define I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC fourcc_mod_code(INTEL, 15)
  
--	if (GRAPHICS_VER(dev_priv) >= 20 &&
--	    fb->modifier == I915_FORMAT_MOD_4_TILED) {
--		plane_ctl |= PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
--	}
--
- 	return plane_ctl;
- }
- 
++/*
++ * Intel Color Control Surfaces (CCS) for graphics ver. 20 render compression
++ * on integrated graphics
++ *
++ * The main surface is Tile 4 and at plane index 0. For semi-planar formats
++ * like NV12, the Y and UV planes are Tile 4 and are located at plane indices
++ * 0 and 1, respectively. The CCS for all planes are stored outside of the
++ * GEM object in a reserved memory area dedicated for the storage of the
++ * CCS data for all compressible GEM objects.
++ */
++#define I915_FORMAT_MOD_4_TILED_LNL_CCS fourcc_mod_code(INTEL, 16)
++
++/*
++ * Intel Color Control Surfaces (CCS) for graphics ver. 20 render compression
++ * on discrete graphics
++ *
++ * The main surface is Tile 4 and at plane index 0. For semi-planar formats
++ * like NV12, the Y and UV planes are Tile 4 and are located at plane indices
++ * 0 and 1, respectively. The CCS for all planes are stored outside of the
++ * GEM object in a reserved memory area dedicated for the storage of the
++ * CCS data for all compressible GEM objects. The GEM object must be stored in
++ * contiguous memory with a size aligned to 64KB
++ */
++#define I915_FORMAT_MOD_4_TILED_BMG_CCS fourcc_mod_code(INTEL, 17)
++
+ /*
+  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+  *
 -- 
 2.45.2
 
