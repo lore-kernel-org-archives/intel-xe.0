@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F111C52D7C
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 20:04:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60785C3DA7F
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 20:06:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC3710E29F;
-	Mon, 12 Aug 2024 20:04:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VJXJ8yZV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A674B10E29F
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 20:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723493074; x=1755029074;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/zZU93oXIS/xiKwMaPoiT7SqgqK1Z+KIrCtuiA5Ku+w=;
- b=VJXJ8yZVtJVC52U+WHtoeZkWkCAVXAyt/v3fgS77l6DROUv2FnMptHut
- 2FIR0pDrdiw4T+qX5GrCoC/Fj33w1xBHadWuG4xznY7VmIjhm7bsewbZP
- UOWKu9wxJS3R2pUN1JbqEm9yzP5Qzup9iSEttxywscADDLVgyOqZSbmnC
- TSPtZnTXcbterstJ0LFUPptMc4jmu+r+JuCDfEKlzYzjDIlimUcK7R1Z3
- txDeNVLKdh3rOE1koNWnkZVyT8zjO4b1j0I8iXkwcSpxGklreHKB9J+0D
- ywtE9g3w1Qua7I4Pc+FhYvQKgPlkJe+eym7q6ojJfQpDTPu1K5HGFCC75 g==;
-X-CSE-ConnectionGUID: EILNn6SWR3ycvFVl3nhmOg==
-X-CSE-MsgGUID: 1vLH9zWsQceeJJbhrUthSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="21758223"
-X-IronPort-AV: E=Sophos;i="6.09,284,1716274800"; d="scan'208";a="21758223"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 13:04:33 -0700
-X-CSE-ConnectionGUID: tDYb2yosSxqrWhyJMdZfmQ==
-X-CSE-MsgGUID: uTVeWl5LQZePcPM/HJ+ElA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,284,1716274800"; d="scan'208";a="89035083"
-Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 13:04:32 -0700
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
- matthew.brost@intel.com, andriy.shevchenko@linux.intel.com,
- hdegoede@redhat.com
-Cc: michael.j.ruhl@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v11] drm/xe/vsec: Support BMG devices
-Date: Mon, 12 Aug 2024 16:04:22 -0400
-Message-ID: <20240812200422.444078-1-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.44.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E22210E2A0;
+	Mon, 12 Aug 2024 20:06:36 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B32AC10E19B;
+ Mon, 12 Aug 2024 20:06:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/vsec=3A_Suppo?=
+ =?utf-8?q?rt_BMG_devices_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 12 Aug 2024 20:06:34 -0000
+Message-ID: <172349319472.596344.4454846436122665523@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240812200142.444063-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20240812200142.444063-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,344 +36,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Battlemage (BMG) discrete graphics card supports
-the Platform, Monitoring Technology (PMT) feature
-directly on the primary PCI device.
+== Series Details ==
 
-Utilize the PMT callback API to add support for the BMG
-devices.
+Series: drm/xe/vsec: Support BMG devices (rev2)
+URL   : https://patchwork.freedesktop.org/series/137199/
+State : failure
 
-Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
+== Summary ==
 
-v10:
-  Use the mutex guard feature
-  Use the xe_pm_runtime_get_if_active() return value correctly
-  Add r/b from Ilpo
-  Deferred DG2 patches for the future
-v11:
-  add include for cleanup.h
-  
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/xe_device.c       |   5 +
- drivers/gpu/drm/xe/xe_device_types.h |   6 +
- drivers/gpu/drm/xe/xe_vsec.c         | 222 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.h         |  13 ++
- 5 files changed, 247 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 4f95bd933f4d drm-tip: 2024y-08m-12d-17h-20m-47s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_device.c:53
+error: drivers/gpu/drm/xe/xe_device.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+hint: When you have resolved this problem, run "git am --continue".
+hint: If you prefer to skip this patch, run "git am --skip" instead.
+hint: To restore the original branch and stop patching, run "git am --abort".
+hint: Disable this message with "git config advice.mergeConflict false"
+Applying: drm/xe/vsec: Support BMG devices
+Patch failed at 0001 drm/xe/vsec: Support BMG devices
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 628c245c4822..f4c6761dc2e7 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -129,6 +129,7 @@ xe-y += xe_bb.o \
- 	xe_vm.o \
- 	xe_vram.o \
- 	xe_vram_freq.o \
-+	xe_vsec.o \
- 	xe_wait_user_fence.o \
- 	xe_wa.o \
- 	xe_wopcm.o
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 76109415eba6..a7c759c98560 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -53,6 +53,7 @@
- #include "xe_ttm_sys_mgr.h"
- #include "xe_vm.h"
- #include "xe_vram.h"
-+#include "xe_vsec.h"
- #include "xe_wait_user_fence.h"
- 
- static int xe_file_open(struct drm_device *dev, struct drm_file *file)
-@@ -317,6 +318,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 		goto err;
- 	}
- 
-+	drmm_mutex_init(&xe->drm, &xe->pmt.lock);
-+
- 	err = xe_display_create(xe);
- 	if (WARN_ON(err))
- 		goto err;
-@@ -692,6 +695,8 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
- 
-+	xe_vsec_init(xe);
-+
- 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 
- err_fini_display:
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 3bca6d344744..448a92148081 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -451,6 +451,12 @@ struct xe_device {
- 		struct mutex lock;
- 	} d3cold;
- 
-+	/** @pmt: Support the PMT driver callback interface */
-+	struct {
-+		/** @pmt.lock: protect access for telemetry data */
-+		struct mutex lock;
-+	} pmt;
-+
- 	/**
- 	 * @pm_callback_task: Track the active task that is running in either
- 	 * the runtime_suspend or runtime_resume callbacks.
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-new file mode 100644
-index 000000000000..907203765dec
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2022 - 2024 Intel Corporation
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/intel_vsec.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/pci.h>
-+
-+#include "xe_device.h"
-+#include "xe_device_types.h"
-+#include "xe_drv.h"
-+#include "xe_mmio.h"
-+#include "xe_platform_types.h"
-+#include "xe_pm.h"
-+#include "xe_vsec.h"
-+
-+#define SOC_BASE		0x280000
-+
-+#define BMG_PMT_BASE		0xDB000
-+#define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
-+
-+#define BMG_TELEMETRY_BASE	0xE0000
-+#define BMG_TELEMETRY_OFFSET	(SOC_BASE + BMG_TELEMETRY_BASE)
-+
-+#define BMG_DEVICE_ID 0xE2F8
-+
-+#define GFX_BAR			0
-+
-+#define SG_REMAP_INDEX1		XE_REG(SOC_BASE + 0x08)
-+#define SG_REMAP_BITS		GENMASK(31, 24)
-+
-+static struct intel_vsec_header bmg_telemetry = {
-+	.length = 0x10,
-+	.id = VSEC_ID_TELEMETRY,
-+	.num_entries = 2,
-+	.entry_size = 4,
-+	.tbir = GFX_BAR,
-+	.offset = BMG_DISCOVERY_OFFSET,
-+};
-+
-+static struct intel_vsec_header *bmg_capabilities[] = {
-+	&bmg_telemetry,
-+	NULL
-+};
-+
-+enum xe_vsec {
-+	XE_VSEC_UNKNOWN = 0,
-+	XE_VSEC_BMG,
-+};
-+
-+static struct intel_vsec_platform_info xe_vsec_info[] = {
-+	[XE_VSEC_BMG] = {
-+		.caps = VSEC_CAP_TELEMETRY,
-+		.headers = bmg_capabilities,
-+	},
-+	{ }
-+};
-+
-+/*
-+ * The GUID will have the following bits to decode:
-+ *
-+ * X(4bits) - {Telemetry space iteration number (0,1,..)}
-+ * X(4bits) - Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
-+ * X(4bits) - SOC_SKU
-+ * XXXX(16bits)– Device ID – changes for each down bin SKU’s
-+ * X(2bits) - Capability Type (Crashlog-0, Telemetry Aggregator-1, Watcher-2)
-+ * X(2bits) - Record-ID (0-PUNIT, 1-OOBMSM_0, 2-OOBMSM_1)
-+ */
-+#define GUID_TELEM_ITERATION	GENMASK(3, 0)
-+#define GUID_SEGMENT		GENMASK(7, 4)
-+#define GUID_SOC_SKU		GENMASK(11, 8)
-+#define GUID_DEVICE_ID		GENMASK(27, 12)
-+#define GUID_CAP_TYPE		GENMASK(29, 28)
-+#define GUID_RECORD_ID		GENMASK(31, 30)
-+
-+#define PUNIT_TELEMETRY_OFFSET		0x0200
-+#define PUNIT_WATCHER_OFFSET		0x14A0
-+#define OOBMSM_0_WATCHER_OFFSET		0x18D8
-+#define OOBMSM_1_TELEMETRY_OFFSET	0x1000
-+
-+enum record_id {
-+	PUNIT,
-+	OOBMSM_0,
-+	OOBMSM_1
-+};
-+
-+enum capability {
-+	CRASHLOG,
-+	TELEMETRY,
-+	WATCHER
-+};
-+
-+static int guid_decode(u32 guid, int *index, u32 *offset)
-+{
-+	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
-+	u32 cap_type  = FIELD_GET(GUID_CAP_TYPE, guid);
-+	u32 device_id = FIELD_GET(GUID_DEVICE_ID, guid);
-+
-+	if (device_id != BMG_DEVICE_ID)
-+		return -ENODEV;
-+
-+	if (record_id > OOBMSM_1 || cap_type > WATCHER)
-+		return -EINVAL;
-+
-+	*offset = 0;
-+
-+	if (cap_type == CRASHLOG) {
-+		*index = record_id == PUNIT ? 2 : 4;
-+		return 0;
-+	}
-+
-+	switch (record_id) {
-+	case PUNIT:
-+		*index = 0;
-+		if (cap_type == TELEMETRY)
-+			*offset = PUNIT_TELEMETRY_OFFSET;
-+		else
-+			*offset = PUNIT_WATCHER_OFFSET;
-+		break;
-+
-+	case OOBMSM_0:
-+		*index = 1;
-+		if (cap_type == WATCHER)
-+			*offset = OOBMSM_0_WATCHER_OFFSET;
-+		break;
-+
-+	case OOBMSM_1:
-+		*index = 1;
-+		if (cap_type == TELEMETRY)
-+			*offset = OOBMSM_1_TELEMETRY_OFFSET;
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, u32 count)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
-+	u32 mem_region;
-+	u32 offset;
-+	int ret;
-+
-+	ret = guid_decode(guid, &mem_region, &offset);
-+	if (ret)
-+		return ret;
-+
-+	telem_addr += offset;
-+
-+	guard(mutex)(&xe->pmt.lock);
-+
-+	/* indicate that we are not at an appropriate power level */
-+	if (!xe_pm_runtime_get_if_active(xe))
-+		return -ENODATA;
-+
-+	/* set SoC re-mapper index register based on GUID memory region */
-+	xe_mmio_rmw32(xe->tiles[0].primary_gt, SG_REMAP_INDEX1, SG_REMAP_BITS,
-+		      FIELD_PREP(SG_REMAP_BITS, mem_region));
-+
-+	memcpy_fromio(data, telem_addr, count);
-+	ret = count;
-+	xe_pm_runtime_put(xe);
-+
-+	return ret;
-+}
-+
-+struct pmt_callbacks xe_pmt_cb = {
-+	.read_telem = xe_pmt_telem_read,
-+};
-+
-+static const int vsec_platforms[] = {
-+	[XE_BATTLEMAGE] = XE_VSEC_BMG,
-+};
-+
-+static enum xe_vsec get_platform_info(struct xe_device *xe)
-+{
-+	if (xe->info.platform > XE_BATTLEMAGE)
-+		return XE_VSEC_UNKNOWN;
-+
-+	return vsec_platforms[xe->info.platform];
-+}
-+
-+/**
-+ * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
-+ * interface
-+ * @xe: valid xe instance
-+ */
-+void xe_vsec_init(struct xe_device *xe)
-+{
-+	struct intel_vsec_platform_info *info;
-+	struct device *dev = xe->drm.dev;
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	enum xe_vsec platform;
-+
-+	platform = get_platform_info(xe);
-+	if (platform == XE_VSEC_UNKNOWN)
-+		return;
-+
-+	info = &xe_vsec_info[platform];
-+	if (!info->headers)
-+		return;
-+
-+	switch (platform) {
-+	case XE_VSEC_BMG:
-+		info->priv_data = &xe_pmt_cb;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	/*
-+	 * Register a VSEC. Cleanup is handled using device managed
-+	 * resources.
-+	 */
-+	intel_vsec_register(pdev, info);
-+}
-+MODULE_IMPORT_NS(INTEL_VSEC);
-diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
-new file mode 100644
-index 000000000000..3fd29a21cad6
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_vsec.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright © 2022 - 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_VSEC_H_
-+#define _XE_VSEC_H_
-+
-+struct xe_device;
-+
-+void xe_vsec_init(struct xe_device *xe);
-+
-+#endif
--- 
-2.44.0
 
