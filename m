@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D6CBC3DA7F
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 09:22:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FC28C52D7F
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 09:33:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9CA10E076;
-	Mon, 12 Aug 2024 09:22:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AzNrEKxv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D75B10E076
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 09:22:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723454563; x=1754990563;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=5kOWTQs9LkDBQ3UAPdkHffzhhqcHmgIW+dmYbpmZagI=;
- b=AzNrEKxvYfqyjh/ZFlmxSF2OQuOtxTS07+D6QE6GqL3Lv/ksyuxIiwTR
- bq3nccWd3XbLHN+eR8yxtCpdQxwvTLsUxrhUPi+DkB3a1R1SKMA715vv5
- p34cQNC4FfN+iIo5FO3o71AhQRem+i2en46RpfCrhrmhLNW1VUGOJtH7A
- 6smWIc/1O0dWTEvuu5DLncg/tcADA0CtSz3fdSGkwgShocS3VsnnGsNeM
- kaEJFt6DM9uObmO6CalqSVfO3MxrOZoWMSp28GwY2s6L0/kxZil3lsdJs
- uNnPKtchN2i1FhCQd9kUurx1sgZ+ruRAhBnIxBMt5mHbEkuTSRrqj1F3X Q==;
-X-CSE-ConnectionGUID: e2R917tYSA6wnP8NEMrQFw==
-X-CSE-MsgGUID: OCjkMNIsSAS0K0uYi44s+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21404588"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21404588"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 02:22:43 -0700
-X-CSE-ConnectionGUID: ZtqKSWqJRLG5RHbdsyb1vg==
-X-CSE-MsgGUID: 0q04ll+zSQ+JtOOp6NxV1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="58915208"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.25])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 02:22:39 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Mon, 12 Aug 2024 12:22:36 +0300 (EEST)
-To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>, 
- Hans de Goede <hdegoede@redhat.com>
-cc: "david.e.box@linux.intel.com" <david.e.box@linux.intel.com>, 
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>, 
- "Brost, Matthew" <matthew.brost@intel.com>, 
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-Subject: RE: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT base
- adjust
-In-Reply-To: <IA1PR11MB64188E3342EB3C26BC30EDD5C1BA2@IA1PR11MB6418.namprd11.prod.outlook.com>
-Message-ID: <ed0c857f-9224-4495-bd24-4ad9bc0e7aee@linux.intel.com>
-References: <20240725122346.4063913-1-michael.j.ruhl@intel.com>
- <20240725122346.4063913-6-michael.j.ruhl@intel.com>
- <e70a44a24b1404a000e302a444a41c286538f3f9.camel@linux.intel.com>
- <ZrUyH6vZpShdacjx@intel.com>
- <fe23eb2ef30e4a867668a221f3f02dbe9d322edc.camel@linux.intel.com>
- <IA1PR11MB64188E3342EB3C26BC30EDD5C1BA2@IA1PR11MB6418.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01D1110E19F;
+	Mon, 12 Aug 2024 09:33:33 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81AAC10E192;
+ Mon, 12 Aug 2024 09:33:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8105743882520010526=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323328-1485091447-1723454000=:1039"
-Content-ID: <19b16c69-62a7-f94f-b37e-cf45a213db60@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_Preserve_value_of_fe?=
+ =?utf-8?q?c=5Fenable_calculated_before_DSC_compute_config?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 12 Aug 2024 09:33:32 -0000
+Message-ID: <172345521252.594346.18228831351595956081@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,90 +36,183 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============8105743882520010526==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323328-1485091447-1723454000=:1039
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Content-ID: <372539f3-34b3-e16c-1959-42a940a20859@linux.intel.com>
+== Series Details ==
 
-On Fri, 9 Aug 2024, Ruhl, Michael J wrote:
+Series: drm/i915: Preserve value of fec_enable calculated before DSC compute config
+URL   : https://patchwork.freedesktop.org/series/137152/
+State : success
 
-> > -----Original Message-----
-> > From: David E. Box <david.e.box@linux.intel.com>
-> > Sent: Thursday, August 8, 2024 8:57 PM
-> > To: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > Cc: Ruhl, Michael J <michael.j.ruhl@intel.com>; intel-xe@lists.freedesk=
-top.org;
-> > platform-driver-x86@vger.kernel.org; ilpo.jarvinen@linux.intel.com; Bro=
-st,
-> > Matthew <matthew.brost@intel.com>; andriy.shevchenko@linux.intel.com
-> > Subject: Re: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT
-> > base adjust
-> >=20
-> > On Thu, 2024-08-08 at 17:01 -0400, Rodrigo Vivi wrote:
-> > > On Thu, Aug 08, 2024 at 12:49:58PM -0700, David E. Box wrote:
-> > > > Hi Mike
-> > > >
-> > > > On Thu, 2024-07-25 at 08:23 -0400, Michael J. Ruhl wrote:
-> > > > > DVSEC offsets are based on the endpoint BAR.=A0 If an endpoint is
-> > > > > not available allow the offset information to be adjusted by the
-> > > > > parent driver.
-> > > >
-> > > > I know I wrote the original version of these patches but I no longe=
-r
-> > > > like this solution. The s32 is too small for a 64 bit address and
-> > > > calculating the offset just to add it back in the PMT driver is
-> > > > unnecessary.
-> > >
-> > > yeap, 64bit sounds better indeed.
-> > >
-> > > > Instead, I sent you
-> > > > replacement patches for 5 and 6 that allow passing the telemetry
-> > > > region address directly to the PMT driver.
-> > >
-> > > Was these replacements sent straight to PMT list or to Mike so he can
-> > > adjust the series?
-> > >
-> > > I'm wondering if we should merge this through our drm-xe-next or
-> > > through PMT channels. Thoughts?
-> > >
-> > > In any case, ack from my side to get the xe patches merged together
-> > > through PMT.
-> > >
-> > > But if someone prefer to get this merged through drm-xe-next, then we
-> > > need to act fast and get this ready with the final patches and acked
-> > > by you PMT maintainers, in the next 2 weeks because our window under
-> > > drm closes much earlier.
-> > >
-> > > Around 6.11-rc5 is when we close the drm window towards 6.12 and we
-> > > are almost within 6.11-rc3.
-> > >
-> > > Thoughts?
-> >=20
-> > For me Patches 1-4 are good to go for BMG support. Patches 5 and 6 add =
-DG2
-> > support but need some work. They should wait.
->=20
->=20
-> David, Ilpo,
->=20
-> The DG2 patches are a nice to have.
->=20
-> Please take patch 1 - 4.
->=20
-> I will revisit 5 and 6 (with David's suggested changes) in the future.
+== Summary ==
 
-Hans is the one handling pdx86 for-next patches in this cycle (we as the=20
-pdx86 maintainers alternate it on every other kernel release). Please=20
-remember to add him into receipient list when you send the next version
-with my comments on 4th patch addressed (always include all relevant=20
-maintainers when sending patches).
+CI Bug Log - changes from xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423_BAT -> xe-pw-137152v1_BAT
+====================================================
 
---=20
- i.
---8323328-1485091447-1723454000=:1039--
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-137152v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-lnl-2:          [PASS][3] -> [FAIL][4] ([Intel XE#1069])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-lnl-1:          [FAIL][5] ([Intel XE#886]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#324]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][9] ([Intel XE#324]) -> [DMESG-WARN][10] ([Intel XE#324])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423 -> xe-pw-137152v1
+
+  IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423: ac6319ef8c6027f0fc65b71b614a8312aed19423
+  xe-pw-137152v1: 137152v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/index.html
+
+--===============8105743882520010526==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Preserve value of fec_enable calculated before DSC compute config</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137152/">https://patchwork.freedesktop.org/series/137152/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423_BAT -&gt; xe-pw-137152v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-137152v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069">Intel XE#1069</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423 -&gt; xe-pw-137152v1</li>
+</ul>
+<p>IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423: ac6319ef8c6027f0fc65b71b614a8312aed19423<br />
+  xe-pw-137152v1: 137152v1</p>
+
+</body>
+</html>
+
+--===============8105743882520010526==--
