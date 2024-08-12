@@ -4,95 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6EBBC3DA7F
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 13:56:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E473C52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 13:58:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7636810E229;
-	Mon, 12 Aug 2024 13:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1896710E226;
+	Mon, 12 Aug 2024 13:58:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kruces-com.20230601.gappssmtp.com header.i=@kruces-com.20230601.gappssmtp.com header.b="oyavxWLB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gw4sEvdP";
 	dkim-atps=neutral
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
- [209.85.167.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0906910E924
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Aug 2024 13:47:49 +0000 (UTC)
-Received: by mail-lf1-f53.google.com with SMTP id
- 2adb3069b0e04-52ef95ec938so2198049e87.3
- for <intel-xe@lists.freedesktop.org>; Fri, 09 Aug 2024 06:47:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kruces-com.20230601.gappssmtp.com; s=20230601; t=1723211268; x=1723816068;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=jpHG5jPmqSzzMq80QApgQU2Gxos+KWN9CPGhvKscsRg=;
- b=oyavxWLBCPUMJfRnTKs8XtrdTBQ9LYfJGm7IJRLwLE4hGcemFuoeN/QnAPabkwbsVa
- Xo6a/w9qUwS36C1SkWu2QitN/LhNBY8AFcs1qVDjB2v3WNuSPykZiAyWVQA6L2Xg0xzQ
- 8NMYGyQ6Wvzk70+yCrWJqLS+P/YcHl4HK4lvGQcAi/yXXa3vhDb6jrKPFLcGRZ5eQTKg
- Tdk28CxepjlAuMu4enkGTmyHg6KEf2az00v1pwy/AY31/ccjgWEZI6HieipyaSbkMR8g
- Oz5Te8UVPGyNpCcK30S173Bf9o7+nLDTup9zU234SxflAM6Q7dAbhLWdWdV93+X9ti4p
- whIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1723211268; x=1723816068;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=jpHG5jPmqSzzMq80QApgQU2Gxos+KWN9CPGhvKscsRg=;
- b=qXj4YAqiMPLT2/xrCxS2HqpKNLo/uzER8irOLSCoUKS9PjJm5q2I9EbGQtIKdbfIiM
- ASy4A+f8CJZuNTYtPrliG0LUL3SapjAQ9zyaJUZcPYXCZBKKMCa8OTnioMGvuVJ6Tt/L
- +lJ3jBQUbYarED+7H5fDSOHOEiB1NFqUPqwp8fwjqNyTz6DOR4JPd1Fc6YbwPM+xucuc
- CvwLfmc9Ra8qNjejyJT7FCzjQSPywDLu1SkFTJZWvi7j+VLTU6hGbs6hep1LHcCIWBNz
- 1fPGoY85pmmt6N0WC6CnjRQwIpVwk2U0+BdXx6OLIRcFiBtumNMal4w3Z0DzHboyUGpi
- rmjw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX0hi4yNw4VyFv0XoZ8Wsxo5jyQzIUUwHoNQIKA3Z1dxyIHTwhYvvi/OOa5D1NYXWXiYfBoHaIeiuu6f/4PezeLll9VNOXA0EJyP+aABhE=
-X-Gm-Message-State: AOJu0YyuIfVGdJljRBblYOB68+qO9HkyfcJvJlzUj+DPsdcEnzMKKQjy
- zgpYEhtXvwIfREdAuFD30skbVlNn7CI76if4Dnld7wWRnq/jVAseR94bRLNEO2l0ybTwFILPCM6
- Y86piknNDdTv+ML7AHFVJ/aIOgNNfYOtuqw6lxA==
-X-Google-Smtp-Source: AGHT+IHRvyhFxRd+8gsq4yU0wWg6PpO4Ch68Ej98GVi8jrDPqmad9RYqQx3J3nljLKafMtNu25HNa4FplBYJma626Jg=
-X-Received: by 2002:a05:6512:158d:b0:52e:9b68:d2da with SMTP id
- 2adb3069b0e04-530ee96c1b3mr1277926e87.9.1723211267644; Fri, 09 Aug 2024
- 06:47:47 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACEAC10E226
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 13:58:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723471112; x=1755007112;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=NQjEKE61oUIjY/ZRFUbrG+n8bTrFfRRVQi+6qHJy8xU=;
+ b=Gw4sEvdPPAjuB5Heafp8EUS58QCb+T9ue3dcEfUE7ECNWI0gc3TOgrP9
+ dVcHS/ExLXvxTNnLn09fMUldUw621DL41UPFzZsSZyGEqXcD673Ai7F1b
+ 0CPCbBdrsqLNbPTU3l42doE5nOyzaB1NTONOgBcocIJCp03/MaEpKQe+e
+ m/vOUhLccf5+iTuwj+gBzTpAP0ElvbK0j99+EsShMvAa4w2p7lsF4bRdB
+ EE8p+n4oW/HQAq8BTjc27ubgnG3fO6VsdBoQM1JsduG4fagVrBN91TTUy
+ cNIi3a5RTtzquF44Ps3PceKMLjSoLIgil8v93335d8IqbKocwZFyBEJK8 A==;
+X-CSE-ConnectionGUID: nNXQY7+sR+uR52OxH3joGA==
+X-CSE-MsgGUID: H0w28yxZS8mMrcL0vVrCmQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="32204930"
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="32204930"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 06:58:32 -0700
+X-CSE-ConnectionGUID: 3lB2DXEXT76PLvBuar+edA==
+X-CSE-MsgGUID: dsHnoTDJRvOJV/6lUBtXVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="62925402"
+Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.117])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 06:58:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Subject: RE: [PATCH] drm/xe/xe2hpg: Add Wa_14021821874
+In-Reply-To: <MN0PR11MB62089AAB6D089B844091CC5281852@MN0PR11MB6208.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240812070251.796744-1-tejas.upadhyay@intel.com>
+ <b649bd68-1bb2-4f5a-aab5-f9345a145e83@intel.com>
+ <MN0PR11MB62089AAB6D089B844091CC5281852@MN0PR11MB6208.namprd11.prod.outlook.com>
+Date: Mon, 12 Aug 2024 16:58:27 +0300
+Message-ID: <87o75x267w.fsf@intel.com>
 MIME-Version: 1.0
-References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <20240807-macos-build-support-v1-11-4cd1ded85694@samsung.com>
- <CAK7LNARafZ=zFMeoDdiMh=ZRU_XiJ08Naf=oAdYpOiUN02HizQ@mail.gmail.com>
-In-Reply-To: <CAK7LNARafZ=zFMeoDdiMh=ZRU_XiJ08Naf=oAdYpOiUN02HizQ@mail.gmail.com>
-From: "Daniel Gomez (Samsung)" <d+samsung@kruces.com>
-Date: Fri, 9 Aug 2024 15:47:21 +0200
-Message-ID: <CABj0suDkth5OY2SEaasyMWvFMnQyjqg=YPiyp38BpP0RdC_hNg@mail.gmail.com>
-Subject: Re: [PATCH 11/12] tty/vt: conmakehash requires linux/limits.h
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: da.gomez@samsung.com, Nathan Chancellor <nathan@kernel.org>, 
- Nicolas Schier <nicolas@fjasle.eu>, Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Paul Moore <paul@paul-moore.com>,
- Stephen Smalley <stephen.smalley.work@gmail.com>, 
- Ondrej Mosnacek <omosnace@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Oliver Upton <oliver.upton@linux.dev>, 
- James Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- linux-kernel@vger.kernel.org, 
- linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, speakup@linux-speakup.org, 
- selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- kvmarm@lists.linux.dev, linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
- Finn Behrens <me@kloenk.dev>, gost.dev@samsung.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 12 Aug 2024 13:56:26 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,114 +72,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 9, 2024 at 2:15=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.or=
-g> wrote:
+On Mon, 12 Aug 2024, "Upadhyay, Tejas" <tejas.upadhyay@intel.com> wrote:
+>> -----Original Message-----
+>> From: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
+>> Sent: Monday, August 12, 2024 1:18 PM
+>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>> xe@lists.freedesktop.org
+>> Cc: Roper, Matthew D <matthew.d.roper@intel.com>
+>> Subject: Re: [PATCH] drm/xe/xe2hpg: Add Wa_14021821874
+>>=20
+>>=20
+>>=20
+>> On 12-08-2024 12:32, Tejas Upadhyay wrote:
+>> > Wa_14021821874 applies to xe2_hpg
+>> >
+>> > Cc: Matt Roper <matthew.d.roper@intel.com>
+>> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>> > ---
+>> >   drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
+>> >   drivers/gpu/drm/xe/xe_wa.c           | 4 ++++
+>> >   2 files changed, 5 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> > b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> > index 2c8c4d4218db..9054253f6aaa 100644
+>> > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> > @@ -451,6 +451,7 @@
+>> >   #define   DIS_FIX_EOT1_FLUSH			REG_BIT(9)
+>> >
+>> >   #define TDL_TSL_CHICKEN				XE_REG_MCR(0xe4c4,
+>> XE_REG_OPTION_MASKED)
+>> > +#define	  STK_ID_RESTRICT			REG_BIT(12)
+>>=20
+>> Nit: space instead of tab ?
 >
-> On Wed, Aug 7, 2024 at 8:10=E2=80=AFAM Daniel Gomez via B4 Relay
-> <devnull+da.gomez.samsung.com@kernel.org> wrote:
-> >
-> > From: Daniel Gomez <da.gomez@samsung.com>
-> >
-> > macOS hosts do not provide the linux/limits.h header required for
-> > conmakehash. To address this, ensure that usr/include is included in
-> > the conmakehash HOSTCFLAGS. This will provide the necessary header for
-> > successful compilation on macOS.
-> >
-> > Fixes error:
-> > HOSTCC  drivers/tty/vt/conmakehash - due to target missing
-> >   clang -Wp,-MMD,drivers/tty/vt/.conmakehash.d -Wall
-> > -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer
-> > -std=3Dgnu11   -I ./scripts/include     -o drivers/tty/vt/conmakehash
-> > drivers/tty/vt/conmakehash.c
-> > drivers/tty/vt/conmakehash.c:15:10: fatal error: 'linux/
-> >    limits.h' file not found 15 | #include <linux/limits.h>    |
-> >    ^~~~~~~~~~~~~~~~
->
->
-> The error is reported at line 15 of drivers/tty/vt/conmakehash.c
->
->
-> The line 15 is #include <stdlib.h>:
->
-> https://github.com/torvalds/linux/blob/v6.11-rc1/drivers/tty/vt/conmakeha=
-sh.c#L15
+> Thanks for comment. Its not tab, spaces only. Also strict checkpatch
+> is clean. Locally it looks ok, don=E2=80=99t know why it looks like tab h=
+ere
+> on mailing list.
 
-The patches were sent using the latest linux-next at the moment of
-sending, so next-20240806.
-B4 adds the baseline [1] used at the bottom.
+I presume your editor hides it somehow. There's definitely a tab in the
+patch. Try adding spaces at column 0 and see how it behaves.
 
-[1] base-commit: 1e391b34f6aa043c7afa40a2103163a0ef06d179
+checkpatch wouldn't complain about spaces after a tab for indentation,
+only about tabs after spaces.
 
-So line 15 is linux/limits.h header in this case:
-https://github.com/torvalds/linux/blob/1e391b34f6aa043c7afa40a2103163a0ef06=
-d179/drivers/tty/vt/conmakehash.c#L15
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
-vers/tty/vt/conmakehash.c?h=3D1e391b34f6aa043c7afa40a2103163a0ef06d179#n15
+BR,
+Jani.
 
-This patch adds the header:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/=
-drivers/tty/vt/conmakehash.c?h=3Dnext-20240809&id=3D6e20753da6bc651e02378a0=
-cdb78f16c42098c88
 
 >
->
-> So, host programs cannot include <stdlib.h> on your build machine.
->
->
->
-> drivers/tty/vt/conmakehash.c has only 5 include directives:
->
-> #include <stdio.h>
-> #include <stdlib.h>
-> #include <sysexits.h>
-> #include <string.h>
-> #include <ctype.h>
->
->
-> You cannot build this, your build machine cannot build anything.
->
->
->
->
->
->
->
->
->
-> > 1 error generated.
-> > make[5]: *** [scripts/Makefile.host:116: drivers/tty/vt/conmakehash]
-> > Error 1
-> > make[4]: *** [scripts/Makefile.build:485: drivers/tty/vt] Error 2
-> > make[3]: *** [scripts/Makefile.build:485: drivers/tty] Error 2
-> > make[2]: *** [scripts/Makefile.build:485: drivers] Error 2
-> > make[1]: *** [/Volumes/src/kernel/linux-next/Makefile:1925: .] Error 2
-> > make: *** [Makefile:224: __sub-make] Error 2
-> >
-> > Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-> > ---
-> >  drivers/tty/vt/Makefile | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/tty/vt/Makefile b/drivers/tty/vt/Makefile
-> > index 2c8ce8b592ed..d266895357e5 100644
-> > --- a/drivers/tty/vt/Makefile
-> > +++ b/drivers/tty/vt/Makefile
-> > @@ -13,6 +13,7 @@ obj-$(CONFIG_CONSOLE_TRANSLATIONS)    +=3D consolemap=
-.o consolemap_deftbl.o
-> >  clean-files :=3D consolemap_deftbl.c defkeymap.c
-> >
-> >  hostprogs +=3D conmakehash
-> > +HOSTCFLAGS_conmakehash.o =3D -I$(srctree)/usr/include
-> >
-> >  quiet_cmd_conmk =3D CONMK   $@
-> >        cmd_conmk =3D $(obj)/conmakehash $< > $@
-> >
-> > --
-> > Git-146)
-> >
-> >
->
->
-> --
-> Best Regards
-> Masahiro Yamada
+> Thanks,
+> Tejas
+>>=20
+>> Patch LGTM.
+>> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>=20
+>>=20
+>> >   #define   SLM_WMTP_RESTORE			REG_BIT(11)
+>> >
+>> >   #define ROW_CHICKEN				XE_REG_MCR(0xe4f0,
+>> XE_REG_OPTION_MASKED)
+>> > diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+>> > index 564e32e44e3b..28b7f95b6c2f 100644
+>> > --- a/drivers/gpu/drm/xe/xe_wa.c
+>> > +++ b/drivers/gpu/drm/xe/xe_wa.c
+>> > @@ -542,6 +542,10 @@ static const struct xe_rtp_entry_sr engine_was[] =
+=3D {
+>> >   	  XE_RTP_RULES(GRAPHICS_VERSION(2001),
+>> ENGINE_CLASS(RENDER)),
+>> >   	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
+>> CLEAR_OPTIMIZATION_DISABLE))
+>> >   	},
+>> > +	{ XE_RTP_NAME("14021821874"),
+>> > +	  XE_RTP_RULES(GRAPHICS_VERSION(2001),
+>> FUNC(xe_rtp_match_first_render_or_compute)),
+>> > +	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, STK_ID_RESTRICT))
+>> > +	},
+>> >
+>> >   	/* Xe2_LPM */
+>> >
+
+--=20
+Jani Nikula, Intel
