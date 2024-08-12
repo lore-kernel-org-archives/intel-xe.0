@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AA83C531DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C5D0C531DC
 	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 02:46:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10BF410E06D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCD310E068;
 	Mon, 12 Aug 2024 02:46:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H0tTZLFT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+93c3bw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 807ED10E064
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3556610E065
  for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 02:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723430789; x=1754966789;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Yu7ce52JjIk32GGfOPnBRzJrVdK71ma72rKJyAwI/wg=;
- b=H0tTZLFTUC/0Op6lwJbDA/FQCtp8siefQUQvMJCKHkRyiom9B8reVQ9s
- Lbv7rStSl5f7GNyY/vGzbNRN58tcWuO6YTRG0vTHDrChBalcpJi+M8+Np
- Azfb1oaQAxXLBx9msPJhMQ4TJJNFYZRF72Ks8FKu2x01Mpt6ahZxlug8Y
- BXfyNpXfqKDKmlHq64FTT/eZdzt4e0JoU3B3o7T3+TFzVLAjP2Yaaogct
- 7Elj+k8pubUjyd5F21615JKLIx1us73WHkUnYPV2GdjcSqxCk9MeGQy6M
- CuExZZVQhd3ooKy45RtQVZsg8VCgsDV5ICQw4Q6oBbYzc0LIOXtiSMBHF Q==;
-X-CSE-ConnectionGUID: AC2m37RMR2SGUzOoGntA0w==
-X-CSE-MsgGUID: 4QiKFlZJSd2QcOv4tA9Z/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="32099522"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="32099522"
+ bh=mfdyh6M1N6QZFJ2pHAf54XtgZK0k7qDfMOCdX0tPxUM=;
+ b=G+93c3bwBY7KJHP5rKfsJmqnnQ0j+mOFcwZ2AtaugHg8H8thT+o7JNZA
+ SXCUokOnwtOWE/AZ9+oZOIGgFfgEMf8wu9Xcgi1kWJFqKnV3ikl8P2EGA
+ 0VYuEKJpz+XEr9tC+FYtfMxaGzaZ9Sb4PxEczrN2PlcazPWrPWrK97rqA
+ dWrGa9p1EaHGINk14thBeR6VYMi+1ymAywW7sT6gHaz3uNf86yQg3T+Wm
+ kENNCvQgdNenT/i6TX/o1Ohsx6gfvpL9uBr9QZ0lRmynjGKfehwqmq9g6
+ bkLrcxxr7l38PdybYv79sbxyyTDI6bmotXHrIKPOALPISxKUzPJ2tANBC w==;
+X-CSE-ConnectionGUID: 49vyRLqwS1yPbB46PZMARQ==
+X-CSE-MsgGUID: n9QyXEDLSLyZwCfQLjBwcQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="32099519"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="32099519"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2024 19:46:28 -0700
-X-CSE-ConnectionGUID: 4SQ+5OFJQiSVp0GDPkTZyg==
-X-CSE-MsgGUID: PN/ZphULTvKKtc0cGw1NkA==
+X-CSE-ConnectionGUID: Eq+hsrexR62r2sCIQY+ZUw==
+X-CSE-MsgGUID: 3jMSAfEhTYSyi+8gQBimrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="62256304"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="62256301"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2024 19:46:28 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com
-Subject: [RFC PATCH 6/8] drm/xe: Add ULLS migration job support to ring ops
-Date: Sun, 11 Aug 2024 19:47:15 -0700
-Message-Id: <20240812024717.3584636-7-matthew.brost@intel.com>
+Subject: [RFC PATCH 3/8] drm/xe: Add ULLS flags for jobs
+Date: Sun, 11 Aug 2024 19:47:12 -0700
+Message-Id: <20240812024717.3584636-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240812024717.3584636-1-matthew.brost@intel.com>
 References: <20240812024717.3584636-1-matthew.brost@intel.com>
@@ -66,78 +66,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add preamble and postamble for ULLS migrations jobs. Premable clears
-current semaphore for reuse. Postamble waits on next semaphore which is
-set upon next job submission. The last ULLS migration job skips BB
-submission and postamble (clear current semaphore, write seqno, exit
-ULLS).
+Will help communicate to submission backend and ring ops job is ULLS.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ drivers/gpu/drm/xe/xe_sched_job_types.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 0be4f489d3e1..67e4439177f1 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -389,10 +389,38 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
- }
- 
-+static int emit_ulls_preamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
-+{
-+	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno);
-+
-+	return emit_store_imm_ggtt(addr, 0, dw, i);
-+}
-+
-+static int emit_ulls_postamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
-+{
-+	dw[i++] = MI_SEMAPHORE_WAIT |
-+		MI_SEMAPHORE_GLOBAL_GTT |
-+		MI_SEMAPHORE_POLL |
-+		MI_SEMAPHORE_SAD_EQ_SDD;
-+	dw[i++] = 1;
-+	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
-+	dw[i++] = 0;
-+
-+	return i;
-+}
-+
- static void emit_migration_job_gen12(struct xe_sched_job *job,
- 				     struct xe_lrc *lrc, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
-+	bool ulls = test_bit(JOB_FLAG_ULLS, &job->fence->flags);
-+	bool ulls_last = test_bit(JOB_FLAG_ULLS_LAST, &job->fence->flags);
-+
-+	if (ulls) {
-+		i = emit_ulls_preamble(lrc, dw, i, seqno);
-+		if (ulls_last)
-+			goto seqno_write;
-+	}
- 
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
-@@ -412,6 +440,7 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
- 
-+seqno_write:
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
- 		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
- 	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
-@@ -420,6 +449,9 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_user_interrupt(dw, i);
- 
-+	if (ulls && !ulls_last)
-+		i = emit_ulls_postamble(lrc, dw, i, seqno);
-+
- 	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
- 
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 0d3f76fb05ce..916e87158b7e 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -41,6 +41,9 @@ struct xe_sched_job {
+ 	 * can safely reference fence, fence cannot safely reference job.
+ 	 */
+ #define JOB_FLAG_SUBMIT		DMA_FENCE_FLAG_USER_BITS
++#define JOB_FLAG_ULLS		(DMA_FENCE_FLAG_USER_BITS << 1)
++#define JOB_FLAG_ULLS_FIRST	(DMA_FENCE_FLAG_USER_BITS << 2)
++#define JOB_FLAG_ULLS_LAST	(DMA_FENCE_FLAG_USER_BITS << 3)
+ 	struct dma_fence *fence;
+ 	/** @user_fence: write back value when BB is complete */
+ 	struct {
 -- 
 2.34.1
 
