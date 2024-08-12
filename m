@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FC28C52D7F
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 09:33:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FFECC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 09:35:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D1110E19F;
-	Mon, 12 Aug 2024 09:33:33 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81AAC10E192;
- Mon, 12 Aug 2024 09:33:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4529E10E192;
+	Mon, 12 Aug 2024 09:35:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X1DteVyA";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FAA310E192;
+ Mon, 12 Aug 2024 09:35:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723455310; x=1754991310;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=tlIn/FWMrRY9OX0bkhGehhtSbmcHGAsjysQ7HA8XfuA=;
+ b=X1DteVyARC2LVK9Vp3WBX0dPGQY7NuTih48GpHfO8x9FfFq4tWLdwhpf
+ 7TyFRO1BF8y04zieIvCcTYdx7yNtSXnWC65nTHnXfqg9/LitgE4LRCYPF
+ 8J/5J01g/nsTNGiRzhOqAC0IPHn1HvwpFc03r3PfPtjtMRlP8j8i1Ws4d
+ 5tQMQVK6En9qgYyrqBLUjmbBKGta9C9Ic106GFNFPjEtkRECG3fGQdtzh
+ QPesh760NPqv/NuyoWy8UDoSgmIkdAQY+3ZRMqEGIEOmrgn0lT9Sk/3kV
+ LzaBL51k6mhOSs8Um9vgOQrpsm2ri5YL9dft5vReA7YnleaIIbx6sli51 w==;
+X-CSE-ConnectionGUID: qo+O+je8RZ6EH4ErsTtxFA==
+X-CSE-MsgGUID: oKQBK+OEQESh+zzELmj3iA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="25323360"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208,217";a="25323360"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 02:35:09 -0700
+X-CSE-ConnectionGUID: ZGxRclmiR56lKvsiNEe0+A==
+X-CSE-MsgGUID: /f2VEc9oS+miZEfRHK8RGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208,217";a="81438295"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 02:35:06 -0700
 Content-Type: multipart/alternative;
- boundary="===============8105743882520010526=="
+ boundary="------------BmlsRusbJqipXvIutcC8dY70"
+Message-ID: <801bf720-6131-489c-8440-34d2267fe73b@linux.intel.com>
+Date: Mon, 12 Aug 2024 15:08:14 +0530
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_Preserve_value_of_fe?=
- =?utf-8?q?c=5Fenable_calculated_before_DSC_compute_config?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Aug 2024 09:33:32 -0000
-Message-ID: <172345521252.594346.18228831351595956081@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/uapi: Bring back reset uevent
+To: Raag Jadav <raag.jadav@intel.com>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, francois.dugast@intel.com,
+ rodrigo.vivi@intel.com, anshuman.gupta@intel.com
+References: <20240812074812.1457164-1-raag.jadav@intel.com>
+Content-Language: en-US
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20240812074812.1457164-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,183 +69,572 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8105743882520010526==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Preserve value of fec_enable calculated before DSC compute config
-URL   : https://patchwork.freedesktop.org/series/137152/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423_BAT -> xe-pw-137152v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-137152v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
-    - bat-lnl-2:          [PASS][3] -> [FAIL][4] ([Intel XE#1069])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - bat-lnl-1:          [FAIL][5] ([Intel XE#886]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#324]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][9] ([Intel XE#324]) -> [DMESG-WARN][10] ([Intel XE#324])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+This is a multi-part message in MIME format.
+--------------BmlsRusbJqipXvIutcC8dY70
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
-Build changes
--------------
+On 12/08/24 13:18, Raag Jadav wrote:
+> From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>
+> This was dropped in commit 77a0d4d1cea2 ("drm/xe/uapi: Remove reset
+> uevent for now") as part of refactoring.
+>
+> Now that we have better uapi semantics and naming for the uevent,
+> bring it back. With this in place, userspace will be notified of
+> wedged device along with its reason.
+>
+> $ udevadm monitor --property --kernel
+> monitor will print the received events for:
+> KERNEL - the kernel uevent
+>
+> KERNEL[871.188570] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0 (pci)
+> ACTION=change
+> DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
+> SUBSYSTEM=pci
+> DEVICE_STATUS=NEEDS_RESET
+> REASON=GT_RESET_FAILED
+> TILE_ID=0
+> GT_ID=0
+> DRIVER=xe
+> PCI_CLASS=30000
+> PCI_ID=8086:56B1
+> PCI_SUBSYS_ID=8086:1210
+> PCI_SLOT_NAME=0000:03:00.0
+> MODALIAS=pci:v00008086d000056B1sv00008086sd00001210bc03sc00i00
+> SEQNUM=6104
+>
+> v2: Change authorship to Himal (Aravind)
+>     Add uevent for all device wedged cases (Aravind)
+>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c     | 10 +++++++++-
+>  drivers/gpu/drm/xe/xe_device.h     |  2 +-
+>  drivers/gpu/drm/xe/xe_gt.c         | 23 +++++++++++++++++++----
+>  drivers/gpu/drm/xe/xe_guc.c        | 13 ++++++++++++-
+>  drivers/gpu/drm/xe/xe_guc_submit.c | 13 ++++++++++++-
+>  include/uapi/drm/xe_drm.h          | 29 +++++++++++++++++++++++++++++
+>  6 files changed, 82 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 1aba6f9eaa19..d975bdce4a7d 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -955,6 +955,7 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+>  /**
+>   * xe_device_declare_wedged - Declare device wedged
+>   * @xe: xe device instance
+> + * @event_params: parameters to be sent along with uevent
+>   *
+>   * This is a final state that can only be cleared with a mudule
+>   * re-probe (unbind + bind).
+> @@ -965,8 +966,10 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+>   * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
+>   * snapshot capture. In this mode, GT reset won't be attempted so the state of
+>   * the issue is preserved for further debugging.
+> + * Caller is expected to pass respective parameters to be sent along with
+> + * uevent. Pass NULL in case of no params.
+>   */
+> -void xe_device_declare_wedged(struct xe_device *xe)
+> +void xe_device_declare_wedged(struct xe_device *xe, char **event_params)
+>  {
+>  	struct xe_gt *gt;
+>  	u8 id;
+> @@ -984,12 +987,17 @@ void xe_device_declare_wedged(struct xe_device *xe)
+>  	xe_pm_runtime_get_noresume(xe);
+>  
+>  	if (!atomic_xchg(&xe->wedged.flag, 1)) {
+> +		struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +
+>  		xe->needs_flr_on_fini = true;
+>  		drm_err(&xe->drm,
+>  			"CRITICAL: Xe has declared device %s as wedged.\n"
+>  			"IOCTLs and executions are blocked. Only a rebind may clear the failure\n"
+>  			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
+>  			dev_name(xe->drm.dev));
+> +
+> +		/* Notify userspace about reset required */
+> +		kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, event_params);
+>  	}
+>  
+>  	for_each_gt(gt, xe, id)
+> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+> index db6cc8d0d6b8..5d40fc6f0904 100644
+> --- a/drivers/gpu/drm/xe/xe_device.h
+> +++ b/drivers/gpu/drm/xe/xe_device.h
+> @@ -174,7 +174,7 @@ static inline bool xe_device_wedged(struct xe_device *xe)
+>  	return atomic_read(&xe->wedged.flag);
+>  }
+>  
+> -void xe_device_declare_wedged(struct xe_device *xe);
+> +void xe_device_declare_wedged(struct xe_device *xe, char **reset_event);
+>  
+>  struct xe_file *xe_file_get(struct xe_file *xef);
+>  void xe_file_put(struct xe_file *xef);
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 58895ed22f6e..519f3c2cf9e2 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -741,6 +741,24 @@ static int do_gt_restart(struct xe_gt *gt)
+>  	return 0;
+>  }
+>  
+> +static void xe_gt_reset_failed(struct xe_gt *gt, int err)
+> +{
+> +	char *event_params[5];
+> +
+> +	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
+> +
+> +	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
+> +	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT;
+> +	event_params[2] = kasprintf(GFP_KERNEL, "TILE_ID=%d", gt_to_tile(gt)->id);
+> +	event_params[3] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt->info.id);
 
-  * Linux: xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423 -> xe-pw-137152v1
+the TILE_ID and GT_ID can be passed for other events as well, with that you can
+have a common function to send uevent which would take reason as an input.
+> +	event_params[4] = NULL;
+> +
+> +	xe_device_declare_wedged(gt_to_xe(gt), event_params);
+> +
+> +	kfree(event_params[2]);
+> +	kfree(event_params[3]);
+> +}
+> +
+>  static int gt_reset(struct xe_gt *gt)
+>  {
+>  	int err;
+> @@ -796,10 +814,7 @@ static int gt_reset(struct xe_gt *gt)
+>  	XE_WARN_ON(xe_uc_start(&gt->uc));
+>  	xe_pm_runtime_put(gt_to_xe(gt));
+>  err_fail:
+> -	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
+> -
+> -	xe_device_declare_wedged(gt_to_xe(gt));
+> -
+> +	xe_gt_reset_failed(gt, err);
+>  	return err;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index de0fe9e65746..b544012f5b11 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -560,6 +560,17 @@ static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
+>  	return ret ? ret : freq;
+>  }
+>  
+> +static void xe_guc_load_failed(struct xe_gt *gt)
+> +{
+> +	char *event_params[3];
+> +
+> +	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
+> +	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_GUC;
+> +	event_params[2] = NULL;
+> +
+> +	xe_device_declare_wedged(gt_to_xe(gt), event_params);
+> +}
+> +
+>  /*
+>   * Wait for the GuC to start up.
+>   *
+> @@ -684,7 +695,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
+>  			break;
+>  		}
+>  
+> -		xe_device_declare_wedged(gt_to_xe(gt));
+> +		xe_guc_load_failed(gt);
+>  	} else if (delta_ms > GUC_LOAD_TIME_WARN_MS) {
+>  		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, timeouts = %d]\n",
+>  			   delta_ms, status, count);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 460808507947..33ed6221f465 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -891,6 +891,17 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+>  	mutex_unlock(&guc->submission_state.lock);
+>  }
+>  
+> +static void xe_exec_queue_timedout(struct xe_device *xe)
+> +{
+> +	char *event_params[3];
+> +
+> +	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
+> +	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_TOUT;
+> +	event_params[2] = NULL;
+> +
+> +	xe_device_declare_wedged(xe, event_params);
+> +}
+> +
+>  static bool guc_submit_hint_wedged(struct xe_guc *guc)
+>  {
+>  	struct xe_device *xe = guc_to_xe(guc);
+> @@ -901,7 +912,7 @@ static bool guc_submit_hint_wedged(struct xe_guc *guc)
+>  	if (xe_device_wedged(xe))
+>  		return true;
+>  
 
-  IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423: ac6319ef8c6027f0fc65b71b614a8312aed19423
-  xe-pw-137152v1: 137152v1
+i see that this is even called from xe_guc_exec_queue_lr_cleanup which is for long running queue
+from various call paths need to check in what scenarios those happen.
+> -	xe_device_declare_wedged(xe);
+> +	xe_exec_queue_timedout(xe);
+>  
+>  	return true;
+>  }
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index b6fbe4988f2e..dd2f36710057 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -20,6 +20,7 @@ extern "C" {
+>   *   2. Extension definition and helper structs
+>   *   3. IOCTL's Query structs in the order of the Query's entries.
+>   *   4. The rest of IOCTL structs in the order of IOCTL declaration.
+> + *   5. uEvents
+>   */
+>  
+>  /**
+> @@ -1694,6 +1695,34 @@ struct drm_xe_oa_stream_info {
+>  	__u64 reserved[3];
+>  };
+>  
+> +/**
+> + * DOC: uevent generated by xe on it's pci node.
+> + *
+> + * DRM_XE_RESET_REQUIRED_UEVENT - Event is generated when device needs reset.
+> + * The REASON is provided along with the event for which reset is required.
+> + * On the basis of REASONS, additional information might be supplied.
+> + */
+> +#define DRM_XE_RESET_REQUIRED_UEVENT "DEVICE_STATUS=NEEDS_RESET"
+> +
+> +/**
+> + * DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT - Reason provided to
+> + * DRM_XE_RESET_REQUIRED_UEVENT incase of gt reset failure. The additional
+> + * information supplied is tile id and gt id for which reset has failed.
+> + */
+> +#define DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT "REASON=GT_RESET_FAILED"
+> +
+> +/**
+> + * DRM_XE_RESET_REQUIRED_UEVENT_REASON_GUC - Reason provided to
+> + * DRM_XE_RESET_REQUIRED_UEVENT incase of guc fw load failure.
+> + */
+> +#define DRM_XE_RESET_REQUIRED_UEVENT_REASON_GUC "REASON=GUC_LOAD_FAILED"
+> +
+> +/**
+> + * DRM_XE_RESET_REQUIRED_UEVENT_REASON_TOUT - Reason provided to
+> + * DRM_XE_RESET_REQUIRED_UEVENT incase of exec queue timeout.
+> + */
+> +#define DRM_XE_RESET_REQUIRED_UEVENT_REASON_TOUT "REASON=EXEC_QUEUE_TIMEDOUT"
 
-== Logs ==
+better to  name DRM_XE_RESET_REQUIRED_UEVENT_REASON_EXEC_QUEUE_TIMEOUT for clarity
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/index.html
-
---===============8105743882520010526==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
+Thanks,
+Aravind.
+> +
+>  #if defined(__cplusplus)
+>  }
+>  #endif
+--------------BmlsRusbJqipXvIutcC8dY70
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix"><font face="monospace">On 12/08/24
+        13:18, Raag Jadav wrote:</font><br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20240812074812.1457164-1-raag.jadav@intel.com">
+      <pre class="moz-quote-pre" wrap="">From: Himal Prasad Ghimiray <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
 
+This was dropped in commit 77a0d4d1cea2 ("drm/xe/uapi: Remove reset
+uevent for now") as part of refactoring.
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Preserve value of fec_enable calculated before DSC compute config</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137152/">https://patchwork.freedesktop.org/series/137152/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Now that we have better uapi semantics and naming for the uevent,
+bring it back. With this in place, userspace will be notified of
+wedged device along with its reason.
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/index.html</a></td></tr>
+$ udevadm monitor --property --kernel
+monitor will print the received events for:
+KERNEL - the kernel uevent
 
-</table>
+KERNEL[871.188570] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0 (pci)
+ACTION=change
+DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
+SUBSYSTEM=pci
+DEVICE_STATUS=NEEDS_RESET
+REASON=GT_RESET_FAILED
+TILE_ID=0
+GT_ID=0
+DRIVER=xe
+PCI_CLASS=30000
+PCI_ID=8086:56B1
+PCI_SUBSYS_ID=8086:1210
+PCI_SLOT_NAME=0000:03:00.0
+MODALIAS=pci:v00008086d000056B1sv00008086sd00001210bc03sc00i00
+SEQNUM=6104
 
+v2: Change authorship to Himal (Aravind)
+    Add uevent for all device wedged cases (Aravind)
 
-    <h1>CI Bug Log - changes from xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423_BAT -&gt; xe-pw-137152v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137152v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069">Intel XE#1069</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137152v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423 -&gt; xe-pw-137152v1</li>
-</ul>
-<p>IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1748-ac6319ef8c6027f0fc65b71b614a8312aed19423: ac6319ef8c6027f0fc65b71b614a8312aed19423<br />
-  xe-pw-137152v1: 137152v1</p>
+Signed-off-by: Himal Prasad Ghimiray <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
+Signed-off-by: Raag Jadav <a class="moz-txt-link-rfc2396E" href="mailto:raag.jadav@intel.com">&lt;raag.jadav@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_device.c     | 10 +++++++++-
+ drivers/gpu/drm/xe/xe_device.h     |  2 +-
+ drivers/gpu/drm/xe/xe_gt.c         | 23 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_guc.c        | 13 ++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.c | 13 ++++++++++++-
+ include/uapi/drm/xe_drm.h          | 29 +++++++++++++++++++++++++++++
+ 6 files changed, 82 insertions(+), 8 deletions(-)
 
-</body>
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 1aba6f9eaa19..d975bdce4a7d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -955,6 +955,7 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+ /**
+  * xe_device_declare_wedged - Declare device wedged
+  * @xe: xe device instance
++ * @event_params: parameters to be sent along with uevent
+  *
+  * This is a final state that can only be cleared with a mudule
+  * re-probe (unbind + bind).
+@@ -965,8 +966,10 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+  * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
+  * snapshot capture. In this mode, GT reset won't be attempted so the state of
+  * the issue is preserved for further debugging.
++ * Caller is expected to pass respective parameters to be sent along with
++ * uevent. Pass NULL in case of no params.
+  */
+-void xe_device_declare_wedged(struct xe_device *xe)
++void xe_device_declare_wedged(struct xe_device *xe, char **event_params)
+ {
+ 	struct xe_gt *gt;
+ 	u8 id;
+@@ -984,12 +987,17 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 	xe_pm_runtime_get_noresume(xe);
+ 
+ 	if (!atomic_xchg(&amp;xe-&gt;wedged.flag, 1)) {
++		struct pci_dev *pdev = to_pci_dev(xe-&gt;drm.dev);
++
+ 		xe-&gt;needs_flr_on_fini = true;
+ 		drm_err(&amp;xe-&gt;drm,
+ 			"CRITICAL: Xe has declared device %s as wedged.\n"
+ 			"IOCTLs and executions are blocked. Only a rebind may clear the failure\n"
+ 			"Please file a _new_ bug report at <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n">https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n</a>",
+ 			dev_name(xe-&gt;drm.dev));
++
++		/* Notify userspace about reset required */
++		kobject_uevent_env(&amp;pdev-&gt;dev.kobj, KOBJ_CHANGE, event_params);
+ 	}
+ 
+ 	for_each_gt(gt, xe, id)
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index db6cc8d0d6b8..5d40fc6f0904 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -174,7 +174,7 @@ static inline bool xe_device_wedged(struct xe_device *xe)
+ 	return atomic_read(&amp;xe-&gt;wedged.flag);
+ }
+ 
+-void xe_device_declare_wedged(struct xe_device *xe);
++void xe_device_declare_wedged(struct xe_device *xe, char **reset_event);
+ 
+ struct xe_file *xe_file_get(struct xe_file *xef);
+ void xe_file_put(struct xe_file *xef);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 58895ed22f6e..519f3c2cf9e2 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -741,6 +741,24 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++static void xe_gt_reset_failed(struct xe_gt *gt, int err)
++{
++	char *event_params[5];
++
++	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
++
++	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
++	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT;
++	event_params[2] = kasprintf(GFP_KERNEL, "TILE_ID=%d", gt_to_tile(gt)-&gt;id);
++	event_params[3] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt-&gt;info.id);</pre>
+    </blockquote>
+    <br>
+    <font face="monospace">the TILE_ID and GT_ID can be passed for other
+      events as well, with that you can</font><br>
+    <font face="monospace">have a common function to send uevent which
+      would take reason as an input.<br>
+    </font>
+    <blockquote type="cite"
+      cite="mid:20240812074812.1457164-1-raag.jadav@intel.com">
+      <pre class="moz-quote-pre" wrap="">
++	event_params[4] = NULL;
++
++	xe_device_declare_wedged(gt_to_xe(gt), event_params);
++
++	kfree(event_params[2]);
++	kfree(event_params[3]);
++}
++
+ static int gt_reset(struct xe_gt *gt)
+ {
+ 	int err;
+@@ -796,10 +814,7 @@ static int gt_reset(struct xe_gt *gt)
+ 	XE_WARN_ON(xe_uc_start(&amp;gt-&gt;uc));
+ 	xe_pm_runtime_put(gt_to_xe(gt));
+ err_fail:
+-	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
+-
+-	xe_device_declare_wedged(gt_to_xe(gt));
+-
++	xe_gt_reset_failed(gt, err);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index de0fe9e65746..b544012f5b11 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -560,6 +560,17 @@ static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
+ 	return ret ? ret : freq;
+ }
+ 
++static void xe_guc_load_failed(struct xe_gt *gt)
++{
++	char *event_params[3];
++
++	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
++	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_GUC;
++	event_params[2] = NULL;
++
++	xe_device_declare_wedged(gt_to_xe(gt), event_params);
++}
++
+ /*
+  * Wait for the GuC to start up.
+  *
+@@ -684,7 +695,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
+ 			break;
+ 		}
+ 
+-		xe_device_declare_wedged(gt_to_xe(gt));
++		xe_guc_load_failed(gt);
+ 	} else if (delta_ms &gt; GUC_LOAD_TIME_WARN_MS) {
+ 		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, timeouts = %d]\n",
+ 			   delta_ms, status, count);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 460808507947..33ed6221f465 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -891,6 +891,17 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+ 	mutex_unlock(&amp;guc-&gt;submission_state.lock);
+ }
+ 
++static void xe_exec_queue_timedout(struct xe_device *xe)
++{
++	char *event_params[3];
++
++	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
++	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_TOUT;
++	event_params[2] = NULL;
++
++	xe_device_declare_wedged(xe, event_params);
++}
++
+ static bool guc_submit_hint_wedged(struct xe_guc *guc)
+ {
+ 	struct xe_device *xe = guc_to_xe(guc);
+@@ -901,7 +912,7 @@ static bool guc_submit_hint_wedged(struct xe_guc *guc)
+ 	if (xe_device_wedged(xe))
+ 		return true;
+ </pre>
+    </blockquote>
+    <br>
+    <font face="monospace">i see that this is even called from
+      xe_guc_exec_queue_lr_cleanup which is for long running queue</font><br>
+    <font face="monospace">from various call paths need to check in what
+      scenarios those happen.<br>
+    </font>
+    <blockquote type="cite"
+      cite="mid:20240812074812.1457164-1-raag.jadav@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+-	xe_device_declare_wedged(xe);
++	xe_exec_queue_timedout(xe);
+ 
+ 	return true;
+ }
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index b6fbe4988f2e..dd2f36710057 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -20,6 +20,7 @@ extern "C" {
+  *   2. Extension definition and helper structs
+  *   3. IOCTL's Query structs in the order of the Query's entries.
+  *   4. The rest of IOCTL structs in the order of IOCTL declaration.
++ *   5. uEvents
+  */
+ 
+ /**
+@@ -1694,6 +1695,34 @@ struct drm_xe_oa_stream_info {
+ 	__u64 reserved[3];
+ };
+ 
++/**
++ * DOC: uevent generated by xe on it's pci node.
++ *
++ * DRM_XE_RESET_REQUIRED_UEVENT - Event is generated when device needs reset.
++ * The REASON is provided along with the event for which reset is required.
++ * On the basis of REASONS, additional information might be supplied.
++ */
++#define DRM_XE_RESET_REQUIRED_UEVENT "DEVICE_STATUS=NEEDS_RESET"
++
++/**
++ * DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT - Reason provided to
++ * DRM_XE_RESET_REQUIRED_UEVENT incase of gt reset failure. The additional
++ * information supplied is tile id and gt id for which reset has failed.
++ */
++#define DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT "REASON=GT_RESET_FAILED"
++
++/**
++ * DRM_XE_RESET_REQUIRED_UEVENT_REASON_GUC - Reason provided to
++ * DRM_XE_RESET_REQUIRED_UEVENT incase of guc fw load failure.
++ */
++#define DRM_XE_RESET_REQUIRED_UEVENT_REASON_GUC "REASON=GUC_LOAD_FAILED"
++
++/**
++ * DRM_XE_RESET_REQUIRED_UEVENT_REASON_TOUT - Reason provided to
++ * DRM_XE_RESET_REQUIRED_UEVENT incase of exec queue timeout.
++ */
++#define DRM_XE_RESET_REQUIRED_UEVENT_REASON_TOUT "REASON=EXEC_QUEUE_TIMEDOUT"</pre>
+    </blockquote>
+    <p><font face="monospace">better to  name <span
+        style="white-space: pre-wrap">DRM_XE_RESET_REQUIRED_UEVENT_REASON_EXEC_QUEUE_TIMEOUT for clarity</span></font></p>
+    <font face="monospace"><span style="white-space: pre-wrap">Thanks,</span></font><br>
+    <font face="monospace"><span style="white-space: pre-wrap">Aravind.
+</span></font><br>
+    <blockquote type="cite"
+      cite="mid:20240812074812.1457164-1-raag.jadav@intel.com">
+      <pre class="moz-quote-pre" wrap="">
++
+ #if defined(__cplusplus)
+ }
+ #endif
+</pre>
+    </blockquote>
+  </body>
 </html>
 
---===============8105743882520010526==--
+--------------BmlsRusbJqipXvIutcC8dY70--
