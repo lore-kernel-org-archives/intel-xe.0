@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5605C3DA7F
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 08:29:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E8F7C3DA7F
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 08:34:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61F2110E08A;
-	Mon, 12 Aug 2024 08:29:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MmButQ5a";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF75110E07D;
- Mon, 12 Aug 2024 08:29:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723451386; x=1754987386;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6qKsNCCSvgz3qvFx/jourWOITquppQPfC3DiH7fZUJI=;
- b=MmButQ5aeqDZP7fIwfC4gxhQwHbTjP4yomYt9SGpZrHg6FdgXvXnmcta
- UX5VZorGlbx3rxNJbF8wElv0PqH/MKmSPXbwC9rTkBgQcDr2YVKnohNDw
- CsavQIt9QXyHzdWrbfO0AsGjQcQc4Ycn4II3aTLqEdJfqNWPCxLHDFLkx
- TSgOwP6H8/zFeeaQCxdw21PAX196OVWj3mhpZRmheJNTnqMaVcreuNCuK
- 1/4vG5/i98MJrAbB0DU3qiL/JI7Q+2R6y5glAtBtT/nnnnSSf7wPWIxX9
- v9nh7IujZf1NV5Q9JwrM5HlyYQ0yrlSDad76HmNDRIuTyup0gn4rUGVgE A==;
-X-CSE-ConnectionGUID: /b1FzKNLS8ekND5APQWaBQ==
-X-CSE-MsgGUID: CCMQmfdQTwine/Ca4HLMiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21521021"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21521021"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 01:29:46 -0700
-X-CSE-ConnectionGUID: GNd5fneZRHW1hYFfq6rfyw==
-X-CSE-MsgGUID: J2ud6vsoS9yFMWBKXAnSMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="57846063"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa006.fm.intel.com with ESMTP; 12 Aug 2024 01:29:45 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com,
-	chaitanya.kumar.borah@intel.com
-Subject: [PATCH] drm/i915: Preserve value of fec_enable calculated before DSC
- compute config
-Date: Mon, 12 Aug 2024 13:54:46 +0530
-Message-Id: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FAEB10E088;
+	Mon, 12 Aug 2024 08:34:34 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D441210E088;
+ Mon, 12 Aug 2024 08:34:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_Preserve?=
+ =?utf-8?q?_value_of_fec=5Fenable_calculated_before_DSC_compute_config?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 12 Aug 2024 08:34:32 -0000
+Message-ID: <172345167286.593901.5865877275814039050@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Before DSC compute config, fec_enable value is set in other functions
-(e.g. intel_dp_mst_find_vcpi_slots_for_bpp). We are ignoring the value by
-OR'ing its value in DSC compute config. One unintended effect of this is
-setting fec_enable in UHBR use-cases which is not needed for Intel
-hardware. Therefore, change operator to AND.
+== Series Details ==
 
-While at it, add a comment explaining why we don't enable FEC in eDP v1.5.
+Series: drm/i915: Preserve value of fec_enable calculated before DSC compute config
+URL   : https://patchwork.freedesktop.org/series/137152/
+State : success
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 49a37b996530..3fbf9f33c3e4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2298,7 +2298,12 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 		&pipe_config->hw.adjusted_mode;
- 	int ret;
- 
--	pipe_config->fec_enable = pipe_config->fec_enable ||
-+	/*
-+	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
-+	 * Since, FEC is a bandwidth overhead, continue to not enable it for
-+	 * eDP. Until, there is a good reason to do so.
-+	 */
-+	pipe_config->fec_enable = pipe_config->fec_enable &&
- 		(!intel_dp_is_edp(intel_dp) &&
- 		 intel_dp_supports_fec(intel_dp, connector, pipe_config));
- 
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: e2742fa214d8 drm-tip: 2024y-08m-12d-08h-17m-46s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: Preserve value of fec_enable calculated before DSC compute config
+
 
