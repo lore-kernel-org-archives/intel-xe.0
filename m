@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C5D0C531DC
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 02:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6365EC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 02:46:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCD310E068;
-	Mon, 12 Aug 2024 02:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35DFF10E06F;
+	Mon, 12 Aug 2024 02:46:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+93c3bw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n//Sangg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3556610E065
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECA310E052
  for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 02:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723430789; x=1754966789;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mfdyh6M1N6QZFJ2pHAf54XtgZK0k7qDfMOCdX0tPxUM=;
- b=G+93c3bwBY7KJHP5rKfsJmqnnQ0j+mOFcwZ2AtaugHg8H8thT+o7JNZA
- SXCUokOnwtOWE/AZ9+oZOIGgFfgEMf8wu9Xcgi1kWJFqKnV3ikl8P2EGA
- 0VYuEKJpz+XEr9tC+FYtfMxaGzaZ9Sb4PxEczrN2PlcazPWrPWrK97rqA
- dWrGa9p1EaHGINk14thBeR6VYMi+1ymAywW7sT6gHaz3uNf86yQg3T+Wm
- kENNCvQgdNenT/i6TX/o1Ohsx6gfvpL9uBr9QZ0lRmynjGKfehwqmq9g6
- bkLrcxxr7l38PdybYv79sbxyyTDI6bmotXHrIKPOALPISxKUzPJ2tANBC w==;
-X-CSE-ConnectionGUID: 49vyRLqwS1yPbB46PZMARQ==
-X-CSE-MsgGUID: n9QyXEDLSLyZwCfQLjBwcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="32099519"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="32099519"
+ bh=Ej0kUwQpTgw9NSFpLfkpPBX8bUf0VK0hJtZt/8R7180=;
+ b=n//Sanggx9nISO/Jwg0eDz61ACoM5PcLLs/BZLvR4lAZeW97tvZAKyk2
+ H282OQt2zppDeJmZihnELXR6Qug3DFa6b+vounju5VNppjo8RLDOjWIun
+ JNuZ5zujRmTaMRAlBTy9DWdEFJmgAm1mKhoQc5GPme+viW66UHYA10cPM
+ A+RXjVZWnbwAiXxnOuXrHC5jRVH6VReBq4W2fV+n7QZgPtSc3gKIXG+c4
+ FIFqckg43rkMlkIjZB5oxCsn6/mdoGdReZwi8Y17Qixs88tdoT+PGYL8J
+ qRZ/kXKx1HHJsqbUphld6kKSvAhf+2XkcNIK6iVrW36i5nZu7NNd2nxkT g==;
+X-CSE-ConnectionGUID: zsm/GsRRRzyg3Fd293+rNg==
+X-CSE-MsgGUID: yrDmwqEOQ8OhBoek6GuU/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="32099521"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="32099521"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2024 19:46:28 -0700
-X-CSE-ConnectionGUID: Eq+hsrexR62r2sCIQY+ZUw==
-X-CSE-MsgGUID: 3jMSAfEhTYSyi+8gQBimrQ==
+X-CSE-ConnectionGUID: B3tAZy1nT1ySiORpTsGIfw==
+X-CSE-MsgGUID: dCY1De69Q6yiZM2mkr6F+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="62256301"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="62256303"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2024 19:46:28 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com
-Subject: [RFC PATCH 3/8] drm/xe: Add ULLS flags for jobs
-Date: Sun, 11 Aug 2024 19:47:12 -0700
-Message-Id: <20240812024717.3584636-4-matthew.brost@intel.com>
+Subject: [RFC PATCH 5/8] drm/xe: Add MI_SEMAPHORE_WAIT instruction defs
+Date: Sun, 11 Aug 2024 19:47:14 -0700
+Message-Id: <20240812024717.3584636-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240812024717.3584636-1-matthew.brost@intel.com>
 References: <20240812024717.3584636-1-matthew.brost@intel.com>
@@ -66,27 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Will help communicate to submission backend and ring ops job is ULLS.
+Needed for kernel ULLS of migration jobs.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sched_job_types.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 0d3f76fb05ce..916e87158b7e 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -41,6 +41,9 @@ struct xe_sched_job {
- 	 * can safely reference fence, fence cannot safely reference job.
- 	 */
- #define JOB_FLAG_SUBMIT		DMA_FENCE_FLAG_USER_BITS
-+#define JOB_FLAG_ULLS		(DMA_FENCE_FLAG_USER_BITS << 1)
-+#define JOB_FLAG_ULLS_FIRST	(DMA_FENCE_FLAG_USER_BITS << 2)
-+#define JOB_FLAG_ULLS_LAST	(DMA_FENCE_FLAG_USER_BITS << 3)
- 	struct dma_fence *fence;
- 	/** @user_fence: write back value when BB is complete */
- 	struct {
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index 10ec2920d31b..5f939a8dc838 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -33,6 +33,12 @@
+ #define MI_TOPOLOGY_FILTER		__MI_INSTR(0xD)
+ #define MI_FORCE_WAKEUP			__MI_INSTR(0x1D)
+ 
++#define MI_SEMAPHORE_WAIT		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(4))
++#define   MI_SEMAPHORE_GLOBAL_GTT	REG_BIT(22)
++#define   MI_SEMAPHORE_POLL             REG_BIT(15)
++#define   MI_SEMAPHORE_COMPARE		GENMASK(15, 12)
++#define   MI_SEMAPHORE_SAD_EQ_SDD       REG_FIELD_PREP(MI_SEMAPHORE_COMPARE, 4)
++
+ #define MI_STORE_DATA_IMM		__MI_INSTR(0x20)
+ #define   MI_SDI_GGTT			REG_BIT(22)
+ #define   MI_SDI_LEN_DW			GENMASK(9, 0)
 -- 
 2.34.1
 
