@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3B82C52D7C
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 10:30:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00767C52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 10:30:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92C1110E095;
-	Mon, 12 Aug 2024 10:30:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BABFD10E0CA;
+	Mon, 12 Aug 2024 10:30:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iDzMQjQT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mMuA60m4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4017A10E082
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 10:30:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECEF588EA1
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 10:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723458633; x=1754994633;
+ t=1723458638; x=1754994638;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NIvEYU3EBi9ex0AJxnPGXhVKvMn6a584G7pgwb7DxBo=;
- b=iDzMQjQTz3IQr1SYwBMTWBh/B7z0GDZ90Bllt0huTkD7d6SZ3TYhNj6p
- 69jAnhGu3AI/IjDxzOPn53hU3Ql6g+z0R8iZpigkrueAtAxymL80RewZ4
- mbTGqR1iMRUT18db4hwdp74Eyk8to+R08V+omr1JrlxGlEjQVZLXrQbMi
- c8WrxTiXg9+BJ6k04p2VjNNqSMs1Ry20f2iXaqk6DvzYw2NdEneKFQWHk
- rlzb9m20q7PQLUIwW0XlUNcfvK5Q3UA2ZGCPn7xKPybfvO61N2xERbg9u
- shOdTYm3nmSqLXRwZ70fQlo2bxUEPDYNmccQjOECGGTWdsdWF6v34B1Jm g==;
-X-CSE-ConnectionGUID: VhNR7c87TtWw2HDjs3DbZw==
-X-CSE-MsgGUID: WexTW8iaRRyzfDVVxlG7tA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21439072"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21439072"
+ bh=Ysm8HuM0CPlvglpD4V4sNrjQFY4ILcsuZ0Gq7ohQpXY=;
+ b=mMuA60m4WEqQIQKrS69nzCc58GHhu23M0gfYzb8aMq924xKjuo7RiEZd
+ jYCJ0Mm8VrEREHkfF+hGkLAiK8NqT0ZUGnN+T/zkai2JbYjtvO/a/7fmw
+ XMYyn2r+KLevY9iJQLYGHUv98yWaZ6l5RMuY7n9lCs1ik7ITWmn2PQaH5
+ MaEYKJz8xzEzCBforQmFhGUl2QDwA/Ts/+P4ao/yALf6u1Ajgg8QXEGgt
+ cnmx9jBZ7WKp2aM7k3uAVa3b7X6BqUi2g0ugkflhYJHFJ3c+/2k/jmdle
+ hLlkeHIEXSHznajc0L+LglAZACS11mWbZU4GFFZkVfqp7bSo9oqZEftAh w==;
+X-CSE-ConnectionGUID: a3cbThi8R+ui36ybDcrGkg==
+X-CSE-MsgGUID: cFnyk3i0RpKp7Xea4ivfWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21439095"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21439095"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 03:30:33 -0700
-X-CSE-ConnectionGUID: 0xRKxXJOSK24YbghDmNTMA==
-X-CSE-MsgGUID: biJ9maHUR96h81HmT5T5XA==
+ 12 Aug 2024 03:30:38 -0700
+X-CSE-ConnectionGUID: mgAvAy0JRpS525qX5H1D4w==
+X-CSE-MsgGUID: o4EipGW9REWUX08E34llzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="62876517"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="62876553"
 Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.117])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 03:30:31 -0700
+ 12 Aug 2024 03:30:36 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
  jani.nikula@intel.com
-Subject: [PATCH 1/3] drm/xe/tests: remove unused leftover
- xe_call_for_each_device()
-Date: Mon, 12 Aug 2024 13:30:19 +0300
-Message-Id: <fa3bb23d005313c9797f557e1211fde09fcb59cc.1723458544.git.jani.nikula@intel.com>
+Subject: [PATCH 2/3] drm/xe: use pdev_to_xe_device() instead of
+ pci_get_drvdata() directly
+Date: Mon, 12 Aug 2024 13:30:20 +0300
+Message-Id: <1b87c2e56200e001ce3a5d2f4a93eb26b294df32.1723458544.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1723458544.git.jani.nikula@intel.com>
 References: <cover.1723458544.git.jani.nikula@intel.com>
@@ -70,92 +70,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_call_for_each_device() has been unused since commit 57ecead343e7
-("drm/xe/tests: Convert xe_mocs live tests"). Remove it and the related
-dev_to_xe_device_fn() and struct kunit_test_data.
+We have a helper for converting pci device to xe device, use it.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_pci.c      | 52 --------------------------
- drivers/gpu/drm/xe/tests/xe_pci_test.h |  1 -
- 2 files changed, 53 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index 577ee7d14381..67404863087e 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -12,58 +12,6 @@
- #include <kunit/test-bug.h>
- #include <kunit/visibility.h>
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index f818aa69f3ca..7bb811b4a057 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -752,7 +752,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
+ {
+ 	struct xe_device *xe;
  
--struct kunit_test_data {
--	int ndevs;
--	xe_device_fn xe_fn;
--};
--
--static int dev_to_xe_device_fn(struct device *dev, void *__data)
--
--{
--	struct drm_device *drm = dev_get_drvdata(dev);
--	struct kunit_test_data *data = __data;
--	int ret = 0;
--	int idx;
--
--	data->ndevs++;
--
--	if (drm_dev_enter(drm, &idx))
--		ret = data->xe_fn(to_xe_device(dev_get_drvdata(dev)));
--	drm_dev_exit(idx);
--
--	return ret;
--}
--
--/**
-- * xe_call_for_each_device - Iterate over all devices this driver binds to
-- * @xe_fn: Function to call for each device.
-- *
-- * This function iterated over all devices this driver binds to, and calls
-- * @xe_fn: for each one of them. If the called function returns anything else
-- * than 0, iteration is stopped and the return value is returned by this
-- * function. Across each function call, drm_dev_enter() / drm_dev_exit() is
-- * called for the corresponding drm device.
-- *
-- * Return: Number of devices iterated or
-- *         the error code of a call to @xe_fn returning an error code.
-- */
--int xe_call_for_each_device(xe_device_fn xe_fn)
--{
--	int ret;
--	struct kunit_test_data data = {
--	    .xe_fn = xe_fn,
--	    .ndevs = 0,
--	};
--
--	ret = driver_for_each_device(&xe_pci_driver.driver, NULL,
--				     &data, dev_to_xe_device_fn);
--
--	if (!data.ndevs)
--		kunit_skip(current->kunit_test, "test runs only on hardware\n");
--
--	return ret ?: data.ndevs;
--}
--
- /**
-  * xe_call_for_each_graphics_ip - Iterate over all recognized graphics IPs
-  * @xe_fn: Function to call for each device.
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 3e2558bc3c90..ede46800aff1 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -19,7 +19,6 @@ typedef int (*xe_device_fn)(struct xe_device *);
- typedef void (*xe_graphics_fn)(const struct xe_graphics_desc *);
- typedef void (*xe_media_fn)(const struct xe_media_desc *);
- 
--int xe_call_for_each_device(xe_device_fn xe_fn);
- void xe_call_for_each_graphics_ip(xe_graphics_fn xe_fn);
- void xe_call_for_each_media_ip(xe_media_fn xe_fn);
+-	xe = pci_get_drvdata(pdev);
++	xe = pdev_to_xe_device(pdev);
+ 	if (!xe) /* driver load aborted, nothing to cleanup */
+ 		return;
  
 -- 
 2.39.2
