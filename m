@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08E9CC52D7C
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 12:02:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C20EC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Aug 2024 12:13:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFF6A10E1BF;
-	Mon, 12 Aug 2024 12:02:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKkIOTjT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1C3110E1C0
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Aug 2024 12:02:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723464156; x=1755000156;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pa4ptmmAzh8mYfYdGF3vt8J5XYaf3uDryBf8WrBnjnQ=;
- b=jKkIOTjT07PGbc8ROXdsb9fsoLIFz/W9isxUbPIxGmrbS9fbzmqOOT7f
- KKdT28QhQqtN0tD5CcUhnudchO/FfpQG3U4QuFQCKkEPU+Jp/S5UgeYef
- gnHWqlEtvfLkI0cTTfTvFeh/00d5BJqvkV/Q9Dc9KYYaPvGXT1vbCiqSY
- nJtVu3cr25migfQ3k73Z/TFf0IzYD74yJJEXXSA80GoAvunBUZRK7erAS
- ITAkI5vwRVps8wuDOk3DjZ7bKLcNyREPOInGHWb0sDrRdFQV+EWwz7Qde
- Ls4e21BC1O0Fky23T9hbO8lGGxeyU0Y5ve7Fyl4vmO14oR70Q08uy1ZnQ w==;
-X-CSE-ConnectionGUID: 69n3mGgzRcuTgzpOs4qY/Q==
-X-CSE-MsgGUID: uWrydXBFRWmRC3sWIpxgpw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="24476095"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="24476095"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 05:02:36 -0700
-X-CSE-ConnectionGUID: bcYo3+B0QnCw7AEPsxjy7Q==
-X-CSE-MsgGUID: yoAwPdDwQ+i1X9XQKEmESg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="88896694"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.97])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 05:02:34 -0700
-Date: Mon, 12 Aug 2024 14:02:29 +0200
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: Re: [PATCH 03/21] drm/xe/eudebug: Introduce eudebug support
-Message-ID: <20240812120207.3ezb4rky5z364quy@zkempczy-mobl2>
-References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
- <20240726140818.54304-4-mika.kuoppala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3644310E1C9;
+	Mon, 12 Aug 2024 12:13:00 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E45810E1C9;
+ Mon, 12 Aug 2024 12:12:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6741374658856440578=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240726140818.54304-4-mika.kuoppala@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/display=3A_Change_HPD_to_?=
+ =?utf-8?q?polling_on_runtime_suspend_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 12 Aug 2024 12:12:58 -0000
+Message-ID: <172346477844.594790.8613378588631731867@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240812103202.3433041-1-arun.r.murthy@intel.com>
+In-Reply-To: <20240812103202.3433041-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,65 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 26, 2024 at 05:08:00PM +0300, Mika Kuoppala wrote:
+--===============6741374658856440578==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-<cut>
+== Series Details ==
 
-> +static long xe_eudebug_read_event(struct xe_eudebug *d,
-> +				  const u64 arg,
-> +				  const bool wait)
-> +{
-> +	struct xe_device *xe = d->xe;
-> +	struct drm_xe_eudebug_event __user * const user_orig =
-> +		u64_to_user_ptr(arg);
-> +	struct drm_xe_eudebug_event user_event;
-> +	struct xe_eudebug_event *event;
-> +	long ret = 0;
-> +
-> +	if (XE_IOCTL_DBG(xe, copy_from_user(&user_event, user_orig, sizeof(user_event))))
-> +		return -EFAULT;
-> +
-> +	if (XE_IOCTL_DBG(xe, !user_event.type))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, user_event.type > DRM_XE_EUDEBUG_EVENT_MAX_EVENT))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, user_event.type != DRM_XE_EUDEBUG_EVENT_READ))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, user_event.len < sizeof(*user_orig)))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, user_event.flags))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, user_event.reserved))
-> +		return -EINVAL;
-> +
-> +	/* XXX: define wait time in connect arguments ? */
-> +	if (wait) {
-> +		ret = wait_event_interruptible_timeout(d->events.write_done,
-> +						       event_fifo_has_events(d),
-> +						       msecs_to_jiffies(5 * 1000));
-> +
-> +		if (XE_IOCTL_DBG(xe, ret < 0))
-> +			return ret;
-> +	}
-> +
-> +	ret = 0;
-> +	spin_lock(&d->events.lock);
-> +	event = event_fifo_pending(d);
-> +	if (event) {
-> +		if (user_event.len < event->len) {
-> +			ret = -EMSGSIZE;
+Series: drm/xe/display: Change HPD to polling on runtime suspend (rev3)
+URL   : https://patchwork.freedesktop.org/series/137025/
+State : success
 
-Maybe it is worth to copy event->len to user_orig? I wonder how
-userspace guesses the size of the buffer to allocate for the event.
+== Summary ==
 
---
-Zbigniew
+CI Bug Log - changes from xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6_BAT -> xe-pw-137025v3_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-137025v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137025v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_module_load@load:
+    - bat-bmg-1:          [DMESG-WARN][3] ([Intel XE#877]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6/bat-bmg-1/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137025v3/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
+
+
+Build changes
+-------------
+
+  * Linux: xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6 -> xe-pw-137025v3
+
+  IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6: 1daf2018001da75c5522669aebdb68ba9a353ea6
+  xe-pw-137025v3: 137025v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137025v3/index.html
+
+--===============6741374658856440578==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Change HPD to polling on runtime suspend (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137025/">https://patchwork.freedesktop.org/series/137025/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137025v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137025v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6_BAT -&gt; xe-pw-137025v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-137025v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137025v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6/bat-bmg-1/igt@xe_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137025v3/bat-bmg-1/igt@xe_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6 -&gt; xe-pw-137025v3</li>
+</ul>
+<p>IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1751-1daf2018001da75c5522669aebdb68ba9a353ea6: 1daf2018001da75c5522669aebdb68ba9a353ea6<br />
+  xe-pw-137025v3: 137025v3</p>
+
+</body>
+</html>
+
+--===============6741374658856440578==--
