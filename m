@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8ADBC52D7B
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 23:12:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8940C52D7F
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 23:12:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A4A110E3F9;
-	Tue, 13 Aug 2024 23:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F86610E3FC;
+	Tue, 13 Aug 2024 23:12:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kzp39Kqx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ArfjVqSD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E64710E3E5
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Aug 2024 23:12:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7433610E3FA
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Aug 2024 23:12:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723590722; x=1755126722;
+ t=1723590724; x=1755126724;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qAZ1CTiY4DiP2vWS86+G/tIam62D9YxD7Qj2f0W/amU=;
- b=Kzp39Kqxtk685q6Re/0DKn2v5tAXqpFpmEmCMRGoR5PMlAuTLrfWGlPp
- PWH/tWJHOkyQ2hSv1Ok3TgCvecedC23coh/h+zSx5gXlV5mf2fHnI0uDv
- hKwfmN1D3vnFVzReBbTc0I7weeZnJdDF0DJnCcF5ammr4eE22otPEBAI3
- WSriy2TbNz1e6LeiR3b0AQz6jGsTS8S1Wz/ieQsWK+cwunOeYZrMDkhGc
- f9E7aWWwpz64xPwiWlPm4mRstdU3nUGmoPMSjnqZKhVZFNxBpx/1c13AL
- I/rT8a9bpT0tw+U6BCZrs9nFrBqmqx7BZStjhr2xLuRFxoysN9ImgH4ff Q==;
-X-CSE-ConnectionGUID: jn7mt/rqSAOfENvAvKBlzw==
-X-CSE-MsgGUID: acoZLKduTGuQ1KgRM/5VWg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21599847"
-X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="21599847"
+ bh=tk2PIyC/cOgRPCpWIIbwvWi5iO44O4P6mP0XBJPQoCI=;
+ b=ArfjVqSD79HTREpmn/4ozxI3DC91RGR4ZVskMjQAU0Lzq4ma3FTPm9ya
+ KnYMm+hfvXDL//mzuXlfrkv/DFATd2+kU6Q47upHIDIMy68jUzT8GVdCZ
+ IL8UJMyl3/LYNktDvPv1vh0SXOuPwI30qx1kZOEfVoThatwyu03keC0p5
+ m5ptafhDo3vAKxBxulaYXeiatCsTj0UO7guTwIRDWbdAbW19LhheFt0VP
+ EsslvurgNq0diZb8H5tuncjG06Ge2uFfJaHJolOjLdZsSsDo9v6VtdUEq
+ m1AjM0rY6TCuCDOqcjfhmoE1G3ETcyXVPcJCThO2xP1lc08XagC5Oys6F Q==;
+X-CSE-ConnectionGUID: a9GY0vNFScKdvOEfqIjVNQ==
+X-CSE-MsgGUID: /yCZ0HqkSH+E1TSDEHlgFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21599869"
+X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="21599869"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 16:12:01 -0700
-X-CSE-ConnectionGUID: vBnQVkejSna3Yec256XerQ==
-X-CSE-MsgGUID: Nf5RjObJRbeydWBWXpfKWA==
+ 13 Aug 2024 16:12:04 -0700
+X-CSE-ConnectionGUID: f/p4Ac7VRSuMLMqwjjHPcA==
+X-CSE-MsgGUID: y8rCEiCWQKKqKuBk3jNs+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="58515532"
+X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="58515541"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 16:12:02 -0700
+ 13 Aug 2024 16:12:04 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>,
  Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH 3/4] drm/xe/gsc: Track the platform in the compatibility
- version
-Date: Tue, 13 Aug 2024 16:11:46 -0700
-Message-ID: <20240813231148.1663731-4-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 4/4] drm/xe/gsc: Add debugfs to print GSC info
+Date: Tue, 13 Aug 2024 16:11:47 -0700
+Message-ID: <20240813231148.1663731-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240813231148.1663731-1-daniele.ceraolospurio@intel.com>
 References: <20240813231148.1663731-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,95 +69,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GSC compatibility version number is reset for each new platform. To
-indicate this, the version includes a number that identifies the
-platform (102 = MTL, 104 = LNL); this matches what happens for the
-release version, where the major number also identifies a platform.
-
-To make it clearer in our logs that the compatibility version is
-specific to the platform, it is useful to include this platform number.
-However, given that our binary names already include the platform, it is
-not necessary to add this extra number there.
+This is useful for debug, in case something goes wrong with the GSC. The
+info includes the version information and the current value of the HECI1
+status registers.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gsc.c   |  7 ++++---
- drivers/gpu/drm/xe/xe_uc_fw.c | 13 +++++++++----
- 2 files changed, 13 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/Makefile           |  1 +
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h |  4 ++
+ drivers/gpu/drm/xe/xe_gsc.c           | 33 +++++++++++++
+ drivers/gpu/drm/xe/xe_gsc.h           |  3 ++
+ drivers/gpu/drm/xe/xe_gsc_debugfs.c   | 71 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gsc_debugfs.h   | 14 ++++++
+ drivers/gpu/drm/xe/xe_uc_debugfs.c    |  2 +
+ 7 files changed, 128 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_debugfs.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 3bb4c92527aa..76858d5bbfba 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -41,6 +41,7 @@ xe-y += xe_bb.o \
+ 	xe_ggtt.o \
+ 	xe_gpu_scheduler.o \
+ 	xe_gsc.o \
++	xe_gsc_debugfs.o \
+ 	xe_gsc_proxy.o \
+ 	xe_gsc_submit.o \
+ 	xe_gt.o \
+diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+index e2a925be137c..7702364b65f1 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+@@ -32,8 +32,12 @@
+ #define   HECI1_FWSTS1_CURRENT_STATE_RESET		0
+ #define   HECI1_FWSTS1_PROXY_STATE_NORMAL		5
+ #define   HECI1_FWSTS1_INIT_COMPLETE			REG_BIT(9)
++#define HECI_FWSTS2(base)				XE_REG((base) + 0xc48)
++#define HECI_FWSTS3(base)				XE_REG((base) + 0xc60)
++#define HECI_FWSTS4(base)				XE_REG((base) + 0xc64)
+ #define HECI_FWSTS5(base)				XE_REG((base) + 0xc68)
+ #define   HECI1_FWSTS5_HUC_AUTH_DONE			REG_BIT(19)
++#define HECI_FWSTS6(base)				XE_REG((base) + 0xc6c)
+ 
+ #define HECI_H_GS1(base)	XE_REG((base) + 0xc4c)
+ #define   HECI_H_GS1_ER_PREP	REG_BIT(0)
 diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 85a6a65063c4..0217e05feb70 100644
+index 0217e05feb70..13b87df93797 100644
 --- a/drivers/gpu/drm/xe/xe_gsc.c
 +++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -165,10 +165,11 @@ static int query_compatibility_version(struct xe_gsc *gsc)
- 		return err;
+@@ -8,6 +8,7 @@
+ #include <linux/delay.h>
+ 
+ #include <drm/drm_managed.h>
++#include <drm/drm_print.h>
+ 
+ #include <generated/xe_wa_oob.h>
+ 
+@@ -593,3 +594,35 @@ void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep)
+ 		msleep(200);
+ 	}
+ }
++
++/**
++ * xe_gsc_print_info - print info about GSC FW status
++ * @gsc: the GSC structure
++ * @p: the printer to be used to print the info
++ */
++void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
++{
++	struct xe_gt *gt = gsc_to_gt(gsc);
++	int err;
++
++	xe_uc_fw_print(&gsc->fw, p);
++
++	drm_printf(p, "\tfound security version %u\n", gsc->security_version);
++
++	if (!xe_uc_fw_is_enabled(&gsc->fw))
++		return;
++
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
++	if (err)
++		return;
++
++	drm_printf(p, "\nHECI1 FWSTS: 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x\n",
++			xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(gt, HECI_FWSTS2(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(gt, HECI_FWSTS3(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(gt, HECI_FWSTS4(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(gt, HECI_FWSTS5(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(gt, HECI_FWSTS6(MTL_GSC_HECI1_BASE)));
++
++	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
+index 1c7a623faf11..e282b9ef6ec4 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.h
++++ b/drivers/gpu/drm/xe/xe_gsc.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/types.h>
+ 
++struct drm_printer;
+ struct xe_gsc;
+ struct xe_gt;
+ struct xe_hw_engine;
+@@ -21,4 +22,6 @@ void xe_gsc_hwe_irq_handler(struct xe_hw_engine *hwe, u16 intr_vec);
+ 
+ void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep);
+ 
++void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gsc_debugfs.c b/drivers/gpu/drm/xe/xe_gsc_debugfs.c
+new file mode 100644
+index 000000000000..461d7e99c2b3
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gsc_debugfs.c
+@@ -0,0 +1,71 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#include "xe_gsc_debugfs.h"
++
++#include <drm/drm_debugfs.h>
++#include <drm/drm_managed.h>
++
++#include "xe_device.h"
++#include "xe_gt.h"
++#include "xe_gsc.h"
++#include "xe_macros.h"
++#include "xe_pm.h"
++
++static struct xe_gt *
++gsc_to_gt(struct xe_gsc *gsc)
++{
++	return container_of(gsc, struct xe_gt, uc.gsc);
++}
++
++static struct xe_device *
++gsc_to_xe(struct xe_gsc *gsc)
++{
++	return gt_to_xe(gsc_to_gt(gsc));
++}
++
++static struct xe_gsc *node_to_gsc(struct drm_info_node *node)
++{
++	return node->info_ent->data;
++}
++
++static int gsc_info(struct seq_file *m, void *data)
++{
++	struct xe_gsc *gsc = node_to_gsc(m->private);
++	struct xe_device *xe = gsc_to_xe(gsc);
++	struct drm_printer p = drm_seq_file_printer(m);
++
++	xe_pm_runtime_get(xe);
++	xe_gsc_print_info(gsc, &p);
++	xe_pm_runtime_put(xe);
++
++	return 0;
++}
++
++static const struct drm_info_list debugfs_list[] = {
++	{"gsc_info", gsc_info, 0},
++};
++
++void xe_gsc_debugfs_register(struct xe_gsc *gsc, struct dentry *parent)
++{
++	struct drm_minor *minor = gsc_to_xe(gsc)->drm.primary;
++	struct drm_info_list *local;
++	int i;
++
++#define DEBUGFS_SIZE	(ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list))
++	local = drmm_kmalloc(&gsc_to_xe(gsc)->drm, DEBUGFS_SIZE, GFP_KERNEL);
++	if (!local)
++		return;
++
++	memcpy(local, debugfs_list, DEBUGFS_SIZE);
++#undef DEBUGFS_SIZE
++
++	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
++		local[i].data = gsc;
++
++	drm_debugfs_create_files(local,
++				 ARRAY_SIZE(debugfs_list),
++				 parent, minor);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gsc_debugfs.h b/drivers/gpu/drm/xe/xe_gsc_debugfs.h
+new file mode 100644
+index 000000000000..c2e2645dc705
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gsc_debugfs.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef _XE_GSC_DEBUGFS_H_
++#define _XE_GSC_DEBUGFS_H_
++
++struct dentry;
++struct xe_gsc;
++
++void xe_gsc_debugfs_register(struct xe_gsc *gsc, struct dentry *parent);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_uc_debugfs.c b/drivers/gpu/drm/xe/xe_uc_debugfs.c
+index 78eb8db73791..24a4209051ee 100644
+--- a/drivers/gpu/drm/xe/xe_uc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_uc_debugfs.c
+@@ -8,6 +8,7 @@
+ #include <drm/drm_debugfs.h>
+ 
+ #include "xe_gt.h"
++#include "xe_gsc_debugfs.h"
+ #include "xe_guc_debugfs.h"
+ #include "xe_huc_debugfs.h"
+ #include "xe_macros.h"
+@@ -23,6 +24,7 @@ void xe_uc_debugfs_register(struct xe_uc *uc, struct dentry *parent)
+ 		return;
  	}
  
--	compat->major = version_query_rd(xe, &bo->vmap, rd_offset, compat_major);
--	compat->minor = version_query_rd(xe, &bo->vmap, rd_offset, compat_minor);
-+	compat->major = version_query_rd(xe, &bo->vmap, rd_offset, proj_major);
-+	compat->minor = version_query_rd(xe, &bo->vmap, rd_offset, compat_major);
-+	compat->patch = version_query_rd(xe, &bo->vmap, rd_offset, compat_minor);
- 
--	xe_gt_info(gt, "found GSC cv%u.%u\n", compat->major, compat->minor);
-+	xe_gt_info(gt, "found GSC cv%u.%u.%u\n", compat->major, compat->minor, compat->patch);
- 
- out_bo:
- 	xe_bo_unpin_map_no_vm(bo);
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 41c4ac6ba42a..84956bdf635e 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -130,8 +130,8 @@ struct fw_blobs_by_type {
- 
- /* for the GSC FW we match the compatibility version and not the release one */
- #define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver)		\
--	fw_def(LUNARLAKE,	major_ver(xe,	gsc,	lnl,	1, 0, 0)) \
--	fw_def(METEORLAKE,	major_ver(i915,	gsc,	mtl,	1, 0, 0))
-+	fw_def(LUNARLAKE,	major_ver(xe,	gsc,	lnl,	104, 1, 0)) \
-+	fw_def(METEORLAKE,	major_ver(i915,	gsc,	mtl,	102, 1, 0))
- 
- #define MAKE_FW_PATH(dir__, uc__, shortname__, version__)			\
- 	__stringify(dir__) "/" __stringify(shortname__) "_" __stringify(uc__) version__ ".bin"
-@@ -142,6 +142,8 @@ struct fw_blobs_by_type {
- 	MAKE_FW_PATH(dir_, uc_, shortname_, "_" __stringify(a))
- #define fw_filename_no_ver(dir_, uc_, shortname_)				\
- 	MAKE_FW_PATH(dir_, uc_, shortname_, "")
-+#define fw_filename_gsc(dir_, uc_, shortname_, a, b, c)				\
-+	MAKE_FW_PATH(dir_, uc_, shortname_, "_" __stringify(b))
- 
- #define uc_fw_entry_mmp_ver(dir_, uc_, shortname_, a, b, c)			\
- 	{ fw_filename_mmp_ver(dir_, uc_, shortname_, a, b, c),			\
-@@ -152,6 +154,9 @@ struct fw_blobs_by_type {
- #define uc_fw_entry_no_ver(dir_, uc_, shortname_)				\
- 	{ fw_filename_no_ver(dir_, uc_, shortname_),				\
- 	  0, 0 }
-+#define uc_fw_entry_gsc(dir_, uc_, shortname_, a, b, c)				\
-+	{ fw_filename_gsc(dir_, uc_, shortname_, a, b, c),			\
-+	  a, b, c }
- 
- /* All blobs need to be declared via MODULE_FIRMWARE() */
- #define XE_UC_MODULE_FIRMWARE(platform__, fw_filename)				\
-@@ -167,7 +172,7 @@ XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
- 		     fw_filename_mmp_ver, fw_filename_major_ver)
- XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
- 		     fw_filename_mmp_ver, fw_filename_no_ver)
--XE_GSC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE, fw_filename_major_ver)
-+XE_GSC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE, fw_filename_gsc)
- 
- static struct xe_gt *
- __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type type)
-@@ -210,7 +215,7 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
- 				     uc_fw_entry_no_ver)
- 	};
- 	static const struct uc_fw_entry entries_gsc[] = {
--		XE_GSC_FIRMWARE_DEFS(XE_UC_FW_ENTRY, uc_fw_entry_major_ver)
-+		XE_GSC_FIRMWARE_DEFS(XE_UC_FW_ENTRY, uc_fw_entry_gsc)
- 	};
- 	static const struct fw_blobs_by_type blobs_all[XE_UC_FW_NUM_TYPES] = {
- 		[XE_UC_FW_TYPE_GUC] = { entries_guc, ARRAY_SIZE(entries_guc) },
++	xe_gsc_debugfs_register(&uc->gsc, root);
+ 	xe_guc_debugfs_register(&uc->guc, root);
+ 	xe_huc_debugfs_register(&uc->huc, root);
+ }
 -- 
 2.43.0
 
