@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9BA2C52D7B
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 13:28:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57F34C52D7B
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 14:11:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F6D10E350;
-	Tue, 13 Aug 2024 13:28:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2506C10E367;
+	Tue, 13 Aug 2024 14:11:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GdlpSnPs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P7SZ1gwT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 316E110E34F;
- Tue, 13 Aug 2024 13:28:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B686610E366
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Aug 2024 14:11:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723555718; x=1755091718;
+ t=1723558268; x=1755094268;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=fihVZGJ3RJgJ7YVQOcJyKicbB7RQgkb3vGVcijGb5mU=;
- b=GdlpSnPsnhEnDdXZyrzmPJqVAPSFLHq5+I+pGTGoZqF6PmKvjXYLTa3j
- 7V8UJuLuGXbQa1mE1zPVZukkzk84Ka+rBwXzbOUyUKa+0mOUCXAgE0X1Z
- TuGCDuPRBd+4rupIEj9rOxYGkBpV6DX6V886b4+C/yStcbheIVGzYgkKq
- Eg0RLrxLrw4Ak+fmDE8UCMgUY8TgOlEmHUTSdRk4O40PYml1bmXyD2aEv
- 5uUoBaGQKryHggszp7KiUmryOidk+V9UTz8MTagtnTrZ8nYPe2y1e49Vt
- h95QZMngS1iwjYcnTWAUoxY8nhsG86k6fb6t5xUr1LTpq8iTCWHlfyyo6 Q==;
-X-CSE-ConnectionGUID: dCB+j/F4QTOGgqoTVv5KJg==
-X-CSE-MsgGUID: f/Bz672rRG6TLumSppm6BQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21533890"
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="21533890"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 06:28:37 -0700
-X-CSE-ConnectionGUID: 55mpL+aqQAS+MeSHyz0VHA==
-X-CSE-MsgGUID: GOTvneAYTzyiAqNPoBNxNg==
+ bh=yP42tp1EKZIXmizeIVPPkqaLg7MrakOsR6KTQIj6Qzo=;
+ b=P7SZ1gwTa2gINWSjo3UVCVoS8k2mS8Ls5YImAlgjGml0p52vS5xnUVPY
+ jPnxiruZDY5r8v7FaWVkCrXAelhd3pQBUMq8LPIotRGehEbuIPN1ZWOy6
+ ToUtV3QPEIKMhtDrzDRclARgpBo22kJpCs8um1jgKNbSkr2dEh/oBj0zj
+ 2ewFI404VD62QgUAtZBMJQ84eYxgb47R9xuupJz1RQwT39chQk01TorYA
+ IXW2a3G01sdoTESoKytEFcxZZyaYjNYHzXKqS0ioA6mNBzjPwVWkHsatz
+ Sjz/IujmkfHoRGTSoM24PHjt+5F7O7IQOY+4eMd2mJvd8Bi2OjTvxnWj1 Q==;
+X-CSE-ConnectionGUID: Y5K89uaPQba9h2Gmw7Subw==
+X-CSE-MsgGUID: w89XYdENRpGVw9WvH8uN6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21367538"
+X-IronPort-AV: E=Sophos;i="6.09,286,1716274800"; d="scan'208";a="21367538"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 07:11:08 -0700
+X-CSE-ConnectionGUID: xLvWgcslSRSHbZUN8q8ZnA==
+X-CSE-MsgGUID: CxDpHyeMR6eYZlQRBgDAXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="58542222"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 06:28:35 -0700
-Date: Tue, 13 Aug 2024 16:28:32 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, francois.dugast@intel.com,
- rodrigo.vivi@intel.com, anshuman.gupta@intel.com
-Subject: Re: [PATCH v2] drm/xe/uapi: Bring back reset uevent
-Message-ID: <ZrtfgGY1YFr22Pg9@black.fi.intel.com>
-References: <20240812074812.1457164-1-raag.jadav@intel.com>
- <801bf720-6131-489c-8440-34d2267fe73b@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,286,1716274800"; d="scan'208";a="59237391"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 07:11:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1sdsEp-0000000ErHe-1I8R; Tue, 13 Aug 2024 17:11:03 +0300
+Date: Tue, 13 Aug 2024 17:11:03 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
+ matthew.brost@intel.com, hdegoede@redhat.com,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v11] drm/xe/vsec: Support BMG devices
+Message-ID: <Zrtpd_WwougszltH@smile.fi.intel.com>
+References: <20240812200422.444078-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <801bf720-6131-489c-8440-34d2267fe73b@linux.intel.com>
+In-Reply-To: <20240812200422.444078-1-michael.j.ruhl@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,216 +73,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 12, 2024 at 03:08:14PM +0530, Aravind Iddamsetty wrote:
+On Mon, Aug 12, 2024 at 04:04:22PM -0400, Michael J. Ruhl wrote:
+> The Battlemage (BMG) discrete graphics card supports
+> the Platform, Monitoring Technology (PMT) feature
+> directly on the primary PCI device.
 > 
-> On 12/08/24 13:18, Raag Jadav wrote:
-> > From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> >
-> > This was dropped in commit 77a0d4d1cea2 ("drm/xe/uapi: Remove reset
-> > uevent for now") as part of refactoring.
-> >
-> > Now that we have better uapi semantics and naming for the uevent,
-> > bring it back. With this in place, userspace will be notified of
-> > wedged device along with its reason.
-> >
-> > $ udevadm monitor --property --kernel
-> > monitor will print the received events for:
-> > KERNEL - the kernel uevent
-> >
-> > KERNEL[871.188570] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0 (pci)
-> > ACTION=change
-> > DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
-> > SUBSYSTEM=pci
-> > DEVICE_STATUS=NEEDS_RESET
-> > REASON=GT_RESET_FAILED
-> > TILE_ID=0
-> > GT_ID=0
-> > DRIVER=xe
-> > PCI_CLASS=30000
-> > PCI_ID=8086:56B1
-> > PCI_SUBSYS_ID=8086:1210
-> > PCI_SLOT_NAME=0000:03:00.0
-> > MODALIAS=pci:v00008086d000056B1sv00008086sd00001210bc03sc00i00
-> > SEQNUM=6104
-> >
-> > v2: Change authorship to Himal (Aravind)
-> >     Add uevent for all device wedged cases (Aravind)
-> >
-> > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_device.c     | 10 +++++++++-
-> >  drivers/gpu/drm/xe/xe_device.h     |  2 +-
-> >  drivers/gpu/drm/xe/xe_gt.c         | 23 +++++++++++++++++++----
-> >  drivers/gpu/drm/xe/xe_guc.c        | 13 ++++++++++++-
-> >  drivers/gpu/drm/xe/xe_guc_submit.c | 13 ++++++++++++-
-> >  include/uapi/drm/xe_drm.h          | 29 +++++++++++++++++++++++++++++
-> >  6 files changed, 82 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > index 1aba6f9eaa19..d975bdce4a7d 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -955,6 +955,7 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
-> >  /**
-> >   * xe_device_declare_wedged - Declare device wedged
-> >   * @xe: xe device instance
-> > + * @event_params: parameters to be sent along with uevent
-> >   *
-> >   * This is a final state that can only be cleared with a mudule
-> >   * re-probe (unbind + bind).
-> > @@ -965,8 +966,10 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
-> >   * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
-> >   * snapshot capture. In this mode, GT reset won't be attempted so the state of
-> >   * the issue is preserved for further debugging.
-> > + * Caller is expected to pass respective parameters to be sent along with
-> > + * uevent. Pass NULL in case of no params.
-> >   */
-> > -void xe_device_declare_wedged(struct xe_device *xe)
-> > +void xe_device_declare_wedged(struct xe_device *xe, char **event_params)
-> >  {
-> >  	struct xe_gt *gt;
-> >  	u8 id;
-> > @@ -984,12 +987,17 @@ void xe_device_declare_wedged(struct xe_device *xe)
-> >  	xe_pm_runtime_get_noresume(xe);
-> >  
-> >  	if (!atomic_xchg(&xe->wedged.flag, 1)) {
-> > +		struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> > +
-> >  		xe->needs_flr_on_fini = true;
-> >  		drm_err(&xe->drm,
-> >  			"CRITICAL: Xe has declared device %s as wedged.\n"
-> >  			"IOCTLs and executions are blocked. Only a rebind may clear the failure\n"
-> >  			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
-> >  			dev_name(xe->drm.dev));
-> > +
-> > +		/* Notify userspace about reset required */
-> > +		kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, event_params);
-> >  	}
-> >  
-> >  	for_each_gt(gt, xe, id)
-> > diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> > index db6cc8d0d6b8..5d40fc6f0904 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.h
-> > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > @@ -174,7 +174,7 @@ static inline bool xe_device_wedged(struct xe_device *xe)
-> >  	return atomic_read(&xe->wedged.flag);
-> >  }
-> >  
-> > -void xe_device_declare_wedged(struct xe_device *xe);
-> > +void xe_device_declare_wedged(struct xe_device *xe, char **reset_event);
-> >  
-> >  struct xe_file *xe_file_get(struct xe_file *xef);
-> >  void xe_file_put(struct xe_file *xef);
-> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> > index 58895ed22f6e..519f3c2cf9e2 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt.c
-> > @@ -741,6 +741,24 @@ static int do_gt_restart(struct xe_gt *gt)
-> >  	return 0;
-> >  }
-> >  
-> > +static void xe_gt_reset_failed(struct xe_gt *gt, int err)
-> > +{
-> > +	char *event_params[5];
-> > +
-> > +	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
-> > +
-> > +	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
-> > +	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT;
-> > +	event_params[2] = kasprintf(GFP_KERNEL, "TILE_ID=%d", gt_to_tile(gt)->id);
-> > +	event_params[3] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt->info.id);
-> 
-> the TILE_ID and GT_ID can be passed for other events as well, with that you can
-> have a common function to send uevent which would take reason as an input.
+> Utilize the PMT callback API to add support for the BMG
+> devices.
 
-But is that required for all cases? There could be potential cases atleast
-in the future where it is not needed.
+...
 
-> > +	event_params[4] = NULL;
-> > +
-> > +	xe_device_declare_wedged(gt_to_xe(gt), event_params);
-> > +
-> > +	kfree(event_params[2]);
-> > +	kfree(event_params[3]);
-> > +}
-> > +
-> >  static int gt_reset(struct xe_gt *gt)
-> >  {
-> >  	int err;
-> > @@ -796,10 +814,7 @@ static int gt_reset(struct xe_gt *gt)
-> >  	XE_WARN_ON(xe_uc_start(&gt->uc));
-> >  	xe_pm_runtime_put(gt_to_xe(gt));
-> >  err_fail:
-> > -	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
-> > -
-> > -	xe_device_declare_wedged(gt_to_xe(gt));
-> > -
-> > +	xe_gt_reset_failed(gt, err);
-> >  	return err;
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> > index de0fe9e65746..b544012f5b11 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc.c
-> > @@ -560,6 +560,17 @@ static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
-> >  	return ret ? ret : freq;
-> >  }
-> >  
-> > +static void xe_guc_load_failed(struct xe_gt *gt)
-> > +{
-> > +	char *event_params[3];
-> > +
-> > +	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
-> > +	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_GUC;
-> > +	event_params[2] = NULL;
-> > +
-> > +	xe_device_declare_wedged(gt_to_xe(gt), event_params);
-> > +}
-> > +
-> >  /*
-> >   * Wait for the GuC to start up.
-> >   *
-> > @@ -684,7 +695,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
-> >  			break;
-> >  		}
-> >  
-> > -		xe_device_declare_wedged(gt_to_xe(gt));
-> > +		xe_guc_load_failed(gt);
-> >  	} else if (delta_ms > GUC_LOAD_TIME_WARN_MS) {
-> >  		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, timeouts = %d]\n",
-> >  			   delta_ms, status, count);
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index 460808507947..33ed6221f465 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -891,6 +891,17 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
-> >  	mutex_unlock(&guc->submission_state.lock);
-> >  }
-> >  
-> > +static void xe_exec_queue_timedout(struct xe_device *xe)
-> > +{
-> > +	char *event_params[3];
-> > +
-> > +	event_params[0] = DRM_XE_RESET_REQUIRED_UEVENT;
-> > +	event_params[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_TOUT;
-> > +	event_params[2] = NULL;
-> > +
-> > +	xe_device_declare_wedged(xe, event_params);
-> > +}
-> > +
-> >  static bool guc_submit_hint_wedged(struct xe_guc *guc)
-> >  {
-> >  	struct xe_device *xe = guc_to_xe(guc);
-> > @@ -901,7 +912,7 @@ static bool guc_submit_hint_wedged(struct xe_guc *guc)
-> >  	if (xe_device_wedged(xe))
-> >  		return true;
-> >  
-> 
-> i see that this is even called from xe_guc_exec_queue_lr_cleanup which is for long running queue
-> from various call paths need to check in what scenarios those happen.
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/intel_vsec.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pci.h>
 
-Should we add a reason for long running queue?
+...
 
-Raag
+> +#define SOC_BASE		0x280000
+> +
+> +#define BMG_PMT_BASE		0xDB000
+> +#define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
+
+> +#define BMG_TELEMETRY_BASE	0xE0000
+> +#define BMG_TELEMETRY_OFFSET	(SOC_BASE + BMG_TELEMETRY_BASE)
+
+This looks like double indirection.
+Wouldn't suffix _BASE_OFFSET be better for PMT and TELEMETRY cases?
+
+...
+
+> +#define BMG_DEVICE_ID 0xE2F8
+
+Is this defined in any specification? I mean is the format the same as PCI device ID?
+
+...
+
+> +#define GFX_BAR			0
+
+Do you need a separate definition for this?
+
+...
+
+> +enum record_id {
+> +	PUNIT,
+> +	OOBMSM_0,
+> +	OOBMSM_1
+
+Trailing comma?
+
+> +};
+> +
+> +enum capability {
+> +	CRASHLOG,
+> +	TELEMETRY,
+> +	WATCHER
+
+Ditto?
+
+> +};
+
+...
+
+> +	switch (record_id) {
+> +	case PUNIT:
+> +		*index = 0;
+> +		if (cap_type == TELEMETRY)
+> +			*offset = PUNIT_TELEMETRY_OFFSET;
+> +		else
+> +			*offset = PUNIT_WATCHER_OFFSET;
+> +		break;
+> +
+> +	case OOBMSM_0:
+> +		*index = 1;
+> +		if (cap_type == WATCHER)
+> +			*offset = OOBMSM_0_WATCHER_OFFSET;
+> +		break;
+> +
+> +	case OOBMSM_1:
+> +		*index = 1;
+> +		if (cap_type == TELEMETRY)
+> +			*offset = OOBMSM_1_TELEMETRY_OFFSET;
+> +		break;
+
+default case?
+
+> +	}
+
+...
+
+> +static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, u32 count)
+> +{
+> +	struct xe_device *xe = pdev_to_xe_device(pdev);
+> +	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
+> +	u32 mem_region;
+> +	u32 offset;
+> +	int ret;
+> +
+> +	ret = guid_decode(guid, &mem_region, &offset);
+> +	if (ret)
+> +		return ret;
+> +
+> +	telem_addr += offset;
+> +
+> +	guard(mutex)(&xe->pmt.lock);
+> +
+> +	/* indicate that we are not at an appropriate power level */
+> +	if (!xe_pm_runtime_get_if_active(xe))
+> +		return -ENODATA;
+> +
+> +	/* set SoC re-mapper index register based on GUID memory region */
+> +	xe_mmio_rmw32(xe->tiles[0].primary_gt, SG_REMAP_INDEX1, SG_REMAP_BITS,
+> +		      FIELD_PREP(SG_REMAP_BITS, mem_region));
+> +
+> +	memcpy_fromio(data, telem_addr, count);
+
+> +	ret = count;
+> +	xe_pm_runtime_put(xe);
+
+Does this have a side effect on count? If yes, a comment, if no, you may return
+count directly.
+
+> +	return ret;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
