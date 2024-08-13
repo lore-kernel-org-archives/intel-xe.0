@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B661C52D7C
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 03:18:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 636E8C52D7C
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 03:18:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E157110E20C;
-	Tue, 13 Aug 2024 03:18:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D45B10E1F6;
+	Tue, 13 Aug 2024 03:18:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j31KF/pC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nv6PJnUQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B282010E202;
- Tue, 13 Aug 2024 03:18:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E086210E20D;
+ Tue, 13 Aug 2024 03:18:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723519112; x=1755055112;
+ t=1723519115; x=1755055115;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MyEKfow5zirpieuMLUsqkvk2iHk9hd506eabVpN8NKU=;
- b=j31KF/pCsPJWxlqSfEK8mtjJW9tq08uzsMl+UYZjZau/G6EBg7WoAqhI
- +Ja1I4DkYygLfCFmHlvm0wwABkRLYpwENpL1CVIwbV+hb8NN/S58cQC4P
- jMZjBVs+YVZWZZSAW64y23Q7SHa1LEaeRMnAhsuWJ9mIsPBEnlmUS/vMh
- co7FY6DgXf58juqML+n3weJ/QhNkqUDKtwnL0+l3kIW6qTSwNuU1Nmqoc
- ASa5YXzgJu4iWLDhlZK5c+8pA0Om8vw5FjXimvZ8e6ZghKQ1To6o2jckg
- VFAQmJqF/fzo4CU6BVIWbBfzB5t7vnuGbTomXGowEy3k1rQXefn+iToae Q==;
-X-CSE-ConnectionGUID: hUo0n5cbQ5ueT7ks2BpfOA==
-X-CSE-MsgGUID: q7xyult/QzGg3yF/1X2pXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="33062856"
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="33062856"
+ bh=NnzVjIPRKpXqf+R39uyGATzf+1f8uuKgiSAT+QliDUQ=;
+ b=Nv6PJnUQuN/Wpbcl0aF+jfyKNueqeB5Eo+ceEh0ickGZqeVrVFD69bmR
+ D0SoinT1N7RJ5jZ+a8gFQCuinw2n9/dlwylGEDhAqfgflNweTDkBeIyaX
+ CIfLnUVkCxSlrsuEwhB5h6md1ktx89pZRAdew/vviQRvmDWx/LXCzyXW5
+ 0+giVf70PlsHfi6hdPhjfxjFtMa0ezPE2EX9TUV2rqxHcFgPan48iUDTv
+ U9DHl5Aze8mBi3bmzKJM80X31FZPCe2emwdPLRi9PMxaK7b1EF5Z/ti+W
+ rz8VoZ8tvYMEETb8uEVnGB6Z66JBXDXI9312MSHsNAbHtbruD5k/PaPWO g==;
+X-CSE-ConnectionGUID: JeUzgCtLRIq5ijs63589LQ==
+X-CSE-MsgGUID: E14rc8e4RFOHW/bPcOZ8IA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="33062864"
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="33062864"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 20:18:31 -0700
-X-CSE-ConnectionGUID: xPXj2y10RxaKiiNzZQCvOA==
-X-CSE-MsgGUID: t5yfgnKQTRWSJDAaW3xcog==
+ 12 Aug 2024 20:18:35 -0700
+X-CSE-ConnectionGUID: dDXz1nXCQ02pBdyeuT2tfg==
+X-CSE-MsgGUID: ZTJFTzndR7+drtgOvD3Jsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="58804778"
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="58804781"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 20:18:30 -0700
+ 12 Aug 2024 20:18:33 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com
-Subject: [PATCH 2/5] drm/i915/snps_phy: Use HDMI PLL algorithm for DG2
-Date: Tue, 13 Aug 2024 08:49:35 +0530
-Message-ID: <20240813031941.3553574-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 4/5] drm/i915/intel_snps_hdmi_pll: Compute C10 HDMI PLLs with
+ algorithm
+Date: Tue, 13 Aug 2024 08:49:37 +0530
+Message-ID: <20240813031941.3553574-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240813031941.3553574-1-ankit.k.nautiyal@intel.com>
 References: <20240813031941.3553574-1-ankit.k.nautiyal@intel.com>
@@ -67,117 +68,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Try SNPS_PHY HDMI alogorithm, if there are no pre-computed tables.
-Also get rid of the helper to get rate for HDMI snps phy, as we no
-longer depend only on pre-computed tables.
+Add support for computing C10 HDMI PLLS using the HDMI PLL algorithm.
 
 v2:
--Prefer pre-computed tables over computed values from algorithm. (Jani)
+-Fixed styling issues. (Jani)
+
+v3:
+-Renamed function to align with filename. (Jani)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  2 -
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 37 +++++--------------
- drivers/gpu/drm/i915/display/intel_snps_phy.h |  1 -
- 3 files changed, 9 insertions(+), 31 deletions(-)
+ .../drm/i915/display/intel_snps_hdmi_pll.c    | 76 +++++++++++++++++++
+ .../drm/i915/display/intel_snps_hdmi_pll.h    |  2 +
+ 2 files changed, 78 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 19498ee455fa..bed54a3588d9 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1887,8 +1887,6 @@ hdmi_port_clock_valid(struct intel_hdmi *hdmi,
- 	 */
- 	if (DISPLAY_VER(dev_priv) >= 14)
- 		return intel_cx0_phy_check_hdmi_link_rate(hdmi, clock);
--	else if (IS_DG2(dev_priv))
--		return intel_snps_phy_check_hdmi_link_rate(clock);
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
+index e409a86f594f..7ee39b13eccf 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
+@@ -5,6 +5,7 @@
  
- 	return MODE_OK;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index e6df1f92def5..e01a17be04bd 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -10,6 +10,7 @@
- #include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
+ #include <linux/math.h>
+ 
++#include "intel_cx0_phy_regs.h"
  #include "intel_display_types.h"
-+#include "intel_snps_hdmi_pll.h"
  #include "intel_snps_phy.h"
  #include "intel_snps_phy_regs.h"
- 
-@@ -1787,24 +1788,9 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
- int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
- 			   struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	const struct intel_mpllb_state * const *tables;
- 	int i;
- 
--	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
--		if (intel_snps_phy_check_hdmi_link_rate(crtc_state->port_clock)
--		    != MODE_OK) {
--			/*
--			 * FIXME: Can only support fixed HDMI frequencies
--			 * until we have a proper algorithm under a valid
--			 * license.
--			 */
--			drm_dbg_kms(&i915->drm, "Can't support HDMI link rate %d\n",
--				    crtc_state->port_clock);
--			return -EINVAL;
--		}
--	}
--
- 	tables = intel_mpllb_tables_get(crtc_state, encoder);
- 	if (!tables)
- 		return -EINVAL;
-@@ -1816,6 +1802,14 @@ int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
- 		}
- 	}
- 
-+	/* For HDMI PLLs try SNPS PHY algorithm, if there are no precomputed tables */
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-+		intel_snps_hdmi_pll_compute_mpllb(&crtc_state->dpll_hw_state.mpllb,
-+						  crtc_state->port_clock);
-+
-+		return 0;
-+	}
-+
- 	return -EINVAL;
+@@ -284,3 +285,78 @@ void intel_snps_hdmi_pll_compute_mpllb(struct intel_mpllb_state *pll_state, u64
+ 	pll_state->mpllb_sscen =
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, pll_params.ssc_up_spread);
  }
++
++void intel_snps_hdmi_pll_compute_c10pll(struct intel_c10pll_state *pll_state, u64 pixel_clock)
++{
++	/* x axis frequencies. One curve in each array per v2i point */
++	static const u64 c10_curve_freq_hz[2][8] = {
++		{ 2500000000ULL, 3000000000ULL, 3000000000ULL, 3500000000ULL, 3500000000ULL,
++		  4000000000ULL, 4000000000ULL, 5000000000ULL },
++		{ 4000000000ULL, 4600000000ULL, 4601000000ULL, 5400000000ULL, 5401000000ULL,
++		  6600000000ULL, 6601000000ULL, 8001000000ULL }
++	};
++
++	/* y axis heights multiplied with 1000000000 */
++	static const u64 c10_curve_0[2][8] = {
++		{ 41174500, 48605500, 42973700, 49433100, 42408600, 47681900, 40297400, 49131400 },
++		{ 82056800, 94420700, 82323400, 96370600, 81273300, 98630100, 81728700, 99105700}
++	};
++
++	static const u64 c10_curve_1[2][8] = {
++		{ 73300000000000ULL, 66000000000000ULL, 83100000000000ULL, 75300000000000ULL,
++		  99700000000000ULL, 92300000000000ULL, 125000000000000ULL, 110000000000000ULL },
++		{ 53700000000000ULL, 47700000000000ULL, 62200000000000ULL, 54400000000000ULL,
++		  75100000000000ULL, 63400000000000ULL, 90600000000000ULL, 76300000000000ULL }
++	};
++
++	/* Multiplied with 1000000000000 */
++	static const u64 c10_curve_2[2][8] = {
++		{ 2415790000ULL, 3136460000ULL, 2581990000ULL, 3222670000ULL, 2529330000ULL,
++		  3042020000ULL, 2336970000ULL, 3191460000ULL},
++		{ 4808390000ULL, 5994250000ULL, 4832730000ULL, 6193730000ULL, 4737700000ULL,
++		  6428750000ULL, 4779200000ULL, 6479340000ULL }
++	};
++
++	struct pll_output_params pll_params;
++	u32 refclk = 38400000;
++	u32 prescaler_divider = 0;
++	u32 ref_range = 1;
++	u32 ana_cp_int_gs = 30;
++	u32 ana_cp_prop_gs = 28;
++
++	compute_hdmi_tmds_pll(pixel_clock, refclk, ref_range,
++			      ana_cp_int_gs, ana_cp_prop_gs,
++			      c10_curve_freq_hz, c10_curve_0,
++			      c10_curve_1, c10_curve_2, prescaler_divider,
++			      &pll_params);
++
++	pll_state->tx = 0x10;
++	pll_state->cmn = 0x1;
++	pll_state->pll[0] = REG_FIELD_PREP(C10_PLL0_DIV5CLK_EN, pll_params.mpll_div5_en) |
++			    REG_FIELD_PREP(C10_PLL0_FRACEN, pll_params.fracn_en) |
++			    REG_FIELD_PREP(C10_PLL0_PMIX_EN, pll_params.pmix_en) |
++			    REG_FIELD_PREP(C10_PLL0_ANA_FREQ_VCO_MASK, pll_params.ana_freq_vco);
++	pll_state->pll[2] = REG_FIELD_PREP(C10_PLL2_MULTIPLIERL_MASK, pll_params.multiplier);
++	pll_state->pll[3] = REG_FIELD_PREP(C10_PLL3_MULTIPLIERH_MASK, pll_params.multiplier >> 8);
++	pll_state->pll[8] = REG_FIELD_PREP(C10_PLL8_SSC_UP_SPREAD, pll_params.ssc_up_spread);
++	pll_state->pll[9] = REG_FIELD_PREP(C10_PLL9_FRACN_DENL_MASK, pll_params.fracn_den);
++	pll_state->pll[10] = REG_FIELD_PREP(C10_PLL10_FRACN_DENH_MASK, pll_params.fracn_den >> 8);
++	pll_state->pll[11] = REG_FIELD_PREP(C10_PLL11_FRACN_QUOT_L_MASK, pll_params.fracn_quot);
++	pll_state->pll[12] = REG_FIELD_PREP(C10_PLL12_FRACN_QUOT_H_MASK,
++					    pll_params.fracn_quot >> 8);
++
++	pll_state->pll[13] = REG_FIELD_PREP(C10_PLL13_FRACN_REM_L_MASK, pll_params.fracn_rem);
++	pll_state->pll[14] = REG_FIELD_PREP(C10_PLL14_FRACN_REM_H_MASK, pll_params.fracn_rem >> 8);
++	pll_state->pll[15] = REG_FIELD_PREP(C10_PLL15_TXCLKDIV_MASK, pll_params.tx_clk_div) |
++			     REG_FIELD_PREP(C10_PLL15_HDMIDIV_MASK, pll_params.hdmi_div);
++	pll_state->pll[16] = REG_FIELD_PREP(C10_PLL16_ANA_CPINT, pll_params.ana_cp_int) |
++			     REG_FIELD_PREP(C10_PLL16_ANA_CPINTGS_L, ana_cp_int_gs);
++	pll_state->pll[17] = REG_FIELD_PREP(C10_PLL17_ANA_CPINTGS_H_MASK, ana_cp_int_gs >> 1) |
++			     REG_FIELD_PREP(C10_PLL17_ANA_CPPROP_L_MASK, pll_params.ana_cp_prop);
++	pll_state->pll[18] =
++			REG_FIELD_PREP(C10_PLL18_ANA_CPPROP_H_MASK, pll_params.ana_cp_prop >> 2) |
++			REG_FIELD_PREP(C10_PLL18_ANA_CPPROPGS_L_MASK, ana_cp_prop_gs);
++
++	pll_state->pll[19] = REG_FIELD_PREP(C10_PLL19_ANA_CPPROPGS_H_MASK, ana_cp_prop_gs >> 3) |
++			     REG_FIELD_PREP(C10_PLL19_ANA_V2I_MASK, pll_params.mpll_ana_v2i);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h
+index 37ccf138dbcd..2e55a60c5805 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h
++++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h
+@@ -8,8 +8,10 @@
  
-@@ -1981,19 +1975,6 @@ void intel_mpllb_readout_hw_state(struct intel_encoder *encoder,
- 	pll_state->mpllb_div &= ~SNPS_PHY_MPLLB_FORCE_EN;
- }
+ #include <linux/types.h>
  
--int intel_snps_phy_check_hdmi_link_rate(int clock)
--{
--	const struct intel_mpllb_state * const *tables = dg2_hdmi_tables;
--	int i;
--
--	for (i = 0; tables[i]; i++) {
--		if (clock == tables[i]->clock)
--			return MODE_OK;
--	}
--
--	return MODE_CLOCK_RANGE;
--}
--
- void intel_mpllb_state_verify(struct intel_atomic_state *state,
- 			      struct intel_crtc *crtc)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.h b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-index bc08b92a7cd9..1dd564ed9fa8 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-@@ -30,7 +30,6 @@ void intel_mpllb_readout_hw_state(struct intel_encoder *encoder,
- int intel_mpllb_calc_port_clock(struct intel_encoder *encoder,
- 				const struct intel_mpllb_state *pll_state);
++struct intel_c10pll_state;
+ struct intel_mpllb_state;
  
--int intel_snps_phy_check_hdmi_link_rate(int clock);
- void intel_snps_phy_set_signal_levels(struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *crtc_state);
- void intel_mpllb_state_verify(struct intel_atomic_state *state,
+ void intel_snps_hdmi_pll_compute_mpllb(struct intel_mpllb_state *pll_state, u64 pixel_clock);
++void intel_snps_hdmi_pll_compute_c10pll(struct intel_c10pll_state *pll_state, u64 pixel_clock);
+ 
+ #endif /* __INTEL_SNPS_HDMI_PLL_H__ */
 -- 
 2.45.2
 
