@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA543C531DC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7D07C52D7F
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 23:12:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9115610E3F2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8436D10E3E5;
 	Tue, 13 Aug 2024 23:12:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kyXuWvZ1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GYDic2RB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04D8A10E3D6
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Aug 2024 23:11:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41A5F10E3E5
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Aug 2024 23:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723590719; x=1755126719;
+ t=1723590721; x=1755126721;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2R94GMAFEFQIsjQK3MMvah6MocLqUZeZ+k0M3nZp+T0=;
- b=kyXuWvZ19wq5BOmeIKcacXRU0WfgAvVmE/H8gLxwwI/9LyKV1RXvmhO7
- /tq54m9GUqqWWo8bTTMGtDAMHJ4CIFpfOeKmPKO7AmJ0HK8BSetkiTAnu
- fX/TTlhzAgT7uYyzKAYU0HWDbJ6DVX5dhyYJozbn4sPkb1oh0KbHSE6O/
- D1l/4FXxeFIiTKWwrlwM9enyywaCvAUnnXQeSw/rdo1zts11J0uU/7f19
- M4+o/PQ9ddXBDoEJHOAXrkbyKxcUS4Ibe2sqGn3kS6dGxnin2eYDncaO6
- 9L3GGZI+axZYsfpl4AlJcQ8jjTRjKGHtHvAiNHj4i6wBHxJJGaYn3qtOg g==;
-X-CSE-ConnectionGUID: RhnxS4XxR9qDTPu0rsedhw==
-X-CSE-MsgGUID: gmKyDJslTOmZAC0O9gC3/A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21599838"
-X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="21599838"
+ bh=1BwxbfnExCmwSqB8x0nk0G2IdszXb1Tg/2f9XjINal8=;
+ b=GYDic2RB7T+8SHKGOZxF9KJac66ps0CfryTP7yznVsA9eWWqcZRYjRc1
+ nhNqDBPtP57Cjcow+5bpuvNJsi16sLJ3supP0YY1pes3+9UgeB1cNoQtO
+ zFY6P7+R2oew/H2cg4DVfzLFzP851Fh8D6fp5BUXa+/Mr+olis94d478O
+ 4ZTw00IeVNlH1DXAMSMqY5MwdAbT+qmYiVBZkHKW4M2tLsrXToYLJVL/x
+ U4we+MAi6lCqhGE1GsU80vhn7fR5ybTNA/boLXcKWpchFm3lgRup0GqE1
+ yw5CiTf+1gwEG9dWjgIFDjIAeQgKb+5TDzyY8qF/x3ZJs+GH7io+2VAPd A==;
+X-CSE-ConnectionGUID: Sl66u4Y7QfSWHbt5EGVRqA==
+X-CSE-MsgGUID: loEFFKZwQXeTXTAbk/rwww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21599842"
+X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="21599842"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 16:11:59 -0700
-X-CSE-ConnectionGUID: VRjUs2e+Q1W204ed535Qgg==
-X-CSE-MsgGUID: nnO+wkccTrS1lQZXZTzJtA==
+ 13 Aug 2024 16:12:00 -0700
+X-CSE-ConnectionGUID: 1k4QBaimQQSkkSyCAsPCPw==
+X-CSE-MsgGUID: 9ELbaaBQT8iS65GOequOww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="58515524"
+X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; d="scan'208";a="58515527"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 16:12:00 -0700
+ 13 Aug 2024 16:12:01 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>,
  Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH 1/4] drm/xe/gsc: Do not attempt to load the GSC multiple times
-Date: Tue, 13 Aug 2024 16:11:44 -0700
-Message-ID: <20240813231148.1663731-2-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 2/4] drm/xe/gsc: Fix FW status if the firmware is already
+ loaded
+Date: Tue, 13 Aug 2024 16:11:45 -0700
+Message-ID: <20240813231148.1663731-3-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240813231148.1663731-1-daniele.ceraolospurio@intel.com>
 References: <20240813231148.1663731-1-daniele.ceraolospurio@intel.com>
@@ -68,84 +69,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GSC HW is only reset by driver FLR or D3cold entry. We don't support
-the former at runtime, while the latter is only supported on DGFX, for
-which we don't support GSC. Therefore, if GSC failed to load previously
-there is no need to try again because the HW is stuck in the error state.
+We set the FW status to "TRANSFERRED" after the load completes and to
+"RUNNING"once we're done with proxy init, so do the same if we're trying
+to re-load the FW and it is already loaded.
 
-An assert has been added so that if we ever add DGFX support we'll know
-we need to handle the D3 case.
+Note that there is no difference in driver behavior between the 2
+states, but it's useful to be accurate when we dump the status for
+debug.
 
-Fixes: dd0e89e5edc2 ("drm/xe/gsc: GSC FW load")
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gsc.c   | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_uc_fw.h |  9 +++++++--
- 2 files changed, 19 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gsc.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 77ce44e845c5..66963e26c574 100644
+index 66963e26c574..85a6a65063c4 100644
 --- a/drivers/gpu/drm/xe/xe_gsc.c
 +++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -519,10 +519,22 @@ int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc)
- void xe_gsc_load_start(struct xe_gsc *gsc)
- {
- 	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_device *xe = gt_to_xe(gt);
+@@ -537,7 +537,10 @@ void xe_gsc_load_start(struct xe_gsc *gsc)
  
- 	if (!xe_uc_fw_is_loadable(&gsc->fw) || !gsc->q)
- 		return;
- 
-+	/*
-+	 * The GSC HW is only reset by driver FLR or D3cold entry. We don't
-+	 * support the former at runtime, while the latter is only supported on
-+	 * DGFX, for which we don't support GSC. Therefore, if GSC failed to
-+	 * load previously there is no need to try again because the HW is
-+	 * stuck in the error state.
-+	 */
-+	xe_assert(xe, !IS_DGFX(xe));
-+	if (xe_uc_fw_is_in_error_state(&gsc->fw))
-+		return;
-+
  	/* GSC FW survives GT reset and D3Hot */
  	if (gsc_fw_is_loaded(gt)) {
- 		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
-index c108e9d08e70..e4709d9b380d 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.h
-@@ -65,7 +65,7 @@ const char *xe_uc_fw_status_repr(enum xe_uc_fw_status status)
- 	return "<invalid>";
- }
+-		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
++		if (xe_gsc_proxy_init_done(gsc))
++			xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_RUNNING);
++		else
++			xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
+ 		return;
+ 	}
  
--static inline int xe_uc_fw_status_to_error(enum xe_uc_fw_status status)
-+static inline int xe_uc_fw_status_to_error(const enum xe_uc_fw_status status)
- {
- 	switch (status) {
- 	case XE_UC_FIRMWARE_NOT_SUPPORTED:
-@@ -108,7 +108,7 @@ static inline const char *xe_uc_fw_type_repr(enum xe_uc_fw_type type)
- }
- 
- static inline enum xe_uc_fw_status
--__xe_uc_fw_status(struct xe_uc_fw *uc_fw)
-+__xe_uc_fw_status(const struct xe_uc_fw *uc_fw)
- {
- 	/* shouldn't call this before checking hw/blob availability */
- 	XE_WARN_ON(uc_fw->status == XE_UC_FIRMWARE_UNINITIALIZED);
-@@ -156,6 +156,11 @@ static inline bool xe_uc_fw_is_overridden(const struct xe_uc_fw *uc_fw)
- 	return uc_fw->user_overridden;
- }
- 
-+static inline bool xe_uc_fw_is_in_error_state(const struct xe_uc_fw *uc_fw)
-+{
-+	return xe_uc_fw_status_to_error(__xe_uc_fw_status(uc_fw)) != 0;
-+}
-+
- static inline void xe_uc_fw_sanitize(struct xe_uc_fw *uc_fw)
- {
- 	if (xe_uc_fw_is_loadable(uc_fw))
 -- 
 2.43.0
 
