@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22160C52D7B
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 11:08:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A54F3C52D7B
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Aug 2024 12:12:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0A2010E0AD;
-	Tue, 13 Aug 2024 11:08:42 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7221A10E0AD;
- Tue, 13 Aug 2024 11:08:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8260884869894231003=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7B010E318;
+	Tue, 13 Aug 2024 12:12:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZaeDJ4B";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 541E510E318;
+ Tue, 13 Aug 2024 12:12:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723551178; x=1755087178;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2lZuZVFeOiclAWcSJwOscUKhucFNwAH+bKElI+hlcyc=;
+ b=PZaeDJ4Bp6ovs1TGgzRxCbEjxYO3MET2FY1kP+r/EzJ+Jt14GjJzq6TH
+ Lt7y+WkqkcmafO9ZKl6cwzR38ya/fzz+V97chzOxCd/Wh8vH9qzp8xVPm
+ BxyACvA7Z1bZnnNnINTfOvt0HtA1ModPCpq9MkXrwbN1NTdDWnacskYm5
+ KTXupd45f5y2dvHvgTCC5/o16i8L1pcESnCXNUhhAxg6B8pB/oTW8T5By
+ DPfUtHjtGva5iWfltSwUt0gkf+V5jRWLiuXy4/xgdVrZtLaqmS2+66itu
+ o8iRrE9zP5WC5v9xs8QvoWXXK0p9ExNJ3s3C6mKdNTR6PoyoZYpIIowwO w==;
+X-CSE-ConnectionGUID: l2QyyDHlSGmQyYExlAXXHw==
+X-CSE-MsgGUID: cqOsJ2zfRna//+indnlNpw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="21682588"
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="21682588"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 05:12:57 -0700
+X-CSE-ConnectionGUID: bY9oRFrmQqqvfHNNywmgKw==
+X-CSE-MsgGUID: /ax/e25sT9C32TZD7ytYqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="89450926"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.234])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 05:12:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: linux-kernel@vger.kernel.org
+Cc: intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, akinobu.mita@gmail.com,
+ akpm@linux-foundation.org, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ robdclark@gmail.com, quic_abhinavk@quicinc.com,
+ dmitry.baryshkov@linaro.org, jani.nikula@intel.com
+Subject: [PATCH 1/3] fault-inject: improve build for CONFIG_FAULT_INJECTION=n
+Date: Tue, 13 Aug 2024 15:12:35 +0300
+Message-Id: <20240813121237.2382534-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Remove_unused_xe_param?=
- =?utf-8?q?eter?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Aug 2024 11:08:41 -0000
-Message-ID: <172354732145.612570.17775648487674123217@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240813104419.2958046-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240813104419.2958046-1-himal.prasad.ghimiray@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,126 +68,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8260884869894231003==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The fault-inject.h users across the kernel need to add a lot of #ifdef
+CONFIG_FAULT_INJECTION to cater for shortcomings in the header. Make
+fault-inject.h self-contained for CONFIG_FAULT_INJECTION=n, and add
+stubs for DECLARE_FAULT_ATTR(), setup_fault_attr(), should_fail_ex(),
+and should_fail() to allow removal of conditional compilation.
 
-== Series Details ==
+Cc: Akinobu Mita <akinobu.mita@gmail.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ include/linux/fault-inject.h | 36 +++++++++++++++++++++++++++++-------
+ 1 file changed, 29 insertions(+), 7 deletions(-)
 
-Series: drm/xe: Remove unused xe parameter
-URL   : https://patchwork.freedesktop.org/series/137228/
-State : success
+diff --git a/include/linux/fault-inject.h b/include/linux/fault-inject.h
+index 354413950d34..8c829d28dcf3 100644
+--- a/include/linux/fault-inject.h
++++ b/include/linux/fault-inject.h
+@@ -2,13 +2,17 @@
+ #ifndef _LINUX_FAULT_INJECT_H
+ #define _LINUX_FAULT_INJECT_H
+ 
++#include <linux/err.h>
++#include <linux/types.h>
++
++struct dentry;
++struct kmem_cache;
++
+ #ifdef CONFIG_FAULT_INJECTION
+ 
+-#include <linux/types.h>
+-#include <linux/debugfs.h>
++#include <linux/atomic.h>
+ #include <linux/configfs.h>
+ #include <linux/ratelimit.h>
+-#include <linux/atomic.h>
+ 
+ /*
+  * For explanation of the elements of this struct, see
+@@ -51,6 +55,28 @@ int setup_fault_attr(struct fault_attr *attr, char *str);
+ bool should_fail_ex(struct fault_attr *attr, ssize_t size, int flags);
+ bool should_fail(struct fault_attr *attr, ssize_t size);
+ 
++#else /* CONFIG_FAULT_INJECTION */
++
++struct fault_attr {
++};
++
++#define DECLARE_FAULT_ATTR(name) struct fault_attr name = {}
++
++static inline int setup_fault_attr(struct fault_attr *attr, char *str)
++{
++	return 0; /* Note: 0 means error for __setup() handlers! */
++}
++static inline bool should_fail_ex(struct fault_attr *attr, ssize_t size, int flags)
++{
++	return false;
++}
++static inline bool should_fail(struct fault_attr *attr, ssize_t size)
++{
++	return false;
++}
++
++#endif /* CONFIG_FAULT_INJECTION */
++
+ #ifdef CONFIG_FAULT_INJECTION_DEBUG_FS
+ 
+ struct dentry *fault_create_debugfs_attr(const char *name,
+@@ -87,10 +113,6 @@ static inline void fault_config_init(struct fault_config *config,
+ 
+ #endif /* CONFIG_FAULT_INJECTION_CONFIGFS */
+ 
+-#endif /* CONFIG_FAULT_INJECTION */
+-
+-struct kmem_cache;
+-
+ #ifdef CONFIG_FAIL_PAGE_ALLOC
+ bool should_fail_alloc_page(gfp_t gfp_mask, unsigned int order);
+ #else
+-- 
+2.39.2
 
-== Summary ==
-
-CI Bug Log - changes from xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd_BAT -> xe-pw-137228v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-137228v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [DMESG-FAIL][2] ([Intel XE#1033] / [Intel XE#324])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137228v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * Linux: xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd -> xe-pw-137228v1
-
-  IGT_7967: 290bdef9033c8b185922f02cd05d62fcc0091c15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd: e1da9c74d20896d1012e02f779f6d1a999bf71fd
-  xe-pw-137228v1: 137228v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137228v1/index.html
-
---===============8260884869894231003==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Remove unused xe parameter</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137228/">https://patchwork.freedesktop.org/series/137228/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137228v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137228v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd_BAT -&gt; xe-pw-137228v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137228v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137228v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd -&gt; xe-pw-137228v1</li>
-</ul>
-<p>IGT_7967: 290bdef9033c8b185922f02cd05d62fcc0091c15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1758-e1da9c74d20896d1012e02f779f6d1a999bf71fd: e1da9c74d20896d1012e02f779f6d1a999bf71fd<br />
-  xe-pw-137228v1: 137228v1</p>
-
-</body>
-</html>
-
---===============8260884869894231003==--
