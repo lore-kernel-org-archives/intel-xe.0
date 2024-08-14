@@ -4,55 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71805C3DA4A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 19:23:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC7E8C52D7F
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 19:23:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D56C10E529;
-	Wed, 14 Aug 2024 19:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C97310E528;
+	Wed, 14 Aug 2024 19:23:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5TOwPg7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J+7S8crA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6132210E52F
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Aug 2024 19:23:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D785A10E067
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Aug 2024 19:23:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723663414; x=1755199414;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0ij2NnIH4LmK2p1IPJfiblCyIDC6xDq4Vng8FbYeL3A=;
- b=e5TOwPg7FpgIwDWgQFcHyvVMNKLcK0kLojOCKzifwCvPOa4yGwvXYlq8
- pYIehjSrcymO4yW+xbwtOS4xzVJnUsfWIXKQXyB+CSGkRhLqBgQidnf5o
- Ya8lWZk2X9nWHOyirUTdpZQ5iGwRMJaag+WEOBue1bMqWUXdMFbOlCb8q
- eyKQTWLiESgGYvdcTXkjpG/cjOgGT6gT7edNaKcVc2zVZdO6KiIuwUeM5
- 83kddIYuz55Ir6DALxxC5SixXglPn9ABEA7JS67ht5MvwRGGqnBqpTxMk
- gg8kO6RZAU471CxUjhH828AyyHNM1fTth/Mfx/kxSnDoAy3/cQrIm7cqk g==;
-X-CSE-ConnectionGUID: CqgGSB/TSfCg4G1RAI9e5A==
-X-CSE-MsgGUID: 5EihDRj4Qei+huoYALZBkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="47305867"
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="47305867"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 12:23:34 -0700
-X-CSE-ConnectionGUID: FpUZaH60Qy+VJHR7nw/+0A==
-X-CSE-MsgGUID: +D7L7VosQAW9FeBSyeXNjg==
+ t=1723663433; x=1755199433;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=8cONwqNMPkPsFn1I6TXMvxbeU0ocAvBEzN1c8m4lsOI=;
+ b=J+7S8crAxWf1i/loLMPfWRniSC8IEBDe9q2j5SwtR4i/HNHhab+yjqVz
+ VdzOmAI5BcpzFF8VLYSLVfxQR6X7x1Brv39KSmNK5IgpOj3vuWtur6Bcj
+ TUh3v+NOS5Z0CSaweZCdXJMZTC7apDwNuLPJDIEHYrl3zFQGftK598dGm
+ Iwv9xNZVdlzokHuekcn3gIqZEoZVFeYQUusc4mMxAAdPqXCMT5wCCc7EZ
+ 88P7gKahgFAddgfv1N/qKqSHb2yYAFzcEjRDJWvK0xA9OT1uTqi4M5OsF
+ 7s8wcQ/jqN4G+SCh/grO+eGTWAScr7uEnglnN/B5ZOq8ipvk2leAbGovu Q==;
+X-CSE-ConnectionGUID: 5GWpNUI6Qwy522cvvPbWtg==
+X-CSE-MsgGUID: SWbgD4/YTu+8Gg7QkW009A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="33310155"
+X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="33310155"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2024 12:23:52 -0700
+X-CSE-ConnectionGUID: Jc3mTLDrS42BC6XwYZPaUA==
+X-CSE-MsgGUID: sP4PMY+kR8m+TZxyZb17yg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="58754517"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO fdugast-desk.home)
- ([10.245.246.108])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 12:23:32 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4] drm/xe: Add driver load error injection
-Date: Wed, 14 Aug 2024 21:23:22 +0200
-Message-ID: <20240814192322.604388-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="58984924"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Aug 2024 12:23:52 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 14 Aug 2024 12:23:52 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 14 Aug 2024 12:23:51 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 14 Aug 2024 12:23:51 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 14 Aug 2024 12:23:51 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KMjrjUG+oPoTacApkXyVAPwgUnTPbsDq5NCfc4jQ572UYsSvGD0sZkbAhj2whClKqot0kPk/yw/w+8o91Kg5WfLYP4UZaOYQ06+LEQMiLZX7mBbUj3fekLYp0PAbl8/PuzPnlgTMoo+m3PAHxpBdqSv2uBInYrkLa8hTxmQiufD4tUAwjuHvux/LARMiBQsDE2ujOisRvsfZJPSBwYx5TEDA/Xsb0HebQ7GJADvzXU4okWEZ9Xc7adU2r1HADKw0YnTAMj1sdxJEtMNjnZA9fuZfUTHiEUlc3Xzy0dV8ryiDjqzBf6Fyz6ZbAYpOVEJkx49s/+ptQ5Qc0BgA+77hYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qiFoO9wB4Z0Ef73lsn3d6B/90GORo2gYy54woqWi6ZE=;
+ b=qPUufiv0alkJijCknwY/s2bzlXwvHvzSNORw3j94qeZCitD7Rndyw5284LXlyZiJtr3BgPKrffWR5BIxX38EPah0ehVDoJznpb7g7co5W1zkE2/l8FfV2dGzevQxpKhaU9jzeUYbPXoZQC7szA2QFFXNMCAEVizFd8LRQ1D2iE8gq5FTKsz3dB28Nn+nRdXZji70zS3yBiBchqxZB3dCz02Kx4PKAUi4b6NDuJri+LMwtS9sute2CHBOS9iRtEB/wN/n7EPz440uq2BcevvB7obugmTVRRZSpqyE9IP3eSXKv/gALh3eppS+h0oIrYWu6jy7MUc16rugGsOsgEWyKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by SA3PR11MB7609.namprd11.prod.outlook.com (2603:10b6:806:319::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.33; Wed, 14 Aug
+ 2024 19:23:49 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7828.031; Wed, 14 Aug 2024
+ 19:23:49 +0000
+Date: Wed, 14 Aug 2024 12:23:45 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ <intel-xe@lists.freedesktop.org>, Shekhar Chauhan
+ <shekhar.chauhan@intel.com>, Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH V2 1/3] drm/xe: Move enable host l2 VRAM post MCR init
+Message-ID: <20240814192345.GI5774@mdroper-desk1.amr.corp.intel.com>
+References: <20240814095614.909774-1-tejas.upadhyay@intel.com>
+ <20240814095614.909774-2-tejas.upadhyay@intel.com>
+ <xwmsqnf33e2itfsgcmy6csqd7wos7hcixfy3oyr7jcxqknmvab@wv2qijzrkql2>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <xwmsqnf33e2itfsgcmy6csqd7wos7hcixfy3oyr7jcxqknmvab@wv2qijzrkql2>
+X-ClientProxiedBy: BY5PR03CA0010.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::20) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA3PR11MB7609:EE_
+X-MS-Office365-Filtering-Correlation-Id: e24e71a6-a0f0-472b-8564-08dcbc969fca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: LrdTsHWrZwfNpqgocVEFBuJWhV0Ho7xmGCF5CaLjHFdupWnwcNV9c/YwjBzAAly4SkKdJ46U5upmsKKQ/sw73zY4GhycAMo/0U9JdFUGjMxyNpU3YREFVtj/oJpUTAmZlj2UFjm60sAQGDeCSqO/Q76GWYnBOEIXJ4SGXsO0wzg/BmLI6HylIPPa/NttiXYoGQ+QB2j/yECx6/RGCTUaV+hr2FcITZ2Ox56GeyUkEPsjy+O7fBOJMdlylkW8PiSHeGN4feKhezyJI5d3QYX+f5cUbNvzN1SydKWiqTSYJDWlHgQoZXgeXt8g8FHhVaIRkDqpC72cZpYPluoTaSm0SNf4nkumgqkQBCLvUK0c/F/mukKL/ld0iNrcjz1NL6eY2B1ub87DDOUa6hedevOk2UeJrt2jhvZSSbvC5DTlbcP1h1SEx0J2qX1XJks9vwBEzAeHCNxFlx14ol62e+ivDrSg/NX2RzIgr8XUawAMwFVZiLk8qXMiLpRc0zJYodAVXQ1jZ4piA1mzh/L0Se2IhuqZOsSY0kxI3gCW2O3VWU+ibg1Waz9Wd7zORQW+IW3Spt5yhp2cFp+PxpCwA0aNQrZKy7E3tZy9AEeg8FzsHWkXOCyZKWF3DeUzz33rr1ABWg+MFqb9g2PxmDPOyHzIbILuxEj4QxEOuybFKHNbiAY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?a2BwNCLDQLeJxhOrVHDF5IxVhzVOh8mBkIYqpS4VaTc4jNcP5KF7mQ/1kHJ3?=
+ =?us-ascii?Q?I8cWdsJ5MZDb/AjmqTU/dXiFEkRoj4/y7qJr/5HjD4yPY7l0gI9Dz/9EQDS9?=
+ =?us-ascii?Q?yJySYL0m3ZZ0+PjoADWuEeCBhGoxJ+u91KG+B8Kk7R0xoXZj5hoafWKOuVsh?=
+ =?us-ascii?Q?mrCKmk6I07MfPtHkotE2yo7exu33uwq5uRyKNZO/ctD0SB9M0iKTMEXe+Q5P?=
+ =?us-ascii?Q?4rJNT9ygJtxMdHSgiFhxetr0GLan8PC7J9UJHPdUoI226xG9cxO8xr/KTKLp?=
+ =?us-ascii?Q?LXtYmWUs90oynuxjDaD01GdkrNV9gWn8LhcGPDuGMwXc7Hb01jWDjOaNjF5a?=
+ =?us-ascii?Q?UAGHBh0CuOXlXp3OJ95gAWpAcXBWQJfb7X58xd+6TxdPmTlP57GWILC7/RMX?=
+ =?us-ascii?Q?ghGNuk/60bDiWA/06JYz9FGAaLC6bQ2xSBoCp+hMxaO9Plru2ReayWjvasHh?=
+ =?us-ascii?Q?fnlRkMn6gGa7DLNLSBRQ2qNgVjoddDKTG+D2JvI4bV2fZd7TUoK+xHch9gPI?=
+ =?us-ascii?Q?smd87OO7Bgmqn7VBnU6GcZ1HUXMiZWTTLUuMsqRTayhmwBiYpDe6DA3qjcX5?=
+ =?us-ascii?Q?ey8lfqBQ5niDPCqn2F08mg21XUY9jNHtBacMXhheCicrm36vHWgjjmWbMDJb?=
+ =?us-ascii?Q?fS9cC/Rj/vkfBw0QOcM+93R2MSmtv+9y9fGvPpDnrzxdvoV79QwrEnHELPEw?=
+ =?us-ascii?Q?+z59butTJsnkBKSMdlBlPnHO6mURLFDh9R4iPKG9nH+82l+p1FgikACw9Ip+?=
+ =?us-ascii?Q?xC2OGhzLxVRZiR084W8NthPtWW3QY+I8rNvRYoiFM5lV7S3X27zviXLiv7G6?=
+ =?us-ascii?Q?cINbWhYJA2kO2+XSHSuj/Ct6ZE8GG57ZxNGj0KcSYeQVpWjJX+MQMcFP+EgM?=
+ =?us-ascii?Q?iZ2LmWEJPNEsOO2BgagI3SSP/0F+v4A6OeYstDmW/PsCBiWYaliSaKIezZf1?=
+ =?us-ascii?Q?yo6NcojRZGG/RZP3gGymsf3GazYDhzKZiJM74YpKs4sOZcNjTsYJsEVtnB6g?=
+ =?us-ascii?Q?zv/7qidZJLs/gXbwBv+iTtsiKCTvTYlchOKYk3Bvg++64RV0DotSvjnFNCva?=
+ =?us-ascii?Q?GDS5Xty/r9WrrMInFq/09hJjcAeFZ1Z8n8prKgPGrBxUxM3/U2ZN1mk/ZBbj?=
+ =?us-ascii?Q?SL48vP6/hfwze6ir9G3vsbssf8jMZ5SCBkqhn5H/GV69SDVnAsrp62nHdDUJ?=
+ =?us-ascii?Q?yLUEV5L5jVqAUlyIMOrlYqn9Jk2tlS7Md65AOhw/hVlnPFsOge5y2agft+BA?=
+ =?us-ascii?Q?iCYN6YllG5ayMbh6TvFrNrbtqb9ec6pNIc2Hsih+kvDnga21u9DVyOF5+mVV?=
+ =?us-ascii?Q?Q77OUk9g+tlC91j5guqFQgaHiz0lLyHOVpZtRB8c8DlhfSel+tS0RSqi0fNI?=
+ =?us-ascii?Q?UScam31o+X6njE+XOoUbncTiNSgj5ZluPOcRDSGy43QhR/5f6rmjysVCm/U7?=
+ =?us-ascii?Q?3oR6P2jLlh7gxoDWNeRoE1uhX8RNGyPjZM1Q5IW3ZA/iwopVQ6AmctikkBwq?=
+ =?us-ascii?Q?duojcGV/UdEB6mwIS+bmPJLuvxW0CuF6DZy7GDttKYX3UvTQqDeMYErAXu0/?=
+ =?us-ascii?Q?exrYfKR2JLYn9nbbjaTRtFCnSyxh9vTb9OfZAIwXHvz7yPxolPdw0zk9oovH?=
+ =?us-ascii?Q?3A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e24e71a6-a0f0-472b-8564-08dcbc969fca
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2024 19:23:49.2864 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9olYDGKyLMrGuMAMal2QP3xh+LYMoUnVfrwBOvqH04BFlO92fW0BrzV3DT08618gnUWDJRt546bNBpVWXxTG4iqOlyYd7qQb4lAjxOrOqBA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7609
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,441 +159,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Those new macros inject errors by overriding return codes. They must
-manually be called, typically by turning this pattern:
+On Wed, Aug 14, 2024 at 11:34:21AM -0500, Lucas De Marchi wrote:
+> On Wed, Aug 14, 2024 at 03:26:12PM GMT, Tejas Upadhyay wrote:
+> > enable host l2 VRAM is reading MCR register thus
+> > should be moved after MCR init is done.
+> 
+> This commit message skips a lot of the details on what was discussed in
+> the other thread. Let's improve it and for future please be more verbose
+> in your commit messages. Suggestion:
+> 
+> 	xe_gt_enable_host_l2_vram() is reading the XE2_GAMREQSTRM_CTRL register
+> 	that is currently missing the MCR annotation. However, just adding the
+> 	annotation doesn't work as this function is called before MCR handling
+> 	is initialized in xe_gt_mcr_init().
+> 
+> 	xe_gt_enable_host_l2_vram() is used to implement WA 16023588340 that
+> 	needs to be done as early as possible during initialization in order
+> 	to be effective since the MMIO writes impact it. In the failure
+> 	scenario, driver would simply not be able to bind sucesfully.
+> 
+> 	Moving xe_gt_enable_host_l2_vram() later, after MCR initialization is
+> 	done, only incurs a few additional HW accesses, particularly when
+> 	loading GuC for hwconfig. Binding/unbinding the driver 100 times in
+> 	BMG still works so it should be ok to start handling the WA a little
+> 	bit later. This is sufficient to allow adding the MCR annotation to
+> 	XE2_GAMREQSTRM_CTRL.
+> 
+> > 
+> > V2(Matt):
+> > - Reword commit message
+> > V1(Lucas):
+> > - Reorder patch and reorder flow of L2 VRAM enable
+> > 
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> 
+> Matt Roper / Matthew Auld, do the paragraphs above capture
+> correctly the discussion we had in the previous version?
 
-    err = foo();
-    if (err)
-        return err;
+Yeah, that expanded description looks good to me.  With that,
 
-into:
+        Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-    err = foo();
-    err = xe_device_inject_driver_probe_error(xe, err);
-    if (err)
-        return err;
 
-When CONFIG_DRM_XE_DEBUG is not set, this has no effect.
+Matt
 
-When CONFIG_DRM_XE_DEBUG is set, the error code at checkpoint X will
-be overridden when the module argument inject_driver_load_error is
-set to value X. By doing so, it is possible to test proper error
-handling and improve robustness for current and future code. A few
-injection points are added in this patch but more need to be added.
-One way to use this error injection at driver probe is:
+> 
+> with that,
+> 
+> // Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> thanks
+> Lucas De Marchi
+> 
+> > ---
+> > drivers/gpu/drm/xe/xe_gt.c | 2 +-
+> > 1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> > index 58895ed22f6e..238c7d1053f0 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt.c
+> > @@ -557,7 +557,6 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+> > 
+> > 	xe_gt_mcr_init_early(gt);
+> > 	xe_pat_init(gt);
+> > -	xe_gt_enable_host_l2_vram(gt);
+> > 
+> > 	err = xe_uc_init(&gt->uc);
+> > 	if (err)
+> > @@ -569,6 +568,7 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+> > 
+> > 	xe_gt_topology_init(gt);
+> > 	xe_gt_mcr_init(gt);
+> > +	xe_gt_enable_host_l2_vram(gt);
+> > 
+> > out_fw:
+> > 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+> > -- 
+> > 2.25.1
+> > 
 
-    for i in {1..200}; do echo "Run $i"; modprobe xe inject_driver_probe_error=$i; rmmod xe; done
-
-In the future this is expected to be replaced by the infrastructure
-provided by fault-inject.h
-
-v2: Fix style and build errors, modparam to 0 after probe, rename to
-    xe_device_inject_driver_probe_error, check type when compiled out,
-    add _return macro, move some uses to the beginning of the function
-v3: Rebase
-v4: Improve commit message and comments, keep if/return rather than
-    change the flow inside the macro (Lucas De Marchi)
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c       | 41 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.h       | 23 ++++++++++++++++
- drivers/gpu/drm/xe/xe_device_types.h |  5 ++++
- drivers/gpu/drm/xe/xe_gt.c           |  2 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c  |  2 ++
- drivers/gpu/drm/xe/xe_guc.c          |  2 ++
- drivers/gpu/drm/xe/xe_guc_ct.c       |  1 +
- drivers/gpu/drm/xe/xe_mmio.c         |  5 ++++
- drivers/gpu/drm/xe/xe_module.c       |  5 ++++
- drivers/gpu/drm/xe/xe_module.h       |  3 ++
- drivers/gpu/drm/xe/xe_pci.c          |  6 ++++
- drivers/gpu/drm/xe/xe_pm.c           |  5 ++++
- drivers/gpu/drm/xe/xe_sriov.c        |  6 ++++
- drivers/gpu/drm/xe/xe_tile.c         |  4 +++
- drivers/gpu/drm/xe/xe_uc.c           |  1 +
- drivers/gpu/drm/xe/xe_wa.c           |  5 ++++
- drivers/gpu/drm/xe/xe_wopcm.c        |  4 +++
- 17 files changed, 120 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 206328387150..a2ccdc4115ac 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -316,6 +316,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	err = ttm_device_init(&xe->ttm, &xe_ttm_funcs, xe->drm.dev,
- 			      xe->drm.anon_inode->i_mapping,
- 			      xe->drm.vma_offset_manager, false, false);
-+	err = xe_device_inject_driver_probe_error_override(xe, err);
- 	if (WARN_ON(err))
- 		goto err;
- 
-@@ -474,6 +475,7 @@ static int xe_set_dma_info(struct xe_device *xe)
- 		goto mask_err;
- 
- 	err = dma_set_coherent_mask(xe->drm.dev, DMA_BIT_MASK(mask_size));
-+	err = xe_device_inject_driver_probe_error_override(xe, err);
- 	if (err)
- 		goto mask_err;
- 
-@@ -577,6 +579,7 @@ int xe_device_probe_early(struct xe_device *xe)
- 		return err;
- 
- 	err = wait_for_lmem_ready(xe);
-+	err = xe_device_inject_driver_probe_error_override(xe, err);
- 	if (err)
- 		return err;
- 
-@@ -745,6 +748,11 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
- 
-+#ifdef CONFIG_DRM_XE_DEBUG
-+	/* After probe finishes, stop checking for error injection */
-+	xe_modparam.inject_driver_probe_error = 0;
-+#endif
-+
- 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 
- err_fini_display:
-@@ -995,3 +1003,36 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_declare_wedged(gt);
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+/**
-+ * __xe_device_inject_driver_probe_error - Inject an error during device probe
-+ * @xe: xe device instance
-+ * @err_injected: the error to inject
-+ * @err_real: the error returned by the actual function
-+ * @func: the name of the function where this is called from
-+ * @line: the line where this is called from
-+ *
-+ * This is not meant to be called directly, only through xe_device_inject_driver_probe_error.
-+ *
-+ * Return: err_real if != 0, err_injected otherwise
-+ */
-+int __xe_device_inject_driver_probe_error(struct xe_device *xe, int err_injected, int err_real,
-+					  const char *func, int line)
-+{
-+	if (err_real != 0)
-+		return err_real;
-+
-+	if (xe->inject_driver_probe_error >= xe_modparam.inject_driver_probe_error)
-+		return 0;
-+
-+	if (++xe->inject_driver_probe_error < xe_modparam.inject_driver_probe_error)
-+		return 0;
-+
-+	drm_info(&xe->drm, "Injecting failure %d at checkpoint %u [%s:%d]\n",
-+		 err_injected, xe->inject_driver_probe_error, func, line);
-+
-+	xe_modparam.inject_driver_probe_error = 0;
-+	return err_injected;
-+}
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 2c96f1b2aafd..0d0187819e92 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -184,4 +184,27 @@ void xe_device_declare_wedged(struct xe_device *xe);
- struct xe_file *xe_file_get(struct xe_file *xef);
- void xe_file_put(struct xe_file *xef);
- 
-+#define XE_DEVICE_INJECTED_ERR -ENODEV
-+#define xe_device_inject_driver_probe_error(__xe) \
-+	__xe_device_inject_driver_probe_error(__xe, XE_DEVICE_INJECTED_ERR, 0, __func__, __LINE__)
-+#define xe_device_inject_driver_probe_error_override(__xe, __err_real) \
-+	__xe_device_inject_driver_probe_error(__xe, XE_DEVICE_INJECTED_ERR, __err_real, __func__, \
-+					      __LINE__)
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+
-+int __xe_device_inject_driver_probe_error(struct xe_device *xe,
-+					  int err_injected, int err_real,
-+					  const char *func, int line);
-+#else
-+
-+static inline int __xe_device_inject_driver_probe_error(struct xe_device *xe,
-+							int err_injected, int err_real,
-+							const char *func, int line)
-+{
-+	return 0;
-+}
-+
-+#endif
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 16a24eadd94b..5097376aec28 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -491,6 +491,11 @@ struct xe_device {
- 		int mode;
- 	} wedged;
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+	/** @inject_driver_probe_error: Counter used for error injection during probe */
-+	int inject_driver_probe_error;
-+#endif
-+
- #ifdef TEST_VM_OPS_ERROR
- 	/**
- 	 * @vm_inject_error_position: inject errors at different places in VM
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 58895ed22f6e..b90acc7eedba 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -378,6 +378,7 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	xe_reg_sr_init(&gt->reg_sr, "GT", gt_to_xe(gt));
- 
- 	err = xe_wa_init(gt);
-+	err = xe_device_inject_driver_probe_error_override(gt_to_xe(gt), err);
- 	if (err)
- 		return err;
- 
-@@ -564,6 +565,7 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
- 		goto out_fw;
- 
- 	err = xe_uc_init_hwconfig(&gt->uc);
-+	err = xe_device_inject_driver_probe_error_override(gt_to_xe(gt), err);
- 	if (err)
- 		goto out_fw;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-index ef239440963c..09e1fe745ada 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-@@ -7,6 +7,7 @@
- 
- #include "regs/xe_regs.h"
- 
-+#include "xe_device.h"
- #include "xe_gt_sriov_pf.h"
- #include "xe_gt_sriov_pf_config.h"
- #include "xe_gt_sriov_pf_helpers.h"
-@@ -54,6 +55,7 @@ int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
- 		return err;
- 
- 	err = xe_gt_sriov_pf_service_init(gt);
-+	err = xe_device_inject_driver_probe_error_override(gt_to_xe(gt), err);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index de0fe9e65746..74e598294f90 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -351,6 +351,7 @@ int xe_guc_init(struct xe_guc *guc)
- 		goto out;
- 
- 	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini_hw, guc);
-+	ret = xe_device_inject_driver_probe_error_override(guc_to_xe(guc), ret);
- 	if (ret)
- 		goto out;
- 
-@@ -408,6 +409,7 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
- 		return ret;
- 
- 	ret = xe_guc_pc_init(&guc->pc);
-+	ret = xe_device_inject_driver_probe_error_override(guc_to_xe(guc), ret);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index beeeb120d1fc..ed715a252f6a 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -194,6 +194,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
- 	ct->bo = bo;
- 
- 	err = drmm_add_action_or_reset(&xe->drm, guc_ct_fini, ct);
-+	err = xe_device_inject_driver_probe_error_override(xe, err);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index bdcc7282385c..af322f5c8159 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -136,6 +136,11 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
- {
- 	size_t tile_mmio_size = SZ_16M;
- 	size_t tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
-+	int err;
-+
-+	err = xe_device_inject_driver_probe_error(xe);
-+	if (err)
-+		return err;
- 
- 	mmio_multi_tile_setup(xe, tile_mmio_size);
- 	mmio_extension_setup(xe, tile_mmio_size, tile_mmio_ext_size);
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 923460119cec..806b6c1f8a7f 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -53,6 +53,11 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
- MODULE_PARM_DESC(force_probe,
- 		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+module_param_named_unsafe(inject_driver_probe_error, xe_modparam.inject_driver_probe_error, int, 0600);
-+MODULE_PARM_DESC(inject_driver_probe_error, "Inject driver probe error");
-+#endif
-+
- #ifdef CONFIG_PCI_IOV
- module_param_named(max_vfs, xe_modparam.max_vfs, uint, 0400);
- MODULE_PARM_DESC(max_vfs,
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 161a5e6f717f..47cefaf8d79b 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -20,6 +20,9 @@ struct xe_modparam {
- 	char *force_probe;
- #ifdef CONFIG_PCI_IOV
- 	unsigned int max_vfs;
-+#endif
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+	int inject_driver_probe_error;
- #endif
- 	int wedged_mode;
- };
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 3c34b032ebf4..bac07779d353 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -626,6 +626,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 				 desc->has_display;
- 
- 	err = xe_tile_init_early(xe_device_get_root_tile(xe), xe, 0);
-+	err = xe_device_inject_driver_probe_error_override(xe, err);
- 	if (err)
- 		return err;
- 
-@@ -645,8 +646,13 @@ static int xe_info_init(struct xe_device *xe,
- 	u32 graphics_gmdid_revid = 0, media_gmdid_revid = 0;
- 	struct xe_tile *tile;
- 	struct xe_gt *gt;
-+	int err;
- 	u8 id;
- 
-+	err = xe_device_inject_driver_probe_error(xe);
-+	if (err)
-+		return err;
-+
- 	/*
- 	 * If this platform supports GMD_ID, we'll detect the proper IP
- 	 * descriptor to use from hardware registers. desc->graphics will only
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 9f3c14fd9f33..2de8383b745d 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -228,6 +228,7 @@ int xe_pm_init_early(struct xe_device *xe)
- 		return err;
- 
- 	err = drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
-+	err = xe_device_inject_driver_probe_error_override(xe, err);
- 	if (err)
- 		return err;
- 
-@@ -246,6 +247,10 @@ int xe_pm_init(struct xe_device *xe)
- {
- 	int err;
- 
-+	err = xe_device_inject_driver_probe_error(xe);
-+	if (err)
-+		return err;
-+
- 	/* For now suspend/resume is only allowed with GuC */
- 	if (!xe_device_uc_enabled(xe))
- 		return 0;
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 5a1d65e4f19f..b19b06c72870 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -102,9 +102,15 @@ static void fini_sriov(struct drm_device *drm, void *arg)
-  */
- int xe_sriov_init(struct xe_device *xe)
- {
-+	int err;
-+
- 	if (!IS_SRIOV(xe))
- 		return 0;
- 
-+	err = xe_device_inject_driver_probe_error(xe);
-+	if (err)
-+		return err;
-+
- 	if (IS_SRIOV_PF(xe)) {
- 		int err = xe_sriov_pf_init_early(xe);
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 15ea0a942f67..d70f1f61c096 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -124,6 +124,10 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
- 	if (IS_ERR(tile->primary_gt))
- 		return PTR_ERR(tile->primary_gt);
- 
-+	err = xe_device_inject_driver_probe_error(xe);
-+	if (err)
-+		return err;
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 0d073a9987c2..0c40fbdf21ee 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -59,6 +59,7 @@ int xe_uc_init(struct xe_uc *uc)
- 		return 0;
- 
- 	ret = xe_wopcm_init(&uc->wopcm);
-+	ret = xe_device_inject_driver_probe_error_override(uc_to_xe(uc), ret);
- 	if (ret)
- 		goto err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 28b7f95b6c2f..156a77b27593 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -825,6 +825,7 @@ int xe_wa_init(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	size_t n_oob, n_lrc, n_engine, n_gt, total;
- 	unsigned long *p;
-+	int err;
- 
- 	n_gt = BITS_TO_LONGS(ARRAY_SIZE(gt_was));
- 	n_engine = BITS_TO_LONGS(ARRAY_SIZE(engine_was));
-@@ -836,6 +837,10 @@ int xe_wa_init(struct xe_gt *gt)
- 	if (!p)
- 		return -ENOMEM;
- 
-+	err = xe_device_inject_driver_probe_error(xe);
-+	if (err)
-+		return err;
-+
- 	gt->wa_active.gt = p;
- 	p += n_gt;
- 	gt->wa_active.engine = p;
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index d3a99157e523..c9be9d31d3ae 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -263,6 +263,10 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
- 		return -E2BIG;
- 	}
- 
-+	ret = xe_device_inject_driver_probe_error(xe);
-+	if (ret)
-+		return ret;
-+
- 	if (!locked)
- 		ret = __wopcm_init_regs(xe, gt, wopcm);
- 
 -- 
-2.43.0
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
