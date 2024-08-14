@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38586C3DA4A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 09:54:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F48C3DA4A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 10:01:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0572E10E1F9;
-	Wed, 14 Aug 2024 09:54:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hxRtDSPk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D36310E1F9
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Aug 2024 09:54:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723629250; x=1755165250;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GQ32WQ9XV7CumN2MwxfHDJ1sz+xRFhO7jhbcWg4YlOs=;
- b=hxRtDSPkvRAfdmCMnOIvlsdoetLdYQQ6P8/Sq887RpXibtg6UUsfURZx
- ol+2wzqGpGX9YxCKeoicLLvdce/4MeTbICoUI3lqXVybsaa1JaL7JdVn7
- aQ1Uu8AmG7xjT5BYTHgOWNHNsn2QYAw5aThwpzP6OioXuE0IH5WZBsIrs
- rcOXSa62MUb2FtTrvlNS9VES5/9fzCiWyHPc0t1Laz0Wk28q6WFkHM/JX
- IeHc5aqp+QSwyeaKLOkwxJJKi6t0wwDQnku6lX0tnyMtWJryxe0Gz59QI
- 7ePOZOJHiyUpT/nguKB4bF2xrePiMMK0CFetsXqbgqsw0bXrGc5JIJ1b7 Q==;
-X-CSE-ConnectionGUID: LzhSjZDHT2STqT1GiKV3eg==
-X-CSE-MsgGUID: lAH0PNmoS4OYV+QkH9oNEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="32510057"
-X-IronPort-AV: E=Sophos;i="6.09,145,1716274800"; d="scan'208";a="32510057"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 02:54:09 -0700
-X-CSE-ConnectionGUID: ieJFGKHmSm6wyNeevpEg4g==
-X-CSE-MsgGUID: UOL1q3i6SFinGTyoTmc/DA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,145,1716274800"; d="scan'208";a="63624183"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmviesa004.fm.intel.com with ESMTP; 14 Aug 2024 02:54:07 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V2 3/3] drm/xe: Define STATELESS_COMPRESSION_CTRL as mcr
- register
-Date: Wed, 14 Aug 2024 15:26:14 +0530
-Message-Id: <20240814095614.909774-4-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240814095614.909774-1-tejas.upadhyay@intel.com>
-References: <20240814095614.909774-1-tejas.upadhyay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15AAC10E25E;
+	Wed, 14 Aug 2024 10:01:49 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3798710E20C;
+ Wed, 14 Aug 2024 10:01:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Shuffle_enable=5Fhos?=
+ =?utf-8?q?t=5Fl2=5Fvram_order_and_use_MCR_reg_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 14 Aug 2024 10:01:48 -0000
+Message-ID: <172362970822.632355.5864402600015830065@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240814095614.909774-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20240814095614.909774-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,33 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register STATELESS_COMPRESSION_CTRL should be considered
-mcr register which should write to all slices as per
-documentation.
+== Series Details ==
 
-Bspec: 71185
-Fixes: ecabb5e6ce54 ("drm/xe/xe2: Add performance turning changes")
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Shuffle enable_host_l2_vram order and use MCR reg (rev2)
+URL   : https://patchwork.freedesktop.org/series/137031/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index aeb17fcb27ac..0d1a4a9f4e11 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -80,7 +80,7 @@
- #define   LE_CACHEABILITY_MASK			REG_GENMASK(1, 0)
- #define   LE_CACHEABILITY(value)		REG_FIELD_PREP(LE_CACHEABILITY_MASK, value)
- 
--#define STATELESS_COMPRESSION_CTRL		XE_REG(0x4148)
-+#define STATELESS_COMPRESSION_CTRL		XE_REG_MCR(0x4148)
- #define   UNIFIED_COMPRESSION_FORMAT		REG_GENMASK(3, 0)
- 
- #define XE2_GAMREQSTRM_CTRL			XE_REG_MCR(0x4194)
--- 
-2.25.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 95179e2efd2e drm-tip: 2024y-08m-14d-09h-16m-45s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Move enable host l2 VRAM post MCR init
+Applying: drm/xe: Write all slices if its mcr register
+Applying: drm/xe: Define STATELESS_COMPRESSION_CTRL as mcr register
+
 
