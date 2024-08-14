@@ -4,64 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 032ADC3DA4A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 08:37:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7D40C3DA4A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 08:45:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC20D10E425;
-	Wed, 14 Aug 2024 08:37:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7692510E42A;
+	Wed, 14 Aug 2024 08:45:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jzox4HYB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C10E7jS0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5C710E085;
- Wed, 14 Aug 2024 08:37:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3135D10E42A;
+ Wed, 14 Aug 2024 08:45:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723624651; x=1755160651;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=r6hQI285XiNG3jP1yP4sfudPxl+4NbESVi71bND8sV0=;
- b=Jzox4HYBZ0XQiMaxOsyEJY82rgNBowULgfeCXaw2HhhtkI6iLV/OpPje
- JIYv7Sg3EUfMnU7CiR6IYFQde/+DQFrYm4uli/QT5k2yzFEa5f9hSvd2Q
- HjGDBdYDq+wlR1cn4994uGzKnkeooTEe9KTZjfYJxQuzciGjKMByZQHHq
- afs0BEGc+ZIoooDeG+VVj92ogQQkuetaVOcogroEBxReQH9l+hIM6qlV1
- 80A60DPeixRzqlWG6lb96WNvG3iof4uGaiotj8i1Vcg1aGqm3gB7s6LFo
- hD8R/DMCBcgcR94nXu6RMiZh3hNiRSR/ssuLHjB7vzCenQFWn4zcDxwRV Q==;
-X-CSE-ConnectionGUID: kFv44a/RSDm4jRkyDtWBQg==
-X-CSE-MsgGUID: s2iiXAwCTo+W6riACpJFCg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="32452315"
-X-IronPort-AV: E=Sophos;i="6.09,288,1716274800"; d="scan'208";a="32452315"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 01:37:29 -0700
-X-CSE-ConnectionGUID: YPXlBIFlS2u7ul1SOEoLGg==
-X-CSE-MsgGUID: uH6fRw81QQCTDigiZrWEzA==
+ t=1723625131; x=1755161131;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=9zHK0Wcr/Y7Lvz7AVcUCx7zjK1Vhjz9fl1zRwlkw1RY=;
+ b=C10E7jS0g16rMPq9uT2s+XTnWwcjYQ8GuAcmCC9hesj8e8zbsfn96rpD
+ Xp3VoMeBZvcpnuOpn1wtxRoQaqnQJn4ukB24TGky2WCGB8a/glD7IJ6k0
+ tkBErGhDyTsuGM3Paa5fUO6L8Sd9HVVVUtoCfAdTy+g/DJVY39Bk7tTq2
+ /IuTNBww4xj5Tv3fOxVn1xvd14bsT922gO5v2jSDX0yOGZATuVp72kFhz
+ 3Fsa8Px/vsbejdGGiAtogTY2YRY/lR8xFlGX760pdgjElc6wwZtslDqBz
+ VGxGLppe7WQQSDMf13EjQLQZ2LpQZg5JOBkioyQfQHKFettMZZhZqIhwk w==;
+X-CSE-ConnectionGUID: iaohyakxQxWNE0jBv3DZHw==
+X-CSE-MsgGUID: y8Ne5izLRdmVOICOywrqpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21986546"
+X-IronPort-AV: E=Sophos;i="6.09,288,1716274800"; d="scan'208";a="21986546"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2024 01:45:31 -0700
+X-CSE-ConnectionGUID: 7T63j6uFSFWgKZawSXOOFg==
+X-CSE-MsgGUID: lQMLzhymRI+JE18Xwxat9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,288,1716274800"; d="scan'208";a="63350259"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO [10.245.245.21])
- ([10.245.245.21])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 01:37:28 -0700
-Message-ID: <0d406a89b1b63ebf53c5d0848843c72299c1ff75.camel@linux.intel.com>
-Subject: Re: [RFC PATCH] dma-buf/dma-fence: Use a successful read_trylock()
- annotation for dma_fence_begin_signalling()
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian Koenig <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, 
- linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Wed, 14 Aug 2024 10:37:26 +0200
-In-Reply-To: <ZrxYdIDdEJXRTFrn@phenom.ffwll.local>
-References: <20230428125233.228353-1-thomas.hellstrom@linux.intel.com>
- <be9b192a-a125-6774-bb4f-8b9fb517ce0d@linux.intel.com>
- <ZrxYdIDdEJXRTFrn@phenom.ffwll.local>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.09,288,1716274800"; d="scan'208";a="58826066"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2024 01:45:29 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Deak, Imre" <imre.deak@intel.com>
+Subject: RE: [PATCH] drm/i915: Preserve value of fec_enable calculated
+ before DSC compute config
+In-Reply-To: <SJ1PR11MB6129241F0F93400ACB2592FAB9852@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
+ <87v8060xfb.fsf@intel.com>
+ <SJ1PR11MB6129241F0F93400ACB2592FAB9852@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Date: Wed, 14 Aug 2024 11:45:23 +0300
+Message-ID: <877ccjze58.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,135 +72,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Christian,
+On Mon, 12 Aug 2024, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+>> -----Original Message-----
+>> From: Jani Nikula <jani.nikula@linux.intel.com>
+>> Sent: Monday, August 12, 2024 5:24 PM
+>> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; intel-
+>> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Deak, Imre <imre.deak@intel.com>; Borah, Chaitanya Kumar
+>> <chaitanya.kumar.borah@intel.com>
+>> Subject: Re: [PATCH] drm/i915: Preserve value of fec_enable calculated before
+>> DSC compute config
+>> 
+>> On Mon, 12 Aug 2024, Chaitanya Kumar Borah
+>> <chaitanya.kumar.borah@intel.com> wrote:
+>> > Before DSC compute config, fec_enable value is set in other functions
+>> > (e.g. intel_dp_mst_find_vcpi_slots_for_bpp). We are ignoring the value
+>> > by OR'ing its value in DSC compute config. One unintended effect of
+>> > this is setting fec_enable in UHBR use-cases which is not needed for
+>> > Intel hardware. Therefore, change operator to AND.
+>> >
+>> > While at it, add a comment explaining why we don't enable FEC in eDP v1.5.
+>> >
+>> > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++++-
+>> >  1 file changed, 6 insertions(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>> > b/drivers/gpu/drm/i915/display/intel_dp.c
+>> > index 49a37b996530..3fbf9f33c3e4 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> > @@ -2298,7 +2298,12 @@ int intel_dp_dsc_compute_config(struct
+>> intel_dp *intel_dp,
+>> >  		&pipe_config->hw.adjusted_mode;
+>> >  	int ret;
+>> >
+>> > -	pipe_config->fec_enable = pipe_config->fec_enable ||
+>> > +	/*
+>> > +	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
+>> > +	 * Since, FEC is a bandwidth overhead, continue to not enable it for
+>> > +	 * eDP. Until, there is a good reason to do so.
+>> > +	 */
+>> > +	pipe_config->fec_enable = pipe_config->fec_enable &&
+>> >  		(!intel_dp_is_edp(intel_dp) &&
+>> >  		 intel_dp_supports_fec(intel_dp, connector, pipe_config));
+>> 
+>> With this change, FEC will only be enabled for non-UHBR MST DP and nothing
+>> else. This is the place where SST DP DSC gets FEC enabled.
+>
+> Thank you Jani for pointing it out.
+>
+> Something like this should work?
+>
+> 	pipe_config->fec_enable = pipe_config->fec_enable ||
+>   		(!intel_dp_is_edp(intel_dp) &&
+>   		 intel_dp_supports_fec(intel_dp, connector, pipe_config) && !intel_dp_is_uhbr(pipe_config));
 
-Ack to merge this through drm-misc-next, or do you want to pick it up
-for dma-buf?
+Technically yes, although I dislike the fact that we now have fec_enable
+and its rules split to multiple locations.
 
-Thanks,
-Thomas
-
-
-On Wed, 2024-08-14 at 09:10 +0200, Daniel Vetter wrote:
-> On Fri, May 26, 2023 at 01:11:28PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > Daniel,
-> >=20
-> > On 4/28/23 14:52, Thomas Hellstr=C3=B6m wrote:
-> > > Condsider the following call sequence:
-> > >=20
-> > > /* Upper layer */
-> > > dma_fence_begin_signalling();
-> > > lock(tainted_shared_lock);
-> > > /* Driver callback */
-> > > dma_fence_begin_signalling();
-> > > ...
-> > >=20
-> > > The driver might here use a utility that is annotated as intended
-> > > for the
-> > > dma-fence signalling critical path. Now if the upper layer isn't
-> > > correctly
-> > > annotated yet for whatever reason, resulting in
-> > >=20
-> > > /* Upper layer */
-> > > lock(tainted_shared_lock);
-> > > /* Driver callback */
-> > > dma_fence_begin_signalling();
-> > >=20
-> > > We will receive a false lockdep locking order violation
-> > > notification from
-> > > dma_fence_begin_signalling(). However entering a dma-fence
-> > > signalling
-> > > critical section itself doesn't block and could not cause a
-> > > deadlock.
-> > >=20
-> > > So use a successful read_trylock() annotation instead for
-> > > dma_fence_begin_signalling(). That will make sure that the
-> > > locking order
-> > > is correctly registered in the first case, and doesn't register
-> > > any
-> > > locking order in the second case.
-> > >=20
-> > > The alternative is of course to make sure that the "Upper layer"
-> > > is always
-> > > correctly annotated. But experience shows that's not easily
-> > > achievable
-> > > in all cases.
-> > >=20
-> > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > <thomas.hellstrom@linux.intel.com>
-> >=20
-> > Resurrecting the discussion on this one. I can't see a situation
-> > where we
-> > would miss *relevant* locking
-> > order violation warnings with this patch. Ofc if we have a
-> > scheduler
-> > annotation patch that would work fine as well, but the lack of
-> > annotation in
-> > the scheduler callbacks is really starting to hurt us.
->=20
-> Yeah this is just a bit too brain-melting to review, but I concur
-> now.
->=20
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+BR,
+Jani.
 
 
+>
+> Regards
+>
+> Chaitanya
+>
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> --
+>> Jani Nikula, Intel
 
-
-
-
-
-
-
-
->=20
-> I think what would help is some lockdep selftests to check that we
-> both
-> catch the stuff we want to, and don't incur false positives. Maybe
-> with a
-> plea that lockdep should have some native form of cross-release
-> annotations ...
->=20
-> But definitely seperate patch set, since it might take a few rounds
-> of
-> review by lockdep folks.
-> -Sima
->=20
-> >=20
-> > Thanks,
-> >=20
-> > Thomas
-> >=20
-> >=20
-> >=20
-> > > ---
-> > > =C2=A0 drivers/dma-buf/dma-fence.c | 6 +++---
-> > > =C2=A0 1 file changed, 3 insertions(+), 3 deletions(-)
-> > >=20
-> > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-
-> > > fence.c
-> > > index f177c56269bb..17f632768ef9 100644
-> > > --- a/drivers/dma-buf/dma-fence.c
-> > > +++ b/drivers/dma-buf/dma-fence.c
-> > > @@ -308,8 +308,8 @@ bool dma_fence_begin_signalling(void)
-> > > =C2=A0=C2=A0	if (in_atomic())
-> > > =C2=A0=C2=A0		return true;
-> > > -	/* ... and non-recursive readlock */
-> > > -	lock_acquire(&dma_fence_lockdep_map, 0, 0, 1, 1, NULL,
-> > > _RET_IP_);
-> > > +	/* ... and non-recursive successful read_trylock */
-> > > +	lock_acquire(&dma_fence_lockdep_map, 0, 1, 1, 1, NULL,
-> > > _RET_IP_);
-> > > =C2=A0=C2=A0	return false;
-> > > =C2=A0 }
-> > > @@ -340,7 +340,7 @@ void __dma_fence_might_wait(void)
-> > > =C2=A0=C2=A0	lock_map_acquire(&dma_fence_lockdep_map);
-> > > =C2=A0=C2=A0	lock_map_release(&dma_fence_lockdep_map);
-> > > =C2=A0=C2=A0	if (tmp)
-> > > -		lock_acquire(&dma_fence_lockdep_map, 0, 0, 1, 1,
-> > > NULL, _THIS_IP_);
-> > > +		lock_acquire(&dma_fence_lockdep_map, 0, 1, 1, 1,
-> > > NULL, _THIS_IP_);
-> > > =C2=A0 }
-> > > =C2=A0 #endif
->=20
-
+-- 
+Jani Nikula, Intel
