@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E62DCC52D7F
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 09:54:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A712C52D7F
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 09:54:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B712610E1BD;
-	Wed, 14 Aug 2024 09:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD5A010E1F6;
+	Wed, 14 Aug 2024 09:54:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jL2giOEI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J/gP8Hw1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1CB010E1BD
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Aug 2024 09:54:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E56D10E1F6
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Aug 2024 09:54:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723629246; x=1755165246;
+ t=1723629250; x=1755165250;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WPfu5YhxiRl3ns1Y00r+GpCOo7wl0KRSC4/PPwrSYLo=;
- b=jL2giOEI0Osxpn7WJL1pstQS++X62RehvWCnK39M50rRX9R6k8rOTzvx
- HbPPBMgSQm6hPe5LSztdAYqXDHEphnhlkkUX+UYPGNh1L/gRYis3k9968
- uzOvuB2ENfXReyYNcOEGpu29RZBHzzKQ8gjVUMHm/uriuvkcRCAS7NDCZ
- SZjOeGZXjVWNXOotxC76Rf1htVuJQV3GA3UWgQQiyeRHkBdyknXbYWPIr
- Tq7BUyTwLQzPR9ByJjIA5aUv/UTOlr/tdIUNSDwm4pi5BhlbK+Q9sgrwF
- RsodC+r0NZnYN6XrMM44CFdK+FwrNTXf5iJ2Pj7Vlf5ObGv2RACcnwxri Q==;
-X-CSE-ConnectionGUID: yrBmvkz7R9K7AFvhyX52YA==
-X-CSE-MsgGUID: OtVhmiF3Sd2eYs4KSeTh2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="32510052"
-X-IronPort-AV: E=Sophos;i="6.09,145,1716274800"; d="scan'208";a="32510052"
+ bh=PfKOBbjWRayQVVw47KXdWJI1DQTNb3z39Ww5rgoj3c0=;
+ b=J/gP8Hw1sTncFZtO9lc74rN2SIS81NSS1PH9/z5sDhfwKnMRnUoajJQE
+ VYJ2Z3AaBoY3CDR0GOncmR8urxkNyZk0Pu6rzsxwkpffKJzFDJoHPPrSM
+ xawxHsqhq6ThTi/gVdJhuamrSQIkjWkNddiCvYx4rnGkgzM496R0GKfHP
+ JFoyPuTohhJb4ImHobSKPg/U5g7IpNP6v4t1qDboKXkOqdsxhPn0cgtWS
+ iNBfSJPRSXZyTdKF02kHOprp9p8bBJ/2hQULOEFEA/SDT/yYRK2mJMk5U
+ QAAh6pB3lY4tCMoYv9BqjcsFxNYiSw2DDirF6nJu4MIecPNcHIcZLOuIA Q==;
+X-CSE-ConnectionGUID: iffMpuUvROy09CiYAKiRew==
+X-CSE-MsgGUID: eu0SnacvRGWJh6av7zVugQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="32510054"
+X-IronPort-AV: E=Sophos;i="6.09,145,1716274800"; d="scan'208";a="32510054"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 02:54:06 -0700
-X-CSE-ConnectionGUID: WAa91I7xSQqP11a7ooIV/g==
-X-CSE-MsgGUID: nRs2uSIsR7uoDfW+qWkjfw==
+ 14 Aug 2024 02:54:07 -0700
+X-CSE-ConnectionGUID: qLhwFbLuTNihoGTLVxYcHg==
+X-CSE-MsgGUID: df8RZCToQCKxWn/qxQEbVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,145,1716274800"; d="scan'208";a="63624175"
+X-IronPort-AV: E=Sophos;i="6.09,145,1716274800"; d="scan'208";a="63624180"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmviesa004.fm.intel.com with ESMTP; 14 Aug 2024 02:54:03 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 14 Aug 2024 02:54:05 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
@@ -47,9 +47,9 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V2 1/3] drm/xe: Move enable host l2 VRAM post MCR init
-Date: Wed, 14 Aug 2024 15:26:12 +0530
-Message-Id: <20240814095614.909774-2-tejas.upadhyay@intel.com>
+Subject: [PATCH V2 2/3] drm/xe: Write all slices if its mcr register
+Date: Wed, 14 Aug 2024 15:26:13 +0530
+Message-Id: <20240814095614.909774-3-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240814095614.909774-1-tejas.upadhyay@intel.com>
 References: <20240814095614.909774-1-tejas.upadhyay@intel.com>
@@ -69,40 +69,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-enable host l2 VRAM is reading MCR register thus
-should be moved after MCR init is done.
+Register GAMREQSTRM_CTRL should be considered mcr register
+which should write to all slices as per documentation.
 
-V2(Matt):
- - Reword commit message
-V1(Lucas):
- - Reorder patch and reorder flow of L2 VRAM enable
-
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Bspec: 71185
+Fixes: 01570b446939 ("drm/xe/bmg: implement Wa_16023588340")
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
+ drivers/gpu/drm/xe/xe_gt.c           | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 5f33dee35f8a..aeb17fcb27ac 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -83,7 +83,7 @@
+ #define STATELESS_COMPRESSION_CTRL		XE_REG(0x4148)
+ #define   UNIFIED_COMPRESSION_FORMAT		REG_GENMASK(3, 0)
+ 
+-#define XE2_GAMREQSTRM_CTRL			XE_REG(0x4194)
++#define XE2_GAMREQSTRM_CTRL			XE_REG_MCR(0x4194)
+ #define   CG_DIS_CNTLBUS			REG_BIT(6)
+ 
+ #define CCS_AUX_INV				XE_REG(0x4208)
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 58895ed22f6e..238c7d1053f0 100644
+index 238c7d1053f0..224c137967c3 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -557,7 +557,6 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+@@ -110,9 +110,9 @@ static void xe_gt_enable_host_l2_vram(struct xe_gt *gt)
  
- 	xe_gt_mcr_init_early(gt);
- 	xe_pat_init(gt);
--	xe_gt_enable_host_l2_vram(gt);
+ 	if (!xe_gt_is_media_type(gt)) {
+ 		xe_mmio_write32(gt, SCRATCH1LPFC, EN_L3_RW_CCS_CACHE_FLUSH);
+-		reg = xe_mmio_read32(gt, XE2_GAMREQSTRM_CTRL);
++		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
+ 		reg |= CG_DIS_CNTLBUS;
+-		xe_mmio_write32(gt, XE2_GAMREQSTRM_CTRL, reg);
++		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
+ 	}
  
- 	err = xe_uc_init(&gt->uc);
- 	if (err)
-@@ -569,6 +568,7 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	xe_gt_mcr_multicast_write(gt, XEHPC_L3CLOS_MASK(3), 0x3);
+@@ -134,9 +134,9 @@ static void xe_gt_disable_host_l2_vram(struct xe_gt *gt)
+ 	if (WARN_ON(err))
+ 		return;
  
- 	xe_gt_topology_init(gt);
- 	xe_gt_mcr_init(gt);
-+	xe_gt_enable_host_l2_vram(gt);
+-	reg = xe_mmio_read32(gt, XE2_GAMREQSTRM_CTRL);
++	reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
+ 	reg &= ~CG_DIS_CNTLBUS;
+-	xe_mmio_write32(gt, XE2_GAMREQSTRM_CTRL, reg);
++	xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
  
- out_fw:
  	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ }
 -- 
 2.25.1
 
