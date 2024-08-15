@@ -4,62 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEDCCC5320D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F13C52D7F
 	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 22:08:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E79610E49B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C0810E485;
 	Thu, 15 Aug 2024 22:08:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y9REZl+y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cw+KwgA3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 055B810E43B
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 22:08:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5111410E43B
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 22:08:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723759682; x=1755295682;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=ZfD1C0WX9+MnqypyO+eLcUOuwlX18MApOz6+4KQALmU=;
- b=Y9REZl+yqHwFLZR+cBWpWis8rSQElLcTl23E/wTqf21HmyAxYz2jp0Sf
- vqol8WxQ4cSmGxwPcP7BfzImBu8xxqaQWZYHoj5NLRbEZvt4JVh7C6w66
- gRyES6qIjVnNeZyZHfqG+8LglUdxrnGb7MBoHn9kjtbASgF0N24KR5QkD
- /3BJ3TDT1nW6Jy6lTS1NCVqB5vGESbwzkN6VyA5MSewTcIeUbKBx3ZMUj
- V+d8tDLjLx306R0KgSv7eTwfsbCMqG8uDJMferNKNEMdUJbh7YT1+vVZd
- hUPB2nU6Bs/EiWjPViuZHguElktNIZQlJ3BFt7oG7e/tfGM+18EJIxIqZ Q==;
-X-CSE-ConnectionGUID: Go5bF1XnSoaN1nfD3IOpZw==
-X-CSE-MsgGUID: bFDAEcGeSHi9sMDAM4rdsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="33455515"
-X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="33455515"
+ bh=C6LoZpLy7ZjtNFB/+Eh6AYJTmh0XNss7KUFCbvHJLrA=;
+ b=Cw+KwgA3EUa2vvbNHfiQ17gzMnS0vx83hzhGTRq4A+7qGgAbzMNMWRL3
+ ynyNlaakd1VdDq6n96XnasEsWFa+jqj/wZ4p4TigCkvGB7FvjF5rJGLnk
+ e0hzQpowjUUNFTy8q5WpSlukQqXiq+l3wppEur1GyepxRyRuawFAPrBXS
+ xDtfPWAeXfXQK+eJzqKp/wagnvUd3gfTB9oCZDyITP3+IGOYzODyN3Fso
+ eSK8C44UwAldLfIYUh0h6cOUjkS642Q0JKygDHWzLEJJBKLDX65y//ugF
+ vrS1Y67iLpjGRG0WjDGhdo3JectD5SxFrw7xxG5lPFnMjxJx2ur/WBc0G A==;
+X-CSE-ConnectionGUID: 32+rS+kgTAu3OE2dzEICYw==
+X-CSE-MsgGUID: 7b9a3wWcR9OwZG3Hhx6rAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="33455507"
+X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="33455507"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Aug 2024 15:07:59 -0700
-X-CSE-ConnectionGUID: ONlKTWEdRy+nGpVVVgampA==
-X-CSE-MsgGUID: +ZsdZ+VqRYWOhsKkynRM3A==
+X-CSE-ConnectionGUID: Y4hJaZgNRFSQhy1TuFFByg==
+X-CSE-MsgGUID: UuzFXJ4lTGy9mgwfhXaY2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="64375317"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="64375309"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
  by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Aug 2024 15:07:59 -0700
+ 15 Aug 2024 15:07:57 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 15 Aug 2024 15:07:59 -0700
+ 15.1.2507.39; Thu, 15 Aug 2024 15:07:57 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 15 Aug 2024 15:07:56 -0700
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 15:07:59 -0700
+ 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 15:07:56 -0700
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.44) by
  edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 15 Aug 2024 15:07:58 -0700
+ 15.1.2507.39; Thu, 15 Aug 2024 15:07:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NpL7+QmtlG4WQBU+acEeaRVxRHHVGNRgrwrcllMm1kGymWH0UhfbWOkmdIThB+RLvyEBAzOZ1T+SdHSqA7f3WJ2u8WG1hIEFXxB7dwRHJVC4F4+33JgkVVFV2zL0+vOWEqHs99Yg1Maje2OkjobkNrJHOcBxGqkI3EKrq4dOc6Po4AOS3dpNt+KNVS1mu3+Ks4cN5shHsHxx/XQvvgdkcHOpAK/duIITPzCt2XGJIlpyhQe5G/FXYbcf53sLy/mqPTG9tMfl9pOMwVZeSqgbCQw+VcTj63iJwIEHvuN2YU3vU2VJuWFMU63gqR25xPiDUXbvEoia27YIEEBWorGSrQ==
+ b=U1KnfceRfmCZiQrjoAWe5233tyBWDDTvrKhdqt0S4RPXsSlxLvF83qEsCMqtj3y9oeJth3oaDmwSaLQjxhZFr2GATVBDAhMuAh+IFkgwcl3VLXo3nC1Sfmvccop2muucg36idi2adbYBNORV3GrfNfZFZLm4mYDaGkxLgLXjlNl4th13X91ND863UaOYsMDnsWiu8ToHYbHdLzQBkCD8/RO2aSel5PO9CpkfPq1rmu/CVzMvJf2OjyxnGvByjbcbKBo/ldCbT7fl3xrygz5k6RCL+Ri/aTr6Zsa7DjvPT8qU6xc+nhoRFvzXvTKeiew3GilcuCbtT/l0ZTZiToHo4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7EfAlWoakTBA9yRH8/XmchVVj9XyRInHPV/hJSpXTTs=;
- b=thTD3LjIfla88Siw6DPl2yOlsSovlszgiq+ljSoFW/WAPaaRekXifJzRKPd4Y6jjZyH/v6ImJwoiazmNkdN4PyBaLvGCoW3odZuosrWwoZczqbnAhGz9cCiWt1CJuq2rPREbK3eoxeqyxu8ixCkdIwHeQdVSuOicW6Jybzm4tVWSnEdh7Yc+6GmDnptTmTRoVxWp14YBpnkBuSn8LX8k7+foKvrV9aaka3Vk3VsS7lS7F5PJdsgobkRDrG6sbUXbea/NV86Eheei6WSJeyHYYMBRn1NMo8c74VR7sPS4BJ0T2mR1BN/pNQyusFWvMwZK/NiB5zxCPazAthLhji9DeQ==
+ bh=FeQXuNEaZUJMD36SHCAda9ByRlO5Nr5ComGNZ7FbCH0=;
+ b=vqO2HeygQavbyvniebfkb1XNmtMiGpj9OBKqlFB6gb0aitjufhlLjaMSyYKO8Oyg52UQacbAzbZ2Z8VxiiiY6zgonW5DMrXU2cz0r76OOA75QHlE2ElOwQpkTvHfy9+CFHTLu2bl+wmNRA97ep07AWzIA+bR4K1N7N420NV8tX3LwiirOSyhvH7UaBGPZvHWKwWWBiB/GCaOJwALXSUCJZ6fDlARZ+FKppyOy7DBTEGKO57qwToKWRnVFGTaIFJj1bYXpVwXp+kxWYVkUNVp1GNEef9tpM38QyyjoTvRGtwzix6Ritjw/+Zpwsve9fW3Y9APnjajumJQWyZucBZTIA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,95 +73,96 @@ Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
  by CY8PR11MB7133.namprd11.prod.outlook.com (2603:10b6:930:63::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19; Thu, 15 Aug
- 2024 22:07:55 +0000
+ 2024 22:07:51 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7828.023; Thu, 15 Aug 2024
- 22:07:55 +0000
+ 22:07:51 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: <lucas.demarchi@intel.com>, <jose.souza@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 08/12] drm/xe: Introduce xe_ggtt_largest_hole
-Date: Thu, 15 Aug 2024 18:07:28 -0400
-Message-ID: <20240815220732.49675-8-rodrigo.vivi@intel.com>
+ <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 05/12] drm/xe: Encapsulate drm_mm_node inside xe_ggtt_node
+Date: Thu, 15 Aug 2024 18:07:25 -0400
+Message-ID: <20240815220732.49675-5-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240815220732.49675-1-rodrigo.vivi@intel.com>
 References: <20240815220732.49675-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0018.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::23) To BYAPR11MB2854.namprd11.prod.outlook.com
+X-ClientProxiedBy: BY3PR03CA0006.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::11) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CY8PR11MB7133:EE_
-X-MS-Office365-Filtering-Correlation-Id: d13dc375-90b8-4d47-b0c0-08dcbd76b6e2
+X-MS-Office365-Filtering-Correlation-Id: a567393b-4d1a-44f2-36f5-08dcbd76b30c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?MGWnACw4v3ot5ZVeJWY8icMomthwFzS1CLfWoyFlfs4ToZH6Hdsl8lJqvlL1?=
- =?us-ascii?Q?IxKszr5sbiOHbCvr0d0eM0bS8nrqhZfiBwE/lYMQMVVrl1j669RNCTERQufv?=
- =?us-ascii?Q?b3uJXM+wfFh0cvt/9ECQWIW1DkMdC2IYgXbe5VScIeNMeApSyT6MKPxFWphq?=
- =?us-ascii?Q?l3Quj+w3YS4ZTda2ey/LF7CdFAFlRdHHJPhe7ngGsKDvN0D2eeQCV1XISnVP?=
- =?us-ascii?Q?vNuSYmCuFaIj+dW5WMfsMel/cQjTjqZovyGs4iEorG3E5g2xuA3zgyOaS+N9?=
- =?us-ascii?Q?ntUch5XqUSoM2xIa9uLk9LzxNv9TCc2orClVBLr8Ca9y1ckDaDKyRM8te8op?=
- =?us-ascii?Q?msc2aL2gMpur9irUjIPv3thbkjsp7pxzNpGtyQFj8NCCH7BgQZY5OEmx7e6k?=
- =?us-ascii?Q?dT7rIb2LBgFhnIS336eQzmyWMutbj+LgxcQbe7EiBUlgQ/TpGNdUTc39MV4s?=
- =?us-ascii?Q?M4K4m6xtkhlLZCuzFXoI8hgCf6vSkJKmx4BCfzIUjpO++ne6uxgnrPIPJrqs?=
- =?us-ascii?Q?K7Hv7Q/q7Uo7xxlD7Inw7Ilmg54rCXb3Rz9YVNi+F6FYMaW5xZQsY5jC0yWX?=
- =?us-ascii?Q?FCTe0r8YIFailQkGftJh2c7OBH0EuZ3WOi6njX0mpDSE4dLBi+SZW8V3pjfQ?=
- =?us-ascii?Q?vXnny+rwv+gwvewNPNKlcYl5pDZWFZiTta6PAMTYOCQTUBe63eRohAUXvO4K?=
- =?us-ascii?Q?RF+kYcr1z5i+ycUo+ry3GHIZBHigIdOBxESWaoawM6HWzITKWO6BzO4CivjU?=
- =?us-ascii?Q?wXPeAgfW6r28+HuNjmw6tfX/m/zQ7l4TelE0hua4x+eO/vVK/6jMvCVJiIro?=
- =?us-ascii?Q?66pKTC0ogG9tpdpJf7mjPAYyYsukT5EgH5pqNpYRdOE47myARdNeYyy320aH?=
- =?us-ascii?Q?YOcSVuEP6OuQc/3Xe2oGS5RN2SIZVnJZWmP290Gr/sNCHrDCD76Fszb1Cstz?=
- =?us-ascii?Q?lMKmzgXvTrfj/xfxDq64ArWyspTOXc+ZKYLMt+yCpQXe2UAhsqhQozH4j7GK?=
- =?us-ascii?Q?4YTBIlqewAN/d9wVPwSSFddbapCK/7R9TOxK8/mU7e7R+qD1ic7TC8su9x9L?=
- =?us-ascii?Q?KsJB1uMu+RuuWb8QYvAGDptooU5qEcVpOHD/DXMfI4m/G2xsgy+NzfqvQohw?=
- =?us-ascii?Q?rRU2lUh2ZylxvznfU4cuyAx5m95+E1C5zOsXVcU7Xse2RLPKOwJmc8T3PwF3?=
- =?us-ascii?Q?X4+RWwUMQ/yPkUunfpyaxiygPTJct8U/1zscKeLofyYEIwETjO/oGun889ty?=
- =?us-ascii?Q?7tm/ZZQ/Wlt0dA0HEQSMhseKdi54MbJQd1wiLFaor1GHTqErZD5QMP9pq7VG?=
- =?us-ascii?Q?HNfLpmt5vpMDeeyp7Ddm9Lj27JlmLYkDKeZUqNCqmPrFAQ=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+zy7lEKZ+24EyZIUvAo5g6H/Q0dkLpiu/AVGVu1rkFrJt/jS62cMQF4XHfbl?=
+ =?us-ascii?Q?djAQOZAaN7pxNEoQdBUdM+NQOtjl3kh+CEOVSLHr1zt6XnCvLlvfapRskqcj?=
+ =?us-ascii?Q?XhK4jhIb8we/RDY67CE5qMDKrosxM4JNX/9YRnpZexxLb16WSLVzv1zdfvmn?=
+ =?us-ascii?Q?8mH4Z/sirwIzK3sjOLK5suKrQ5ifcL6zr3QypxL7m9AvuzeXp+5HEfRhncdM?=
+ =?us-ascii?Q?Hrvmm6P3H7rd3y0YicaAjiQC2rgkEJ77bCo1Daga31woMiPZ23o4NN0MbSTR?=
+ =?us-ascii?Q?GfblqinDagVhTbaUiVcYrjNxo+IWckwnAvaJGCASzO1HxiHba1phknBduzG2?=
+ =?us-ascii?Q?37x0qKV6pe+qVuONhXG17cJz+hQxgV5WpuI6onsTzEpc5fdmrpkgHaS0ENIk?=
+ =?us-ascii?Q?cka0T32htfEtGXLx+nzGD+ifch/gaWSR2hu2AN6L5PshG1NRcsDmbaCptDCP?=
+ =?us-ascii?Q?6HhlePqEKBl2KuDIEcOvKvRVUlrIJgtqgGnyaiQkcDp3n96tcKJmlu++O5PI?=
+ =?us-ascii?Q?W5F8cuDhqGaCV335dSObA73zhDQgSczrtR/hGeP2wNEhDZhybSGN8qv1B7aW?=
+ =?us-ascii?Q?M2V0FIkOkQ34Z0VUjMm96puxDWKEtChW37uO7VGczose3TyL211JBioScaqJ?=
+ =?us-ascii?Q?VAFbfAOxq6Kgg87Z3P5McRmMI+RSOqfu5Bln5tfEVqj69kK1nbnxEncChgop?=
+ =?us-ascii?Q?S6VE+J6vBtA7ogcMvGigo7fEA0ub3aZewgLCv1hqtlk1gyJwGEUu2n1DFdIj?=
+ =?us-ascii?Q?JP95m6c9WKNlQ22aESyc9ahpOwJ42+g25/A8j5zMYrS1Gf5QIlKe0VdDJ8jE?=
+ =?us-ascii?Q?1Wl3t+TfJZa2mN8E2OfQ5KrAY6o/PMAcfES26uHhOh0/JZ8P03Jk5cJAqo+0?=
+ =?us-ascii?Q?yNeLNxnyNnCRckTnRssARin7joH42hLS8/m4fGk3z3aTYtqSA3LEbBtOrIcb?=
+ =?us-ascii?Q?q+hqnO/fQWdy1HP/HLaeVSzEG35ij21kdHWY4GbgZUhikvWyx2rYERgid1Tm?=
+ =?us-ascii?Q?IImGSH5vU2dhmiuJ97NUTjOjI5e7MEc4YHQaM/23J/fvDGmEr07/7tAK3nRd?=
+ =?us-ascii?Q?nuctdzjwz27QQlViVRW+3dGSzbTTHDil+toA3Ut004KCRg5BEhNS+3u5jOQ3?=
+ =?us-ascii?Q?a91gKrOBKzc36ynqmAuuvDOPBZWJWMh49cZ1vnUBvGOju+azECwJmrJONLRc?=
+ =?us-ascii?Q?8mT40EGCxc67HdhBC6oq0jFQ6J80oczD7WxBD2eZLvDpzBmzSRjpbXFuqqdh?=
+ =?us-ascii?Q?7+qSCDc02HboleTJVNSm/bykPW63iEvehi+Ei9fbQPUlIqOsmAiHUu4B9ivQ?=
+ =?us-ascii?Q?4vJu5TvZp/bXq5QfvEsgZLYmJKPiMMtJR97aXQVn7jweEw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8Ulbs1bcxpLJB77OihbXkZlZnLngvjz0NOHVO+5utmBZDF56lTceBcEsC0fp?=
- =?us-ascii?Q?aVcIVSekVgwN1nj5ciSiS4qOHdDMVlAQPOAefXzhcF4oiJy+QOcb73hH9YGN?=
- =?us-ascii?Q?Zbd6HTtiPyO+Kf/8EF+z+l0W++7+3VGZ6OKCu30gw/jHHpxrxfUWc+ju88Bu?=
- =?us-ascii?Q?Qs95LGESqVSiuQtiiFi0KHTehswQAmjsHvoYpYX/Nm/tgo6TWyBPBcITcI8c?=
- =?us-ascii?Q?v/30RreCF7XvHAZDNZ2q31M+2uOQaLMOW60YuGb898QiEmrqXUibOXNqPeRN?=
- =?us-ascii?Q?aclF3IoKaNqHlGxTmsyXXHLRqJHHt3uSq1Unt3f+2f8TyP7XvHk/C01cfX9G?=
- =?us-ascii?Q?X3UeCtsDz9uUvmgdSzf14iiIjkt/Mro8rh/8FASr84hodIGwMeK8mH0eglxJ?=
- =?us-ascii?Q?cg/WHzgNhEpKCLiZiqHg+3JTyw1RCQnXxInNP/5BpBdJ3UL0ixf/I0yBnpkK?=
- =?us-ascii?Q?pup1AhUI+/GUqUYHYPpBZGSK1A3msfDZmF1U++6UYOsIuJUZ2wmYLWcknjvj?=
- =?us-ascii?Q?CfZdqrzRmj4IWQUutEO1cUvBVpSLI2pFKVO8Tofo3QFSSWFAes0g88QF2zE0?=
- =?us-ascii?Q?/dLoaq/jxKTPQc6qA+vnSjimI0ShrrI4vYNnG48W7pNI51MbN8NIAnpmUQWT?=
- =?us-ascii?Q?EyJeYgTULnnu2W3sTkI7HjiQEI3r/M8cIkTQiRw7kt2P9WZ0IQ0jrcnCiFey?=
- =?us-ascii?Q?n0LYzJmkAePyE0gaBS3kC8tMn/VNsvb1dcHUqXAiEubzsR3MuNspyQjK1Qx+?=
- =?us-ascii?Q?c6CVM1m3wEbWJ+UdNF+kHnL2RRdvficcWYDwcTuyKo+PCUix2mtc51uC85p8?=
- =?us-ascii?Q?RW5x8wWkVg8VREai4fq7F8TUVaRN7EAupl4HyBQlB+bhwu1z/L8EhKMOhgiz?=
- =?us-ascii?Q?CoIOfx4y+/NgBqvhEkSd0eYfXGPa9Rgzaq/swO6rz1VtXcgx6dQMXBePOpCn?=
- =?us-ascii?Q?bRMKDc99emy9OidvZYbNP6/7gCq2AT202DbzqX9RAbLUOOZgy4i52lJoRKF/?=
- =?us-ascii?Q?jHeiUDLAceiggjPxeSHJ9QwwZre2t2H1mf+oORAdHrXFnlky5rCHUzr2+fj9?=
- =?us-ascii?Q?yfBYgSAQ+H96eN6IQZeVo8eRNapC4TYlFGRVfxxoNncvnYYALagtqfu1Q7hW?=
- =?us-ascii?Q?uQTwP29BG4PXsaLf7T5jrYgpQMNm6GN3f7XJWWIpDbjTgtb72LIopCyW7yVW?=
- =?us-ascii?Q?ausS7HDprmSEJgwpveHplJDoM97RfLu2w6DOo0F0vsWzIRhE6aANamgTcdfA?=
- =?us-ascii?Q?BKnAR0bqc/kxhA2xa+gEzSfV71V82jkbHo4ISGm62lCXHrqqY3m+6UCL0bvL?=
- =?us-ascii?Q?u3hru/l+RCiJX3l1DdE9MbweTOJqkyqTw5ZbBZ0s5MVG+27xp8cAcWG8WwHc?=
- =?us-ascii?Q?oI+BTYGFm3O9fwEtn/wO5OUAIJwemLcn+ufki6AauCForU3YDNqzMtV6Bs9o?=
- =?us-ascii?Q?geKz9g0oetcUUOah6NR2CCP88sV5bFqZzlsnrhTAHqPs0IplaSH2VC67z3ow?=
- =?us-ascii?Q?yHfkCp23OYzWE/HkRF+5edcr44+EWjC+Zu4/Cqdrn7ltXaTuE254Qeqx7oHk?=
- =?us-ascii?Q?Hqb54ZSng4iV2shT8bq8kYox6iFPf0cp1liTGtK1?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d13dc375-90b8-4d47-b0c0-08dcbd76b6e2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?V69EnsALeX9uOfl3MVGpkRB3XDr1U7RZqkxPRduQOVoke1vHPGPTs+lRapDB?=
+ =?us-ascii?Q?qNrhe9i2gKYkIYg91FfIEpLLAT59Q9U7xcRpASsI+jdDwQuZdYZZnsJTDjU1?=
+ =?us-ascii?Q?7QGnb34189HfDiutn8N8vLUMI2SVqR6INuqRJZ5/xJWjH/zd8uxoWQ3cFb2/?=
+ =?us-ascii?Q?ER9w2l1E5Oq/pD2uz9aNqL6BPDeubNaojyo981fJ7tzLCkozgnUhIJE3UNrG?=
+ =?us-ascii?Q?l/lRLJqXn30ff3T++pT8tOL4uUPC8Da0t/L411bBMQlyR2nYlgsqEWyx4Sl4?=
+ =?us-ascii?Q?iywpO/4Jaw0afEwz/Dysd8qlk/NvLWCIJMEq2tlmCAYz6UhnUhu+eW3QRa0y?=
+ =?us-ascii?Q?uACXmZeOZ0wMkHqWf0Ivf9n0HQ9EA6ifFrdov7NHmoBEebR+K88vGwK0l9tW?=
+ =?us-ascii?Q?yZNwstAsui+6Nhaht9mmaLYhQCoDkvUy3qz0XrcwdtiXDX7Ta2ae73IN3EBb?=
+ =?us-ascii?Q?NQkxERcl2byEiXXUTfTYeCyiHBbc69Tdc0u/oGRQhkG8YYku1R53g+XpoEzU?=
+ =?us-ascii?Q?3LlDJPAWk7NDt798WGbTG20c635X0PlSCMI7441aZ+OFrPpWfAwJoyskppzU?=
+ =?us-ascii?Q?i8pL2n8pFaK/Sh8SGsHBpx8dh2GSZEf7aR+rZtuQuV8u/FzKDGuLkBeMk0+E?=
+ =?us-ascii?Q?FWAfpOPrS2toMCJiEu+lM9nUL/0Sfn6ssr4mNmtjP4Fis2tp8UQ1SjOmBaSL?=
+ =?us-ascii?Q?7yuMGqeXhsJ6zHiYRiwCfCzfTh/XteyNjG3BUO1wzcqMNWIfFj+8Umin3LrT?=
+ =?us-ascii?Q?X1U+3242RL+FI9opF7Lynn+Zd8gPQSN8MuMXZsTZ2Dd5SOnQ28fzw1ZaOttY?=
+ =?us-ascii?Q?GQedstrsG1GGB3AGgOSP1fvMBmZ7cZhMDnqOUdvRnKIP++m+ChW+A7DMjrVh?=
+ =?us-ascii?Q?rOkN1LvoYxQ9/lL0LWYy0W5x02fUGAkw6wiiSCo3fY6TEVwsCnvuQ9DlLTLG?=
+ =?us-ascii?Q?ZKK8sz0abNNTN5YDdz8bZRg3WcAkQPcgS5JzMFJz7dSrtQyJBYOO8B4J9M5N?=
+ =?us-ascii?Q?EfocCZcCrw/z35//E9EaBvOarsOqYPp+ZRVmapVx2DLAcVLQwbnbI0VlowNb?=
+ =?us-ascii?Q?NiyQEthud3mMnRiFPzaEPwyAuJR9Z9jeHi25cx3lFoa1mu8xd8Xz+JcybC3l?=
+ =?us-ascii?Q?CuibJesn8U9hjOrDlom9WBFQZT9RdDCMWzkcKOltszSfZ8EkPnc15YJuY7I3?=
+ =?us-ascii?Q?N36UMHwnz2G46SfxrpnvQFSXWZYnBHFFcG7UCSAgbBxMrmhLH9xISzVrxW7q?=
+ =?us-ascii?Q?ETYdLY65CyUdhX0a3UGkqNGtddVWhCWZtRjWd2tDta3Caix2/ziBboCjLrAB?=
+ =?us-ascii?Q?0yQQD4BSGowosm7kSOeuc7nZINBQ1TxKJwDY1d4u+vPMy8NcZN1v5cc5Dw4u?=
+ =?us-ascii?Q?OZSUtN40GF09I5JY+IYjY2DivV9AU1XsXt69CKIee3sPrwCxq+znGizMDzyO?=
+ =?us-ascii?Q?0kjjzft1jlZNgtj1JKuTIzIc/Q9pbqH7yq+J9/M7CkqUxe4qD2iGA+Os/n1J?=
+ =?us-ascii?Q?yYvX/iSTTYsXhiNdwXLNmx8v7t8ATZggHFuswy+VZnGw2cv6GTo7ru5NYK6d?=
+ =?us-ascii?Q?F6n/PCOp3qgI6uL9BNTj2x1P4rqo/9kK5sA7XSRxsJF0/cFI59rMYrezIH7+?=
+ =?us-ascii?Q?Tw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a567393b-4d1a-44f2-36f5-08dcbd76b30c
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:07:55.3572 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:07:48.9414 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7I7YmABd5CtuzeYzXa2pEm0ws24fqFh5+CRli+hicq7UHf/woRlpGZhGt3q3hQjeNhcg5PtlPk8DFzbS4vwtJw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6ZtG9FwY1l6LufLNWT5YwqbNLZTtjQbaV17trvwWdLuhQjOH/QGMTc/0IgJloF94Qe+xcHsu59INJbRQP7s3AA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7133
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -174,114 +179,577 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce a new xe_ggtt_largest_hole helper that attends the SRIOV
-demand and continue with the goal of limiting drm_mm access to xe_ggtt.
+The xe_ggtt component uses drm_mm to manage the GGTT.
+The drm_mm_node is just a node inside drm_mm, but in Xe we use that
+only in the GGTT context. So, this patch encapsulates the drm_mm_node
+into a xe_ggtt's new struct.
 
-v2: Fix a typo (Michal)
+This is the first step towards limiting all the drm_mm access
+through xe_ggtt. The ultimate goal is to have a better control of
+the node insertion and removal, so the removal can be delegated
+to a delayed workqueue.
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+v2: Fix includes and typos (Michal and Brost)
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c               | 35 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ggtt.h               |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 23 ++------------
- 3 files changed, 38 insertions(+), 21 deletions(-)
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  7 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 10 +--
+ drivers/gpu/drm/xe/xe_bo.c                    |  2 +-
+ drivers/gpu/drm/xe/xe_bo.h                    |  6 +-
+ drivers/gpu/drm/xe/xe_bo_types.h              |  5 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |  2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 72 +++++++++----------
+ drivers/gpu/drm/xe/xe_ggtt.h                  | 12 ++--
+ drivers/gpu/drm/xe/xe_ggtt_types.h            |  8 +++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 39 +++++-----
+ .../gpu/drm/xe/xe_gt_sriov_pf_config_types.h  |  5 +-
+ 11 files changed, 90 insertions(+), 78 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7c8bbaa30fca..2d055f489879 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -584,6 +584,41 @@ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- 			    bo->flags & XE_BO_FLAG_GGTT_INVALIDATE);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index a20d2638ea7a..3028ac1ba72f 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -7,7 +7,8 @@
+ #define I915_VMA_H
+ 
+ #include <uapi/drm/i915_drm.h>
+-#include <drm/drm_mm.h>
++
++#include "xe_ggtt_types.h"
+ 
+ /* We don't want these from i915_drm.h in case of Xe */
+ #undef I915_TILING_X
+@@ -19,7 +20,7 @@ struct xe_bo;
+ 
+ struct i915_vma {
+ 	struct xe_bo *bo, *dpt;
+-	struct drm_mm_node node;
++	struct xe_ggtt_node node;
+ };
+ 
+ #define i915_ggtt_clear_scanout(bo) do { } while (0)
+@@ -28,7 +29,7 @@ struct i915_vma {
+ 
+ static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
+ {
+-	return vma->node.start;
++	return vma->node.base.start;
  }
  
-+/**
-+ * xe_ggtt_largest_hole - Largest GGTT hole
-+ * @ggtt: the &xe_ggtt that will be inspected
-+ * @alignment: minimum alignment
-+ * @spare: If not NULL: in: desired memory size to be spared / out: Adjusted possible spare
-+ *
-+ * Return: size of the largest continuous GGTT region
-+ */
-+u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare)
-+{
-+	const struct drm_mm *mm = &ggtt->mm;
-+	const struct drm_mm_node *entry;
-+	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
-+	u64 hole_start, hole_end, hole_size;
-+	u64 max_hole = 0;
-+
-+	mutex_lock(&ggtt->lock);
-+
-+	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
-+		hole_start = max(hole_start, hole_min_start);
-+		hole_start = ALIGN(hole_start, alignment);
-+		hole_end = ALIGN_DOWN(hole_end, alignment);
-+		if (hole_start >= hole_end)
-+			continue;
-+		hole_size = hole_end - hole_start;
-+		if (spare)
-+			*spare -= min3(*spare, hole_size, max_hole);
-+		max_hole = max(max_hole, hole_size);
-+	}
-+
-+	mutex_unlock(&ggtt->lock);
-+
-+	return max_hole;
-+}
-+
- #ifdef CONFIG_PCI_IOV
- static u64 xe_encode_vfid_pte(u16 vfid)
+ #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 42d431ff14e7..a93923fb8721 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -204,7 +204,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+ 		align = max_t(u32, align, SZ_64K);
+ 
+-	if (bo->ggtt_node.size && view->type == I915_GTT_VIEW_NORMAL) {
++	if (bo->ggtt_node.base.size && view->type == I915_GTT_VIEW_NORMAL) {
+ 		vma->node = bo->ggtt_node;
+ 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
+ 		u32 x, size = bo->ttm.base.size;
+@@ -218,7 +218,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
+ 							      xe->pat.idx[XE_CACHE_NONE]);
+ 
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node.start + x, pte);
++			ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node.base.start + x, pte);
+ 		}
+ 	} else {
+ 		u32 i, ggtt_ofs;
+@@ -232,7 +232,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 		if (ret)
+ 			goto out_unlock;
+ 
+-		ggtt_ofs = vma->node.start;
++		ggtt_ofs = vma->node.base.start;
+ 
+ 		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+ 			write_ggtt_rotated(bo, ggtt, &ggtt_ofs,
+@@ -325,8 +325,8 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ 
+ 	if (vma->dpt)
+ 		xe_bo_unpin_map_no_vm(vma->dpt);
+-	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+-		 vma->bo->ggtt_node.start != vma->node.start)
++	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node.base) ||
++		 vma->bo->ggtt_node.base.start != vma->node.base.start)
+ 		xe_ggtt_remove_node(ggtt, &vma->node, false);
+ 
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 56a089aa3916..74c850777246 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1098,7 +1098,7 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 
+ 	xe_assert(xe, list_empty(&ttm_bo->base.gpuva.list));
+ 
+-	if (bo->ggtt_node.size)
++	if (bo->ggtt_node.base.size)
+ 		xe_ggtt_remove_bo(bo->tile->mem.ggtt, bo);
+ 
+ #ifdef CONFIG_PROC_FS
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 1c9dc8adaaa3..faffbda55517 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -195,9 +195,9 @@ xe_bo_main_addr(struct xe_bo *bo, size_t page_size)
+ static inline u32
+ xe_bo_ggtt_addr(struct xe_bo *bo)
  {
+-	XE_WARN_ON(bo->ggtt_node.size > bo->size);
+-	XE_WARN_ON(bo->ggtt_node.start + bo->ggtt_node.size > (1ull << 32));
+-	return bo->ggtt_node.start;
++	XE_WARN_ON(bo->ggtt_node.base.size > bo->size);
++	XE_WARN_ON(bo->ggtt_node.base.start + bo->ggtt_node.base.size > (1ull << 32));
++	return bo->ggtt_node.base.start;
+ }
+ 
+ int xe_bo_vmap(struct xe_bo *bo);
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index ebc8abf7930a..4b1de9f5be00 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -8,12 +8,13 @@
+ 
+ #include <linux/iosys-map.h>
+ 
+-#include <drm/drm_mm.h>
+ #include <drm/ttm/ttm_bo.h>
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_execbuf_util.h>
+ #include <drm/ttm/ttm_placement.h>
+ 
++#include "xe_ggtt_types.h"
++
+ struct xe_device;
+ struct xe_vm;
+ 
+@@ -39,7 +40,7 @@ struct xe_bo {
+ 	/** @placement: current placement for this BO */
+ 	struct ttm_placement placement;
+ 	/** @ggtt_node: GGTT node if this BO is mapped in the GGTT */
+-	struct drm_mm_node ggtt_node;
++	struct xe_ggtt_node ggtt_node;
+ 	/** @vmap: iosys map of this buffer */
+ 	struct iosys_map vmap;
+ 	/** @ttm_kmap: TTM bo kmap object for internal use only. Keep off. */
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 16a24eadd94b..d2b3d8a0c1bd 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -204,7 +204,7 @@ struct xe_tile {
+ 			struct xe_memirq memirq;
+ 
+ 			/** @sriov.vf.ggtt_balloon: GGTT regions excluded from use. */
+-			struct drm_mm_node ggtt_balloon[2];
++			struct xe_ggtt_node ggtt_balloon[2];
+ 		} vf;
+ 	} sriov;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index dd5cd0df705c..1cf682d15253 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -351,61 +351,61 @@ static void xe_ggtt_dump_node(struct xe_ggtt *ggtt,
+  * @ggtt: the &xe_ggtt where we want to make reservation
+  * @start: the starting GGTT address of the reserved region
+  * @end: then end GGTT address of the reserved region
+- * @node: the &drm_mm_node to hold reserved GGTT node
++ * @node: the &xe_ggtt_node to hold reserved GGTT node
+  *
+  * Use xe_ggtt_deballoon() to release a reserved GGTT node.
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 end, struct drm_mm_node *node)
++int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 end, struct xe_ggtt_node *node)
+ {
+ 	int err;
+ 
+ 	xe_tile_assert(ggtt->tile, start < end);
+ 	xe_tile_assert(ggtt->tile, IS_ALIGNED(start, XE_PAGE_SIZE));
+ 	xe_tile_assert(ggtt->tile, IS_ALIGNED(end, XE_PAGE_SIZE));
+-	xe_tile_assert(ggtt->tile, !drm_mm_node_allocated(node));
++	xe_tile_assert(ggtt->tile, !drm_mm_node_allocated(&node->base));
+ 
+-	node->color = 0;
+-	node->start = start;
+-	node->size = end - start;
++	node->base.color = 0;
++	node->base.start = start;
++	node->base.size = end - start;
+ 
+ 	mutex_lock(&ggtt->lock);
+-	err = drm_mm_reserve_node(&ggtt->mm, node);
++	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+ 	mutex_unlock(&ggtt->lock);
+ 
+ 	if (xe_gt_WARN(ggtt->tile->primary_gt, err,
+ 		       "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
+-		       node->start, node->start + node->size, ERR_PTR(err)))
++		       node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
+ 		return err;
+ 
+-	xe_ggtt_dump_node(ggtt, node, "balloon");
++	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
+ 	return 0;
+ }
+ 
+ /**
+  * xe_ggtt_deballoon - release a reserved GGTT region
+  * @ggtt: the &xe_ggtt where reserved node belongs
+- * @node: the &drm_mm_node with reserved GGTT region
++ * @node: the &xe_ggtt_node with reserved GGTT region
+  *
+  * See xe_ggtt_balloon() for details.
+  */
+-void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node)
++void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node)
+ {
+-	if (!drm_mm_node_allocated(node))
++	if (!drm_mm_node_allocated(&node->base))
+ 		return;
+ 
+-	xe_ggtt_dump_node(ggtt, node, "deballoon");
++	xe_ggtt_dump_node(ggtt, &node->base, "deballoon");
+ 
+ 	mutex_lock(&ggtt->lock);
+-	drm_mm_remove_node(node);
++	drm_mm_remove_node(&node->base);
+ 	mutex_unlock(&ggtt->lock);
+ }
+ 
+ /**
+- * xe_ggtt_insert_special_node_locked - Locked version to insert a &drm_mm_node into the GGTT
++ * xe_ggtt_insert_special_node_locked - Locked version to insert a &xe_ggtt_node into the GGTT
+  * @ggtt: the &xe_ggtt where node will be inserted
+- * @node: the &drm_mm_node to be inserted
++ * @node: the &xe_ggtt_node to be inserted
+  * @size: size of the node
+  * @align: alignment constrain of the node
+  * @mm_flags: flags to control the node behavior
+@@ -414,23 +414,23 @@ void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt, struct drm_mm_node *node,
++int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 				       u32 size, u32 align, u32 mm_flags)
+ {
+-	return drm_mm_insert_node_generic(&ggtt->mm, node, size, align, 0,
++	return drm_mm_insert_node_generic(&ggtt->mm, &node->base, size, align, 0,
+ 					  mm_flags);
+ }
+ 
+ /**
+- * xe_ggtt_insert_special_node - Insert a &drm_mm_node into the GGTT
++ * xe_ggtt_insert_special_node - Insert a &xe_ggtt_node into the GGTT
+  * @ggtt: the &xe_ggtt where node will be inserted
+- * @node: the &drm_mm_node to be inserted
++ * @node: the &xe_ggtt_node to be inserted
+  * @size: size of the node
+  * @align: alignment constrain of the node
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
++int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 				u32 size, u32 align)
+ {
+ 	int ret;
+@@ -452,7 +452,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ {
+ 	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
+ 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
+-	u64 start = bo->ggtt_node.start;
++	u64 start = bo->ggtt_node.base.start;
+ 	u64 offset, pte;
+ 
+ 	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
+@@ -470,9 +470,9 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+ 		alignment = SZ_64K;
+ 
+-	if (XE_WARN_ON(bo->ggtt_node.size)) {
++	if (XE_WARN_ON(bo->ggtt_node.base.size)) {
+ 		/* Someone's already inserted this BO in the GGTT */
+-		xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
++		xe_tile_assert(ggtt->tile, bo->ggtt_node.base.size == bo->size);
+ 		return 0;
+ 	}
+ 
+@@ -482,7 +482,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 
+ 	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
+ 	mutex_lock(&ggtt->lock);
+-	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, bo->size,
++	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node.base, bo->size,
+ 					  alignment, 0, start, end, 0);
+ 	if (!err)
+ 		xe_ggtt_map_bo(ggtt, bo);
+@@ -523,12 +523,12 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ }
+ 
+ /**
+- * xe_ggtt_remove_node - Remove a &drm_mm_node from the GGTT
++ * xe_ggtt_remove_node - Remove a &xe_ggtt_node from the GGTT
+  * @ggtt: the &xe_ggtt where node will be removed
+- * @node: the &drm_mm_node to be removed
++ * @node: the &xe_ggtt_node to be removed
+  * @invalidate: if node needs invalidation upon removal
+  */
+-void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
++void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 			 bool invalidate)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+@@ -541,9 +541,9 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+ 
+ 	mutex_lock(&ggtt->lock);
+ 	if (bound)
+-		xe_ggtt_clear(ggtt, node->start, node->size);
+-	drm_mm_remove_node(node);
+-	node->size = 0;
++		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
++	drm_mm_remove_node(&node->base);
++	node->base.size = 0;
+ 	mutex_unlock(&ggtt->lock);
+ 
+ 	if (!bound)
+@@ -563,11 +563,11 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+  */
+ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ {
+-	if (XE_WARN_ON(!bo->ggtt_node.size))
++	if (XE_WARN_ON(!bo->ggtt_node.base.size))
+ 		return;
+ 
+ 	/* This BO is not currently in the GGTT */
+-	xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
++	xe_tile_assert(ggtt->tile, bo->ggtt_node.base.size == bo->size);
+ 
+ 	xe_ggtt_remove_node(ggtt, &bo->ggtt_node,
+ 			    bo->flags & XE_BO_FLAG_GGTT_INVALIDATE);
+@@ -602,17 +602,17 @@ static void xe_ggtt_assign_locked(struct xe_ggtt *ggtt, const struct drm_mm_node
+ /**
+  * xe_ggtt_assign - assign a GGTT region to the VF
+  * @ggtt: the &xe_ggtt where the node belongs
+- * @node: the &drm_mm_node to update
++ * @node: the &xe_ggtt_node to update
+  * @vfid: the VF identifier
+  *
+  * This function is used by the PF driver to assign a GGTT region to the VF.
+  * In addition to PTE's VFID bits 11:2 also PRESENT bit 0 is set as on some
+  * platforms VFs can't modify that either.
+  */
+-void xe_ggtt_assign(struct xe_ggtt *ggtt, const struct drm_mm_node *node, u16 vfid)
++void xe_ggtt_assign(struct xe_ggtt *ggtt, const struct xe_ggtt_node *node, u16 vfid)
+ {
+ 	mutex_lock(&ggtt->lock);
+-	xe_ggtt_assign_locked(ggtt, node, vfid);
++	xe_ggtt_assign_locked(ggtt, &node->base, vfid);
+ 	mutex_unlock(&ggtt->lock);
+ }
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index f816b3c0732b..31060fe7644b 100644
+index 2546bab97507..30a521f7b075 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.h
 +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -29,6 +29,7 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 			 u64 start, u64 end);
- void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
-+u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare);
+@@ -13,15 +13,15 @@ struct drm_printer;
+ int xe_ggtt_init_early(struct xe_ggtt *ggtt);
+ int xe_ggtt_init(struct xe_ggtt *ggtt);
  
+-int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 size, struct drm_mm_node *node);
+-void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node);
++int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 size, struct xe_ggtt_node *node);
++void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node);
+ 
+-int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
++int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 				u32 size, u32 align);
+ int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt,
+-				       struct drm_mm_node *node,
++				       struct xe_ggtt_node *node,
+ 				       u32 size, u32 align, u32 mm_flags);
+-void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
++void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 			 bool invalidate);
+ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+@@ -32,7 +32,7 @@ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
  int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p);
  
+ #ifdef CONFIG_PCI_IOV
+-void xe_ggtt_assign(struct xe_ggtt *ggtt, const struct drm_mm_node *node, u16 vfid);
++void xe_ggtt_assign(struct xe_ggtt *ggtt, const struct xe_ggtt_node *node, u16 vfid);
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index 154de298a4e3..af312a7d1031 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -49,6 +49,14 @@ struct xe_ggtt {
+ 	unsigned int access_count;
+ };
+ 
++/**
++ * struct xe_ggtt_node - A node in GGTT
++ */
++struct xe_ggtt_node {
++	/** @base: A drm_mm_node */
++	struct drm_mm_node base;
++};
++
+ /**
+  * struct xe_ggtt_pt_ops - GGTT Page table operations
+  * Which can vary from platform to platform.
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 947750d97d7d..1852ff45bea4 100644
+index 227527785afd..f107ae550c0f 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -590,30 +590,11 @@ int xe_gt_sriov_pf_config_bulk_set_ggtt(struct xe_gt *gt, unsigned int vfid,
- static u64 pf_get_max_ggtt(struct xe_gt *gt)
+@@ -6,6 +6,9 @@
+ #include <linux/string_choices.h>
+ #include <linux/wordpart.h>
+ 
++/* FIXME: remove this after encapsulating all drm_mm_node access into xe_ggtt */
++#include <drm/drm_mm.h>
++
+ #include "abi/guc_actions_sriov_abi.h"
+ #include "abi/guc_klvs_abi.h"
+ 
+@@ -232,14 +235,14 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config)
  {
- 	struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
--	const struct drm_mm *mm = &ggtt->mm;
--	const struct drm_mm_node *entry;
+ 	u32 n = 0;
+ 
+-	if (drm_mm_node_allocated(&config->ggtt_region)) {
++	if (drm_mm_node_allocated(&config->ggtt_region.base)) {
+ 		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_GGTT_START);
+-		cfg[n++] = lower_32_bits(config->ggtt_region.start);
+-		cfg[n++] = upper_32_bits(config->ggtt_region.start);
++		cfg[n++] = lower_32_bits(config->ggtt_region.base.start);
++		cfg[n++] = upper_32_bits(config->ggtt_region.base.start);
+ 
+ 		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_GGTT_SIZE);
+-		cfg[n++] = lower_32_bits(config->ggtt_region.size);
+-		cfg[n++] = upper_32_bits(config->ggtt_region.size);
++		cfg[n++] = lower_32_bits(config->ggtt_region.base.size);
++		cfg[n++] = upper_32_bits(config->ggtt_region.base.size);
+ 	}
+ 
+ 	return n;
+@@ -369,11 +372,11 @@ static int pf_distribute_config_ggtt(struct xe_tile *tile, unsigned int vfid, u6
+ 	return err ?: err2;
+ }
+ 
+-static void pf_release_ggtt(struct xe_tile *tile, struct drm_mm_node *node)
++static void pf_release_ggtt(struct xe_tile *tile, struct xe_ggtt_node *node)
+ {
+ 	struct xe_ggtt *ggtt = tile->mem.ggtt;
+ 
+-	if (drm_mm_node_allocated(node)) {
++	if (drm_mm_node_allocated(&node->base)) {
+ 		/*
+ 		 * explicit GGTT PTE assignment to the PF using xe_ggtt_assign()
+ 		 * is redundant, as PTE will be implicitly re-assigned to PF by
+@@ -391,7 +394,7 @@ static void pf_release_vf_config_ggtt(struct xe_gt *gt, struct xe_gt_sriov_confi
+ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ {
+ 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+-	struct drm_mm_node *node = &config->ggtt_region;
++	struct xe_ggtt_node *node = &config->ggtt_region;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_ggtt *ggtt = tile->mem.ggtt;
  	u64 alignment = pf_get_ggtt_alignment(gt);
- 	u64 spare = pf_get_spare_ggtt(gt);
--	u64 hole_min_start = xe_wopcm_size(gt_to_xe(gt));
--	u64 hole_start, hole_end, hole_size;
--	u64 max_hole = 0;
--
--	mutex_lock(&ggtt->lock);
--
--	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
--		hole_start = max(hole_start, hole_min_start);
--		hole_start = ALIGN(hole_start, alignment);
--		hole_end = ALIGN_DOWN(hole_end, alignment);
--		if (hole_start >= hole_end)
--			continue;
--		hole_size = hole_end - hole_start;
--		xe_gt_sriov_dbg_verbose(gt, "HOLE start %llx size %lluK\n",
--					hole_start, hole_size / SZ_1K);
--		spare -= min3(spare, hole_size, max_hole);
--		max_hole = max(max_hole, hole_size);
--	}
-+	u64 max_hole;
+@@ -403,14 +406,14 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
  
--	mutex_unlock(&ggtt->lock);
-+	max_hole = xe_ggtt_largest_hole(ggtt, alignment, &spare);
+ 	size = round_up(size, alignment);
  
- 	xe_gt_sriov_dbg_verbose(gt, "HOLE max %lluK reserved %lluK\n",
- 				max_hole / SZ_1K, spare / SZ_1K);
+-	if (drm_mm_node_allocated(node)) {
++	if (drm_mm_node_allocated(&node->base)) {
+ 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
+ 		if (unlikely(err))
+ 			return err;
+ 
+ 		pf_release_ggtt(tile, node);
+ 	}
+-	xe_gt_assert(gt, !drm_mm_node_allocated(node));
++	xe_gt_assert(gt, !drm_mm_node_allocated(&node->base));
+ 
+ 	if (!size)
+ 		return 0;
+@@ -421,9 +424,9 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 
+ 	xe_ggtt_assign(ggtt, node, vfid);
+ 	xe_gt_sriov_dbg_verbose(gt, "VF%u assigned GGTT %llx-%llx\n",
+-				vfid, node->start, node->start + node->size - 1);
++				vfid, node->base.start, node->base.start + node->base.size - 1);
+ 
+-	err = pf_distribute_config_ggtt(gt->tile, vfid, node->start, node->size);
++	err = pf_distribute_config_ggtt(gt->tile, vfid, node->base.start, node->base.size);
+ 	if (unlikely(err))
+ 		return err;
+ 
+@@ -433,10 +436,10 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
+ {
+ 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+-	struct drm_mm_node *node = &config->ggtt_region;
++	struct xe_ggtt_node *node = &config->ggtt_region;
+ 
+ 	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+-	return drm_mm_node_allocated(node) ? node->size : 0;
++	return drm_mm_node_allocated(&node->base) ? node->base.size : 0;
+ }
+ 
+ /**
+@@ -2025,13 +2028,13 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	for (n = 1; n <= total_vfs; n++) {
+ 		config = &gt->sriov.pf.vfs[n].config;
+-		if (!drm_mm_node_allocated(&config->ggtt_region))
++		if (!drm_mm_node_allocated(&config->ggtt_region.base))
+ 			continue;
+ 
+-		string_get_size(config->ggtt_region.size, 1, STRING_UNITS_2, buf, sizeof(buf));
++		string_get_size(config->ggtt_region.base.size, 1, STRING_UNITS_2, buf, sizeof(buf));
+ 		drm_printf(p, "VF%u:\t%#0llx-%#llx\t(%s)\n",
+-			   n, config->ggtt_region.start,
+-			   config->ggtt_region.start + config->ggtt_region.size - 1, buf);
++			   n, config->ggtt_region.base.start,
++			   config->ggtt_region.base.start + config->ggtt_region.base.size - 1, buf);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+index 7bc66656fcc7..a73d9a4b9e64 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+@@ -6,8 +6,7 @@
+ #ifndef _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
+ #define _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
+ 
+-#include <drm/drm_mm.h>
+-
++#include "xe_ggtt_types.h"
+ #include "xe_guc_klv_thresholds_set_types.h"
+ 
+ struct xe_bo;
+@@ -19,7 +18,7 @@ struct xe_bo;
+  */
+ struct xe_gt_sriov_config {
+ 	/** @ggtt_region: GGTT region assigned to the VF. */
+-	struct drm_mm_node ggtt_region;
++	struct xe_ggtt_node ggtt_region;
+ 	/** @lmem_obj: LMEM allocation for use by the VF. */
+ 	struct xe_bo *lmem_obj;
+ 	/** @num_ctxs: number of GuC contexts IDs.  */
 -- 
 2.46.0
 
