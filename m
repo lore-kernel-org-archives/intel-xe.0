@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E25EC52D7F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 18:54:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9136AC3DA7F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 18:57:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1471C10E4EA;
-	Thu, 15 Aug 2024 18:54:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ms2CDV56";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0A3F10E4EA
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 18:54:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723748042; x=1755284042;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AiF7mgcTRKi5Wx6/HGTiYIE8V7CzcsmssI5ULSSb6/Q=;
- b=ms2CDV56w9MlHIIP4H1XC4qKB+/uEAGRLnNVjEFVHNN2QzgQwLFM2w5r
- 153e7RyGIkPP0Iwv2iZUNSJm6TJcXa6qk7Tc+wNIgd/P5R3/tEkL+cl+J
- h78DrWDCMeO7qC5kFdl/DFDyVhSki9+CxfitZo9Iyys1l9pbczxY/IRoL
- LQuZ4WTE36Yk0Q2qFpo0blWnt6P9bN0VKgfHl3fmhQVGPaRyu9MWWNWcO
- BvufkJ0G9+srNm92lEgGMi+WWUg1MfyvmwRm4mTwV0EOloU8zRuLutK9z
- 93hvFsjDxfnl3EdLJIw0+BRRFb4zS23r+sqrSrsbGBoBkZjBUyoIQrUEM Q==;
-X-CSE-ConnectionGUID: oVdCtl9FRgqLPNgTH8lHaQ==
-X-CSE-MsgGUID: xJk5CAsWR9CrlWABoemYTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="22165261"
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="22165261"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2024 11:54:01 -0700
-X-CSE-ConnectionGUID: J/GKdxA4SwiIeUFpeHeiDQ==
-X-CSE-MsgGUID: zGEIFXomRkO6H+ZiV7P4Gg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="64284258"
-Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2024 11:54:00 -0700
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
- matthew.brost@intel.com, andriy.shevchenko@linux.intel.com,
- hdegoede@redhat.com
-Cc: michael.j.ruhl@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v12] drm/xe/vsec: Support BMG devices
-Date: Thu, 15 Aug 2024 14:53:43 -0400
-Message-ID: <20240815185343.495824-1-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.44.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4717A10E4EF;
+	Thu, 15 Aug 2024 18:57:59 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A244810E4ED;
+ Thu, 15 Aug 2024 18:57:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5874443605328847686=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Use_resevered_copy_eng?=
+ =?utf-8?q?ine_for_user_binds_on_faulting_devices?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 15 Aug 2024 18:57:58 -0000
+Message-ID: <172374827865.634935.970260392024078718@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240815171018.1783-1-matthew.brost@intel.com>
+In-Reply-To: <20240815171018.1783-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,346 +36,212 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Battlemage (BMG) discrete graphics card supports
-the Platform, Monitoring Technology (PMT) feature
-directly on the primary PCI device.
+--===============5874443605328847686==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Utilize the PMT callback API to add support for the BMG
-devices.
+== Series Details ==
 
-Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
+Series: drm/xe: Use resevered copy engine for user binds on faulting devices
+URL   : https://patchwork.freedesktop.org/series/137348/
+State : failure
 
-v10:
-  Use the mutex guard feature
-  Use the xe_pm_runtime_get_if_active() return value correctly
-  Add r/b from Ilpo
-  Deferred DG2 patches for the future
-v11:
-  add include for cleanup.h
-v12:
-  use default clause in switch
-  rename OFFSET to OFFSET_BASE
+== Summary ==
 
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/xe_device.c       |   5 +
- drivers/gpu/drm/xe/xe_device_types.h |   6 +
- drivers/gpu/drm/xe/xe_vsec.c         | 221 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.h         |  13 ++
- 5 files changed, 246 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+CI Bug Log - changes from xe-1771-605ddd8291e28723254dccbc74fc93c32c274def_BAT -> xe-pw-137348v1_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 628c245c4822..f4c6761dc2e7 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -129,6 +129,7 @@ xe-y += xe_bb.o \
- 	xe_vm.o \
- 	xe_vram.o \
- 	xe_vram_freq.o \
-+	xe_vsec.o \
- 	xe_wait_user_fence.o \
- 	xe_wa.o \
- 	xe_wopcm.o
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 76109415eba6..a7c759c98560 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -53,6 +53,7 @@
- #include "xe_ttm_sys_mgr.h"
- #include "xe_vm.h"
- #include "xe_vram.h"
-+#include "xe_vsec.h"
- #include "xe_wait_user_fence.h"
- 
- static int xe_file_open(struct drm_device *dev, struct drm_file *file)
-@@ -317,6 +318,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 		goto err;
- 	}
- 
-+	drmm_mutex_init(&xe->drm, &xe->pmt.lock);
-+
- 	err = xe_display_create(xe);
- 	if (WARN_ON(err))
- 		goto err;
-@@ -692,6 +695,8 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
- 
-+	xe_vsec_init(xe);
-+
- 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 
- err_fini_display:
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 3bca6d344744..448a92148081 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -451,6 +451,12 @@ struct xe_device {
- 		struct mutex lock;
- 	} d3cold;
- 
-+	/** @pmt: Support the PMT driver callback interface */
-+	struct {
-+		/** @pmt.lock: protect access for telemetry data */
-+		struct mutex lock;
-+	} pmt;
-+
- 	/**
- 	 * @pm_callback_task: Track the active task that is running in either
- 	 * the runtime_suspend or runtime_resume callbacks.
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-new file mode 100644
-index 000000000000..c293adcad028
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -0,0 +1,221 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2022 - 2024 Intel Corporation
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/intel_vsec.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/pci.h>
-+
-+#include "xe_device.h"
-+#include "xe_device_types.h"
-+#include "xe_drv.h"
-+#include "xe_mmio.h"
-+#include "xe_platform_types.h"
-+#include "xe_pm.h"
-+#include "xe_vsec.h"
-+
-+#define SOC_BASE		0x280000
-+
-+#define BMG_PMT_BASE_OFFSET	0xDB000
-+#define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE_OFFSET)
-+
-+#define BMG_TELEMETRY_BASE_OFFSET	0xE0000
-+#define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
-+
-+#define BMG_DEVICE_ID 0xE2F8
-+
-+#define SG_REMAP_INDEX1		XE_REG(SOC_BASE + 0x08)
-+#define SG_REMAP_BITS		GENMASK(31, 24)
-+
-+static struct intel_vsec_header bmg_telemetry = {
-+	.length = 0x10,
-+	.id = VSEC_ID_TELEMETRY,
-+	.num_entries = 2,
-+	.entry_size = 4,
-+	.tbir = 0,
-+	.offset = BMG_DISCOVERY_OFFSET,
-+};
-+
-+static struct intel_vsec_header *bmg_capabilities[] = {
-+	&bmg_telemetry,
-+	NULL
-+};
-+
-+enum xe_vsec {
-+	XE_VSEC_UNKNOWN = 0,
-+	XE_VSEC_BMG,
-+};
-+
-+static struct intel_vsec_platform_info xe_vsec_info[] = {
-+	[XE_VSEC_BMG] = {
-+		.caps = VSEC_CAP_TELEMETRY,
-+		.headers = bmg_capabilities,
-+	},
-+	{ }
-+};
-+
-+/*
-+ * The GUID will have the following bits to decode:
-+ *
-+ * X(4bits) - {Telemetry space iteration number (0,1,..)}
-+ * X(4bits) - Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
-+ * X(4bits) - SOC_SKU
-+ * XXXX(16bits)– Device ID – changes for each down bin SKU’s
-+ * X(2bits) - Capability Type (Crashlog-0, Telemetry Aggregator-1, Watcher-2)
-+ * X(2bits) - Record-ID (0-PUNIT, 1-OOBMSM_0, 2-OOBMSM_1)
-+ */
-+#define GUID_TELEM_ITERATION	GENMASK(3, 0)
-+#define GUID_SEGMENT		GENMASK(7, 4)
-+#define GUID_SOC_SKU		GENMASK(11, 8)
-+#define GUID_DEVICE_ID		GENMASK(27, 12)
-+#define GUID_CAP_TYPE		GENMASK(29, 28)
-+#define GUID_RECORD_ID		GENMASK(31, 30)
-+
-+#define PUNIT_TELEMETRY_OFFSET		0x0200
-+#define PUNIT_WATCHER_OFFSET		0x14A0
-+#define OOBMSM_0_WATCHER_OFFSET		0x18D8
-+#define OOBMSM_1_TELEMETRY_OFFSET	0x1000
-+
-+enum record_id {
-+	PUNIT,
-+	OOBMSM_0,
-+	OOBMSM_1,
-+};
-+
-+enum capability {
-+	CRASHLOG,
-+	TELEMETRY,
-+	WATCHER,
-+};
-+
-+static int guid_decode(u32 guid, int *index, u32 *offset)
-+{
-+	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
-+	u32 cap_type  = FIELD_GET(GUID_CAP_TYPE, guid);
-+	u32 device_id = FIELD_GET(GUID_DEVICE_ID, guid);
-+
-+	if (device_id != BMG_DEVICE_ID)
-+		return -ENODEV;
-+
-+	if (cap_type > WATCHER)
-+		return -EINVAL;
-+
-+	*offset = 0;
-+
-+	if (cap_type == CRASHLOG) {
-+		*index = record_id == PUNIT ? 2 : 4;
-+		return 0;
-+	}
-+
-+	switch (record_id) {
-+	case PUNIT:
-+		*index = 0;
-+		if (cap_type == TELEMETRY)
-+			*offset = PUNIT_TELEMETRY_OFFSET;
-+		else
-+			*offset = PUNIT_WATCHER_OFFSET;
-+		break;
-+
-+	case OOBMSM_0:
-+		*index = 1;
-+		if (cap_type == WATCHER)
-+			*offset = OOBMSM_0_WATCHER_OFFSET;
-+		break;
-+
-+	case OOBMSM_1:
-+		*index = 1;
-+		if (cap_type == TELEMETRY)
-+			*offset = OOBMSM_1_TELEMETRY_OFFSET;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, u32 count)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
-+	u32 mem_region;
-+	u32 offset;
-+	int ret;
-+
-+	ret = guid_decode(guid, &mem_region, &offset);
-+	if (ret)
-+		return ret;
-+
-+	telem_addr += offset;
-+
-+	guard(mutex)(&xe->pmt.lock);
-+
-+	/* indicate that we are not at an appropriate power level */
-+	if (!xe_pm_runtime_get_if_active(xe))
-+		return -ENODATA;
-+
-+	/* set SoC re-mapper index register based on GUID memory region */
-+	xe_mmio_rmw32(xe->tiles[0].primary_gt, SG_REMAP_INDEX1, SG_REMAP_BITS,
-+		      FIELD_PREP(SG_REMAP_BITS, mem_region));
-+
-+	memcpy_fromio(data, telem_addr, count);
-+	xe_pm_runtime_put(xe);
-+
-+	return count;
-+}
-+
-+struct pmt_callbacks xe_pmt_cb = {
-+	.read_telem = xe_pmt_telem_read,
-+};
-+
-+static const int vsec_platforms[] = {
-+	[XE_BATTLEMAGE] = XE_VSEC_BMG,
-+};
-+
-+static enum xe_vsec get_platform_info(struct xe_device *xe)
-+{
-+	if (xe->info.platform > XE_BATTLEMAGE)
-+		return XE_VSEC_UNKNOWN;
-+
-+	return vsec_platforms[xe->info.platform];
-+}
-+
-+/**
-+ * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
-+ * interface
-+ * @xe: valid xe instance
-+ */
-+void xe_vsec_init(struct xe_device *xe)
-+{
-+	struct intel_vsec_platform_info *info;
-+	struct device *dev = xe->drm.dev;
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	enum xe_vsec platform;
-+
-+	platform = get_platform_info(xe);
-+	if (platform == XE_VSEC_UNKNOWN)
-+		return;
-+
-+	info = &xe_vsec_info[platform];
-+	if (!info->headers)
-+		return;
-+
-+	switch (platform) {
-+	case XE_VSEC_BMG:
-+		info->priv_data = &xe_pmt_cb;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	/*
-+	 * Register a VSEC. Cleanup is handled using device managed
-+	 * resources.
-+	 */
-+	intel_vsec_register(pdev, info);
-+}
-+MODULE_IMPORT_NS(INTEL_VSEC);
-diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
-new file mode 100644
-index 000000000000..3fd29a21cad6
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_vsec.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright © 2022 - 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_VSEC_H_
-+#define _XE_VSEC_H_
-+
-+struct xe_device;
-+
-+void xe_vsec_init(struct xe_device *xe);
-+
-+#endif
--- 
-2.44.0
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-137348v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-137348v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-pvc-2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-137348v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_queue_property@invalid-property:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
+    - bat-atsm-2:         [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
+    - bat-adlp-vf:        [PASS][5] -> [FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html
+    - bat-lnl-1:          [PASS][7] -> [FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
+    - bat-adlp-7:         [PASS][9] -> [FAIL][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html
+    - bat-bmg-1:          [PASS][11] -> [FAIL][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
+    - bat-lnl-2:          [PASS][13] -> [FAIL][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_exec_queue_property@invalid-property:
+    - {bat-bmg-2}:        [PASS][15] -> [FAIL][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-137348v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][17] -> [DMESG-FAIL][18] ([Intel XE#324])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7970 -> IGT_7971
+  * Linux: xe-1771-605ddd8291e28723254dccbc74fc93c32c274def -> xe-pw-137348v1
+
+  IGT_7970: 496e86347f8607d032ed59cdad5eb018e5be6933 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7971: 54f99657bd69295e49e1ab376fde82d3135bba7a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1771-605ddd8291e28723254dccbc74fc93c32c274def: 605ddd8291e28723254dccbc74fc93c32c274def
+  xe-pw-137348v1: 137348v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/index.html
+
+--===============5874443605328847686==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Use resevered copy engine for user binds on faulting devices</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137348/">https://patchwork.freedesktop.org/series/137348/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1771-605ddd8291e28723254dccbc74fc93c32c274def_BAT -&gt; xe-pw-137348v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-137348v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-137348v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-pvc-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-137348v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_exec_queue_property@invalid-property:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-adlp-vf/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_exec_queue_property@invalid-property:<ul>
+<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-137348v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1771-605ddd8291e28723254dccbc74fc93c32c274def/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137348v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7970 -&gt; IGT_7971</li>
+<li>Linux: xe-1771-605ddd8291e28723254dccbc74fc93c32c274def -&gt; xe-pw-137348v1</li>
+</ul>
+<p>IGT_7970: 496e86347f8607d032ed59cdad5eb018e5be6933 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7971: 54f99657bd69295e49e1ab376fde82d3135bba7a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1771-605ddd8291e28723254dccbc74fc93c32c274def: 605ddd8291e28723254dccbc74fc93c32c274def<br />
+  xe-pw-137348v1: 137348v1</p>
+
+</body>
+</html>
+
+--===============5874443605328847686==--
