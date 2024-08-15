@@ -4,131 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AF11C3DA7F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 08:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC2B0C3DA7F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 10:55:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4709510E2C7;
-	Thu, 15 Aug 2024 08:08:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A81110E0E1;
+	Thu, 15 Aug 2024 10:55:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="qyY6m+mZ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="JU+NCRiY";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="qyY6m+mZ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="JU+NCRiY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LQK6GDSS";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBE6210E2AD;
- Thu, 15 Aug 2024 08:08:52 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 096F71FD0C;
- Thu, 15 Aug 2024 08:08:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723709331; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=zgZS0NjeyOA+ea7ZkIG/RNNxnCewKPdL8qis/AZ7ovc=;
- b=qyY6m+mZYfWfYd4VEPHojRUyQQz34CbBliEht7gr8kN6cgpMAAB80g5jv1STPI54u6kac9
- XtM0++VgOvgg5C+nkjmHZcO/ds6eg9ne3CdL9KdSyJEjLMh5G0VdaV/KjMsELzz3UQsMUD
- sF/AG1z/Ul8YnaUn2UOmQvhcPD/h+Zk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723709331;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=zgZS0NjeyOA+ea7ZkIG/RNNxnCewKPdL8qis/AZ7ovc=;
- b=JU+NCRiYtMqQaKPFRPGkv48HL0mN+J3qgk3JsuBoDhLbN9Hu+i0YsDERx2mjNOgx5n4+CU
- iQ6TLG4N1MXwonCw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723709331; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=zgZS0NjeyOA+ea7ZkIG/RNNxnCewKPdL8qis/AZ7ovc=;
- b=qyY6m+mZYfWfYd4VEPHojRUyQQz34CbBliEht7gr8kN6cgpMAAB80g5jv1STPI54u6kac9
- XtM0++VgOvgg5C+nkjmHZcO/ds6eg9ne3CdL9KdSyJEjLMh5G0VdaV/KjMsELzz3UQsMUD
- sF/AG1z/Ul8YnaUn2UOmQvhcPD/h+Zk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723709331;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=zgZS0NjeyOA+ea7ZkIG/RNNxnCewKPdL8qis/AZ7ovc=;
- b=JU+NCRiYtMqQaKPFRPGkv48HL0mN+J3qgk3JsuBoDhLbN9Hu+i0YsDERx2mjNOgx5n4+CU
- iQ6TLG4N1MXwonCw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A60831342D;
- Thu, 15 Aug 2024 08:08:50 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id s5NBJ5K3vWbceAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 15 Aug 2024 08:08:50 +0000
-Message-ID: <b98486a9-2f86-4cab-8634-f816fc7499be@suse.de>
-Date: Thu, 15 Aug 2024 10:08:50 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5325710E0E1
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 10:55:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723719327; x=1755255327;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=2x6zBr5jJ3GyCSHraVXNQnEEAlh9ac9N4pdGaGsxLHA=;
+ b=LQK6GDSSfijz9zdRoDpFlC46BNSTVMiS1jYc2r2Khp8HvVr3qAnTZhzf
+ q/AqSwI4bWBz4TsiaGI4E1NXhlWvQevhCeyv3yX5IJnntR0QSSwzOyU7p
+ 9ZTgYlIL+iRdbODhf9nY8dFOHEMak4qOgy3umWol7TUQCwVcQgs9M7HwJ
+ lpvivp835DB2J0lyaNL5ce522sdzKwTjh1oa/n+ND05+/JwRCqLUqPQol
+ U1vouNhNJSLykVm5+1yiy1wn8hnfkErJBangJgSVUurfsKGdXO0W660nV
+ RvFq5FAdiccMudF96gERPQWYVOaRhTVmzoYZRx+8nsQZ2LSnJx5VmNy6K w==;
+X-CSE-ConnectionGUID: q9foqjj0SMSg/tMD94veew==
+X-CSE-MsgGUID: kBdUsMHvRfWtCWrg1ZA8jQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="33119778"
+X-IronPort-AV: E=Sophos;i="6.10,148,1719903600"; d="scan'208";a="33119778"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 03:55:26 -0700
+X-CSE-ConnectionGUID: IPjiwhZPTVKdPnUOxlYOhw==
+X-CSE-MsgGUID: x1z5Y/AZTj2S/P0ZIjMueA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,148,1719903600"; d="scan'208";a="59345652"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 03:55:23 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1seY8X-0000000FWiW-1DYH; Thu, 15 Aug 2024 13:55:21 +0300
+Date: Thu, 15 Aug 2024 13:55:20 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
+ "david.e.box@linux.intel.com" <david.e.box@linux.intel.com>,
+ "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>,
+ "hdegoede@redhat.com" <hdegoede@redhat.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v11] drm/xe/vsec: Support BMG devices
+Message-ID: <Zr3emGSJGy7Y2VAB@smile.fi.intel.com>
+References: <20240812200422.444078-1-michael.j.ruhl@intel.com>
+ <Zrtpd_WwougszltH@smile.fi.intel.com>
+ <IA1PR11MB6418FAAD8AC5104D6F8FDE33C1862@IA1PR11MB6418.namprd11.prod.outlook.com>
+ <Zry3hOBb_fHbvlIN@smile.fi.intel.com>
+ <IA1PR11MB64182DD2B8D803A48D592D62C1872@IA1PR11MB6418.namprd11.prod.outlook.com>
+ <Zrz6V7iLFtnunMju@smile.fi.intel.com>
+ <IA1PR11MB641878A813B6D2EC044BD28FC1872@IA1PR11MB6418.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] drm/tilcdc: Use backlight power constants
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jyri Sarha <jyri.sarha@iki.fi>
-References: <20240731122311.1143153-1-tzimmermann@suse.de>
- <20240731122311.1143153-10-tzimmermann@suse.de>
- <379bdbb3-9a31-4d3e-9c84-e25abb12de58@suse.de>
- <fb1eba0c-6655-4938-b518-33710495234b@ideasonboard.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <fb1eba0c-6655-4938-b518-33710495234b@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[ideasonboard.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- RCPT_COUNT_SEVEN(0.00)[10]; MIME_TRACE(0.00)[0:+];
- MID_RHS_MATCH_FROM(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, suse.de:email,
- suse.de:mid]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <IA1PR11MB641878A813B6D2EC044BD28FC1872@IA1PR11MB6418.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,63 +82,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Aug 14, 2024 at 08:47:28PM +0000, Ruhl, Michael J wrote:
+> > -----Original Message-----
+> > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > Sent: Wednesday, August 14, 2024 2:41 PM
+> > On Wed, Aug 14, 2024 at 04:49:05PM +0000, Ruhl, Michael J wrote:
+> > > > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > > Sent: Wednesday, August 14, 2024 9:56 AM On Tue, Aug 13, 2024 at
+> > > > 02:29:27PM +0000, Ruhl, Michael J wrote:
+> > > > > > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > > > > Sent: Tuesday, August 13, 2024 10:11 AM On Mon, Aug 12, 2024 at
+> > > > > > 04:04:22PM -0400, Michael J. Ruhl wrote:
 
+...
 
-Am 15.08.24 um 10:07 schrieb Tomi Valkeinen:
-> Hi,
->
-> On 15/08/2024 10:59, Thomas Zimmermann wrote:
->> Ping. This patch still needs an ack.
->>
->> Am 31.07.24 um 14:17 schrieb Thomas Zimmermann:
->>> Replace FB_BLANK_ constants with their counterparts from the
->>> backlight subsystem. The values are identical, so there's no
->>> change in functionality or semantics.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> Cc: Jyri Sarha <jyri.sarha@iki.fi>
->>> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->>> ---
->>>   drivers/gpu/drm/tilcdc/tilcdc_panel.c | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_panel.c 
->>> b/drivers/gpu/drm/ tilcdc/tilcdc_panel.c
->>> index 68093d6b6b16..5f2d1b6f9ee9 100644
->>> --- a/drivers/gpu/drm/tilcdc/tilcdc_panel.c
->>> +++ b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
->>> @@ -49,7 +49,7 @@ static void panel_encoder_dpms(struct drm_encoder 
->>> *encoder, int mode)
->>>       if (backlight) {
->>>           backlight->props.power = mode == DRM_MODE_DPMS_ON ?
->>> -                     FB_BLANK_UNBLANK : FB_BLANK_POWERDOWN;
->>> +                     BACKLIGHT_POWER_ON : BACKLIGHT_POWER_OFF;
->>>           backlight_update_status(backlight);
->>>       }
->>
->
-> Jyri acked it a few weeks ago. But in addition:
+> > > > > > > +#define BMG_DEVICE_ID 0xE2F8
+> > > > > >
+> > > > > > Is this defined in any specification? I mean is the format the
+> > > > > > same as PCI device ID?
+> > > > >
+> > > > > I think that this is defined in BMG PMT yaml definition.  It is
+> > > > > provide in the PMT discovery data, so it is defined by the specific device.
+> > > >
+> > > > Is there any documentation / specification about this?
+> > > > Can it be UUID or 64-bit number or other format?
+> > > > _Where_ is this being specified?
+> > >
+> > > The GUID is defined by the YAML file associated with the PMT device.
+> > > In this case 16 bits are a device ID.
+> > >
+> > > From the cover letter of the PMT patch set (Intel Platform Monitoring
+> > Technology):
+> > >
+> > > -
+> > > The GUID uniquely identifies the register space of any monitor data
+> > > exposed by the capability. The GUID is associated with an XML file
+> > > from the vendor that describes the mapping of the register space along
+> > > with properties of the monitor data.
+> > > --
+> > >
+> > > I was told that this was the value to use for this specific device/feature.
+> > >
+> > > It is specified internally.  Not sure if there is any "documentation"
+> > > available beyond that.
+> > 
+> > The YAML is *not* the specification. Do we have one that I can access to?
+> > And I asked not about GUID, I asked about ID.
+> 
+> Andy,
+> 
+> For the BMG device, the device ID is defined as part PMT GUID, and 
+> will be defined by the BMG PMT YAML specification.
+> 
+> So this is a vendor defined value.
 
-Oh, I didn't see that. Sorry.
+Okay, thank you for clarification.
 
->
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-
-Thanks
-
-Best regards
-Thomas
-
->
->  Tomi
->
+> Need to do some testing, and then I will re-post the patch.
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+With Best Regards,
+Andy Shevchenko
+
 
