@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC93C5320D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9A64C52D7F
 	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 23:06:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8262210E558;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8388E10E559;
 	Thu, 15 Aug 2024 23:06:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AL6bljkq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k684+7PJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 059B410E551
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 23:05:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 693E910E558
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 23:05:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723763158; x=1755299158;
+ t=1723763159; x=1755299159;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JuRTnMHHnjeCA0io1EhMRhWICOcL6MiCjQI67f6rG2E=;
- b=AL6bljkq6WRtEoXB6K+/IvZf7w5099o/0LuLE27MuW0L3qHRNPpCHmWK
- w7eGioq+E6dsMIAYH8DggfKti7VUWPR/LnN77go2UGnTEk2wYzR0Z+te6
- 5SYHwQ8YgXDkomsxubn7CRU9DAv+pPFQeA1+AUQch90iWZgtSiiJ40qJc
- 49+41X9O90lzPYq8SSv2deAKo7x5ixNR1IHSNoZXVgWw4CMfKk9p2Ffho
- pK0q5/cHX89AC6QL2e6IgSqVdU82qA5+UfgKvuOFVRaTJCrB4DS65g9CM
- jmu7he4zs+buyCI5p3lgSfMD1MqE/L/ZnfMW8rdcvPAULe5hHUdxuBGt8 g==;
-X-CSE-ConnectionGUID: iY5++fnvShiiHBkOVy3vVg==
-X-CSE-MsgGUID: q+QgjhpZTPaC67K0ebjBVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="21687155"
-X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="21687155"
+ bh=/e9wa6ZxwaEurqTjpz3rsvzS8M2Yme1iozFs+89ch4k=;
+ b=k684+7PJ66H8eOh3TnWxnr8i7lHpBiEL3FyUk4pv+Z84rSJWFqthsjsR
+ j/+BdmP+blL722r95fzC+VUwjJ+LaLNiLur2MUPxdWjKCMvDG2G16Zn0S
+ GjAI07P4SMtEZjocu5WXRXZ/PcQ+bS/bQghQScYxhB91/g3SEhcKt7A6T
+ hzrEH3NZBR9mIDJ1BX+YwiOyAhixqT/CN0y6ohvVKPhy0sYM7sxJhF43N
+ o6i1431Mt1xqGjXuHUdUprzNCn66Bj6cKSRAAs4iHB+uStLQxlKcMy7Mc
+ WfDszBTa2F4SzsCgyOWRmHT9rXCOl1PR1rL/vvwZPBWmshJB19L946b/t Q==;
+X-CSE-ConnectionGUID: XiGBCC+ZSoeh8WieiVni3A==
+X-CSE-MsgGUID: 1UHF21XsSjmwX/+Ikxlh4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="21687156"
+X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="21687156"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Aug 2024 16:05:58 -0700
-X-CSE-ConnectionGUID: +k5IV8COSlGS/V8a/5S1+A==
-X-CSE-MsgGUID: dCiMUq6ZQICAqNnUyIbwhQ==
+X-CSE-ConnectionGUID: cgVhoDYgQYeWHNF3ixGcPw==
+X-CSE-MsgGUID: jDVejgREQhS6wefp0M58RA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="63686130"
+X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="63686118"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Aug 2024 16:05:55 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [CI 3/3] drm/xe: Fix tile fini sequence
-Date: Thu, 15 Aug 2024 16:05:41 -0700
-Message-ID: <20240815230541.3828206-3-lucas.demarchi@intel.com>
+Subject: [CI 2/3] drm/xe/uc: Use devm to register cleanup that includes
+ exec_queues
+Date: Thu, 15 Aug 2024 16:05:40 -0700
+Message-ID: <20240815230541.3828206-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240815230541.3828206-1-lucas.demarchi@intel.com>
 References: <20240815230541.3828206-1-lucas.demarchi@intel.com>
@@ -68,46 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Only set tile->mmio.regs to NULL if not the root tile in tile_fini. The
-root tile mmio regs is setup ealier in MMIO init thus it should be set
-to NULL in mmio_fini.
+Exec_queue cleanup requires HW access, so we need to use devm instead of
+drmm for it.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gsc.c        | 4 ++--
+ drivers/gpu/drm/xe/xe_guc_submit.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index bdcc7282385c4..3fd462fda6255 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -29,7 +29,7 @@ static void tiles_fini(void *arg)
- 	struct xe_tile *tile;
- 	int id;
- 
--	for_each_tile(tile, xe, id)
-+	for_each_remote_tile(tile, xe, id)
- 		tile->mmio.regs = NULL;
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 8a9b3c50a588e..8a137cb833186 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -437,7 +437,7 @@ int xe_gsc_init(struct xe_gsc *gsc)
+ 	return ret;
  }
  
-@@ -146,9 +146,11 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
- static void mmio_fini(void *arg)
+-static void free_resources(struct drm_device *drm, void *arg)
++static void free_resources(void *arg)
  {
- 	struct xe_device *xe = arg;
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+ 	struct xe_gsc *gsc = arg;
  
- 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
- 	xe->mmio.regs = NULL;
-+	root_tile->mmio.regs = NULL;
+@@ -495,7 +495,7 @@ int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc)
+ 	gsc->q = q;
+ 	gsc->wq = wq;
+ 
+-	err = drmm_add_action_or_reset(&xe->drm, free_resources, gsc);
++	err = devm_add_action_or_reset(xe->drm.dev, free_resources, gsc);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index da63be550d4d9..be5b9d8cfa5fa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -284,7 +284,7 @@ static void guc_submit_fini(struct drm_device *drm, void *arg)
+ 	free_submit_wq(guc);
  }
  
- int xe_mmio_init(struct xe_device *xe)
+-static void guc_submit_wedged_fini(struct drm_device *drm, void *arg)
++static void guc_submit_wedged_fini(void *arg)
+ {
+ 	struct xe_guc *guc = arg;
+ 	struct xe_exec_queue *q;
+@@ -877,7 +877,7 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+ 
+ 	xe_gt_assert(guc_to_gt(guc), guc_to_xe(guc)->wedged.mode);
+ 
+-	err = drmm_add_action_or_reset(&guc_to_xe(guc)->drm,
++	err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
+ 				       guc_submit_wedged_fini, guc);
+ 	if (err) {
+ 		drm_err(&xe->drm, "Failed to register xe_guc_submit clean-up on wedged.mode=2. Although device is wedged.\n");
 -- 
 2.43.0
 
