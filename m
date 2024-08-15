@@ -4,80 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02E15C3DA4A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Aug 2024 23:38:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45182C531DC
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 01:37:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F6FB10E042;
-	Wed, 14 Aug 2024 23:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED48B10E057;
+	Thu, 15 Aug 2024 01:37:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="Dz0945fL";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="WS0lNQpV";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C56810E042;
- Wed, 14 Aug 2024 23:38:23 +0000 (UTC)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47ENX68k026141;
- Wed, 14 Aug 2024 23:38:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- 3SuX4NbGIm3CicMr0EOOf3ER4u0+E3FHahtNk7oLMLQ=; b=Dz0945fLlkdJpwQg
- kLxizqFIX7tPUX5Z/fqc/Mm6TnsFdiCM8JOs6gAYVzISNIORsqOmfKxvFzyW40C/
- /B3lTs2pc1YZBI3gdT3zE3RIJ8IF7iHgZxZU3m+srMzI+CDEc+m15rT11E6wP3Pp
- WPwbMcXX4kDpqv6q5m97T1s47NeWnaSLHPVA1IBICKos6anHmci8BI8dAEW5HG6H
- l5ylN0L1N6ttsNLi0LOl7/rxc2VEShtQ2UG0dch9JQIflmFtIH0/Fg7cS3PbX7zG
- mAsFNs+AFXnLhUQoISvARMaXslV3xwHX9d7w540zzWeMY8OLk4HRIVSG9kz4VhqE
- kE1gcQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x18y4uyx-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 14 Aug 2024 23:38:15 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47ENcEUX026723
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 14 Aug 2024 23:38:14 GMT
-Received: from [10.134.71.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 14 Aug
- 2024 16:38:14 -0700
-Message-ID: <524c6799-1056-49da-a888-12b6f8e37e25@quicinc.com>
-Date: Wed, 14 Aug 2024 16:38:06 -0700
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93F4F10E057;
+ Thu, 15 Aug 2024 01:37:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1723685840;
+ bh=Iqpxovj7PB0EvtI0YGVxLgYHKaxYHdLqVH/H4Kykwmo=;
+ h=Date:From:To:Cc:Subject:From;
+ b=WS0lNQpVo3bX/JQEllwA6kB8ERNqbj3NTTd0F/jNdeTHpfZ4EtN/BwRJZkPjTe7xO
+ ebE3ULO6mEArRtb5C1AnDiOFcxxK9H1gwNrdNGFZrJ6c5yLfmM3zSmGgtaJGgO5NNF
+ gkb8ybUs/kpOoRIfi/9ryNrPWq911WLEgUwE0MaQ3fLHy3WRr/FxPCyQxuCEjYiUlr
+ MFhOdcCG/DMgHsoq8YayLtPZ/ino3j5Z+LppldbDzfIkpACZw6/nqi021etiaHtkTo
+ bHQDsvrg53QfpDEHy4OjbYWj62Xz1jL/oXABVGyEwt2LfAuEdURLGf5vP0cP+kMcca
+ 52Jmc1EfwikjA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4WknmZ4z5Qz4wnx;
+ Thu, 15 Aug 2024 11:37:18 +1000 (AEST)
+Date: Thu, 15 Aug 2024 11:37:17 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, DRM XE List
+ <intel-xe@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Subject: linux-next: manual merge of the drm-xe tree with the drm-intel tree
+Message-ID: <20240815113717.1c81c44c@canb.auug.org.au>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/msm: clean up fault injection usage
-To: Jani Nikula <jani.nikula@intel.com>, <linux-kernel@vger.kernel.org>
-CC: <intel-xe@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <akinobu.mita@gmail.com>,
- <akpm@linux-foundation.org>, <lucas.demarchi@intel.com>,
- <rodrigo.vivi@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <robdclark@gmail.com>, <dmitry.baryshkov@linaro.org>
-References: <20240813121237.2382534-1-jani.nikula@intel.com>
- <20240813121237.2382534-2-jani.nikula@intel.com>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20240813121237.2382534-2-jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: 57f0nh7_NZ4STpljdyMhwAVDcmwTsuYu
-X-Proofpoint-ORIG-GUID: 57f0nh7_NZ4STpljdyMhwAVDcmwTsuYu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-14_19,2024-08-13_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxlogscore=713
- suspectscore=0 phishscore=0 malwarescore=0 mlxscore=0 spamscore=0
- lowpriorityscore=0 impostorscore=0 clxscore=1011 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408140165
+Content-Type: multipart/signed; boundary="Sig_/5wpLM/KelcHtD=jYJFI9fGn";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,23 +62,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--Sig_/5wpLM/KelcHtD=jYJFI9fGn
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
+Hi all,
 
-On 8/13/2024 5:12 AM, Jani Nikula wrote:
-> With the proper stubs in place in linux/fault-inject.h, we can remove a
-> bunch of conditional compilation for CONFIG_FAULT_INJECTION=n.
-> 
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: Akinobu Mita <akinobu.mita@gmail.com>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->   drivers/gpu/drm/msm/msm_debugfs.c | 2 --
->   drivers/gpu/drm/msm/msm_drv.c     | 2 --
->   drivers/gpu/drm/msm/msm_drv.h     | 4 ----
->   3 files changed, 8 deletions(-)
-> 
+Today's linux-next merge of the drm-xe tree got a conflict in:
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+  drivers/gpu/drm/xe/display/xe_display.c
+
+between commit:
+
+  769b081c18b9 ("drm/i915/opregion: convert to struct intel_display")
+
+from the drm-intel tree and commit:
+
+  1eda95cba9df ("drm/xe: Rename enable_display module param")
+
+from the drm-xe tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/xe/display/xe_display.c
+index 0e4adde84cb2,56a940b39412..000000000000
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@@ -127,9 -126,8 +127,9 @@@ int xe_display_init_nommio(struct xe_de
+  static void xe_display_fini_noirq(void *arg)
+  {
+  	struct xe_device *xe =3D arg;
+ +	struct intel_display *display =3D &xe->display;
+ =20
+- 	if (!xe->info.enable_display)
++ 	if (!xe->info.probe_display)
+  		return;
+ =20
+  	intel_display_driver_remove_noirq(xe);
+@@@ -138,10 -135,9 +138,10 @@@
+ =20
+  int xe_display_init_noirq(struct xe_device *xe)
+  {
+ +	struct intel_display *display =3D &xe->display;
+  	int err;
+ =20
+- 	if (!xe->info.enable_display)
++ 	if (!xe->info.probe_display)
+  		return 0;
+ =20
+  	intel_display_driver_early_probe(xe);
+@@@ -252,9 -246,7 +252,9 @@@ void xe_display_irq_handler(struct xe_d
+ =20
+  void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
+  {
+ +	struct intel_display *display =3D &xe->display;
+ +
+- 	if (!xe->info.enable_display)
++ 	if (!xe->info.probe_display)
+  		return;
+ =20
+  	if (gu_misc_iir & GU_MISC_GSE)
+@@@ -289,9 -296,8 +289,9 @@@ static bool suspend_to_idle(void
+ =20
+  void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+  {
+ +	struct intel_display *display =3D &xe->display;
+  	bool s2idle =3D suspend_to_idle();
+- 	if (!xe->info.enable_display)
++ 	if (!xe->info.probe_display)
+  		return;
+ =20
+  	/*
+@@@ -341,9 -347,7 +341,9 @@@ void xe_display_pm_resume_early(struct=20
+ =20
+  void xe_display_pm_resume(struct xe_device *xe, bool runtime)
+  {
+ +	struct intel_display *display =3D &xe->display;
+ +
+- 	if (!xe->info.enable_display)
++ 	if (!xe->info.probe_display)
+  		return;
+ =20
+  	intel_dmc_resume(xe);
+
+--Sig_/5wpLM/KelcHtD=jYJFI9fGn
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAma9W80ACgkQAVBC80lX
+0Gwu+wf+KA7E3N8TtTf07r0R92Zt1KrviWbgyWuZZEXV1kAuNoDZfczaxue4HDkB
+XNr+Vs2oER5b4MLA221DW/HzhjSV72ApxvsIbfsMb2EfQsbjBCTGbQOiN94RjaPp
+ARJ7iSorlsk7GWfUnbmFyrRoRW/6ZDnK4rIzHUS1QzP3TUVl2IJfpzFt+HPGkuR4
+AKIzY3bzj3yxbcKGMAtjbW5I1GDbWNm9V8n6YNO98yLZ7sDkmgKUacV6lyhnTVzu
+0seJlLSvPofLeHjCwMH11WzhxWLLbM1outKnJluwIhPiCWwNrqkuYGQ+WO4PiwbW
+A6J9tmw2izPa07CcNXVCfDUKBnBOxQ==
+=Xf7C
+-----END PGP SIGNATURE-----
+
+--Sig_/5wpLM/KelcHtD=jYJFI9fGn--
