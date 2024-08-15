@@ -4,166 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAEB5C3DA7F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 18:27:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99CCFC3DA7F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 18:27:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5214810E4E7;
-	Thu, 15 Aug 2024 18:27:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6204410E4E8;
+	Thu, 15 Aug 2024 18:27:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d2gjcULC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cl8MkDlC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD9C310E4E7
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 18:27:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA4DF10E4E8
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 18:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723746458; x=1755282458;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=pTcxyagO/7OSumvHvamtbYUlLCYR4UAB1KlFMnc5yIc=;
- b=d2gjcULCtDXXhnJamsLPkwZS7W6iHDlB0OeYSiSvrt2TUjrJlVtLzhLE
- YDXQx3daxXxJRRKm6L15mUTcgGKgRKITo9AGj0+DeKH5y71VNBZEJV1e0
- 9bDHFXa32uXmNDJwjOfR9e8vNdFXYuOcW8R1QfqNkVopkX4xzrJqcbDn7
- EAaOZ+eR+fJ0uN3L6Bq1068dokje8ROOwbqvYkSKQjZMXCc7yfG+31gsW
- 6k+IVZ6OEZXh5TWmk5kRUfaj2wKt0uG9EgtUJtyAS7Nyw6ULUfNBG/mZs
- /XNwyIM/5Iw0S56mPBMCGoMrBaO+K7fMDYhqR72lH1MpQf1M3sYWLSDME g==;
-X-CSE-ConnectionGUID: yIU85JJ3R3yF0ow2qTaZ5g==
-X-CSE-MsgGUID: Yg4+qYlFQGGF26tzlD/nRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="21572433"
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="21572433"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2024 11:27:37 -0700
-X-CSE-ConnectionGUID: w5qzNqGmTXK2y7fbhT+beg==
-X-CSE-MsgGUID: L2G1uv2sS3qU4YnyyaLP2Q==
+ t=1723746466; x=1755282466;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=/ey4F8XxmMr5gCbwN/fYhG8Y30SwuHscH7jqcwtKH1M=;
+ b=Cl8MkDlCjNUyQ6f9TrNa7C3IHQskY4yAC4umNXdFr3ZPgo7RJMdx1B8P
+ V6JrAadFrr0kx1ENiSlRG53ECk3m+2KCoCVTkTzTgFStrBZ3LqbGsTy9w
+ FuvwiUpmAh7uio4CZw2E/BAGGV2rg+2VpIjwm9V6vG9WhwMUcRjDoPNym
+ xbtaZ/6QXzXpyKjj4jowYWrn8ItDtGWii48r2rma5lpi+ufqg0ENJZuuK
+ rlN7+0cdZ2MCQk7flrUL+hyIAxZR9RSj0an1qyo9zFtdIdLgB+ZzcyB/U
+ 0q2hTv9STW2SrPnGxJcPxH8MwnKd9SXZJdpu0tCE2CN4QhHvWRjqnhQuo w==;
+X-CSE-ConnectionGUID: cAwv4jrZQN+RWlvWj5Nqaw==
+X-CSE-MsgGUID: CI9vb18VRy6EgmUHnAv+hw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="44541290"
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="44541290"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 11:27:46 -0700
+X-CSE-ConnectionGUID: CYmYJf1cTguQR8QM7i3g/w==
+X-CSE-MsgGUID: mH7GDLujQSmxZC+i846JvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="59594389"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Aug 2024 11:27:37 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="59997383"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Aug 2024 11:27:45 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 15 Aug 2024 11:27:37 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 15 Aug 2024 11:27:44 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 15 Aug 2024 11:27:36 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 11:27:36 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 11:27:44 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.45) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 15 Aug 2024 11:27:36 -0700
+ 15.1.2507.39; Thu, 15 Aug 2024 11:27:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pEX3qehgKXWXoQ+uS4hzFdRkaj3KcQbAvhN5mx6fQBCR2wLtvCV7EGbgn9fZCn7sZoZS8T7F1VnuIHvbMeTfYY9qK3I1tRfNuWbErGiIgAck7sDWhpZR11xR9mQyQ9sXj2DT7LAoi8MsBEPMGjnV9lWtrSzFnUfOua9qKPngjFFb5yHBcwJaztT00oCx1EClIbq4jdChXNUng1dRewCuiFHICR2j4rpZTIqQL3G+6mmSSq0Y8S6dj/RBLYwLvzBELr7neGS6Zq6oAkF1OdTNKvnx0KdNW86CkQ8IASHBuP0nWxDqmoioURUtCntaFhLDyljUdJV8iIUtypCKtABtdQ==
+ b=H3wzjg/tUYG8UN/8IlnZQmzPb6aDAfsD/lgjhdIlhs2bpSnf+PEKcTxaqrob3EX/jmUrPWawu+7a45c+OEr3MbuYB6SlkMjWPwzaqavhBizjWMuAbcA/J0IGckiCxgKwaUigN6j2iSshzNH7iqXeqaoGcTS25pOAtfNjRmSY6HjaAa7/kuq9+oCyjVcDPI4ORxx5rz0Yid/LLnx3U+kuIDoWIBcL5zAVBjE3qK7DGHP934+HqhUM42OOcXVvR0sHxTRVpbO3bwX7u54kwiG831PSfndsdErYlV2vf/53UniNdqPGeu4UjAgxAlyoNSEQ/ea92NxUHcZjdtyjwWM0JA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FEgmagXKtuy+nHQNw8vg6uF+Xx7fMvwq/v+9KZZlU2M=;
- b=w6PBQeRVOZbsOfdZIit2lYjfnPeiGNkyOIbJKyjJ6BSlhN+hw2m/tapKV9rAYjzur32HHV/X/Z4pNynLxLIPUpkM7/uJ+EGc8f4s+nNP1GckvBQxn7mNUTvauY1f2yhmwwndjTfzP/oxysSzs1yWHZ5fwVAg86fT4Tkttf3NjtqOYKu5TpJFxG8BQZ/5bzb6V+5vDjuZBnQ+9yV3+XU8OmZt7AugeC7zYYnRLdKiQy3C8KGShP9PGrQkzKNNAatd8z4j/FfdiOJ7NXFw5L8Qn5RhYfr8Auk6KLh+uOjaOeEyTXCDfO/EsVzGDKWAbSE+o0OrHW8pnVZ4nLcWTKkj1A==
+ bh=JWtjo70FKIld8hdFLYrzE5aR92ZNTJuLTa/TrIzk+Po=;
+ b=xTJyE0vOgyIyBoqvLJ7ZeC11O2iiytkeJvhXHmpbIFlBs+GxiUd1VJKbdO4zMiXfyJexOAmy7mH31v8w1eXjiQn0U5MBg3hPM8uOKpJmA4zcrry0SvXJMDTpdGtJI6WYTCJIHYg1Atrm+sj9Asci36fHHQCub1Dd2vUgVtH5dF/OThJ8slar3ypDTOZTUl+bX8Q5utCoZQFAh9u+IHChAV99zSlvUIBLR/+C948mx0aGPbm6zNaA7MV4349+xqMKJd0+Ifsd4tphNPc7m/PyB/NmzTJWalNZQHcGB0jAUWyrE6AS9i4BeS+zFSwwioi+COeG3YmGq/T1VeZ+UBoTJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by LV3PR11MB8578.namprd11.prod.outlook.com (2603:10b6:408:1b3::14)
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
+ by PH7PR11MB6955.namprd11.prod.outlook.com (2603:10b6:510:206::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.18; Thu, 15 Aug
- 2024 18:27:26 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7828.023; Thu, 15 Aug 2024
- 18:27:25 +0000
-Date: Thu, 15 Aug 2024 14:27:21 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <imre.deak@intel.com>,
- <arun.r.murthy@intel.com>
-Subject: Re: [PATCH] drm/xe/display: handle HPD polling in display runtime
- suspend/resume
-Message-ID: <Zr5IiefJuIR9tpzo@intel.com>
-References: <20240815172500.78479-1-vinod.govindapillai@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19; Thu, 15 Aug
+ 2024 18:27:40 +0000
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace%6]) with mapi id 15.20.7875.016; Thu, 15 Aug 2024
+ 18:27:40 +0000
+From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Roper, Matthew D" <matthew.d.roper@intel.com>, "Cavitt, Jonathan"
+ <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH 2/2] drm/xe/mcr: Try to derive dss_per_grp from hwconfig
+ attributes
+Thread-Topic: [PATCH 2/2] drm/xe/mcr: Try to derive dss_per_grp from hwconfig
+ attributes
+Thread-Index: AQHa7zhOGFEG3VeIs02PXUxG2JPXwbIolidg
+Date: Thu, 15 Aug 2024 18:27:40 +0000
+Message-ID: <CH0PR11MB544428E0C54FE77E54C76267E5802@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20240815172602.2729146-3-matthew.d.roper@intel.com>
+ <20240815172602.2729146-4-matthew.d.roper@intel.com>
+In-Reply-To: <20240815172602.2729146-4-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|PH7PR11MB6955:EE_
+x-ms-office365-filtering-correlation-id: c0df088f-bf59-446e-d202-08dcbd57f238
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?TduakGy9u2Ee92IaN4uIM0tj4sFvc1DJhkLa+3aoRlliOI03qCnBGkadcHMh?=
+ =?us-ascii?Q?lKtYOKcpXMgjr40WO2TPidThgOurbPlqv7grWeegostXYcCSuo8iv9kaMd6d?=
+ =?us-ascii?Q?d8Ih/N4EsGqJWnXWPdgsRjZV/ePDOUjU4hapl2acA/maW8p07snAtHlDdoWm?=
+ =?us-ascii?Q?epi9RMhtgCAh1XXNom5kqKrN25cCt76HUzJ/4I7z3SYgEiTfUYvaqLOtPevM?=
+ =?us-ascii?Q?R7/AJvfElZ95+V0I9SXMAE8OcK6GDMNNzJ3YbYr+PZwRCpebL47WBcnXpRvP?=
+ =?us-ascii?Q?/yBdOlSZrR5r8cHgrQUcl6EAmYc1RVnAV8eujC44oUBIFS0bqJLYvvrEZx4Z?=
+ =?us-ascii?Q?FSg//vf1ImdRpITBSKvqbUF7AnwYI6mlWiKcfVhdugAYNb3vStJmQ75xLhA/?=
+ =?us-ascii?Q?RivDkrFp9qmRO2phKFMpKbNxPW9TJpBywSaMNNsSwR1Can4FDH5zeZe0Tf+L?=
+ =?us-ascii?Q?orY/3G+ONBb/iQU2JJFY/4fxa8qugDrQLnlCQKPQmP9LQHVIrGsW0Juyh+JR?=
+ =?us-ascii?Q?Tzgw2cFK7foTTINFvVO7Br+OvDS6lQ4pLE3D8tyXZFdafo6c2sHNXf6JcDm9?=
+ =?us-ascii?Q?pzEl+53tzYr9ImcmG3M620hONTA8WuI/M2qWy/jpywo++2KHCi+iBIa0HItp?=
+ =?us-ascii?Q?84nQLKPQXQNyZvLRzb2N2AR+aJWfSHl3lHFl4ZBic2srpAQc2cnaIPbaNspU?=
+ =?us-ascii?Q?wnoT5PWhmCh6uhQ2B1KMHuVXm7NBaRPdyn+aFtYaS6G/Ty6dLNGK9Si6wo+J?=
+ =?us-ascii?Q?WyXiq4PffDDncTYHMNZC3C8CKxhWgqQjcBJLKrzkAsrshg4fQZ0+HTFDdfBj?=
+ =?us-ascii?Q?U/gC9RbGU4PTky0KkSuww+9gS6+uxSM1B9y0thrN96DcS/N1lX9mbev3+RMG?=
+ =?us-ascii?Q?x7VZirz9gXpzNsIx6M0JmaK5F9FVhMLipw29eIsO62NPdGmj1Ul34kWLGsG1?=
+ =?us-ascii?Q?R1KxnyQ4NFVwAlDnQ6xvyM/T+5IKalQYQO8YiO2bl67VfQ9/Wi38sT1e0YqR?=
+ =?us-ascii?Q?oECuqwajOp2tfePxygS9hKoK2cCuGLxwHC14DV6oNq7dpqjwqMfORyJ4lb1B?=
+ =?us-ascii?Q?t6MHDDOAGeoNgaOjKVok91JH+XbIC/M3pJcZ4VhqFeNTY5uOmjKwK6sI3EER?=
+ =?us-ascii?Q?bfncNgJ0M+VarSQRe2YhvRIZiQix8OaNT9OSbBNOXZ9YCWlylhL/fL3UB0ql?=
+ =?us-ascii?Q?zEfPWxJPzfNKgD61oXSM+0RmHFSnr2h95JkeqahCYW5Ot7LrKnOVj9PrVf0z?=
+ =?us-ascii?Q?IFuqWd8dUnCr3l4b3O/P222lff0uifjDqxfbyj1WEAf4zvTAvQeT8mT1NWGl?=
+ =?us-ascii?Q?kYLoOHbRMHeH20pVi9Bbn6K8Yu1nVNbK8VjTe5BEpxcy9C2fHpAaB0ZMfpwS?=
+ =?us-ascii?Q?6L2wGao8cK+3Ktd8o2cePyQ6EhM9YrZZnwGdOBdn+56gl5HtFA=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yQFO3IOFxXlKJoWE95dzH/ZY6YanJzrzJ786v7Ew7uT9Jq8OHetqN1KNE1z1?=
+ =?us-ascii?Q?r/iWAbsasMiJVgkz0SRwHNqk1hgSKRcL20fAA7LRBK333s1thN0/Kw4j/tQ/?=
+ =?us-ascii?Q?Vb5TmgaNVI0NuUtx1AXzOH4OjYHLaZFgTtaNf91zx/p9HnTljRxdGQJ8kdoy?=
+ =?us-ascii?Q?0MhpZXnEjswijlsnCPf9geAed2aeykcUUPlhnVtDKHAmpugLjjTUiFAdYiJv?=
+ =?us-ascii?Q?MkwUj0gH0Y7vmEEVXjUFRyVegp3WmGMNnUo9QtW2Tdfel791lX4yuAzbBEUl?=
+ =?us-ascii?Q?aSklht6y+UN+5Lwi/1C9mA4z/uR5q+RaVniS63IecqIy+GrMWDeNEogkdzmV?=
+ =?us-ascii?Q?xHtkmqDEYeWNIwhLg18z6kTAG6gwyw9lFqwKGJ1WSyYR+3stklppX6G3S//8?=
+ =?us-ascii?Q?PJYZNEAhT56tGnVok0iGhmkX5dS2qEtGgznC5Nnt3VuMeYLdyWveEMk+KvzR?=
+ =?us-ascii?Q?NpL2mC6x5xJMaFtACjG3IfV/IheCEhpQ7K0EgQoRX7F6kS83bv3mFCAQgzlT?=
+ =?us-ascii?Q?UVLedOaQkZ3+E6xzPaX7zq8QkheHb8/A7Tqb+rLfnd8nj0eHZINZG5hcXCZI?=
+ =?us-ascii?Q?hcNRLLW7EfduOiAcOZCYf+an6uLWC7LglTvecyY24Lt653IXvqt0fDam3DiT?=
+ =?us-ascii?Q?iai39usJMzJGvsjhqgv6JmF9xd5hTfDNV2I598fccnWSN9Bfm1D1TFCmH9FL?=
+ =?us-ascii?Q?L4ak5uBNyAEUc5x9pSZ03bFhuF3rRHM7mjQ2yhfADTHVzCFGfoAWD+EHsRLO?=
+ =?us-ascii?Q?QFzOspLmFjlFz7XuY3G/NtRQQ1yBJ0Ie9Byg7qoDOC24V0SmW5Iptzk+o+g3?=
+ =?us-ascii?Q?qBJKbzpSNGoJF3YwlPDeihJLgx5k6ZgGbyxHym6uhJ3VYzp0dMHwue38u8nh?=
+ =?us-ascii?Q?5Y30JiG+r7I2RMzH5outhSy0V7NcTQYgGj3yR914ApEK6aMGSaAPKofjEQUK?=
+ =?us-ascii?Q?J2xQCcfmilU6J25aHLzdIMaFu1l8bWVzZVAywTkaV6OZiwFn1MWBw2/xx6TC?=
+ =?us-ascii?Q?AdyrHYUhYGM1u7i1eOGNKQnf5qBgr2FzBRPyuw232CZNIx4+fvCmna2Neb6a?=
+ =?us-ascii?Q?ZxGCmSLQwGY+AqMqqAg9OWjGhW5Xm1HVdOYZJst190tStSE+U4tejOmY9wHv?=
+ =?us-ascii?Q?GaysNmAnQpHCjB5UeYF458CQ4nN+5NFq8X8I2IbACZR6aMRm1jMdnMAKYNXj?=
+ =?us-ascii?Q?F2sYoREUThSUIfN3FmcIckiymu4aEVYLV7+UqSijEW3p70yEmp4Zk6F86hKn?=
+ =?us-ascii?Q?9VrFS6lguNusoTOGrZ9Hbv9569AUljHzRaEnUtjpqUrvcUHJnemdzGW2qHib?=
+ =?us-ascii?Q?AhRJSqDvM7lWpFuQ9CYrL20dCP0VvIqXG3saWqvQujLmX/+avXVa9D+kCcW0?=
+ =?us-ascii?Q?ypZpQeJPTmqLHxsJh8l9R2cTb8R6Zn/KZzE0aLgeWU4xsFLWmK7rLZw9/095?=
+ =?us-ascii?Q?bi3ou7LNBvy4AHXXsHoIIqSVr9QPuN+chw23PgLjZYimw1Arf5rfloEGh24D?=
+ =?us-ascii?Q?Q7ewuxaRKnaF4ja0UJfj5rxfp8joQprc8yGnaa9b6MXJ4d7l8dFEQP0h7zVn?=
+ =?us-ascii?Q?boaqpX2/H3nW6mNmrQJBRWwmR7GwvoAILjmNZr9O?=
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240815172500.78479-1-vinod.govindapillai@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0172.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::27) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|LV3PR11MB8578:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07813b36-3fdf-483a-357b-08dcbd57e8de
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/mtvkRCKx4WzZGq+oOe9+03UxA1HujS1nkWHWZV05fOzDR2zInq5LgmvB8J1?=
- =?us-ascii?Q?PY7NtV4F5XYX4fy2awJvQPhDykslcyO5e236kVKSJBMo8SDAiNw9MXgyZplC?=
- =?us-ascii?Q?00R/fYoGvykqanfDX1WnU96tVWyuApJWn6YL5y/gUqSSLZMT14FAMQhe1yHp?=
- =?us-ascii?Q?DDaPT8A29FMRX7AtGh7hcxoy1MjQl2q4itKTyIFmlfZ5gbV+ZixkZjS5PYrr?=
- =?us-ascii?Q?yy0QjFuKcZjG6uSRsJ98abGu3H/16Op275cw3JtgW+0Bf8HMVJH6jSvjBtpH?=
- =?us-ascii?Q?iYxiO1S/MS+khoRPp1iRu0qWwgPaC0GI9q6tXMVXzGVc86zQyxHDCQLqxffE?=
- =?us-ascii?Q?Tpri/i27bseLCMxI0XUOsqbQM6dnBOnLdUhQeiHVxaqzMEfPi7aJ24SgKaC3?=
- =?us-ascii?Q?7UFlfQUh0UupcOw2hDHxGX75RHpOGEKvNdAtPhyOMeNGs6omYWlIxHXEmorc?=
- =?us-ascii?Q?96m6NOtlMeEiG2XJHxqkQEN3M2H+knftdCDTfVbxCdEDKTCSxDOoClQDgnu0?=
- =?us-ascii?Q?V2szJP1+edliC8Kl0dlnuCdhXo3G/fH3isy47ueqPbA8lpxplKUclUmJQRz+?=
- =?us-ascii?Q?bWIm96ZGL+WklmcESVqwRXFp6jVAu1ibyOEhKCzqJwiD9SR4D+m420ogN1i1?=
- =?us-ascii?Q?3INmYGV2gcO6Sqv4m1zVK4nzI511fSBkT8372SLatkui7T9XEeiGf9bxmjKU?=
- =?us-ascii?Q?gveVD28Blm0jd2A5BQKDvhbzHn99cehXCunSJgQdgHM5PbNgmRw9JzBeqF6G?=
- =?us-ascii?Q?5wiPg8YhLYspOAbZH3o6BcAqI9TL7gVVlHIDsfgd+amrdbPmbyFMyA0cqY6t?=
- =?us-ascii?Q?6/3Bq5m6h8M76ZBUUhRam38jClbgAFGZ/me78vvtZ2iiHKRZjaR3KwmAIa6v?=
- =?us-ascii?Q?YLG0h2xpu2TFRLb+rGCSvPv7x8ropx8pAXbvkdoaOYf92ik+A97eo1z1jcML?=
- =?us-ascii?Q?xYQor+kDS97eLtDH5G18+hQ9un2MQU2vXf63LwrDlIsgGRUtIjjpGP4H4lsN?=
- =?us-ascii?Q?6AIcMjjJHPEXaLFqgp4sRFYL5ljuMpdSLL8qkmfqI/pPUciTRoCQo31EaM1Z?=
- =?us-ascii?Q?l5zzTNkvpVyhl5HWecq3ccXNttAn/sTESYuc1KslyVZiPd3d7Vzg36b4Z8Dg?=
- =?us-ascii?Q?hdnIrjBz4GFS5l3uDTFNqRHkTheEUNLa5SKm/Zav3Qqtg1WnzQcRwNkHj689?=
- =?us-ascii?Q?/h+5PHECgHDr66OWv8mUO787MlsoG3LV/8uvTBHBNNFfLg+i8NCAFvNPzeMg?=
- =?us-ascii?Q?SJmfHxjcwCEZo25aoXz4h7YmTofhBcZu3dTJ6Tl1gUw/S00tcWXoa4kHxLKX?=
- =?us-ascii?Q?a7Y4jGWGHHIOXFYjuDzMJk7xYVutOoGGX2I1TfCuyepg2Q=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?o6396c5gGjloRnkJLx6ZK3MlqrG80M1wd4i2iMTVBWT/g0R6XNrBPk/7tcZC?=
- =?us-ascii?Q?K5Nqtq2ztTWwiDWsJX0xNgaWkqgGLPAzu9dbsGmMrI1axCltSjKW8p3qbchu?=
- =?us-ascii?Q?G0SevcqQb3DTI9I8/4zuZRNhOSoUWT1aMo10tb26AUBDZVFQhfwU/KE1Kt4S?=
- =?us-ascii?Q?RP2kyZm78dBVTs+O5nCBxr6GubsFpj3MK+6yc7rclR7B8gO6Ho65+16B13do?=
- =?us-ascii?Q?sFa2ovMAbycYPtt2vgwUeYaW+IZNmuq1Qjru/tSaP08wfNjE9zNC4uYxiXvK?=
- =?us-ascii?Q?Zc0uxYCZa9X25+mXOnvtPACBh/wjYKKSzTdIM0IKxYvPgwd/AC1IMwMzJUp3?=
- =?us-ascii?Q?fvl+8nNE9kBCerpVYfhhBayPgywxrbVJha8ctuql94YtDjhuywv5Iv7hfCQc?=
- =?us-ascii?Q?ckzKQZ0KaF13KOJIsadjTpWeoMm8QDA3IOeaIQKYER87ayzmCQxYhqVuwrAq?=
- =?us-ascii?Q?LQ/p8Okh5m9aFNcsBxc3JNMx91Zb2TMjIw8U3qnHmQ6lAFs6deUc/mYfJbkX?=
- =?us-ascii?Q?pnqpvpv8nEWik4m5Q72PHMcNI49L0ZjfB/Swx9wXsrYHCPja0fFpRIl/iWJh?=
- =?us-ascii?Q?qo7rA5PPd7Jlqqx1pU6QNbT3J3Sp70c/sv0hMKCyyrXZ0w9EUimHhLCKxI8s?=
- =?us-ascii?Q?ptDxytnPIB7xLtPe1eV0X6n6RWDCDshjnvpf8i0fcGJab1X+V7dCTaqFoWBv?=
- =?us-ascii?Q?2xpyWuTmX2Lbm3TSI7DYkPLoB5W4UakDJnDRORnyk0WRjlbpM5DENJSFlEIY?=
- =?us-ascii?Q?6B9GFK/G8GbF3Ntyp5W+eC8EEutvD62SyRh/P4QmgKLey1Qivx9eF0LhZQ1M?=
- =?us-ascii?Q?nhLz6rw+TdQLxEAm495RdXT6dAW+SPJbOYn+hYiwYgiaGB52RV1bCYnFxeqx?=
- =?us-ascii?Q?73pGGnW3zhStInoUwQJyBoz4cjbgAnBBSAj20C/Y3+Dw1xwXVbaRMEqRVUz4?=
- =?us-ascii?Q?O15uTUAe7vtaCi7l8BiERW7Kim1XNIld4C1uDPErnbJXsjNAd4zNOjtwm1fA?=
- =?us-ascii?Q?nIf9BFGlup2B+lXuYsNUX3rOMwjmnxCyoOXyEUeafo6SzxJglAWr14zLBmrM?=
- =?us-ascii?Q?l3/9r9itF0jd/yjLh4aDo/M9BEh/a9A/JaF2am0K/SKfdWtWBeTl0Jx4GDj0?=
- =?us-ascii?Q?rdfrevVzC3sK2pDywsi6LUfCewflOn3bZTkx0DXukINmh9TjrvCnw6KENYWg?=
- =?us-ascii?Q?edIs/MB4MC18SvPcIa/ObVt/Gig7EFhntxLyoCRN9acV8x4TtP5ty28fOvhN?=
- =?us-ascii?Q?zH3dVvv+HbSxui8iKjr8iFMZIqaLDM9hp8Xcjt37/dFvtt0LUcuU1DB7kDIi?=
- =?us-ascii?Q?v/0H3QSzVwapLrz6GCnjCXCwqd+b0aKizw3WNjylopYQKJsyXzJ6upZQsyVi?=
- =?us-ascii?Q?b0E3+g1AEt52rjlNilfDihHvxW8tQlV2KNxo8NMyRqrVd+kEJAjJdw5fKDd0?=
- =?us-ascii?Q?YxYxUEHaPAwf0XwVzlVCqMNpUz9YFHQ8Cd/Vi8V+BssyB4S7qfyQft6yk+fZ?=
- =?us-ascii?Q?+KbAdyhtmksbBGNsVKxFWoYiUVhLqhwE4UxoI+IduIR61KzNsc7n+MawwWig?=
- =?us-ascii?Q?IM2+5/Gtng49XqtNcsIw+Nb8RCWKax4dF9ncjxcC?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07813b36-3fdf-483a-357b-08dcbd57e8de
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 18:27:24.9521 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CUhu6+DHZRYPDzV8IvQJLIXPaloM7sASIeEBxaGllPhJ+AiO93EBahuLkvuDpmgpGO3Knyeg2RRMflRe8PkgTA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8578
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0df088f-bf59-446e-d202-08dcbd57f238
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Aug 2024 18:27:40.3092 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DjuYGi6/Ipk3uWumx9lKBoFDq03wCXnz7G7xQ8rQtHlB9/iXpAEvw0Ob2hVzyIIBzmnR4EalpB6ctT5rYqmat+CTlqqtU8REaB4EVnovXt0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6955
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,125 +181,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 15, 2024 at 08:25:00PM +0300, Vinod Govindapillai wrote:
-> In XE, display runtime suspend / resume routines are called only
-> if d3cold is allowed. This makes the driver unable to detect any
-> HPDs once the device goes into runtime suspend state in platforms
-> like LNL. Update the display runtime suspend / resume routines
-> to include HPD polling regardless of d3cold status.
-> 
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+
+>=20
+> -----Original Message-----
+From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matt R=
+oper
+Sent: Thursday, August 15, 2024 10:26 AM
+To: intel-xe@lists.freedesktop.org
+Cc: Roper, Matthew D <matthew.d.roper@intel.com>
+Subject: [PATCH 2/2] drm/xe/mcr: Try to derive dss_per_grp from hwconfig at=
+tributes
+>=20
+> When steering MCR register ranges of type "DSS," the group_id and
+> instance_id values are calculated by dividing the DSS pool according to
+> the size of a gslice or cslice, depending on the platform.  These values
+> haven't changed much on past platforms, so we've been able to hardcode
+> the proper divisor so far.  However the layout may not be so fixed on
+> future platforms so the proper, future-proof way to determine this is by
+> using some of the attributes from the GuC's hwconfig table.  The
+> hwconfig has two attributes reflecting the architectural maximum slice
+> and subslice counts (i.e., before any fusing is considered) that can be
+> used for the purposes of calculating MCR steering targets.
+>=20
+> If the hwconfig is lacking the necessary values (which should only be
+> possible on older platforms before these attributes were added), we can
+> still fall back to the old hardcoded values.  Going forward the hwconfig
+> is expected to always provide the information we need on newer
+> platforms, and any failure to do so will be considered a bug in the
+> firmware that will prevent us from switching to the buggy firmware
+> release.
+>=20
+> It's worth noting that over time GuC's hwconfig has provided a couple
+> different keys with similar-sounding descriptions.  For our purposes
+> here, we only trust the newer key "70" which has supplanted the
+> similarly-named key "2" that existed on older platforms.
+>=20
+> Bspec: 73210
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+LGTM, though
+A) I'm surprised we didn't have a hwconfig lookup function before this patc=
+h.  And
+B) I'm not sure how this relates to the prior patch in the series aside fro=
+m modifying
+the same hwconfig files, as this patch seems fairly self-contained.
+
+I suppose we could consider moving the newly-created
+xe_guc_hwconfig_lookup_u32 to separate patch, but I won't block on that.  A=
+nd
+it's likely doing so would just cause "unused function" complaints on compi=
+le,
+so there's probable reason not to do so.
+
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+-Jonathan Cavitt
+
 > ---
->  drivers/gpu/drm/xe/display/xe_display.c | 20 ++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_pm.c              |  5 +++--
->  2 files changed, 23 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 982b9c5b440f..0cddf55351c8 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -294,6 +294,9 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  	if (!xe->info.probe_display)
->  		return;
->  
-> +	if (!xe->d3cold.allowed)
-> +		goto enable_hpd_poll;
+>  drivers/gpu/drm/xe/xe_gt_mcr.c       | 40 +++++++++++++++++++++++++---
+>  drivers/gpu/drm/xe/xe_gt_types.h     |  6 +++++
+>  drivers/gpu/drm/xe/xe_guc_hwconfig.c | 40 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc_hwconfig.h |  1 +
+>  4 files changed, 83 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mc=
+r.c
+> index 6d948a469126..7d7bd0be6233 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> @@ -8,8 +8,10 @@
+>  #include "regs/xe_gt_regs.h"
+>  #include "xe_assert.h"
+>  #include "xe_gt.h"
+> +#include "xe_gt_printk.h"
+>  #include "xe_gt_topology.h"
+>  #include "xe_gt_types.h"
+> +#include "xe_guc_hwconfig.h"
+>  #include "xe_mmio.h"
+>  #include "xe_sriov.h"
+> =20
+> @@ -297,6 +299,36 @@ static void init_steering_mslice(struct xe_gt *gt)
+> =20
+>  static unsigned int dss_per_group(struct xe_gt *gt)
+>  {
+> +	struct xe_guc *guc =3D &gt->uc.guc;
+> +	u32 max_slices =3D 0, max_subslices =3D 0;
+> +	int ret;
 > +
->  	/*
->  	 * We do a lot of poking in a lot of registers, make sure they work
->  	 * properly.
-> @@ -308,6 +311,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  	intel_dp_mst_suspend(xe);
->  
->  	intel_hpd_cancel_work(xe);
-> +	if (runtime)
-> +		intel_hpd_poll_enable(xe);
-
-If we need to do this, please do not use this function.
-
-Let's first spin out the runtime function to a separate function and then
-add the hpd poll only there. But also I don't believe we need anything
-of this call in d3hot case anyway. So we need a better refactor with
-minimal change.
-
->  
->  	intel_encoder_suspend_all(&xe->display);
->  
-> @@ -316,6 +321,12 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
->  
->  	intel_dmc_suspend(xe);
+> +	/*
+> +	 * Try to query the GuC's hwconfig table for the maximum number of
+> +	 * slices and subslices.  These don't reflect the platform's actual
+> +	 * slice/DSS counts, just the physical layout by which we should
+> +	 * determine the steering targets.  On older platforms with older GuC
+> +	 * firmware releases it's possible that these attributes may not be
+> +	 * included in the table, so we can always fall back to the old
+> +	 * hardcoded layouts.
+> +	 */
+> +#define HWCONFIG_ATTR_MAX_SLICES	1
+> +#define HWCONFIG_ATTR_MAX_SUBSLICES	70
 > +
-> +	return;
-
-with return here your code below is not executed.
-
+> +	ret =3D xe_guc_hwconfig_lookup_u32(guc, HWCONFIG_ATTR_MAX_SLICES,
+> +					 &max_slices);
+> +	if (ret < 0 || max_slices =3D=3D 0)
+> +		goto fallback;
 > +
-> +enable_hpd_poll:
-> +	if (runtime)
-> +		intel_hpd_poll_enable(xe);
+> +	ret =3D xe_guc_hwconfig_lookup_u32(guc, HWCONFIG_ATTR_MAX_SUBSLICES,
+> +					 &max_subslices);
+> +	if (ret < 0 || max_subslices =3D=3D 0)
+> +		goto fallback;
+> +
+> +	return DIV_ROUND_UP(max_subslices, max_slices);
+> +
+> +fallback:
+> +	xe_gt_dbg(gt, "GuC hwconfig cannot provide dss/slice; using typical fal=
+lback values\n");
+>  	if (gt_to_xe(gt)->info.platform =3D=3D XE_PVC)
+>  		return 8;
+>  	else if (GRAPHICS_VERx100(gt_to_xe(gt)) >=3D 1250)
+> @@ -314,16 +346,16 @@ static unsigned int dss_per_group(struct xe_gt *gt)
+>   */
+>  void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 =
+*group, u16 *instance)
+>  {
+> -	int dss_per_grp =3D dss_per_group(gt);
+> -
+>  	xe_gt_assert(gt, dss < XE_MAX_DSS_FUSE_BITS);
+> =20
+> -	*group =3D dss / dss_per_grp;
+> -	*instance =3D dss % dss_per_grp;
+> +	*group =3D dss / gt->steering_dss_per_grp;
+> +	*instance =3D dss % gt->steering_dss_per_grp;
 >  }
->  
->  void xe_display_pm_suspend_late(struct xe_device *xe)
-> @@ -346,6 +357,9 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
->  	if (!xe->info.probe_display)
->  		return;
->  
-> +	if (!xe->d3cold.allowed)
-> +		goto disable_hpd_poll;
+> =20
+>  static void init_steering_dss(struct xe_gt *gt)
+>  {
+> +	gt->steering_dss_per_grp =3D dss_per_group(gt);
 > +
->  	intel_dmc_resume(xe);
->  
->  	if (has_display(xe))
-> @@ -368,6 +382,12 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
->  	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
->  
->  	intel_power_domains_enable(xe);
+>  	xe_gt_mcr_get_dss_steering(gt,
+>  				   min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
+>  				       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0)),
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_=
+types.h
+> index 8e46c0969bc7..82cf9f631736 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -376,6 +376,12 @@ struct xe_gt {
+>  		u16 instance_target;
+>  	} steering[NUM_STEERING_TYPES];
+> =20
+> +	/**
+> +	 * @steering_dss_per_grp: number of DSS per steering group (gslice,
+> +	 *    cslice, etc.).
+> +	 */
+> +	unsigned int steering_dss_per_grp;
 > +
-> +	return;
-
-another bogus place:
-
-> +
-> +disable_hpd_poll:
-> +	intel_hpd_init(xe);
-> +	intel_hpd_poll_disable(xe);
+>  	/**
+>  	 * @mcr_lock: protects the MCR_SELECTOR register for the duration
+>  	 *    of a steered operation
+> diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe=
+_guc_hwconfig.c
+> index 025bad701556..af2c817d552c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+> @@ -160,3 +160,43 @@ void xe_guc_hwconfig_dump(struct xe_guc *guc, struct=
+ drm_printer *p)
+> =20
+>  	kfree(hwconfig);
 >  }
->  
->  static void display_device_remove(struct drm_device *dev, void *arg)
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 9f3c14fd9f33..2abfe70d2697 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -370,8 +370,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->  		err = xe_bo_evict_all(xe);
->  		if (err)
->  			goto out;
-> -		xe_display_pm_suspend(xe, true);
->  	}
-> +	xe_display_pm_suspend(xe, true);
-
-... please, let's not add extra unecessary calls to the d3hot path.
-If hpd_poll is the only missing thing we need to create a function
-only for that.
-
->  
->  	for_each_gt(gt, xe, id) {
->  		err = xe_gt_suspend(gt);
-> @@ -431,11 +431,12 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->  		xe_gt_resume(gt);
->  
->  	if (xe->d3cold.allowed) {
-> -		xe_display_pm_resume(xe, true);
->  		err = xe_bo_restore_user(xe);
->  		if (err)
->  			goto out;
->  	}
-> +	xe_display_pm_resume(xe, true);
 > +
->  out:
->  	lock_map_release(&xe_pm_runtime_lockdep_map);
->  	xe_pm_write_callback_task(xe, NULL);
-> -- 
-> 2.34.1
-> 
+> +/*
+> + * Lookup a specific 32-bit attribute value in the GuC's hwconfig table.
+> + */
+> +int xe_guc_hwconfig_lookup_u32(struct xe_guc *guc, u32 attribute, u32 *v=
+al)
+> +{
+> +	size_t size =3D xe_guc_hwconfig_size(guc);
+> +	u64 num_dw =3D div_u64(size, sizeof(u32));
+> +	u32 *hwconfig;
+> +	bool found =3D false;
+> +	int i =3D 0;
+> +
+> +	if (num_dw =3D=3D 0)
+> +		return -EINVAL;
+> +
+> +	hwconfig =3D kzalloc(size, GFP_KERNEL);
+> +	if (!hwconfig)
+> +		return -ENOMEM;
+> +
+> +	xe_guc_hwconfig_copy(guc, hwconfig);
+> +
+> +	/* An entry requires at least three dwords for key, length, value */
+> +	while (i + 3 <=3D num_dw) {
+> +		u32 key =3D hwconfig[i++];
+> +		u32 len_dw =3D hwconfig[i++];
+> +
+> +		if (key !=3D attribute) {
+> +			i +=3D len_dw;
+> +			continue;
+> +		}
+> +
+> +		*val =3D hwconfig[i];
+> +		found =3D true;
+> +		break;
+> +	}
+> +
+> +	kfree(hwconfig);
+> +
+> +	return found ? 0 : -ENOENT;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.h b/drivers/gpu/drm/xe/xe=
+_guc_hwconfig.h
+> index 7df315900e1c..ab4e5038236e 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_hwconfig.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.h
+> @@ -15,5 +15,6 @@ int xe_guc_hwconfig_init(struct xe_guc *guc);
+>  u32 xe_guc_hwconfig_size(struct xe_guc *guc);
+>  void xe_guc_hwconfig_copy(struct xe_guc *guc, void *dst);
+>  void xe_guc_hwconfig_dump(struct xe_guc *guc, struct drm_printer *p);
+> +int xe_guc_hwconfig_lookup_u32(struct xe_guc *guc, u32 attribute, u32 *v=
+al);
+> =20
+>  #endif
+> --=20
+> 2.45.2
+>=20
+>=20
