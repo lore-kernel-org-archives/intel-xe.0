@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFFC8C3DA7F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 17:25:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FD2CC3DA7F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 17:26:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A4F110E137;
-	Thu, 15 Aug 2024 17:25:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5AC710E49B;
+	Thu, 15 Aug 2024 17:26:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aOrrHnxX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m79A1Xv2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A3F310E137
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 17:25:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E47E310E49B
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 17:26:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723742719; x=1755278719;
+ t=1723742781; x=1755278781;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=4x/ZErRf+aiQGpbhG5IQfdgMCHk+ZgLxoMnvb+tEx7Y=;
- b=aOrrHnxXSyJ4zUe981gwhV2iCCWnpt1KKSOs0UlJ15b0royTH1+Px47s
- 5T/5YmBPLXlUFdcDSbE/vLzdSW7URdl+GQ/s6f0EJzru75Ey4f+f3KK0L
- X4tF0dPfexIsbBjp7L+gRTq5RVLGETaK4bxSKF38esdYWWmSkss3ScqXA
- 3etKL7kx+WvuQmPN0KkBPOmM6Y35yWQDS0twsss8IbtqNG41zi77xv/Rw
- 0f1JivWKUtKiysrufwhBkC7ZSgSbMIj5c7LQCXUq3QwcKo7xORYF/yL3+
- hR+mm1QN68rDpPvfAS8Bog5yoKqi4D43c9fBzDbmn2hiCZpJgKKW2KSRg w==;
-X-CSE-ConnectionGUID: AoE/e5XmTzSLo6gqX6cAog==
-X-CSE-MsgGUID: b75SWDERSGegwZgnRgHzLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="21655978"
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="21655978"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2024 10:25:19 -0700
-X-CSE-ConnectionGUID: rFofcWneTDew7LMtbswFDg==
-X-CSE-MsgGUID: 7wWcWUo4TmCAG4ZkosCdOg==
+ bh=SNp3E+5xupIQ8fSQuBj/mQAouiT/H1fYxe0OrkIZm+o=;
+ b=m79A1Xv25b/LXSK9qVuS7iAYqDOb3rzu2tTbf+IrZZ671lKRcxgyof7o
+ e3EG96/ipcbzo39P4RQNfMc9IAud1YVyRx/eiMpRHCKl4q8Dw31qIQwm2
+ oHWme8MAFp0g9D4kT+pp2M+cmXT6yjdSksMWQNYvIRjAU3U+esORYx6/I
+ k6n+3f/iHR47AG6THRZeom98YY1o8z9b4tk+PgazNNEAdiQN3oZkOxz3B
+ G6GwJ9G1x9x0SWK48kycLreWJrVoSvkRqqCK3JT4M8AVElpEK6hCf2G6h
+ hEi9/wfQXLc3OQwwSuuyBJAXUTpCi4G0pknnHAQU/1VgtYdnvFPw9Pi91 A==;
+X-CSE-ConnectionGUID: RxHyXnpRSFCeGWbFRInSLQ==
+X-CSE-MsgGUID: e1oT4D8uTZ2lv7U8vB/cgQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="22183514"
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="22183514"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 10:26:21 -0700
+X-CSE-ConnectionGUID: QjL9vMthTdC8kjbK/Mezjw==
+X-CSE-MsgGUID: 5Tj+HlOcT6q0w3tUWIWdAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="63588268"
-Received: from vgovind2-mobl3.fi.intel.com ([10.237.66.37])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2024 10:25:17 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="82616551"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 10:26:20 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, imre.deak@intel.com,
- arun.r.murthy@intel.com, rodrigo.vivi@intel.com
-Subject: [PATCH] drm/xe/display: handle HPD polling in display runtime
- suspend/resume
-Date: Thu, 15 Aug 2024 20:25:00 +0300
-Message-Id: <20240815172500.78479-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH 1/2] drm/xe: Add debugfs to dump GuC's hwconfig
+Date: Thu, 15 Aug 2024 10:26:03 -0700
+Message-ID: <20240815172602.2729146-3-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,105 +64,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In XE, display runtime suspend / resume routines are called only
-if d3cold is allowed. This makes the driver unable to detect any
-HPDs once the device goes into runtime suspend state in platforms
-like LNL. Update the display runtime suspend / resume routines
-to include HPD polling regardless of d3cold status.
+Although the query uapi is the official way to get at the GuC's hwconfig
+table contents, it's still useful to have a quick debugfs interface to
+dump the table in a human-readable format while debugging the driver.
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pm.c              |  5 +++--
- 2 files changed, 23 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   | 11 ++++++
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c | 57 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_hwconfig.h |  2 +
+ 3 files changed, 70 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 982b9c5b440f..0cddf55351c8 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -294,6 +294,9 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 	if (!xe->info.probe_display)
- 		return;
- 
-+	if (!xe->d3cold.allowed)
-+		goto enable_hpd_poll;
-+
- 	/*
- 	 * We do a lot of poking in a lot of registers, make sure they work
- 	 * properly.
-@@ -308,6 +311,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 	intel_dp_mst_suspend(xe);
- 
- 	intel_hpd_cancel_work(xe);
-+	if (runtime)
-+		intel_hpd_poll_enable(xe);
- 
- 	intel_encoder_suspend_all(&xe->display);
- 
-@@ -316,6 +321,12 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
- 
- 	intel_dmc_suspend(xe);
-+
-+	return;
-+
-+enable_hpd_poll:
-+	if (runtime)
-+		intel_hpd_poll_enable(xe);
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 5125d76ccfac..8f95d3a5949b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -19,6 +19,7 @@
+ #include "xe_gt_sriov_vf_debugfs.h"
+ #include "xe_gt_stats.h"
+ #include "xe_gt_topology.h"
++#include "xe_guc_hwconfig.h"
+ #include "xe_hw_engine.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+@@ -270,6 +271,15 @@ static int vecs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
+ 	return 0;
  }
  
- void xe_display_pm_suspend_late(struct xe_device *xe)
-@@ -346,6 +357,9 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
- 	if (!xe->info.probe_display)
- 		return;
- 
-+	if (!xe->d3cold.allowed)
-+		goto disable_hpd_poll;
++static int hwconfig(struct xe_gt *gt, struct drm_printer *p)
++{
++	xe_pm_runtime_get(gt_to_xe(gt));
++	xe_guc_hwconfig_dump(&gt->uc.guc, p);
++	xe_pm_runtime_put(gt_to_xe(gt));
 +
- 	intel_dmc_resume(xe);
- 
- 	if (has_display(xe))
-@@ -368,6 +382,12 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
- 	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
- 
- 	intel_power_domains_enable(xe);
++	return 0;
++}
 +
-+	return;
-+
-+disable_hpd_poll:
-+	intel_hpd_init(xe);
-+	intel_hpd_poll_disable(xe);
+ static const struct drm_info_list debugfs_list[] = {
+ 	{"hw_engines", .show = xe_gt_debugfs_simple_show, .data = hw_engines},
+ 	{"force_reset", .show = xe_gt_debugfs_simple_show, .data = force_reset},
+@@ -288,6 +298,7 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
+ 	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
+ 	{"stats", .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
++	{"hwconfig", .show = xe_gt_debugfs_simple_show, .data = hwconfig},
+ };
+ 
+ void xe_gt_debugfs_register(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+index d9b570a154a2..025bad701556 100644
+--- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
++++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+@@ -6,6 +6,7 @@
+ #include "xe_guc_hwconfig.h"
+ 
+ #include <drm/drm_managed.h>
++#include <drm/drm_print.h>
+ 
+ #include "abi/guc_actions_abi.h"
+ #include "xe_bo.h"
+@@ -103,3 +104,59 @@ void xe_guc_hwconfig_copy(struct xe_guc *guc, void *dst)
+ 	xe_map_memcpy_from(xe, dst, &guc->hwconfig.bo->vmap, 0,
+ 			   guc->hwconfig.size);
  }
- 
- static void display_device_remove(struct drm_device *dev, void *arg)
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 9f3c14fd9f33..2abfe70d2697 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -370,8 +370,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 		err = xe_bo_evict_all(xe);
- 		if (err)
- 			goto out;
--		xe_display_pm_suspend(xe, true);
- 	}
-+	xe_display_pm_suspend(xe, true);
- 
- 	for_each_gt(gt, xe, id) {
- 		err = xe_gt_suspend(gt);
-@@ -431,11 +431,12 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 		xe_gt_resume(gt);
- 
- 	if (xe->d3cold.allowed) {
--		xe_display_pm_resume(xe, true);
- 		err = xe_bo_restore_user(xe);
- 		if (err)
- 			goto out;
- 	}
-+	xe_display_pm_resume(xe, true);
 +
- out:
- 	lock_map_release(&xe_pm_runtime_lockdep_map);
- 	xe_pm_write_callback_task(xe, NULL);
++void xe_guc_hwconfig_dump(struct xe_guc *guc, struct drm_printer *p)
++{
++	size_t size = xe_guc_hwconfig_size(guc);
++	u32 *hwconfig;
++	u64 num_dw;
++	u32 extra_bytes;
++	int i = 0;
++
++	if (size == 0) {
++		drm_printf(p, "No hwconfig available\n");
++		return;
++	}
++
++	num_dw = div_u64_rem(size, sizeof(u32), &extra_bytes);
++
++	hwconfig = kzalloc(size, GFP_KERNEL);
++	if (!hwconfig) {
++		drm_printf(p, "Error: could not allocate hwconfig memory\n");
++		return;
++	}
++
++	xe_guc_hwconfig_copy(guc, hwconfig);
++
++	/* An entry requires at least three dwords for key, length, value */
++	while (i + 3 <= num_dw) {
++		u32 attribute = hwconfig[i++];
++		u32 len_dw = hwconfig[i++];
++
++		if (i + len_dw > num_dw) {
++			drm_printf(p, "Error: Attribute %u is %u dwords, but only %llu remain\n",
++				   attribute, len_dw, num_dw - i);
++			len_dw = num_dw - i;
++		}
++
++		/*
++		 * If it's a single dword (as most hwconfig attributes are),
++		 * then it's probably a number that makes sense to display
++		 * in decimal form.  In the rare cases where it's more than
++		 * one dword, just print it in hex form and let the user
++		 * figure out how to interpret it.
++		 */
++		if (len_dw == 1)
++			drm_printf(p, "[%2u] = %u\n", attribute, hwconfig[i]);
++		else
++			drm_printf(p, "[%2u] = { %*ph }\n", attribute,
++				   (int)(len_dw * sizeof(u32)), &hwconfig[i]);
++		i += len_dw;
++	}
++
++	if (i < num_dw || extra_bytes)
++		drm_printf(p, "Error: %llu extra bytes at end of hwconfig\n",
++			   (num_dw - i) * sizeof(u32) + extra_bytes);
++
++	kfree(hwconfig);
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.h b/drivers/gpu/drm/xe/xe_guc_hwconfig.h
+index b5794d641900..7df315900e1c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_hwconfig.h
++++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.h
+@@ -8,10 +8,12 @@
+ 
+ #include <linux/types.h>
+ 
++struct drm_printer;
+ struct xe_guc;
+ 
+ int xe_guc_hwconfig_init(struct xe_guc *guc);
+ u32 xe_guc_hwconfig_size(struct xe_guc *guc);
+ void xe_guc_hwconfig_copy(struct xe_guc *guc, void *dst);
++void xe_guc_hwconfig_dump(struct xe_guc *guc, struct drm_printer *p);
+ 
+ #endif
 -- 
-2.34.1
+2.45.2
 
