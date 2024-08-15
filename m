@@ -4,62 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B29B3C531DE
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 22:07:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F74FC52D7F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Aug 2024 22:07:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6405D10E401;
-	Thu, 15 Aug 2024 22:07:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BDD510E471;
+	Thu, 15 Aug 2024 22:07:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTr0VlOM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQXpDG/l";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E56E810E401
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 22:07:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3EDB10E43B
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Aug 2024 22:07:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723759665; x=1755295665;
+ t=1723759668; x=1755295668;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=Fij2zguv6ZuXHVDpcjuqFZMVnQ5AZ12pXxacHabxtTA=;
- b=nTr0VlOMWY80n+sUHapnv523p/R5UkEJx1o8aYkDWp7/zze3DWnIiP6o
- nvq4f3RlVIWkvjMTqbzqwdi742G16Ng+5FBOoiOw8UQWmPJ9GZeQHK0oi
- S6jF7ln3uDDPcrMxPXGYidu1sNe59XImKZhF4EVvubdkCF4N1dMUoiwHK
- QLKDuuc6wk6wpWqGc0oCFPFmtfaV96YIFGVB5VKgmiMkuP5cDUnvrM5iJ
- +sLlcWKppaud+OZpA1mXBp3HEJczLfZZoRyVc2HnhG10CJkI39SnNDrMm
- tm/kfAChRxnPZUEmUHTd+kxIBpIcKYS21KXFsTBzQlQEDG8YA/u6ywFnU Q==;
-X-CSE-ConnectionGUID: Z20p0pQ/RVyX+tbZNtI3ZQ==
-X-CSE-MsgGUID: vrAXTc6+T3+lO83Vnnd6jQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="22213864"
-X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="22213864"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2024 15:07:44 -0700
-X-CSE-ConnectionGUID: EQAic6SuSfC8I+D8HHq/cw==
-X-CSE-MsgGUID: B6DKLB1qRHOhtdmWXF9rKQ==
+ bh=Qw1MIFZmWoDjikNpo3KUjAdOq2Q9mJbzfmw2/m1JkpI=;
+ b=EQXpDG/lKW8WY7fdHPxlLehuWtX0BJR/VFxwa0gU/SHotivlhkbqzu54
+ cfuh8rbKGB2ww5fKDXoe1Uh70prGQIt/JMyPWnqXGEq3A/wqeabkUoTeS
+ 8X5YWgKEO+4OiJ88mh87ukON77UK3yh+UkQWc9UuWgerqYxLjhIZulwi/
+ Sgm4gGj7SySoTXAesydNv7WU7gjd1waKLAoQxj8OI2ciSjYnWAcvBP3m6
+ IHKBgaWDU8+GUES5LkZsZO0WoVKmvhgzjjPIZUF840PB1AEuZfIokbOUw
+ HYk/RaCtF97SFEXqOT2L1j8jj+6Bs38lBAHvlfGIOz5V1aj38r+LllgKq Q==;
+X-CSE-ConnectionGUID: T4L8iPThQRyQTy/EihJvtA==
+X-CSE-MsgGUID: imXm5Ml6QKuISSQne64J7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="21591714"
+X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="21591714"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 15:07:48 -0700
+X-CSE-ConnectionGUID: rfVjcXtIThaekgq9mM/hfw==
+X-CSE-MsgGUID: NxrqmjuaQJa7FSHl/E0ehA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="59766455"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Aug 2024 15:07:44 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.10,150,1719903600"; d="scan'208";a="60266685"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Aug 2024 15:07:48 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 15 Aug 2024 15:07:43 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 15 Aug 2024 15:07:47 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 15:07:43 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 15 Aug 2024 15:07:46 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 15:07:46 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 15 Aug 2024 15:07:43 -0700
+ 15.1.2507.39; Thu, 15 Aug 2024 15:07:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mVhhLGPFoGVqM3c+dUG9n8GG2AIYDMQDiX+UbJF1kqZNfPpJxz39w8LskeENC4gwMExX13vYByEkAUP4Pk2eTzT+DlLaCGGh09cd1YRT1yfN6LpZrKxsgnKw2iyWZNua4vdJAw25m1QCFzHWOThR32sd2bnfrFTdIyQLAYDOvIGm14jXJgFqJLDbrrgB9s13wQPLgDAsSIjcyNdG5ZtUnHyRsGGBHdGGraypIQJLMUwJOdKUpsIiXB040iSmegr2GNNB3b+ifEi5bf8B919Ng4ARVvZQljmaw1cCx3N2BrGaJSCDYacCI65E0M0Zg2WWBx0UF08+V77qvw5C3wfKGg==
+ b=m4kwp0nIbEZMb+htY1LkuDB8KSdOT+v9I0xDxMvWQZ49g0Hw91VIPh/IWt7ePVCBjz1G7ZD/tcAarlC/WkOq5nb57WsNgvwZ9rPXMzH0/cVJNWSE1klMb1gjlvlODgtugTJ5h/RcPKSufdljj+OWlzQjGiuk8FQUo/lh04Wd0nRyDUYOG0aLmE3mJgzxZ9HTblfQmIbztanL25S4knh1R9lfBzfnw//9kT5GGqAvyQM5u7u7x28ppxlCgITfVshojDtuuyJ49rYaVtI0RB4rOy6BBL8urUwMNb6KeqVJ9XZUKLm4wAhT8Wb8YRGvmU66YnnXKKdFiWctz6Ytu3V5MQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uNS8PU8sBu2nEvuBKtH5uvVrs2cjIro+V3KD3u94Ldg=;
- b=cSzx1Hx+PrjqmczpCA/GhmBpayYXWnIxQHH2e40gCqj28YCVKoBkg8tr3ABT90xqDUz/iw1snN7nndHyuQV8u9l38HCUeMiwBMmq6PtLYjI/jVTdnuyk6dU61D+z7UZASqFQBQdDrHwR3JH48Chb184seAeLc2Q9Ae/j4hb7yy12iRebTOlW65mlop7g+MKuoMM29W7Zvg1+Ja9DwTyr+qhdNuHvjFDlZhzHl7GZGOzT0zQYNyDpcKWNnOjU9mukAYW7ggtP4JMCPJx2/5lrTVBjpdWfM1NFhSWPoQUEY3WbIXumgGjTM0ybBT6vKyiMjTn/uVo15FpSgQz1rIcGfA==
+ bh=M9n4zj4tm68dbxIoJLq7qX24KVWzpf68sEZxKyeR4vU=;
+ b=mRUHzJZG1a70zXex8wkTR/JlLNm/9SapkVhxIjw+DwVHgC8YdJm7x8K5jIL/hJP0rg+ZgmFly0cvqfFWSbqDKVYbSdmK23KEG2JmF8GQvZ9Ek35/XOUUh+U7OGxhBzjtnwx8dWPb/etPMQdY38YLYn2ROYxrxlUPRTgv/2fzVzEd0kUyy9p/57vJOZJ/9pLUzwFl8Qwa3xp3SZnndS0oMusR17Nu42PPn7+VJ8K3djXqOt6brHfaRlKuL4Z1Li94OW4H0n+b8Raat8ZK+A/j+TArc831EimxMu7yy3WskOV3hnFlU98ArUo3BOavi7448y8h+Cbd9ih5ie/IIDtxgw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,98 +73,96 @@ Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
  by CY8PR11MB7133.namprd11.prod.outlook.com (2603:10b6:930:63::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19; Thu, 15 Aug
- 2024 22:07:41 +0000
+ 2024 22:07:43 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7828.023; Thu, 15 Aug 2024
- 22:07:41 +0000
+ 22:07:43 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: <lucas.demarchi@intel.com>, <jose.souza@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>, "Michal
- Wajdeczko" <michal.wajdeczko@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH 02/12] drm/xe: Introduce GGTT documentation
-Date: Thu, 15 Aug 2024 18:07:22 -0400
-Message-ID: <20240815220732.49675-2-rodrigo.vivi@intel.com>
+ <rodrigo.vivi@intel.com>, Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH 03/12] drm/xe: Remove unnecessary drm_mm.h includes
+Date: Thu, 15 Aug 2024 18:07:23 -0400
+Message-ID: <20240815220732.49675-3-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240815220732.49675-1-rodrigo.vivi@intel.com>
 References: <20240815220732.49675-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BYAPR11CA0080.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::21) To BYAPR11MB2854.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0P220CA0012.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::24) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CY8PR11MB7133:EE_
-X-MS-Office365-Filtering-Correlation-Id: 33735d48-72e6-43d0-3c1c-08dcbd76aead
+X-MS-Office365-Filtering-Correlation-Id: e07a6d29-7bc6-4f48-5e59-08dcbd76b002
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zXI6u4dxyrY7/cO/I8D/YoJ9ocgyHSGLwfo2msdTuTBsW//fXQaDpKlCNNc1?=
- =?us-ascii?Q?tTJtmjsWogB5zUb2GtSyBls7Xt7+847y7PBDBGDQfq5eYagrJWW/IyUUjDCu?=
- =?us-ascii?Q?Gh7CQ4IbM4L5uUXvaM1xjZLMYDYosDgLzgzHa6Q2Lfni2Lys2+y+cPzeJFkQ?=
- =?us-ascii?Q?frLqTRx74/qTUzRDEBrpcyxzPRL4P6nxMotApyUBFY3CAkAseB+SzXGgwH5l?=
- =?us-ascii?Q?vhFbBlqbXVlGYaHxSk6jYZaoStD0vZIvwenfj3d1piGqgypAB1gGKib8QHak?=
- =?us-ascii?Q?5oJ4zwtbjm/8voBmjhhzsxvtCeEdh94It6NPDWUZ/klRjuO/9m4eXzlO4Zmh?=
- =?us-ascii?Q?f3Mt3xZYeGR7sth0qfhfahsxvbIeu9ZyGiDdyyPZgiXf0q9Qgq4nZuVFppkG?=
- =?us-ascii?Q?IelD71UOhszOQV+VwvKsOwoj19ZeGeLSPRdIRdmIEks95djYc3yDONtjilhj?=
- =?us-ascii?Q?n3aWIfBGv+HUclYwX4AVCf23dr/HmbRhjPivlA61Zvt11FGYpLgxALcLjHKs?=
- =?us-ascii?Q?AsOSaHFxyKnu4q2VnpNEY230RNkQsE9ubMnrUi4mfuAJeTyPrzqVUBTK81wK?=
- =?us-ascii?Q?rz7veOmyuUkfo6lOsYjWD8oCrcoQhWGwP32HfqUE8eY8QDCxSTCUvY67udoN?=
- =?us-ascii?Q?y7QnFE5Fw887gdg7nOtmDa7foahoRPgFVRRW98XotCxUv1+yYAFdsUTc9/C/?=
- =?us-ascii?Q?AunmsTaAmFZFsMYu9Obu4dYPhPGiDrgL5qOq9PT8XRMTx7Eeh3jwnZHagroZ?=
- =?us-ascii?Q?VXE832DYjAPlJDPg4fnqzkGwhg0qZ82ZkpE8TSMLS/g6kpBYW40htrsL9x11?=
- =?us-ascii?Q?zT6HeewbND/QnUFjnvKTjQuzhVHRqqu0N5Z6rMJH5zZumr6IpA5HPD5p/Vpw?=
- =?us-ascii?Q?134q9kywpVsScaRNPduO0RH3liArkOw6gcwAoS0WEYN+oBLU9LLN3DyezTWi?=
- =?us-ascii?Q?B4nwKVf0RuBG4OZ5dCoLCBNBWr/T6LeO38GHb9G+rQ+92v3AGYwn7YvCrR1C?=
- =?us-ascii?Q?+HpRhc4GydrhavGMiScZW+4AYRR1P0AS0J1av4XLUa7v/NmFZ8v20bW5uYtU?=
- =?us-ascii?Q?1Ac2rKqO/EAXntVfKE76M67m/X2FzSTWFLhWsqi4q8yxoLJHaL12EjNI3H2Q?=
- =?us-ascii?Q?BLDrfGwI1AtJnpbAKonunZBthAzJ1vVmN6fHKyVSgxOPkElk3C5y84Ml2kn6?=
- =?us-ascii?Q?NFoO4tIAcLdc9NaV2GEX542lCLR0VwRZVe9O4ROmH5SSQYUbckxZx+lH/y+Y?=
- =?us-ascii?Q?0k+uhM9sJnmzUeEZpXM0+pi1I9Tn9cl5eTEwap4lBXxGaYRi/Ljn3RNvSOn1?=
- =?us-ascii?Q?3lGsH37jJaYh1WkG6rJBqLuwJWa8mHHtekgJtEkSXhaZrw=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?URejZDGQM0evJ+Oh1o3mJop98BQBNUbuknx7+S6/XPOaPAwomgMj8QH6i3kQ?=
+ =?us-ascii?Q?10FoznMJpGAWEXy9MFSCm6wnTgfeetn7iZPR0v90IewqlgpHFdocj2GcZLlS?=
+ =?us-ascii?Q?+yPInXYtQj08qoUc8xMhVrdakvABrC0TOYEtuYgn4TXzjIgVMu0q/BVr69dM?=
+ =?us-ascii?Q?oSvXWigUSVGEFLx/pBDpL2fwlbkFeY+dgfWcBNcndyFIVvXB7hj7qx7xE5AZ?=
+ =?us-ascii?Q?v0Lcr2UzGMFOjjXje6NHU5a2tIipgKKN3qY5tLbGmOvCpJIpciqwpuv+Ihf4?=
+ =?us-ascii?Q?bXI+YLoUzqyCBfXfjlWdQL0HqxTFFcY694cn/jAsPjxSIx9kCmp/jSgAlZWv?=
+ =?us-ascii?Q?esrLIQ+RxfTP1aIAWSum21a6TFjo1isOe2My3rijBGnU3+kjIh6eVSfdXEJZ?=
+ =?us-ascii?Q?SY/Oxfp33t3gvHDUKqMMex84kDiryR7118Q9rPVDlI2bIPqvh5gYFCNDIWEo?=
+ =?us-ascii?Q?cmff3G7KSi9smU1LTJmuPR/PMQgHiIq7UV+WN0HYWZTsrpD08snvHL3g+bGQ?=
+ =?us-ascii?Q?0KN/FAojtzGfUnucP1vsjl/UCRIpSDyV1y2ARB95L1wrBDZUPbMJpC+tSi49?=
+ =?us-ascii?Q?rWP9Jw6bIaglE6xawRhC0y6e5bkizuAmE1imRz+orocr/6GBBYBoWmkG7Rmo?=
+ =?us-ascii?Q?8REs4P6ezfQVZldxsnlKbESWeYuiQYgE1FFqPHRg0UpeTvnSB4tLUCcZu+aI?=
+ =?us-ascii?Q?afMMClTKYI7m9J3+nYllC4KQv5j4J36qEcoj76tf/6gWEq6NkWpIZDsfd3tP?=
+ =?us-ascii?Q?/l8Y39GIlYUlZZnmV2rwxdjfUQ28vHKoS+c4gqWXbf19Q6ti9SW8vBe+m/av?=
+ =?us-ascii?Q?cX4c7gqtZu3KWmHGjOsC65nwrhS+dzGFgYpWCTHO6JPFHQffzln0ZSboRE0O?=
+ =?us-ascii?Q?8H7JFbMjz4DcUghgqo52M1qnkYhPTJfj6yNBJ38QjoL7tNFaAfF/V9WmHXHk?=
+ =?us-ascii?Q?BZRb8sERR8LaOET7goEvbDiRXHeqH263+DElgqNT+tmj8S2igWNIlGxBWP6t?=
+ =?us-ascii?Q?dt+tiIAW3v2Y+8RP1zgbCx6r9OrcChI6MSTga7zmtfaw3oJn5eFP8msZVNwP?=
+ =?us-ascii?Q?3HG4QNZJS88KUuP/5/BZs3cemmROmRvFWNknV9gErjxMafd26fZzyWSyEotL?=
+ =?us-ascii?Q?NPNrcnS3rQDhyInvlWjKI1aLctfnj7Wgq4JYGAIoelTI9makgHJsgF/geCnB?=
+ =?us-ascii?Q?xAbPCnvN038j4Ia7pyVvo36238j2eoFlxWRbmEeeqdWDyUK4BYMUe/mhLCNj?=
+ =?us-ascii?Q?VuqnfpZa6mUTW+GGne93NJiKQVexALQGr6ZaaA0fN2P8TlzbjjLqpDKUtTSs?=
+ =?us-ascii?Q?L7rSRI+USxcNdsgiOV3x1BUfICW432ilWhNdoHNAUfNSHQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GmCOxemQdYE64yHR5oD3RwwlMC6ReM3Wnrk8EAjO1NTfvLeXNMLo8RKeXOf1?=
- =?us-ascii?Q?lCrwutgKG31z/9xbJX6xZ+cnDrf+hq3/ls3tkarnfY4e4+QS0NhnVlW8i9Yh?=
- =?us-ascii?Q?Di8RkwWALb+OAnZpqi/Ldp+aHknGki76ERa+iYq5Vrqs4cMiKzTyJQzJ2b/W?=
- =?us-ascii?Q?DxYlxMWrrq7XQ4xaT+W7C4FgK5nbhmY9cBSlT6NcdhbJbMyqpNtUhf3ppLdu?=
- =?us-ascii?Q?FywTFi2iQ/IzLDp3NFwLMu4GpZCWv22RrE7z7NrnJH5w1xb3zfWHx8lfRv92?=
- =?us-ascii?Q?+f6nwykLmt4b7JDQnczrlrdcYJvy7Nm1LFquhcxwhz9fz0Nz79ugVkdBsSuC?=
- =?us-ascii?Q?IHiMcCDW2iKzd4SX8nCndCcQAFirrcgwCTr6crYcto0ICX5yqTT/r1uv7kTa?=
- =?us-ascii?Q?WMHJ4AqprNYz8D7sqb88nNW1nVKof5sPa+mqiLPqecLj50jV1T2HllsZYh+W?=
- =?us-ascii?Q?C4mNMmGSgXmDSoD8aqwBev+7XpEwPK00NWl2+SsODXZVNVQkoYevJF2cuOHd?=
- =?us-ascii?Q?hIN+V0pECBH7JZkpcD75U5Sep0KKzyCx6gKZay+iuiNi7DYnjsH8SGg1hkMA?=
- =?us-ascii?Q?C7NfZ9VT3JB5mZvPXtVb6moP1Dy8afw49qJI1v+DTtmltgRcNSeZG91PsPL5?=
- =?us-ascii?Q?o7MGVf2sA68t4X3BXfXfeUADxNx2Fpl62T0mK/UUC4qQFpWMwBbpEIJk2Dnh?=
- =?us-ascii?Q?ZjixPNwUpaNUeMK4LIaoKDS5lsIdn61P0ftytL+lg13ruOjR7nqNzCeJw0RY?=
- =?us-ascii?Q?7tYjKiLYCte7mB/z7+pYbt515r6vEnXYT2UbAUWvRRTShohEBh17djFGm9u9?=
- =?us-ascii?Q?bTSFXCwm9Dlr5pmBrL0XTF80+ILZhMlLRI6jzrRhBT9BsamdSw93IHX8/H/O?=
- =?us-ascii?Q?ZuSi7/XLx6Jak07eFKFwi1DVza1jrwa/y6LutuL2s+uF4mXPjLDFkuE71TsY?=
- =?us-ascii?Q?sDVo8DSjfvSnkmHu7SNoln5hD3jJVHWuqpAm6sv1zmAWhtXowXSUul7gB7sB?=
- =?us-ascii?Q?8Ff55bCPwKXGNZQPD3oCAsl68aAd4DmNjlseIczbiS1v0yzSO5xJlRrD/yog?=
- =?us-ascii?Q?oPzjyCbgNxvArUCCwQ+Yz6t5YDJxH3CcAoQTfIpO3Uq9xL84hvjHGby7mP4L?=
- =?us-ascii?Q?deIVw7j5sOV4IZ3D/Nd4lYA8Bjt9cX83yRnRL49kIlQL1JpxdTnvmHo7KVYK?=
- =?us-ascii?Q?44/XryVtg7SlSjTz06XqLZhee0My1X/GR16naqKrZKN03n4ce7kEtVBedWDR?=
- =?us-ascii?Q?boE/rGol2QAue2Kvs9KwkMfKrZpc1naJpOsilZiIGRjjrzfeLQAwWZI7hOHd?=
- =?us-ascii?Q?rIXRD9PZ+YdRqoYlEiWlNH2qosQiaHFyL1rLTiVWj3WFkwP+bVwXJjtpH/xs?=
- =?us-ascii?Q?T8Br0PkRXFNQB5m6U5QsTHY0/snh7rpQA/chyr212e2wajRYwPyaDyvbsnAp?=
- =?us-ascii?Q?KCS2bv+LGjjHOgb3s8SRcbPoLV9iA4esMT5212+3oniQevxF4QCWGt+rgEfP?=
- =?us-ascii?Q?BGx/EdEpHkCMPMH+jGO/8+wBcbi/2XgmIYfHy8AKB4Oq5sJhhZmLWndRL6gs?=
- =?us-ascii?Q?AvQn+7wP7zqEvmm99K+K+t3LvN96fGcxleeiJbm76VsREolzSYbs1JAabNWc?=
- =?us-ascii?Q?CQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33735d48-72e6-43d0-3c1c-08dcbd76aead
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?S1nlfUwdAV3qwY4VfV8aEaS0Hc64cBorJVcBhn1pVlNVqwL29M466YlSPzpE?=
+ =?us-ascii?Q?UVU6YrCaIK9M0SysWmq9VS9P8XN42/n5xDHsCCewlwVC/hCKivGFsYD5ztin?=
+ =?us-ascii?Q?RJhEFLBJdG+Pw7bO7RRlBlzPmKpsP7d4K3tnFRkHyVlHT+qPcyXvUELYcc1l?=
+ =?us-ascii?Q?GYRb/2mAuPneM2vYz3PkaYK5lLd82wOUz6tjk7etvmKruXXUtduBarAsfTNp?=
+ =?us-ascii?Q?esKHg87a4WMAkvoAeiv3PZH6glVu9yUxCF9ji9OF3ur/83ThhnKiHmxdhGo/?=
+ =?us-ascii?Q?AqrS1MYKwStV1s0GaRQ3QpgpCtHhGx/O1VIUGXN37AjxHpy5xM8KwXxYvJYM?=
+ =?us-ascii?Q?dHBUoTwKLFgi3vbul+YucKfvMBs+B2GG6VuXHzhvi5W8ZuziJKHFytjM1qzr?=
+ =?us-ascii?Q?a1j9OKlCl2E5E4k1cFSv+aqjhg6sKBULAcbDqUgo6cyPXjrRXVC1ALlRwQoS?=
+ =?us-ascii?Q?0cL2H3syDEpPbtXOZFmuIoQhlANt6fbh6CD8KW/J3lwHvto1RLSTNLHPAgqA?=
+ =?us-ascii?Q?x9zd4KB7dVebFzREOXftjdEJRpVtENvdYcGSGQzxZB35vpTsj9BMtkgXUUoR?=
+ =?us-ascii?Q?g9oWIvWFvuvr23E1lcEe8V+BMojYYsOnZGEOrPxGQSoe7eWZH7TkDlTCsKP/?=
+ =?us-ascii?Q?bIvOxaLR50WkppmBqEXKTk+1X358e5YkA/Cc3li2lpAo4ygiRhru4aZXsATe?=
+ =?us-ascii?Q?yVit+zuvMiyWtBhRlN1pNyKtKM9BQ+DU7FNmX5qTgm7y3vN2DD+4S0Z5ummM?=
+ =?us-ascii?Q?gOrq0f0HqxOcq/f4/qrrUISvIuKEBovBwbBvNI9Cukx/8fmbnPUBvVf+D/80?=
+ =?us-ascii?Q?lDDzPN+MKIOLax6xB/6Fa4eN3TMIo/0knuA4QgI0tXcY1ARw5hDQbW3JpCFq?=
+ =?us-ascii?Q?5jLxR2O3QJofi4QhD/Bq9Iu56QSrJav4tSYa+SHnfAZcRAs/WqERJ9sOBwz2?=
+ =?us-ascii?Q?lRZbw57DUr34glvJINCmo/oSFWo2k6hbjKHRf7Aj239PAtGHHH1vAMEh/pr8?=
+ =?us-ascii?Q?vTK3gKF20GtGIsQzoyPi9MY38unnGGLh146I9ebJYLGU1oxfDS2iVCKXd4FA?=
+ =?us-ascii?Q?vTKmv3p8rWZ+AQvGUJN536R0YTT6tAl6nypyO3VtrREFL2sqfD0CdfVmksMN?=
+ =?us-ascii?Q?yFF6dGTuLz/t0ftWAR72xIO92OB5KbOMBxpjc0vUhllm29hGc6LuHWE8ZuYZ?=
+ =?us-ascii?Q?29N2w2gNpIhIZkiQLJYbQg4V/MsnmIMuVr1l9+JXnruej6t07tVdDQQ4unlM?=
+ =?us-ascii?Q?mVuLEdW5KOWofwflJ6ujIghYfUyKSy3yw42zQnLhvnG49yolaQen9nN4GRF8?=
+ =?us-ascii?Q?j/A1us3Zh4vkmy9lVBd3z2KgjRXx2xiQdNlzpMmry8F+UD48x4b0ikqvhSPn?=
+ =?us-ascii?Q?vEXi4kI+Gxg4XTwAoE6OyeDdGEQQgKB1o9YpexlyUko7d99rPIICoQvV6OvG?=
+ =?us-ascii?Q?4S/FBTzo88csXxsnEMS3maWGimrvPqwP/JTLBShzAgdlqm7MP0SsLGqkBv3M?=
+ =?us-ascii?Q?EQWH9w/RSgF57ISsjS3HfgxsvbPU10rb0rMb5aBiAZUb2DT5e+ACGaE1SwG+?=
+ =?us-ascii?Q?2IPfqtzliC2+jPQ4kk7m6sTW9+63j0iK6YAbrVyXaIYAAP1atLk+fMWU9MwI?=
+ =?us-ascii?Q?xg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e07a6d29-7bc6-4f48-5e59-08dcbd76b002
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:07:41.6102 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:07:43.9013 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: njI40xmVlv56GQl1ukJCXqVhDqB3fmcN945mkFTOqMrjD11Xe8bRJnxynCQFpjzbZedbDldFLgLk0cMuHMtnfw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Jp2/FslXsh7kNq7VEoEyel+boK48COsEs1QaRnC5/RDcBK6ovQa8ye+SGDWNMz8o9q4E2R/Z+JG1l/Hnd+K5Mg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7133
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -177,332 +179,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Document xe_ggtt and ensure it is part of the built kernel docs.
+These includes are no longer necessary, and where appropriate
+are replaced by the linux/types.h one.
 
-v2: - Accepted all Michal's suggestions
-    - Rebased on top of new set_pte per platform/wa function pointer
-v3: - Typos and other acronym fixes (Michal)
-
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com> #v1
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- Documentation/gpu/xe/xe_mm.rst     |  15 ++++
- drivers/gpu/drm/xe/xe_ggtt.c       | 136 +++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_ggtt_types.h |  34 ++++++--
- 3 files changed, 150 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.h        | 2 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h     | 1 -
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 1 -
+ 3 files changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/Documentation/gpu/xe/xe_mm.rst b/Documentation/gpu/xe/xe_mm.rst
-index 6c8fd8b4a466..95864a4502dd 100644
---- a/Documentation/gpu/xe/xe_mm.rst
-+++ b/Documentation/gpu/xe/xe_mm.rst
-@@ -7,6 +7,21 @@ Memory Management
- .. kernel-doc:: drivers/gpu/drm/xe/xe_bo_doc.h
-    :doc: Buffer Objects (BO)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 7929cc2425e8..0109866e398a 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -6,7 +6,7 @@
+ #ifndef _XE_MIGRATE_
+ #define _XE_MIGRATE_
  
-+GGTT
-+====
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_ggtt.c
-+   :doc: Global Graphics Translation Table (GGTT)
-+
-+GGTT Internal API
-+-----------------
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_ggtt_types.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_ggtt.c
-+   :internal:
-+
- Pagetable building
- ==================
+-#include <drm/drm_mm.h>
++#include <linux/types.h>
  
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index add14f3dea1f..dd5cd0df705c 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -30,6 +30,39 @@
- #include "xe_wa.h"
- #include "xe_wopcm.h"
+ struct dma_fence;
+ struct iosys_map;
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index 655af89b31a9..dca374b6521c 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -26,7 +26,6 @@
  
-+/**
-+ * DOC: Global Graphics Translation Table (GGTT)
-+ *
-+ * Xe GGTT implements the support for a Global Virtual Address space that is used
-+ * for resources that are accessible to privileged (i.e. kernel-mode) processes,
-+ * and not tied to a specific user-level process. For example, the Graphics
-+ * micro-Controller (GuC) and Display Engine (if present) utilize this Global
-+ * address space.
-+ *
-+ * The Global GTT (GGTT) translates from the Global virtual address to a physical
-+ * address that can be accessed by HW. The GGTT is a flat, single-level table.
-+ *
-+ * Xe implements a simplified version of the GGTT specifically managing only a
-+ * certain range of it that goes from the Write Once Protected Content Memory (WOPCM)
-+ * Layout to a predefined GUC_GGTT_TOP. This approach avoids complications related to
-+ * the GuC (Graphics Microcontroller) hardware limitations. The GuC address space
-+ * is limited on both ends of the GGTT, because the GuC shim HW redirects
-+ * accesses to those addresses to other HW areas instead of going through the
-+ * GGTT. On the bottom end, the GuC can't access offsets below the WOPCM size,
-+ * while on the top side the limit is fixed at GUC_GGTT_TOP. To keep things
-+ * simple, instead of checking each object to see if they are accessed by GuC or
-+ * not, we just exclude those areas from the allocator. Additionally, to simplify
-+ * the driver load, we use the maximum WOPCM size in this logic instead of the
-+ * programmed one, so we don't need to wait until the actual size to be
-+ * programmed is determined (which requires FW fetch) before initializing the
-+ * GGTT. These simplifications might waste space in the GGTT (about 20-25 MBs
-+ * depending on the platform) but we can live with this. Another benefit of this
-+ * is the GuC bootrom can't access anything below the WOPCM max size so anything
-+ * the bootrom needs to access (e.g. a RSA key) needs to be placed in the GGTT
-+ * above the WOPCM max size. Starting the GGTT allocations above the WOPCM max
-+ * give us the correct placement for free.
-+ */
-+
- static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- 				   u16 pat_index)
- {
-@@ -164,12 +197,16 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
- 	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
- };
+ #include <linux/scatterlist.h>
  
--/*
-- * Early GGTT initialization, which allows to create new mappings usable by the
-- * GuC.
-- * Mappings are not usable by the HW engines, as it doesn't have scratch /
-+/**
-+ * xe_ggtt_init_early - Early GGTT initialization
-+ * @ggtt: the &xe_ggtt to be initialized
-+ *
-+ * It allows to create new mappings usable by the GuC.
-+ * Mappings are not usable by the HW engines, as it doesn't have scratch nor
-  * initial clear done to it yet. That will happen in the regular, non-early
-- * GGTT init.
-+ * GGTT initialization.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
+-#include <drm/drm_mm.h>
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_range_manager.h>
+ #include <drm/ttm/ttm_resource.h>
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index f46fd2df84de..f7113cf6109d 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -5,7 +5,6 @@
   */
- int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- {
-@@ -194,29 +231,6 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
- 		ggtt->flags |= XE_GGTT_FLAGS_64K;
  
--	/*
--	 * 8B per entry, each points to a 4KB page.
--	 *
--	 * The GuC address space is limited on both ends of the GGTT, because
--	 * the GuC shim HW redirects accesses to those addresses to other HW
--	 * areas instead of going through the GGTT. On the bottom end, the GuC
--	 * can't access offsets below the WOPCM size, while on the top side the
--	 * limit is fixed at GUC_GGTT_TOP. To keep things simple, instead of
--	 * checking each object to see if they are accessed by GuC or not, we
--	 * just exclude those areas from the allocator. Additionally, to
--	 * simplify the driver load, we use the maximum WOPCM size in this logic
--	 * instead of the programmed one, so we don't need to wait until the
--	 * actual size to be programmed is determined (which requires FW fetch)
--	 * before initializing the GGTT. These simplifications might waste space
--	 * in the GGTT (about 20-25 MBs depending on the platform) but we can
--	 * live with this.
--	 *
--	 * Another benifit of this is the GuC bootrom can't access anything
--	 * below the WOPCM max size so anything the bootom needs to access (e.g.
--	 * a RSA key) needs to be placed in the GGTT above the WOPCM max size.
--	 * Starting the GGTT allocations above the WOPCM max give us the correct
--	 * placement for free.
--	 */
- 	if (ggtt->size > GUC_GGTT_TOP)
- 		ggtt->size = GUC_GGTT_TOP;
+ #include <drm/drm_managed.h>
+-#include <drm/drm_mm.h>
  
-@@ -262,6 +276,12 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
- 	mutex_unlock(&ggtt->lock);
- }
- 
-+/**
-+ * xe_ggtt_init - Regular non-early GGTT initialization
-+ * @ggtt: the &xe_ggtt to be initialized
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
- int xe_ggtt_init(struct xe_ggtt *ggtt)
- {
- 	struct xe_device *xe = tile_to_xe(ggtt->tile);
-@@ -382,6 +402,18 @@ void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node)
- 	mutex_unlock(&ggtt->lock);
- }
- 
-+/**
-+ * xe_ggtt_insert_special_node_locked - Locked version to insert a &drm_mm_node into the GGTT
-+ * @ggtt: the &xe_ggtt where node will be inserted
-+ * @node: the &drm_mm_node to be inserted
-+ * @size: size of the node
-+ * @align: alignment constrain of the node
-+ * @mm_flags: flags to control the node behavior
-+ *
-+ * To be used in cases where ggtt->lock is already taken.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
- int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 				       u32 size, u32 align, u32 mm_flags)
- {
-@@ -389,6 +421,15 @@ int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt, struct drm_mm_node
- 					  mm_flags);
- }
- 
-+/**
-+ * xe_ggtt_insert_special_node - Insert a &drm_mm_node into the GGTT
-+ * @ggtt: the &xe_ggtt where node will be inserted
-+ * @node: the &drm_mm_node to be inserted
-+ * @size: size of the node
-+ * @align: alignment constrain of the node
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
- int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 				u32 size, u32 align)
- {
-@@ -402,6 +443,11 @@ int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 	return ret;
- }
- 
-+/**
-+ * xe_ggtt_map_bo - Map the BO into GGTT
-+ * @ggtt: the &xe_ggtt where node will be mapped
-+ * @bo: the &xe_bo to be mapped
-+ */
- void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
- 	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
-@@ -449,17 +495,39 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	return err;
- }
- 
-+/**
-+ * xe_ggtt_insert_bo_at - Insert BO at a specific GGTT space
-+ * @ggtt: the &xe_ggtt where bo will be inserted
-+ * @bo: the &xe_bo to be inserted
-+ * @start: address where it will be inserted
-+ * @end: end of the range where it will be inserted
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
- int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 			 u64 start, u64 end)
- {
- 	return __xe_ggtt_insert_bo_at(ggtt, bo, start, end);
- }
- 
-+/**
-+ * xe_ggtt_insert_bo - Insert BO into GGTT
-+ * @ggtt: the &xe_ggtt where bo will be inserted
-+ * @bo: the &xe_bo to be inserted
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
- 	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX);
- }
- 
-+/**
-+ * xe_ggtt_remove_node - Remove a &drm_mm_node from the GGTT
-+ * @ggtt: the &xe_ggtt where node will be removed
-+ * @node: the &drm_mm_node to be removed
-+ * @invalidate: if node needs invalidation upon removal
-+ */
- void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 			 bool invalidate)
- {
-@@ -488,6 +556,11 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 	drm_dev_exit(idx);
- }
- 
-+/**
-+ * xe_ggtt_remove_bo - Remove a BO from the GGTT
-+ * @ggtt: the &xe_ggtt where node will be removed
-+ * @bo: the &xe_bo to be removed
-+ */
- void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
- 	if (XE_WARN_ON(!bo->ggtt_node.size))
-@@ -544,6 +617,13 @@ void xe_ggtt_assign(struct xe_ggtt *ggtt, const struct drm_mm_node *node, u16 vf
- }
- #endif
- 
-+/**
-+ * xe_ggtt_dump - Dump GGTT for debug
-+ * @ggtt: the &xe_ggtt to be dumped
-+ * @p: the &drm_mm_printer helper handle to be used to dump the information
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
- int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index 2245d88d8f39..154de298a4e3 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -13,30 +13,50 @@
- struct xe_bo;
- struct xe_gt;
- 
-+/**
-+ * struct xe_ggtt - Main GGTT struct
-+ *
-+ * In general, each tile can contains its own Global Graphics Translation Table
-+ * (GGTT) instance.
-+ */
- struct xe_ggtt {
-+	/** @tile: Back pointer to tile where this GGTT belongs */
- 	struct xe_tile *tile;
--
-+	/** @size: Total size of this GGTT */
- 	u64 size;
- 
- #define XE_GGTT_FLAGS_64K BIT(0)
-+	/**
-+	 * @flags: Flags for this GGTT
-+	 * Acceptable flags:
-+	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
-+	 */
- 	unsigned int flags;
--
-+	/** @scratch: Internal object allocation used as a scratch page */
- 	struct xe_bo *scratch;
--
-+	/** @lock: Mutex lock to protect GGTT data */
- 	struct mutex lock;
--
-+	/**
-+	 *  @gsm: The iomem pointer to the actual location of the translation
-+	 * table located in the GSM for easy PTE manipulation
-+	 */
- 	u64 __iomem *gsm;
--
-+	/** @pt_ops: Page Table operations per platform */
- 	const struct xe_ggtt_pt_ops *pt_ops;
--
-+	/** @mm: The memory manager used to manage individual GGTT allocations */
- 	struct drm_mm mm;
--
- 	/** @access_count: counts GGTT writes */
- 	unsigned int access_count;
- };
- 
-+/**
-+ * struct xe_ggtt_pt_ops - GGTT Page table operations
-+ * Which can vary from platform to platform.
-+ */
- struct xe_ggtt_pt_ops {
-+	/** @pte_encode_bo: Encode PTE address for a given BO */
- 	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
-+	/** @ggtt_set_pte: Directly write into GGTT's PTE */
- 	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
- };
- 
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_placement.h>
 -- 
 2.46.0
 
