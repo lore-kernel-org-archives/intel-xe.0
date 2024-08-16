@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF73FC3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 16:34:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E58C531DC
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 16:35:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D5C210E808;
-	Fri, 16 Aug 2024 16:34:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37E2210E80B;
+	Fri, 16 Aug 2024 16:35:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mw0u2cb5";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=tronnes.org header.i=@tronnes.org header.b="fQ4Kdvd6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40DEF10E808
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Aug 2024 16:34:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723826057; x=1755362057;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sB4Sq60GEb2xrXMimXiJkqd0sGu/m3pLzCP3AVowLfU=;
- b=mw0u2cb5VG8sMWAVVYWMisQGCJboqLBYs5xp+S4fPN29hUXtH1w28XVa
- 0dlGAeBuU0AdeD0Yy9ClUPgbkuRzpik7MOV/Tl8lDiaB6cncvLbrvO7ta
- sXcshJhBC+VhBqgM1WladhHHasWI6ihKvouhllrolMERNm7T7X6sPqyl7
- 7zSiLFDj4UQIBsoLrXRDe0w2Jjm5lfTVxUKbZKM1HiU8mZrIA5Vp0RqaX
- 1YfhMY6MjlaZpLNOHtQ/Zm00h6g+8roggqoA+2BfYqvw/K3cm/m7dnw1W
- jtMKx7N0tuQdXe8XgjZrYDTt39zeg0h5HAk0KhLujBAXe4M5mKJMHQYiw Q==;
-X-CSE-ConnectionGUID: LY4AOHYPQn2G5v8lhM/tVQ==
-X-CSE-MsgGUID: eJFAX299RjKyQ0YJFx1Yeg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="33536448"
-X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="33536448"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2024 09:34:17 -0700
-X-CSE-ConnectionGUID: 5NzfjsO0QRqUl/oxwZY1Bg==
-X-CSE-MsgGUID: u01lQ3CPS0aKguBOB10u7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="60503310"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2024 09:34:17 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: (subset) [CI 1/3] drm/xe/uc: Use managed bo for HuC and GSC
- objects
-Date: Fri, 16 Aug 2024 09:34:11 -0700
-Message-ID: <172382602453.3919715.8741621900536945248.b4-ty@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240815230541.3828206-1-lucas.demarchi@intel.com>
-References: <20240815230541.3828206-1-lucas.demarchi@intel.com>
+X-Greylist: delayed 1902 seconds by postgrey-1.36 at gabe;
+ Fri, 16 Aug 2024 16:35:40 UTC
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88A8C10E809;
+ Fri, 16 Aug 2024 16:35:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202312;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Sender:Reply-To:
+ Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=YapGZO0Srwp4BKeV3mXt3+YPH0r2w1SHKvZfpKm6uPs=; b=f
+ Q4Kdvd65A1kz1qesPYewylBGETxZfTnYN8w1mjWJZIbKI5lNjY2QXSaHFnj9oQVPR+HU0DtiBbdfZ
+ pnpNlpldEp01yRG1xIMKObPPB5+VFFF4jlOPuNfW4e/6NvjlRp/vOaHp6726VXhn41kTqxV+y3hzX
+ y+0i8VLPqszzpxTJ8MYVEAMwkPd+oPaNYYSrBX99RJbjXDKpig2aMmxO92h0JMVVndBazxWdhFxHw
+ BjebFojKy5Pc7wmX+YbQXzS0CxLwhPzMHqp5K4ZXQGYJMuFClVL15iJllefr0X2IVIIxKiE7GIqyE
+ 68vFRoPjuvslqENmw4Kk25BAE+Rv6K2oA==;
+Received: from [2a01:799:962:4900:815f:3dd0:60d8:6458] (port=56900)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <noralf@tronnes.org>) id 1sezOb-009xdy-IR;
+ Fri, 16 Aug 2024 18:01:45 +0200
+Message-ID: <6134a8e2-42ae-4e93-8007-01c19509a8bc@tronnes.org>
+Date: Fri, 16 Aug 2024 18:01:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 28/86] drm/mi0283qt: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-29-tzimmermann@suse.de>
+Content-Language: en-US
+From: =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20240816125408.310253-29-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,24 +68,38 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On Thu, 15 Aug 2024 16:05:39 -0700, Lucas De Marchi wrote:
-> Drmm actions are not the right ones to clean up BOs and we should use
-> devm instead. However, we can also instead just allocate the objects
-> using the managed_bo function, which will internally register the
-> correct cleanup call and therefore allows us to simplify the code.
+
+On 8/16/24 14:22, Thomas Zimmermann wrote:
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
 > 
-> While at it, switch to drmm_kzalloc for the GSC proxy allocation to
-> further simplify the cleanup.
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: "Noralf Trønnes" <noralf@tronnes.org>
+> ---
+>  drivers/gpu/drm/tiny/mi0283qt.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> [...]
+> diff --git a/drivers/gpu/drm/tiny/mi0283qt.c b/drivers/gpu/drm/tiny/mi0283qt.c
+> index cdc5423990ca..f1461c55dba6 100644
+> --- a/drivers/gpu/drm/tiny/mi0283qt.c
+> +++ b/drivers/gpu/drm/tiny/mi0283qt.c
 
-Applied to drm-xe-next, thanks!
+<snip>
 
-[1/3] drm/xe/uc: Use managed bo for HuC and GSC objects
-      commit: 2e5d47fe7839298fa096970e184aac9bf82c3bd3
-[2/3] drm/xe/uc: Use devm to register cleanup that includes exec_queues
-      commit: 5a891a0e69f134f53cc91b409f38e5ea1cafaf0a
+> @@ -226,7 +228,7 @@ static int mi0283qt_probe(struct spi_device *spi)
+>  
+>  	spi_set_drvdata(spi, drm);
+>  
+> -	drm_fbdev_dma_setup(drm, 0);
+> +	drm_client_setup(drm, NULL);
 
-Best regards,
--- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+Would it be possible for drm_dev_register() to handle the client setup
+so drivers won't have to? struct drm_driver could have a field for
+drivers that want a different color format.
+
+Noralf.
+
+>  
+>  	return 0;
+>  }
