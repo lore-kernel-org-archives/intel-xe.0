@@ -4,98 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E61BC531DC
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 08:41:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FAC1C531DE
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 08:41:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5359710E5E3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 588E210E5E4;
 	Fri, 16 Aug 2024 08:41:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Vl7SJ0JL";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="OVZgvLuA";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Vl7SJ0JL";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="OVZgvLuA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kiXeVI9Z";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B6C010E5DF;
- Fri, 16 Aug 2024 08:41:13 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 740DE2007A;
- Fri, 16 Aug 2024 08:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723797671; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=1zCkZHKftmsbv/yjBf2ckjh0EBnaakuBMWqnfpX/YNU=;
- b=Vl7SJ0JL/r3S88RSu6k5FEGFf1p2sg/PnPPUchFgAvwik4BONLJV59PKWq/Lm9qOVZtIt1
- roAQAce2xhYLHmRS5FUwJU6BvjKaQr2mKtPX/AYRa7E7QGb3XRI/U+jMxktPTJuwwjZiPp
- Yzslt2LB0+e2zOfZygdPUtAjhPp14Mo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723797671;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=1zCkZHKftmsbv/yjBf2ckjh0EBnaakuBMWqnfpX/YNU=;
- b=OVZgvLuAn50HX0dLuxv7E1qEbCwzKxGSIpphKZtOG/w2DxjkpXg3Sf2xfAFgX3ohBSeE2X
- uZwRnLyxhh1oSECQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723797671; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=1zCkZHKftmsbv/yjBf2ckjh0EBnaakuBMWqnfpX/YNU=;
- b=Vl7SJ0JL/r3S88RSu6k5FEGFf1p2sg/PnPPUchFgAvwik4BONLJV59PKWq/Lm9qOVZtIt1
- roAQAce2xhYLHmRS5FUwJU6BvjKaQr2mKtPX/AYRa7E7QGb3XRI/U+jMxktPTJuwwjZiPp
- Yzslt2LB0+e2zOfZygdPUtAjhPp14Mo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723797671;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=1zCkZHKftmsbv/yjBf2ckjh0EBnaakuBMWqnfpX/YNU=;
- b=OVZgvLuAn50HX0dLuxv7E1qEbCwzKxGSIpphKZtOG/w2DxjkpXg3Sf2xfAFgX3ohBSeE2X
- uZwRnLyxhh1oSECQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0E42A1397F;
- Fri, 16 Aug 2024 08:41:11 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id GSm9AacQv2beIQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 08:41:11 +0000
-Date: Fri, 16 Aug 2024 10:41:09 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20240816084109.GA229316@localhost.localdomain>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA08310E5E0
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Aug 2024 08:41:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723797674; x=1755333674;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=nPdH40TlrFvyROeTS+CwtUMTKlgVLzOzxyvGQDPUEDY=;
+ b=kiXeVI9ZhOA2C7HYcdgsCczWf7D0qcOcT7XFrhdwxr5Eu4yhxubFdjkB
+ ehoON9MF9K8XkBqb3Oaj+t/86gpsaga3zdFyX4PtjZO649MiDSM4xUO4g
+ xmFTetAOXBjW9mdLSn8v3dIwfvm17zHT8hcgft1PQMi7B+kxy9MY/O2XV
+ l5kaTlxQjNmbKRvN1Pf8oypn4kw2QyMFIV/QcPaMzBaEI37wHCEGldIHA
+ KwEMwBJEGeDU+WtWyMUUN4YoYube9QNLvwC7UoHWDKrUfXYqF3jNPj02w
+ C4+XLZFdyymcs8gLNddbuObjJZZtS+IfhfEPQ8kEYF2TfvJqkWKebpkWt g==;
+X-CSE-ConnectionGUID: dRWXZdiKQn6SErgWhzkL1g==
+X-CSE-MsgGUID: tEd4EcCXQWeUMCLHbgGkHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="21943221"
+X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="21943221"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2024 01:41:13 -0700
+X-CSE-ConnectionGUID: RvbC3Re1SpiV97OcVpEF4w==
+X-CSE-MsgGUID: diRzXFJkQT6PRi7AXCpNbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="59448303"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 16 Aug 2024 01:41:13 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 16 Aug 2024 01:41:12 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 16 Aug 2024 01:41:12 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 16 Aug 2024 01:41:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lnqOdvVqDii8x4nllJMJhv2qF0YzYMra56JZDTOBlfEYmqN+8/+BHSqDAX9TTP3Jc6aLykZHnZHm4YHpZW6yHr8bkCi3tvjMQWy+zmFh6/F/pSQhiWb1KKDXLxgYnjmSMA88LmUkQiC+GFG27fh4C9/cfqcgtAJ/TVCw7n/JLg+bXZrZZA7RPWlXNNrxkSvRJUR0D21jFbz7YjtR/xdaH9OyXPtrFv1WEv7lVhpBH39CvShSYGofj2oLytBtenCjRkGf5Mn7YvM5LLPNyrRfnrZu78yXXVaPBdZBaKCuB4JztV2n+nBeIBjaFLnccFDu/5oqYKoBVL8rLwqXW/mFHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eoeEOLtna/9pq5w+SQWy7kfca2mDvxZJ95BWT7xNZWo=;
+ b=zUpWkvMRrqL5Kcvy3UNfCdc+fdlYIkemOcGnlJVBW9DBba4mbGL5vQj7BwvlJnD7jvu8G8n2yOYOfSQqMxjetSlwQPOe425XNvcAchZUguWPs60/SZ767uGrIap+seCAlJUhBmRtjOj075+jH3DYnwh4C0rnTByItYJDjYgcErPE4Zu2q0hZsoq0SFf+OCQ0OqGh1KqK8bktEQPrCGSZUWrerWbGwax8eLBWu6Q9a4bKr5MRo6yd4gAmYFBwqyatEI2RjCnIyp+geY6kjp3OBd99opb5m4H+AqTiFs4aRuu9yaWnTu8KOWaw+uTSY1x/xzmA8SskaD3E4koBElhJ9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY8PR11MB6868.namprd11.prod.outlook.com (2603:10b6:930:5c::13)
+ by DS0PR11MB6519.namprd11.prod.outlook.com (2603:10b6:8:d1::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7875.17; Fri, 16 Aug 2024 08:41:04 +0000
+Received: from CY8PR11MB6868.namprd11.prod.outlook.com
+ ([fe80::1eb4:7d0d:53f:6923]) by CY8PR11MB6868.namprd11.prod.outlook.com
+ ([fe80::1eb4:7d0d:53f:6923%6]) with mapi id 15.20.7875.018; Fri, 16 Aug 2024
+ 08:41:04 +0000
+From: "Singh, Apoorva" <apoorva.singh@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/xe: Remove a redundant NULL lrc->bo check as a lrc
+ will always have a bo
+Thread-Topic: [PATCH] drm/xe: Remove a redundant NULL lrc->bo check as a lrc
+ will always have a bo
+Thread-Index: AQHa77ZoWa/tGQ7rGE2mmJIDtaqjabIpkBfw
+Date: Fri, 16 Aug 2024 08:41:04 +0000
+Message-ID: <CY8PR11MB6868B5EA999CD390952A922AEE812@CY8PR11MB6868.namprd11.prod.outlook.com>
+References: <20240816082820.897326-1-apoorva.singh@intel.com>
+In-Reply-To: <20240816082820.897326-1-apoorva.singh@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR11MB6868:EE_|DS0PR11MB6519:EE_
+x-ms-office365-filtering-correlation-id: d14a775a-ae98-4aec-47d3-08dcbdcf2a40
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?B4Wji2AhmjoEHCUyF0QzB1OgYuuVW/Rn3kyr2WStLaoIQdUyi+jKYEVmQLg8?=
+ =?us-ascii?Q?H623Wr1KPNSYrhsbb/SCO/oRszl4zipZQAOmAZe5wfokSCKq2mEI4Q5FRUkp?=
+ =?us-ascii?Q?4rmRHkrXQHAUYWWUVYLUyrNNjXzygFGal/D8Zsre+2e4d5FBrrdJ1i9X3Kgx?=
+ =?us-ascii?Q?Y+8b/20IO6EEsdsFhLXyqhZxyvGxHTb2AgoquiweelGTsXPiQaZ+J8h+9cjV?=
+ =?us-ascii?Q?r81GEUPdnqtMR5b/3d7s/IQJu5vvhSt7XpqPMP7/h77P1wXJhOCFhuFi8tde?=
+ =?us-ascii?Q?gLyu3EJ/GOnK0OVgyEDnUqW4qDiEvV9/ZD2AJsVJmTKFxqJaMTdMpC7uur3U?=
+ =?us-ascii?Q?QX6fmpjIzm75zLFXnoF/XlCgcqKg4OrOvTUD38kGCaEp59yHi/m3ZtFkfBhi?=
+ =?us-ascii?Q?VzLQ9qXY94Pf1dWiBmHJcyfgY26d8O52TgIQF785ekP1MWVf7U6SK6fuVpXN?=
+ =?us-ascii?Q?aqbWJoK+dkgKZW3oQIbi7ygfZhDUB9XFd9hNqAhwoyuVs/fh6MLVzeTk1VyD?=
+ =?us-ascii?Q?SkDxvAQTIinNWCxZ3BTc1iTITjIUx1OCLC2vv4xaegoUWMlnmxNF22gDa4dt?=
+ =?us-ascii?Q?YM6nIgohm0+rJFlydSzfsKgLvdhjbrWuk0vX2dHq8pP1ptHMT0kE7edQhoMQ?=
+ =?us-ascii?Q?xOPVV/RiP9CsWBr7f1EzHyutfCCvqr2wcVOc9aPQxjSSlN1r/d4YL2uSDQfI?=
+ =?us-ascii?Q?PG1qvUspV1mxYZ8gjdTB5APCNvrEQ9V9yaCxvP4rRmh3qTPktzXMVr3zsR0V?=
+ =?us-ascii?Q?QrUm8I7mHPe328yqzkqV2Lr15YfOrZy96me2aB9lCPmRsLYWGxJyUxNRNUDL?=
+ =?us-ascii?Q?wfCRu1vsqEq4vwlMUplGgO5f0tIGnRcHzymVVcXD9shgZx0LrGoGgUZoRNmJ?=
+ =?us-ascii?Q?wzbrQa2Y1w0uJo0B7q7nP4IbSnghojEM7nncUM4GVSd+5zBr4z7Nul04QDnB?=
+ =?us-ascii?Q?paeUdsBSN+/fzsIvbkbJWtm/hnKex3ytgzvWkTt9cbKdrUlDJZXzs5uprr4w?=
+ =?us-ascii?Q?G7wDlgSqUweVMEPUU0apMIQrLlDBBkmWev6YryHKbGFitU/rpnIEwKYa8By4?=
+ =?us-ascii?Q?mnwIjOnWVauj7K9FuK6cnCCAQXlrs7pLB3HXHxDHY2D1K2mjQ89SpNIJFHII?=
+ =?us-ascii?Q?vqm6w9olPVuVo4vk0U+P+H9TYLQ5djaSNJQWkrmkm0yKN002sf6mwcAsB6QV?=
+ =?us-ascii?Q?oZPnAzUOV+wuV6Ka/mOUNAqWEOwKN9e6ifIfBs9EkaJ1w4ECnueXfnxaZjCN?=
+ =?us-ascii?Q?hwSkMpH9YWHl1iX+y7QHp80zDtDT5zc9UP01s9kWiTsIfZ28GfeaQBHNN4zI?=
+ =?us-ascii?Q?AmVsydNxV8WWwhSKU9i+VvPFseopGorhUEO/6WEAYjV5+4IfQdQVhCGS+m3D?=
+ =?us-ascii?Q?gtj37L4=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB6868.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?34iFGU/rWy0HEBlhtYg5JdWWvpM9TWR7IKrr2vLIKWqRUgJKdKbeTibyQw8X?=
+ =?us-ascii?Q?jhJlaiirz4MqNKIVQ3TTXf5chN/OCdWIlwitKemrDri8dnVXVlXRpaDym0HX?=
+ =?us-ascii?Q?E1HngHuuWdG8MAtC0Oq/nxpRI+5j9iqmr+HFl1P1C3mHuXgTm4K/UqYJESVP?=
+ =?us-ascii?Q?MXzMpPHwVYwdJeYReKFizcqP3kgiPiIA7lB6wGVM0wbKHXHcH82Ts8WnKJja?=
+ =?us-ascii?Q?AUAAiBfZ+b5fJJtzlclG+uasCls4vhyLMRzlmu6WmD3H8aTv7rdgpprVMTP/?=
+ =?us-ascii?Q?yFr1YlDBuUzKY8bYLWRq81v8PML9UILki2AUn0+03DxxMP263mTf0X3QR93g?=
+ =?us-ascii?Q?NkflTkDZ1SJAnpn+PtQZzW1x3ZVodoUJiZVsi5dx7sKpPdkOpqIu78iXBZxF?=
+ =?us-ascii?Q?8AMJZN8vrjiFUpYeWM07RWWLQXV9anIa0pTFsaBTN0m0MpdYlc/hsgsSPxZH?=
+ =?us-ascii?Q?1bGQR7H7xx5OEBj//geMDWDY9FghmWLbnjxMjyhxoqiXdl7DoIrqgdM19vaD?=
+ =?us-ascii?Q?GEHzfaC4Dm+5h6q0sgsCWyEh64K+qKpn4eLrxsZ4tw1P95LT50ClgJTeTCpA?=
+ =?us-ascii?Q?UV5Wrn5zPLbwN1myDX2e1nnkF01Q1Qn2wamNs0VbUt8y+YvQUgVwA1WAz0pR?=
+ =?us-ascii?Q?whq+ASAk65uIqsSSDEcgFUehj+uxi7Fla96HR3uCSBPH5g1zKXbJITmvCJh4?=
+ =?us-ascii?Q?aHPT4EPwdNM1cALpK5jNK5ZZ6f4PAcIhJVD+0Z7VueukZ3p4NcTHsQk7hBVZ?=
+ =?us-ascii?Q?EaRxb6j7mBkwSJ0EHjZKyqAvlcYF1/nDquFzQhkuYNUGiBtCsO8sdbyKUydD?=
+ =?us-ascii?Q?iX7JLLmaXSi1x2D6GQrojQcnGc341jI6SnvhTBw5cAQT2UW7anCC3vyNOymc?=
+ =?us-ascii?Q?4fUFDXlWIk4gnfQwPwB62dof1OYK534ITpbk6TpTPjCDTuFsAzRDgxeutit9?=
+ =?us-ascii?Q?p/yUXpxHmSZNukiZ/QkUQHn2aTpaKYD3vTx6sby6Zy9rxB5jCiCiGm2wjiZp?=
+ =?us-ascii?Q?4RhuTZ/AYuBtD99ORmbJdbJtUlIbI44dMt0AYNLcxZbsK0vO83sor/P7OjWy?=
+ =?us-ascii?Q?e4sQ2v1tsoVldSfWAaqHmgXO1SFguzjTqEOjS+jNuYe23n2bUSKP8kw2I4Nx?=
+ =?us-ascii?Q?KrwVzGYEf8WWSOOj3DL2m24oueYg3Olb0OrLLGfJ61wzbHMtCF/kd22qSo4e?=
+ =?us-ascii?Q?Nc6b4KHVg41Jfj1+KV7CHcscLBZIDbrAHneqOEv4FQdJKH8JLR+s2n9O4ZSD?=
+ =?us-ascii?Q?qHMTrhjvvGgmi0XPa1Vt5D5O0oHBUoPNrKayc5cA6II999iCtUhRo/1WN9H4?=
+ =?us-ascii?Q?eyMx5IUX4I9l1WMWwI73RolkeVVjpMSf0wxoPsfNZ/XqWDWlMxdzSsl/NXrd?=
+ =?us-ascii?Q?FqcQ0+eAVGMA6ZUOtHTncslZ6h1ikmaLRNl4wKRIkoFoltINmME5bo/widAn?=
+ =?us-ascii?Q?IoUOhKp5fxslWoEWTKI99xAFvzZDmhiRiQk84VGCNYCE6UBVDSpcqV/HDIEI?=
+ =?us-ascii?Q?g6CGuTwmyFecdT7FdwaffMkArO0fqHOZHriYZh/HI7N9tSqEFa1GkossXnbx?=
+ =?us-ascii?Q?XK4tXaNN4AQY8CbX4CNv1zKGBJHWAlwXQA/SJhoR?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; TO_DN_SOME(0.00)[]; MISSING_XM_UA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[16]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB6868.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d14a775a-ae98-4aec-47d3-08dcbdcf2a40
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2024 08:41:04.3968 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Pj7LtXgSdLHY5wvCbT4dZ2FZSAgT2l3gIcb0Q0c0d7zrlrdwXcOZaucl2BHKLQ+B7z1pzu+LqlS7HR8KB7Ff4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6519
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,285 +177,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+This patch is superseded by: https://patchwork.freedesktop.org/series/13736=
+7/
 
-this is the weekly PR for drm-misc-next. Mostly small cleanups and
-improvements. Rockchip received support for more modes and displays.
+> -----Original Message-----
+> From: Singh, Apoorva <apoorva.singh@intel.com>
+> Sent: Friday, August 16, 2024 1:58 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Singh, Apoorva <apoorva.singh@intel.com>
+> Subject: [PATCH] drm/xe: Remove a redundant NULL lrc->bo check as a lrc w=
+ill
+> always have a bo
+>=20
+> From: Apoorva Singh <apoorva.singh@intel.com>
+>=20
+> Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c in=
+dex
+> 974a9cd8c379..aec7db39c061 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -1649,7 +1649,7 @@ struct xe_lrc_snapshot
+> *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+>  	if (!snapshot)
+>  		return NULL;
+>=20
+> -	if (lrc->bo && lrc->bo->vm)
+> +	if (lrc->bo->vm)
+>  		xe_vm_get(lrc->bo->vm);
+>=20
+>  	snapshot->context_desc =3D xe_lrc_ggtt_addr(lrc);
+> --
+> 2.34.1
 
-Best regards
-Thomas
-
-drm-misc-next-2024-08-16:
-drm-misc-next for v6.12:
-
-Core Changes:
-
-ci:
-- Update dependencies
-
-docs:
-- Cleanups
-
-edid:
-- Improve debug logging
-- Clean up interface
-
-fbdev emulation:
-- Remove old fbdev hooks
-- Update documentation
-
-panic:
-- Cleanups
-
-Driver Changes:
-
-amdgpu:
-- Remove usage of old fbdev hooks
-- Use backlight constants
-
-ast:
-- Fix timeout loop for DP link training
-
-hisilicon:
-- hibmc: Cleanups
-
-mipi-dsi:
-- Improve error handling
-- startek-kd070fhfid015: Use new error handling
-
-nouveau:
-- Remove usage of old fbdev hooks
-
-panel:
-- Use backlight constants
-
-radeon:
-- Use backlight constants
-
-rockchip:
-- Improve DP sink-capability reporting
-- Cleanups
-- dw_hdmi: Support 4k@60Hz; Cleanups
-- vop: Support RGB display on Rockchip RK3066; Support 4096px width
-
-tilcdc:
-- Use backlight constants
-The following changes since commit 4e996697a443a214887ef81b008c344d183b5659:
-
-  Merge tag 'drm-misc-next-2024-08-09' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2024-08-09 10:41:59 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-08-16
-
-for you to fetch changes up to 8befe8fa5a4e4b30787b17e078d9d7b5cb92ea19:
-
-  drm/tilcdc: Use backlight power constants (2024-08-16 09:28:01 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for v6.12:
-
-Core Changes:
-
-ci:
-- Update dependencies
-
-docs:
-- Cleanups
-
-edid:
-- Improve debug logging
-- Clean up interface
-
-fbdev emulation:
-- Remove old fbdev hooks
-- Update documentation
-
-panic:
-- Cleanups
-
-Driver Changes:
-
-amdgpu:
-- Remove usage of old fbdev hooks
-- Use backlight constants
-
-ast:
-- Fix timeout loop for DP link training
-
-hisilicon:
-- hibmc: Cleanups
-
-mipi-dsi:
-- Improve error handling
-- startek-kd070fhfid015: Use new error handling
-
-nouveau:
-- Remove usage of old fbdev hooks
-
-panel:
-- Use backlight constants
-
-radeon:
-- Use backlight constants
-
-rockchip:
-- Improve DP sink-capability reporting
-- Cleanups
-- dw_hdmi: Support 4k@60Hz; Cleanups
-- vop: Support RGB display on Rockchip RK3066; Support 4096px width
-
-tilcdc:
-- Use backlight constants
-
-----------------------------------------------------------------
-Alex Bee (1):
-      drm/rockchip: vop: Allow 4096px width scaling
-
-Andy Shevchenko (1):
-      drm: fixed: Don't use "proxy" headers
-
-Christophe JAILLET (1):
-      drm/rockchip: Constify struct drm_encoder_helper_funcs
-
-Cristian Ciocaltea (5):
-      drm/rockchip: Explicitly include bits header
-      drm/rockchip: dw_hdmi: Use modern drm_device based logging
-      drm/rockchip: dw_hdmi: Simplify clock handling
-      drm/rockchip: dw_hdmi: Use devm_regulator_get_enable()
-      drm/rockchip: dw_hdmi: Drop superfluous assignments of mpll_cfg, cur_ctr and phy_config
-
-Dan Carpenter (1):
-      drm/ast: astdp: fix loop timeout check
-
-Daniel Yang (1):
-      drm/connector: kerneldoc: Fix two missing newlines in drm_connector.c
-
-Dragan Simic (1):
-      drm/rockchip: cdn-dp: Clean up a few logged messages
-
-Jani Nikula (4):
-      drm/edid: reduce DisplayID log spamming
-      drm/rockchip: cdn-dp: get rid of drm_edid_raw()
-      drm/i915/gvt: stop using drm_edid_block_valid()
-      drm/edid: make drm_edid_block_valid() static
-
-Jocelyn Falempe (5):
-      drm/panic: Remove space before "!" in panic message
-      drm/panic: Remove useless export symbols
-      drm/panic: Move drm_panic_register prototype to drm_crtc_internal.h
-      drm/panic: Move copyright notice to the top
-      drm/panic: Add panic description
-
-Jonas Karlman (3):
-      drm/rockchip: dw_hdmi: Fix reading EDID when using a forced mode
-      drm/rockchip: dw_hdmi: Allow High TMDS Bit Rates
-      drm/rockchip: dw_hdmi: Add max_tmds_clock validation
-
-Louis Chauvet (1):
-      drm/vkms: Formatting and typo fix
-
-Mohammed Anees (1):
-      drm: Add missing documentation for struct drm_plane_size_hint
-
-Tejas Vipin (2):
-      drm/mipi-dsi: add more multi functions for better error handling
-      drm/panel: startek-kd070fhfid015: transition to mipi_dsi wrapped functions
-
-Thomas Zimmermann (18):
-      Merge drm/drm-next into drm-misc-next
-      drm: Do delayed switcheroo in drm_lastclose()
-      drm/amdgpu: Do not set struct drm_driver.lastclose
-      drm/nouveau: Do not set struct drm_driver.lastclose
-      drm/nouveau: Do not set struct drm_mode_config_funcs.output_poll_changed
-      drm/nouveau: Implement switcheroo reprobe with drm_client_dev_hotplug()
-      drm/fbdev-helper: Update documentation on obsolete callbacks
-      drm/fbdev-helper: Remove drm_fb_helper_output_poll_changed()
-      drm: Remove struct drm_driver.lastclose
-      drm: Remove struct drm_mode_config_funcs.output_poll_changed
-      drm/amdgpu: Use backlight power constants
-      drm/panel: panel-novatak-nt35510: Use backlight power constants
-      drm/panel: panel-orisetech-otm8009a: Use backlight power constants
-      drm/panel: panel-samsung-s6e63j0x03: Use backlight power constants
-      drm/panel: panel-samsung-s6e3ha2: Use backlight power constants
-      drm/panel: panel-sony-acx565akm: Use backlight power constants
-      drm/radeon: Use backlight power constants
-      drm/tilcdc: Use backlight power constants
-
-Val Packett (2):
-      drm/rockchip: vop: clear DMA stop bit on RK3066
-      drm/rockchip: vop: enable VOP_FEATURE_INTERNAL_RGB on RK3066
-
-Vignesh Raman (1):
-      drm/ci: uprev mesa
-
-WangYuli (1):
-      drm/ci: Upgrade setuptools requirement to 70.0.0
-
-Zhang Zekun (1):
-      drm/hisilicon: Remove unused delarations
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h                |   1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   2 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c            |  17 --
- drivers/gpu/drm/amd/amdgpu/atombios_encoders.c     |   2 +-
- drivers/gpu/drm/ast/ast_dp.c                       |  15 +-
- drivers/gpu/drm/ci/container.yml                   |   8 +
- drivers/gpu/drm/ci/gitlab-ci.yml                   |  22 +--
- drivers/gpu/drm/ci/image-tags.yml                  |   8 +-
- drivers/gpu/drm/ci/lava-submit.sh                  |   1 +
- drivers/gpu/drm/ci/test.yml                        |   4 +-
- drivers/gpu/drm/ci/xfails/requirements.txt         |   2 +-
- drivers/gpu/drm/drm_connector.c                    |   4 +
- drivers/gpu/drm/drm_crtc_internal.h                |   4 +
- drivers/gpu/drm/drm_displayid.c                    |   3 -
- drivers/gpu/drm/drm_edid.c                         |  22 +--
- drivers/gpu/drm/drm_fb_helper.c                    |  37 +---
- drivers/gpu/drm/drm_file.c                         |  32 ++--
- drivers/gpu/drm/drm_internal.h                     |   1 -
- drivers/gpu/drm/drm_mipi_dsi.c                     | 194 +++++++++++++++++++++
- drivers/gpu/drm/drm_panic.c                        |  62 +++++--
- drivers/gpu/drm/drm_probe_helper.c                 |  10 +-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h    |   1 -
- drivers/gpu/drm/i915/gvt/kvmgt.c                   |  18 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c            |   1 -
- drivers/gpu/drm/nouveau/nouveau_display.c          |   1 -
- drivers/gpu/drm/nouveau/nouveau_drm.c              |   1 -
- drivers/gpu/drm/nouveau/nouveau_vga.c              |  10 +-
- drivers/gpu/drm/nouveau/nouveau_vga.h              |   1 -
- drivers/gpu/drm/panel/panel-novatek-nt35510.c      |   2 +-
- drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |   4 +-
- drivers/gpu/drm/panel/panel-samsung-s6e3ha2.c      |  10 +-
- drivers/gpu/drm/panel/panel-samsung-s6e63j0x03.c   |  10 +-
- drivers/gpu/drm/panel/panel-sony-acx565akm.c       |   2 +-
- .../gpu/drm/panel/panel-startek-kd070fhfid015.c    | 115 ++++--------
- drivers/gpu/drm/radeon/atombios_encoders.c         |   2 +-
- drivers/gpu/drm/radeon/radeon_legacy_encoders.c    |   2 +-
- drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |   2 +-
- drivers/gpu/drm/rockchip/cdn-dp-core.c             |  32 ++--
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 107 +++++-------
- drivers/gpu/drm/rockchip/inno_hdmi.c               |   2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   3 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |   8 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop.h        |   1 +
- drivers/gpu/drm/rockchip/rockchip_vop_reg.c        |   2 +
- drivers/gpu/drm/tilcdc/tilcdc_panel.c              |   2 +-
- drivers/gpu/drm/vkms/vkms_drv.c                    |   6 +-
- drivers/gpu/vga/vga_switcheroo.c                   |   3 +-
- include/drm/drm_drv.h                              |  28 ---
- include/drm/drm_edid.h                             |   2 -
- include/drm/drm_fb_helper.h                        |   6 -
- include/drm/drm_fixed.h                            |   3 +-
- include/drm/drm_mipi_dsi.h                         |  10 ++
- include/drm/drm_mode_config.h                      |  16 --
- include/drm/drm_panic.h                            |  21 +--
- include/uapi/drm/drm_mode.h                        |   2 +
- 55 files changed, 471 insertions(+), 416 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
