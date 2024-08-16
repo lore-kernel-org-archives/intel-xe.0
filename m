@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19DCBC3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 11:55:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9E28C52D7D
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 11:55:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5CE210E368;
-	Fri, 16 Aug 2024 11:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A33DA10E038;
+	Fri, 16 Aug 2024 11:55:25 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24BF910E402;
- Fri, 16 Aug 2024 11:55:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 367E710E038;
+ Fri, 16 Aug 2024 11:55:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introducing_Xe2_ccs_?=
- =?utf-8?q?modifiers_for_integrated_and_discrete_graphics_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introducing_Xe2_ccs_modif?=
+ =?utf-8?q?iers_for_integrated_and_discrete_graphics_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Aug 2024 11:55:11 -0000
-Message-ID: <172380931114.653293.13777222992558691039@2413ebb6fbb6>
+Date: Fri, 16 Aug 2024 11:55:24 -0000
+Message-ID: <172380932421.652113.285972745015426239@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240816115229.531671-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20240816115229.531671-1-juhapekka.heikkila@gmail.com>
@@ -44,15 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Introducing Xe2 ccs modifiers for integrated and discrete graphics (rev2)
 URL   : https://patchwork.freedesktop.org/series/137207/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 70d6d55dea57 drm-tip: 2024y-08m-16d-08h-43m-44s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Don't enable decompression on Xe2 with Tile4
-Applying: drm/fourcc: define Intel Xe2 related tile4 ccs modifiers
-Applying: drm/i915/display: allow creation of Xe2 ccs framebuffers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 969973fc7d713db6a761d1e7a61765bdbe9396b0
+Author: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date:   Fri Aug 16 14:52:29 2024 +0300
+
+    drm/i915/display: allow creation of Xe2 ccs framebuffers
+    
+    Add I915_FORMAT_MOD_4_TILED_BMG_CCS and I915_FORMAT_MOD_4_TILED_LNL_CCS to possible
+    created modifier for new framebuffer on Xe driver.
+    
+    Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Reviewed-by: Mika Kahola <mika.kahola@intel.com>
++ /mt/dim checkpatch 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c drm-intel
+3dc7bcf5f8a0 drm/i915/display: Don't enable decompression on Xe2 with Tile4
+714ff72024af drm/fourcc: define Intel Xe2 related tile4 ccs modifiers
+969973fc7d71 drm/i915/display: allow creation of Xe2 ccs framebuffers
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Add I915_FORMAT_MOD_4_TILED_BMG_CCS and I915_FORMAT_MOD_4_TILED_LNL_CCS to possible
+
+total: 0 errors, 1 warnings, 0 checks, 61 lines checked
 
 
