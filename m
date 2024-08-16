@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B322C3DA4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40A9AC531DC
 	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 19:00:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2770610E829;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1138410E828;
 	Fri, 16 Aug 2024 19:00:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="erHEt/ZO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RWWwOfqr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7009A10E828
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Aug 2024 19:00:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9968210E828
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Aug 2024 19:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723834845; x=1755370845;
+ t=1723834846; x=1755370846;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kLM86aGBykKOkFO5qn22n8IVixrbYt43e2L/rqq+D5A=;
- b=erHEt/ZOwXVrEebpoxiKAqFw45iTwl41d3WtKNW6WKykXlhEYPifixJW
- n6I+/XCZGTapBbsq7zfYNF12IgMMHw9wCR8Lpu2WHHzpSbTXCRuyL1Mg0
- xOMKzU5H6OZxi6RC/qGYZfW0hQJx4DSYB2fP0B3tGV8jb4tXeMlWvr05o
- HMCVo6Su6/aXSDn/neSePYpvqgvv3c80H85nHeBd5/33BmY9aFL+SkUeD
- QHj+M+Tm1y9K/MfxlYQuEreAPHpLOovaC2a3WHfPS7982Wpt0RVMYP5TK
- o/Ovio2vRXZtMhuJ1SgjbDh1LRNKO0HTPN6OAFiqnXbeVNQ+yRvwAGfp/ w==;
-X-CSE-ConnectionGUID: Q4fey2ExR7+IZHTr1/xhiw==
-X-CSE-MsgGUID: wBX6vyVuTfmjTOMLw38Spg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="21772448"
-X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="21772448"
+ bh=UDsql5wbI9PR/u9wdsw+qalmszrsqGca1wyYVoiBx7Y=;
+ b=RWWwOfqr7AHfK6AODJefsGkeovcaZcYQeuFc9Vb4oB+RfMcLso/qVg+p
+ a+Iqh6Pp+oOe/q06P5xE3InfFX9Z0cu5hTY9oSx2ztyzQqY+SAlbElUNG
+ A/nkGDs6bRhJ/QWJdMSX5lL+P3iRbSiTNC6nkkCNsU+fVOsgWpFTmg9MU
+ mtOLG8KfkcrWk5wjbhFUXIwI5YleqiLgZbscp8akTlpxcsoe8S7+3W0gr
+ WbuwdGdaqA5rBk/U6FRgK5Kh+TqSWaXRZjYxkDFIRsL+z9FpMS2JBIO0X
+ 5THycWu0C3eyxDKpoYFfJKcduVzEeU1wrMuq97NsJrrZ3JtSjkQEGtKrK w==;
+X-CSE-ConnectionGUID: AMfL232VRl2hnRe/nl3xEA==
+X-CSE-MsgGUID: M2Olpj4BQOe7ynJPhw+oYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="21772450"
+X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="21772450"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2024 12:00:44 -0700
-X-CSE-ConnectionGUID: Yi+vOPxNTIq4vTTDz+ypLg==
-X-CSE-MsgGUID: TqkCCIPWTzm9mOno7ilS8w==
+ 16 Aug 2024 12:00:46 -0700
+X-CSE-ConnectionGUID: zhQikuAaR2acHtDky9+TZA==
+X-CSE-MsgGUID: s6OTmO3zSU+CmsLe43AUGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="59767949"
+X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="59767952"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2024 12:00:44 -0700
+ 16 Aug 2024 12:00:45 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v2 03/12] drm/xe/pxp: Add VCS inline termination support
-Date: Fri, 16 Aug 2024 12:00:12 -0700
-Message-ID: <20240816190024.2176976-4-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 04/12] drm/xe/pxp: Add GSC session invalidation support
+Date: Fri, 16 Aug 2024 12:00:13 -0700
+Message-ID: <20240816190024.2176976-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240816190024.2176976-1-daniele.ceraolospurio@intel.com>
 References: <20240816190024.2176976-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,8 +66,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The key termination is done with a specific submission to the VCS
-engine.
+After a session is terminated, we need to inform the GSC so that it can
+clean up its side of the allocation. This is done by sending an
+invalidation command with the session ID.
 
 Note that this patch is meant to be squashed with the follow-up patches
 that implement the other pieces of the termination flow. It is separate
@@ -76,214 +76,104 @@ for now for ease of review.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- .../gpu/drm/xe/instructions/xe_instr_defs.h   |   1 +
- .../gpu/drm/xe/instructions/xe_mfx_commands.h |  29 +++++
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |   5 +
- drivers/gpu/drm/xe/xe_lrc.h                   |   3 +-
- drivers/gpu/drm/xe/xe_pxp_submit.c            | 108 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_pxp_submit.h            |   2 +
- drivers/gpu/drm/xe/xe_ring_ops.c              |   4 +-
- 7 files changed, 149 insertions(+), 3 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/instructions/xe_mfx_commands.h
+ drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h |  12 +
+ drivers/gpu/drm/xe/xe_pxp_submit.c            | 215 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pxp_submit.h            |   3 +
+ 3 files changed, 230 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-index fd2ce7ace510..e559969468c4 100644
---- a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-@@ -16,6 +16,7 @@
- #define XE_INSTR_CMD_TYPE		GENMASK(31, 29)
- #define   XE_INSTR_MI			REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x0)
- #define   XE_INSTR_GSC			REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x2)
-+#define   XE_INSTR_VIDEOPIPE		REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x3)
- #define   XE_INSTR_GFXPIPE		REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x3)
- #define   XE_INSTR_GFX_STATE		REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x4)
+diff --git a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
+index f3c4cf10ba20..4a59c564a0d0 100644
+--- a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
++++ b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
+@@ -49,6 +49,7 @@ struct pxp_cmd_header {
+ 	u32 buffer_len;
+ } __packed;
  
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mfx_commands.h b/drivers/gpu/drm/xe/instructions/xe_mfx_commands.h
-new file mode 100644
-index 000000000000..686ca3b1d9e8
---- /dev/null
-+++ b/drivers/gpu/drm/xe/instructions/xe_mfx_commands.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_MFX_COMMANDS_H_
-+#define _XE_MFX_COMMANDS_H_
-+
-+#include "instructions/xe_instr_defs.h"
-+
-+#define MFX_CMD_SUBTYPE		REG_GENMASK(28, 27) /* A.K.A cmd pipe */
-+#define MFX_CMD_OPCODE		REG_GENMASK(26, 24)
-+#define MFX_CMD_SUB_OPCODE	REG_GENMASK(23, 16)
-+#define MFX_FLAGS_AND_LEN	REG_GENMASK(15, 0)
-+
-+#define XE_MFX_INSTR(subtype, op, sub_op, flags) \
-+	(XE_INSTR_VIDEOPIPE | \
-+	 REG_FIELD_PREP(MFX_CMD_SUBTYPE, subtype) | \
-+	 REG_FIELD_PREP(MFX_CMD_OPCODE, op) | \
-+	 REG_FIELD_PREP(MFX_CMD_SUB_OPCODE, sub_op) | \
-+	 REG_FIELD_PREP(MFX_FLAGS_AND_LEN, flags))
-+
-+#define MFX_WAIT				XE_MFX_INSTR(1, 0, 0, 0)
-+#define MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG	REG_BIT(9)
-+#define MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG	REG_BIT(8)
-+
-+#define CRYPTO_KEY_EXCHANGE			XE_MFX_INSTR(2, 6, 9, 0)
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index 10ec2920d31b..167fb0f742de 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -48,6 +48,7 @@
- #define   MI_LRI_LEN(x)			(((x) & 0xff) + 1)
++#define PXP43_CMDID_INVALIDATE_STREAM_KEY 0x00000007
+ #define PXP43_CMDID_NEW_HUC_AUTH 0x0000003F /* MTL+ */
  
- #define MI_FLUSH_DW			__MI_INSTR(0x26)
-+#define   MI_FLUSH_DW_PROTECTED_MEM_EN	REG_BIT(22)
- #define   MI_FLUSH_DW_STORE_INDEX	REG_BIT(21)
- #define   MI_INVALIDATE_TLB		REG_BIT(18)
- #define   MI_FLUSH_DW_CCS		REG_BIT(16)
-@@ -66,4 +67,8 @@
+ /* PXP-Input-Packet: HUC Auth-only */
+@@ -63,4 +64,15 @@ struct pxp43_huc_auth_out {
+ 	struct pxp_cmd_header header;
+ } __packed;
  
- #define MI_BATCH_BUFFER_START		__MI_INSTR(0x31)
- 
-+#define MI_SET_APPID			__MI_INSTR(0x0e)
-+#define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
-+#define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
++/* PXP-Input-Packet: Invalidate Stream Key */
++struct pxp43_inv_stream_key_in {
++	struct pxp_cmd_header header;
++	u32 rsvd[3];
++} __packed;
 +
++/* PXP-Output-Packet: Invalidate Stream Key */
++struct pxp43_inv_stream_key_out {
++	struct pxp_cmd_header header;
++	u32 rsvd;
++} __packed;
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index c24542e89318..d411c3fbcbc6 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -20,7 +20,8 @@ struct xe_lrc;
- struct xe_lrc_snapshot;
- struct xe_vm;
- 
--#define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
-+#define LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR (0x34 * 4)
-+#define LRC_PPHWSP_PXP_INVAL_SCRATCH_ADDR (0x40 * 4)
- 
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
- 			     u32 ring_size);
 diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.c b/drivers/gpu/drm/xe/xe_pxp_submit.c
-index b777b0765c8a..3b69dcc0a00f 100644
+index 3b69dcc0a00f..41684d666376 100644
 --- a/drivers/gpu/drm/xe/xe_pxp_submit.c
 +++ b/drivers/gpu/drm/xe/xe_pxp_submit.c
-@@ -6,14 +6,20 @@
- #include "xe_pxp_submit.h"
- 
- #include <drm/xe_drm.h>
-+#include <linux/delay.h>
- 
- #include "xe_device_types.h"
-+#include "xe_bb.h"
- #include "xe_bo.h"
- #include "xe_exec_queue.h"
+@@ -15,9 +15,13 @@
  #include "xe_gsc_submit.h"
  #include "xe_gt.h"
-+#include "xe_lrc.h"
+ #include "xe_lrc.h"
++#include "xe_map.h"
  #include "xe_pxp_types.h"
-+#include "xe_sched_job.h"
+ #include "xe_sched_job.h"
  #include "xe_vm.h"
-+#include "instructions/xe_mfx_commands.h"
-+#include "instructions/xe_mi_commands.h"
++#include "abi/gsc_command_header_abi.h"
++#include "abi/gsc_pxp_commands_abi.h"
++#include "instructions/xe_gsc_commands.h"
+ #include "instructions/xe_mfx_commands.h"
+ #include "instructions/xe_mi_commands.h"
  #include "regs/xe_gt_regs.h"
+@@ -307,3 +311,214 @@ int xe_pxp_submit_session_termination(struct xe_pxp *pxp, u32 id)
  
- /*
-@@ -199,3 +205,105 @@ void xe_pxp_destroy_execution_resources(struct xe_pxp *pxp)
- 	destroy_vcs_execution_resources(pxp);
+ 	return 0;
  }
- 
-+#define emit_cmd(xe_, map_, offset_, val_) \
-+	xe_map_wr(xe_, map_, (offset_) * sizeof(u32), u32, val_)
 +
-+/* stall until prior PXP and MFX/HCP/HUC objects are cmopleted */
-+#define MFX_WAIT_PXP (MFX_WAIT | \
-+		      MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | \
-+		      MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG)
-+static u32 pxp_emit_wait(struct xe_device *xe, struct iosys_map *batch, u32 offset)
++static bool
++is_fw_err_platform_config(u32 type)
 +{
-+	/* wait for cmds to go through */
-+	emit_cmd(xe, batch, offset++, MFX_WAIT_PXP);
-+	emit_cmd(xe, batch, offset++, 0);
-+
-+	return offset;
++	switch (type) {
++	case PXP_STATUS_ERROR_API_VERSION:
++	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
++	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
++		return true;
++	default:
++		break;
++	}
++	return false;
 +}
 +
-+static u32 pxp_emit_session_selection(struct xe_device *xe, struct iosys_map *batch,
-+				      u32 offset, u32 idx)
++static const char *
++fw_err_to_string(u32 type)
 +{
-+	offset = pxp_emit_wait(xe, batch, offset);
-+
-+	/* pxp off */
-+	emit_cmd(xe, batch, offset++, MI_FLUSH_DW | MI_FLUSH_IMM_DW);
-+	emit_cmd(xe, batch, offset++, 0);
-+	emit_cmd(xe, batch, offset++, 0);
-+	emit_cmd(xe, batch, offset++, 0);
-+
-+	/* select session */
-+	emit_cmd(xe, batch, offset++, MI_SET_APPID | MI_SET_APPID_SESSION_ID(idx));
-+	emit_cmd(xe, batch, offset++, MFX_WAIT_PXP);
-+
-+	/* pxp on */
-+	emit_cmd(xe, batch, offset++, MI_FLUSH_DW |
-+				      MI_FLUSH_DW_PROTECTED_MEM_EN |
-+				      MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX |
-+				      MI_FLUSH_IMM_DW);
-+	emit_cmd(xe, batch, offset++, LRC_PPHWSP_PXP_INVAL_SCRATCH_ADDR |
-+				      MI_FLUSH_DW_USE_GTT);
-+	emit_cmd(xe, batch, offset++, 0);
-+	emit_cmd(xe, batch, offset++, 0);
-+
-+	offset = pxp_emit_wait(xe, batch, offset);
-+
-+	return offset;
++	switch (type) {
++	case PXP_STATUS_ERROR_API_VERSION:
++		return "ERR_API_VERSION";
++	case PXP_STATUS_NOT_READY:
++		return "ERR_NOT_READY";
++	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
++	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
++		return "ERR_PLATFORM_CONFIG";
++	default:
++		break;
++	}
++	return NULL;
 +}
 +
-+static u32 pxp_emit_inline_termination(struct xe_device *xe,
-+				       struct iosys_map *batch, u32 offset)
++static int pxp_pkt_submit(struct xe_exec_queue *q, u64 batch_addr)
 +{
-+	/* session inline termination */
-+	emit_cmd(xe, batch, offset++, CRYPTO_KEY_EXCHANGE);
-+	emit_cmd(xe, batch, offset++, 0);
-+
-+	return offset;
-+}
-+
-+static u32 pxp_emit_session_termination(struct xe_device *xe, struct iosys_map *batch,
-+					u32 offset, u32 idx)
-+{
-+	offset = pxp_emit_session_selection(xe, batch, offset, idx);
-+	offset = pxp_emit_inline_termination(xe, batch, offset);
-+
-+	return offset;
-+}
-+
-+/**
-+ * xe_pxp_submit_session_termination - submits a PXP inline termination
-+ * @pxp: the xe_pxp structure
-+ * @id: the session to terminate
-+ *
-+ * Emit an inline termination via the VCS engine to terminate a session.
-+ *
-+ * Returns 0 if the submission is successful, an errno value otherwise.
-+ */
-+int xe_pxp_submit_session_termination(struct xe_pxp *pxp, u32 id)
-+{
++	struct xe_gt *gt = q->gt;
++	struct xe_device *xe = gt_to_xe(gt);
 +	struct xe_sched_job *job;
 +	struct dma_fence *fence;
 +	long timeout;
-+	u32 offset = 0;
-+	u64 addr = xe_bo_ggtt_addr(pxp->vcs_exec.bo);
 +
-+	offset = pxp_emit_session_termination(pxp->xe, &pxp->vcs_exec.bo->vmap, offset, id);
-+	offset = pxp_emit_wait(pxp->xe, &pxp->vcs_exec.bo->vmap, offset);
-+	emit_cmd(pxp->xe, &pxp->vcs_exec.bo->vmap, offset, MI_BATCH_BUFFER_END);
++	xe_assert(xe, q->hwe->engine_id == XE_HW_ENGINE_GSCCS0);
 +
-+	job =  xe_sched_job_create(pxp->vcs_exec.q, &addr);
++	job =  xe_sched_job_create(q, &batch_addr);
 +	if (IS_ERR(job))
 +		return PTR_ERR(job);
 +
@@ -292,46 +182,184 @@ index b777b0765c8a..3b69dcc0a00f 100644
 +	xe_sched_job_push(job);
 +
 +	timeout = dma_fence_wait_timeout(fence, false, HZ);
-+
 +	dma_fence_put(fence);
-+	if (timeout <= 0)
-+		return -EAGAIN;
++	if (timeout < 0)
++		return timeout;
++	else if (!timeout)
++		return -ETIME;
 +
 +	return 0;
 +}
++
++static void emit_pxp_heci_cmd(struct xe_device *xe, struct iosys_map *batch,
++			      u64 addr_in, u32 size_in, u64 addr_out, u32 size_out)
++{
++	u32 len = 0;
++
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, GSC_HECI_CMD_PKT);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, lower_32_bits(addr_in));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, upper_32_bits(addr_in));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, size_in);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, lower_32_bits(addr_out));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, upper_32_bits(addr_out));
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, size_out);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, 0);
++	xe_map_wr(xe, batch, len++ * sizeof(u32), u32, MI_BATCH_BUFFER_END);
++}
++
++#define GSC_PENDING_RETRY_MAXCOUNT 40
++#define GSC_PENDING_RETRY_PAUSE_MS 50
++static int gsccs_send_message(struct xe_pxp_gsc_client_resources *gsc_res,
++			      void *msg_in, size_t msg_in_size,
++			      void *msg_out, size_t msg_out_size_max)
++{
++	struct xe_device *xe = gsc_res->vm->xe;
++	const size_t max_msg_size = gsc_res->inout_size - sizeof(struct intel_gsc_mtl_header);
++	u32 wr_offset = 0;
++	u32 rd_offset = 0;
++	u32 reply_size;
++	u32 min_reply_size = 0;
++	int ret = 0;
++	int retry = GSC_PENDING_RETRY_MAXCOUNT;
++
++	if (msg_in_size > max_msg_size || msg_out_size_max > max_msg_size)
++		return -ENOSPC;
++
++	wr_offset = xe_gsc_emit_header(xe, &gsc_res->msg_in, 0,
++				       HECI_MEADDRESS_PXP,
++				       gsc_res->host_session_handle,
++				       msg_in_size);
++
++	/* NOTE: zero size packets are used for session-cleanups */
++	if (msg_in && msg_in_size) {
++		xe_map_memcpy_to(xe, &gsc_res->msg_in, wr_offset,
++				 msg_in, msg_in_size);
++		min_reply_size = sizeof(struct pxp_cmd_header);
++	}
++
++	/* Make sure the reply header does not contain stale data */
++	xe_gsc_poison_header(xe, &gsc_res->msg_out, 0);
++
++	emit_pxp_heci_cmd(xe, &gsc_res->batch, PXP_BB_SIZE,
++			  wr_offset + msg_in_size, PXP_BB_SIZE + gsc_res->inout_size,
++			  msg_out_size_max + wr_offset);
++
++	xe_device_wmb(xe);
++
++	do {
++		ret = pxp_pkt_submit(gsc_res->q, 0);
++		if (ret)
++			break;
++
++		if (xe_gsc_check_and_update_pending(xe, &gsc_res->msg_in, 0,
++						    &gsc_res->msg_out, 0)) {
++			ret = -EAGAIN;
++			msleep(GSC_PENDING_RETRY_PAUSE_MS);
++		}
++	} while (--retry && ret == -EAGAIN);
++
++	if (ret) {
++		drm_err(&xe->drm, "failed to submit GSC PXP message: %d\n", ret);
++		return ret;
++	}
++
++	ret = xe_gsc_read_out_header(xe, &gsc_res->msg_out, 0,
++				     min_reply_size, &rd_offset);
++	if (ret) {
++		drm_err(&xe->drm, "invalid GSC reply for PXP (err=%d)\n", ret);
++		return ret;
++	}
++
++	if (msg_out && min_reply_size) {
++		reply_size = xe_map_rd_field(xe, &gsc_res->msg_out, rd_offset,
++					     struct pxp_cmd_header, buffer_len);
++		reply_size += sizeof(struct pxp_cmd_header);
++
++		if (reply_size > msg_out_size_max) {
++			drm_warn(&xe->drm, "caller with insufficient PXP reply size %u (%ld)\n",
++				 reply_size, msg_out_size_max);
++			reply_size = msg_out_size_max;
++		}
++
++		xe_map_memcpy_from(xe, msg_out, &gsc_res->msg_out,
++				   rd_offset, reply_size);
++	}
++
++	xe_gsc_poison_header(xe, &gsc_res->msg_in, 0);
++
++	return ret;
++}
++
++/**
++ * xe_pxp_submit_session_invalidation - submits a PXP GSC invalidation
++ * @gsc_res: the pxp client resources
++ * @id: the session to invalidate
++ *
++ * Submit a message to the GSC FW to notify it that a session has been
++ * terminated and is therefore invalid.
++ *
++ * Returns 0 if the submission is successful, an errno value otherwise.
++ */
++int xe_pxp_submit_session_invalidation(struct xe_pxp_gsc_client_resources *gsc_res,
++				       u32 id)
++{
++	struct xe_device *xe = gsc_res->vm->xe;
++	struct pxp43_inv_stream_key_in msg_in = {0};
++	struct pxp43_inv_stream_key_out msg_out = {0};
++	int ret = 0;
++
++	/*
++	 * Stream key invalidation reuses the same version 4.2 input/output
++	 * command format but firmware requires 4.3 API interaction
++	 */
++	msg_in.header.api_version = PXP_APIVER(4, 3);
++	msg_in.header.command_id = PXP43_CMDID_INVALIDATE_STREAM_KEY;
++	msg_in.header.buffer_len = sizeof(msg_in) - sizeof(msg_in.header);
++
++	msg_in.header.stream_id = FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_VALID, 1);
++	msg_in.header.stream_id |= FIELD_PREP(PXP_CMDHDR_EXTDATA_APP_TYPE, 0);
++	msg_in.header.stream_id |= FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_ID, id);
++
++	ret = gsccs_send_message(gsc_res, &msg_in, sizeof(msg_in),
++				 &msg_out, sizeof(msg_out));
++	if (ret) {
++		drm_err(&xe->drm, "Failed to inv-stream-key-%u, ret=[%d]\n",
++			id, ret);
++	} else if (msg_out.header.status != 0) {
++		if (is_fw_err_platform_config(msg_out.header.status)) {
++			drm_info_once(&xe->drm,
++				      "PXP inv-stream-key-%u failed due to BIOS/SOC :0x%08x:%s\n",
++				      id, msg_out.header.status,
++				      fw_err_to_string(msg_out.header.status));
++		} else {
++			drm_dbg(&xe->drm, "PXP inv-stream-key-%u failed 0x%08x:%s:\n",
++				id, msg_out.header.status,
++				fw_err_to_string(msg_out.header.status));
++			drm_dbg(&xe->drm, "     cmd-detail: ID=[0x%08x],API-Ver-[0x%08x]\n",
++				msg_in.header.command_id, msg_in.header.api_version);
++		}
++	}
++
++	return ret;
++}
 diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.h b/drivers/gpu/drm/xe/xe_pxp_submit.h
-index 1a971fadc081..4ee8c0acfed9 100644
+index 4ee8c0acfed9..48fdc9b09116 100644
 --- a/drivers/gpu/drm/xe/xe_pxp_submit.h
 +++ b/drivers/gpu/drm/xe/xe_pxp_submit.h
-@@ -13,4 +13,6 @@ struct xe_pxp;
+@@ -9,10 +9,13 @@
+ #include <linux/types.h>
+ 
+ struct xe_pxp;
++struct xe_pxp_gsc_client_resources;
+ 
  int xe_pxp_allocate_execution_resources(struct xe_pxp *pxp);
  void xe_pxp_destroy_execution_resources(struct xe_pxp *pxp);
  
-+int xe_pxp_submit_session_termination(struct xe_pxp *pxp, u32 id);
-+
+ int xe_pxp_submit_session_termination(struct xe_pxp *pxp, u32 id);
++int xe_pxp_submit_session_invalidation(struct xe_pxp_gsc_client_resources *gsc_res,
++				       u32 id);
+ 
  #endif /* __XE_PXP_SUBMIT_H__ */
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 0be4f489d3e1..a4b5a0f68a32 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -118,7 +118,7 @@ static int emit_flush_invalidate(u32 flag, u32 *dw, int i)
- 	dw[i++] |= MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
- 		MI_FLUSH_DW_STORE_INDEX;
- 
--	dw[i++] = LRC_PPHWSP_SCRATCH_ADDR | MI_FLUSH_DW_USE_GTT;
-+	dw[i++] = LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR | MI_FLUSH_DW_USE_GTT;
- 	dw[i++] = 0;
- 	dw[i++] = ~0U;
- 
-@@ -156,7 +156,7 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
- 
- 	flags &= ~mask_flags;
- 
--	return emit_pipe_control(dw, i, 0, flags, LRC_PPHWSP_SCRATCH_ADDR, 0);
-+	return emit_pipe_control(dw, i, 0, flags, LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
- }
- 
- static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
 -- 
 2.43.0
 
