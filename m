@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ABE2C3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 15:09:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87DE7C531DC
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 15:10:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA0C810E7EE;
-	Fri, 16 Aug 2024 15:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D13D10E7EF;
+	Fri, 16 Aug 2024 15:10:00 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00DF210E7EE;
- Fri, 16 Aug 2024 15:09:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10CCB10E7EF;
+ Fri, 16 Aug 2024 15:09:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B01/12=5D_drm/xe=3A_Removed_unused_xe=5Fggtt=5Fprintk?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B0?=
+ =?utf-8?q?1/12=5D_drm/xe=3A_Removed_unused_xe=5Fggtt=5Fprintk?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Aug 2024 15:09:13 -0000
-Message-ID: <172382095300.653293.7193657231729841372@2413ebb6fbb6>
+Date: Fri, 16 Aug 2024 15:09:59 -0000
+Message-ID: <172382099905.653293.12564261362249089916@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240816150243.87596-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20240816150243.87596-1-rodrigo.vivi@intel.com>
@@ -48,20 +48,64 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1f246caab12a drm-tip: 2024y-08m-16d-14h-57m-02s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Removed unused xe_ggtt_printk
-Applying: drm/xe: Introduce GGTT documentation
-Applying: drm/xe: Remove unnecessary drm_mm.h includes
-Applying: drm/{i915, xe}: Avoid direct inspection of dpt_vma from outside dpt
-Applying: drm/xe: Encapsulate drm_mm_node inside xe_ggtt_node
-Applying: drm/xe: Rename xe_ggtt_node related functions
-Applying: drm/xe: Limit drm_mm_node_allocated access to xe_ggtt_node
-Applying: drm/xe: Introduce xe_ggtt_largest_hole
-Applying: drm/xe: Introduce xe_ggtt_print_holes
-Applying: drm/xe: Rename xe_ggtt balloon functions to make the node clear
-Applying: drm/xe: Make xe_ggtt_node struct independent
-Applying: drm/xe: Fix missing runtime outer protection for ggtt_remove_node
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3d1c0d1e8188a1ff28a4a1ba92c58a5b34e2dda7
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Fri Aug 16 11:02:43 2024 -0400
+
+    drm/xe: Fix missing runtime outer protection for ggtt_remove_node
+    
+    Defer the ggtt node removal to a thread if runtime_pm is not active.
+    
+    The ggtt node removal can be called from multiple places, including
+    places where we cannot protect with outer callers and places we are
+    within other locks. So, try to grab the runtime reference if the
+    device is already active, otherwise defer the removal to a separate
+    thread from where we are sure we can wake the device up.
+    
+    v2: - use xe wq instead of system wq (Matt and CI)
+        - Avoid GFP_KERNEL to be future proof since this removal can
+        be called from outside our drivers and we don't want to block
+        if atomic is needed. (Brost)
+    v3: amend forgot chunk declaring xe_device.
+    v4: Use a xe_ggtt_region to encapsulate the node and remova info,
+        wihtout the need for any memory allocation at runtime.
+    v5: Actually fill the delayed_removal.invalidate (Brost)
+    v6: - Ensure that ggtt_region is not freed before work finishes (Auld)
+        - Own wq to ensures that the queued works are flushed before
+          ggtt_fini (Brost)
+    v7: also free ggtt_region on early !bound return (Auld)
+    v8: Address the null deref (CI)
+    v9: Based on the new xe_ggtt_node for the proper care of the lifetime
+        of the object.
+    v10: Redo the lost v5 change. (Brost)
+    
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+    Cc: Francois Dugast <francois.dugast@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 1f246caab12a2343f21ac227a26698e44a6490ff drm-intel
+8fc79fcd9288 drm/xe: Removed unused xe_ggtt_printk
+0b4a5719d01b drm/xe: Introduce GGTT documentation
+380349575fd9 drm/xe: Remove unnecessary drm_mm.h includes
+849c86d92ba3 drm/{i915, xe}: Avoid direct inspection of dpt_vma from outside dpt
+8bb7a9baf447 drm/xe: Encapsulate drm_mm_node inside xe_ggtt_node
+4d1b080abca8 drm/xe: Rename xe_ggtt_node related functions
+c10860eb581b drm/xe: Limit drm_mm_node_allocated access to xe_ggtt_node
+18c9f388645f drm/xe: Introduce xe_ggtt_largest_hole
+2cb237015161 drm/xe: Introduce xe_ggtt_print_holes
+49e5fbe135ec drm/xe: Rename xe_ggtt balloon functions to make the node clear
+690b7b4b8775 drm/xe: Make xe_ggtt_node struct independent
+3d1c0d1e8188 drm/xe: Fix missing runtime outer protection for ggtt_remove_node
 
 
