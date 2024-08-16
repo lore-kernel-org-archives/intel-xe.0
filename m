@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BF72C5472C
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 12:54:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E7F1C54722
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 12:54:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A02610E5F7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4DA310E5FC;
 	Fri, 16 Aug 2024 12:54:18 +0000 (UTC)
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CDD810E532;
- Fri, 16 Aug 2024 12:54:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8988D10E5A5;
+ Fri, 16 Aug 2024 12:54:15 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 2C6702230C;
- Fri, 16 Aug 2024 12:54:13 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 32BA22230F;
+ Fri, 16 Aug 2024 12:54:14 +0000 (UTC)
 Authentication-Results: smtp-out1.suse.de;
 	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D5BB613A2F;
- Fri, 16 Aug 2024 12:54:12 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D6A6113ACA;
+ Fri, 16 Aug 2024 12:54:13 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id yMvtMvRLv2bdbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:12 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id WNslM/VLv2bdbgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:13 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Liviu Dudau <liviu.dudau@arm.com>
-Subject: [PATCH 07/86] drm/arm/komeda: Run DRM default client setup
-Date: Fri, 16 Aug 2024 14:22:33 +0200
-Message-ID: <20240816125408.310253-8-tzimmermann@suse.de>
+ Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>
+Subject: [PATCH 10/86] drm/aspeed: Run DRM default client setup
+Date: Fri, 16 Aug 2024 14:22:36 +0200
+Message-ID: <20240816125408.310253-11-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240816125408.310253-1-tzimmermann@suse.de>
 References: <20240816125408.310253-1-tzimmermann@suse.de>
@@ -50,7 +50,7 @@ X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Rspamd-Action: no action
 X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 2C6702230C
+X-Rspamd-Queue-Id: 32BA22230F
 X-Spamd-Result: default: False [-4.00 / 50.00];
 	REPLY(-4.00)[]
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,58 +71,37 @@ Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-The komeda driver specifies a preferred color mode of 32. As this
+The aspeed driver specifies a preferred color mode of 32. As this
 is the default if no format has been given, leave it out entirely.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Joel Stanley <joel@jms.id.au>
+Cc: Andrew Jeffery <andrew@codeconstruct.com.au>
 ---
- drivers/gpu/drm/arm/display/komeda/komeda_drv.c | 4 ++--
- drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 ++
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_drv.c b/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
-index 55c3773befde..6d475bb34002 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
-@@ -9,7 +9,7 @@
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
--#include <drm/drm_fbdev_dma.h>
+diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+index a7a6b70220eb..e1efe08fdfad 100644
+--- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
++++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+@@ -14,6 +14,7 @@
+ #include <linux/reset.h>
+ 
+ #include <drm/drm_atomic_helper.h>
 +#include <drm/drm_client_setup.h>
- #include <drm/drm_module.h>
- #include <drm/drm_of.h>
- #include "komeda_dev.h"
-@@ -84,7 +84,7 @@ static int komeda_platform_probe(struct platform_device *pdev)
- 	}
+ #include <drm/drm_device.h>
+ #include <drm/drm_fbdev_dma.h>
+ #include <drm/drm_gem_dma_helper.h>
+@@ -339,7 +340,7 @@ static int aspeed_gfx_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_unload;
  
- 	dev_set_drvdata(dev, mdrv);
--	drm_fbdev_dma_setup(&mdrv->kms->base, 32);
-+	drm_client_setup(&mdrv->kms->base, NULL);
- 
+-	drm_fbdev_dma_setup(&priv->drm, 32);
++	drm_client_setup(&priv->drm, NULL);
  	return 0;
  
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-index fe46b0ebefea..f3314261925c 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_drv.h>
-+#include <drm/drm_fbdev_dma.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_managed.h>
-@@ -58,6 +59,7 @@ static irqreturn_t komeda_kms_irq_handler(int irq, void *data)
- static const struct drm_driver komeda_kms_driver = {
- 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
- 	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(komeda_gem_dma_dumb_create),
-+	DRM_FBDEV_DMA_DRIVER_OPS,
- 	.fops = &komeda_cma_fops,
- 	.name = "komeda",
- 	.desc = "Arm Komeda Display Processor driver",
+ err_unload:
 -- 
 2.46.0
 
