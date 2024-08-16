@@ -4,133 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4E07C3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 13:34:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22233C3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 13:37:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70AB710E720;
-	Fri, 16 Aug 2024 13:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF1B810E721;
+	Fri, 16 Aug 2024 13:37:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="TiAVJh/R";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4XjQmVlb";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TiAVJh/R";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4XjQmVlb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="leyUQ7Qu";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1A8210E6E0;
- Fri, 16 Aug 2024 13:34:17 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 6F9E2220F3;
- Fri, 16 Aug 2024 13:34:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723815256; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=PxCY1NSp+vPTDMS3xTsfjnJIha1Xy2kK//ctB90lHS4=;
- b=TiAVJh/RbEsbN5s1QtlMjb4vqXc2QEu7ytzKlWzZ5MFhLsc5lpRLhvTCndJYz4CMWy0lM6
- RGt284xw3Ts0nehSuvutV61Nc7+cBBR0hkJ3XKjRQ3Rn+I2uqdRW1hJ2F5NQi8BjdH4xm0
- 630J7RT90JCRSQ0s1YuBDfAk/6l3B/U=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723815256;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=PxCY1NSp+vPTDMS3xTsfjnJIha1Xy2kK//ctB90lHS4=;
- b=4XjQmVlb5qZETYlC5niW3iP8Tbdj1SxmXaPlvBrcfMsQeC0aYa/6lmbxitcW/MdqmNLFT/
- DYTu5VSiDAW40XCQ==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723815256; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=PxCY1NSp+vPTDMS3xTsfjnJIha1Xy2kK//ctB90lHS4=;
- b=TiAVJh/RbEsbN5s1QtlMjb4vqXc2QEu7ytzKlWzZ5MFhLsc5lpRLhvTCndJYz4CMWy0lM6
- RGt284xw3Ts0nehSuvutV61Nc7+cBBR0hkJ3XKjRQ3Rn+I2uqdRW1hJ2F5NQi8BjdH4xm0
- 630J7RT90JCRSQ0s1YuBDfAk/6l3B/U=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723815256;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=PxCY1NSp+vPTDMS3xTsfjnJIha1Xy2kK//ctB90lHS4=;
- b=4XjQmVlb5qZETYlC5niW3iP8Tbdj1SxmXaPlvBrcfMsQeC0aYa/6lmbxitcW/MdqmNLFT/
- DYTu5VSiDAW40XCQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0E00313A2F;
- Fri, 16 Aug 2024 13:34:16 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id f6fvAVhVv2bqegAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 13:34:16 +0000
-Message-ID: <0aa7de00-9780-4c6c-9526-5cbbc04433fa@suse.de>
-Date: Fri, 16 Aug 2024 15:34:15 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B68A310E721;
+ Fri, 16 Aug 2024 13:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723815464; x=1755351464;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SEZBzZBXmmjGtMAXyxbx4Cb7EyJbmJy+NcdrJuyqFnI=;
+ b=leyUQ7QuKynnqitftfebrUUNoe/YlJYZwa3kJK4GQSd+7D02HUX6GYey
+ heVqnIt72Tyq44q5PEIN159E4S2lG/ySi3sHkx/zFQ7HnQiYVOm4qnsT3
+ qLgsSfDjGThAqcUllIrfm1nvPawuJ7O4vVqbGEVj0N4dhQFUHtc+GQxEU
+ DT+TStLNE9cPNo3HcMnvDdSKwTdYEmrplEywtltqfpHKAlw4b4efcA60X
+ ipzfXsmFAOY32Kh3Xw8mUFZBEbEV3cvwm3b11DmglETCKiRdo2qercamF
+ 63jjCNb2aYW4TnH1IS6oXOYSep/JIVr4uu/wApaK1dbV5v8oCRyg5/3JZ w==;
+X-CSE-ConnectionGUID: 32IOy2wYSlWyeYSv4MrD7Q==
+X-CSE-MsgGUID: vfZHFTGiR6Wadt/ESn/4dg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="13053087"
+X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="13053087"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2024 06:37:43 -0700
+X-CSE-ConnectionGUID: U5uo1LYfRQS3Pmnyqs8m9Q==
+X-CSE-MsgGUID: vcKnzizKTauf3tM08ctDUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="59639343"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO fedora..)
+ ([10.245.245.232])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2024 06:37:41 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Paulo Zanoni <paulo.r.zanoni@intel.com>, dri-devel@lists.freedesktop.org
+Subject: [PATCH v8 0/6] TTM shrinker helpers and xe buffer object shrinker
+Date: Fri, 16 Aug 2024 15:37:11 +0200
+Message-ID: <20240816133717.3102-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 83/86] drm/{i915,xe}: Run DRM default client setup
-To: Jani Nikula <jani.nikula@linux.intel.com>, daniel@ffwll.ch,
- airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-84-tzimmermann@suse.de> <87cym87gik.fsf@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <87cym87gik.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[linux.intel.com,ffwll.ch,gmail.com,redhat.com];
- RCPT_COUNT_TWELVE(0.00)[15]; MID_RHS_MATCH_FROM(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, suse.de:email,
- suse.de:mid]
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,60 +70,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+This series implements TTM shrinker / eviction helpers and an xe bo
+shrinker. It builds on a previous series, *and obsoletes that one*.
 
-Am 16.08.24 um 15:18 schrieb Jani Nikula:
-> On Fri, 16 Aug 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index 206328387150..7a28396abb25 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -17,6 +17,8 @@
->>   #include <drm/drm_print.h>
->>   #include <drm/xe_drm.h>
->>   
->> +#include "intel_fbdev.h"
->> +
->>   #include "display/xe_display.h"
->>   #include "instructions/xe_gpu_commands.h"
->>   #include "regs/xe_gt_regs.h"
->> @@ -267,6 +269,7 @@ static struct drm_driver driver = {
->>   
->>   	.dumb_create = xe_bo_dumb_create,
->>   	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
->> +	INTEL_FBDEV_DRIVER_OPS,
->>   #ifdef CONFIG_PROC_FS
->>   	.show_fdinfo = xe_drm_client_fdinfo,
->>   #endif
-> Basically xe_device.c should have close to zero idea about display
-> details, and should not include intel_fbdev.h directly.
->
-> There's a xe_display_driver_set_hooks() call that is the right place to
-> set the driver->fbdev_probe hook.
->
-> It's a bit of a bummer in the sense that this prevents struct drm_driver
-> from being const, but that's how it already is for xe.
+https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/
 
-Thanks, I'll look into this. The was another automatic reply about a 
-compile error in xe wrt this callback. I guess that set_hooks helper 
-would fix that as well.
+Where the comment about layering
+https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
 
-Best regards
-Thomas
+now addressed, and this version also implements shmem objects for backup
+rather than direct swap-cache insertions, which was used in the previuos
+series. It turns out that with per-page backup / shrinking, shmem objects
+appears to work just as well as direct swap-cache insertions with the
+added benefit that was introduced in the previous TTM shrinker series to
+avoid running out of swap entries isn't really needed.
 
->
->
-> BR,
-> Jani.
->
->
+The series earlier consisted of a LRU traversal part and the current part.
+The LRU traversal part is merged, but is still mentioned in the history
+below.
+
+Patch 1 could in theory be skipped but introduces a possibility to easily
+add or test multiple backup backends, like the direct swap-cache
+insertion or even files into fast dedicated nvme storage for for example.
+
+Patch 2 introduces helpers in the ttm_pool code for page-by-page shrinking
+and recovery. It avoids having to temporarily allocate a huge amount of
+memory to be able to shrink a buffer object. It also introduces the
+possibility to immediately write-back pages if needed, since that tends
+to be a bit delayed when left to kswapd.
+
+Patch 3 Adds a simple error injection to the above code to help increase
+test coverage.
+
+Patch 4 Implements a shrinker helper in TTM, and exports the LRU walker.
+
+Patch 5 Implements the xe bo shrinker.
+
+Patch 6 Increases (removes) the XE_PL_TT watermark.
+
+v2:
+- Squash obsolete revision history in the patch commit messages.
+- Fix a couple of review comments by Christian
+- Don't store the mem_type in the TTM managers but in the
+  resource cursor.
+- Rename introduced TTM *back_up* function names to *backup*
+- Add ttm pool recovery fault injection.
+- Shrinker xe kunit test
+- Various bugfixes
+
+v3:
+- Address some review comments from Matthew Brost and Christian König.
+- Use the restartable LRU walk for TTM swapping and eviction.
+- Provide a POC drm_exec locking implementation for exhaustive
+  eviction. (Christian König).
+
+v4:
+- Remove the RFC exhaustive eviction part. While the path to exhaustive
+  eviction is pretty clear and demonstrated in v3, there is still some
+  drm_exec work that needs to be agreed and implemented.
+- Add shrinker power management. On some hw we need to wake when shrinking.
+- Fix the lru walker helper for -EALREADY errors.
+- Add drm/xe: Increase the XE_PL_TT watermark.
+
+v5:
+- Update also TTM kunit tests
+- Handle ghost- and zombie objects in the shrinker.
+- A couple of compile- and UAF fixes reported by Kernel Build Robot and
+  Dan Carpenter.
+
+v6:
+- Address review comments from Matthew Brost on the
+  restartable LRU traversal path.
+
+v7:
+- Split out TTM restartable LRU traversal path and merge that.
+- Adapt the review comments on that seires.
+
+v8:
+- Address review comments from Matthew Brost as detailed in the
+  respective patches.
+
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+
+Thomas Hellström (12):
+  drm/ttm: Allow TTM LRU list nodes of different types
+  drm/ttm: Slightly clean up LRU list iteration
+  drm/ttm: Use LRU hitches
+  drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist
+    moves
+  drm/ttm: Provide a generic LRU walker helper
+  drm/ttm: Use the LRU walker helper for swapping
+  drm/ttm: Use the LRU walker for eviction
+  drm/ttm: Add a virtual base class for graphics memory backup
+  drm/ttm/pool: Provide a helper to shrink pages
+  drm/ttm: Use fault-injection to test error paths
+  drm/ttm, drm/xe: Add a shrinker for xe bos
+  drm/xe: Increase the XE_PL_TT watermark
+
+ drivers/gpu/drm/Kconfig                       |  10 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   4 +
+ drivers/gpu/drm/ttm/Makefile                  |   2 +-
+ drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |   6 +-
+ drivers/gpu/drm/ttm/tests/ttm_resource_test.c |   2 +-
+ drivers/gpu/drm/ttm/ttm_backup_shmem.c        | 139 ++++++
+ drivers/gpu/drm/ttm/ttm_bo.c                  | 458 ++++++++----------
+ drivers/gpu/drm/ttm/ttm_bo_util.c             | 223 +++++++++
+ drivers/gpu/drm/ttm/ttm_device.c              |  29 +-
+ drivers/gpu/drm/ttm/ttm_pool.c                | 412 +++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_resource.c            | 268 ++++++++--
+ drivers/gpu/drm/ttm/ttm_tt.c                  |  37 ++
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo.c              | 118 +++++
+ drivers/gpu/drm/xe/tests/xe_bo_test.c         |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo_test.h         |   1 +
+ drivers/gpu/drm/xe/xe_bo.c                    | 155 +++++-
+ drivers/gpu/drm/xe/xe_bo.h                    |  26 +
+ drivers/gpu/drm/xe/xe_device.c                |   8 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   2 +
+ drivers/gpu/drm/xe/xe_shrinker.c              | 287 +++++++++++
+ drivers/gpu/drm/xe/xe_shrinker.h              |  18 +
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c           |   3 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |   4 +
+ include/drm/ttm/ttm_backup.h                  | 137 ++++++
+ include/drm/ttm/ttm_bo.h                      |  51 +-
+ include/drm/ttm/ttm_pool.h                    |   5 +
+ include/drm/ttm/ttm_resource.h                |  99 +++-
+ include/drm/ttm/ttm_tt.h                      |  20 +
+ 29 files changed, 2149 insertions(+), 377 deletions(-)
+ create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
+ create mode 100644 include/drm/ttm/ttm_backup.h
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+2.44.0
+
+
+
+Thomas Hellström (6):
+  drm/ttm: Add a virtual base class for graphics memory backup
+  drm/ttm/pool: Provide a helper to shrink pages
+  drm/ttm: Use fault-injection to test error paths
+  drm/ttm: Add a shrinker helper and export the LRU walker for driver
+    use
+  drm/xe: Add a shrinker for xe bos
+  drm/xe: Increase the XE_PL_TT watermark
+
+ drivers/gpu/drm/ttm/Makefile           |   2 +-
+ drivers/gpu/drm/ttm/ttm_backup_shmem.c | 139 +++++++++
+ drivers/gpu/drm/ttm/ttm_bo_util.c      |  65 ++++
+ drivers/gpu/drm/ttm/ttm_pool.c         | 417 ++++++++++++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_tt.c           |  37 +++
+ drivers/gpu/drm/xe/Makefile            |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo.c       | 225 +++++++++++++
+ drivers/gpu/drm/xe/xe_bo.c             | 166 +++++++++-
+ drivers/gpu/drm/xe/xe_bo.h             |  36 +++
+ drivers/gpu/drm/xe/xe_device.c         |   8 +
+ drivers/gpu/drm/xe/xe_device_types.h   |   2 +
+ drivers/gpu/drm/xe/xe_shrinker.c       | 289 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_shrinker.h       |  18 ++
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c    |   3 +-
+ include/drm/ttm/ttm_backup.h           | 137 ++++++++
+ include/drm/ttm/ttm_bo.h               |  17 +
+ include/drm/ttm/ttm_pool.h             |   6 +
+ include/drm/ttm/ttm_tt.h               |  29 ++
+ 18 files changed, 1565 insertions(+), 32 deletions(-)
+ create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
+ create mode 100644 include/drm/ttm/ttm_backup.h
+
+-- 
+2.44.0
 
