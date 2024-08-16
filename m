@@ -4,37 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21B3FC5320D
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 14:16:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05991C531DC
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 14:20:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D433C10E7C9;
-	Fri, 16 Aug 2024 14:16:44 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id F41D610E7C8
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Aug 2024 14:16:43 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC36E1515
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Aug 2024 07:17:09 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 8318F3F73B
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Aug 2024 07:16:43 -0700 (PDT)
-Date: Fri, 16 Aug 2024 15:16:34 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
- javierm@redhat.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH 09/86] drm/arm/malidp: Run DRM default client setup
-Message-ID: <Zr9fQuxhj5OHNT5V@e110455-lin.cambridge.arm.com>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-10-tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C596410E7D0;
+	Fri, 16 Aug 2024 14:20:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktKPKR2Y";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6900810E7CD;
+ Fri, 16 Aug 2024 14:20:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723818015; x=1755354015;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AFl9JkXNW5tvkv+CPSy96ac8h4dzIcJbOGITnM01/XA=;
+ b=ktKPKR2Yjo0b/f8JD4CHH0QOwJrj74f0AoUNF2mT3G8lzH4j5D0ZM5rb
+ E3aJslqaMhCJfMohvO4J14vWBdMx2AsPklOW9pufr80oRGDfZJ0XQqXp+
+ YSxVlmphUJP4hjaXlWgP2jOhjE68G1XEIMwMg8Yns3vp5yiVQAjVmaAfO
+ VHaXpi0ZItwZVDSyE+3wZFqmAH26JcJD77EfR1TU1brThP12Iujmcnj+7
+ V8sOrjjdKq/xY/E/hLsO4SE/BtI6U3Sfxv7d6Bx9bladSyaJj7jAsCfNx
+ VSd6/kNz4Xrl8v0cagvBNWrWD0dwFeGohL47ZCP1CJvUux0HJCUkEVELi A==;
+X-CSE-ConnectionGUID: p/S7XEQgT9qe3pvSp1n5jA==
+X-CSE-MsgGUID: sQun6mMLSmmOZapOUyL8aw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="21927891"
+X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="21927891"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2024 07:20:14 -0700
+X-CSE-ConnectionGUID: Gx6qLjfhTFWNMaLytoJ1Yw==
+X-CSE-MsgGUID: StFvTxrdSOmZ2NuJ2qfWJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,152,1719903600"; d="scan'208";a="59705118"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2024 07:20:13 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH v6 1/2] drm/ttm: Add a flag to allow drivers to skip
+ clear-on-free
+Date: Fri, 16 Aug 2024 15:51:53 +0200
+Message-ID: <20240816135154.19678-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240816125408.310253-10-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,65 +71,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 16, 2024 at 02:22:35PM +0200, Thomas Zimmermann wrote:
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
-> 
-> The malidp driver specifies a preferred color mode of 32. As this
-> is the default if no format has been given, leave it out entirely.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
+Add TTM_TT_FLAG_CLEARED_ON_FREE, which DRM drivers can set before
+releasing backing stores if they want to skip clear-on-free.
 
-Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/ttm/ttm_pool.c | 18 +++++++++++-------
+ include/drm/ttm/ttm_tt.h       |  6 +++++-
+ 2 files changed, 16 insertions(+), 8 deletions(-)
 
-Best regards,
-Liviu
-
-> ---
->  drivers/gpu/drm/arm/malidp_drv.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
-> index 6682131d2910..4cb25004b84f 100644
-> --- a/drivers/gpu/drm/arm/malidp_drv.c
-> +++ b/drivers/gpu/drm/arm/malidp_drv.c
-> @@ -18,6 +18,7 @@
->  
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_client_setup.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fbdev_dma.h>
-> @@ -562,6 +563,7 @@ static void malidp_debugfs_init(struct drm_minor *minor)
->  static const struct drm_driver malidp_driver = {
->  	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
->  	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(malidp_dumb_create),
-> +	DRM_FBDEV_DMA_DRIVER_OPS,
->  #ifdef CONFIG_DEBUG_FS
->  	.debugfs_init = malidp_debugfs_init,
->  #endif
-> @@ -852,7 +854,7 @@ static int malidp_bind(struct device *dev)
->  	if (ret)
->  		goto register_fail;
->  
-> -	drm_fbdev_dma_setup(drm, 32);
-> +	drm_client_setup(drm, NULL);
->  
->  	return 0;
->  
-> -- 
-> 2.46.0
-> 
-
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index 8504dbe19c1a..935ab3cfd046 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -222,15 +222,18 @@ static void ttm_pool_unmap(struct ttm_pool *pool, dma_addr_t dma_addr,
+ }
+ 
+ /* Give pages into a specific pool_type */
+-static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p)
++static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p,
++			       bool cleared)
+ {
+ 	unsigned int i, num_pages = 1 << pt->order;
+ 
+-	for (i = 0; i < num_pages; ++i) {
+-		if (PageHighMem(p))
+-			clear_highpage(p + i);
+-		else
+-			clear_page(page_address(p + i));
++	if (!cleared) {
++		for (i = 0; i < num_pages; ++i) {
++			if (PageHighMem(p))
++				clear_highpage(p + i);
++			else
++				clear_page(page_address(p + i));
++		}
+ 	}
+ 
+ 	spin_lock(&pt->lock);
+@@ -394,6 +397,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
+ 				pgoff_t start_page, pgoff_t end_page)
+ {
+ 	struct page **pages = &tt->pages[start_page];
++	bool cleared = tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE;
+ 	unsigned int order;
+ 	pgoff_t i, nr;
+ 
+@@ -407,7 +411,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
+ 
+ 		pt = ttm_pool_select_type(pool, caching, order);
+ 		if (pt)
+-			ttm_pool_type_give(pt, *pages);
++			ttm_pool_type_give(pt, *pages, cleared);
+ 		else
+ 			ttm_pool_free_page(pool, caching, order, *pages);
+ 	}
+diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+index 2b9d856ff388..cfaf49de2419 100644
+--- a/include/drm/ttm/ttm_tt.h
++++ b/include/drm/ttm/ttm_tt.h
+@@ -85,6 +85,9 @@ struct ttm_tt {
+ 	 * fault handling abuses the DMA api a bit and dma_map_attrs can't be
+ 	 * used to assure pgprot always matches.
+ 	 *
++	 * TTM_TT_FLAG_CLEARED_ON_FREE: Set this if a drm driver handles
++	 * clearing backing store
++	 *
+ 	 * TTM_TT_FLAG_PRIV_POPULATED: TTM internal only. DO NOT USE. This is
+ 	 * set by TTM after ttm_tt_populate() has successfully returned, and is
+ 	 * then unset when TTM calls ttm_tt_unpopulate().
+@@ -94,8 +97,9 @@ struct ttm_tt {
+ #define TTM_TT_FLAG_EXTERNAL		BIT(2)
+ #define TTM_TT_FLAG_EXTERNAL_MAPPABLE	BIT(3)
+ #define TTM_TT_FLAG_DECRYPTED		BIT(4)
++#define TTM_TT_FLAG_CLEARED_ON_FREE	BIT(5)
+ 
+-#define TTM_TT_FLAG_PRIV_POPULATED	BIT(5)
++#define TTM_TT_FLAG_PRIV_POPULATED	BIT(6)
+ 	uint32_t page_flags;
+ 	/** @num_pages: Number of pages in the page array. */
+ 	uint32_t num_pages;
 -- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+2.42.0
+
