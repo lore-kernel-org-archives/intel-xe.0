@@ -4,27 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82476C531DC
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 11:31:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AF29C3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 11:49:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4576E10E0A5;
-	Fri, 16 Aug 2024 11:31:15 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A37510E0A5;
- Fri, 16 Aug 2024 11:31:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3862607081202754062=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 041A089261;
+	Fri, 16 Aug 2024 11:49:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WzaGJAr7";
+	dkim-atps=neutral
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
+ [209.85.210.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F63B89261;
+ Fri, 16 Aug 2024 11:49:12 +0000 (UTC)
+Received: by mail-pf1-f181.google.com with SMTP id
+ d2e1a72fcca58-70d28023accso1538029b3a.0; 
+ Fri, 16 Aug 2024 04:49:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1723808951; x=1724413751; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ePlNQV/zS1kTwPFxChDZYJ8syLt4h0aT38a2PsRLSbE=;
+ b=WzaGJAr77u5EJesO+V/mFHLQXLQE0CaFuQ8yaQWblo3/b7ejWCpxMmrzF1kxdtdrH4
+ FGlo109qutUxqecFZv+2jD094hLSA0sClgdR27Qmc5wiAFhyQQQX/glQyUTOqYbKlY8e
+ 6iDJxeXWYR2ME4YXQ/LWZJylZtTaccTARg+HcUq1ZIgRYtkN1nFj5gYT088Oh5T7GPh9
+ LVu1ujpDGJSK/AaJqPSCOFFsKZtp730FmbmvpKQF6bUQ3CPaJuZBRBTJSXXA2Wj3zsj2
+ PHHngKzjBjeS0+PbTeIX0e4vu2D4aMdnzGpE8rGj1WNuJvUK1//qIsTYZ6Uwr92j5XWB
+ La5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1723808951; x=1724413751;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ePlNQV/zS1kTwPFxChDZYJ8syLt4h0aT38a2PsRLSbE=;
+ b=rWEreLKTh56y/i+6iF53TIqZe2n5NUQxR9n8CK4mYHYvsLAz/cnULRfnLIjGdnnF+T
+ EUh+l3ZukPyqYsrVRtWsGbrI9hwOjS/AGo6OwGF3IOaDiJUqJ2MvvPKEZIREsbcr0J7I
+ K5/7glup6lUpDYQ5zlXJ6kmlNiTO/0FhuLWwtvC7jNAAK7Z1eBEH0n+H7gwEyDDdlnFm
+ e8Rp6tHQKfFLF0Ini4iAHg0eujQQ0jIGsw8MW0yu1Mq+Zcxyv1oWWqxhhiq7uB5fnSjL
+ s3z08QPz2I9JtMY6WPeDgyVDPfZr/ZZtAIdDyUkQaKgwV63BeXWLuQZsUsjyrEshRoLf
+ hVwA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWOKz1E71LQMarQJ82aUvodXImHCU1/L9GOaq00DaZfeovng00Yuj/lNA9j59vtxLBKq9YXqL6kHZ2E1isAQmpJTQjq7U8jOMp8lK4QWK0p
+X-Gm-Message-State: AOJu0YzmtSkyT7sAr9RMOff+TfKYz/3+i7AR3Gh+tNQLiqPkdD+r41PN
+ 6VKtLJnUfMxcHky1vK/xJLz0X4yhy1onO7gw1E8ImCQh8DjR1dnrwwwBllQuFxA=
+X-Google-Smtp-Source: AGHT+IHJpBycARL0pc/fOnVY42pjqUXhxy1fGLheW9yiUZZU7USv1CZmHvsJEJYgyPnbzA+hYmQndA==
+X-Received: by 2002:a05:6a00:1708:b0:70d:2b1b:a37f with SMTP id
+ d2e1a72fcca58-713c502ff9emr2885226b3a.24.1723808951192; 
+ Fri, 16 Aug 2024 04:49:11 -0700 (PDT)
+Received: from localhost ([134.134.137.78]) by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-7c6b6356baesm2435339a12.68.2024.08.16.04.49.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 16 Aug 2024 04:49:10 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH 0/3] Introducing Xe2 ccs modifiers for integrated and discrete
+ graphics
+Date: Fri, 16 Aug 2024 14:52:26 +0300
+Message-ID: <20240816115229.531671-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Remove_redundant_param?=
- =?utf-8?q?_from_xe=5Fbo=5Fcreate=5Fuser?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Aug 2024 11:31:14 -0000
-Message-ID: <172380787403.652113.17444862018938900156@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240816102248.25628-1-nirmoy.das@intel.com>
-In-Reply-To: <20240816102248.25628-1-nirmoy.das@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +76,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3862607081202754062==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+These patches modify how Intel Xe driver handle compressed Tile4 framebuffers
+on display with Xe2 hardware. Specifically, here is added support for
+I915_FORMAT_MOD_4_TILED_XE2_CCS as a valid tiling mode for new framebuffers. 
 
-== Series Details ==
+This change remove unconditional decompression of Tile4 type framebuffers
+on Xe2 display, as handling compressed versus not compressed framebuffers
+have different requirement on discrete graphics than on integrated.
 
-Series: drm/xe: Remove redundant param from xe_bo_create_user
-URL   : https://patchwork.freedesktop.org/series/137383/
-State : success
+v2. rebase and change doucmentetaion render compression -> unified compression
 
-== Summary ==
+/Juha-Pekka
 
-CI Bug Log - changes from xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c_BAT -> xe-pw-137383v1_BAT
-====================================================
+Test-with: 20240812201124.2013652-1-juhapekka.heikkila@gmail.com
 
-Summary
--------
+Juha-Pekka Heikkila (3):
+  drm/i915/display: Don't enable decompression on Xe2 with Tile4
+  drm/fourcc: define Intel Xe2 related tile4 ccs modifiers
+  drm/i915/display: allow creation of Xe2 ccs framebuffers
 
-  **SUCCESS**
+ drivers/gpu/drm/i915/display/intel_display.c  |  2 ++
+ drivers/gpu/drm/i915/display/intel_fb.c       | 18 +++++++++++++
+ .../drm/i915/display/skl_universal_plane.c    | 10 ++++----
+ include/uapi/drm/drm_fourcc.h                 | 25 +++++++++++++++++++
+ 4 files changed, 50 insertions(+), 5 deletions(-)
 
-  No regressions found.
+-- 
+2.45.2
 
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-137383v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137383v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * Linux: xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c -> xe-pw-137383v1
-
-  IGT_7972: c34e13f766d0ed48c8b62ad9d8c29f11a8441b8b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c: 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c
-  xe-pw-137383v1: 137383v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137383v1/index.html
-
---===============3862607081202754062==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Remove redundant param from xe_bo_create_user</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137383/">https://patchwork.freedesktop.org/series/137383/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137383v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137383v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c_BAT -&gt; xe-pw-137383v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137383v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137383v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c -&gt; xe-pw-137383v1</li>
-</ul>
-<p>IGT_7972: c34e13f766d0ed48c8b62ad9d8c29f11a8441b8b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1781-70d6d55dea574b7b78ccf714699cc5d8d62fcc2c: 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c<br />
-  xe-pw-137383v1: 137383v1</p>
-
-</body>
-</html>
-
---===============3862607081202754062==--
