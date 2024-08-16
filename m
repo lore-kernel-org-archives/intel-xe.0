@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0CC0C531DC
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 09:16:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98A43C531DC
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Aug 2024 09:16:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6763310E57C;
-	Fri, 16 Aug 2024 09:16:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6801610E59F;
+	Fri, 16 Aug 2024 09:16:36 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB3910E57C;
- Fri, 16 Aug 2024 09:16:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77E3410E59F;
+ Fri, 16 Aug 2024 09:16:35 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_a_r?=
- =?utf-8?q?edundant_NULL_lrc-=3Ebo_check_as_a_lrc_will_always_have_a_bo?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Remove_a_redund?=
+ =?utf-8?q?ant_NULL_lrc-=3Ebo_check_as_a_lrc_will_always_have_a_bo?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Singh, Apoorva" <apoorva.singh@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Aug 2024 09:16:25 -0000
-Message-ID: <172379978563.652113.12468623551411403387@2413ebb6fbb6>
+Date: Fri, 16 Aug 2024 09:16:35 -0000
+Message-ID: <172379979548.652113.17470460996121531581@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240816082820.897326-1-apoorva.singh@intel.com>
 In-Reply-To: <20240816082820.897326-1-apoorva.singh@intel.com>
@@ -44,13 +44,30 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Remove a redundant NULL lrc->bo check as a lrc will always have a bo
 URL   : https://patchwork.freedesktop.org/series/137378/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 70d6d55dea57 drm-tip: 2024y-08m-16d-08h-43m-44s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Remove a redundant NULL lrc->bo check as a lrc will always have a bo
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b39c3c08c915509c0bf9e88aeba36c9b40d8f943
+Author: Apoorva Singh <apoorva.singh@intel.com>
+Date:   Fri Aug 16 13:58:20 2024 +0530
+
+    drm/xe: Remove a redundant NULL lrc->bo check as a lrc will always have a bo
+    
+    Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
++ /mt/dim checkpatch 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c drm-intel
+b39c3c08c915 drm/xe: Remove a redundant NULL lrc->bo check as a lrc will always have a bo
+-:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
