@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBA45C3DA4A
-	for <intel-xe@archiver.kernel.org>; Sat, 17 Aug 2024 02:47:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3910BC531DE
+	for <intel-xe@archiver.kernel.org>; Sat, 17 Aug 2024 02:47:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18A3710E021;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C5810E041;
 	Sat, 17 Aug 2024 02:47:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jkAdCUzN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GF0U8LM2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 526BE10E01F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0CC10E021
  for <intel-xe@lists.freedesktop.org>; Sat, 17 Aug 2024 02:47:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1723862864; x=1755398864;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cD1yYPen39OWl1A+R17OTbY8USXm4w/U65GgIA/esxA=;
- b=jkAdCUzNf+FPgL04t2ZhtfJkaEFKxF2UOSJ1LWNTBgiR7NKeyWEEp+5U
- IVBX9QF9+cPxcMbrlx8OJs5lqz+KD03kETZ5twViZdRlsV6Pqscr9qj5+
- 4GabBLvf8QixjLoWKb4RtllDv1pJgqGmuAuWRjUNHY0w3Iq+1rUvM2wUC
- RNjeCVjNkmaM203OIimnGPB/dcjUnZLDeBTxDJKsycziQnjlJkq55i7RB
- DzKmUrQL65WFQ/770w55fGZnX5Tcj1eEd4iGqZtrEFKDMrJ7ZGboCzado
- qVV2c34adae3VvlTWZLEkhM7YJh5OKNwqJqhzR+KNVUHovP1bp4ubfPcO w==;
-X-CSE-ConnectionGUID: /LJA7UnHTcqDvwTg8MXzmg==
-X-CSE-MsgGUID: w0zQ4iiFS5K8f0JnqjjOtg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="33316199"
-X-IronPort-AV: E=Sophos;i="6.10,153,1719903600"; d="scan'208";a="33316199"
+ bh=Ze/lVVuJGF9YVI3Y/QUHzhNBNKIJThDI//J8NG3Q9lA=;
+ b=GF0U8LM2oBcJyIT+7ZbHV268YkGLbjm4X9OSLlcBzS5i6H3+AbsMdan4
+ wKWhDPpdFUetKr5cTrP45YyWxE+TUA8x/qIEVIvrH8ByGFg5avML1iFDb
+ 9wmL39CIyGjggpwoopyDVvDGXKH79Y+JvEbQMf+BrdAfMRaLTzVJ0wVZF
+ n7MsQQmkRNctP1TdTWUPvDUaJK6j6CPJM2wDKE7Qcft1mBg45vgu/vVkT
+ pT4i4hnboBcLDqwXPQfHMkiBShuuioYFDgKoYw3CFYpbxOj1+TCLJrXZ6
+ Ry6KqM2H+rVnhm3bwz3Cp2kaLoGcVkxJ93DO9PtAjiVbVWnQLgwBD5GLX Q==;
+X-CSE-ConnectionGUID: dfG8TNWZTLui42JtpQhxSw==
+X-CSE-MsgGUID: cAqGufpZQE+BrRvkyInByw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="33316197"
+X-IronPort-AV: E=Sophos;i="6.10,153,1719903600"; d="scan'208";a="33316197"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Aug 2024 19:47:43 -0700
-X-CSE-ConnectionGUID: m+XSrBJ4SVuaXObBHwOkTg==
-X-CSE-MsgGUID: PfosmMVYT+G6+bRaCY4+4Q==
+X-CSE-ConnectionGUID: Os+jyiLyRz2QCMDW/mfSCA==
+X-CSE-MsgGUID: 4Lxp480rTSOOOyTZwdr4MQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,153,1719903600"; d="scan'208";a="59852827"
+X-IronPort-AV: E=Sophos;i="6.10,153,1719903600"; d="scan'208";a="59852821"
 Received: from dut4310arlh.fm.intel.com ([10.105.10.103])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Aug 2024 19:47:42 -0700
@@ -46,10 +46,9 @@ To:
 Cc: matthew.brost@intel.com, John.C.Harrison@Intel.com, brian.welty@intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [CI 3/3] drm/xe/guc: Bump the G2H queue size to account for page
- faults
-Date: Sat, 17 Aug 2024 02:47:32 +0000
-Message-Id: <4c2b6974801bcffd8a010d838c8733fa4092573d.1723862633.git.stuart.summers@intel.com>
+Subject: [CI 1/3] drm/xe: Fix missing workqueue destroy in xe_gt_pagefault
+Date: Sat, 17 Aug 2024 02:47:30 +0000
+Message-Id: <c9a951505271dc3a7aee76de7656679f69c11518.1723862633.git.stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1723862633.git.stuart.summers@intel.com>
 References: <cover.1723862633.git.stuart.summers@intel.com>
@@ -69,45 +68,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the increase in the size of the recoverable page fault
-queue, we want to ensure the initial messages from GuC in
-the G2H buffer have space while we transfer those out to the
-actual pf_queue. Bump the G2H queue size to account for this
-increase in the pf_queue size.
+On driver reload we never free up the memory for the pagefault and
+access counter workqueues. Add those destroy calls here.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index beeeb120d1fc..f24dd5223926 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -105,12 +105,20 @@ ct_to_xe(struct xe_guc_ct *ct)
-  * enough space to avoid backpressure on the driver. We increase the size
-  * of the receive buffer (relative to the send) to ensure a G2H response
-  * CTB has a landing spot.
-+ *
-+ * In addition to submissions, the G2H buffer needs to be able to hold
-+ * enough space for recoverable page fault notifications. The number of
-+ * page faults is interrupt driven and can be as much as the number of
-+ * compute resources available. However, most of the actual work for these
-+ * is in a separate page fault worker thread. Therefore we only need to
-+ * make sure the queue has enough space to handle all of the submissions
-+ * and responses and an extra buffer for incoming page faults.
-  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 9292d5468868..b2a7fa55bd18 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -382,6 +382,18 @@ static void pf_queue_work_func(struct work_struct *w)
  
- #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
- #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
--#define CTB_G2H_BUFFER_SIZE	(4 * CTB_H2G_BUFFER_SIZE)
--#define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 4)
-+#define CTB_G2H_BUFFER_SIZE	(SZ_128K)
-+#define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
+ static void acc_queue_work_func(struct work_struct *w);
  
- /**
-  * xe_guc_ct_queue_proc_time_jiffies - Return maximum time to process a full
++static void pagefault_fini(void *arg)
++{
++	struct xe_gt *gt = arg;
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (!xe->info.has_usm)
++		return;
++
++	destroy_workqueue(gt->usm.acc_wq);
++	destroy_workqueue(gt->usm.pf_wq);
++}
++
+ int xe_gt_pagefault_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -409,10 +421,12 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
+ 	gt->usm.acc_wq = alloc_workqueue("xe_gt_access_counter_work_queue",
+ 					 WQ_UNBOUND | WQ_HIGHPRI,
+ 					 NUM_ACC_QUEUE);
+-	if (!gt->usm.acc_wq)
++	if (!gt->usm.acc_wq) {
++		destroy_workqueue(gt->usm.pf_wq);
+ 		return -ENOMEM;
++	}
+ 
+-	return 0;
++	return devm_add_action_or_reset(xe->drm.dev, pagefault_fini, gt);
+ }
+ 
+ void xe_gt_pagefault_reset(struct xe_gt *gt)
 -- 
 2.34.1
 
