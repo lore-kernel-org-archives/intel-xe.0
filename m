@@ -4,52 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B5E9C5321D
-	for <intel-xe@archiver.kernel.org>; Sat, 17 Aug 2024 19:04:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C14BC531DF
+	for <intel-xe@archiver.kernel.org>; Sat, 17 Aug 2024 21:02:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0544910E0C6;
-	Sat, 17 Aug 2024 19:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2970C10E115;
+	Sat, 17 Aug 2024 21:02:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NuOSYid1";
+	dkim=pass (1024-bit key; unprotected) header.d=crapouillou.net header.i=@crapouillou.net header.b="ZunYbkwC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6179510E0C6
- for <intel-xe@lists.freedesktop.org>; Sat, 17 Aug 2024 19:04:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723921491; x=1755457491;
- h=date:from:to:cc:subject:message-id;
- bh=bRkpECTbmEkmIqqq2t6nFl5xO3ZVcyMkRBxirpevpB0=;
- b=NuOSYid1vAkXslxO5sX4aMOMP4KCj/CFR+Qr3eN2PuchvLQUtsoQ4PFb
- POW4iy7ylHEP5hhZxcV/ZPaKx7jCBsqjt1KnurhonU19q0r3yURzY5enp
- mRS43r/BsS5SLAO6F08ASq7KYCz9ls1p0ev0pL67sBCQdWgJS2+a5Qc2M
- gTWd1Leb4iV1mCxAOu9j2/hldeLXYpYq9hL2EsxPzpKaGq2z5SNIuk1IN
- PmZEeVmdYO3dRXgaYd3wpj5D/gfTOAXzge08Oba7AgQBagPlRuPw+DzVp
- l3nptCe14JYJO2ETQckZgpB/OMg8uQOe/+9EpEG2TtIsmc6EOUVa7otvO Q==;
-X-CSE-ConnectionGUID: JQmP7e2eQtaan2JHvxFyyA==
-X-CSE-MsgGUID: sZHh08tSQE6yum5Gdg33Sw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11167"; a="26066244"
-X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="26066244"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2024 12:04:50 -0700
-X-CSE-ConnectionGUID: 8NW9AJa5R+a/3YFRuVG1cQ==
-X-CSE-MsgGUID: rtghRqHkTlqELuQHLkDPbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="64938167"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
- by orviesa004.jf.intel.com with ESMTP; 17 Aug 2024 12:04:50 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sfOjH-0007ja-1L;
- Sat, 17 Aug 2024 19:04:47 +0000
-Date: Sun, 18 Aug 2024 03:04:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- fc7c7498db3da52efe874029a9c2ccc0ad2646ee
-Message-ID: <202408180338.Adv3V081-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-Greylist: delayed 508 seconds by postgrey-1.36 at gabe;
+ Sat, 17 Aug 2024 21:02:40 UTC
+Received: from aposti.net (aposti.net [89.234.176.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7C710E111;
+ Sat, 17 Aug 2024 21:02:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+ s=mail; t=1723928050;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=WVIEqwFIHNGgAN6qGUvxQku++RkpPwaMRzWZN5sESeY=;
+ b=ZunYbkwC4ZwrSY6CABaaBQwU/7MDq7uN0QkS4Lzl+muHxoGrRHFXa2IorYuFkgCSdpb5Xb
+ H3HqV5OMaUk6PXq3k6H3mzjZRkK9MGKrSUx51tf185UbEpEAk9bYPoWUPvtAAIn+lDhSA4
+ elN3j5urMgWWjBf3iAARhfIkvxWySkk=
+Message-ID: <8e1fbdb1fe4e16b702a23a1eba01f43df6331317.camel@crapouillou.net>
+Subject: Re: [PATCH 22/86] drm/ingenic: Run DRM default client setup
+From: Paul Cercueil <paul@crapouillou.net>
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com,  jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org
+Date: Sat, 17 Aug 2024 22:54:07 +0200
+In-Reply-To: <20240816125408.310253-23-tzimmermann@suse.de>
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-23-tzimmermann@suse.de>
+Autocrypt: addr=paul@crapouillou.net; prefer-encrypt=mutual;
+ keydata=mQENBF0KhcEBCADkfmrzdTOp/gFOMQX0QwKE2WgeCJiHPWkpEuPH81/HB2dpjPZNW03ZM
+ LQfECbbaEkdbN4YnPfXgcc1uBe5mwOAPV1MBlaZcEt4M67iYQwSNrP7maPS3IaQJ18ES8JJ5Uf5Uz
+ FZaUawgH+oipYGW+v31cX6L3k+dGsPRM0Pyo0sQt52fsopNPZ9iag0iY7dGNuKenaEqkYNjwEgTtN
+ z8dt6s3hMpHIKZFL3OhAGi88wF/21isv0zkF4J0wlf9gYUTEEY3Eulx80PTVqGIcHZzfavlWIdzhe
+ +rxHTDGVwseR2Y1WjgFGQ2F+vXetAB8NEeygXee+i9nY5qt9c07m8mzjABEBAAG0JFBhdWwgQ2VyY
+ 3VlaWwgPHBhdWxAY3JhcG91aWxsb3UubmV0PokBTgQTAQoAOBYhBNdHYd8OeCBwpMuVxnPua9InSr
+ 1BBQJdCoXBAhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEHPua9InSr1BgvIH/0kLyrI3V0f
+ 33a6D3BJwc1grbygPVYGuC5l5eMnAI+rDmLR19E2yvibRpgUc87NmPEQPpbbtAZt8On/2WZoE5OIP
+ dlId/AHNpdgAtGXo0ZX4LGeVPjxjdkbrKVHxbcdcnY+zzaFglpbVSvp76pxqgVg8PgxkAAeeJV+ET
+ 4t0823Gz2HzCL/6JZhvKAEtHVulOWoBh368SYdolp1TSfORWmHzvQiCCCA+j0cMkYVGzIQzEQhX7U
+ rf9N/nhU5/SGLFEi9DcBfXoGzhyQyLXflhJtKm3XGB1K/pPulbKaPcKAl6rIDWPuFpHkSbmZ9r4KF
+ lBwgAhlGy6nqP7O3u7q23hRW5AQ0EXQqFwQEIAMo+MgvYHsyjX3Ja4Oolg1Txzm8woj30ch2nACFC
+ qaO0R/1kLj2VVeLrDyQUOlXx9PD6IQI4M8wy8m0sR4wV2p/g/paw7k65cjzYYLh+FdLNyO7IWYXnd
+ JO+wDPi3aK/YKUYepqlP+QsmaHNYNdXEQDRKqNfJg8t0f5rfzp9ryxd1tCnbV+tG8VHQWiZXNqN70
+ 62DygSNXFUfQ0vZ3J2D4oAcIAEXTymRQ2+hr3Hf7I61KMHWeSkCvCG2decTYsHlw5Erix/jYWqVOt
+ X0roOOLqWkqpQQJWtU+biWrAksmFmCp5fXIg1Nlg39v21xCXBGxJkxyTYuhdWyu1yDQ+LSIUAEQEA
+ AYkBNgQYAQoAIBYhBNdHYd8OeCBwpMuVxnPua9InSr1BBQJdCoXBAhsMAAoJEHPua9InSr1B4wsH/
+ Az767YCT0FSsMNt1jkkdLCBi7nY0GTW+PLP1a4zvVqFMo/vD6uz1ZflVTUAEvcTi3VHYZrlgjcxmc
+ Gu239oruqUS8Qy/xgZBp9KF0NTWQSl1iBfVbIU5VV1vHS6r77W5x0qXgfvAUWOH4gmN3MnF01SH2z
+ McLiaUGF+mcwl15rHbjnT3Nu2399aSE6cep86igfCAyFUOXjYEGlJy+c6UyT+DUylpjQg0nl8MlZ/
+ 7Whg2fAU9+FALIbQYQzGlT4c71SibR9T741jnegHhlmV4WXXUD6roFt54t0MSAFSVxzG8mLcSjR2c
+ LUJ3NIPXixYUSEn3tQhfZj07xIIjWxAYZo=
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,120 +79,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: fc7c7498db3da52efe874029a9c2ccc0ad2646ee  drm/xe/mcr: Try to derive dss_per_grp from hwconfig attributes
+Hi Thomas,
 
-elapsed time: 1468m
+Le vendredi 16 ao=C3=BBt 2024 =C3=A0 14:22 +0200, Thomas Zimmermann a =C3=
+=A9crit=C2=A0:
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>=20
+> The ingenic driver specifies a preferred color mode of 32. As this
+> is the default if no format has been given, leave it out entirely.
+>=20
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Paul Cercueil <paul@crapouillou.net>
 
-configs tested: 101
-configs skipped: 2
+Acked-by: Paul Cercueil <paul@crapouillou.net>
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Cheers,
+-Paul
 
-tested configs:
-alpha                             allnoconfig   gcc-13.3.0
-alpha                            allyesconfig   gcc-13.3.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                   randconfig-001-20240817   gcc-13.2.0
-arc                   randconfig-002-20240817   gcc-13.2.0
-arm                              allmodconfig   gcc-14.1.0
-arm                               allnoconfig   clang-20
-arm                              allyesconfig   gcc-14.1.0
-arm                     am200epdkit_defconfig   gcc-14.1.0
-arm                            mmp2_defconfig   gcc-14.1.0
-arm                       multi_v4t_defconfig   clang-20
-arm                   randconfig-001-20240817   gcc-14.1.0
-arm                   randconfig-002-20240817   clang-20
-arm                   randconfig-003-20240817   clang-20
-arm                   randconfig-004-20240817   gcc-14.1.0
-arm                          sp7021_defconfig   gcc-14.1.0
-arm64                            allmodconfig   clang-20
-arm64                             allnoconfig   gcc-14.1.0
-arm64                 randconfig-001-20240817   clang-20
-arm64                 randconfig-002-20240817   gcc-14.1.0
-arm64                 randconfig-003-20240817   gcc-14.1.0
-arm64                 randconfig-004-20240817   gcc-14.1.0
-csky                              allnoconfig   gcc-14.1.0
-csky                  randconfig-001-20240817   gcc-14.1.0
-csky                  randconfig-002-20240817   gcc-14.1.0
-hexagon                          allmodconfig   clang-20
-hexagon                           allnoconfig   clang-20
-hexagon                          allyesconfig   clang-20
-hexagon               randconfig-001-20240817   clang-20
-hexagon               randconfig-002-20240817   clang-20
-i386                             allmodconfig   gcc-12
-i386                              allnoconfig   gcc-12
-i386                             allyesconfig   gcc-12
-i386         buildonly-randconfig-001-20240817   gcc-12
-i386         buildonly-randconfig-002-20240817   gcc-12
-i386         buildonly-randconfig-003-20240817   clang-18
-i386         buildonly-randconfig-004-20240817   gcc-12
-i386         buildonly-randconfig-005-20240817   clang-18
-i386         buildonly-randconfig-006-20240817   clang-18
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240817   gcc-12
-i386                  randconfig-002-20240817   gcc-12
-i386                  randconfig-003-20240817   gcc-12
-i386                  randconfig-004-20240817   clang-18
-i386                  randconfig-005-20240817   gcc-12
-i386                  randconfig-006-20240817   clang-18
-i386                  randconfig-011-20240817   gcc-12
-i386                  randconfig-012-20240817   clang-18
-i386                  randconfig-013-20240817   gcc-12
-i386                  randconfig-014-20240817   gcc-12
-i386                  randconfig-015-20240817   gcc-12
-i386                  randconfig-016-20240817   clang-18
-loongarch                        allmodconfig   gcc-14.1.0
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch             randconfig-001-20240817   gcc-14.1.0
-loongarch             randconfig-002-20240817   gcc-14.1.0
-m68k                             allmodconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                             allyesconfig   gcc-14.1.0
-m68k                       m5475evb_defconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-14.1.0
-mips                              allnoconfig   gcc-14.1.0
-nios2                             allnoconfig   gcc-14.1.0
-nios2                 randconfig-001-20240817   gcc-14.1.0
-nios2                 randconfig-002-20240817   gcc-14.1.0
-openrisc                          allnoconfig   gcc-14.1.0
-openrisc                         allyesconfig   gcc-14.1.0
-openrisc                            defconfig   gcc-14.1.0
-parisc                           allmodconfig   gcc-14.1.0
-parisc                            allnoconfig   gcc-14.1.0
-parisc                           allyesconfig   gcc-14.1.0
-parisc                              defconfig   gcc-14.1.0
-parisc                randconfig-001-20240817   gcc-14.1.0
-parisc                randconfig-002-20240817   gcc-14.1.0
-powerpc                           allnoconfig   gcc-14.1.0
-powerpc               randconfig-001-20240817   clang-14
-powerpc               randconfig-002-20240817   gcc-14.1.0
-powerpc64             randconfig-001-20240817   gcc-14.1.0
-riscv                             allnoconfig   gcc-14.1.0
-riscv                               defconfig   clang-20
-riscv                 randconfig-001-20240817   gcc-14.1.0
-s390                             allmodconfig   clang-20
-s390                              allnoconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   clang-20
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                                  defconfig   gcc-14.1.0
-sparc                            allmodconfig   gcc-14.1.0
-sparc64                             defconfig   gcc-14.1.0
-um                                allnoconfig   clang-17
-um                                  defconfig   clang-20
-um                             i386_defconfig   gcc-12
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64                              defconfig   gcc-11
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-14.1.0
+> ---
+> =C2=A0drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 4 +++-
+> =C2=A01 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> index 39fa291f43dd..056b70b63554 100644
+> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> @@ -24,6 +24,7 @@
+> =C2=A0#include <drm/drm_atomic_helper.h>
+> =C2=A0#include <drm/drm_bridge.h>
+> =C2=A0#include <drm/drm_bridge_connector.h>
+> +#include <drm/drm_client_setup.h>
+> =C2=A0#include <drm/drm_color_mgmt.h>
+> =C2=A0#include <drm/drm_crtc.h>
+> =C2=A0#include <drm/drm_damage_helper.h>
+> @@ -960,6 +961,7 @@ static const struct drm_driver
+> ingenic_drm_driver_data =3D {
+> =C2=A0	.fops			=3D &ingenic_drm_fops,
+> =C2=A0	.gem_create_object	=3D ingenic_drm_gem_create_object,
+> =C2=A0	DRM_GEM_DMA_DRIVER_OPS,
+> +	DRM_FBDEV_DMA_DRIVER_OPS,
+> =C2=A0};
+> =C2=A0
+> =C2=A0static const struct drm_plane_funcs ingenic_drm_primary_plane_funcs
+> =3D {
+> @@ -1399,7 +1401,7 @@ static int ingenic_drm_bind(struct device *dev,
+> bool has_components)
+> =C2=A0		goto err_clk_notifier_unregister;
+> =C2=A0	}
+> =C2=A0
+> -	drm_fbdev_dma_setup(drm, 32);
+> +	drm_client_setup(drm, NULL);
+> =C2=A0
+> =C2=A0	return 0;
+> =C2=A0
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
