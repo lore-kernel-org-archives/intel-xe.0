@@ -4,27 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5B37C52D7F
-	for <intel-xe@archiver.kernel.org>; Sat, 17 Aug 2024 11:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2A6FC531DF
+	for <intel-xe@archiver.kernel.org>; Sat, 17 Aug 2024 12:07:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6970210E095;
-	Sat, 17 Aug 2024 11:50:11 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4366810E095;
- Sat, 17 Aug 2024 11:50:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1507691252920071438=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BD7F10E0B6;
+	Sat, 17 Aug 2024 12:07:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VUyFU02l";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8822F10E09D;
+ Sat, 17 Aug 2024 12:07:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723896460; x=1755432460;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=0E4qHRWxQycgZwCCTQdnYUaH2mCgBlnpZ8yLGUOGW58=;
+ b=VUyFU02l5mhrBLPpDlEvyQ3pVPpU/FBX0noYeU03srMAtCiikOBG2Rg8
+ znSJWmXTzSclV7GlSOxk4laRxN2O639KHMFeXw7KDIqXBlQWu824ekJBC
+ v4DR84P8pbTsD1LHGYC28URXTLBj8Xd/fiLr3dob0AmgBLcM921UsZCLz
+ obnF8oVVrqg/IUix5NnyigXLF6AF3kNXA2mr2NPArBMgIsLdnxddtrgV/
+ /2FmRd1pPlEaDyyk8gKqKrIoJFXEZVEPvQvWWB0fhqberVmyTXvAhBQgt
+ V89hdaq4s4IjR2lXiJPc2jam+WP5n/Br7C1+gn6RrCf1fV7gWRRMVqV4V Q==;
+X-CSE-ConnectionGUID: ywGLcWIRShOv1USq2JCUaA==
+X-CSE-MsgGUID: wSZ2WCReS3eEj7FzbjeTvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11167"; a="21730410"
+X-IronPort-AV: E=Sophos;i="6.10,154,1719903600"; d="scan'208";a="21730410"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2024 05:07:39 -0700
+X-CSE-ConnectionGUID: 0OUhR4qTSy61wGP3AQLQCQ==
+X-CSE-MsgGUID: jjuNWhtkQP2hsLtQooMZ0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,154,1719903600"; d="scan'208";a="60090562"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+ by fmviesa010.fm.intel.com with ESMTP; 17 Aug 2024 05:07:35 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sfIDV-0007QC-0A;
+ Sat, 17 Aug 2024 12:07:33 +0000
+Date: Sat, 17 Aug 2024 20:07:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH 83/86] drm/{i915,xe}: Run DRM default client setup
+Message-ID: <202408171913.L3jTjYJX-lkp@intel.com>
+References: <20240816125408.310253-84-tzimmermann@suse.de>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5B01/12=5D?=
- =?utf-8?q?_drm/xe=3A_Removed_unused_xe=5Fggtt=5Fprintk?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 17 Aug 2024 11:50:10 -0000
-Message-ID: <172389541027.659839.6940165285099742473@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240817103556.163783-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240817103556.163783-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240816125408.310253-84-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,200 +75,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1507691252920071438==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Thomas,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: series starting with [01/12] drm/xe: Removed unused xe_ggtt_printk
-URL   : https://patchwork.freedesktop.org/series/137409/
-State : failure
+[auto build test ERROR on 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Zimmermann/drm-fbdev-helper-Move-color-mode-lookup-into-4CC-format-helper/20240816-210651
+base:   70d6d55dea574b7b78ccf714699cc5d8d62fcc2c
+patch link:    https://lore.kernel.org/r/20240816125408.310253-84-tzimmermann%40suse.de
+patch subject: [PATCH 83/86] drm/{i915,xe}: Run DRM default client setup
+config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20240817/202408171913.L3jTjYJX-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 26670e7fa4f032a019d23d56c6a02926e854e8af)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240817/202408171913.L3jTjYJX-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c_BAT -> xe-pw-137409v1_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408171913.L3jTjYJX-lkp@intel.com/
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-137409v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-137409v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-137409v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-adlp-7:         [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - bat-atsm-2:         [PASS][5] -> [INCOMPLETE][6] +1 other test incomplete
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-137409v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][7] -> [SKIP][8] ([Intel XE#1192]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][9] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][10] ([Intel XE#1192])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+   In file included from drivers/gpu/drm/xe/xe_device.c:6:
+   In file included from drivers/gpu/drm/xe/xe_device.h:9:
+   In file included from include/drm/drm_util.h:35:
+   In file included from include/linux/interrupt.h:22:
+   In file included from arch/riscv/include/asm/sections.h:9:
+   In file included from include/linux/mm.h:2228:
+   include/linux/vmstat.h:500:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     500 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     501 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:507:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     507 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     508 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+   include/linux/vmstat.h:519:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     519 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     520 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:528:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     528 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     529 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/xe/xe_device.c:20:10: fatal error: 'intel_fbdev.h' file not found
+      20 | #include "intel_fbdev.h"
+         |          ^~~~~~~~~~~~~~~
+   5 warnings and 1 error generated.
 
 
-Build changes
--------------
+vim +20 drivers/gpu/drm/xe/xe_device.c
 
-  * Linux: xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c -> xe-pw-137409v1
+    19	
+  > 20	#include "intel_fbdev.h"
+    21	
 
-  IGT_7975: 7975
-  xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c: d6dac3db19935f5939cbb033eea30c90bdf3888c
-  xe-pw-137409v1: 137409v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/index.html
-
---===============1507691252920071438==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/12] drm/xe: Removed unused xe_ggtt_printk</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137409/">https://patchwork.freedesktop.org/series/137409/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c_BAT -&gt; xe-pw-137409v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-137409v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-137409v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-137409v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-vf/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137409v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137409v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c -&gt; xe-pw-137409v1</li>
-</ul>
-<p>IGT_7975: 7975<br />
-  xe-1786-d6dac3db19935f5939cbb033eea30c90bdf3888c: d6dac3db19935f5939cbb033eea30c90bdf3888c<br />
-  xe-pw-137409v1: 137409v1</p>
-
-</body>
-</html>
-
---===============1507691252920071438==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
