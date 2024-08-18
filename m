@@ -4,144 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A57AEC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 14:09:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 413C1C52D6F
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 14:09:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C766A10E27D;
-	Mon, 19 Aug 2024 14:09:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 799D110E281;
+	Mon, 19 Aug 2024 14:09:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="pfvGv1Vs";
+	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="PkHxwJ44";
 	dkim-atps=neutral
-Received: from OS0P286CU011.outbound.protection.outlook.com
- (mail-japanwestazon11010046.outbound.protection.outlook.com [52.101.228.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4B1E10E23C;
- Mon, 19 Aug 2024 09:50:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EKlklko0UBK7A7EIJlVfsakLp2Da4ppTyhg6bAmrkxl3AqIqCxqCldR5Rgw+r+FqFZw6eAaXB8mXBY4dhP9NLdwv7XrKOy12nqeER+uPZfy5ZPeOPZtMclKOxxtiPHxK4cJZbfAyhaurSpd24BEY+liaOxhMyUmCWBFsXnjQW/1zevI7/QqWY9CYYubKEWCvMRnZCg2IXmCnWsclxEzi2AVRvZiZvcEl0QdFhyjn0sZhCHCIwU1hQ7DBthulcXlq75uGs5XkyqVIsVKEarjFyDpaLwvk8DGJn8Y/chM7Bsc2KRAlAihsGfK2swTltmkzbL+le2rlwd4h2KuzPSyfJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A4jypXCZKPvlO4Hha3P+CtXMXU3AoOm4Z2C01B75AG0=;
- b=OegwU7N0rdlb7syTCJptvcdNCAASpVhH4+Sm2ChJ29G5uT8CtQ2wWV7JKvYKX8YHAku2iMyKa+Rt1zSVh8ow5F5x0MfHOSyjTjPB6y9/exvX7Gu4JqUPkRIF4/zX7wZhlRhEZQP7uXxNb8dYUd7hr7ceuO1NwNlnbuk6RCsiDZS0hki2cD0jROhERmLnyES9LmhEkTSP+27qRdH3pE+iT1jz2Wm86ABaMNLpb3IVAyfGRY6cwDgb4vhLRoI4+piHTbSrHOGMAs2nvEHVvI7x07e/NahSa+AzALHY3oX/usqWY5mJA+VBb1+yoTEBeEfyGvZ6hixqMal2PAj0SnW4gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A4jypXCZKPvlO4Hha3P+CtXMXU3AoOm4Z2C01B75AG0=;
- b=pfvGv1Vs3Zqx0UUd/xpAqQGPz+FjBGstMlZ40jPv0BhHBaEF7prtUBNGUi4K+6y4bV/Opw+s88dbwnJmswMGva8hxzs0y9lkCcRSH22/9lDX0EnGyd4SmI5UL1iSXqv7o64FwenNxukWWPpUZ4HFmXpiYU4WmjGd5OPpanlkAaE=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by OSRPR01MB11773.jpnprd01.prod.outlook.com (2603:1096:604:22d::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Mon, 19 Aug
- 2024 09:50:20 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.7875.019; Mon, 19 Aug 2024
- 09:50:20 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, "daniel@ffwll.ch"
- <daniel@ffwll.ch>, "airlied@gmail.com" <airlied@gmail.com>,
- "jfalempe@redhat.com" <jfalempe@redhat.com>, "javierm@redhat.com"
- <javierm@redhat.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
-Subject: RE: [PATCH 35/86] drm/renesas/rz-du: Run DRM default client setup
-Thread-Topic: [PATCH 35/86] drm/renesas/rz-du: Run DRM default client setup
-Thread-Index: AQHa79tuNZvEXbvPwU6/C6ldf1lFVLIuWm8g
-Date: Mon, 19 Aug 2024 09:50:20 +0000
-Message-ID: <TY3PR01MB11346645399AB4B6F83E59853868C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-36-tzimmermann@suse.de>
-In-Reply-To: <20240816125408.310253-36-tzimmermann@suse.de>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OSRPR01MB11773:EE_
-x-ms-office365-filtering-correlation-id: d56d8ee2-79de-487f-b6b1-08dcc03456b9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|366016|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?xz983qP2qmSVorufN5InXMvsze/YzA8qesrYFRcRubiMWyl+DrV899PSTANU?=
- =?us-ascii?Q?wLbbcZlHs1xBfT4TfadCPnAUYKrP/+emGGHk2dN0ol+uMNAP3TlqRJYX9mNT?=
- =?us-ascii?Q?mpHVSN2bpXYB2QYV+/0Gz700vrdO5FGxkYUVAMTMbDfvo5EOUYDyOrXSnPvp?=
- =?us-ascii?Q?WCA3U65+WjZN3iRrPsXGLnzlUrKevsyV+nN1BlXowVDhro8p3Xq0KTlstLAQ?=
- =?us-ascii?Q?Xjra/MJdfjJJOiUzeR2zSPMa3oYWI1O/Ox8fIWVIsCMGeAigZ+FtFaKGZCn/?=
- =?us-ascii?Q?iEDmhQIIf8ReBp84GoqSJlC4hB02FtboYWjNiXvZ2fYiem52CdY9nifhBM9E?=
- =?us-ascii?Q?pXbGhFNuIZO/4CvFCJYUk8NhjPNvYGHTMif840C7PgIKGo8iHpVQ+JKOWDXR?=
- =?us-ascii?Q?Gt+xRmOZxg7lX7eTIB1j2ZjF26f9ApOnG9nlWIkTgtwmpld36TDjHugUkMWd?=
- =?us-ascii?Q?avzmOcoTmZNOOZb+XBwOHyizipoIolJrJkkO8muwPmI67Jzm1z3BneDAX96M?=
- =?us-ascii?Q?wIILq/zfLPat/WgAcQ1be107peTkZahH3lEBLvBQ0CD4sisPLXs10lIiIqg7?=
- =?us-ascii?Q?Zw6ThUxFKLjPGSn+zpz2es78p0avUs+6oBxbICHjG0e2otyNC7ad8ZUEaFA3?=
- =?us-ascii?Q?g9GDYY0bO2Wz5iRk+ZML6/aCkOa3idil2m6nS3RAVHnm0dptoQXoRzA1kZiA?=
- =?us-ascii?Q?Z5AC+EdtbC4VOwEjooo7JjCpwWTvdb9PFiLq1koeomHPlpB+nfWiC6DxGNj/?=
- =?us-ascii?Q?8iT5Bg7pKBhuySggVr8ya2hU3tW7lusXzF4utdEb5ZjxoMCEuAnsFzwEStew?=
- =?us-ascii?Q?bFxag1EQOxmMz8aD3GFYUba9dYrRAhfkFvnGZOmnSTJMcBE/CGsa8UTwr0/r?=
- =?us-ascii?Q?X/KA0hXGbrWGbJYVMs67L4aZmpsnYqamK9LirglKuksjC1YogCQNrOFnya4v?=
- =?us-ascii?Q?pfZvuWDZIkgzbaj5K9BXoNpkXzyJDJP8pZExW+M4eyyPcTN00JK+SgfZpc7j?=
- =?us-ascii?Q?s3eRTxxy5Er8CNLfq9MPQM3xaa+DP1xuF7zFj8VmHjO9qecmfxORcSK35OpJ?=
- =?us-ascii?Q?EYWjBiF9VwDkupMc4axhFgoIvmT++y9v9ro+UCIKX6Zae2WqfESqHWgvuTlU?=
- =?us-ascii?Q?GdyucVGXYXo+gPX1jdiyK+llI+TndypXDnYGfjjM+AvzM/K4RFU6OgvO5Tjh?=
- =?us-ascii?Q?QCLOiLVxzjnv+hHD270SW/fjtLIWk2J4QinOgZHL9913cxrT3Nt9wnoXxjjz?=
- =?us-ascii?Q?Qb4YeoE4HQnmMMMDOCj1PqbBnx/NJKb3nnOGdOZGHiF2YOV5O94rQc7jKMrj?=
- =?us-ascii?Q?2+3+V7AuNQ7T99djqPslUxaGyA6UBDGHap3mKzsRfTLzDoEPnjXkQTqcn9LR?=
- =?us-ascii?Q?X668Bwc82+p9IblPh9IsdhdjoAGnh3YEsTzj8SbvQxCNOmCHEw=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:TY3PR01MB11346.jpnprd01.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sYXJ9AQ1H5PLXPtyGymLX25fxgGH52EP2kBC3RdF8t7hFluLUhKOcqmC80zp?=
- =?us-ascii?Q?zh2AcW1l6X3YPPouQ2sbDRnN6X33UeZbJXUGhKZlMFZ75yli7y6kcLCiwBPr?=
- =?us-ascii?Q?mUwwcxdt+dYQOwvslMimwlg3CO+yxJcM0GE9K3veTDwXwbOQFQSKkrxzKWQz?=
- =?us-ascii?Q?ERqLGhtKvHqsmmLkuVxbo1o5IFHuCvmCS6nzMspiw23gkMbFSGhDtCUyrAPf?=
- =?us-ascii?Q?oJ4Qq4xi96XpLTELpKYjbMtX+P99kkctXLPHZh7g7Ho6bstfMkPuvQJcqxny?=
- =?us-ascii?Q?nwwZrfAxudTT7tfZbs5JIB+1XW2IkU3za8Jc+nYZYp1WzUTCjZS8KaLQK9UA?=
- =?us-ascii?Q?vJFYKEYjs9+K6S5YSCyihc/qOYIwiY7bvBxfCxdBO9FFEeaX6MJt+gReHf0o?=
- =?us-ascii?Q?GPtsfbCRum8QuiOdaGlzmZ175k9VivDtthZeyff2Pj8mbWyB8kZtFef3UNe0?=
- =?us-ascii?Q?vlghyikxkfka0buKA6BP5T5REqYj31pE+Gr7MtyjU/JtSbxmmOqT7PJFYw9b?=
- =?us-ascii?Q?mJ4whxy4sZzMyb3E1jFqZp6MlFX/b/1B7V1UXG+QMxX2MG5k6y7FFfwzPXCX?=
- =?us-ascii?Q?axT2ktgXFmI045VhwGX3xawXxB6rlDTNsNuau0N20hZ0sXgZLXuNGQk9+fR1?=
- =?us-ascii?Q?27dW9NErooSwxF8YEtwBaR1joyoSmll0ehNsI/QXgaXr1B2jRYH3wqy19cDg?=
- =?us-ascii?Q?41FvX9yc1F+TirAAQEvpFfgMhmeQjg5jw6arl2hEvEH7NKg+MpWAU/vE1ogf?=
- =?us-ascii?Q?cokQd15mmwvT++81WIMjJP6IWhx5AdIqgUzm/QHOuzlKHMifD4NsSg2xow7M?=
- =?us-ascii?Q?Hx2XcSunecrwizFC3XIxtd+xe2fIKKYVO6Q08kK3fR7+0fuogK6jNkijuZQj?=
- =?us-ascii?Q?ekNB5JuzlQr5/hL9X2AP/IS0c3eqoq12z8h7cD7AqdQOTo7XBQYWYFW/9MsN?=
- =?us-ascii?Q?k77ht6YbGj55GpKC10jbFzNvdLAG1Qilen7K1J6Crt7ZAlkhn3Vl4omyIRfT?=
- =?us-ascii?Q?w5oW7yzl6v47ouUWp1Mq1vxj0O2zaZLZSVtM7E+Grby3L6esPuFVQmWUph+k?=
- =?us-ascii?Q?pzHxDXl1sjhfh+A53KmYqEigdgtOTFu1tv7vFXxqR9znLAKrw8p7LXhbMToX?=
- =?us-ascii?Q?VUxKag9ALkz0u49kKqy6bDxa2DDSRg/vPdC3mB9qcJDE1Dyky/1cH6vdKVox?=
- =?us-ascii?Q?B03z0t868BS+4sYq+VpptlkmdzXDBfXR36wA4XYSKnFV1I/pMMbxkN7xRPHD?=
- =?us-ascii?Q?idviPzWDThZhSQxEI/NVWxRd5eW4h8HxRkZQk57hQ3OZSFWuUlyktOzxqx6H?=
- =?us-ascii?Q?mBzTjST00KOxYum6qE/EsaERRMKDoGzOgOHSi55kJSGMlxNOzGa6Vw5g0hvW?=
- =?us-ascii?Q?b8B92H5vWZ+nkxgv+4ZhYRHx7U+iGJ3CShT9lqGFNW/DbGkJNtciIkZvjvZd?=
- =?us-ascii?Q?zvMWlQ1juAHfgt2VzjPR7n3nTVBLLVTO1KWW2BAmRKD/tE4Kbb/hLeQ/lQVS?=
- =?us-ascii?Q?d7Hf9fdZjawddqH1oSCvMZFFBUFnaT8+4GvSHVKcHQF1VSgFH901RZjBezzO?=
- =?us-ascii?Q?vmkM/Ghc9FCZSHOdcVRhX445JEBMJ/q03EZUeUbBVLC3qmaAaZkfzE3MSPvE?=
- =?us-ascii?Q?KA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 367 seconds by postgrey-1.36 at gabe;
+ Sun, 18 Aug 2024 17:02:01 UTC
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
+ [210.118.77.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BBBA10E034;
+ Sun, 18 Aug 2024 17:02:01 +0000 (UTC)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20240818165551euoutp0258140a37ef73bcc4656173befe53d6b1~s4QD8OiMy2193121931euoutp02x;
+ Sun, 18 Aug 2024 16:55:51 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20240818165551euoutp0258140a37ef73bcc4656173befe53d6b1~s4QD8OiMy2193121931euoutp02x
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1724000151;
+ bh=pgk63OzM4MV5B1YZ1Q6RhX/k/tQPgbLegYhXhPxJ50g=;
+ h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+ b=PkHxwJ44aZhmcYMdzJKAGZXelphodr77bbg9/BPcudcGnFtavaJMJ9p2nd51Tj6yl
+ EaF87ID3nxhu/IEgZzyY2TPZYcEWqlo0jRREP2U3hZ6UDipar0KJoHoGGOhd9+mR8o
+ njp4oTr7P/w9+o/j0eFte/CLOGU+aG0zzrs/aqcg=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+ 20240818165551eucas1p2cfad7c58437449945b2cf154473a035d~s4QDrLzpK2264222642eucas1p2-;
+ Sun, 18 Aug 2024 16:55:51 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id 50.EF.09620.79722C66; Sun, 18
+ Aug 2024 17:55:51 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20240818165550eucas1p29e0c2db56a8031d550147a0305929f47~s4QC3qo8m2264222642eucas1p2_;
+ Sun, 18 Aug 2024 16:55:50 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20240818165550eusmtrp1f22f7444782d04f43e5ceb6ffa5e8082~s4QC2rdl71394913949eusmtrp1b;
+ Sun, 18 Aug 2024 16:55:50 +0000 (GMT)
+X-AuditID: cbfec7f5-d31ff70000002594-c8-66c227976f5c
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id 98.94.09010.69722C66; Sun, 18
+ Aug 2024 17:55:50 +0100 (BST)
+Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
+ eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+ 20240818165550eusmtip2d54ec6aadacf9035b826ccd01848f656~s4QChYpRJ2514925149eusmtip2C;
+ Sun, 18 Aug 2024 16:55:50 +0000 (GMT)
+Received: from localhost (106.210.248.197) by CAMSVWEXC02.scsc.local
+ (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
+ Sun, 18 Aug 2024 17:55:45 +0100
+Date: Sun, 18 Aug 2024 18:55:45 +0200
+From: Klaus Jensen <k.jensen@samsung.com>
+To: Barry Song <21cnbao@gmail.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Daniel Gomez
+ <da.gomez@samsung.com>, Masahiro Yamada <masahiroy@kernel.org>, "Nathan
+ Chancellor" <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, "Lucas
+ De Marchi" <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, William Hubbs
+ <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, Kirk Reiser
+ <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, Paul
+ Moore <paul@paul-moore.com>, Stephen Smalley
+ <stephen.smalley.work@gmail.com>, Ondrej Mosnacek <omosnace@redhat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, James
+ Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Zenghui Yu <yuzenghui@huawei.com>, Jiri Slaby <jirislaby@kernel.org>, Nick
+ Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-kbuild@vger.kernel.org"
+ <linux-kbuild@vger.kernel.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "speakup@linux-speakup.org"
+ <speakup@linux-speakup.org>, "selinux@vger.kernel.org"
+ <selinux@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
+ <kvmarm@lists.linux.dev>, "linux-serial@vger.kernel.org"
+ <linux-serial@vger.kernel.org>, "llvm@lists.linux.dev"
+ <llvm@lists.linux.dev>, Finn Behrens <me@kloenk.dev>, "Daniel Gomez
+ (Samsung)" <d+samsung@kruces.com>, "gost.dev@samsung.com"
+ <gost.dev@samsung.com>, Nick Desaulniers <nick.desaulniers@gmail.com>
+Subject: Re: [PATCH 00/12] Enable build system on macOS hosts
+Message-ID: <ZsInkfDqwzd2ojHz@AALNPWKJENSEN.aal.scsc.local>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d56d8ee2-79de-487f-b6b1-08dcc03456b9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2024 09:50:20.5523 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: H1Z8ZExI34Rrqs/MtHuF4gR1cheL3pdzk+Xb8B/bpIwI+K7ckcmUtKcX8qK7xZch6wu6cX0lgnNnNLk+6Tq98ofom+UdLNz8us5+HM3I2a8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSRPR01MB11773
-X-Mailman-Approved-At: Mon, 19 Aug 2024 14:09:43 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGsJ_4zA6=ajoOgAm9kweeiBFKz4TJxxjYFGHHd3HQY8dxHpWA@mail.gmail.com>
+X-Originating-IP: [106.210.248.197]
+X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
+ CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Te1BUZRiH5zvn7Dm7y6weFxo+wYlplaE1wryg30gaZOEpGmutqHHGcpXD
+ JW62CyqVI+aKgGIgIcMGC7LTchEC14VwBQnU5bIyGwOzaLiIAYEIKIEERbuxHEz/e+Z7f887
+ 7++Pj4+LT1Ee/Ki4BFYRJ4+RkEKi1jRneTXXpzn8NdPgcjRlE6PWnmIMPdKdAchUPoKjqw4b
+ jhy1WTjqfvKIRCe0VSSavTyCoXvXSjA0UbAKnb+oJZGms41Ao4brBNIPWHlo3liHoS5jPolu
+ aTMoNPh9I4mGBnQkujBZQ6D7/bd56Ep+Gw81VHWRSN81xUMpaToeOlU2RKLHmQ4MGRvnCPRH
+ QysP5cyNkWg88yaFes/lEqhRbaVQ6WwuQJYWE4Vq6zoAGrZkA5TX2wvQw7qFzYaxLB4qTtmC
+ VHf90Z0fq6lAX6ZCUwGYelMHyTTMFBGMsfkyyVxR2yimSJ/IqG6M8xht/QOM0ZenkYwmTYMx
+ jox+HnPDUUwxF5JzcEbTJmMaCyoo5t7pFuwDuEf4ehgbE3WIVazbvk8Y+e/JSnDQ5nLEmnwJ
+ TwZ5gnQg4EN6E0y3GnAni+lSAOdngzmeBrC9iU4HwgWeAvB66d/gqZA610hygxIAL2rU2P+p
+ saHCpUkNgFOTasKpELQ3bMtQk04maSn8ed6x+O5GS2B2zgzhFHC6nIYlQzk858CV3gZHSuoX
+ BREdADuGb2Ecr4BteYMLAn9BkMIq4zoOPWGJne9M4LQXPFHzw2IdAS2DOrMe465eDS/1WAiO
+ j8J2w2+LR0P6qgssmzmLOfdA+i3YmhrIZVzhaIuB4ngVNGefIbj8NQCnC3uoJRnAm7/ocC4V
+ AFXdg0tGEBwr1lPc0mXw9vgK7rhl8FxtLs49i2BqijgTrFE/V0z9rJj6WTH1c8WKAFEO3NlE
+ ZWwEq9wYxx72U8pjlYlxEX4H4mP1YOGvmO0tT+pA6eikXzPA+KAZQD4ucROdftAULhaFyZO+
+ YhXxnysSY1hlM/DkExJ3kXeYFyumI+QJbDTLHmQVT6cYX+CRjL0ZYvLj/SW7v1Vmtg2FiAdC
+ g9ZumPDK9JxcLUkCazK0BhdbpVTkio0GhmyulAaogo/oNrxj/FZ4nGzYvtmu2nf07V3xc2mf
+ YJbsTdKv31/5cHdEzP5dd8XS/r1/Tpz9Yrr9fExZeOl8mS099pW6mm1s6GhCL7XTN9Kc5R+d
+ K6yIdmO6h5f3bWQKP6tw73r5pTCw8hgxINjZae/67vcX9xzzlX8c7GFNMh6qjq//8Mt3/wn9
+ SeCdaffx3Jtd9M3ERNMOmV/fbOtxcpkqSGXU+t/pjN0Rr0uv9nkhQ/T4gD0n6o3Ivizb/qBe
+ 8+H3in8NsKyPtH4q21qQgBEfddQMSLeczN8dKCGUkfL1a3GFUv4fl9bBPJoEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0xTdxjGdy49bYEuZxXZGZpp6uaFSKHl9pYiYYtLzr64kRlxuoV19ABG
+ oKyXKVvmiFwUHQYGSKil4xKugwDlYulg5eKABpGMCtIgogMEuQwJDiUButZu0W+//N/n+eWf
+ Ny8H4zcQ3pwzSWpGmSRLEBBu+OB2/wPf6wd6Yv0HR71gbZIPA/fKUFip/AmBvtp5DH6zT2Jg
+ b8vF4O4/KwSklTcQ8KJ5HoWp36tQ+Lt4N1z/tZwA/Z8WHBZaenEwTI+xYNNkRMFq0hFwuzyb
+ DTP5ZgJmpysJKF1txeHRw3EWtOssLOhssBJgsK6xIDOrkgWXamYJeJpjR8Fk3sDhcecACwo2
+ lghYzvmDDRM/F+Jg1o6xofpFIQLD/X1saDMOITA3nIdA0cQEAotGh7llKZcFZZkhkH4/CGwV
+ jeyIw3Sdvg6hO/qGCLpzvQSnTT3NBN2unWTTJQYNnX5rmUWXdzxBaUNtFkHrs/Qobc9+yKJv
+ 2cvYdGlqAUbrLZG0ubiOTU9d7Uc/pU4Jw5QKjZrZG69QqY8ITotALBRJQCgOlAhFASFfhoqD
+ BH7hYXIm4cy3jNIv/Cth/FZGPZI86X5+LLUJS0WKuFcQLociA6nLG2bCyXyyAqG6GuSu991U
+ 07NRlot3UJtjV/7LrCJUmy3Sxa0IVTnKOBkn36cs2dqXGYI8RN3ctONO9iQFVF7BuoPdOBhZ
+ S1JL1VWoc7CDPELNV3W8LPBIKTU0dxt1hvjkJkrNL5eyXIO3KEvRjKPNcbQPUQ0mPxfuoqq2
+ Oc4ERu6h0lpvYE7mkpFU5aABdf15H9V0bxh38Q/U2tZjJAfx1L4m1b6Sal9Jta9JSxC8FvFk
+ NKrEuESVWKiSJao0SXHCGEWiAXFcblvfRosRqVlYFfYgKAfpQSgOJvDkXX3SHcvnyWUp3zFK
+ RbRSk8CoepAgx4ZyMe+dMQrH6Sepo0XB/kGiwGCJf5AkOEDwNu/j5MsyPhknUzNnGSaZUf7f
+ Qzlc71TUQyeJOmk0HfilscueyI8w88TpsdrjvaUlx2Y/y+IWP7rTEf7jex5sbY0043D0CU7E
+ 1ORzjy9O8o6GVbhZqq9B2xtevrlHM3W9kgsf+WY8bb8/5R5l0JQGGnVWQq7+hPzeR34tlCsx
+ 7bVlfpjXOLsn5lzKxW2fVL5nre3zNOsHophTN985t7gkjyx6tn8t/2DgyGKe7k699EHoN50J
+ zTWCr+sDukXP94csuh8MPd3Ypbq7s+Li9Oq7dZsl56t3hU/TwXkXcuKkM8k+xVLbgu14ing9
+ aqYmaUN69s2Rlb8WV/ZFWW/EbG2ZDc0DhSvj9dsnGK9Ls+P6sO1j+R6t3SMKRcGcAFfFy0Q+
+ mFIl+xfttvvaQgQAAA==
+X-CMS-MailID: 20240818165550eucas1p29e0c2db56a8031d550147a0305929f47
+X-Msg-Generator: CA
+X-RootMTR: 20240807110114eucas1p2e1ca4cbd352c6cd9d60688b1570df8d4
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240807110114eucas1p2e1ca4cbd352c6cd9d60688b1570df8d4
+References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
+ <CGME20240807110114eucas1p2e1ca4cbd352c6cd9d60688b1570df8d4@eucas1p2.samsung.com>
+ <2024080753-debug-roulette-8cb1@gregkh>
+ <3jnp6tnkjpvnisefomxagazu2u3uzzt7rcon3r5jssraxzwegb@gsxc7c5sfh7v>
+ <2024080758-dedicator-smoky-44be@gregkh>
+ <CAGsJ_4zA6=ajoOgAm9kweeiBFKz4TJxxjYFGHHd3HQY8dxHpWA@mail.gmail.com>
+X-Mailman-Approved-At: Mon, 19 Aug 2024 14:09:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,65 +167,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas Zimmermann,
+On Aug 17 13:11, Barry Song wrote:
+> On Thu, Aug 8, 2024 at 2:20 AM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Wed, Aug 07, 2024 at 01:56:38PM +0000, Daniel Gomez wrote:
+> > > On Wed, Aug 07, 2024 at 01:01:08PM GMT, Greg Kroah-Hartman wrote:
+> > > > On Wed, Aug 07, 2024 at 01:09:14AM +0200, Daniel Gomez via B4 Relay wrote:
+> > > > > This patch set allows for building the Linux kernel for arm64 in macOS with
+> > > > > LLVM.
+> > > >
+> > > > Is this a requirement somewhere that this must work?  It seems like an
+> > > > odd request, what workflows require cross-operating-system builds like
+> > > > this?
+> > >
+> > > This isn't a requirement, but it would, for example, support workflows for QEMU
+> > > users and developers on macOS. They could build/compile the kernel natively and
+> > > use it to launch QEMU instances, simplifying their process.
+> >
+> > But that's not a real workload of anyone?  How often does this ever come
+> > up?  Who is going to maintain this cross-build functionality over time?
+> 
+> it is a real workload of me,  i was running qemu-system-aarch64 on x86
+> and it was
+> pretty slow. so got a M3 pro to accelerate my development. frequently changing
+> kernel's source code, i am using qemu-system-aarch64 to do quick verification.
+> 
 
-> -----Original Message-----
-> From: Thomas Zimmermann <tzimmermann@suse.de>
-> Sent: Friday, August 16, 2024 1:23 PM
-> Subject: [PATCH 35/86] drm/renesas/rz-du: Run DRM default client setup
->=20
-> Call drm_client_setup() to run the kernel's default client setup for DRM.=
- Set fbdev_probe in struct
-> drm_driver, so that the client setup can start the common fbdev client.
->=20
-> The rz-du driver specifies a preferred color mode of 32. As this is the d=
-efault if no format has been
-> given, leave it out entirely.
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Biju Das <biju.das.jz@bp.renesas.com>
-
-Tested-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Cheers,
-Biju
-
-> ---
->  drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c b/drivers/gpu/d=
-rm/renesas/rz-
-> du/rzg2l_du_drv.c
-> index e5eca8691a33..53f9e1b7fa87 100644
-> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
-> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
-> @@ -13,6 +13,7 @@
->  #include <linux/platform_device.h>
->=20
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_client_setup.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fbdev_dma.h>
->  #include <drm/drm_gem_dma_helper.h>
-> @@ -68,6 +69,7 @@ DEFINE_DRM_GEM_DMA_FOPS(rzg2l_du_fops);
->  static const struct drm_driver rzg2l_du_driver =3D {
->  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
->  	.dumb_create		=3D rzg2l_du_dumb_create,
-> +	DRM_FBDEV_DMA_DRIVER_OPS,
->  	.fops			=3D &rzg2l_du_fops,
->  	.name			=3D "rzg2l-du",
->  	.desc			=3D "Renesas RZ/G2L Display Unit",
-> @@ -149,7 +151,7 @@ static int rzg2l_du_probe(struct platform_device *pde=
-v)
->=20
->  	drm_info(&rcdu->ddev, "Device %s probed\n", dev_name(&pdev->dev));
->=20
-> -	drm_fbdev_dma_setup(&rcdu->ddev, 32);
-> +	drm_client_setup(&rcdu->ddev, NULL);
->=20
->  	return 0;
->=20
-> --
-> 2.46.0
-
+Allow me to chime in as well. Working with qemu-system-aarch64 on an Mx
+are a daily thing for me as well. Working with custom built kernels have
+been a pain, and this really helps.
