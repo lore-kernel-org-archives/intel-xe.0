@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA8AC52D7C
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 01:45:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22E8BC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 07:17:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A9B10E18B;
-	Mon, 19 Aug 2024 01:45:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBDA610E07E;
+	Mon, 19 Aug 2024 07:17:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gg7mJ4wS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NfcISSvL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3020A10E18B
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 01:45:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C61F10E07E
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 07:17:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724031919; x=1755567919;
- h=date:from:to:cc:subject:message-id;
- bh=/b8TgNp2bJvbgfB8KNpcNFIcmldra8vBdOEWN9CWB9I=;
- b=gg7mJ4wSdty5knosa+DsN/43/PuNuXkn8NuMK6TfPAIJhufRpPgGHi39
- g0Qq2AFhesKy5uNFjgUUf4SbrvlPqOFa6GMLYFyJKryV/nzytUooHH8Jr
- Ph6sDSVmOxlPH5ojeGb7/TA4ucFSANrWpbE8hQSWTAISz8IyX54NfQWy/
- MEzeK6RQQbOKR7mmVtLIOgX1vMy541wtbLOl0aq7zCpFXBexul2FF19Ll
- xxahtieZJ0x8TJ7WTW7Z/IXo8YTF/SVyXWlS1leSTdEhlG3EWcYyZI5zN
- obT1Du1k+z3wjv416BgXuZReHZQk4A28VIx0cZ1SLiW0mXbmGGmjq351c Q==;
-X-CSE-ConnectionGUID: 8o0GxFZ8QxaqrJIUI/dVfA==
-X-CSE-MsgGUID: Jp5jnT6hTgyOlPWi/0E92Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="22427085"
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="22427085"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2024 18:45:18 -0700
-X-CSE-ConnectionGUID: tPMJATC5Rnyj5MmwEJpGjA==
-X-CSE-MsgGUID: CwfgIKFnRJC6fTY9Vqf5zw==
+ t=1724051823; x=1755587823;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wC326Tcs6MrFw1nH7r35VE9OLlS9usQA8jiomTpCj1M=;
+ b=NfcISSvL5NFPhnG3d7rdOsaUW7pozYjPoSfEeMGpbxSbFORlvpyLXTlO
+ dw0U+RE5P7KDgX29BaoanUYKtvFDzKjHHbzNckPLkpyN+2IPFNWUZwvyW
+ EWvD9VANXE0XI0VcohwxhkgD9kDnan9ftHDCceiIXnINrD0kA3wOD+vu8
+ l/zFUxlmiGhfu3UJ8h4uUu0BvWi968d32yBrGGc7tWOZTxFIoTHfDhAf0
+ 6GU3Zb3ftYITxL9dBuQt9uH7uJjM8Ht/Mkf20JhIl6UFOeQwp/8pPxKyi
+ ZdKky/Wk4Ii+wFYnGK/0QC79Qk3qKw8BS1yKjZGpbhNiNDT3F3/JJNVoH Q==;
+X-CSE-ConnectionGUID: /ZaPvOf0SeqXndD8LmuG1A==
+X-CSE-MsgGUID: djeOFCKhQT2YMypCjci4Ww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="22442602"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="22442602"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 00:17:02 -0700
+X-CSE-ConnectionGUID: ClbEDrBTRdGkDVU7KOYKzA==
+X-CSE-MsgGUID: KrWylCitTPuC2yFhqmvGBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="60214954"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 18 Aug 2024 18:45:17 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sfrSN-0008Yi-1R;
- Mon, 19 Aug 2024 01:45:15 +0000
-Date: Mon, 19 Aug 2024 09:44:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 4099cfda9dd856222d7cab6970a65896375616d5
-Message-ID: <202408190931.QhzI6jBZ-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="60439958"
+Received: from singhapo-nuc7i7bnh.iind.intel.com ([10.145.169.50])
+ by fmviesa010.fm.intel.com with ESMTP; 19 Aug 2024 00:17:01 -0700
+From: apoorva.singh@intel.com
+To: intel-xe@lists.freedesktop.org
+Cc: Apoorva Singh <apoorva.singh@intel.com>
+Subject: [PATCH] drm/xe: Add NULL check before deferencing pointer
+Date: Mon, 19 Aug 2024 12:45:57 +0530
+Message-Id: <20240819071557.964326-1-apoorva.singh@intel.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,157 +63,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 4099cfda9dd856222d7cab6970a65896375616d5  drm/xe/device: Remove unused xe_device::usm::num_vm_in_*
+From: Apoorva Singh <apoorva.singh@intel.com>
 
-elapsed time: 1448m
+Add NULL check before deferencing of lrc->bo in
+xe_lrc_snapshot_capture().
 
-configs tested: 138
-configs skipped: 8
+Free the dynamically allocated memory for snapshot
+to avoid memory leak
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c | 32 ++++++++++++++++++--------------
+ 1 file changed, 18 insertions(+), 14 deletions(-)
 
-tested configs:
-alpha                             allnoconfig   gcc-13.3.0
-alpha                            allyesconfig   gcc-13.3.0
-alpha                               defconfig   gcc-13.3.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                     nsimosci_hs_defconfig   gcc-13.2.0
-arc                   randconfig-001-20240818   gcc-13.2.0
-arc                   randconfig-002-20240818   gcc-13.2.0
-arm                              alldefconfig   gcc-14.1.0
-arm                              allmodconfig   gcc-14.1.0
-arm                               allnoconfig   clang-20
-arm                              allyesconfig   gcc-14.1.0
-arm                                 defconfig   clang-14
-arm                      footbridge_defconfig   clang-20
-arm                       omap2plus_defconfig   gcc-14.1.0
-arm                   randconfig-001-20240818   clang-15
-arm                   randconfig-002-20240818   gcc-14.1.0
-arm                   randconfig-003-20240818   clang-20
-arm                   randconfig-004-20240818   clang-20
-arm                        spear3xx_defconfig   clang-16
-arm                        spear6xx_defconfig   clang-20
-arm64                            allmodconfig   clang-20
-arm64                             allnoconfig   gcc-14.1.0
-arm64                               defconfig   gcc-14.1.0
-arm64                 randconfig-001-20240818   gcc-14.1.0
-arm64                 randconfig-002-20240818   gcc-14.1.0
-arm64                 randconfig-003-20240818   gcc-14.1.0
-arm64                 randconfig-004-20240818   gcc-14.1.0
-csky                              allnoconfig   gcc-14.1.0
-csky                                defconfig   gcc-14.1.0
-csky                  randconfig-001-20240818   gcc-14.1.0
-csky                  randconfig-002-20240818   gcc-14.1.0
-hexagon                          allmodconfig   clang-20
-hexagon                           allnoconfig   clang-20
-hexagon                          allyesconfig   clang-20
-hexagon                             defconfig   clang-20
-hexagon               randconfig-001-20240818   clang-20
-hexagon               randconfig-002-20240818   clang-20
-i386                             allmodconfig   gcc-12
-i386                              allnoconfig   gcc-12
-i386                             allyesconfig   gcc-12
-i386         buildonly-randconfig-001-20240818   gcc-12
-i386         buildonly-randconfig-002-20240818   clang-18
-i386         buildonly-randconfig-003-20240818   clang-18
-i386         buildonly-randconfig-004-20240818   clang-18
-i386         buildonly-randconfig-005-20240818   gcc-12
-i386         buildonly-randconfig-006-20240818   clang-18
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240818   clang-18
-i386                  randconfig-002-20240818   gcc-12
-i386                  randconfig-003-20240818   clang-18
-i386                  randconfig-004-20240818   clang-18
-i386                  randconfig-005-20240818   clang-18
-i386                  randconfig-006-20240818   gcc-12
-i386                  randconfig-011-20240818   gcc-12
-i386                  randconfig-012-20240818   gcc-12
-i386                  randconfig-013-20240818   gcc-12
-i386                  randconfig-014-20240818   clang-18
-i386                  randconfig-015-20240818   clang-18
-i386                  randconfig-016-20240818   gcc-11
-loongarch                        allmodconfig   gcc-14.1.0
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch                           defconfig   gcc-14.1.0
-loongarch             randconfig-001-20240818   gcc-14.1.0
-loongarch             randconfig-002-20240818   gcc-14.1.0
-m68k                             allmodconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                             allyesconfig   gcc-14.1.0
-m68k                                defconfig   gcc-14.1.0
-microblaze                       allmodconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-14.1.0
-microblaze                       allyesconfig   gcc-14.1.0
-microblaze                          defconfig   gcc-14.1.0
-microblaze                      mmu_defconfig   gcc-14.1.0
-mips                              allnoconfig   gcc-14.1.0
-mips                        bcm63xx_defconfig   clang-17
-mips                           ip28_defconfig   gcc-14.1.0
-nios2                             allnoconfig   gcc-14.1.0
-nios2                               defconfig   gcc-14.1.0
-nios2                 randconfig-001-20240818   gcc-14.1.0
-nios2                 randconfig-002-20240818   gcc-14.1.0
-openrisc                          allnoconfig   gcc-14.1.0
-openrisc                            defconfig   gcc-14.1.0
-parisc                            allnoconfig   gcc-14.1.0
-parisc                              defconfig   gcc-14.1.0
-parisc                generic-32bit_defconfig   gcc-14.1.0
-parisc                randconfig-001-20240818   gcc-14.1.0
-parisc                randconfig-002-20240818   gcc-14.1.0
-parisc64                            defconfig   gcc-14.1.0
-powerpc                           allnoconfig   gcc-14.1.0
-powerpc                      ep88xc_defconfig   gcc-14.1.0
-powerpc                  iss476-smp_defconfig   gcc-14.1.0
-powerpc               randconfig-001-20240818   clang-20
-powerpc               randconfig-002-20240818   clang-20
-powerpc64             randconfig-001-20240818   gcc-14.1.0
-powerpc64             randconfig-002-20240818   gcc-14.1.0
-powerpc64             randconfig-003-20240818   gcc-14.1.0
-riscv                             allnoconfig   gcc-14.1.0
-riscv                               defconfig   clang-20
-riscv                 randconfig-001-20240818   clang-15
-riscv                 randconfig-002-20240818   clang-20
-s390                             allmodconfig   clang-20
-s390                              allnoconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   clang-20
-s390                  randconfig-001-20240818   gcc-14.1.0
-s390                  randconfig-002-20240818   clang-20
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                                  defconfig   gcc-14.1.0
-sh                    randconfig-001-20240818   gcc-14.1.0
-sh                    randconfig-002-20240818   gcc-14.1.0
-sh                          rsk7269_defconfig   gcc-14.1.0
-sh                  sh7785lcr_32bit_defconfig   gcc-14.1.0
-sparc                            allmodconfig   gcc-14.1.0
-sparc64                             defconfig   gcc-14.1.0
-sparc64               randconfig-001-20240818   gcc-14.1.0
-sparc64               randconfig-002-20240818   gcc-14.1.0
-um                               allmodconfig   clang-20
-um                                allnoconfig   clang-17
-um                               allyesconfig   gcc-12
-um                                  defconfig   clang-20
-um                             i386_defconfig   gcc-12
-um                    randconfig-001-20240818   clang-20
-um                    randconfig-002-20240818   gcc-12
-um                           x86_64_defconfig   clang-15
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64                              defconfig   gcc-11
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-14.1.0
-xtensa                  cadence_csp_defconfig   gcc-14.1.0
-xtensa                          iss_defconfig   gcc-14.1.0
-xtensa                randconfig-001-20240818   gcc-14.1.0
-xtensa                randconfig-002-20240818   gcc-14.1.0
-
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 974a9cd8c379..e31d9bc64ff6 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1652,20 +1652,24 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	if (lrc->bo && lrc->bo->vm)
+ 		xe_vm_get(lrc->bo->vm);
+ 
+-	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
+-	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
+-	snapshot->head = xe_lrc_ring_head(lrc);
+-	snapshot->tail.internal = lrc->ring.tail;
+-	snapshot->tail.memory = xe_lrc_ring_tail(lrc);
+-	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
+-	snapshot->seqno = xe_lrc_seqno(lrc);
+-	snapshot->lrc_bo = xe_bo_get(lrc->bo);
+-	snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
+-	snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset;
+-	snapshot->lrc_snapshot = NULL;
+-	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+-	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
+-	return snapshot;
++	if (lrc->bo) {
++		snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
++		snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
++		snapshot->head = xe_lrc_ring_head(lrc);
++		snapshot->tail.internal = lrc->ring.tail;
++		snapshot->tail.memory = xe_lrc_ring_tail(lrc);
++		snapshot->start_seqno = xe_lrc_start_seqno(lrc);
++		snapshot->seqno = xe_lrc_seqno(lrc);
++		snapshot->lrc_bo = xe_bo_get(lrc->bo);
++		snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
++		snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset;
++		snapshot->lrc_snapshot = NULL;
++		snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
++		snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
++		return snapshot;
++	}
++	kfree(snapshot);
++	return NULL;
+ }
+ 
+ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
