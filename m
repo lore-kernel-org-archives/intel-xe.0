@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F1FC3DA4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFEC3C52D7C
 	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 08:35:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1AD810E204;
-	Mon, 19 Aug 2024 08:35:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 699C910E206;
+	Mon, 19 Aug 2024 08:35:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jr2VRqDL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="STxuV7FE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB9D10E204;
- Mon, 19 Aug 2024 08:35:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11F3310E1FE;
+ Mon, 19 Aug 2024 08:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724056518; x=1755592518;
+ t=1724056514; x=1755592514;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0KFU9ZMergHZ/SU1J2ekt+OnEkGu+cCrtUWZv5+geK4=;
- b=Jr2VRqDLV8WKG7HG3WmVSsZIZUEOQXK2ZFn6fgYv1hn5PPKJfSr7ZYAD
- sNgainHYjsmVGDKVBPkJ0RbkdlTOTAqlLMLQeyUxlPG+T+0umawTZzqog
- gcxY0Qch7Q9CYa/vqxQlxPxos34n6EvbFVHi7X8amGwWAq0rNZ2EF+1RE
- 7tA/jeb14uT2Y37yi3V/xiRpnRaS/p+RRNLbya7Q03aKDhVDzBLBGnVXI
- 7Ihlfu6wZxQa6s+LIFxiRG8x43jaqB23kd0aGeLMT1dbahWO24f1MBZrm
- UKhfemExIUnWbRfj4GyFNJT7HD+G5/ugG0joLuRSjBVgvLhDkJA1p8mlr w==;
-X-CSE-ConnectionGUID: rXn94rx4QjKb0hiqH73MqA==
-X-CSE-MsgGUID: P1IWpsxKQwikFfKwqJPtrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="32958510"
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="32958510"
+ bh=TGZF/qxfwNIUwT6g6yBbTppuED0Uixq0VmCK9Zhau3s=;
+ b=STxuV7FEdpLUWVmS29029+PGs6tapbKozq9/oLZ/9MM5bLqvezI7XJNO
+ A7d+R0u6vBycLjnzV0fnQorLCId8L1tkgEWmFu5D9C3F7/YX0Y3b+ObsP
+ Y82sBpoKfQEMKLM+om68ewgsFF1E9rF+bqk8bjKE5QdK7weiU6ZTLt6hW
+ ueW2Pr4i3cJEApg48bynD00oYbTHMyjpTvO8Z07AbWUB3I2x84ZcQ2xTt
+ BaT8IzpIkfChlM8my8P1BNp76EHKNG07nnoMSyfk6Z9f7ndVoVmiPOOFg
+ F2DjnSe2W/sBT21mZbCcZVPjiupTueMV1HZZGdXOwJaK5XBWDhXKul047 w==;
+X-CSE-ConnectionGUID: T2O+uy/AQvamUEK40/lWbA==
+X-CSE-MsgGUID: qWEVfxqyRJeQuPhfsLaANw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="32958491"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="32958491"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 01:35:18 -0700
-X-CSE-ConnectionGUID: YPPdtB8oQd2jprwVTpHSLw==
-X-CSE-MsgGUID: 9miYVEapRa6jZY+oGzuMEg==
+ 19 Aug 2024 01:35:14 -0700
+X-CSE-ConnectionGUID: YOPXeawZSjiksxzjhRPNOw==
+X-CSE-MsgGUID: mOkEmyLURmKmEFqVDb1elQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="59962299"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="59962282"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.132])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 01:35:16 -0700
+ 19 Aug 2024 01:35:12 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -49,9 +49,10 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Paulo Zanoni <paulo.r.zanoni@intel.com>, dri-devel@lists.freedesktop.org
-Subject: [PATCH v9 6/6] drm/xe: Increase the XE_PL_TT watermark
-Date: Mon, 19 Aug 2024 10:34:49 +0200
-Message-ID: <20240819083449.56701-7-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v9 4/6] drm/ttm: Add a shrinker helper and export the LRU
+ walker for driver use
+Date: Mon, 19 Aug 2024 10:34:47 +0200
+Message-ID: <20240819083449.56701-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240819083449.56701-1-thomas.hellstrom@linux.intel.com>
 References: <20240819083449.56701-1-thomas.hellstrom@linux.intel.com>
@@ -72,43 +73,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The XE_PL_TT watermark was set to 50% of system memory.
-The idea behind that was unclear since the net effect is that
-TT memory will be evicted to TTM_PL_SYSTEM memory if that
-watermark is exceeded, requiring PPGTT rebinds and dma
-remapping. But there is no similar watermark for TTM_PL_1SYSTEM
-memory.
+Following the design direction communicated here:
 
-The TTM functionality that tries to swap out system memory to
-shmem objects if a 50% limit of total system memory is reached
-is orthogonal to this, and with the shrinker added, it's no
-longer in effect.
+https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
 
-Replace the 50% TTM_PL_TT limit with a 100% limit, in effect
-allowing all graphics memory to be bound to the device unless it
-has been swapped out by the shrinker.
+Export the LRU walker for driver shrinker use and add a bo
+shrinker helper for initial use by the xe driver.
+
+v8:
+- Split out from another patch.
+- Use a struct for bool arguments to increase readability (Matt Brost).
+- Unmap user-space cpu-mappings before shrinking pages.
+- Explain non-fatal error codes (Matt Brost)
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 65 +++++++++++++++++++++++++++++++
+ include/drm/ttm/ttm_bo.h          | 17 ++++++++
+ 2 files changed, 82 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-index 9844a8edbfe1..d38b91872da3 100644
---- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-@@ -108,9 +108,8 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
- 	u64 gtt_size;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 3c07f4712d5c..3490e3347de9 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -919,3 +919,68 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
  
- 	si_meminfo(&si);
-+	/* Potentially restrict amount of TT memory here. */
- 	gtt_size = (u64)si.totalram * si.mem_unit;
--	/* TTM limits allocation of all TTM devices by 50% of system memory */
--	gtt_size /= 2;
+ 	return progress;
+ }
++EXPORT_SYMBOL(ttm_lru_walk_for_evict);
++
++/**
++ * ttm_bo_try_shrink - LRU walk helper to shrink a ttm buffer object.
++ * @walk: The struct xe_ttm_lru_walk that describes the walk.
++ * @bo: The buffer object.
++ * @flags: Flags governing the shrinking behaviour.
++ *
++ * The function uses the ttm_tt_back_up functionality to back up or
++ * purge a struct ttm_tt. If the bo is not in system, it's first
++ * moved there, unless @flags.allow_move is false.
++ *
++ * Return: The number of pages shrunken or purged, or
++ * negative error code on failure.
++ */
++long ttm_bo_try_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		       const struct ttm_bo_shrink_flags flags)
++{
++	static const struct ttm_place sys_placement_flags = {
++		.fpfn = 0,
++		.lpfn = 0,
++		.mem_type = TTM_PL_SYSTEM,
++		.flags = 0,
++	};
++	static struct ttm_placement sys_placement = {
++		.num_placement = 1,
++		.placement = &sys_placement_flags,
++	};
++	struct ttm_operation_ctx *ctx = walk->ctx;
++	struct ttm_tt *tt = bo->ttm;
++	long lret;
++
++	dma_resv_assert_held(bo->base.resv);
++
++	if (!tt || !ttm_tt_is_populated(tt))
++		return 0;
++
++	if (flags.allow_move && bo->resource->mem_type != TTM_PL_SYSTEM) {
++		int ret = ttm_bo_validate(bo, &sys_placement, ctx);
++
++		/* Consider -ENOMEM and -ENOSPC non-fatal. */
++		if (ret) {
++			if (ret == -ENOMEM || ret == -ENOSPC)
++				ret = -EBUSY;
++			return ret;
++		}
++	}
++
++	ttm_bo_unmap_virtual(bo);
++	lret = ttm_bo_wait_ctx(bo, ctx);
++	if (lret < 0) {
++		if (lret == -ERESTARTSYS)
++			return lret;
++		return 0;
++	}
++
++	lret = ttm_tt_backup(bo->bdev, tt, (struct ttm_backup_flags)
++			     {.purge = flags.purge,
++			      .writeback = flags.writeback});
++	if (lret < 0 && lret != -EINTR)
++		return 0;
++
++	return lret;
++}
++EXPORT_SYMBOL(ttm_bo_try_shrink);
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index d1a732d56259..479ada85cea1 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -229,6 +229,23 @@ struct ttm_lru_walk {
+ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+ 			   struct ttm_resource_manager *man, s64 target);
  
- 	man->use_tt = true;
- 	man->func = &xe_ttm_sys_mgr_func;
++/**
++ * struct ttm_bo_shrink_flags - flags to govern the bo shrinking behaviour
++ * @purge: Purge the content rather than backing it up.
++ * @writeback: Attempt to immediately write content to swap space.
++ * @allow_move: Allow moving to system before shrinking. This is typically
++ * not desired for zombie- or ghost objects (with zombie object meaning
++ * objects with a zero gem object refcount)
++ */
++struct ttm_bo_shrink_flags {
++	u32 purge : 1;
++	u32 writeback : 1;
++	u32 allow_move : 1;
++};
++
++long ttm_bo_try_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		       const struct ttm_bo_shrink_flags flags);
++
+ /**
+  * ttm_bo_get - reference a struct ttm_buffer_object
+  *
 -- 
 2.44.0
 
