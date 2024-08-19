@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FCE7C5320E
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 08:35:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26AEDC5472C
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 08:35:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 615D410E1FA;
-	Mon, 19 Aug 2024 08:35:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DED2A10E1FB;
+	Mon, 19 Aug 2024 08:35:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W8p3LdtP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="geZ9080b";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCC8510E1FA;
- Mon, 19 Aug 2024 08:35:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D622810E1FE;
+ Mon, 19 Aug 2024 08:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724056508; x=1755592508;
+ t=1724056512; x=1755592512;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=064RvgdOVAxw/rwXM/rtOYX7EYbk9sjI92Jzwqjk1OM=;
- b=W8p3LdtP5rGbjdeSv8ZB3NMpgdmd3c8imqYGLvnugjVYwk+RSNKizIbJ
- I+6XowakmaqO7PxHGbxZH+D0I+rlhPc/iPNBzgc/UFBQUcqMqmjc7S8zL
- w9P6vIXG6/gZaOZvh7wb9Y6RrkY0NityE1HbzdeoFUOWpji14mZUnLv52
- rxr7SDrZECAo+9jdTykMrfbHyNpVxrxiXxS8yyebgXhBJI8SFa1lYTnmb
- n5fCDzj28/IVtBIisl+KLoE6EHWhmsAW4thE4aHfifu9+TLL95rNtwO5P
- d+qw205I4ruGKlNF6fjuF9I8rcZdoc6NcInSSEKzXaHk13W7nsv8S8gUO g==;
-X-CSE-ConnectionGUID: UvdITtWKQcmZ5HcYK59+ZQ==
-X-CSE-MsgGUID: kkqK3TKFTwarPYrlLHBwKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="32958456"
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="32958456"
+ bh=hr4iF3ejgvbaraReaQTKXIYPqicqSTkSR/bXb2WsSYw=;
+ b=geZ9080b24wFXoizQ0AJDT/KvYo0til+ebYB/DJ+MXyLauYqltDr7+qL
+ ZE67qn6JMC6wglZ3uaJZgdykYRua6Jc1/Bymg25aSRuTOWcGNC9VNwzlz
+ HUDFIAxiykZfr1mzEdermC/KjBOES9hDN9r2d5s3slafmc8/bZfD+buaK
+ Cf0b460PreY1n0floNKuYM5n2k4hxSk30SoKqTQdZ18X/BJMYW0xbyggu
+ o7cSWbcOOmpVB8f3vBp4dfJZMY9hRD5CT/lAgRBA5ZQAif1p4YYjz1WO6
+ KP/t+p4540w+w7NPW2/bRXySWs7HScOfkVSBR3N4u8EhZfHpJA7DhiRpe w==;
+X-CSE-ConnectionGUID: IHOr/TNiQvavEWDmrFnyYw==
+X-CSE-MsgGUID: uK9q60EPQ62lNwgBCHlcfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="32958477"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="32958477"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 01:35:08 -0700
-X-CSE-ConnectionGUID: TEZSi+sYSbykoiZNCGOQ5A==
-X-CSE-MsgGUID: Jov9CQ9hSsWstU18f5bgBA==
+ 19 Aug 2024 01:35:12 -0700
+X-CSE-ConnectionGUID: sHOrctzySya/JwyMC/u8yg==
+X-CSE-MsgGUID: tNGzBK44Q2qZ1ZKMIDt6zA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="59962234"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="59962267"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.132])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 01:35:06 -0700
+ 19 Aug 2024 01:35:10 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -49,10 +49,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
  Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
  Paulo Zanoni <paulo.r.zanoni@intel.com>
-Subject: [PATCH v9 1/6] drm/ttm: Add a virtual base class for graphics memory
- backup
-Date: Mon, 19 Aug 2024 10:34:44 +0200
-Message-ID: <20240819083449.56701-2-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v9 3/6] drm/ttm: Use fault-injection to test error paths
+Date: Mon, 19 Aug 2024 10:34:46 +0200
+Message-ID: <20240819083449.56701-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240819083449.56701-1-thomas.hellstrom@linux.intel.com>
 References: <20240819083449.56701-1-thomas.hellstrom@linux.intel.com>
@@ -73,28 +72,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Initially intended for experimenting with different backup
-solutions (shmem vs direct swap cache insertion), abstract
-the backup destination using a virtual base class.
+Use fault-injection to test partial TTM swapout and interrupted swapin.
+Return -EINTR for swapin to test the callers ability to handle and
+restart the swapin, and on swapout perform a partial swapout to test that
+the swapin and release_shrunken functionality.
 
-Also provide a sample implementation for shmem.
-
-While when settling on a preferred backup solution, one could
-perhaps skip the abstraction, this functionality may actually
-come in handy for configurable dedicated graphics memory
-backup to fast nvme files or similar, whithout affecting
-swap-space. Could indeed be useful for VRAM backup on S4 and
-other cases.
-
-v5:
-- Fix a UAF. (kernel test robot, Dan Carptenter)
-v6:
-- Rename ttm_backup_shmem_copy_page() function argument
-  (Matthew Brost)
-- Add some missing documentation
 v8:
-- Use folio_file_page to get to the page we want to writeback
-  instead of using the first page of the folio.
+- Use the core fault-injection system.
+v9:
+- Fix compliation failure for !CONFIG_FAULT_INJECTION
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -103,314 +89,75 @@ Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v7
 ---
- drivers/gpu/drm/ttm/Makefile           |   2 +-
- drivers/gpu/drm/ttm/ttm_backup_shmem.c | 139 +++++++++++++++++++++++++
- include/drm/ttm/ttm_backup.h           | 137 ++++++++++++++++++++++++
- 3 files changed, 277 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
- create mode 100644 include/drm/ttm/ttm_backup.h
+ drivers/gpu/drm/ttm/ttm_pool.c | 27 ++++++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/ttm/Makefile b/drivers/gpu/drm/ttm/Makefile
-index dad298127226..5e980dd90e41 100644
---- a/drivers/gpu/drm/ttm/Makefile
-+++ b/drivers/gpu/drm/ttm/Makefile
-@@ -4,7 +4,7 @@
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index 0d224cd9f8eb..b2718aef2edf 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -48,6 +48,13 @@
  
- ttm-y := ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o ttm_module.o \
- 	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o ttm_pool.o \
--	ttm_device.o ttm_sys_manager.o
-+	ttm_device.o ttm_sys_manager.o ttm_backup_shmem.o
- ttm-$(CONFIG_AGP) += ttm_agp_backend.o
+ #include "ttm_module.h"
  
- obj-$(CONFIG_DRM_TTM) += ttm.o
-diff --git a/drivers/gpu/drm/ttm/ttm_backup_shmem.c b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-new file mode 100644
-index 000000000000..cfe4140cc59d
---- /dev/null
-+++ b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-@@ -0,0 +1,139 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <drm/ttm/ttm_backup.h>
-+#include <linux/page-flags.h>
-+
-+/**
-+ * struct ttm_backup_shmem - A shmem based ttm_backup subclass.
-+ * @backup: The base struct ttm_backup
-+ * @filp: The associated shmem object
-+ */
-+struct ttm_backup_shmem {
-+	struct ttm_backup backup;
-+	struct file *filp;
-+};
-+
-+static struct ttm_backup_shmem *to_backup_shmem(struct ttm_backup *backup)
-+{
-+	return container_of(backup, struct ttm_backup_shmem, backup);
-+}
-+
-+static void ttm_backup_shmem_drop(struct ttm_backup *backup, unsigned long handle)
-+{
-+	handle -= 1;
-+	shmem_truncate_range(file_inode(to_backup_shmem(backup)->filp), handle,
-+			     handle + 1);
-+}
-+
-+static int ttm_backup_shmem_copy_page(struct ttm_backup *backup, struct page *dst,
-+				      unsigned long handle, bool intr)
-+{
-+	struct file *filp = to_backup_shmem(backup)->filp;
-+	struct address_space *mapping = filp->f_mapping;
-+	struct folio *from_folio;
-+
-+	handle -= 1;
-+	from_folio = shmem_read_folio(mapping, handle);
-+	if (IS_ERR(from_folio))
-+		return PTR_ERR(from_folio);
-+
-+	/* Note: Use drm_memcpy_from_wc? */
-+	copy_highpage(dst, folio_file_page(from_folio, handle));
-+	folio_put(from_folio);
-+
-+	return 0;
-+}
-+
-+static unsigned long
-+ttm_backup_shmem_backup_page(struct ttm_backup *backup, struct page *page,
-+			     bool writeback, pgoff_t i, gfp_t page_gfp,
-+			     gfp_t alloc_gfp)
-+{
-+	struct file *filp = to_backup_shmem(backup)->filp;
-+	struct address_space *mapping = filp->f_mapping;
-+	unsigned long handle = 0;
-+	struct folio *to_folio;
-+	int ret;
-+
-+	to_folio = shmem_read_folio_gfp(mapping, i, alloc_gfp);
-+	if (IS_ERR(to_folio))
-+		return handle;
-+
-+	folio_mark_accessed(to_folio);
-+	folio_lock(to_folio);
-+	folio_mark_dirty(to_folio);
-+	copy_highpage(folio_file_page(to_folio, i), page);
-+	handle = i + 1;
-+
-+	if (writeback && !folio_mapped(to_folio) && folio_clear_dirty_for_io(to_folio)) {
-+		struct writeback_control wbc = {
-+			.sync_mode = WB_SYNC_NONE,
-+			.nr_to_write = SWAP_CLUSTER_MAX,
-+			.range_start = 0,
-+			.range_end = LLONG_MAX,
-+			.for_reclaim = 1,
-+		};
-+		folio_set_reclaim(to_folio);
-+		ret = mapping->a_ops->writepage(folio_file_page(to_folio, i), &wbc);
-+		if (!folio_test_writeback(to_folio))
-+			folio_clear_reclaim(to_folio);
-+		/* If writepage succeeds, it unlocks the folio */
-+		if (ret)
-+			folio_unlock(to_folio);
-+	} else {
-+		folio_unlock(to_folio);
-+	}
-+
-+	folio_put(to_folio);
-+
-+	return handle;
-+}
-+
-+static void ttm_backup_shmem_fini(struct ttm_backup *backup)
-+{
-+	struct ttm_backup_shmem *sbackup = to_backup_shmem(backup);
-+
-+	fput(sbackup->filp);
-+	kfree(sbackup);
-+}
-+
-+static const struct ttm_backup_ops ttm_backup_shmem_ops = {
-+	.drop = ttm_backup_shmem_drop,
-+	.copy_backed_up_page = ttm_backup_shmem_copy_page,
-+	.backup_page = ttm_backup_shmem_backup_page,
-+	.fini = ttm_backup_shmem_fini,
-+};
-+
-+/**
-+ * ttm_backup_shmem_create() - Create a shmem-based struct backup.
-+ * @size: The maximum size (in bytes) to back up.
-+ *
-+ * Create a backup utilizing shmem objects.
-+ *
-+ * Return: A pointer to a struct ttm_backup on success,
-+ * an error pointer on error.
-+ */
-+struct ttm_backup *ttm_backup_shmem_create(loff_t size)
-+{
-+	struct ttm_backup_shmem *sbackup =
-+		kzalloc(sizeof(*sbackup), GFP_KERNEL | __GFP_ACCOUNT);
-+	struct file *filp;
-+
-+	if (!sbackup)
-+		return ERR_PTR(-ENOMEM);
-+
-+	filp = shmem_file_setup("ttm shmem backup", size, 0);
-+	if (IS_ERR(filp)) {
-+		kfree(sbackup);
-+		return ERR_CAST(filp);
-+	}
-+
-+	sbackup->filp = filp;
-+	sbackup->backup.ops = &ttm_backup_shmem_ops;
-+
-+	return &sbackup->backup;
-+}
-+EXPORT_SYMBOL_GPL(ttm_backup_shmem_create);
-diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
-new file mode 100644
-index 000000000000..5f8c7d3069ef
---- /dev/null
-+++ b/include/drm/ttm/ttm_backup.h
-@@ -0,0 +1,137 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _TTM_BACKUP_H_
-+#define _TTM_BACKUP_H_
-+
-+#include <linux/mm_types.h>
-+#include <linux/shmem_fs.h>
-+
-+struct ttm_backup;
-+
-+/**
-+ * ttm_backup_handle_to_page_ptr() - Convert handle to struct page pointer
-+ * @handle: The handle to convert.
-+ *
-+ * Converts an opaque handle received from the
-+ * struct ttm_backoup_ops::backup_page() function to an (invalid)
-+ * struct page pointer suitable for a struct page array.
-+ *
-+ * Return: An (invalid) struct page pointer.
-+ */
-+static inline struct page *
-+ttm_backup_handle_to_page_ptr(unsigned long handle)
-+{
-+	return (struct page *)(handle << 1 | 1);
-+}
-+
-+/**
-+ * ttm_backup_page_ptr_is_handle() - Whether a struct page pointer is a handle
-+ * @page: The struct page pointer to check.
-+ *
-+ * Return: true if the struct page pointer is a handld returned from
-+ * ttm_backup_handle_to_page_ptr(). False otherwise.
-+ */
-+static inline bool ttm_backup_page_ptr_is_handle(const struct page *page)
-+{
-+	return (unsigned long)page & 1;
-+}
-+
-+/**
-+ * ttm_backup_page_ptr_to_handle() - Convert a struct page pointer to a handle
-+ * @page: The struct page pointer to convert
-+ *
-+ * Return: The handle that was previously used in
-+ * ttm_backup_handle_to_page_ptr() to obtain a struct page pointer, suitable
-+ * for use as argument in the struct ttm_backup_ops drop() or
-+ * copy_backed_up_page() functions.
-+ */
-+static inline unsigned long
-+ttm_backup_page_ptr_to_handle(const struct page *page)
-+{
-+	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
-+	return (unsigned long)page >> 1;
-+}
-+
-+/** struct ttm_backup_ops - A struct ttm_backup backend operations */
-+struct ttm_backup_ops {
-+	/**
-+	 * drop - release memory associated with a handle
-+	 * @backup: The struct backup pointer used to obtain the handle
-+	 * @handle: The handle obtained from the @backup_page function.
-+	 */
-+	void (*drop)(struct ttm_backup *backup, unsigned long handle);
-+
-+	/**
-+	 * copy_backed_up_page - Copy the contents of a previously backed
-+	 * up page
-+	 * @backup: The struct backup pointer used to back up the page.
-+	 * @dst: The struct page to copy into.
-+	 * @handle: The handle returned when the page was backed up.
-+	 * @intr: Try to perform waits interruptable or at least killable.
-+	 *
-+	 * Return: 0 on success, Negative error code on failure, notably
-+	 * -EINTR if @intr was set to true and a signal is pending.
-+	 */
-+	int (*copy_backed_up_page)(struct ttm_backup *backup, struct page *dst,
-+				   unsigned long handle, bool intr);
-+
-+	/**
-+	 * backup_page - Backup a page
-+	 * @backup: The struct backup pointer to use.
-+	 * @page: The page to back up.
-+	 * @writeback: Whether to perform immediate writeback of the page.
-+	 * This may have performance implications.
-+	 * @i: A unique integer for each page and each struct backup.
-+	 * This is a hint allowing the backup backend to avoid managing
-+	 * its address space separately.
-+	 * @page_gfp: The gfp value used when the page was allocated.
-+	 * This is used for accounting purposes.
-+	 * @alloc_gfp: The gpf to be used when the backend needs to allocaete
-+	 * memory.
-+	 *
-+	 * Return: A handle on success. 0 on failure.
-+	 * (This is following the swp_entry_t convention).
-+	 *
-+	 * Note: This function could be extended to back up a folio and
-+	 * backends would then split the folio internally if needed.
-+	 * Drawback is that the caller would then have to keep track of
-+	 * the folio size- and usage.
-+	 */
-+	unsigned long (*backup_page)(struct ttm_backup *backup, struct page *page,
-+				     bool writeback, pgoff_t i, gfp_t page_gfp,
-+				     gfp_t alloc_gfp);
-+	/**
-+	 * fini - Free the struct backup resources after last use.
-+	 * @backup: Pointer to the struct backup whose resources to free.
-+	 *
-+	 * After a call to @fini, it's illegal to use the @backup pointer.
-+	 */
-+	void (*fini)(struct ttm_backup *backup);
-+};
-+
-+/**
-+ * struct ttm_backup - Abstract a backup backend.
-+ * @ops: The operations as described above.
-+ *
-+ * The struct ttm_backup is intended to be subclassed by the
-+ * backend implementation.
-+ */
-+struct ttm_backup {
-+	const struct ttm_backup_ops *ops;
-+};
-+
-+/**
-+ * ttm_backup_shmem_create() - Create a shmem-based struct backup.
-+ * @size: The maximum size (in bytes) to back up.
-+ *
-+ * Create a backup utilizing shmem objects.
-+ *
-+ * Return: A pointer to a struct ttm_backup on success,
-+ * an error pointer on error.
-+ */
-+struct ttm_backup *ttm_backup_shmem_create(loff_t size);
-+
++#ifdef CONFIG_FAULT_INJECTION
++#include <linux/fault-inject.h>
++static DECLARE_FAULT_ATTR(backup_fault_inject);
++#else
++#define should_fail(...) false
 +#endif
++
+ /**
+  * struct ttm_pool_dma - Helper object for coherent DMA mappings
+  *
+@@ -431,6 +438,7 @@ static int ttm_pool_restore_tt(struct ttm_pool_tt_restore *restore,
+ 			       struct ttm_backup *backup,
+ 			       struct ttm_operation_ctx *ctx)
+ {
++	static unsigned long __maybe_unused swappedin;
+ 	unsigned int i, nr = 1 << restore->order;
+ 	int ret = 0;
+ 
+@@ -446,6 +454,12 @@ static int ttm_pool_restore_tt(struct ttm_pool_tt_restore *restore,
+ 			if (handle == 0)
+ 				continue;
+ 
++			if (IS_ENABLED(CONFIG_FAULT_INJECTION) && ctx->interruptible &&
++			    should_fail(&backup_fault_inject, 1)) {
++				ret = -EINTR;
++				break;
++			}
++
+ 			ret = backup->ops->copy_backed_up_page
+ 				(backup, restore->first_page[i],
+ 				 handle, ctx->interruptible);
+@@ -889,7 +903,14 @@ long ttm_pool_backup_tt(struct ttm_pool *pool, struct ttm_tt *ttm,
+ 
+ 	alloc_gfp = GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN | __GFP_RETRY_MAYFAIL;
+ 
+-	for (i = 0; i < ttm->num_pages; ++i) {
++	num_pages = ttm->num_pages;
++
++	/* Pretend doing fault injection by shrinking only half of the pages. */
++
++	if (IS_ENABLED(CONFIG_FAULT_INJECTION) && should_fail(&backup_fault_inject, 1))
++		num_pages = DIV_ROUND_UP(num_pages, 2);
++
++	for (i = 0; i < num_pages; ++i) {
+ 		page = ttm->pages[i];
+ 		if (unlikely(!page))
+ 			continue;
+@@ -1178,6 +1199,10 @@ int ttm_pool_mgr_init(unsigned long num_pages)
+ 			    &ttm_pool_debugfs_globals_fops);
+ 	debugfs_create_file("page_pool_shrink", 0400, ttm_debugfs_root, NULL,
+ 			    &ttm_pool_debugfs_shrink_fops);
++#ifdef CONFIG_FAULT_INJECTION
++	fault_create_debugfs_attr("backup_fault_inject", ttm_debugfs_root,
++				  &backup_fault_inject);
++#endif
+ #endif
+ 
+ 	mm_shrinker = shrinker_alloc(0, "drm-ttm_pool");
 -- 
 2.44.0
 
