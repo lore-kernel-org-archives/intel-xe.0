@@ -4,46 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E024C5321E
-	for <intel-xe@archiver.kernel.org>; Sun, 18 Aug 2024 20:19:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA8AC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 01:45:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 053C710E185;
-	Sun, 18 Aug 2024 20:19:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83A9B10E18B;
+	Mon, 19 Aug 2024 01:45:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mI5yFZ8n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gg7mJ4wS";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA0D10E177;
- Sun, 18 Aug 2024 20:19:53 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
- [81.175.209.231])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4790C1BA;
- Sun, 18 Aug 2024 22:18:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1724012331;
- bh=XhKYTILEYLK5hnZgppdmA00tGDJpmsrwPWsR1GIB2Eo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=mI5yFZ8nFKdsDUiEJZahI6u8wiKP2UIAgdEmzTJXIciTkRnaNfCUQOrd9UBoEE31i
- 981U6V0Y5Jb4BsZMlfaa3RRaLJPhqBNqAyH6no6rsoy+U4WMqOOTv/uiV4Ewp2rTgg
- br97kp4zVYJdpiPSQKTX+9oLwDH4eyduFcQXSmyM=
-Date: Sun, 18 Aug 2024 23:19:25 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
- javierm@redhat.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Michal Simek <michal.simek@amd.com>
-Subject: Re: [PATCH 48/86] drm/xlnx: Run DRM default client setup
-Message-ID: <20240818201925.GI29465@pendragon.ideasonboard.com>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-49-tzimmermann@suse.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240816125408.310253-49-tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3020A10E18B
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 01:45:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724031919; x=1755567919;
+ h=date:from:to:cc:subject:message-id;
+ bh=/b8TgNp2bJvbgfB8KNpcNFIcmldra8vBdOEWN9CWB9I=;
+ b=gg7mJ4wSdty5knosa+DsN/43/PuNuXkn8NuMK6TfPAIJhufRpPgGHi39
+ g0Qq2AFhesKy5uNFjgUUf4SbrvlPqOFa6GMLYFyJKryV/nzytUooHH8Jr
+ Ph6sDSVmOxlPH5ojeGb7/TA4ucFSANrWpbE8hQSWTAISz8IyX54NfQWy/
+ MEzeK6RQQbOKR7mmVtLIOgX1vMy541wtbLOl0aq7zCpFXBexul2FF19Ll
+ xxahtieZJ0x8TJ7WTW7Z/IXo8YTF/SVyXWlS1leSTdEhlG3EWcYyZI5zN
+ obT1Du1k+z3wjv416BgXuZReHZQk4A28VIx0cZ1SLiW0mXbmGGmjq351c Q==;
+X-CSE-ConnectionGUID: 8o0GxFZ8QxaqrJIUI/dVfA==
+X-CSE-MsgGUID: Jp5jnT6hTgyOlPWi/0E92Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="22427085"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="22427085"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2024 18:45:18 -0700
+X-CSE-ConnectionGUID: tPMJATC5Rnyj5MmwEJpGjA==
+X-CSE-MsgGUID: CwfgIKFnRJC6fTY9Vqf5zw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="60214954"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 18 Aug 2024 18:45:17 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sfrSN-0008Yi-1R;
+ Mon, 19 Aug 2024 01:45:15 +0000
+Date: Mon, 19 Aug 2024 09:44:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 4099cfda9dd856222d7cab6970a65896375616d5
+Message-ID: <202408190931.QhzI6jBZ-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,64 +64,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 4099cfda9dd856222d7cab6970a65896375616d5  drm/xe/device: Remove unused xe_device::usm::num_vm_in_*
 
-Thank you for the patch.
+elapsed time: 1448m
 
-On Fri, Aug 16, 2024 at 02:23:14PM +0200, Thomas Zimmermann wrote:
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Cc: Michal Simek <michal.simek@amd.com>
-> ---
->  drivers/gpu/drm/xlnx/zynqmp_kms.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> index bd1368df7870..f26b119322d5 100644
-> --- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_blend.h>
->  #include <drm/drm_bridge.h>
->  #include <drm/drm_bridge_connector.h>
-> +#include <drm/drm_client_setup.h>
->  #include <drm/drm_connector.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
-> @@ -402,6 +403,7 @@ static const struct drm_driver zynqmp_dpsub_drm_driver = {
->  					  DRIVER_ATOMIC,
->  
->  	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(zynqmp_dpsub_dumb_create),
-> +	DRM_FBDEV_DMA_DRIVER_OPS,
->  
->  	.fops				= &zynqmp_dpsub_drm_fops,
->  
-> @@ -523,7 +525,7 @@ int zynqmp_dpsub_drm_init(struct zynqmp_dpsub *dpsub)
->  		goto err_poll_fini;
->  
->  	/* Initialize fbdev generic emulation. */
-> -	drm_fbdev_dma_setup(drm, 24);
-> +	drm_client_setup(drm, drm_format_info(DRM_FORMAT_RGB888));
+configs tested: 138
+configs skipped: 8
 
-I know this would be a hassle to change, but do the majority of the
-callers of drm_client_setup() have a drm_format_info * already, or do
-they need to call drm_format_info() on a 4CC ? In the latter case, would
-it be better to pass the 4CC to drm_client_setup() ?
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-As far as this patch goes,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
->  
->  	return 0;
->  
+tested configs:
+alpha                             allnoconfig   gcc-13.3.0
+alpha                            allyesconfig   gcc-13.3.0
+alpha                               defconfig   gcc-13.3.0
+arc                              allmodconfig   gcc-13.2.0
+arc                               allnoconfig   gcc-13.2.0
+arc                              allyesconfig   gcc-13.2.0
+arc                                 defconfig   gcc-13.2.0
+arc                     nsimosci_hs_defconfig   gcc-13.2.0
+arc                   randconfig-001-20240818   gcc-13.2.0
+arc                   randconfig-002-20240818   gcc-13.2.0
+arm                              alldefconfig   gcc-14.1.0
+arm                              allmodconfig   gcc-14.1.0
+arm                               allnoconfig   clang-20
+arm                              allyesconfig   gcc-14.1.0
+arm                                 defconfig   clang-14
+arm                      footbridge_defconfig   clang-20
+arm                       omap2plus_defconfig   gcc-14.1.0
+arm                   randconfig-001-20240818   clang-15
+arm                   randconfig-002-20240818   gcc-14.1.0
+arm                   randconfig-003-20240818   clang-20
+arm                   randconfig-004-20240818   clang-20
+arm                        spear3xx_defconfig   clang-16
+arm                        spear6xx_defconfig   clang-20
+arm64                            allmodconfig   clang-20
+arm64                             allnoconfig   gcc-14.1.0
+arm64                               defconfig   gcc-14.1.0
+arm64                 randconfig-001-20240818   gcc-14.1.0
+arm64                 randconfig-002-20240818   gcc-14.1.0
+arm64                 randconfig-003-20240818   gcc-14.1.0
+arm64                 randconfig-004-20240818   gcc-14.1.0
+csky                              allnoconfig   gcc-14.1.0
+csky                                defconfig   gcc-14.1.0
+csky                  randconfig-001-20240818   gcc-14.1.0
+csky                  randconfig-002-20240818   gcc-14.1.0
+hexagon                          allmodconfig   clang-20
+hexagon                           allnoconfig   clang-20
+hexagon                          allyesconfig   clang-20
+hexagon                             defconfig   clang-20
+hexagon               randconfig-001-20240818   clang-20
+hexagon               randconfig-002-20240818   clang-20
+i386                             allmodconfig   gcc-12
+i386                              allnoconfig   gcc-12
+i386                             allyesconfig   gcc-12
+i386         buildonly-randconfig-001-20240818   gcc-12
+i386         buildonly-randconfig-002-20240818   clang-18
+i386         buildonly-randconfig-003-20240818   clang-18
+i386         buildonly-randconfig-004-20240818   clang-18
+i386         buildonly-randconfig-005-20240818   gcc-12
+i386         buildonly-randconfig-006-20240818   clang-18
+i386                                defconfig   clang-18
+i386                  randconfig-001-20240818   clang-18
+i386                  randconfig-002-20240818   gcc-12
+i386                  randconfig-003-20240818   clang-18
+i386                  randconfig-004-20240818   clang-18
+i386                  randconfig-005-20240818   clang-18
+i386                  randconfig-006-20240818   gcc-12
+i386                  randconfig-011-20240818   gcc-12
+i386                  randconfig-012-20240818   gcc-12
+i386                  randconfig-013-20240818   gcc-12
+i386                  randconfig-014-20240818   clang-18
+i386                  randconfig-015-20240818   clang-18
+i386                  randconfig-016-20240818   gcc-11
+loongarch                        allmodconfig   gcc-14.1.0
+loongarch                         allnoconfig   gcc-14.1.0
+loongarch                           defconfig   gcc-14.1.0
+loongarch             randconfig-001-20240818   gcc-14.1.0
+loongarch             randconfig-002-20240818   gcc-14.1.0
+m68k                             allmodconfig   gcc-14.1.0
+m68k                              allnoconfig   gcc-14.1.0
+m68k                             allyesconfig   gcc-14.1.0
+m68k                                defconfig   gcc-14.1.0
+microblaze                       allmodconfig   gcc-14.1.0
+microblaze                        allnoconfig   gcc-14.1.0
+microblaze                       allyesconfig   gcc-14.1.0
+microblaze                          defconfig   gcc-14.1.0
+microblaze                      mmu_defconfig   gcc-14.1.0
+mips                              allnoconfig   gcc-14.1.0
+mips                        bcm63xx_defconfig   clang-17
+mips                           ip28_defconfig   gcc-14.1.0
+nios2                             allnoconfig   gcc-14.1.0
+nios2                               defconfig   gcc-14.1.0
+nios2                 randconfig-001-20240818   gcc-14.1.0
+nios2                 randconfig-002-20240818   gcc-14.1.0
+openrisc                          allnoconfig   gcc-14.1.0
+openrisc                            defconfig   gcc-14.1.0
+parisc                            allnoconfig   gcc-14.1.0
+parisc                              defconfig   gcc-14.1.0
+parisc                generic-32bit_defconfig   gcc-14.1.0
+parisc                randconfig-001-20240818   gcc-14.1.0
+parisc                randconfig-002-20240818   gcc-14.1.0
+parisc64                            defconfig   gcc-14.1.0
+powerpc                           allnoconfig   gcc-14.1.0
+powerpc                      ep88xc_defconfig   gcc-14.1.0
+powerpc                  iss476-smp_defconfig   gcc-14.1.0
+powerpc               randconfig-001-20240818   clang-20
+powerpc               randconfig-002-20240818   clang-20
+powerpc64             randconfig-001-20240818   gcc-14.1.0
+powerpc64             randconfig-002-20240818   gcc-14.1.0
+powerpc64             randconfig-003-20240818   gcc-14.1.0
+riscv                             allnoconfig   gcc-14.1.0
+riscv                               defconfig   clang-20
+riscv                 randconfig-001-20240818   clang-15
+riscv                 randconfig-002-20240818   clang-20
+s390                             allmodconfig   clang-20
+s390                              allnoconfig   clang-20
+s390                             allyesconfig   gcc-14.1.0
+s390                                defconfig   clang-20
+s390                  randconfig-001-20240818   gcc-14.1.0
+s390                  randconfig-002-20240818   clang-20
+sh                               allmodconfig   gcc-14.1.0
+sh                                allnoconfig   gcc-14.1.0
+sh                               allyesconfig   gcc-14.1.0
+sh                                  defconfig   gcc-14.1.0
+sh                    randconfig-001-20240818   gcc-14.1.0
+sh                    randconfig-002-20240818   gcc-14.1.0
+sh                          rsk7269_defconfig   gcc-14.1.0
+sh                  sh7785lcr_32bit_defconfig   gcc-14.1.0
+sparc                            allmodconfig   gcc-14.1.0
+sparc64                             defconfig   gcc-14.1.0
+sparc64               randconfig-001-20240818   gcc-14.1.0
+sparc64               randconfig-002-20240818   gcc-14.1.0
+um                               allmodconfig   clang-20
+um                                allnoconfig   clang-17
+um                               allyesconfig   gcc-12
+um                                  defconfig   clang-20
+um                             i386_defconfig   gcc-12
+um                    randconfig-001-20240818   clang-20
+um                    randconfig-002-20240818   gcc-12
+um                           x86_64_defconfig   clang-15
+x86_64                            allnoconfig   clang-18
+x86_64                           allyesconfig   clang-18
+x86_64                              defconfig   gcc-11
+x86_64                          rhel-8.3-rust   clang-18
+xtensa                            allnoconfig   gcc-14.1.0
+xtensa                  cadence_csp_defconfig   gcc-14.1.0
+xtensa                          iss_defconfig   gcc-14.1.0
+xtensa                randconfig-001-20240818   gcc-14.1.0
+xtensa                randconfig-002-20240818   gcc-14.1.0
 
 -- 
-Regards,
-
-Laurent Pinchart
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
