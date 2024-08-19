@@ -4,21 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0665C5320E
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:31:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53817C3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:31:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BA8210E26B;
-	Mon, 19 Aug 2024 13:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21C8D10E270;
+	Mon, 19 Aug 2024 13:31:43 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C14C010E26B
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 13:31:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BDD210E26B
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 13:31:40 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 0/3] drm/xe/display: Fixes to make kexec work.
-Date: Mon, 19 Aug 2024 15:31:34 +0200
-Message-ID: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ stable@vger.kernel.org
+Subject: [PATCH v2 1/3] drm/xe: Read out rawclk_freq for display
+Date: Mon, 19 Aug 2024 15:31:35 +0200
+Message-ID: <20240819133138.147511-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
+References: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -35,36 +38,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lets see if we can get away with performing a FLR as shutdown handler. It should work.
-These are all the patches I have used when testing if I could kexec from Xe with a game
-running  to a new kernel.
+Failing to read out rawclk makes it impossible to read out backlight,
+which results in backlight not working when the backlight is off during
+boot, or when reloading the module.
 
-Tested with:
-kexec --reuse-cmdline --initrd=initrd.img -f vmlinuz
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+Cc: <stable@vger.kernel.org> # v6.8+
+---
+ drivers/gpu/drm/xe/display/xe_display.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I have tested about 4-5 times successive kexecs on my ADL-P,
-while having a game actively running to keep the GPU loaded.
-
-With this series xe kept running succesfully. After that
-I accidentally rebooted, but I see no reason this wouldn't work
-even more times.
-
-Changes since previous version:
-- s/r patches have been merged.
-
-Maarten Lankhorst (3):
-  drm/xe: Read out rawclk_freq for display
-  drm/xe: Wire up device shutdown handler
-  CI-only: Test if FLR is disabled?
-
- drivers/gpu/drm/xe/display/xe_display.c | 22 +++++++++++--
- drivers/gpu/drm/xe/display/xe_display.h |  3 +-
- drivers/gpu/drm/xe/xe_device.c          | 43 +++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_gt.c              |  7 ++++
- drivers/gpu/drm/xe/xe_gt.h              |  1 +
- drivers/gpu/drm/xe/xe_pm.c              |  4 +--
- 6 files changed, 69 insertions(+), 11 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 30dfdac9f6fa9..79add15c6c4c7 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -159,6 +159,9 @@ int xe_display_init_noirq(struct xe_device *xe)
+ 
+ 	intel_display_device_info_runtime_init(xe);
+ 
++	RUNTIME_INFO(xe)->rawclk_freq = intel_read_rawclk(xe);
++	drm_dbg(&xe->drm, "rawclk rate: %d kHz\n", RUNTIME_INFO(xe)->rawclk_freq);
++
+ 	err = intel_display_driver_probe_noirq(xe);
+ 	if (err) {
+ 		intel_opregion_cleanup(display);
 -- 
 2.45.2
 
