@@ -4,166 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DF2FC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 21:39:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A4E8C3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 21:52:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D07810E00F;
-	Mon, 19 Aug 2024 21:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69AAD10E3AE;
+	Mon, 19 Aug 2024 21:52:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HmhnzF2N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I40c5kvk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0E5D10E00F
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 21:39:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F226210E3AE
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 21:52:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724103541; x=1755639541;
+ t=1724104330; x=1755640330;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=rszVQxa2kqADHW9gRFc8W5grU5HRGwbjh7QR8LNkyRA=;
- b=HmhnzF2N79FoItGceZJHzJXtWf2iRaDIbGdHOPcq8q2vWlmdoQXxBku6
- Hz/r+BH+JbDQEws9KftZ30pCnWxixLC4C82xXgEoZpDp8slP7+d+yamqK
- airMRzv3JViqGxZNcP9KorG1XSCxtxFolo2axnAvwatOfW1BJFWulEvuo
- E9TAq8rwaISSQYhY1715QxtWJKnkRD5WqBgu2aeFNTmnDdPg4P+3RLhzL
- 2etebT4PBRo8HGhIG9dKx9Z+x9MOAwP7diGRZAMHSFBYN+vQHUXkEg1Pf
- Jd8B2d+kunEwTNAoveYMcygAPJ1OwVjLLAWl+01U4GzkUKlrtx8x33SO9 g==;
-X-CSE-ConnectionGUID: 929XGC48TuGPjW9A4J7UGQ==
-X-CSE-MsgGUID: zaZMGgRqQmuXMg5WnZSSDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="26238280"
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="26238280"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ bh=Lmx9GE3Q7U2/FWfTxy2qUPngzpFRjc0lyxTKBY918OU=;
+ b=I40c5kvk9oLVwPNy0WzzB8EGhZUKKyjuv5Gd3C58XeHx8IT9BiFtnkSy
+ EDZ443Sfj/ikq3YO1KuNJPTnSw204yJ9f/g2efLILGWHQcWs29cC3Be2W
+ ODLetSGLXSSWJ5t6xQhyh9/iLs9Z1mjfHNCoG2QSASqIf2n04flG6Chjo
+ WCkM8ONkcpLivCEb2kgPCFL34BE0BU2txt2wK2heeLP+M2dgjyh88GAko
+ 2UaSkJGDG8vwRF10bUgqEQ5ylsMNgPJcU4x6tJbYmMDj+iznvpB5A/O03
+ XtlSqHH73aj5KhBFf1sY8nIY/cfVrDXrBayX7yqtrJRwODi78CyPfoOIS Q==;
+X-CSE-ConnectionGUID: CbbzRL4+QjaHxnRtoyNjbA==
+X-CSE-MsgGUID: tzlqTaHJQjyJ/z3jxSoEmQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="26240126"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="26240126"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 14:39:00 -0700
-X-CSE-ConnectionGUID: 6+R4uId5TC6bITthepd0Hg==
-X-CSE-MsgGUID: KC7fQhVlTK2MV3D/CmlytA==
+ 19 Aug 2024 14:52:08 -0700
+X-CSE-ConnectionGUID: M90V00krQPmyx67EEsOCEw==
+X-CSE-MsgGUID: Lw23Y3hASe+/OWh9tonDUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="61276069"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Aug 2024 14:39:00 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="91243324"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Aug 2024 14:52:09 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 19 Aug 2024 14:38:59 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.39; Mon, 19 Aug 2024 14:52:08 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 19 Aug 2024 14:38:59 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 19 Aug 2024 14:38:59 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.170)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 19 Aug 2024 14:52:08 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 19 Aug 2024 14:38:59 -0700
+ 15.1.2507.39; Mon, 19 Aug 2024 14:52:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z+QrvQuUE9fOzErqe1vpdaYGcddOa6VqU4SQUCY15tmg3S6K+m6bHJMrsJNZr4hBssIuFDwixz0si0bGEFiVpOigAbSh+0vxkUnYlvzNl0hmo4yu5IAKxO3TK/Dk76Yv2ymgkqgToEEMa48jzjFtDAQ6doa1s0iW2xKx3Sa1dwDMEvG6jMWfcFL2tS+WVYZu7G0LzjGrACtDoeutiE3nctfmYtzLbQIRN0MmlaL1czxqrO4ZyO2FB6xfXV0l7YZS9TMT+TzZbJxKX7jAgDY0BJcwq+bkqRQyzttEj5S2oj75U8RAQWdNC8083l47VzhuuM8pTQvxVHQrDIHy86tTRw==
+ b=ZQ2xlp6luh24TCOJEL7KMA+OzAcJdYIcnZZ63YxsbgnaStZ+hFb6qgaRs8A3szXl2uTnz4MOphrKZIin5YHfuxJedGIxwij//fIC8gQMGlNTvdOx4YvuBCP1bN+tPam8QJEceV9puam42FHhQDmnYJ918eYoy8VD5BxebvbTab3t8tce4hEJcHg9t7T+ZZfBlozlHRlLAKYbUhwEuI3pJJAzPTgJ8a90fkrufVBrW2DvkOlT7STzFR/GPsuFcd4n8tRHv+O/4yBvaMOB0c0TlwZjSGjUabIgWlvEwZYbVPSLw/GusEn+vZgh+zeEdfwed4IRNzhygnxnTaekbL04iw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tw8pWFQGM4zDOWyg12I5GbbaoqoiclKkMY7AKiZGTnw=;
- b=gaClu+JaARMLbDDG/bH0buGQgpl4+h5JRFzgNgFmUCxHbFxMFJJ7v42WA5jFFwFS8OR2h2bXsLGpw/Ee2GLgMyc2rrSwlQSEB7YjR3kgBek7jX5Nc4Mbp60VBHE6/UxoqOIyFYKdxFfSJQtuOTGinG5cqwpSG6zv8R/KaJontBUT4fQAkdPFuOUCsHYdu2CynJ4mvo6eTZNI/pP0jntO+QK3cj0oTV6lnKVePugJoXpY5zh8cwTShaGb9Zomb6U31GBFTuGhZQ8Iu2WZhKHFxlS2S3v62Duvv/iFa8yUrH9FraZzzWL5k7a37R8yNYEijaIKjGBgFNdAeZvmQn/yHA==
+ bh=0JhkyEeZa6v9sNkHByz2MNShb03NEzchbzMRHGD3T/A=;
+ b=wDVrxQ9zqBGsuBHYudWi+JuT/owolLLwONXkzAKAUdrupNi1S+M/HheDO3/G3E19KW2tvfJSAKEZKOKHQ7UfzvA4cpZ6MYf+vbkRxLrfeVWxw3dWSw39P5HIiJ8dPINSNLLoa4DHc15imuDVb0ChU/mil2bSazmT5eDZ2HaFaoAiaMzWhXnwd50e3/pCVNHPFNtsuZQ7miDru33e3xOWuBbLSuKDx32et77KlP/1dY2MgNvVvjOBnqbRgRb5vS/zdrbw4HGKuakyjcn8tfGLS6kdmBbXpsJF2Bs7vdS/GBq+8nV/GmjCKac3zFp1zGLWOciWNubBWPTfRo1aQgRMUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB6423.namprd11.prod.outlook.com (2603:10b6:8:c5::14) with
- Microsoft SMTP Server (version=TLS1_2,
+ by SA1PR11MB5826.namprd11.prod.outlook.com (2603:10b6:806:235::18)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Mon, 19 Aug
- 2024 21:38:56 +0000
+ 2024 21:52:06 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7875.019; Mon, 19 Aug 2024
- 21:38:56 +0000
-Date: Mon, 19 Aug 2024 16:38:54 -0500
+ 21:52:06 +0000
+Date: Mon, 19 Aug 2024 16:52:03 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 05/12] drm/xe/tests: Allow deferred function call during
- KUnit test
-Message-ID: <7x7kzxucmjabvmoxb2x33qcp7gzrvn7ga2gg5vtlrpipntq5rr@pdahgmswbk3w>
+Subject: Re: [PATCH 07/12] drm/xe/tests: Add helpers to call stubs out of
+ KUnit context
+Message-ID: <ejgtxc727guqh6dl4tfjdqsjlhlbs5nfzvkmsxbtnpaxnu2uvx@rroc2e4sjm7r>
 References: <20240809165159.662-1-michal.wajdeczko@intel.com>
- <20240809165159.662-6-michal.wajdeczko@intel.com>
+ <20240809165159.662-8-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20240809165159.662-6-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: MW4PR02CA0010.namprd02.prod.outlook.com
- (2603:10b6:303:16d::8) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20240809165159.662-8-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: MW4PR03CA0314.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::19) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB6423:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d9a39e6-d0f0-46c6-85b8-08dcc0975449
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB5826:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1210ccdd-112d-44d0-e57b-08dcc0992ac2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Eb3rdCXHyo/VqIkEPax/fQpB+fzNW7ebVXO7CCEl3pDZEYYdDz7GrclYlNL2?=
- =?us-ascii?Q?Y93aZ0x0EWk5uXzeH+lNyTxle2XVo9ubUsbHC/KFUVblAZqHQuOLxTR5Wdeg?=
- =?us-ascii?Q?Efb/ZNaxwhiJXAASdBrnssDSaJvshgA3NusGWgzcUTXO5pGH3MwCs+EAyU7E?=
- =?us-ascii?Q?FXDoYD8+SOzschk4B90EFhXgh6JhtG/aEK+AVV08wqFByYJbBTA1LUZhHxqm?=
- =?us-ascii?Q?oAm96CZkGHGVufHRHaMnkNzBDDRBFUMCzwFGOumHmyPuLaUKBY5PI9Lu9wHV?=
- =?us-ascii?Q?oiUwctejAPevXnmZO7IgkcQ/4qrgdPseFBTMww7SXAXYJLOb0IjFeuyCm5sR?=
- =?us-ascii?Q?eoqsDGfCymo8TRp8rR5i1Q/J6MznfpKionmlkcPfPE/SbyokTmDZuS9H2Odz?=
- =?us-ascii?Q?k+MTKeGCJ9Uy0XUSpEprWPiNj3vnh9giluzMaONgv8XQNkzpEPq1gMAnCdbl?=
- =?us-ascii?Q?3GaGXhXnDWjdwGXpWZ0vKIOEOhOTYw9bL2PzVuphWg7nDcGLaCwWz/WGkKAd?=
- =?us-ascii?Q?smwasJIfaDQbv8XTduuS38OrHcc1MKODaAXxUywQs+qmIPGxacu7yFJfcQeJ?=
- =?us-ascii?Q?pbDLXBYZddiPOmgdS466V7Qw3VV0gfS65lR0u1DAXfuprOPECtD5d4/aOC76?=
- =?us-ascii?Q?7mfkGrLBIkjD26YKDEIiYuXLx0WTT55i/UEAtLWOEZdP+wFFLboEJ3FoRmNh?=
- =?us-ascii?Q?xYegrj3eEUwldC402dKYU0Vk8XxoT7xMg7UMNls5YGmWDtMeSlPQCljoEde8?=
- =?us-ascii?Q?QUh0sRkzOEAQzTHToyd+d0x4Jz6ceNs2WlEgn7Z9t2VHQ9FX4Sr3H4EPZ9On?=
- =?us-ascii?Q?ZcUqwckzyQCkhCG8T4ZN9pDwvQ18jJ+4UAuLD6wvc2xyvz6IWQ6d5iOrCfeZ?=
- =?us-ascii?Q?rdCJ0+XJ/GSTI9IqGgIKRyYSIgAk/mqWI/6DQ2wjbgrPjgRGrVzxp62FaAJ9?=
- =?us-ascii?Q?6iUMOPGL4L6eNdGPFy9iNg3W8YSa9ZBOEIMD+G5m5e0MDTWmwxJK8/+oM/M4?=
- =?us-ascii?Q?8+hfrG7+jSriD0zRpFBRngrLHxsXFL7bhGuPAGGmSANMlqJp9n6uPC8occSh?=
- =?us-ascii?Q?1lIVUPcBp8C8/VPf8BG4tIAgcJUlb3rmRj3fPKneXi/pjBgeYyuSZYxrHmED?=
- =?us-ascii?Q?HkZ4ASxIl1H/WZ9tlGlf3fxWZQZ2PWVlugKCOabUhfy6xAZx7VqoCnW6Aluh?=
- =?us-ascii?Q?QHu6n6qMNs+uvIguZjKjsi2Laj9rPh3I9yGgKyGgMUiL0DuRybFl+J4DbaKa?=
- =?us-ascii?Q?5TULxZvNbWHLki9HYZt4DLw1VnIIhHbjtpyu6NuKfYhaYE/AVhgrwz6fZpQk?=
- =?us-ascii?Q?bsVvCOjw/Td+MEW76YfUGEQfE3pOKcW23Q0BYhJ7pJzmtA=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fOXicAm9iFRKZrcolulZ3GJKbRHeAoAFGyom7ij1UJtdP/PV3fa0QeD/IE70?=
+ =?us-ascii?Q?cNRTygBWTSIT0zL3ko7i3tuzfP5t9PUUM1AhUKkYqVAIHnR/nzXAoCZR55Zr?=
+ =?us-ascii?Q?9U/Et3JsA3NUczFIf349L3VzXcfm3+Zetq+XjDvb57l7wx7Va3Az8MgpJrgI?=
+ =?us-ascii?Q?Uwd8zLaSaWHM9/CRlkISti1bh5Yd0QdedsBaPfjzvVKHvVXit2mzmn3eHkhL?=
+ =?us-ascii?Q?dYt6YFLHc/1Tghr7oIYw1fXh9aLJM144u1sJvss1pt4Uy011vKDaF4+dvSOO?=
+ =?us-ascii?Q?Lom7Zh3aRqhZbNBjYtIWMHgJI8nXtvg1mgJOfrHmxg2hV0hQQ09vZc5RPXzp?=
+ =?us-ascii?Q?YMKEWrL3s2KX0uWevTAXpJPca8FmiII5ILoZO0eMtdmYQWDZtYqettly8+R4?=
+ =?us-ascii?Q?Zza3YhYAhXpt4NrLXFBoHu+FUrH6qqDgXc3NCKtCXLIloaGeisXvz9fTlyX3?=
+ =?us-ascii?Q?wVo1Tg0QJFshgZz41T6enqhFtzf+9ULbN6Hx3Abi1JG20Jt1kF0TeDyT58fx?=
+ =?us-ascii?Q?OkF3sCThucP/pSmODq0tBNQtqUVdA64ShJ/4fUdQZenjrmdYauQI8e+Fy1ii?=
+ =?us-ascii?Q?PSaA/fMZoD+6ngbXijFi7pr51AuQZ09IPwQmTuKMGdaSkJS+EMKFDGaxfAsA?=
+ =?us-ascii?Q?D76eeHN/olr6Xr0SJom1WTzfbgOrE6kZcoMctHAMXA4lN46U91xgRH9hIzQA?=
+ =?us-ascii?Q?TXBW/xOyd9WoVqODqSbjIIXWPZvSYB0lk3I6Q2uALgm/uT8JozOQ7/j2fTGM?=
+ =?us-ascii?Q?JJMX3XLk+k+paFd64wm0T0i68pGZOOs8IKXX5btps1lRzO+euUL0TgrhVBon?=
+ =?us-ascii?Q?EeSNXitfnAvIostDP93ycljInlpBG/rffCHrbi8UiNYx90lnfVVY/mlBiTPM?=
+ =?us-ascii?Q?xJzA+jrTm/2HZaO7qwOth9WbK86McMhrkvKb6q/UskfwKIONqwbDVGISNeno?=
+ =?us-ascii?Q?VVpW1UpkLqf5wabso7eBNXTnu4qWf5PyIQzqoVCGMqHjNQwQNIZ7KFQ9XmY8?=
+ =?us-ascii?Q?nUG9w5R31axSYuI+pVY8HKAHcNZaFS8NYhJSnsJkZUG+BAdiBNQT7Yxa5UaV?=
+ =?us-ascii?Q?UfUXAPO/DsNNZ1/CBqAbQdMZbhTn2x9bq+quUNathkSchYMJxAKZ4qZUK8BA?=
+ =?us-ascii?Q?YSR5TY1zNw28nrmVaeJ8HW75kzn1z5mpjshPHvBGi+GxfOgWWearE2/T2cbz?=
+ =?us-ascii?Q?FD5xxhZazyMHNus9DYr3ua7XtF4gW10vPAAzi5iOUEDuuGmkF+yQwMXzqN03?=
+ =?us-ascii?Q?muRF9UenjumYbr1PFYWenFXb3jlGquCuPY+x8mXF7nzFS+GuK7ghr4ZqyWUR?=
+ =?us-ascii?Q?tAS2C1nFRXTrzLSTQoDwNuO5j4WH14SQrXONwpqjdG/OCg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vApgnrxODJu834KCvmxSTYvVhlUJfMX3Ci2/690qczwMIYyWv9QYVf9dBNE4?=
- =?us-ascii?Q?5pZW+uz9uoHpVuM9F4jvnUYNtHtUXc4tqNujvi66n227bX4UnKF6TSdXX2ta?=
- =?us-ascii?Q?dvhL3K6uRk62eN7ppCCTwh7VwSqP4wgqT2sOoNAlxSi8R6RlHxmFBO/gNpmp?=
- =?us-ascii?Q?YI1PMeXMc0f9yA47hR7oshrpeFKv/Vh7f/2I6Jw4IeWDSidxZK5Wai0HhNBy?=
- =?us-ascii?Q?Fs2IOhAy1UC7GoxcwDQU4cuiDP6iKHl9H2Q2kFM/PfhLrbCAo5o8NdNr1fdX?=
- =?us-ascii?Q?x4s0Nr0dudvtdC3lA9q4DFUw7MDlQKNTsmwzZK6PEpHaWyQ3zZlMBfuOcvHO?=
- =?us-ascii?Q?0FfktUG7KEwiwe1VePO1SB+6IJrviiNHxtKrkcNbL5PcckOneK6Ki2SyprHE?=
- =?us-ascii?Q?dw7E47DrXVWReFZcypA8j1uHqZZ+M53mlaqCowjH7aIom72SSvag7TV+w/Al?=
- =?us-ascii?Q?13ZFIXt2FnVQRTxsaOa+IBcicpqcPr+2D7uZd/XTwO10x+zH3337lKrAqETi?=
- =?us-ascii?Q?41Jigq79w2+LkLYcd+dL0XccjW5QXtKW5I6kBF130QFkHJQX0FxpZhVpLpT+?=
- =?us-ascii?Q?MLm89uw2ZHJe9H5++SrIJZErCvvp4GHKnFG+QoKv9VhVJr2hE7RJnFYR6d/5?=
- =?us-ascii?Q?sKSettQ+u7c9lRSoav8tfIBlPQypNfetug8tnwZS6bisnmFHUYGgXmah/Jb0?=
- =?us-ascii?Q?1aJARYjvsuh8+7SKKaZknvYPver3Sif6aidfOrol+DbZVidpWVWuchjIAHy3?=
- =?us-ascii?Q?wNwkx0cz3PB6tHIi6RN5ceLfrjZVaoXAeKbP+qXGsFdUtHSgRS81XbZZMSjT?=
- =?us-ascii?Q?wxAXwz8sIaVX6SN1zlqFG3hJ/znaleU+p7L0tITcLlKLezfamvRYZJlXNxsZ?=
- =?us-ascii?Q?yc92DnFvv9T2Fxuy3pgxog5CE5UNQzQ8J/2w/129NCA/IzaGR1evyR6TeHf+?=
- =?us-ascii?Q?vaub5UZOXfmzv5pAGFYCkaI/Nxzjj0ss553O81xu1TK8Ewl7z30yG3KLKiFM?=
- =?us-ascii?Q?MtKrEFN4ysQVhANU2y4MEP3/UHaw605ihep2shjiAG2sCd9i33MEZn55FXde?=
- =?us-ascii?Q?IhIp/q+/JM0Y+epIEEaB0eFl64S4JkAw1UZGFxdU1fgBXM5URgA3UKtxyN5y?=
- =?us-ascii?Q?eymy5+54w3bwhOtQW+m0dEfIkn1m+fg/q30Td35f7sJbxJuePDCEtIKbVEfQ?=
- =?us-ascii?Q?3DXwA1NoH2ybPr8uqxyYCPXe2/GdFKXeQwrktnRbg6kJPALGxRKbsnnJfjqJ?=
- =?us-ascii?Q?B5Cyi+WsmzkOXTrBuriPqPnbHYz4JR1CXWleHI4U6kRpG77UnCMRvDUxwvgt?=
- =?us-ascii?Q?8C2kaPXT2IIWKoXfo8fq1r7gRekZfeXpR7UOhJlr16kytl70KvGAEdp62Mgi?=
- =?us-ascii?Q?Nf39Q+gzLRFARjYwRepw71vFrxTsrGJ0+B9SFMAc5h1NgRI/FO70MMhzuW0G?=
- =?us-ascii?Q?uQ5m/4uqsd3HYet957Sme8oyE8UmDi9/0mh9hcXBKxqNCotLDe1OH50kJji9?=
- =?us-ascii?Q?zeg40Vxrm29oXOnecXuhuYup1CdSUm9/4LFOF4vPN/hhCpUneoi4+D1vwYRD?=
- =?us-ascii?Q?fd+KUXte5S2nHQR+ejRTTk2k/SeinGnJDkRM8d/rgg0I0+B5uh6pb9zrYt+0?=
- =?us-ascii?Q?hA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d9a39e6-d0f0-46c6-85b8-08dcc0975449
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9s6+vmyQKGdVqiCKlHGBogHiuftlfuN/T4OX3p9Ut2oyl+1+GJGHIkuZU7pT?=
+ =?us-ascii?Q?ilz+iRKkwCo50XXC261IYhm6vuDLWIfrveHaBXvjpVM+dImmOAZ2vVCo5eb9?=
+ =?us-ascii?Q?jYklmPMfk+c69KuJL/HvoF9Xm5qdz1rUBzuPqWZLHH5bNap2bSPQ997+oJoB?=
+ =?us-ascii?Q?V5vKbCtHWR7m6rxVFeADiqh7fya1aLTrb/tMIYRbhCrWYJmoqTkHplizjmCZ?=
+ =?us-ascii?Q?T8L7Lh4gekUAEGBzgXSzgoFzgV0/IHmc3+41i747O0vgX2ElZx4tNFbjGSOa?=
+ =?us-ascii?Q?hMNleeCYP357P9u/nI/+MzV01k8cdI6e2P0DAOfuPTEUc5NcDD4E/Vh7QI9y?=
+ =?us-ascii?Q?aH/xDdDmgDd6AsnkqPZefWjXFz44wGkZPYGt82TzUaPpAbjRcWLLyaiBPews?=
+ =?us-ascii?Q?Ee88em64FrsCvzI/96U6UC8Baaeio6bab97qCfuBf5cG9PjTo3Olu1lVSBo+?=
+ =?us-ascii?Q?1Ks4rNGU1jLz2RMlwVqqNuaZKJ14LusEx7s1ZsW8KVaQUW8fvSK1RXrgpFpH?=
+ =?us-ascii?Q?W8c7hOMkIKN7nlrpZDTVRXYJan3X1J6GNsTBmRaszutZkKUBg3JRNIfNe0GR?=
+ =?us-ascii?Q?4319Y+zpT6nJHztl7wGSaF/JGP4yI87hPKMHkmGEJDBr0wNCNxkINwSE2PbB?=
+ =?us-ascii?Q?QPjjvwzQn7gXsBM0KDbHun33ZQTfyfaRoBnq56LhgofC/gSdKxYfAJZMe3im?=
+ =?us-ascii?Q?1pB84LzKtvpxb/fJiKPA2zGmxcZHRgHfOAWOplD3W9TjHEJXraipqWtXUNDC?=
+ =?us-ascii?Q?ClVQdqiLowiu9WPFuOBvfBwK5bwHDUOCIjbjGgEbjCQECrVWAKzAKFNANgTa?=
+ =?us-ascii?Q?3pAa39LRDLp6LnT1aMH6CIjCAz70LgGU3cH5MHCSkeCSTFREWtuncO9AwnJ9?=
+ =?us-ascii?Q?rXIu5dbvuItLOK3SJ5FvSv0YbfairXY2+fWAVefOyFVFViMzIwwkJwM40/hh?=
+ =?us-ascii?Q?Yykp7BTuR3OnH0RIBFeeFEGcxXAK7jxSmMm26t0KDVc9iTx0bRwdBdFVRUKu?=
+ =?us-ascii?Q?SOjMGFvsMtLSiPBNm23hfVELxRQ8T+ncjELj/tnq3RLqMmFTOftSeuLiST1b?=
+ =?us-ascii?Q?AJag6p1gab1E+yeHONg5VqfhwNB9RcKYK69UDW1QmXhgNDeENv3migahRWYk?=
+ =?us-ascii?Q?Vub0Zx3N4uW727nbLPkz+GEINmS2QX9a8oe+hrCI+giNH7izyWIZ0Pb9pKLB?=
+ =?us-ascii?Q?a0CXM8fpL9YABoiiao3M6UnA1KqmAe6oZpxYay7gWsa3bE8T4ybC7Y76db1F?=
+ =?us-ascii?Q?6NFmd1/LWWCAc8AEzy7X/71IyfwCUtXO9BPG64eWHbDT6hqdvUq2qI/CVmT6?=
+ =?us-ascii?Q?Zh1Z0iypk+VEJyAMN6dCZ65IdImZYtg9M91f97DjNUDnQaBJazRy7SrBsBP5?=
+ =?us-ascii?Q?4bbRkT0VSqZL7XNeA5NaLZfdzTOi2K4/oAnmG5a093j6xpxOhbsPgxS1M02g?=
+ =?us-ascii?Q?SBrkdU1PsNCKX25yFK05xHbOOYLKAJvd0zKgjZ1yWVKoHGx+rdTPR+nR/3pU?=
+ =?us-ascii?Q?8FR7jiE+J9HjaQydP91ZtaXcqa1v+TfFWOa5uVrw3nC+mTmsOD2807//8gl+?=
+ =?us-ascii?Q?3jGdFXnn5PeNXGYEC8VRS+tl3CsE8v5UteBTZKCYuelRdUEN1edx3689g/MG?=
+ =?us-ascii?Q?Kw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1210ccdd-112d-44d0-e57b-08dcc0992ac2
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2024 21:38:56.7913 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2024 21:52:06.1767 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /NR+YnDXg2QxHAxkCggF/O6iDPvHMyZirzZJbtmh3NGHDuYH7hUQAd0lRDmPckcjn+tUiddNiLVqgv6WCTLT4mA4RknL2nY0vmYyR2AIHHo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6423
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7nPweXiqKgvYGm7YtjYPdDoNWGzTZ2PonAuWyj9YNrlRG2tOyBLx/bk3WCpFOn6l8VYZAPD4i+Kiaq+4hnO3elpzWf74zjVjP5dvNY/hZSA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5826
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,256 +175,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 09, 2024 at 06:51:52PM GMT, Michal Wajdeczko wrote:
->For some advanced test cases we might want to simulate external
->activity that will stimulate function under test. Add set of
->helper functions to implement such requirement. Usage example:
->
->  static void foo(struct xe_device *xe)
->  {
->      WRITE_ONCE(xe->foo, 1);
->  }
->
->  static void foo_test(struct kunit *test)
->  {
->      struct xe_device *xe = test->priv;
->
->      xe_kunit_helper_delayed_call(test, HZ / 2, foo, xe);
->
->      KUNIT_EXPECT_EQ(test, 0, READ_ONCE(xe->foo));
->      schedule_timeout_uninterruptible(HZ);
->      KUNIT_EXPECT_EQ(test, 1, READ_ONCE(xe->foo));
->  }
+On Fri, Aug 09, 2024 at 06:51:54PM GMT, Michal Wajdeczko wrote:
+>The KUNIT_STATIC_STUB_REDIRECT() allows to redirect function call but will
+>work only if the caller is in a KUnit context. To allow implementation of
+>the more complex test cases, add helpers that allow calling stubs also out
+>of a KUnit context.
 >
 >Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 >---
-> drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 148 ++++++++++++++++++++
-> drivers/gpu/drm/xe/tests/xe_kunit_helpers.h |  38 +++++
-> 2 files changed, 186 insertions(+)
+> drivers/gpu/drm/xe/tests/xe_test.h | 74 ++++++++++++++++++++++++++++++
+> 1 file changed, 74 insertions(+)
 >
->diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
->index bc5156966ce9..8fe1a0918b32 100644
->--- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
->+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
->@@ -127,3 +127,151 @@ int xe_kunit_helper_xe_device_live_test_init(struct kunit *test)
-> 	return 0;
+>diff --git a/drivers/gpu/drm/xe/tests/xe_test.h b/drivers/gpu/drm/xe/tests/xe_test.h
+>index b8fa409ce2b1..ffa8fa6c96f0 100644
+>--- a/drivers/gpu/drm/xe/tests/xe_test.h
+>+++ b/drivers/gpu/drm/xe/tests/xe_test.h
+>@@ -54,11 +54,85 @@ xe_cur_kunit_priv(enum xe_test_priv_id id)
+> 	return priv->id == id ? priv : NULL;
 > }
-> EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_xe_device_live_test_init);
->+
->+struct xe_kunit_call {
->+	struct delayed_work work;
->+	struct kunit *test;
->+	struct {
->+		int (*int_gt)(struct xe_gt *gt);
->+		int (*int_gt_uint)(struct xe_gt *gt, unsigned int n);
->+		void (*void_gt)(struct xe_gt *gt);
->+		void (*void_gt_uint)(struct xe_gt *gt, unsigned int n);
->+		void (*void_xe)(struct xe_device *xe);
+>
+>+/**
+>+ * XE_TEST_REDIRECT() - Call a function stub if one exists.
+>+ * @stub: The pointer to the function stub
+>+ * @args: All of the arguments passed to this stub
+>+ *
+>+ * This is a function prologue which is used to allow calls to the current
+>+ * function to be redirected if a KUnit is running. If the stub is NULL or
+>+ * the KUnit is not running the function will continue execution as normal.
+>+ *
+>+ * Unlikely the KUNIT_STATIC_STUB_REDIRECT(), this redirection will work
+>+ * even if the caller is not in a KUnit context (like a worker thread).
+>+ *
+>+ * Example:
+>+ *
+>+ * .. code-block:: c
+>+ *
+>+ *	int (*stub)(int n);
+>+ *
+>+ *	int real_func(int n)
+>+ *	{
+>+ *		XE_TEST_REDIRECT(stub, n);
+>+ *		return n + 1;
+>+ *	}
+>+ *
+>+ *	int replacement_func(int n)
+>+ *	{
+>+ *		return n + 100;
+>+ *	}
+>+ *
+>+ *	void example_test(struct kunit *test)
+>+ *	{
+>+ *		stub = replacement_func;
+>+ *		KUNIT_EXPECT_EQ(test, real_func(1), 101);
+>+ *		KUNIT_EXPECT_EQ(test, real_func(1), 101);
+>+ *	}
+>+ */
+>+#define XE_TEST_REDIRECT(stub, args...)							\
 
-I think the only reason why you're adding this in xe is because you are
-using xe-specific types. This could rather be done generically by
-always using int delayed_func(void *data). Then you can simply add it to
-kunit and get it reviewed there.
+this seems another one that should rather be in the kunit layer, not in
+xe
 
-Also thinking that the example you added in the commit message is likely
-suggesting the wrong type of test, that a) sleep too much and b) tend to
-be noisy
+>+do {											\
+>+	typeof(stub) replacement = (stub);						\
+>+	if (XE_TEST_RUNNING()) {							\
+>+		if (unlikely(replacement)) {						\
+>+			pr_info(KUNIT_SUBTEST_INDENT "# %s: calling stub %ps\n",	\
+>+				__func__, replacement);					\
+
+KUNIT_STATIC_STUB_REDIRECT() silently calls the stub without pr_info().
+Why does this version need to be extra-verbose?
 
 Lucas De Marchi
 
->+	} func;
->+	struct {
->+		struct xe_device *xe;
->+		struct xe_gt *gt;
->+		unsigned int n;
->+	} args;
->+};
+
+>+			return replacement(args);					\
+>+		}									\
+>+	}										\
+>+} while (0)
 >+
->+static void call_work_func(struct work_struct *work)
+>+static inline void __nullify_pointer(void *data)
 >+{
->+	struct xe_kunit_call *call = container_of(work, typeof(*call), work.work);
+>+	void **ptr = data;
 >+
->+	if (call->func.void_xe) {
->+		kunit_info(call->test, "calling %ps(xe)\n", call->func.void_xe);
->+		call->func.void_xe(call->args.xe);
->+		kunit_info(call->test, "%ps(xe) completed\n", call->func.void_xe);
->+	} else if (call->func.void_gt) {
->+		kunit_info(call->test, "%ps(gt)\n", call->func.void_gt);
->+		call->func.void_gt(call->args.gt);
->+		kunit_info(call->test, "%ps(gt) completed\n", call->func.void_gt);
->+	} else if (call->func.int_gt_uint) {
->+		int ret;
->+
->+		kunit_info(call->test, "calling %ps(gt,%u)\n",
->+			   call->func.int_gt_uint, call->args.n);
->+		ret = call->func.int_gt_uint(call->args.gt, call->args.n);
->+		if (ret < 0) {
->+			kunit_info(call->test, "%ps(gt,%u) reported error %pe\n",
->+				   call->func.int_gt_uint, call->args.n, ERR_PTR(ret));
->+		} else {
->+			kunit_info(call->test, "%ps(gt,%u) returned %d\n",
->+				   call->func.int_gt_uint, call->args.n, ret);
->+		}
->+	}
->+}
->+
->+static struct xe_kunit_call *prepare_call(struct kunit *test)
->+{
->+	struct xe_kunit_call *call;
->+
->+	call = kunit_kzalloc(test, sizeof(*call), GFP_KERNEL);
->+	KUNIT_ASSERT_NOT_NULL(test, call);
->+
->+	INIT_DELAYED_WORK(&call->work, call_work_func);
->+	call->test = test;
->+
->+	return call;
->+}
->+
->+KUNIT_DEFINE_ACTION_WRAPPER(cancel_call, cancel_delayed_work_sync, struct delayed_work *);
->+
->+static void queue_call(struct kunit *test, struct xe_kunit_call *call, unsigned long delay)
->+{
->+	queue_delayed_work(system_wq, &call->work, delay);
->+	KUNIT_ASSERT_EQ(test, 0, kunit_add_action_or_reset(test, cancel_call, &call->work));
+>+	*ptr = NULL;
 >+}
 >+
 >+/**
->+ * xe_kunit_helper_delayed_call_void_xe_device - Queue a function call during KUnit test
->+ * @test: the &kunit test case
->+ * @delay: number of jiffies to wait before queueing
->+ * @func: the &xe_device function to call
->+ * @xe: the &xe_device argument
+>+ * XE_TEST_ACTIVATE_STUB() - Setup a function stub.
+>+ * @test: Test case that wants to setup a function stub
+>+ * @stub: The function stub pointer
+>+ * @replacement: The replacement function
 >+ *
->+ * This function uses KUNIT_ASSERT to detect any failures.
+>+ * This helper setups a function stub with the replacement function.
+>+ * It will also automatically restore stub to NULL at the test end.
 >+ */
->+void xe_kunit_helper_delayed_call_void_xe_device(struct kunit *test,
->+						 unsigned long delay,
->+						 void (*func)(struct xe_device *xe),
->+						 struct xe_device *xe)
->+{
->+	struct xe_kunit_call *call = prepare_call(test);
+>+#define XE_TEST_ACTIVATE_STUB(test, stub, replacement)	({					\
+>+	typeof(test) __test = (test);								\
+>+	typeof(stub) *__ptr = &(stub);								\
+>+	typecheck_pointer(*__ptr);								\
+>+	*__ptr = (replacement);									\
+>+	kunit_info(__test, "activated stub %s with %ps\n", __stringify(stub), *__ptr);		\
+>+	kunit_add_action_or_reset(__test, __nullify_pointer, __ptr);				\
+>+})
 >+
->+	KUNIT_ASSERT_NOT_NULL(test, func);
->+	KUNIT_ASSERT_NOT_NULL(test, xe);
->+
->+	call->func.void_xe = func;
->+	call->args.xe = xe;
->+
->+	return queue_call(test, call, delay);
->+}
->+EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_delayed_call_void_xe_device);
->+
->+/**
->+ * xe_kunit_helper_delayed_call_void_xe_gt - Queue a function call during KUnit test
->+ * @test: the &kunit test case
->+ * @delay: number of jiffies to wait before queueing
->+ * @func: the &xe_gt function to call
->+ * @gt: the &xe_gt function argument
->+ *
->+ * This function uses KUNIT_ASSERT to detect any failures.
->+ */
->+void xe_kunit_helper_delayed_call_void_xe_gt(struct kunit *test,
->+					     unsigned long delay,
->+					     void (*func)(struct xe_gt *gt),
->+					     struct xe_gt *gt)
->+{
->+	struct xe_kunit_call *call = prepare_call(test);
->+
->+	KUNIT_ASSERT_NOT_NULL(test, func);
->+	KUNIT_ASSERT_NOT_NULL(test, gt);
->+
->+	call->func.void_gt = func;
->+	call->args.gt = gt;
->+
->+	return queue_call(test, call, delay);
->+}
->+EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_delayed_call_void_xe_gt);
->+
->+/**
->+ * xe_kunit_helper_delayed_call_int_xe_gt_uint - Queue a function call during KUnit test
->+ * @test: the &kunit test case
->+ * @delay: number of jiffies to wait before queueing
->+ * @func: the &xe_gt function to call
->+ * @gt: the &xe_gt function argument
->+ * @n: the function argument
->+ *
->+ * This function uses KUNIT_ASSERT to detect any failures.
->+ */
->+void xe_kunit_helper_delayed_call_int_xe_gt_uint(struct kunit *test,
->+						 unsigned long delay,
->+						 int (*func)(struct xe_gt *gt,
->+							     unsigned int vfid),
->+						 struct xe_gt *gt,
->+						 unsigned int n)
->+{
->+	struct xe_kunit_call *call = prepare_call(test);
->+
->+	KUNIT_ASSERT_NOT_NULL(test, func);
->+	KUNIT_ASSERT_NOT_NULL(test, gt);
->+
->+	call->func.int_gt_uint = func;
->+	call->args.gt = gt;
->+	call->args.n = n;
->+
->+	return queue_call(test, call, delay);
->+}
->+EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_delayed_call_int_xe_gt_uint);
->diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
->index 83665f7b1254..ec5287947ee4 100644
->--- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
->+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
->@@ -9,6 +9,7 @@
-> struct device;
-> struct kunit;
-> struct xe_device;
->+struct xe_gt;
+> #else /* if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST) */
 >
-> struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
-> 						  struct device *dev);
->@@ -16,4 +17,41 @@ int xe_kunit_helper_xe_device_test_init(struct kunit *test);
+> #define XE_TEST_DECLARE(x)
+> #define XE_TEST_ONLY(x) 0
+> #define XE_TEST_RUNNING() false
+>+#define XE_TEST_REDIRECT(...) do { } while (0)
 >
-> int xe_kunit_helper_xe_device_live_test_init(struct kunit *test);
+> #define xe_cur_kunit_priv(_id) NULL
 >
->+void xe_kunit_helper_delayed_call_void_xe_device(struct kunit *test,
->+						 unsigned long delay,
->+						 void (*func)(struct xe_device *xe),
->+						 struct xe_device *xe);
->+
->+void xe_kunit_helper_delayed_call_void_xe_gt(struct kunit *test,
->+					     unsigned long delay,
->+					     void (*func)(struct xe_gt *gt),
->+					     struct xe_gt *gt);
->+
->+void xe_kunit_helper_delayed_call_int_xe_gt_uint(struct kunit *test,
->+						 unsigned long delay,
->+						 int (*func)(struct xe_gt *gt,
->+							     unsigned int vfid),
->+						 struct xe_gt *gt,
->+						 unsigned int n);
->+
->+/**
->+ * xe_kunit_helper_delayed_call - Queue a function call during KUnit test
->+ * @test: the &kunit test case
->+ * @delay: number of jiffies to wait before queueing
->+ * @func: the &xe_device or &xe_gt function to call
->+ * @args: the &xe_device or &xe_gt and other function arguments
->+ *
->+ * This is a helper macro that compiles into dedicated function call based on
->+ * the provided argument types.
->+ */
->+#define xe_kunit_helper_delayed_call(test, delay, func, args...)	\
->+	_Generic(func,							\
->+		 void (*)(struct xe_device *) :				\
->+			xe_kunit_helper_delayed_call_void_xe_device,	\
->+		 void (*)(struct xe_gt *) :				\
->+			xe_kunit_helper_delayed_call_void_xe_gt,	\
->+		 int (*)(struct xe_gt *, unsigned int) :		\
->+			xe_kunit_helper_delayed_call_int_xe_gt_uint	\
->+	)(test, delay, func, args)
->+
-> #endif
 >-- 
 >2.43.0
 >
