@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12C70C3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 19:25:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA2AEC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 19:30:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7FEF10E342;
-	Mon, 19 Aug 2024 19:25:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ww6cEI94";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5D0410E342
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 19:25:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724095505; x=1755631505;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=lCey8VJrk+/HEj7e5JgM7+582zUma6Pm/Le3gs8cCts=;
- b=Ww6cEI94GOXHaOmL5Uupim7aec1gQI+/VQxcmkpGZzE0AC/41qq8HfwO
- LYy0XBwaDH9qUgnEMqSwisrJxXfLjdHYp9mhu1GGInEypZCGHdeazpf+n
- fW3BGVW5d1Vz0CxgQgc/EIvabAAIU4RnAkaLxENLmST+Hepq13YQocHjX
- 8YCxJGR/10YH7uiLiZgIBhB5Xo4yyQInkNus9sjV9HEWl0IkvT1qD3x7r
- nRnRRbMUKiyajavUV1INjFVUupKrDgL7z1+S/tH8LqLe3wW7TDVD6/QgI
- a0j6rsGwyMh5pLniPS4hbu+OSaTSZSyxZY4WRac7Rr/SfeJaqVrBZZnpQ A==;
-X-CSE-ConnectionGUID: HI6OxpTIQDSNvO98/sLazQ==
-X-CSE-MsgGUID: R7/RpB4/S1GSuY6cJUBxtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22541558"
-X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; d="scan'208";a="22541558"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 12:25:04 -0700
-X-CSE-ConnectionGUID: Co+g/dNIRPW2h6pJ8vtZLQ==
-X-CSE-MsgGUID: AaS8Oio/S0akQUNj1gegDQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; d="scan'208";a="60131102"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa006.fm.intel.com with ESMTP; 19 Aug 2024 12:25:03 -0700
-Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id E283F2FC67;
- Mon, 19 Aug 2024 20:25:01 +0100 (IST)
-Message-ID: <b223a09d-c469-43eb-8fd8-23219bfb3123@intel.com>
-Date: Mon, 19 Aug 2024 21:25:01 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA6710E347;
+	Mon, 19 Aug 2024 19:30:08 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8B2C10E347;
+ Mon, 19 Aug 2024 19:30:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6947478221164844595=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] drm/xe: Refactor xe_ggtt balloon functions to make
- the node clear
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, jose.souza@intel.com
-References: <20240817103556.163783-1-rodrigo.vivi@intel.com>
- <20240817103556.163783-10-rodrigo.vivi@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240817103556.163783-10-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/i915/display=3A_platform_ide?=
+ =?utf-8?q?ntification_with_display-=3Eis=2E=3CPLATFORM=3E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Aug 2024 19:30:07 -0000
+Message-ID: <172409580788.694904.1263919695086905626@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1724092799.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1724092799.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,153 +36,177 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6947478221164844595==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: platform identification with display->is.<PLATFORM> (rev2)
+URL   : https://patchwork.freedesktop.org/series/135017/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0_BAT -> xe-pw-135017v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-135017v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-135017v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-135017v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0/bat-dg2-oem2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/bat-dg2-oem2/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-135017v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][3] -> [DMESG-FAIL][4] ([Intel XE#324])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-dg2-oem2:       [PASS][5] -> [SKIP][6] ([Intel XE#1192]) +2 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
 
 
-On 17.08.2024 12:35, Rodrigo Vivi wrote:
-> These operations are related to node. Convert them to the
-> new appropriate name space xe_ggtt_node.
-> 
-> v2: Also move arguments around for consistency (Lucas).
-> 
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c        | 15 ++++++++-------
->  drivers/gpu/drm/xe/xe_ggtt.h        |  4 ++--
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 +++++-----
->  3 files changed, 15 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 960f5a28b7ed..a359d94a979e 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -347,17 +347,18 @@ static void xe_ggtt_dump_node(struct xe_ggtt *ggtt,
->  }
->  
->  /**
-> - * xe_ggtt_balloon - prevent allocation of specified GGTT addresses
-> + * xe_ggtt_node_balloon - prevent allocation of specified GGTT addresses
+Build changes
+-------------
 
- * xe_ggtt_node_balloon() - prevent allocation of specified GGTT addresses
+  * IGT: IGT_7975 -> IGT_7976
+  * Linux: xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0 -> xe-pw-135017v2
 
->   * @ggtt: the &xe_ggtt where we want to make reservation
-> +
-> + * @node: the &xe_ggtt_node to hold reserved GGTT node
->   * @start: the starting GGTT address of the reserved region
->   * @end: then end GGTT address of the reserved region
-> - * @node: the &xe_ggtt_node to hold reserved GGTT node
->   *
-> - * Use xe_ggtt_deballoon() to release a reserved GGTT node.
-> + * Use xe_ggtt_node_deballoon() to release a reserved GGTT node.
->   *
->   * Return: 0 on success or a negative error code on failure.
->   */
-> -int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 end, struct xe_ggtt_node *node)
-> +int xe_ggtt_node_balloon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node, u64 start, u64 end)
+  IGT_7975: 7975
+  IGT_7976: 41e91236c40668d603495a21e5a22708a6501121 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0: 19d5b3fcc4a8dcf26076e522c794164f4d3e40c0
+  xe-pw-135017v2: 135017v2
 
-maybe it should be now:
+== Logs ==
 
-int xe_ggtt_node_insert_balloon(struct xe_ggtt *ggtt,
-				struct xe_ggtt_node *node,
-				u64 start, u64 end)
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/index.html
 
-and:
-
-void xe_ggtt_node_remove_balloon(struct xe_ggtt *ggtt,
-				struct xe_ggtt_node *node)
+--===============6947478221164844595==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-and maybe some day later, if we decide to move balloon nodes into ggtt,
-we can convert that into:
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-int xe_ggtt_balloon(struct xe_ggtt *ggtt,
-		u64 lower_start, u64 lower_end,
-		u64 upper_start, u64 upper_end)
 
-and:
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: platform identification with display-&gt;is.&lt;PLATFORM&gt; (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135017/">https://patchwork.freedesktop.org/series/135017/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
 
-int xe_ggtt_deballoon(struct xe_ggtt *ggtt)
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/index.html</a></td></tr>
 
-as ballooning is a 'xe_ggtt' thing that could fully implemented there
+</table>
 
->  {
->  	int err;
->  
-> @@ -384,13 +385,13 @@ int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 end, struct xe_ggtt_nod
->  }
->  
->  /**
-> - * xe_ggtt_deballoon - release a reserved GGTT region
-> + * xe_ggtt_node_deballoon - release a reserved GGTT region
->   * @ggtt: the &xe_ggtt where reserved node belongs
->   * @node: the &xe_ggtt_node with reserved GGTT region
->   *
-> - * See xe_ggtt_balloon() for details.
-> + * See xe_ggtt_node_balloon() for details.
->   */
-> -void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node)
-> +void xe_ggtt_node_deballoon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node)
->  {
->  	if (!drm_mm_node_allocated(&node->base))
->  		return;
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-> index 67ae5f1602a3..d61f4f976a5a 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-> @@ -13,8 +13,8 @@ struct drm_printer;
->  int xe_ggtt_init_early(struct xe_ggtt *ggtt);
->  int xe_ggtt_init(struct xe_ggtt *ggtt);
->  
-> -int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 size, struct xe_ggtt_node *node);
-> -void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node);
-> +int xe_ggtt_node_balloon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node, u64 start, u64 size);
-> +void xe_ggtt_node_deballoon(struct xe_ggtt *ggtt, struct xe_ggtt_node *node);
->  
->  int xe_ggtt_node_insert(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
->  			u32 size, u32 align);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 47222bd9988d..db9761a68ce0 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -528,7 +528,7 @@ static int vf_balloon_ggtt(struct xe_gt *gt)
->  	start = xe_wopcm_size(xe);
->  	end = config->ggtt_base;
->  	if (end != start) {
-> -		err = xe_ggtt_balloon(ggtt, start, end, &tile->sriov.vf.ggtt_balloon[0]);
-> +		err = xe_ggtt_node_balloon(ggtt, &tile->sriov.vf.ggtt_balloon[0], start, end);
->  		if (err)
->  			goto failed;
->  	}
-> @@ -536,7 +536,7 @@ static int vf_balloon_ggtt(struct xe_gt *gt)
->  	start = config->ggtt_base + config->ggtt_size;
->  	end = GUC_GGTT_TOP;
->  	if (end != start) {
-> -		err = xe_ggtt_balloon(ggtt, start, end, &tile->sriov.vf.ggtt_balloon[1]);
-> +		err = xe_ggtt_node_balloon(ggtt, &tile->sriov.vf.ggtt_balloon[1], start, end);
->  		if (err)
->  			goto deballoon;
->  	}
-> @@ -544,7 +544,7 @@ static int vf_balloon_ggtt(struct xe_gt *gt)
->  	return 0;
->  
->  deballoon:
-> -	xe_ggtt_deballoon(ggtt, &tile->sriov.vf.ggtt_balloon[0]);
-> +	xe_ggtt_node_deballoon(ggtt, &tile->sriov.vf.ggtt_balloon[0]);
->  failed:
->  	return err;
->  }
-> @@ -555,8 +555,8 @@ static void deballoon_ggtt(struct drm_device *drm, void *arg)
->  	struct xe_ggtt *ggtt = tile->mem.ggtt;
->  
->  	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
-> -	xe_ggtt_deballoon(ggtt, &tile->sriov.vf.ggtt_balloon[1]);
-> -	xe_ggtt_deballoon(ggtt, &tile->sriov.vf.ggtt_balloon[0]);
-> +	xe_ggtt_node_deballoon(ggtt, &tile->sriov.vf.ggtt_balloon[1]);
-> +	xe_ggtt_node_deballoon(ggtt, &tile->sriov.vf.ggtt_balloon[0]);
->  }
->  
->  /**
+
+    <h1>CI Bug Log - changes from xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0_BAT -&gt; xe-pw-135017v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-135017v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-135017v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-135017v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/bat-dg2-oem2/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-135017v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135017v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7975 -&gt; IGT_7976</li>
+<li>Linux: xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0 -&gt; xe-pw-135017v2</li>
+</ul>
+<p>IGT_7975: 7975<br />
+  IGT_7976: 41e91236c40668d603495a21e5a22708a6501121 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1796-19d5b3fcc4a8dcf26076e522c794164f4d3e40c0: 19d5b3fcc4a8dcf26076e522c794164f4d3e40c0<br />
+  xe-pw-135017v2: 135017v2</p>
+
+</body>
+</html>
+
+--===============6947478221164844595==--
