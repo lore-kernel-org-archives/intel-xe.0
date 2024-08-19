@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 876BAC5321E
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 11:33:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27330C3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 11:33:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 532E010E24A;
-	Mon, 19 Aug 2024 11:33:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E515010E248;
+	Mon, 19 Aug 2024 11:33:14 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E605A10E24C
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 11:33:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D986D10E249
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 11:33:11 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 4/5] drm/xe: Wire up device shutdown handler
-Date: Mon, 19 Aug 2024 13:32:53 +0200
-Message-ID: <20240819113254.82286-5-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 5/5] CI-only: Test if FLR is disabled?
+Date: Mon, 19 Aug 2024 13:32:54 +0200
+Message-ID: <20240819113254.82286-6-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240819113254.82286-1-maarten.lankhorst@linux.intel.com>
 References: <20240819113254.82286-1-maarten.lankhorst@linux.intel.com>
@@ -37,213 +37,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The system is turning off, and we should probably put the device
-in a safe power state. We don't need to evict VRAM or suspend running
-jobs to a safe state, as the device is rebooted anyway.
-
-This does not imply the system is necessarily reset, as we can
-kexec into a new kernel. Without shutting down, things like
-USB Type-C may mysteriously start failing.
-
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3500
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 19 ++++++++++--
- drivers/gpu/drm/xe/display/xe_display.h |  3 +-
- drivers/gpu/drm/xe/xe_device.c          | 40 +++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_gt.c              |  7 +++++
- drivers/gpu/drm/xe/xe_gt.h              |  1 +
- drivers/gpu/drm/xe/xe_pm.c              |  4 +--
- 6 files changed, 63 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 76a834b72d384..99b22d51c45e2 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -307,9 +307,9 @@ static void xe_display_flush_cleanup_work(struct xe_device *xe)
- 	}
- }
- 
--void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
-+void xe_display_pm_suspend(struct xe_device *xe, bool runtime, bool shutdown)
- {
--	bool s2idle = suspend_to_idle();
-+	bool s2idle = suspend_to_idle() || shutdown;
- 	if (!xe->info.enable_display)
- 		return;
- 
-@@ -337,12 +337,27 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 		intel_display_driver_suspend_access(xe);
- 
- 	intel_encoder_suspend_all(&xe->display);
-+	if (shutdown)
-+		intel_encoder_shutdown_all(&xe->display);
- 
- 	intel_opregion_suspend(xe, s2idle ? PCI_D1 : PCI_D3cold);
- 
- 	intel_dmc_suspend(xe);
- }
- 
-+void xe_display_pm_shutdown_late(struct xe_device *xe)
-+{
-+	if (!xe->info.enable_display)
-+		return;
-+
-+	/*
-+	 * The only requirement is to reboot with display DC states disabled,
-+	 * for now leaving all display power wells in the INIT power domain
-+	 * enabled.
-+	 */
-+	intel_power_domains_driver_remove(xe);
-+}
-+
- void xe_display_pm_suspend_late(struct xe_device *xe)
- {
- 	bool s2idle = suspend_to_idle();
-diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-index 000fb5799df54..64229565f0d0d 100644
---- a/drivers/gpu/drm/xe/display/xe_display.h
-+++ b/drivers/gpu/drm/xe/display/xe_display.h
-@@ -34,8 +34,9 @@ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
- void xe_display_irq_reset(struct xe_device *xe);
- void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt);
- 
--void xe_display_pm_suspend(struct xe_device *xe, bool runtime);
-+void xe_display_pm_suspend(struct xe_device *xe, bool runtime, bool shutdown);
- void xe_display_pm_suspend_late(struct xe_device *xe);
-+void xe_display_pm_shutdown_late(struct xe_device *xe);
- void xe_display_pm_resume_early(struct xe_device *xe);
- void xe_display_pm_resume(struct xe_device *xe, bool runtime);
- 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1aba6f9eaa192..4b2128b57211f 100644
+index 4b2128b57211f..60b554aa5275a 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -380,6 +380,11 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	return ERR_PTR(err);
- }
+@@ -590,6 +590,9 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
  
-+static bool xe_driver_flr_disabled(struct xe_device *xe)
-+{
-+	return xe_mmio_read32(xe_root_mmio_gt(xe), GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS;
-+}
++	if (xe_driver_flr_disabled(xe))
++		drm_err(&xe->drm, "FLR disabled by firmware\n");
 +
- /*
-  * The driver-initiated FLR is the highest level of reset that we can trigger
-  * from within the driver. It is different from the PCI FLR in that it doesn't
-@@ -393,17 +398,12 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
-  * if/when a new instance of i915 is bound to the device it will do a full
-  * re-init anyway.
-  */
--static void xe_driver_flr(struct xe_device *xe)
-+static void __xe_driver_flr(struct xe_device *xe)
- {
- 	const unsigned int flr_timeout = 3 * MICRO; /* specs recommend a 3s wait */
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
- 	int ret;
+ 	xe->wedged.mode = xe_modparam.wedged_mode;
  
--	if (xe_mmio_read32(gt, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
--		drm_info_once(&xe->drm, "BIOS Disabled Driver-FLR\n");
--		return;
--	}
--
- 	drm_dbg(&xe->drm, "Triggering Driver-FLR\n");
- 
- 	/*
-@@ -444,6 +444,16 @@ static void xe_driver_flr(struct xe_device *xe)
- 	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
- }
- 
-+static void xe_driver_flr(struct xe_device *xe)
-+{
-+	if (xe_driver_flr_disabled(xe)) {
-+		drm_info_once(&xe->drm, "BIOS Disabled Driver-FLR\n");
-+		return;
-+	}
-+
-+	__xe_driver_flr(xe);
-+}
-+
- static void xe_driver_flr_fini(void *arg)
- {
- 	struct xe_device *xe = arg;
-@@ -795,6 +805,24 @@ void xe_device_remove(struct xe_device *xe)
- 
- void xe_device_shutdown(struct xe_device *xe)
- {
-+	struct xe_gt *gt;
-+	u8 id;
-+
-+	drm_dbg(&xe->drm, "Shutting down device\n");
-+
-+	if (xe_driver_flr_disabled(xe)) {
-+		xe_display_pm_suspend(xe, false, true);
-+
-+		xe_irq_suspend(xe);
-+
-+		for_each_gt(gt, xe, id)
-+			xe_gt_shutdown(gt);
-+
-+		xe_display_pm_shutdown_late(xe);
-+	} else {
-+		/* BOOM! */
-+		__xe_driver_flr(xe);
-+	}
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 58895ed22f6e8..a3efde775b17f 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -863,6 +863,13 @@ int xe_gt_suspend(struct xe_gt *gt)
- 	return err;
- }
- 
-+void xe_gt_shutdown(struct xe_gt *gt)
-+{
-+	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	do_gt_reset(gt);
-+	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+}
-+
- /**
-  * xe_gt_sanitize_freq() - Restore saved frequencies if necessary.
-  * @gt: the GT object
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 8b1a5027dcf27..97def44afa4c8 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -54,6 +54,7 @@ void xe_gt_record_user_engines(struct xe_gt *gt);
- 
- void xe_gt_suspend_prepare(struct xe_gt *gt);
- int xe_gt_suspend(struct xe_gt *gt);
-+void xe_gt_shutdown(struct xe_gt *gt);
- int xe_gt_resume(struct xe_gt *gt);
- void xe_gt_reset_async(struct xe_gt *gt);
- void xe_gt_sanitize(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index fcfb49af8c891..0ca135d4b9214 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -93,7 +93,7 @@ int xe_pm_suspend(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_suspend_prepare(gt);
- 
--	xe_display_pm_suspend(xe, false);
-+	xe_display_pm_suspend(xe, false, false);
- 
- 	/* FIXME: Super racey... */
- 	err = xe_bo_evict_all(xe);
-@@ -367,7 +367,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
- 
- 	if (xe->d3cold.allowed) {
--		xe_display_pm_suspend(xe, true);
-+		xe_display_pm_suspend(xe, true, false);
- 
- 		err = xe_bo_evict_all(xe);
- 		if (err)
+ 	return 0;
 -- 
 2.45.2
 
