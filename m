@@ -4,37 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 971FAC5320E
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 07:30:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86956C52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 07:35:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62BCD10E1CE;
-	Mon, 19 Aug 2024 07:30:37 +0000 (UTC)
-Received: from riemann.telenet-ops.be (riemann.telenet-ops.be [195.130.137.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8F4410E190
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 07:30:35 +0000 (UTC)
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be
- [IPv6:2a02:1800:110:4::f00:19])
- by riemann.telenet-ops.be (Postfix) with ESMTPS id 4WnPQJ5VV8z4wx6r
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 09:30:32 +0200 (CEST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:7674:86dc:e300:ce10])
- by laurent.telenet-ops.be with bizsmtp
- id 1jWY2D0052ltMuT01jWYrk; Mon, 19 Aug 2024 09:30:32 +0200
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1sfwqW-000Hig-1Z;
- Mon, 19 Aug 2024 09:30:32 +0200
-Date: Mon, 19 Aug 2024 09:30:32 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: linux-kernel@vger.kernel.org
-cc: sparclinux@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Subject: Re: Build regressions/improvements in v6.11-rc4
-In-Reply-To: <20240819070639.2558629-1-geert@linux-m68k.org>
-Message-ID: <e43d6c-90df-32d2-c7ac-2991e8c5672f@linux-m68k.org>
-References: <CAHk-=wgP=qzODR60Xxzem5LQi6sH+6EFCDMOApAgBy37SQ59hA@mail.gmail.com>
- <20240819070639.2558629-1-geert@linux-m68k.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5389110E1D1;
+	Mon, 19 Aug 2024 07:35:54 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ABBB10E1D1;
+ Mon, 19 Aug 2024 07:35:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Add_NULL_check_befor?=
+ =?utf-8?q?e_deferencing_pointer_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: apoorva.singh@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Aug 2024 07:35:53 -0000
+Message-ID: <172405295323.677500.10084574421079335598@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240819071557.964326-1-apoorva.singh@intel.com>
+In-Reply-To: <20240819071557.964326-1-apoorva.singh@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,40 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 19 Aug 2024, Geert Uytterhoeven wrote:
-> JFYI, when comparing v6.11-rc4[1] to v6.11-rc3[3], the summaries are:
->  - build errors: +6/-4
+== Series Details ==
 
-   + /kisskb/src/arch/sparc/vdso/vdso32/../vclock_gettime.c: error: no previous prototype for '__vdso_clock_gettime' [-Werror=missing-prototypes]:  => 254:1
-   + /kisskb/src/arch/sparc/vdso/vdso32/../vclock_gettime.c: error: no previous prototype for '__vdso_clock_gettime_stick' [-Werror=missing-prototypes]:  => 282:1
-   + /kisskb/src/arch/sparc/vdso/vdso32/../vclock_gettime.c: error: no previous prototype for '__vdso_gettimeofday' [-Werror=missing-prototypes]:  => 307:1
-   + /kisskb/src/arch/sparc/vdso/vdso32/../vclock_gettime.c: error: no previous prototype for '__vdso_gettimeofday_stick' [-Werror=missing-prototypes]:  => 343:1
+Series: drm/xe: Add NULL check before deferencing pointer (rev2)
+URL   : https://patchwork.freedesktop.org/series/137289/
+State : success
 
-sparc64-gcc13/sparc64-allmodconfig
-(pre-existing, but now emitted twice in this config only?)
+== Summary ==
 
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_952' declared with attribute error: FIELD_GET: mask is not constant:  => 510:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_953' declared with attribute error: FIELD_GET: mask is not constant:  => 510:38
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/
+lib/modules/6.11.0-rc4-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc4-xe/build
+lib/modules/6.11.0-rc4-xe/modules.alias.bin
+lib/modules/6.11.0-rc4-xe/modules.builtin
+lib/modules/6.11.0-rc4-xe/modules.softdep
+lib/modules/6.11.0-rc4-xe/modules.alias
+lib/modules/6.11.0-rc4-xe/modules.order
+lib/modules/6.11.0-rc4-xe/modules.symbols
+lib/modules/6.11.0-rc4-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1724052941:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1724052941:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-powerpc-gcc5/powerpc-all{mod,yes}config
 
-In function 'decode_oa_format.isra.26',
-     inlined from 'xe_oa_set_prop_oa_format' at drivers/gpu/drm/xe/xe_oa.c:1664:6:
-drivers/gpu/drm/xe/xe_oa.c:1573:18: note: in expansion of macro 'FIELD_GET'
-   u32 bc_report = FIELD_GET(DRM_XE_OA_FORMAT_MASK_BC_REPORT, fmt);
-                   ^
-Seen before, patch available.
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    - Linus Torvalds
