@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC7CC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:37:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F7BC5320E
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:37:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FCD10E28C;
-	Mon, 19 Aug 2024 13:37:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00A7010E275;
+	Mon, 19 Aug 2024 13:37:56 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BC4310E275;
- Mon, 19 Aug 2024 13:37:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 190F510E275;
+ Mon, 19 Aug 2024 13:37:54 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Fixes_t?=
- =?utf-8?q?o_make_kexec_work=2E_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/display=3A_Fixes_to_mak?=
+ =?utf-8?q?e_kexec_work=2E_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Aug 2024 13:37:24 -0000
-Message-ID: <172407464456.694757.9600245327463980460@2413ebb6fbb6>
+Date: Mon, 19 Aug 2024 13:37:54 -0000
+Message-ID: <172407467409.694757.2440053453115084100@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
@@ -44,37 +44,73 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/display: Fixes to make kexec work. (rev2)
 URL   : https://patchwork.freedesktop.org/series/137453/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-9fe5037901cabbcdf27a6fe0dfb047ca1474d363
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 4b5e3e0aeed53db4e36c2007845ebbcd2866d0b2
-Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date:   Mon Aug 19 15:31:37 2024 +0200
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_device.c: In function ‘xe_device_shutdown’:
+../drivers/gpu/drm/xe/xe_device.c:820:3: error: too many arguments to function ‘xe_display_pm_suspend’
+  820 |   xe_display_pm_suspend(xe, false, true);
+      |   ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device.c:20:
+../drivers/gpu/drm/xe/display/xe_display.h:67:20: note: declared here
+   67 | static inline void xe_display_pm_suspend(struct xe_device *xe, bool runtime) {}
+      |                    ^~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_device.c:827:3: error: implicit declaration of function ‘xe_display_pm_shutdown_late’; did you mean ‘xe_display_pm_suspend_late’? [-Werror=implicit-function-declaration]
+  827 |   xe_display_pm_shutdown_late(xe);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |   xe_display_pm_suspend_late
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_device.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1925: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    CI-only: Test if FLR is disabled?
-    
-    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-+ /mt/dim checkpatch 997f91bcdf1249b248ff040e89472779e3d8488b drm-intel
-88dd43fec0d5 drm/xe: Read out rawclk_freq for display
-54cc37795e01 drm/xe: Wire up device shutdown handler
--:14: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
-#14: 
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3500
-
-total: 0 errors, 1 warnings, 0 checks, 154 lines checked
-4b5e3e0aeed5 CI-only: Test if FLR is disabled?
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+[13:37:25] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[13:37:29] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
