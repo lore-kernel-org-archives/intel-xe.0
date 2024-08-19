@@ -4,27 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4626DC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 16:20:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 847ACC52D7C
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 16:40:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB99110E300;
-	Mon, 19 Aug 2024 16:20:49 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ED9C10E0E3;
- Mon, 19 Aug 2024 16:20:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7994471347978593552=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C2CC10E206;
+	Mon, 19 Aug 2024 16:40:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ZOeDxYeG";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D697210E204
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 16:40:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1724085636;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=6aiAlEMlkVSgDq4kg8Uhoyt8PHhKwhvjGwHD+aR8CT0=;
+ b=ZOeDxYeG6gr8BfdrJbbwyomlt/qTDDfqljxql+zF7fAwPe2x6qVTLDGCCfKG843dU61l1a
+ g+mM1qCnqpWFWpTIj1m2KEtkAANLGJeArqI8SzkHyiO55jFu9lhDkAsQmnKLkeQPqg9W0f
+ JG3x9Nsr+n6JZh1YVDNjQA8C2lY2Ii4=
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com
+ [209.85.216.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-686-fdJX_ULTMtyFy3-whSGtIg-1; Mon, 19 Aug 2024 12:40:35 -0400
+X-MC-Unique: fdJX_ULTMtyFy3-whSGtIg-1
+Received: by mail-pj1-f69.google.com with SMTP id
+ 98e67ed59e1d1-2d3d45c308fso3906339a91.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 09:40:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724085634; x=1724690434;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=6aiAlEMlkVSgDq4kg8Uhoyt8PHhKwhvjGwHD+aR8CT0=;
+ b=MhMhi1L3WtJhl/7X1doOcJeNioFftdex7Payh0RAt2ehCZzpwpgdlbC6J7skAP/1jk
+ 7Z46gHTb0uA/KzO7Tr+lTmRfm9jq5qGdOWd3ox3JrDIcKz6wvv+7PDanoYtEcxRnxpgF
+ roo3BKhpLA8bSi8O9gHDkKAJ+zyuF82F6hS+NIJH688LWl77NgtQDmcu5HDWe4We/6jn
+ tni4UaxWGMNtHvcFCuiLF1XQ+WYgxWrrKo50whbkOI63NHzl0ExEHduL/0Dza182miVh
+ Bkbd+410MoJnltMH1Ms92mi/dhbixVI4jc9DJU0T7kig20WrEu0hYdKLkWSxX8lYBTXQ
+ 86Dg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVZv1YcI1C8d3nWyiQWOhmouSU7RBPB12VNXGnNIsdEVpuX0hYM5vZ74Y+xd8XxsEFMiMH3g879PTjqlOxwdaxHZC0cMHa+GRYLFbu94rQ=
+X-Gm-Message-State: AOJu0Yz48Dw6bKZJhmpQKQEGpizLb3Ex8oDvp4lRVzkJA/wDvn7G3o2W
+ YvRsGzgvjqLhzis3hQZqtmYoxBYi7LMB3bN3M2neLHWmU2QMdlfy/lis8pTN2KpOp93ysgU7b33
+ Lohse6pSTA8/U7P5QTvhkQsZwlu5RPJrBBC27Gbf+vYtHbJYr8prkereqf20RvNtgIdsQcYOI2P
+ s=
+X-Received: by 2002:a17:90a:bb86:b0:2ca:8a93:a40b with SMTP id
+ 98e67ed59e1d1-2d4063e87e6mr8810667a91.31.1724085633793; 
+ Mon, 19 Aug 2024 09:40:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGr6UwLRtlBXjaOWivmxZxfUPO4m8tw0lWZ8JSfXwSkB6KBvIXRvb1qTy/OQw15401HlQn4nw==
+X-Received: by 2002:a17:90a:bb86:b0:2ca:8a93:a40b with SMTP id
+ 98e67ed59e1d1-2d4063e87e6mr8810646a91.31.1724085633478; 
+ Mon, 19 Aug 2024 09:40:33 -0700 (PDT)
+Received: from localhost ([2803:2a00:8:776f:3d96:6be:69c7:46c2])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2d427efec73sm3604053a91.48.2024.08.19.09.40.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 19 Aug 2024 09:40:33 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH 57/86] drm/ofdrm: Use DRM default client setup
+In-Reply-To: <20240816125408.310253-58-tzimmermann@suse.de>
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-58-tzimmermann@suse.de>
+Date: Mon, 19 Aug 2024 18:40:27 +0200
+Message-ID: <87o75oa2kk.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Ensure_display_fb_is_a?=
- =?utf-8?q?ligned_in_GGTT_to_a_multiple_of_64k=2C_through_padding?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Aug 2024 16:20:49 -0000
-Message-ID: <172408444944.695508.13917840784397440433@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240819153127.235831-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240819153127.235831-1-maarten.lankhorst@linux.intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,156 +89,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7994471347978593552==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-== Series Details ==
+Hello Thomas,
 
-Series: drm/xe: Ensure display fb is aligned in GGTT to a multiple of 64k, through padding
-URL   : https://patchwork.freedesktop.org/series/137462/
-State : success
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Javier Martinez Canillas <javierm@redhat.com>
+> ---
+>  drivers/gpu/drm/tiny/ofdrm.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
 
-== Summary ==
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
-CI Bug Log - changes from xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde_BAT -> xe-pw-137462v1_BAT
-====================================================
+-- 
+Best regards,
 
-Summary
--------
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-137462v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#358])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#1192]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#1192])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/358
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde -> xe-pw-137462v1
-
-  IGT_7975: 7975
-  xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde: 619c97d7af9cabacd8639b08ee6c7cc9aee04cde
-  xe-pw-137462v1: 137462v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/index.html
-
---===============7994471347978593552==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Ensure display fb is aligned in GGTT to a multiple of 64k, through padding</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137462/">https://patchwork.freedesktop.org/series/137462/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde_BAT -&gt; xe-pw-137462v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137462v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/358">Intel XE#358</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137462v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde -&gt; xe-pw-137462v1</li>
-</ul>
-<p>IGT_7975: 7975<br />
-  xe-1793-619c97d7af9cabacd8639b08ee6c7cc9aee04cde: 619c97d7af9cabacd8639b08ee6c7cc9aee04cde<br />
-  xe-pw-137462v1: 137462v1</p>
-
-</body>
-</html>
-
---===============7994471347978593552==--
