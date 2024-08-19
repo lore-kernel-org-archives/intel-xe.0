@@ -4,59 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61530C52D7C
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 18:48:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19665C3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 18:51:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D4A610E29E;
-	Mon, 19 Aug 2024 18:48:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zc2Q6fmU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7031E10E29E;
- Mon, 19 Aug 2024 18:48:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724093328; x=1755629328;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4PmB05PndKRRZWUUwv08GrkU7zNB5xX2RgQ2f8XyltQ=;
- b=Zc2Q6fmUxGLO96A8tWT0YO+qoT85HNGmR7gWVtXsF10QqpYQcUmX6r0f
- zyrGTWVn7IOGsF8YAC8LHzuE4SgZzhPISonoMHlik/nhR9bZ33ir/RKpG
- 3TkBSVVQUAJxApYwQOv5p/S6jMkbvpOh4nRTxTK7O9p/A9oMUrmfDvSGc
- 8hUdHCXbVVC3bunO+Z1EJpbzBH45zxyRxuFN6drAhb9iXJt9ZkjcPJacn
- DkzR6OZJ7vWujFnat47tyfrnKAphjCCTkJP5cfMzsC91V5lbe8s8nqWRT
- pmIkBiAEQKXNEYOjhai9C81wsePSp3kblJl9XmzStqyg1zIiY9qPLVEHr w==;
-X-CSE-ConnectionGUID: HpRFA5dHRhaKsCatf2DSCg==
-X-CSE-MsgGUID: gSF8Ami7RCmGDkEP1jqPBw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22245224"
-X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; d="scan'208";a="22245224"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 11:48:48 -0700
-X-CSE-ConnectionGUID: DPLyFMlHQp2mnTBJ0PxOjg==
-X-CSE-MsgGUID: VvFkR9ysTlmlDg61noeHGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; d="scan'208";a="60166341"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.70])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 11:48:45 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH v3] drm/i915/display: add platforms "is" member to struct
- intel_display
-Date: Mon, 19 Aug 2024 21:48:40 +0300
-Message-Id: <20240819184840.1264011-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <7219e172b99401458ef6783c67b0b47115c6e772.1724092799.git.jani.nikula@intel.com>
-References: <7219e172b99401458ef6783c67b0b47115c6e772.1724092799.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA13E10E2A2;
+	Mon, 19 Aug 2024 18:51:14 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89C0810E2A2;
+ Mon, 19 Aug 2024 18:51:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?platform_identification_with_display-=3Eis=2E=3CPLATFORM=3E_=28re?=
+ =?utf-8?q?v2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Aug 2024 18:51:13 -0000
+Message-ID: <172409347355.696050.1356134298072007911@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1724092799.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1724092799.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,96 +37,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Facilitate using display->is.HASWELL and display->is.HASWELL_ULT
-etc. for identifying platforms and subplatforms. Merge platform and
-subplatform members together.
+== Series Details ==
 
-v3:
-- Fix sanity check on display->is after merging subplatform members
+Series: drm/i915/display: platform identification with display->is.<PLATFORM> (rev2)
+URL   : https://patchwork.freedesktop.org/series/135017/
+State : success
 
-v2:
-- Use bitmap ops
-- Add some sanity checks with warnings
+== Summary ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |  3 ++
- .../drm/i915/display/intel_display_device.c   | 31 +++++++++++++++++--
- 2 files changed, 32 insertions(+), 2 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 19d5b3fcc4a8 drm-tip: 2024y-08m-19d-15h-58m-07s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: use a macro to initialize subplatforms
+Applying: drm/i915/display: use a macro to define platform enumerations
+Applying: drm/i915/display: join the platform and subplatform enums
+Applying: drm/i915/display: add display platforms structure with platform members
+Applying: drm/i915/display: add platforms "is" member to struct intel_display
+Applying: drm/i915/display: remove the display platform enum as unnecessary
+Applying: drm/i915/display: consider HSW/BDW ULX to also be ULT
+Applying: drm/i915/display: keep subplatforms next to their platforms
+Applying: drm/i915/bios: use display->is.PLATFORM instead of IS_PLATFORM()
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 0a711114ff2b..b2907894fa28 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -286,6 +286,9 @@ struct intel_display {
- 	/* drm device backpointer */
- 	struct drm_device *drm;
- 
-+	/* Platform (and subplatform, if any) identification */
-+	struct intel_display_platforms is;
-+
- 	/* Display functions */
- 	struct {
- 		/* Top level crtc-ish functions */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 55ab1923c8b3..d0b7cf63bc9f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1269,8 +1269,28 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
- 	return NULL;
- }
- 
-+/* Size of the entire bitmap, not the number of platforms */
-+static unsigned int display_platforms_num_bits(void)
-+{
-+	return sizeof(((struct intel_display_platforms *)0)->bitmap) * BITS_PER_BYTE;
-+}
-+
-+/* Number of platform bits set */
-+static unsigned int display_platforms_weight(const struct intel_display_platforms *p)
-+{
-+	return bitmap_weight(p->bitmap, display_platforms_num_bits());
-+}
-+
-+/* Merge the subplatform information from src to dst */
-+static void display_platforms_or(struct intel_display_platforms *dst,
-+				 const struct intel_display_platforms *src)
-+{
-+	bitmap_or(dst->bitmap, dst->bitmap, src->bitmap, display_platforms_num_bits());
-+}
-+
- void intel_display_device_probe(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = &i915->display;
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	const struct intel_display_device_info *info;
- 	struct intel_display_ip_ver ip_ver = {};
-@@ -1306,13 +1326,20 @@ void intel_display_device_probe(struct drm_i915_private *i915)
- 	       &DISPLAY_INFO(i915)->__runtime_defaults,
- 	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
- 
--	drm_WARN_ON(&i915->drm, !desc->platform || !desc->name);
-+	drm_WARN_ON(&i915->drm, !desc->platform || !desc->name ||
-+		    display_platforms_weight(&desc->platforms) != 1);
- 	DISPLAY_RUNTIME_INFO(i915)->platform = desc->platform;
-+	display->is = desc->platforms;
- 
- 	subdesc = find_subplatform_desc(pdev, desc);
- 	if (subdesc) {
--		drm_WARN_ON(&i915->drm, !subdesc->subplatform || !subdesc->name);
-+		drm_WARN_ON(&i915->drm, !subdesc->subplatform || !subdesc->name ||
-+			    display_platforms_weight(&subdesc->platforms) != 1);
- 		DISPLAY_RUNTIME_INFO(i915)->subplatform = subdesc->subplatform;
-+		display_platforms_or(&display->is, &subdesc->platforms);
-+
-+		/* Ensure platform and subplatform are distinct */
-+		drm_WARN_ON(&i915->drm, display_platforms_weight(&display->is) == 1);
- 	}
- 
- 	if (ip_ver.ver || ip_ver.rel || ip_ver.step)
--- 
-2.39.2
 
