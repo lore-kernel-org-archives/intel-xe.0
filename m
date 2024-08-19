@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50BBDC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:37:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC7CC3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:37:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1914C10E276;
-	Mon, 19 Aug 2024 13:37:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35FCD10E28C;
+	Mon, 19 Aug 2024 13:37:26 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67DAD10E276;
- Mon, 19 Aug 2024 13:37:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BC4310E275;
+ Mon, 19 Aug 2024 13:37:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_Fi?=
- =?utf-8?q?xes_to_make_kexec_work=2E_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Fixes_t?=
+ =?utf-8?q?o_make_kexec_work=2E_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Aug 2024 13:37:06 -0000
-Message-ID: <172407462642.694772.8867882052303220561@2413ebb6fbb6>
+Date: Mon, 19 Aug 2024 13:37:24 -0000
+Message-ID: <172407464456.694757.9600245327463980460@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
@@ -44,15 +44,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/display: Fixes to make kexec work. (rev2)
 URL   : https://patchwork.freedesktop.org/series/137453/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 997f91bcdf12 drm-tip: 2024y-08m-19d-13h-28m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Read out rawclk_freq for display
-Applying: drm/xe: Wire up device shutdown handler
-Applying: CI-only: Test if FLR is disabled?
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4b5e3e0aeed53db4e36c2007845ebbcd2866d0b2
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Mon Aug 19 15:31:37 2024 +0200
+
+    CI-only: Test if FLR is disabled?
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch 997f91bcdf1249b248ff040e89472779e3d8488b drm-intel
+88dd43fec0d5 drm/xe: Read out rawclk_freq for display
+54cc37795e01 drm/xe: Wire up device shutdown handler
+-:14: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
+#14: 
+References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3500
+
+total: 0 errors, 1 warnings, 0 checks, 154 lines checked
+4b5e3e0aeed5 CI-only: Test if FLR is disabled?
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
 
 
