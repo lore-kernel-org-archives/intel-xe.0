@@ -4,25 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00F70C3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:31:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50BBDC3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Aug 2024 13:37:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0B9D10E26F;
-	Mon, 19 Aug 2024 13:31:47 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 506D510E26B
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Aug 2024 13:31:41 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 3/3] CI-only: Test if FLR is disabled?
-Date: Mon, 19 Aug 2024 15:31:37 +0200
-Message-ID: <20240819133138.147511-4-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
-References: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1914C10E276;
+	Mon, 19 Aug 2024 13:37:08 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67DAD10E276;
+ Mon, 19 Aug 2024 13:37:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_Fi?=
+ =?utf-8?q?xes_to_make_kexec_work=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Aug 2024 13:37:06 -0000
+Message-ID: <172407462642.694772.8867882052303220561@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,28 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 3 +++
- 1 file changed, 3 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 18c5a2c8530eb..81009b78a2ca7 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -593,6 +593,9 @@ int xe_device_probe_early(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	if (xe_driver_flr_disabled(xe))
-+		drm_err(&xe->drm, "FLR disabled by firmware\n");
-+
- 	xe->wedged.mode = xe_modparam.wedged_mode;
- 
- 	return 0;
--- 
-2.45.2
+Series: drm/xe/display: Fixes to make kexec work. (rev2)
+URL   : https://patchwork.freedesktop.org/series/137453/
+State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 997f91bcdf12 drm-tip: 2024y-08m-19d-13h-28m-26s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Read out rawclk_freq for display
+Applying: drm/xe: Wire up device shutdown handler
+Applying: CI-only: Test if FLR is disabled?
+
 
