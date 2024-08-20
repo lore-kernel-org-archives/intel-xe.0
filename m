@@ -4,56 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF03EC3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 05:06:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A563C5321E
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 07:22:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7775210E4AA;
-	Tue, 20 Aug 2024 05:06:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8518610E1C2;
+	Tue, 20 Aug 2024 07:22:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NgnqDxvd";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="YibhQQl+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="JRN2rAB8";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="EWB+akhd";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="mOr89Axg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C165010E4AA
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 05:06:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724130407; x=1755666407;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=a0HYMcD4QEV0cE6+j11b9p17zvMCRGNrd0dWnD5x81k=;
- b=NgnqDxvd6usgOXdju7Qe8vt+jgrCD8rQwCUl+ePEVf8jxNLmKrmRkWgH
- Zl2LSIxbJDgAsIQed8EMFA4ww/pAk80xGmI0eOmcO0FK6kfJrpNNMyrG3
- N+5uznlQTUreGOsk9yXRP8m0Ay/EKiTup/dtI5fapEnXUmzPQCWWrmlkl
- ksb9cPbYWao31SLPRroxWdBrsraiS54+vIpFO+gu+oltak06Kl/BYdzsL
- 4PC/1cPEDRU2LPSdsiSfQ6bgReEDke3nTIgIeeyYYYFRbkV8Yakb6UZcy
- GRjrXN6j40ZpQyPGU5tf7153IfQ89ZxzeO9xi1yy7TC9O9vDKaI7wcNpH w==;
-X-CSE-ConnectionGUID: 41LL+cVSSD6vf1rfAKXR0Q==
-X-CSE-MsgGUID: S5DWZdspSgex5MB6elNnzA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22582240"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22582240"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 22:06:47 -0700
-X-CSE-ConnectionGUID: M8LwD0QSSliTJmgi3r8Eqw==
-X-CSE-MsgGUID: PmTNMnr4RxKmk8RVRjMOUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="60571394"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 22:06:46 -0700
-Date: Tue, 20 Aug 2024 07:06:43 +0200
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe: Ensure display fb is aligned in GGTT to a
- multiple of 64k, through padding
-Message-ID: <20240820050608.sueqpjtpayoygicj@zkempczy-mobl2>
-References: <20240819153127.235831-1-maarten.lankhorst@linux.intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C71810E11F;
+ Tue, 20 Aug 2024 07:22:39 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E9A17225A1;
+ Tue, 20 Aug 2024 07:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724138558; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nxM7gUEPJonsLj0wa0Ff9i77ggfnpBC1XbLXbz5KL5Y=;
+ b=YibhQQl+FZUTi7j25YKgbxVB2ssPdcR0wwq6ahr4YmGz4vJxfO+I89fjbxANXeS2KW3AbK
+ KNJkfxfZtV+pRMl96vmxt+fhKNhJgPuZ8nxabiKglD/QjqNTNOi2wOJoHmOdu+28zlbxF5
+ YPP6/NaE7gkiDAD8iwy51ss9NlgPsHk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724138558;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nxM7gUEPJonsLj0wa0Ff9i77ggfnpBC1XbLXbz5KL5Y=;
+ b=JRN2rAB8q/LZqBm6FKi6w+8RT3fJ4Qef2RVkoom1ONCbTYI3v4XbDE4ddYrxu4Do5amtKy
+ Qqv5pBXyMMqnrgCQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724138556; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nxM7gUEPJonsLj0wa0Ff9i77ggfnpBC1XbLXbz5KL5Y=;
+ b=EWB+akhdb/GasL3y8Qw6RVjOtNrPMYHtGDFY54m3VKwRBUm/BMBvE0ejoH7SiLP3Cf30uD
+ ScvAXIqHU85DGAvAa1TFCw3OlHeIuLROw4oOXEe8fJD9S5Eqg6f6JJdgXE1qVehY0Q9M5t
+ AE60uikV1KLHiOQ7dNnBSKCQmpZQopk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724138556;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nxM7gUEPJonsLj0wa0Ff9i77ggfnpBC1XbLXbz5KL5Y=;
+ b=mOr89Axgng8lyIZnBpPjjvYPU6N3S2w9uBFkmqSm6hGOKOCzCan7owFnsaQlC936dxH4CS
+ BfWPsod40dpS6cBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A110C13770;
+ Tue, 20 Aug 2024 07:22:36 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id Dn+DJTxExGYJGQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 20 Aug 2024 07:22:36 +0000
+Message-ID: <b82cb17f-4da7-4e7c-ad92-3c7c9abb45ee@suse.de>
+Date: Tue, 20 Aug 2024 09:22:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240819153127.235831-1-maarten.lankhorst@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/86] drm: Add client-agnostic setup helper
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
+ javierm@redhat.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-5-tzimmermann@suse.de>
+ <20240818200735.GB729@pendragon.ideasonboard.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20240818200735.GB729@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,lists.freedesktop.org];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; RCVD_TLS_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ RCPT_COUNT_SEVEN(0.00)[10]; MID_RHS_MATCH_FROM(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid, suse.de:email,
+ imap1.dmz-prg2.suse.org:helo, ideasonboard.com:email]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,180 +141,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 19, 2024 at 05:31:27PM +0200, Maarten Lankhorst wrote:
-> This workaround is needed on battlemage to ensure that there is no
-> corruption when CCS is used.
-> 
-> For testing, always enable the workaround. Should be easier to see if something blows up. :)
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/xe/display/xe_fb_pin.c | 82 ++++++++++++++++++++++++--
->  1 file changed, 77 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index d7db44e79eaf5..29a13a889414d 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -15,8 +15,68 @@
->  #include "xe_gt.h"
->  #include "xe_pm.h"
->  
-> +static inline bool needs_bmg_64k_workaround(struct xe_device *xe, const struct intel_framebuffer *fb)
-> +{
-> +	if (xe->info.platform != XE_BATTLEMAGE)
-> +		goto skip;
-> +
-> +	/* XXX? What is affected? */
-> +	if (fb->base.modifier != I915_FORMAT_MOD_4_TILED)
-> +		goto skip;
-> +
-> +	if (!(intel_fb_obj(&fb->base)->ttm.base.size % SZ_64K))
-> +		goto skip;
-> +
-> +	return true;
-> +skip:
-> +	return true;
+Hi
 
-I guess you mean false here according to commit description.
+Am 18.08.24 um 22:07 schrieb Laurent Pinchart:
+> Hi Thomas,
+>
+> Thank you for the patch.
+>
+> On Fri, Aug 16, 2024 at 02:22:30PM +0200, Thomas Zimmermann wrote:
+>> DRM may support multiple in-kernel clients that run as soon as a DRM
+>> driver has been registered. To select the client(s) in a single place,
+>> introduce drm_client_setup().
+>>
+>> Drivers that call the new helper automatically instantiate the kernel's
+>> configured default clients. Only fbdev emulation is currently supported.
+>> Later versions can add support for DRM-based logging, a boot logo or even
+>> a console.
+> I really like the direction this is taking :-)
+>
+>> Some drivers handle the color mode for clients internally. Provide the
+>> helper drm_client_setup_with_color_mode() for them.
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> ---
+>>   drivers/gpu/drm/Makefile           |  1 +
+>>   drivers/gpu/drm/drm_client_setup.c | 55 ++++++++++++++++++++++++++++++
+>>   include/drm/drm_client_setup.h     | 12 +++++++
+>>   3 files changed, 68 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/drm_client_setup.c
+>>   create mode 100644 include/drm/drm_client_setup.h
+>>
+>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>> index 0beb55d028a8..e7fc77d1d573 100644
+>> --- a/drivers/gpu/drm/Makefile
+>> +++ b/drivers/gpu/drm/Makefile
+>> @@ -129,6 +129,7 @@ drm_kms_helper-y := \
+>>   	drm_atomic_helper.o \
+>>   	drm_atomic_state_helper.o \
+>>   	drm_bridge_connector.o \
+>> +	drm_client_setup.o \
+>>   	drm_crtc_helper.o \
+>>   	drm_damage_helper.o \
+>>   	drm_encoder_slave.o \
+>> diff --git a/drivers/gpu/drm/drm_client_setup.c b/drivers/gpu/drm/drm_client_setup.c
+>> new file mode 100644
+>> index 000000000000..2e3315f5c3e2
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_client_setup.c
+>> @@ -0,0 +1,55 @@
+>> +// SPDX-License-Identifier: MIT
+>> +
+>> +#include <drm/drm_client_setup.h>
+>> +#include <drm/drm_device.h>
+>> +#include <drm/drm_fbdev_client.h>
+>> +#include <drm/drm_fourcc.h>
+>> +#include <drm/drm_print.h>
+>> +
+>> +/**
+>> + * drm_client_setup() - Setup in-kernel DRM clients
+>> + * @dev: DRM device
+>> + * @format: Preferred color format for the device. Use NULL, unless
+> s/color format/pixel format/
 
-I'm not too familiar with fb code, but if I'm not wrong you're adding
-dedicated padding on ggtt to keep fb in 64K chunks, but this is virtual
-range. Display folks said we should use physically contiguous 64K pages
-due to decompression CCS is resolved at physical addressing, not virtual.
+Ah, ok.
 
-If I don't understand your code correctly, just forget about above note.
+>
+>> + *          there is clearly a driver-preferred format.
+>> + *
+>> + * This function sets up the in-kernel DRM clients. Restore, hotplug
+>> + * events and teardown are all taken care of.
+>> + *
+>> + * Drivers should call drm_client_setup() after registering the new
+>> + * DRM device with drm_dev_register(). This function is safe to call
+>> + * even when there are no connectors present. Setup will be retried
+>> + * on the next hotplug event.
+>> + *
+>> + * The clients are destroyed by drm_dev_unregister().
+>> + */
+>> +void drm_client_setup(struct drm_device *dev, const struct drm_format_info *format)
+>> +{
+>> +	int ret;
+>> +
+>> +	if (!format)
+>> +		format = drm_format_info(DRM_FORMAT_XRGB8888);
+>> +
+>> +	ret = drm_fbdev_client_setup(dev, format);
+>> +	if (ret)
+>> +		drm_warn(dev, "Failed to set up DRM client; error %d\n", ret);
+>> +}
+>> +EXPORT_SYMBOL(drm_client_setup);
+>> +
+>> +/**
+>> + * drm_client_setup_with_color_mode() - Setup in-kernel DRM clients for color mode
+>> + * @dev: DRM device
+>> + * @color_mode: Preferred color mode for the device
+>> + *
+>> + * This function sets up the in-kernel DRM clients. It is equivalent
+>> + * to drm_client_setup(), but expects a color mode as second argument.
+>> + *
+>> + * Do not use this function in new drivers. Prefer drm_client_setup() with a
+>> + * format of NULL.
+>> + */
+>> +void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode)
+>> +{
+>> +	uint32_t fmt = drm_driver_color_mode_format(dev, color_mode);
+>> +
+>> +	drm_client_setup(dev, drm_format_info(fmt));
+>> +}
+>> +EXPORT_SYMBOL(drm_client_setup_with_color_mode);
+>> diff --git a/include/drm/drm_client_setup.h b/include/drm/drm_client_setup.h
+>> new file mode 100644
+>> index 000000000000..f5fd1fabd4b1
+>> --- /dev/null
+>> +++ b/include/drm/drm_client_setup.h
+>> @@ -0,0 +1,12 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +
+>> +#ifndef DRM_CLIENT_SETUP_H
+>> +#define DRM_CLIENT_SETUP_H
+>> +
+>> +struct drm_device;
+>> +struct drm_format_info;
+>> +
+>> +void drm_client_setup(struct drm_device *dev, const struct drm_format_info *format);
+>> +void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode);
+> This is not common in DRM, so we may not want to introduce it here, but
+> _Generic() gives a nice function overloading syntax:
+>
+> void drm_client_setup_with_format(struct drm_device *dev, const struct drm_format_info *format);
+> void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode);
+>
+> #define drm_client_setup_(dev, format_or_color_mode)							 \
+> 	_Generic(format_or_color_mode,									 \
+> 		const struct drm_format_info *: drm_client_setup_with_format(dev, format_or_color_mode), \
+> 		unsigned int: drm_client_setup_with_color_mode(dev, format_or_color_mode)		 \
+> 	)
+>
+> Up to you.
 
+The color format is really a user interface. I'd rather like to remove 
+it from the implementation where possible.
+
+Best regards
+Thomas
+
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>
+>> +
+>> +#endif
+
+-- 
 --
-Zbigniew
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
-> +}
-> +
-> +static inline void pad_bmg_dpt(struct xe_device *xe, const struct intel_framebuffer *fb,
-> +			       struct iosys_map *map, u32 ofs)
-> +{
-> +	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-> +	struct xe_bo *bo = intel_fb_obj(&fb->base);
-> +	u32 pad = 16 - (ofs % 16), x;
-> +	u64 pte;
-> +
-> +	if (!needs_bmg_64k_workaround(xe, fb))
-> +		return;
-> +
-> +	if (!(ofs % 16))
-> +		return;
-> +
-> +	pte = ggtt->pt_ops->pte_encode_bo(bo, 0, xe->pat.idx[XE_CACHE_NONE]);
-> +
-> +	/* Start over with the first few pages, dpt is always aligned to a multiple
-> +		* of 512 pages, which means that there is enough padding here
-> +		*/
-> +	for (x = 0; x < pad; x++)
-> +		iosys_map_wr(map, (ofs + x) * 8, u64, pte);
-> +}
-> +
-> +static inline void pad_bmg_ggtt(struct xe_device *xe, const struct intel_framebuffer *fb, u32 ofs)
-> +{
-> +	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-> +	struct xe_bo *bo = intel_fb_obj(&fb->base);
-> +	u32 pad = SZ_64K - (ofs % SZ_64K), x;
-> +	u64 pte;
-> +
-> +	if (!needs_bmg_64k_workaround(xe, fb))
-> +		return;
-> +
-> +	if (!(ofs % SZ_64K))
-> +		return;
-> +
-> +	pte = ggtt->pt_ops->pte_encode_bo(bo, 0, xe->pat.idx[XE_CACHE_NONE]);
-> +
-> +	for (x = 0; x < pad; x += XE_PAGE_SIZE)
-> +		ggtt->pt_ops->ggtt_set_pte(ggtt, ofs + x, pte);
-> +}
-> +
->  static void
-> -write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
-> +write_dpt_rotated(const struct intel_framebuffer *fb, struct xe_bo *bo,
-> +		  struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
->  		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
->  {
->  	struct xe_device *xe = xe_bo_device(bo);
-> @@ -39,6 +99,9 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
->  			src_idx -= src_stride;
->  		}
->  
-> +		/* Just pad everything out of paranoia? */
-> +		pad_bmg_dpt(xe, fb, map, *dpt_ofs / 8);
-> +
->  		/* The DE ignores the PTEs for the padding tiles */
->  		*dpt_ofs += (dst_stride - height) * 8;
->  	}
-> @@ -128,6 +191,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
->  
->  			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
->  		}
-> +
-> +		/* BMG is crappy, just pad everything? */
-> +		pad_bmg_dpt(xe, fb, &dpt->vmap, x);
->  	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
->  		const struct intel_remapped_info *remap_info = &view->remapped;
->  		u32 i, dpt_ofs = 0;
-> @@ -145,7 +211,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
->  		u32 i, dpt_ofs = 0;
->  
->  		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
-> -			write_dpt_rotated(bo, &dpt->vmap, &dpt_ofs,
-> +			write_dpt_rotated(fb, bo, &dpt->vmap, &dpt_ofs,
->  					  rot_info->plane[i].offset,
->  					  rot_info->plane[i].width,
->  					  rot_info->plane[i].height,
-> @@ -159,7 +225,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
->  }
->  
->  static void
-> -write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo_ofs,
-> +write_ggtt_rotated(const struct intel_framebuffer *fb,
-> +		   struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo_ofs,
->  		   u32 width, u32 height, u32 src_stride, u32 dst_stride)
->  {
->  	struct xe_device *xe = xe_bo_device(bo);
-> @@ -177,6 +244,8 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
->  			src_idx -= src_stride;
->  		}
->  
-> +		pad_bmg_ggtt(xe, fb, *ggtt_ofs);
-> +
->  		/* The DE ignores the PTEs for the padding tiles */
->  		*ggtt_ofs += (dst_stride - height) * XE_PAGE_SIZE;
->  	}
-> @@ -201,7 +270,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
->  		goto out;
->  
->  	align = XE_PAGE_SIZE;
-> -	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
-> +	if ((xe_bo_is_vram(bo) && (ggtt->flags & XE_GGTT_FLAGS_64K)) ||
-> +	    needs_bmg_64k_workaround(xe, fb))
->  		align = max_t(u32, align, SZ_64K);
->  
->  	if (bo->ggtt_node.size && view->type == I915_GTT_VIEW_NORMAL) {
-> @@ -220,6 +290,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
->  
->  			ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node.start + x, pte);
->  		}
-> +
-> +		pad_bmg_ggtt(xe, fb, vma->node.start + x);
->  	} else {
->  		u32 i, ggtt_ofs;
->  		const struct intel_rotation_info *rot_info = &view->rotated;
-> @@ -235,7 +307,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
->  		ggtt_ofs = vma->node.start;
->  
->  		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
-> -			write_ggtt_rotated(bo, ggtt, &ggtt_ofs,
-> +			write_ggtt_rotated(fb, bo, ggtt, &ggtt_ofs,
->  					   rot_info->plane[i].offset,
->  					   rot_info->plane[i].width,
->  					   rot_info->plane[i].height,
-> -- 
-> 2.45.2
-> 
