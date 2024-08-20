@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23706C531DC
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 17:29:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8587C531DF
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 17:29:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA9B310E7F1;
-	Tue, 20 Aug 2024 17:29:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7232D10E7F5;
+	Tue, 20 Aug 2024 17:29:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Txxf84II";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VKMzzX8I";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7793010E7F1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0DB410E7F1
  for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 17:29:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724174942; x=1755710942;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sXHu63RT1f6RczNi0BQTGIIXaq9Hk0CoRi4Z43fCQ7g=;
- b=Txxf84II4zYOT4RJAK6+oIKMpqxeIUbOAfw/U2e93GEs6dED9gf0KO01
- VjqjcB5v0avP6j0j+XxqTTnrRhTsrbYRvQ5Hz6lA2dhr7nKjoXmeNAQyu
- xMvHL2s1MIbXUZNRvUKpXsYlLa0q5IBRt5NNW6IMMdmIXS0SpSOAv6l/j
- 7ahWLckBPzMSFd9MDHL52MpQywVQgNX5B03bFMtF7SV6nU2evOlW89mKn
- Jk0+fr9zg5+wabIbheEumdVxQTAhW7lVpWdS7ew6+1tmGVTW3xEsAotTK
- aueTlyZN62rEFHnwosZJ7Y4A9SrSaD1dGmRvMBTKtJv1x2MHAh2UEKjfI A==;
-X-CSE-ConnectionGUID: x4dDkPagRIGY4dGtR946Jw==
-X-CSE-MsgGUID: JarXxknQRXmtjTXQ6ZUUhA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26365491"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26365491"
+ t=1724174943; x=1755710943;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=ei0j1Drw7ki+Ae72DGQkB2QDAqG4ew2jyJ1cud8aIaI=;
+ b=VKMzzX8IVtzgVGZXVsMoRo1G/4vA+LvjEl4mnPypOAnIVfHssIXJexu6
+ RwL1XiW1tHB/R5fZzq46/h7ZGOUOBwA/kLWLPHT6+R8k1jwh0VK1iW+u+
+ kvYmrv0rNYM0iWRpLKsL0uWI6+eHWSH4BjiaxSjlcd4Ji8jt1uuwCCvuz
+ Ggt+cTULp+upKdBk+4CHnvNq2g5gzoug53RAahAKr9pkrM5wiojndH0R5
+ 2SwlEzdvZpmFNZ+zHidGnPpjwxRr25Jed1/byia3F97NksBmboli5tSsY
+ /aIrN3Ihzge2B8FS6EHAA/VB5H9RKHkJgekFPv/wvCU83c1aNhSBr0cxc A==;
+X-CSE-ConnectionGUID: E3853yQISf+SjGmIHhNQug==
+X-CSE-MsgGUID: DRThsthlS+am7KkdAMymDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26365495"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26365495"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Aug 2024 10:29:02 -0700
-X-CSE-ConnectionGUID: wIO3JichQwWvSlIT2ORHug==
-X-CSE-MsgGUID: 2B8nruC5TEeHDZv2chQRnw==
+X-CSE-ConnectionGUID: /4X7QD5mRbekWxHNi4GM6Q==
+X-CSE-MsgGUID: EizahM65SqSU3lkeiIHULw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65651734"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65651738"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Aug 2024 10:29:03 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/6] Driver load failure fixes 
-Date: Tue, 20 Aug 2024 10:29:52 -0700
-Message-Id: <20240820172958.1095143-1-matthew.brost@intel.com>
+Subject: [PATCH v2 4/6] drm/xe: Move hw_engine_fini to devm managed
+Date: Tue, 20 Aug 2024 10:29:56 -0700
+Message-Id: <20240820172958.1095143-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240820172958.1095143-1-matthew.brost@intel.com>
+References: <20240820172958.1095143-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,27 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Sending the fixes from [1] as an individual series
+Kernel BOs are destroyed with GGTT mappings, this is hardware
+interaction so use devm.
 
-[1] https://patchwork.freedesktop.org/series/137114/
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Matthew Brost (6):
-  drm/xe: Move ggtt_fini to devm managed
-  drm/xe: Set firmware state to loadable before registering guc_fini_hw
-  drm/xe: Drop warn on xe_guc_pc_gucrc_disable in guc pc fini
-  drm/xe: Move hw_engine_fini to devm managed
-  drm/xe: Move HuC init before GuC init
-  drm/xe: Update xe_sa to use xe_managed_bo_create_pin_map
-
- drivers/gpu/drm/xe/xe_ggtt.c      |  4 ++--
- drivers/gpu/drm/xe/xe_guc.c       |  4 ++--
- drivers/gpu/drm/xe/xe_guc_pc.c    |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c |  4 ++--
- drivers/gpu/drm/xe/xe_sa.c        | 13 ++++++-------
- drivers/gpu/drm/xe/xe_sa_types.h  |  1 +
- drivers/gpu/drm/xe/xe_uc.c        |  8 ++++----
- 7 files changed, 18 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index aa9b2b16a6e0..18980238a2ea 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -267,7 +267,7 @@ static const struct engine_info engine_infos[] = {
+ 	},
+ };
+ 
+-static void hw_engine_fini(struct drm_device *drm, void *arg)
++static void hw_engine_fini(void *arg)
+ {
+ 	struct xe_hw_engine *hwe = arg;
+ 
+@@ -585,7 +585,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	if (xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY)
+ 		gt->usm.reserved_bcs_instance = hwe->instance;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
++	return devm_add_action_or_reset(xe->drm.dev, hw_engine_fini, hwe);
+ 
+ err_kernel_lrc:
+ 	xe_lrc_put(hwe->kernel_lrc);
 -- 
 2.34.1
 
