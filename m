@@ -4,58 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1D01C3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 07:43:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0200C5321D
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 07:52:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECE710E331;
-	Tue, 20 Aug 2024 07:43:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9328510E49D;
+	Tue, 20 Aug 2024 07:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BFSElBvk";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="1bX46hiu";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VTg6O65y";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="sd4P/8N/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="c1kIz9AL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 796C710E331
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 07:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724139826; x=1755675826;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=gVB9s2obcpytBMmzG+6BLJ2jbNIYUFM2vcMYDl4UUa4=;
- b=BFSElBvkgFO5MkzKKv8/mq04TSHsMPc3lF1XsRj/4wFjpsJbun1YXEbn
- clr0wsikorTFu9k3DNmVUaCSHJ6+6wPq7Q143lv082cySfzV6hd8HyMcT
- uS80QuOOoctqyAOdVMXlJNzPRMSim3FlrpUtRM8Jh/6p/Glj2HketHhlC
- kk+R2H26r50VBZE+mgmG6SpJjegxSkbfjV+FhsP+pU59txLz8Rs27H4IU
- kdTBzkfxNQQD0T7x35LlNCxFRfGA45SfV5a3udJd1U6jVuoRGeLz2slyW
- jxG9E4Jg0lcn8dcXlUfK92v3mwZOq3oOfl6MOwfxyz1XbT5kGPUCsAW8W Q==;
-X-CSE-ConnectionGUID: It0uDs5cRqCkeHcUdGnGsw==
-X-CSE-MsgGUID: mLwRo17rQHeI4oiD12TmCA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="26287956"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="26287956"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 00:43:45 -0700
-X-CSE-ConnectionGUID: OHfPMFEMQsKqmmTkLCtW8w==
-X-CSE-MsgGUID: MshdGgv2RdWtubonvxa9hg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="60688903"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.184])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 00:43:43 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] drm/xe: Read out rawclk_freq for display
-In-Reply-To: <20240819133138.147511-2-maarten.lankhorst@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
- <20240819133138.147511-2-maarten.lankhorst@linux.intel.com>
-Date: Tue, 20 Aug 2024 10:43:40 +0300
-Message-ID: <87msl763mb.fsf@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AB3910E347;
+ Tue, 20 Aug 2024 07:52:21 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id C69CB1FFAC;
+ Tue, 20 Aug 2024 07:52:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724140340; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=sHA5eS9DH9s3q+Ijn5aePCVXLPg4ADY2YkA3YkqeMfQ=;
+ b=1bX46hiuk9F5eW57AHTvHGWfFNbQJXNVOsfOLhA/ZDJMmUmglEWNDSPREo+MVv8wWIKdLo
+ aeBWZydd8iRElQk7uwrTzbnCBVH+JTEQ+ypEmMiX3fYdY5WUyN/aN9bw9iL69dHstIyrBZ
+ 7+Fx74lMWQnpbo4UsWlgG3somO9Wqmk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724140340;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=sHA5eS9DH9s3q+Ijn5aePCVXLPg4ADY2YkA3YkqeMfQ=;
+ b=VTg6O65ypb3sPVOntpJqsL1O8YNfsaTdJXmQFa2dcKYIakilGAzGFdOzoE5S44XqdkyOLK
+ ROaoALgynRS09rAA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b="sd4P/8N/";
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=c1kIz9AL
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724140338; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=sHA5eS9DH9s3q+Ijn5aePCVXLPg4ADY2YkA3YkqeMfQ=;
+ b=sd4P/8N/AnMU566baZILHp931z5mOxvwoVVe6x3eAcIo2HR9UsYf3Lr/wKwHi5RC882jG5
+ Hp3VvBupSxdM5nXRFbpeQGK7lba164GSUwGxpy8+bX46rQYfm4dE5NZGmHd6VxpEE/YVHG
+ E+W2cknix7WFgPIouQFLVKCbWf2QCvc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724140338;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=sHA5eS9DH9s3q+Ijn5aePCVXLPg4ADY2YkA3YkqeMfQ=;
+ b=c1kIz9ALM5X8Jox0y1vWo0dnDMYdtjEp851RVEyl4SU0quQhI/Y5d4ZVkJ8RZlM2z/kLD3
+ lLanarcPvsvZo4Ag==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7038113770;
+ Tue, 20 Aug 2024 07:52:18 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id +hszGjJLxGYwIgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 20 Aug 2024 07:52:18 +0000
+Message-ID: <2f1fcff4-e39c-45c1-89ef-b6aafa12b1f7@suse.de>
+Date: Tue, 20 Aug 2024 09:52:18 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 48/86] drm/xlnx: Run DRM default client setup
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
+ javierm@redhat.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Michal Simek <michal.simek@amd.com>
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-49-tzimmermann@suse.de>
+ <20240818201925.GI29465@pendragon.ideasonboard.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20240818201925.GI29465@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C69CB1FFAC
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ ARC_NA(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[12]; MIME_TRACE(0.00)[0:+];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,lists.freedesktop.org,ideasonboard.com,amd.com];
+ MID_RHS_MATCH_FROM(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
+ DKIM_TRACE(0.00)[suse.de:+]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email, suse.de:dkim, suse.de:mid,
+ imap1.dmz-prg2.suse.org:helo, imap1.dmz-prg2.suse.org:rdns, amd.com:email,
+ ideasonboard.com:email]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +155,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 19 Aug 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
-> Failing to read out rawclk makes it impossible to read out backlight,
-> which results in backlight not working when the backlight is off during
-> boot, or when reloading the module.
+Hi
+
+Am 18.08.24 um 22:19 schrieb Laurent Pinchart:
+> Hi Thomas,
 >
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
-> Cc: <stable@vger.kernel.org> # v6.8+
-
-Please find another way. See [1]. I'm trying to clean up the whole
-RUNTIME_INFO() and rawclk_freq thing, and this makes it harder.
-
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/r/ddd05f84ca4a6597133bee55ddf4ab593a16e99d.1717672515.git.jani.nikula@intel.com
-
-> ---
->  drivers/gpu/drm/xe/display/xe_display.c | 3 +++
->  1 file changed, 3 insertions(+)
+> Thank you for the patch.
 >
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 30dfdac9f6fa9..79add15c6c4c7 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -159,6 +159,9 @@ int xe_display_init_noirq(struct xe_device *xe)
->  
->  	intel_display_device_info_runtime_init(xe);
->  
-> +	RUNTIME_INFO(xe)->rawclk_freq = intel_read_rawclk(xe);
-> +	drm_dbg(&xe->drm, "rawclk rate: %d kHz\n", RUNTIME_INFO(xe)->rawclk_freq);
-> +
->  	err = intel_display_driver_probe_noirq(xe);
->  	if (err) {
->  		intel_opregion_cleanup(display);
+> On Fri, Aug 16, 2024 at 02:23:14PM +0200, Thomas Zimmermann wrote:
+>> Call drm_client_setup() to run the kernel's default client setup
+>> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+>> setup can start the common fbdev client.
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> Cc: Michal Simek <michal.simek@amd.com>
+>> ---
+>>   drivers/gpu/drm/xlnx/zynqmp_kms.c | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+>> index bd1368df7870..f26b119322d5 100644
+>> --- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
+>> +++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+>> @@ -14,6 +14,7 @@
+>>   #include <drm/drm_blend.h>
+>>   #include <drm/drm_bridge.h>
+>>   #include <drm/drm_bridge_connector.h>
+>> +#include <drm/drm_client_setup.h>
+>>   #include <drm/drm_connector.h>
+>>   #include <drm/drm_crtc.h>
+>>   #include <drm/drm_device.h>
+>> @@ -402,6 +403,7 @@ static const struct drm_driver zynqmp_dpsub_drm_driver = {
+>>   					  DRIVER_ATOMIC,
+>>   
+>>   	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(zynqmp_dpsub_dumb_create),
+>> +	DRM_FBDEV_DMA_DRIVER_OPS,
+>>   
+>>   	.fops				= &zynqmp_dpsub_drm_fops,
+>>   
+>> @@ -523,7 +525,7 @@ int zynqmp_dpsub_drm_init(struct zynqmp_dpsub *dpsub)
+>>   		goto err_poll_fini;
+>>   
+>>   	/* Initialize fbdev generic emulation. */
+>> -	drm_fbdev_dma_setup(drm, 24);
+>> +	drm_client_setup(drm, drm_format_info(DRM_FORMAT_RGB888));
+> I know this would be a hassle to change, but do the majority of the
+> callers of drm_client_setup() have a drm_format_info * already, or do
+> they need to call drm_format_info() on a 4CC ? In the latter case, would
+> it be better to pass the 4CC to drm_client_setup() ?
+
+Good idea. Most of the drivers have a 4cc code, but no format-info 
+pointer. I think there are enough instances that it makes sense to add a 
+little helper, drm_client_setup_with_fourcc(), for these drivers.
+
+There's also preferred_depth from drm_mode_config. It's already used in 
+the client mode-setting code. That means that in some drivers, the 
+format parameter to drm_client_setup() could likely be dropped.
+
+Best regards
+Thomas
+
+>
+> As far as this patch goes,
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>
+>>   
+>>   	return 0;
+>>   
 
 -- 
-Jani Nikula, Intel
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
