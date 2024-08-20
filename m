@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19984C5472D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23F02C5472E
 	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 02:11:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9576910E497;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3FA210E499;
 	Tue, 20 Aug 2024 02:11:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LceinRbg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CvSHp/Cu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 684B310E27D
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 02:11:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 570F810E27D
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 02:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724119904; x=1755655904;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yTx7BSZASKAU5eXxSkcOpAvSJswUA0WfM9Rl3/kJ0IA=;
- b=LceinRbgk74HbT9rjPF7cKd+nzSGmofxH6+13r/vV8UeYZaYjYzJNl0G
- llFG8dv5LMc7rQWEjlUwdcAZ5vDxhFhlZuKIllk/gRYRwnVOI93GEkI7z
- +JlSVvjLxzIlDeQnXb3Ojg+pylHK5CfBKpFhJyXQIElzjaE/Mqw0KQnKX
- 8JWtR9WHP3nuaTOeBVb3aQuG5AObFtn9VIxHJQL0yd+7tc1XI5MTOpy5Y
- r7AWNpd68LZ8NN8luDPz67udSPNxO3vP5bS14tC5S3aqcsX+HxFXfpdUJ
- FNehJYgFgxNodKF4lDc8JqpoK398Md9kkQtARgzwKBJbRUrfF1a911cLX w==;
-X-CSE-ConnectionGUID: 2YlmX85wRwmbgZdVsELJHg==
-X-CSE-MsgGUID: 1YyKlMvWS6KBx2Zf2ssOlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="33780398"
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="33780398"
+ t=1724119905; x=1755655905;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=koanpfgncJhyIpu8mkE6HXc/9XDo+cG5Y/aKcHoYnLQ=;
+ b=CvSHp/CuBp0B8pHXpQjR274GAE1C/P42FT+itaLWQfpKm1gzToYC9Uq0
+ Q0RcZdWeR/22xHIrEWBAWtY5vykZFAWncgO1sSAt9eTx/on+AqQLCp1N8
+ avq6HUNalwQkd7pgntCsgyJDYf2Cu2KGoTZ26xK2hogtoTW1lVtGj2Asq
+ Ii3dxgs9rOz+ZsXY3D28HWEHGU1QUF6bzOxw291lUZ6I63rwE6pE4h/SV
+ bc2g+9qepuO92Vc4ugBZWmFSmiJTF6hX7oagySNzAnrGyXvb9FThgngdb
+ HkJhth1cdVyxBCgAQ/G0LzZn2SewxgnIXhmzwNdjLML3FfFvFnvhm2rLD g==;
+X-CSE-ConnectionGUID: r8jwTkTUTs6LYT9Tg0v/kg==
+X-CSE-MsgGUID: AZYO6JpfSwiJslncJP/GBA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="33780414"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="33780414"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Aug 2024 19:11:44 -0700
-X-CSE-ConnectionGUID: zLav2PbwS/mQ8zB531ohrA==
-X-CSE-MsgGUID: W3uQB7ZaToSF1R9//N3WNA==
+X-CSE-ConnectionGUID: pil3UXmTSti8Tze9TxjkjQ==
+X-CSE-MsgGUID: M67yQXULSkGcDvhQiWOWMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="61126091"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="61126118"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa007.jf.intel.com with ESMTP; 19 Aug 2024 19:11:44 -0700
+ by orviesa007.jf.intel.com with ESMTP; 19 Aug 2024 19:11:45 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH v16 0/7] drm/xe/guc: Add GuC based register capture for error
- capture
-Date: Mon, 19 Aug 2024 19:11:35 -0700
-Message-Id: <20240820021142.436536-1-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v16 5/7] drm/xe/guc: Move xe_lrc_snapshot to header file
+Date: Mon, 19 Aug 2024 19:11:40 -0700
+Message-Id: <20240820021142.436536-6-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240820021142.436536-1-zhanjun.dong@intel.com>
+References: <20240820021142.436536-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,122 +65,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Port GuC based register capture for error capture from i915 to Xe.
-
-There are 3 parts inside:
-. Prepare for capture registers
-    There is a bo create at guc ads init time, that is very early
-    and engi  ne map is not ready, make it hard to calculate the
-    capture buffer size, new function created for worst case size
-    caluation. Other than that, this part basically follows the i915
-    design.
-. Process capture notification message
-    Basically follows i915 design
-. Sysfs command process.
-    Xe switched to devcoredump, adopted command line process with
-    captured node list.
+Move xe_lrc_snapshot structure define to header file, GuC capture feature
+need to access structure fields.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c       | 18 ------------------
+ drivers/gpu/drm/xe/xe_lrc_types.h | 18 +++++++++++++++++-
+ 2 files changed, 17 insertions(+), 19 deletions(-)
 
-Changes from prior revs:
- v16:-  Switch to single list of capture register define, remove MMIO registers
-        from snapshot structure.
-        Seperate register capture list for legacy GPUs
-        Rewrite 64bit register support method, add field to indicate hi/low
-        dword of 64 bit or a single 32 bit register
-        Update the wrost size calculation method
- v15:-  Optimized guc log size code, remove the unnecessary init structure.
-        Fix a rebase line number alignment error
- v14:-  Fixed ring buffer wrap around offset issue
- v13:-  Move guc_mmio_reg structure define to guc_capture_abi.h
-        Remove duplicated crash/debug/capture unit check
-        Remove unnecessary guc_capture_data_extracted
-        Update u32 align check in guc_capture_log_remove_bytes
- v12:-  Rewrite guc log size init from runtime to compile time implementation.
-        Change log buffer flush to file from structure bitfield to genmask.
-        Change the capture log data copy from u32 copy to size copy
-        There are 3 types of engine class refrenced in this series, hw engine
-        class, GuC class and GuC capture class, update function parameter type
-        to enum for easy to read.
-        Update macro names to follow GuC interface specification.
- v11:-  Fixed a bug of missing captured check on register snapshot pre-capture
-        Fixed kernel-doc warnings
- v10:-  Resync with updated job timed out follow
-        Add pre-capture by read from hw engine if GuC capture data is not
-        ready, the pre-captured data will be refereshed if GuC capture is
-        ready at later time.
-        Add xe_guc_capture_is_ready_for to check if GuC capture is ready
-        for a job.
-        Re-orgnize some header files to xe abi folder
-        Reduce some meesage level from warn/info to debug
-        Remove duplicated enum of GuC log type.
-  v9:-  Merged snapshot register list into capture register lists
-        Optimized devcoredump timing to take snapshot after guc reset
-        Add global and engine class registers into capture list
-        Fixed bug of incorrect matching guc class id with guc capture class id
-  v8:-  Reorgnize the order of patches
-        Change the capture size check from worst min size to worst size
-        Replace the kernel alloc with drm managed alloc
-        Replace the memcpy with xe_map_memcpy_from
-        Free GuC capture outlist as part of xe_devcoredump_free
-  v7:-  Kconfig CONFIG_DRM_XE_CAPTURE_ERROR removed
-  v6:-  Change hardcoded register snapshot fill to follow mapping tables
-        When capture is empty, take snapshot from engine
-  v5:-  Split dss helper code out as an standalone patch
-        Remove old platform registers definition.
-        Split register map table to 32 and 64bit each
-  v4:-  Move register map table to xe_hw_engine.c
-  v3:-  Remove condition compilation in code
-  v2:-  Split into multiple chunks
-
-Zhanjun Dong (7):
-  drm/xe/guc: Prepare GuC register list and update ADS size for error
-    capture
-  drm/xe/guc: Add XE_LP steered register lists
-  drm/xe/guc: Add capture size check in GuC log buffer
-  drm/xe/guc: Extract GuC error capture lists
-  drm/xe/guc: Move xe_lrc_snapshot to header file
-  drm/xe/guc: Add dss conversion from group/instance ID
-  drm/xe/guc: Plumb GuC-capture into dev coredump
-
- drivers/gpu/drm/xe/Makefile               |    1 +
- drivers/gpu/drm/xe/abi/guc_actions_abi.h  |    8 +
- drivers/gpu/drm/xe/abi/guc_capture_abi.h  |  186 +++
- drivers/gpu/drm/xe/abi/guc_log_abi.h      |   75 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |    2 +
- drivers/gpu/drm/xe/xe_devcoredump.c       |   16 +-
- drivers/gpu/drm/xe/xe_devcoredump_types.h |    2 +
- drivers/gpu/drm/xe/xe_gt_mcr.c            |   11 +
- drivers/gpu/drm/xe/xe_gt_mcr.h            |    1 +
- drivers/gpu/drm/xe/xe_guc.c               |    5 +
- drivers/gpu/drm/xe/xe_guc.h               |    5 +
- drivers/gpu/drm/xe/xe_guc_ads.c           |  152 +-
- drivers/gpu/drm/xe/xe_guc_ads_types.h     |    2 +
- drivers/gpu/drm/xe/xe_guc_capture.c       | 1834 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_capture.h       |   76 +
- drivers/gpu/drm/xe/xe_guc_capture_types.h |   72 +
- drivers/gpu/drm/xe/xe_guc_ct.c            |    2 +
- drivers/gpu/drm/xe/xe_guc_fwif.h          |   26 +-
- drivers/gpu/drm/xe/xe_guc_log.c           |  101 ++
- drivers/gpu/drm/xe/xe_guc_log.h           |   10 +-
- drivers/gpu/drm/xe/xe_guc_log_types.h     |    7 +
- drivers/gpu/drm/xe/xe_guc_submit.c        |   82 +-
- drivers/gpu/drm/xe/xe_guc_submit.h        |    2 +
- drivers/gpu/drm/xe/xe_guc_types.h         |    2 +
- drivers/gpu/drm/xe/xe_hw_engine.c         |  273 +--
- drivers/gpu/drm/xe/xe_hw_engine.h         |    2 +
- drivers/gpu/drm/xe/xe_hw_engine_types.h   |   66 +-
- drivers/gpu/drm/xe/xe_lrc.c               |   18 -
- drivers/gpu/drm/xe/xe_lrc.h               |    1 +
- drivers/gpu/drm/xe/xe_lrc_types.h         |   18 +-
- 30 files changed, 2706 insertions(+), 352 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_capture_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/guc_log_abi.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 974a9cd8c379..d350fcc81b4a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -38,24 +38,6 @@
+ 
+ #define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
+ 
+-struct xe_lrc_snapshot {
+-	struct xe_bo *lrc_bo;
+-	void *lrc_snapshot;
+-	unsigned long lrc_size, lrc_offset;
+-
+-	u32 context_desc;
+-	u32 indirect_context_desc;
+-	u32 head;
+-	struct {
+-		u32 internal;
+-		u32 memory;
+-	} tail;
+-	u32 start_seqno;
+-	u32 seqno;
+-	u32 ctx_timestamp;
+-	u32 ctx_job_timestamp;
+-};
+-
+ static struct xe_device *
+ lrc_to_xe(struct xe_lrc *lrc)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index 71ecb453f811..011d4607e585 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -55,6 +55,22 @@ struct xe_lrc {
+ 	u32 ctx_timestamp;
+ };
+ 
+-struct xe_lrc_snapshot;
++struct xe_lrc_snapshot {
++	struct xe_bo *lrc_bo;
++	void *lrc_snapshot;
++	unsigned long lrc_size, lrc_offset;
++
++	u32 context_desc;
++	u32 indirect_context_desc;
++	u32 head;
++	struct {
++		u32 internal;
++		u32 memory;
++	} tail;
++	u32 start_seqno;
++	u32 seqno;
++	u32 ctx_timestamp;
++	u32 ctx_job_timestamp;
++};
+ 
+ #endif
 -- 
 2.34.1
 
