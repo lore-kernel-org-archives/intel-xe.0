@@ -4,46 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24965C54722
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 07:40:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1D01C3DA4A
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 07:43:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB3210E324;
-	Tue, 20 Aug 2024 07:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECE710E331;
+	Tue, 20 Aug 2024 07:43:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Ots0jAAc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BFSElBvk";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 887A410E03B;
- Tue, 20 Aug 2024 07:40:43 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
- [81.175.209.231])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 024A8581;
- Tue, 20 Aug 2024 09:39:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1724139580;
- bh=cOc2yH+YwdyzwKqe3rJLyWdCVz7IIv7AvofOUKV4dhg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Ots0jAAcEcKonBtEfxOiI3MUGZHGyFZr02OzUoUlDfcATFcNQTV6Y8UbMm2hsmG5i
- gsiK4BHonxnxJqqfG7B+pmum8RY2rcxQ+k4o/vk2LFcs5pLQuX4xDASeJs5kY/dJyy
- EVSZAojrcNqXGlBs07m4eSVuYQO7PnLnx7l7JHWE=
-Date: Tue, 20 Aug 2024 10:40:14 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
- javierm@redhat.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH 04/86] drm: Add client-agnostic setup helper
-Message-ID: <20240820074014.GA24895@pendragon.ideasonboard.com>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-5-tzimmermann@suse.de>
- <20240818200735.GB729@pendragon.ideasonboard.com>
- <b82cb17f-4da7-4e7c-ad92-3c7c9abb45ee@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 796C710E331
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 07:43:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724139826; x=1755675826;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=gVB9s2obcpytBMmzG+6BLJ2jbNIYUFM2vcMYDl4UUa4=;
+ b=BFSElBvkgFO5MkzKKv8/mq04TSHsMPc3lF1XsRj/4wFjpsJbun1YXEbn
+ clr0wsikorTFu9k3DNmVUaCSHJ6+6wPq7Q143lv082cySfzV6hd8HyMcT
+ uS80QuOOoctqyAOdVMXlJNzPRMSim3FlrpUtRM8Jh/6p/Glj2HketHhlC
+ kk+R2H26r50VBZE+mgmG6SpJjegxSkbfjV+FhsP+pU59txLz8Rs27H4IU
+ kdTBzkfxNQQD0T7x35LlNCxFRfGA45SfV5a3udJd1U6jVuoRGeLz2slyW
+ jxG9E4Jg0lcn8dcXlUfK92v3mwZOq3oOfl6MOwfxyz1XbT5kGPUCsAW8W Q==;
+X-CSE-ConnectionGUID: It0uDs5cRqCkeHcUdGnGsw==
+X-CSE-MsgGUID: mLwRo17rQHeI4oiD12TmCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="26287956"
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="26287956"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 00:43:45 -0700
+X-CSE-ConnectionGUID: OHfPMFEMQsKqmmTkLCtW8w==
+X-CSE-MsgGUID: MshdGgv2RdWtubonvxa9hg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="60688903"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.184])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 00:43:43 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] drm/xe: Read out rawclk_freq for display
+In-Reply-To: <20240819133138.147511-2-maarten.lankhorst@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240819133138.147511-1-maarten.lankhorst@linux.intel.com>
+ <20240819133138.147511-2-maarten.lankhorst@linux.intel.com>
+Date: Tue, 20 Aug 2024 10:43:40 +0300
+Message-ID: <87msl763mb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b82cb17f-4da7-4e7c-ad92-3c7c9abb45ee@suse.de>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,152 +70,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+On Mon, 19 Aug 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+> Failing to read out rawclk makes it impossible to read out backlight,
+> which results in backlight not working when the backlight is off during
+> boot, or when reloading the module.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+> Cc: <stable@vger.kernel.org> # v6.8+
 
-On Tue, Aug 20, 2024 at 09:22:36AM +0200, Thomas Zimmermann wrote:
-> Am 18.08.24 um 22:07 schrieb Laurent Pinchart:
-> > On Fri, Aug 16, 2024 at 02:22:30PM +0200, Thomas Zimmermann wrote:
-> >> DRM may support multiple in-kernel clients that run as soon as a DRM
-> >> driver has been registered. To select the client(s) in a single place,
-> >> introduce drm_client_setup().
-> >>
-> >> Drivers that call the new helper automatically instantiate the kernel's
-> >> configured default clients. Only fbdev emulation is currently supported.
-> >> Later versions can add support for DRM-based logging, a boot logo or even
-> >> a console.
-> > I really like the direction this is taking :-)
-> >
-> >> Some drivers handle the color mode for clients internally. Provide the
-> >> helper drm_client_setup_with_color_mode() for them.
-> >>
-> >> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> >> ---
-> >>   drivers/gpu/drm/Makefile           |  1 +
-> >>   drivers/gpu/drm/drm_client_setup.c | 55 ++++++++++++++++++++++++++++++
-> >>   include/drm/drm_client_setup.h     | 12 +++++++
-> >>   3 files changed, 68 insertions(+)
-> >>   create mode 100644 drivers/gpu/drm/drm_client_setup.c
-> >>   create mode 100644 include/drm/drm_client_setup.h
-> >>
-> >> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> >> index 0beb55d028a8..e7fc77d1d573 100644
-> >> --- a/drivers/gpu/drm/Makefile
-> >> +++ b/drivers/gpu/drm/Makefile
-> >> @@ -129,6 +129,7 @@ drm_kms_helper-y := \
-> >>   	drm_atomic_helper.o \
-> >>   	drm_atomic_state_helper.o \
-> >>   	drm_bridge_connector.o \
-> >> +	drm_client_setup.o \
-> >>   	drm_crtc_helper.o \
-> >>   	drm_damage_helper.o \
-> >>   	drm_encoder_slave.o \
-> >> diff --git a/drivers/gpu/drm/drm_client_setup.c b/drivers/gpu/drm/drm_client_setup.c
-> >> new file mode 100644
-> >> index 000000000000..2e3315f5c3e2
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/drm_client_setup.c
-> >> @@ -0,0 +1,55 @@
-> >> +// SPDX-License-Identifier: MIT
-> >> +
-> >> +#include <drm/drm_client_setup.h>
-> >> +#include <drm/drm_device.h>
-> >> +#include <drm/drm_fbdev_client.h>
-> >> +#include <drm/drm_fourcc.h>
-> >> +#include <drm/drm_print.h>
-> >> +
-> >> +/**
-> >> + * drm_client_setup() - Setup in-kernel DRM clients
-> >> + * @dev: DRM device
-> >> + * @format: Preferred color format for the device. Use NULL, unless
-> >>
-> > s/color format/pixel format/
-> 
-> Ah, ok.
-> 
-> >> + *          there is clearly a driver-preferred format.
-> >> + *
-> >> + * This function sets up the in-kernel DRM clients. Restore, hotplug
-> >> + * events and teardown are all taken care of.
-> >> + *
-> >> + * Drivers should call drm_client_setup() after registering the new
-> >> + * DRM device with drm_dev_register(). This function is safe to call
-> >> + * even when there are no connectors present. Setup will be retried
-> >> + * on the next hotplug event.
-> >> + *
-> >> + * The clients are destroyed by drm_dev_unregister().
-> >> + */
-> >> +void drm_client_setup(struct drm_device *dev, const struct drm_format_info *format)
-> >> +{
-> >> +	int ret;
-> >> +
-> >> +	if (!format)
-> >> +		format = drm_format_info(DRM_FORMAT_XRGB8888);
-> >> +
-> >> +	ret = drm_fbdev_client_setup(dev, format);
-> >> +	if (ret)
-> >> +		drm_warn(dev, "Failed to set up DRM client; error %d\n", ret);
-> >> +}
-> >> +EXPORT_SYMBOL(drm_client_setup);
-> >> +
-> >> +/**
-> >> + * drm_client_setup_with_color_mode() - Setup in-kernel DRM clients for color mode
-> >> + * @dev: DRM device
-> >> + * @color_mode: Preferred color mode for the device
-> >> + *
-> >> + * This function sets up the in-kernel DRM clients. It is equivalent
-> >> + * to drm_client_setup(), but expects a color mode as second argument.
-> >> + *
-> >> + * Do not use this function in new drivers. Prefer drm_client_setup() with a
-> >> + * format of NULL.
-> >> + */
-> >> +void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode)
-> >> +{
-> >> +	uint32_t fmt = drm_driver_color_mode_format(dev, color_mode);
-> >> +
-> >> +	drm_client_setup(dev, drm_format_info(fmt));
-> >> +}
-> >> +EXPORT_SYMBOL(drm_client_setup_with_color_mode);
-> >> diff --git a/include/drm/drm_client_setup.h b/include/drm/drm_client_setup.h
-> >> new file mode 100644
-> >> index 000000000000..f5fd1fabd4b1
-> >> --- /dev/null
-> >> +++ b/include/drm/drm_client_setup.h
-> >> @@ -0,0 +1,12 @@
-> >> +/* SPDX-License-Identifier: MIT */
-> >> +
-> >> +#ifndef DRM_CLIENT_SETUP_H
-> >> +#define DRM_CLIENT_SETUP_H
-> >> +
-> >> +struct drm_device;
-> >> +struct drm_format_info;
-> >> +
-> >> +void drm_client_setup(struct drm_device *dev, const struct drm_format_info *format);
-> >> +void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode);
-> > This is not common in DRM, so we may not want to introduce it here, but
-> > _Generic() gives a nice function overloading syntax:
-> >
-> > void drm_client_setup_with_format(struct drm_device *dev, const struct drm_format_info *format);
-> > void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode);
-> >
-> > #define drm_client_setup_(dev, format_or_color_mode)							 \
-> > 	_Generic(format_or_color_mode,									 \
-> > 		const struct drm_format_info *: drm_client_setup_with_format(dev, format_or_color_mode), \
-> > 		unsigned int: drm_client_setup_with_color_mode(dev, format_or_color_mode)		 \
-> > 	)
-> >
-> > Up to you.
-> 
-> The color format is really a user interface. I'd rather like to remove 
-> it from the implementation where possible.
+Please find another way. See [1]. I'm trying to clean up the whole
+RUNTIME_INFO() and rawclk_freq thing, and this makes it harder.
 
-Do you mean the color mode ? If so I agree.
+BR,
+Jani.
 
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> >
-> >> +
-> >> +#endif
+
+[1] https://lore.kernel.org/r/ddd05f84ca4a6597133bee55ddf4ab593a16e99d.1717672515.git.jani.nikula@intel.com
+
+> ---
+>  drivers/gpu/drm/xe/display/xe_display.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 30dfdac9f6fa9..79add15c6c4c7 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -159,6 +159,9 @@ int xe_display_init_noirq(struct xe_device *xe)
+>  
+>  	intel_display_device_info_runtime_init(xe);
+>  
+> +	RUNTIME_INFO(xe)->rawclk_freq = intel_read_rawclk(xe);
+> +	drm_dbg(&xe->drm, "rawclk rate: %d kHz\n", RUNTIME_INFO(xe)->rawclk_freq);
+> +
+>  	err = intel_display_driver_probe_noirq(xe);
+>  	if (err) {
+>  		intel_opregion_cleanup(display);
 
 -- 
-Regards,
-
-Laurent Pinchart
+Jani Nikula, Intel
