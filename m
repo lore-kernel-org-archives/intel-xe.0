@@ -4,64 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5947C3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 13:27:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D36C531DC
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 13:33:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2E4D10E7D3;
-	Tue, 20 Aug 2024 13:27:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B17A410E7D4;
+	Tue, 20 Aug 2024 13:33:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="VQ21Zkbp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fK8z1eii";
 	dkim-atps=neutral
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96BE010E7D3
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 13:27:29 +0000 (UTC)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-a7a9e25008aso686062166b.0
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 06:27:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1724160448; x=1724765248; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=xkCQava2rvR/cK3tyz2qBcX3Ik6uJY5FdELUjFIBFrU=;
- b=VQ21Zkbp4C0xPJaNZOf2od0xphKrIuYJUCgRw2QXKdpzTvD/cyPjzuAhbiCVVGQd8b
- BY2aDvjivY5N421BFgKyQdAIeTQ+2Jx6o1azoi0rM9tLUs6CikktH9JdKHqDc0f8cigo
- uTSbY9S2GVSd/jYt6Kiq1U2gJXg2LgRak63mWmbdPakM7NroaX5xmXSOPb0N7LDQz4Ny
- XjNqI77CFf21ttNAhbUgyxPjnmK5dBWy3k7bh0bXJQlP++NjkElvpKdnBsirJV3+/tPE
- eroSWXYpSplVuyFb2tRSrZb7DUn+Ds1goTeC/2pGKNjrv6kUyyqKHxHDvx900O8D9ayE
- r2og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724160448; x=1724765248;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=xkCQava2rvR/cK3tyz2qBcX3Ik6uJY5FdELUjFIBFrU=;
- b=o0bSD6ws65jMsZH/Bp8uphbrQCKLoZ5lE9LlzW0vYadwA/pvVU96B/sVwNv/mR+WRi
- 1x71CSqLzqsIAT+f2vWIw1AT+ZNyqKYW8hGhdwYglYCP6zS5FgcmEoqczqNh/Et0eGpS
- mb9VGbh0Wyw6J+7X5TBJCXvx9ZGBVHSwKKDp7kHpWrCFi2/baH32qDEOtQdjOBGT8O3g
- X4u6/BnkPeFKh8nAtENqHZp9LJqV7Mw3dKDMFLVmCfFJScz0OVsPx+7HhSNxU4Q15pBI
- 4wgguL60cBpVp9dAitwLRcPtlT2kvXERhRMsuQM2bGUtELP5NWcxXSKyTEIJFIhg+KLg
- wTJQ==
-X-Gm-Message-State: AOJu0YxRGSd7KKCcavyU+UZD/KnKIKYFCIO1ehzQelrhnESf9gdd97tJ
- epHxMQoRiUgsLxjX0Xv/WFbz7etUeyNiYc5j1P+B2Cl0+jCBiCSJYPGGnPdkTj/p9KHTdxk6NNk
- G
-X-Google-Smtp-Source: AGHT+IFvAnvl0n9Qq7bF3XAND+pAVJS6NPk333JhpYL8VpPzxR30WecWL4Nz+IdGah3YMCutKLUbBw==
-X-Received: by 2002:a17:907:f1dd:b0:a80:7c30:a82a with SMTP id
- a640c23a62f3a-a8392a4ba22mr1023040266b.69.1724160447711; 
- Tue, 20 Aug 2024 06:27:27 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a8383934508sm765679466b.101.2024.08.20.06.27.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Aug 2024 06:27:27 -0700 (PDT)
-Date: Tue, 20 Aug 2024 16:27:22 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Francois Dugast <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [bug report] 'drm/xe/hw_engine_group: Register hw engine group's
- exec queues
-Message-ID: <30223f25-dfdb-402a-b8eb-4962edf8b546@stanley.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 342D710E7D4;
+ Tue, 20 Aug 2024 13:33:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724160827; x=1755696827;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=GUDTef32w6NC9/PmUaPHd4SwljSuMc10LzU6k9qeT4Y=;
+ b=fK8z1eiiTm0Uo5fMXPHVUaVd8PykApbivWa+ipzgUVbEHKxpT/UNaMKu
+ KjL934FWfw5wCK4nc0QXWi3LZB0Lcjd/mm7ZO9N0crwEAhIBRe0Yry8NF
+ ocGjti/7LP2p4sj+Rkg3TyZ2KC53OBfsLHsC+iXHIPbYqL37dB3KnhOvN
+ z5CFiJkErIHYalJ9RaJLq1xybfi/+J6Rjo+zR7LOzTCbF2EYhi6RuyLhT
+ RSijcy3n1t+QAxm6a6YL5QSwF4B8UpJVfzvOIuF52znd6XTCm3NlSk3hT
+ 8T0TbmoU2cZJ1OTXXgvw6pALIq6Bi6cE4RoQINeFSIozHkLcbrXlCHlM8 w==;
+X-CSE-ConnectionGUID: bCjpIHtARIiRUVtNBJCzEA==
+X-CSE-MsgGUID: yLzvZ46FTW2N00ct/9Yq7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="33614874"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="33614874"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 06:33:47 -0700
+X-CSE-ConnectionGUID: q6lcPdq5TjeESUBRSW86Sg==
+X-CSE-MsgGUID: wFFaG+C1R7q+ixiQ4ABnvw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65596413"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.245.74])
+ ([10.245.245.74])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 06:33:46 -0700
+Message-ID: <a09a268099ef61c46cf53f0d8847a8f07caa210e.camel@linux.intel.com>
+Subject: Re: [PATCH v6 1/2] drm/ttm: Add a flag to allow drivers to skip
+ clear-on-free
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>, 
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Date: Tue, 20 Aug 2024 15:33:43 +0200
+In-Reply-To: <20240816135154.19678-1-nirmoy.das@intel.com>
+References: <20240816135154.19678-1-nirmoy.das@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,55 +73,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Francois Dugast,
+Hi, Nirmoy, Christian
 
-Commit 7970cb36966c ("'drm/xe/hw_engine_group: Register hw engine
-group's exec queues") from Aug 9, 2024 (linux-next), leads to the
-following Smatch static checker warning:
+On Fri, 2024-08-16 at 15:51 +0200, Nirmoy Das wrote:
+> Add TTM_TT_FLAG_CLEARED_ON_FREE, which DRM drivers can set before
+> releasing backing stores if they want to skip clear-on-free.
+>=20
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-drivers/gpu/drm/xe/xe_device.c:171 xe_file_close() error: we previously assumed 'q->vm' could be null (see line 169)
-drivers/gpu/drm/xe/xe_exec_queue.c:649 xe_exec_queue_create_ioctl() error: we previously assumed 'q->vm' could be null (see line 630)
-drivers/gpu/drm/xe/xe_exec_queue.c:829 xe_exec_queue_destroy_ioctl() error: we previously assumed 'q->vm' could be null (see line 826)
+What happens if two devices share the same global TTM pool
+ type and one that does its own clearing. Wouldn't there be a pretty
+high chance that the the device that doesn't clear its own pages
+allocate non-cleared memory from the pool?
 
-drivers/gpu/drm/xe/xe_device.c
-    152 static void xe_file_close(struct drm_device *dev, struct drm_file *file)
-    153 {
-    154         struct xe_device *xe = to_xe_device(dev);
-    155         struct xe_file *xef = file->driver_priv;
-    156         struct xe_vm *vm;
-    157         struct xe_exec_queue *q;
-    158         unsigned long idx;
-    159 
-    160         xe_pm_runtime_get(xe);
-    161 
-    162         /*
-    163          * No need for exec_queue.lock here as there is no contention for it
-    164          * when FD is closing as IOCTLs presumably can't be modifying the
-    165          * xarray. Taking exec_queue.lock here causes undue dependency on
-    166          * vm->lock taken during xe_exec_queue_kill().
-    167          */
-    168         xa_for_each(&xef->exec_queue.xa, idx, q) {
-    169                 if (q->vm && q->hwe->hw_engine_group)
-                            ^^^^^
-The commit adds a NULL check but if q->vm is NULL
+/Thomas
 
-    170                         xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
---> 171                 xe_exec_queue_kill(q);
-                                           ^
-Then this function call will lead to a crash.  The other warnings are basically
-the same.
+> ---
+> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 18 +++++++++++-------
+> =C2=A0include/drm/ttm/ttm_tt.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 6 +++++-
+> =C2=A02 files changed, 16 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
+> b/drivers/gpu/drm/ttm/ttm_pool.c
+> index 8504dbe19c1a..935ab3cfd046 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -222,15 +222,18 @@ static void ttm_pool_unmap(struct ttm_pool
+> *pool, dma_addr_t dma_addr,
+> =C2=A0}
+> =C2=A0
+> =C2=A0/* Give pages into a specific pool_type */
+> -static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page
+> *p)
+> +static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page
+> *p,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool cleared)
+> =C2=A0{
+> =C2=A0	unsigned int i, num_pages =3D 1 << pt->order;
+> =C2=A0
+> -	for (i =3D 0; i < num_pages; ++i) {
+> -		if (PageHighMem(p))
+> -			clear_highpage(p + i);
+> -		else
+> -			clear_page(page_address(p + i));
+> +	if (!cleared) {
+> +		for (i =3D 0; i < num_pages; ++i) {
+> +			if (PageHighMem(p))
+> +				clear_highpage(p + i);
+> +			else
+> +				clear_page(page_address(p + i));
+> +		}
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	spin_lock(&pt->lock);
+> @@ -394,6 +397,7 @@ static void ttm_pool_free_range(struct ttm_pool
+> *pool, struct ttm_tt *tt,
+> =C2=A0				pgoff_t start_page, pgoff_t
+> end_page)
+> =C2=A0{
+> =C2=A0	struct page **pages =3D &tt->pages[start_page];
+> +	bool cleared =3D tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE;
+> =C2=A0	unsigned int order;
+> =C2=A0	pgoff_t i, nr;
+> =C2=A0
+> @@ -407,7 +411,7 @@ static void ttm_pool_free_range(struct ttm_pool
+> *pool, struct ttm_tt *tt,
+> =C2=A0
+> =C2=A0		pt =3D ttm_pool_select_type(pool, caching, order);
+> =C2=A0		if (pt)
+> -			ttm_pool_type_give(pt, *pages);
+> +			ttm_pool_type_give(pt, *pages, cleared);
+> =C2=A0		else
+> =C2=A0			ttm_pool_free_page(pool, caching, order,
+> *pages);
+> =C2=A0	}
+> diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+> index 2b9d856ff388..cfaf49de2419 100644
+> --- a/include/drm/ttm/ttm_tt.h
+> +++ b/include/drm/ttm/ttm_tt.h
+> @@ -85,6 +85,9 @@ struct ttm_tt {
+> =C2=A0	 * fault handling abuses the DMA api a bit and dma_map_attrs
+> can't be
+> =C2=A0	 * used to assure pgprot always matches.
+> =C2=A0	 *
+> +	 * TTM_TT_FLAG_CLEARED_ON_FREE: Set this if a drm driver
+> handles
+> +	 * clearing backing store
+> +	 *
+> =C2=A0	 * TTM_TT_FLAG_PRIV_POPULATED: TTM internal only. DO NOT
+> USE. This is
+> =C2=A0	 * set by TTM after ttm_tt_populate() has successfully
+> returned, and is
+> =C2=A0	 * then unset when TTM calls ttm_tt_unpopulate().
+> @@ -94,8 +97,9 @@ struct ttm_tt {
+> =C2=A0#define TTM_TT_FLAG_EXTERNAL		BIT(2)
+> =C2=A0#define TTM_TT_FLAG_EXTERNAL_MAPPABLE	BIT(3)
+> =C2=A0#define TTM_TT_FLAG_DECRYPTED		BIT(4)
+> +#define TTM_TT_FLAG_CLEARED_ON_FREE	BIT(5)
+> =C2=A0
+> -#define TTM_TT_FLAG_PRIV_POPULATED	BIT(5)
+> +#define TTM_TT_FLAG_PRIV_POPULATED	BIT(6)
+> =C2=A0	uint32_t page_flags;
+> =C2=A0	/** @num_pages: Number of pages in the page array. */
+> =C2=A0	uint32_t num_pages;
 
-    172                 xe_exec_queue_put(q);
-    173         }
-    174         mutex_lock(&xef->vm.lock);
-    175         xa_for_each(&xef->vm.xa, idx, vm)
-    176                 xe_vm_close_and_put(vm);
-    177         mutex_unlock(&xef->vm.lock);
-    178 
-    179         xe_file_put(xef);
-    180 
-    181         xe_pm_runtime_put(xe);
-    182 }
-
-regards,
-dan carpenter
