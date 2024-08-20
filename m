@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C83B6C3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:24:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A06DC3DA4A
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:26:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 898D710E370;
-	Tue, 20 Aug 2024 01:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E06110E38C;
+	Tue, 20 Aug 2024 01:26:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lFO664n5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="buo+ZtGT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAF0110E370
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:24:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B42C110E38C
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:26:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724117090; x=1755653090;
+ t=1724117209; x=1755653209;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=XayxI6B/1HLoWMJnHBad6veFnwPrj1okVHl7ij/sJZI=;
- b=lFO664n5PAEx/Y7ykGn4eMxJ/SNGt4qk59zf9BICtKUAbP9Z7U+xvH2V
- 71VVBtPolqM71yXIsW9MTFhagdrqaYTISOZdPCkVSvw53V+FOE9UVMhG2
- TL6u0Ldzdvi76381PvHsSIbQf2jfWUi50hmP++OeX3fCruWwDIwZd1Wj9
- XfLQlBoFaylA+723XeVbXISctdlMJqcRyyPtYFLgaSFho4bO9ZdFQg3Zt
- PydVGe2tDYD2F1U7pG4RCCMlnxWrnK0+1qWWF6rv31RakW78fWOvoZmF8
- sY6skgMJIw5gxQMmiK6bZkMUtBYzi2fXDcy+ctNmKcrRucN82nyBqLACn w==;
-X-CSE-ConnectionGUID: XGWEXWfdQzC7fmiHgM1J5g==
-X-CSE-MsgGUID: N65CN5sTRoaUDSPJwMVxKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22014578"
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="22014578"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:24:49 -0700
-X-CSE-ConnectionGUID: nQLwNIcCQkKidZEgsXKZ5g==
-X-CSE-MsgGUID: 6s7mr884Tj6AHKZm96Dh6Q==
+ bh=Hcbyw2oPnulI56A9gRT0sUP58xwudAiO33VhFP6QYhA=;
+ b=buo+ZtGTQz6LBQC/1QOG4KR7WIyLHmG5BWBBiatMRg6gosc/LEskqLds
+ RaP3Ai20yDIoGTRhma9eYqHsyzxEWgGgnHMMZsHiU1EvlTtE32/LlywzB
+ 2Y2EQ+wwqCXBs1fol4zqxTBOxHz/091wXNsmJzeZxS47t1amARY0QOIMp
+ ChDJ3cfb4eZmLsFLwG1MGuvgs9evBxFAqkYPXA5pR/y+ECmqTB1pa7MG4
+ L/alBQ74JEBsV1A0Pwt85JTzAztXwE4PfUpYg3h9sMzzkMlIeg3hr6wQs
+ aRfsl1fr8lyjE6D7JO5iS6p2omzffNBbKdqWpwgE+Q3UGORjL+wFi7Pin A==;
+X-CSE-ConnectionGUID: LtpKiF4ESnuQvcBdTniurA==
+X-CSE-MsgGUID: sOJNteoaSgyuZPgsk1s4CA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22535697"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="22535697"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:26:49 -0700
+X-CSE-ConnectionGUID: gnipR3hGSWeUOZp5gDAA7A==
+X-CSE-MsgGUID: Mv8BN6uoRXC3QdRSdNOr7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="60254015"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="98018341"
 Received: from peterval-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.124.114.37])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:24:49 -0700
-Date: Mon, 19 Aug 2024 18:05:51 -0700
-Message-ID: <87jzgcdmvk.wl-ashutosh.dixit@intel.com>
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:26:49 -0700
+Date: Mon, 19 Aug 2024 18:06:35 -0700
+Message-ID: <87ikvwdmuc.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>, "Souza, Jose"
- <jose.souza@intel.com>, "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>, 
+ Jose Souza <jose.souza@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Subject: Re: [PATCH 4/8] drm/xe/oa: Add input fence dependencies
-In-Reply-To: <CH0PR11MB5444ADA07669573979A31DC8E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>	<20240808174139.4027534-5-ashutosh.dixit@intel.com>	<CH0PR11MB5444ADA07669573979A31DC8E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
+In-Reply-To: <ZrVT68nl31d1wfZh@DUT025-TGLU.fm.intel.com>
+References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>	<20240808174139.4027534-5-ashutosh.dixit@intel.com>	<ZrVT68nl31d1wfZh@DUT025-TGLU.fm.intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -71,15 +72,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 08 Aug 2024 14:09:24 -0700, Cavitt, Jonathan wrote:
+On Thu, 08 Aug 2024 16:25:31 -0700, Matthew Brost wrote:
 >
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ashutosh Dixit
-> Sent: Thursday, August 8, 2024 10:42 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Souza, Jose <jose.souza@intel.com>; Landwerlin, Lionel G <lionel.g.landwerlin@intel.com>
-> Subject: [PATCH 4/8] drm/xe/oa: Add input fence dependencies
-> >
+
+Hi Matt,
+
+> On Thu, Aug 08, 2024 at 10:41:35AM -0700, Ashutosh Dixit wrote:
 > > Add input fence dependencies which will make OA configuration wait till
 > > these dependencies are met (till input fences signal).
 > >
@@ -98,6 +96,34 @@ On Thu, 08 Aug 2024 14:09:24 -0700, Cavitt, Jonathan wrote:
 > >  static int xe_oa_submit_bb(struct xe_oa_stream *stream, struct xe_bb *bb,
 > > -			   struct dma_fence **fence)
 > > +			   bool add_deps, struct dma_fence **fence)
+>
+> Bools are highly frowned upon [1] (one of many example of this). How
+> about passing in 'stream->num_syncs' or 0?
+>
+> i.e. s/bool add_deps/u32 num_syncs/
+>
+> Maybe even add stream->syncs as argument then too.
+
+I don't like this because this function is called from 3 places, 2 of which
+set the arg to false and only one to true, even if stream->num_syncs > 0.
+So it will not be clear why we are setting num_syncs to 0 from those 2
+places and we will have to add comments pointing that out. Whereas it is
+clear with the bool and no comments are needed.
+
+But I understand the concerns about bool so I have instead converted it
+into an enum in v2. That I think should take care of most of the objections
+against bool. Let me know if this is ok or any other ideas regarding this?
+
+Thanks.
+--
+Ashutosh
+
+>
+> Matt
+>
+> [1] https://patchwork.freedesktop.org/patch/607408/?series=135265&rev=6#comment_1103868
+
+>
 > >  {
 > >	struct xe_sched_job *job;
 > > -	int err = 0;
@@ -110,23 +136,6 @@ On Thu, 08 Aug 2024 14:09:24 -0700, Cavitt, Jonathan wrote:
 > >	}
 > >
 > > +	if (add_deps) {
->
-> Non-blocking suggestion:
-> Maybe declare int "i" here instead of with err, since "i" seems to
-> only be used here.
-
-Done.
-
->
-> Otherwise:
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-
-Thanks.
-
-> -Jonathan Cavitt
-
-
->
 > > +		for (i = 0; i < stream->num_syncs && !err; i++)
 > > +			err = xe_sync_entry_add_deps(&stream->syncs[i], job);
 > > +		if (err) {
@@ -175,5 +184,4 @@ Thanks.
 > >
 > > --
 > > 2.41.0
-> >
 > >
