@@ -4,54 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1288BC5320E
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 08:45:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCA13C5320E
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 08:51:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42F610E529;
-	Tue, 20 Aug 2024 08:45:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XSR6I3MY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6DC610E529
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 08:45:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724143505; x=1755679505;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=F27WikbOA6EKrT4Cel/XM3IwYd5uytDCGnneWj/AJ+A=;
- b=XSR6I3MYUCfy20w4Imy3w7PYV3sknxkIGYHKeERKgCtEPUViwD/6GLjk
- 5Iy9BufXk2B33+l5hjmd5txMbq3v0z36AhERVDS1vKEK8ed2UGt7qyD6b
- vB1eB/P9rg6B1+STEq6b9qkIarcQ5dPuBFc5Ezj1rl1ItmucJ/kAdeXJ6
- AIjucmeSzCLIm2+hcIO/STFpuOX+/ZMxnHBPwowtwgW7sTThcIlpQ1qLn
- EGS/v3GPtiGnHp1c11l1s8nHtec1lNJA7pZEKILpgxHir5hAoFxDVY8QE
- wJnub4SlG7kRMNCRMesA31pfvZbG8cVAzvS6+SXqvCWYqZKXZtToOkg8N w==;
-X-CSE-ConnectionGUID: /yRo/Zw0S4GlvNbx/mAUgA==
-X-CSE-MsgGUID: 75xp/793SEemTFM20Mx7Uw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22606793"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22606793"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 01:45:05 -0700
-X-CSE-ConnectionGUID: fDzCmKr7RXiRTG0xnBBQCw==
-X-CSE-MsgGUID: IPX2YDRvSvSKJ9CGLncOsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="60701212"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa009.fm.intel.com with ESMTP; 20 Aug 2024 01:45:04 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH 3/3] drm/xe: Remove unrequired NULL check in
- xe_sched_job_free_fences
-Date: Tue, 20 Aug 2024 14:32:30 +0530
-Message-Id: <20240820090230.3258128-3-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240820090230.3258128-1-himal.prasad.ghimiray@intel.com>
-References: <20240820090230.3258128-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6897210E023;
+	Tue, 20 Aug 2024 08:51:06 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 303DB10E023;
+ Tue, 20 Aug 2024 08:51:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9081961300314503160=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
+ =?utf-8?q?rm/xe=3A_Remove_extra_dma=5Ffence=5Fput_on_xe=5Fsync=5Fentry=5Fad?=
+ =?utf-8?q?d=5Fdeps_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Aug 2024 08:51:05 -0000
+Message-ID: <172414386518.698557.9542191591728465453@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240820082713.3257455-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240820082713.3257455-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,31 +37,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-dma_fence_chain_free() can handle NULL input, there is no need for NULL
-check by caller.
+--===============9081961300314503160==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_sched_job.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index 44d534e362cd..4ed0c366ccff 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -89,8 +89,7 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
- 
- 		if (ptrs->lrc_fence)
- 			xe_lrc_free_seqno_fence(ptrs->lrc_fence);
--		if (ptrs->chain_fence)
--			dma_fence_chain_free(ptrs->chain_fence);
-+		dma_fence_chain_free(ptrs->chain_fence);
- 	}
- }
- 
--- 
-2.34.1
+Series: series starting with [1/2] drm/xe: Remove extra dma_fence_put on xe_sync_entry_add_deps failure
+URL   : https://patchwork.freedesktop.org/series/137497/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1798-4d24271792fac837e728f7bb6237a94ee46cc76e_BAT -> xe-pw-137497v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-137497v1_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7976 -> IGT_7978
+  * Linux: xe-1798-4d24271792fac837e728f7bb6237a94ee46cc76e -> xe-pw-137497v1
+
+  IGT_7976: 41e91236c40668d603495a21e5a22708a6501121 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7978: 4083a9d8abc80c8a905ffdc20bc76383b1e07e79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1798-4d24271792fac837e728f7bb6237a94ee46cc76e: 4d24271792fac837e728f7bb6237a94ee46cc76e
+  xe-pw-137497v1: 137497v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137497v1/index.html
+
+--===============9081961300314503160==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Remove extra dma_fence_put on xe_sync_entry_add_deps failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137497/">https://patchwork.freedesktop.org/series/137497/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137497v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137497v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1798-4d24271792fac837e728f7bb6237a94ee46cc76e_BAT -&gt; xe-pw-137497v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-137497v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7976 -&gt; IGT_7978</li>
+<li>Linux: xe-1798-4d24271792fac837e728f7bb6237a94ee46cc76e -&gt; xe-pw-137497v1</li>
+</ul>
+<p>IGT_7976: 41e91236c40668d603495a21e5a22708a6501121 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7978: 4083a9d8abc80c8a905ffdc20bc76383b1e07e79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1798-4d24271792fac837e728f7bb6237a94ee46cc76e: 4d24271792fac837e728f7bb6237a94ee46cc76e<br />
+  xe-pw-137497v1: 137497v1</p>
+
+</body>
+</html>
+
+--===============9081961300314503160==--
