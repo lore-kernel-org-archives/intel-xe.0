@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A06DC3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:26:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B8C7C3DA4A
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:34:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E06110E38C;
-	Tue, 20 Aug 2024 01:26:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44E8E10E493;
+	Tue, 20 Aug 2024 01:34:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="buo+ZtGT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XML+Z64i";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B42C110E38C
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:26:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B08D610E493
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:34:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724117209; x=1755653209;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=Hcbyw2oPnulI56A9gRT0sUP58xwudAiO33VhFP6QYhA=;
- b=buo+ZtGTQz6LBQC/1QOG4KR7WIyLHmG5BWBBiatMRg6gosc/LEskqLds
- RaP3Ai20yDIoGTRhma9eYqHsyzxEWgGgnHMMZsHiU1EvlTtE32/LlywzB
- 2Y2EQ+wwqCXBs1fol4zqxTBOxHz/091wXNsmJzeZxS47t1amARY0QOIMp
- ChDJ3cfb4eZmLsFLwG1MGuvgs9evBxFAqkYPXA5pR/y+ECmqTB1pa7MG4
- L/alBQ74JEBsV1A0Pwt85JTzAztXwE4PfUpYg3h9sMzzkMlIeg3hr6wQs
- aRfsl1fr8lyjE6D7JO5iS6p2omzffNBbKdqWpwgE+Q3UGORjL+wFi7Pin A==;
-X-CSE-ConnectionGUID: LtpKiF4ESnuQvcBdTniurA==
-X-CSE-MsgGUID: sOJNteoaSgyuZPgsk1s4CA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22535697"
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="22535697"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:26:49 -0700
-X-CSE-ConnectionGUID: gnipR3hGSWeUOZp5gDAA7A==
-X-CSE-MsgGUID: Mv8BN6uoRXC3QdRSdNOr7w==
+ t=1724117654; x=1755653654;
+ h=date:message-id:from:to:cc:subject:references: mime-version;
+ bh=0SOM96DbeB/XCkA6EnQ2MM8X/UzUlWdhjyp4/Y60uZI=;
+ b=XML+Z64i9cJ0WsLazxnj6CphOqQ6Hk8NdbsOmVVmsTBBpiBcF8KZWuXE
+ 30Q1X22MeHggbW2O93bCfxg4Ua+/oxiSldjInWOamtjgLGwHfW+8/cvmy
+ qbq7CijCLV5dcIC6WNBNmbY5lr6WpgEA6TWCmT67x9kLvVLDJz+brXST1
+ zfJhpGLIoXnqpqn+ZpjU0tpmaz2Oe4wSKoxj3A0yqzHdPCbuZemtFlKLx
+ srhYLFtjYuKp87M3VEx8qRnYw8iT9ocCffXRkfgPvvwfwq2akZZm8SQtV
+ sKrtJoyDYmdj1rrHb+PjjHqnd//eymxO1eRLcGNj8wuQ84bBhryN+2ATN w==;
+X-CSE-ConnectionGUID: h+RnatADQYmM4w5oi3wwPg==
+X-CSE-MsgGUID: tIkmr/gnSKqRjxSffot49Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22555177"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="22555177"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:34:13 -0700
+X-CSE-ConnectionGUID: Pw5WzLJqS86+uA4Gj6KtKg==
+X-CSE-MsgGUID: PigiUg9UTGCpk4xIaLHbiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="98018341"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="60539569"
 Received: from peterval-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.124.114.37])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:26:49 -0700
-Date: Mon, 19 Aug 2024 18:06:35 -0700
-Message-ID: <87ikvwdmuc.wl-ashutosh.dixit@intel.com>
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:34:14 -0700
+Date: Mon, 19 Aug 2024 18:30:03 -0700
+Message-ID: <87h6bgdlr8.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>, 
- Jose Souza <jose.souza@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Subject: Re: [PATCH 4/8] drm/xe/oa: Add input fence dependencies
-In-Reply-To: <ZrVT68nl31d1wfZh@DUT025-TGLU.fm.intel.com>
-References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>	<20240808174139.4027534-5-ashutosh.dixit@intel.com>	<ZrVT68nl31d1wfZh@DUT025-TGLU.fm.intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>, "Souza, Jose"
+ <jose.souza@intel.com>, "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>
+Subject: Re: [PATCH 5/8] drm/xe/oa: Signal output fences
+References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>	<20240808174139.4027534-6-ashutosh.dixit@intel.com>	<CH0PR11MB5444000252E518D9E70884B7E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -72,116 +69,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 08 Aug 2024 16:25:31 -0700, Matthew Brost wrote:
->
-
-Hi Matt,
-
-> On Thu, Aug 08, 2024 at 10:41:35AM -0700, Ashutosh Dixit wrote:
-> > Add input fence dependencies which will make OA configuration wait till
-> > these dependencies are met (till input fences signal).
+Some time ago, Dixit, Ashutosh wrote:
+> 
+> On Thu, 08 Aug 2024 14:16:24 -0700, Cavitt, Jonathan wrote:
 > >
-> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_oa.c | 24 +++++++++++++++++++-----
-> >  1 file changed, 19 insertions(+), 5 deletions(-)
+> > -----Original Message-----
+> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ashutosh Dixit
+> > Sent: Thursday, August 8, 2024 10:42 AM
+> > To: intel-xe@lists.freedesktop.org
+> > Cc: Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Souza, Jose <jose.souza@intel.com>; Landwerlin, Lionel G <lionel.g.landwerlin@intel.com>
+> > Subject: [PATCH 5/8] drm/xe/oa: Signal output fences
+> > >
+> > > Complete 'struct xe_oa_fence' to include the dma_fence used to signal
+> > > output fences in the xe_sync array. The fences are signalled
+> > > asynchronously. When there are no output fences to signal, the OA
+> > > configuration wait is synchronously re-introduced into the ioctl.
 > >
-> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> > index ba8f2e9d95b7f..416e031ac454b 100644
-> > --- a/drivers/gpu/drm/xe/xe_oa.c
-> > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > @@ -578,10 +578,10 @@ static __poll_t xe_oa_poll(struct file *file, poll_table *wait)
-> >  }
+> > s/signalled/signaled
+
+Done.
+
 > >
-> >  static int xe_oa_submit_bb(struct xe_oa_stream *stream, struct xe_bb *bb,
-> > -			   struct dma_fence **fence)
-> > +			   bool add_deps, struct dma_fence **fence)
->
-> Bools are highly frowned upon [1] (one of many example of this). How
-> about passing in 'stream->num_syncs' or 0?
->
-> i.e. s/bool add_deps/u32 num_syncs/
->
-> Maybe even add stream->syncs as argument then too.
+> > Also, it might be best to elaborate on why the dma_fence base
+> > and spinlock_t lock weren't added as a part of patch 2, when
+> > the xe_oa_fence was initially declared.
 
-I don't like this because this function is called from 3 places, 2 of which
-set the arg to false and only one to true, even if stream->num_syncs > 0.
-So it will not be clear why we are setting num_syncs to 0 from those 2
-places and we will have to add comments pointing that out. Whereas it is
-clear with the bool and no comments are needed.
+Mostly to make the review easier. But in v2 series these two patches are
+indeed squashed into a single patch, since there are significant changes to
+this patch suggested by Matt and it didn't make sense to split them.
 
-But I understand the concerns about bool so I have instead converted it
-into an enum in v2. That I think should take care of most of the objections
-against bool. Let me know if this is ok or any other ideas regarding this?
+> >
+> > Otherwise:
+> > Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
 Thanks.
 --
 Ashutosh
 
->
-> Matt
->
-> [1] https://patchwork.freedesktop.org/patch/607408/?series=135265&rev=6#comment_1103868
 
->
-> >  {
-> >	struct xe_sched_job *job;
-> > -	int err = 0;
-> > +	int i, err = 0;
+> > -Jonathan Cavitt
 > >
-> >	/* Kernel configuration is issued on stream->k_exec_q, not stream->exec_q */
-> >	job = xe_bb_create_job(stream->k_exec_q, bb);
-> > @@ -590,9 +590,23 @@ static int xe_oa_submit_bb(struct xe_oa_stream *stream, struct xe_bb *bb,
-> >		goto exit;
-> >	}
-> >
-> > +	if (add_deps) {
-> > +		for (i = 0; i < stream->num_syncs && !err; i++)
-> > +			err = xe_sync_entry_add_deps(&stream->syncs[i], job);
-> > +		if (err) {
-> > +			drm_dbg(&stream->oa->xe->drm, "xe_sync_entry_add_deps err %d\n", err);
-> > +			goto err_put_job;
-> > +		}
-> > +	}
-> > +
-> >	xe_sched_job_arm(job);
-> >	*fence = dma_fence_get(&job->drm.s_fence->finished);
-> >	xe_sched_job_push(job);
-> > +
-> > +	return 0;
-> > +
-> > +err_put_job:
-> > +	xe_sched_job_put(job);
-> >  exit:
-> >	return err;
-> >  }
-> > @@ -670,7 +684,7 @@ static int xe_oa_modify_ctx_image(struct xe_oa_stream *stream, struct xe_lrc *lr
-> >
-> >	xe_oa_store_flex(stream, lrc, bb, flex, count);
-> >
-> > -	err = xe_oa_submit_bb(stream, bb, &fence);
-> > +	err = xe_oa_submit_bb(stream, bb, false, &fence);
-> >	xe_bb_free(bb, fence);
-> >	dma_fence_put(fence);
-> >  exit:
-> > @@ -691,7 +705,7 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *re
-> >
-> >	write_cs_mi_lri(bb, reg_lri, 1);
-> >
-> > -	err = xe_oa_submit_bb(stream, bb, &fence);
-> > +	err = xe_oa_submit_bb(stream, bb, false, &fence);
-> >	xe_bb_free(bb, fence);
-> >	dma_fence_put(fence);
-> >  exit:
-> > @@ -971,7 +985,7 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
-> >		goto exit;
-> >	}
-> >
-> > -	err = xe_oa_submit_bb(stream, oa_bo->bb, &fence);
-> > +	err = xe_oa_submit_bb(stream, oa_bo->bb, true, &fence);
-> >	if (err)
-> >		goto exit;
-> >
-> > --
-> > 2.41.0
-> >
+> > >
+> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_oa.c | 46 +++++++++++++++++++++++++++++++++++---
+> > >  1 file changed, 43 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > > index 416e031ac454b..bc421cd0af6ba 100644
+> > > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > > @@ -96,6 +96,10 @@ struct xe_oa_config_bo {
+> > >  };
+> > >
+> > >  struct xe_oa_fence {
+> > > +	/* @base: dma fence base */
+> > > +	struct dma_fence base;
+> > > +	/* @lock: lock for the fence */
+> > > +	spinlock_t lock;
+> > >	/* @xe: pointer to xe device */
+> > >	struct xe_device *xe;
+> > >	/* @work: work to signal that OA configuration is applied */
+> > > @@ -953,9 +957,26 @@ static void xe_oa_fence_work_fn(struct work_struct *w)
+> > >	/* Additional empirical delay needed for NOA programming after registers are written */
+> > >	usleep_range(us, 2 * us);
+> > >
+> > > -	kfree(ofence);
+> > > +	/* Now signal fence to indicate new OA configuration is active */
+> > > +	dma_fence_signal(&ofence->base);
+> > > +	dma_fence_put(&ofence->base);
+> > >  }
+> > >
+> > > +static const char *xe_oa_get_driver_name(struct dma_fence *fence)
+> > > +{
+> > > +	return "xe_oa";
+> > > +}
+> > > +
+> > > +static const char *xe_oa_get_timeline_name(struct dma_fence *fence)
+> > > +{
+> > > +	return "unbound";
+> > > +}
+> > > +
+> > > +static const struct dma_fence_ops xe_oa_fence_ops = {
+> > > +	.get_driver_name = xe_oa_get_driver_name,
+> > > +	.get_timeline_name = xe_oa_get_timeline_name,
+> > > +};
+> > > +
+> > >  static struct xe_oa_fence *xe_oa_fence_init(struct xe_device *xe, struct dma_fence *config_fence)
+> > >  {
+> > >	struct xe_oa_fence *ofence;
+> > > @@ -967,6 +988,8 @@ static struct xe_oa_fence *xe_oa_fence_init(struct xe_device *xe, struct dma_fen
+> > >	ofence->xe = xe;
+> > >	INIT_WORK(&ofence->work, xe_oa_fence_work_fn);
+> > >	ofence->config_fence = config_fence;
+> > > +	spin_lock_init(&ofence->lock);
+> > > +	dma_fence_init(&ofence->base, &xe_oa_fence_ops, &ofence->lock, 0, 0);
+> > >
+> > >	return ofence;
+> > >  }
+> > > @@ -975,8 +998,8 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
+> > >  {
+> > >	struct xe_oa_config_bo *oa_bo;
+> > >	struct xe_oa_fence *ofence;
+> > > +	int i, err, num_signal = 0;
+> > >	struct dma_fence *fence;
+> > > -	int err;
+> > >
+> > >	/* Emit OA configuration batch */
+> > >	oa_bo = xe_oa_alloc_config_buffer(stream, config);
+> > > @@ -989,13 +1012,30 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
+> > >	if (err)
+> > >		goto exit;
+> > >
+> > > +	/* Initialize and set fence to signal */
+> > >	ofence = xe_oa_fence_init(stream->oa->xe, fence);
+> > >	if (IS_ERR(ofence)) {
+> > >		err = PTR_ERR(ofence);
+> > >		goto put_fence;
+> > >	}
+> > >
+> > > -	xe_oa_fence_work_fn(&ofence->work);
+> > > +	for (i = 0; i < stream->num_syncs; i++)
+> > > +		xe_sync_entry_signal(&stream->syncs[i], &ofence->base);
+> > > +
+> > > +	/* Schedule work to signal the fence */
+> > > +	queue_work(system_unbound_wq, &ofence->work);
+> > > +
+> > > +	/* If nothing needs to be signaled we wait synchronously */
+> > > +	for (i = 0; i < stream->num_syncs; i++)
+> > > +		if (stream->syncs[i].flags & DRM_XE_SYNC_FLAG_SIGNAL)
+> > > +			num_signal++;
+> > > +	if (!num_signal)
+> > > +		flush_work(&ofence->work);
+> > > +
+> > > +	/* Done with syncs */
+> > > +	for (i = 0; i < stream->num_syncs; i++)
+> > > +		xe_sync_entry_cleanup(&stream->syncs[i]);
+> > > +	kfree(stream->syncs);
+> > >
+> > >	return 0;
+> > >  put_fence:
+> > > --
+> > > 2.41.0
+> > >
+> > >
