@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AA54C3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 21:50:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77B8DC3DA4A
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 21:54:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF9FA10E4EC;
-	Tue, 20 Aug 2024 21:50:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="lhHZx2FI";
-	dkim-atps=neutral
-X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
- Tue, 20 Aug 2024 10:46:31 UTC
-Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com
- [95.215.58.184])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81CFC10E72B
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 10:46:31 +0000 (UTC)
-Message-ID: <59e832ae-dd0e-4746-ad9c-327b997e992b@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1724150386;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=+J6AUM5BA0XHMhLLUg9xC6LMZgDMWJLm3dx3v9LVjJE=;
- b=lhHZx2FIP/RCUXZs8p29eG005r9RJMGyeMBgQ8ovBQAz2f8rtIT0wFDvnjR2Flagaf9ZGa
- s29BHqCl/tgoW2VpLdAJfG418mIvnaeszKp4LYCtGHunZrtwlZqsm68QT+G2wpDRaNp9Kx
- Y282my+JYqtSdE0sex8AwzrnZs2qxl8=
-Date: Tue, 20 Aug 2024 18:39:29 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD3010E4FE;
+	Tue, 20 Aug 2024 21:54:15 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6522A10E4FE;
+ Tue, 20 Aug 2024 21:54:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [82/86] drm/i915: Move custom hotplug code into separate callback
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20240816125408.310253-83-tzimmermann@suse.de>
- <86a55d3c-930d-4b30-9f05-82dd2966df85@linux.dev>
- <a48a5538-b4a9-4e01-9930-b1538325b9e3@suse.de>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <a48a5538-b4a9-4e01-9930-b1538325b9e3@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Tue, 20 Aug 2024 21:50:47 +0000
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B01/12?=
+ =?utf-8?q?=5D_drm/xe=3A_Removed_unused_xe=5Fggtt=5Fprintk?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Aug 2024 21:54:14 -0000
+Message-ID: <172419085440.716755.7989502043966643497@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240820202547.300257-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20240820202547.300257-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,100 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
+Series: series starting with [01/12] drm/xe: Removed unused xe_ggtt_printk
+URL   : https://patchwork.freedesktop.org/series/137537/
+State : success
 
-On 2024/8/20 15:39, Thomas Zimmermann wrote:
-> Hi
->
-> Am 19.08.24 um 10:52 schrieb Sui Jingfeng:
->> Hi, Thomas
->>
->>
->> I love your patch, yet ...
->>
->>
->> On 2024/8/16 20:23, Thomas Zimmermann wrote:
->>> i915's fbdev contains additional code for hotplugging a display that
->>> cannot be ported to the common fbdev client. Introduce the callback
->>> struct drm_fb_helper.fb_hotplug and implement it for i915. The fbdev
->>> helpers invoke the callback before handing the hotplug event.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->>> ---
->>>   drivers/gpu/drm/drm_fb_helper.c            |  6 +++
->>>   drivers/gpu/drm/i915/display/intel_fbdev.c | 43 
->>> ++++++++++++----------
->>>   include/drm/drm_fb_helper.h                | 13 +++++++
->>>   3 files changed, 42 insertions(+), 20 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_fb_helper.c 
->>> b/drivers/gpu/drm/drm_fb_helper.c
->>> index d9e539b0fd1a..92926cb02dfb 100644
->>> --- a/drivers/gpu/drm/drm_fb_helper.c
->>> +++ b/drivers/gpu/drm/drm_fb_helper.c
->>> @@ -1938,6 +1938,12 @@ int drm_fb_helper_hotplug_event(struct 
->>> drm_fb_helper *fb_helper)
->>>       if (!drm_fbdev_emulation || !fb_helper)
->>>           return 0;
->>>   +    if (fb_helper->funcs->fb_hotplug) {
->>
->> We seems need to check the existence on the 'fb_helper->funcs' here,
->>
->> For example:
->>
->>
->> if (fb_helper->funcs && fb_helper->funcs->fb_hotplug) {
->>
->> Otherwise, it will de-reference NULL pointer.
->> Can be observed on a trivial driver though,
->> with no monitor(display) connected.
->
-> Indeed. That needs to be fixed. Thank you for noting.
->
+== Summary ==
 
-Thanks for you efforts then.
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc4-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/
+lib/modules/6.11.0-rc4-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc4-xe/build
+lib/modules/6.11.0-rc4-xe/modules.alias.bin
+lib/modules/6.11.0-rc4-xe/modules.builtin
+lib/modules/6.11.0-rc4-xe/modules.softdep
+lib/modules/6.11.0-rc4-xe/modules.alias
+lib/modules/6.11.0-rc4-xe/modules.order
+lib/modules/6.11.0-rc4-xe/modules.symbols
+lib/modules/6.11.0-rc4-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1724190842:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1724190842:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-
-> To give some context:  I was hoping to remove drm_fb_helper_funcs at 
-> some point. 
-
-
-Yeah, too many helper functions may make peoples daze.
-
-
-> fb_probe is now gone with these patches and fb_dirty can certainly be 
-> replaced as well. (I once had prototype patches to do that). 
-
-
-Well, the grammar of "ret = (*fb_helper->funcs->fb_probe)(fb_helper, &sizes);" looks strange, 
-It's lengthy and I observed you have cleaned it up at the last patch. 
-Which also eliminates one pair "if and else" clause, the codes looks 
-more fluent now.
-
-
-> This leaves the new callbacks for 915, for which I don't have a good 
-> alternative solution. So it seems that drm_fb_helper_funcs will only 
-> be used by i915/xe in the long term.
->
-
-Well, since it is a DRM client now, maybe we could try to drop it into struct drm_driver.
-Just like the '.fbdev_probe' callback, this may help to achieve a 100% DRM-based console/logger IMO.
-
-Besides, a lot of DRM driver instances has the DMA/2D acceleration hardware, promote it
-into drm_driver structure may has the potential to utilize hardware acceleration. Drivers
-will more easily to have custom implementation. I'm not 100% sure if it will only be used
-by i915 in the future.
-
-Best regards,
-Sui
 
