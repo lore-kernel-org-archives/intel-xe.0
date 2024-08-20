@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3256C3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:10:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E025C52D7C
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:11:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47F8D10E322;
-	Tue, 20 Aug 2024 01:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DA7910E324;
+	Tue, 20 Aug 2024 01:11:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eyRcQrxn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J+Ms+BNB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9D8610E322
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:10:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 056CF10E324
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:11:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724116240; x=1755652240;
+ t=1724116311; x=1755652311;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=XGTJRtHa6aMp34HUgWa4wOUbNkP1YWCVpj/HmUda7Xo=;
- b=eyRcQrxnZECNuyYJMCv9yZDXgY+24JoOjsEnf8DYzDQ+YL8/t0R2c6zb
- E9D0MA8r8cJhv2QqutHQGQ5lBFEXm0sLTFSfxa+sHFOGWdP2fuxsR1ao0
- 0TBFmDCUnJ3GE8OMQauRwCQoNCOmz7b5GfBziRzu76FBe9Q8RWlpkMoSW
- mFrNEgzkotQ7a8mhuorvb0w3kAeQRiy++3OEkBoYCedx9Cotje61SKFDH
- KJf85kx8qGtujRI8am782N7jAamYwPhn78mxO8XiUcmHDTephEOdS3B6b
- BJheOlR5tca3D6EmKkdfysE3cUvQUhDXD8KeMv+zdQK3DZkHDIShrFPOK g==;
-X-CSE-ConnectionGUID: 3y5uoXXoQI+mTLlgTPQJ0A==
-X-CSE-MsgGUID: +8DyFqGgT7qmHnmdRJWdVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="26146527"
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="26146527"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:10:31 -0700
-X-CSE-ConnectionGUID: LayGH4PFSrCk/QgG4FAZuQ==
-X-CSE-MsgGUID: K//V/gpXQDeex01UfMT/uw==
+ bh=/F7kEkydNCBT+vFr87OtxkND0KFLfnq5L7V9x2VLST4=;
+ b=J+Ms+BNBkm/HuW8hq2fhG9pTb0sIhTUTfEqJcSX4uAie7McezsQyc+oG
+ 44d9lXB2hXk3GNU4BjyLy3LpD6QYFqgy5oFQFJqUjRxh5YDCue22WzVZS
+ 0zoz20f+/cwkx5vg3UHXHGzml3ZdHxy57ViA97lmfQ8QeC3UjTdeHbKYR
+ i56Ur+6jPtZYroTqsKacNlXXhtUONftQ8N5KGuSJbBv3JlzfOucsD1PXL
+ AmWqMmH7DJK7oOqWyJZ3VF4ukLeXA9HKv2HkmAwoRaVGsdfVlqZTHO8nP
+ iaMR43/mipfIKcYAmh7ItDzu4+KKjBkABiuAgluGvCfUrHxqGtTANyZKV w==;
+X-CSE-ConnectionGUID: A8KqdsY5QmqpnhuJez4FCA==
+X-CSE-MsgGUID: ELeWVkwOROKyrqd+DzmhQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="47786038"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="47786038"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:11:50 -0700
+X-CSE-ConnectionGUID: I2zzAKEnQ2C2J4OVhz7M7A==
+X-CSE-MsgGUID: QkpalpF5TX6LON3Lyhn02A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="60521036"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="60202863"
 Received: from peterval-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.124.114.37])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:10:31 -0700
-Date: Mon, 19 Aug 2024 18:00:39 -0700
-Message-ID: <87ikvw80ug.wl-ashutosh.dixit@intel.com>
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:11:50 -0700
+Date: Mon, 19 Aug 2024 18:01:11 -0700
+Message-ID: <87o75odn3c.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>, "Souza, Jose"
+ <jose.souza@intel.com>, "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>
 Subject: Re: [PATCH 1/8] drm/xe/oa: Separate batch submission from waiting for
  completion
-In-Reply-To: <ZrVO6lNyJpfhwHqq@DUT025-TGLU.fm.intel.com>
-References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>	<20240808174139.4027534-2-ashutosh.dixit@intel.com>	<ZrVO6lNyJpfhwHqq@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <CH0PR11MB5444526CFCAD32B626B615D1E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>	<20240808174139.4027534-2-ashutosh.dixit@intel.com>	<CH0PR11MB5444526CFCAD32B626B615D1E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -70,15 +72,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 08 Aug 2024 16:04:10 -0700, Matthew Brost wrote:
+On Thu, 08 Aug 2024 13:18:21 -0700, Cavitt, Jonathan wrote:
 >
-> On Thu, Aug 08, 2024 at 10:41:32AM -0700, Ashutosh Dixit wrote:
+
+Hi Jonathan,
+
+> -----Original Message-----
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ashutosh Dixit
+> Sent: Thursday, August 8, 2024 10:42 AM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Souza, Jose <jose.souza@intel.com>; Landwerlin, Lionel G <lionel.g.landwerlin@intel.com>
+> Subject: [PATCH 1/8] drm/xe/oa: Separate batch submission from waiting for completion
+> >
 > > When we introduce xe_syncs, we don't wait for internal OA programming
 > > batches to complete. That is, xe_syncs are signaled asynchronously. In
 > > anticipation for this, separate out batch submission from waiting for
 > > completion of those batches.
 > >
 > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>
+> The added goto err in xe_oa_emit_oa_config had me briefly
+> worried due to the fence variable not getting freed, but it
+> seems the new organization of the series never sets the
+> fence variable in the case of an error.
+
+The patch still had a bug. fence should be initialized to NULL for
+xe_bb_free() and dma_fence_put() to work if xe_oa_submit_bb() returns
+error. Hopefully fixed in v2 where the patch is reworked along lines
+suggested by Matt.
+
+> So, LGTM.
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+
+Thanks.
+--
+Ashutosh
+
+
+> -Jonathan Cavitt
 > > ---
 > >  drivers/gpu/drm/xe/xe_oa.c | 45 ++++++++++++++++++++++++--------------
 > >  1 file changed, 28 insertions(+), 17 deletions(-)
@@ -94,16 +125,6 @@ On Thu, 08 Aug 2024 16:04:10 -0700, Matthew Brost wrote:
 > > -static int xe_oa_submit_bb(struct xe_oa_stream *stream, struct xe_bb *bb)
 > > +static int xe_oa_submit_bb(struct xe_oa_stream *stream, struct xe_bb *bb,
 > > +			   struct dma_fence **fence)
->
-> static struct dma_fence *xe_oa_submit_bb(...)
->
-> Then use ERR_PTR, PTR_ERR semantics.
-
-Done in v2.
-
->
-> Matt
->
 > >  {
 > >	struct xe_sched_job *job;
 > > -	struct dma_fence *fence;
@@ -202,4 +223,5 @@ Done in v2.
 > >	usleep_range(us, 2 * us);
 > > --
 > > 2.41.0
+> >
 > >
