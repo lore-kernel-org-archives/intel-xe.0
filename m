@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 835E2C5321D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 09:07:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44F34C5321E
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 09:07:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 011EE10E52B;
-	Tue, 20 Aug 2024 09:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0349D10E52D;
+	Tue, 20 Aug 2024 09:07:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YtgdX6gl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hxrq3oHV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11A3710E2AD;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8ACF10E2AD;
  Tue, 20 Aug 2024 09:07:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724144855; x=1755680855;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hktA+ztQXCBA2TPbxyOICPn1ybBqP889ZuG8rwrmSDw=;
- b=YtgdX6glHqkfu3GsgQeOSDg1aByLARcby5+trio3Fma0rAl9cpH1K5JH
- Km0VhfNtmQupAl0dWhiqsHX86rFGXgbJbx5C6xG4mB2mEBGC+g4k2Pudv
- V5WG4B6+MhKmWAThJVJRA+xNtdFKpt2Vz2OxYIjwxUA9ccZ4Ig6zVlGzO
- OAbbkUI0Wn5WeCOYnSmWyqdd0LRY5Y+eHHSf2ruMH3GAIhV3KGBBnxzaT
- zgTXUcZpqveztF02VrgIl39a+oFIA4fdOZCbeO771l7WixOvKU3XbHdYE
- yvSt/IUFMVwWKKnPAhFSCavAntbJWsoCTvllaaplcYOmsnxd+2UnYypYX A==;
-X-CSE-ConnectionGUID: IdtyoxkQQaqKsq2+3iB6IQ==
-X-CSE-MsgGUID: DtSxv4bvSPm+KwhEOSh3pg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22596279"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22596279"
+ t=1724144856; x=1755680856;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5X4uDIxsiESGhjC34oUM1mJwpGH4tzNmgMo2IaJP0kg=;
+ b=Hxrq3oHVJ/P25pdDszcryTKgaYQB6oAqdIzOmCVYWtdAlDZT+ZKydPCB
+ /r3lVK1ZzggUqVvQKEE+wJthEqO9xy8gqvH5ZIA2u9NCK3STfrlYbxg0H
+ nCAroNBUZsevG29Z6AtKsYfszukBeiQYsoGkixaW/M8fhRPGCo+O50rcc
+ hEoWc5vj0mq/zsN7If6qNCfZEIx8i4jBEMkrpgSxO8zOkQC4P7kcAg9WN
+ Z9eH9Sn88gm1H1csN42mRzjfBXStbH9JOvjGQOFu5hYCgnfXJJ5b6yvG1
+ LG5b2OGEk5jNNcjhx1QuqSzzRLMjZyiVvJ6RCGQWl1TJGsZgTEuCQ2kH+ Q==;
+X-CSE-ConnectionGUID: 2BL8SoTsRbSrpRuQ7IUdkw==
+X-CSE-MsgGUID: oXm98OK7Ra2GKDm/2oj70w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22596304"
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22596304"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 02:07:11 -0700
-X-CSE-ConnectionGUID: jODl1R4MRECpIKpyiX00Pg==
-X-CSE-MsgGUID: xj3V6R6UQkKGWYbI0JazVw==
+ 20 Aug 2024 02:07:25 -0700
+X-CSE-ConnectionGUID: tNaKpJ1HRFG7VBAuH/l0Jw==
+X-CSE-MsgGUID: THhfC6BCTBeaa8K8Qy7scw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="61424552"
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="61424583"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.184])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 02:07:07 -0700
+ 20 Aug 2024 02:07:21 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com,
  jani.nikula@intel.com
-Subject: [PATCH 0/2] drm/i915 & drm/xe: rawclk freq cleanups
-Date: Tue, 20 Aug 2024 12:07:00 +0300
-Message-Id: <cover.1724144570.git.jani.nikula@intel.com>
+Subject: [PATCH 2/2] drm/xe/display: drop unused rawclk_freq and RUNTIME_INFO()
+Date: Tue, 20 Aug 2024 12:07:02 +0300
+Message-Id: <9f09274bddc14f555c0102f37af6df23b4433102.1724144570.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1724144570.git.jani.nikula@intel.com>
+References: <cover.1724144570.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,33 +71,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The stragglers from [1], addressing the fact that VLV/CHV need rawclk
-freq quite early for power well [2]. Just move the init from i915
-runtime info init to display info init, and keep it early.
+With rawclk_freq moved to display runtime info, xe has no users left for
+them.
 
-BR,
-Jani.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 -
+ drivers/gpu/drm/xe/xe_device_types.h              | 6 ------
+ 2 files changed, 7 deletions(-)
 
-
-[1] https://patchwork.freedesktop.org/series/134145/
-[2] https://lore.kernel.org/r/ZmLzcsoMkt3cB48m@intel.com
-
-Jani Nikula (2):
-  drm/i915: move rawclk from runtime to display runtime info
-  drm/xe/display: drop unused rawclk_freq and RUNTIME_INFO()
-
- drivers/gpu/drm/i915/display/intel_backlight.c         | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_display_device.c    |  5 +++++
- drivers/gpu/drm/i915/display/intel_display_device.h    |  2 ++
- .../gpu/drm/i915/display/intel_display_power_well.c    |  4 ++--
- drivers/gpu/drm/i915/display/intel_dp_aux.c            |  4 ++--
- drivers/gpu/drm/i915/display/intel_pps.c               |  2 +-
- drivers/gpu/drm/i915/intel_device_info.c               |  5 -----
- drivers/gpu/drm/i915/intel_device_info.h               |  2 --
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h      |  1 -
- drivers/gpu/drm/xe/xe_device_types.h                   |  6 ------
- 10 files changed, 17 insertions(+), 24 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 2feedddf1e40..182c38905626 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -116,7 +116,6 @@ struct i915_sched_attr {
+ #define i915_gem_fence_wait_priority(fence, attr) do { (void) attr; } while (0)
+ 
+ #define pdev_to_i915 pdev_to_xe_device
+-#define RUNTIME_INFO(xe)		(&(xe)->info.i915_runtime)
+ 
+ #define FORCEWAKE_ALL XE_FORCEWAKE_ALL
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index cb60bc5ec21b..5ed6f5434f42 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -305,12 +305,6 @@ struct xe_device {
+ 		u8 has_atomic_enable_pte_bit:1;
+ 		/** @info.has_device_atomics_on_smem: Supports device atomics on SMEM */
+ 		u8 has_device_atomics_on_smem:1;
+-
+-#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-		struct {
+-			u32 rawclk_freq;
+-		} i915_runtime;
+-#endif
+ 	} info;
+ 
+ 	/** @irq: device interrupt state */
 -- 
 2.39.2
 
