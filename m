@@ -4,54 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5290C3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 08:56:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88DD6C3DA4A
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 08:56:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8111910E20A;
-	Tue, 20 Aug 2024 08:56:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="meDah6fW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B656410E117
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 08:56:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724144163; x=1755680163;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nJTuQ09KfZmLwGHCJ0hqH0Ec1AtG+MMho+UIFwe55Kg=;
- b=meDah6fWiuubFPb06XSbRiyb8ZP1mWobhYDSAZQ7gseoBZnKIxgiLLB9
- sd+t2/1uZnI7h7gRM4g6bg4sE6U1L2k2IdjDrLMEhwZsdwTbYCnPpZuRu
- OiTA2yKzwVnRAB664hMDSPHIy4GKjVoylRProU7fpLwT7eFjXDUJB4U6r
- bPkrkGY8/OS9svcyXlKsZCJNCo6LiX/Ur6D8Ej9s+n4zPqQ7baGgOxL5d
- PnxVrkN+g0QF5hrvTS9GWbQiZYu3eagkUatsB2KeURoz1hkgspV8h9DhI
- S8LJc5cD6eHZXUFIrn6IfARi7pF1wsH7zZfo18W6HZ3pCRWWb24kacGIn w==;
-X-CSE-ConnectionGUID: BYY/rzsMSVumlPlIPk9WrQ==
-X-CSE-MsgGUID: sUyhY9qdQDCUvQwd1GcP6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="13110533"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="13110533"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 01:56:03 -0700
-X-CSE-ConnectionGUID: QbnvQRfkSTKI37rZTK1sww==
-X-CSE-MsgGUID: NhPucdsZSOq5lxTFMDiyeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="65619997"
-Received: from singhapo-nuc7i7bnh.iind.intel.com ([10.145.169.50])
- by orviesa004.jf.intel.com with ESMTP; 20 Aug 2024 01:56:01 -0700
-From: apoorva.singh@intel.com
-To: intel-xe@lists.freedesktop.org
-Cc: Apoorva Singh <apoorva.singh@intel.com>
-Subject: [PATCH 1/1] drm/xe: Add NULL check before dereferencing pointer
- lrc->bo in xe_lrc_snapshot_capture()
-Date: Tue, 20 Aug 2024 14:24:54 +0530
-Message-Id: <20240820085454.976636-2-apoorva.singh@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240820085454.976636-1-apoorva.singh@intel.com>
-References: <20240820085454.976636-1-apoorva.singh@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52BF110E2AE;
+	Tue, 20 Aug 2024 08:56:10 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C08010E2AE;
+ Tue, 20 Aug 2024 08:56:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/3=5D_drm/xe=3A_Remove_extra_dma=5Ffence=5Fput_on_xe=5Fsync=5Fent?=
+ =?utf-8?q?ry=5Fadd=5Fdeps_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Aug 2024 08:56:08 -0000
+Message-ID: <172414416899.698557.17887712016826245760@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240820090230.3258128-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240820090230.3258128-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +37,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Apoorva Singh <apoorva.singh@intel.com>
+== Series Details ==
 
-Add NULL check before deferencing of lrc->bo in
-xe_lrc_snapshot_capture().
+Series: series starting with [1/3] drm/xe: Remove extra dma_fence_put on xe_sync_entry_add_deps failure
+URL   : https://patchwork.freedesktop.org/series/137501/
+State : success
 
-Free the dynamically allocated memory for snapshot
-to avoid memory leak.
+== Summary ==
 
-Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ca0fb935331995e816af8043acfb603886a444c6
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Tue Aug 20 14:32:30 2024 +0530
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 974a9cd8c379..8ab1af4b4057 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1649,7 +1649,12 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	if (!snapshot)
- 		return NULL;
- 
--	if (lrc->bo && lrc->bo->vm)
-+	if (!lrc->bo) {
-+		kfree(snapshot);
-+		return NULL;
-+	}
-+
-+	if (lrc->bo->vm)
- 		xe_vm_get(lrc->bo->vm);
- 
- 	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
--- 
-2.34.1
+    drm/xe: Remove unrequired NULL check in xe_sched_job_free_fences
+    
+    dma_fence_chain_free() can handle NULL input, there is no need for NULL
+    check by caller.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 4d24271792fac837e728f7bb6237a94ee46cc76e drm-intel
+dec9ea2f713b drm/xe: Remove extra dma_fence_put on xe_sync_entry_add_deps failure
+b7efe7eb1b95 drm/xe: Remove unrequired NULL checks in xe_sync_entry_cleanup
+ca0fb9353319 drm/xe: Remove unrequired NULL check in xe_sched_job_free_fences
+
 
