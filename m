@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2643CC3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:40:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EFEEC52D6F
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 01:45:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6C8610E396;
-	Tue, 20 Aug 2024 01:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E66610E39B;
+	Tue, 20 Aug 2024 01:45:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EvR9DkZI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UaYQ9emZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2FD810E396
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:40:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A618110E39B
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 01:45:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724118055; x=1755654055;
+ t=1724118347; x=1755654347;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=7aw1y402z2CPqi9kcFEx5c9/g4DLBVHtuyejtZHa0W0=;
- b=EvR9DkZIMjCfMwMPkn4Ufy7DasEkGn5HalkE+j3Gv9JGgWxsMgX05mFL
- 6e6eALJuESXo1Fq/tLN8wDt4vBoEehsD2+Vv5k+lfsuDpmgrEbG3UMF/p
- g5+O5yTB5B7afGVHVctMQvn+GSrL339p5KvO8i0SqXtFne2Msn3lPoBx0
- 2VYYirtJMncLo2PMXGFFXfddh3HR+RntN3Thb/lQxgc6yT8oGF/GpYwHb
- JJygSAsZEUi2dzpKy8YNYBtii6cnSwC7PPeeSwhF0Woz/CqCwfUx8tHzl
- O04mBL6V1lk+V7eCX81RmT8oNvMa97Lr0jx0tYm+0MW46mfFq8JMPO/+C w==;
-X-CSE-ConnectionGUID: 5iGlHAtdSFqb8fSTZ61q4A==
-X-CSE-MsgGUID: jty5WnGsRzuMcKfKvSUBrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22276535"
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="22276535"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:40:54 -0700
-X-CSE-ConnectionGUID: PNFIYwh6TYGLzJWyLLFFwQ==
-X-CSE-MsgGUID: IOLJD9abRyK75AlhqT7AEA==
+ bh=nd/hA6BaAWRubeQ1o0jNrCnkS4iFADv8UwwefVUe/Uo=;
+ b=UaYQ9emZdFjZv6LboZI36Id284qWvZBcux+vuGqj/Aqqu+/QqunJn29/
+ 4qvVX+cGr3rlQ3B7R5ArNmaYud+7d8Rdd0HPDGYwYiITDvjgxF29GjjkB
+ cgmV1G5K8pPpXqXdgx9TM7q8z2UkY/OdLblsWR81ErwC40W6MPtJ9Isc/
+ S81BDqJ51kXPa3DbHU/s1UbZu+zM/mDqAPNOmrmjDuaG1WCtSdQbl+kzk
+ 9UZyOgxG72QgEARZT2lDFhYEn/HhyRjHlbkwZ9fKA9dtiothMlrZa8Tg/
+ mrNGwjXzSo/nHWh5nfB/vjVjdvk5VMcds9Tr4JFBFTNKTSlgqbGGx9DR3 A==;
+X-CSE-ConnectionGUID: 3gI+1UixSVe468mN1Tp3gA==
+X-CSE-MsgGUID: LrRjAPYkRQeSq+5vXSg5KA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22015912"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="22015912"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:45:46 -0700
+X-CSE-ConnectionGUID: Vp51oJZnR4qdReiCGkFywQ==
+X-CSE-MsgGUID: fW/7w9pdS1uxbLkIUtQb4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="98021644"
+X-IronPort-AV: E=Sophos;i="6.10,160,1719903600"; d="scan'208";a="65258392"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.138])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 18:40:54 -0700
-Date: Mon, 19 Aug 2024 18:40:54 -0700
-Message-ID: <85v7zw6kex.wl-ashutosh.dixit@intel.com>
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2024 18:45:46 -0700
+Date: Mon, 19 Aug 2024 18:45:45 -0700
+Message-ID: <85ttfg6k6u.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
 Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
  "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>, "Souza, Jose"
  <jose.souza@intel.com>, "Landwerlin, Lionel G"
  <lionel.g.landwerlin@intel.com>
-Subject: Re: [PATCH 7/8] drm/xe/oa: Add syncs support to OA config ioctl
-In-Reply-To: <CH0PR11MB544473F8360B2C1F033674B6E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
+Subject: Re: [PATCH 8/8] drm/xe/oa: Allow only certain property changes from
+ config ioctl
+In-Reply-To: <CH0PR11MB5444C7149251786144857BD8E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
 References: <20240808174139.4027534-1-ashutosh.dixit@intel.com>
- <20240808174139.4027534-8-ashutosh.dixit@intel.com>
- <CH0PR11MB544473F8360B2C1F033674B6E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <20240808174139.4027534-9-ashutosh.dixit@intel.com>
+ <CH0PR11MB5444C7149251786144857BD8E5B92@CH0PR11MB5444.namprd11.prod.outlook.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -74,139 +75,291 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 08 Aug 2024 14:39:12 -0700, Cavitt, Jonathan wrote:
+On Thu, 08 Aug 2024 15:15:46 -0700, Cavitt, Jonathan wrote:
 >
+
+Hi Jonathan,
+
 > -----Original Message-----
 > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ashutosh Dixit
 > Sent: Thursday, August 8, 2024 10:42 AM
 > To: intel-xe@lists.freedesktop.org
 > Cc: Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Souza, Jose <jose.souza@intel.com>; Landwerlin, Lionel G <lionel.g.landwerlin@intel.com>
-> Subject: [PATCH 7/8] drm/xe/oa: Add syncs support to OA config ioctl
+> Subject: [PATCH 8/8] drm/xe/oa: Allow only certain property changes from config ioctl
 > >
-> > In addition to stream open, add xe_sync support to the OA config ioctl,
-> > where it is even more useful. This allows e.g. Mesa to replay a workload
-> > repeatedly on the GPU, each time with a different OA configuration, while
-> > precisely controlling (at batch buffer granularity) the workload segment
-> > for which a particular OA configuration is active, without introducing
-> > stalls in the userspace pipeline.
+> > Whereas all properties can be specified during OA stream open, when the OA
+> > stream is reconfigured only the config_id and syncs can be specified.
 > >
 > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > > ---
-> >  drivers/gpu/drm/xe/xe_oa.c       | 32 ++++++++++++++++++--------------
-> >  drivers/gpu/drm/xe/xe_oa_types.h |  3 +++
-> >  2 files changed, 21 insertions(+), 14 deletions(-)
+> >  drivers/gpu/drm/xe/xe_oa.c | 69 ++++++++++++++++++++++++++------------
+> >  1 file changed, 47 insertions(+), 22 deletions(-)
 > >
 > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> > index 5520208a46b2c..c9f77f0342b60 100644
+> > index c9f77f0342b60..27654a0d4358f 100644
 > > --- a/drivers/gpu/drm/xe/xe_oa.c
 > > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > @@ -867,6 +867,7 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
-> >		xe_gt_WARN_ON(gt, xe_guc_pc_unset_gucrc_mode(&gt->uc.guc.pc));
-> >
-> >	xe_oa_free_configs(stream);
-> > +	xe_file_put(stream->xef);
+> > @@ -1133,9 +1133,12 @@ static int decode_oa_format(struct xe_oa *oa, u64 fmt, enum xe_oa_format_name *n
+> >	return -EINVAL;
 > >  }
 > >
-> >  static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
-> > @@ -1433,36 +1434,37 @@ static int xe_oa_disable_locked(struct xe_oa_stream *stream)
-> >
-> >  static long xe_oa_config_locked(struct xe_oa_stream *stream, u64 arg)
+> > -static int xe_oa_set_prop_oa_unit_id(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_oa_unit_id(struct xe_oa *oa, u64 value, bool all,
+> >				     struct xe_oa_open_param *param)
 > >  {
-> > -	struct drm_xe_ext_set_property ext;
-> > +	struct xe_oa_open_param param = {};
-> >	long ret = stream->oa_config->id;
-> >	struct xe_oa_config *config;
-> >	int err;
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> >	if (value >= oa->oa_unit_ids) {
+> >		drm_dbg(&oa->xe->drm, "OA unit ID out of range %lld\n", value);
+> >		return -EINVAL;
+> > @@ -1144,25 +1147,32 @@ static int xe_oa_set_prop_oa_unit_id(struct xe_oa *oa, u64 value,
+> >	return 0;
+> >  }
 > >
-> > -	err = __copy_from_user(&ext, u64_to_user_ptr(arg), sizeof(ext));
-> > -	if (XE_IOCTL_DBG(stream->oa->xe, err))
-> > -		return -EFAULT;
-> > -
-> > -	if (XE_IOCTL_DBG(stream->oa->xe, ext.pad) ||
-> > -	    XE_IOCTL_DBG(stream->oa->xe, ext.base.name != DRM_XE_OA_EXTENSION_SET_PROPERTY) ||
-> > -	    XE_IOCTL_DBG(stream->oa->xe, ext.base.next_extension) ||
-> > -	    XE_IOCTL_DBG(stream->oa->xe, ext.property != DRM_XE_OA_PROPERTY_OA_METRIC_SET))
-> > -		return -EINVAL;
+> > -static int xe_oa_set_prop_sample_oa(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_sample_oa(struct xe_oa *oa, u64 value, bool all,
+> >				    struct xe_oa_open_param *param)
+> >  {
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> >	param->sample = value;
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_prop_metric_set(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_metric_set(struct xe_oa *oa, u64 value, bool all,
+> >				     struct xe_oa_open_param *param)
+> >  {
+> >	param->metric_set = value;
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_prop_oa_format(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_oa_format(struct xe_oa *oa, u64 value, bool all,
+> >				    struct xe_oa_open_param *param)
+> >  {
+> > -	int ret = decode_oa_format(oa, value, &param->oa_format);
+> > +	int ret;
+> >
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> > +	ret = decode_oa_format(oa, value, &param->oa_format);
+> >	if (ret) {
+> >		drm_dbg(&oa->xe->drm, "Unsupported OA report format %#llx\n", value);
+> >		return ret;
+> > @@ -1170,11 +1180,14 @@ static int xe_oa_set_prop_oa_format(struct xe_oa *oa, u64 value,
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_prop_oa_exponent(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_oa_exponent(struct xe_oa *oa, u64 value, bool all,
+> >				      struct xe_oa_open_param *param)
+> >  {
+> >  #define OA_EXPONENT_MAX 31
+> >
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> >	if (value > OA_EXPONENT_MAX) {
+> >		drm_dbg(&oa->xe->drm, "OA timer exponent too high (> %u)\n", OA_EXPONENT_MAX);
+> >		return -EINVAL;
+> > @@ -1183,49 +1196,61 @@ static int xe_oa_set_prop_oa_exponent(struct xe_oa *oa, u64 value,
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_prop_disabled(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_disabled(struct xe_oa *oa, u64 value, bool all,
+> >				   struct xe_oa_open_param *param)
+> >  {
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> >	param->disabled = value;
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_prop_exec_queue_id(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_exec_queue_id(struct xe_oa *oa, u64 value, bool all,
+> >					struct xe_oa_open_param *param)
+> >  {
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> >	param->exec_queue_id = value;
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_prop_engine_instance(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_prop_engine_instance(struct xe_oa *oa, u64 value, bool all,
+> >					  struct xe_oa_open_param *param)
+> >  {
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> >	param->engine_instance = value;
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value, bool all,
+> >				struct xe_oa_open_param *param)
+> >  {
+> > +	if (!all)
+> > +		return -EINVAL;
+> > +
+> >	param->no_preempt = value;
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_num_syncs(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_num_syncs(struct xe_oa *oa, u64 value, bool all,
+> >			       struct xe_oa_open_param *param)
+> >  {
+> >	param->num_syncs = value;
+> >	return 0;
+> >  }
+> >
+> > -static int xe_oa_set_syncs_user(struct xe_oa *oa, u64 value,
+> > +static int xe_oa_set_syncs_user(struct xe_oa *oa, u64 value, bool all,
+> >				struct xe_oa_open_param *param)
+> >  {
+> >	param->syncs_user = u64_to_user_ptr(value);
+> >	return 0;
+> >  }
+> >
+> > -typedef int (*xe_oa_set_property_fn)(struct xe_oa *oa, u64 value,
+> > +typedef int (*xe_oa_set_property_fn)(struct xe_oa *oa, u64 value, bool all,
+> >				     struct xe_oa_open_param *param);
+> >  static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
+> >	[DRM_XE_OA_PROPERTY_OA_UNIT_ID] = xe_oa_set_prop_oa_unit_id,
+> > @@ -1241,7 +1266,7 @@ static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
+> >	[DRM_XE_OA_PROPERTY_SYNCS] = xe_oa_set_syncs_user,
+> >  };
+> >
+> > -static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension,
+> > +static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension, bool all,
+> >				       struct xe_oa_open_param *param)
+> >  {
+> >	u64 __user *address = u64_to_user_ptr(extension);
+> > @@ -1258,18 +1283,18 @@ static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension,
+> >		return -EINVAL;
+> >
+> >	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_oa_set_property_funcs));
+> > -	return xe_oa_set_property_funcs[idx](oa, ext.value, param);
+> > +	return xe_oa_set_property_funcs[idx](oa, ext.value, all, param);
 >
-> I take it these conditions originally blocked batch buffer granular OA configuration
-> changes, which we now support due to xe_oa_parse_syncs down below?
-
-Yeah, previously only metric_set configuration was supported for stream
-reconfiguration. Now that we have introduced syncs in this series,
-both metric_set and xe_syncs are supported in the reconfig path.
-
+> We might be able to reduce the amount of times the "all" Boolean param needs to get
+> propagated if we had a separate xe_oa_set_property_fn array for the reconfiguration
+> case.  Say:
 >
-> At any rate, this all looks fine to me.
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> """
+> static int xe_oa_set_prop_inval(struct xe_oa *oa, u64 value,
+>				  struct xe_oa_open_param *param)
+> {
+>	return -EINVAL;
+> }
+>
+> static const xe_oa_set_property_fn xe_oa_set_property_funcs_recon[] = {
+>	[DRM_XE_OA_PROPERTY_OA_UNIT_ID] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_SAMPLE_OA] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_OA_METRIC_SET] = xe_oa_set_prop_metric_set,
+>	[DRM_XE_OA_PROPERTY_OA_FORMAT] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_OA_PERIOD_EXPONENT] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_OA_DISABLED] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_NO_PREEMPT] = xe_oa_set_prop_inval,
+>	[DRM_XE_OA_PROPERTY_NUM_SYNCS] = xe_oa_set_num_syncs,
+>	[DRM_XE_OA_PROPERTY_SYNCS] = xe_oa_set_syncs_user,
+> };
+> """
+>
+> Then from there, say:
+>
+> -	return xe_oa_set_property_funcs[idx](oa, ext.value, param);
+> +	if (all)
+> +		return xe_oa_set_property_funcs[idx](oa, ext.value, param);
+> +	else
+> +		return xe_oa_set_property_funcs_recon[idx](oa, ext.value, param);
+>
+> I guess at that point, we'd want to rename oa_set_property_funcs to something else
+> (such as "xe_oa_set_property_funcs_all") for clarity.
+>
+> The alternative would be to rename "all" to "open" so that later down the execution
+> stack, it remains clear that we're blocking the execution of the various functions in the
+> reconfiguration case (or the "not open" case, if you will).
+>
+> Either change by itself would be sufficient, I think.
+
+I liked your suggestion so have now implemented almost exactly this in
+v2. Forgot to add:
+
+Suggested-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+
+Will add. The only other minor change was it seems bool's are not welcome
+so I had to introduce an enum. Please take a look again.
 
 Thanks.
 --
 Ashutosh
 
+
+
+>
 > -Jonathan Cavitt
 >
-> > +	err = xe_oa_user_extensions(stream->oa, arg, 0, &param);
-> > +	if (err)
-> > +		return err;
+> >  }
 > >
-> > -	config = xe_oa_get_oa_config(stream->oa, ext.value);
-> > +	config = xe_oa_get_oa_config(stream->oa, param.metric_set);
-> >	if (!config)
-> >		return -ENODEV;
+> > -typedef int (*xe_oa_user_extension_fn)(struct xe_oa *oa, u64 extension,
+> > +typedef int (*xe_oa_user_extension_fn)(struct xe_oa *oa, u64 extension, bool all,
+> >				       struct xe_oa_open_param *param);
+> >  static const xe_oa_user_extension_fn xe_oa_user_extension_funcs[] = {
+> >	[DRM_XE_OA_EXTENSION_SET_PROPERTY] = xe_oa_user_ext_set_property,
+> >  };
 > >
-> >	if (config != stream->oa_config) {
-> > +		param.xef = stream->xef;
-> > +		err = xe_oa_parse_syncs(stream->oa, &param);
-> > +		if (err)
-> > +			goto err_config_put;
-> > +
-> > +		stream->num_syncs = param.num_syncs;
-> > +		stream->syncs = param.syncs;
-> > +
-> >		err = xe_oa_emit_oa_config(stream, config);
-> >		if (!err)
-> >			config = xchg(&stream->oa_config, config);
-> > -		else
-> > -			ret = err;
+> >  #define MAX_USER_EXTENSIONS	16
+> > -static int xe_oa_user_extensions(struct xe_oa *oa, u64 extension, int ext_number,
+> > -				 struct xe_oa_open_param *param)
+> > +static int xe_oa_user_extensions(struct xe_oa *oa, u64 extension, bool all,
+> > +				 int ext_number, struct xe_oa_open_param *param)
+> >  {
+> >	u64 __user *address = u64_to_user_ptr(extension);
+> >	struct drm_xe_user_extension ext;
+> > @@ -1288,12 +1313,12 @@ static int xe_oa_user_extensions(struct xe_oa *oa, u64 extension, int ext_number
+> >		return -EINVAL;
+> >
+> >	idx = array_index_nospec(ext.name, ARRAY_SIZE(xe_oa_user_extension_funcs));
+> > -	err = xe_oa_user_extension_funcs[idx](oa, extension, param);
+> > +	err = xe_oa_user_extension_funcs[idx](oa, extension, all, param);
+> >	if (XE_IOCTL_DBG(oa->xe, err))
+> >		return err;
+> >
+> >	if (ext.next_extension)
+> > -		return xe_oa_user_extensions(oa, ext.next_extension, ++ext_number, param);
+> > +		return xe_oa_user_extensions(oa, ext.next_extension, all, ++ext_number, param);
+> >
+> >	return 0;
+> >  }
+> > @@ -1439,7 +1464,7 @@ static long xe_oa_config_locked(struct xe_oa_stream *stream, u64 arg)
+> >	struct xe_oa_config *config;
+> >	int err;
+> >
+> > -	err = xe_oa_user_extensions(stream->oa, arg, 0, &param);
+> > +	err = xe_oa_user_extensions(stream->oa, arg, false, 0, &param);
+> >	if (err)
+> >		return err;
+> >
+> > @@ -1989,7 +2014,7 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
 > >	}
 > >
-> > +err_config_put:
-> >	xe_oa_config_put(config);
-> >
-> > -	return ret;
-> > +	return err ?: ret;
-> >  }
-> >
-> >  static long xe_oa_status_locked(struct xe_oa_stream *stream, unsigned long arg)
-> > @@ -1705,6 +1707,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
-> >	stream->period_exponent = param->period_exponent;
-> >	stream->no_preempt = param->no_preempt;
-> >
-> > +	stream->xef = xe_file_get(param->xef);
-> >	stream->num_syncs = param->num_syncs;
-> >	stream->syncs = param->syncs;
-> >
-> > @@ -1804,6 +1807,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
-> >  err_free_configs:
-> >	xe_oa_free_configs(stream);
-> >  exit:
-> > +	xe_file_put(stream->xef);
-> >	return ret;
-> >  }
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-> > index c1ca960af9305..303e2e8f2a918 100644
-> > --- a/drivers/gpu/drm/xe/xe_oa_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_oa_types.h
-> > @@ -239,6 +239,9 @@ struct xe_oa_stream {
-> >	/** @no_preempt: Whether preemption and timeslicing is disabled for stream exec_q */
-> >	u32 no_preempt;
-> >
-> > +	/** @xef: xe_file with which the stream was opened */
-> > +	struct xe_file *xef;
-> > +
-> >	/** @num_syncs: size of @syncs array */
-> >	u32 num_syncs;
+> >	param.xef = xef;
+> > -	ret = xe_oa_user_extensions(oa, data, 0, &param);
+> > +	ret = xe_oa_user_extensions(oa, data, true, 0, &param);
+> >	if (ret)
+> >		return ret;
 > >
 > > --
 > > 2.41.0
