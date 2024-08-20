@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2D78C531DF
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 17:16:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60D68C3DA4A
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 17:16:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B14EA10E514;
-	Tue, 20 Aug 2024 17:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15E1210E51B;
+	Tue, 20 Aug 2024 17:16:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kq+m62qL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PwgeNVAT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 916A210E467
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 17:16:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A936210E467
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 17:16:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724174174; x=1755710174;
+ t=1724174175; x=1755710175;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6MOz9+SwBr3bOLMFymWmx/E9F044gBQPA8g+c+eKCq4=;
- b=kq+m62qL006KFh6kGBKNbkzGwxtTEbXkm0YlLfRDeZKXWLZObfpo611Y
- tzXADifGMDd2q+OmKzjHndJpAWaq8m2Gjs8dFwWyu+Dm+YAknGGQ8agIy
- 0m5E67vTDRx8Qm4sT7Di8jsot9XyIJAIRCX9gNrwP9OT0bJNZXU85tEKQ
- SYJvqaFmKWKjzt2R+vdpMwe9Tu8ST/5eSvT4O5GFik4uJPDZCTvhi3n0b
- eupNOQIZ64NFl0mq56uFajT9B86xQ10m9ZJOcBgboF5pk+hlZKozA17RC
- oycMQX3RKozLupFLL5j+oMUCBQ4d730loF43ccsDGANgpu40guF3YD+DA A==;
-X-CSE-ConnectionGUID: APebxayTQHWX+zOXxoTdMQ==
-X-CSE-MsgGUID: S6Prz39fRNeUrR+tUznp+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="33114108"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="33114108"
+ bh=NdqEKdn6vWwTxUK/HxzrjbNMyOkFOtJab7cuN1KhJs4=;
+ b=PwgeNVATwo1IY03547rW5oqqKg0q6zfJSTDA4ZKHC6+McDp13H8/q+0e
+ zbwQHBgJpzKc7IeLum8t8R+79BMSzLNPRDlhMXuOrKn8MOAqMnI6mCqhB
+ M4Ud47zLAd1zB7mMjnS9fg5LKg5ktoDv6Thh7bH1LvVgruGSjiN+AeFYH
+ 7Ihip4D6C3zSsIQW2+sh0Hg+ElkyqAunU4I6av3uUz0DXPsAeDLFjrp72
+ 6yUvgzvNeyJ4cMjNmn1DEip0oY7fU8GG9RcqpPoZFRFRMFHz8gBNk8NGV
+ Z+36t3wP0NqNqTSmEgMh7t4eLYfDCZYHFvBUiSG2ZtzhMHWA4Hne1Jqtg g==;
+X-CSE-ConnectionGUID: MFVx9QBLT0yIaWp67kB8Jg==
+X-CSE-MsgGUID: FgqBu20rTziiahzXHlBK9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="33114123"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="33114123"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 10:14:26 -0700
-X-CSE-ConnectionGUID: C2CWFTtFR0CNseAe0dhgJQ==
-X-CSE-MsgGUID: XrgsXjvkThey/404An49EA==
+ 20 Aug 2024 10:14:34 -0700
+X-CSE-ConnectionGUID: EPjZZMHfQeq+k2mJFqalPw==
+X-CSE-MsgGUID: 1JP7UUobSfCliDVbUm1Uwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="60755939"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="60755984"
 Received: from fpallare-mobl3.ger.corp.intel.com (HELO vgovind2-mobl3..)
  ([10.245.245.143])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 10:14:24 -0700
+ 20 Aug 2024 10:14:32 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, imre.deak@intel.com,
  arun.r.murthy@intel.com, rodrigo.vivi@intel.com, uma.shankar@intel.com,
  ville.syrala@intel.com
-Subject: [PATCH v3 1/3] drm/xe: Suspend/resume user access only during system
- s/r
-Date: Tue, 20 Aug 2024 20:14:06 +0300
-Message-Id: <20240820171408.192309-2-vinod.govindapillai@intel.com>
+Subject: [PATCH v3 3/3] drm/xe/display: handle HPD polling in display runtime
+ suspend/resume
+Date: Tue, 20 Aug 2024 20:14:08 +0300
+Message-Id: <20240820171408.192309-4-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240820171408.192309-1-vinod.govindapillai@intel.com>
 References: <20240820171408.192309-1-vinod.govindapillai@intel.com>
@@ -71,59 +71,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@intel.com>
+In XE, display runtime suspend / resume routines are called only
+if d3cold is allowed. This makes the driver unable to detect any
+HPDs once the device goes into runtime suspend state in platforms
+like LNL. Update the display runtime suspend / resume routines
+to include HPD polling regardless of d3cold status.
 
-Enable/Disable user access only during system suspend/resume.
-This should not happen during runtime s/r
+While xe_display_pm_suspend/resume() performs steps during runtime
+suspend/resume that shouldn't happen, like suspending MST and they
+are missing other steps like enabling DC9, this patchset is meant
+to keep the current behavior wrt. these, leaving the corresponding
+updates for a follow-up
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+v2: have a separate function for display runtime s/r (Rodrigo)
+
+v3: better streamlining of system s/r and runtime s/r calls (Imre)
+
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 23 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/display/xe_display.h |  4 ++++
+ drivers/gpu/drm/xe/xe_pm.c              |  8 +++++---
+ 3 files changed, 32 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 30dfdac9f6fa..ad7fc5137b42 100644
+index b2a0b4b5c45c..3dc55edd390a 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -323,7 +323,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
- 	if (has_display(xe)) {
- 		drm_kms_helper_poll_disable(&xe->drm);
--		intel_display_driver_disable_user_access(xe);
-+		if (!runtime)
-+			intel_display_driver_disable_user_access(xe);
+@@ -308,6 +308,18 @@ static void xe_display_flush_cleanup_work(struct xe_device *xe)
  	}
+ }
  
- 	if (!runtime)
-@@ -335,7 +336,7 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
++/* TODO: System and runtime suspend/resume sequences will be sanitized as a follow-up. */
++void xe_display_pm_runtime_suspend(struct xe_device *xe)
++{
++	if (!xe->info.probe_display)
++		return;
++
++	if (xe->d3cold.allowed)
++		xe_display_pm_suspend(xe, true);
++
++	intel_hpd_poll_enable(xe);
++}
++
+ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+ {
+ 	struct intel_display *display = &xe->display;
+@@ -355,6 +367,17 @@ void xe_display_pm_suspend_late(struct xe_device *xe)
+ 	intel_display_power_suspend_late(xe);
+ }
  
- 	intel_hpd_cancel_work(xe);
++void xe_display_pm_runtime_resume(struct xe_device *xe)
++{
++	if (!xe->info.probe_display)
++		return;
++
++	intel_hpd_poll_disable(xe);
++
++	if (xe->d3cold.allowed)
++		xe_display_pm_resume(xe, true);
++}
++
+ void xe_display_pm_resume_early(struct xe_device *xe)
+ {
+ 	if (!xe->info.probe_display)
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 000fb5799df5..53d727fd792b 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -38,6 +38,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime);
+ void xe_display_pm_suspend_late(struct xe_device *xe);
+ void xe_display_pm_resume_early(struct xe_device *xe);
+ void xe_display_pm_resume(struct xe_device *xe, bool runtime);
++void xe_display_pm_runtime_suspend(struct xe_device *xe);
++void xe_display_pm_runtime_resume(struct xe_device *xe);
  
--	if (has_display(xe))
-+	if (!runtime && has_display(xe))
- 		intel_display_driver_suspend_access(xe);
+ #else
  
- 	intel_encoder_suspend_all(&xe->display);
-@@ -381,7 +382,7 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
- 	intel_display_driver_init_hw(xe);
- 	intel_hpd_init(xe);
+@@ -67,6 +69,8 @@ static inline void xe_display_pm_suspend(struct xe_device *xe, bool runtime) {}
+ static inline void xe_display_pm_suspend_late(struct xe_device *xe) {}
+ static inline void xe_display_pm_resume_early(struct xe_device *xe) {}
+ static inline void xe_display_pm_resume(struct xe_device *xe, bool runtime) {}
++static inline void xe_display_pm_runtime_suspend(struct xe_device *xe) {}
++static inline void xe_display_pm_runtime_resume(struct xe_device *xe) {}
  
--	if (has_display(xe))
-+	if (!runtime && has_display(xe))
- 		intel_display_driver_resume_access(xe);
+ #endif /* CONFIG_DRM_XE_DISPLAY */
+ #endif /* _XE_DISPLAY_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index fcfb49af8c89..c247e1cb8aba 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -366,9 +366,9 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 		xe_bo_runtime_pm_release_mmap_offset(bo);
+ 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
  
- 	/* MST sideband requires HPD interrupts enabled */
-@@ -391,7 +392,8 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
+-	if (xe->d3cold.allowed) {
+-		xe_display_pm_suspend(xe, true);
++	xe_display_pm_runtime_suspend(xe);
  
- 	if (has_display(xe)) {
- 		drm_kms_helper_poll_enable(&xe->drm);
--		intel_display_driver_enable_user_access(xe);
-+		if (!runtime)
-+			intel_display_driver_enable_user_access(xe);
++	if (xe->d3cold.allowed) {
+ 		err = xe_bo_evict_all(xe);
+ 		if (err)
+ 			goto out;
+@@ -431,12 +431,14 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_resume(gt);
+ 
++	xe_display_pm_runtime_resume(xe);
++
+ 	if (xe->d3cold.allowed) {
+-		xe_display_pm_resume(xe, true);
+ 		err = xe_bo_restore_user(xe);
+ 		if (err)
+ 			goto out;
  	}
- 	intel_hpd_poll_disable(xe);
- 
++
+ out:
+ 	lock_map_release(&xe_pm_runtime_lockdep_map);
+ 	xe_pm_write_callback_task(xe, NULL);
 -- 
 2.34.1
 
