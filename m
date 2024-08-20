@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4807C3DA4A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 17:29:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B598CC531DC
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Aug 2024 17:29:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 722B310E7F2;
-	Tue, 20 Aug 2024 17:29:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB8B10E7F8;
+	Tue, 20 Aug 2024 17:29:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dFGoGfO4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AEpuNoMn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A79810E7F2
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 17:29:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6C1210E7F1
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Aug 2024 17:29:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1724174943; x=1755710943;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=pvW7/+QePGBr8lDiQqDXHtexWWgbWGk+YkrV9ysMc2A=;
- b=dFGoGfO4+NwsRhnhR96bj4YbsQu2Nt7qQgeNPHpehkVlv7LJUjEnj+gV
- AmrKhu5mhm4qKe9dGlJ1kxCg+7/u2tsrjxJgITyGBJcb3+J9tnsArZZ01
- LEsHKU0/WyQFxurCHLa/zalqwxWpOSL95UVGCfMNFmquKiHt2BAvdrstv
- OMzdFX/xGplpofSFRSMlj86hfcjAkCpglCdb1n6fKwxmfIzfqd6fO9o5A
- uhXOmK90AtLEDCODnuLVmJo5Odw40H75C9smw6QrIsRJRhE+0Qavb69qk
- VKSGjRUT8mqdbLsccBR9WFFzHoCL7QUJghkHQ6YDYE+2RT3WC8n7ozJY+ w==;
-X-CSE-ConnectionGUID: QP0o0rDlTRyBz95m1Z3hxw==
-X-CSE-MsgGUID: Kp/IImn5S9+SKTbP0IeaHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26365496"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26365496"
+ bh=6gtB3i2JQUG7I22ermqo0W8U5RKBMy/qX2TdmRCbJYI=;
+ b=AEpuNoMndsab9KSGkVi4W6Sr43xa8Lgdmp+uYiuOXZlqau9g9cG1i3lR
+ ezS24jqI6a6EEpb/3ofBh5XIBtHXotNEzkFnYhrtVbda8LDrlwZcPOVUq
+ 2BuXo3MgKvczU4ncz09abrel/1ipxtqBhRjRVllBdRCcki+I++6F9u80c
+ wtx9aHcTu7jtvUVA/UJ8DLTn9dfD9fEXh6jtOjyGtHMRC5PRXbOEwOzX8
+ qyGpCzMLHV2W0oxYjYw4ykHwNzDL1Ub1VArtbhu2o/T1CLmEap3wAUQD0
+ I7ZfuDD6oWR8hPfvoAo4hx4PSdafQAolamaeLeuqOSSra1O1xplBD07DQ w==;
+X-CSE-ConnectionGUID: SHP6aBIOQnaZTgrXjFX1HQ==
+X-CSE-MsgGUID: yqDg31DoRvuwYowvw5te7Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26365493"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26365493"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Aug 2024 10:29:02 -0700
-X-CSE-ConnectionGUID: P+Z0DSbiTiCw9T4EIwRBag==
-X-CSE-MsgGUID: imdWfMUsQaGdMC2YKyQkOw==
+X-CSE-ConnectionGUID: lfwI2A3oTvySi5JPoUKBWQ==
+X-CSE-MsgGUID: pun3r4dLRc2dBwQ8rmTQ4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65651739"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65651736"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Aug 2024 10:29:03 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 5/6] drm/xe: Move HuC init before GuC init
-Date: Tue, 20 Aug 2024 10:29:57 -0700
-Message-Id: <20240820172958.1095143-6-matthew.brost@intel.com>
+Subject: [PATCH v2 2/6] drm/xe: Set firmware state to loadable before
+ registering guc_fini_hw
+Date: Tue, 20 Aug 2024 10:29:54 -0700
+Message-Id: <20240820172958.1095143-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240820172958.1095143-1-matthew.brost@intel.com>
 References: <20240820172958.1095143-1-matthew.brost@intel.com>
@@ -65,39 +66,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC fini, also fini the HuC so move HuC init first.
+The guc_fini_hw registered calls __xe_uc_fw_status which is only
+expected to be called after initializing fw state. Move this before
+registering guc_fini_hw.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 0d073a9987c2..5b7d6f44a7de 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -36,6 +36,10 @@ int xe_uc_init(struct xe_uc *uc)
- {
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index de0fe9e65746..52df28032a6f 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -350,6 +350,8 @@ int xe_guc_init(struct xe_guc *guc)
+ 	if (ret)
+ 		goto out;
  
-+	ret = xe_huc_init(&uc->huc);
-+	if (ret)
-+		goto err;
++	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOADABLE);
 +
- 	/*
- 	 * We call the GuC/HuC/GSC init functions even if GuC submission is off
- 	 * to correctly move our tracking of the FW state to "disabled".
-@@ -44,10 +48,6 @@ int xe_uc_init(struct xe_uc *uc)
+ 	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini_hw, guc);
  	if (ret)
- 		goto err;
+ 		goto out;
+@@ -358,8 +360,6 @@ int xe_guc_init(struct xe_guc *guc)
  
--	ret = xe_huc_init(&uc->huc);
--	if (ret)
--		goto err;
+ 	xe_guc_comm_init_early(guc);
+ 
+-	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOADABLE);
 -
- 	ret = xe_gsc_init(&uc->gsc);
- 	if (ret)
- 		goto err;
+ 	return 0;
+ 
+ out:
 -- 
 2.34.1
 
