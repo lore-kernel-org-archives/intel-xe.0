@@ -4,54 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47000C52D7C
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 17:19:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24D12C52D6F
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 17:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A70610E67B;
-	Wed, 21 Aug 2024 17:19:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E493610E680;
+	Wed, 21 Aug 2024 17:21:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hdmRKnP1";
+	dkim=pass (2048-bit key; unprotected) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="DyQUGNr8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05FB210E67B
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 17:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724260772; x=1755796772;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NeyTZvC32cJ2DU+JyA7JnEGRFBNgsgjgHDr4FtFXSuo=;
- b=hdmRKnP1XceCFUo9PaMpTGim62xQaytvFUlVRZB6466mkD7uuDL3atUR
- r/VUBXf+G+nJygBQggk9TAhvmc/ruvdtsnFdiNGQjaMbqEUadESyAgMGU
- R6hVuQEBiI/m9FkW1Au++Iy1629uCZRi1VhDesWQMnDVq5rQSkWBlcsk3
- /WXfB7/ZRnAqJZj2NKBvJfcdcjjPieVy//5nQvYHIPfW8PfBenzxo/e2Z
- ZoXDGleWccP432iQBAQGss0u1i3OfM15b20QjHArsAGRsPHNd3MZjF1Lr
- I1QXambasEXm8lUfR5opZjzAh6GhUv3pUlePuiglN12K69V4EKpqJdO5t g==;
-X-CSE-ConnectionGUID: P+UTf+fQSfWwrfoUfzHJEg==
-X-CSE-MsgGUID: kdT/d4WYQp++aEMfHqMhRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="26430809"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="26430809"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 10:19:32 -0700
-X-CSE-ConnectionGUID: 0H6rohE2QIqLkr55Th+Gkw==
-X-CSE-MsgGUID: p1Y69/uIQm6ebvLk4dHqxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="91944485"
-Received: from fpallare-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.216])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 10:19:30 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Stuart Summers <stuart.summers@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: fixup xe_alloc_pf_queue
-Date: Wed, 21 Aug 2024 18:19:18 +0100
-Message-ID: <20240821171917.417386-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.46.0
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com
+ [209.85.219.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6DCD10E681
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 17:21:20 +0000 (UTC)
+Received: by mail-yb1-f173.google.com with SMTP id
+ 3f1490d57ef6-e162df8bab4so3555512276.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 10:21:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=raspberrypi.com; s=google; t=1724260880; x=1724865680;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=015rYsEP7yfhpkEIWRHux/biwfA+OwNX3ERgw0+e/fU=;
+ b=DyQUGNr8eProSRf1kLimwHhnpVxpLEllr313tII/F30t8sbOsJ/F6xiomVvwp3j8ub
+ C0hGKpkSDWwZ3E+o652+0LSKOug+KQUCtpafwT4vDPdC1UYP4JpJizVWoKYjabG3t06D
+ VTouzRtrrti8uU6n9PrtDFk4hDBbKXSwcWlcvxIIUhtKjURd/7v1oUZ+ST5OuJZuWP31
+ fUhKnIRsqObu8qDnc3s5FJzxI47X5cPDo8rFjTeRWO0b2apIb/AvX5bCWuJLqpuCxCxr
+ KY9VGagKqMFmnS06AUZijxsMZmgQXkPC2EtJRCzHixZrQsQMMgv/qe5VSSlap2ye4yr4
+ Jfmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724260880; x=1724865680;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=015rYsEP7yfhpkEIWRHux/biwfA+OwNX3ERgw0+e/fU=;
+ b=JKFir8LsL62RWYkkNVUEIVhkcazgKKi3+xuSOvz5Qi3SxHYyKTKNCTkQNVi2+AtK2G
+ ya11Jr9o9XutorOVmAi3bZE/ZjWfdX4LgcQ4QSSDSrwF2Iqv238FkLH/tmJLMKUkVYTP
+ wMCk1gYjy3Kv5GGctM/Jnmyk8CNwiykoDobI/caTF2xl34ARMzqFtRIP6VZCfjQ7Sa9G
+ 8vuLHBdwS0Av94BsdK19rw91EPc58GxN+HOara/61FJkQJR7YGPFV19YSNblUHzJCroo
+ dmyXGwdPUORJyKyetZoLKle7mU33BSpn5j0+KSk07GymEl+5zp9DPSlbG8rpSiHjmjgQ
+ pJ/A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW3ZwFokpJHTOXJ+deN2YgcxA6zvLZoXLZTvwOloltdboMHtWllYOJJ+TRU0vbD7sys4cb3a88v7Q==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwW40xfay4tR3URP0pwwWOFQ0yFCjsJuQrwDWjbHw9DLtgrtifO
+ sV4vAz46YzQoAiVdsj2ZjfIjpHbkSDGdmLBTlm1mogH9fEwspIAHyqc6UVsE5oJ7WdcHDHljXzP
+ ciELlKwJcoPb09qSJKfPESDnuxkNHyVUdVaX+9w==
+X-Google-Smtp-Source: AGHT+IFQIUYiqr9oXIpOCAWbvMIqreaNR6efa2UkbC2wXzdj0+7XiJlJ/bxcMVvFQA58O+M6v+X5MHJ8N7n6A61CWXI=
+X-Received: by 2002:a05:6902:100a:b0:e0b:c297:8a1c with SMTP id
+ 3f1490d57ef6-e166544e86bmr4285471276.15.1724260879808; Wed, 21 Aug 2024
+ 10:21:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-48-tzimmermann@suse.de>
+In-Reply-To: <20240821130348.73038-48-tzimmermann@suse.de>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Wed, 21 Aug 2024 18:21:03 +0100
+Message-ID: <CAPY8ntCrRjRWRAuM1HzV+=VMUzhxLg5Zw4KqhK0rkA3ed5avfg@mail.gmail.com>
+Subject: Re: [PATCH v2 47/86] drm/vc4: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
+ javierm@redhat.com, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,35 +82,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-kzalloc expects number of bytes, therefore we should convert the number
-of dw into bytes, otherwise we are likely just accessing beyond the
-array causing all kinds of carnage. Also fixup the error handling while
-we are here.
+On Wed, 21 Aug 2024 at 14:04, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>
+> Call drm_client_setup_with_fourcc() to run the kernel's default client
+> setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> v2:
+> - use drm_client_setup_with_fourcc()
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Cc: Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
 
-Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Reviewed-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 401c0527d914..e4510e56e4a2 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -417,7 +417,10 @@ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
- 		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW;
- 
- 	pf_queue->gt = gt;
--	pf_queue->data = kzalloc(pf_queue->num_dw, GFP_KERNEL);
-+	pf_queue->data = kzalloc(pf_queue->num_dw * sizeof(u32), GFP_KERNEL);
-+	if (!pf_queue->data)
-+		return -ENOMEM;
-+
- 	spin_lock_init(&pf_queue->lock);
- 	INIT_WORK(&pf_queue->worker, pf_queue_work_func);
- 
--- 
-2.46.0
-
+> ---
+>  drivers/gpu/drm/vc4/vc4_drv.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
+> index c133e96b8aca..86786caaf8a5 100644
+> --- a/drivers/gpu/drm/vc4/vc4_drv.c
+> +++ b/drivers/gpu/drm/vc4/vc4_drv.c
+> @@ -32,8 +32,10 @@
+>
+>  #include <drm/drm_aperture.h>
+>  #include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_client_setup.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_fbdev_dma.h>
+> +#include <drm/drm_fourcc.h>
+>  #include <drm/drm_vblank.h>
+>
+>  #include <soc/bcm2835/raspberrypi-firmware.h>
+> @@ -212,6 +214,7 @@ const struct drm_driver vc4_drm_driver = {
+>         .gem_create_object = vc4_create_object,
+>
+>         DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(vc4_bo_dumb_create),
+> +       DRM_FBDEV_DMA_DRIVER_OPS,
+>
+>         .ioctls = vc4_drm_ioctls,
+>         .num_ioctls = ARRAY_SIZE(vc4_drm_ioctls),
+> @@ -389,7 +392,7 @@ static int vc4_drm_bind(struct device *dev)
+>         if (ret < 0)
+>                 goto err;
+>
+> -       drm_fbdev_dma_setup(drm, 16);
+> +       drm_client_setup_with_fourcc(drm, DRM_FORMAT_RGB565);
+>
+>         return 0;
+>
+> --
+> 2.46.0
+>
