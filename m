@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4CFDC52D6F
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 11:47:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CF62C52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 11:48:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E8210E110;
-	Wed, 21 Aug 2024 11:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3322810E2C7;
+	Wed, 21 Aug 2024 11:48:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f+MQEsel";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xich3EYi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56B310E110
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 11:47:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A29FB10E2C7
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 11:48:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724240827; x=1755776827;
+ t=1724240890; x=1755776890;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=jjSih0Dn18w2M2H4XIJPx7914iu+Rq2MOCxnA9iSusE=;
- b=f+MQEselc7dWMAzyIkiQXpNGowkRnjfkW1Jswj/u1WyYeTJ6xKzfY05Q
- Qt538YleqxWIQtO1CjwazW2o47aA+LnuyE+vpK/LFnygSHZQ53HCXuBN1
- tIbnWuvEYu1/JiMlVoEbNbnyS1nqNXpfYl5i/QUKlOtpr3aI4ASGfioWq
- CRpAEVOXFfTb9mHohIltpe0EBZFQ8Mzmp03GY+qmZdWulJPrluQ0CL2uT
- G6kLVhDB/vtozXV6z2G2kBRoYtagyj74WbmKulODpv/xGLgcaKPZtYSRN
- 7Yhzu65i7XCVmFiSZN7kMR/wlUoH0JRtIqHs9o0WEYcR5Y1Csj3GUeQiM Q==;
-X-CSE-ConnectionGUID: f/Ei+e8wTwiZ6csfOj4P5g==
-X-CSE-MsgGUID: O5W6I3bvRvqWTzH4k/AhPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="25492119"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="25492119"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 04:47:06 -0700
-X-CSE-ConnectionGUID: f1Wi5FiqQ4W9El1XkiKX/w==
-X-CSE-MsgGUID: TBPK2pvNRZyzWBTdxbhHGw==
+ bh=gDJQXJ8kxNks7nQRxidugb0ZOZC7yqWiFNjlFOf88Ag=;
+ b=Xich3EYi2QeYZufYeuVezZKutph4LbyAe2+/OvXXflGI01F2uMWgIGpu
+ Z6bgH2byJB1W9Xw4NsVv9k44QH3zHcYmzsQap+DE7pph9o22QSya1Ue1M
+ eA3DIeyU7Ve4aXTCIgVI27jPR5Q7vBTnz/OMUzad9pvcOjYkEvXD3/J2/
+ 1CfFgi/+PiETgvfvL2DiRMgMt6/T6PSTuTWtJAUVh0qkvbSQN1uuvpem0
+ PCcrLG8P9+HQc/HbSkifAEiSqwlwGBABI8CybUw95dPEIP8BMlPfEkhNu
+ uoi8wo2RAw/80mQL1MsgQcFjyOdSMkxenMNJlrRTCADMDrhdF/qfVHmhK w==;
+X-CSE-ConnectionGUID: jnx8by7FR1ep4MWxgivMQA==
+X-CSE-MsgGUID: AKIX24OhRdy5O/MSC/hzGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22781030"
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="22781030"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2024 04:48:09 -0700
+X-CSE-ConnectionGUID: npt0AkYYQ6CulHg95WJP7w==
+X-CSE-MsgGUID: nxU5/sFMRLakF1ctqBnTCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="61372146"
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="61608353"
 Received: from mkuoppal-desk.fi.intel.com (HELO localhost) ([10.237.72.193])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 04:47:04 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2024 04:48:07 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
 Cc: intel-xe@lists.freedesktop.org, Maarten Lankhorst
@@ -50,12 +50,12 @@ Cc: intel-xe@lists.freedesktop.org, Maarten Lankhorst
  Matt Roper <matthew.d.roper@intel.com>, Maciej Patelczyk
  <maciej.patelczyk@intel.com>
 Subject: Re: [PATCH 03/21] drm/xe/eudebug: Introduce eudebug support
-In-Reply-To: <20240807093433.rlvwfsp57qczf4yh@zkempczy-mobl2>
+In-Reply-To: <20240812120207.3ezb4rky5z364quy@zkempczy-mobl2>
 References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
  <20240726140818.54304-4-mika.kuoppala@linux.intel.com>
- <20240807093433.rlvwfsp57qczf4yh@zkempczy-mobl2>
-Date: Wed, 21 Aug 2024 14:37:43 +0300
-Message-ID: <878qwq6r94.fsf@mkuoppal-desk>
+ <20240812120207.3ezb4rky5z364quy@zkempczy-mobl2>
+Date: Wed, 21 Aug 2024 14:38:47 +0300
+Message-ID: <875xru6r7c.fsf@mkuoppal-desk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -79,25 +79,60 @@ Zbigniew Kempczy=C5=84ski <zbigniew.kempczynski@intel.com> writes:
 >
 > <cut>
 >
->> +
->> +static int
->> +xe_eudebug_attach(struct xe_device *xe, struct xe_eudebug *d,
->> +		  const pid_t pid_nr)
+>> +static long xe_eudebug_read_event(struct xe_eudebug *d,
+>> +				  const u64 arg,
+>> +				  const bool wait)
 >> +{
->> +	struct task_struct *target;
->> +	struct xe_eudebug *iter;
->> +	kuid_t uid =3D current_uid();
->> +	int ret =3D 0;
+>> +	struct xe_device *xe =3D d->xe;
+>> +	struct drm_xe_eudebug_event __user * const user_orig =3D
+>> +		u64_to_user_ptr(arg);
+>> +	struct drm_xe_eudebug_event user_event;
+>> +	struct xe_eudebug_event *event;
+>> +	long ret =3D 0;
 >> +
->> +	target =3D find_get_target(pid_nr);
->> +	if (!target)
->> +		return -ENOENT;
+>> +	if (XE_IOCTL_DBG(xe, copy_from_user(&user_event, user_orig, sizeof(use=
+r_event))))
+>> +		return -EFAULT;
+>> +
+>> +	if (XE_IOCTL_DBG(xe, !user_event.type))
+>> +		return -EINVAL;
+>> +
+>> +	if (XE_IOCTL_DBG(xe, user_event.type > DRM_XE_EUDEBUG_EVENT_MAX_EVENT))
+>> +		return -EINVAL;
+>> +
+>> +	if (XE_IOCTL_DBG(xe, user_event.type !=3D DRM_XE_EUDEBUG_EVENT_READ))
+>> +		return -EINVAL;
+>> +
+>> +	if (XE_IOCTL_DBG(xe, user_event.len < sizeof(*user_orig)))
+>> +		return -EINVAL;
+>> +
+>> +	if (XE_IOCTL_DBG(xe, user_event.flags))
+>> +		return -EINVAL;
+>> +
+>> +	if (XE_IOCTL_DBG(xe, user_event.reserved))
+>> +		return -EINVAL;
+>> +
+>> +	/* XXX: define wait time in connect arguments ? */
+>> +	if (wait) {
+>> +		ret =3D wait_event_interruptible_timeout(d->events.write_done,
+>> +						       event_fifo_has_events(d),
+>> +						       msecs_to_jiffies(5 * 1000));
+>> +
+>> +		if (XE_IOCTL_DBG(xe, ret < 0))
+>> +			return ret;
+>> +	}
+>> +
+>> +	ret =3D 0;
+>> +	spin_lock(&d->events.lock);
+>> +	event =3D event_fifo_pending(d);
+>> +	if (event) {
+>> +		if (user_event.len < event->len) {
+>> +			ret =3D -EMSGSIZE;
 >
-> This goes outside and is returned via ioctl() what reminds me some LKML
-> thread this code is reserved for file operations only.
+> Maybe it is worth to copy event->len to user_orig? I wonder how
+> userspace guesses the size of the buffer to allocate for the event.
 
-Yes, my excuse here is that I try to mimic what other xe code
-does. And I can't think of other than EINVAL here.
+Makes sense. I will deliver event->len in v2. Thanks.
 -Mika
 
 >
