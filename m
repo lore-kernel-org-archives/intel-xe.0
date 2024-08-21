@@ -4,21 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEDD3C52D7C
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 20:47:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 210FAC52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 20:47:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 905C110E6D7;
-	Wed, 21 Aug 2024 20:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA48D10E6D5;
+	Wed, 21 Aug 2024 20:47:58 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CFA210E6D5
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 20:47:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8404B10E6D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 20:47:56 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 0/3] drm/xe: Alternative CCS fix.
-Date: Wed, 21 Aug 2024 22:47:47 +0200
-Message-ID: <20240821204750.539075-1-maarten.lankhorst@linux.intel.com>
+Cc: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 2/3] drm/xe: Use 64K pages for scanout buffers for Battlemage
+Date: Wed, 21 Aug 2024 22:47:49 +0200
+Message-ID: <20240821204750.539075-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240821204750.539075-1-maarten.lankhorst@linux.intel.com>
+References: <20240821204750.539075-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -36,27 +41,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of making 64k CCS special, make it the only case. :)
+From: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
 
-I think the approach is interesting, so if there is no performance hit,
-we should be able to get away with 64k pages always.
+Set BMG platform to use 64K pages for display.
 
-Maarten Lankhorst (2):
-  drm/xe: Align 64k scanout buffers physically when multiple of 64k.
-  drm/i915/display: Allowing looking up invalid modifiers to make xe
-    happy
+Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Zbigniew Kempczyński (1):
-  drm/xe: Use 64K pages for scanout buffers for Battlemage
-
- drivers/gpu/drm/i915/display/intel_fb.c  |  4 ++++
- drivers/gpu/drm/xe/display/intel_fb_bo.c |  6 ++++++
- drivers/gpu/drm/xe/xe_bo.c               | 10 ++++++++++
- drivers/gpu/drm/xe/xe_device_types.h     |  1 +
- drivers/gpu/drm/xe/xe_pci.c              |  9 ++++++++-
- drivers/gpu/drm/xe/xe_vm.c               |  4 +++-
- 6 files changed, 32 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3c34b032ebf41..701a3f7a338c2 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -180,6 +180,13 @@ static const struct xe_graphics_desc graphics_xe2 = {
+ 	XE2_GFX_FEATURES,
+ };
+ 
++static const struct xe_graphics_desc graphics_bmg = {
++	.name = "Xe2_BMG",
++
++	XE2_GFX_FEATURES,
++	.vram_flags = XE_VRAM_FLAGS_DISPLAY_NEED64K_CCS,
++};
++
+ static const struct xe_media_desc media_xem = {
+ 	.name = "Xe_M",
+ 	.ver = 12,
+@@ -361,7 +368,7 @@ static const struct gmdid_map graphics_ip_map[] = {
+ 	{ 1270, &graphics_xelpg },
+ 	{ 1271, &graphics_xelpg },
+ 	{ 1274, &graphics_xelpg },	/* Xe_LPG+ */
+-	{ 2001, &graphics_xe2 },
++	{ 2001, &graphics_bmg },
+ 	{ 2004, &graphics_xe2 },
+ };
+ 
 -- 
 2.45.2
 
