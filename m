@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6006CC52D6F
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 17:46:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A399C52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 17:47:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B84210E68E;
-	Wed, 21 Aug 2024 17:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B79610E68F;
+	Wed, 21 Aug 2024 17:47:06 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A833610E68E;
- Wed, 21 Aug 2024 17:46:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67DE810E68F;
+ Wed, 21 Aug 2024 17:47:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_fixup_xe?=
- =?utf-8?q?=5Falloc=5Fpf=5Fqueue?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_fixup_xe=5Fallo?=
+ =?utf-8?q?c=5Fpf=5Fqueue?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Aug 2024 17:46:49 -0000
-Message-ID: <172426240968.721581.4131207093857550480@2413ebb6fbb6>
+Date: Wed, 21 Aug 2024 17:47:05 -0000
+Message-ID: <172426242542.721581.1322819413520345241@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240821171917.417386-2-matthew.auld@intel.com>
 In-Reply-To: <20240821171917.417386-2-matthew.auld@intel.com>
@@ -44,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: fixup xe_alloc_pf_queue
 URL   : https://patchwork.freedesktop.org/series/137584/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: ddbda36f876f drm-tip: 2024y-08m-21d-17h-07m-16s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: fixup xe_alloc_pf_queue
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4af590fe0fb63dfc67373759601cf87c46accbf9
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Wed Aug 21 18:19:18 2024 +0100
+
+    drm/xe: fixup xe_alloc_pf_queue
+    
+    kzalloc expects number of bytes, therefore we should convert the number
+    of dw into bytes, otherwise we are likely just accessing beyond the
+    array causing all kinds of carnage. Also fixup the error handling while
+    we are here.
+    
+    Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Stuart Summers <stuart.summers@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch ddbda36f876f53498924155abfa1cd4c58517903 drm-intel
+4af590fe0fb6 drm/xe: fixup xe_alloc_pf_queue
+-:25: WARNING:ALLOC_WITH_MULTIPLY: Prefer kcalloc over kzalloc with multiply
+#25: FILE: drivers/gpu/drm/xe/xe_gt_pagefault.c:420:
++	pf_queue->data = kzalloc(pf_queue->num_dw * sizeof(u32), GFP_KERNEL);
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
 
 
