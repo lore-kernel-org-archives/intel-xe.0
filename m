@@ -4,190 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D335AC52D7C
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 06:55:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 969EAC52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 07:48:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B38F10E58F;
-	Wed, 21 Aug 2024 06:55:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B6C010E3FB;
+	Wed, 21 Aug 2024 07:48:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5ZLSLMG";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MXtUDv7w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05C1210E58F
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 06:55:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724223309; x=1755759309;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=TOkCOBGfpSp/LjGcR9RjG6FCm/yPdhLBlZWQ4k3eZpI=;
- b=e5ZLSLMG48afll5XA6bg0zvm+hGToCxNhnlK6b46J/u+t2QUUuu7oxbp
- 1KvPFqiS5UUxSyedB6fFJMbTR3V26YBkyOZaUYmzDER/JTUwbNz6za506
- NA1FaDL27uqfyJcLlME2SPfGtMnq+XNlXXZBNZiw7tKnXrYjLyD7jhWzg
- zj8i9RMQWI8LwXn01QLVO/4O61ldYaQaB2jp4zMU5h8fwtvWH4C+nNOfY
- RLowfaIN5csAJna+Djvk6qiVaxDZo6gLwL8IL2ppjHoA8vvABoI7uqN5l
- D2imLFTpAhw4AocqLQPdFoZv/0UjAIehdN58ym/WXiwbTZlLGP9bwHdWL w==;
-X-CSE-ConnectionGUID: 56aNjHNsSlmZeAl4ROSbLA==
-X-CSE-MsgGUID: Dd6kxJ57QRGIA9kdEvZofA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22704776"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="22704776"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 23:55:09 -0700
-X-CSE-ConnectionGUID: kJ3QFnjLS4WP7jdJJ54OqA==
-X-CSE-MsgGUID: xhCL6tfrQwytJIgOXbjIPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="61760440"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Aug 2024 23:55:08 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 20 Aug 2024 23:55:07 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 20 Aug 2024 23:55:07 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 20 Aug 2024 23:55:07 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.173)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 20 Aug 2024 23:55:07 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF5489819;
+ Wed, 21 Aug 2024 07:48:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QrqaJFJhDDpCZ7cuFkWh6cx/Q8VMvDWgEtFeQhzhhH7/sfWktprCVkjc09+X54oqJ0874LOxNpklwxhe0copCnWcpZecNHDZQluX+VmUMCTbY2JgUCzWwQgE2D4yN43VNslH8YMBWkIpnA5aYIeFkXQ8HuhvfFb3nCSv0kcFaecjOC3TKFwRAIeYQi9fyIMoUsP/hKx8/Qpk5pHuM3v1mBBjFiPGnAy4Ek96ZB/zwzhhKZ3LcUtKLKq6Xf1CMmMofpcXs9lWgUF9BmO4uRxFTt+F7Tr4cwMSpil0iUum53QjfM78E30so1EsnqWRNkJggLBj4aI2uPZv+uUvjlLGlg==
+ b=rbbKHk8/F7YvIUoS/q2ezSiH0La1AfQaeLJ9gh2eXgiH8XF2vMBOdQgbDSKkWhiGtSjsEyZtLgKckMyFSpBrJlBEM5WwK6MrtrdlAjGgBBHS0mdZgfJNBdh+r9o9CjLX9dAdf03I9TKlWr/14UmwaqXC+YdRlGhriZnJo605ao2J19LuwCsH1dVj52KaaMe7Vu0a5Ix2r7MAr/i2IjAE6X3wEMKUXGvkKVQdxI+nxsNrJDTl/yAcufZq07a5Bkt98V/H1GKIabTKfmnyOopzfcFW3Dtp1v2EjHht5oa47jHjHO7/C3bMmGSm6TN0MBvKfb+yTnzv7jevs/7aWBJ7LQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lRaia3Objh40Q2CqS08RICrnjDPJJH4ff4E+wc0/wD8=;
- b=ZPtsSTZhKSE4R2NPe3+nrP6cvTHiKp7gJ4tr1Qxl5r5869WIOfigBuFQ+qSzW6n0SESGfLbxfG1c8hX/h4U/8xGKBp63SgeCSqqYqbHU3wZDglR6as28e0F1tcZAxY9qBBOiAbNPyUgCfxEpjV73cNa5o06NamuF3EoX7QsgFN7T//zoekfkoxWd5dgHvLtP38B+06kiJDps/4Jkc+NTIsV/sYGDCLm+PK5XlWLGDoUwd/0rDeDBJJAutFqlzTlsUte5w2kcokfp89yMCkYolIZ8VhTH5Y5iIqdj2E3NhJ0f4nrJDpCw2gbW6E/VzUt0kjflYmaxzSJE41Qvp5OcyQ==
+ bh=WOW3slnfIX4l4ydb2JrLvdSH0gNJXavHCM7ys8EnVEg=;
+ b=vB+TQCeqaeYwO+hLEhVZWLcRRHbIhc0LsxQh8Rmw62sBvRBpwnWmp3I82sqiLJJ8uapqzNcP8hCacg3jKFT7vpEyTtuhQBqs4TK8jPLLI9/rXVrdXwwVWyg7gJ5AAz/9U3z0RRxaeSEIpOZohfGkPxPxF8k32ZK5GSdJ1GAS58SW3e3KiW6sVMv56P3xNhj6Nb8+D2sV7KA2mepC6hdOb/QU6yC15HGq6Qeep+qBWBQFY6e8zVXiBeOet1RvrKU/eDR/ao2kVv7DyRnkcBVct31oQnBynQVZqITVh7p40q+ERIaqHRhcQg90XN6VxVV3Vl35ov9PL4z9Imcciuhljg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WOW3slnfIX4l4ydb2JrLvdSH0gNJXavHCM7ys8EnVEg=;
+ b=MXtUDv7w9s1cDtUFcUOZvzHvQH4mxH3Yi7V9V5N01iunhRgudXMLAGeyEZUSjL/S2AzBtmaTdZIwkW4JI36Um7ZEm5WkUDqRvTdGHDyf4mRRLKkI/ozjls+Ce3beNeaU8RGLIEYWzKYbntetbCxDqG/7JzUBDCl5Q1nbh236ONg=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by MW4PR11MB6933.namprd11.prod.outlook.com (2603:10b6:303:22a::10)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH7PR12MB7210.namprd12.prod.outlook.com (2603:10b6:510:205::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.17; Wed, 21 Aug
- 2024 06:55:05 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9%3]) with mapi id 15.20.7897.014; Wed, 21 Aug 2024
- 06:55:04 +0000
-Message-ID: <31644fc1-d66b-4cb9-a3cd-3f57076cd4e1@intel.com>
-Date: Wed, 21 Aug 2024 12:24:57 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Wed, 21 Aug
+ 2024 07:47:55 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.7875.019; Wed, 21 Aug 2024
+ 07:47:55 +0000
+Message-ID: <02a383c5-db18-47ef-9118-72effd83a252@amd.com>
+Date: Wed, 21 Aug 2024 09:47:50 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/xe/xe_gt_idle: add debugfs entry for
- powergating info
-To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
- <matthew.d.roper@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-References: <20240801095305.1209046-1-riana.tauro@intel.com>
- <20240801095305.1209046-3-riana.tauro@intel.com>
- <8f3bb44d-fdd7-45ae-8b46-2a41fb5ed45d@intel.com>
- <bd7dfd17-0052-4176-8977-5b2b3bacbfad@intel.com>
- <b57ef7fc-999e-4622-bdef-5cf6c1ca3391@intel.com>
- <2281f0bf-6b84-426f-8484-2f93d31f166b@intel.com>
+Subject: Re: [PATCH v6 1/2] drm/ttm: Add a flag to allow drivers to skip
+ clear-on-free
+To: Nirmoy Das <nirmoy.das@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+References: <20240816135154.19678-1-nirmoy.das@intel.com>
+ <a09a268099ef61c46cf53f0d8847a8f07caa210e.camel@linux.intel.com>
+ <f045daaa-e887-4f74-8cc1-5df0d0fc2593@amd.com>
+ <b48456effda2ac845e08318da404e2810c74bd64.camel@linux.intel.com>
+ <b94e2ea6-569d-47bc-8e01-199b543b2018@amd.com>
+ <b37433a5-a3b5-439d-9ee6-6c6260a94f13@intel.com>
 Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <2281f0bf-6b84-426f-8484-2f93d31f166b@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <b37433a5-a3b5-439d-9ee6-6c6260a94f13@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0030.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:b8::17) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+X-ClientProxiedBy: FR0P281CA0084.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::23) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|MW4PR11MB6933:EE_
-X-MS-Office365-Filtering-Correlation-Id: 42a6f236-7051-41eb-70ea-08dcc1ae2f8a
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB7210:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c77b03c-e44d-40ad-3f5c-08dcc1b5915c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U0hlNWFFWHN4RU5WdzRFT2Nrc1pvRkZEa3lHQnNMT25LWjU0TTgwL0ZJV1cr?=
- =?utf-8?B?TDlCOURaM0hvQVFlQ0VIbVk0RXBKcnI0MDRpbHRuUzltQXpvZWNEUHVEMUlh?=
- =?utf-8?B?UlRmRmdvS0V0c2tPaDZpRUFIZnV4YUltem0zMk1VVWMvakpWcTdrRW55MWpK?=
- =?utf-8?B?cGoweWYrbVlaeHdpTm5lZGZHZ0NIVUxGRDlZNEFVTm5KdG1SQ05iaVVRVzFw?=
- =?utf-8?B?TzNta2o2WGYwQVZReGdybTJjSkJwL1h6QkMwaVdVbFlwREhtUFBkQlFObWJF?=
- =?utf-8?B?VXVCMktFMVpYOUxPNjNxc0h4QUMrRkEzcGdjQ2xIeEVBWWNaaEJQTlVESmhT?=
- =?utf-8?B?ZlhybkY0R29pVFB3TkJ2NnpwTDY0MG1kZ3NVYXZtVWdEbmdETEMvV3VUaGhF?=
- =?utf-8?B?MnJvUFpkb3ZiM2lnVzk2cEtpSjg0ZGRHeWYvaysvSjlyWTZYYXN2RnVCQUVQ?=
- =?utf-8?B?TitwTzQyTFFkdHpiQWZVZSswZnlxckx2bGYrbDBHSkZkVkh5ODVpYkJMazBm?=
- =?utf-8?B?aGlScnZJVllKK1dmVUJCTmRveXJqWnBGZy9MNG1lOFluYnJaTXZqZnVvdWg4?=
- =?utf-8?B?NmJta203NDVXMlJjTHRMWVhlVjFpNXdPeVJuZVJWMlR4c01OVTJ3cXo3b0dD?=
- =?utf-8?B?TmxjV2FSQVpIc2JCOXRIZ2Q1aTg3MmU0U0tqNGcvdndwRElIYUlyRndrQldj?=
- =?utf-8?B?Y0lFS1U3L1EvcGRtNFZpOXJvOU05T01URkhSRFZmQ3BJMjNZcVYrTllUVzJv?=
- =?utf-8?B?VU5TQldBNHFjcjdCQ0RLMEYxZHU1dWxYMXQ0bGV3OEZmU1lUcHNmU1gzcjFz?=
- =?utf-8?B?R1B3OVNHb3huMVVvbWMvWURTTWlkK0tIMHV3VWY0T05ZekVkdW1VYk9WZU5I?=
- =?utf-8?B?SWcraUFOejZRUG1JSGo0K2JPZGNWSGdqVDY4VWFKVTJYbmlzMUtrV0Q3Ymdi?=
- =?utf-8?B?Q1N5aDNYNEFMbWM0Uko1M0dXNDg5UXZhVmpqYmhTaEtFT3NWK3Z5UnNBbGQ5?=
- =?utf-8?B?WS9qRUNSWVdnOEFuQnpRZi95aWlMaTFUWFVBTzBKTkVWdW5lVWhuOU0rMWc3?=
- =?utf-8?B?RGcxMHNPZVdRa0pJak1qaUJLYjBkYmFsckg2R05vNXVSK3J4dnZ4NEVsdll5?=
- =?utf-8?B?aGRpVFlZSVNNcjdCNTEySXhHVGNOWUlrNjRCdFNJajZZSW4zWUkzRy9PVWpJ?=
- =?utf-8?B?elJWcEllVDhvSGFTUCtvbVJKa1hqWWtPa0JQNGxraWs4UzBZOFFwTXpxckk4?=
- =?utf-8?B?TWlMRjNpTE1TNjRBcUlIZGdSSDJOck1Cck9GNDRHYjZGT0Y0ZkNOdFVvdW1m?=
- =?utf-8?B?SmNqQzllckZsTmJjejdvTmppMTRRVm5tT3J3SENXamNDQ1lWVmNySTBtVnBO?=
- =?utf-8?B?bGpURGRUZkNWOEhqVCs4VCtVZkl4ZlRmTjVyOVhXOE5uWUlxQ3ZJc0hRdkUz?=
- =?utf-8?B?VFhuWnpmb2xITVB4M3IzZEo1ZG4vMVFZRVR6Mm5rRTdTSWM0RksweUF2LzhQ?=
- =?utf-8?B?M1RSZlhTamczYVJFN1dVYlhwS1pqVEhSdW5EWXF4ZDdid1VlMTVzdUJyWHNo?=
- =?utf-8?B?R2dJY0pGa05idCtWYmlRd0RhS3RCYm0xUXdJNEhkTFBOVzNxbHBnQ0x3dCtE?=
- =?utf-8?B?YWZMUXp0VDVSSzRTMXM3NGNzOThEM3ZCcnJpVE02NzgyZUh0QmY1OVZYTmRr?=
- =?utf-8?B?OEZNc3E3T1NwMTdFdkVaSGpKeHVmRkpVTzVEeDd1ZERZYTFFSE9DaVFhS0FG?=
- =?utf-8?Q?DUmOIaG2P4nC6C8bmc=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?REg0MkhNb2JoQ3JQQk5ZNm1kOTdETWsxZ25yb2JOSlZob0ZBYWJYdzByR2Va?=
+ =?utf-8?B?MGtyWFp2L2QxYjRPS2dIOGZIMXordXQ4Z2lDSE4xdmZZLy9tbllzZDdwUWNX?=
+ =?utf-8?B?QysvN2x6Zm9obFgwSThQTVBXc0RJVy9vWkR0UjdydkdOVXEvNTV3UVFwdHdu?=
+ =?utf-8?B?VlJIc2FCTzdTdVk4OUxJTENGQ0I0Vk9jZ2lXcUxudUFaRG80QU1lNzFMVmxE?=
+ =?utf-8?B?VHVBeFhva1FaRVFsRkNLSy9Jbmx6UGZDR29TYzQ2Y2o1Mmp5dE5wL0k3RjBB?=
+ =?utf-8?B?aVoveWVXTmc5eVJ3UVBEbUExczdUVGRsM01SMFA3Yk41WmtiVVJWUmY1MTN1?=
+ =?utf-8?B?cWFkUmV3NExjd2FEbmQ4WGk1ZFVub3hjek5YQVVSVWNsSUJsT29sWkhPeFlF?=
+ =?utf-8?B?MlN5WlpmREZSaWEyYTBtcnc2bXhmakFTUlhWTFdheXNrVy9wMUN2OUwrSHN6?=
+ =?utf-8?B?bVVNTTlSRWdyM2p5dEVkUXE2RmExcG1DUVl0Y1pJRlNRa1dtYnptNnpEMkxl?=
+ =?utf-8?B?N2RiRm1kSkRnZTBrSklUN05VN3k3RmMrbngraEc3RjlPMTlpVVB1eVpUOGhw?=
+ =?utf-8?B?RmNnczlxVnJPWEhEYVdHSnE4b08wLzYzdDc5czVzTDIvUWc2Q0dKTFRuOEtE?=
+ =?utf-8?B?RzlOSjFtRGwvUDZqcHZZOTY3eDQ3aWtidGRXWnlGNDdTb2NuWGljL013TGdI?=
+ =?utf-8?B?TmQ1enRjU3VWTlNBbzhOSmlsSmJQMWpaSWdOdVBzeC9DU3gwdWpvdVJkUmFD?=
+ =?utf-8?B?enJUdVNndGRvV1pJUVBTL3V3dEVsZkRVUk5sWGRQUkVsaFV5L0VOWkxIcS9Z?=
+ =?utf-8?B?di9IVktQUC9waFg4NTZTUmJaWEl0dGxNU0VCRkYwM3hZMEJ4YW5BalNjVyt5?=
+ =?utf-8?B?emxKZWg5ZjBGTGNMVXZ6QldWT3ZYNXIyd0RxQU8vVlQwYkR6VWo5VVd1VnRm?=
+ =?utf-8?B?TjR6blErZ1Vqb25ybU4rVUZHZnFFbkUvdGZrdHFEVktqWm5lRTNidHJWMnFm?=
+ =?utf-8?B?WVhMNzdwaWo0M0hMUFZkVHNDa3Q5ZXF6REE5S3FaL2I2MUIvdVJ2RDFrWlJw?=
+ =?utf-8?B?b2dwUEswb1Mzb0NLdS9iTTNKWUNVZXBKSmFpK1BTSjZybCtWUGRjRm9KR1Nm?=
+ =?utf-8?B?aGpHWlgxRnREL0hPRXlpVHdjK1A5d25XcjJjbXdscVRKOVcyanFjVlMwMmRG?=
+ =?utf-8?B?RXFDeHpQdllNVnUyVVBUMm9kVlFiMUpPUklYUUp4Wk0wdXpkMlZsM09GU01m?=
+ =?utf-8?B?T3dTeGNVMlZVa2RlYXhpRzUwTi9sMmhNa0t0UDUwcEYrdFV6Zi9SblF6d2NK?=
+ =?utf-8?B?dGE2ZlkxNEd1RDl5RHdLb3owSXdXK1ZFVGcxSVVGRlhPQ2dKY1E0bUNNdVVx?=
+ =?utf-8?B?ejV3cndJRXZzOTE2aGdOdkhDVVRnY2tFU0RWV0taclhnVytoek1vL3JXOFpH?=
+ =?utf-8?B?aXhmVGR3N2ppaGxxTXB3aURsL3oweTBuM055Q2xPakJ6Y2tBZDZPdkpBN1RH?=
+ =?utf-8?B?U2U4RDYyUFR3QXRTdk02SnViYm94a095UXFRY1ZRYkl0VjJ2RzROc2JBeG56?=
+ =?utf-8?B?WnNlY21NWDV3TUw0L3ltamV2OERRZW8yTFNwOGVSQmtYcUROdEZWYnJHVEti?=
+ =?utf-8?B?S1FZS2lqdVBWYXdLMWppSGFGQmVuRlpGNk1CVHpoTkNzSnR6YjZ5c21Md0Zn?=
+ =?utf-8?B?Y0pSMFJiQ0JhTndwVXZIYjJVTVZSNGR4RlFGZzNCT1h4ekR4VWZLNUN4YnBV?=
+ =?utf-8?B?L2N0eGxpclM5M3NwVDJLa2tjLzlTOHkrdFhSTnFUekZ4M0M0cURRRDJweEFq?=
+ =?utf-8?B?SjJGUUpVTmRsVW13Mk9GQT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RGdmcVg2NGVuT21McFl5SXRsMUJBbi9HdjBuNEFoNjdEaXpaaDJqczRKR0RL?=
- =?utf-8?B?TWhXbWVVclMwWFdLYXcwUWRsR1BBM0pRWW5BS04waTVGTzB3YnpWcUl6a2pJ?=
- =?utf-8?B?SDVrTWhZd3NneXp0bGVrK1dmZ0Z6RmZ2SENOaVVaczBMWTNFK2gwcHVrYnFE?=
- =?utf-8?B?d1J1SFdWOThtVVRlVmJ5SnQyZDhBNnEvQzZFNlNTbThqbmlGaVZvZzM3WjVW?=
- =?utf-8?B?NTl5RjRxRmZrMUdjUjJwQXlkSzg0VTFWZWRFTnJJQktXcVpKcFp2b251bkJl?=
- =?utf-8?B?cXQyb01Kbnkxa09oc1BxOVBqVUdvSk9lVFR6T01Cb0dQaFU3RDMzcFNCNnI1?=
- =?utf-8?B?bjdPNFJPSy9udGZtY1N3YzdpeE0yNEQvT0x4bk1HaFUvdXdCMjJZZVk5bGx6?=
- =?utf-8?B?MER3Z3ZxTnk3U2pxSXNGUUl6VTQ1djd4aFhTaytzZFpJQzdtSmFmQlBOei9h?=
- =?utf-8?B?eTh0ckFoMXZuVmJvQ1R0SmZ6Z29ZL0ZLR25YSHU2aXZiVi83ZTRTNmFkMHBh?=
- =?utf-8?B?OXFERzRmWFVGd3VrWVZ2RXV4KzRGdlVhemlqbDBvRUU2bWg0azE4ZlBzcEpJ?=
- =?utf-8?B?NVU4N25wWmlxSnMrcVpoRUQwRGVTQVpFQ2Y0cWJBZzg1dUtrZnlGQTBLdHdt?=
- =?utf-8?B?V3NtT1RNV0xkK1VjcVM1eEpqSGFMZktOMGoxVEY1WXJ6V2NuVHIxVzI3bUJH?=
- =?utf-8?B?RG43Vyt6bm84T2lpYWtaak9ZZzFYUU5SUzhQUStsL0dDZmdFK04ySzhJRHFH?=
- =?utf-8?B?ellYanNib0NtZkJhSVNJUTYrS016dXBjT1ZNSUl2TWtld2pGcEpJTnA1ZXBD?=
- =?utf-8?B?MGFjVFpjdDFMNWlaQUFkMmRPMnMraFNwNTR2Z2MvQUFldWNkc2trdzdKNENo?=
- =?utf-8?B?YldySDJzYzZMekJXUll1alJtYmNnWm5rQUZORUsrMmxaV1hUQ1U0Mlk0Rmt6?=
- =?utf-8?B?b1phbDFCTXBjQW5QUmFzY0lVVm5jR1R4UkYzRmtpL0l6SWpKc05BcG9KNkpD?=
- =?utf-8?B?MGZlanRCMExSajZhR1JJVmtaZFlTSEQ1ZzhEZzFveHMzRktKUkZJZzNhdm9h?=
- =?utf-8?B?cGxoc0NOY2o5Qk5kM0I0VHJEcHNKYmJzU0ZTSkdaRC8zdEc2UnE5OCsvVVhv?=
- =?utf-8?B?bDZuMnZxenhaaDU1dnNsR1l5Tkxmay9qZGd3Y2I2aEx6VS9zbGhQOWpqM2hh?=
- =?utf-8?B?NDArdFY5OHUyYnB5TEliNjlML0tXU3dPNkM0UXh2K1Q1dElLTGk3UUI5bHlr?=
- =?utf-8?B?b2wraG9DUVZFakZiRVlCbmpwMXFoRXk4QjVPalBheUVtcmFkVGJCZUZ2clRz?=
- =?utf-8?B?b00zMEVHaUpCWkdaNjV3Z3RXc3JpQUF3d3NRS0lzT2dRVU9vQVgxYkYwblBB?=
- =?utf-8?B?QzM0S0NrR3Q1aW5hZTQwQmlWT0w5R2w3YXZYdjBMT1E5OW8xSFlXaEtzWitt?=
- =?utf-8?B?M2puWDRLTnRZQjlFclNnckw5WEZ5a1NoSkxmUkZ4T0R5MDRMUXh3R3laRnNX?=
- =?utf-8?B?QVpXUjVFdk0wZG9JbjlaWVB3NTJ0QWEvT1pNb2VzczV2ZWhVZURSQ0dYT01W?=
- =?utf-8?B?d1MwSS9DWmpOMkpVL1JleVV5N2NtZkJFa0E1eTR6NUdKRGY3WTBibWk3ejJO?=
- =?utf-8?B?YmhiSjh3cGs5b1QzN01KcDFiOWNMcllqbk5TcFRvU0NlVmJrSVRPTkRZbitX?=
- =?utf-8?B?TTIxai9PTWR0K09kNHJzanJxcHlFb2Iwd1RrN1ErcEwrdDUrOVVGSm9iSHJ2?=
- =?utf-8?B?QUc3cTFHa09qTVNyL3M5a3RDamVORjUrRi9aVTMvTkVKRHQ4NjhHWVFyU0hS?=
- =?utf-8?B?WXdjcm5qaitYZmFCeVo4REpROW9BMkF1UjRjNWxxU1krRElCNXFucGgxN1gr?=
- =?utf-8?B?c0dlR1JVNzZyZGQxdmpnRlpuaHVtR3psdDVlUTRzRGNFbFRpVStML1AxYWlN?=
- =?utf-8?B?WXhDWFc0dDZlRVVOL1FGaGFwNlZ3Qm9DOHFxWTVJNkFWUThGVFNCanBvSkti?=
- =?utf-8?B?NmJWWFAvMWRhR2dRUFlpT0RNb2hTZUowbE5yZ0QzRnljd1VUc2RESmE3RWhm?=
- =?utf-8?B?MDc4bHBsaDhTNlN1bWRjK1lYTWtCemZUYWhVR0JnY3c2T3VWNGJHbjU5Yysx?=
- =?utf-8?B?aXlvTS8rV21jOE96VzVCV2FlZnhCUVRBTjkrVWc4b25MYlF6OG1QeDUxd0JK?=
- =?utf-8?B?bWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42a6f236-7051-41eb-70ea-08dcc1ae2f8a
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?azVVeEJDUkIzUHpBSmFKUTZjZlRwTFkwbWhKOG4rY0pXNUJzQmN4QnQyR3d3?=
+ =?utf-8?B?R0V3MXAwVlZxMUNEUTNGUWRNQTJTN2FqYjhlSWtsQXd3RDRTRjJCQnVycTlR?=
+ =?utf-8?B?OVlWanpEeEdOTlhxYWptTlAzWVlBVDRLQXk3Tld5NjhOdmdWVDZRakg4RlhH?=
+ =?utf-8?B?VWxZa1g5WEFrMlZ4dE1FYnpHcEM3eUFjWlNvWmUyb1Q1bkV5RDRta0QwS0ZV?=
+ =?utf-8?B?enFYTHFDbWtERHkvUFpWM21FMkVUYkhLdEVHTnZjYStSUTVpc0pMWGd3QWdx?=
+ =?utf-8?B?WWJSVDJXem9VNkdaeDJyTkljTVI2aUo5QWpab3BicXJta2E0MkpGZ0J4b2Zm?=
+ =?utf-8?B?RkxabFhoYkhPQWEyd3luYitBbnhha1A2cHdNdUFBaDNLQlR2SVlkOXBEY0ky?=
+ =?utf-8?B?M1B0NU83ZlBEcVpRTVZXYWpjbXZrcVZhVFdobFBXUlVDSFpsU3ZSTXhsUTdB?=
+ =?utf-8?B?eFJsSDd0N21YeTJhdnB0M1NIQ3dEcFpJK21JMW8xaFZBbFZpejRQMUlmMk41?=
+ =?utf-8?B?cmMrU1ZGaFNvZkkydi83WmJVeE5DcUJ4U1UyODByTThuZXdKS3hFUG1BeHlh?=
+ =?utf-8?B?aGkyZ0VSOVY0T0VLOUIxdm9sb1pmb0s0eVdQdFFZUjY2RjNsOFdtVVdiUDhB?=
+ =?utf-8?B?TU1rZUh6WWRkanNRSXMvUDNTYjBoUGx4NDNhbzlJdXNpWWgwNjBvWEh5RlNJ?=
+ =?utf-8?B?cFNxQWxRY0o3MXRpSzRSK2txMGg3UmY2YitrcHhOTXVDamwxL21nbnQxYXh6?=
+ =?utf-8?B?RHB3YjZPSVpXWENZVGo1WXQ1OU1CSnpKTVoxMENLc3pYWmNxb2t0RFNrQ1BT?=
+ =?utf-8?B?RnJzdkdYZHViZ1RRMWl1OWd4R0JBRU5zL1huTWVjTk5GNVllREgzT0JpV01r?=
+ =?utf-8?B?MFFnRkM4dVBNOEJ0SS82VHYvVElFWmc0STROYm55VDZ2RjNiekVtalhZalZi?=
+ =?utf-8?B?M1FkQUJ4U3RFVmVVdXptcXBUZVNrcUZ3NlRJWjdTbWNIRUd0cHdTTktEUEhs?=
+ =?utf-8?B?SHdEeW44T3JrK3JDN3FvL1orOU1KSFdHbnFRVmdpekVWcS9LZTlQVTN5NHht?=
+ =?utf-8?B?dTlCRytOT3IyQi9PYzg3TEZXOWxLVEdvd0lUZU85Zk0xNkgvN1ZrOWhUOEQw?=
+ =?utf-8?B?QklIbklJeU5kSE5DdWFaYTlLRTBQVTRyY3hmVVZUNVRuanNsbWNLR0MvSjl1?=
+ =?utf-8?B?cnNWL01pcWY1Vy9xWHBkVW9HUS9LeUlqWDRYL3FmZUhHODVFWXNkdmZ0Z2x1?=
+ =?utf-8?B?azB6UStodVp4Tkp3RG54SzFzZmo2RDdTNUtHQ0xFcEdhU0tjS2t5eWgxSHZU?=
+ =?utf-8?B?WUNHblRIZVRNd2lRNVc2ZVhsdUNjTWtHUnVvY2pvR21rWU85UXlzZHE1ZmZh?=
+ =?utf-8?B?b3hUWDY4U2JiQ0NDazYrL29IY1g1SUhITDIwMFI1T0hkU0xsK0FocWFQWmwy?=
+ =?utf-8?B?QnpiQm9HcXY2cmVmTkhocUVnZEx3TjZURVRhYzJteE1vWjBPQ01KcjdCS1RK?=
+ =?utf-8?B?NENBaXF3bGZTMDUzNXcrSkpOeDJpek5iWkFIaFRrOU9QWnd0SkdnM3hHb1c3?=
+ =?utf-8?B?Q0pvcjdmUXJVQzNWamdkR3hmZHdOMFltczErbG8zWGZJaWVla2c4cFdGeC9z?=
+ =?utf-8?B?ZG00WVZTbEQrNWVvRm41UmpzcEZIcDdJSXN6T3NFWnZsa3VyZnI1V0pDUDZo?=
+ =?utf-8?B?blFtczh0RFhnVlN0U2lnMWo2QVRZSTZ0RjRIbVNQTFYwZ2pWK1R2S2hEZ1JX?=
+ =?utf-8?B?TFdNZitZYzF0VDJmckNxS0svUnFYS2g3Qm5EeFgwaU82RGN3S2k0cGVaQ3FN?=
+ =?utf-8?B?bU00U2pRWVZtemlOVzFyZmluSmx2dE85T3JrSklnenROS0pDam5lSzdvQ29S?=
+ =?utf-8?B?YUlNUzlxQ3VBVUhrR21hWmJjdDl6ZUhPMmZraXBRazBsbENJRnhTcVUvOUEv?=
+ =?utf-8?B?RXZRZ1BpcXp4SUxUNE1BZ2Z2b0FBZVV4Yi9QVmwvNlg2dVdWMnZKTUVFMUlV?=
+ =?utf-8?B?aHJMak1sNVk4Y1V2YlN6WTJnQ1NpbnJsRm4wbXA5UTJjU3E2UVRheHN1MzI2?=
+ =?utf-8?B?SU1pRU9nM0w1SnpUV0F3akRYczRDcXVYS3lmamFhR1FmeVphQVkvTHRGN0Vs?=
+ =?utf-8?Q?Vc9A=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c77b03c-e44d-40ad-3f5c-08dcc1b5915c
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 06:55:04.8893 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 07:47:55.3160 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cH867+iXhZEXxhW+9gDLHbbwcrQWULU8GsQuBXhBZPF+Tv5zCnXzbwRZd/aMYXwPwEsC/ShxVsCFZbv0e5qw0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6933
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: c2yYXFnHFaibcWt6CamY1XSRmuIusVS0UFYToijcnZy+bMYwKMJ7geJqAJpDFEPv
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7210
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,302 +166,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Am 20.08.24 um 18:46 schrieb Nirmoy Das:
+> Hi Thomas, Christian,
+>
+> On 8/20/2024 5:47 PM, Christian König wrote:
+>> Am 20.08.24 um 17:45 schrieb Thomas Hellström:
+>>> On Tue, 2024-08-20 at 17:30 +0200, Christian König wrote:
+>>>> Am 20.08.24 um 15:33 schrieb Thomas Hellström:
+>>>>> Hi, Nirmoy, Christian
+>>>>>
+>>>>> On Fri, 2024-08-16 at 15:51 +0200, Nirmoy Das wrote:
+>>>>>> Add TTM_TT_FLAG_CLEARED_ON_FREE, which DRM drivers can set before
+>>>>>> releasing backing stores if they want to skip clear-on-free.
+>>>>>>
+>>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>>>> Suggested-by: Christian König <christian.koenig@amd.com>
+>>>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>>>> Reviewed-by: Christian König <christian.koenig@amd.com>
+>>>>> What happens if two devices share the same global TTM pool
+>>>>>    type and one that does its own clearing. Wouldn't there be a
+>>>>> pretty
+>>>>> high chance that the the device that doesn't clear its own pages
+>>>>> allocate non-cleared memory from the pool?
+>>>> That's completely unproblematic. The flag indicates that the released
+>>>> pages are already cleared, if that isn't the case then the flag
+>>>> shouldn't be set on the TT object.
+>>> Yeah, this patch is OK, but the way the follow-up xe patch uses it is
+>>> problematic since, AFAICT, xe dma clears on alloc, meaning the pool
+>>> pages are not cleared after use.
+>>
+>> Yeah that is clearly invalid behavior.
+>
+>
+> I was only thinking about one device use-case which won't leak any 
+> data though I am now miss-using the flag.
+>
+> If I skip dma clear for pooled BO then this flag  is not really 
+> needed. Shall I revert the this and usage of TTM_TT_FLAG_CLEARED_ON_FREE
+>
+> and re-introduce it after I get a working clear on free implementation 
+> for XE?
 
+Yes absolutely.
 
-On 20-08-2024 16:04, Riana Tauro wrote:
-> 
-> Hi Badal
-> 
-> On 8/6/2024 5:29 PM, Nilawar, Badal wrote:
->>
->>
->> On 01-08-2024 18:46, Riana Tauro wrote:
->>>
->>>
->>> On 8/1/2024 3:33 PM, Nilawar, Badal wrote:
->>>>
->>>>
->>>> On 01-08-2024 15:23, Riana Tauro wrote:
->>>>> Coarse Powergating is a power saving technique where Render and Media
->>>>> can be power-gated independently irrespective of the rest of the GT.
->>>>>
->>>>> For debug purposes, it is useful to expose the powergating 
->>>>> information.
->>>>>
->>>>> v2: move to debugfs
->>>>>      add details to commit message
->>>>>      add per-slice status for media
->>>>>      define reg bits in descending order (Matt Roper)
->>>>>
->>>>> v3: fix return statement
->>>>>      fix kernel-doc
->>>>>      use loop for media slices
->>>>>      use helper function for status (Michal)
->>>>>
->>>>> v4: add pg prefix
->>>>>      do not wake GT if in C6 (Badal)
->>>>>
->>>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h |  8 +++
->>>>>   drivers/gpu/drm/xe/xe_gt_debugfs.c   | 13 ++++
->>>>>   drivers/gpu/drm/xe/xe_gt_idle.c      | 91 
->>>>> ++++++++++++++++++++++++++++
->>>>>   drivers/gpu/drm/xe/xe_gt_idle.h      |  2 +
->>>>>   4 files changed, 114 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
->>>>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>>>> index 3b87f95f9ecf..279d862c306a 100644
->>>>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>>>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>>>> @@ -337,6 +337,14 @@
->>>>>   #define   CTC_SOURCE_DIVIDE_LOGIC        REG_BIT(0)
->>>>>   #define FORCEWAKE_RENDER            XE_REG(0xa278)
->>>>> +
->>>>> +#define POWERGATE_DOMAIN_STATUS            XE_REG(0xa2a0)
->>>>> +#define   MEDIA_SLICE3_AWAKE_STATUS        REG_BIT(4)
->>>>> +#define   MEDIA_SLICE2_AWAKE_STATUS        REG_BIT(3)
->>>>> +#define   MEDIA_SLICE1_AWAKE_STATUS        REG_BIT(2)
->>>>> +#define   RENDER_AWAKE_STATUS            REG_BIT(1)
->>>>> +#define   MEDIA_SLICE0_AWAKE_STATUS        REG_BIT(0)
->>>>> +
->>>>>   #define FORCEWAKE_MEDIA_VDBOX(n)        XE_REG(0xa540 + (n) * 4)
->>>>>   #define FORCEWAKE_MEDIA_VEBOX(n)        XE_REG(0xa560 + (n) * 4)
->>>>>   #define FORCEWAKE_GSC                XE_REG(0xa618)
->>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c 
->>>>> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>>>> index 5e7fd937917a..47e3a1ca2394 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>>>> @@ -15,6 +15,7 @@
->>>>>   #include "xe_ggtt.h"
->>>>>   #include "xe_gt.h"
->>>>>   #include "xe_gt_mcr.h"
->>>>> +#include "xe_gt_idle.h"
->>>>>   #include "xe_gt_sriov_pf_debugfs.h"
->>>>>   #include "xe_gt_sriov_vf_debugfs.h"
->>>>>   #include "xe_gt_topology.h"
->>>>> @@ -107,6 +108,17 @@ static int hw_engines(struct xe_gt *gt, struct 
->>>>> drm_printer *p)
->>>>>       return 0;
->>>>>   }
->>>>> +static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
->>>>> +{
->>>>> +    int ret;
->>>>> +
->>>>> +    xe_pm_runtime_get(gt_to_xe(gt));
->>>> In suspend resume path I am seeing PG disabled and enabled. Will it 
->>>> cause any race while this debugfs entry is being exercised?
->>>
->>> I checked the suspend cases and the enable_pg is called before the 
->>> print. 
->> Ok.
->> But there might be a case where we check the idle_status and see
->>>   C6 but before dumping it might be in C0, reporting wrong status
->> Yes this can happen. The commit message indicates that the intention 
->> is to view the PG status regardless of the GT status. 
-> 
-> The commit message was only to give a brief of what CPG means.
-Ok, My point was CPG make sense only when GT is alive.
->> Therefore, it doesn’t make sense to force wake the GT when it is in C6.
-> Agreed. yeah the changes are added in the rev. Wanted to let you know
-> the above scenario regarding the race condition.
-Ok.
->> However, if you believe we should always wake the GT regardless of its 
->> state to check the PG status feel free to do that change and rephrase 
->> the commit message accordingly.
->>
->> Regards,
->> Badal
->>>
->>>>> +    ret = xe_gt_idle_pg_print(gt, p);
->>>>> +    xe_pm_runtime_put(gt_to_xe(gt));
->>>>> +
->>>>> +    return ret;
->>>>> +}
->>>>> +
->>>>>   static int force_reset(struct xe_gt *gt, struct drm_printer *p)
->>>>>   {
->>>>>       xe_pm_runtime_get(gt_to_xe(gt));
->>>>> @@ -277,6 +289,7 @@ static const struct drm_info_list 
->>>>> debugfs_list[] = {
->>>>>       {"topology", .show = xe_gt_debugfs_simple_show, .data = 
->>>>> topology},
->>>>>       {"steering", .show = xe_gt_debugfs_simple_show, .data = 
->>>>> steering},
->>>>>       {"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
->>>>> +    {"powergate_info", .show = xe_gt_debugfs_simple_show, .data = 
->>>>> powergate_info},
->>>>>       {"register-save-restore", .show = xe_gt_debugfs_simple_show, 
->>>>> .data = register_save_restore},
->>>>>       {"workarounds", .show = xe_gt_debugfs_simple_show, .data = 
->>>>> workarounds},
->>>>>       {"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
->>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c 
->>>>> b/drivers/gpu/drm/xe/xe_gt_idle.c
->>>>> index 7188542aea43..2ab0eaafa7d7 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
->>>>> @@ -53,6 +53,11 @@ pc_to_xe(struct xe_guc_pc *pc)
->>>>>       return gt_to_xe(gt);
->>>>>   }
->>>>> +static inline const char *str_up_down(bool v)
->>>>> +{
->>>>> +    return v ? "up" : "down";
->>>>> +}
->>>>> +
->>>>>   static const char *gt_idle_state_to_string(enum xe_gt_idle_state 
->>>>> state)
->>>>>   {
->>>>>       switch (state) {
->>>>> @@ -147,6 +152,92 @@ void xe_gt_idle_disable_pg(struct xe_gt *gt)
->>>>>       XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->>>>>   }
->>>>> +/**
->>>>> + * xe_gt_idle_pg_print - Xe powergating info
->>>>> + * @gt: GT object
->>>>> + * @p: drm_printer.
->>>>> + *
->>>>> + * This function prints the powergating information
->>>>> + *
->>>>> + * Return: 0 on success, negative error code otherwise
->>>>> + */
->>>>> +int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
->>>>> +{
->>>>> +    struct xe_gt_idle *gtidle = &gt->gtidle;
->>>>> +    struct xe_device *xe = gt_to_xe(gt);
->>>>> +    enum xe_gt_idle_state state;
->>>>> +    u32 pg_enabled, pg_status = 0;
->>>>> +    u32 vcs_mask, vecs_mask;
->>>>> +    int err, n;
->>>>> +    /*
->>>>> +     * Media Slices
->>>>> +     *
->>>>> +     * Slice 0: VCS0, VCS1, VECS0
->>>>> +     * Slice 1: VCS2, VCS3, VECS1
->>>>> +     * Slice 2: VCS4, VCS5, VECS2
->>>>> +     * Slice 3: VCS6, VCS7, VECS3
->>>>> +     */
->>>>> +    static const struct {
->>>>> +        u64 engines;
->>>>> +        u32 status_bit;
->>>>> +    } media_slices[] = {
->>>>> +        {(BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS1) |
->>>>> +          BIT(XE_HW_ENGINE_VECS0)), MEDIA_SLICE0_AWAKE_STATUS},
->>>>> +
->>>>> +        {(BIT(XE_HW_ENGINE_VCS2) | BIT(XE_HW_ENGINE_VCS3) |
->>>>> +           BIT(XE_HW_ENGINE_VECS1)), MEDIA_SLICE1_AWAKE_STATUS},
->>>>> +
->>>>> +        {(BIT(XE_HW_ENGINE_VCS4) | BIT(XE_HW_ENGINE_VCS5) |
->>>>> +           BIT(XE_HW_ENGINE_VECS2)), MEDIA_SLICE2_AWAKE_STATUS},
->>>>> +
->>>>> +        {(BIT(XE_HW_ENGINE_VCS6) | BIT(XE_HW_ENGINE_VCS7) |
->>>>> +           BIT(XE_HW_ENGINE_VECS3)), MEDIA_SLICE3_AWAKE_STATUS},
->>>>> +    };
->>>>> +
->>>>> +    if (xe->info.platform == XE_PVC) {
->>>>> +        drm_printf(p, "Power Gating not supported\n");
->>>>> +        return 0;
->>>>> +    }
->>>>> +
->>>>> +    state = gtidle->idle_status(gtidle_to_pc(gtidle));
->>>>> +    pg_enabled = gtidle->powergate_enable;
->>>>> +
->>>>> +    /* Do not wake the GT to read powergating status */
->>>>> +    if (state != GT_IDLE_C6) {
->>>> How about if (pg_enabled && state != GT_IDLE_C6) ?
->>> Always enabled so would be unnecessary check
->> If gt_resume fails the PG will not be reenabled.
-> 
-> If gt resume fails, the device will be in a bad state.
-Ok. Not exactly. One posibility could be uc specific things failed but 
-MMIO accesses are still working. But anyway you are reading fresh value 
-of pg enable below.
->>>>> +        err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->>>>> +        if (err)
->> I still think we should do force_wake_put here.
->> Check the discussion here. 
->> https://patchwork.freedesktop.org/patch/596760/?series=134121&rev=4
-> This patch was not merged with the suggested changes.
-> https://patchwork.freedesktop.org/patch/596933/?series=134437&rev=1 
-> still seems to be under discussion.
-> 
-> Will fix this once the approach is decided in another patch.
-Make sense.
->>>>> +            return err;
->>>>> +
->>>>> +        pg_enabled = xe_mmio_read32(gt, POWERGATE_ENABLE);
->>>> Is this needed?
->>> can remove this
-> Isn't it better to read this, the previous value would be saved
-> before the write.
-Ok.
+I though that I made it clear that the handling should be that the 
+driver clears the pages and *then* sets the TTM_TT_FLAG_CLEARED_ON_FREE 
+flag.
+
+So if you don't have the handling implemented like that then that's 
+clearly invalid behavior.
 
 Regards,
-Badal
-> 
-> Thanks
-> Riana Tauro
->> Ok
+Christian.
+
+>
+>
+> Regards,
+>
+> Nirmoy
+>
+>
 >>
 >> Regards,
->> Badal
+>> Christian.
+>>
 >>>
->>> Thanks,
->>> Riana
+>>> /Thomas
+>>>
+>>>> If one device clear it's pages and another device doesn't clear it's
+>>>> pages then we would just clear the pages of the device which doesn't
+>>>> do
+>>>> it with a hardware DMA.
 >>>>
 >>>> Regards,
->>>> Badal
->>>>> +        pg_status = xe_mmio_read32(gt, POWERGATE_DOMAIN_STATUS);
->>>>> +
->>>>> +        XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->>>>> +    }
->>>>> +
->>>>> +    if (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK) {
->>>>> +        drm_printf(p, "Render Power Gating Enabled: %s\n",
->>>>> +               str_yes_no(pg_enabled & RENDER_POWERGATE_ENABLE));
->>>>> +
->>>>> +        drm_printf(p, "Render Power Gate Status: %s\n",
->>>>> +               str_up_down(pg_status & RENDER_AWAKE_STATUS));
->>>>> +    }
->>>>> +
->>>>> +    vcs_mask = xe_hw_engine_mask_per_class(gt, 
->>>>> XE_ENGINE_CLASS_VIDEO_DECODE);
->>>>> +    vecs_mask = xe_hw_engine_mask_per_class(gt, 
->>>>> XE_ENGINE_CLASS_VIDEO_ENHANCE);
->>>>> +
->>>>> +    /* Print media CPG status only if media is present */
->>>>> +    if (vcs_mask || vecs_mask) {
->>>>> +        drm_printf(p, "Media Power Gating Enabled: %s\n",
->>>>> +               str_yes_no(pg_enabled & MEDIA_POWERGATE_ENABLE));
->>>>> +
->>>>> +        for (n = 0; n < ARRAY_SIZE(media_slices); n++)
->>>>> +            if (gt->info.engine_mask & media_slices[n].engines)
->>>>> +                drm_printf(p, "Media Slice%d Power Gate Status: 
->>>>> %s\n", n,
->>>>> +                       str_up_down(pg_status & 
->>>>> media_slices[n].status_bit));
->>>>> +    }
->>>>> +    return 0;
->>>>> +}
->>>>> +
->>>>>   static ssize_t name_show(struct device *dev,
->>>>>                struct device_attribute *attr, char *buff)
->>>>>   {
->>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h 
->>>>> b/drivers/gpu/drm/xe/xe_gt_idle.h
->>>>> index 554447b5d46d..4455a6501cb0 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_gt_idle.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
->>>>> @@ -8,6 +8,7 @@
->>>>>   #include "xe_gt_idle_types.h"
->>>>> +struct drm_printer;
->>>>>   struct xe_gt;
->>>>>   int xe_gt_idle_init(struct xe_gt_idle *gtidle);
->>>>> @@ -15,5 +16,6 @@ void xe_gt_idle_enable_c6(struct xe_gt *gt);
->>>>>   void xe_gt_idle_disable_c6(struct xe_gt *gt);
->>>>>   void xe_gt_idle_enable_pg(struct xe_gt *gt);
->>>>>   void xe_gt_idle_disable_pg(struct xe_gt *gt);
->>>>> +int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
->>>>>   #endif /* _XE_GT_IDLE_H_ */
+>>>> Christian.
+>>>>
+>>>>> /Thomas
+>>>>>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/ttm/ttm_pool.c | 18 +++++++++++-------
+>>>>>>    include/drm/ttm/ttm_tt.h       |  6 +++++-
+>>>>>>    2 files changed, 16 insertions(+), 8 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>>> b/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>>> index 8504dbe19c1a..935ab3cfd046 100644
+>>>>>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>>> @@ -222,15 +222,18 @@ static void ttm_pool_unmap(struct ttm_pool
+>>>>>> *pool, dma_addr_t dma_addr,
+>>>>>>    }
+>>>>>>       /* Give pages into a specific pool_type */
+>>>>>> -static void ttm_pool_type_give(struct ttm_pool_type *pt, struct
+>>>>>> page
+>>>>>> *p)
+>>>>>> +static void ttm_pool_type_give(struct ttm_pool_type *pt, struct
+>>>>>> page
+>>>>>> *p,
+>>>>>> +                   bool cleared)
+>>>>>>    {
+>>>>>>        unsigned int i, num_pages = 1 << pt->order;
+>>>>>>    -    for (i = 0; i < num_pages; ++i) {
+>>>>>> -        if (PageHighMem(p))
+>>>>>> -            clear_highpage(p + i);
+>>>>>> -        else
+>>>>>> -            clear_page(page_address(p + i));
+>>>>>> +    if (!cleared) {
+>>>>>> +        for (i = 0; i < num_pages; ++i) {
+>>>>>> +            if (PageHighMem(p))
+>>>>>> +                clear_highpage(p + i);
+>>>>>> +            else
+>>>>>> +                clear_page(page_address(p + i));
+>>>>>> +        }
+>>>>>>        }
+>>>>>>           spin_lock(&pt->lock);
+>>>>>> @@ -394,6 +397,7 @@ static void ttm_pool_free_range(struct
+>>>>>> ttm_pool
+>>>>>> *pool, struct ttm_tt *tt,
+>>>>>>                    pgoff_t start_page, pgoff_t
+>>>>>> end_page)
+>>>>>>    {
+>>>>>>        struct page **pages = &tt->pages[start_page];
+>>>>>> +    bool cleared = tt->page_flags &
+>>>>>> TTM_TT_FLAG_CLEARED_ON_FREE;
+>>>>>>        unsigned int order;
+>>>>>>        pgoff_t i, nr;
+>>>>>>    @@ -407,7 +411,7 @@ static void ttm_pool_free_range(struct
+>>>>>> ttm_pool
+>>>>>> *pool, struct ttm_tt *tt,
+>>>>>>               pt = ttm_pool_select_type(pool, caching, order);
+>>>>>>            if (pt)
+>>>>>> -            ttm_pool_type_give(pt, *pages);
+>>>>>> +            ttm_pool_type_give(pt, *pages, cleared);
+>>>>>>            else
+>>>>>>                ttm_pool_free_page(pool, caching, order,
+>>>>>> *pages);
+>>>>>>        }
+>>>>>> diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+>>>>>> index 2b9d856ff388..cfaf49de2419 100644
+>>>>>> --- a/include/drm/ttm/ttm_tt.h
+>>>>>> +++ b/include/drm/ttm/ttm_tt.h
+>>>>>> @@ -85,6 +85,9 @@ struct ttm_tt {
+>>>>>>         * fault handling abuses the DMA api a bit and
+>>>>>> dma_map_attrs
+>>>>>> can't be
+>>>>>>         * used to assure pgprot always matches.
+>>>>>>         *
+>>>>>> +     * TTM_TT_FLAG_CLEARED_ON_FREE: Set this if a drm driver
+>>>>>> handles
+>>>>>> +     * clearing backing store
+>>>>>> +     *
+>>>>>>         * TTM_TT_FLAG_PRIV_POPULATED: TTM internal only. DO NOT
+>>>>>> USE. This is
+>>>>>>         * set by TTM after ttm_tt_populate() has successfully
+>>>>>> returned, and is
+>>>>>>         * then unset when TTM calls ttm_tt_unpopulate().
+>>>>>> @@ -94,8 +97,9 @@ struct ttm_tt {
+>>>>>>    #define TTM_TT_FLAG_EXTERNAL        BIT(2)
+>>>>>>    #define TTM_TT_FLAG_EXTERNAL_MAPPABLE    BIT(3)
+>>>>>>    #define TTM_TT_FLAG_DECRYPTED        BIT(4)
+>>>>>> +#define TTM_TT_FLAG_CLEARED_ON_FREE    BIT(5)
+>>>>>>    -#define TTM_TT_FLAG_PRIV_POPULATED    BIT(5)
+>>>>>> +#define TTM_TT_FLAG_PRIV_POPULATED    BIT(6)
+>>>>>>        uint32_t page_flags;
+>>>>>>        /** @num_pages: Number of pages in the page array. */
+>>>>>>        uint32_t num_pages;
+>>
+
