@@ -4,101 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EFB0C52D7C
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 13:57:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61E10C52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 14:01:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAB410E57E;
-	Wed, 21 Aug 2024 13:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32A2110E5AC;
+	Wed, 21 Aug 2024 14:01:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="K3NhJ+SA";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="sfXACtKR";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="K3NhJ+SA";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="sfXACtKR";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="1ZXbLv+X";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="d2/aV/BD";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="1ZXbLv+X";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="d2/aV/BD";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6564B10E575;
- Wed, 21 Aug 2024 13:57:54 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1599810E5F0
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 14:01:45 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 046D221D5B;
- Wed, 21 Aug 2024 13:57:53 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id B13391FB44
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 14:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724248673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
- b=K3NhJ+SAw2PKvlhOVZm/Fx0/NTV0bOHG+cDjLPRzqw0cWwMBH4xcl+iz2XdqVtdQez9pqv
- 0P99wrHF/U5DMov25L9sKFMe7SFoC+G28fLw37VxAZLzVJ3t5qB96WDPbBeKxBU2+oQIkW
- u2Y6e2LysRLfP3qI3+rJHErdFAvE4Q0=
+ t=1724248903; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ImOsu8sSCuCSUasXuDEbrAOKNRcbzUIzsLcqMvwObBg=;
+ b=1ZXbLv+XUtRIuunx+QayXF42QeCvahtLsJDOf/Bj6FEIjvyNh6HIu+uSnzo9JmblRMnaxs
+ MFe2fTKCvMjjThSDut1SEyewfWGIw5y1X9ywpK4p5NW4uH2M4u2hXQwd6b4sDowAlx9sq4
+ Jcn15fuAu1InnMOerGAv3MArMfiD7l8=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724248673;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
- b=sfXACtKRTv168NmE/oscJ/emfR1gI/kH0C8ZhT9QVXkvF2a4vZ7lkwDkxD+haCgC0IkBE2
- 4NuQhc8FQjQFvWCw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=K3NhJ+SA;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=sfXACtKR
+ s=susede2_ed25519; t=1724248903;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ImOsu8sSCuCSUasXuDEbrAOKNRcbzUIzsLcqMvwObBg=;
+ b=d2/aV/BD8xsIUXpjSXBg1JTvOxaH677vsc7ApgO3dWiEX7NSYLEcFokBtK9gs3kQPkQP5r
+ 6EtEyxWVWUEN19Dg==
+Authentication-Results: smtp-out2.suse.de;
+	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724248673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
- b=K3NhJ+SAw2PKvlhOVZm/Fx0/NTV0bOHG+cDjLPRzqw0cWwMBH4xcl+iz2XdqVtdQez9pqv
- 0P99wrHF/U5DMov25L9sKFMe7SFoC+G28fLw37VxAZLzVJ3t5qB96WDPbBeKxBU2+oQIkW
- u2Y6e2LysRLfP3qI3+rJHErdFAvE4Q0=
+ t=1724248903; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ImOsu8sSCuCSUasXuDEbrAOKNRcbzUIzsLcqMvwObBg=;
+ b=1ZXbLv+XUtRIuunx+QayXF42QeCvahtLsJDOf/Bj6FEIjvyNh6HIu+uSnzo9JmblRMnaxs
+ MFe2fTKCvMjjThSDut1SEyewfWGIw5y1X9ywpK4p5NW4uH2M4u2hXQwd6b4sDowAlx9sq4
+ Jcn15fuAu1InnMOerGAv3MArMfiD7l8=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724248673;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
- b=sfXACtKRTv168NmE/oscJ/emfR1gI/kH0C8ZhT9QVXkvF2a4vZ7lkwDkxD+haCgC0IkBE2
- 4NuQhc8FQjQFvWCw==
+ s=susede2_ed25519; t=1724248903;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ImOsu8sSCuCSUasXuDEbrAOKNRcbzUIzsLcqMvwObBg=;
+ b=d2/aV/BD8xsIUXpjSXBg1JTvOxaH677vsc7ApgO3dWiEX7NSYLEcFokBtK9gs3kQPkQP5r
+ 6EtEyxWVWUEN19Dg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AF1F4139C2;
- Wed, 21 Aug 2024 13:57:52 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9FBA8139C2
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 14:01:43 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id t3VnKWDyxWaTKwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 13:57:52 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, airlied@gmail.com, daniel@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH] drm/xe: Support 'nomodeset' kernel command-line option
-Date: Wed, 21 Aug 2024 15:56:59 +0200
-Message-ID: <20240821135750.102117-1-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.46.0
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 5tvPJUfzxWb9LAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>)
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 14:01:43 +0000
+Message-ID: <cfb1d5d8-5e47-457d-aa63-bce0ba42e409@suse.de>
+Date: Wed, 21 Aug 2024 16:01:43 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 046D221D5B
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.01 / 50.00]; BAYES_HAM(-3.00)[99.99%];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim]; MID_CONTAINS_FROM(1.00)[];
- NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
- NEURAL_HAM_SHORT(-0.20)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[]; ARC_NA(0.00)[];
- FUZZY_BLOCKED(0.00)[rspamd.com];
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EBAT=3A_failure_for_drm=3A_Provide_cl?=
+ =?UTF-8?Q?ient_setup_helper_and_convert_drivers_=28rev2=29?=
+To: intel-xe@lists.freedesktop.org
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <172424853165.721436.3814746934686870673@2413ebb6fbb6>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <172424853165.721436.3814746934686870673@2413ebb6fbb6>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ ARC_NA(0.00)[]; RCPT_COUNT_ONE(0.00)[1];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_TO(0.00)[intel.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch];
- MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- RCPT_COUNT_SEVEN(0.00)[10]; RCVD_COUNT_TWO(0.00)[2];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+]; TO_DN_SOME(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+ PREVIOUSLY_DELIVERED(0.00)[intel-xe@lists.freedesktop.org];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; TO_DN_NONE(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid, patchwork.freedesktop.org:url,
+ imap1.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,43 +137,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Setting 'nomodeset' on the kernel command line disables all graphics
-drivers with modesetting capabilities; leaving only firmware drivers,
-such as simpledrm or efifb.
 
-Most DRM drivers automatically support 'nomodeset' via DRM's module
-helper macros. In xe, which uses regular module_init(), manually call
-drm_firmware_drivers_only() to test for 'nomodeset'. Do not register
-the driver if set.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/xe/xe_module.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Am 21.08.24 um 15:55 schrieb Patchwork:
+> Project List - Patchwork *Patch Details*
+> *Series:* 	drm: Provide client setup helper and convert drivers (rev2)
+> *URL:* 	https://patchwork.freedesktop.org/series/137387/
+> *State:* 	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/index.html
+>
+>
+>   CI Bug Log - changes from
+>   xe-1804-c83ab549ef8f647c3de42793d222a980021a973f_BAT ->
+>   xe-pw-137387v2_BAT
+>
+>
+>     Summary
+>
+> *FAILURE*
+>
+> Serious unknown changes coming with xe-pw-137387v2_BAT absolutely need 
+> to be
+> verified manually.
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in xe-pw-137387v2_BAT, please notify your bug team 
+> (I915-ci-infra@lists.freedesktop.org) to allow them
+> to document this new failure mode, which will reduce false positives 
+> in CI.
+>
+>
+>     Participating hosts (9 -> 8)
+>
+> Missing (1): bat-adlp-vf
+>
+>
+>     Possible new issues
+>
+> Here are the unknown changes that may have been introduced in 
+> xe-pw-137387v2_BAT:
+>
+>
+>       IGT changes
+>
+>
+>         Possible regressions
+>
+>   * igt@xe_module_load@load:
+>       o bat-lnl-2: PASS
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-lnl-2/igt@xe_module_load@load.html>
+>         -> ABORT
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-lnl-2/igt@xe_module_load@load.html>
+>
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 923460119cec..60fb7dd26903 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -8,6 +8,8 @@
- #include <linux/init.h>
- #include <linux/module.h>
- 
-+#include <drm/drm_module.h>
-+
- #include "xe_drv.h"
- #include "xe_hw_fence.h"
- #include "xe_pci.h"
-@@ -92,6 +94,9 @@ static int __init xe_init(void)
- {
- 	int err, i;
- 
-+	if (drm_firmware_drivers_only())
-+		return -ENODEV;
-+
- 	for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
- 		err = init_funcs[i].init();
- 		if (err) {
+This looks like what Sui was referring to. Since fb_helper funcs can now 
+be NULL, this pointer needs to be checked. Will be fixed in v3 of this 
+series.
+
+>  *
+>
+>
+>         Suppressed
+>
+> The following results come from untrusted machines, tests, or statuses.
+> They do not affect the overall result.
+>
+>   * igt@xe_module_load@load:
+>       o {bat-bmg-2}: PASS
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-bmg-2/igt@xe_module_load@load.html>
+>         -> ABORT
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-bmg-2/igt@xe_module_load@load.html>
+>
+>
+>     Known issues
+>
+> Here are the changes found in xe-pw-137387v2_BAT that come from known 
+> issues:
+>
+>
+>       IGT changes
+>
+>
+>         Issues hit
+>
+>  *
+>
+>     igt@kms_flip@basic-flip-vs-wf_vblank:
+>
+>       o bat-lnl-1: PASS
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html>
+>         -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html>
+>         (Intel XE#886
+>         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/886>) +2
+>         other tests fail
+>  *
+>
+>     igt@xe_vm@munmap-style-unbind-userptr-inval-end:
+>
+>       o bat-bmg-1: PASS
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-bmg-1/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html>
+>         -> DMESG-WARN
+>         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-bmg-1/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html>
+>         (Intel XE#877
+>         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/877>)
+>
+> {name}: This element is suppressed. This means it is ignored when 
+> computing
+> the status of the difference (SUCCESS, WARNING, or FAILURE).
+>
+>
+>     Build changes
+>
+>   * Linux: xe-1804-c83ab549ef8f647c3de42793d222a980021a973f ->
+>     xe-pw-137387v2
+>
+> IGT_7981: f4e2ada1adec484cf506b5ec7e9acb3ae62228f1 @ 
+> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+> xe-1804-c83ab549ef8f647c3de42793d222a980021a973f: 
+> c83ab549ef8f647c3de42793d222a980021a973f
+> xe-pw-137387v2: 137387v2
+>
+
 -- 
-2.46.0
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
