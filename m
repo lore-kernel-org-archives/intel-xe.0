@@ -4,26 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23539C5321D
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 15:05:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF528C52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 15:05:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7C8A10E1C2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C80A10E0BD;
 	Wed, 21 Aug 2024 15:05:23 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8331C10E1A5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 506D910E0BD
  for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 15:05:22 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>, 
- Matthew Auld <matthew.auld@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 2/2] drm/xe: Use 64K pages for scanout buffers for Battlemage
-Date: Wed, 21 Aug 2024 17:05:19 +0200
-Message-ID: <20240821150519.478168-3-maarten.lankhorst@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 0/2] Set 64k physical alignment on display buffers for CCS.
+Date: Wed, 21 Aug 2024 17:05:17 +0200
+Message-ID: <20240821150519.478168-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240821150519.478168-1-maarten.lankhorst@linux.intel.com>
-References: <20240821150519.478168-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -41,45 +36,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Instead of restricting display to 64k, keeping allowing any BO size.
 
-Set BMG platform to use 64K pages for display.
+Iff a buffer is created with a scanout flag, as a multiple of 64K, it can
+be used for CCS.
 
-Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+This should fix the corruption issue, the changes to UMD will be only
+setting a multiple of 64K for CCS fb's.
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 3c34b032ebf41..701a3f7a338c2 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -180,6 +180,13 @@ static const struct xe_graphics_desc graphics_xe2 = {
- 	XE2_GFX_FEATURES,
- };
- 
-+static const struct xe_graphics_desc graphics_bmg = {
-+	.name = "Xe2_BMG",
-+
-+	XE2_GFX_FEATURES,
-+	.vram_flags = XE_VRAM_FLAGS_DISPLAY_NEED64K_CCS,
-+};
-+
- static const struct xe_media_desc media_xem = {
- 	.name = "Xe_M",
- 	.ver = 12,
-@@ -361,7 +368,7 @@ static const struct gmdid_map graphics_ip_map[] = {
- 	{ 1270, &graphics_xelpg },
- 	{ 1271, &graphics_xelpg },
- 	{ 1274, &graphics_xelpg },	/* Xe_LPG+ */
--	{ 2001, &graphics_xe2 },
-+	{ 2001, &graphics_bmg },
- 	{ 2004, &graphics_xe2 },
- };
- 
+Untested, lets see if it gets through CI. :)
+
+Maarten Lankhorst (1):
+  drm/xe: Align 64k scanout buffers physically when required
+
+Zbigniew Kempczyński (1):
+  drm/xe: Use 64K pages for scanout buffers for Battlemage
+
+ drivers/gpu/drm/xe/display/intel_fb_bo.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_bo.c               | 17 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_device_types.h     |  1 +
+ drivers/gpu/drm/xe/xe_pci.c              |  9 ++++++++-
+ drivers/gpu/drm/xe/xe_vm.c               |  4 +++-
+ 5 files changed, 34 insertions(+), 3 deletions(-)
+
 -- 
 2.45.2
 
