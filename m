@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2D22C52D7C
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 14:29:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D28C6C52D6F
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 14:31:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EE1C10E624;
-	Wed, 21 Aug 2024 14:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9726D10E62A;
+	Wed, 21 Aug 2024 14:31:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cFPK5kx7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CI9dD5Hm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C951010E624;
- Wed, 21 Aug 2024 14:29:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D176610E62A;
+ Wed, 21 Aug 2024 14:31:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724250556; x=1755786556;
+ t=1724250670; x=1755786670;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=98QAE7ItP2BlAUleCeafWZoHAeuINxbGXnaC6eY7i5c=;
- b=cFPK5kx74p3gsVjcu8MbAa2rpjlYCdoT48zpYVLJt29UDLDCq8fhUR/D
- N8fLBBqF/RY6hSmZ+JAraNV0BdN9QSRA6Q7hlPXJWwJnswc/Wnq2/4d9G
- 4ilKwOZldsCmNOIUvUt8wK+DNxlaC5Udo2yXf2DpYTQkuiRSDY757zl/h
- ODspuFx52nIhU45d7rXqlKEvoTDUt+Jvg9rE4K5Rs4HyvDCENjZTpQyYz
- 5Pt6p11XzUqoYKdM0N1xVaCSD44FI2WMxNFZxFZ+K/22rDc3kYASsrcNM
- 3vA4qFcStTjeVv1j5OZozKj/3vXIgXyq5MlvZuyS4PAodJIsK4lilSeOX g==;
-X-CSE-ConnectionGUID: XzsDLS48S4qiEYx7tdIDog==
-X-CSE-MsgGUID: 2jcnWq45S6i1dg368CTOEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22225954"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="22225954"
+ bh=sUInZ81IUSp7Q05QwkqqKV/W194LU5uPsdp/r33OgOw=;
+ b=CI9dD5HmmQWltgBg3s8QYA2UarhYZZ2A43ajSlZ6EsuyuYJ4wiNDhxUW
+ 0dkyH7/fTgS78dcSsxzGz4KINBQpzyAasb5PMvdgYgRaseOZwEQBZ0OdJ
+ vh3Z6VjW5AJyHhxSnX0nTFHQDuhWUIhieq+X4MkML7TcJjRu4jhRyUwGV
+ UdxvF9YraB6u3Sn7D/zzP+mqJccKEFxf2BCG9RciBv/U56qFsXNwGzPnJ
+ sGBzxHScLQFy+hLcqarUr25O3JmI+wZeebPfazwt1yekgWSOYs3Unfmzs
+ RCXUkEG8S8AsPLXUlPlJuDypfQ89p70JBtI0/L6HcLi8P8lAXWd4TX5nl A==;
+X-CSE-ConnectionGUID: jkOu7CYTQs6LBR/d5rKMLw==
+X-CSE-MsgGUID: nePPAfDpRJukQ5ZgEI6F+g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22226347"
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="22226347"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 07:29:15 -0700
-X-CSE-ConnectionGUID: Er23HT5WQEyERoEPEJh7mg==
-X-CSE-MsgGUID: bPZThqT6SiGIUTDKbrS3dw==
+ 21 Aug 2024 07:30:56 -0700
+X-CSE-ConnectionGUID: Yub93nl8T1adIXcyye8x3g==
+X-CSE-MsgGUID: bvRn36bzTvS1wn0BYCU0FA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="65997414"
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="65998039"
 Received: from sbutnari-mobl1.ti.intel.com (HELO localhost) ([10.245.246.20])
  by orviesa005-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 07:29:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, airlied@gmail.com, daniel@ffwll.ch,
- lucas.demarchi@intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, rodrigo.vivi@intel.com,
- thomas.hellstrom@linux.intel.com
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Thomas
- Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [PATCH] drm/xe: Support 'nomodeset' kernel command-line option
-In-Reply-To: <172424976000.2071.18125280900868355577@gjsousa-mobl2>
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 07:30:54 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH v2] drm/i915/display: identify display steppings in
+ display probe
+In-Reply-To: <172424832093.2071.7215356235062692151@gjsousa-mobl2>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240821135750.102117-1-tzimmermann@suse.de>
- <172424976000.2071.18125280900868355577@gjsousa-mobl2>
-Date: Wed, 21 Aug 2024 17:29:05 +0300
-Message-ID: <87plq23q6m.fsf@intel.com>
+References: <65e319048c369fbbd5018badfa24e457ca4e956e.1724180287.git.jani.nikula@intel.com>
+ <20240821095036.2044654-1-jani.nikula@intel.com>
+ <172424832093.2071.7215356235062692151@gjsousa-mobl2>
+Date: Wed, 21 Aug 2024 17:30:48 +0300
+Message-ID: <87msl63q3r.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -73,68 +71,42 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Wed, 21 Aug 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Thomas Zimmermann (2024-08-21 10:56:59-03:00)
->>Setting 'nomodeset' on the kernel command line disables all graphics
->>drivers with modesetting capabilities; leaving only firmware drivers,
->>such as simpledrm or efifb.
->>
->>Most DRM drivers automatically support 'nomodeset' via DRM's module
->>helper macros. In xe, which uses regular module_init(), manually call
->>drm_firmware_drivers_only() to test for 'nomodeset'. Do not register
->>the driver if set.
->>
->>Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>---
->> drivers/gpu/drm/xe/xe_module.c | 5 +++++
->> 1 file changed, 5 insertions(+)
->>
->>diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
->>index 923460119cec..60fb7dd26903 100644
->>--- a/drivers/gpu/drm/xe/xe_module.c
->>+++ b/drivers/gpu/drm/xe/xe_module.c
->>@@ -8,6 +8,8 @@
->> #include <linux/init.h>
->> #include <linux/module.h>
->> 
->>+#include <drm/drm_module.h>
+> Quoting Jani Nikula (2024-08-21 06:50:36-03:00)
+>>+        if (revision < size && map[revision] != STEP_NONE) {
+>>+                step = map[revision];
+>>+        } else {
+>>+                drm_warn(display->drm, "Unknown revision 0x%02x\n", revision);
 >>+
->> #include "xe_drv.h"
->> #include "xe_hw_fence.h"
->> #include "xe_pci.h"
->>@@ -92,6 +94,9 @@ static int __init xe_init(void)
->> {
->>         int err, i;
->> 
->>+        if (drm_firmware_drivers_only())
->>+                return -ENODEV;
+>>+                /*
+>>+                 * If we hit a gap in the revision to step map, use the information
+>>+                 * for the next revision.
+>>+                 *
+>>+                 * This may be wrong in all sorts of ways, especially if the
+>>+                 * steppings in the array are not monotonically increasing, but
+>>+                 * it's better than defaulting to 0.
+>>+                 */
+>>+                while (revision < size && map[revision] == STEP_NONE)
+>>+                        revision++;
 >>+
+>>+                if (revision < size) {
+>>+                        drm_dbg_kms(display->drm, "Using display stepping for revision 0x%02x\n",
+>>+                                    revision);
+>>+                        step = map[revision];
+>>+                } else {
+>>+                        drm_dbg_kms(display->drm, "Using future display stepping\n");
+>>+                        step = STEP_FUTURE;
+>>+                }
+>>+        }
+>>+
+>>+        drm_WARN_ON(display->drm, step == STEP_NONE);
 >
-> Hm... But what if xe is to be used only for compute or render? Shouldn't
-> we handle this somewhere else?
+> I believe we can be sure that step != STEP_NONE at this point. Are we
+> keeping this only to guard against bugs from future changes?
 
-The question becomes, what does "nomodeset" really mean here?
-
-See what i915 does in i915_module.c.
-
-Cc: Sima.
+Belt and suspenders, just making sure I didn't screw up anything. :)
 
 BR,
 Jani.
-
-
-
->
-> Taking a quick look, xe_display_probe() might be a good candidate?
->
-> --
-> Gustavo Sousa
->
->>         for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
->>                 err = init_funcs[i].init();
->>                 if (err) {
->>-- 
->>2.46.0
->>
 
 -- 
 Jani Nikula, Intel
