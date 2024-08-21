@@ -4,58 +4,128 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D28C6C52D6F
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 14:31:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3450EC52D6F
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 14:31:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9726D10E62A;
-	Wed, 21 Aug 2024 14:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F39DB10E635;
+	Wed, 21 Aug 2024 14:31:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CI9dD5Hm";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="bNtC1wTy";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="46jmIpSd";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bNtC1wTy";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="46jmIpSd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D176610E62A;
- Wed, 21 Aug 2024 14:31:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724250670; x=1755786670;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=sUInZ81IUSp7Q05QwkqqKV/W194LU5uPsdp/r33OgOw=;
- b=CI9dD5HmmQWltgBg3s8QYA2UarhYZZ2A43ajSlZ6EsuyuYJ4wiNDhxUW
- 0dkyH7/fTgS78dcSsxzGz4KINBQpzyAasb5PMvdgYgRaseOZwEQBZ0OdJ
- vh3Z6VjW5AJyHhxSnX0nTFHQDuhWUIhieq+X4MkML7TcJjRu4jhRyUwGV
- UdxvF9YraB6u3Sn7D/zzP+mqJccKEFxf2BCG9RciBv/U56qFsXNwGzPnJ
- sGBzxHScLQFy+hLcqarUr25O3JmI+wZeebPfazwt1yekgWSOYs3Unfmzs
- RCXUkEG8S8AsPLXUlPlJuDypfQ89p70JBtI0/L6HcLi8P8lAXWd4TX5nl A==;
-X-CSE-ConnectionGUID: jkOu7CYTQs6LBR/d5rKMLw==
-X-CSE-MsgGUID: nePPAfDpRJukQ5ZgEI6F+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22226347"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="22226347"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 07:30:56 -0700
-X-CSE-ConnectionGUID: Yub93nl8T1adIXcyye8x3g==
-X-CSE-MsgGUID: bvRn36bzTvS1wn0BYCU0FA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="65998039"
-Received: from sbutnari-mobl1.ti.intel.com (HELO localhost) ([10.245.246.20])
- by orviesa005-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 07:30:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com, matthew.d.roper@intel.com
-Subject: Re: [PATCH v2] drm/i915/display: identify display steppings in
- display probe
-In-Reply-To: <172424832093.2071.7215356235062692151@gjsousa-mobl2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <65e319048c369fbbd5018badfa24e457ca4e956e.1724180287.git.jani.nikula@intel.com>
- <20240821095036.2044654-1-jani.nikula@intel.com>
- <172424832093.2071.7215356235062692151@gjsousa-mobl2>
-Date: Wed, 21 Aug 2024 17:30:48 +0300
-Message-ID: <87msl63q3r.fsf@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89FA910E62D;
+ Wed, 21 Aug 2024 14:31:42 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 27BAE222DE;
+ Wed, 21 Aug 2024 14:31:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724250701; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=lRCSAiCrPPj4vetgxhbtik56MeEwDUSKyib62RC784A=;
+ b=bNtC1wTyYrPagZQL3Mhi1vDUFvW/y28iEFgQ6H96Ix4TP+8Jmuf+e1snDXeAXKPhcQpY7t
+ iDeyOj8q8H7iiFgX4NF0uLs7FRF+XcF1y0MK+AOEyRjS2ZQe5tQLYINcMZwfdL1ouIvQTT
+ dge8RaFYn3lFeoUhSoOFacy+wXZU6wU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724250701;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=lRCSAiCrPPj4vetgxhbtik56MeEwDUSKyib62RC784A=;
+ b=46jmIpSdDPGaRuYMA7Etjoxdk0W4tkrdazVPOV+0lzxItEYAIeYAM9tFIzIv7f5UXoPMzI
+ eSSGKzIvmQx2DQAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724250701; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=lRCSAiCrPPj4vetgxhbtik56MeEwDUSKyib62RC784A=;
+ b=bNtC1wTyYrPagZQL3Mhi1vDUFvW/y28iEFgQ6H96Ix4TP+8Jmuf+e1snDXeAXKPhcQpY7t
+ iDeyOj8q8H7iiFgX4NF0uLs7FRF+XcF1y0MK+AOEyRjS2ZQe5tQLYINcMZwfdL1ouIvQTT
+ dge8RaFYn3lFeoUhSoOFacy+wXZU6wU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724250701;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=lRCSAiCrPPj4vetgxhbtik56MeEwDUSKyib62RC784A=;
+ b=46jmIpSdDPGaRuYMA7Etjoxdk0W4tkrdazVPOV+0lzxItEYAIeYAM9tFIzIv7f5UXoPMzI
+ eSSGKzIvmQx2DQAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CF646139C2;
+ Wed, 21 Aug 2024 14:31:40 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id ClhRMUz6xWbUNgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 14:31:40 +0000
+Message-ID: <f3daae82-a25b-4892-9a08-38ab45894c29@suse.de>
+Date: Wed, 21 Aug 2024 16:31:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Support 'nomodeset' kernel command-line option
+To: Gustavo Sousa <gustavo.sousa@intel.com>, airlied@gmail.com,
+ daniel@ffwll.ch, lucas.demarchi@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20240821135750.102117-1-tzimmermann@suse.de>
+ <172424976000.2071.18125280900868355577@gjsousa-mobl2>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <172424976000.2071.18125280900868355577@gjsousa-mobl2>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.997]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[intel.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ RCPT_COUNT_SEVEN(0.00)[10]; MIME_TRACE(0.00)[0:+];
+ MID_RHS_MATCH_FROM(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, suse.de:mid,
+ suse.de:email]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,43 +140,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 21 Aug 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-08-21 06:50:36-03:00)
->>+        if (revision < size && map[revision] != STEP_NONE) {
->>+                step = map[revision];
->>+        } else {
->>+                drm_warn(display->drm, "Unknown revision 0x%02x\n", revision);
->>+
->>+                /*
->>+                 * If we hit a gap in the revision to step map, use the information
->>+                 * for the next revision.
->>+                 *
->>+                 * This may be wrong in all sorts of ways, especially if the
->>+                 * steppings in the array are not monotonically increasing, but
->>+                 * it's better than defaulting to 0.
->>+                 */
->>+                while (revision < size && map[revision] == STEP_NONE)
->>+                        revision++;
->>+
->>+                if (revision < size) {
->>+                        drm_dbg_kms(display->drm, "Using display stepping for revision 0x%02x\n",
->>+                                    revision);
->>+                        step = map[revision];
->>+                } else {
->>+                        drm_dbg_kms(display->drm, "Using future display stepping\n");
->>+                        step = STEP_FUTURE;
->>+                }
->>+        }
->>+
->>+        drm_WARN_ON(display->drm, step == STEP_NONE);
+Hi
+
+Am 21.08.24 um 16:16 schrieb Gustavo Sousa:
+> Quoting Thomas Zimmermann (2024-08-21 10:56:59-03:00)
+>> Setting 'nomodeset' on the kernel command line disables all graphics
+>> drivers with modesetting capabilities; leaving only firmware drivers,
+>> such as simpledrm or efifb.
+>>
+>> Most DRM drivers automatically support 'nomodeset' via DRM's module
+>> helper macros. In xe, which uses regular module_init(), manually call
+>> drm_firmware_drivers_only() to test for 'nomodeset'. Do not register
+>> the driver if set.
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> ---
+>> drivers/gpu/drm/xe/xe_module.c | 5 +++++
+>> 1 file changed, 5 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+>> index 923460119cec..60fb7dd26903 100644
+>> --- a/drivers/gpu/drm/xe/xe_module.c
+>> +++ b/drivers/gpu/drm/xe/xe_module.c
+>> @@ -8,6 +8,8 @@
+>> #include <linux/init.h>
+>> #include <linux/module.h>
+>>
+>> +#include <drm/drm_module.h>
+>> +
+>> #include "xe_drv.h"
+>> #include "xe_hw_fence.h"
+>> #include "xe_pci.h"
+>> @@ -92,6 +94,9 @@ static int __init xe_init(void)
+>> {
+>>          int err, i;
+>>
+>> +        if (drm_firmware_drivers_only())
+>> +                return -ENODEV;
+>> +
+> Hm... But what if xe is to be used only for compute or render? Shouldn't
+> we handle this somewhere else?
+
+The semantics of 'nomodeset' is a bit vague in this case. The option is 
+supposed to disable all of the driver in case there's a significant 
+problem with booting up. Other drivers do that. And users should be able 
+to specify 'nomodeset' and reliably get some display output; whether the 
+problem is in KMS or rendering.
+
+I suggest to stick with that behavior, even if that disables other 
+functionality as well. Up to you.
+
+Best regards
+Thomas
+
 >
-> I believe we can be sure that step != STEP_NONE at this point. Are we
-> keeping this only to guard against bugs from future changes?
-
-Belt and suspenders, just making sure I didn't screw up anything. :)
-
-BR,
-Jani.
+> Taking a quick look, xe_display_probe() might be a good candidate?
+>
+> --
+> Gustavo Sousa
+>
+>>          for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
+>>                  err = init_funcs[i].init();
+>>                  if (err) {
+>> -- 
+>> 2.46.0
+>>
 
 -- 
-Jani Nikula, Intel
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
