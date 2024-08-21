@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70AB8C52D6F
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 15:11:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF246C52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 15:11:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 430FF10E0AD;
-	Wed, 21 Aug 2024 15:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90B9810E114;
+	Wed, 21 Aug 2024 15:11:19 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFC9410E0AD;
- Wed, 21 Aug 2024 15:11:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F032E10E114;
+ Wed, 21 Aug 2024 15:11:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Set_64k_physical_ali?=
- =?utf-8?q?gnment_on_display_buffers_for_CCS=2E?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Set_64k_physical_alignmen?=
+ =?utf-8?q?t_on_display_buffers_for_CCS=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Aug 2024 15:11:06 -0000
-Message-ID: <172425306684.721581.1102695574473860764@2413ebb6fbb6>
+Date: Wed, 21 Aug 2024 15:11:18 -0000
+Message-ID: <172425307896.721581.17323098526719834135@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240821150519.478168-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240821150519.478168-1-maarten.lankhorst@linux.intel.com>
@@ -44,14 +44,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Set 64k physical alignment on display buffers for CCS.
 URL   : https://patchwork.freedesktop.org/series/137581/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c83ab549ef8f drm-tip: 2024y-08m-21d-11h-09m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Align 64k scanout buffers physically when required
-Applying: drm/xe: Use 64K pages for scanout buffers for Battlemage
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1195b8a8caf12ead23dea237fefdcfce566ba2c8
+Author: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Date:   Wed Aug 21 17:05:19 2024 +0200
+
+    drm/xe: Use 64K pages for scanout buffers for Battlemage
+    
+    Set BMG platform to use 64K pages for display.
+    
+    Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch c83ab549ef8f647c3de42793d222a980021a973f drm-intel
+657145e107eb drm/xe: Align 64k scanout buffers physically when required
+-:25: WARNING:BAD_SIGN_OFF: Co-developed-by: must be immediately followed by Signed-off-by:
+#25: 
+Co-developed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+
+-:49: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#49: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:33:
++	if (XE_IOCTL_DBG(xe, intel_fb_is_ccs_modifier(mode_cmd->modifier[0]) &&
++			     (xe->info.vram_flags & XE_VRAM_FLAGS_DISPLAY_NEED64K_CCS) &&
+
+total: 0 errors, 1 warnings, 1 checks, 60 lines checked
+1195b8a8caf1 drm/xe: Use 64K pages for scanout buffers for Battlemage
 
 
