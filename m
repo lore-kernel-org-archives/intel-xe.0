@@ -4,27 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06C35C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 16:24:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B1E1C52D7C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 16:26:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94AC10EB66;
-	Thu, 22 Aug 2024 16:24:22 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03D1510EB66;
- Thu, 22 Aug 2024 16:24:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED83B10EB75;
+	Thu, 22 Aug 2024 16:26:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="now+m2B8";
+	dkim-atps=neutral
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E731210E4CD
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 18:23:59 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-3717ff2358eso3787142f8f.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Aug 2024 11:23:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1724264638; x=1724869438;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6UKtg+zvbSMPXrleMHfdH7Qk7nmkQZoNUnEZ2n2BArA=;
+ b=now+m2B8UpK6LZ1w0DCjhck5x4Bptn9/gEN/UUvV9o+Iclgh0EVnhdm2eEBPtCfH2J
+ 5FLGevPXC9G/+N0sUrizZnCRdvJKcH2xXMa70Nnwrw3pVxD5iy4jnOKxlVniuHTq+q7q
+ DZ4nKxpoDCPsZTL81/Y6bEmi4uZSNw5V9pTyNn5mVs5ae+F5ROTAhtIAUEY/OAopaPV9
+ jUNVWNBkahDWYrqQf2Z3PZaq8ckVpFHEA4HOO59LLcymI81i/t79EkLe3Y8fX/K1QNle
+ L3cXPTLUidPXZpT4dsigCWJIeCmHMqtp+YTw/7Co7JpuUl5OX+aTK0H/Bq9NAZqp9kz4
+ e2JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724264638; x=1724869438;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=6UKtg+zvbSMPXrleMHfdH7Qk7nmkQZoNUnEZ2n2BArA=;
+ b=Cj+iMqQc8K0ATvQj9w4L2b3wyflrIXMXEWnVKk/7XldhUEvbKm01YLquYo4/2Uxzht
+ KUQOS6GnRqldA+LH/4LVB2Hn7ugg1ugfo8m4JZ5etoRjlh/knRXGIvDPXC4hfADwnDuQ
+ Gf0t3tdme9Vnfpz8Nm8QznKMOIGvhCivursJIrDBjHBXLvwTKyaTIinBMxvP9CzfCIdh
+ os25CbzQ6lTGqscCdLNgXgPajmVGDFJjHhQcqFYJWXhSPYjr31xp3/EETqntc1inifiq
+ /6sbWXEhdeVmEYso5qGdBgZ4zuJWla9wk8NQ6Sjxj/7e6ER1zz+IXiIgYM9/Hzgn/y3Z
+ Dc7A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUCwsSDEDls53mkAMLiuWi2534cMeDK2gslYhz4Qgk/La3yoG+tenKCyg447RPsbhx1B4AZigLUTg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxDcuyIIvRQ2rLekolZqIpUHjwOJrZYjHJmASNN43aVOzBfG3N9
+ Lrgd5ClkpEc3sFllhCDPsqJxEg5gBgJB7a40fPYZljYZzyjaawNpw9X6XV7vpgadctBOBcEXOZ5
+ CyREV3n1Wn+3n/ux4CGouiL415Za4B79wo30=
+X-Google-Smtp-Source: AGHT+IG0fJ7c0qdelGJey9GL/wt13fokKG4Azv8WAjWPN2GOZwHyzJZuOrVRGRQpWEgQNsW5AtTzHed1qT8QSZdQ5ro=
+X-Received: by 2002:adf:a158:0:b0:368:41bd:149b with SMTP id
+ ffacd0b85a97d-372fd5ba7b6mr1932270f8f.34.1724264637269; Wed, 21 Aug 2024
+ 11:23:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_conversion?=
- =?utf-8?q?_to_struct_intel=5Fdisplay?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Aug 2024 16:24:22 -0000
-Message-ID: <172434386200.726611.16879058569738567299@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1724342644.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1724342644.git.jani.nikula@intel.com>
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-14-tzimmermann@suse.de>
+In-Reply-To: <20240821130348.73038-14-tzimmermann@suse.de>
+From: John Stultz <jstultz@google.com>
+Date: Wed, 21 Aug 2024 11:23:45 -0700
+Message-ID: <CANDhNCqDvWU8Hyudw=KromJzFjgj3CqeZ2q5+Qxo0EdS22gd+w@mail.gmail.com>
+Subject: Re: [PATCH v2 13/86] drm/hisilicon/kirin: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
+ javierm@redhat.com, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>, 
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Yongqin Liu <yongqin.liu@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 22 Aug 2024 16:26:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +84,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Aug 21, 2024 at 6:04=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
+.de> wrote:
+>
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> The kirin driver specifies a preferred color mode of 32. As this
+> is the default if no format has been given, leave it out entirely.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Xinliang Liu <xinliang.liu@linaro.org>
+> Cc: Tian Tao <tiantao6@hisilicon.com>
+> Cc: Xinwei Kong <kong.kongxinwei@hisilicon.com>
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> Cc: Yongqin Liu <yongqin.liu@linaro.org>
+> Cc: John Stultz <jstultz@google.com>
+> ---
+>  drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c | 2 ++
+>  drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c | 4 ++--
 
-Series: drm/i915/display: conversion to struct intel_display
-URL   : https://patchwork.freedesktop.org/series/137655/
-State : success
+I don't have hardware to test anymore, but it looks reasonable.
+Acked-by: John Stultz <jstultz@google.com>
 
-== Summary ==
-
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/seq/
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soundcore.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/common/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/amd/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/codecs/
-lib/modules/6.11.0-rc4-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/hda/
-lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/hda/ext/
-lib/modules/6.11.0-rc4-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.11.0-rc4-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/intel/
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.11.0-rc4-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/
-lib/modules/6.11.0-rc4-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/cmac.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/ccm.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/cryptd.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/
-lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.11.0-rc4-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.11.0-rc4-xe/build
-lib/modules/6.11.0-rc4-xe/modules.alias.bin
-lib/modules/6.11.0-rc4-xe/modules.builtin
-lib/modules/6.11.0-rc4-xe/modules.softdep
-lib/modules/6.11.0-rc4-xe/modules.alias
-lib/modules/6.11.0-rc4-xe/modules.order
-lib/modules/6.11.0-rc4-xe/modules.symbols
-lib/modules/6.11.0-rc4-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-[0Ksection_end:1724343849:package_x86_64_nodebug
-[0K
-+ echo -e '\e[0Ksection_end:1724343849:package_x86_64_nodebug\r\e[0K'
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+thanks
+-john
