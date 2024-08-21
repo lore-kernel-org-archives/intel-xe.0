@@ -4,27 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3AB5C52D6F
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 13:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EFB0C52D7C
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 13:57:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD7D10E56D;
-	Wed, 21 Aug 2024 13:55:32 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1D2410E55C;
- Wed, 21 Aug 2024 13:55:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6005806676134490954=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAB410E57E;
+	Wed, 21 Aug 2024 13:57:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="K3NhJ+SA";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="sfXACtKR";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="K3NhJ+SA";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="sfXACtKR";
+	dkim-atps=neutral
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6564B10E575;
+ Wed, 21 Aug 2024 13:57:54 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 046D221D5B;
+ Wed, 21 Aug 2024 13:57:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724248673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
+ b=K3NhJ+SAw2PKvlhOVZm/Fx0/NTV0bOHG+cDjLPRzqw0cWwMBH4xcl+iz2XdqVtdQez9pqv
+ 0P99wrHF/U5DMov25L9sKFMe7SFoC+G28fLw37VxAZLzVJ3t5qB96WDPbBeKxBU2+oQIkW
+ u2Y6e2LysRLfP3qI3+rJHErdFAvE4Q0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724248673;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
+ b=sfXACtKRTv168NmE/oscJ/emfR1gI/kH0C8ZhT9QVXkvF2a4vZ7lkwDkxD+haCgC0IkBE2
+ 4NuQhc8FQjQFvWCw==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=K3NhJ+SA;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=sfXACtKR
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724248673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
+ b=K3NhJ+SAw2PKvlhOVZm/Fx0/NTV0bOHG+cDjLPRzqw0cWwMBH4xcl+iz2XdqVtdQez9pqv
+ 0P99wrHF/U5DMov25L9sKFMe7SFoC+G28fLw37VxAZLzVJ3t5qB96WDPbBeKxBU2+oQIkW
+ u2Y6e2LysRLfP3qI3+rJHErdFAvE4Q0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724248673;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=66MS1vAMdhKiRnj4JVgklKnWebOl3sxpMfpANfT8of4=;
+ b=sfXACtKRTv168NmE/oscJ/emfR1gI/kH0C8ZhT9QVXkvF2a4vZ7lkwDkxD+haCgC0IkBE2
+ 4NuQhc8FQjQFvWCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AF1F4139C2;
+ Wed, 21 Aug 2024 13:57:52 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id t3VnKWDyxWaTKwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 13:57:52 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, airlied@gmail.com, daniel@ffwll.ch
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH] drm/xe: Support 'nomodeset' kernel command-line option
+Date: Wed, 21 Aug 2024 15:56:59 +0200
+Message-ID: <20240821135750.102117-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm=3A_Provide_client_setup_help?=
- =?utf-8?q?er_and_convert_drivers_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Aug 2024 13:55:31 -0000
-Message-ID: <172424853165.721436.3814746934686870673@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240821130348.73038-1-tzimmermann@suse.de>
-In-Reply-To: <20240821130348.73038-1-tzimmermann@suse.de>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 046D221D5B
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-5.01 / 50.00]; BAYES_HAM(-3.00)[99.99%];
+ DWL_DNSWL_MED(-2.00)[suse.de:dkim]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ NEURAL_HAM_SHORT(-0.20)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[]; ARC_NA(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[];
+ FREEMAIL_TO(0.00)[intel.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch];
+ MIME_TRACE(0.00)[0:+];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ RCPT_COUNT_SEVEN(0.00)[10]; RCVD_COUNT_TWO(0.00)[2];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]; TO_DN_SOME(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,198 +110,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6005806676134490954==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Setting 'nomodeset' on the kernel command line disables all graphics
+drivers with modesetting capabilities; leaving only firmware drivers,
+such as simpledrm or efifb.
 
-== Series Details ==
+Most DRM drivers automatically support 'nomodeset' via DRM's module
+helper macros. In xe, which uses regular module_init(), manually call
+drm_firmware_drivers_only() to test for 'nomodeset'. Do not register
+the driver if set.
 
-Series: drm: Provide client setup helper and convert drivers (rev2)
-URL   : https://patchwork.freedesktop.org/series/137387/
-State : failure
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/xe/xe_module.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 923460119cec..60fb7dd26903 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -8,6 +8,8 @@
+ #include <linux/init.h>
+ #include <linux/module.h>
+ 
++#include <drm/drm_module.h>
++
+ #include "xe_drv.h"
+ #include "xe_hw_fence.h"
+ #include "xe_pci.h"
+@@ -92,6 +94,9 @@ static int __init xe_init(void)
+ {
+ 	int err, i;
+ 
++	if (drm_firmware_drivers_only())
++		return -ENODEV;
++
+ 	for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
+ 		err = init_funcs[i].init();
+ 		if (err) {
+-- 
+2.46.0
 
-CI Bug Log - changes from xe-1804-c83ab549ef8f647c3de42793d222a980021a973f_BAT -> xe-pw-137387v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-137387v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-137387v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vf 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-137387v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-lnl-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-lnl-2/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-lnl-2/igt@xe_module_load@load.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@xe_module_load@load:
-    - {bat-bmg-2}:        [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-bmg-2/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-bmg-2/igt@xe_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-137387v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [PASS][5] -> [FAIL][6] ([Intel XE#886]) +2 other tests fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@xe_vm@munmap-style-unbind-userptr-inval-end:
-    - bat-bmg-1:          [PASS][7] -> [DMESG-WARN][8] ([Intel XE#877])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-bmg-1/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-bmg-1/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * Linux: xe-1804-c83ab549ef8f647c3de42793d222a980021a973f -> xe-pw-137387v2
-
-  IGT_7981: f4e2ada1adec484cf506b5ec7e9acb3ae62228f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1804-c83ab549ef8f647c3de42793d222a980021a973f: c83ab549ef8f647c3de42793d222a980021a973f
-  xe-pw-137387v2: 137387v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/index.html
-
---===============6005806676134490954==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Provide client setup helper and convert drivers (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137387/">https://patchwork.freedesktop.org/series/137387/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1804-c83ab549ef8f647c3de42793d222a980021a973f_BAT -&gt; xe-pw-137387v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-137387v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-137387v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vf </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-137387v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-bmg-2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137387v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@munmap-style-unbind-userptr-inval-end:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1804-c83ab549ef8f647c3de42793d222a980021a973f/bat-bmg-1/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137387v2/bat-bmg-1/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1804-c83ab549ef8f647c3de42793d222a980021a973f -&gt; xe-pw-137387v2</li>
-</ul>
-<p>IGT_7981: f4e2ada1adec484cf506b5ec7e9acb3ae62228f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1804-c83ab549ef8f647c3de42793d222a980021a973f: c83ab549ef8f647c3de42793d222a980021a973f<br />
-  xe-pw-137387v2: 137387v2</p>
-
-</body>
-</html>
-
---===============6005806676134490954==--
