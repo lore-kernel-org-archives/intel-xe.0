@@ -4,62 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BE3AC3DA4A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 00:01:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79D76C3DA4A
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Aug 2024 00:04:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B89CC10E396;
-	Wed, 21 Aug 2024 00:01:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 442B410E552;
+	Wed, 21 Aug 2024 00:04:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQbgejZX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AjPGTNEf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF7810E23E;
- Wed, 21 Aug 2024 00:01:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CC9C10E552;
+ Wed, 21 Aug 2024 00:04:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724198486; x=1755734486;
+ t=1724198657; x=1755734657;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=/ENv/oHf3AU4B89QH3Mg7JRhxmyd17FURXyUSktzZak=;
- b=UQbgejZXDxAqOb7unWFe34ko1Ubi1DhAm7UCV+J5gmwMx/w2er9+Vp1u
- FcQjx1xk/+Y/oaeJLdGCz7WfJ7rr/yA1LbdIgzq36NGg9Opv5OxwO6aDA
- tATIbXZPAumhB57TDbAFP3xwfNxkxovFQ8gJEUF4ZWgrja4Vn/G5ft5tg
- yWUJtsWmju/kLkUPdIzgnmPqLXo/94ZXteVwshVvAc/P04dqG8JfZ7h/w
- 3Tjqvvsv+TWU2xs4emBuas0UVFfZh98nn6cm8epjGLUWT00Gs3bO+Ke8j
- LCdHtxuBryf5wf388n8kujJQ+aIuMZZfKNkUN5vzA1NBSmsTsaVjch9eU g==;
-X-CSE-ConnectionGUID: D9mcboxVSMmG9QHTND57sQ==
-X-CSE-MsgGUID: YONuXiFqTtuGTfe+7u/5LA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="13122012"
-X-IronPort-AV: E=Sophos;i="6.10,163,1719903600"; d="scan'208";a="13122012"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 17:01:26 -0700
-X-CSE-ConnectionGUID: MMBmkyxdSTKuY42Jar1RyQ==
-X-CSE-MsgGUID: cOnuNwBxR6ehMbjtO+E3LA==
+ bh=+OngHyrksLvTJxX2kXjOwi8hq3URjkhWF8QODKKLQE0=;
+ b=AjPGTNEfvHp9zXd8KrCSVig83hy08oskL0zx4ebCkVd7S5QrMhq0JEF0
+ QTbhLytV2OjlhgR6dLXIMa00uw+JU3CxmLybqm8xBQrjNd95HQLzF2Zp9
+ f0zYZafqAIFwGLrOptA4MytFNWOUyXKJPJsGxABL9paZZfoAXLpyiGTDh
+ 0mDIqHABBiOX0AjfxwC+7Y/lZD9HPvZUu5ppjNUZLhpNsJNMTYo68ru2N
+ XKHA1GsgNcT4NtUipB+sx94g6AQ5rB18H7L7Y8NCbevc8LOSwmNlEnXla
+ YthCOorzYbroS9FGlu1Q2grrkJIBToc/sZOf+GmbH/2eAU0xgel+bMmz9 w==;
+X-CSE-ConnectionGUID: jY7KVr0KTxC+4xYxJ7T9HQ==
+X-CSE-MsgGUID: q8VoUfIzRK6Q7PFjxAtEWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22506484"
+X-IronPort-AV: E=Sophos;i="6.10,163,1719903600"; d="scan'208";a="22506484"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 17:04:16 -0700
+X-CSE-ConnectionGUID: wSXwsAnyS062zmCwG0ijAQ==
+X-CSE-MsgGUID: w9E2CKVAT9iCf/ZK8seF8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,163,1719903600"; d="scan'208";a="98375813"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Aug 2024 17:01:26 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.10,163,1719903600"; d="scan'208";a="60863234"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Aug 2024 17:04:16 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 20 Aug 2024 17:01:25 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 20 Aug 2024 17:04:15 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 20 Aug 2024 17:01:25 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 20 Aug 2024 17:04:15 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 20 Aug 2024 17:04:15 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 20 Aug 2024 17:01:25 -0700
+ 15.1.2507.39; Tue, 20 Aug 2024 17:04:14 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yEyTk5QkPZnMpjiYGs7cLEObmGseaYcA5Fp5IEXbfyVm0Hd9UJNbXL5sRSIuFmPhUqhtTaDmGlqFfBFEDemMdcSN4cdMXN0oAZIJULZuZtbIXH8v1u8ytZ/KXPsFTYH1uS034rYWRnjvFib/ct9c+Lonh9IgyWGf4/5Kna8s3I9LjVcC9wvSQ0+lOLmSkVbxsZEYtIrYbuDvGKbcBWNU01u/AHSVNLFmVF8QTd1AE8iahMbPATefggD8oX3qE0KoQuaKzhPkQnK/ypPcfRNfYa3SNJBEvActaFuouEzDsVLw6prAUElAsYA0/DrzXb5R28t/HFaTRbYYoLJYll05qw==
+ b=hKPuy6PhnAF77MfcIMPt6s13HrqJbTB1oW/X4zJ/gNcCjZONzThhUmS+xyO47XD+YmEC0VsdiBWb6zIImbzcSubFmA5gQoqbzx1xF2SMZ7JxzlPIrHBqxEiRBFWTw0jB80T3wOoKxHYL7Tj78cfxu9RxfmN0QvPyPJYw5MtGqc1xecaF/xma7UHgUegg6z86nCaQJoJqsZzQz/Ep26WeqdcBmBbzl6QruFJJM8ERQ0Rs2BBZ1lImEhO7Bu5sALwtrtKrQN6ZKDtxSCt1xK0XlDBLZIURNEVq81vQJsf6nCXjS5umiCE98355fuhH4K22QC+BsYu5EV2w/4iMKUJilA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5DhfqIxQ7qsCUU3IHminjceun6rfKuj5p34LBU/8UoE=;
- b=YDgbtv/jvvpThPD8mXSJmFzsE+5Ej/H/lRXkpDI/ARXwHsUC3grxIjOTzRpDsTdK74dOgZOnNyktjaMtofrAa2i4ZQgq2q3akKvDVFOHCBBssPv4XTZvJJmj/4fEo6djANX8pLmr6EYJNsfpoFd14aWchwTkBOQXL7AQwx0kEGKDaroxW1CLNLvHqVTjPsVHK/CFk1XNN5+ua/+3POZrowiiU9FnqDkxYm1IcmW+NCjfqpFIIwPXAgS4O+JZR22UgIDUFbkv35YN3dP4o2+ycVM6ebNPop/2nc4CCAVCnE5eLTuV2D78CXTfu875r51FKfFJ3hLRoBrDP9NfQAtNjQ==
+ bh=hYIkPPh0z1coxc1rJiNqI88Hy6xRPBdUge5emM9z71Y=;
+ b=OoXQSgH70ktMAhyVMU5gNdMxgzGkGzLzzHN7yCccXyDAOWzbXfkP0gl0Ga1y7CePsKLchFPL+WqUij4V5T4RfSJIuMsKWHimYuBUhUSTDOjA9lF/2vMxjyErhq28BuKe6jCNdTRyfoqiaWZlAog4kx6NlyWT1GHra8G60VLvn/rlZLGGrMBEAajYcAMIqWyZIBQxAUy5lVyJZx7a73PAwgd3+PuTK9mljKoroit98gi7YzuUnh889vc5FDCN0DguRzultCCj0e8HctnB3wkfRG0mWXfeajOJqQekIZsc5qKoAD6BTxcUpRZXJCcBUSYDSn52se6MlW7+fV4dzVakrQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,98 +73,97 @@ Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
  by PH7PR11MB5864.namprd11.prod.outlook.com (2603:10b6:510:136::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Wed, 21 Aug
- 2024 00:01:22 +0000
+ 2024 00:04:12 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7875.019; Wed, 21 Aug 2024
- 00:01:22 +0000
-Date: Tue, 20 Aug 2024 17:01:14 -0700
+ 00:04:12 +0000
+Date: Tue, 20 Aug 2024 17:04:10 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
  <lucas.demarchi@intel.com>, <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH 08/10] drm/i915/display: switch to display detected
- steppings
-Message-ID: <20240821000114.GT5091@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [PATCH 09/10] drm/i915: remove display stepping handling
+Message-ID: <20240821000410.GU5091@mdroper-desk1.amr.corp.intel.com>
 References: <cover.1724180287.git.jani.nikula@intel.com>
- <ce8bb94e1a801d3c345f1810837bdd1964c3af75.1724180287.git.jani.nikula@intel.com>
+ <d64c5e8563dcb8858569d5578230f6b675acdafb.1724180287.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ce8bb94e1a801d3c345f1810837bdd1964c3af75.1724180287.git.jani.nikula@intel.com>
-X-ClientProxiedBy: BYAPR07CA0015.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::28) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <d64c5e8563dcb8858569d5578230f6b675acdafb.1724180287.git.jani.nikula@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0167.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::22) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH7PR11MB5864:EE_
-X-MS-Office365-Filtering-Correlation-Id: 837e4c84-9542-4a13-9283-08dcc1746480
+X-MS-Office365-Filtering-Correlation-Id: 00420e34-e02c-4905-0ffb-08dcc174c9c2
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LMTuR5PjeZT0rGe2kIy3L2IW0p/RNFt5K/2RjFVnk5buQ+oEM8rfj2cwuwPo?=
- =?us-ascii?Q?cNniRl1NKHuLwDjE64/9UOlM9701RvV7zIyCY+pjjlFr9Rv3o0//Mtn0Yj73?=
- =?us-ascii?Q?XTxdI3UYt46UKF/++HJn2k+YHZBud/UF7FhxHYIZ4OMzZBT1oxIGxgysuzIH?=
- =?us-ascii?Q?yGvzDsqe/2OTOZPituXV477jUkQ+0kdLI23FWAWzwcvzO80gtrFZvsa7GQso?=
- =?us-ascii?Q?LPE/Q4tJA89GCBBh9PfR/VHNpk30BFTtndYwjL76Cawf2tc1NJzPLkx8NyAz?=
- =?us-ascii?Q?X64K4F9ubBcWiaOcc3f7FoF9V2jJKWu9qIrfNeO7NWfKHri+I6gRMdrPc3k7?=
- =?us-ascii?Q?Hdaue2YjWIexH2C1tJE2Y4XRtrXdT7O0XLKskBeYg+1bl+4YFocQs78Kl8Nv?=
- =?us-ascii?Q?5MFRdpIAnfYpqauQ+zkqNuNloV2KAenxc9UIaQ4l2epZr0f3fzG2jA5FFKUC?=
- =?us-ascii?Q?pkkuJL8yriyQIwikpE6x+Tym9lEhYwKAMps/DBWuMCFCEgRYtZkZ7MzeD7+J?=
- =?us-ascii?Q?k77r2dsJA2Ts+bFB9nDFdbSH/WLnUEGJDjFQ8rami170iyjHgOf68eLgi487?=
- =?us-ascii?Q?A76slb6A8TOztWHG/Mr7aQPaz3lrTAO8v5XpXTaqFsh51Clmknm17oy7YA+9?=
- =?us-ascii?Q?IadX9VSS3ZtE1ZOnKBBvA1SLzYSdoWJ5ktNsv0m6scsHOXVCgUwC2HCh/HkV?=
- =?us-ascii?Q?tNW8PqG87CANDZi5zXVzHR822lrFoQRugKBDFkxIyDptFEbydxtzcmhzXEEC?=
- =?us-ascii?Q?w9+7s3NLb57RYgKCvsHFyQ/DjsJ0ws5r5pOcF0LdsgvXbIj+7Y9q7xo+jFkS?=
- =?us-ascii?Q?ZxkYY16mq9kTSFHQ6EKc0UEDmx2d3pgS3pNQUTrXrYNKBW63OMvt3fj4to5g?=
- =?us-ascii?Q?S879fUJyA1eSvn7uwyDbi3T6gy3peBBt9oubE0C488ASR6P7W4Xv08huUt6R?=
- =?us-ascii?Q?L9N2ScO5dh3cGpYDXpvy36iSziKkaG7zPFi26JhJbNvesubFYSvPMaUqjzhu?=
- =?us-ascii?Q?D128LQrp1K7ETcLEWTvUVPRBP8e0nGbESL28+etXGt8nmVRdUO4FJBQ77yWH?=
- =?us-ascii?Q?ncVIxJ7RKgPwN78CglBs+0y/GpXuOc8JhkexPvAEnDwVve13D50UQ6bMSqRt?=
- =?us-ascii?Q?J7ZKoMv2s5B9noRoR92V2fe/LF1wBlGfjMrUaS7JanNqDp7+kv5fUOQZtbvU?=
- =?us-ascii?Q?1ygFJcv51wa8YeXUGzZ3/cgukSqCZhE72gViXGXYgYZ231nUWeOm8uslVbyF?=
- =?us-ascii?Q?6O751j7acDT40tDRKX+J/r4XAS2pJ0nN6NjVyZT8TCU4HpYh5j8SmzDELTPb?=
- =?us-ascii?Q?s7bw7R72aSfPf/bwhIGB+k23FY8cMEkgFpY3GxOrsI4kKg=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4M3v/ViH2jihnpOxvpQeKn4psdCV/bJbbzsp1lKw9WVlqjoS4kKpH1ZwUWMZ?=
+ =?us-ascii?Q?ZUXTCWPsJHWo2MNcidj8SZJHOCivSx7/55xjqhISbH3PJ2XnjwUF8yyOvseW?=
+ =?us-ascii?Q?lHNhKXcRbwN/DKeUKDvT2CDZy/G9jNXyCSOfr2eL5cc//sEY8NOUr5u0aj3B?=
+ =?us-ascii?Q?KuzNWnHCMeTLQSWep75KKvMUulEdYoGd2S/9Ktz4wp7woKWTi+ZRv/e4vseX?=
+ =?us-ascii?Q?K06qWzBxIwxSc+26wizIbZons4uxWeYYit2QfEUuFlBwfmqqrPkcTTSPIOeC?=
+ =?us-ascii?Q?u57b2SKQX5D8Q5gucNJ9yKMN55TxCvPjhVF+3l33sesJDpxoXTa/Z/fPWXa1?=
+ =?us-ascii?Q?AB6oDT4+h8Yi0shWjPOWB5AzSNSdmTvV+Ea1q7Zojva+xqv+JEaK4tIMVXFN?=
+ =?us-ascii?Q?oZld5eS06UMTBDzszZ1vxmz4nlMQLO8FH6IP01fhaorAH4Kkiv9zdpleplw4?=
+ =?us-ascii?Q?kqbsooWaGWfTQWjGx1JzwT0AaTFmepaDVeFtTNddrO5uR49EjEmkEWUehFk1?=
+ =?us-ascii?Q?pGaoIJbRL85aVEwBcmdcCq37VmqdtOyt6PM6SmKI+Av9T0qM3jA3C2LtuBn8?=
+ =?us-ascii?Q?zxOdYGR4ZySDmW6ro4zQA5uvD8fSx2BePSLId1Kxd99FiT5+uJM/ewzDA71i?=
+ =?us-ascii?Q?SPxozg3y11UnZkB53owSWDMhiRm4UoiyDfPyVnsOyrBiCi5dUUCbSkM5pY6Q?=
+ =?us-ascii?Q?xMqaoZnKj8I+lUDG6rjVLUOGWcl3ule/V6ONR+r+gj7OeM/TdA9bK6/U4s87?=
+ =?us-ascii?Q?zPmrLTfV9XfddhmziLhzhGu9kszRn64S6tFAfhuKF2xGczzFPZyEQc6mGTqa?=
+ =?us-ascii?Q?rAjfR7aiF9k3gX6NdnRq/+G8b6UnOiEDbuAHtVM0g/D5yIkFtS8tqiOpiRQl?=
+ =?us-ascii?Q?kaywKCUiTTUdaMPP4Li//ST9tNl7VppEKiATu8EwHAuwX2/01lzmUokP8Nyx?=
+ =?us-ascii?Q?Yiumcci4H27KfbrtgnmKt4D0Z2C2a7S+BPqjBrJbb4GbtERYkYeCU9Gp76Ko?=
+ =?us-ascii?Q?ZQdKzJeeCGn00dRhTvxBSoNWho9SpEQwGV65Sx+X1qpovhjM0xz4yLvopaQA?=
+ =?us-ascii?Q?If9Qv/mUyAMrxw9fNnCP0uqNIVhgR5pLnU4TuOp/J6dCp8KErDyBIDtWMu0b?=
+ =?us-ascii?Q?FV47G/Kp8xg12TiI3Rgk/t6O4a2PoyIcQvwwNTt8DdYF935ri6wFUti6Qswg?=
+ =?us-ascii?Q?YOzY3mgMHcRXCwFmwXETJjrha0WNylKIszXDUTyjq/KE2gbgTXm8RbSs8s9C?=
+ =?us-ascii?Q?QDSoZ0m/6wdPYMSg1znWBTKNTmeWmsePZf5VZyEK+SWl2qgDvsfU6kJD0nfX?=
+ =?us-ascii?Q?jMIi9p5jjWdpS6b+/a0OP5HflS5cTRZ8cPkjP6fIa9QJlw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3rxexBLnwyrh1yXJxww2/e9v+L4udcNWQZhOlCZjZf3XridY5eslkC3B5bjM?=
- =?us-ascii?Q?XLAGxM8YTT5Dw5mI5o/wNN6jSZhn68lMed0suEKg1yUdrQGIrLzEdHX7mbPi?=
- =?us-ascii?Q?Ny2fXFAG7HHzblrw1o3SkVC9BPysHPj2zxLSwrxmqrUnpH5P+bX2vvnFZlKm?=
- =?us-ascii?Q?ZKhTX+R1H7Kw1UjsH3tKFEXn3ktMcPMcJ3jkvFBxT40fZnjBQj69abhmn/7t?=
- =?us-ascii?Q?O4QGDUAC7JZyJCy7dl5km1hHwM/We5bhwB4pwZg86fDzquBVZ6rRN8WQI1Rk?=
- =?us-ascii?Q?PwmA+3TAnJ8bdphdWC2/OQTdD54eg8EsDEuX9KiE6Q0+v8Nv46LXW+AfgXTW?=
- =?us-ascii?Q?E02RAomWzopqdUcuL2wQjzcOCe33P40oeSbQSWhLkU+OV18f5+0AjQeu0IJU?=
- =?us-ascii?Q?8dSuc67NBMpXN64MA/wVoaKvD31jTsyKp1IMpFHVRobJdNY8DrfrIo7/jWn3?=
- =?us-ascii?Q?Af6YXgJXOOXKg7uBTyEu1WfwvQc0h3wGXUd9FNhadecAZ2xSo/Vk2tjC7ta6?=
- =?us-ascii?Q?JmG/xk+xnsXMz6DrNMZRznVX3dojxIwdeqFrjSVf1RaKS+39jjpXcJvOFRXp?=
- =?us-ascii?Q?kVqDnZ4ceK9YonYxeVPY9mLzOGVgjpsjsIm9Vak8skR6T/60E3E0uGtDZHtP?=
- =?us-ascii?Q?X2A7se0i9o2GP3RImxP3twKakr931O77obSe/MbVJIZUvrxDOwaUF96517y/?=
- =?us-ascii?Q?xI/SaRx2xIFGCLFXUz1aslLYZ3LWc+TJs+kSq7FnLEjJV4wvUe0SYDT8BDEr?=
- =?us-ascii?Q?+OUh/TNwXQvQi3/yoyxsR9hIXN5SIVeUCy/d+zfpEegZ2xXOOxdm0MuryjEa?=
- =?us-ascii?Q?HqJJdcpp9KuH+RU0hPrKJvk4TFS7LNYjyAFa4D03TJndqF46X4oA5Qlvv3hY?=
- =?us-ascii?Q?cIwHurxuhEdSX2MB2X7BvAe+cU1WWgW5gupUEkk85by55lZofP4wfaC+bFv+?=
- =?us-ascii?Q?JJSW5c3DVe3GW8JGWtDOovFh04mtn+6BtuugGW6YDOzBms+wyXhn+5qXtIyx?=
- =?us-ascii?Q?TnXt8gJfECOcGh9mEBKhHQcIY0LmrfjJglfExic3OdaVL4hwlCXqeRXpfRlI?=
- =?us-ascii?Q?XLKxft/rHKLuvsFyuTFuGwDPPkdv3tK3qM5aaTEni5QRgeQyHU/4Iafx2/ef?=
- =?us-ascii?Q?tKrhxHMyEmPB2VIT5+HsOfCFmnHNlQAZ54tOMtajlkmVu2vGdKf634knXT/I?=
- =?us-ascii?Q?TXwUq5bEfrZU4azYikS6uohNyitRNJbppAnxN1u5tkoAA6ApauZX7EocTpf+?=
- =?us-ascii?Q?NELYeTw/d7KTMW7GEQx4EhwZTinlCVKunKHDmpF1rx8hJ93wuF5Sf4DvShZ+?=
- =?us-ascii?Q?O1Idmo/W2XekhSCXUt3XyYXQ31VQ8unUrEdEp0a9q/+w0bwy4TDevvEygvK/?=
- =?us-ascii?Q?X4ggMP7tvyK65D+eU/3Zpr9liu8ICmKEDS0A6HpC6bbJNvtVrBrL+qoWKTdq?=
- =?us-ascii?Q?43W4xS514QZ1hz6huWWdGQpOPSb5SgbylEwH7vNvveP/1aQBkHcs/SQd38gS?=
- =?us-ascii?Q?PdfRyFSoOuRZ+y4rl0M8pwKYwnKmV5KLJLoQ5677InP0okaCZDVKYsalmPeD?=
- =?us-ascii?Q?jsZckFz3h8taoZ7dZME+EKZLr45MoHOWmdtUo0+OmhzuAQzefOIOxPuBv3PU?=
- =?us-ascii?Q?kA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 837e4c84-9542-4a13-9283-08dcc1746480
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BR8GOykP88RNUMWVeH3s1qSO2jREX/BbeJEmCpD3rYv7xaS76tveIz36E/L2?=
+ =?us-ascii?Q?StaTxX53RCLlu2WsSn9e2Nk//HLyrJBJkVpe0LJPRgIpOjNISK1XjGMAHpyl?=
+ =?us-ascii?Q?ObGyuxqBSY8Avy6KzdU5wP44TD2CNHFBSPFbanztlFNIoUvb/Cqlfkq7PRxE?=
+ =?us-ascii?Q?YH+AtTSMdnY1IaM5SDMXtgVxXiT6zdw6ftOXWjEVN0pjGntHoLBNCjEVZUPR?=
+ =?us-ascii?Q?owwuG9/PkcECcl4vtQRm2BlwC5ognGXwItu4QpZsZnAzYM+CGMFhYEAJMDrI?=
+ =?us-ascii?Q?me210gwMsiIypyrO7zdCgbSsgRbMjWr2WFr20kH6eREInld7X6IZWlP5f4p7?=
+ =?us-ascii?Q?gAms+0KofwkjNsJkgynw/45VTsvlvlxXbgRlF3yfiVEyUP6/RSpnuahObAnV?=
+ =?us-ascii?Q?HM1MalzuEbzmZybblJ+UFkkfFau9WI3pF+dI7UKZW+TJIB7jnL2CMKy8vn2D?=
+ =?us-ascii?Q?Cycx6zRwvPR2vaasvHXqLrsXpok7FCJwH1BnzcN4KzQI1aPQSqtC/N7cEblA?=
+ =?us-ascii?Q?Uhd2AEjB88cDsz35wAxbMtPdfK/EqslnxitycOgcavB5IHG5heJSeLpADT/V?=
+ =?us-ascii?Q?3v0jZA8sPkUVkNvJvVVaG1JAoJNtuIu7XNQspbLB1RJ5ylRkqFrJKzkzmkRW?=
+ =?us-ascii?Q?F8CXnQcP5pLr2vqtAfbqVUZY6ePXYYTurS458RgMZBDLR7rg8LMVDeT9oi3F?=
+ =?us-ascii?Q?3n7XATRpoLK3u+vcIWBrGm0E52qhXVacQPsup9480O7ltF7Haiyq6m/UEET0?=
+ =?us-ascii?Q?+um6BBd72z77cIbKYIe2zyoXypSkNX3TuiefI15bREuVBldzFjKXx9kbzcJh?=
+ =?us-ascii?Q?yBKmokWsl6wIa3+A50achRtV58sDcEIlndf5uNEXqCqvRmqPQaTuTvtIdUUO?=
+ =?us-ascii?Q?eC5bVfvoDkrgAtdIyyzdAh9RGPgomCGJhzpAuucZQlm8R8LiLTo+1vnOCKjF?=
+ =?us-ascii?Q?rioCZ6/f4AlN9IK3+PaRJtZbLPio9oBAi9tn3mmXUUz02vOAfNAQs6uIVs5G?=
+ =?us-ascii?Q?rm6yg0tTwnnk39sLLmqZ2isvAgBwU1cGuWUBm4qwMCX9wc5bROKsuRdcbWEd?=
+ =?us-ascii?Q?4+a2Ye/2P+/1E+NYCIHLlEJRbeT6nl+RIlaqkmVKFfvfvBItqBRgnJgtY9V0?=
+ =?us-ascii?Q?JtF1zDQU7QAGHPMQ9eCxHZKCoNJpV03aI9JIwvk04EAvIC+FlepJHdO/fUZV?=
+ =?us-ascii?Q?PpXWEEuWAhwi0MVe3ivpgo0yIoYws+kSpYXT8lWdolI8+Ph4I2S/FgIbj/R/?=
+ =?us-ascii?Q?KaKlJg7s9kiQyEnArPbiNcOU+/5chrJLzY6dFG8SRTZVSx96w3MXpNkm4QB7?=
+ =?us-ascii?Q?a/LJgdOmvKsbqrEk5uji0GMhUvioN4Q9MJAx8itpA1d615MIMyce4fjxC7Ce?=
+ =?us-ascii?Q?YRkaesaqDv4VrFqMPtx0HXKFvd2clNaFDmFOEtkLuyEfyI+mqUvQnSavRFYP?=
+ =?us-ascii?Q?3I5NUw6Z7CLdjXeyywU2ntgxwGPQsD2ChF4NrIgO0/05OK77CvodO7HdUJdk?=
+ =?us-ascii?Q?8pxVdfkFt1eIYNEM27G3/wEbBr50lZ6AN36k5xURRX42q8JRpXQVl/34ZNCc?=
+ =?us-ascii?Q?usveMgwcjDQnEZCuO+X4NH+guRl5+vxtHQv3EL/y3Xc1faF3WZBhZbVf7B/s?=
+ =?us-ascii?Q?2Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00420e34-e02c-4905-0ffb-08dcc174c9c2
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 00:01:22.7133 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 00:04:12.5963 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U+Qp36P8kQNcKOkDgsa7Rq2VrG5X2yoqmC+fvJ1z/SCddWFyOSPK98I7urnZPlS0TJISCiQQtjMxqYj7Zpl94gQtyioFb4NLVmwGMeOZcDw=
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zv3S5NV1Oth6iwIKV16p7w7HgXE2rOCSMuTemRn2nnmweYy4/l9vfH70wBm1uXQW5YnM+2hm5AgHTusQdj5zvJ0LzjEyVh4ebtl41ObCF3E=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5864
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -177,105 +180,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 20, 2024 at 10:00:41PM +0300, Jani Nikula wrote:
-> Move the stepping related macros over to display. We can proceed to
-> remove the compat macros from xe.
-> 
-> Note: Looks like we've failed to actually initialize the display
-> stepping for GMD ID based platforms in the xe driver. It does get set in
-> display runtime info, but until now the compat macro used
-> xe->info.step.display which was not set for GMD ID.
+On Tue, Aug 20, 2024 at 10:00:42PM +0300, Jani Nikula wrote:
+> The code is now unused. Remove.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display_device.c | 2 ++
->  drivers/gpu/drm/i915/display/intel_display_device.h | 6 ++++++
->  drivers/gpu/drm/i915/i915_drv.h                     | 5 -----
->  drivers/gpu/drm/i915/intel_device_info.c            | 1 -
->  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 5 -----
->  5 files changed, 8 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/intel_step.c | 79 ++++++++++++++-----------------
+>  drivers/gpu/drm/i915/intel_step.h |  1 -
+>  2 files changed, 36 insertions(+), 44 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-> index 1ac3ab3954a1..06b55ae38a44 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -1711,6 +1711,8 @@ void intel_display_device_info_print(const struct intel_display_device_info *inf
->  		drm_printf(p, "display version: %u\n",
->  			   runtime->ip.ver);
+> diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+> index 80464e4edcce..285b96fadfd5 100644
+> --- a/drivers/gpu/drm/i915/intel_step.c
+> +++ b/drivers/gpu/drm/i915/intel_step.c
+> @@ -23,8 +23,7 @@
+>   * use a macro to define these to make it easier to identify the platforms
+>   * where the two steppings can deviate.
+>   */
+> -#define COMMON_STEP(x)  .graphics_step = STEP_##x, .display_step = STEP_##x, .media_step = STEP_##x
+> -#define COMMON_GT_MEDIA_STEP(x)  .graphics_step = STEP_##x, .media_step = STEP_##x
+> +#define COMMON_STEP(x)  .graphics_step = STEP_##x, .media_step = STEP_##x
 >  
-> +	drm_printf(p, "display stepping: %s\n", intel_step_name(runtime->step));
-> +
->  #define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->name))
->  	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
->  #undef PRINT_FLAG
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 1c75cbd68dea..611be3fa3af6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -194,6 +194,12 @@ enum intel_display_subplatform {
->  #define IS_DISPLAY_VER(i915, from, until) \
->  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+>  static const struct intel_step_info skl_revids[] = {
+>  	[0x6] = { COMMON_STEP(G0) },
+> @@ -34,13 +33,13 @@ static const struct intel_step_info skl_revids[] = {
+>  };
 >  
-> +#define INTEL_DISPLAY_STEP(__i915) (DISPLAY_RUNTIME_INFO(__i915)->step)
-> +
-> +#define IS_DISPLAY_STEP(__i915, since, until) \
-> +	(drm_WARN_ON(__to_intel_display(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
-> +	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) < (until))
-> +
->  struct intel_display_runtime_info {
->  	enum intel_display_platform platform;
->  	enum intel_display_subplatform subplatform;
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 94f7f6cc444c..3b1b16e71cf9 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -408,15 +408,10 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
+>  static const struct intel_step_info kbl_revids[] = {
+> -	[1] = { COMMON_GT_MEDIA_STEP(B0), .display_step = STEP_B0 },
+> -	[2] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_B0 },
+> -	[3] = { COMMON_GT_MEDIA_STEP(D0), .display_step = STEP_B0 },
+> -	[4] = { COMMON_GT_MEDIA_STEP(F0), .display_step = STEP_C0 },
+> -	[5] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_B1 },
+> -	[6] = { COMMON_GT_MEDIA_STEP(D1), .display_step = STEP_B1 },
+> -	[7] = { COMMON_GT_MEDIA_STEP(G0), .display_step = STEP_C0 },
+> +	[1] = { COMMON_STEP(B0) },
+> +	[2] = { COMMON_STEP(C0) },
+> +	[3] = { COMMON_STEP(D0) },
+> +	[4] = { COMMON_STEP(F0) },
+> +	[5] = { COMMON_STEP(C0) },
+> +	[6] = { COMMON_STEP(D1) },
+> +	[7] = { COMMON_STEP(G0) },
+>  };
 >  
->  #define INTEL_REVID(i915)	(to_pci_dev((i915)->drm.dev)->revision)
+>  static const struct intel_step_info bxt_revids[] = {
+> @@ -64,16 +63,16 @@ static const struct intel_step_info jsl_ehl_revids[] = {
+>  };
 >  
-> -#define INTEL_DISPLAY_STEP(__i915) (RUNTIME_INFO(__i915)->step.display_step)
->  #define INTEL_GRAPHICS_STEP(__i915) (RUNTIME_INFO(__i915)->step.graphics_step)
->  #define INTEL_MEDIA_STEP(__i915) (RUNTIME_INFO(__i915)->step.media_step)
->  #define INTEL_BASEDIE_STEP(__i915) (RUNTIME_INFO(__i915)->step.basedie_step)
+>  static const struct intel_step_info tgl_uy_revids[] = {
+> -	[0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_A0 },
+> -	[1] = { COMMON_GT_MEDIA_STEP(B0), .display_step = STEP_C0 },
+> -	[2] = { COMMON_GT_MEDIA_STEP(B1), .display_step = STEP_C0 },
+> -	[3] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_D0 },
+> +	[0] = { COMMON_STEP(A0) },
+> +	[1] = { COMMON_STEP(B0) },
+> +	[2] = { COMMON_STEP(B1) },
+> +	[3] = { COMMON_STEP(C0) },
+>  };
 >  
-> -#define IS_DISPLAY_STEP(__i915, since, until) \
-> -	(drm_WARN_ON(&(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
-> -	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) < (until))
-> -
->  #define IS_GRAPHICS_STEP(__i915, since, until) \
->  	(drm_WARN_ON(&(__i915)->drm, INTEL_GRAPHICS_STEP(__i915) == STEP_NONE), \
->  	 INTEL_GRAPHICS_STEP(__i915) >= (since) && INTEL_GRAPHICS_STEP(__i915) < (until))
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index d26de37719a7..8b3e44dd504c 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -108,7 +108,6 @@ void intel_device_info_print(const struct intel_device_info *info,
+>  /* Same GT stepping between tgl_uy_revids and tgl_revids don't mean the same HW */
+>  static const struct intel_step_info tgl_revids[] = {
+> -	[0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_B0 },
+> -	[1] = { COMMON_GT_MEDIA_STEP(B0), .display_step = STEP_D0 },
+> +	[0] = { COMMON_STEP(A0) },
+> +	[1] = { COMMON_STEP(B0) },
+>  };
 >  
->  	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.graphics_step));
->  	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.media_step));
-> -	drm_printf(p, "display stepping: %s\n", intel_step_name(runtime->step.display_step));
->  	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step.basedie_step));
+>  static const struct intel_step_info rkl_revids[] = {
+> @@ -88,49 +87,49 @@ static const struct intel_step_info dg1_revids[] = {
+>  };
 >  
->  	drm_printf(p, "gt: %d\n", info->gt);
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> index 7492979ac3bc..97be452f003b 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> @@ -80,11 +80,6 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+>  static const struct intel_step_info adls_revids[] = {
+> -	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_A0 },
+> -	[0x1] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_A2 },
+> -	[0x4] = { COMMON_GT_MEDIA_STEP(B0), .display_step = STEP_B0 },
+> -	[0x8] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_B0 },
+> -	[0xC] = { COMMON_GT_MEDIA_STEP(D0), .display_step = STEP_C0 },
+> +	[0x0] = { COMMON_STEP(A0) },
+> +	[0x1] = { COMMON_STEP(A0) },
+> +	[0x4] = { COMMON_STEP(B0) },
+> +	[0x8] = { COMMON_STEP(C0) },
+> +	[0xC] = { COMMON_STEP(D0) },
+>  };
 >  
->  #define IS_MOBILE(xe) (xe && 0)
+>  static const struct intel_step_info adlp_revids[] = {
+> -	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_A0 },
+> -	[0x4] = { COMMON_GT_MEDIA_STEP(B0), .display_step = STEP_B0 },
+> -	[0x8] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_C0 },
+> -	[0xC] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_D0 },
+> +	[0x0] = { COMMON_STEP(A0) },
+> +	[0x4] = { COMMON_STEP(B0) },
+> +	[0x8] = { COMMON_STEP(C0) },
+> +	[0xC] = { COMMON_STEP(C0) },
+>  };
 >  
-> -#define INTEL_DISPLAY_STEP(xe) ((xe)->info.step.display)
-> -
-> -/* Workarounds not handled yet */
-> -#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
-> -
->  #define IS_LP(xe) (0)
->  #define IS_GEN9_LP(xe) (0)
->  #define IS_GEN9_BC(xe) (0)
+>  static const struct intel_step_info dg2_g10_revid_step_tbl[] = {
+> -	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_A0 },
+> -	[0x1] = { COMMON_GT_MEDIA_STEP(A1), .display_step = STEP_A0 },
+> -	[0x4] = { COMMON_GT_MEDIA_STEP(B0), .display_step = STEP_B0 },
+> -	[0x8] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_C0 },
+> +	[0x0] = { COMMON_STEP(A0) },
+> +	[0x1] = { COMMON_STEP(A1) },
+> +	[0x4] = { COMMON_STEP(B0) },
+> +	[0x8] = { COMMON_STEP(C0) },
+>  };
+>  
+>  static const struct intel_step_info dg2_g11_revid_step_tbl[] = {
+> -	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_B0 },
+> -	[0x4] = { COMMON_GT_MEDIA_STEP(B0), .display_step = STEP_C0 },
+> -	[0x5] = { COMMON_GT_MEDIA_STEP(B1), .display_step = STEP_C0 },
+> +	[0x0] = { COMMON_STEP(A0) },
+> +	[0x4] = { COMMON_STEP(B0) },
+> +	[0x5] = { COMMON_STEP(B1) },
+>  };
+>  
+>  static const struct intel_step_info dg2_g12_revid_step_tbl[] = {
+> -	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_C0 },
+> -	[0x1] = { COMMON_GT_MEDIA_STEP(A1), .display_step = STEP_C0 },
+> +	[0x0] = { COMMON_STEP(A0) },
+> +	[0x1] = { COMMON_STEP(A1) },
+>  };
+>  
+>  static const struct intel_step_info adls_rpls_revids[] = {
+> -	[0x4] = { COMMON_GT_MEDIA_STEP(D0), .display_step = STEP_D0 },
+> -	[0xC] = { COMMON_GT_MEDIA_STEP(D0), .display_step = STEP_C0 },
+> +	[0x4] = { COMMON_STEP(D0) },
+> +	[0xC] = { COMMON_STEP(D0) },
+>  };
+>  
+>  static const struct intel_step_info adlp_rplp_revids[] = {
+> -	[0x4] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_E0 },
+> +	[0x4] = { COMMON_STEP(C0) },
+>  };
+>  
+>  static const struct intel_step_info adlp_n_revids[] = {
+> -	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_D0 },
+> +	[0x0] = { COMMON_STEP(A0) },
+>  };
+>  
+>  static u8 gmd_to_intel_step(struct drm_i915_private *i915,
+> @@ -158,11 +157,6 @@ void intel_step_init(struct drm_i915_private *i915)
+>  						       &RUNTIME_INFO(i915)->graphics.ip);
+>  		step.media_step = gmd_to_intel_step(i915,
+>  						    &RUNTIME_INFO(i915)->media.ip);
+> -		step.display_step = STEP_A0 + DISPLAY_RUNTIME_INFO(i915)->ip.step;
+> -		if (step.display_step >= STEP_FUTURE) {
+> -			drm_dbg(&i915->drm, "Using future display steppings\n");
+> -			step.display_step = STEP_FUTURE;
+> -		}
+>  
+>  		RUNTIME_INFO(i915)->step = step;
+>  
+> @@ -252,7 +246,6 @@ void intel_step_init(struct drm_i915_private *i915)
+>  		} else {
+>  			drm_dbg(&i915->drm, "Using future steppings\n");
+>  			step.graphics_step = STEP_FUTURE;
+> -			step.display_step = STEP_FUTURE;
+>  		}
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
+> index 96dfca4cba73..83bd1190edf5 100644
+> --- a/drivers/gpu/drm/i915/intel_step.h
+> +++ b/drivers/gpu/drm/i915/intel_step.h
+> @@ -16,7 +16,6 @@ struct intel_step_info {
+>  	 * the expectation breaks gmd_to_intel_step().
+>  	 */
+>  	u8 graphics_step;	/* Represents the compute tile on Xe_HPC */
+> -	u8 display_step;
+>  	u8 media_step;
+>  	u8 basedie_step;
+>  };
 > -- 
 > 2.39.2
 > 
