@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FC83C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 14:46:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56CB4C52D7C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 14:46:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFDE10EAFF;
-	Thu, 22 Aug 2024 14:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2696D10EB01;
+	Thu, 22 Aug 2024 14:46:59 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DC2810EAFF;
- Thu, 22 Aug 2024 14:46:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C173510EB01;
+ Thu, 22 Aug 2024 14:46:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Align_all_?=
- =?utf-8?q?64k_VRAM_buffers_physically_when_multiple_of_64k=2E?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Align_all_64k_V?=
+ =?utf-8?q?RAM_buffers_physically_when_multiple_of_64k=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Aug 2024 14:46:45 -0000
-Message-ID: <172433800531.726355.13307281849955821918@2413ebb6fbb6>
+Date: Thu, 22 Aug 2024 14:46:57 -0000
+Message-ID: <172433801778.726355.16943488961563934373@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240822142346.818434-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240822142346.818434-1-maarten.lankhorst@linux.intel.com>
@@ -44,13 +44,67 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Align all 64k VRAM buffers physically when multiple of 64k.
 URL   : https://patchwork.freedesktop.org/series/137649/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 882c26c7017b drm-tip: 2024y-08m-22d-14h-11m-00s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Align all 64k VRAM buffers physically when multiple of 64k.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 38667b916ae4c2f698c5715da0bdfc3e0f0e16db
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Thu Aug 22 16:23:46 2024 +0200
+
+    drm/xe: Align all 64k VRAM buffers physically when multiple of 64k.
+    
+    For CCS formats on affected platforms, CCS can be used freely, but
+    display engine requires a multiple of 64k physical pages. No other
+    changes are needed.
+    
+    At the BO creation time we don't know if the BO will be used for CCS
+    or not. If the scanout flag is set, and the BO is a multiple of 64k,
+    we take the safe route and force the physical alignment of 64k pages.
+    
+    If the BO is not a multiple of 64k, or the scanout flag was not set
+    at BO creation, we reject it for usage as CCS in display. The physical
+    pages are likely not aligned correctly, and this will cause corruption
+    when used as FB.
+    
+    This is a slightly different approach from my previous patch. Instead
+    of requiring a scanout flag at FB creation, we now make all buffers of
+    the right size physically aligned correctly, so no change from userspace
+    is needed.
+    
+    It will be interesting to see if it affects performance in any way,
+    could potentially even improve things with 64k PTE's.
+    
+    Inspired by Zbigniews patch.
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Co-developed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
++ /mt/dim checkpatch 882c26c7017bdcc4eca493c7bf1ffb034d40be02 drm-intel
+38667b916ae4 drm/xe: Align all 64k VRAM buffers physically when multiple of 64k.
+-:34: WARNING:BAD_SIGN_OFF: Co-developed-by: must be immediately followed by Signed-off-by:
+#34: 
+Co-developed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:32:
++	if (XE_IOCTL_DBG(xe, mode_cmd->modifier[0] == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
++			     !(bo->flags & XE_BO_FLAG_NEEDS_64K)))
+
+total: 0 errors, 1 warnings, 1 checks, 35 lines checked
 
 
