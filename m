@@ -4,30 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97B48C52D7C
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 14:23:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD42DC3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 14:32:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A68F10EAE4;
-	Thu, 22 Aug 2024 14:23:52 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EFE010EAE4
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 14:23:51 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
-Subject: [PATCH v3] drm/xe: Align all 64k VRAM buffers physically when
- multiple of 64k.
-Date: Thu, 22 Aug 2024 16:23:46 +0200
-Message-ID: <20240822142346.818434-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9939510EAF0;
+	Thu, 22 Aug 2024 14:32:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XcXSZSe8";
+	dkim-atps=neutral
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82FCA10EAE6;
+ Thu, 22 Aug 2024 14:32:14 +0000 (UTC)
+Received: by mail-pl1-f178.google.com with SMTP id
+ d9443c01a7336-201f1fe3909so252455ad.3; 
+ Thu, 22 Aug 2024 07:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1724337134; x=1724941934; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jQgK1rzIXwmb3RwGA5P0Qn1wZh572puhdY49SX1RQsY=;
+ b=XcXSZSe8YpSwBDw4n+pFLT2dkVltXq9GQbm1d6HBbDPzUrnoK5eI3cJEFmpkgpbPBM
+ 9KAJ0pl8UD4XjEZls8IxSWtKZUvs/oNcYo0a6UTqOACvAHXhG6qww6MsnRq2dO8iirCL
+ zN7S+gbt7M4Gr6imOG2ORUwSsUp+ZSb0ZLcPRjExebvGfufyRaPIrIKlD5wK/70PHX7X
+ G5qqh3Onb8u2bCthJk7hXlb1Hk28HUM8Oy478m5afvAxa1IC/ldWv2CsxBs7jwPd3EnU
+ GO81fvZOW6XEfQUVaYLU5DOxLrO8HDuXlNBci2/Gfm+QTbMoEnbt0AkKfOhi2AsB930i
+ wXlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724337134; x=1724941934;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=jQgK1rzIXwmb3RwGA5P0Qn1wZh572puhdY49SX1RQsY=;
+ b=IQI7PrODfxBEeEgo/oZ1lrWnqq10DDKyyCFUvNYmMOw0NpULlyXIDQ9+VCBsP13uZ1
+ tZS+ra4aQy31gjonTwxye+C1mtBZT6/EOYjmWFztLFxcnZTBZ+MQrGjbpJKBi71bWoFZ
+ lyPsynnRoL+pMboKtqAR3P5AwANdoqyMUv5nAqFxbJC9H2DWyIW5Uf8TEttx4rviiHk0
+ NeVYsg3V1RvRJTzRXBN3UmEFgfW6VaAJacDRpdmrSH3fMqQdv+9dndV16eVYVFEycIPw
+ +poSPOBw87hFKgj9NJ2LxH7hY5QAcns/Hu2BysnURcFPoPo0K2q0wUnwPN/L6u+PGmou
+ PJaA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU/QmbW529Eoh0oE3WFWgAgHZaFXyrHrBB0JzcSGqpF0h+0GtL9kgCKV8N99yNRBOpFRtZq5Qjntyo=@lists.freedesktop.org,
+ AJvYcCUjUSqt21ALC/J81z9yM2giseekcfqNwclOi8aCQ2NWnLXBK+6xgppcBIdIKDSZfR4ftR17em9OxiiN@lists.freedesktop.org,
+ AJvYcCWH0F+Omrmf/Ym4l70Vobbj/c4kWPHZcxaLNkyRaLI4MVZfVKTLe0dSKEfYbt4CqC6yjJjuUj5cttUu@lists.freedesktop.org,
+ AJvYcCX3N3s1NKGGfdbXCdtfihy/xCxy+aTrhRdxhk0FlEFyfzU0ozZtLn8qVQD4+FdKnsfxBcFzWgiu@lists.freedesktop.org,
+ AJvYcCXt+oB9l5fo26F2A8uqd2ckHGhu009UhdBtJlZtVrHHYmH46HpyrJR2EqZego63kvig66DPGfnmig==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz84fMjmE/Hw/RU2aloow2yIBuNBM2JB0Jp0SEiM0s1ymoj7l0z
+ ck6t0P1GZvFZnoqOJ5hDciM65uK4BxT1paF53tc3chrAn6B0O0gTpj4ft2ZXymlyFUxKfQcvc7d
+ 7atdmA8n5c8oaYuicO88NEOtwIdc=
+X-Google-Smtp-Source: AGHT+IFcoi3jyv0WQ57Re9pO2UnzP8uVCsSHk1/w9ub/ssnYLVZ/EfsXb+pIpM+iMOaFWU3SIwh/eC9EQpLx3I1sncM=
+X-Received: by 2002:a17:902:d2ce:b0:202:4e99:210a with SMTP id
+ d9443c01a7336-20368072948mr39657575ad.6.1724337133656; Thu, 22 Aug 2024
+ 07:32:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-66-tzimmermann@suse.de>
+In-Reply-To: <20240821130348.73038-66-tzimmermann@suse.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 22 Aug 2024 10:32:02 -0400
+Message-ID: <CADnq5_MeNUiqUHioN9u-wpsUKFHXpo+y8P42unOhv1mOHjjPag@mail.gmail.com>
+Subject: Re: [PATCH v2 65/86] drm/amdgpu: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
+ javierm@redhat.com, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,96 +88,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For CCS formats on affected platforms, CCS can be used freely, but
-display engine requires a multiple of 64k physical pages. No other
-changes are needed.
+On Wed, Aug 21, 2024 at 9:06=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
+.de> wrote:
+>
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> The amdgpu driver specifies a preferred color mode depending on
+> the available video memory, with a default of 32. Adapt this for
+> the new client interface.
+>
+> v2:
+> - style changes
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: Xinhui Pan <Xinhui.Pan@amd.com>
 
-At the BO creation time we don't know if the BO will be used for CCS
-or not. If the scanout flag is set, and the BO is a multiple of 64k,
-we take the safe route and force the physical alignment of 64k pages.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-If the BO is not a multiple of 64k, or the scanout flag was not set
-at BO creation, we reject it for usage as CCS in display. The physical
-pages are likely not aligned correctly, and this will cause corruption
-when used as FB.
-
-This is a slightly different approach from my previous patch. Instead
-of requiring a scanout flag at FB creation, we now make all buffers of
-the right size physically aligned correctly, so no change from userspace
-is needed.
-
-It will be interesting to see if it affects performance in any way,
-could potentially even improve things with 64k PTE's.
-
-Inspired by Zbigniews patch.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Co-developed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
----
-Changes since previous version:
-- Drop DISPLAY_NEED64K.
-- Hardcode check for I915_FORMAT_MOD_4_TILED_BMG_CCS, only one affected.
-
- drivers/gpu/drm/xe/display/intel_fb_bo.c |  5 +++++
- drivers/gpu/drm/xe/xe_bo.c               | 10 ++++++++++
- drivers/gpu/drm/xe/xe_vm.c               |  3 ++-
- 3 files changed, 17 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-index f835492f73fb4..de613325e0bb0 100644
---- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
-+++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-@@ -28,6 +29,10 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	struct xe_device *xe = to_xe_device(bo->ttm.base.dev);
- 	int ret;
- 
-+	if (XE_IOCTL_DBG(xe, mode_cmd->modifier[0] == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
-+			     !(bo->flags & XE_BO_FLAG_NEEDS_64K)))
-+		return -EINVAL;
-+
- 	xe_bo_get(bo);
- 
- 	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6ed0e19552159..dd54cbc14e9d8 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2019,6 +2019,16 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 
- 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
- 
-+	/*
-+	 * Lets see what happens if we simply align any buffer that's
-+	 * a multiple of 64k to 64k in places where it's not officially
-+	 * needed.
-+	 */
-+	if ((bo_flags & XE_BO_FLAG_VRAM_MASK) &&
-+	    !(xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) &&
-+	    !(args->size % SZ_64K))
-+		bo_flags |= XE_BO_FLAG_NEEDS_64K;
-+
- 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
- 		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_FLAG_VRAM_MASK)))
- 			return -EINVAL;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d1bfd0b6e9558..af215f6d6588b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2878,7 +2878,8 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 		return -EINVAL;
- 	}
- 
--	if (bo->flags & XE_BO_FLAG_INTERNAL_64K) {
-+	if ((bo->flags & XE_BO_FLAG_INTERNAL_64K) &&
-+	    (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)) {
- 		if (XE_IOCTL_DBG(xe, obj_offset &
- 				 XE_64K_PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
--- 
-2.45.2
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_drv.c
+> index 5dd39e6c6223..849d59e2bca7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -23,6 +23,7 @@
+>   */
+>
+>  #include <drm/amdgpu_drm.h>
+> +#include <drm/drm_client_setup.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_fbdev_ttm.h>
+>  #include <drm/drm_gem.h>
+> @@ -2341,11 +2342,15 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
+>          */
+>         if (adev->mode_info.mode_config_initialized &&
+>             !list_empty(&adev_to_drm(adev)->mode_config.connector_list)) =
+{
+> +               const struct drm_format_info *format;
+> +
+>                 /* select 8 bpp console on low vram cards */
+>                 if (adev->gmc.real_vram_size <=3D (32*1024*1024))
+> -                       drm_fbdev_ttm_setup(adev_to_drm(adev), 8);
+> +                       format =3D drm_format_info(DRM_FORMAT_C8);
+>                 else
+> -                       drm_fbdev_ttm_setup(adev_to_drm(adev), 32);
+> +                       format =3D NULL;
+> +
+> +               drm_client_setup(adev_to_drm(adev), format);
+>         }
+>
+>         ret =3D amdgpu_debugfs_init(adev);
+> @@ -2957,6 +2962,7 @@ static const struct drm_driver amdgpu_kms_driver =
+=3D {
+>         .num_ioctls =3D ARRAY_SIZE(amdgpu_ioctls_kms),
+>         .dumb_create =3D amdgpu_mode_dumb_create,
+>         .dumb_map_offset =3D amdgpu_mode_dumb_mmap,
+> +       DRM_FBDEV_TTM_DRIVER_OPS,
+>         .fops =3D &amdgpu_driver_kms_fops,
+>         .release =3D &amdgpu_driver_release_kms,
+>  #ifdef CONFIG_PROC_FS
+> @@ -2983,6 +2989,7 @@ const struct drm_driver amdgpu_partition_driver =3D=
+ {
+>         .num_ioctls =3D ARRAY_SIZE(amdgpu_ioctls_kms),
+>         .dumb_create =3D amdgpu_mode_dumb_create,
+>         .dumb_map_offset =3D amdgpu_mode_dumb_mmap,
+> +       DRM_FBDEV_TTM_DRIVER_OPS,
+>         .fops =3D &amdgpu_driver_kms_fops,
+>         .release =3D &amdgpu_driver_release_kms,
+>
+> --
+> 2.46.0
+>
