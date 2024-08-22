@@ -4,56 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86E52C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 10:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4EE5C3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 11:03:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4994910E84F;
-	Thu, 22 Aug 2024 10:52:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmaJ1YfG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E262B10E84E;
- Thu, 22 Aug 2024 10:52:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724323945; x=1755859945;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=UbOgD7BtPHsmjwDsx2lC5cPs62Us2y/HV4GX0Wphvj0=;
- b=VmaJ1YfGE23U5tSmsoTwnV3RXzJORUT46RkusMCAEyHl1MaNgVZzlH7A
- 6zcf7FmjjatVU1x35U/hiZ4zViF+/2AbR1kYy8sOV9dWbZUzFmBkCEo94
- n/xF+wn88CukDcqp+Z/sg8MZuS+eHfHpsyABTXfyADGsT2dEt0x9GKEsR
- w9Hrq8fjRUxuovZqsvJ3KjeLwk5WLzsRU9f2RvDbCAQ/jR3A3W5q0QPol
- AxTcU2l5wT18xTKKgPAxYplrYW3IFhgFBAEysTkl+pI9GUlvd1Yzn/IUl
- hQ+CzyGphnyGl/PV5PenLViS5CNq5/BoF5bNUwNmx1VmcaxyvF1KdAYBb A==;
-X-CSE-ConnectionGUID: /SkEjSOXSEKvMzR4iECqQw==
-X-CSE-MsgGUID: wBae4Ay4Q6Gnoz32xBOa7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22881818"
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="22881818"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 03:52:25 -0700
-X-CSE-ConnectionGUID: OFoK22DPQICKIWoKJvFdtw==
-X-CSE-MsgGUID: pvlGgsbpRcOm8zb3JllX8g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="66226251"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.121])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 03:52:22 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com, matthew.d.roper@intel.com
-Subject: Re: [PATCH 00/10] drm/i915/display: identify display steppings in
- display code
-In-Reply-To: <cover.1724180287.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1724180287.git.jani.nikula@intel.com>
-Date: Thu, 22 Aug 2024 13:52:18 +0300
-Message-ID: <87cym04yot.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C1C210E849;
+	Thu, 22 Aug 2024 11:03:07 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C4CF10E849
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 11:03:05 +0000 (UTC)
+Received: internal info suppressed
+Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 47MB2r6G1280717; Thu, 22 Aug 2024 14:02:53 +0300
+From: Ilia Levi <ilia.levi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ilia.levi@intel.com, niranjana.vishwanathapura@intel.com,
+ matthew.brost@intel.com, koby.elbaz@intel.com, yaron.avizrat@intel.com
+Subject: [PATCH] drm/xe: move the kernel lrc from hwe to execlist port
+Date: Thu, 22 Aug 2024 14:02:52 +0300
+Message-ID: <20240822110252.1280706-1-ilia.levi@intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,54 +40,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 20 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> Use a Single Point of Truth for display stepping detection instead of
-> duplicating in i915 and xe.
+The kernel lrc is used solely by the execlist infra.
+Move it to the execlist port struct and initialize it only when
+execlists are used.
 
-Lucas, Rodrigo, ack for merging this via drm-intel-next?
+Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_execlist.c        | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_execlist_types.h  |  2 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 15 ++-------------
+ drivers/gpu/drm/xe/xe_hw_engine_types.h |  2 --
+ 4 files changed, 12 insertions(+), 17 deletions(-)
 
-BR,
-Jani.
-
-
-
->
-> BR,
-> Jani.
->
->
-> Jani Nikula (10):
->   drm/xe/display: fix compat IS_DISPLAY_STEP() range end
->   drm/xe/display: remove intel_display_step_name() to simplify
->   drm/xe/display: remove the unused compat HAS_GMD_ID()
->   drm/xe/step: define more steppings E-J
->   drm/i915/display: rename IS_DISPLAY_IP_RANGE() to
->     IS_DISPLAY_VER_FULL()
->   drm/i915/display: rename IS_DISPLAY_IP_STEP() to IS_DISPLAY_VER_STEP()
->   drm/i915/display: identify display steppings in display probe
->   drm/i915/display: switch to display detected steppings
->   drm/i915: remove display stepping handling
->   drm/xe: remove display stepping handling
->
->  .../drm/i915/display/intel_display_device.c   | 226 +++++++++++++++++-
->  .../drm/i915/display/intel_display_device.h   |  19 +-
->  .../drm/i915/display/intel_display_power.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_dmc.c      |   2 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |   6 +-
->  drivers/gpu/drm/i915/display/intel_pmdemand.c |   2 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |   8 +-
->  drivers/gpu/drm/i915/i915_drv.h               |   5 -
->  drivers/gpu/drm/i915/intel_device_info.c      |   1 -
->  drivers/gpu/drm/i915/intel_step.c             |  84 +++----
->  drivers/gpu/drm/i915/intel_step.h             |   2 -
->  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   5 -
->  .../drm/xe/compat-i915-headers/intel_step.h   |  10 +-
->  drivers/gpu/drm/xe/xe_debugfs.c               |   3 +-
->  drivers/gpu/drm/xe/xe_pci.c                   |   3 +-
->  drivers/gpu/drm/xe/xe_step.c                  |  57 ++---
->  drivers/gpu/drm/xe/xe_step_types.h            |  30 ++-
->  18 files changed, 332 insertions(+), 135 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 7502e3486eaf..447c290cb02b 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -123,8 +123,8 @@ static void __xe_execlist_port_idle(struct xe_execlist_port *port)
+ 	if (!port->running_exl)
+ 		return;
+ 
+-	xe_lrc_write_ring(port->hwe->kernel_lrc, noop, sizeof(noop));
+-	__start_lrc(port->hwe, port->hwe->kernel_lrc, 0);
++	xe_lrc_write_ring(port->lrc, noop, sizeof(noop));
++	__start_lrc(port->hwe, port->lrc, 0);
+ 	port->running_exl = NULL;
+ }
+ 
+@@ -262,6 +262,10 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
+ 
+ 	port->hwe = hwe;
+ 
++	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K);
++	if (IS_ERR(port->lrc))
++		return ERR_PTR(PTR_ERR(port->lrc));
++
+ 	spin_lock_init(&port->lock);
+ 	for (i = 0; i < ARRAY_SIZE(port->active); i++)
+ 		INIT_LIST_HEAD(&port->active[i]);
+@@ -287,6 +291,8 @@ void xe_execlist_port_destroy(struct xe_execlist_port *port)
+ 	spin_lock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
+ 	port->hwe->irq_handler = NULL;
+ 	spin_unlock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
++
++	xe_lrc_put(port->lrc);
+ }
+ 
+ static struct dma_fence *
+diff --git a/drivers/gpu/drm/xe/xe_execlist_types.h b/drivers/gpu/drm/xe/xe_execlist_types.h
+index f94bbf4c53e4..415140936f11 100644
+--- a/drivers/gpu/drm/xe/xe_execlist_types.h
++++ b/drivers/gpu/drm/xe/xe_execlist_types.h
+@@ -27,6 +27,8 @@ struct xe_execlist_port {
+ 	struct xe_execlist_exec_queue *running_exl;
+ 
+ 	struct timer_list irq_fail;
++
++	struct xe_lrc *lrc;
+ };
+ 
+ struct xe_execlist_exec_queue {
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index aa9b2b16a6e0..35273192895c 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -273,7 +273,6 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
+ 
+ 	if (hwe->exl_port)
+ 		xe_execlist_port_destroy(hwe->exl_port);
+-	xe_lrc_put(hwe->kernel_lrc);
+ 
+ 	hwe->gt = NULL;
+ }
+@@ -558,21 +557,13 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 		goto err_name;
+ 	}
+ 
+-	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K);
+-	if (IS_ERR(hwe->kernel_lrc)) {
+-		err = PTR_ERR(hwe->kernel_lrc);
+-		goto err_hwsp;
+-	}
+-
+ 	if (!xe_device_uc_enabled(xe)) {
+ 		hwe->exl_port = xe_execlist_port_create(xe, hwe);
+ 		if (IS_ERR(hwe->exl_port)) {
+ 			err = PTR_ERR(hwe->exl_port);
+-			goto err_kernel_lrc;
++			goto err_hwsp;
+ 		}
+-	}
+-
+-	if (xe_device_uc_enabled(xe)) {
++	} else {
+ 		/* GSCCS has a special interrupt for reset */
+ 		if (hwe->class == XE_ENGINE_CLASS_OTHER)
+ 			hwe->irq_handler = xe_gsc_hwe_irq_handler;
+@@ -587,8 +578,6 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
+ 
+-err_kernel_lrc:
+-	xe_lrc_put(hwe->kernel_lrc);
+ err_hwsp:
+ 	xe_bo_unpin_map_no_vm(hwe->hwsp);
+ err_name:
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index 39f24012d0f4..8be6d420ece4 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -136,8 +136,6 @@ struct xe_hw_engine {
+ 	enum xe_force_wake_domains domain;
+ 	/** @hwsp: hardware status page buffer object */
+ 	struct xe_bo *hwsp;
+-	/** @kernel_lrc: Kernel LRC (should be replaced /w an xe_engine) */
+-	struct xe_lrc *kernel_lrc;
+ 	/** @exl_port: execlists port */
+ 	struct xe_execlist_port *exl_port;
+ 	/** @fence_irq: fence IRQ to run when a hw engine IRQ is received */
 -- 
-Jani Nikula, Intel
+2.43.2
+
