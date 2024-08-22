@@ -4,31 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8682DC5320E
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 13:08:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C153C52D7C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 13:11:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9BB10E9F5;
-	Thu, 22 Aug 2024 13:08:38 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05F0B10E9D0
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 13:08:35 +0000 (UTC)
-Received: internal info suppressed
-Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 47MD8FbI1355458; Thu, 22 Aug 2024 16:08:16 +0300
-From: Ilia Levi <ilia.levi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2996810EA1B;
+	Thu, 22 Aug 2024 13:11:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hdZlnggN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2FF10EA1B
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 13:11:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724332270; x=1755868270;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LkFmrc2iWyz1xPTNsn5M/ys82OYOARE5HpdGP2vQEes=;
+ b=hdZlnggNDdQ11yVF85voKRo/kzlop89q/bj8AnpCw0mjqvcZmOkOn8R4
+ JABIunUblkuWoEqDJ0O6flj/YY/4Z/epvxtBdR5GImA9tkxQWKShxBvq7
+ mR9cWMiRbXjYxLGaQ7HW1Wh0XHWAAd5mzyb/ymtD8FgZy+SJyGQ4e9so6
+ HbRn/v8nmi2LNL9CJMRQt0zKZ0RMjgKqrrcdAWNLe4KEa/vPzKakCvQDX
+ qtoolKLbHoEGbTTOOMWxy/WW66WNVDQlWAOsXwIeEL454rkQ4T9mktWJB
+ FJordlmNBKJzMVskfDO+NcRK3HONYU1q9sX05xVxeo6qb28o/HbTSM9c+ w==;
+X-CSE-ConnectionGUID: 6rRmrOElSWm6ukZz989d9w==
+X-CSE-MsgGUID: MLB8a8SXTYCoKr26OQu5Cw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="25640156"
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="25640156"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 06:11:10 -0700
+X-CSE-ConnectionGUID: tWsRGiSZQIqV7j69YGLxxA==
+X-CSE-MsgGUID: UsoCmWJ1R5qvaJMYnmfO5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="92238228"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 06:11:08 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: ilia.levi@intel.com, michal.wajdeczko@intel.com,
- niranjana.vishwanathapura@intel.com, koby.elbaz@intel.com,
- yaron.avizrat@intel.com
-Subject: [PATCH 3/5] drm/xe: add memirq offsets for engine instance 0 to hw
- engine properties
-Date: Thu, 22 Aug 2024 16:08:13 +0300
-Message-ID: <20240822130815.1355437-4-ilia.levi@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240822130815.1355437-1-ilia.levi@intel.com>
-References: <20240822130815.1355437-1-ilia.levi@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [RFC PATCH] drm/xe/lnl: Implement clear-on-free for pooled BOs
+Date: Thu, 22 Aug 2024 14:42:44 +0200
+Message-ID: <20240822124244.10554-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -44,256 +69,222 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is needed for accessing memirq interrupt status and source for
-MSI-X devices.
+Implement GPU clear-on-free for pooled system pages in Xe.
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+Ensure proper use of TTM_TT_FLAG_CLEARED_ON_FREE by leveraging
+ttm_device_funcs.release_notify() for GPU clear-on-free. If GPU clear
+fails, xe_ttm_tt_unpopulate() will fallback to CPU clear.
+
+Clear-on-free is only relevant for pooled pages as driver needs to give
+back those pages. So do clear-on-free only for such BOs and keep doing
+clear-on-alloc for ttm_cached type BOs
+
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c       | 28 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine_types.h |  2 ++
- 2 files changed, 30 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 101 +++++++++++++++++++++++++++++++++----
+ 1 file changed, 91 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index aa9b2b16a6e0..b73a4379ce06 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -44,6 +44,7 @@ struct engine_info {
- 	unsigned int class : 8;
- 	unsigned int instance : 8;
- 	unsigned int irq_offset : 8;
-+	unsigned int e0_irq_offset : 8;
- 	enum xe_force_wake_domains domain;
- 	u32 mmio_base;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 6ed0e1955215..e7bc74f8ae82 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -283,6 +283,8 @@ struct xe_ttm_tt {
+ 	struct device *dev;
+ 	struct sg_table sgt;
+ 	struct sg_table *sg;
++	bool sys_clear_on_free;
++	bool sys_clear_on_alloc;
  };
-@@ -54,6 +55,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_RENDER,
- 		.instance = 0,
- 		.irq_offset = ilog2(INTR_RCS0),
-+		.e0_irq_offset = ilog2(INTR_RCS0),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = RENDER_RING_BASE,
- 	},
-@@ -62,6 +64,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 0,
- 		.irq_offset = ilog2(INTR_BCS(0)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = BLT_RING_BASE,
- 	},
-@@ -70,6 +73,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 1,
- 		.irq_offset = ilog2(INTR_BCS(1)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS1_RING_BASE,
- 	},
-@@ -78,6 +82,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 2,
- 		.irq_offset = ilog2(INTR_BCS(2)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS2_RING_BASE,
- 	},
-@@ -86,6 +91,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 3,
- 		.irq_offset = ilog2(INTR_BCS(3)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS3_RING_BASE,
- 	},
-@@ -94,6 +100,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 4,
- 		.irq_offset = ilog2(INTR_BCS(4)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS4_RING_BASE,
- 	},
-@@ -102,6 +109,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 5,
- 		.irq_offset = ilog2(INTR_BCS(5)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS5_RING_BASE,
- 	},
-@@ -110,6 +118,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 6,
- 		.irq_offset = ilog2(INTR_BCS(6)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS6_RING_BASE,
- 	},
-@@ -117,6 +126,7 @@ static const struct engine_info engine_infos[] = {
- 		.name = "bcs7",
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.irq_offset = ilog2(INTR_BCS(7)),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.instance = 7,
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS7_RING_BASE,
-@@ -126,6 +136,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COPY,
- 		.instance = 8,
- 		.irq_offset = ilog2(INTR_BCS8),
-+		.e0_irq_offset = ilog2(INTR_BCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = XEHPC_BCS8_RING_BASE,
- 	},
-@@ -135,6 +146,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 0,
- 		.irq_offset = 32 + ilog2(INTR_VCS(0)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX0,
- 		.mmio_base = BSD_RING_BASE,
- 	},
-@@ -143,6 +155,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 1,
- 		.irq_offset = 32 + ilog2(INTR_VCS(1)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX1,
- 		.mmio_base = BSD2_RING_BASE,
- 	},
-@@ -151,6 +164,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 2,
- 		.irq_offset = 32 + ilog2(INTR_VCS(2)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX2,
- 		.mmio_base = BSD3_RING_BASE,
- 	},
-@@ -159,6 +173,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 3,
- 		.irq_offset = 32 + ilog2(INTR_VCS(3)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX3,
- 		.mmio_base = BSD4_RING_BASE,
- 	},
-@@ -167,6 +182,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 4,
- 		.irq_offset = 32 + ilog2(INTR_VCS(4)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX4,
- 		.mmio_base = XEHP_BSD5_RING_BASE,
- 	},
-@@ -175,6 +191,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 5,
- 		.irq_offset = 32 + ilog2(INTR_VCS(5)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX5,
- 		.mmio_base = XEHP_BSD6_RING_BASE,
- 	},
-@@ -183,6 +200,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 6,
- 		.irq_offset = 32 + ilog2(INTR_VCS(6)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX6,
- 		.mmio_base = XEHP_BSD7_RING_BASE,
- 	},
-@@ -191,6 +209,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_DECODE,
- 		.instance = 7,
- 		.irq_offset = 32 + ilog2(INTR_VCS(7)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VCS(0)),
- 		.domain = XE_FW_MEDIA_VDBOX7,
- 		.mmio_base = XEHP_BSD8_RING_BASE,
- 	},
-@@ -199,6 +218,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_ENHANCE,
- 		.instance = 0,
- 		.irq_offset = 32 + ilog2(INTR_VECS(0)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VECS(0)),
- 		.domain = XE_FW_MEDIA_VEBOX0,
- 		.mmio_base = VEBOX_RING_BASE,
- 	},
-@@ -207,6 +227,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_ENHANCE,
- 		.instance = 1,
- 		.irq_offset = 32 + ilog2(INTR_VECS(1)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VECS(0)),
- 		.domain = XE_FW_MEDIA_VEBOX1,
- 		.mmio_base = VEBOX2_RING_BASE,
- 	},
-@@ -215,6 +236,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_ENHANCE,
- 		.instance = 2,
- 		.irq_offset = 32 + ilog2(INTR_VECS(2)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VECS(0)),
- 		.domain = XE_FW_MEDIA_VEBOX2,
- 		.mmio_base = XEHP_VEBOX3_RING_BASE,
- 	},
-@@ -223,6 +245,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_VIDEO_ENHANCE,
- 		.instance = 3,
- 		.irq_offset = 32 + ilog2(INTR_VECS(3)),
-+		.e0_irq_offset = 32 + ilog2(INTR_VECS(0)),
- 		.domain = XE_FW_MEDIA_VEBOX3,
- 		.mmio_base = XEHP_VEBOX4_RING_BASE,
- 	},
-@@ -231,6 +254,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COMPUTE,
- 		.instance = 0,
- 		.irq_offset = ilog2(INTR_CCS(0)),
-+		.e0_irq_offset = ilog2(INTR_CCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = COMPUTE0_RING_BASE,
- 	},
-@@ -239,6 +263,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COMPUTE,
- 		.instance = 1,
- 		.irq_offset = ilog2(INTR_CCS(1)),
-+		.e0_irq_offset = ilog2(INTR_CCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = COMPUTE1_RING_BASE,
- 	},
-@@ -247,6 +272,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COMPUTE,
- 		.instance = 2,
- 		.irq_offset = ilog2(INTR_CCS(2)),
-+		.e0_irq_offset = ilog2(INTR_CCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = COMPUTE2_RING_BASE,
- 	},
-@@ -255,6 +281,7 @@ static const struct engine_info engine_infos[] = {
- 		.class = XE_ENGINE_CLASS_COMPUTE,
- 		.instance = 3,
- 		.irq_offset = ilog2(INTR_CCS(3)),
-+		.e0_irq_offset = ilog2(INTR_CCS(0)),
- 		.domain = XE_FW_RENDER,
- 		.mmio_base = COMPUTE3_RING_BASE,
- 	},
-@@ -481,6 +508,7 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	hwe->instance = info->instance;
- 	hwe->mmio_base = info->mmio_base;
- 	hwe->irq_offset = info->irq_offset;
-+	hwe->e0_irq_offset = info->e0_irq_offset;
- 	hwe->domain = info->domain;
- 	hwe->name = info->name;
- 	hwe->fence_irq = &gt->fence_irq[info->class];
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 39f24012d0f4..18998e204458 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -118,6 +118,8 @@ struct xe_hw_engine {
- 	u16 logical_instance;
- 	/** @irq_offset: IRQ offset of this hw engine */
- 	u16 irq_offset;
-+	/** @e0_irq_offset: IRQ offset of engine instance 0 (of that class) */
-+	u16 e0_irq_offset;
- 	/** @mmio_base: MMIO base address of this hw engine*/
- 	u32 mmio_base;
- 	/**
+ 
+ static int xe_tt_map_sg(struct ttm_tt *tt)
+@@ -401,8 +403,23 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 	 * flag. Zeroed pages are only required for ttm_bo_type_device so
+ 	 * unwanted data is not leaked to userspace.
+ 	 */
+-	if (ttm_bo->type == ttm_bo_type_device && xe->mem.gpu_page_clear_sys)
+-		page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
++	if (ttm_bo->type == ttm_bo_type_device && xe->mem.gpu_page_clear_sys) {
++		/*
++		 * Non-pooled BOs are always clear on alloc when possible.
++		 * clear-on-free is not needed as there is no pool to give pages back.
++		 */
++		if (caching == ttm_cached) {
++			tt->sys_clear_on_alloc = true;
++			tt->sys_clear_on_free = false;
++		} else {
++		/*
++		 * For pooled BO, clear-on-alloc is done by the CPU for now and
++		 * GPU will do clear on free when releasing the BO.
++		 */
++			tt->sys_clear_on_alloc = false;
++			tt->sys_clear_on_free = true;
++		}
++	}
+ 
+ 	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
+ 	if (err) {
+@@ -416,8 +433,10 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+ 			      struct ttm_operation_ctx *ctx)
+ {
++	struct xe_ttm_tt *xe_tt;
+ 	int err;
+ 
++	xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
+ 	/*
+ 	 * dma-bufs are not populated with pages, and the dma-
+ 	 * addresses are set up when moved to XE_PL_TT.
+@@ -426,7 +445,7 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+ 		return 0;
+ 
+ 	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear system pages */
+-	if (tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE)
++	if (xe_tt->sys_clear_on_alloc)
+ 		tt->page_flags &= ~TTM_TT_FLAG_ZERO_ALLOC;
+ 
+ 	err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
+@@ -438,11 +457,19 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+ 
+ static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+ {
++	struct xe_ttm_tt *xe_tt;
++
++	xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++
+ 	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
+ 		return;
+ 
+ 	xe_tt_unmap_sg(tt);
+ 
++	/* Hint TTM pool that pages are already cleared */
++	if (xe_tt->sys_clear_on_free)
++		tt->page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
++
+ 	return ttm_pool_free(&ttm_dev->pool, tt);
+ }
+ 
+@@ -664,6 +691,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	struct ttm_resource *old_mem = ttm_bo->resource;
+ 	u32 old_mem_type = old_mem ? old_mem->mem_type : XE_PL_SYSTEM;
+ 	struct ttm_tt *ttm = ttm_bo->ttm;
++	struct xe_ttm_tt *xe_tt;
+ 	struct xe_migrate *migrate = NULL;
+ 	struct dma_fence *fence;
+ 	bool move_lacks_source;
+@@ -674,12 +702,13 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	bool clear_system_pages;
+ 	int ret = 0;
+ 
++	xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
+ 	/*
+ 	 * Clear TTM_TT_FLAG_CLEARED_ON_FREE on bo creation path when
+ 	 * moving to system as the bo doesn't have dma_mapping.
+ 	 */
+ 	if (!old_mem && ttm && !ttm_tt_is_populated(ttm))
+-		ttm->page_flags &= ~TTM_TT_FLAG_CLEARED_ON_FREE;
++		xe_tt->sys_clear_on_alloc = false;
+ 
+ 	/* Bo creation path, moving to system or TT. */
+ 	if ((!old_mem && ttm) && !handle_system_ccs) {
+@@ -703,10 +732,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	move_lacks_source = handle_system_ccs ? (!bo->ccs_cleared)  :
+ 						(!mem_type_is_vram(old_mem_type) && !tt_has_data);
+ 
+-	clear_system_pages = ttm && (ttm->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE);
++	clear_system_pages = ttm && xe_tt->sys_clear_on_alloc;
+ 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+-		(!ttm && ttm_bo->type == ttm_bo_type_device) ||
+-		clear_system_pages;
++		(!ttm && ttm_bo->type == ttm_bo_type_device) || clear_system_pages;
+ 
+ 	if (new_mem->mem_type == XE_PL_TT) {
+ 		ret = xe_tt_map_sg(ttm);
+@@ -1028,10 +1056,47 @@ static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
+ 	return locked;
+ }
+ 
++static struct dma_fence *xe_ttm_bo_clear_on_free(struct ttm_buffer_object *ttm_bo)
++{
++	struct xe_bo *bo  = ttm_to_xe_bo(ttm_bo);
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_migrate *migrate;
++	struct xe_ttm_tt *xe_tt;
++	struct dma_fence *clear_fence;
++
++	/* return early if nothing to clear */
++	if (!ttm_bo->ttm)
++		return NULL;
++
++	xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
++	/* return early if nothing to clear */
++	if (!xe_tt->sys_clear_on_free || !bo->ttm.resource)
++		return NULL;
++
++	if (XE_WARN_ON(!xe_tt->sg))
++		return NULL;
++
++	if (bo->tile)
++		migrate = bo->tile->migrate;
++	else
++		migrate = xe->tiles[0].migrate;
++
++	xe_assert(xe, migrate);
++
++	clear_fence = xe_migrate_clear(migrate, bo, bo->ttm.resource,
++				       XE_MIGRATE_CLEAR_FLAG_FULL);
++	if (IS_ERR(clear_fence))
++		return NULL;
++
++	xe_tt->sys_clear_on_free = false;
++
++	return clear_fence;
++}
++
+ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+ {
+ 	struct dma_resv_iter cursor;
+-	struct dma_fence *fence;
++	struct dma_fence *clear_fence, *fence;
+ 	struct dma_fence *replacement = NULL;
+ 	struct xe_bo *bo;
+ 
+@@ -1041,15 +1106,31 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+ 	bo = ttm_to_xe_bo(ttm_bo);
+ 	xe_assert(xe_bo_device(bo), !(bo->created && kref_read(&ttm_bo->base.refcount)));
+ 
++	clear_fence = xe_ttm_bo_clear_on_free(ttm_bo);
++
+ 	/*
+ 	 * Corner case where TTM fails to allocate memory and this BOs resv
+ 	 * still points the VMs resv
+ 	 */
+-	if (ttm_bo->base.resv != &ttm_bo->base._resv)
++	if (ttm_bo->base.resv != &ttm_bo->base._resv) {
++		if (clear_fence)
++			dma_fence_wait(clear_fence, false);
+ 		return;
++	}
+ 
+-	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
++	if (!xe_ttm_bo_lock_in_destructor(ttm_bo)) {
++		if (clear_fence)
++			dma_fence_wait(clear_fence, false);
+ 		return;
++	}
++
++	if (clear_fence) {
++		if (dma_resv_reserve_fences(ttm_bo->base.resv, 1))
++			dma_fence_wait(clear_fence, false);
++		else
++			dma_resv_add_fence(ttm_bo->base.resv, clear_fence,
++					   DMA_RESV_USAGE_KERNEL);
++	}
+ 
+ 	/*
+ 	 * Scrub the preempt fences if any. The unbind fence is already
 -- 
-2.43.2
+2.42.0
 
