@@ -4,72 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA3F3C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 08:39:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33B2FC5320E
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 08:41:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8818610E02B;
-	Thu, 22 Aug 2024 08:39:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02D0610E5E7;
+	Thu, 22 Aug 2024 08:41:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=foss.st.com header.i=@foss.st.com header.b="4e5UPVcM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n0AHNXTC";
 	dkim-atps=neutral
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
- [185.132.182.106])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDAD110E02B;
- Thu, 22 Aug 2024 08:38:59 +0000 (UTC)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
- by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47M72FpY027840;
- Thu, 22 Aug 2024 10:38:55 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=selector1; bh=
- /WciXrPWaFlLkyznHTBF6EbYQ81JU4gKjUZCLa5G1Xw=; b=4e5UPVcMImNxHaOg
- Q4VGUMnQ6HEA5Sewf0+COSBvN0VAZwKAcWTLKMtda1KlgUkj2fD9so2lgCRDC5ln
- IZe4MRL7wajqCeiIDth3yhHpzW7f3j2qw+LD+Xd0+DXPObyTrM1otCxNBvivhnH3
- gbxfBUGPyOvNLPyfv8pN/uWOoa86sOJxLWPlw6fIshpWVRmrKPa3a5DAFmLwIpoN
- lesvnJiJ64ylfPFR9sO0+CwpH9M9J0f4p6grms2ZBlRzRI6m5HdJPx390sheybCe
- sfhwnukUn0WUCSiYl5weaTLPUdmMXz+wTL/+obBFw74KLX/BONey9aARemTLdplc
- MjY75Q==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
- by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4160kc8dfh-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 22 Aug 2024 10:38:55 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
- by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6EEE64002D;
- Thu, 22 Aug 2024 10:38:50 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
- by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4FE2B24BCC0;
- Thu, 22 Aug 2024 10:38:08 +0200 (CEST)
-Received: from [10.129.178.17] (10.129.178.17) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 22 Aug
- 2024 10:38:07 +0200
-Message-ID: <47ff8e8d-b880-45a5-afd4-663df5480c99@foss.st.com>
-Date: Thu, 22 Aug 2024 10:38:07 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6461910E814
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 08:41:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724316107; x=1755852107;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=L4ovHQ0Y61H2lN4ZjciaFRqcmxO9dAV8Qrp7svWa7yc=;
+ b=n0AHNXTCzSRSfv4cBwzAdhYwS+uKOcwWhbDJNL5GHAg/23u+ZQq/ISM3
+ sltbb4umLMfyK2IBeKUxmqLseSa6lVLQeCPst4J8tCIOdKn2fE6cTTG2O
+ C3otXYxKmLThtLK8l/kqpTA2HRFqtvvp7ytr+w9jB5Ov3irfiXx9A4O9y
+ H/d//deExZETQM2rZNy4DuIWWGv1W9rSI0uwkWfWKWwcT+FqysuvXu45/
+ Of22PUmOI5k1joN2cDrJwr2xFXtT0ZsvUy9wKsNdw8nlWXaHKIDkgn6so
+ 3+NTUUBm1SHh67xBwvU1HSgfSk2LBAYVVkZYNhdM7l1uphInL2aKkWpi3 g==;
+X-CSE-ConnectionGUID: R5LjA5AHSLuvguUPaC6CFA==
+X-CSE-MsgGUID: HSO4g2hxQ76a87W3sCwr0w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="33869178"
+X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="33869178"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 01:41:47 -0700
+X-CSE-ConnectionGUID: Ho6GPQEzRXWur2z/HGS5Pw==
+X-CSE-MsgGUID: w4lL10SJRZaIOk79Wjq5fg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="61369627"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 01:41:44 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH] drm/xe: Fix memory leak on xe_alloc_pf_queue failure
+Date: Thu, 22 Aug 2024 10:13:25 +0200
+Message-ID: <20240822081325.1549-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 40/86] drm/stm: Run DRM default client setup
-To: Thomas Zimmermann <tzimmermann@suse.de>, <daniel@ffwll.ch>,
- <airlied@gmail.com>, <jfalempe@redhat.com>, <javierm@redhat.com>
-CC: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>,
- Yannick Fertre <yannick.fertre@foss.st.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-References: <20240821130348.73038-1-tzimmermann@suse.de>
- <20240821130348.73038-41-tzimmermann@suse.de>
-Content-Language: en-US
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20240821130348.73038-41-tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.129.178.17]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-22_03,2024-08-19_03,2024-05-17_01
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,30 +69,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Free up previously allocated pf_queue[i].data on error.
 
-On 8/21/24 14:59, Thomas Zimmermann wrote:
-> Call drm_client_setup_with-fourcc() to run the kernel's default client
-> setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
->
-> v2:
-> - use drm_client_setup_with_fourcc()
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Yannick Fertre <yannick.fertre@foss.st.com>
-> Cc: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> Cc: Philippe Cornu <philippe.cornu@foss.st.com>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Acked-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Hi Thomas,
-
-Thanks for this work.
-
-Again for v2:
-Acked-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-
-Regards,
-Raphaël
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 0be4687bfc20..c19944eed5bd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -437,9 +437,13 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
+ 
+ 	for (i = 0; i < NUM_PF_QUEUE; ++i) {
+ 		ret = xe_alloc_pf_queue(gt, &gt->usm.pf_queue[i]);
+-		if (ret)
++		if (ret) {
++			while (i-- > 0)
++				kfree(gt->usm.pf_queue[i].data);
+ 			return ret;
++		}
+ 	}
++
+ 	for (i = 0; i < NUM_ACC_QUEUE; ++i) {
+ 		gt->usm.acc_queue[i].gt = gt;
+ 		spin_lock_init(&gt->usm.acc_queue[i].lock);
+-- 
+2.42.0
 
