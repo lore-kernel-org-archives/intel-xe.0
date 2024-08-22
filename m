@@ -4,27 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2904AC531DF
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 07:12:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00B7DC5320E
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 08:16:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D282910E792;
-	Thu, 22 Aug 2024 07:12:25 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5E0110E792;
- Thu, 22 Aug 2024 07:12:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3764666570588497614=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAAD410E56A;
+	Thu, 22 Aug 2024 08:16:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="DJFcod9q";
+	dkim-atps=neutral
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF19D10E413
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 08:15:59 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-42817f1eb1fso3444315e9.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 01:15:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1724314558; x=1724919358; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=75AbW8YCcPqvwKBFK7/SreyR9quK7zkhy+4xs4mwsXg=;
+ b=DJFcod9qejYfSITIPzP1M0gpsQXgFJ9UwbQ4Aa5cUDusHBZiU4W2AYA52RYgYtKFXy
+ JnT2NfN7PS5q1/dZr+G8UUFyaqrWUdhVnnMLirguebclDDpCZeu08U0/YXwi+lHaxk7t
+ cSVMLdHU4VaJwmOESLvOBZjaZShspV8TCOlvY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724314558; x=1724919358;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=75AbW8YCcPqvwKBFK7/SreyR9quK7zkhy+4xs4mwsXg=;
+ b=P8HIo04ddG/K8rvipyAcZxn57JphPHT+lVfnWqdF0qldo+v9ooJRkqbh0ok/qSV3Z/
+ BKwNuFqvcqQEVTbk2BoubSpev5uc/OZosCcyLD/0hRg0xJbVtpM5MCjeV6sRL161PRH4
+ ku4/C7kYJ6hqeFHpCx1gUsft+MnXlL36x6cYJeSlC/qfQOIhUd17Xj3Zr7YFqbZq2YEc
+ 0z8vfAfP+i6hParyGSrxdq4EgO/NtrFVyPzTXNSBI+pC8nCc60dpuuFgBWHFkqQdT9FI
+ LxnzUeLAeQvTjJ8XcShTUNSMnvscTrKnemIsWSJuoq+KNlppMPxz0RmM+5HLpJj8ar3z
+ YKZw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCULpFNLqW7EZbuHmW5J+31ePx8gtC4ogE/xk3A1KxK9rxn1ZHhqgSVLxwr/I+74M8TQp0N1ZJgDJA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwqoMp4kXhAYqARyhK+Nf7Mk8oH9oVxuKi8Sm0pmcCQrF8RSPFi
+ sF7vcPyfgC9kRpuR+ON0lHxWa7QfPVL0X5mKWbkQbmHPnw2CoKPP/jVIdzLvrb8Nan61e5UR24X
+ z
+X-Google-Smtp-Source: AGHT+IEEXh+Q/+CkzsVsvEFcQ/I2Vf2dvHt8pCyu+gou90gTZKOWWPrxbLxRN1SPXddLS0cesV12Yw==
+X-Received: by 2002:a5d:59a3:0:b0:368:75:2702 with SMTP id
+ ffacd0b85a97d-372fd585cb3mr4553322f8f.13.1724314557765; 
+ Thu, 22 Aug 2024 01:15:57 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42abefeaa45sm52420865e9.39.2024.08.22.01.15.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 22 Aug 2024 01:15:57 -0700 (PDT)
+Date: Thu, 22 Aug 2024 10:15:55 +0200
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-misc-next
+Message-ID: <Zsbzu6uDoroaWXUu@phenom.ffwll.local>
+References: <20240816084109.GA229316@localhost.localdomain>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/i915=3A_Do_not_explicilty_en?=
- =?utf-8?q?able_FEC_in_DP=5FTP=5FCTL_for_UHBR_rates?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Aug 2024 07:12:24 -0000
-Message-ID: <172431074480.724138.15862889816958365467@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240816084109.GA229316@localhost.localdomain>
+X-Operating-System: Linux phenom 6.9.12-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +87,297 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3764666570588497614==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Aug 16, 2024 at 10:41:09AM +0200, Thomas Zimmermann wrote:
+> Hi Dave, Sima,
+> 
+> this is the weekly PR for drm-misc-next. Mostly small cleanups and
+> improvements. Rockchip received support for more modes and displays.
+> 
+> Best regards
+> Thomas
+> 
+> drm-misc-next-2024-08-16:
+> drm-misc-next for v6.12:
+> 
+> Core Changes:
+> 
+> ci:
+> - Update dependencies
+> 
+> docs:
+> - Cleanups
+> 
+> edid:
+> - Improve debug logging
+> - Clean up interface
+> 
+> fbdev emulation:
+> - Remove old fbdev hooks
+> - Update documentation
+> 
+> panic:
+> - Cleanups
+> 
+> Driver Changes:
+> 
+> amdgpu:
+> - Remove usage of old fbdev hooks
+> - Use backlight constants
+> 
+> ast:
+> - Fix timeout loop for DP link training
+> 
+> hisilicon:
+> - hibmc: Cleanups
+> 
+> mipi-dsi:
+> - Improve error handling
+> - startek-kd070fhfid015: Use new error handling
+> 
+> nouveau:
+> - Remove usage of old fbdev hooks
+> 
+> panel:
+> - Use backlight constants
+> 
+> radeon:
+> - Use backlight constants
+> 
+> rockchip:
+> - Improve DP sink-capability reporting
+> - Cleanups
+> - dw_hdmi: Support 4k@60Hz; Cleanups
+> - vop: Support RGB display on Rockchip RK3066; Support 4096px width
+> 
+> tilcdc:
+> - Use backlight constants
+> The following changes since commit 4e996697a443a214887ef81b008c344d183b5659:
+> 
+>   Merge tag 'drm-misc-next-2024-08-09' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2024-08-09 10:41:59 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-08-16
 
-== Series Details ==
+Pulled into drm-next, thanks!
+-Sima
+> 
+> for you to fetch changes up to 8befe8fa5a4e4b30787b17e078d9d7b5cb92ea19:
+> 
+>   drm/tilcdc: Use backlight power constants (2024-08-16 09:28:01 +0200)
+> 
+> ----------------------------------------------------------------
+> drm-misc-next for v6.12:
+> 
+> Core Changes:
+> 
+> ci:
+> - Update dependencies
+> 
+> docs:
+> - Cleanups
+> 
+> edid:
+> - Improve debug logging
+> - Clean up interface
+> 
+> fbdev emulation:
+> - Remove old fbdev hooks
+> - Update documentation
+> 
+> panic:
+> - Cleanups
+> 
+> Driver Changes:
+> 
+> amdgpu:
+> - Remove usage of old fbdev hooks
+> - Use backlight constants
+> 
+> ast:
+> - Fix timeout loop for DP link training
+> 
+> hisilicon:
+> - hibmc: Cleanups
+> 
+> mipi-dsi:
+> - Improve error handling
+> - startek-kd070fhfid015: Use new error handling
+> 
+> nouveau:
+> - Remove usage of old fbdev hooks
+> 
+> panel:
+> - Use backlight constants
+> 
+> radeon:
+> - Use backlight constants
+> 
+> rockchip:
+> - Improve DP sink-capability reporting
+> - Cleanups
+> - dw_hdmi: Support 4k@60Hz; Cleanups
+> - vop: Support RGB display on Rockchip RK3066; Support 4096px width
+> 
+> tilcdc:
+> - Use backlight constants
+> 
+> ----------------------------------------------------------------
+> Alex Bee (1):
+>       drm/rockchip: vop: Allow 4096px width scaling
+> 
+> Andy Shevchenko (1):
+>       drm: fixed: Don't use "proxy" headers
+> 
+> Christophe JAILLET (1):
+>       drm/rockchip: Constify struct drm_encoder_helper_funcs
+> 
+> Cristian Ciocaltea (5):
+>       drm/rockchip: Explicitly include bits header
+>       drm/rockchip: dw_hdmi: Use modern drm_device based logging
+>       drm/rockchip: dw_hdmi: Simplify clock handling
+>       drm/rockchip: dw_hdmi: Use devm_regulator_get_enable()
+>       drm/rockchip: dw_hdmi: Drop superfluous assignments of mpll_cfg, cur_ctr and phy_config
+> 
+> Dan Carpenter (1):
+>       drm/ast: astdp: fix loop timeout check
+> 
+> Daniel Yang (1):
+>       drm/connector: kerneldoc: Fix two missing newlines in drm_connector.c
+> 
+> Dragan Simic (1):
+>       drm/rockchip: cdn-dp: Clean up a few logged messages
+> 
+> Jani Nikula (4):
+>       drm/edid: reduce DisplayID log spamming
+>       drm/rockchip: cdn-dp: get rid of drm_edid_raw()
+>       drm/i915/gvt: stop using drm_edid_block_valid()
+>       drm/edid: make drm_edid_block_valid() static
+> 
+> Jocelyn Falempe (5):
+>       drm/panic: Remove space before "!" in panic message
+>       drm/panic: Remove useless export symbols
+>       drm/panic: Move drm_panic_register prototype to drm_crtc_internal.h
+>       drm/panic: Move copyright notice to the top
+>       drm/panic: Add panic description
+> 
+> Jonas Karlman (3):
+>       drm/rockchip: dw_hdmi: Fix reading EDID when using a forced mode
+>       drm/rockchip: dw_hdmi: Allow High TMDS Bit Rates
+>       drm/rockchip: dw_hdmi: Add max_tmds_clock validation
+> 
+> Louis Chauvet (1):
+>       drm/vkms: Formatting and typo fix
+> 
+> Mohammed Anees (1):
+>       drm: Add missing documentation for struct drm_plane_size_hint
+> 
+> Tejas Vipin (2):
+>       drm/mipi-dsi: add more multi functions for better error handling
+>       drm/panel: startek-kd070fhfid015: transition to mipi_dsi wrapped functions
+> 
+> Thomas Zimmermann (18):
+>       Merge drm/drm-next into drm-misc-next
+>       drm: Do delayed switcheroo in drm_lastclose()
+>       drm/amdgpu: Do not set struct drm_driver.lastclose
+>       drm/nouveau: Do not set struct drm_driver.lastclose
+>       drm/nouveau: Do not set struct drm_mode_config_funcs.output_poll_changed
+>       drm/nouveau: Implement switcheroo reprobe with drm_client_dev_hotplug()
+>       drm/fbdev-helper: Update documentation on obsolete callbacks
+>       drm/fbdev-helper: Remove drm_fb_helper_output_poll_changed()
+>       drm: Remove struct drm_driver.lastclose
+>       drm: Remove struct drm_mode_config_funcs.output_poll_changed
+>       drm/amdgpu: Use backlight power constants
+>       drm/panel: panel-novatak-nt35510: Use backlight power constants
+>       drm/panel: panel-orisetech-otm8009a: Use backlight power constants
+>       drm/panel: panel-samsung-s6e63j0x03: Use backlight power constants
+>       drm/panel: panel-samsung-s6e3ha2: Use backlight power constants
+>       drm/panel: panel-sony-acx565akm: Use backlight power constants
+>       drm/radeon: Use backlight power constants
+>       drm/tilcdc: Use backlight power constants
+> 
+> Val Packett (2):
+>       drm/rockchip: vop: clear DMA stop bit on RK3066
+>       drm/rockchip: vop: enable VOP_FEATURE_INTERNAL_RGB on RK3066
+> 
+> Vignesh Raman (1):
+>       drm/ci: uprev mesa
+> 
+> WangYuli (1):
+>       drm/ci: Upgrade setuptools requirement to 70.0.0
+> 
+> Zhang Zekun (1):
+>       drm/hisilicon: Remove unused delarations
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h                |   1 -
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   2 -
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c            |  17 --
+>  drivers/gpu/drm/amd/amdgpu/atombios_encoders.c     |   2 +-
+>  drivers/gpu/drm/ast/ast_dp.c                       |  15 +-
+>  drivers/gpu/drm/ci/container.yml                   |   8 +
+>  drivers/gpu/drm/ci/gitlab-ci.yml                   |  22 +--
+>  drivers/gpu/drm/ci/image-tags.yml                  |   8 +-
+>  drivers/gpu/drm/ci/lava-submit.sh                  |   1 +
+>  drivers/gpu/drm/ci/test.yml                        |   4 +-
+>  drivers/gpu/drm/ci/xfails/requirements.txt         |   2 +-
+>  drivers/gpu/drm/drm_connector.c                    |   4 +
+>  drivers/gpu/drm/drm_crtc_internal.h                |   4 +
+>  drivers/gpu/drm/drm_displayid.c                    |   3 -
+>  drivers/gpu/drm/drm_edid.c                         |  22 +--
+>  drivers/gpu/drm/drm_fb_helper.c                    |  37 +---
+>  drivers/gpu/drm/drm_file.c                         |  32 ++--
+>  drivers/gpu/drm/drm_internal.h                     |   1 -
+>  drivers/gpu/drm/drm_mipi_dsi.c                     | 194 +++++++++++++++++++++
+>  drivers/gpu/drm/drm_panic.c                        |  62 +++++--
+>  drivers/gpu/drm/drm_probe_helper.c                 |  10 +-
+>  drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h    |   1 -
+>  drivers/gpu/drm/i915/gvt/kvmgt.c                   |  18 +-
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c            |   1 -
+>  drivers/gpu/drm/nouveau/nouveau_display.c          |   1 -
+>  drivers/gpu/drm/nouveau/nouveau_drm.c              |   1 -
+>  drivers/gpu/drm/nouveau/nouveau_vga.c              |  10 +-
+>  drivers/gpu/drm/nouveau/nouveau_vga.h              |   1 -
+>  drivers/gpu/drm/panel/panel-novatek-nt35510.c      |   2 +-
+>  drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |   4 +-
+>  drivers/gpu/drm/panel/panel-samsung-s6e3ha2.c      |  10 +-
+>  drivers/gpu/drm/panel/panel-samsung-s6e63j0x03.c   |  10 +-
+>  drivers/gpu/drm/panel/panel-sony-acx565akm.c       |   2 +-
+>  .../gpu/drm/panel/panel-startek-kd070fhfid015.c    | 115 ++++--------
+>  drivers/gpu/drm/radeon/atombios_encoders.c         |   2 +-
+>  drivers/gpu/drm/radeon/radeon_legacy_encoders.c    |   2 +-
+>  drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |   2 +-
+>  drivers/gpu/drm/rockchip/cdn-dp-core.c             |  32 ++--
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 107 +++++-------
+>  drivers/gpu/drm/rockchip/inno_hdmi.c               |   2 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   3 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |   8 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop.h        |   1 +
+>  drivers/gpu/drm/rockchip/rockchip_vop_reg.c        |   2 +
+>  drivers/gpu/drm/tilcdc/tilcdc_panel.c              |   2 +-
+>  drivers/gpu/drm/vkms/vkms_drv.c                    |   6 +-
+>  drivers/gpu/vga/vga_switcheroo.c                   |   3 +-
+>  include/drm/drm_drv.h                              |  28 ---
+>  include/drm/drm_edid.h                             |   2 -
+>  include/drm/drm_fb_helper.h                        |   6 -
+>  include/drm/drm_fixed.h                            |   3 +-
+>  include/drm/drm_mipi_dsi.h                         |  10 ++
+>  include/drm/drm_mode_config.h                      |  16 --
+>  include/drm/drm_panic.h                            |  21 +--
+>  include/uapi/drm/drm_mode.h                        |   2 +
+>  55 files changed, 471 insertions(+), 416 deletions(-)
+> 
+> -- 
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Frankenstrasse 146, 90461 Nuernberg, Germany
+> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+> HRB 36809 (AG Nuernberg)
 
-Series: drm/i915: Do not explicilty enable FEC in DP_TP_CTL for UHBR rates
-URL   : https://patchwork.freedesktop.org/series/137612/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e_BAT -> xe-pw-137612v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-137612v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-137612v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-137612v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e/bat-dg2-oem2/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137612v1/bat-dg2-oem2/igt@xe_module_load@load.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e -> xe-pw-137612v1
-
-  IGT_7983: b2e17acf37471073210221724a66d164328dee98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e: 4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e
-  xe-pw-137612v1: 137612v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137612v1/index.html
-
---===============3764666570588497614==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Do not explicilty enable FEC in DP_TP_CTL for UHBR rates</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137612/">https://patchwork.freedesktop.org/series/137612/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137612v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137612v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e_BAT -&gt; xe-pw-137612v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-137612v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-137612v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-137612v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137612v1/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e -&gt; xe-pw-137612v1</li>
-</ul>
-<p>IGT_7983: b2e17acf37471073210221724a66d164328dee98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1810-4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e: 4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e<br />
-  xe-pw-137612v1: 137612v1</p>
-
-</body>
-</html>
-
---===============3764666570588497614==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
