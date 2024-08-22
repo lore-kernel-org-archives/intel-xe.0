@@ -4,173 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5CB1C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 15:05:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52F3DC52D7C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 15:07:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D94110EB1C;
-	Thu, 22 Aug 2024 15:05:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 240E910EB1F;
+	Thu, 22 Aug 2024 15:07:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZiB5L//E";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="btCs/1TE";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Kl0XX0Dp";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="btCs/1TE";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Kl0XX0Dp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D37110EB1C
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 15:05:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724339127; x=1755875127;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=VX666fIiijIZo8Wj6FkQFaJ/0ppQzR1Zq8Zkc6tGAQQ=;
- b=ZiB5L//EcQ1fYTt5RJxl5Cuy2FcuPZ1ARVzsNN1+HCOLymZhOOZ0OxAI
- H7eJHKkKCeI8rYVlDvhmZmGzpDnwPMA8ud9Lgcc1VdMdCtWBFBZblZzTM
- ioFblpfQNRU/Cr0y9ClEGy4TV94sfz3fmpWy4VeuDL2tZQ119Y6fpApDg
- c6NRNAHUs30W/nMCC2PjfAX6+iUedHKXRczx+7hMPLf1zyCNRO3Sz2wKP
- eaTaZv0kXGnN7tDZz/nghR5xadXWiaIEI4NZC8XctTfoJJ/v3OG3Wz7G7
- VrzrviVrd0Mj1VTpKF5zHXh8PVFpqWRGfPbR72ElJxpu0Djf6n3s0/SEe Q==;
-X-CSE-ConnectionGUID: 38q3tVWOQS+6wMLz0Gzlcg==
-X-CSE-MsgGUID: EtXzW1MTTiaTQ9R/1I7shw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22922806"
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="22922806"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 08:05:26 -0700
-X-CSE-ConnectionGUID: OnDWbBXJQNSJ5zVCoD+tPw==
-X-CSE-MsgGUID: V+Y36BXqR52KrjhIzk6KHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="84649505"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Aug 2024 08:05:26 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 22 Aug 2024 08:05:25 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 22 Aug 2024 08:05:24 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 22 Aug 2024 08:05:24 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 22 Aug 2024 08:05:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Gii4tiG1EqqiVT59EBB+xtRZELMoVEoPnXnZ2y2KyqTFGJZd1L4OgfSkWWf4LpchSlXul+0Hl3zxpTRCb/BWGYe0ERLAWizJ00Tb9iShdLxn9azXHVHZw0kxJYVc5tRsNW+SOvqngwy2sqXM8ZIhCHbT5Qe3krHFJk8YwOMZlcO49EegPkteuOi4NvRiqfW9ZU7F4LzAi0uOS6n/8VzIgvjgBElwKHbnnMUyxylAHPjf4cerhhrTDfFrYaF+IJa5a4cjL4Ng0sAD5wroDyh7d2se4Zo1OBIJNfUT5pIjZGBqPQxFLN5iCzlt0lpfJgPS3pUH8MHwPfeOewwePfOaTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oqfNAzvEFuthsKSoAqTf6bvyok2I9OegRswVpql8x68=;
- b=mh4OtRKlPAB7rG/IzzOxnk8sXEMktWZ06p+wtuqUOqrU3f3HoQIChdGf6HtfJg0Pv6/DJm58TgnxAXi4aY6WYWRsY9KfXIAqv6j493GTSt+G8PWYiceeY6/r5zoHj46IkV2w547ejHwQWyXIEJk2FLwR9PQF0rPFPL+G5+0zJAYuEgXG3UwfAMqddBxIkcnHxoNmlZZC+wYG+laJ8LONFTMihwQ8dRqgQySnS4sWvWhRXYQyHJabsR5oCYWVQ5bfuHVefc05OIrhgkX+hK6q/eZeqypzlmK7OVXIkiTyienL+kauofHfbUeX4glkkPcpdCupkERfF0ZEUbYa9Z6vMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by MW3PR11MB4555.namprd11.prod.outlook.com (2603:10b6:303:2e::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.18; Thu, 22 Aug
- 2024 15:05:21 +0000
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace%6]) with mapi id 15.20.7897.014; Thu, 22 Aug 2024
- 15:05:20 +0000
-From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-To: "Levi, Ilia" <ilia.levi@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Levi, Ilia" <ilia.levi@intel.com>, "Wajdeczko, Michal"
- <Michal.Wajdeczko@intel.com>, "Vishwanathapura, Niranjana"
- <niranjana.vishwanathapura@intel.com>, "Elbaz, Koby" <koby.elbaz@intel.com>,
- "Avizrat, Yaron" <yaron.avizrat@intel.com>
-Subject: RE: [PATCH 2/5] drm/xe: memirq infra changes for msix
-Thread-Topic: [PATCH 2/5] drm/xe: memirq infra changes for msix
-Thread-Index: AQHa9JR56MeUAQ+dfkmlv/z6KBiAM7IzWPiw
-Date: Thu, 22 Aug 2024 15:05:20 +0000
-Message-ID: <CH0PR11MB54446E568A32395A79DD835EE58F2@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20240822130815.1355437-1-ilia.levi@intel.com>
- <20240822130815.1355437-3-ilia.levi@intel.com>
-In-Reply-To: <20240822130815.1355437-3-ilia.levi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|MW3PR11MB4555:EE_
-x-ms-office365-filtering-correlation-id: 16c368fa-a982-419c-7087-08dcc2bbd75e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?8kkL2dw4QpxyfA0rekGAudJ+0rhls3E9fk8VIsBHQnil7ae/wSPLWqoZLBTM?=
- =?us-ascii?Q?6qXKo6jbn4Ri/ytXJ+zz5LzPH3mnKYn9oyBVbVaLBZFHr/pLAyUUFJSjMOK9?=
- =?us-ascii?Q?ZJQ3qyDYKccthZRKUhikY0m72ScLsHOkKm9pCUpgjgN3Cr9qC8N+HWYzMo8v?=
- =?us-ascii?Q?elj3FNPiuhIb8B4oxy3aVGYkbOreoPrzQ9s8T/FmQ9Qjll+BhtecLyUx9GaN?=
- =?us-ascii?Q?WVojMfsYz5/bZEHKGXWXMDBaUm7UJDwcly/s4ke4biOmekGXRjuB7pwedJTM?=
- =?us-ascii?Q?JQo0dz9N1vrnb1l/L6XWIWqRj/ZZ6Uat8k0YXgAJjc9Uyn6M3LINouGEKjOP?=
- =?us-ascii?Q?2NH43mL7yIJiR5+XticQbASs26+wREpuwA0Rf2sfI8TXVeh+OotF4HRyvpdu?=
- =?us-ascii?Q?xovXVIO6amNppHPMTyNRP4NgINr9iSfFS5vDAJF9l7qgyG38b16ABNgDT0iX?=
- =?us-ascii?Q?2YGQ57wneuJveEwlTmJp7seBxBJ2qDpex87mCSGxIC6SSNG7yXhfry5uYjGU?=
- =?us-ascii?Q?c71ehH162gJf/q6PB0AGUOgoaYQvNGcgPCUANWQEEi13r+wWDagTBloZOWGb?=
- =?us-ascii?Q?LWUoygn7br6T4jyMci//yxKZM+iXH4Ju6bg3/qmih0AykNCcDJdRazpG49Nt?=
- =?us-ascii?Q?XjMpupKwt1UNYG+i4LmcBmhLA2NZDCumnny+Tskz0gxLNfsXSk32+uNkropd?=
- =?us-ascii?Q?NcUj89Ky/5ZI5Wuf/gWagpC1FD2EgqlpwgCaxyJPhF/YZnXTGOOtSuw3t+T7?=
- =?us-ascii?Q?E2laOjqvBGDgfjGMg4DMCplNBN24MqIeRAMYwtvUtPTrNKNS45YO3IElJkov?=
- =?us-ascii?Q?lXJEH3R+X6kgvkzELCLun1LN3rnARIuXosbDdmmwwfoT6EoWvhw5LLjsg3Bb?=
- =?us-ascii?Q?4WtLZxs6Y4R4x4pFtfbkDwmgOJaI37vXue9wKoS+rsVcfVuHoZoKOLOz/xN/?=
- =?us-ascii?Q?Rtso6Iu99perKcbsA4JIzeUeTspNXKCXfLa0MKJDt+vL0z116gbOdibiiWfm?=
- =?us-ascii?Q?wI8ylPu0SvBbxL+yFIL0XFLohBMGJuGGUoscbthleTo1Du2q6H9nYZiorhrk?=
- =?us-ascii?Q?iFeyYkt2+nVUe6s9fEyZu2/3KVx3ZkVoNAndrvcpdiFlYhxi6wbQA9WjTAUZ?=
- =?us-ascii?Q?rnt5isKTdWvW0D2t0SrHP9Qp0xEWzpHGyZPhQCFEjd+TVL70H/+L8mT+A18r?=
- =?us-ascii?Q?03G71Kr8aBw92vxBVnLawSNv1JszRR3E0fQBWIW6QZGDzMXSUpP56M3nW0NV?=
- =?us-ascii?Q?mFzguID+8mtoMqEuNKYkjygtokzMAYn035c/+gvZ6Jw3PWo345Bw73rsGPsX?=
- =?us-ascii?Q?ACwtxneMwUXmmcYZQ62G0FnzjLkfZP3FCJXkq9J5XADBBUEbmdOGLCjydh88?=
- =?us-ascii?Q?vThbNifZV5YhAwWn/siSj3ZaI1PtMADbmayjIe52srIrx6xnEA=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tD7nXvRV6+skfr4H9ajrZIEqN8gKtNI/fsA3KrEAdfhS0SAvtgxNiv9i7AII?=
- =?us-ascii?Q?yDkbEcIsB+yGBoBXzHp81UTFl1SMyxatHmP9SrBdtohQiUuFDhiTE5YRqs3z?=
- =?us-ascii?Q?nh2FCNT+/A0hrFeQKXUfvhKaTy/buu0fUbMoVUbd+NtJkO702VTvc8ij6/V7?=
- =?us-ascii?Q?cwK9eGW7YyuWp92tAM95t/aaYvmY8EEzahcPOkPEHPDqgPSajWBEivfH8vIF?=
- =?us-ascii?Q?wCqvmPExu/TotbItfne5+RGwNaA2jgDpGV6z6HqoHp4lRDyUPykE9Vs53iOV?=
- =?us-ascii?Q?+ULxplDUaARnOalUpQwl26lk/cC4SeRU5tlRZEB/kwg9JpTXm2pJ+KCcw4IS?=
- =?us-ascii?Q?IKWDJH80NjPOru2bko0EgWQxV6isuWcC5wWxDulDh2yZ9GWGQnT1Vsnz7NjG?=
- =?us-ascii?Q?iRSAQNYSLzCtQNL4xB5Bf2yw51tFTkxCSRl1lLJfjU7yxKR8N9FkJ1HFaKlc?=
- =?us-ascii?Q?vtE5OpFPXLiIoL/oq6RwUoJVIcmYXLXT5TVGrNp7BlFOYyKxuwO6Rdiqwk8h?=
- =?us-ascii?Q?o/3R7J5BlXuxG2EHcHekdzYjaQ3LcEStmQfSuBJ7atrKZa0NpVefHnK0tyyA?=
- =?us-ascii?Q?q1PCY4Rt0RfehMn+Y9Qxynp5pf92//M5518SFJkVfCG+gOMp9EwGL52bNOnx?=
- =?us-ascii?Q?BIxVl1Sbgho98GOwzOFHgJzLpIGhqqrOOL8i/DFno0cArmIu0LolAmx1aOLV?=
- =?us-ascii?Q?4pVjZFzdWGwiCgrFOpdkcqSM3axtvp2HCh7MEefna6deJbPtRXjFp/cqRpWh?=
- =?us-ascii?Q?6e574EgwWLFL0IwS7kE1FTcVHztZTxuP3PcdzFki2QEtIdlGBpSBDyN7nvEU?=
- =?us-ascii?Q?ngV/R5h9nESA2jkQPEvOV3h52MKo3yQKtoJ+ruI8/gUvCeX6xdkOOPmiv2Vb?=
- =?us-ascii?Q?U/e1bVp8L6qRMBe3En+unzGJuPMj5JEJmfOVo992M064k/MvC3ujoG5+/cSQ?=
- =?us-ascii?Q?BgcIOrJTeSJv+ZfC9ygS9uJuqXtnu2rqj2SskG7ErGVLwrZB4601/bESl7Df?=
- =?us-ascii?Q?1TEAfCav52G8J6wc+gYEgucrhXutZjnjQw/lm5guFWRnsQMQLOhp3/KeFDWs?=
- =?us-ascii?Q?yzwmBt/VMrBEpehMtAgQaKvbXv1mwvAxisaLZUnxUO6J+JgTEdJqgEuDxZo1?=
- =?us-ascii?Q?zCgcZdg7p7F0tNCkVDjHEUlMIuazH8zm9/AeoZq1Jaj91bG80MtwXyAcKFgS?=
- =?us-ascii?Q?h+OIsn1WnpsrwRcMToS+V/ec9pG6tqpwoGjsEiJ9G5QkDijWgmD8zSk3ggjy?=
- =?us-ascii?Q?Zj71Ih/94HTtwG3nU6NSdeq5nNJ1cSDioR2thQhsYhcgUjUeRjE22p21vGZ2?=
- =?us-ascii?Q?GyAuBM1uFobbg2jCE+8r1jM/xz+dJsFiWvYcTNvak48QCGr+7KeULHP2v6ew?=
- =?us-ascii?Q?FBsXNhNr8M8t0YvEpxlMcIvwK+TW1kKDf1lpckfR3CmjulVxxGyQyX8+skOQ?=
- =?us-ascii?Q?MiQvJav1JxaTHLWnZ0ZSFLkJ3xwt0GV0AYZ+NsIyTI2siE1DXqEnKHlSeTjz?=
- =?us-ascii?Q?Hkspr3mKa7lkU1wPujDLW4Nc4/SWVqGE0QkZtu4b0wpUSnjxB3EPLBDm/glk?=
- =?us-ascii?Q?tn2hhuWG8pPSUEdJA/SthdUVZIkAZQYngJJGSwUm?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 556D510EB1D;
+ Thu, 22 Aug 2024 15:07:13 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id CD3AC201F2;
+ Thu, 22 Aug 2024 15:07:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724339231; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
+ b=btCs/1TEttk2DFKq/Sr+s325MJRZ6pX1pIiQATQoV6ipRxZn+U0L/S8XUMWZT9Amg4vrGg
+ FOI+pp40wFj6BXCpF7hWKDGLN9PeDJ/yNXi2vXCLWGLyPqSsWaVdD7RiZbTXfLm3ACDyKa
+ AWoy7tNkX40Ij2GUttAzvhyPSG+qtYQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724339231;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
+ b=Kl0XX0Dpyc2eT0PVX/7NOkfo2zAKuCCF5xdGpb2lmAQk/wYU4Yezs0bokpJVidexlqeBBB
+ OnMrTR4MFXfzlHBQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724339231; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
+ b=btCs/1TEttk2DFKq/Sr+s325MJRZ6pX1pIiQATQoV6ipRxZn+U0L/S8XUMWZT9Amg4vrGg
+ FOI+pp40wFj6BXCpF7hWKDGLN9PeDJ/yNXi2vXCLWGLyPqSsWaVdD7RiZbTXfLm3ACDyKa
+ AWoy7tNkX40Ij2GUttAzvhyPSG+qtYQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724339231;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
+ b=Kl0XX0Dpyc2eT0PVX/7NOkfo2zAKuCCF5xdGpb2lmAQk/wYU4Yezs0bokpJVidexlqeBBB
+ OnMrTR4MFXfzlHBQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 683B513297;
+ Thu, 22 Aug 2024 15:07:11 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id cCI5GB9Ux2bbbQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 22 Aug 2024 15:07:11 +0000
+Date: Thu, 22 Aug 2024 17:07:10 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20240822150710.GA243952@localhost.localdomain>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16c368fa-a982-419c-7087-08dcc2bbd75e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2024 15:05:20.7595 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: U9rZhb5TtIA0a43rc6D/D2vPu2+xbwf4MZ2uCh86br43T11dMiYZlQ5AqXrv2/lSTLiWrL1rvH91L1Iq7r9K+nQi8SyWhG/7Pxd1+59QuEM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4555
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
+ MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,333 +110,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
------Original Message-----
-From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ilia L=
-evi
-Sent: Thursday, August 22, 2024 6:08 AM
-To: intel-xe@lists.freedesktop.org
-Cc: Levi, Ilia <ilia.levi@intel.com>; Wajdeczko, Michal <Michal.Wajdeczko@i=
-ntel.com>; Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>=
-; Elbaz, Koby <koby.elbaz@intel.com>; Avizrat, Yaron <yaron.avizrat@intel.c=
-om>
-Subject: [PATCH 2/5] drm/xe: memirq infra changes for msix
->=20
-> When using MSI-X, hw engines report interrupt status and source to engine
-> instance 0. We pass a flag to memirq initialization routine for this case=
-.
->=20
-> For this scenario, in order to differentiate between the engines, we need
-> to pass different status/source pointers in the lrc.
->=20
-> The requirements on those pointers are:
-> - Interrupt status should be 4KiB aligned
-> - Interrupt source should be 64 bytes aligned
->=20
-> To accommodate this, we duplicate the current memirq page layout -
-> allocating a page for each engine instance and pass this page in the lrc.
-> Note that the same page can be reused for different engine types.
-> For example, an lrc executing on ccs #x will have pointers to page #x,
-> and an lrc executing on bcs #x will have the same pointers. Thus, to
-> locate the proper page, the pointer accessors were modified to receive
-> the hw engine.
->=20
-> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c       |  2 +-
->  drivers/gpu/drm/xe/xe_lrc.c          |  4 +--
->  drivers/gpu/drm/xe/xe_memirq.c       | 49 +++++++++++++++++++---------
->  drivers/gpu/drm/xe/xe_memirq.h       |  7 ++--
->  drivers/gpu/drm/xe/xe_memirq_types.h |  6 ++--
->  5 files changed, 44 insertions(+), 24 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
-e.c
-> index 623e4a977ba3..c4f8bfd08b09 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -661,7 +661,7 @@ int xe_device_probe(struct xe_device *xe)
->  		if (err)
->  			return err;
->  		if (IS_SRIOV_VF(xe)) {
-> -			err =3D xe_memirq_init(&tile->memirq);
-> +			err =3D xe_memirq_init(&tile->memirq, false);
+Hi Dave, Sima,
 
-We don't seem to set reports_to_e0 to True at any point in this patch
-series.  Are we expecting to add support for this override in some
-future update?
+here's this week's PR for drm-misc-next. It adds support for more
+panels, and easier error handling for DSI code. Ast should finally
+have decent support for BMC output. Plus the usual bug fixes.
 
->  			if (err)
->  				return err;
->  		}
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index e70857325429..30e65991d5bb 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -613,9 +613,9 @@ static void set_memory_based_intr(u32 *regs, struct x=
-e_hw_engine *hwe)
->  	regs[CTX_LRI_INT_REPORT_PTR] =3D MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS=
-(2) |
->  				       MI_LRI_LRM_CS_MMIO | MI_LRI_FORCE_POSTED;
->  	regs[CTX_INT_STATUS_REPORT_REG] =3D RING_INT_STATUS_RPT_PTR(0).addr;
-> -	regs[CTX_INT_STATUS_REPORT_PTR] =3D xe_memirq_status_ptr(memirq);
-> +	regs[CTX_INT_STATUS_REPORT_PTR] =3D xe_memirq_status_ptr(memirq, hwe);
->  	regs[CTX_INT_SRC_REPORT_REG] =3D RING_INT_SRC_RPT_PTR(0).addr;
-> -	regs[CTX_INT_SRC_REPORT_PTR] =3D xe_memirq_source_ptr(memirq);
-> +	regs[CTX_INT_SRC_REPORT_PTR] =3D xe_memirq_source_ptr(memirq, hwe);
->  }
-> =20
->  static int lrc_ring_mi_mode(struct xe_hw_engine *hwe)
-> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memir=
-q.c
-> index 0db0726b76f3..a1d4bc3f9e42 100644
-> --- a/drivers/gpu/drm/xe/xe_memirq.c
-> +++ b/drivers/gpu/drm/xe/xe_memirq.c
-> @@ -112,18 +112,18 @@ static void __release_xe_bo(struct drm_device *drm,=
- void *arg)
->  	xe_bo_unpin_map_no_vm(bo);
->  }
-> =20
-> -static int memirq_alloc_pages(struct xe_memirq *memirq)
-> +static int memirq_alloc_pages(struct xe_memirq *memirq, size_t bo_size)
->  {
->  	struct xe_device *xe =3D memirq_to_xe(memirq);
->  	struct xe_tile *tile =3D memirq_to_tile(memirq);
->  	struct xe_bo *bo;
->  	int err;
-> =20
-> -	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET, SZ_64));
-> -	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET, SZ_4K));
-> +	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET(0), SZ_64));
-> +	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET(0), SZ_4K));
-> =20
->  	/* XXX: convert to managed bo */
-> -	bo =3D xe_bo_create_pin_map(xe, tile, NULL, SZ_4K,
-> +	bo =3D xe_bo_create_pin_map(xe, tile, NULL, bo_size,
->  				  ttm_bo_type_kernel,
->  				  XE_BO_FLAG_SYSTEM |
->  				  XE_BO_FLAG_GGTT |
-> @@ -138,11 +138,11 @@ static int memirq_alloc_pages(struct xe_memirq *mem=
-irq)
->  	memirq_assert(memirq, !xe_bo_is_vram(bo));
->  	memirq_assert(memirq, !memirq->bo);
-> =20
-> -	iosys_map_memset(&bo->vmap, 0, 0, SZ_4K);
-> +	iosys_map_memset(&bo->vmap, 0, 0, bo_size);
-> =20
->  	memirq->bo =3D bo;
-> -	memirq->source =3D IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OF=
-FSET);
-> -	memirq->status =3D IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OF=
-FSET);
-> +	memirq->source =3D IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OF=
-FSET(0));
-> +	memirq->status =3D IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OF=
-FSET(0));
->  	memirq->mask =3D IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_ENABLE_OFFS=
-ET);
-> =20
->  	memirq_assert(memirq, !memirq->source.is_iomem);
-> @@ -150,7 +150,7 @@ static int memirq_alloc_pages(struct xe_memirq *memir=
-q)
->  	memirq_assert(memirq, !memirq->mask.is_iomem);
-> =20
->  	memirq_debug(memirq, "page offsets: source %#x status %#x\n",
-> -		     xe_memirq_source_ptr(memirq), xe_memirq_status_ptr(memirq));
-> +		     xe_memirq_source_ptr(memirq, NULL), xe_memirq_status_ptr(memirq, =
-NULL));
-> =20
->  	return drmm_add_action_or_reset(&xe->drm, __release_xe_bo, memirq->bo);
-> =20
-> @@ -170,6 +170,7 @@ static void memirq_set_enable(struct xe_memirq *memir=
-q, bool enable)
->  /**
->   * xe_memirq_init - Initialize data used by `Memory Based Interrupts`_.
->   * @memirq: the &xe_memirq to initialize
-> + * @reports_to_e0: Does the HW report status and source to engine instan=
-ce 0?
+In the kernel's string helpers there's the new function mem_is_zero(),
+which the EDID code uses in several places.
 
-You may want to remark that this overrides other behavior.  Something like:
+Best regards
+Thomas
 
-"""
- * @reports_to_e0: Override flag that forces HW to report status and source
- *			to engine instance 0 always.
-"""
+drm-misc-next-2024-08-22:
+drm-misc-next for v6.12:
 
->   *
->   * Allocate `Interrupt Source Report Page`_ and `Interrupt Status Report=
- Page`_
->   * used by `Memory Based Interrupts`_.
-> @@ -181,15 +182,19 @@ static void memirq_set_enable(struct xe_memirq *mem=
-irq, bool enable)
->   *
->   * Return: 0 on success or a negative error code on failure.
->   */
-> -int xe_memirq_init(struct xe_memirq *memirq)
-> +int xe_memirq_init(struct xe_memirq *memirq, bool reports_to_e0)
->  {
->  	struct xe_device *xe =3D memirq_to_xe(memirq);
-> +	size_t bo_size;
->  	int err;
-> =20
->  	if (!xe_device_has_memirq(xe))
->  		return 0;
-> =20
-> -	err =3D memirq_alloc_pages(memirq);
-> +	memirq->reports_to_e0 =3D reports_to_e0;
-> +	bo_size =3D reports_to_e0 ? XE_HW_ENGINE_MAX_INSTANCE * SZ_4K : SZ_4K;
-> +
-> +	err =3D memirq_alloc_pages(memirq, bo_size);
->  	if (unlikely(err))
->  		return err;
-> =20
-> @@ -202,35 +207,47 @@ int xe_memirq_init(struct xe_memirq *memirq)
->  /**
->   * xe_memirq_source_ptr - Get GGTT's offset of the `Interrupt Source Rep=
-ort Page`_.
->   * @memirq: the &xe_memirq to query
-> + * @hwe: the hw engine for which we want the report page
->   *
->   * Shall be called when `Memory Based Interrupts`_ are used
->   * and xe_memirq_init() didn't fail.
->   *
->   * Return: GGTT's offset of the `Interrupt Source Report Page`_.
->   */
-> -u32 xe_memirq_source_ptr(struct xe_memirq *memirq)
-> +u32 xe_memirq_source_ptr(struct xe_memirq *memirq, struct xe_hw_engine *=
-hwe)
->  {
-> +	u16 instance =3D 0;
-> +
-> +	if (memirq->reports_to_e0 && hwe)
-> +		instance =3D hwe->instance;
+Cross-subsystem Changes:
 
-Maybe I'm missing something, but shouldn't this check on
-memirq be inverted?  Because we're currently using the
-provided hwe instance when memirq expects to report to
-engine 0.
+string:
+- add mem_is_zero()
 
-More specifically, shouldn't the check be:
+Core Changes:
 
-"""
-if (!memirq->reports_to_e0 && hwe)
-	instance =3D hwe->instance;
-"""
-?
+edid:
+- use mem_is_zero()
 
-> +
->  	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
->  	memirq_assert(memirq, memirq->bo);
-> =20
-> -	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET;
-> +	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET(instance);
->  }
-> =20
->  /**
->   * xe_memirq_status_ptr - Get GGTT's offset of the `Interrupt Status Rep=
-ort Page`_.
->   * @memirq: the &xe_memirq to query
-> + * @hwe: the hw engine for which we want the report page
->   *
->   * Shall be called when `Memory Based Interrupts`_ are used
->   * and xe_memirq_init() didn't fail.
->   *
->   * Return: GGTT's offset of the `Interrupt Status Report Page`_.
->   */
-> -u32 xe_memirq_status_ptr(struct xe_memirq *memirq)
-> +u32 xe_memirq_status_ptr(struct xe_memirq *memirq, struct xe_hw_engine *=
-hwe)
->  {
-> +	u16 instance =3D 0;
-> +
-> +	if (memirq->reports_to_e0 && hwe)
-> +		instance =3D hwe->instance;
+Driver Changes:
 
-See above note.
+ast:
+- reorganize output code by type (VGA, DP, etc)
+- convert to struct drm_edid
+- fix BMC handling for all outputs
 
-> +
->  	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
->  	memirq_assert(memirq, memirq->bo);
-> =20
-> -	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET;
-> +	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET(instance);
->  }
-> =20
->  /**
-> @@ -273,8 +290,8 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, stru=
-ct xe_guc *guc)
->  	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
->  	memirq_assert(memirq, memirq->bo);
-> =20
-> -	source =3D xe_memirq_source_ptr(memirq) + offset;
-> -	status =3D xe_memirq_status_ptr(memirq) + offset * SZ_16;
-> +	source =3D xe_memirq_source_ptr(memirq, NULL) + offset;
-> +	status =3D xe_memirq_status_ptr(memirq, NULL) + offset * SZ_16;
-> =20
->  	err =3D xe_guc_self_cfg64(guc, GUC_KLV_SELF_CFG_MEMIRQ_SOURCE_ADDR_KEY,
->  				source);
-> diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memir=
-q.h
-> index 2d40d03c3095..98e2b61ef973 100644
-> --- a/drivers/gpu/drm/xe/xe_memirq.h
-> +++ b/drivers/gpu/drm/xe/xe_memirq.h
-> @@ -10,11 +10,12 @@
-> =20
->  struct xe_guc;
->  struct xe_memirq;
-> +struct xe_hw_engine;
-> =20
-> -int xe_memirq_init(struct xe_memirq *memirq);
-> +int xe_memirq_init(struct xe_memirq *memirq, bool reports_to_e0);
-> =20
-> -u32 xe_memirq_source_ptr(struct xe_memirq *memirq);
-> -u32 xe_memirq_status_ptr(struct xe_memirq *memirq);
-> +u32 xe_memirq_source_ptr(struct xe_memirq *memirq, struct xe_hw_engine *=
-hwe);
-> +u32 xe_memirq_status_ptr(struct xe_memirq *memirq, struct xe_hw_engine *=
-hwe);
->  u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
-> =20
->  void xe_memirq_reset(struct xe_memirq *memirq);
-> diff --git a/drivers/gpu/drm/xe/xe_memirq_types.h b/drivers/gpu/drm/xe/xe=
-_memirq_types.h
-> index 625b6b8736cc..078a1500c918 100644
-> --- a/drivers/gpu/drm/xe/xe_memirq_types.h
-> +++ b/drivers/gpu/drm/xe/xe_memirq_types.h
-> @@ -11,9 +11,9 @@
->  struct xe_bo;
-> =20
->  /* ISR */
-> -#define XE_MEMIRQ_STATUS_OFFSET		0x0
-> +#define XE_MEMIRQ_STATUS_OFFSET(inst)	((inst) * SZ_4K + 0x0)
->  /* IIR */
-> -#define XE_MEMIRQ_SOURCE_OFFSET		0x400
-> +#define XE_MEMIRQ_SOURCE_OFFSET(inst)	((inst) * SZ_4K + 0x400)
->  /* IMR */
->  #define XE_MEMIRQ_ENABLE_OFFSET		0x440
-> =20
-> @@ -25,6 +25,7 @@ struct xe_bo;
->   * @status: iosys pointer to `Interrupt Status Report Page`_.
->   * @mask: iosys pointer to Interrupt Enable Mask.
->   * @enabled: internal flag used to control processing of the interrupts.
-> + * @reports_to_e0: configuration parameter (see xe_memirq_init)
->   */
->  struct xe_memirq {
->  	struct xe_bo *bo;
-> @@ -32,6 +33,7 @@ struct xe_memirq {
->  	struct iosys_map status;
->  	struct iosys_map mask;
->  	bool enabled;
-> +	bool reports_to_e0;
+bridge:
+- anx7625: simplify OF array handling
+- dw-hdmi: simplify clock handling
+- lontium-lt8912b: fix mode validation
+- nwl-dsi: fix mode vsync/hsync polarity
 
-It might be worthwhile in some future update to compress these
-Boolean flags into a binary mask, but that probably shouldn't be
-a part of this series.
--Jonathan Cavitt
+panel:
+- ili9341: fix comments
+- jd9365da: fix "exit sleep" commands
+- jdi-fhd-r63452: simplify error handling with DSI multi-style
+  helpers
+- mantix-mlaf057we51: simplify error handling with DSI multi-style
+  helpers
+- simple: support Innolux G070ACE-LH3 plus DT bindings; support
+  On Tat Industrial Company KD50G21-40NT-A1 plus DT bindings
+- st7701: decouple DSI and DRM code; add SPI support; support Anbernic
+  RG28XX plus DT bindings
 
->  };
-> =20
->  #endif
-> --=20
-> 2.43.2
->=20
->=20
+vc4:
+- fix PM during detect
+- replace DRM_ERROR() with drm_error()
+- v3d: simplify clock retrieval
+The following changes since commit 8befe8fa5a4e4b30787b17e078d9d7b5cb92ea19:
+
+  drm/tilcdc: Use backlight power constants (2024-08-16 09:28:01 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-08-22
+
+for you to fetch changes up to f60ef67ff21ede6f3d27d439a136481446dbd8aa:
+
+  drm/vc4: v3d: simplify clock retrieval (2024-08-22 07:57:44 -0300)
+
+----------------------------------------------------------------
+drm-misc-next for v6.12:
+
+Cross-subsystem Changes:
+
+string:
+- add mem_is_zero()
+
+Core Changes:
+
+edid:
+- use mem_is_zero()
+
+Driver Changes:
+
+ast:
+- reorganize output code by type (VGA, DP, etc)
+- convert to struct drm_edid
+- fix BMC handling for all outputs
+
+bridge:
+- anx7625: simplify OF array handling
+- dw-hdmi: simplify clock handling
+- lontium-lt8912b: fix mode validation
+- nwl-dsi: fix mode vsync/hsync polarity
+
+panel:
+- ili9341: fix comments
+- jd9365da: fix "exit sleep" commands
+- jdi-fhd-r63452: simplify error handling with DSI multi-style
+  helpers
+- mantix-mlaf057we51: simplify error handling with DSI multi-style
+  helpers
+- simple: support Innolux G070ACE-LH3 plus DT bindings; support
+  On Tat Industrial Company KD50G21-40NT-A1 plus DT bindings
+- st7701: decouple DSI and DRM code; add SPI support; support Anbernic
+  RG28XX plus DT bindings
+
+vc4:
+- fix PM during detect
+- replace DRM_ERROR() with drm_error()
+- v3d: simplify clock retrieval
+
+----------------------------------------------------------------
+Abhishek Tamboli (1):
+      drm/panel: ili9341: Add comments for registers in ili9341_config()
+
+Cristian Ciocaltea (1):
+      drm/bridge: dw-hdmi: Simplify clock handling
+
+Esben Haabendal (1):
+      drm/bridge: nwl-dsi: Use vsync/hsync polarity from display mode
+
+Hironori KIKUCHI (5):
+      drm/panel: st7701: Rename macros
+      drm/panel: st7701: Decouple DSI and DRM parts
+      dt-bindings: display: st7701: Add Anbernic RG28XX panel
+      drm/panel: st7701: Add support for SPI for configuration
+      drm/panel: st7701: Add Anbernic RG28XX panel support
+
+Jani Nikula (2):
+      string: add mem_is_zero() helper to check if memory area is all zeros
+      drm: use mem_is_zero() instead of !memchr_inv(s, 0, n)
+
+Jeffrey Hugo (1):
+      MAINTAINERS: qaic: Drop Pranjal as reviewer
+
+Liu Ying (3):
+      drm/bridge: lontium-lt8912b: Validate mode in drm_bridge_funcs::mode_valid()
+      dt-bindings: display: panel-simple: Add On Tat Industrial Company KD50G21-40NT-A1
+      drm/panel: simple: Add ON Tat Industrial Company KD50G21-40NT-A1 panel
+
+Rob Herring (Arm) (1):
+      drm: bridge: anx7625: Use of_property_read_variable_u8_array()
+
+Stefan Wahren (3):
+      drm/vc4: hdmi: Handle error case of pm_runtime_resume_and_get
+      drm/vc4: Get the rid of DRM_ERROR()
+      drm/vc4: v3d: simplify clock retrieval
+
+Steffen Trumtrar (2):
+      dt-bindings: display: simple: Document support for Innolux G070ACE-LH3
+      drm/panel: simple: add Innolux G070ACE-LH3 LVDS display support
+
+Tejas Vipin (4):
+      drm/panel: mantix-mlaf057we51: transition to mipi_dsi wrapped functions
+      drm/panel: mantix-mlaf057we51: write hex in lowercase
+      drm/mipi-dsi: Add mipi_dsi_dcs_set_tear_scanline_multi
+      drm/panel: jdi-fhd-r63452: transition to mipi_dsi wrapped functions
+
+Thomas Zimmermann (11):
+      drm/ast: Move code for physical outputs into separate files
+      drm/ast: Add struct ast_connector
+      drm/ast: astdp: Move locking into EDID helper
+      drm/ast: astdp: Use struct drm_edid and helpers
+      drm/ast: astdp: Simplify power management when detecting display
+      drm/ast: astdp: Transparently handle BMC support
+      drm/ast: dp501: Use struct drm_edid and helpers
+      drm/ast: dp501: Transparently handle BMC support
+      drm/ast: sil164: Transparently handle BMC support
+      drm/ast: vga: Transparently handle BMC support
+      drm/ast: Remove BMC output
+
+Zhaoxiong Lv (2):
+      drm/panel: jd9365da: Move "exit sleep mode" and "set display on" cmds
+      drm/panel: jd9365da: Modify the init code of Melfas
+
+ .../bindings/display/panel/panel-simple.yaml       |    4 +
+ .../bindings/display/panel/sitronix,st7701.yaml    |   69 +-
+ MAINTAINERS                                        |    1 -
+ drivers/gpu/drm/ast/Makefile                       |    4 +-
+ drivers/gpu/drm/ast/ast_dp.c                       |  242 ++++-
+ drivers/gpu/drm/ast/ast_dp501.c                    |  184 +++-
+ drivers/gpu/drm/ast/ast_drv.h                      |   42 +-
+ drivers/gpu/drm/ast/ast_mode.c                     |  578 ----------
+ drivers/gpu/drm/ast/ast_sil164.c                   |  127 +++
+ drivers/gpu/drm/ast/ast_vga.c                      |  127 +++
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |   22 +-
+ drivers/gpu/drm/bridge/lontium-lt8912b.c           |   35 +-
+ drivers/gpu/drm/bridge/nwl-dsi.c                   |    8 +-
+ drivers/gpu/drm/bridge/nwl-dsi.h                   |    4 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   66 +-
+ drivers/gpu/drm/drm_edid.c                         |    2 +-
+ drivers/gpu/drm/drm_mipi_dsi.c                     |   31 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |    2 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c      |    2 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c   |    2 +-
+ drivers/gpu/drm/imagination/pvr_device.h           |    2 +-
+ drivers/gpu/drm/panel/Kconfig                      |    3 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c       |   14 +-
+ drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   |  137 +--
+ drivers/gpu/drm/panel/panel-jdi-fhd-r63452.c       |  149 +--
+ drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c   |   79 +-
+ drivers/gpu/drm/panel/panel-simple.c               |   71 ++
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c      | 1122 ++++++++++++--------
+ drivers/gpu/drm/udl/udl_edid.c                     |    2 +-
+ drivers/gpu/drm/vc4/vc4_bo.c                       |   14 +-
+ drivers/gpu/drm/vc4/vc4_dpi.c                      |   14 +-
+ drivers/gpu/drm/vc4/vc4_dsi.c                      |   32 +-
+ drivers/gpu/drm/vc4/vc4_gem.c                      |   11 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |   44 +-
+ drivers/gpu/drm/vc4/vc4_hvs.c                      |    4 +-
+ drivers/gpu/drm/vc4/vc4_irq.c                      |    2 +-
+ drivers/gpu/drm/vc4/vc4_v3d.c                      |   24 +-
+ drivers/gpu/drm/vc4/vc4_validate.c                 |    8 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                      |   10 +-
+ include/drm/drm_mipi_dsi.h                         |    2 +
+ include/linux/string.h                             |   12 +
+ 41 files changed, 1830 insertions(+), 1478 deletions(-)
+ create mode 100644 drivers/gpu/drm/ast/ast_sil164.c
+ create mode 100644 drivers/gpu/drm/ast/ast_vga.c
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
