@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F0CC3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 08:52:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C532FC3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 08:52:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804E610E72C;
-	Thu, 22 Aug 2024 08:52:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NdAuZto0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89F2810E72C
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 08:52:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724316760; x=1755852760;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=LHyndEtUJkodAg6oZaw8zgGWAvL6KELoDiPRkmcrbyM=;
- b=NdAuZto0djvVidOCHZMWgDARxPOAgur+Jljq31vJHTMXsI9FPqOANVsg
- d7Isoa5LkrfYLhCpifsrzx/x1H7zhc1oHDGCDqZPTU4RYvwcNoxFelLBo
- x1efz6fcPJC/fJ8nz7InBO/8D829jjEupRVckJ0kyMw506PlDBZUbm35B
- GbGYIBY/l54ARw41OF/4yTBnbwuOdsfcoG6IBo2loyfEG64VQ5RJ0Rvy0
- fxnc46Ni+hauW2OLT052p15nl6XF7pV179Jie0gMuYF7AL3V4XZvYVa/7
- CO2TvcJQzas9fkeOvr3A0LImJj05il9VARHfHfOjeKq6q9zFXq+6u5b8+ Q==;
-X-CSE-ConnectionGUID: Tv6mOkuKTQqgR3+Qh/1jVQ==
-X-CSE-MsgGUID: WNWlWWJIQAGPasZdcQP7yg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="48111222"
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="48111222"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 01:52:39 -0700
-X-CSE-ConnectionGUID: d7VfG92+R6O88AgP/RLJ9g==
-X-CSE-MsgGUID: zii9PCThQYShMfU20O4ZOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="84547619"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.244.90])
- ([10.245.244.90])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 01:52:38 -0700
-Message-ID: <a7bcbf49-75d2-4b9c-b49f-11f6d348a7ab@intel.com>
-Date: Thu, 22 Aug 2024 09:52:35 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 977BC10E7C7;
+	Thu, 22 Aug 2024 08:52:55 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90A8C10E7C7;
+ Thu, 22 Aug 2024 08:52:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Fix memory leak on xe_alloc_pf_queue failure
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-References: <20240822081325.1549-1-nirmoy.das@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240822081325.1549-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_memory?=
+ =?utf-8?q?_leak_on_xe=5Falloc=5Fpf=5Fqueue_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 22 Aug 2024 08:52:53 -0000
+Message-ID: <172431677358.724138.2470653494908642513@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240822081325.1549-1-nirmoy.das@intel.com>
+In-Reply-To: <20240822081325.1549-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,43 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/08/2024 09:13, Nirmoy Das wrote:
-> Free up previously allocated pf_queue[i].data on error.
-> 
-> Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_gt_pagefault.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index 0be4687bfc20..c19944eed5bd 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -437,9 +437,13 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
->   
->   	for (i = 0; i < NUM_PF_QUEUE; ++i) {
->   		ret = xe_alloc_pf_queue(gt, &gt->usm.pf_queue[i]);
-> -		if (ret)
-> +		if (ret) {
-> +			while (i-- > 0)
-> +				kfree(gt->usm.pf_queue[i].data);
->   			return ret;
-> +		}
->   	}
+== Series Details ==
 
-I think this will then also leak below, if one of the queue create 
-fails? Maybe just convert this over to devm_calloc or similar that way 
-we don't need to do the manual unwind.
+Series: drm/xe: Fix memory leak on xe_alloc_pf_queue failure
+URL   : https://patchwork.freedesktop.org/series/137632/
+State : success
 
-> +
->   	for (i = 0; i < NUM_ACC_QUEUE; ++i) {
->   		gt->usm.acc_queue[i].gt = gt;
->   		spin_lock_init(&gt->usm.acc_queue[i].lock);
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6f978df5045a drm-tip: 2024y-08m-22d-08h-09m-24s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Fix memory leak on xe_alloc_pf_queue failure
+
+
