@@ -4,52 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E8B1C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 17:36:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 332D3C3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 17:42:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB86A10E0EB;
-	Thu, 22 Aug 2024 17:36:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NgfzHDY9";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1BB810E0EB
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 17:36:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724348185; x=1755884185;
- h=date:from:to:cc:subject:message-id;
- bh=s9RumjI+odSNrGIFkWBOHnVkQASJUmfT6d+Y2Zd6/jY=;
- b=NgfzHDY9Ch1XqHA2nsLAe2ngDNIRNje5Hh1PAExkgPXAeC/1SgpfYbLE
- xX75R7TCFVopk840s+w39hPmYYgpTwV5o+QT3yCfNFQcNJDPUHvrw95+F
- OfGwtfld4UuJ886snLQyQNf/Heq0Ky5NE63yKYdu2XfzDWIvRfFSKU3us
- ot6huF2kJ7PUlfiGqk6bnucf9kHhqVNuw1he8AFYbNrz8vZrgUOQQRIf7
- wa1KrT0MlvzAwAx5d8D7Nwp8QoPR3SWNpt/Y3CYsu1utsyfF91b3sLfxW
- gnVyEVq3cMJpBwSzkdV4nBc66pVk/5KZRsYtDvUxBdKIgz3eawVumCZNc g==;
-X-CSE-ConnectionGUID: I+BKPepJQk+aEHwQM/1IqQ==
-X-CSE-MsgGUID: CX+XC4jBRxmkijlkil4ntw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22660811"
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="22660811"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 10:36:24 -0700
-X-CSE-ConnectionGUID: ZeMeVbeYRx6TR5JH3tZVoA==
-X-CSE-MsgGUID: twgoQXcbQhyLabpOq+4n2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="66199025"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
- by fmviesa004.fm.intel.com with ESMTP; 22 Aug 2024 10:36:23 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1shBjR-000D2i-1E;
- Thu, 22 Aug 2024 17:36:21 +0000
-Date: Fri, 23 Aug 2024 01:36:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 9e7f30563677fbeff62d368d5d2a5ac7aaa9746a
-Message-ID: <202408230118.UHcIDLc1-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+	by gabe.freedesktop.org (Postfix) with ESMTP id 046A310EBA5;
+	Thu, 22 Aug 2024 17:42:08 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A47BD10EBA4
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 17:42:06 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
+Subject: [PATCH v4] drm/xe: Align all VRAM scanout buffers to 64k physical
+ pages when needed.
+Date: Thu, 22 Aug 2024 19:42:02 +0200
+Message-ID: <20240822174202.827626-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,180 +42,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 9e7f30563677fbeff62d368d5d2a5ac7aaa9746a  drm/xe: Free job before xe_exec_queue_put
+For CCS formats on affected platforms, CCS can be used freely, but
+display engine requires a multiple of 64k physical pages. No other
+changes are needed.
 
-elapsed time: 1465m
+At the BO creation time we don't know if the BO will be used for CCS
+or not. If the scanout flag is set, and the BO is a multiple of 64k,
+we take the safe route and force the physical alignment of 64k pages.
 
-configs tested: 161
-configs skipped: 4
+If the BO is not a multiple of 64k, or the scanout flag was not set
+at BO creation, we reject it for usage as CCS in display. The physical
+pages are likely not aligned correctly, and this will cause corruption
+when used as FB.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+This is a slightly different approach from my previous patch. Instead
+of requiring a scanout flag at FB creation, we now make all buffers of
+the right size physically aligned correctly, so no change from userspace
+is needed.
 
-tested configs:
-alpha                             allnoconfig   gcc-13.3.0
-alpha                            allyesconfig   gcc-13.3.0
-alpha                               defconfig   gcc-13.2.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                   randconfig-001-20240822   gcc-13.2.0
-arc                   randconfig-002-20240822   gcc-13.2.0
-arm                              allmodconfig   gcc-14.1.0
-arm                               allnoconfig   clang-20
-arm                                 defconfig   gcc-13.2.0
-arm                            dove_defconfig   gcc-14.1.0
-arm                          moxart_defconfig   gcc-14.1.0
-arm                           omap1_defconfig   gcc-14.1.0
-arm                   randconfig-001-20240822   gcc-14.1.0
-arm                   randconfig-002-20240822   clang-20
-arm                   randconfig-003-20240822   clang-20
-arm                   randconfig-004-20240822   clang-20
-arm64                             allnoconfig   gcc-14.1.0
-arm64                               defconfig   gcc-13.2.0
-arm64                 randconfig-001-20240822   gcc-14.1.0
-arm64                 randconfig-002-20240822   gcc-14.1.0
-arm64                 randconfig-003-20240822   gcc-14.1.0
-arm64                 randconfig-004-20240822   clang-20
-csky                              allnoconfig   gcc-14.1.0
-csky                                defconfig   gcc-13.2.0
-csky                  randconfig-001-20240822   gcc-14.1.0
-csky                  randconfig-002-20240822   gcc-14.1.0
-hexagon                          allmodconfig   clang-20
-hexagon                           allnoconfig   clang-20
-hexagon                          allyesconfig   clang-20
-hexagon               randconfig-001-20240822   clang-14
-hexagon               randconfig-002-20240822   clang-20
-i386                             allmodconfig   clang-18
-i386                             allmodconfig   gcc-12
-i386                              allnoconfig   clang-18
-i386                              allnoconfig   gcc-12
-i386                             allyesconfig   clang-18
-i386                             allyesconfig   gcc-12
-i386         buildonly-randconfig-001-20240822   gcc-12
-i386         buildonly-randconfig-002-20240822   gcc-12
-i386         buildonly-randconfig-003-20240822   clang-18
-i386         buildonly-randconfig-003-20240822   gcc-12
-i386         buildonly-randconfig-004-20240822   clang-18
-i386         buildonly-randconfig-004-20240822   gcc-12
-i386         buildonly-randconfig-005-20240822   gcc-12
-i386         buildonly-randconfig-006-20240822   gcc-12
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240822   clang-18
-i386                  randconfig-001-20240822   gcc-12
-i386                  randconfig-002-20240822   gcc-12
-i386                  randconfig-003-20240822   clang-18
-i386                  randconfig-003-20240822   gcc-12
-i386                  randconfig-004-20240822   clang-18
-i386                  randconfig-004-20240822   gcc-12
-i386                  randconfig-005-20240822   gcc-12
-i386                  randconfig-006-20240822   clang-18
-i386                  randconfig-006-20240822   gcc-12
-i386                  randconfig-011-20240822   clang-18
-i386                  randconfig-011-20240822   gcc-12
-i386                  randconfig-012-20240822   clang-18
-i386                  randconfig-012-20240822   gcc-12
-i386                  randconfig-013-20240822   clang-18
-i386                  randconfig-013-20240822   gcc-12
-i386                  randconfig-014-20240822   gcc-12
-i386                  randconfig-015-20240822   gcc-12
-i386                  randconfig-016-20240822   clang-18
-i386                  randconfig-016-20240822   gcc-12
-loongarch                        allmodconfig   gcc-14.1.0
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch             randconfig-001-20240822   gcc-14.1.0
-loongarch             randconfig-002-20240822   gcc-14.1.0
-m68k                             allmodconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                             allyesconfig   gcc-14.1.0
-m68k                         apollo_defconfig   gcc-14.1.0
-m68k                                defconfig   gcc-13.2.0
-m68k                          sun3x_defconfig   gcc-14.1.0
-microblaze                       allmodconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-14.1.0
-microblaze                       allyesconfig   gcc-14.1.0
-microblaze                          defconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-14.1.0
-mips                          ath25_defconfig   clang-20
-mips                        bcm47xx_defconfig   clang-15
-mips                 decstation_r4k_defconfig   gcc-13.2.0
-nios2                             allnoconfig   gcc-14.1.0
-nios2                               defconfig   gcc-13.2.0
-nios2                 randconfig-001-20240822   gcc-14.1.0
-nios2                 randconfig-002-20240822   gcc-14.1.0
-openrisc                          allnoconfig   gcc-14.1.0
-openrisc                         allyesconfig   gcc-14.1.0
-openrisc                            defconfig   gcc-14.1.0
-parisc                           allmodconfig   gcc-14.1.0
-parisc                            allnoconfig   gcc-14.1.0
-parisc                           allyesconfig   gcc-14.1.0
-parisc                              defconfig   gcc-14.1.0
-parisc                randconfig-001-20240822   gcc-14.1.0
-parisc                randconfig-002-20240822   gcc-14.1.0
-parisc64                            defconfig   gcc-13.2.0
-powerpc                           allnoconfig   gcc-14.1.0
-powerpc                    gamecube_defconfig   clang-20
-powerpc                     kmeter1_defconfig   gcc-14.1.0
-powerpc                 mpc836x_rdk_defconfig   clang-20
-powerpc                     mpc83xx_defconfig   clang-20
-powerpc64             randconfig-001-20240822   gcc-14.1.0
-powerpc64             randconfig-002-20240822   clang-17
-powerpc64             randconfig-003-20240822   clang-15
-riscv                             allnoconfig   gcc-14.1.0
-riscv                               defconfig   clang-20
-riscv                               defconfig   gcc-14.1.0
-riscv                 randconfig-002-20240822   clang-20
-s390                             allmodconfig   clang-20
-s390                              allnoconfig   clang-20
-s390                             allyesconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   gcc-14.1.0
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                                  defconfig   gcc-14.1.0
-sh                        dreamcast_defconfig   gcc-14.1.0
-sh                          lboxre2_defconfig   gcc-14.1.0
-sh                          rsk7269_defconfig   gcc-14.1.0
-sh                          sdk7780_defconfig   gcc-14.1.0
-sparc                            allmodconfig   gcc-14.1.0
-sparc64                             defconfig   gcc-14.1.0
-um                               allmodconfig   clang-20
-um                               allmodconfig   gcc-13.3.0
-um                                allnoconfig   clang-17
-um                               allyesconfig   gcc-12
-um                               allyesconfig   gcc-13.3.0
-um                                  defconfig   gcc-14.1.0
-um                             i386_defconfig   gcc-14.1.0
-um                           x86_64_defconfig   gcc-14.1.0
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240822   gcc-12
-x86_64       buildonly-randconfig-002-20240822   clang-18
-x86_64       buildonly-randconfig-003-20240822   gcc-12
-x86_64       buildonly-randconfig-004-20240822   gcc-12
-x86_64       buildonly-randconfig-005-20240822   gcc-12
-x86_64       buildonly-randconfig-006-20240822   clang-18
-x86_64                              defconfig   clang-18
-x86_64                              defconfig   gcc-11
-x86_64                randconfig-001-20240822   clang-18
-x86_64                randconfig-002-20240822   clang-18
-x86_64                randconfig-003-20240822   gcc-12
-x86_64                randconfig-004-20240822   clang-18
-x86_64                randconfig-005-20240822   gcc-12
-x86_64                randconfig-006-20240822   gcc-12
-x86_64                randconfig-011-20240822   gcc-12
-x86_64                randconfig-012-20240822   clang-18
-x86_64                randconfig-013-20240822   gcc-12
-x86_64                randconfig-014-20240822   clang-18
-x86_64                randconfig-015-20240822   clang-18
-x86_64                randconfig-016-20240822   gcc-12
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-14.1.0
+Inspired by Zbigniews patch.
 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Co-developed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+---
+ drivers/gpu/drm/xe/display/intel_fb_bo.c | 5 +++++
+ drivers/gpu/drm/xe/xe_bo.c               | 7 +++++++
+ drivers/gpu/drm/xe/xe_vm.c               | 3 ++-
+ 3 files changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+index f835492f73fb4..6775c2557b9df 100644
+--- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
++++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+@@ -28,6 +28,11 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	struct xe_device *xe = to_xe_device(bo->ttm.base.dev);
+ 	int ret;
+ 
++	/* Only this specific format is affected, and it's only available on VRAM */
++	if (XE_IOCTL_DBG(xe, mode_cmd->modifier[0] == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
++			     !(bo->flags & XE_BO_FLAG_NEEDS_64K)))
++		return -EINVAL;
++
+ 	xe_bo_get(bo);
+ 
+ 	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 6ed0e19552159..a7f48d971f4cf 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2019,6 +2019,13 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
+ 
++	/* CCS formats need physical placement at a 64K alignment in VRAM. */
++	if ((bo_flags & XE_BO_FLAG_VRAM_MASK) &&
++	    (bo_flags & XE_BO_FLAG_SCANOUT) &&
++	    !(xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) &&
++	    !(args->size % SZ_64K))
++		bo_flags |= XE_BO_FLAG_NEEDS_64K;
++
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
+ 		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_FLAG_VRAM_MASK)))
+ 			return -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d1bfd0b6e9558..af215f6d6588b 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2878,7 +2878,8 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 		return -EINVAL;
+ 	}
+ 
+-	if (bo->flags & XE_BO_FLAG_INTERNAL_64K) {
++	if ((bo->flags & XE_BO_FLAG_INTERNAL_64K) &&
++	    (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)) {
+ 		if (XE_IOCTL_DBG(xe, obj_offset &
+ 				 XE_64K_PAGE_MASK) ||
+ 		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.2
+
