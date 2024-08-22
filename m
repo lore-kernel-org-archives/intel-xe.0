@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4EE5C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 11:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D27E4C3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Aug 2024 11:20:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C1C210E849;
-	Thu, 22 Aug 2024 11:03:07 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C4CF10E849
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Aug 2024 11:03:05 +0000 (UTC)
-Received: internal info suppressed
-Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 47MB2r6G1280717; Thu, 22 Aug 2024 14:02:53 +0300
-From: Ilia Levi <ilia.levi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: ilia.levi@intel.com, niranjana.vishwanathapura@intel.com,
- matthew.brost@intel.com, koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH] drm/xe: move the kernel lrc from hwe to execlist port
-Date: Thu, 22 Aug 2024 14:02:52 +0300
-Message-ID: <20240822110252.1280706-1-ilia.levi@intel.com>
-X-Mailer: git-send-email 2.43.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9939410E85E;
+	Thu, 22 Aug 2024 11:20:02 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8810910E85E;
+ Thu, 22 Aug 2024 11:20:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_move_the_k?=
+ =?utf-8?q?ernel_lrc_from_hwe_to_execlist_port?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ilia Levi" <ilia.levi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 22 Aug 2024 11:20:01 -0000
+Message-ID: <172432560155.724138.3355040426787434142@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240822110252.1280706-1-ilia.levi@intel.com>
+In-Reply-To: <20240822110252.1280706-1-ilia.levi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,127 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The kernel lrc is used solely by the execlist infra.
-Move it to the execlist port struct and initialize it only when
-execlists are used.
+== Series Details ==
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
----
- drivers/gpu/drm/xe/xe_execlist.c        | 10 ++++++++--
- drivers/gpu/drm/xe/xe_execlist_types.h  |  2 ++
- drivers/gpu/drm/xe/xe_hw_engine.c       | 15 ++-------------
- drivers/gpu/drm/xe/xe_hw_engine_types.h |  2 --
- 4 files changed, 12 insertions(+), 17 deletions(-)
+Series: drm/xe: move the kernel lrc from hwe to execlist port
+URL   : https://patchwork.freedesktop.org/series/137638/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 7502e3486eaf..447c290cb02b 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -123,8 +123,8 @@ static void __xe_execlist_port_idle(struct xe_execlist_port *port)
- 	if (!port->running_exl)
- 		return;
- 
--	xe_lrc_write_ring(port->hwe->kernel_lrc, noop, sizeof(noop));
--	__start_lrc(port->hwe, port->hwe->kernel_lrc, 0);
-+	xe_lrc_write_ring(port->lrc, noop, sizeof(noop));
-+	__start_lrc(port->hwe, port->lrc, 0);
- 	port->running_exl = NULL;
- }
- 
-@@ -262,6 +262,10 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
- 
- 	port->hwe = hwe;
- 
-+	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K);
-+	if (IS_ERR(port->lrc))
-+		return ERR_PTR(PTR_ERR(port->lrc));
-+
- 	spin_lock_init(&port->lock);
- 	for (i = 0; i < ARRAY_SIZE(port->active); i++)
- 		INIT_LIST_HEAD(&port->active[i]);
-@@ -287,6 +291,8 @@ void xe_execlist_port_destroy(struct xe_execlist_port *port)
- 	spin_lock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
- 	port->hwe->irq_handler = NULL;
- 	spin_unlock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
-+
-+	xe_lrc_put(port->lrc);
- }
- 
- static struct dma_fence *
-diff --git a/drivers/gpu/drm/xe/xe_execlist_types.h b/drivers/gpu/drm/xe/xe_execlist_types.h
-index f94bbf4c53e4..415140936f11 100644
---- a/drivers/gpu/drm/xe/xe_execlist_types.h
-+++ b/drivers/gpu/drm/xe/xe_execlist_types.h
-@@ -27,6 +27,8 @@ struct xe_execlist_port {
- 	struct xe_execlist_exec_queue *running_exl;
- 
- 	struct timer_list irq_fail;
-+
-+	struct xe_lrc *lrc;
- };
- 
- struct xe_execlist_exec_queue {
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index aa9b2b16a6e0..35273192895c 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -273,7 +273,6 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
- 
- 	if (hwe->exl_port)
- 		xe_execlist_port_destroy(hwe->exl_port);
--	xe_lrc_put(hwe->kernel_lrc);
- 
- 	hwe->gt = NULL;
- }
-@@ -558,21 +557,13 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 		goto err_name;
- 	}
- 
--	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K);
--	if (IS_ERR(hwe->kernel_lrc)) {
--		err = PTR_ERR(hwe->kernel_lrc);
--		goto err_hwsp;
--	}
--
- 	if (!xe_device_uc_enabled(xe)) {
- 		hwe->exl_port = xe_execlist_port_create(xe, hwe);
- 		if (IS_ERR(hwe->exl_port)) {
- 			err = PTR_ERR(hwe->exl_port);
--			goto err_kernel_lrc;
-+			goto err_hwsp;
- 		}
--	}
--
--	if (xe_device_uc_enabled(xe)) {
-+	} else {
- 		/* GSCCS has a special interrupt for reset */
- 		if (hwe->class == XE_ENGINE_CLASS_OTHER)
- 			hwe->irq_handler = xe_gsc_hwe_irq_handler;
-@@ -587,8 +578,6 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 
- 	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
- 
--err_kernel_lrc:
--	xe_lrc_put(hwe->kernel_lrc);
- err_hwsp:
- 	xe_bo_unpin_map_no_vm(hwe->hwsp);
- err_name:
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 39f24012d0f4..8be6d420ece4 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -136,8 +136,6 @@ struct xe_hw_engine {
- 	enum xe_force_wake_domains domain;
- 	/** @hwsp: hardware status page buffer object */
- 	struct xe_bo *hwsp;
--	/** @kernel_lrc: Kernel LRC (should be replaced /w an xe_engine) */
--	struct xe_lrc *kernel_lrc;
- 	/** @exl_port: execlists port */
- 	struct xe_execlist_port *exl_port;
- 	/** @fence_irq: fence IRQ to run when a hw engine IRQ is received */
--- 
-2.43.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6f978df5045a drm-tip: 2024y-08m-22d-08h-09m-24s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: move the kernel lrc from hwe to execlist port
+
 
