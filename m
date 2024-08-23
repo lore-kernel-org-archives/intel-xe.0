@@ -4,134 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D35FDC5321D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 12:53:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D234C5472C
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 12:53:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A8110E206;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC49E10E207;
 	Mon, 26 Aug 2024 12:53:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="Ojl5+3gA";
+	dkim=pass (2048-bit key; unprotected) header.d=kruces-com.20230601.gappssmtp.com header.i=@kruces-com.20230601.gappssmtp.com header.b="ygIwDYru";
 	dkim-atps=neutral
-Received: from APC01-PSA-obe.outbound.protection.outlook.com
- (mail-psaapc01on2085.outbound.protection.outlook.com [40.107.255.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10BE810E2DE;
- Fri, 23 Aug 2024 02:36:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w3+ZygNVWTTq5naniBqCUkFKY+opW2S/FuPuj9ogQ6Neq1uZKSaX0mZFM5EZqA1mjFP/FyD98omz/4SJl/XNEb/a35diFQMVg3c3oabbmXjKnfnF6bqSwFWW/QgWzlBn3O3RItpvDf/OeAS/GcVg2amH3taJMOigb6E0egFUafxEZPJ0GhZmcXCnNIVTlzku1X1+BZlZPyyxJ0VL929L1tZgyQJ2hpXkpnWL8kHuh+GnUSqNl/OvWzhV8X6KlBALXStOXxQ3SuVoutnq5HYW1oVpQt44rWQzmcpA/dHGUZKDrrdNeZvHMaDIBhi1kaxVA/a8S2/RbT/kxPPdBI3cjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b+fefF8yYEUR+3HhQK3Lqk+6TZXvM0Q/BP9K/p3yjBk=;
- b=hCTkWWkvax1f2hn3KcVeHa+eJac6rudq7Dq4X7mBjKFIKltrcqCRaBEmY9pr4onlcugzefT0iNzdNTAcugb3GkrRAR1+O5MDq+YhgYSoZlHjxF6HN5PwGMcu/g6YeYoAROUffRppQB0CB+IZeWm8dWlIx5/M7EPFF+Dvpbi5CJkhwGJB1PBLbm77ihTJtgyORr6Rt4w46lOUz0QBg/jMREWXGa1H2g7tEMu8NaSWiVoqTsRezIXYgbZqx/oijH+eMy69dkDO+8rPWikWYSkVKkBKE3mVyKRINgdq1UQTqCAqjWNrFdcwYYAwKeZtAKAKzRwHVaUPl9zKkJinKU7W+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b+fefF8yYEUR+3HhQK3Lqk+6TZXvM0Q/BP9K/p3yjBk=;
- b=Ojl5+3gAh4Ct0CE69WYHR4NawhZ3j7+yHWtAf36DhaU4xXgBiyO8v9Oe73gqwIyMSWQULMNz7ngO5RPvEhtCuSdRZl2D0ae93ymFMwP8iVz7tTcQH8qbTyca1yKzLpGnLjwLXTVoTTrxttYr451ffuU6Gguel3y02b+n3m8vmg5Tjk8XnliIpLoZSbRyzvRQgrX8KLzS/q/pF8vaWcJojCFd6ySEfsY+EWHor5DLquWbi87zBWlOFsbddK+njUDeIIUmVwLzFKzqiYSuJGP5ISTOV0m0PbWcpQQs8GA4vXRbixqzydenqX+dpupNbcpNW2G1dwD3K0J3p0npyzOHyw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from PUZPR06MB5724.apcprd06.prod.outlook.com (2603:1096:301:f4::9)
- by SG2PR06MB5309.apcprd06.prod.outlook.com (2603:1096:4:1df::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.19; Fri, 23 Aug
- 2024 02:36:23 +0000
-Received: from PUZPR06MB5724.apcprd06.prod.outlook.com
- ([fe80::459b:70d3:1f01:e1d6]) by PUZPR06MB5724.apcprd06.prod.outlook.com
- ([fe80::459b:70d3:1f01:e1d6%3]) with mapi id 15.20.7897.014; Fri, 23 Aug 2024
- 02:36:23 +0000
-From: Yuesong Li <liyuesong@vivo.com>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- opensource.kernel@vivo.com, Yuesong Li <liyuesong@vivo.com>
-Subject: [PATCH v1] drm/i915/dp: Remove double assignment in
- intel_dp_compute_as_sdp()
-Date: Fri, 23 Aug 2024 10:36:12 +0800
-Message-Id: <20240823023612.3027849-1-liyuesong@vivo.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: TYCP286CA0053.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b5::12) To PUZPR06MB5724.apcprd06.prod.outlook.com
- (2603:1096:301:f4::9)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
+ [209.85.167.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C67010E0D5
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Aug 2024 22:14:40 +0000 (UTC)
+Received: by mail-lf1-f46.google.com with SMTP id
+ 2adb3069b0e04-5334b0e1a8eso3177324e87.0
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Aug 2024 15:14:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kruces-com.20230601.gappssmtp.com; s=20230601; t=1724451278; x=1725056078;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=mVn7bhcqAuWH/Gc+rMZ1Xor11/SH0tAXV77Rde16lJc=;
+ b=ygIwDYruwu2cp65SqJx85KXlRLLmZu+P93g0NjVQgr54eLsi5XjarAP4e1s2JF46Ua
+ jPAF6gS2UAeW1mzFu/aZvNSdo5+Y+fPs2XXhIIzXdDeMj3tOVHzluBCHOD4gNfWrPyX4
+ EnMxuJ7PJPwZ8w/JQOpu2AakNb5J6EtqJTfyUhFndfzOB+xSfckTGIZeczo8UuFc5wZQ
+ R7HBv8jKB8iJO7beV9KD9JHmVIQQkCbNgMQRo0QIG3pBvDmHqsdR5rogxuBU9TOM3plc
+ my4HMjEpen/X5iQakw43N9X9iNSjc/+ptN5cNpv3ECPzca85EVHzHgFL8AWQMZuNGZy1
+ Ze5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724451278; x=1725056078;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=mVn7bhcqAuWH/Gc+rMZ1Xor11/SH0tAXV77Rde16lJc=;
+ b=Xhuy9v8K4u5mi3F4aA+EJE21FkHM+afKwXiNA/fhbp7JokyBXi1D2PJC+nS10tW+W/
+ hDfBKECTvKb99UJIRxYe2GsDQau2IUUTL+6V7yEexhQVnAqldHuzbs7IrvpkCnFdUQHR
+ gpI7AqBZo/L5M5wttnqqJ+IE+nA8MrexOIxFPePUGpGhHPCNjJlwW6mRiXk6/MWUKX3C
+ xZZJ+p6YhtiaudKPDIyygT8DyLGTJX7LkV9Sv93nO9X256b/rRzPZIU6UN+w8mXte6vQ
+ JAX6yjbW7g82tU3tb5zPA2XIlty/hEv54o4sdMVm4qWmFFQA3o4OCh4m0rlpQtmgfKXP
+ sdBA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVbqo5YA/vVCEAvk/G9RedvlaljGn48cWSTQoqK8d5VfRxUDu8OxbxMQjpprYEvHvWBxLWU/wCikQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxH6Qu7YM02TZYJZHWg1hlnZd3Kv7xLUf95IBgcyE90/Z3iQVro
+ Akx4qg6wmbrSyYTP++aFzCMWii+0OkMGP5G26HMymF5l5rZrcHpBJb6hdcHYEW35aber/TTTqQT
+ 1gyjm5OEnBQQ0FaPwWeEg1kRwK28wR0T+e7Yc6g==
+X-Google-Smtp-Source: AGHT+IGDhJMFPFDslCxnxri8S951sJjg3aSvVif7lXNqXGz7kFGS4rZgZs1ZBpw6GOJM88hNjR9zGKziEIDdKGLwVUE=
+X-Received: by 2002:a05:6512:2244:b0:533:4327:b4cc with SMTP id
+ 2adb3069b0e04-534387c175cmr2666989e87.52.1724451277886; Fri, 23 Aug 2024
+ 15:14:37 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PUZPR06MB5724:EE_|SG2PR06MB5309:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5206b79f-c266-408d-aa00-08dcc31c60e9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|52116014|1800799024|38350700014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?MwGdoKY9bU33Ag8lLKL9xeNpuGGMb8TYJf5PArPM50yvhGHxuyT7MPOM8p4i?=
- =?us-ascii?Q?kSZrtHMFEk6ft1v5uKR9HUCvqYo+qu9Nbg9mKkJCo5ISMSP61zx6KqKApqFi?=
- =?us-ascii?Q?3w+w75v5HqvnGavKv2XfDPXy3aA2JZELyrtRt9GjfBLjZaKBoxN6n9wLBu5O?=
- =?us-ascii?Q?/YjwMbmSx4ehpCyvHLPJ/5kYBGG8gSso13bmjgDsZly3TgEtbMQ8bs8WR5MZ?=
- =?us-ascii?Q?UPDJOvC/RsTDX7joWetTK1Lf6v+wHfuXoGe+x4/OeZPKH/+XNzQ/Mg4I3++Y?=
- =?us-ascii?Q?FQ7TWd/mg/4PQ9Rjzgd+5mdpH/m1qllUe7wzbrW1W9MozJ9wqC9jlFJTPJR3?=
- =?us-ascii?Q?AXf/pGZxwYB/65EIa7NFpcV96AO5WI340/4BtC76NGs1SrgrG2PemZYoOf1o?=
- =?us-ascii?Q?EvHNppGXBpsxb7Zn4UXRvxASnVZohefcdzj9SoTKJxeZKLNw82OnwFwwxHw5?=
- =?us-ascii?Q?NKkYeyPTeiCT7TZErvO3gN6LDcLXrF6Vae6Zw0NvcSwdUjnfUGu2y2JdN+hy?=
- =?us-ascii?Q?s87lbcRCmquzw1SvgxcsFnN97CAMN4qvi5jTu9UYGoKanYtO4KzcjM17gzSV?=
- =?us-ascii?Q?0NN6ElaccbgGm8GRw3Jf3Z175BCeICkO+JYMFdHw4gf/vwvl21tOeaR90VI2?=
- =?us-ascii?Q?N+WxZlR9AYJV8ABRP6/xPWbj0sX3F6muFJnurm3dQkQbq/ZDz9foGlyyBSzo?=
- =?us-ascii?Q?VoVLlAVI4UqWr6wkmmjKmm1JROPlfXMXCypYPnMt+Xlb3PiwacxxHNJ2S48a?=
- =?us-ascii?Q?cmBJ/pWrIXFxE6pc+C0mw5kD8Lu9ebNhekXQVixV0+0Rz8jwEDiySamk5KvZ?=
- =?us-ascii?Q?xIw9CqNfMRY150WpqG+8htyqabS/oM/RlwBk6SINQlJqHBZ+04YVGg/oOX/+?=
- =?us-ascii?Q?eRPCZCCjPX4Mv8lRVU+PvebmGRhkkcym9psQSy4a6ykn5aq36Bk9eLTUi5IV?=
- =?us-ascii?Q?rMTTVqk2Il6TWSSMZhvJXQZF6Dcr1x1Mvp+4t5XCBwvm22sjQf9789V/0RKu?=
- =?us-ascii?Q?lXrhlnsvKm+RCLdbiOZk+ItFyAtCcjhFgH75V1x29a0eO/SKfmMy9M2E5PBL?=
- =?us-ascii?Q?tLSmB83iZs0+PNJM0EUocUzChvQeN0Sbmvw26C7WRbm5FiIdGrymkl9WN73+?=
- =?us-ascii?Q?6fzziGncEQ7uaCRnPdGzsJtADcR2uEV6ZkbomdJ13Z8TRazexezmID8Bu8Oa?=
- =?us-ascii?Q?gTZK1cywm6yjsPoVviTBPQs903na9BEADkmk2Jc1eQuePXvK0tHTl9VFoB1Q?=
- =?us-ascii?Q?uuHmMR8Kg/rMwgPEwV2j6L8Q5vitkJq2zPiUX+uW4u8522dfOoJBS8M4/ct2?=
- =?us-ascii?Q?oRFELIapc8CQF8u2krHBGkQJ4ISu4Rs0pe/e1sQxkBNdH1DzSXqTASbEElTb?=
- =?us-ascii?Q?nJAvck9NM7JTYAdv4B23NB1LQGvn+AyVrrkk3J1HOOPUNEMq0g=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PUZPR06MB5724.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(52116014)(1800799024)(38350700014);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IPUOIgEGjXYFx9bzpEDlRozdHRdhc4iekt72sX+tm7WKD3mhSgeyKHZEPm8b?=
- =?us-ascii?Q?uZxZhz4Qo9Ubc7nWmAmRmG+FR43/64iJwFuxBvNYRYAMUGMdXA5iHya4WlHW?=
- =?us-ascii?Q?TTfYr5HdJd8/wZ17gLj2ueCa/ij4hsLetlCe6ozM94BfwKUZQi9FoU+mz+aW?=
- =?us-ascii?Q?+o4TMzWa+mBCyqEBkKMHMki3PAYfn4ebsFVyM4kN6dm9u5KVkWKhbDsOsd5K?=
- =?us-ascii?Q?skFJL01Jd0xBmI9d9ykws7oKqoXVV58xyHfrp3dz7TvLOyRaEiBpXHHog0Fo?=
- =?us-ascii?Q?qHZSGl8uB5Ripbb4fu384yw3X8glrLQScc+OZoG5gQcRbOYKnuFkvOFAOTix?=
- =?us-ascii?Q?EOdinJmsXAcTatrJLp4ZQKfC3ciaHievA5UtjM3RcEevFovQfVDJW8Qpz9W1?=
- =?us-ascii?Q?CCab4w/JdwfTpoSXg7nddM1f2Y/UL4sNTXXibjmOORj83elBSfth/sl/riwa?=
- =?us-ascii?Q?ypC/wcpwTddPpy91X/FyEfDlnR3HyaIq27uNY/LSDZ0rpseSt2O+V55TgELN?=
- =?us-ascii?Q?TkPu4JzRtoqV8UJFJhGRXsiNkeHyhlOd7JOZwgF7c77MLI1AQliiiAVk+3jv?=
- =?us-ascii?Q?jukMIhKQ7QIkjJF0D7/Jf5vjJz6U8Rbr1e0IhniSKYyVRwGMzF1UlzBFEvsj?=
- =?us-ascii?Q?cIXvMANRUNIUzZAPv9dFWo2u8b6/cZp58dpo6pKOgVMFS3FveT83Q7Sb25VB?=
- =?us-ascii?Q?3XTVCw8n0cMzRVILp+RYjD4DMm90aH54PLtN9xy8B/koLGexLc6SW17T/CCc?=
- =?us-ascii?Q?2t9b37jsC7ukk/5ugs6sqDZF6PpCicJsxZFdQA93pZgLMd94lKFRZ8cqzDJn?=
- =?us-ascii?Q?9ukqg8vR9JJyz684JVaDK7RGjf2k2QAN3Sl9G1H6HDtps3/EhL0Hrx0/ub6t?=
- =?us-ascii?Q?Iv468p5BhsklFNfv+CWuFq6OlmfK4MYoMrGlc/B8PmqZWfmMnA0+00WSrMFE?=
- =?us-ascii?Q?E2+Q2rAEDHJRkJLwk18qeEAnezSN6znnSMfU76REF75yTPR0/aUJKILTSLYU?=
- =?us-ascii?Q?OOrZWdytZdpJenfP8/NiCxVPMPVbUNGsjY496t3i7z3ZdV9Z2vdft6weaCx4?=
- =?us-ascii?Q?G3QZaMMSnKaoq0Kx7JOrBdJvqbpMs1AT63VeJGCKHgzHMgyMcm9Zm4XPGl/Q?=
- =?us-ascii?Q?IFYGDqdofKso+GyPTLKZGy9y4jrTw14q+fdM9xKQBUAliAst/jzujHJP8E8g?=
- =?us-ascii?Q?/0LjdjYW6Ep0Agft5Hk5IDhv+FnRuFz5DpNCYnSDExoFXcGzs+P7dOoKKGsd?=
- =?us-ascii?Q?840rdpEsSiaEqj94f1KnHTa/2UJnH2kcliCKPzqUMiG429w+bKuSnYSGm6OC?=
- =?us-ascii?Q?A+Vw1W4aifWYjVsbRys9HaNnj1VJognFnOKIlnP9IEIcs6Nri9pne2DEuVtr?=
- =?us-ascii?Q?RV4n+MFocXPTQn13oy8tHPIU+DUhDE2jEgX1KVtqi4OmB9YqKIAxciCtI9zh?=
- =?us-ascii?Q?gedmkO3Fk5Ib0TobJlO5a7DllImDpeoBqOhHoclBL1JZSIK8AVo2WNdeAkQB?=
- =?us-ascii?Q?iBRAN48a+GzJBRav8KXFcYVKa6VBoUWRR6PJgYBz2Bscg9BMsOFqwsiD7iCU?=
- =?us-ascii?Q?QPPbmjEuVzJNoTPDzczcum+7emKyiEK9/Qnqiyjs?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5206b79f-c266-408d-aa00-08dcc31c60e9
-X-MS-Exchange-CrossTenant-AuthSource: PUZPR06MB5724.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2024 02:36:23.4506 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UGibiekkkGH5JRc6hJs+JH+n1oQdClL5LyeqonrxepCo4oDWILCwgZRK2MzJMydcoXMe3qTx7dT/Gw4GNV82Jw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5309
+References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
+ <20240807-macos-build-support-v1-1-4cd1ded85694@samsung.com>
+ <CAK7LNARmy=N+6O87BJGZbodssDw21sHgMf36TXdcxD4=5A_OBA@mail.gmail.com>
+In-Reply-To: <CAK7LNARmy=N+6O87BJGZbodssDw21sHgMf36TXdcxD4=5A_OBA@mail.gmail.com>
+From: "Daniel Gomez (Samsung)" <d+samsung@kruces.com>
+Date: Sat, 24 Aug 2024 00:14:11 +0200
+Message-ID: <CABj0suC1atc=iPX4uOL5FYkzYBRtZC1J3Lhruo7hejd-fe9Yuw@mail.gmail.com>
+Subject: Re: [PATCH 01/12] scripts: subarch.include: fix SUBARCH on MacOS hosts
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: da.gomez@samsung.com, Nathan Chancellor <nathan@kernel.org>, 
+ Nicolas Schier <nicolas@fjasle.eu>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, 
+ William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
+ Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
+ Paul Moore <paul@paul-moore.com>,
+ Stephen Smalley <stephen.smalley.work@gmail.com>, 
+ Ondrej Mosnacek <omosnace@redhat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Oliver Upton <oliver.upton@linux.dev>, 
+ James Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ linux-kernel@vger.kernel.org, 
+ linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, speakup@linux-speakup.org, 
+ selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ kvmarm@lists.linux.dev, linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
+ Finn Behrens <me@kloenk.dev>, gost.dev@samsung.com, 
+ Nick Desaulniers <nick.desaulniers@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 26 Aug 2024 12:53:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -147,26 +108,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-cocci report a double assignment warning. 'as_sdp->duration_incr_ms'
-was assigned twice in intel_dp_compute_as_sdp().
+On Fri, Aug 23, 2024 at 6:13=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.o=
+rg> wrote:
+>
+> On Wed, Aug 7, 2024 at 8:10=E2=80=AFAM Daniel Gomez via B4 Relay
+> <devnull+da.gomez.samsung.com@kernel.org> wrote:
+> >
+> > From: Nick Desaulniers <nick.desaulniers@gmail.com>
+> >
+> > When building the Linux kernel on an aarch64 MacOS based host, if we do=
+n't
+> > specify a value for ARCH when invoking make, we default to arm and thus
+> > multi_v7_defconfig rather than the expected arm64 and arm64's defconfig=
+.
+> >
+> > This is because subarch.include invokes `uname -m` which on MacOS hosts
+> > evaluates to `arm64` but on Linux hosts evaluates to `aarch64`,
+> >
+> > This allows us to build ARCH=3Darm64 natively on MacOS (as in ARCH need
+> > not be specified on an aarch64-based system).
+> >
+> > Utilize a negative lookahead regular expression to avoid matching arm64=
+.
+>
+>
+> Does sed support "negative lookahead regular expression"?
 
-Signed-off-by: Yuesong Li <liyuesong@vivo.com>
+I think they removed support for PCRE. I've found this:
+
+commit 261c7f145d015d9acb79dc650d27e4a23b839c23
+Author: Assaf Gordon <assafgordon@gmail.com>
+Date:   Tue Aug 21 14:25:57 2018 -0600
+
+    maint: remove REG_PERL code
+
+    Perl-regexp syntax (PCRE) in GNU Sed is shelved indefinitely.
+    See https://bugs.gnu.org/22801 , https://bugs.gnu.org/22647 .
+    Remove all (unused) REG_PERL related code.
+
+    * sed/sed.c, sed/sed.h, sed/regexp.c, sed/compile.c: Remove REG_PERL co=
+de.
+
+git tag --contains 261c7f145d015d9acb79dc650d27e4a23b839c23
+v4.6
+v4.7
+v4.8
+v4.9
+
+And my sed version is (Debian):
+
+sed --version
+sed (GNU sed) 4.9
+Packaged by Debian
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.ht=
+ml>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Jay Fenlason, Tom Lord, Ken Pizzini,
+Paolo Bonzini, Jim Meyering, and Assaf Gordon.
+
+This sed program was built with SELinux support.
+SELinux is disabled on this system.
+
+GNU sed home page: <https://www.gnu.org/software/sed/>.
+General help using GNU software: <https://www.gnu.org/gethelp/>.
+E-mail bug reports to: <bug-sed@gnu.org>.
+
+sed version (Homebrew):
+sed --version
+sed (GNU sed) 4.9
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.ht=
+ml>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Jay Fenlason, Tom Lord, Ken Pizzini,
+Paolo Bonzini, Jim Meyering, and Assaf Gordon.
+
+This sed program was built without SELinux support.
+
+GNU sed home page: <https://www.gnu.org/software/sed/>.
+General help using GNU software: <https://www.gnu.org/gethelp/>.
+E-mail bug reports to: <bug-sed@gnu.org>.
+
+>
+> >
+> > Add a separate expression to support for armv.* as per error reported b=
+y
+> > Nicolas Schier [1].
+> >
+> > [1] https://lore.kernel.org/all/Y3MRvtwdjIwMHvRo@bergen.fjasle.eu/#t
+> >
+> > Signed-off-by: Nick Desaulniers <nick.desaulniers@gmail.com>
+> > Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+> > ---
+> >  scripts/subarch.include | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/scripts/subarch.include b/scripts/subarch.include
+> > index 4bd327d0ae42..5d84ad8c0dee 100644
+> > --- a/scripts/subarch.include
+> > +++ b/scripts/subarch.include
+> > @@ -6,7 +6,8 @@
+> >
+> >  SUBARCH :=3D $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
+> >                                   -e s/sun4u/sparc64/ \
+> > -                                 -e s/arm.*/arm/ -e s/sa110/arm/ \
+> > +                                 -e s/armv.*/arm/ \
+> > +                                 -e s/arm\(?:\(?!64\).*\)/arm/ -e s/sa=
+110/arm/ \
+>
+>
+> s/arm\(?:\(?!64\).*\)/arm/
+>
+> In sed, this expression does not seem to match anything.
+
+You are correct. I've removed the expression and saw no difference.
+See below with my test case:
+>
+> (or please give me some matching examples if I miss something)
+
+cat Makefile
+MACHINE ?=3D "aarch64"
+SUBARCH0 :=3D $(shell echo $(MACHINE) | sed \
+                                  -e s/arm.*/arm/ \
+                                  -e s/aarch64.*/arm64/)
+
+SUBARCH1 :=3D $(shell echo $(MACHINE) | sed \
+                                  -e s/armv.*/arm/ \
+                                  -e s/aarch64.*/arm64/)
+
+SUBARCH2 :=3D $(shell echo $(MACHINE) | sed \
+                                  -e /^arm64$/!s/arm.*/arm/ \
+                                  -e s/aarch64.*/arm64/)
+
+test:
+        @echo "MACHINE=3D$(MACHINE)"
+        @echo "SUBARCH0=3D$(SUBARCH0)"
+        @echo "SUBARCH1=3D$(SUBARCH1)"
+        @echo "SUBARCH2=3D$(SUBARCH2)"
+        @echo "---"
+
+SUBARCH0 represents the current upstream expressions for arm/arm64.
+SUBARCH1 is my proposal in case we need to cover only armv* for 32-bit
+arm (I think that is incomplete?) and SUBARCH2 is Nicolas' proposal
+(which I can't make it work in the test Makefile).
+
+Running the above Makefile, I get:
+
+make test MACHINE=3Darmv4 && make test MACHINE=3Darm7 && make test
+MACHINE=3Darmhf && make test MACHINE=3Daarch64 && make test MACHINE=3Darm64
+MACHINE=3Darmv4
+SUBARCH0=3Darm
+SUBARCH1=3Darm
+SUBARCH2=3Darmv4
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 1 -
- 1 file changed, 1 deletion(-)
+MACHINE=3Darm7
+SUBARCH0=3Darm
+SUBARCH1=3Darm7
+SUBARCH2=3Darm7
+---
+MACHINE=3Darmhf
+SUBARCH0=3Darm
+SUBARCH1=3Darmhf
+SUBARCH2=3Darmhf
+---
+MACHINE=3Daarch64
+SUBARCH0=3Darm64
+SUBARCH1=3Darm64
+SUBARCH2=3Darm64
+---
+MACHINE=3Darm64
+SUBARCH0=3Darm
+SUBARCH1=3Darm64
+SUBARCH2=3Darm64
+---
+>
+>
+>
+>
+>
+> Nocolas already provided correct code:
+>
+> > [1] https://lore.kernel.org/all/Y3MRvtwdjIwMHvRo@bergen.fjasle.eu/#t
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6a0c7ae654f4..229c87be4402 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2730,7 +2730,6 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
- 	as_sdp->length = 0x9;
- 	as_sdp->duration_incr_ms = 0;
--	as_sdp->duration_incr_ms = 0;
- 
- 	if (crtc_state->cmrr.enable) {
- 		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
--- 
-2.34.1
+I think it is even more simple if we just make this change:
 
+-                                 -e s/arm.*/arm/ -e s/sa110/arm/ \
++                                 -e s/armv.*/arm/ \
+
+Does armv.* cover all arm32 machines? I see armhf, arm7, arm8 and
+armv*, is it correct?
+
+And thanks for checking!
+
+>
+>
+>
+>
+>
+>
+> >                                   -e s/s390x/s390/ \
+> >                                   -e s/ppc.*/powerpc/ -e s/mips.*/mips/=
+ \
+> >                                   -e s/sh[234].*/sh/ -e s/aarch64.*/arm=
+64/ \
+> >
+> > --
+> > Git-146)
+> >
+> >
+>
+>
+> --
+> Best Regards
+>
+>
+> Masahiro Yamada
