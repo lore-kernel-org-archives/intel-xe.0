@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDD92C52D7C
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Aug 2024 08:11:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EBD7C531DC
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Aug 2024 08:24:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEFD10E16B;
-	Fri, 23 Aug 2024 08:11:52 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5654D10E16B;
- Fri, 23 Aug 2024 08:11:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE9810EC4A;
+	Fri, 23 Aug 2024 08:24:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="akL0SSKQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2CC10EC49;
+ Fri, 23 Aug 2024 08:24:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724401487; x=1755937487;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7gEhOXTRHZaE+9aqx6sV7SuHwRI3hywFQ4vGtE9lh4I=;
+ b=akL0SSKQfhEfsdDw9pYy7csT46psDRnZjwRWLshkNjQFvX4rJF0hFwYP
+ /z613/CR0ZPZOlk2U0+NIK6nXkbFYxoMugAi3sr9RTyQX5vaal41incyN
+ gFxIuA9sCpnKShySJMv8ostRZQx42TUvUUZFmkEZsxSPD1Lo6xZiMhC4X
+ WGLrJa3O3y+cvdcJvN9YyR+gkEhi0HsIeIgDQU+BrRzmeD/NZ6tSQMg/p
+ yqdlOprzXgVw6Ufbzc9oCbLoV5PBMpxikez63clseb9YvENwa1za6LI90
+ kMtIHiPpJS9Lb6KtMGiDfmY6/MvnZoEurOU3tKuXwK/AV3pCEu0gD3VqW g==;
+X-CSE-ConnectionGUID: y6PSEGSuTT2gQ1GBqGQnOg==
+X-CSE-MsgGUID: AKgmc7LIScKiBsAnOWsGcA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="33521807"
+X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="33521807"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 01:24:46 -0700
+X-CSE-ConnectionGUID: ockf3KIFQXGmYDq18RPupw==
+X-CSE-MsgGUID: 9i6pdE+rT+q3tvF0dEwHvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="92522146"
+Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.223])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 01:24:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Yuesong Li <liyuesong@vivo.com>, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ opensource.kernel@vivo.com, Yuesong Li <liyuesong@vivo.com>
+Subject: Re: [PATCH v1] drm/i915/dp: Remove double assignment in
+ intel_dp_compute_as_sdp()
+In-Reply-To: <20240823023612.3027849-1-liyuesong@vivo.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240823023612.3027849-1-liyuesong@vivo.com>
+Date: Fri, 23 Aug 2024 11:24:36 +0300
+Message-ID: <87seuv3auz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Replace_double?=
- =?utf-8?q?_space_with_single_space_after_comma?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 Aug 2024 08:11:51 -0000
-Message-ID: <172440071134.745445.9249177262577647588@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240823080643.2461992-1-nitin.r.gote@intel.com>
-In-Reply-To: <20240823080643.2461992-1-nitin.r.gote@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +69,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 23 Aug 2024, Yuesong Li <liyuesong@vivo.com> wrote:
+> cocci report a double assignment warning. 'as_sdp->duration_incr_ms'
+> was assigned twice in intel_dp_compute_as_sdp().
+>
+> Signed-off-by: Yuesong Li <liyuesong@vivo.com>
 
-Series: drm/xe: Replace double space with single space after comma
-URL   : https://patchwork.freedesktop.org/series/137692/
-State : success
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6a0c7ae654f4..229c87be4402 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2730,7 +2730,6 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+>  	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
+>  	as_sdp->length = 0x9;
+>  	as_sdp->duration_incr_ms = 0;
+> -	as_sdp->duration_incr_ms = 0;
+>  
+>  	if (crtc_state->cmrr.enable) {
+>  		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 7365d672ab38ee0eabb65fcd359e5774a8efbd70
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Jani Nikula, Intel
