@@ -4,85 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE194C531DC
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Aug 2024 16:13:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10F44C52D7C
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Aug 2024 16:17:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8486110EC68;
-	Fri, 23 Aug 2024 16:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1A7B10EC6B;
+	Fri, 23 Aug 2024 16:17:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RzINPVnd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VsfsAtse";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7592710EC68;
- Fri, 23 Aug 2024 16:13:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 4A747CE11B4;
- Fri, 23 Aug 2024 16:13:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6431C4AF09;
- Fri, 23 Aug 2024 16:13:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1724429585;
- bh=302mPfppIzV0eIiBLegANXAiB+NF/JryI6zwyAqPKeI=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=RzINPVndTTUj+asMFEppBFy7pDGuOAnrE9Jgv1eJMn89tbZDJCo57vRvvspyzGZ4D
- O6AL7rD/VLe4o74RnAr/YPOEvEiZJJmLTpv05MXRVMJxQO6uSAtQ9JMGmGOtdzXt7a
- bsg2Y4AoC6AqlAUKsnnuoy/uk3jd32wsj/Ly5iz9yHGyMLPcAUM8lBFId933gRYig1
- odf5AUxyq+UkFaazEie02329cmjxL0NGk1zM8uPK0DaUuDgB0KGScugLmwNRF9YGNp
- rvjh0/hUFtofDyBR6WAwzm65juIYwLwy3mY91mydJlL50rH18GGLPlYjwqP0QvP8Qk
- 6z6GSw+jk338A==
-Received: by mail-lj1-f169.google.com with SMTP id
- 38308e7fff4ca-2f3edb2d908so22009881fa.2; 
- Fri, 23 Aug 2024 09:13:05 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUVuoW2dn/ab59oPinIKGvtRGRm7onQgOwgaSl8ksSeraVRmvH+FWlyKRMe2XXO63aq+rjs2E/UKrg=@lists.freedesktop.org,
- AJvYcCW+qsDaMVKV28Ipf0+uPW1FcK40pRJ5MQKniwRBsd5jmio0uZf5s2iyFPcW5Qmgu75aZvWuoR1eFmM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwVwhcwswcLWKvkDJILOhjDcsAMpZ9nOmYd3V2YestoVqbZUDzI
- MgHZ9AeXQ3gKCfeY4j7VntF2FqWE27MhoAEL6rOiOO/7jW3KSGKOXbSBlF2KIDk9e/FabK99IpQ
- g+VFdVYhQlviRAaHxedFqw2atBpM=
-X-Google-Smtp-Source: AGHT+IGLQePVn5RhKmrGdV43WiO6IyDdZ4P8M+JxvZmPPDeIiajBOGYYWmzAWjRdCByIm/YmPmOehjlJ0SdmJRob6wc=
-X-Received: by 2002:a05:651c:1505:b0:2ef:2dfd:15dc with SMTP id
- 38308e7fff4ca-2f4f48ef636mr23768021fa.9.1724429584330; Fri, 23 Aug 2024
- 09:13:04 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D80BD10EC6B
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Aug 2024 16:17:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724429854; x=1755965854;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=2GcAat9DKsMtLXZgo43LJXuDfz35giXhufMdbfFWqCU=;
+ b=VsfsAtseEXCoZxDtujUht75goxt0vu7QGcjZygsHhLnGusd6rAQczGOq
+ OOGA+jWFmIShYGUjvgeusdWeA8HRQ9loVDtFaRjKpUIe2EfDpsHTFk3yS
+ Wov6/IRM9T4ms5OURNIIfDVcbQvj0eWzhTDPlrdElaaBANmavesQnOHJV
+ 7RmlKPAsoGsCr+kyoyLM86x5XuRYSVfdWT86JmQb0UG27gOReN1SWmX+W
+ oLKEAGc7CEptDhI9QkmVTdcX4RAnauJ/k0H3H13/BVJqbhRUOTyXNBNtn
+ 3uAI30MQu+JwrJeASJhVf7i0wbohFoSny5rHIKs81ytFyWFNT/SzrRt+E g==;
+X-CSE-ConnectionGUID: 8yLAda7oTza/BJYkqwIcZA==
+X-CSE-MsgGUID: ST+dpLCLRNKnX3weZvRcmQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="45423527"
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="45423527"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 09:17:34 -0700
+X-CSE-ConnectionGUID: 0B0zhy0vRBOuBv2vjPOKMg==
+X-CSE-MsgGUID: HfWp2zKaQA2RVueA1wbpZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="61542972"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.40])
+ ([10.245.245.40])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 09:17:32 -0700
+Message-ID: <bb19bedd-a304-4114-8d0b-282b3837551f@intel.com>
+Date: Fri, 23 Aug 2024 17:17:30 +0100
 MIME-Version: 1.0
-References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <20240807-macos-build-support-v1-1-4cd1ded85694@samsung.com>
-In-Reply-To: <20240807-macos-build-support-v1-1-4cd1ded85694@samsung.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Sat, 24 Aug 2024 01:12:26 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARmy=N+6O87BJGZbodssDw21sHgMf36TXdcxD4=5A_OBA@mail.gmail.com>
-Message-ID: <CAK7LNARmy=N+6O87BJGZbodssDw21sHgMf36TXdcxD4=5A_OBA@mail.gmail.com>
-Subject: Re: [PATCH 01/12] scripts: subarch.include: fix SUBARCH on MacOS hosts
-To: da.gomez@samsung.com
-Cc: Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Paul Moore <paul@paul-moore.com>,
- Stephen Smalley <stephen.smalley.work@gmail.com>, 
- Ondrej Mosnacek <omosnace@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Oliver Upton <oliver.upton@linux.dev>, 
- James Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- linux-kernel@vger.kernel.org, 
- linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, speakup@linux-speakup.org, 
- selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- kvmarm@lists.linux.dev, linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
- Finn Behrens <me@kloenk.dev>, "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- gost.dev@samsung.com, Nick Desaulniers <nick.desaulniers@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Use separate rpm lockdep map for
+ non-d3cold-capable devices
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20240823135906.78899-1-thomas.hellstrom@linux.intel.com>
+ <Zsif_XiAGPRvAIHa@intel.com>
+ <4c75e56030c904cebea2c74544024e308f65bd68.camel@linux.intel.com>
+ <ed1f0a1ffb6f199e61c509f4c98fec97983a084b.camel@linux.intel.com>
+ <cc26ce82-88cf-4a99-9136-5bc5e43313c9@intel.com>
+ <68042b5a15b056301fc0c7062796eb732780039d.camel@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <68042b5a15b056301fc0c7062796eb732780039d.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,85 +76,244 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 7, 2024 at 8:10=E2=80=AFAM Daniel Gomez via B4 Relay
-<devnull+da.gomez.samsung.com@kernel.org> wrote:
->
-> From: Nick Desaulniers <nick.desaulniers@gmail.com>
->
-> When building the Linux kernel on an aarch64 MacOS based host, if we don'=
-t
-> specify a value for ARCH when invoking make, we default to arm and thus
-> multi_v7_defconfig rather than the expected arm64 and arm64's defconfig.
->
-> This is because subarch.include invokes `uname -m` which on MacOS hosts
-> evaluates to `arm64` but on Linux hosts evaluates to `aarch64`,
->
-> This allows us to build ARCH=3Darm64 natively on MacOS (as in ARCH need
-> not be specified on an aarch64-based system).
->
-> Utilize a negative lookahead regular expression to avoid matching arm64.
+On 23/08/2024 16:54, Thomas Hellström wrote:
+> On Fri, 2024-08-23 at 16:40 +0100, Matthew Auld wrote:
+>> On 23/08/2024 16:20, Thomas Hellström wrote:
+>>> On Fri, 2024-08-23 at 17:15 +0200, Thomas Hellström wrote:
+>>>> Hi, Rodrigo.
+>>>>
+>>>> On Fri, 2024-08-23 at 10:43 -0400, Rodrigo Vivi wrote:
+>>>>> On Fri, Aug 23, 2024 at 03:59:06PM +0200, Thomas Hellström
+>>>>> wrote:
+>>>>>
+>>>>> Hi Thomas, first of all, please notice that you used the wrong
+>>>>> address from our mailing list ;)
+>>>>
+>>>> You're right. Well it's friday afternoon here...
+>>>>
+>>>>>
+>>>>> but a few more comments below...
+>>>>>
+>>>>>> For non-d3cold-capable devices we'd like to be able to wake
+>>>>>> up
+>>>>>> the
+>>>>>> device from reclaim. In particular, for Lunar Lake we'd like
+>>>>>> to
+>>>>>> be
+>>>>>> able to blit CCS metadata to system at shrink time; at least
+>>>>>> from
+>>>>>> kswapd where it's reasonable OK to wait for rpm resume and a
+>>>>>> preceding rpm suspend.
+>>>>>>
+>>>>>> Therefore use a separate lockdep map for such devices and
+>>>>>> prime
+>>>>>> it
+>>>>>> reclaim-tainted.
+>>>>>
+>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>>>
+>>>>>>
+>>>>>> Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+>>>>>> Signed-off-by: Thomas Hellström
+>>>>>> <thomas.hellstrom@linux.intel.com>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/xe/xe_pm.c | 45
+>>>>>> +++++++++++++++++++++++++++++++-
+>>>>>> --
+>>>>>> ----
+>>>>>>    1 file changed, 37 insertions(+), 8 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_pm.c
+>>>>>> b/drivers/gpu/drm/xe/xe_pm.c
+>>>>>> index 9f3c14fd9f33..2e9fdb5da8bb 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_pm.c
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_pm.c
+>>>>>> @@ -70,11 +70,29 @@
+>>>>>>     */
+>>>>>>    
+>>>>>>    #ifdef CONFIG_LOCKDEP
+>>>>>> -static struct lockdep_map xe_pm_runtime_lockdep_map = {
+>>>>>> -	.name = "xe_pm_runtime_lockdep_map"
+>>>>>> +static struct lockdep_map xe_pm_runtime_d3cold_map = {
+>>>>>> +	.name = "xe_rpm_d3cold_map"
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct lockdep_map xe_pm_runtime_nod3cold_map = {
+>>>>>> +	.name = "xe_rpm_nod3cold_map"
+>>>>>>    };
+>>>>>>    #endif
+>>>>>>    
+>>>>>> +static void xe_pm_runtime_acquire(const struct xe_device
+>>>>>> *xe)
+>>>>>
+>>>>> I believe this should have a different name.
+>>>>> runtime_acquire and runtime_release sounds like runtime_get and
+>>>>> runtime_put...
+>>>>>
+>>>>> since it is static perhaps we should only call it
+>>>>> xe_rpm_lockmap_acquire
+>>>>> and xe_rpm_lockmap_release
+>>>>
+>>>> Sure, I'll fix
+>>>>
+>>>>>
+>>>>> or
+>>>>> d3_lockmap_acquire
+>>>>> d3_lockmap_release ?
+>>>>>
+>>>>> or something like that...
+>>>>>
+>>>>>> +{
+>>>>>> +	lock_map_acquire(xe->d3cold.capable ?
+>>>>>> +			 &xe_pm_runtime_d3cold_map :
+>>>>>> +			 &xe_pm_runtime_nod3cold_map);
+>>>>>> +}
+>>>>>> +
+>>>>>> +static void xe_pm_runtime_release(const struct xe_device
+>>>>>> *xe)
+>>>>>> +{
+>>>>>> +	lock_map_release(xe->d3cold.capable ?
+>>>>>> +			 &xe_pm_runtime_d3cold_map :
+>>>>>> +			 &xe_pm_runtime_nod3cold_map);
+>>>>>> +}
+>>>>>> +
+>>>>>>    /**
+>>>>>>     * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 /
+>>>>>> S0-
+>>>>>>> S2idle
+>>>>>>     * @xe: xe device instance
+>>>>>> @@ -354,7 +372,7 @@ int xe_pm_runtime_suspend(struct
+>>>>>> xe_device
+>>>>>> *xe)
+>>>>>>    	 * annotation here and in xe_pm_runtime_get()
+>>>>>> lockdep
+>>>>>> will
+>>>>>> see
+>>>>>>    	 * the potential lock inversion and give us a nice
+>>>>>> splat.
+>>>>>>    	 */
+>>>>>> -	lock_map_acquire(&xe_pm_runtime_lockdep_map);
+>>>>>> +	xe_pm_runtime_acquire(xe);
+>>>>>>    
+>>>>>>    	/*
+>>>>>>    	 * Applying lock for entire list op as
+>>>>>> xe_ttm_bo_destroy
+>>>>>> and xe_bo_move_notify
+>>>>>> @@ -386,7 +404,7 @@ int xe_pm_runtime_suspend(struct
+>>>>>> xe_device
+>>>>>> *xe)
+>>>>>>    out:
+>>>>>>    	if (err)
+>>>>>>    		xe_display_pm_resume(xe, true);
+>>>>>> -	lock_map_release(&xe_pm_runtime_lockdep_map);
+>>>>>> +	xe_pm_runtime_release(xe);
+>>>>>>    	xe_pm_write_callback_task(xe, NULL);
+>>>>>>    	return err;
+>>>>>>    }
+>>>>>> @@ -407,7 +425,7 @@ int xe_pm_runtime_resume(struct xe_device
+>>>>>> *xe)
+>>>>>>    	/* Disable access_ongoing asserts and prevent
+>>>>>> recursive
+>>>>>> pm
+>>>>>> calls */
+>>>>>>    	xe_pm_write_callback_task(xe, current);
+>>>>>>    
+>>>>>> -	lock_map_acquire(&xe_pm_runtime_lockdep_map);
+>>>>>> +	xe_pm_runtime_acquire(xe);
+>>>>>>    
+>>>>>>    	if (xe->d3cold.allowed) {
+>>>>>>    		err = xe_pcode_ready(xe, true);
+>>>>>> @@ -437,7 +455,7 @@ int xe_pm_runtime_resume(struct xe_device
+>>>>>> *xe)
+>>>>>>    			goto out;
+>>>>>>    	}
+>>>>>>    out:
+>>>>>> -	lock_map_release(&xe_pm_runtime_lockdep_map);
+>>>>>> +	xe_pm_runtime_release(xe);
+>>>>>>    	xe_pm_write_callback_task(xe, NULL);
+>>>>>>    	return err;
+>>>>>>    }
+>>>>>> @@ -458,8 +476,19 @@ int xe_pm_runtime_resume(struct
+>>>>>> xe_device
+>>>>>> *xe)
+>>>>>>     */
+>>>>>>    static void pm_runtime_lockdep_prime(void)
+>>>>>>    {
+>>>>>> -	lock_map_acquire(&xe_pm_runtime_lockdep_map);
+>>>>>> -	lock_map_release(&xe_pm_runtime_lockdep_map);
+>>>>>> +	struct dma_resv lockdep_resv;
+>>>>>> +
+>>>>>> +	dma_resv_init(&lockdep_resv);
+>>>>>> +	lock_map_acquire(&xe_pm_runtime_d3cold_map);
+>>>>>> +	/* D3Cold takes the dma_resv locks to evict bos */
+>>>>>> +	dma_resv_lock(&lockdep_resv, NULL);
+>>>>>> +	fs_reclaim_acquire(GFP_KERNEL);
+>>>>>> +	/* Shrinkers like to wake up the device under
+>>>>>> reclaim.
+>>>>>> */
+>>>>>> +	lock_map_acquire(&xe_pm_runtime_nod3cold_map);
+>>>>>> +	lock_map_release(&xe_pm_runtime_nod3cold_map);
+>>>>>> +	fs_reclaim_release(GFP_KERNEL);
+>>>>>> +	dma_resv_unlock(&lockdep_resv);
+>>>>>> +	lock_map_release(&xe_pm_runtime_d3cold_map);
+>>>>>
+>>>>> do we really need this entire sequence? or checking for
+>>>>> d3capable
+>>>>> here could have 2 different smaller sequences?
+>>>>
+>>>> Hm. I forgot to check when this function was called. I was
+>>>> assuming
+>>>> it
+>>>> was called only once per driver instance and in that case we need
+>>>> it
+>>>> all since we can have multiple devices with different
+>>>> capabilities,
+>>>> but
+>>>> it seems to be called on each runtime_get(). Is that intentional?
+>>>
+>>> Otherwise I'd like to change that to be called at module init?
+>>
+>> hmm, don't we want to record the locks that are held when calling
+>> into
+>> the sync rpm get? We then make sure those locks are never grabbed in
+>> either of the callbacks. At least that was the original intention.
+> 
+> Ah, yes, so it's more of a might_lock() type of function rather than
+> priming? I should have noticed since it really didn't explicitly order
+> any locks....
+> 
+> Would it be ok then If I added a new module_init prime function that
+> looks like the prime function in the patch, and rename the existing
+> prime to something like
+> 
+> xe_might_enter_rpm_callback()?
 
+Sure, that sounds better than prime.
 
-Does sed support "negative lookahead regular expression"?
-
->
-> Add a separate expression to support for armv.* as per error reported by
-> Nicolas Schier [1].
->
-> [1] https://lore.kernel.org/all/Y3MRvtwdjIwMHvRo@bergen.fjasle.eu/#t
->
-> Signed-off-by: Nick Desaulniers <nick.desaulniers@gmail.com>
-> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-> ---
->  scripts/subarch.include | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/scripts/subarch.include b/scripts/subarch.include
-> index 4bd327d0ae42..5d84ad8c0dee 100644
-> --- a/scripts/subarch.include
-> +++ b/scripts/subarch.include
-> @@ -6,7 +6,8 @@
->
->  SUBARCH :=3D $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
->                                   -e s/sun4u/sparc64/ \
-> -                                 -e s/arm.*/arm/ -e s/sa110/arm/ \
-> +                                 -e s/armv.*/arm/ \
-> +                                 -e s/arm\(?:\(?!64\).*\)/arm/ -e s/sa11=
-0/arm/ \
-
-
-s/arm\(?:\(?!64\).*\)/arm/
-
-In sed, this expression does not seem to match anything.
-
-(or please give me some matching examples if I miss something)
-
-
-
-
-
-Nocolas already provided correct code:
-
-> [1] https://lore.kernel.org/all/Y3MRvtwdjIwMHvRo@bergen.fjasle.eu/#t
-
-
-
-
-
-
->                                   -e s/s390x/s390/ \
->                                   -e s/ppc.*/powerpc/ -e s/mips.*/mips/ \
->                                   -e s/sh[234].*/sh/ -e s/aarch64.*/arm64=
-/ \
->
-> --
-> Git-146)
->
->
-
-
---
-Best Regards
-
-
-Masahiro Yamada
+> 
+> /Thomas
+> 
+> 
+> 
+> 
+> 
+>>
+>>>
+>>> /Thomas
+>>>
+>>>
+>>>
+>>>>
+>>>> /Thomas
+>>>>
+>>>>
+>>>>>
+>>>>>>    }
+>>>>>>    
+>>>>>>    /**
+>>>>>> -- 
+>>>>>> 2.44.0
+>>>>>>
+>>>>
+>>>
+> 
