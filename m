@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6439C52D7C
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Aug 2024 09:39:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD09C5472C
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Aug 2024 09:55:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B49610E098;
-	Fri, 23 Aug 2024 09:39:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 711D010E45B;
+	Fri, 23 Aug 2024 09:55:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ps6sKyrQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z1+kFxuK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3726110E077
- for <intel-xe@lists.freedesktop.org>; Fri, 23 Aug 2024 09:39:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 276D910E35B;
+ Fri, 23 Aug 2024 09:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724405943; x=1755941943;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=j52iUbIe5Fk9TJfMoXeJSrGwKTJVmvQ8Wk5UhNcR6qE=;
- b=Ps6sKyrQx5msL5mAo08Ofe7ra3C/0ceUDVD83aIisoyvhxmuome8VrE8
- Dhg/QFfrn06nqWh+SS58dXCF/L69EkxCxQFwUzFT1gS/52NG4wrQCXRGa
- gkvY7O+2v68scBax9KYiXCBkgIPmlNOBACoF1TNn7WSFBnw87jWPIiYeF
- SlZ9CIKtfOylxqUAVXXGTSfwPcYib/Q2GgF+ASnykB8drt7RDJF9XA0sy
- zVySFg0ZMaFMNkiOeRQOThYB0CKKdQ4THLIwehxkBsOZjTiAV66yQBy5O
- 90YDBmuQnAYPrGd7H9cnoJLQp41O5FZ8v664k2Xdfr5Lx0Lt1B9oQO3Lu g==;
-X-CSE-ConnectionGUID: qLLtM0mmTbeAUGBVzBhP0w==
-X-CSE-MsgGUID: 3QNbjjtdTPOOpf8Cf3u1jg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22675700"
-X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="22675700"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 02:39:03 -0700
-X-CSE-ConnectionGUID: WnqisI5CTQObeDYabm/SQQ==
-X-CSE-MsgGUID: cetlAJGzThSEHhiawDCoCg==
+ t=1724406916; x=1755942916;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Cl7YjbcxIzNVDWbi/qEvJ+hTovTwb/+D9pcPj2GK56A=;
+ b=Z1+kFxuKtmv0KAcn33wbHMq90vEEhlXavi7tZbZyDPKBiliNvJUq5wAD
+ DfG0j3j55dOkTv2iWaFG9pfFcubybJylKMuPZJmAQKhkZnNhzPLvxnRHr
+ MYw1UTLrtja16I2K1nf53ohGJKz7fYEKLpBDCM5J/uX8tYumOvmyZddCX
+ WysYRVol+Jfxa0imG3Qre2tkWLaRpMEm0U9XLvz5YKwfKZkIervAykFGU
+ 53rTpwpIgQ78lzcJAKJWaZTRz3cEum8k6tJQkzaNMT+3CpEjMnHFd0gpa
+ D/ybJDrZu7Q1Qhna1Ed39u+e2pMb1o19Rax1ylkXzVrTCohBS/oYPba4L A==;
+X-CSE-ConnectionGUID: oE+cWrbsSYaWN8ZxSl6Alg==
+X-CSE-MsgGUID: rGxPXYgWT82xw2HS8uZXcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22388572"
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="22388572"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 02:55:16 -0700
+X-CSE-ConnectionGUID: rRBpjhBrR0mlRtrDOG6M9g==
+X-CSE-MsgGUID: Y+k3G+8rQzyPpUz0BEy+Rg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="62470812"
-Received: from anmitta2-mobl4.gar.corp.intel.com (HELO [10.245.244.246])
- ([10.245.244.246])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 02:39:01 -0700
-Message-ID: <7645111403a453311b16ff2b11d49cb63a74518f.camel@linux.intel.com>
-Subject: Re: [RFC PATCH] drm/xe/lnl: Implement clear-on-free for pooled BOs
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-Date: Fri, 23 Aug 2024 11:38:58 +0200
-In-Reply-To: <20240822124244.10554-1-nirmoy.das@intel.com>
-References: <20240822124244.10554-1-nirmoy.das@intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="92541366"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.183])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 02:55:11 -0700
+Date: Fri, 23 Aug 2024 12:55:09 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <ZshcfSqgfnl8Mh4P@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,300 +75,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Nirmoy,
+Hi Dave & Sima,
 
-On Thu, 2024-08-22 at 14:42 +0200, Nirmoy Das wrote:
-> Implement GPU clear-on-free for pooled system pages in Xe.
->=20
-> Ensure proper use of TTM_TT_FLAG_CLEARED_ON_FREE by leveraging
-> ttm_device_funcs.release_notify() for GPU clear-on-free. If GPU clear
-> fails, xe_ttm_tt_unpopulate() will fallback to CPU clear.
->=20
-> Clear-on-free is only relevant for pooled pages as driver needs to
-> give
-> back those pages. So do clear-on-free only for such BOs and keep
-> doing
-> clear-on-alloc for ttm_cached type BOs
->=20
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Mostly fixes in this drm-intel-gt-next PR at this time.
 
-While this would probably work, I don't immediately see the benefit
-over CPU clearing, since we have no way of combining this with the CCS
-clear, right? So the clearing latency will most probably be increased,
-but the bo releasing thread won't see that because the waiting for
-clear is offloaded to the TTM delayed destroy mechanism.
+One thing to pay attention is the limitation of number of relocations to
+INT_MAX which might impact synthetic tests, but no real workloads.
 
-Also, once we've dropped the gem refcount to zero, the gem members of
-the object, including bo_move, are strictly not valid anymore and
-shouldn't be used.
+Regards, Joonas
 
-If we want to try to improve freeing latency by offloading the clearing
-on free to a separate CPU thread, though, maybe we could discuss with
-Christian to always (or if a flag in the ttm device requests it) take
-the TTM delayed destruction path for bos with pooled pages, rather than
-to free them sync, something along the lines of:
+***
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
-b/drivers/gpu/drm/ttm/ttm_bo.c
-index 320592435252..fca69ec1740d 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -271,7 +271,7 @@ static void ttm_bo_release(struct kref *kref)
-=20
-                if (!dma_resv_test_signaled(bo->base.resv,
-                                            DMA_RESV_USAGE_BOOKKEEP) ||
--                   (want_init_on_free() && (bo->ttm !=3D NULL)) ||
-+                   (bo->ttm && (want_init_on_free() || bo->ttm-
->caching !=3D ttm_cached)) ||
-                    bo->type =3D=3D ttm_bo_type_sg ||
-                    !dma_resv_trylock(bo->base.resv)) {
-                        /* The BO is not idle, resurrect it for delayed
-destroy */
+drm-intel-gt-next-2024-08-23:
 
-Would ofc require some substantial proven latency gain, though. Overall
-system cpu usage would probably not improve.=20
+UAPI Changes:
 
-/Thomas
+- drm/i915: 2 GiB of relocations ought to be enough for anybody*
 
+  Limit the number of relocations to INT_MAX.
 
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 101 +++++++++++++++++++++++++++++++++-=
--
-> --
-> =C2=A01 file changed, 91 insertions(+), 10 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 6ed0e1955215..e7bc74f8ae82 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -283,6 +283,8 @@ struct xe_ttm_tt {
-> =C2=A0	struct device *dev;
-> =C2=A0	struct sg_table sgt;
-> =C2=A0	struct sg_table *sg;
-> +	bool sys_clear_on_free;
-> +	bool sys_clear_on_alloc;
-> =C2=A0};
-> =C2=A0
-> =C2=A0static int xe_tt_map_sg(struct ttm_tt *tt)
-> @@ -401,8 +403,23 @@ static struct ttm_tt *xe_ttm_tt_create(struct
-> ttm_buffer_object *ttm_bo,
-> =C2=A0	 * flag. Zeroed pages are only required for
-> ttm_bo_type_device so
-> =C2=A0	 * unwanted data is not leaked to userspace.
-> =C2=A0	 */
-> -	if (ttm_bo->type =3D=3D ttm_bo_type_device && xe-
-> >mem.gpu_page_clear_sys)
-> -		page_flags |=3D TTM_TT_FLAG_CLEARED_ON_FREE;
-> +	if (ttm_bo->type =3D=3D ttm_bo_type_device && xe-
-> >mem.gpu_page_clear_sys) {
-> +		/*
-> +		 * Non-pooled BOs are always clear on alloc when
-> possible.
-> +		 * clear-on-free is not needed as there is no pool
-> to give pages back.
-> +		 */
-> +		if (caching =3D=3D ttm_cached) {
-> +			tt->sys_clear_on_alloc =3D true;
-> +			tt->sys_clear_on_free =3D false;
-> +		} else {
-> +		/*
-> +		 * For pooled BO, clear-on-alloc is done by the CPU
-> for now and
-> +		 * GPU will do clear on free when releasing the BO.
-> +		 */
-> +			tt->sys_clear_on_alloc =3D false;
-> +			tt->sys_clear_on_free =3D true;
-> +		}
-> +	}
-> =C2=A0
-> =C2=A0	err =3D ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching,
-> extra_pages);
-> =C2=A0	if (err) {
-> @@ -416,8 +433,10 @@ static struct ttm_tt *xe_ttm_tt_create(struct
-> ttm_buffer_object *ttm_bo,
-> =C2=A0static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct
-> ttm_tt *tt,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx)
-> =C2=A0{
-> +	struct xe_ttm_tt *xe_tt;
-> =C2=A0	int err;
-> =C2=A0
-> +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
-> =C2=A0	/*
-> =C2=A0	 * dma-bufs are not populated with pages, and the dma-
-> =C2=A0	 * addresses are set up when moved to XE_PL_TT.
-> @@ -426,7 +445,7 @@ static int xe_ttm_tt_populate(struct ttm_device
-> *ttm_dev, struct ttm_tt *tt,
-> =C2=A0		return 0;
-> =C2=A0
-> =C2=A0	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear
-> system pages */
-> -	if (tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE)
-> +	if (xe_tt->sys_clear_on_alloc)
-> =C2=A0		tt->page_flags &=3D ~TTM_TT_FLAG_ZERO_ALLOC;
-> =C2=A0
-> =C2=A0	err =3D ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
-> @@ -438,11 +457,19 @@ static int xe_ttm_tt_populate(struct ttm_device
-> *ttm_dev, struct ttm_tt *tt,
-> =C2=A0
-> =C2=A0static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct
-> ttm_tt *tt)
-> =C2=A0{
-> +	struct xe_ttm_tt *xe_tt;
-> +
-> +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
-> +
-> =C2=A0	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
-> =C2=A0		return;
-> =C2=A0
-> =C2=A0	xe_tt_unmap_sg(tt);
-> =C2=A0
-> +	/* Hint TTM pool that pages are already cleared */
-> +	if (xe_tt->sys_clear_on_free)
-> +		tt->page_flags |=3D TTM_TT_FLAG_CLEARED_ON_FREE;
-> +
-> =C2=A0	return ttm_pool_free(&ttm_dev->pool, tt);
-> =C2=A0}
-> =C2=A0
-> @@ -664,6 +691,7 @@ static int xe_bo_move(struct ttm_buffer_object
-> *ttm_bo, bool evict,
-> =C2=A0	struct ttm_resource *old_mem =3D ttm_bo->resource;
-> =C2=A0	u32 old_mem_type =3D old_mem ? old_mem->mem_type :
-> XE_PL_SYSTEM;
-> =C2=A0	struct ttm_tt *ttm =3D ttm_bo->ttm;
-> +	struct xe_ttm_tt *xe_tt;
-> =C2=A0	struct xe_migrate *migrate =3D NULL;
-> =C2=A0	struct dma_fence *fence;
-> =C2=A0	bool move_lacks_source;
-> @@ -674,12 +702,13 @@ static int xe_bo_move(struct ttm_buffer_object
-> *ttm_bo, bool evict,
-> =C2=A0	bool clear_system_pages;
-> =C2=A0	int ret =3D 0;
-> =C2=A0
-> +	xe_tt =3D container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
-> =C2=A0	/*
-> =C2=A0	 * Clear TTM_TT_FLAG_CLEARED_ON_FREE on bo creation path
-> when
-> =C2=A0	 * moving to system as the bo doesn't have dma_mapping.
-> =C2=A0	 */
-> =C2=A0	if (!old_mem && ttm && !ttm_tt_is_populated(ttm))
-> -		ttm->page_flags &=3D ~TTM_TT_FLAG_CLEARED_ON_FREE;
-> +		xe_tt->sys_clear_on_alloc =3D false;
-> =C2=A0
-> =C2=A0	/* Bo creation path, moving to system or TT. */
-> =C2=A0	if ((!old_mem && ttm) && !handle_system_ccs) {
-> @@ -703,10 +732,9 @@ static int xe_bo_move(struct ttm_buffer_object
-> *ttm_bo, bool evict,
-> =C2=A0	move_lacks_source =3D handle_system_ccs ? (!bo->ccs_cleared)=C2=A0
-> :
-> =C2=A0						(!mem_type_is_vram(o
-> ld_mem_type) && !tt_has_data);
-> =C2=A0
-> -	clear_system_pages =3D ttm && (ttm->page_flags &
-> TTM_TT_FLAG_CLEARED_ON_FREE);
-> +	clear_system_pages =3D ttm && xe_tt->sys_clear_on_alloc;
-> =C2=A0	needs_clear =3D (ttm && ttm->page_flags &
-> TTM_TT_FLAG_ZERO_ALLOC) ||
-> -		(!ttm && ttm_bo->type =3D=3D ttm_bo_type_device) ||
-> -		clear_system_pages;
-> +		(!ttm && ttm_bo->type =3D=3D ttm_bo_type_device) ||
-> clear_system_pages;
-> =C2=A0
-> =C2=A0	if (new_mem->mem_type =3D=3D XE_PL_TT) {
-> =C2=A0		ret =3D xe_tt_map_sg(ttm);
-> @@ -1028,10 +1056,47 @@ static bool
-> xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
-> =C2=A0	return locked;
-> =C2=A0}
-> =C2=A0
-> +static struct dma_fence *xe_ttm_bo_clear_on_free(struct
-> ttm_buffer_object *ttm_bo)
-> +{
-> +	struct xe_bo *bo=C2=A0 =3D ttm_to_xe_bo(ttm_bo);
-> +	struct xe_device *xe =3D xe_bo_device(bo);
-> +	struct xe_migrate *migrate;
-> +	struct xe_ttm_tt *xe_tt;
-> +	struct dma_fence *clear_fence;
-> +
-> +	/* return early if nothing to clear */
-> +	if (!ttm_bo->ttm)
-> +		return NULL;
-> +
-> +	xe_tt =3D container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
-> +	/* return early if nothing to clear */
-> +	if (!xe_tt->sys_clear_on_free || !bo->ttm.resource)
-> +		return NULL;
-> +
-> +	if (XE_WARN_ON(!xe_tt->sg))
-> +		return NULL;
-> +
-> +	if (bo->tile)
-> +		migrate =3D bo->tile->migrate;
-> +	else
-> +		migrate =3D xe->tiles[0].migrate;
-> +
-> +	xe_assert(xe, migrate);
-> +
-> +	clear_fence =3D xe_migrate_clear(migrate, bo, bo-
-> >ttm.resource,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 XE_MIGRATE_CLEAR_FLAG_FULL);
-> +	if (IS_ERR(clear_fence))
-> +		return NULL;
-> +
-> +	xe_tt->sys_clear_on_free =3D false;
-> +
-> +	return clear_fence;
-> +}
-> +
-> =C2=A0static void xe_ttm_bo_release_notify(struct ttm_buffer_object
-> *ttm_bo)
-> =C2=A0{
-> =C2=A0	struct dma_resv_iter cursor;
-> -	struct dma_fence *fence;
-> +	struct dma_fence *clear_fence, *fence;
-> =C2=A0	struct dma_fence *replacement =3D NULL;
-> =C2=A0	struct xe_bo *bo;
-> =C2=A0
-> @@ -1041,15 +1106,31 @@ static void xe_ttm_bo_release_notify(struct
-> ttm_buffer_object *ttm_bo)
-> =C2=A0	bo =3D ttm_to_xe_bo(ttm_bo);
-> =C2=A0	xe_assert(xe_bo_device(bo), !(bo->created &&
-> kref_read(&ttm_bo->base.refcount)));
-> =C2=A0
-> +	clear_fence =3D xe_ttm_bo_clear_on_free(ttm_bo);
-> +
-> =C2=A0	/*
-> =C2=A0	 * Corner case where TTM fails to allocate memory and this
-> BOs resv
-> =C2=A0	 * still points the VMs resv
-> =C2=A0	 */
-> -	if (ttm_bo->base.resv !=3D &ttm_bo->base._resv)
-> +	if (ttm_bo->base.resv !=3D &ttm_bo->base._resv) {
-> +		if (clear_fence)
-> +			dma_fence_wait(clear_fence, false);
-> =C2=A0		return;
-> +	}
-> =C2=A0
-> -	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
-> +	if (!xe_ttm_bo_lock_in_destructor(ttm_bo)) {
-> +		if (clear_fence)
-> +			dma_fence_wait(clear_fence, false);
-> =C2=A0		return;
-> +	}
-> +
-> +	if (clear_fence) {
-> +		if (dma_resv_reserve_fences(ttm_bo->base.resv, 1))
-> +			dma_fence_wait(clear_fence, false);
-> +		else
-> +			dma_resv_add_fence(ttm_bo->base.resv,
-> clear_fence,
-> +					=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
-> +	}
-> =C2=A0
-> =C2=A0	/*
-> =C2=A0	 * Scrub the preempt fences if any. The unbind fence is
-> already
+  Only impact should be onsynthetic tests.
 
+Driver Changes:
+
+- Fix for #11396: GPU Hang and rcs0 reset on Cherrytrail platform
+- Fix Virtual Memory mapping boundaries calculation (Andi)
+- Fix for #11255: Long hangs in buddy allocator with DG2/A380 without
+  Resizable BAR since 6.9 (David)
+- Mark the GT as dead when mmio is unreliable (Chris, Andi)
+- Workaround additions / fixes for MTL, ARL and DG2 (John H, Nitin)
+- Enable partial memory mapping of GPU virtual memory (Andi, Chris)
+
+- Prevent NULL deref on intel_memory_regions_hw_probe (Jonathan, Dan)
+- Avoid UAF on intel_engines_release (Krzysztof)
+
+- Don't update PWR_CLK_STATE starting Gen12 (Umesh)
+- Code and dmesg cleanups (Andi, Jesus, Luca)
+
+The following changes since commit 3b85152cb167bd24fe84ceb91b719b5904ca354f:
+
+  drm/i915/gem: Suppress oom warning in favour of ENOMEM to userspace (2024-06-28 00:11:01 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2024-08-23
+
+for you to fetch changes up to 255fc1703e42321b5afdedc8259ad03c7cc533ec:
+
+  drm/i915/gem: Calculate object page offset for partial memory mapping (2024-08-21 15:28:33 +0200)
+
+----------------------------------------------------------------
+UAPI Changes:
+
+- Limit the number of relocations to INT_MAX (Tvrtko)
+
+  Only impact should be synthetic tests.
+
+Driver Changes:
+
+- Fix for #11396: GPU Hang and rcs0 reset on Cherrytrail platform
+- Fix Virtual Memory mapping boundaries calculation (Andi)
+- Fix for #11255: Long hangs in buddy allocator with DG2/A380 without
+  Resizable BAR since 6.9 (David)
+- Mark the GT as dead when mmio is unreliable (Chris, Andi)
+- Workaround additions / fixes for MTL, ARL and DG2 (John H, Nitin)
+- Enable partial memory mapping of GPU virtual memory (Andi, Chris)
+
+- Prevent NULL deref on intel_memory_regions_hw_probe (Jonathan, Dan)
+- Avoid UAF on intel_engines_release (Krzysztof)
+
+- Don't update PWR_CLK_STATE starting Gen12 (Umesh)
+- Code and dmesg cleanups (Andi, Jesus, Luca)
+
+----------------------------------------------------------------
+Andi Shyti (6):
+      drm/i915/gem: Adjust vma offset for framebuffer mmap offset
+      drm/i915/gem: Fix Virtual Memory mapping boundaries calculation
+      drm/i915/gem: Improve pfn calculation readability in vm_fault_gtt()
+      drm/i915: Replace double blank with single blank after comma in gem/ and gt/
+      drm/i915/gem: Do not look for the exact address in node
+      drm/i915/gem: Calculate object page offset for partial memory mapping
+
+Chris Wilson (1):
+      drm/i915/gt: Mark the GT as dead when mmio is unreliable
+
+David Gow (2):
+      drm/i915: Allow evicting to use the requested placement
+      drm/i915: Attempt to get pages without eviction first
+
+Jesus Narvaez (1):
+      drm/i915/guc: Change GEM_WARN_ON to guc_err to prevent taints in CI
+
+John Harrison (2):
+      drm/i915/arl: Enable Wa_14019159160 for ARL
+      drm/i915/guc: Extend w/a 14019159160
+
+Jonathan Cavitt (1):
+      drm/i915: Allow NULL memory region
+
+Krzysztof Niemiec (1):
+      drm/i915/gt: Empty uabi engines list during intel_engines_release()
+
+Luca Coelho (1):
+      drm/i915/gt: remove stray declaration of intel_gt_release_all()
+
+Nitin Gote (2):
+      drm/i915/gt: Do not consider preemption during execlists_dequeue for gen8
+      drm/i915/gt: Add Wa_14019789679
+
+Tvrtko Ursulin (1):
+      drm/i915: 2 GiB of relocations ought to be enough for anybody*
+
+Umesh Nerlige Ramappa (1):
+      i915/perf: Remove code to update PWR_CLK_STATE for gen12
+
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c           | 73 +++++++++++++++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c            | 13 ++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |  2 +
+ .../gpu/drm/i915/gt/intel_execlists_submission.c   |  6 +-
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h       |  1 +
+ drivers/gpu/drm/i915/gt/intel_gt.h                 |  7 ++-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h           |  2 +
+ drivers/gpu/drm/i915/gt/intel_reset.c              | 12 +++-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        | 16 ++++-
+ drivers/gpu/drm/i915/gt/selftest_migrate.c         |  2 +-
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h      |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c             |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         | 18 +++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  5 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  2 +-
+ drivers/gpu/drm/i915/i915_mm.c                     | 12 +++-
+ drivers/gpu/drm/i915/i915_mm.h                     |  3 +-
+ drivers/gpu/drm/i915/i915_perf.c                   | 33 ----------
+ drivers/gpu/drm/i915/intel_memory_region.c         |  6 +-
+ drivers/gpu/drm/i915/intel_uncore.c                |  7 ++-
+ .../gpu/drm/i915/selftests/intel_memory_region.c   |  2 +-
+ 23 files changed, 150 insertions(+), 81 deletions(-)
