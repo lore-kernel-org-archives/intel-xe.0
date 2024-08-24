@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAFA4C5472F
-	for <intel-xe@archiver.kernel.org>; Sat, 24 Aug 2024 03:53:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13178C5472C
+	for <intel-xe@archiver.kernel.org>; Sat, 24 Aug 2024 03:53:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C32710E18F;
-	Sat, 24 Aug 2024 03:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F5E710E191;
+	Sat, 24 Aug 2024 03:53:34 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 310FD10E18D;
- Sat, 24 Aug 2024 03:53:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA2B010E18D;
+ Sat, 24 Aug 2024 03:53:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_total_?=
- =?utf-8?q?initialization_in_xe=5Fggtt=5Fprint=5Fholes=28=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_total_initi?=
+ =?utf-8?q?alization_in_xe=5Fggtt=5Fprint=5Fholes=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nathan Chancellor" <nathan@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 24 Aug 2024 03:53:22 -0000
-Message-ID: <172447160219.748054.5521597186713566079@2413ebb6fbb6>
+Date: Sat, 24 Aug 2024 03:53:33 -0000
+Message-ID: <172447161382.748004.14635589095417914993@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240823-drm-xe-fix-total-in-xe_ggtt_print_holes-v1-1-12b02d079327@kernel.org>
 In-Reply-To: <20240823-drm-xe-fix-total-in-xe_ggtt_print_holes-v1-1-12b02d079327@kernel.org>
@@ -48,9 +48,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 411a047925bb drm-tip: 2024y-08m-23d-23h-04m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix total initialization in xe_ggtt_print_holes()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 324565aace0e11945133434ba20e08dc61fa509a
+Author: Nathan Chancellor <nathan@kernel.org>
+Date:   Fri Aug 23 20:47:13 2024 -0700
+
+    drm/xe: Fix total initialization in xe_ggtt_print_holes()
+    
+    Clang warns (or errors with CONFIG_DRM_WERROR or CONFIG_WERROR):
+    
+      drivers/gpu/drm/xe/xe_ggtt.c:810:3: error: variable 'total' is uninitialized when used here [-Werror,-Wuninitialized]
+        810 |                 total += hole_size;
+            |                 ^~~~~
+      drivers/gpu/drm/xe/xe_ggtt.c:798:11: note: initialize the variable 'total' to silence this warning
+        798 |         u64 total;
+            |                  ^
+            |                   = 0
+      1 error generated.
+    
+    Move the zero initialization of total from
+    xe_gt_sriov_pf_config_print_available_ggtt() to xe_ggtt_print_holes() to
+    resolve the warning.
+    
+    Fixes: 136367290ea5 ("drm/xe: Introduce xe_ggtt_print_holes")
+    Signed-off-by: Nathan Chancellor <nathan@kernel.org>
++ /mt/dim checkpatch 411a047925bb7e169a075a2ddfb63ba96f26a8c8 drm-intel
+324565aace0e drm/xe: Fix total initialization in xe_ggtt_print_holes()
 
 
