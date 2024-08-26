@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E6DC5321D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 13:52:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEBD4C5321E
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 13:53:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B78910E08F;
-	Mon, 26 Aug 2024 13:52:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hLe/LDYs";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4015810E08F;
- Mon, 26 Aug 2024 13:52:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724680359; x=1756216359;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=STq96Ty9uiRhXjNa6P3oW/bPIcq1cC9n/GKYXeA5lQo=;
- b=hLe/LDYsNpHKSFJFmN4RhNPyofoMFfUEbTB1uqn+d22+aDjBkeYPz7bl
- SWeNnQztT3LTayoypojSWNhAEU1guWppexys2oIr9XcYmT4RZr4t3XwEp
- zPeQixK1HCA29jXPFH97EXwQE/nLiO5qtQrRvUuzZSiCervmPbXsnIupS
- Qb2AeauNIF2U5iybfezZO4q6RWgNyszjkpemJg7FnZifskR/56bZF4O0A
- GrcMcOShhwAPZKCnC7GJsGiKL9wdrZnCxWpIPQrmKyQ9CROsVejJPLLlz
- SCcVCfJsjcoSj5u2nKfiUMTWH0OMyYXuymYv/XcXnRjEi3jcoSPeTmO48 w==;
-X-CSE-ConnectionGUID: pzFNZon3R1GwWHGIvS/KZQ==
-X-CSE-MsgGUID: 5wDsMLr6Ruqq7vDKGThqsg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="23269814"
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="23269814"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 06:52:39 -0700
-X-CSE-ConnectionGUID: mqraZJHvTs27m/NFuYhGDg==
-X-CSE-MsgGUID: Hd3ruqXWQz6SdaDT6xeHbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="62226752"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.157])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 06:52:38 -0700
-Date: Mon, 26 Aug 2024 15:52:35 +0200
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v5 2/2] drm/i915/display: Add function for checking 64k
- physical alignment workaround
-Message-ID: <20240826135235.yjh2po3dniqvawd4@zkempczy-mobl2>
-References: <20240826095041.75416-1-maarten.lankhorst@linux.intel.com>
- <20240826095041.75416-3-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98D2C10E1F5;
+	Mon, 26 Aug 2024 13:53:18 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E75E10E1F5;
+ Mon, 26 Aug 2024 13:53:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240826095041.75416-3-maarten.lankhorst@linux.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/hwmon=3A_Fix_WRITE=5FI1?=
+ =?utf-8?q?_param_from_u32_to_u16?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Aug 2024 13:53:17 -0000
+Message-ID: <172468039744.784488.3331781592586593561@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240826133633.129853-1-karthik.poosa@intel.com>
+In-Reply-To: <20240826133633.129853-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,120 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 26, 2024 at 11:50:41AM +0200, Maarten Lankhorst wrote:
-> Instead of hardcoding the modifier in xe, the alternative approach is
-> setting a bit in the modifier description for 64k phys requirement.
-> 
-> This removes the hardcoding for the modifier in CCS.
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> 
-> ---
-> This might make the changes more palatable, but I personally believe
-> that hardcoding for a one-off check is fine. My optimism is that when
-> creating a new tiling format, the previous lessons will be taken into
-> account and this case will be tested.
-> 
-> Yeah, maybe just go for this patch too..
+== Series Details ==
 
-It's likely it is not one-time check and it will be used in the future
-so I would like to avoid hardcoding and changing in two places instead
-of set appropriate cap once. I asked about something like that and with
-respect to Rodrigo comment according to cap name:
+Series: drm/xe/hwmon: Fix WRITE_I1 param from u32 to u16
+URL   : https://patchwork.freedesktop.org/series/137796/
+State : success
 
-Reviewed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+== Summary ==
 
---
-Zbigniew
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/
+lib/modules/6.11.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc5-xe/build
+lib/modules/6.11.0-rc5-xe/modules.alias.bin
+lib/modules/6.11.0-rc5-xe/modules.builtin
+lib/modules/6.11.0-rc5-xe/modules.softdep
+lib/modules/6.11.0-rc5-xe/modules.alias
+lib/modules/6.11.0-rc5-xe/modules.order
+lib/modules/6.11.0-rc5-xe/modules.symbols
+lib/modules/6.11.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1724680385:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1724680385:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c  | 20 +++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_fb.h  |  2 ++
->  drivers/gpu/drm/xe/display/intel_fb_bo.c |  5 +++--
->  3 files changed, 24 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index d2716915d046d..5139172a8a3d1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -169,7 +169,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
->  	}, {
->  		.modifier = I915_FORMAT_MOD_4_TILED_BMG_CCS,
->  		.display_ver = { 14, -1 },
-> -		.plane_caps = INTEL_PLANE_CAP_TILING_4,
-> +		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_NEED64K_PHYS_WA,
->  	}, {
->  		.modifier = I915_FORMAT_MOD_4_TILED_MTL_MC_CCS,
->  		.display_ver = { 14, 14 },
-> @@ -420,6 +420,24 @@ bool intel_fb_is_mc_ccs_modifier(u64 modifier)
->  				      INTEL_PLANE_CAP_CCS_MC);
->  }
->  
-> +/**
-> + * intel_fb_needs_64k_phys_wa: Check if modifier requires 64k phys placement workaround.
-> + * @modifier: Modifier to check
-> + *
-> + * Returns:
-> + * Returns %true if @modifier requires 64k physical page alignment.
-> + */
-> +bool intel_fb_needs_64k_phys_wa(u64 modifier)
-> +{
-> +	const struct intel_modifier_desc *md = lookup_modifier_or_null(modifier);
-> +
-> +	if (!md)
-> +		return false;
-> +
-> +	return plane_caps_contain_any(md->plane_caps,
-> +				      INTEL_PLANE_CAP_NEED64K_PHYS_WA);
-> +}
-> +
->  static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
->  					     u8 display_ver_from, u8 display_ver_until)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-> index 6dee0c8b7f226..8a84b9abf9b91 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-> @@ -28,11 +28,13 @@ struct intel_plane_state;
->  #define INTEL_PLANE_CAP_TILING_Y	BIT(4)
->  #define INTEL_PLANE_CAP_TILING_Yf	BIT(5)
->  #define INTEL_PLANE_CAP_TILING_4	BIT(6)
-> +#define INTEL_PLANE_CAP_NEED64K_PHYS_WA	BIT(7)
->  
->  bool intel_fb_is_tiled_modifier(u64 modifier);
->  bool intel_fb_is_ccs_modifier(u64 modifier);
->  bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
->  bool intel_fb_is_mc_ccs_modifier(u64 modifier);
-> +bool intel_fb_needs_64k_phys_wa(u64 modifier);
->  
->  bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
->  int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
-> diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> index 6775c2557b9df..64bcd10d3f538 100644
-> --- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> +++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> @@ -7,6 +7,7 @@
->  #include <drm/ttm/ttm_bo.h>
->  
->  #include "intel_display_types.h"
-> +#include "intel_fb.h"
->  #include "intel_fb_bo.h"
->  #include "xe_bo.h"
->  
-> @@ -28,8 +29,8 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
->  	struct xe_device *xe = to_xe_device(bo->ttm.base.dev);
->  	int ret;
->  
-> -	/* Only this specific format is affected, and it's only available on VRAM */
-> -	if (XE_IOCTL_DBG(xe, mode_cmd->modifier[0] == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
-> +	/* Some modifiers require aligned 64k phys pages. */
-> +	if (XE_IOCTL_DBG(xe, intel_fb_needs_64k_phys_wa(mode_cmd->modifier[0]) &&
->  			     !(bo->flags & XE_BO_FLAG_NEEDS_64K)))
->  		return -EINVAL;
->  
-> -- 
-> 2.45.2
-> 
+
