@@ -4,63 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97BCDC5321D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 16:48:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13425C5321E
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 16:49:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6394110E254;
-	Mon, 26 Aug 2024 16:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C0210E24D;
+	Mon, 26 Aug 2024 16:49:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="llnWtqjY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZD3+0uqp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28EF510E258
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Aug 2024 16:48:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5052010E24D
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Aug 2024 16:49:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724690897; x=1756226897;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=6VMSRC4hNdT7Qe9yroJpwUu7dyxx0mJNl21RiSwrpSg=;
- b=llnWtqjYy0elRJ/IrHRh/IeIgMbF8R1AfRbyuSrEzPKYcP00hVtWVuBM
- tLOzQFf1tbFIfQDCy/qS/CDTanGSyVqUmlCKysW6Jqw+iw3eYL+WZyKST
- wnmxEzvnt8sQGlMHp57Dlr82d7+QUbUnFmuOYoDiR7TfBYx1PjOd7DX8X
- a4sM19/jTh2U1pAAqBZnGRBTVBuC5ak7JP+a/ml0zBAx4dzTDBfKu+Rba
- I0S18fmR4Ao22OpOTuaR3pQA5V62DuACI/GRfKgTBcm1qCrmGX4NNLxVJ
- 9DzkDxoUZDP4DKcrhJ2cQpLgg1TlBuoSGAWnpW21Wo2a5ex+fpDOzAL7x A==;
-X-CSE-ConnectionGUID: fkINcsc9RAqLApxSNspHUQ==
-X-CSE-MsgGUID: iaUAokHDQC2ig5Bf/G46zQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="26922886"
-X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="26922886"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 09:48:16 -0700
-X-CSE-ConnectionGUID: MUOZ42BuTj2hjoooc/Xyxw==
-X-CSE-MsgGUID: NDw5QeKbS/G38TzuYHlT6w==
+ t=1724690942; x=1756226942;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mpEmXql/aBzmu4Qt9ZWPGLtRzqeYdQf/eEHX8IbFcqU=;
+ b=ZD3+0uqpjo/JqWcmx22Qmd0j5BPfJ9r52+FO/CPSWtEcpRekGzsGSSAn
+ ODTb+oslruei7q6TTQ6Hqk1nOdgG+WwMlRfN+zyVaBBwVVs5xXX3F8Y/X
+ tVDkPnMwQsDB5GXbdycz+8819JpLwJfoJtelX33UZnR7qLJcrkCQ83up6
+ bIVml20AQplF+a6D8VIOo0PfwnQqztoNPB58C1wma5ifXUzGeoA1McSiu
+ hsRCcaoiFp1WCPeviTV3Ivs3y+PbjE6OWWoqCd/LWUhqE+gn8IWxgrTr/
+ OJSNhBkKQ9X9apotRd+8XdgE4BiYaq7MgjbiVRCsJhVuYwUfXjerVYRrR Q==;
+X-CSE-ConnectionGUID: UBszhmz6RdOrtTmJaamhIw==
+X-CSE-MsgGUID: 9qHPYfVqSq+ANNWg9i1jyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="22994218"
+X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="22994218"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 09:49:02 -0700
+X-CSE-ConnectionGUID: KQnZFkR4RRKZTTSsdjcFTA==
+X-CSE-MsgGUID: xQWgMwItT9uQrivkRPF30A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="85771727"
-Received: from unknown (HELO adixit-arch.intel.com) ([10.57.129.13])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 09:48:15 -0700
-Date: Mon, 26 Aug 2024 09:48:12 -0700
-Message-ID: <87frqrtelv.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "Cabral, Matias A" <matias.a.cabral@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Degrood, Felix J" <felix.j.degrood@intel.com>, "Nerlige Ramappa, Umesh"
- <umesh.nerlige.ramappa@intel.com>, "Ranjan,
- Joshua Santhosh" <joshua.santosh.ranjan@intel.com>, 
- "Chegondi, Harish" <harish.chegondi@intel.com>, "Kumar,
- Shubham" <shubham.kumar@intel.com>, 
- "Ausmus, James" <james.ausmus@intel.com>
-Subject: Re: [PATCH v2 1/1] drm/xe/eustall: Add support for EU stall sampling
-In-Reply-To: <3cab72ee68db99761ad07c6b8d8127b7d84ee77f.camel@intel.com>
-References: <20240707224141.2865472-1-ashutosh.dixit@intel.com>	<20240707224141.2865472-2-ashutosh.dixit@intel.com>	<878qww3xh8.wl-ashutosh.dixit@intel.com>	<CYYPR11MB83605299AB7259BC17AF3E38B28E2@CYYPR11MB8360.namprd11.prod.outlook.com>	<87frqwyxsc.wl-ashutosh.dixit@intel.com>	<3cab72ee68db99761ad07c6b8d8127b7d84ee77f.camel@intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="66904252"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 09:49:02 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH v2] drm/xe: Fix memory leak on xe_alloc_pf_queue failure
+Date: Mon, 26 Aug 2024 18:20:35 +0200
+Message-ID: <20240826162035.20462-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
+MIME-Version: 1.0
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,175 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 23 Aug 2024 14:22:19 -0700, Souza, Jose wrote:
->
-> Hi
+Simplify memory unwinding on error also fixing current memory
+leak that can happen on error.
 
-Thanks Jose. One question for Matias/L0 below.
+v2: use devm_kcalloc(Matt A)
 
-> On Thu, 2024-08-22 at 15:53 -0700, Dixit, Ashutosh wrote:
-> > On Wed, 21 Aug 2024 12:35:51 -0700, Cabral, Matias A wrote:
-> >
-> > Hi Matias,
-> >
-> > Thanks for responding, the input is _very_ helpful.
-> >
-> > Mesa folks: would it be possible for you to provide similar input too?
->
-> Felix's MR[1] is only using record_size and num_records, if the
-> drm_xe_eu_stall_data_xe2 was the same size and the sample we would not
-> need the header at all, inline replies below.
->
-> [1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
->
-> >
-> > Thanks.
-> > --
-> > Ashutosh
-> >
-> >
-> > >
-> > > Hi Ashutosh,
-> > >
-> > > Some inline questions below [MAC]
-> > >
-> > > Thanks,
-> > > _MAC
-> > >
-> > > -----Original Message-----
-> > > From: Dixit, Ashutosh <ashutosh.dixit@intel.com>
-> > > Sent: Friday, August 16, 2024 3:38 PM
-> > > To: intel-xe@lists.freedesktop.org
-> > > Cc: Chegondi, Harish <harish.chegondi@intel.com>; Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Degrood, Felix J <felix.j.degrood@intel.com>; Souza, Jose <jose.souza@intel.com>; Cabral, Matias A <matias.a.cabral@intel.com>
-> > > Subject: Re: [PATCH v2 1/1] drm/xe/eustall: Add support for EU stall sampling
-> > >
-> > > On Sun, 07 Jul 2024 15:41:41 -0700, Ashutosh Dixit wrote:
-> > >
-> > > Hi Harish,
-> > >
-> > > Some comments below on just the uapi first, towards finalizing the uapi
-> > > with the UMD's who consume this data. And also comparing the uapi with
-> > > what we did in OA.
-> > >
-> > > >
-> > > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > > > index 19619d4952a8..343de700d10d 100644
-> > >
-> > > /snip/
-> > >
-> > > > +/**
-> > > > + * struct drm_xe_eu_stall_data_header - EU stall data header.
-> > > > + * Header with additional information that the driver adds
-> > > > + * before EU stall data of each subslice during read().
-> > >
-> > > One question to resolve is if we really need this header and if UMD's are
-> > > actually using the information in this header. In OA we dropped the
-> > > header and are providing information in the header via different means
-> > > (see below).
-> > >
-> > > Another option is to actually add a property for the header. So headers
-> > > are added only when user space requests headers.
-> > >
-> > > > + */
-> > > > +struct drm_xe_eu_stall_data_header {
-> > > > +	/** @subslice: subslice number from which the following data
-> > > > +	 * has been captured.
-> > > > +	 */
-> > > > +	__u16 subslice;
-> > >
-> > > Do UMD's use this subslice information? We should check with L0 and Mesa about this.
-> > >
-> > > [MAC] L0 does not currently use this.
->
-> No usage for sublice at the moment in Mesa
->
-> > >
-> > > Also about whether UMD's need or want the header itself. For OA, UMD's
-> > > were happy not having to parse the header.
-> > >
-> > > > +	/** @flags: flags */
-> > > > +	__u16 flags;
-> > > > +/* EU stall data dropped by the HW due to memory buffer being full */
-> > > > +#define XE_EU_STALL_FLAG_OVERFLOW_DROP	(1 << 0)
-> > >
-> > > In OA such information is returned via
-> > > DRM_XE_OBSERVATION_IOCTL_STATUS. For EU stall, e.g. we could return a bit
-> > > mask of subslices which reporting drops. So similar to OA, we could
-> > > return -EIO when HW reports drops and userspace optionally issues
-> > > DRM_XE_OBSERVATION_IOCTL_STATUS to retrieve which subslices are reporting
-> > > drops.
-> > >
-> > > [MAC] having a return code to notify of reports drops would be much
-> > > preferable. This would allow the UMD detecting this condition during the
-> > > read phase without needing to process/parse each report.
+Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-Matias: could you please explain what L0 does with this dropped flag?
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 0be4687bfc20..91810d0a9afc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -388,7 +388,6 @@ static void pagefault_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	int i;
+ 
+ 	if (!xe->info.has_usm)
+ 		return;
+@@ -396,12 +395,11 @@ static void pagefault_fini(void *arg)
+ 	destroy_workqueue(gt->usm.acc_wq);
+ 	destroy_workqueue(gt->usm.pf_wq);
+ 
+-	for (i = 0; i < NUM_PF_QUEUE; ++i)
+-		kfree(gt->usm.pf_queue[i].data);
+ }
+ 
+ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
+ {
++	struct xe_device *xe = gt_to_xe(gt);
+ 	xe_dss_mask_t all_dss;
+ 	int num_dss, num_eus;
+ 
+@@ -417,7 +415,8 @@ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
+ 		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW;
+ 
+ 	pf_queue->gt = gt;
+-	pf_queue->data = kcalloc(pf_queue->num_dw, sizeof(u32), GFP_KERNEL);
++	pf_queue->data = devm_kcalloc(xe->drm.dev, pf_queue->num_dw,
++				      sizeof(u32), GFP_KERNEL);
+ 	if (!pf_queue->data)
+ 		return -ENOMEM;
+ 
+-- 
+2.42.0
 
-Harish: do we know what is the reason HW sets this dropped flag? Is it
-because userland is not reading fast enough so HW is forced to drop data?
-
->
-> But what can UMD do when that is set?
-
-Mesa can ignore this if they don't need it.
-
->
-> I would rather have a warn once printed on dmesg, so the issues don't go
-> silent but it don't need to go to the uAPI.
-
-dmesg warn is likely not an option because it will trigger bugs in our
-CI.
-
->
-> > >
-> > > > +	/** @record_size: size of each EU stall data record */
-> > > > +	__u16 record_size;
-> > >
-> > > This is static information. Does it need to be in each packet header?
-> > > E.g. it can be returned via DRM_XE_OBSERVATION_IOCTL_INFO after a EU
-> > > Stall stream has been opened.
-> > >
-> > > [MAC] since the size is constant, it seems an overhead including the info
-> > > in every report.
->
-> drm_xe_eu_stall_data_xe2 should be of the same size as record_size so it can also be dropped.
->
-> > >
-> > > The INFO data struct could also include a capabilities field. So if new
-> > > features are added to EU stall in the future, they would be advertized to
-> > > user space using the capabilities field.
-> > >
-> > > > +	/** @num_records: number of records following the header */
-> > > > +	__u16 num_records;
-> > >
-> > > This will not be needed if just return raw EU Stall data without
-> > > headers. Or even otherwise it is probably not needed, it is the total
-> > > size of returned data minus the size of the header. Provided we return
-> > > all available data.
->
-> Same as above, would not be needed if drm_xe_eu_stall_data_xe2 matches samples size.
->
-> > >
-> > > [MAC] the KMD will always return atomic units of reports, right? Then
-> > > this is not needed, having UMD the possibility to query report size when
-> > > opening the stream, the UMD can know how many reports are in each read.
-> > >
-> > > > +	/** @reserved: Reserved */
-> > > > +	__u16 reserved[4];
-> > >
-> > > This can be handled via 'extensions'. And if headers change they can be
-> > > advertized in capabilities.
-> > >
-> > > > +};
-> > > > +
-> > > >  #if defined(__cplusplus)
-> > > >  }
-> > > >  #endif
-> > > > --
-> > > > 2.41.0
-> > > >
-> > >
-> > > Thanks.
-> > > --
-> > > Ashutosh
->
