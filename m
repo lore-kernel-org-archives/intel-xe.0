@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6348DC5321E
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 10:56:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F8EBC5321D
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 11:14:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F8F410E18C;
-	Mon, 26 Aug 2024 10:56:33 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCBFE10E18C;
- Mon, 26 Aug 2024 10:56:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F9F410E1A8;
+	Mon, 26 Aug 2024 11:14:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P6YxSmfp";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5894010E1A7;
+ Mon, 26 Aug 2024 11:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724670841; x=1756206841;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+95Av44uviU7r1cfRD58PyuXKS+g/7f7cNIUP7IYUYc=;
+ b=P6YxSmfpZ8XNGJNVhz9BS3/BMXPg/+n6pdhLTUARxE+SL9IwNKGCrs6u
+ 5qkSkvqWxYHOXQFfJeG/7V15ustmIXxXfR1k/AIoYVGzj9v9iEYAEpY20
+ iazYp/TilrmvIHfKaR8QHqpe/t7cOWxie+jqxxlnbBfxw4/N4CWE+5VtF
+ gL5kUUfJYdp3Jitua35FiENME+wDcqqSa72zRHeyB5Z9sI17Zq0HEsOx/
+ cqOGFwQ4RKTvCexRxGiqdj4hD0r+LQQ6jVsQC4+Nf5R4SPtcSf3J7L7jp
+ 21dc9fHZ0KudzzADWVGZ59K/TYk50wD+dWB8yUFy7z5x2Cwp6DnAd/iDH Q==;
+X-CSE-ConnectionGUID: 9SZw9vynSe2WsnY9OKWRMQ==
+X-CSE-MsgGUID: H1StSdiuQIW6ShIGlSBn5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="23213525"
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="23213525"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 04:14:01 -0700
+X-CSE-ConnectionGUID: 3iSoKUf0Tsqzf3bABAAoAw==
+X-CSE-MsgGUID: L2dNGWGjQICCz6H1IuxIUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="67291230"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 04:14:00 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 00/12] Consolidation of DSS Control in Separate Files
+Date: Mon, 26 Aug 2024 16:45:14 +0530
+Message-ID: <20240826111527.1113622-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_move_the_kerne?=
- =?utf-8?q?l_lrc_from_hwe_to_execlist_port_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ilia Levi" <ilia.levi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Aug 2024 10:56:31 -0000
-Message-ID: <172466979183.783809.16879973946619108855@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240826100655.1719060-1-ilia.levi@intel.com>
-In-Reply-To: <20240826100655.1719060-1-ilia.levi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently, DSS control is configured from various files; this change aims
+to consolidate all DSS-related functionalities, such as display stream
+splitting, joining, MSO configuration, and joining configuration,
+into one place.
 
-Series: drm/xe: move the kernel lrc from hwe to execlist port (rev2)
-URL   : https://patchwork.freedesktop.org/series/137638/
-State : success
+A new file, intel_dss_regs.h, will store register information, while the
+helpers to configure DSS and related stuff will be moved to intel_dss.c
+with its corresponding header file intel_dss.h.
+Along with this, the helpers related to retrieve information about the
+pipe joiners are also moved from intel_display.c to intel_dss.
 
-== Summary ==
+Additionally, wherever possible, the drm_i915_private structure is
+replaced with the new intel_display structure as part of ongoing efforts
+to phase out the old structure.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 3180bea570dadc713d6f1cc50662818d684cfb4a
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Ankit Nautiyal (12):
+  drm/i915/display: Move all DSS control registers to a new file
+  drm/i915/ddi: Move all mso related helpers to a new file
+  drm/i915/dss: Move to struct intel_display
+  drm/i915/icl_dsi: Move helpers to configure dsi dual link to intel_dss
+  drm/i915/vdsc: Rename helper to check if the pipe supports dsc
+  drm/i915/vdsc: Move all dss stuff in dss files
+  drm/i915/display: Move dss stuff in intel_dss files
+  drm/i915/display: Move helper to get joined pipe mask to intel_dss
+  drm/i915/display: Move helpers for primary joiner to intel_dss
+  drm/i915/display: Move helper to check for secondary joiner pipe
+  drm/i915/display: Move helper to get all secondary pipes
+  drm/i915/display: Move intel_joiner_num_pipes to intel dss
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  55 +---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   3 +-
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  94 +-----
+ drivers/gpu/drm/i915/display/intel_display.c  | 158 +++------
+ drivers/gpu/drm/i915/display/intel_display.h  |   4 -
+ .../drm/i915/display/intel_display_debugfs.c  |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   7 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_dss.c      | 305 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dss.h      |  46 +++
+ drivers/gpu/drm/i915/display/intel_dss_regs.h |  49 +++
+ .../drm/i915/display/intel_modeset_setup.c    |  15 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  74 +----
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |   2 +-
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |  38 ---
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 18 files changed, 497 insertions(+), 368 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss_regs.h
 
+-- 
+2.45.2
 
