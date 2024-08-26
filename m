@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48357C5321D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 16:54:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C537CC5321E
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 17:00:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 166AA10E262;
-	Mon, 26 Aug 2024 16:54:39 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38B8A10E25B;
- Mon, 26 Aug 2024 16:54:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A66210E132;
+	Mon, 26 Aug 2024 17:00:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LRDZ/nE0";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFF5E10E132;
+ Mon, 26 Aug 2024 17:00:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724691650; x=1756227650;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2m7gLVc40hKZK9gXAV0BKvSP+20Bds0cGQ5HurMwdd8=;
+ b=LRDZ/nE0TQo8R7K8xGTLMz27rmLc9J8/5NynDasAR3vw6jeCGtYT9NNr
+ dcvoA52AE3k79cvfjnDS9vhIkZXRBOEoLR+5WS60EZ/s3+C47AavERssw
+ E5SrcgOh9Aqou0uPPZUk+YVhRpqRnIJbdQZeIr+pY6bhKFu/BVncYlxjf
+ GWvjbeL9vMGsWDbrUZo2Tz4mL0y7kw1ONcUB4D5Wb5zor/qWmS5tQCT5m
+ ozYUXYsHPwTn89GgCwchD2uQoWjpEknva1kQ3+YjpEW8ZYRRWmCK4L2JX
+ jEbj2+GJwyeBUqy5jeczUnEgfSnpbocZ2PwoDprBr6NwuuFKU7vYfOkL0 Q==;
+X-CSE-ConnectionGUID: q8/Q45a3TJmXbb8W2TDLBg==
+X-CSE-MsgGUID: wr4+E89pRU++X5BZsiYaew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="22997988"
+X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="22997988"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 10:00:50 -0700
+X-CSE-ConnectionGUID: UNkgGQhJQGSon3ON/q/2PA==
+X-CSE-MsgGUID: yVOB4ODqQWmFPaCCRi2Pvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="62247116"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 10:00:49 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, sumit.semwal@linaro.org,
+ christian.koenig@amd.com
+Subject: [PATCH v2 0/2] Split out dma fence array and invalidate media_gt TLBs
+ in PT code
+Date: Mon, 26 Aug 2024 10:01:42 -0700
+Message-Id: <20240826170144.2492062-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_inte?=
- =?utf-8?q?l=5Fdisplay=5Ftypes=2Eh_cleanup?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Aug 2024 16:54:37 -0000
-Message-ID: <172469127722.784925.16523514456298714721@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1724689818.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1724689818.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +65,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Respin of [1] [2] based on CI and review feedback.
 
-Series: drm/i915/display: intel_display_types.h cleanup
-URL   : https://patchwork.freedesktop.org/series/137802/
-State : warning
+v2:
+ - Send correct code
 
-== Summary ==
+Matt
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ebf52522dc2395b7c809271ffdb908c9af876f4f
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Matthew Brost (2):
+  dma-buf: Split out dma fence array create into alloc and arm functions
+  drm/xe: Invalidate media_gt TLBs in PT code
 
+ drivers/dma-buf/dma-fence-array.c |  78 ++++++++++++++------
+ drivers/gpu/drm/xe/xe_pt.c        | 117 ++++++++++++++++++++++++------
+ include/linux/dma-fence-array.h   |   6 ++
+ 3 files changed, 159 insertions(+), 42 deletions(-)
+
+-- 
+2.34.1
 
