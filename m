@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E9B1C5472C
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 23:34:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BBBBC5472C
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 23:35:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B4AE10E1C8;
-	Mon, 26 Aug 2024 23:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA40410E1C8;
+	Mon, 26 Aug 2024 23:35:06 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 059B410E1C8;
- Mon, 26 Aug 2024 23:34:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76E4610E1C8;
+ Mon, 26 Aug 2024 23:35:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/oa=3A_Insert_?=
- =?utf-8?q?wmb/sfence_before_enabling_OA?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/oa=3A_Insert_wmb/s?=
+ =?utf-8?q?fence_before_enabling_OA?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Aug 2024 23:34:49 -0000
-Message-ID: <172471528901.785910.2938942800753618746@2413ebb6fbb6>
+Date: Mon, 26 Aug 2024 23:35:05 -0000
+Message-ID: <172471530548.785910.18262383418610136652@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240826232906.1849613-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20240826232906.1849613-1-ashutosh.dixit@intel.com>
@@ -44,13 +44,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/oa: Insert wmb/sfence before enabling OA
 URL   : https://patchwork.freedesktop.org/series/137816/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 94d6fa93a57b drm-tip: 2024y-08m-26d-23h-16m-53s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/oa: Insert wmb/sfence before enabling OA
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7c9c07db41db9550545f1df2ef84e0c231916619
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Mon Aug 26 16:29:06 2024 -0700
+
+    drm/xe/oa: Insert wmb/sfence before enabling OA
+    
+    In some simulation environments, we occasionally see warnings such as "OAG
+    Buffer register is not programmed (has value 0). Register offset db08".
+    This means OA has been enabled before it has been fully configured. Or, the
+    register write enabling OA has overtaken previous OA configuration register
+    writes.
+    
+    Therefore, insert a wmb/sfence to preserve OA register write ordering
+    before enabling OA.
+    
+    Reported-by: Guy Zadicario <guy.zadicario@intel.com>
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 94d6fa93a57b0c160fec84046f65a218d7e18bc0 drm-intel
+7c9c07db41db drm/xe/oa: Insert wmb/sfence before enabling OA
+-:15: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#15: 
+Reported-by: Guy Zadicario <guy.zadicario@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
 
 
