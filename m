@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 339D8C5321D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 10:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC6AAC5321E
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 10:39:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03A6410E183;
-	Mon, 26 Aug 2024 10:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74BFE10E0DF;
+	Mon, 26 Aug 2024 10:39:28 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD90410E185;
- Mon, 26 Aug 2024 10:12:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0C3C10E0DF;
+ Mon, 26 Aug 2024 10:39:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/xe=3A_Align_all_VRAM?=
- =?utf-8?q?_scanout_buffers_to_64k_physical_pages_when_needed=2E_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_move_the_k?=
+ =?utf-8?q?ernel_lrc_from_hwe_to_execlist_port_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+To: "Ilia Levi" <ilia.levi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Aug 2024 10:12:41 -0000
-Message-ID: <172466716183.783606.6772648948389030710@2413ebb6fbb6>
+Date: Mon, 26 Aug 2024 10:39:26 -0000
+Message-ID: <172466876691.783606.5367137912193378106@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240826095041.75416-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240826095041.75416-1-maarten.lankhorst@linux.intel.com>
+References: <20240826100655.1719060-1-ilia.levi@intel.com>
+In-Reply-To: <20240826100655.1719060-1-ilia.levi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,29 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Align all VRAM scanout buffers to 64k physical pages when needed. (rev2)
-URL   : https://patchwork.freedesktop.org/series/137662/
-State : warning
+Series: drm/xe: move the kernel lrc from hwe to execlist port (rev2)
+URL   : https://patchwork.freedesktop.org/series/137638/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 914672a01b6beb45c0fa2b931ddb4420a2eadb7a
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3180bea570da drm-tip: 2024y-08m-26d-10h-18m-31s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: move the kernel lrc from hwe to execlist port
 
 
