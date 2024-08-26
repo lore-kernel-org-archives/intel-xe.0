@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC6AAC5321E
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 10:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E73BC5321E
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Aug 2024 10:39:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74BFE10E0DF;
-	Mon, 26 Aug 2024 10:39:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 177E110E116;
+	Mon, 26 Aug 2024 10:39:53 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0C3C10E0DF;
- Mon, 26 Aug 2024 10:39:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4692910E116;
+ Mon, 26 Aug 2024 10:39:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_move_the_k?=
- =?utf-8?q?ernel_lrc_from_hwe_to_execlist_port_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_move_the_kernel?=
+ =?utf-8?q?_lrc_from_hwe_to_execlist_port_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ilia Levi" <ilia.levi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Aug 2024 10:39:26 -0000
-Message-ID: <172466876691.783606.5367137912193378106@2413ebb6fbb6>
+Date: Mon, 26 Aug 2024 10:39:52 -0000
+Message-ID: <172466879228.783606.11406966201022665625@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240826100655.1719060-1-ilia.levi@intel.com>
 In-Reply-To: <20240826100655.1719060-1-ilia.levi@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3180bea570da drm-tip: 2024y-08m-26d-10h-18m-31s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: move the kernel lrc from hwe to execlist port
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2d41afb1273826c52f41299dd8dcd5ed062309d5
+Author: Ilia Levi <ilia.levi@intel.com>
+Date:   Mon Aug 26 13:06:55 2024 +0300
+
+    drm/xe: move the kernel lrc from hwe to execlist port
+    
+    The kernel lrc is used solely by the execlist infra.
+    Move it to the execlist port struct and initialize it only when
+    execlists are used.
+    
+    v2: Rebase, improve error handling readability (Jonathan)
+    
+    Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch 3180bea570dadc713d6f1cc50662818d684cfb4a drm-intel
+2d41afb12738 drm/xe: move the kernel lrc from hwe to execlist port
 
 
