@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C8ECC5473A
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 16:41:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C6E4C5472F
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 16:43:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A85610E39D;
-	Tue, 27 Aug 2024 16:41:28 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CABE410E39C;
- Tue, 27 Aug 2024 16:41:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFB5710E39C;
+	Tue, 27 Aug 2024 16:43:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c/kPUnZy";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2D5210E39C
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Aug 2024 16:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724776987; x=1756312987;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EO8Jtq6kdG19Va9V3CV5OnC3OthewNyovMRC6h9RHm4=;
+ b=c/kPUnZy+BMr0uPl8FTQPb5j6mV5aBuR6KxlS03Ff7Bz8x6zq7iqSCJl
+ AygBrOxSRjFi0YQ7oBk1rivLh5ZRtqZ3fGRVCSWNFPmpqE1Szx4yS+X6J
+ dqwGHqHkruZviG3iV3seABE8T+H35IC3NnfO3xx4xEZKnaRxl0OXaApuv
+ HJcBj74aHA1Gm2rNq4A8ZJU21ZNTRoXi1KQHHPJVxYxgj1V40RvMGl2ZO
+ SAMJUp1aO2DjmoCFx08iFYwxwFDUKLzhThhtPNOd3ATxddWMdWoNsx0sx
+ SqNh4jLitb7iBZnvFXQIsJdg/KS1rg3XuF2L6jydiwEIiGxlWq4t/quGd Q==;
+X-CSE-ConnectionGUID: X7zkzwSmQziYSHvfP7si+Q==
+X-CSE-MsgGUID: w8CejDqRQ5ei1DmNWJtaGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="23143715"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="23143715"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 09:43:06 -0700
+X-CSE-ConnectionGUID: 1eNCON7FRaSIqFcU5KOTMw==
+X-CSE-MsgGUID: DR0ND0LgTVCxG74rt9acYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="63424188"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by orviesa007.jf.intel.com with ESMTP; 27 Aug 2024 09:43:06 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 0/4] drm/xe/pmu: Enable PMU interface
+Date: Tue, 27 Aug 2024 09:41:03 -0700
+Message-Id: <20240827164107.47034-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
- =?utf-8?q?_drm/xe=3A_Skip_CCS_clear_for_WB_type_BOs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Aug 2024 16:41:26 -0000
-Message-ID: <172477688682.806994.1132963027919282497@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240827154910.24841-1-nirmoy.das@intel.com>
-In-Reply-To: <20240827154910.24841-1-nirmoy.das@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +61,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Port PMU event capture capability to Xe driver. This is being
+requested by users of tools like gputop or turbostat who
+use these PMU events to monitor GT freq and residencies.
 
-Series: series starting with [1/2] drm/xe: Skip CCS clear for WB type BOs
-URL   : https://patchwork.freedesktop.org/series/137855/
-State : success
+First patch is from a previously done review-
+https://patchwork.freedesktop.org/series/119504/ and the rest
+of the patches are ported from the i915 driver.
 
-== Summary ==
+There is an attempt to break up the code into a few chunks
+so that everything is not a single blob. Basic PMU setup is
+done first, followed by timer init and then C6 and frequency
+events separately. One change is we now provide a modparam to
+control sampling frequency.
 
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/seq/
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soundcore.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/common/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/amd/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/codecs/
-lib/modules/6.11.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/hda/
-lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/hda/ext/
-lib/modules/6.11.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/intel/
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/
-lib/modules/6.11.0-rc5-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/cmac.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/ccm.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/cryptd.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/
-lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.11.0-rc5-xe/build
-lib/modules/6.11.0-rc5-xe/modules.alias.bin
-lib/modules/6.11.0-rc5-xe/modules.builtin
-lib/modules/6.11.0-rc5-xe/modules.softdep
-lib/modules/6.11.0-rc5-xe/modules.alias
-lib/modules/6.11.0-rc5-xe/modules.order
-lib/modules/6.11.0-rc5-xe/modules.symbols
-lib/modules/6.11.0-rc5-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1724776875:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1724776875:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+A patch for IGT tests for this is in progress and will be
+posted in a couple of days.
 
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+
+Aravind Iddamsetty (1):
+  drm/xe/pmu: Enable PMU interface
+
+Vinay Belgaumkar (3):
+  drm/xe/pmu: Define and init a timer
+  drm/xe/pmu: Add GT C6 events
+  drm/xe/pmu: Add GT frequency events
+
+ drivers/gpu/drm/xe/Makefile          |   2 +
+ drivers/gpu/drm/xe/xe_device.c       |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h |   4 +
+ drivers/gpu/drm/xe/xe_gt.c           |   4 +
+ drivers/gpu/drm/xe/xe_gt_idle.c      |  20 +-
+ drivers/gpu/drm/xe/xe_gt_idle.h      |   1 +
+ drivers/gpu/drm/xe/xe_module.c       |  10 +
+ drivers/gpu/drm/xe/xe_module.h       |   1 +
+ drivers/gpu/drm/xe/xe_pmu.c          | 931 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pmu.h          |  28 +
+ drivers/gpu/drm/xe/xe_pmu_types.h    | 142 ++++
+ include/uapi/drm/xe_drm.h            |  43 ++
+ 12 files changed, 1182 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pmu.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pmu.h
+ create mode 100644 drivers/gpu/drm/xe/xe_pmu_types.h
+
+-- 
+2.38.1
 
