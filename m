@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E15EC54735
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 10:51:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 498BBC54735
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 10:51:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F334D10E2E4;
-	Tue, 27 Aug 2024 10:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 063E110E2E9;
+	Tue, 27 Aug 2024 10:51:29 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23CB610E2E4;
- Tue, 27 Aug 2024 10:51:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3121410E2EE;
+ Tue, 27 Aug 2024 10:51:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?intel=5Fdisplay=5Ftypes=2Eh_cleanup_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_intel?=
+ =?utf-8?q?=5Fdisplay=5Ftypes=2Eh_cleanup_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Aug 2024 10:51:01 -0000
-Message-ID: <172475586114.806002.739960706593671230@2413ebb6fbb6>
+Date: Tue, 27 Aug 2024 10:51:28 -0000
+Message-ID: <172475588819.806002.17964979603522939749@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <cover.1724689818.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1724689818.git.jani.nikula@intel.com>
@@ -44,19 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: intel_display_types.h cleanup (rev2)
 URL   : https://patchwork.freedesktop.org/series/137802/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5141d5ae1dea drm-tip: 2024y-08m-27d-08h-03m-08s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/wm: move struct intel_watermark_params to i9xx_wm.c
-Applying: drm/i915/hdcp: split out intel_hdcp_shim.h for struct intel_hdcp_shim
-Applying: drm/i915/display: include drm/drm_probe_helper.h where needed
-Applying: drm/i915/display: include drm/drm_vblank.h where needed
-Applying: drm/i915/display: include media/cec-notifier.h and linux/debugfs.h where needed
-Applying: drm/i915/fb: hide the guts of intel_fb_obj()
-Applying: drm/i915/display: drop extra includes from intel_display_types.h
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 00e661bd5ded7147280b44a6c4f66bd7668199bd
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Aug 26 19:31:20 2024 +0300
+
+    drm/i915/display: drop extra includes from intel_display_types.h
+    
+    Drop some unnecessary includes from intel_display_types.h.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 5141d5ae1dead73bd1d029f8310609720bca06b3 drm-intel
+a0384b3b71ad drm/i915/wm: move struct intel_watermark_params to i9xx_wm.c
+471223d262f9 drm/i915/hdcp: split out intel_hdcp_shim.h for struct intel_hdcp_shim
+-:183: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#183: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 297 lines checked
+42c97e68fdf5 drm/i915/display: include drm/drm_probe_helper.h where needed
+55671fcf396a drm/i915/display: include drm/drm_vblank.h where needed
+5a2a2f8590f7 drm/i915/display: include media/cec-notifier.h and linux/debugfs.h where needed
+1d294363d231 drm/i915/fb: hide the guts of intel_fb_obj()
+00e661bd5ded drm/i915/display: drop extra includes from intel_display_types.h
 
 
