@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F46CC5472F
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 16:17:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB871C5472F
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 16:17:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2579610E376;
-	Tue, 27 Aug 2024 16:17:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A36D710E378;
+	Tue, 27 Aug 2024 16:17:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tg4yqsV/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBno4aF8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA40C10E376
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Aug 2024 16:17:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEE8A10E376
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Aug 2024 16:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724775457; x=1756311457;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kPbmsUN0+sn42pbPs4vyy4vjFp0hGqq2xqB5T7GBc4U=;
- b=Tg4yqsV/ZlJDYzKP1OpL/KKu8V5gNabXpUgxZ5Xt1UAtmYFU0RwET4Gi
- rtXPhh3ViKTaW0ahlAOAy/JAijoZhFkU1X1dk8T1KPpC7b9ogOBp8StjV
- WsZqitOatp4Xx/NLto9uj4USSpYOmPCZAku27UMXGBKWypSYya6TOwc+5
- H3NovwzqbMUIZR8hBkJzmVnnCdIqTngshjLdx/Y2tsOwxG3iVgJlasXOD
- yhhEhiYCysbGkSmGjoQ9+crd2Q78xquV5dVJkHwrKBOoTGui8ENTW04TR
- 9iBE+2GwV+UckkT6q9Fp4JUt52IvhSBsZPRJAUytu4LBHqzk4crmbbDCz Q==;
-X-CSE-ConnectionGUID: viAFJTvAQ+SV680R5/+k2w==
-X-CSE-MsgGUID: 5QkV0h8LTBacs+46ZwxsHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="26166037"
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="26166037"
+ t=1724775458; x=1756311458;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HUgDjLLzs/h0OmTX0TlyHWj/RvnfcKvNyIBz7AUQSQA=;
+ b=PBno4aF8muRVgAKV/pgdrn5EEWtljkpI2ppD7CVEdSMwHUWyN0AQj07A
+ 0lGGpD3SR09/RE5LxlBPNWwJWBkQM9mzXtfX1w0Pxn0OZtU88YXsVVZNx
+ jG9oNWnoNoP/W5txsVI4zFBZJvB9QqIjCCrNUf2/UGUoY6MZbvDG4g4ok
+ +TvYxeEA2Sh1xk24hfSA8KegIykBLG1j4wppyheFSxJvw8dekO0N74oy1
+ I1KEnUgL7/9NZ7ikhmzS7Rn37beKXI90S7SoBHQUpmxWO50DJvvVMW2nE
+ hIqZ3HfklP2aXxeUZ7x65Sc4DjNdY1txDj/LGQyTP27DMai5tRplNRkv+ Q==;
+X-CSE-ConnectionGUID: wJTAZ8kcQgOhWoG4PODRAw==
+X-CSE-MsgGUID: 9v+IUrxhTaqGdxEmfGSv1w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="26166041"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="26166041"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 09:17:36 -0700
-X-CSE-ConnectionGUID: U3+7iGlwSNydLHZgRXzvPA==
-X-CSE-MsgGUID: fc+IPRhVSeO64q0rRs9ffg==
+ 27 Aug 2024 09:17:37 -0700
+X-CSE-ConnectionGUID: kbULdnODRt+vp4s7KuDERA==
+X-CSE-MsgGUID: a5UzYUfDSI+zoglJCQbwLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="100423336"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="100423365"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 09:17:33 -0700
+ 27 Aug 2024 09:17:35 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH 1/2] drm/xe: Skip CCS clear for WB type BOs
-Date: Tue, 27 Aug 2024 17:49:09 +0200
-Message-ID: <20240827154910.24841-1-nirmoy.das@intel.com>
+Subject: [PATCH 2/2] Revert "drm/xe/lnl: Offload system clear page activity to
+ GPU"
+Date: Tue, 27 Aug 2024 17:49:10 +0200
+Message-ID: <20240827154910.24841-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20240827154910.24841-1-nirmoy.das@intel.com>
+References: <20240827154910.24841-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
@@ -69,56 +72,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-HW treats any access to 1-way or 2-way coherent memory as compression
-disabled memory. So for such BOs there is no need to do CCS clearing.
+This optimization relied on having to clear CCS on allocations.
+If there is no need to clear CCS on allocations then this would mostly
+help in reducing CPU utilization.
+
+Revert this patch because of:
+1 Currently Xe can't do clear on free and using a invalid ttm flag,
+TTM_TT_FLAG_CLEARED_ON_FREE which could poison global ttm pool on
+multi-device setup.
+
+2 BO with WB caching type can't have compression enabled so there
+is no need to do clear CCS for such allocation. Reducing CPU
+utilization is a plus but latency is more important.
+
+Without this patch:
+UsmMemoryAllocation(api=l0 type=Host size=4KB)  113.1 us
+UsmMemoryAllocation(api=l0 type=Host size=1GB)  91452.6 us
+13.93% api_overhead_be  [kernel.kallsyms] [k] pages_are_mergeable
+7.59%  api_overhead_be  [kernel.kallsyms] [k] __lock_acquire
+3.86%  api_overhead_be  [kernel.kallsyms] [k] lock_is_held_type
+3.39%  api_overhead_be  [kernel.kallsyms] [k] rcu_is_watching
+3.37%  api_overhead_be  [xe]              [k] emit_pte
+
+With this patch:
+UsmMemoryAllocation(api=l0 type=Host size=4KB) 91.7 us
+UsmMemoryAllocation(api=l0 type=Host size=1GB) 89486.5 us
+91.86%  api_overhead_be [kernel.kallsyms [k] clear_page_erms
+1.81%  api_overhead_be  [kernel.kallsyms [k] pages_are_mergeable
+0.99%  api_overhead_be  [kernel.kallsyms [k] get_page_from_freelist
+0.63%  api_overhead_be  [kernel.kallsyms [k] __free_pages_ok
+0.50%  api_overhead_be  [kernel.kallsyms [k] __lock_acquire
+
+For larger memory the delta is very low so it is likely worth
+doing gpu based system page clear that can be reconsidered in the
+future.
+
+This reverts commit 23683061805be368c8d1c7e7ff52abc470cac275 with
+minor conflict fixes.
 
 Cc: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.c           | 26 ++------------------------
+ drivers/gpu/drm/xe/xe_device_types.h |  2 --
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c  | 12 ------------
+ 3 files changed, 2 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index cbe7bf098970..24701272e3af 100644
+index 24701272e3af..fd4b2b2dfd8d 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -283,6 +283,7 @@ struct xe_ttm_tt {
- 	struct device *dev;
- 	struct sg_table sgt;
- 	struct sg_table *sg;
-+	bool skip_ccs_clear:1;
- };
+@@ -397,14 +397,6 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 		caching = ttm_uncached;
+ 	}
  
- static int xe_tt_map_sg(struct ttm_tt *tt)
-@@ -404,6 +405,8 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
- 	if (ttm_bo->type == ttm_bo_type_device && xe->mem.gpu_page_clear_sys)
- 		page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
- 
-+	/* compression is not allowed for cached BO so ccs clear can be skipped. */
-+	tt->skip_ccs_clear = caching == ttm_cached;
+-	/*
+-	 * If the device can support gpu clear system pages then set proper ttm
+-	 * flag. Zeroed pages are only required for ttm_bo_type_device so
+-	 * unwanted data is not leaked to userspace.
+-	 */
+-	if (ttm_bo->type == ttm_bo_type_device && xe->mem.gpu_page_clear_sys)
+-		page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
+-
+ 	/* compression is not allowed for cached BO so ccs clear can be skipped. */
+ 	tt->skip_ccs_clear = caching == ttm_cached;
  	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
- 	if (err) {
- 		kfree(tt);
-@@ -664,13 +667,16 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	struct ttm_resource *old_mem = ttm_bo->resource;
- 	u32 old_mem_type = old_mem ? old_mem->mem_type : XE_PL_SYSTEM;
- 	struct ttm_tt *ttm = ttm_bo->ttm;
-+	struct xe_ttm_tt *xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt,
-+					       ttm);
- 	struct xe_migrate *migrate = NULL;
- 	struct dma_fence *fence;
- 	bool move_lacks_source;
- 	bool tt_has_data;
- 	bool needs_clear;
+@@ -428,10 +420,6 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+ 	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
+ 		return 0;
+ 
+-	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear system pages */
+-	if (tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE)
+-		tt->page_flags &= ~TTM_TT_FLAG_ZERO_ALLOC;
+-
+ 	err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
+ 	if (err)
+ 		return err;
+@@ -677,16 +665,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
  	bool handle_system_ccs = (!IS_DGFX(xe) && xe_bo_needs_ccs_pages(bo) &&
--				  ttm && ttm_tt_is_populated(ttm)) ? true : false;
-+				  ttm && ttm_tt_is_populated(ttm) &&
-+				  !xe_tt->skip_ccs_clear) ? true : false;
- 	bool clear_system_pages;
+ 				  ttm && ttm_tt_is_populated(ttm) &&
+ 				  !xe_tt->skip_ccs_clear) ? true : false;
+-	bool clear_system_pages;
  	int ret = 0;
  
+-	/*
+-	 * Clear TTM_TT_FLAG_CLEARED_ON_FREE on bo creation path when
+-	 * moving to system as the bo doesn't have dma_mapping.
+-	 */
+-	if (!old_mem && ttm && !ttm_tt_is_populated(ttm))
+-		ttm->page_flags &= ~TTM_TT_FLAG_CLEARED_ON_FREE;
+-
+ 	/* Bo creation path, moving to system or TT. */
+ 	if ((!old_mem && ttm) && !handle_system_ccs) {
+ 		if (new_mem->mem_type == XE_PL_TT)
+@@ -709,10 +689,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	move_lacks_source = handle_system_ccs ? (!bo->ccs_cleared)  :
+ 						(!mem_type_is_vram(old_mem_type) && !tt_has_data);
+ 
+-	clear_system_pages = ttm && (ttm->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE);
+ 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+-		(!ttm && ttm_bo->type == ttm_bo_type_device) ||
+-		clear_system_pages;
++		(!ttm && ttm_bo->type == ttm_bo_type_device);
+ 
+ 	if (new_mem->mem_type == XE_PL_TT) {
+ 		ret = xe_tt_map_sg(ttm);
+@@ -824,7 +802,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		if (move_lacks_source) {
+ 			u32 flags = 0;
+ 
+-			if (mem_type_is_vram(new_mem->mem_type) || clear_system_pages)
++			if (mem_type_is_vram(new_mem->mem_type))
+ 				flags |= XE_MIGRATE_CLEAR_FLAG_FULL;
+ 			else if (handle_system_ccs)
+ 				flags |= XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 4ecd620921a3..e73fb0c23932 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -333,8 +333,6 @@ struct xe_device {
+ 		struct xe_mem_region vram;
+ 		/** @mem.sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
+-		/** @mem.gpu_page_clear_sys: clear system pages offloaded to GPU */
+-		bool gpu_page_clear_sys;
+ 	} mem;
+ 
+ 	/** @sriov: device level virtualization data */
+diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+index e0ac20f20758..9844a8edbfe1 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+@@ -117,17 +117,5 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+ 	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+ 	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, man);
+ 	ttm_resource_manager_set_used(man, true);
+-
+-	/*
+-	 * On iGFX device with flat CCS, we clear CCS metadata, let's extend that
+-	 * and use GPU to clear pages as well.
+-	 *
+-	 * Disable this when init_on_free and/or init_on_alloc is on to avoid double
+-	 * zeroing pages with CPU and GPU.
+-	 */
+-	if (xe_device_has_flat_ccs(xe) && !IS_DGFX(xe) &&
+-	    !want_init_on_alloc(GFP_USER) && !want_init_on_free())
+-		xe->mem.gpu_page_clear_sys = true;
+-
+ 	return drmm_add_action_or_reset(&xe->drm, ttm_sys_mgr_fini, xe);
+ }
 -- 
 2.42.0
 
