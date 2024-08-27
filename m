@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C687CC5320E
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 06:55:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD878C52D6F
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 06:56:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 904C210E2A2;
-	Tue, 27 Aug 2024 06:55:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E1110E1C8;
+	Tue, 27 Aug 2024 06:56:05 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD7E10E2A2;
- Tue, 27 Aug 2024 06:55:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37A2210E1C8;
+ Tue, 27 Aug 2024 06:56:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?BMG_supports_UHBR13=2E5?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_BMG_s?=
+ =?utf-8?q?upports_UHBR13=2E5?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Aug 2024 06:55:53 -0000
-Message-ID: <172474175324.786606.9799790799337831611@2413ebb6fbb6>
+Date: Tue, 27 Aug 2024 06:56:04 -0000
+Message-ID: <172474176422.786606.17087706911769190524@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240827064047.132278-1-arun.r.murthy@intel.com>
 In-Reply-To: <20240827064047.132278-1-arun.r.murthy@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0076b250ac2e drm-tip: 2024y-08m-27d-06h-20m-58s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: BMG supports UHBR13.5
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 165f277c4d7ea611b9595e9cf1139ead6416e529
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Tue Aug 27 12:10:47 2024 +0530
+
+    drm/i915/display: BMG supports UHBR13.5
+    
+    UHBR20 is not supported by battlemage and the maximum link rate
+    supported is UHBR13.5
+    
+    HSD: 16023263677
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch 0076b250ac2e713d4d91e8beb569a75da5e1f3ca drm-intel
+165f277c4d7e drm/i915/display: BMG supports UHBR13.5
 
 
