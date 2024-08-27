@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6860BC5320E
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 08:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50353C52D6F
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 09:04:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 350A310E29B;
-	Tue, 27 Aug 2024 08:48:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hAv0h6uz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCF7710E29B
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Aug 2024 08:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724748501; x=1756284501;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3U6UBnhR4ovqoBxdAWo2TDFcVsH0lnmlFCScTThPCkI=;
- b=hAv0h6uzb414C4BjrSyxz8IpgtSxW4Yyt1Yw8m5WMx+Zgm8tUtS7rJ6y
- MqFbjplVTbi5RYgdW3mGewKzjzoDgAxg+ygL4vez9sIPHtfapne2Ani/Q
- CE1L45+i8AiqPmFXBjxiwVJzamIuQ+ES+NJ8w4y693Ngm4jeqkxwQXa57
- swZ3j2x1bg7DzXbkeyNxoDHYlyCkyyyxcVTDgoQgo/vhc5F3Hh+TI0+qE
- d0jpLuOvZnXXlMC9ohBiRoqljWM3aVivJJTB31fOADU2mevIeDXyQoUsj
- 25yFt6VJSF3OkHlI0CEdKszaMFjAyTV3H3Q0e9gzvddmZovVJrRBSCyX1 Q==;
-X-CSE-ConnectionGUID: ghfk4LIpSGuMgAJsRR6LfQ==
-X-CSE-MsgGUID: TmQ7p4uURwq/mIS0IlIKbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="22803713"
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="22803713"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 01:48:21 -0700
-X-CSE-ConnectionGUID: X+VWduqTSQmELZjGKV/hrQ==
-X-CSE-MsgGUID: OmNTadKIThGVut69jhEU8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="67129169"
-Received: from mlehtone-mobl.ger.corp.intel.com (HELO [10.245.244.45])
- ([10.245.244.45])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 01:48:19 -0700
-Message-ID: <e722739d-10f4-403d-be67-42a54509e3df@intel.com>
-Date: Tue, 27 Aug 2024 09:48:17 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C95210E2B6;
+	Tue, 27 Aug 2024 09:04:45 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 104EE10E2B1;
+ Tue, 27 Aug 2024 09:04:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2194496796634476660=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe: Fix memory leak on xe_alloc_pf_queue failure
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-References: <20240826162035.20462-1-nirmoy.das@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240826162035.20462-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/display=3A_BMG_supports?=
+ =?utf-8?q?_UHBR13=2E5_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 27 Aug 2024 09:04:44 -0000
+Message-ID: <172474948405.803150.3932191606860862610@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240827081205.136569-1-arun.r.murthy@intel.com>
+In-Reply-To: <20240827081205.136569-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,63 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/08/2024 17:20, Nirmoy Das wrote:
-> Simplify memory unwinding on error also fixing current memory
-> leak that can happen on error.
-> 
-> v2: use devm_kcalloc(Matt A)
-> 
-> Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_gt_pagefault.c | 7 +++----
->   1 file changed, 3 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index 0be4687bfc20..91810d0a9afc 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -388,7 +388,6 @@ static void pagefault_fini(void *arg)
->   {
->   	struct xe_gt *gt = arg;
->   	struct xe_device *xe = gt_to_xe(gt);
-> -	int i;
->   
->   	if (!xe->info.has_usm)
->   		return;
-> @@ -396,12 +395,11 @@ static void pagefault_fini(void *arg)
->   	destroy_workqueue(gt->usm.acc_wq);
->   	destroy_workqueue(gt->usm.pf_wq);
->   
+--===============2194496796634476660==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No need for the new line here?
+== Series Details ==
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Series: drm/i915/display: BMG supports UHBR13.5 (rev2)
+URL   : https://patchwork.freedesktop.org/series/137827/
+State : success
 
-> -	for (i = 0; i < NUM_PF_QUEUE; ++i)
-> -		kfree(gt->usm.pf_queue[i].data);
->   }
->   
->   static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
->   {
-> +	struct xe_device *xe = gt_to_xe(gt);
->   	xe_dss_mask_t all_dss;
->   	int num_dss, num_eus;
->   
-> @@ -417,7 +415,8 @@ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
->   		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW;
->   
->   	pf_queue->gt = gt;
-> -	pf_queue->data = kcalloc(pf_queue->num_dw, sizeof(u32), GFP_KERNEL);
-> +	pf_queue->data = devm_kcalloc(xe->drm.dev, pf_queue->num_dw,
-> +				      sizeof(u32), GFP_KERNEL);
->   	if (!pf_queue->data)
->   		return -ENOMEM;
->   
+== Summary ==
+
+CI Bug Log - changes from xe-1832-0f7dbe16a23882ef9c928d9650ea0613925e710b_BAT -> xe-pw-137827v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7992 -> IGT_7993
+  * Linux: xe-1832-0f7dbe16a23882ef9c928d9650ea0613925e710b -> xe-pw-137827v2
+
+  IGT_7992: 14c915ac38d4f697f504f3c754195c5e284c49e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1832-0f7dbe16a23882ef9c928d9650ea0613925e710b: 0f7dbe16a23882ef9c928d9650ea0613925e710b
+  xe-pw-137827v2: 137827v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137827v2/index.html
+
+--===============2194496796634476660==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: BMG supports UHBR13.5 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137827/">https://patchwork.freedesktop.org/series/137827/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137827v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137827v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1832-0f7dbe16a23882ef9c928d9650ea0613925e710b_BAT -&gt; xe-pw-137827v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7992 -&gt; IGT_7993</li>
+<li>Linux: xe-1832-0f7dbe16a23882ef9c928d9650ea0613925e710b -&gt; xe-pw-137827v2</li>
+</ul>
+<p>IGT_7992: 14c915ac38d4f697f504f3c754195c5e284c49e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1832-0f7dbe16a23882ef9c928d9650ea0613925e710b: 0f7dbe16a23882ef9c928d9650ea0613925e710b<br />
+  xe-pw-137827v2: 137827v2</p>
+
+</body>
+</html>
+
+--===============2194496796634476660==--
