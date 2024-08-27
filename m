@@ -4,61 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC55FC5320E
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 09:04:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 975D6C52D6F
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 09:15:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87FBD10E2B5;
-	Tue, 27 Aug 2024 09:04:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58A0810E2B1;
+	Tue, 27 Aug 2024 09:15:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EUfD4qi9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bvTnFis9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C4DD10E2B1
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Aug 2024 09:04:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AC0B10E2B1
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Aug 2024 09:15:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724749483; x=1756285483;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ad0q6dHGnTO7dxyoMywCr1iBYt+nc2qCmB83ETVdEUg=;
- b=EUfD4qi9eF5gN51eyAoaXtsz+J7QVl3v8U5k0VoDorqPW2kYk65XF1ib
- ZEGI77F7HOJF0PIhqL3HjSnSrtNP2K5dBVvHQRflj4/Bse1tXG7uiv4VJ
- 4PhqNqGNQLYKsv3nbLQatNDrUJTAwqP+4cYWWHnXJXcdJuzDFVjCZJ2DO
- VXTOiUFtQlxqdb+Uuz4emlUkTuMsStdUhiJPT0BSAtqvOtq0yRtqL71E8
- xJMq4TbJ8Ig/vAPmhGTDR2tzbp9W5Wlsgt843i02x/fsxy5wNbM0tySAQ
- fhx5+BfoHt+WPe5kpxvZnnrIz860SVr5F91VE291hRwXwiiCgUlNo+/Zc w==;
-X-CSE-ConnectionGUID: JXY8NcVaRnqg6XTjy716Ug==
-X-CSE-MsgGUID: 4Pb6RxsKTb2LWPunOu8bYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="26979629"
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="26979629"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 02:04:43 -0700
-X-CSE-ConnectionGUID: Fyw2ul7ESg2XVpWWreoK7Q==
-X-CSE-MsgGUID: 3AZvTToFQkGYn99EW6Blvg==
+ t=1724750146; x=1756286146;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=M8jwb2+QwZutIGoptsze2DY+XF6Pnt+bNVpWlXwcu48=;
+ b=bvTnFis9VQ0IrVpaJGOjs1LxkGxwPvqCTuYgETPZIQj5y6uBEvZPch9G
+ C3E4NcaiCKD11mLTt4QNZCMc3UDTcvNDmIRKmx84VO6zrYdaStKWVTNjo
+ gPeqMHzxVzLRbHEorshmmPzPP7vmUGUwlNlN4XZwJdzYN4HBi+p9/mdaj
+ UUbO1zx8Yk5jdkHXnOxVWOP96BUDdf5Ii5kQ1LMc6FUVo0J/B9+lghU8h
+ wL3w7ybhyz6Y7nEDi2tiFTuAp/ohB0y6dz8lKLjJcmh0KyP8dNgpLqUxg
+ 6IraaIJfTSIEfUbT5jliYSBb1Bq6xr7E/XC3pD6NRJRRGLzJeOCjFgNF9 Q==;
+X-CSE-ConnectionGUID: CYKoAYw0TxOqaJCdn0ONNw==
+X-CSE-MsgGUID: Zis6XIA7Sw+KPxbVjt3NlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="40684990"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="40684990"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 02:15:45 -0700
+X-CSE-ConnectionGUID: 6RdIYQtNSl62e0yf/HoJWQ==
+X-CSE-MsgGUID: BOuNO0clS6eqkzy0304Ebw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="67610269"
-Received: from mlehtone-mobl.ger.corp.intel.com (HELO [10.245.244.45])
- ([10.245.244.45])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 02:04:42 -0700
-Message-ID: <e817dc4d-b26c-46af-81bc-3cf62597a88b@intel.com>
-Date: Tue, 27 Aug 2024 10:04:39 +0100
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="62474081"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.226])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 02:15:43 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/xe: replace #include <drm/xe_drm.h> with
+ <uapi/drm/xe_drm.h>
+Date: Tue, 27 Aug 2024 12:15:39 +0300
+Message-Id: <20240827091539.4136838-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] drm/xe/lnl: Implement clear-on-free for pooled BOs
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Nirmoy Das <nirmoy.das@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-References: <20240822124244.10554-1-nirmoy.das@intel.com>
- <7645111403a453311b16ff2b11d49cb63a74518f.camel@linux.intel.com>
- <a20245c6-7628-470d-bd6e-4e719dbd198f@linux.intel.com>
- <e76049b03dca87599346ec1db3ac6bfec97efee3.camel@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <e76049b03dca87599346ec1db3ac6bfec97efee3.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,404 +68,292 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/08/2024 09:36, Thomas Hellström wrote:
-> On Mon, 2024-08-26 at 10:26 +0200, Nirmoy Das wrote:
->> Hi Thomas,
->>
->> On 8/23/2024 11:38 AM, Thomas Hellström wrote:
->>> Hi, Nirmoy,
->>>
->>> On Thu, 2024-08-22 at 14:42 +0200, Nirmoy Das wrote:
->>>> Implement GPU clear-on-free for pooled system pages in Xe.
->>>>
->>>> Ensure proper use of TTM_TT_FLAG_CLEARED_ON_FREE by leveraging
->>>> ttm_device_funcs.release_notify() for GPU clear-on-free. If GPU
->>>> clear
->>>> fails, xe_ttm_tt_unpopulate() will fallback to CPU clear.
->>>>
->>>> Clear-on-free is only relevant for pooled pages as driver needs
->>>> to
->>>> give
->>>> back those pages. So do clear-on-free only for such BOs and keep
->>>> doing
->>>> clear-on-alloc for ttm_cached type BOs
->>>>
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> While this would probably work, I don't immediately see the benefit
->>> over CPU clearing, since we have no way of combining this with the
->>> CCS
->>> clear, right?
->>
->>
->> If XE/ttm could do clear-on-free(data+CCS) with GPU all the time then
->> I
->> think we could
->>
->> skip ccs clearing on alloc, assuming only GPU access modifies a CCS
->> state and on boot CCS region
->>
->> is zeroed. I think that can't be guaranteed so we have to clear ccs
->> on
->> alloc. I agree, there won't be much
->>
->> latency benefit of doing clear-on-free for ccs devices. I will still
->> try
->> to run some tests to validate it, I have done that for this RFC.
-> 
-> OK, yes this would probably work. Do we need to clear all CCS on module
-> load or can we safely assume that no useful info is left in the CCS
-> memory at that time?
+include/drm/xe_drm.h does not exist. Prefer the explicit uapi include.
 
-Maybe another thing to check is if we can skip ccs clearing for wb, 
-assuming we don't already. I think compression is always coh_none (not 
-compatible with wb), and I think that to copy the ccs directly would 
-require mapping the src with compression enabled.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display.c | 2 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c   | 2 +-
+ drivers/gpu/drm/xe/xe_bo.c              | 2 +-
+ drivers/gpu/drm/xe/xe_device.c          | 2 +-
+ drivers/gpu/drm/xe/xe_drm_client.c      | 2 +-
+ drivers/gpu/drm/xe/xe_exec.c            | 2 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c      | 2 +-
+ drivers/gpu/drm/xe/xe_gt.c              | 2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 2 +-
+ drivers/gpu/drm/xe/xe_migrate.c         | 2 +-
+ drivers/gpu/drm/xe/xe_oa.c              | 2 +-
+ drivers/gpu/drm/xe/xe_oa_types.h        | 2 +-
+ drivers/gpu/drm/xe/xe_observation.c     | 2 +-
+ drivers/gpu/drm/xe/xe_pat.c             | 2 +-
+ drivers/gpu/drm/xe/xe_query.c           | 2 +-
+ drivers/gpu/drm/xe/xe_rtp.c             | 2 +-
+ drivers/gpu/drm/xe/xe_sched_job.c       | 2 +-
+ drivers/gpu/drm/xe/xe_sync.c            | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c              | 2 +-
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 2 +-
+ 20 files changed, 20 insertions(+), 20 deletions(-)
 
-I'm pretty sure that is the case, otherwire userptr/imported external 
-dma-buf would be an issue today, assuming user could manually copy the 
-uncleared ccs.
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 78a884ddd499..e91d4d00e004 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -10,7 +10,7 @@
+ 
+ #include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "soc/intel_dram.h"
+ #include "i915_drv.h"		/* FIXME: HAS_DISPLAY() depends on this */
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index 13db6c0530b3..cedd3e88a6fb 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -3,7 +3,7 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include <kunit/test.h>
+ #include <kunit/visibility.h>
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index cbe7bf098970..0fc93d100c8c 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -13,7 +13,7 @@
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_tt.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "xe_device.h"
+ #include "xe_dma_buf.h"
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b6db7e082d88..1a0d7fdd094b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -15,7 +15,7 @@
+ #include <drm/drm_ioctl.h>
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "display/xe_display.h"
+ #include "instructions/xe_gpu_commands.h"
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 7ddd59908334..e64f4b645e2e 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -5,7 +5,7 @@
+ #include "xe_drm_client.h"
+ 
+ #include <drm/drm_print.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ #include <linux/kernel.h>
+ #include <linux/slab.h>
+ #include <linux/types.h>
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 484acfbe0e61..7b38485817dc 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -8,7 +8,7 @@
+ #include <drm/drm_device.h>
+ #include <drm/drm_exec.h>
+ #include <drm/drm_file.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ #include <linux/delay.h>
+ 
+ #include "xe_bo.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index e53937fafd14..5a9cbc97f0be 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -9,7 +9,7 @@
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "xe_device.h"
+ #include "xe_gt.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 08a004d698d4..1bb66db47265 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -8,7 +8,7 @@
+ #include <linux/minmax.h>
+ 
+ #include <drm/drm_managed.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include <generated/xe_wa_oob.h>
+ 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 18980238a2ea..6e4569aaf869 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -8,7 +8,7 @@
+ #include <linux/nospec.h>
+ 
+ #include <drm/drm_managed.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index cbf54be224c9..cfd31ae49cc1 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -10,7 +10,7 @@
+ 
+ #include <drm/drm_managed.h>
+ #include <drm/ttm/ttm_tt.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include <generated/xe_wa_oob.h>
+ 
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 4d4541e0b24c..63286ed8457f 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -10,7 +10,7 @@
+ 
+ #include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "abi/guc_actions_slpc_abi.h"
+ #include "instructions/xe_mi_commands.h"
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index 540c3ec53a6d..8862eca73fbe 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -11,7 +11,7 @@
+ #include <linux/mutex.h>
+ #include <linux/types.h>
+ 
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ #include "regs/xe_reg_defs.h"
+ #include "xe_hw_engine_types.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_observation.c
+index a78c92a44ec2..8ec1b84cbb9e 100644
+--- a/drivers/gpu/drm/xe/xe_observation.c
++++ b/drivers/gpu/drm/xe/xe_observation.c
+@@ -6,7 +6,7 @@
+ #include <linux/errno.h>
+ #include <linux/sysctl.h>
+ 
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "xe_oa.h"
+ #include "xe_observation.h"
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 722278cc23fc..f291a1730024 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -5,7 +5,7 @@
+ 
+ #include "xe_pat.h"
+ 
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include <generated/xe_wa_oob.h>
+ 
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 73ef6e4c2dc9..28d9bb3b825d 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -9,7 +9,7 @@
+ #include <linux/sched/clock.h>
+ 
+ #include <drm/ttm/ttm_placement.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index e78ba324dd18..86c705d18c0d 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -7,7 +7,7 @@
+ 
+ #include <kunit/visibility.h>
+ 
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "xe_gt.h"
+ #include "xe_gt_topology.h"
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 9628f9deb3c0..e9b67df8cfdd 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -5,7 +5,7 @@
+ 
+ #include "xe_sched_job.h"
+ 
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ #include <linux/dma-fence-chain.h>
+ #include <linux/slab.h>
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index ca826aeb41ea..43b3b1d310de 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -12,7 +12,7 @@
+ 
+ #include <drm/drm_print.h>
+ #include <drm/drm_syncobj.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "xe_device_types.h"
+ #include "xe_exec_queue.h"
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 4cc13eddb6b3..a670de50cf4a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -12,7 +12,7 @@
+ #include <drm/drm_print.h>
+ #include <drm/ttm/ttm_execbuf_util.h>
+ #include <drm/ttm/ttm_tt.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ #include <linux/ascii85.h>
+ #include <linux/delay.h>
+ #include <linux/kthread.h>
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index f69721339201..d46fa8374980 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -8,7 +8,7 @@
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_utils.h>
+-#include <drm/xe_drm.h>
++#include <uapi/drm/xe_drm.h>
+ 
+ #include "xe_device.h"
+ #include "xe_gt.h"
+-- 
+2.39.2
 
-> 
->>
->>
->> I've discussed this with Ron and it seems there is on going
->> conversation
->> if there is a way to avoid ccs clearing if data is zeroed.
->>
->> Let's see how that goes.
->>
->>
->>>    So the clearing latency will most probably be increased,
->>> but the bo releasing thread won't see that because the waiting for
->>> clear is offloaded to the TTM delayed destroy mechanism.
->>>
->>> Also, once we've dropped the gem refcount to zero, the gem members
->>> of
->>> the object, including bo_move, are strictly not valid anymore and
->>> shouldn't be used.
->>
->>
->> Could you please  expand this? I am not seeing the connection between
->> bo_move and refcount.
->>
->> Are you saying release_notify is not the right place to do this ?
-> 
-> Yes. At release_notify, the gem refcount has dropped to zero, and we
-> don't allow calling bo_move at that point, as the driver might want to
-> do some cleanup in the gem_release before putting the last ttm_bo
-> reference.
-> 
-> Thanks,
-> Thomas
-> 
-> 
->>
->>> If we want to try to improve freeing latency by offloading the
->>> clearing
->>> on free to a separate CPU thread, though, maybe we could discuss
->>> with
->>> Christian to always (or if a flag in the ttm device requests it)
->>> take
->>> the TTM delayed destruction path for bos with pooled pages, rather
->>> than
->>> to free them sync, something along the lines of:
->>>
->>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
->>> b/drivers/gpu/drm/ttm/ttm_bo.c
->>> index 320592435252..fca69ec1740d 100644
->>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->>> @@ -271,7 +271,7 @@ static void ttm_bo_release(struct kref *kref)
->>>    
->>>                   if (!dma_resv_test_signaled(bo->base.resv,
->>>                                              
->>> DMA_RESV_USAGE_BOOKKEEP) ||
->>> -                   (want_init_on_free() && (bo->ttm != NULL)) ||
->>> +                   (bo->ttm && (want_init_on_free() || bo->ttm-
->>>> caching != ttm_cached)) ||
->>>                       bo->type == ttm_bo_type_sg ||
->>>                       !dma_resv_trylock(bo->base.resv)) {
->>>                           /* The BO is not idle, resurrect it for
->>> delayed
->>> destroy */
->>>
->>> Would ofc require some substantial proven latency gain, though.
->>> Overall
->>> system cpu usage would probably not improve.
->>
->>
->> I will run some tests with the above change and get back.
->>
->>
->> Thanks,
->>
->> Nirmoy
->>
->>>
->>> /Thomas
->>>
->>>
->>>> ---
->>>>    drivers/gpu/drm/xe/xe_bo.c | 101
->>>> +++++++++++++++++++++++++++++++++--
->>>> --
->>>>    1 file changed, 91 insertions(+), 10 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c
->>>> b/drivers/gpu/drm/xe/xe_bo.c
->>>> index 6ed0e1955215..e7bc74f8ae82 100644
->>>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>>> @@ -283,6 +283,8 @@ struct xe_ttm_tt {
->>>>    	struct device *dev;
->>>>    	struct sg_table sgt;
->>>>    	struct sg_table *sg;
->>>> +	bool sys_clear_on_free;
->>>> +	bool sys_clear_on_alloc;
->>>>    };
->>>>    
->>>>    static int xe_tt_map_sg(struct ttm_tt *tt)
->>>> @@ -401,8 +403,23 @@ static struct ttm_tt
->>>> *xe_ttm_tt_create(struct
->>>> ttm_buffer_object *ttm_bo,
->>>>    	 * flag. Zeroed pages are only required for
->>>> ttm_bo_type_device so
->>>>    	 * unwanted data is not leaked to userspace.
->>>>    	 */
->>>> -	if (ttm_bo->type == ttm_bo_type_device && xe-
->>>>> mem.gpu_page_clear_sys)
->>>> -		page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
->>>> +	if (ttm_bo->type == ttm_bo_type_device && xe-
->>>>> mem.gpu_page_clear_sys) {
->>>> +		/*
->>>> +		 * Non-pooled BOs are always clear on alloc when
->>>> possible.
->>>> +		 * clear-on-free is not needed as there is no
->>>> pool
->>>> to give pages back.
->>>> +		 */
->>>> +		if (caching == ttm_cached) {
->>>> +			tt->sys_clear_on_alloc = true;
->>>> +			tt->sys_clear_on_free = false;
->>>> +		} else {
->>>> +		/*
->>>> +		 * For pooled BO, clear-on-alloc is done by the
->>>> CPU
->>>> for now and
->>>> +		 * GPU will do clear on free when releasing the
->>>> BO.
->>>> +		 */
->>>> +			tt->sys_clear_on_alloc = false;
->>>> +			tt->sys_clear_on_free = true;
->>>> +		}
->>>> +	}
->>>>    
->>>>    	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags,
->>>> caching,
->>>> extra_pages);
->>>>    	if (err) {
->>>> @@ -416,8 +433,10 @@ static struct ttm_tt
->>>> *xe_ttm_tt_create(struct
->>>> ttm_buffer_object *ttm_bo,
->>>>    static int xe_ttm_tt_populate(struct ttm_device *ttm_dev,
->>>> struct
->>>> ttm_tt *tt,
->>>>    			      struct ttm_operation_ctx *ctx)
->>>>    {
->>>> +	struct xe_ttm_tt *xe_tt;
->>>>    	int err;
->>>>    
->>>> +	xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
->>>>    	/*
->>>>    	 * dma-bufs are not populated with pages, and the dma-
->>>>    	 * addresses are set up when moved to XE_PL_TT.
->>>> @@ -426,7 +445,7 @@ static int xe_ttm_tt_populate(struct
->>>> ttm_device
->>>> *ttm_dev, struct ttm_tt *tt,
->>>>    		return 0;
->>>>    
->>>>    	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear
->>>> system pages */
->>>> -	if (tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE)
->>>> +	if (xe_tt->sys_clear_on_alloc)
->>>>    		tt->page_flags &= ~TTM_TT_FLAG_ZERO_ALLOC;
->>>>    
->>>>    	err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
->>>> @@ -438,11 +457,19 @@ static int xe_ttm_tt_populate(struct
->>>> ttm_device
->>>> *ttm_dev, struct ttm_tt *tt,
->>>>    
->>>>    static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev,
->>>> struct
->>>> ttm_tt *tt)
->>>>    {
->>>> +	struct xe_ttm_tt *xe_tt;
->>>> +
->>>> +	xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
->>>> +
->>>>    	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
->>>>    		return;
->>>>    
->>>>    	xe_tt_unmap_sg(tt);
->>>>    
->>>> +	/* Hint TTM pool that pages are already cleared */
->>>> +	if (xe_tt->sys_clear_on_free)
->>>> +		tt->page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
->>>> +
->>>>    	return ttm_pool_free(&ttm_dev->pool, tt);
->>>>    }
->>>>    
->>>> @@ -664,6 +691,7 @@ static int xe_bo_move(struct
->>>> ttm_buffer_object
->>>> *ttm_bo, bool evict,
->>>>    	struct ttm_resource *old_mem = ttm_bo->resource;
->>>>    	u32 old_mem_type = old_mem ? old_mem->mem_type :
->>>> XE_PL_SYSTEM;
->>>>    	struct ttm_tt *ttm = ttm_bo->ttm;
->>>> +	struct xe_ttm_tt *xe_tt;
->>>>    	struct xe_migrate *migrate = NULL;
->>>>    	struct dma_fence *fence;
->>>>    	bool move_lacks_source;
->>>> @@ -674,12 +702,13 @@ static int xe_bo_move(struct
->>>> ttm_buffer_object
->>>> *ttm_bo, bool evict,
->>>>    	bool clear_system_pages;
->>>>    	int ret = 0;
->>>>    
->>>> +	xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt,
->>>> ttm);
->>>>    	/*
->>>>    	 * Clear TTM_TT_FLAG_CLEARED_ON_FREE on bo creation path
->>>> when
->>>>    	 * moving to system as the bo doesn't have dma_mapping.
->>>>    	 */
->>>>    	if (!old_mem && ttm && !ttm_tt_is_populated(ttm))
->>>> -		ttm->page_flags &= ~TTM_TT_FLAG_CLEARED_ON_FREE;
->>>> +		xe_tt->sys_clear_on_alloc = false;
->>>>    
->>>>    	/* Bo creation path, moving to system or TT. */
->>>>    	if ((!old_mem && ttm) && !handle_system_ccs) {
->>>> @@ -703,10 +732,9 @@ static int xe_bo_move(struct
->>>> ttm_buffer_object
->>>> *ttm_bo, bool evict,
->>>>    	move_lacks_source = handle_system_ccs ? (!bo-
->>>>> ccs_cleared)
->>>> :
->>>>    						(!mem_type_is_vr
->>>> am(o
->>>> ld_mem_type) && !tt_has_data);
->>>>    
->>>> -	clear_system_pages = ttm && (ttm->page_flags &
->>>> TTM_TT_FLAG_CLEARED_ON_FREE);
->>>> +	clear_system_pages = ttm && xe_tt->sys_clear_on_alloc;
->>>>    	needs_clear = (ttm && ttm->page_flags &
->>>> TTM_TT_FLAG_ZERO_ALLOC) ||
->>>> -		(!ttm && ttm_bo->type == ttm_bo_type_device) ||
->>>> -		clear_system_pages;
->>>> +		(!ttm && ttm_bo->type == ttm_bo_type_device) ||
->>>> clear_system_pages;
->>>>    
->>>>    	if (new_mem->mem_type == XE_PL_TT) {
->>>>    		ret = xe_tt_map_sg(ttm);
->>>> @@ -1028,10 +1056,47 @@ static bool
->>>> xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
->>>>    	return locked;
->>>>    }
->>>>    
->>>> +static struct dma_fence *xe_ttm_bo_clear_on_free(struct
->>>> ttm_buffer_object *ttm_bo)
->>>> +{
->>>> +	struct xe_bo *bo  = ttm_to_xe_bo(ttm_bo);
->>>> +	struct xe_device *xe = xe_bo_device(bo);
->>>> +	struct xe_migrate *migrate;
->>>> +	struct xe_ttm_tt *xe_tt;
->>>> +	struct dma_fence *clear_fence;
->>>> +
->>>> +	/* return early if nothing to clear */
->>>> +	if (!ttm_bo->ttm)
->>>> +		return NULL;
->>>> +
->>>> +	xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt,
->>>> ttm);
->>>> +	/* return early if nothing to clear */
->>>> +	if (!xe_tt->sys_clear_on_free || !bo->ttm.resource)
->>>> +		return NULL;
->>>> +
->>>> +	if (XE_WARN_ON(!xe_tt->sg))
->>>> +		return NULL;
->>>> +
->>>> +	if (bo->tile)
->>>> +		migrate = bo->tile->migrate;
->>>> +	else
->>>> +		migrate = xe->tiles[0].migrate;
->>>> +
->>>> +	xe_assert(xe, migrate);
->>>> +
->>>> +	clear_fence = xe_migrate_clear(migrate, bo, bo-
->>>>> ttm.resource,
->>>> +				
->>>> XE_MIGRATE_CLEAR_FLAG_FULL);
->>>> +	if (IS_ERR(clear_fence))
->>>> +		return NULL;
->>>> +
->>>> +	xe_tt->sys_clear_on_free = false;
->>>> +
->>>> +	return clear_fence;
->>>> +}
->>>> +
->>>>    static void xe_ttm_bo_release_notify(struct ttm_buffer_object
->>>> *ttm_bo)
->>>>    {
->>>>    	struct dma_resv_iter cursor;
->>>> -	struct dma_fence *fence;
->>>> +	struct dma_fence *clear_fence, *fence;
->>>>    	struct dma_fence *replacement = NULL;
->>>>    	struct xe_bo *bo;
->>>>    
->>>> @@ -1041,15 +1106,31 @@ static void
->>>> xe_ttm_bo_release_notify(struct
->>>> ttm_buffer_object *ttm_bo)
->>>>    	bo = ttm_to_xe_bo(ttm_bo);
->>>>    	xe_assert(xe_bo_device(bo), !(bo->created &&
->>>> kref_read(&ttm_bo->base.refcount)));
->>>>    
->>>> +	clear_fence = xe_ttm_bo_clear_on_free(ttm_bo);
->>>> +
->>>>    	/*
->>>>    	 * Corner case where TTM fails to allocate memory and
->>>> this
->>>> BOs resv
->>>>    	 * still points the VMs resv
->>>>    	 */
->>>> -	if (ttm_bo->base.resv != &ttm_bo->base._resv)
->>>> +	if (ttm_bo->base.resv != &ttm_bo->base._resv) {
->>>> +		if (clear_fence)
->>>> +			dma_fence_wait(clear_fence, false);
->>>>    		return;
->>>> +	}
->>>>    
->>>> -	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
->>>> +	if (!xe_ttm_bo_lock_in_destructor(ttm_bo)) {
->>>> +		if (clear_fence)
->>>> +			dma_fence_wait(clear_fence, false);
->>>>    		return;
->>>> +	}
->>>> +
->>>> +	if (clear_fence) {
->>>> +		if (dma_resv_reserve_fences(ttm_bo->base.resv,
->>>> 1))
->>>> +			dma_fence_wait(clear_fence, false);
->>>> +		else
->>>> +			dma_resv_add_fence(ttm_bo->base.resv,
->>>> clear_fence,
->>>> +					
->>>> DMA_RESV_USAGE_KERNEL);
->>>> +	}
->>>>    
->>>>    	/*
->>>>    	 * Scrub the preempt fences if any. The unbind fence is
->>>> already
-> 
