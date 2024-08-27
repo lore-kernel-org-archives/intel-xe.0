@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF752C5472F
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 17:04:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91073C5472F
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 17:09:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6C010E3BD;
-	Tue, 27 Aug 2024 17:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ABBF10E3C4;
+	Tue, 27 Aug 2024 17:09:43 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67CB410E3BD;
- Tue, 27 Aug 2024 17:04:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1283907279134419567=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6B410E3C4;
+ Tue, 27 Aug 2024 17:09:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
- =?utf-8?q?rm/xe=3A_Skip_CCS_clear_for_WB_type_BOs?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pmu=3A_Enable?=
+ =?utf-8?q?_PMU_interface_=28rev10=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
+To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Aug 2024 17:04:46 -0000
-Message-ID: <172477828641.807405.9020877190179698680@2413ebb6fbb6>
+Date: Tue, 27 Aug 2024 17:09:41 -0000
+Message-ID: <172477858158.807406.13930093626583776321@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240827154910.24841-1-nirmoy.das@intel.com>
-In-Reply-To: <20240827154910.24841-1-nirmoy.das@intel.com>
+References: <20240827164107.47034-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20240827164107.47034-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,23 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1283907279134419567==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe: Skip CCS clear for WB type BOs
-URL   : https://patchwork.freedesktop.org/series/137855/
+Series: drm/xe/pmu: Enable PMU interface (rev10)
+URL   : https://patchwork.freedesktop.org/series/119504/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1836-27592570393fbdca50a8767bf7b53ff88147e701_BAT -> xe-pw-137855v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 2c3fbd94c8b2 drm-tip: 2024y-08m-27d-15h-29m-57s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:694: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: drm/xe/pmu: Enable PMU interface
+Applying: drm/xe/pmu: Define and init a timer
+Applying: drm/xe/pmu: Add GT C6 events
+Applying: drm/xe/pmu: Add GT frequency events
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1836-27592570393fbdca50a8767bf7b53ff88147e701 -> xe-pw-137855v1
-
-  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1836-27592570393fbdca50a8767bf7b53ff88147e701: 27592570393fbdca50a8767bf7b53ff88147e701
-  xe-pw-137855v1: 137855v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137855v1/index.html
-
---===============1283907279134419567==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Skip CCS clear for WB type BOs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137855/">https://patchwork.freedesktop.org/series/137855/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137855v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137855v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1836-27592570393fbdca50a8767bf7b53ff88147e701_BAT -&gt; xe-pw-137855v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1836-27592570393fbdca50a8767bf7b53ff88147e701 -&gt; xe-pw-137855v1</li>
-</ul>
-<p>IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1836-27592570393fbdca50a8767bf7b53ff88147e701: 27592570393fbdca50a8767bf7b53ff88147e701<br />
-  xe-pw-137855v1: 137855v1</p>
-
-</body>
-</html>
-
---===============1283907279134419567==--
