@@ -4,25 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B473CC52D6F
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 09:21:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38B35C5320E
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 09:22:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DD8310E2BF;
-	Tue, 27 Aug 2024 09:21:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02ED110E2C0;
+	Tue, 27 Aug 2024 09:22:11 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DBCE10E2BF;
- Tue, 27 Aug 2024 09:21:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C59410E2C0;
+ Tue, 27 Aug 2024 09:22:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_replace_?=
- =?utf-8?q?=23include_=3Cdrm/xe=5Fdrm=2Eh=3E_with_=3Cuapi/drm/xe=5Fdrm=2Eh?=
- =?utf-8?q?=3E?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_replace_=23incl?=
+ =?utf-8?q?ude_=3Cdrm/xe=5Fdrm=2Eh=3E_with_=3Cuapi/drm/xe=5Fdrm=2Eh=3E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Aug 2024 09:21:46 -0000
-Message-ID: <172475050644.804865.7719851198732086275@2413ebb6fbb6>
+Date: Tue, 27 Aug 2024 09:22:09 -0000
+Message-ID: <172475052943.804865.1778181545199063126@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240827091539.4136838-1-jani.nikula@intel.com>
 In-Reply-To: <20240827091539.4136838-1-jani.nikula@intel.com>
@@ -49,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5141d5ae1dea drm-tip: 2024y-08m-27d-08h-03m-08s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: replace #include <drm/xe_drm.h> with <uapi/drm/xe_drm.h>
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 56f7332755a72eeafe28056591b4855d4ec557b0
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Aug 27 12:15:39 2024 +0300
+
+    drm/xe: replace #include <drm/xe_drm.h> with <uapi/drm/xe_drm.h>
+    
+    include/drm/xe_drm.h does not exist. Prefer the explicit uapi include.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 5141d5ae1dead73bd1d029f8310609720bca06b3 drm-intel
+56f7332755a7 drm/xe: replace #include <drm/xe_drm.h> with <uapi/drm/xe_drm.h>
 
 
