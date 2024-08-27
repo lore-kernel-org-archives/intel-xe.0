@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60CBBC54731
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 20:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8DF4C54731
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 21:05:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2475B10E3FB;
-	Tue, 27 Aug 2024 20:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 761CE10E406;
+	Tue, 27 Aug 2024 21:05:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aEs830M2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XFKXQsD2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 033E910E3FB;
- Tue, 27 Aug 2024 20:46:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7794810E406
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Aug 2024 21:05:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724791602; x=1756327602;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YTkJp8Iu637uUW04s6GokQ8p6QADcNEF8Mi8hZB4CEs=;
- b=aEs830M2bxe75vcH54ZQfxID41FnJ7CNgeY+BVzkCNZXRNu6zKgYbH1y
- yhUXXVeUkBAchNra7NULZhvklxH8hLmdTzd7ns2SPEe8sJ6m1SQZCbvZn
- auEJlDxfehvj8H8LAO73ELFfPeHWBHIFSsN+EaAQ40gmdHGbmNP3ec3aS
- SkLiYgc5w/udHrEYRhUlBSynN9cul5cQqw9ClqsTGWezK0GcMf+I2R5O3
- dhEY1r/RQIdK3AvtLnVxpn8IrpfRj06XvBZEBDtJmjqM6QlWDdGYIGJgZ
- VIyqhg07K+dpjQx53VMRz85PguZR+tgxd0bDF5i5usRIRrgNQ/Bq0XJFH Q==;
-X-CSE-ConnectionGUID: xDsrKe7xQW6QviQrFgnQxQ==
-X-CSE-MsgGUID: OOUDdhFgSdyosC0jM1nVDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="45813032"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="45813032"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 13:46:41 -0700
-X-CSE-ConnectionGUID: LoZcVP5GTL6zaBH5/GiZWQ==
-X-CSE-MsgGUID: pnxoaLPqSXCBV+p+igts8g==
+ t=1724792724; x=1756328724;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=2gDKCqAqWGdURRQjHhBgp8Nj/uCDlhHiIZYtebZp3E8=;
+ b=XFKXQsD2IXgaV4bt2q5nlL8Z/E+w9k6c35zc9sYG9OeRUlFAR5f1uzmM
+ gEo4fXUrCdyvlOOz981+h4Hbf+XztgxsX1jNpX/+0oL1fy6uaAdtTl/ls
+ Iv3tSELH4/Af00dDwTxvuvenR63UlWNW1DDrn4aWbR88Dg1bb4HbhGBaI
+ 9b6Ojld/Ow8+DZ5fYyFGiqaElIgmA5UF2dVNntG8f2r+NxmPrMftzL5MR
+ 6rwRkzbbddbafjQ1HIwRxzKRBHt7858DXjhhMrSJ7gnKjBrt+hSO8ilkX
+ da+AzGf9oSb0/1opjtPIyxChI9CM1ApJW7LjNXrknWgX3Lyth9mJbvyBY A==;
+X-CSE-ConnectionGUID: wJGlMauoQ9SZqIehXEG5qA==
+X-CSE-MsgGUID: VkN6nv1FTaytzAMblZXhNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="23441490"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="23441490"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 14:05:24 -0700
+X-CSE-ConnectionGUID: 8iauxFlHQYKJFs/NPZrtYA==
+X-CSE-MsgGUID: JlpBpqptTC6X3pQy5GUXug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67350699"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 13:46:42 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: gustavo.sousa@intel.com, jani.nikula@linux.intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- daniel@ffwll.ch, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/xe: Support 'nomodeset' kernel command-line option
-Date: Tue, 27 Aug 2024 13:46:32 -0700
-Message-ID: <172479156026.1724247.3114758407435759625.b4-ty@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240827121003.97429-1-tzimmermann@suse.de>
-References: <20240827121003.97429-1-tzimmermann@suse.de>
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67147651"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa003.fm.intel.com with ESMTP; 27 Aug 2024 14:05:22 -0700
+Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id E592C312C9;
+ Tue, 27 Aug 2024 22:05:20 +0100 (IST)
+Message-ID: <ec9329db-17ba-4bbc-8587-19862d685fa0@intel.com>
+Date: Tue, 27 Aug 2024 23:05:20 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/xe: Use VF_CAP_REG for device wmb
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20240702183704.1022-1-michal.wajdeczko@intel.com>
+ <20240702183704.1022-4-michal.wajdeczko@intel.com>
+ <87cyluuatt.wl-ashutosh.dixit@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <87cyluuatt.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,23 +74,80 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On Tue, 27 Aug 2024 14:09:05 +0200, Thomas Zimmermann wrote:
-> Setting 'nomodeset' on the kernel command line disables all graphics
-> drivers with modesetting capabilities, leaving only firmware drivers,
-> such as simpledrm or efifb.
+
+On 27.08.2024 01:24, Dixit, Ashutosh wrote:
+> On Tue, 02 Jul 2024 11:37:04 -0700, Michal Wajdeczko wrote:
+>>
 > 
-> Most DRM drivers automatically support 'nomodeset' via DRM's module
-> helper macros. In xe, which uses regular module_init(), manually call
-> drm_firmware_drivers_only() to test for 'nomodeset'. Do not register
-> the driver if set.
+> I have a couple of questions about xe_device_wmb() below:
 > 
-> [...]
+>> To force a write barrier on the device memory, we write to the
+>> SOFTWARE_FLAGS_SPR33 register, but this particular register was
+>> selected because it was one of the writable and unused register.
+>>
+>> Since a write barrier should also work if we use the read-only
+>> register, switch to VF_CAP_REG register that is also marked as
+>> accessible for VFs.
+>>
+>> While at it, add simple kernel-doc for xe_device_wmb() function.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_device.c | 11 ++++++++++-
+>>  1 file changed, 10 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>> index cfda7cb5df2c..74beddb55284 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -744,13 +744,22 @@ void xe_device_shutdown(struct xe_device *xe)
+>>  {
+>>  }
+>>
+>> +/**
+>> + * xe_device_wmb() - Device specific write memory barrier
+>> + * @xe: the &xe_device
+>> + *
+>> + * While wmb() is sufficient for a barrier if we use system memory, on discrete
+>> + * platforms with device memory we additionally need to issue a register write.
+>> + * Since it doesn't matter which register we write to, use the read-only VF_CAP
+>> + * register that is also marked as accessible by the VFs.
+>> + */
+>>  void xe_device_wmb(struct xe_device *xe)
+>>  {
+>> 	struct xe_gt *gt = xe_root_mmio_gt(xe);
+>>
+>> 	wmb();
+>> 	if (IS_DGFX(xe))
+>> -		xe_mmio_write32(gt, SOFTWARE_FLAGS_SPR33, 0);
+>> +		xe_mmio_write32(gt, VF_CAP_REG, 0);
+> 
+> * What is the purpose of this register write following wmb (aka sfence)?
+>   As far as I understand, wmb/sfence should be sufficient by itself.
+> 
+>   If we wanted to flush PCI transactions, we should have to issue a PCI
+>   read, but here we are not doing that.
+> 
+> * Why only Xe has such a function, why is such a function not present in
+>   any of the other drivers, including i915?
 
-Applied to drm-xe-next, thanks!
+what about [1] intel_guc_write_barrier
 
-[1/1] drm/xe: Support 'nomodeset' kernel command-line option
-      commit: 014125c64d09e58e90dde49fbb57d802a13e2559
+[1]
+https://elixir.bootlin.com/linux/v6.11-rc5/source/drivers/gpu/drm/i915/gt/uc/intel_guc.c#L936
 
-Best regards,
--- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> * Also, as an aside, use of write barriers in the kernel requires a comment
+>   saying which read barrier the write barrier is paired with. Generally
+>   speaking, such comments are missing in Xe.
+> 
+> I have sent a patch with xe_device_wmb() replaced just with wmb() here:
+> 
+> 	https://patchwork.freedesktop.org/series/137818/
+> 
+> Let's see if we see any failures in CI with this patch.
+> 
+> Thanks.
+> --
+> Ashutosh
