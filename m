@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66884C5321D
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 00:58:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA04C5321D
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Aug 2024 00:58:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 250EF10E221;
-	Tue, 27 Aug 2024 00:58:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 508F210E284;
+	Tue, 27 Aug 2024 00:58:41 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE07310E221;
- Tue, 27 Aug 2024 00:58:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14F3C10E284;
+ Tue, 27 Aug 2024 00:58:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Replace_xe?=
- =?utf-8?q?=5Fdevice=5Fwmb_by_wmb?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Replace_xe=5Fde?=
+ =?utf-8?q?vice=5Fwmb_by_wmb?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Aug 2024 00:58:19 -0000
-Message-ID: <172472029977.786052.14056273105344384801@2413ebb6fbb6>
+Date: Tue, 27 Aug 2024 00:58:40 -0000
+Message-ID: <172472032008.786053.4733227922208563860@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240826234100.1850471-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20240826234100.1850471-1-ashutosh.dixit@intel.com>
@@ -44,13 +44,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Replace xe_device_wmb by wmb
 URL   : https://patchwork.freedesktop.org/series/137818/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0f7dbe16a238 drm-tip: 2024y-08m-27d-00h-25m-46s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Replace xe_device_wmb by wmb
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0ec9011583c4c7a56167fddf2488c4cd8d24a6d1
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Mon Aug 26 16:41:00 2024 -0700
+
+    drm/xe: Replace xe_device_wmb by wmb
+    
+    CI ONLY for now
+    
+    In xe_device_wmb(), it is not clear what the purpose of register write
+    following wmb() is. Replace xe_device_wmb() with just wmb() to see if we
+    see any failures in CI.
+    
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 0f7dbe16a23882ef9c928d9650ea0613925e710b drm-intel
+0ec9011583c4 drm/xe: Replace xe_device_wmb by wmb
+-:65: WARNING:MEMORY_BARRIER: memory barrier without comment
+#65: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:599:
++	wmb();
+
+-:78: WARNING:MEMORY_BARRIER: memory barrier without comment
+#78: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:702:
++	wmb();
+
+-:91: WARNING:MEMORY_BARRIER: memory barrier without comment
+#91: FILE: drivers/gpu/drm/xe/xe_migrate.c:1301:
++	wmb();
+
+-:104: WARNING:MEMORY_BARRIER: memory barrier without comment
+#104: FILE: drivers/gpu/drm/xe/xe_vm.c:3190:
++			wmb();
+
+total: 0 errors, 4 warnings, 0 checks, 64 lines checked
 
 
