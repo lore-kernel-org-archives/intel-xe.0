@@ -4,68 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 693A2C636EE
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 18:22:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8B9EC636EE
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 18:23:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E92E10E5A6;
-	Wed, 28 Aug 2024 18:22:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70DD810E5A8;
+	Wed, 28 Aug 2024 18:23:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="V8nptRr4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mfJTOlCq";
 	dkim-atps=neutral
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
- [209.85.128.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D801C10E5A6
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 18:22:56 +0000 (UTC)
-Received: by mail-wm1-f46.google.com with SMTP id
- 5b1f17b1804b1-428e1915e18so59357375e9.1
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 11:22:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1724869375; x=1725474175; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=kGJO04ku/Lmh8lAJ4udIk6gxaBtWAL1i/Zibk51B9zg=;
- b=V8nptRr443yI/qn0oiDHu0wKtRkC1SEqHIHxQcVl4NkZorqsXmtEkasHYfrdIb6Un9
- i+BujknuIy+GInLRnFYjnbm02ukg9GaW6mjMqNDPBfMu7clR2L0PgyP3aE+oJCy3XH9e
- jztIOxD+aKbVk7H+PoB1FA3rnVWMSdQv7Ohn8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724869375; x=1725474175;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=kGJO04ku/Lmh8lAJ4udIk6gxaBtWAL1i/Zibk51B9zg=;
- b=kKU4zJwv9nurGu0k/nM4M9oWbqn+xUr40ODLb5XnPIR9oaVIa5IFZBl4DNOV1Y0ovt
- YJ/ybsNfBFZLDKXzIM24C/obT9zLBA0FHY1lX8JUGmWhpCBiz4TN2bDHzIJKU0otJcb6
- SQyqn0aNR+3BQtp5C+WmLQLa1moylODQYhbMeoU2zdwiUhKjBuMP6dxv3bWPBaE8hDr9
- CukHPCDOwZZhnZ388EJ2vfnr0WRvUvBU4iQRAah6xt0UpBCqtXGXzicRFXWOgbvGb5To
- DwmfMwkedJ+MaH/mLcWHRdj+F9Umi6aq9kz+3ipwjKTu8QWAmNmAK+pTzybARWuSBSmc
- 7CXg==
-X-Gm-Message-State: AOJu0Yy56FR8lrzTTbCy5+/FkeC5ctc8SGpaEubrTtHloplEtYf6OGnQ
- +dBE1Zph/2jl+E4Sh1ZlEvVU5HX2vCTB1EL1afthKDlpUKghicvbScORjRtoxF8=
-X-Google-Smtp-Source: AGHT+IFZOON2xLRB02ESq61KmxfYl6c/9ErP5KS337TLYvq8Ygdk7nKNUlTtjPt5jWWgbZ8qxGeyrQ==
-X-Received: by 2002:a05:600c:4fc4:b0:428:1d27:f3db with SMTP id
- 5b1f17b1804b1-42bb27b342bmr3008385e9.35.1724869374584; 
- Wed, 28 Aug 2024 11:22:54 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42baf7fa745sm9021365e9.31.2024.08.28.11.22.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Aug 2024 11:22:54 -0700 (PDT)
-Date: Wed, 28 Aug 2024 20:22:51 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, christian.koenig@amd.com,
- thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
-Subject: Re: [RFC PATCH 23/28] drm/xe: Add SVM VRAM migration
-Message-ID: <Zs9q-xrSM3shsER6@phenom.ffwll.local>
-References: <20240828024901.2582335-1-matthew.brost@intel.com>
- <20240828024901.2582335-24-matthew.brost@intel.com>
- <Zs9LF-jnNrd9ZlxW@phenom.ffwll.local>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD4E710E5A8
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 18:23:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724869417; x=1756405417;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=ulV6wJO502W9bgiSA2VURBH8M+d+0Yn1IozOT/k4wGk=;
+ b=mfJTOlCqpmI3Sl3b95eKzw5KFmsKRgLITlbGYERWXtiIWtsAeVmfaqJ+
+ DXzLpLiQqp5ufAYShO1ODdUOifh4Wysnv9nKyyhVAEzyjDhhq2pXrjOOP
+ 1Yey04e/KUkiyInvOEzEgIwe456vezRaW8+2U/IH02lKGBCqztd+mvN1G
+ gZ6am68h1cXDFuHcD5PyI5IQp0SOVMDmzV8IjXnKGf3kw61eg5xoykOXs
+ JXtV5bf+qgoio4k1vLdUNy6krhxeXKlcj+sgriFg70TKvBtut3FgHTGX8
+ /RmAE6ZrVb1Zi0oBKpD7KDwZINHVllIHAN1N0CYfmUKwZ0CHlxH+n2GYa Q==;
+X-CSE-ConnectionGUID: 4nzVle1nSUiGk9K1Qn6zDQ==
+X-CSE-MsgGUID: 1OiqBjhmSamv/ByzcW8DSA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="33988700"
+X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="33988700"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2024 11:23:37 -0700
+X-CSE-ConnectionGUID: yc7q1MMxTiKUGJLoNrHNng==
+X-CSE-MsgGUID: KUnny8SgRwaRO84/foBMAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="68107408"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Aug 2024 11:23:37 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 28 Aug 2024 11:23:36 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 28 Aug 2024 11:23:36 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.171)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 28 Aug 2024 11:23:36 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NCt27z82vrRfGhhPA2AWZg4oZ1h2LMypRQ3Uxyk/BAOBD3J+OlIy8MzY9yfKXoLYiD5yWNaZxjL7y2fEa4NzVmJ4NaHsxmRzd8G87uvKNcWretVTY2AjcGtBFUkuxUTPLW8E8vXonwZn/EX0la0kCZ/rxh87ltpWqlxQYOum16Gz+KvRXIIM0+juxXWtrbD4CFoUkzvj+tarxaVMP86Z/bCF8Su3JyWA54Bxda8GMya4qj8qBMznRc30E6MCn3nBLYqE9epihf1Aci1mVv9nkBxGKyU5RJ3GbQIUpyH588pMOZ1L2bke2guoB4LedRI44Sb1LvXebnRkzFNbGkPcjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FVSQrxAvGyv50nZmnvuoPSJl9ohXfsA/mmNSQIOppaM=;
+ b=RvGzLo7e65wd4Lv4qYiAYFA3ZgGRcRvJ9IunmFrZhxJiKmMmstn8KvVhxPc6goc9g3i3a2tAq5QpBxiXuWQ2uG9LkudUElhzlDeilQiWGf5Xi7QsPq0InS5s6IUSddihf4mDY4ll56yeJ1KzPLV+lRJT8tOVQGooGSKUeohzROZYBdla/jF+elaQgUY4/f1TjyFuOEJ27ZtZWXhTf/1RECABCcBv67Jo+uTN7lTmRZpoFE3OMOtR6HT2h1dQLutamfRDxM5hnuA+C9knCynOmGYTtflJ3v0LlyCX/tmLlYpulXlaxIZ35SkqPoEKPuLMNNicXp+HCjPrfqTxC+GUVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by CYYPR11MB8308.namprd11.prod.outlook.com (2603:10b6:930:b9::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Wed, 28 Aug
+ 2024 18:23:34 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7897.014; Wed, 28 Aug 2024
+ 18:23:34 +0000
+Date: Wed, 28 Aug 2024 14:23:31 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [PATCH] drm/xe: prevent potential UAF in pf_provision_vf_ggtt()
+Message-ID: <Zs9rI2MIMezCDtA0@intel.com>
+References: <20240828104341.180111-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <Zs9LF-jnNrd9ZlxW@phenom.ffwll.local>
-X-Operating-System: Linux phenom 6.9.12-amd64 
+In-Reply-To: <20240828104341.180111-2-matthew.auld@intel.com>
+X-ClientProxiedBy: MW4PR04CA0339.namprd04.prod.outlook.com
+ (2603:10b6:303:8a::14) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CYYPR11MB8308:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d23ddad-79ed-4497-db31-08dcc78e86e8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oiu7apuq+VRlRVC5pxJ9AYH6JGJ2P9J+2S4JEupBae1cbXSj3lNQOzMyxK92?=
+ =?us-ascii?Q?pmpdhUs5JauXtlRMsH+cuGv6jE99O3wXoEu8tNM1MT1sXY76+nKMvZXsf33/?=
+ =?us-ascii?Q?Scb3BVTjQKX/uWlmG7M7jk32tPA0JuCsbhJsrbtASWJdYWKZbj8h+4e98cI1?=
+ =?us-ascii?Q?3Q14nb5vtzOWQxyXdKH3pas9xiLUp6n6RJt1+FKVIuISf976ZJhD0YgZOo3x?=
+ =?us-ascii?Q?PtSsvKjxWZMlOuk2RqORRNrdVQS6jxCcqW1rVBMvTy2omtcwznTlou63oyCm?=
+ =?us-ascii?Q?z8Bnp5/Ypg+9TsAfw5927guDysQB5IgnXR4DQrT/IWmwn676wQZ3ys/3tHNz?=
+ =?us-ascii?Q?dy+YWtKn+Qw6n0n2pdaHc1g7A1EhPH0ghGTmtoaVL6TrxUmWcIzhd1hicYxC?=
+ =?us-ascii?Q?9+y5QwbF2D0e5uDJ+sSHC4dKtJG9qeckczWzfRe2m80SXUDNDjI05whJpS6e?=
+ =?us-ascii?Q?pImCNwTmUfDCjuZ4SlM6uS+vLsNmDLhXArwYHrkf8eH54RODqk614n4o2DuW?=
+ =?us-ascii?Q?1oqLig7PChgMC9EPn3VAtY2OzQ9ycJGT3AF+otHHwGQnohHjn8irgcBtJa0P?=
+ =?us-ascii?Q?rLl0tTJMvTxORBerf0jaRtvCXlbfhRHg5Gnn8RQHDoF2X2X4/A3rlwcJ6mQv?=
+ =?us-ascii?Q?vsuTch7mEolexqrSdCN8gwsRpTRUX54ntWvV5+eJMWSs/YnAaxWCzf8cdOVF?=
+ =?us-ascii?Q?zxyUe3qJvXq2zUe1WX9mqSSXtCc5Ah/qpBlYzRdtGB6PYRoCA2qyHB5b0iRP?=
+ =?us-ascii?Q?UxBGD2MmqoJ9Eu/Ah4UmYNyeILKSIseDrypTn/3AVLzWr9mJz5enGZmY2zF4?=
+ =?us-ascii?Q?Kfqftptbjfon8e1bJiFWnp1+tNAKC1r7FwG1gm5Mp2TUqhXskwf9ymIn8KsK?=
+ =?us-ascii?Q?yDYPxKrfOBXUVgH2acIBV8+J0LQggEFUVrT13WZklyaidySQ8KMipeEB5RQz?=
+ =?us-ascii?Q?iSP6ppsAgE48sG7Gl0u4rMsg8e8B63qezNGQbTPgMagRMZ3mC5OXyK2H1PCN?=
+ =?us-ascii?Q?wANkB2wKO/KayZnXXYYG66Gb2GdGtwlax8Sxmji+uVJppvZFs/meaU63Ga73?=
+ =?us-ascii?Q?sFjNHJxq2S4r0lShLIzzUYFsCDe0zBhbd28vJTDWPaeGVUc337BGEsKn6q9C?=
+ =?us-ascii?Q?bYPz74cgL21h5bPX1bPuWXtDiA1vfp5WAPTQaTsmdLx6YWy5C0R9P7NKUoTz?=
+ =?us-ascii?Q?TgZDosFXtoU4m9vb/luo1/+ZaCjwYLHLz74B2e1HMV27Hox8hXhzxHjKIV3w?=
+ =?us-ascii?Q?0PiBUYC2qpJUvSoUnu8davHtH4BojE908eq7sMyPCveqOAf2ck9WXTZoLymN?=
+ =?us-ascii?Q?tyiMwFLlkTFpz1LM02/rj0AvSKHegyoycrZdpJ0GacKixg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hrjtYqzeGcxtl/7kMH3EbBylodrS/ci+1S9cX/ULepaHtXox27LboeXt5ldz?=
+ =?us-ascii?Q?kdcxONeI/HLy/d6V0E3BXGzLV8iMxh4Bcm9+KwQUDyK3tbB97jYPOuUHK0Yw?=
+ =?us-ascii?Q?Kv0M/FQeLXk6oYsxGl6xrSW3ZcP1ig6RNQS0HtK/LtdFpgVo4bKLCYzFCYJu?=
+ =?us-ascii?Q?iOVrfD2sVgbOUM70IDYpkU1Gsidkpbe+zRuxgbHJYLm0bszcqWt9HEFE84Cd?=
+ =?us-ascii?Q?893gsMVwLsNIf3zXLPMaVARGcOq8SabS+PnvVMxKaeShcEfsQGY4rh8FYuXW?=
+ =?us-ascii?Q?sk351urArSgItVfMMOE0Fu9WzKAlg7mbvX4litqOhNB3Yf/9LZjAdBVWvHnn?=
+ =?us-ascii?Q?Gstb17nBhOHaoV2RN+v9jaoKJbA0KfP2V0YVP74PC1lfRGSJzavPAneN4Ldh?=
+ =?us-ascii?Q?F5jHHqOPiBc6Q0IroG5vofM8w497yMatyqImrWTqjymVCNbIRgBQXgsaqFkF?=
+ =?us-ascii?Q?AHytzDLzGghcAHvdtC/KdFM2k5avDPWgWs6F/E42kCKRw09LsugrgGhiA66s?=
+ =?us-ascii?Q?Ww2z1nSMlvnYxY9KzYeoLkHKlyOhalmgpx+lMq8a9+Y9bfM2376N32Fs53Dj?=
+ =?us-ascii?Q?oYPYgFJO07ENVwqaXFmA2ou2WU4tRUtN2bxWWWTd+oaAcT36ZU/qv8da95t2?=
+ =?us-ascii?Q?6v22uGgogbme/9IctkiQT2NRmjzhwd3S7gfaLygFJfTYtjNa3WVOHHii75Fz?=
+ =?us-ascii?Q?l7s9azT3kKU47swg6sH7h9lao8w1oTs27Pb7bVNCzmgRy87LRc1v1C9G0mRC?=
+ =?us-ascii?Q?CrRF7+EjYQWZn6usDi00xycDadLaSuQpJ6KEB2Cq/EGPk1iR3EzeNisSBVng?=
+ =?us-ascii?Q?stIf8zGznhBtYoap6SRmhN3zzRYGH0hCHjM7y+VLD6Cj+HReENy/hy9f06HG?=
+ =?us-ascii?Q?Qf7K5335r/qTzTewxKIMQ1wHzqSZim951dM3giufnw9CaTqquotXm+KZnJtm?=
+ =?us-ascii?Q?Tj8DGT4S7HhkziU/Ddat22FWjtvxw+aqv0NtTS9Sv5V1hLVME67FajURS0xV?=
+ =?us-ascii?Q?jtkyf6f9xa7BQ3YLNIrk4MoZFz1mK//tUWZFBiPl6ocoiUsvTlMHkuNii4Ss?=
+ =?us-ascii?Q?tUgdh8MjI4htpLYL4Z0nhyUl+5j+z4jk2FIZLhrLjl8WADzsH/qPtlm0AwPM?=
+ =?us-ascii?Q?pl4lzaLST7NrsxozqmVUcw6D3mkl5HzZGuGTHYRh1zlOhD9J8Fwmb0b8TmjM?=
+ =?us-ascii?Q?nQGWUiC2QZ35AaSrTN1pQxnkIklmrbsh3SSooqxWBU2mqvwUjZ6J0D5cd6OQ?=
+ =?us-ascii?Q?m/P1EzmCGVwMTuQG4b3dDZT82J6hc9PnufXNGx/VSZMtOERAM8wj7RYfU7d4?=
+ =?us-ascii?Q?XcLdabMzrtjZcxcZuPTkgvafNRGStJ6nvsyzJwf3ldygLfuBr8sxShfQN+Pp?=
+ =?us-ascii?Q?1wG3JIsk2o/XzeY7NUV3cMhx6cAUqN2sPH473r1hKBltoeaYDWdQPYtOI+Z3?=
+ =?us-ascii?Q?LWrKP4/F7I8B55po/4VEd1rJ8pY3D+Y7zIt1BrTrFpU9StAJhjamvVwv6EFn?=
+ =?us-ascii?Q?VmNionxR9J+X6Ncr3uWJW2T+D56llPqQI0BnuIpsRX4u1tg/k4nLHM+5N0+S?=
+ =?us-ascii?Q?b5eVmzYtPp/pFWCH0+KUsjnx+trY8Tkwx32Stg+3JrdrM2tP1T8fyd8L2fKW?=
+ =?us-ascii?Q?Cg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d23ddad-79ed-4497-db31-08dcc78e86e8
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2024 18:23:34.5003 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZJe3Vs1GKVQ0/+JuuEXnhEAFaKor0IBryuiPL7izODJUvB/+wwg3yeWs4gWxFpAAu2R4vVP6A1s/fF/8SXKOUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8308
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,186 +173,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 28, 2024 at 06:06:47PM +0200, Daniel Vetter wrote:
-> On Tue, Aug 27, 2024 at 07:48:56PM -0700, Matthew Brost wrote:
-> > Migration is implemented with range granularity, with VRAM backing being
-> > a VM private TTM BO (i.e., shares dma-resv with VM). The lifetime of the
-> > TTM BO is limited to when the SVM range is in VRAM (i.e., when a VRAM
-> > SVM range is migrated to SRAM, the TTM BO is destroyed).
-> > 
-> > The design choice for using TTM BO for VRAM backing store, as opposed to
-> > direct buddy allocation, is as follows:
-> > 
-> > - DRM buddy allocations are not at page granularity, offering no
-> >   advantage over a BO.
+On Wed, Aug 28, 2024 at 11:43:42AM +0100, Matthew Auld wrote:
+> The node ptr can point to an already freed ptr, if we hit the path with
+> an already allocated node. We later dereference that pointer with:
 > 
-> This one I'm not understanding.
+> 	xe_gt_assert(gt, !xe_ggtt_node_allocated(node));
 > 
-> > - DRM buddy allocations do not solve locking inversion problems between
-> >   mmap lock and dma-resv locks.
-> 
-> Which mmap -> dma_resv inversion? I've seen a lot ... I guess it also
-> matters hugely which migration path we're in, i.e. opportunistic
-> migration, cpu fault where we have to migrate or die, or when we run out
-> of vram and need to evict stuff to make space.
-> 
-> > - Unified eviction is required (SVM VRAM and TTM BOs need to be able to
-> >   evict each other).
-> 
-> So core mm handles this by just roughly equally shrinking everything.
-> Seems to work, and it has a pile of object shrinkers, and the page lru is
-> also split into page cache and anon memory.
-> 
-> I think you need to put in more justification that unified eviction is
-> required than just stating it, because a look at mm/ gives a very well
-> established counterexample.
-> 
-> > - For exhaustive eviction [1], SVM VRAM allocations will almost certainly
-> >   require a dma-resv.
-> 
-> So from the TTM side we need exhaustive eviction, or at least something a
-> bit more exhaustive than what ttm currently has. Note that i915-gem also
-> never really got to perfect exhaustive eviction, it's just a pile better
-> than ttm right now.
-> 
-> Now if there's also SVM VRAM managed on a page lru, TTM exhaustive
-> eviction is going to win because the shrinkers can only trylock dma_resv.
-> So this part works. It actually works so well on the system memory side
-> that if we're not careful we can trigger oom, because we're too good at
-> getting at all the memory.
-> 
-> SVM VRAM allocations otoh do not need exhaustive evictions. Or at least I
-> don't see why, because the idea is that thanks to gpu and cpu page faults,
-> you can always get out of a pinch by just trashing everything for a while
-> and migrating the handfull of available pages a lot.
-> 
-> > - Likely allocation size is 2M which makes of size of BO (872)
-> >   acceptable per allocation (872 / 2M == .0004158).
-> > 
-> > With this, using TTM BO for VRAM backing store seems to be an obvious
-> > choice as it allows leveraging of the TTM eviction code.
-> 
-> Except it requires that you hold dma_resv, which brings in all kinds of
-> pain. And for eviction we really don't need a lot of synchronization, so a
-> lot of that locking is not needed, unlike the case where we have a cpu
-> fault, where we absolutely need mmap_lock and all that to make sure we
-> fault in the right page.
-> 
-> But for eviction we only need to throw out some pages, if we're not
-> entirely precise with picking the right ones (or have no idea into which
-> vma they're all currently mapped into) it doesn't matter. That's why
-> migrate_device_pages doesn't care about any of that at all, it doesn't
-> need to by design. But by bo backing memory you drag in all that stuff
-> that's causing headacheds for eviction.
-> 
-> The only thing migration tries to do is remove all pte, and if that
-> succeeds, move the page. Specialized for the gpusvm case, looking at mm/
-> code as cheat sheet, we need roughly:
-> 
-> - reverse mapping structure like anon_vma. Except gpusvm can assume that
->   there's currently only one gpu side mapping, so we can just stuff the
->   gpusvm an va_address into the page, and protect it with the page lock.
-> 
-> - we need pagetable locks, so that we can manipulate pagetables (well
->   specifically make ptes invalid) without taking any other locks.
-> 
-> - everyone else inserting or removing ptes for svm mappings also needs to
->   lock the page, or we have races. This might be the hmm_range_fault races
->   you're seeing when allowing vram pages, since I don't think there's
->   anything else stopping the page lookup otherwise from succeeding.
-> 
-> - we might also need to stuff migrate ptes into the gpu side, like the cpu
->   does, to hold up refaults before the migration has finished. But I think
->   those are only needed for anon memory in sram because there's no other
->   way to find the right page than swap pte entries, of which migration
->   entries are a special case.
-> 
-> - core code also expects us to handle the page refcount correctly for svm
->   device memory, so we can't free the pages like normal bo pages either
->   directly to drm_buddy.
-> 
-> Now typing this all up will look an awful lot like what you have, with the
-> dma_resv lock serving as the page lock and the pagetable lock. The only
-> reason is that these locks are much smaller and nest within all the other
-> stuff going on and so avoid the inversion issues.
-> 
-> So one annoying part is that this is a lot of pointlessly looking typing.
-> The other is that it's full of races, because core mm really is yolo all
-> the way down. So lots of ways you lock the wrong page and fun stuff like
-> that, but the few cases that matter work:
-> 
-> - svm fault handling with hmm_range fault retries with mmu notifiers. Note
->   that we need to have vram pages locked and the notifier retrie needs to
->   be under the pagetable lock, or there's room to escape. At least that's
->   what I came up with last time I thought it all through.
-> 
-> - migrate_to_ram: it will hold a page reference which we know was the
->   valid vram page when the cpu pte was locked, but it might not be it
->   anymore. So we have to lock the page and check whether it's still gpu
->   mapped, and if not retry the entire fault since most likey another
->   migrate_to_ram has succeed meanwhile in parallel.
-> 
-> - for eviction we don't care, we might actually be migrating a page no one
->   even wants anymore.
-> 
-> Now I think you can get all this done with the dma_resv lock and maybe the
-> bo refcount. But it does involve a tremendous amount of headaches and
-> impendence mismatch, because that's not how page faults and migrations
-> work in core mm.
+> which is a potential UAF. 
 
-Bit a different take, and this might be completely wrong because I've
-misread your gpusvm code or the amdkfd code. But I figured it might be
-good for understanding when I explain, where the current page lock and
-pgatable locks are.
+Not true because xe_ggtt_node_allocated is checking for that.
 
-For the pagetable lock:
+But probably after this patch we could remove the check there?!
 
-In amdkfd that's svm_range_lock/unlock. This is also held while
-re-checking mmu_notifiers. In gpusvm the equivalent is the
-gpusvm->notifier_lock, which is global instead of per notifier range, but
-the same idea.
+> Fix this by not stashing the ptr for node.
+> Also since it is likely a bad idea to leave config->ggtt_region pointing
+> to a stale ptr, also set that to NULL by calling
+> pf_release_vf_config_ggtt() instead of pf_release_ggtt().
 
-For the page lock:
+This is a very good idea.
 
-In amdkfd this is essentiall svm_range->migrate_mutex, it's the thing that
-ensures we're consistent with any concurrent other migrations in the same
-range. Note that this protects a virtual address range, but because that
-has a 1:1 mapping to bot the cpu mm va ranges and to any vram allocations
-it defacto serves as the page lock since there can never be more than one
-svm_range for a svm vram allocation. That avoids the revalidation dance
-core mm/ needs to do once it locks a page, since the va->page mappings
-might have changed meanwhile. That's why it's pretty much everywhere just
-trylocks while holding the pgtable locks and bailing out if that fails.
+I wonder if this should be a separate patch, or another commit message,
+but the end result is cleaner code, so no reason to block:
 
-In your gpusvm design I guess it should be the bo's dma_resv lock that
-backs a gpusvm_range. But it's not consistently enough used, or not with
-big enough locking scope to protect against concurrent migration races.
-The trouble with using the dma_resv lock like this is that it's not very
-compatible with classic dma_resv usage (at least I think, might be wrong).
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-For core kernel:
-
-Pagetable lock is in each pagetable at each level, so parallelizes
-ridiculously. We could adopt that scheme by also storing the mmu notifier
-seqno into each pgtable page. That would give us a mmu notifier ranges
-that pretty much perfectly scale as we add/remove pagetables and map/unmap
-stuff, instead of having to maintain a separate rbtree of ad-hoc notifiers
-like gpuvsm and amdkfd do. And because it's hierarchical and we could
-store the mmu notifier seqno at each level you can even optimize for both
-small and huge ranges and it all checks out, since if the entire huge
-range hasn't been invalidated, we can skip checking the ranges below.
-
-page lock is the per-page (or well nowadays often the per-folio) lock. It
-makes sure no one can rip the actual data stored in your page away from
-underneath you (with migration or something else funny), since the
-reference count only makes sure the allocation stays. The refcount itself
-does not guarantee that the page you've looked up is actually still the
-one that's mapped, it's like the bo refcount in that regard in gpusvm and
-amdkfd for svm allocations in vram. Also with folios the locks are now per
-chunk size, like gpusvm does.
-
-Cheers, Sima
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> 
+> Fixes: 34e804220f69 ("drm/xe: Make xe_ggtt_node struct independent")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index 41ed07b153b5..be198a426cdc 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -390,7 +390,7 @@ static void pf_release_vf_config_ggtt(struct xe_gt *gt, struct xe_gt_sriov_confi
+>  static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+>  {
+>  	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+> -	struct xe_ggtt_node *node = config->ggtt_region;
+> +	struct xe_ggtt_node *node;
+>  	struct xe_tile *tile = gt_to_tile(gt);
+>  	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>  	u64 alignment = pf_get_ggtt_alignment(gt);
+> @@ -402,14 +402,14 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+>  
+>  	size = round_up(size, alignment);
+>  
+> -	if (xe_ggtt_node_allocated(node)) {
+> +	if (xe_ggtt_node_allocated(config->ggtt_region)) {
+>  		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
+>  		if (unlikely(err))
+>  			return err;
+>  
+> -		pf_release_ggtt(tile, node);
+> +		pf_release_vf_config_ggtt(gt, config);
+>  	}
+> -	xe_gt_assert(gt, !xe_ggtt_node_allocated(node));
+> +	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
+>  
+>  	if (!size)
+>  		return 0;
+> -- 
+> 2.46.0
+> 
