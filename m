@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE1BFC5474A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 01:51:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FF5BC5474C
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 01:51:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FDCC10E15A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C53D010E291;
 	Wed, 28 Aug 2024 01:51:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SnjvTb3P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TqaTve8W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6F8810E158
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA5110E14F
  for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 01:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1724809855; x=1756345855;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sF0kV2WPjJ+PqwmaMK+Ddh5WIpOrTcDCZqh3tiGNOYw=;
- b=SnjvTb3P9ZRV4vUunbJNgjxIJ2srjyHOuxmzHigPYvPHLEaEBwSunivQ
- 4Bfxqz4dWBp1lXMqSdT4UsYINJ24U3nT8B3BXy3tcteE80O7Tnnvm8mrj
- nRXoXndCHb+qcG97sCzvdoG8ncwxuytcZIvByGltO1zBuNVaYSDsChbi3
- 8/rbHkNZNY9h1vVT3SNPiCWnASOvuBeP5E2XZYkq+MXj3aaCBzLKLRS+I
- DcoM/ey7aokTPi65YwJAjwvggBjcVOfZmecNk5HpFxx2u8agZutlmJTPm
- XKvi24DDbwGbRETF6/Tzxk0tEWvQmy2eeILzB0eLxNUWljmNkyDOXRHDs w==;
-X-CSE-ConnectionGUID: ljk9Oh1ERCOSZ04IzGjpSg==
-X-CSE-MsgGUID: lUCft7LyTDi6pU5OHZCmcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="40790216"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="40790216"
+ bh=FonzZJvf5AexW/knGC+amgLYPPmV4OSQlozzolc9OMw=;
+ b=TqaTve8WoFBB8s878SHzyMf4C77x6Kmzq+B57N3evUrNHTiyRhRdDGXH
+ ROy/38xbvXuZTSgI5jvyS4aYvxR5NZq6XjoerFkPm4JvnVITUGF0yPc+e
+ ePI6cgVYQSvoiXUq3d6HNgW3o4k0HLqQK+Gl76XkVnWmorg4qq2Pfns89
+ nGa13W7W4C451qqEPsbp4z7nq7M8Mnoqr6gEpFxLj4ShaG4A3x6jvA3+U
+ w8lBXRsX1eZAib5r7SoTS1MJJqS+AhEjvCaC4Xn0fiEOVFCskEz//fHg2
+ fWD6+8OjX/zThTMzMd4enc+iFUzk2YzUFwSdKW/l6jxgVMFbSxBRY3Z5x Q==;
+X-CSE-ConnectionGUID: K2/Qxjr6RyS5IdXf+gEdgA==
+X-CSE-MsgGUID: 2YHEOi4vTkqSBVcNT7eB5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="40790215"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="40790215"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Aug 2024 18:50:53 -0700
-X-CSE-ConnectionGUID: cVqoG1EAT9Sb1fcZxtFzvQ==
-X-CSE-MsgGUID: Afe74uUSTq+aOkI7rbciiw==
+X-CSE-ConnectionGUID: sqGBEpRaR76/T+XBkYPB+g==
+X-CSE-MsgGUID: ogKfQ+jzQqSaWzN0wQfuwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="93852617"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="93852614"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 18:50:53 -0700
+ 27 Aug 2024 18:50:52 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Jose Souza <jose.souza@intel.com>
-Subject: [PATCH 5/7] drm/xe/oa: Move functions up so they can be reused for
- config ioctl
-Date: Tue, 27 Aug 2024 18:50:43 -0700
-Message-ID: <20240828015045.1889706-6-ashutosh.dixit@intel.com>
+Subject: [PATCH 4/7] drm/xe/oa: Signal output fences
+Date: Tue, 27 Aug 2024 18:50:42 -0700
+Message-ID: <20240828015045.1889706-5-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240828015045.1889706-1-ashutosh.dixit@intel.com>
 References: <20240828015045.1889706-1-ashutosh.dixit@intel.com>
@@ -67,499 +66,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No code changes, only code movement so that functions used during stream
-open can be reused for the stream reconfiguration
-ioctl (DRM_XE_OBSERVATION_IOCTL_CONFIG).
+Introduce 'struct xe_oa_fence' which includes the dma_fence used to signal
+output fences in the xe_sync array. The fences are signaled
+asynchronously. When there are no output fences to signal, the OA
+configuration wait is synchronously re-introduced into the ioctl.
 
+v2: Don't wait in the work, use callback + delayed work (Matt B)
+    Use a single, not a per-fence spinlock (Matt Brost)
+v3: Move ofence alloc before job submission (Matt)
+    Assert, don't fail, from dma_fence_add_callback (Matt)
+    Additional dma_fence_get for dma_fence_wait (Matt)
+    Change dma_fence_wait to non-interruptible (Matt)
+
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 458 ++++++++++++++++++-------------------
- 1 file changed, 229 insertions(+), 229 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c       | 101 ++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_oa_types.h |   3 +
+ 2 files changed, 90 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 93b58dd893e76..8f65247b88377 100644
+index d7d75dac7e37a..93b58dd893e76 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1121,6 +1121,235 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- 	return xe_oa_emit_oa_config(stream, stream->oa_config);
+@@ -100,6 +100,15 @@ struct xe_oa_config_bo {
+ 	struct xe_bb *bb;
+ };
+ 
++struct xe_oa_fence {
++	/* @base: dma fence base */
++	struct dma_fence base;
++	/* @work: work to signal @base */
++	struct delayed_work work;
++	/* @cb: callback to schedule @work */
++	struct dma_fence_cb cb;
++};
++
+ #define DRM_FMT(x) DRM_XE_OA_FMT_TYPE_##x
+ 
+ static const struct xe_oa_format oa_formats[] = {
+@@ -945,40 +954,103 @@ xe_oa_alloc_config_buffer(struct xe_oa_stream *stream, struct xe_oa_config *oa_c
+ 	return oa_bo;
  }
  
-+static int decode_oa_format(struct xe_oa *oa, u64 fmt, enum xe_oa_format_name *name)
++static void xe_oa_fence_work_fn(struct work_struct *w)
 +{
-+	u32 counter_size = FIELD_GET(DRM_XE_OA_FORMAT_MASK_COUNTER_SIZE, fmt);
-+	u32 counter_sel = FIELD_GET(DRM_XE_OA_FORMAT_MASK_COUNTER_SEL, fmt);
-+	u32 bc_report = FIELD_GET(DRM_XE_OA_FORMAT_MASK_BC_REPORT, fmt);
-+	u32 type = FIELD_GET(DRM_XE_OA_FORMAT_MASK_FMT_TYPE, fmt);
-+	int idx;
++	struct xe_oa_fence *ofence = container_of(w, typeof(*ofence), work.work);
 +
-+	for_each_set_bit(idx, oa->format_mask, __XE_OA_FORMAT_MAX) {
-+		const struct xe_oa_format *f = &oa->oa_formats[idx];
-+
-+		if (counter_size == f->counter_size && bc_report == f->bc_report &&
-+		    type == f->type && counter_sel == f->counter_select) {
-+			*name = idx;
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
++	/* Signal fence to indicate new OA configuration is active */
++	dma_fence_signal(&ofence->base);
++	dma_fence_put(&ofence->base);
 +}
 +
-+static int xe_oa_set_prop_oa_unit_id(struct xe_oa *oa, u64 value,
-+				     struct xe_oa_open_param *param)
++static void xe_oa_config_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
 +{
-+	if (value >= oa->oa_unit_ids) {
-+		drm_dbg(&oa->xe->drm, "OA unit ID out of range %lld\n", value);
-+		return -EINVAL;
-+	}
-+	param->oa_unit_id = value;
-+	return 0;
++	/* Additional empirical delay needed for NOA programming after registers are written */
++#define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
++
++	struct xe_oa_fence *ofence = container_of(cb, typeof(*ofence), cb);
++
++	INIT_DELAYED_WORK(&ofence->work, xe_oa_fence_work_fn);
++	queue_delayed_work(system_unbound_wq, &ofence->work,
++			   usecs_to_jiffies(NOA_PROGRAM_ADDITIONAL_DELAY_US));
++	dma_fence_put(fence);
 +}
 +
-+static int xe_oa_set_prop_sample_oa(struct xe_oa *oa, u64 value,
-+				    struct xe_oa_open_param *param)
++static const char *xe_oa_get_driver_name(struct dma_fence *fence)
 +{
-+	param->sample = value;
-+	return 0;
++	return "xe_oa";
 +}
 +
-+static int xe_oa_set_prop_metric_set(struct xe_oa *oa, u64 value,
-+				     struct xe_oa_open_param *param)
++static const char *xe_oa_get_timeline_name(struct dma_fence *fence)
 +{
-+	param->metric_set = value;
-+	return 0;
++	return "unbound";
 +}
 +
-+static int xe_oa_set_prop_oa_format(struct xe_oa *oa, u64 value,
-+				    struct xe_oa_open_param *param)
-+{
-+	int ret = decode_oa_format(oa, value, &param->oa_format);
-+
-+	if (ret) {
-+		drm_dbg(&oa->xe->drm, "Unsupported OA report format %#llx\n", value);
-+		return ret;
-+	}
-+	return 0;
-+}
-+
-+static int xe_oa_set_prop_oa_exponent(struct xe_oa *oa, u64 value,
-+				      struct xe_oa_open_param *param)
-+{
-+#define OA_EXPONENT_MAX 31
-+
-+	if (value > OA_EXPONENT_MAX) {
-+		drm_dbg(&oa->xe->drm, "OA timer exponent too high (> %u)\n", OA_EXPONENT_MAX);
-+		return -EINVAL;
-+	}
-+	param->period_exponent = value;
-+	return 0;
-+}
-+
-+static int xe_oa_set_prop_disabled(struct xe_oa *oa, u64 value,
-+				   struct xe_oa_open_param *param)
-+{
-+	param->disabled = value;
-+	return 0;
-+}
-+
-+static int xe_oa_set_prop_exec_queue_id(struct xe_oa *oa, u64 value,
-+					struct xe_oa_open_param *param)
-+{
-+	param->exec_queue_id = value;
-+	return 0;
-+}
-+
-+static int xe_oa_set_prop_engine_instance(struct xe_oa *oa, u64 value,
-+					  struct xe_oa_open_param *param)
-+{
-+	param->engine_instance = value;
-+	return 0;
-+}
-+
-+static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value,
-+				struct xe_oa_open_param *param)
-+{
-+	param->no_preempt = value;
-+	return 0;
-+}
-+
-+static int xe_oa_set_prop_num_syncs(struct xe_oa *oa, u64 value,
-+				    struct xe_oa_open_param *param)
-+{
-+	param->num_syncs = value;
-+	return 0;
-+}
-+
-+static int xe_oa_set_prop_syncs_user(struct xe_oa *oa, u64 value,
-+				     struct xe_oa_open_param *param)
-+{
-+	param->syncs_user = u64_to_user_ptr(value);
-+	return 0;
-+}
-+
-+typedef int (*xe_oa_set_property_fn)(struct xe_oa *oa, u64 value,
-+				     struct xe_oa_open_param *param);
-+static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
-+	[DRM_XE_OA_PROPERTY_OA_UNIT_ID] = xe_oa_set_prop_oa_unit_id,
-+	[DRM_XE_OA_PROPERTY_SAMPLE_OA] = xe_oa_set_prop_sample_oa,
-+	[DRM_XE_OA_PROPERTY_OA_METRIC_SET] = xe_oa_set_prop_metric_set,
-+	[DRM_XE_OA_PROPERTY_OA_FORMAT] = xe_oa_set_prop_oa_format,
-+	[DRM_XE_OA_PROPERTY_OA_PERIOD_EXPONENT] = xe_oa_set_prop_oa_exponent,
-+	[DRM_XE_OA_PROPERTY_OA_DISABLED] = xe_oa_set_prop_disabled,
-+	[DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID] = xe_oa_set_prop_exec_queue_id,
-+	[DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE] = xe_oa_set_prop_engine_instance,
-+	[DRM_XE_OA_PROPERTY_NO_PREEMPT] = xe_oa_set_no_preempt,
-+	[DRM_XE_OA_PROPERTY_NUM_SYNCS] = xe_oa_set_prop_num_syncs,
-+	[DRM_XE_OA_PROPERTY_SYNCS] = xe_oa_set_prop_syncs_user,
++static const struct dma_fence_ops xe_oa_fence_ops = {
++	.get_driver_name = xe_oa_get_driver_name,
++	.get_timeline_name = xe_oa_get_timeline_name,
 +};
 +
-+static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension,
-+				       struct xe_oa_open_param *param)
-+{
-+	u64 __user *address = u64_to_user_ptr(extension);
-+	struct drm_xe_ext_set_property ext;
-+	int err;
-+	u32 idx;
-+
-+	err = __copy_from_user(&ext, address, sizeof(ext));
-+	if (XE_IOCTL_DBG(oa->xe, err))
-+		return -EFAULT;
-+
-+	if (XE_IOCTL_DBG(oa->xe, ext.property >= ARRAY_SIZE(xe_oa_set_property_funcs)) ||
-+	    XE_IOCTL_DBG(oa->xe, ext.pad))
-+		return -EINVAL;
-+
-+	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_oa_set_property_funcs));
-+	return xe_oa_set_property_funcs[idx](oa, ext.value, param);
-+}
-+
-+typedef int (*xe_oa_user_extension_fn)(struct xe_oa *oa, u64 extension,
-+				       struct xe_oa_open_param *param);
-+static const xe_oa_user_extension_fn xe_oa_user_extension_funcs[] = {
-+	[DRM_XE_OA_EXTENSION_SET_PROPERTY] = xe_oa_user_ext_set_property,
-+};
-+
-+#define MAX_USER_EXTENSIONS	16
-+static int xe_oa_user_extensions(struct xe_oa *oa, u64 extension, int ext_number,
-+				 struct xe_oa_open_param *param)
-+{
-+	u64 __user *address = u64_to_user_ptr(extension);
-+	struct drm_xe_user_extension ext;
-+	int err;
-+	u32 idx;
-+
-+	if (XE_IOCTL_DBG(oa->xe, ext_number >= MAX_USER_EXTENSIONS))
-+		return -E2BIG;
-+
-+	err = __copy_from_user(&ext, address, sizeof(ext));
-+	if (XE_IOCTL_DBG(oa->xe, err))
-+		return -EFAULT;
-+
-+	if (XE_IOCTL_DBG(oa->xe, ext.pad) ||
-+	    XE_IOCTL_DBG(oa->xe, ext.name >= ARRAY_SIZE(xe_oa_user_extension_funcs)))
-+		return -EINVAL;
-+
-+	idx = array_index_nospec(ext.name, ARRAY_SIZE(xe_oa_user_extension_funcs));
-+	err = xe_oa_user_extension_funcs[idx](oa, extension, param);
-+	if (XE_IOCTL_DBG(oa->xe, err))
-+		return err;
-+
-+	if (ext.next_extension)
-+		return xe_oa_user_extensions(oa, ext.next_extension, ++ext_number, param);
-+
-+	return 0;
-+}
-+
-+static int xe_oa_parse_syncs(struct xe_oa *oa, struct xe_oa_open_param *param)
-+{
-+	int ret, num_syncs, num_ufence = 0;
-+
-+	if (param->num_syncs && !param->syncs_user) {
-+		drm_dbg(&oa->xe->drm, "num_syncs specified without sync array\n");
-+		ret = -EINVAL;
+ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config *config)
+ {
+ #define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
+ 	struct xe_oa_config_bo *oa_bo;
+-	int err = 0, us = NOA_PROGRAM_ADDITIONAL_DELAY_US;
++	struct xe_oa_fence *ofence;
++	int i, err, num_signal = 0;
+ 	struct dma_fence *fence;
+-	long timeout;
+ 
+-	/* Emit OA configuration batch */
++	ofence = kzalloc(sizeof(*ofence), GFP_KERNEL);
++	if (!ofence) {
++		err = -ENOMEM;
 +		goto exit;
 +	}
 +
-+	if (param->num_syncs) {
-+		param->syncs = kcalloc(param->num_syncs, sizeof(*param->syncs), GFP_KERNEL);
-+		if (!param->syncs) {
-+			ret = -ENOMEM;
-+			goto exit;
-+		}
+ 	oa_bo = xe_oa_alloc_config_buffer(stream, config);
+ 	if (IS_ERR(oa_bo)) {
+ 		err = PTR_ERR(oa_bo);
+ 		goto exit;
+ 	}
+ 
++	/* Emit OA configuration batch */
+ 	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_ADD_DEPS, oa_bo->bb);
+ 	if (IS_ERR(fence)) {
+ 		err = PTR_ERR(fence);
+ 		goto exit;
+ 	}
+ 
+-	/* Wait till all previous batches have executed */
+-	timeout = dma_fence_wait_timeout(fence, false, 5 * HZ);
+-	dma_fence_put(fence);
+-	if (timeout < 0)
+-		err = timeout;
+-	else if (!timeout)
+-		err = -ETIME;
+-	if (err)
+-		drm_dbg(&stream->oa->xe->drm, "dma_fence_wait_timeout err %d\n", err);
++	/* Point of no return: initialize and set fence to signal */
++	dma_fence_init(&ofence->base, &xe_oa_fence_ops, &stream->oa_fence_lock, 0, 0);
+ 
+-	/* Additional empirical delay needed for NOA programming after registers are written */
+-	usleep_range(us, 2 * us);
++	for (i = 0; i < stream->num_syncs; i++) {
++		if (stream->syncs[i].flags & DRM_XE_SYNC_FLAG_SIGNAL)
++			num_signal++;
++		xe_sync_entry_signal(&stream->syncs[i], &ofence->base);
 +	}
 +
-+	for (num_syncs = 0; num_syncs < param->num_syncs; num_syncs++) {
-+		ret = xe_sync_entry_parse(oa->xe, param->xef, &param->syncs[num_syncs],
-+					  &param->syncs_user[num_syncs], 0);
-+		if (ret)
-+			goto err_syncs;
++	/* Additional dma_fence_get in case we dma_fence_wait */
++	if (!num_signal)
++		dma_fence_get(&ofence->base);
 +
-+		if (xe_sync_is_ufence(&param->syncs[num_syncs]))
-+			num_ufence++;
++	/* Add job fence callback to schedule work to signal ofence->base */
++	err = dma_fence_add_callback(fence, &ofence->cb, xe_oa_config_cb);
++	xe_gt_assert(stream->gt, !err || err == -ENOENT);
++	if (err == -ENOENT)
++		xe_oa_config_cb(fence, &ofence->cb);
++
++	/* If nothing needs to be signaled we wait synchronously */
++	if (!num_signal) {
++		dma_fence_wait(&ofence->base, false);
++		dma_fence_put(&ofence->base);
 +	}
 +
-+	if (XE_IOCTL_DBG(oa->xe, num_ufence > 1)) {
-+		ret = -EINVAL;
-+		goto err_syncs;
-+	}
++	/* Done with syncs */
++	for (i = 0; i < stream->num_syncs; i++)
++		xe_sync_entry_cleanup(&stream->syncs[i]);
++	kfree(stream->syncs);
 +
 +	return 0;
-+
-+err_syncs:
-+	while (num_syncs--)
-+		xe_sync_entry_cleanup(&param->syncs[num_syncs]);
-+	kfree(param->syncs);
-+exit:
-+	return ret;
-+}
-+
- static void xe_oa_stream_enable(struct xe_oa_stream *stream)
- {
- 	stream->pollin = false;
-@@ -1694,27 +1923,6 @@ static bool engine_supports_oa_format(const struct xe_hw_engine *hwe, int type)
+ exit:
++	kfree(ofence);
+ 	return err;
+ }
+ 
+@@ -1479,6 +1551,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 		goto err_free_oa_buf;
  	}
- }
  
--static int decode_oa_format(struct xe_oa *oa, u64 fmt, enum xe_oa_format_name *name)
--{
--	u32 counter_size = FIELD_GET(DRM_XE_OA_FORMAT_MASK_COUNTER_SIZE, fmt);
--	u32 counter_sel = FIELD_GET(DRM_XE_OA_FORMAT_MASK_COUNTER_SEL, fmt);
--	u32 bc_report = FIELD_GET(DRM_XE_OA_FORMAT_MASK_BC_REPORT, fmt);
--	u32 type = FIELD_GET(DRM_XE_OA_FORMAT_MASK_FMT_TYPE, fmt);
--	int idx;
--
--	for_each_set_bit(idx, oa->format_mask, __XE_OA_FORMAT_MAX) {
--		const struct xe_oa_format *f = &oa->oa_formats[idx];
--
--		if (counter_size == f->counter_size && bc_report == f->bc_report &&
--		    type == f->type && counter_sel == f->counter_select) {
--			*name = idx;
--			return 0;
--		}
--	}
--
--	return -EINVAL;
--}
--
- /**
-  * xe_oa_unit_id - Return OA unit ID for a hardware engine
-  * @hwe: @xe_hw_engine
-@@ -1761,214 +1969,6 @@ static int xe_oa_assign_hwe(struct xe_oa *oa, struct xe_oa_open_param *param)
- 	return ret;
- }
++	spin_lock_init(&stream->oa_fence_lock);
+ 	ret = xe_oa_enable_metric_set(stream);
+ 	if (ret) {
+ 		drm_dbg(&stream->oa->xe->drm, "Unable to enable metric set\n");
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index c1ca960af9305..412f1460c1437 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -239,6 +239,9 @@ struct xe_oa_stream {
+ 	/** @no_preempt: Whether preemption and timeslicing is disabled for stream exec_q */
+ 	u32 no_preempt;
  
--static int xe_oa_set_prop_oa_unit_id(struct xe_oa *oa, u64 value,
--				     struct xe_oa_open_param *param)
--{
--	if (value >= oa->oa_unit_ids) {
--		drm_dbg(&oa->xe->drm, "OA unit ID out of range %lld\n", value);
--		return -EINVAL;
--	}
--	param->oa_unit_id = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_sample_oa(struct xe_oa *oa, u64 value,
--				    struct xe_oa_open_param *param)
--{
--	param->sample = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_metric_set(struct xe_oa *oa, u64 value,
--				     struct xe_oa_open_param *param)
--{
--	param->metric_set = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_oa_format(struct xe_oa *oa, u64 value,
--				    struct xe_oa_open_param *param)
--{
--	int ret = decode_oa_format(oa, value, &param->oa_format);
--
--	if (ret) {
--		drm_dbg(&oa->xe->drm, "Unsupported OA report format %#llx\n", value);
--		return ret;
--	}
--	return 0;
--}
--
--static int xe_oa_set_prop_oa_exponent(struct xe_oa *oa, u64 value,
--				      struct xe_oa_open_param *param)
--{
--#define OA_EXPONENT_MAX 31
--
--	if (value > OA_EXPONENT_MAX) {
--		drm_dbg(&oa->xe->drm, "OA timer exponent too high (> %u)\n", OA_EXPONENT_MAX);
--		return -EINVAL;
--	}
--	param->period_exponent = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_disabled(struct xe_oa *oa, u64 value,
--				   struct xe_oa_open_param *param)
--{
--	param->disabled = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_exec_queue_id(struct xe_oa *oa, u64 value,
--					struct xe_oa_open_param *param)
--{
--	param->exec_queue_id = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_engine_instance(struct xe_oa *oa, u64 value,
--					  struct xe_oa_open_param *param)
--{
--	param->engine_instance = value;
--	return 0;
--}
--
--static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value,
--				struct xe_oa_open_param *param)
--{
--	param->no_preempt = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_num_syncs(struct xe_oa *oa, u64 value,
--				    struct xe_oa_open_param *param)
--{
--	param->num_syncs = value;
--	return 0;
--}
--
--static int xe_oa_set_prop_syncs_user(struct xe_oa *oa, u64 value,
--				     struct xe_oa_open_param *param)
--{
--	param->syncs_user = u64_to_user_ptr(value);
--	return 0;
--}
--
--typedef int (*xe_oa_set_property_fn)(struct xe_oa *oa, u64 value,
--				     struct xe_oa_open_param *param);
--static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
--	[DRM_XE_OA_PROPERTY_OA_UNIT_ID] = xe_oa_set_prop_oa_unit_id,
--	[DRM_XE_OA_PROPERTY_SAMPLE_OA] = xe_oa_set_prop_sample_oa,
--	[DRM_XE_OA_PROPERTY_OA_METRIC_SET] = xe_oa_set_prop_metric_set,
--	[DRM_XE_OA_PROPERTY_OA_FORMAT] = xe_oa_set_prop_oa_format,
--	[DRM_XE_OA_PROPERTY_OA_PERIOD_EXPONENT] = xe_oa_set_prop_oa_exponent,
--	[DRM_XE_OA_PROPERTY_OA_DISABLED] = xe_oa_set_prop_disabled,
--	[DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID] = xe_oa_set_prop_exec_queue_id,
--	[DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE] = xe_oa_set_prop_engine_instance,
--	[DRM_XE_OA_PROPERTY_NO_PREEMPT] = xe_oa_set_no_preempt,
--	[DRM_XE_OA_PROPERTY_NUM_SYNCS] = xe_oa_set_prop_num_syncs,
--	[DRM_XE_OA_PROPERTY_SYNCS] = xe_oa_set_prop_syncs_user,
--};
--
--static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension,
--				       struct xe_oa_open_param *param)
--{
--	u64 __user *address = u64_to_user_ptr(extension);
--	struct drm_xe_ext_set_property ext;
--	int err;
--	u32 idx;
--
--	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_DBG(oa->xe, err))
--		return -EFAULT;
--
--	if (XE_IOCTL_DBG(oa->xe, ext.property >= ARRAY_SIZE(xe_oa_set_property_funcs)) ||
--	    XE_IOCTL_DBG(oa->xe, ext.pad))
--		return -EINVAL;
--
--	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_oa_set_property_funcs));
--	return xe_oa_set_property_funcs[idx](oa, ext.value, param);
--}
--
--typedef int (*xe_oa_user_extension_fn)(struct xe_oa *oa, u64 extension,
--				       struct xe_oa_open_param *param);
--static const xe_oa_user_extension_fn xe_oa_user_extension_funcs[] = {
--	[DRM_XE_OA_EXTENSION_SET_PROPERTY] = xe_oa_user_ext_set_property,
--};
--
--#define MAX_USER_EXTENSIONS	16
--static int xe_oa_user_extensions(struct xe_oa *oa, u64 extension, int ext_number,
--				 struct xe_oa_open_param *param)
--{
--	u64 __user *address = u64_to_user_ptr(extension);
--	struct drm_xe_user_extension ext;
--	int err;
--	u32 idx;
--
--	if (XE_IOCTL_DBG(oa->xe, ext_number >= MAX_USER_EXTENSIONS))
--		return -E2BIG;
--
--	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_DBG(oa->xe, err))
--		return -EFAULT;
--
--	if (XE_IOCTL_DBG(oa->xe, ext.pad) ||
--	    XE_IOCTL_DBG(oa->xe, ext.name >= ARRAY_SIZE(xe_oa_user_extension_funcs)))
--		return -EINVAL;
--
--	idx = array_index_nospec(ext.name, ARRAY_SIZE(xe_oa_user_extension_funcs));
--	err = xe_oa_user_extension_funcs[idx](oa, extension, param);
--	if (XE_IOCTL_DBG(oa->xe, err))
--		return err;
--
--	if (ext.next_extension)
--		return xe_oa_user_extensions(oa, ext.next_extension, ++ext_number, param);
--
--	return 0;
--}
--
--static int xe_oa_parse_syncs(struct xe_oa *oa, struct xe_oa_open_param *param)
--{
--	int ret, num_syncs, num_ufence = 0;
--
--	if (param->num_syncs && !param->syncs_user) {
--		drm_dbg(&oa->xe->drm, "num_syncs specified without sync array\n");
--		ret = -EINVAL;
--		goto exit;
--	}
--
--	if (param->num_syncs) {
--		param->syncs = kcalloc(param->num_syncs, sizeof(*param->syncs), GFP_KERNEL);
--		if (!param->syncs) {
--			ret = -ENOMEM;
--			goto exit;
--		}
--	}
--
--	for (num_syncs = 0; num_syncs < param->num_syncs; num_syncs++) {
--		ret = xe_sync_entry_parse(oa->xe, param->xef, &param->syncs[num_syncs],
--					  &param->syncs_user[num_syncs], 0);
--		if (ret)
--			goto err_syncs;
--
--		if (xe_sync_is_ufence(&param->syncs[num_syncs]))
--			num_ufence++;
--	}
--
--	if (XE_IOCTL_DBG(oa->xe, num_ufence > 1)) {
--		ret = -EINVAL;
--		goto err_syncs;
--	}
--
--	return 0;
--
--err_syncs:
--	while (num_syncs--)
--		xe_sync_entry_cleanup(&param->syncs[num_syncs]);
--	kfree(param->syncs);
--exit:
--	return ret;
--}
--
- /**
-  * xe_oa_stream_open_ioctl - Opens an OA stream
-  * @dev: @drm_device
++	/** @oa_fence_lock: Lock for struct xe_oa_fence */
++	spinlock_t oa_fence_lock;
++
+ 	/** @num_syncs: size of @syncs array */
+ 	u32 num_syncs;
+ 
 -- 
 2.41.0
 
