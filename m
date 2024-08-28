@@ -4,31 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C6C0C5475C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 09:19:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5716BC54755
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 09:19:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3197B10E4E7;
-	Wed, 28 Aug 2024 09:19:11 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A026810E4E2
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 09:19:01 +0000 (UTC)
-Received: internal info suppressed
-Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 47S9If911840107; Wed, 28 Aug 2024 12:18:49 +0300
-From: Ilia Levi <ilia.levi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: ilia.levi@intel.com, jonathan.cavitt@intel.com,
- niranjana.vishwanathapura@intel.com, matthew.brost@intel.com,
- koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH v2 4/5] drm/xe: memirq handler changes
-Date: Wed, 28 Aug 2024 12:18:40 +0300
-Message-ID: <20240828091841.1840086-5-ilia.levi@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240828091841.1840086-1-ilia.levi@intel.com>
-References: <20240828091841.1840086-1-ilia.levi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2283710E4EF;
+	Wed, 28 Aug 2024 09:19:51 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19B7910E4F0;
+ Wed, 28 Aug 2024 09:19:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7652029267485955959=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/1=5D_d?=
+ =?utf-8?q?rm/xe=3A_Fix_NPD_in_ggtt=5Fnode=5Fremove=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 28 Aug 2024 09:19:50 -0000
+Message-ID: <172483679010.809553.14345974559426017800@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240828085436.3604257-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240828085436.3604257-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,81 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch exposes an interrupt processing handler for a single hw engine.
-This handler also caters for the new "reports to engine instance 0" mode.
-Use this handler from the VF use-case as well.
+--===============7652029267485955959==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/xe/xe_memirq.c | 31 ++++++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_memirq.h |  1 +
- 2 files changed, 25 insertions(+), 7 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index a1d4bc3f9e42..c388e480b5c8 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -383,6 +383,28 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
- 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
- }
- 
-+/**
-+ * xe_memirq_hwe_handler - Check and process interrupts for a specific HW engine.
-+ * @memirq: the &xe_memirq
-+ * @hwe: the hw engine to process
-+ *
-+ * This function reads and dispatches `Memory Based Interrupts` for the provided HW engine.
-+ */
-+void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
-+{
-+	u16 offset = memirq->reports_to_e0 ? hwe->e0_irq_offset : hwe->irq_offset;
-+	u16 instance = memirq->reports_to_e0 ? hwe->instance : 0;
-+
-+	struct iosys_map src_offset = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
-+							    XE_MEMIRQ_SOURCE_OFFSET(instance));
-+	if (memirq_received(memirq, &src_offset, offset, "SRC")) {
-+		struct iosys_map status_offset =
-+			IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
-+					      XE_MEMIRQ_STATUS_OFFSET(instance) + offset * SZ_16);
-+		memirq_dispatch_engine(memirq, &status_offset, hwe);
-+	}
-+}
-+
- /**
-  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
-  * @memirq: the &xe_memirq
-@@ -410,13 +432,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
- 		if (gt->tile != tile)
- 			continue;
- 
--		for_each_hw_engine(hwe, gt, id) {
--			if (memirq_received(memirq, &memirq->source, hwe->irq_offset, "SRC")) {
--				map = IOSYS_MAP_INIT_OFFSET(&memirq->status,
--							    hwe->irq_offset * SZ_16);
--				memirq_dispatch_engine(memirq, &map, hwe);
--			}
--		}
-+		for_each_hw_engine(hwe, gt, id)
-+			xe_memirq_hwe_handler(memirq, hwe);
- 	}
- 
- 	/* GuC and media GuC (if present) must be checked separately */
-diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
-index 98e2b61ef973..8a9334482a9b 100644
---- a/drivers/gpu/drm/xe/xe_memirq.h
-+++ b/drivers/gpu/drm/xe/xe_memirq.h
-@@ -20,6 +20,7 @@ u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
- 
- void xe_memirq_reset(struct xe_memirq *memirq);
- void xe_memirq_postinstall(struct xe_memirq *memirq);
-+void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe);
- void xe_memirq_handler(struct xe_memirq *memirq);
- 
- int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
--- 
-2.43.2
+Series: series starting with [1/1] drm/xe: Fix NPD in ggtt_node_remove()
+URL   : https://patchwork.freedesktop.org/series/137888/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4_BAT -> xe-pw-137888v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4 -> xe-pw-137888v1
+
+  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4: 2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4
+  xe-pw-137888v1: 137888v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137888v1/index.html
+
+--===============7652029267485955959==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/xe: Fix NPD in ggtt_node_remove()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137888/">https://patchwork.freedesktop.org/series/137888/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137888v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137888v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4_BAT -&gt; xe-pw-137888v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4 -&gt; xe-pw-137888v1</li>
+</ul>
+<p>IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4: 2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4<br />
+  xe-pw-137888v1: 137888v1</p>
+
+</body>
+</html>
+
+--===============7652029267485955959==--
