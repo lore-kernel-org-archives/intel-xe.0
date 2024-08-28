@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0E2BC54755
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F673C54749
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F22710E455;
-	Wed, 28 Aug 2024 02:48:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69AFA10E469;
+	Wed, 28 Aug 2024 02:48:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HINPOc6Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bV6FLgwS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D733910E440;
- Wed, 28 Aug 2024 02:48:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97EE310E44E;
+ Wed, 28 Aug 2024 02:48:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724813288; x=1756349288;
+ t=1724813291; x=1756349291;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=51K5wzXb0gghUiwWQs7D+UNeNaRsXn/Mb6dnZ9Xz5fw=;
- b=HINPOc6Z4fzcZj+tkn93eTFeu0fZbu+qZts+ojMtdTPcYLUs00dmoPmH
- wWAdAZSZKyrZBQ2yJqG9vHiqKtBvuxiYhTuzQfzxFqrCesf/G6GAZMRNX
- 9NUQoySjdgW+8KoSCo16zxKN1eMqQx5yE22FpMP1k6jBMrcpMyE5O3OqU
- FQC8fY1MWEX74H4OLC812q5RNQIWP2Mird3cFfy0xcEcTVbRUuJEwl2tO
- cYPRxMx7v9DUUPTmcJHKGhgKJkCINihexTPBirFfKPkiylDrRY69cpwkc
- cY9muZ4zFDbm9e7aBaLX5N6tB07XYxNkdtICUWAzBCgFnAQDCgIaW+f4F g==;
-X-CSE-ConnectionGUID: kq2TV9UjTBqRfaa5PujBUw==
-X-CSE-MsgGUID: GPvLeM+PQ0u4PQ60n3sC4A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251852"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251852"
+ bh=sMk/7YX2p/2MK0vK2YrTbxN0/jQNK9Tnxet3NvVWjS0=;
+ b=bV6FLgwS55VuKmmNLWUR5f89eGYTEDROLpvTBcTonx4edxxBkE3OEw8C
+ p17WRYKYP3aUQNthKcy1Peo78hlVRClFUqjbBX0DW4HJxHS/OW6p3tKeK
+ 6l7r0JZgSm0P8QUVWszVPz2BbkKemXNLSdyeSJ307TZMaeWYIB2ppFnqG
+ c+MCbvoMSwumh+clQQqhPSfshAoOhYsvpz3gx8rrvBDorKqHm0YhRugdw
+ yCH5b7m1F5IKmzRhiwjTtl2XQ9cdiXsmM7P/WgScUk4q9mJMAudfl7wVc
+ rtCpgXBnQJ0EdPbw7eaZ+3Ffbbg/WPHuuc78AFHeIENAefmNrD+1xpTKV g==;
+X-CSE-ConnectionGUID: kLMyFBrRTzOxdf6vpktZlQ==
+X-CSE-MsgGUID: 0fi5XLrWQfCCIC0xG9xp8A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251938"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251938"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 19:48:07 -0700
-X-CSE-ConnectionGUID: 7ViM99rpRmOdiTXn9D5PSg==
-X-CSE-MsgGUID: gf3f1i0iTtaoo/ET0ZuePA==
+ 27 Aug 2024 19:48:10 -0700
+X-CSE-ConnectionGUID: yeKZ6j5/RlGNe0G+ovNGyw==
+X-CSE-MsgGUID: c8/3JMfkS3G1gTVyeQ3cXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224587"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224658"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 19:48:06 -0700
+ 27 Aug 2024 19:48:10 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
-Subject: [RFC PATCH 02/28] drm/xe: Invalidate media_gt TLBs in PT code
-Date: Tue, 27 Aug 2024 19:48:35 -0700
-Message-Id: <20240828024901.2582335-3-matthew.brost@intel.com>
+Subject: [RFC PATCH 22/28] drm/xe: Add BO flags required for SVM
+Date: Tue, 27 Aug 2024 19:48:55 -0700
+Message-Id: <20240828024901.2582335-23-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240828024901.2582335-1-matthew.brost@intel.com>
 References: <20240828024901.2582335-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,258 +68,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Testing on LNL has shown media GT's TLBs need to be invalidated via the
-GuC, update PT code appropriately.
+Add XE_BO_FLAG_SYSTEM_ALLOC to indicate BO is tied to SVM range.
 
-v2:
- - Do dma_fence_get before first call of invalidation_fence_init (Himal)
- - No need to check for valid chain fence (Himal)
-v3:
- - Use dma-fence-array
+Add XE_BO_FLAG_SKIP_CLEAR to indicate BO does not need to cleared.
 
-Fixes: 3330361543fc ("drm/xe/lnl: Add LNL platform definition")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 117 ++++++++++++++++++++++++++++++-------
- 1 file changed, 96 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 11 +++++++----
+ drivers/gpu/drm/xe/xe_bo.h |  2 ++
+ 2 files changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 579ed31b46db..d6353e8969f0 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index b6c6a4a3b4d4..ad804b6f9e84 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -704,9 +704,10 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 						(!mem_type_is_vram(old_mem_type) && !tt_has_data);
  
-+#include <linux/dma-fence-array.h>
-+
- #include "xe_pt.h"
+ 	clear_system_pages = ttm && (ttm->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE);
+-	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
++	needs_clear = !(bo->flags & XE_BO_FLAG_SKIP_CLEAR) &&
++		((ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+ 		(!ttm && ttm_bo->type == ttm_bo_type_device) ||
+-		clear_system_pages;
++		clear_system_pages);
  
- #include "regs/xe_gtt_defs.h"
-@@ -1627,9 +1629,11 @@ xe_pt_update_ops_rfence_interval(struct xe_vm_pgtable_update_ops *pt_update_ops,
- 
- static int vma_reserve_fences(struct xe_device *xe, struct xe_vma *vma)
- {
-+	int shift = xe_device_get_root_tile(xe)->media_gt ? 1 : 0;
-+
- 	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
- 		return dma_resv_reserve_fences(xe_vma_bo(vma)->ttm.base.resv,
--					       xe->info.tile_count);
-+					       xe->info.tile_count << shift);
- 
- 	return 0;
- }
-@@ -1816,6 +1820,7 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	struct xe_vm_pgtable_update_ops *pt_update_ops =
- 		&vops->pt_update_ops[tile->id];
- 	struct xe_vma_op *op;
-+	int shift = tile->media_gt ? 1 : 0;
+ 	if (new_mem->mem_type == XE_PL_TT) {
+ 		ret = xe_tt_map_sg(ttm);
+@@ -1284,7 +1285,8 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
  	int err;
  
- 	lockdep_assert_held(&vops->vm->lock);
-@@ -1824,7 +1829,7 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	xe_pt_update_ops_init(pt_update_ops);
+ 	/* Only kernel objects should set GT */
+-	xe_assert(xe, !tile || type == ttm_bo_type_kernel);
++	xe_assert(xe, !tile || type == ttm_bo_type_kernel ||
++		  flags & XE_BO_FLAG_SYSTEM_ALLOC);
  
- 	err = dma_resv_reserve_fences(xe_vm_resv(vops->vm),
--				      tile_to_xe(tile)->info.tile_count);
-+				      tile_to_xe(tile)->info.tile_count << shift);
- 	if (err)
- 		return err;
+ 	if (XE_WARN_ON(!size)) {
+ 		xe_bo_free(bo);
+@@ -2292,7 +2294,8 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 	 * can't be used since there's no CCS storage associated with
+ 	 * non-VRAM addresses.
+ 	 */
+-	if (IS_DGFX(xe) && (bo->flags & XE_BO_FLAG_SYSTEM))
++	if (IS_DGFX(xe) && ((bo->flags & XE_BO_FLAG_SYSTEM) ||
++	    (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC)))
+ 		return false;
  
-@@ -1849,13 +1854,20 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
- 
- static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
--			   struct xe_vma *vma, struct dma_fence *fence)
-+			   struct xe_vma *vma, struct dma_fence *fence,
-+			   struct dma_fence *fence2)
- {
--	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-+	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm) {
- 		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
- 				   pt_update_ops->wait_vm_bookkeep ?
- 				   DMA_RESV_USAGE_KERNEL :
- 				   DMA_RESV_USAGE_BOOKKEEP);
-+		if (fence2)
-+			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence2,
-+					   pt_update_ops->wait_vm_bookkeep ?
-+					   DMA_RESV_USAGE_KERNEL :
-+					   DMA_RESV_USAGE_BOOKKEEP);
-+	}
- 	vma->tile_present |= BIT(tile->id);
- 	vma->tile_staged &= ~BIT(tile->id);
- 	if (xe_vma_is_userptr(vma)) {
-@@ -1875,13 +1887,20 @@ static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 
- static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 			     struct xe_vm_pgtable_update_ops *pt_update_ops,
--			     struct xe_vma *vma, struct dma_fence *fence)
-+			     struct xe_vma *vma, struct dma_fence *fence,
-+			     struct dma_fence *fence2)
- {
--	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-+	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm) {
- 		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
- 				   pt_update_ops->wait_vm_bookkeep ?
- 				   DMA_RESV_USAGE_KERNEL :
- 				   DMA_RESV_USAGE_BOOKKEEP);
-+		if (fence2)
-+			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence2,
-+					   pt_update_ops->wait_vm_bookkeep ?
-+					   DMA_RESV_USAGE_KERNEL :
-+					   DMA_RESV_USAGE_BOOKKEEP);
-+	}
- 	vma->tile_present &= ~BIT(tile->id);
- 	if (!vma->tile_present) {
- 		list_del_init(&vma->combined_links.rebind);
-@@ -1898,7 +1917,8 @@ static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- static void op_commit(struct xe_vm *vm,
- 		      struct xe_tile *tile,
- 		      struct xe_vm_pgtable_update_ops *pt_update_ops,
--		      struct xe_vma_op *op, struct dma_fence *fence)
-+		      struct xe_vma_op *op, struct dma_fence *fence,
-+		      struct dma_fence *fence2)
- {
- 	xe_vm_assert_held(vm);
- 
-@@ -1907,26 +1927,28 @@ static void op_commit(struct xe_vm *vm,
- 		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
- 			break;
- 
--		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence);
-+		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence,
-+			       fence2);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		unbind_op_commit(vm, tile, pt_update_ops,
--				 gpuva_to_vma(op->base.remap.unmap->va), fence);
-+				 gpuva_to_vma(op->base.remap.unmap->va), fence,
-+				 fence2);
- 
- 		if (op->remap.prev)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.prev,
--				       fence);
-+				       fence, fence2);
- 		if (op->remap.next)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.next,
--				       fence);
-+				       fence, fence2);
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
- 		unbind_op_commit(vm, tile, pt_update_ops,
--				 gpuva_to_vma(op->base.unmap.va), fence);
-+				 gpuva_to_vma(op->base.unmap.va), fence, fence2);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
- 		bind_op_commit(vm, tile, pt_update_ops,
--			       gpuva_to_vma(op->base.prefetch.va), fence);
-+			       gpuva_to_vma(op->base.prefetch.va), fence, fence2);
- 		break;
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-@@ -1963,7 +1985,9 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	struct xe_vm_pgtable_update_ops *pt_update_ops =
- 		&vops->pt_update_ops[tile->id];
- 	struct dma_fence *fence;
--	struct invalidation_fence *ifence = NULL;
-+	struct invalidation_fence *ifence = NULL, *mfence = NULL;
-+	struct dma_fence **fences = NULL;
-+	struct dma_fence_array *cf = NULL;
- 	struct xe_range_fence *rfence;
- 	struct xe_vma_op *op;
- 	int err = 0, i;
-@@ -1996,6 +2020,23 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 			err = -ENOMEM;
- 			goto kill_vm_tile1;
- 		}
-+		if (tile->media_gt) {
-+			mfence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-+			if (!mfence) {
-+				err = -ENOMEM;
-+				goto free_ifence;
-+			}
-+			fences = kmalloc_array(2, sizeof(*fences), GFP_KERNEL);
-+			if (!fences) {
-+				err = -ENOMEM;
-+				goto free_ifence;
-+			}
-+			cf = dma_fence_array_alloc(2);
-+			if (!cf) {
-+				err = -ENOMEM;
-+				goto free_ifence;
-+			}
-+		}
- 	}
- 
- 	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-@@ -2027,19 +2068,50 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 
- 	/* tlb invalidation must be done before signaling rebind */
- 	if (ifence) {
-+		if (mfence)
-+			dma_fence_get(fence);
- 		invalidation_fence_init(tile->primary_gt, ifence, fence,
- 					pt_update_ops->start,
- 					pt_update_ops->last, vm->usm.asid);
--		fence = &ifence->base.base;
-+		if (mfence) {
-+			invalidation_fence_init(tile->media_gt, mfence, fence,
-+						pt_update_ops->start,
-+						pt_update_ops->last, vm->usm.asid);
-+			fences[0] = &ifence->base.base;
-+			fences[1] = &mfence->base.base;
-+			dma_fence_array_init(cf, 2, fences,
-+					     vm->composite_fence_ctx,
-+					     vm->composite_fence_seqno++,
-+					     false);
-+			fence = &cf->base;
-+		} else {
-+			fence = &ifence->base.base;
-+		}
- 	}
- 
--	dma_resv_add_fence(xe_vm_resv(vm), fence,
--			   pt_update_ops->wait_vm_bookkeep ?
--			   DMA_RESV_USAGE_KERNEL :
--			   DMA_RESV_USAGE_BOOKKEEP);
-+	if (!mfence) {
-+		dma_resv_add_fence(xe_vm_resv(vm), fence,
-+				   pt_update_ops->wait_vm_bookkeep ?
-+				   DMA_RESV_USAGE_KERNEL :
-+				   DMA_RESV_USAGE_BOOKKEEP);
- 
--	list_for_each_entry(op, &vops->list, link)
--		op_commit(vops->vm, tile, pt_update_ops, op, fence);
-+		list_for_each_entry(op, &vops->list, link)
-+			op_commit(vops->vm, tile, pt_update_ops, op, fence, NULL);
-+	} else {
-+		dma_resv_add_fence(xe_vm_resv(vm), &ifence->base.base,
-+				   pt_update_ops->wait_vm_bookkeep ?
-+				   DMA_RESV_USAGE_KERNEL :
-+				   DMA_RESV_USAGE_BOOKKEEP);
-+
-+		dma_resv_add_fence(xe_vm_resv(vm), &mfence->base.base,
-+				   pt_update_ops->wait_vm_bookkeep ?
-+				   DMA_RESV_USAGE_KERNEL :
-+				   DMA_RESV_USAGE_BOOKKEEP);
-+
-+		list_for_each_entry(op, &vops->list, link)
-+			op_commit(vops->vm, tile, pt_update_ops, op,
-+				  &ifence->base.base, &mfence->base.base);
-+	}
- 
- 	if (pt_update_ops->needs_userptr_lock)
- 		up_read(&vm->userptr.notifier_lock);
-@@ -2049,6 +2121,9 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- free_rfence:
- 	kfree(rfence);
- free_ifence:
-+	kfree(cf);
-+	kfree(fences);
-+	kfree(mfence);
- 	kfree(ifence);
- kill_vm_tile1:
- 	if (err != -EAGAIN && tile->id)
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index dbfb3209615d..fe2ce641b256 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -39,6 +39,8 @@
+ #define XE_BO_FLAG_NEEDS_64K		BIT(15)
+ #define XE_BO_FLAG_NEEDS_2M		BIT(16)
+ #define XE_BO_FLAG_GGTT_INVALIDATE	BIT(17)
++#define XE_BO_FLAG_SYSTEM_ALLOC		BIT(18)
++#define XE_BO_FLAG_SKIP_CLEAR		BIT(19)
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+ #define XE_BO_FLAG_INTERNAL_64K		BIT(31)
 -- 
 2.34.1
 
