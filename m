@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5716BC54755
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 09:19:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE7A5C54757
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 09:23:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2283710E4EF;
-	Wed, 28 Aug 2024 09:19:51 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19B7910E4F0;
- Wed, 28 Aug 2024 09:19:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7652029267485955959=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 772D110E4EC;
+	Wed, 28 Aug 2024 09:23:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E88pVEnj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C94F610E4EC
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 09:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724837000; x=1756373000;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=egmbb26DdDlinpJTps6Ml0LqYkANFg+euLO/mgp10lA=;
+ b=E88pVEnjHjTHU0rW0yAcXYb16ea3Ky6g97esRFDscK0zI1Y9dLpsRiNW
+ TG8/ENXZ+t8UhDXy2NXne130RzlJRX44JP0oHSdDCyk8GKgLkCiTIiSud
+ EinvBHFBJWqlG5KKx+qD6IoikSLLBZoWRMskKSoygA3kDYMcu47/+dhyo
+ rJXhA8YcbAzp97FgSycaydTQCo7s5LioIczkxEkvLJ+9NnYwanwv+xv55
+ szyEWu2udeiSzUPmtojc+dxlWdKjSfAjp5i2f4wCo5/swlu78SDzw3BOu
+ CGsab0bcWgSQHz+ffYXyGVXZ9YwIcpkliM9an+Hq34QSBytoX7oYbPJUW g==;
+X-CSE-ConnectionGUID: 4z/pkwekSVyDO5AeS2AF0w==
+X-CSE-MsgGUID: YKZuUVmlT2WNsHHPvJ5y5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="23528804"
+X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="23528804"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2024 02:23:20 -0700
+X-CSE-ConnectionGUID: PLw6eBwpTMu7RXqIHZjhGg==
+X-CSE-MsgGUID: wPoxfXRgQeO1FwyrgWbpiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="63871557"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.176])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2024 02:23:19 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH] drm/xe/pat: sanity check compression and coh_mode
+Date: Wed, 28 Aug 2024 10:22:58 +0100
+Message-ID: <20240828092257.169063-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/1=5D_d?=
- =?utf-8?q?rm/xe=3A_Fix_NPD_in_ggtt=5Fnode=5Fremove=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Aug 2024 09:19:50 -0000
-Message-ID: <172483679010.809553.14345974559426017800@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240828085436.3604257-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240828085436.3604257-1-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7652029267485955959==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There is an implicit assumption in the driver that compression and
+coh_1way+ are mutually exclusive. If this is ever not true then userptr
+and imported dma-buf from external device will have uncleared ccs state.
+Add a build bug for this so we don't forget.
 
-== Series Details ==
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pat.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-Series: series starting with [1/1] drm/xe: Fix NPD in ggtt_node_remove()
-URL   : https://patchwork.freedesktop.org/series/137888/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 722278cc23fc..f92a1c61956d 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -100,6 +100,10 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+  * Reserved entries should be programmed with the maximum caching, minimum
+  * coherency (which matches an all-0's encoding), so we can just omit them
+  * in the table.
++ *
++ * Note: There is an implicit assumption in the driver that compression and
++ * coh_1way+ are mutually exclusive. If this is ever not true then userptr
++ * and imported dma-buf from external device will have uncleared ccs state.
+  */
+ #define XE2_PAT(no_promote, comp_en, l3clos, l3_policy, l4_policy, __coh_mode) \
+ 	{ \
+@@ -109,7 +113,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+ 			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
+ 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
+ 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+-		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE \
++		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
++			XE_COH_AT_LEAST_1WAY : XE_COH_NONE \
+ 	}
+ 
+ static const struct xe_pat_table_entry xe2_pat_table[] = {
+-- 
+2.46.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4_BAT -> xe-pw-137888v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4 -> xe-pw-137888v1
-
-  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4: 2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4
-  xe-pw-137888v1: 137888v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137888v1/index.html
-
---===============7652029267485955959==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/xe: Fix NPD in ggtt_node_remove()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137888/">https://patchwork.freedesktop.org/series/137888/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137888v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137888v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4_BAT -&gt; xe-pw-137888v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4 -&gt; xe-pw-137888v1</li>
-</ul>
-<p>IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1842-2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4: 2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4<br />
-  xe-pw-137888v1: 137888v1</p>
-
-</body>
-</html>
-
---===============7652029267485955959==--
