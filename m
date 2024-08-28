@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6DC3C54749
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 265BBC54749
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:55:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F91010E2D9;
-	Wed, 28 Aug 2024 02:48:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nq4C9X5X";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA4310E456;
- Wed, 28 Aug 2024 02:48:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724813292; x=1756349292;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=S2usf0NmcJM5c8jN/Hogz1fEnGMWjfMR8DKBwZqNbx4=;
- b=Nq4C9X5XBY/2/noHGQosm+1MPX3VROfAmdGv+vPjbVz5SpgXkLA5YX5h
- tXUInxW+vEeJ/YPAfBt9KjB1J0nCHak7SsBoEs5bMcrqOQzrO0wYB3TOm
- 29y929DvVbYGq+RLuBbeGHuUDwCAvGun41GWZY3uHfLcBkxyw8xDMtdw4
- x7UvYOxYzt1PN/qYro5J4TDqjAU71p0WUn91tokwcl5RAPqPy+vsjVHcU
- QlOIxb2W5kcILW/4LL0UpBHu6q4lX1sFaQYAHYsIF/G16sS42L3uNOd5q
- /GmryhjYnRPqoLYvvlrFGesrnZLojNmTd4OzX+gi6w1fTbzUdm2nhJirf g==;
-X-CSE-ConnectionGUID: RGeKOj7aRFmEtEWhqPv9Aw==
-X-CSE-MsgGUID: NLzdC5UTRIuneOM3AsF7EA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251954"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251954"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 19:48:11 -0700
-X-CSE-ConnectionGUID: Nx8P1ThZQmqTATxQoGjOSA==
-X-CSE-MsgGUID: P5G3nnI1SvGjA2nt777iCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224674"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 19:48:11 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: airlied@gmail.com, christian.koenig@amd.com,
- thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
-Subject: [RFC PATCH 26/28] drm/xe: Add modparam for SVM notifier size
-Date: Tue, 27 Aug 2024 19:48:59 -0700
-Message-Id: <20240828024901.2582335-27-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240828024901.2582335-1-matthew.brost@intel.com>
-References: <20240828024901.2582335-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC03C10E448;
+	Wed, 28 Aug 2024 02:55:06 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A03A310E448;
+ Wed, 28 Aug 2024 02:55:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introduce_GPU_SVM_an?=
+ =?utf-8?q?d_Xe_SVM_implementation?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 28 Aug 2024 02:55:05 -0000
+Message-ID: <172481370565.808519.6954308559357272354@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240828024901.2582335-1-matthew.brost@intel.com>
+In-Reply-To: <20240828024901.2582335-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,71 +36,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Useful to experiment with notifier size and how it affects performance.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_module.c | 4 ++++
- drivers/gpu/drm/xe/xe_module.h | 1 +
- drivers/gpu/drm/xe/xe_svm.c    | 5 +++--
- 3 files changed, 8 insertions(+), 2 deletions(-)
+Series: Introduce GPU SVM and Xe SVM implementation
+URL   : https://patchwork.freedesktop.org/series/137870/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 923460119cec..30cfb76344a1 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -22,9 +22,13 @@ struct xe_modparam xe_modparam = {
- 	.max_vfs = IS_ENABLED(CONFIG_DRM_XE_DEBUG) ? ~0 : 0,
- #endif
- 	.wedged_mode = 1,
-+	.svm_notifier_size = 512,
- 	/* the rest are 0 by default */
- };
- 
-+module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600);
-+MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size(in MiB), must be pow2");
-+
- module_param_named_unsafe(force_execlist, xe_modparam.force_execlist, bool, 0444);
- MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
- 
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 161a5e6f717f..5a3bfea8b7b4 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -22,6 +22,7 @@ struct xe_modparam {
- 	unsigned int max_vfs;
- #endif
- 	int wedged_mode;
-+	u32 svm_notifier_size;
- };
- 
- extern struct xe_modparam xe_modparam;
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index f9c2bffd1783..5e2ec25c3cb2 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -8,6 +8,7 @@
- #include "xe_bo.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
-+#include "xe_module.h"
- #include "xe_pt.h"
- #include "xe_svm.h"
- #include "xe_ttm_vram_mgr.h"
-@@ -543,8 +544,8 @@ int xe_svm_init(struct xe_vm *vm)
- 
- 	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
- 			       current->mm, xe_svm_devm_owner(vm->xe), 0,
--			       vm->size, SZ_512M, &gpusvm_ops,
--			       fault_chunk_sizes,
-+			       vm->size, xe_modparam.svm_notifier_size * SZ_1M,
-+			       &gpusvm_ops, fault_chunk_sizes,
- 			       ARRAY_SIZE(fault_chunk_sizes));
- }
- 
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 2940d1fa7abe drm-tip: 2024y-08m-27d-22h-16m-15s UTC integration manifest
+=== git am output follows ===
+Applying: dma-buf: Split out dma fence array create into alloc and arm functions
+Applying: drm/xe: Invalidate media_gt TLBs in PT code
+Applying: drm/xe: Retry BO allocation
+Applying: mm/migrate: Add migrate_device_vma_range
+Applying: drm/gpusvm: Add support for GPU Shared Virtual Memory
+Applying: drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATON flag
+Applying: drm/xe: Add SVM init / fini to faulting VMs
+Applying: drm/xe: Add dma_addr res cursor
+Applying: drm/xe: Add SVM range invalidation
+Applying: drm/gpuvm: Add DRM_GPUVA_OP_USER
+Applying: drm/xe: Add (re)bind to SVM page fault handler
+Applying: drm/xe: Add SVM garbage collector
+Applying: drm/xe: Add unbind to SVM garbage collector
+Applying: drm/xe: Do not allow system allocator VMA unbind if the GPU has bindings
+Applying: drm/xe: Enable system allocator uAPI
+Applying: drm/xe: Add migrate layer functions for SVM support
+Applying: drm/xe: Add SVM device memory mirroring
+Applying: drm/xe: Add GPUSVM copy SRAM / VRAM vfunc functions
+Applying: drm/xe: Update PT layer to understand ranges in VRAM
+Applying: drm/xe: Add Xe SVM populate_vram_pfn vfunc
+Applying: drm/xe: Add Xe SVM vram_release vfunc
+Applying: drm/xe: Add BO flags required for SVM
+Applying: drm/xe: Add SVM VRAM migration
+Applying: drm/xe: Basic SVM BO eviction
+Applying: drm/xe: Add SVM debug
+Applying: drm/xe: Add modparam for SVM notifier size
+Applying: drm/xe: Add modparam for SVM prefault
+Applying: drm/gpusvm: Ensure all pages migrated upon eviction
+
 
