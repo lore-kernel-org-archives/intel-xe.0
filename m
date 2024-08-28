@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31041C5474F
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1641EC54752
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78FC110E47F;
-	Wed, 28 Aug 2024 02:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7964110E47D;
+	Wed, 28 Aug 2024 02:48:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ggG2JsrS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H293QB3u";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5997110E443;
- Wed, 28 Aug 2024 02:48:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA2C910E44B;
+ Wed, 28 Aug 2024 02:48:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1724813290; x=1756349290;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dffn3G8V5DqXAkynazLT52niPnWTv1oq1p1BNlYdnXE=;
- b=ggG2JsrSpzecF3NLa4xV9H5n+HSyTEz+NmLL57FzPMKkGv97MJDdHz66
- uN5O+/sL81H21Ik5d3iKMc4UImsRMH9PkQOHE8au31UBxJB26+7xBgpY3
- 1p2gRRh2cr13M4DD7UO9sl197VZuOC8q9SebI1NSXRNK8C9l2vtQt+PTi
- zrnBU7tuYS+WQBu1IOd3CGxDAHZ02LCj6dUQLWcMXs6uE/z9HdzurcwfB
- 5nY1EkVuyLesfEgoZKm8JYKwj5J379+8deUOdm2wAmyQB14oNrLg2oxQe
- OasTZnuhbcQwRYhg1Nb/RcrxHDpew6sOG2Que8GDV+dGlLhmHxRFbYtXV g==;
-X-CSE-ConnectionGUID: +ESlr6mhRKKGUfQygw0+tA==
-X-CSE-MsgGUID: T/5kN/vJTSikVBe2bMw0sQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251930"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251930"
+ bh=mHgoc+QGoEPC26LQktqCllqoj2jzpaO6eQsC9ossdvc=;
+ b=H293QB3unntHYVB5IepoCCXr/nLYQgHPdSiTxQnYqQ6HtmiNifJXmAtv
+ JlTywkQd9huoM99ejwhzTdovKU6gDU6OZS+vzo9NDvQL63ZkT9LF7pbmC
+ +EVW3Zg5LDEpzDnto9/C9nptIeFnMSTSygNscPhTeZYC4z0uPOdz5mXnf
+ 3ccZs3OrM254NKBdUGxuWknayshGopBIVo2A3L91Qd41WxWwQVjs5GXdP
+ AQjrv0lLF1Bo7TiRRwaddZw1dz8D0Belaq9SF2UX8XldOHlfai/0PHvNS
+ nGu3T5Uo+u4nVOHZNxb4zeM4IGsxEaIYIFbzWrjMmT5BytIxEmCmSrlUo w==;
+X-CSE-ConnectionGUID: S7CLeUONQb2TNEeVgKR5ZA==
+X-CSE-MsgGUID: 0JdBqmk+R6Cv7rmxyar3mA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251910"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251910"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 19:48:10 -0700
-X-CSE-ConnectionGUID: XAjmRqzMSk+piUc+Wwezdw==
-X-CSE-MsgGUID: 3z2oBxoKT6mprXwTnkZ0ww==
+ 27 Aug 2024 19:48:09 -0700
+X-CSE-ConnectionGUID: g6wxsU3KQXqGk5rqU2+w5Q==
+X-CSE-MsgGUID: b777olezQEitpx0RsgugTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224649"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224631"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 19:48:10 -0700
+ 27 Aug 2024 19:48:09 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
-Subject: [RFC PATCH 20/28] drm/xe: Add Xe SVM populate_vram_pfn vfunc
-Date: Tue, 27 Aug 2024 19:48:53 -0700
-Message-Id: <20240828024901.2582335-21-matthew.brost@intel.com>
+Subject: [RFC PATCH 15/28] drm/xe: Enable system allocator uAPI
+Date: Tue, 27 Aug 2024 19:48:48 -0700
+Message-Id: <20240828024901.2582335-16-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240828024901.2582335-1-matthew.brost@intel.com>
 References: <20240828024901.2582335-1-matthew.brost@intel.com>
@@ -68,71 +68,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Support for system allocator bindings in SRAM fully in place, enable the
+implementation.
+
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 37 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 6c690ba827e7..82cb5a260c87 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -9,6 +9,7 @@
- #include "xe_migrate.h"
- #include "xe_pt.h"
- #include "xe_svm.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d9bff07ef8d1..f7dc681a8b0e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2966,12 +2966,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		u16 pat_index = (*bind_ops)[i].pat_index;
+ 		u16 coh_mode;
  
-@@ -421,9 +422,45 @@ static int xe_svm_copy_to_sram(struct drm_gpusvm *gpusvm, struct page **pages,
- 			   XE_SVM_COPY_TO_SRAM);
- }
- 
-+static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
-+{
-+	return PHYS_PFN(offset + mr->hpa_base);
-+}
-+
-+static struct drm_buddy *tile_to_buddy(struct xe_tile *tile)
-+{
-+	return &tile->mem.vram_mgr->mm;
-+}
-+
-+static int xe_svm_populate_vram_pfn(struct drm_gpusvm *gpusvm,
-+				    void *vram_allocation,
-+				    unsigned long npages,
-+				    unsigned long *pfn)
-+{
-+	struct xe_bo *bo = vram_allocation;
-+	struct ttm_resource *res = bo->ttm.resource;
-+	struct list_head *blocks = &to_xe_ttm_vram_mgr_resource(res)->blocks;
-+	struct drm_buddy_block *block;
-+	int j =0;
-+
-+	list_for_each_entry(block, blocks, link) {
-+		struct xe_mem_region *mr = block->private;
-+		struct xe_tile *tile = mr_to_tile(mr);
-+		struct drm_buddy *buddy = tile_to_buddy(tile);
-+		u64 block_pfn = block_offset_to_pfn(mr, drm_buddy_block_offset(block));
-+		int i;
-+
-+		for(i = 0; i < drm_buddy_block_size(buddy, block) >> PAGE_SHIFT; ++i)
-+			pfn[j++] = block_pfn + i;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct drm_gpusvm_ops gpusvm_ops = {
- 	.range_alloc = xe_svm_range_alloc,
- 	.range_free = xe_svm_range_free,
-+	.populate_vram_pfn = xe_svm_populate_vram_pfn,
- 	.copy_to_vram = xe_svm_copy_to_vram,
- 	.copy_to_sram = xe_svm_copy_to_sram,
- 	.invalidate = xe_svm_invalidate,
+-		/* FIXME: Disabling system allocator for now */
+-		if (XE_IOCTL_DBG(xe, is_system_allocator)) {
+-			err = -EOPNOTSUPP;
+-			goto free_bind_ops;
+-		}
+-
+ 		if (XE_IOCTL_DBG(xe, pat_index >= xe->pat.n_entries)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
 -- 
 2.34.1
 
