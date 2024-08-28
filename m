@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 020A3C5475C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 09:24:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCB83C54757
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 09:25:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC19F10E4F1;
-	Wed, 28 Aug 2024 09:24:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 899BA10E4EE;
+	Wed, 28 Aug 2024 09:25:10 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E1DD10E4F1;
- Wed, 28 Aug 2024 09:24:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 021D810E4EE;
+ Wed, 28 Aug 2024 09:25:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe2hpg=3A_Add?=
- =?utf-8?q?_Wa=5F15016589081?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe2hpg=3A_Add_Wa?=
+ =?utf-8?q?=5F15016589081?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Aug 2024 09:24:54 -0000
-Message-ID: <172483709411.809823.13435949278346112915@2413ebb6fbb6>
+Date: Wed, 28 Aug 2024 09:25:09 -0000
+Message-ID: <172483710900.809823.7924689156658421770@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240828084016.1699041-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20240828084016.1699041-1-tejas.upadhyay@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2940d1fa7abe drm-tip: 2024y-08m-27d-22h-16m-15s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2hpg: Add Wa_15016589081
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0b4a86101a43a54ec8de034401086f6da333df0d
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Wed Aug 28 14:10:16 2024 +0530
+
+    drm/xe/xe2hpg: Add Wa_15016589081
+    
+    Wa_15016589081 applies to xe2_hpg renderCS
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4 drm-intel
+0b4a86101a43 drm/xe/xe2hpg: Add Wa_15016589081
 
 
