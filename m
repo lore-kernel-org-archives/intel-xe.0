@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CCEAC54E71
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 10:14:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9359AC54E92
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 10:15:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF0BE10E00A;
-	Wed, 28 Aug 2024 10:14:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C2D310E00A;
+	Wed, 28 Aug 2024 10:15:05 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBFF210E00A;
- Wed, 28 Aug 2024 10:14:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE2510E00A;
+ Wed, 28 Aug 2024 10:15:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_NPD_in?=
- =?utf-8?q?_ggtt=5Fnode=5Fremove=28=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_NPD_in_ggtt?=
+ =?utf-8?q?=5Fnode=5Fremove=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Aug 2024 10:14:42 -0000
-Message-ID: <172484008276.809918.17593829801033704551@2413ebb6fbb6>
+Date: Wed, 28 Aug 2024 10:15:03 -0000
+Message-ID: <172484010344.809918.15278776539720719242@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240828092229.3606503-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240828092229.3606503-1-himal.prasad.ghimiray@intel.com>
@@ -48,9 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2940d1fa7abe drm-tip: 2024y-08m-27d-22h-16m-15s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix NPD in ggtt_node_remove()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1c3ed30f5c3ea119c1fde129cdde90030605da9f
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Wed Aug 28 14:52:29 2024 +0530
+
+    drm/xe: Fix NPD in ggtt_node_remove()
+    
+    Make sure that ggtt_node_remove() is invoked only if both node and ggtt
+    are not null. Move the null checks to the caller function
+    xe_ggtt_node_remove().
+    
+    v2: Move null check below declarations (Tejas)
+    
+    Fixes: 919bb54e989c ("drm/xe: Fix missing runtime outer protection for ggtt_remove_node")
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 2940d1fa7abe0d2a9acc95fd1c704a8d8cbc68f4 drm-intel
+1c3ed30f5c3e drm/xe: Fix NPD in ggtt_node_remove()
 
 
