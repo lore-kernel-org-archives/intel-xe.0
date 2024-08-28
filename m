@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7DF7C7113C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 21:08:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1792C7113C
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 21:08:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5519310E5E9;
-	Wed, 28 Aug 2024 21:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEDAD10E06F;
+	Wed, 28 Aug 2024 21:08:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YM8Y+3OA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ra76o8FW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0565A10E06F
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 21:08:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA7BB10E06F
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Aug 2024 21:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724879331; x=1756415331;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VHfl5FzwgIAS5Um1ZRZFXEMxjygNlfvD/FW9HuJ/LW0=;
- b=YM8Y+3OA5nfyALcGBZaGvUmgP+Hlq982V8J2A2o59al8V9g/TBZOniRT
- 8wGgYJxu2QgU5r1mpwPmvGQZ9t+iwQzoeYmVSCdpW5mX74MtHVb2zgMR1
- qRfWVoETP8/1J2BxmG6Cz4+bI08KWPeJ2r+rGIEGCkHZkqd+I/LxavElX
- FybZJZfFA4AEmmrAim8nmL/hLBduxrmEb3FNyVZgbralkDqnyKLgJfJIj
- NHS8fnOaorP4OKTyoCkRzaenKxPwJEOTffKvlLevdrE59MSIJO1OlptuM
- KeSqr0ZULze9X1pbCv/wpQXduzIGnPlkAT9paRnHEYpxa+6Rcze4StmJn A==;
-X-CSE-ConnectionGUID: FZApfcrDSCCmEK/EtAYV1A==
-X-CSE-MsgGUID: wYPG/gu8Qu6B3CncxjR2QQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23626033"
-X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="23626033"
+ t=1724879334; x=1756415334;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=AoyrkuHt7kzTtwG1nCIaULQD6/qosjFaBiykVMirCwY=;
+ b=Ra76o8FWr4zvWci5H7a/oBKVFf9Et23opG4nQBZQJ9pxNMHVMjJ57I/A
+ nAGyZt35G1X3Z6Xw9Y/rpM5NQtJ+GqdNf3z33nyzBsndnLTSIeRWOrhtN
+ Yv/Fy5CwGPHztZjfC4Iw+vMi4APLs0Zdjawlhgt3OTi57XNQjBq6CltTQ
+ y2efZwj2YXW0cSTTG4W/8+811sUtJIRC+clfSrZ0wFUnOM/EmPXwfETBK
+ Jy0WZuODXxl74tUTYiLKF6mNd55fOTgx3yrDBCy9gxt2ulE83hRqOHn7A
+ TkFjKnc5uh+FsZVqSxAq3+4OFL75WbU9rV+SEc3lHUoFYgGOHejrk7tHr Q==;
+X-CSE-ConnectionGUID: lVHo9nRSSdmnjnSBq9b0uA==
+X-CSE-MsgGUID: 9CoG9fjTTHqIWdI4JTVfTg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23626040"
+X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="23626040"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 14:08:51 -0700
-X-CSE-ConnectionGUID: gkOcJPCXSly2ns5WlGCxTQ==
-X-CSE-MsgGUID: fpZhL22QQCuwZkfkUfFz9A==
+ 28 Aug 2024 14:08:54 -0700
+X-CSE-ConnectionGUID: e0+u/JGXQv66N44ffvh4Dg==
+X-CSE-MsgGUID: DP9Kg8jqRtO+yQ7QDgStbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="67720219"
+X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="67720236"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.82.99])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 14:08:51 -0700
+ 28 Aug 2024 14:08:54 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=F3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 0/4] PF: Improve VF control
-Date: Wed, 28 Aug 2024 23:08:05 +0200
-Message-Id: <20240828210809.1528-1-michal.wajdeczko@intel.com>
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 2/4] drm/xe/pf: Fix documentation formatting
+Date: Wed, 28 Aug 2024 23:08:07 +0200
+Message-Id: <20240828210809.1528-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240828210809.1528-1-michal.wajdeczko@intel.com>
+References: <20240828210809.1528-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,32 +68,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v1: https://patchwork.freedesktop.org/series/137095/
-v2: rebased (xe_migrate_clear, xe_ggtt_node)
-    fix duplicated functions calls (Piotr)
-    put RESUMED state on the main diagram (Piotr)
-    fix missed use of default timeout helper (Piotr)
-    increase severity of the FLR timedout message (Piotr)
-    review KUnit changes in kunit (Lucas)
+Current formatting of "The VF FLR Flow with GuC" only looks fine,
+but it will not render properly when included in htmldocs due to:
 
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+  WARNING: Block quote ends without a blank line; unexpected unindent.
+  CRITICAL: Missing matching underline for section title overline.
 
-Michal Wajdeczko (4):
-  drm/xe/pf: Add function to sanitize VF resources
-  drm/xe/pf: Fix documentation formatting
-  drm/xe/pf: Drop GuC notifications for non-existing VF
-  drm/xe/pf: Improve VF control
+Fix that by adding proper indent and using list markup.
 
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c           |    6 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   82 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h    |    1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c   | 1258 ++++++++++++++++-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h   |    3 +
- .../gpu/drm/xe/xe_gt_sriov_pf_control_types.h |  107 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |    6 +
- 7 files changed, 1422 insertions(+), 41 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_control_types.h
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Piotr PiÃ³rkowski <piotr.piorkowski@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c | 54 +++++++++++----------
+ 1 file changed, 28 insertions(+), 26 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+index ebf06e037750..d11839d9e7d4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+@@ -153,33 +153,35 @@ int xe_gt_sriov_pf_control_trigger_flr(struct xe_gt *gt, unsigned int vfid)
+ /**
+  * DOC: The VF FLR Flow with GuC
+  *
+- *          PF                        GUC             PCI
+- * ========================================================
+- *          |                          |               |
+- * (1)      |                         [ ] <----- FLR --|
+- *          |                         [ ]              :
+- * (2)     [ ] <-------- NOTIFY FLR --[ ]
+- *         [ ]                         |
+- * (3)     [ ]                         |
+- *         [ ]                         |
+- *         [ ]-- START FLR ---------> [ ]
+- *          |                         [ ]
+- * (4)      |                         [ ]
+- *          |                         [ ]
+- *         [ ] <--------- FLR DONE -- [ ]
+- *         [ ]                         |
+- * (5)     [ ]                         |
+- *         [ ]                         |
+- *         [ ]-- FINISH FLR --------> [ ]
+- *          |                          |
++ * The VF FLR flow includes several steps::
+  *
+- * Step 1: PCI HW generates interrupt to the GuC about VF FLR
+- * Step 2: GuC FW sends G2H notification to the PF about VF FLR
+- * Step 2a: on some platforms G2H is only received from root GuC
+- * Step 3: PF sends H2G request to the GuC to start VF FLR sequence
+- * Step 3a: on some platforms PF must send H2G to all other GuCs
+- * Step 4: GuC FW performs VF FLR cleanups and notifies the PF when done
+- * Step 5: PF performs VF FLR cleanups and notifies the GuC FW when finished
++ *	         PF                        GUC             PCI
++ *	========================================================
++ *	         |                          |               |
++ *	(1)      |                         [ ] <----- FLR --|
++ *	         |                         [ ]              :
++ *	(2)     [ ] <-------- NOTIFY FLR --[ ]
++ *	        [ ]                         |
++ *	(3)     [ ]                         |
++ *	        [ ]                         |
++ *	        [ ]-- START FLR ---------> [ ]
++ *	         |                         [ ]
++ *	(4)      |                         [ ]
++ *	         |                         [ ]
++ *	        [ ] <--------- FLR DONE -- [ ]
++ *	        [ ]                         |
++ *	(5)     [ ]                         |
++ *	        [ ]                         |
++ *	        [ ]-- FINISH FLR --------> [ ]
++ *	         |                          |
++ *
++ * * Step 1: PCI HW generates interrupt to the GuC about VF FLR
++ * * Step 2: GuC FW sends G2H notification to the PF about VF FLR
++ * * Step 2a: on some platforms G2H is only received from root GuC
++ * * Step 3: PF sends H2G request to the GuC to start VF FLR sequence
++ * * Step 3a: on some platforms PF must send H2G to all other GuCs
++ * * Step 4: GuC FW performs VF FLR cleanups and notifies the PF when done
++ * * Step 5: PF performs VF FLR cleanups and notifies the GuC FW when finished
+  */
+ 
+ static bool needs_dispatch_flr(struct xe_device *xe)
 -- 
 2.43.0
 
