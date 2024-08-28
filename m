@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89DF0C54750
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9802EC54749
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B34DA10E480;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35E1B10E47A;
 	Wed, 28 Aug 2024 02:48:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FY0cVVMw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cuB+3uKa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7460D10E44B;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF5D10E44E;
  Wed, 28 Aug 2024 02:48:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1724813290; x=1756349290;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SM8XB4VrHy7O7uQVm5RJ4pT4QRxR7TsVKZl2nXaN9yM=;
- b=FY0cVVMw/hL8PMgrEr2UWlwRhId6AlMsjqFF4/ANR7P25ZCXJzS99b/X
- YZQoyRrw5DW1KWa9igcpHpGSGRuxK+af0bvR6JVt9HPEqBFmbTnIRqRLI
- Zw/tVeBqVmuB+xuSaTZrkoTOd6Zoer+7yipLvXYDahQn5tvVoqd+Ny0tY
- X5i7OFJcI+4hrRvVGyfSSYERpUUaoKGdRd3j4Hxcs44a+kiLt5PvI/OcD
- vP545K27Ne8j7o7+MbDR42i5IQGaX7jveKA9E+smllki2p8NZoGwo/0cS
- TU6gd+qRyBSyDJTDicsVlUMXmSvOH2H5mVnG+d8j1fEHDiWHeNGvBUoMa A==;
-X-CSE-ConnectionGUID: 56hjmnEyQdOziFHjQl8EXA==
-X-CSE-MsgGUID: Q2kU9nGGRE2/3CDfJHan5A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251934"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251934"
+ bh=JkbPLNkKBaSRiE5EGFBuRjRblyt1zA7OOQaLpNyGVeM=;
+ b=cuB+3uKa1EQx9CqhAQdTXOF5exScpN4HbqUMEpFgO/wZJIhsWwUQ4gsb
+ UafVBJKgE9C34GmWpyuorPeQydGocIT9dBzyBmmF7QwL6TM4kxNb1yp+P
+ hdu7QeORbD3SSQC+Zj3yrqgSnnLHEnDWUt7A1JfPFn22DYYaGU9bdAM7Q
+ u2J//zj4AkzIdoay9r0VGEV9ncpNoSJm/zj7itv+yeqQTP+Lh27hFzBEn
+ ho4RYW3sqelNZ8G8W9xxOVK+4xJwkLtqjN7figX/tu7q56dkuLudGsRH3
+ J68NtfUNThz5mfR37aCVn068of5cZpKav3jWS5lchmeVTzblR3eTBHoRR w==;
+X-CSE-ConnectionGUID: PPAvnqQtSguj0rCJ6fPP4w==
+X-CSE-MsgGUID: SpvnCP/qRcOorYpke97moQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251926"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251926"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Aug 2024 19:48:10 -0700
-X-CSE-ConnectionGUID: QasRnbUpRJCAI7sYOwu99g==
-X-CSE-MsgGUID: i7OB8gWiRxqUSlDs9ks4Hg==
+X-CSE-ConnectionGUID: YcSSrhn4TX+N3vaaddauWQ==
+X-CSE-MsgGUID: uMDBUtBySI+w5lNOX1iVXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224654"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224646"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Aug 2024 19:48:10 -0700
@@ -46,9 +46,9 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
-Subject: [RFC PATCH 21/28] drm/xe: Add Xe SVM vram_release vfunc
-Date: Tue, 27 Aug 2024 19:48:54 -0700
-Message-Id: <20240828024901.2582335-22-matthew.brost@intel.com>
+Subject: [RFC PATCH 19/28] drm/xe: Update PT layer to understand ranges in VRAM
+Date: Tue, 27 Aug 2024 19:48:52 -0700
+Message-Id: <20240828024901.2582335-20-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240828024901.2582335-1-matthew.brost@intel.com>
 References: <20240828024901.2582335-1-matthew.brost@intel.com>
@@ -68,45 +68,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement with a simple BO put.
+Kinda cheating here using BO directly rather than VRAM pages. Same at
+the moment as mixed mappings are not supported. If this changes, then
+the arary of pages / dma addresses will need a cursor.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c  | 22 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_svm.h | 10 ++++++++++
+ 2 files changed, 26 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 82cb5a260c87..4372c02a341f 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -5,6 +5,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index fc86adf9f0a6..e9195029ea60 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -607,9 +607,12 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		 struct xe_vm_pgtable_update *entries, u32 *num_entries)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	struct xe_bo *bo = xe_vma_bo(vma);
+-	bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
+-		(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
++	bool range_devmem = range && xe_svm_range_in_vram(range);
++	struct xe_bo *bo = range_devmem ? range->base.vram_allocation :
++		xe_vma_bo(vma);
++	bool is_devmem = range_devmem ||
++		(!xe_vma_is_userptr(vma) && bo &&
++		(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo)));
+ 	struct xe_res_cursor curs;
+ 	struct xe_pt_stage_bind_walk xe_walk = {
+ 		.base = {
+@@ -675,9 +678,16 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 	xe_bo_assert_held(bo);
  
- #include "drm_gpusvm.h"
- 
-+#include "xe_bo.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
- #include "xe_pt.h"
-@@ -422,6 +423,11 @@ static int xe_svm_copy_to_sram(struct drm_gpusvm *gpusvm, struct page **pages,
- 			   XE_SVM_COPY_TO_SRAM);
+ 	if (range) {
+-		xe_res_first_dma(range->base.dma_addr, 0,
+-				 range->base.va.end - range->base.va.start,
+-				 range->base.order, &curs);
++		if (is_devmem)
++			xe_res_first(bo->ttm.resource, 0,
++				     range->base.va.end - range->base.va.start,
++				     &curs);
++		else if (xe_svm_range_has_dma_mapping(range))
++			xe_res_first_dma(range->base.dma_addr, 0,
++					 range->base.va.end - range->base.va.start,
++					 range->base.order, &curs);
++		else
++			return -EAGAIN;	/* Invalidation corner case */
+ 	} else if (!xe_vma_is_null(vma)) {
+ 		if (xe_vma_is_userptr(vma))
+ 			xe_res_first_sg(to_userptr_vma(vma)->userptr.sg, 0,
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index f15df5c813f1..8b72e91cc37d 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -35,6 +35,16 @@ static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
+ 	return drm_gpusvm_range_pages_valid(range->base.gpusvm, &range->base);
  }
  
-+static void xe_svm_vram_release(void *vram_allocation)
++static inline bool xe_svm_range_in_vram(struct xe_svm_range *range)
 +{
-+	xe_bo_put(vram_allocation);
++	return range->base.flags.has_vram_pages;
 +}
 +
- static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
- {
- 	return PHYS_PFN(offset + mr->hpa_base);
-@@ -460,6 +466,7 @@ static int xe_svm_populate_vram_pfn(struct drm_gpusvm *gpusvm,
- static const struct drm_gpusvm_ops gpusvm_ops = {
- 	.range_alloc = xe_svm_range_alloc,
- 	.range_free = xe_svm_range_free,
-+	.vram_release = xe_svm_vram_release,
- 	.populate_vram_pfn = xe_svm_populate_vram_pfn,
- 	.copy_to_vram = xe_svm_copy_to_vram,
- 	.copy_to_sram = xe_svm_copy_to_sram,
++static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
++{
++	return range->base.flags.has_dma_mapping;
++}
++
+ #define xe_svm_notifier_lock(vm__)	\
+ 	drm_gpusvm_notifier_lock(&(vm__)->svm.gpusvm)
+ 
 -- 
 2.34.1
 
