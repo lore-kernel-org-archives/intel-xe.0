@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A6A8C54749
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3E59C5474C
 	for <intel-xe@archiver.kernel.org>; Wed, 28 Aug 2024 02:48:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05ED710E43F;
-	Wed, 28 Aug 2024 02:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F26910E442;
+	Wed, 28 Aug 2024 02:48:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rv7Pa/qu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nbfrk9R1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62AA110E43F;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32A5010E440;
  Wed, 28 Aug 2024 02:48:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1724813288; x=1756349288;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lRe+mxjUJ3daY2t9QkGYxv3ZPXLMMbSxj4sVAJUhbOQ=;
- b=Rv7Pa/qu408wCsvttLwBaHlizmush3aPa4t8Ce2HV6HrUGT9+yaFyZa/
- HCER6PvYx5I7V6tLaP8f7OeWDe5mYOy2ze+9W8O4/s29CJJVsV+VyILVx
- 8nc23W20nyd5XJp+35VL2CSGsgy6QbcesDSgLQtKYbd4poCwNQ3OcYTzJ
- Eql0LCmiocsEKJlDMdjXtnt6cjaDBmQaNsgxjgSHpOwSf41AVvRi5kYcU
- PGeE2Iym+IwNl4+DtqrwFUd3uQXRaVGq+obFKTexObBimcahqJBitBcvS
- gzNZwGrsNOFLHjbA8AbS1bwB86gqS2VhEHnRITKjNnEnyuSd3dcc8eOfx A==;
-X-CSE-ConnectionGUID: qTgV7ezVRdKwstFR2VPVig==
-X-CSE-MsgGUID: rBO25tboSPurXL6K7i/nGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251876"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251876"
+ bh=Fp+nlxf77E8ObSScKrGPzO5OLjkgp3O8UmyRwhsVGlI=;
+ b=nbfrk9R1vaMYXSqelVocMUD7wTZo6buyGA7YHC7VCr6nYfpcjVv0Tuwv
+ QIuWkZSDWlEjOt1XsujLNMRWCBxwUGxclvr8gSer/nJLARa3+aiPcGAAv
+ Dff0HlSS4KoR7QdHk0KfCnLQAg9x/cGfvs8fgUTgbsAMnK+fIENCeyllk
+ n12RWVkfSvuQflICWzEV2cKicK9gOW3gauM8HFn6XSi68JqitJnuT7QEf
+ 1kymW/mkMF2QxOS0cTJHnp/o7Vg8bqua8H57uTtUujn4FFsFdi1HKpFdj
+ FP+xGVms4kH1i6xfXrly5hLVK7iqZDEO67uDtVG0juaSNhx4oPGCGHB/G g==;
+X-CSE-ConnectionGUID: 0F99W7N4RxWkYzUqXGjZow==
+X-CSE-MsgGUID: Q5jNhwF+RJevdTuOyTWFig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="13251861"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="13251861"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 19:48:08 -0700
-X-CSE-ConnectionGUID: ER9EcjSNRdSpxdYOqv/CYA==
-X-CSE-MsgGUID: 7nmdmOKPTyW9MKSRXuWkpQ==
+ 27 Aug 2024 19:48:07 -0700
+X-CSE-ConnectionGUID: +EMLZZrWTKGENg8O4+lX3w==
+X-CSE-MsgGUID: E/sDT5oqTsan1eAWte+KLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224605"
+X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="67224595"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Aug 2024 19:48:07 -0700
@@ -46,14 +46,13 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
-Subject: [RFC PATCH 07/28] drm/xe: Add SVM init / fini to faulting VMs
-Date: Tue, 27 Aug 2024 19:48:40 -0700
-Message-Id: <20240828024901.2582335-8-matthew.brost@intel.com>
+Subject: [RFC PATCH 04/28] mm/migrate: Add migrate_device_vma_range
+Date: Tue, 27 Aug 2024 19:48:37 -0700
+Message-Id: <20240828024901.2582335-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240828024901.2582335-1-matthew.brost@intel.com>
 References: <20240828024901.2582335-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,157 +68,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add SVM init / fini to faulting VMs. Minimual implementation.
+Add migrate_device_vma_range which prepares an array of pre-populated
+device pages for migration and issues a MMU invalidation.
 
+Cc: Andrew Morton <akpm@linux-foundation.org>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile      |  1 +
- drivers/gpu/drm/xe/xe_svm.c      | 40 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h      | 14 +++++++++++
- drivers/gpu/drm/xe/xe_vm.c       | 10 ++++++++
- drivers/gpu/drm/xe/xe_vm_types.h |  7 ++++++
- 5 files changed, 72 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_svm.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+ include/linux/migrate.h |  3 +++
+ mm/migrate_device.c     | 53 +++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 56 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index b8fc2ee58f1a..17bd7cfc9a62 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -94,6 +94,7 @@ xe-y += drm_gpusvm.o \
- 	xe_sa.o \
- 	xe_sched_job.o \
- 	xe_step.o \
-+	xe_svm.o \
- 	xe_sync.o \
- 	xe_tile.o \
- 	xe_tile_sysfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-new file mode 100644
-index 000000000000..7166100e3298
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include "drm_gpusvm.h"
-+
-+#include "xe_svm.h"
-+#include "xe_vm.h"
-+#include "xe_vm_types.h"
-+
-+static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
-+			      struct drm_gpusvm_notifier *notifier,
-+			      const struct mmu_notifier_range *mmu_range)
-+{
-+	/* TODO: Implement */
-+}
-+
-+static const struct drm_gpusvm_ops gpusvm_ops = {
-+	.invalidate = xe_svm_invalidate,
-+};
-+
-+static const u64 fault_chunk_sizes[] = {
-+	SZ_2M,
-+	SZ_64K,
-+	SZ_4K,
-+};
-+
-+int xe_svm_init(struct xe_vm *vm)
-+{
-+	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
-+			       current->mm, NULL, 0, vm->size,
-+			       SZ_512M, &gpusvm_ops, fault_chunk_sizes,
-+			       ARRAY_SIZE(fault_chunk_sizes));
-+}
-+
-+void xe_svm_fini(struct xe_vm *vm)
-+{
-+	drm_gpusvm_fini(&vm->svm.gpusvm);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-new file mode 100644
-index 000000000000..4982d9168095
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_SVM_H_
-+#define _XE_SVM_H_
-+
-+struct xe_vm;
-+
-+int xe_svm_init(struct xe_vm *vm);
-+void xe_svm_fini(struct xe_vm *vm);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5ec160561662..17ad6a533b2f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -35,6 +35,7 @@
- #include "xe_preempt_fence.h"
- #include "xe_pt.h"
- #include "xe_res_cursor.h"
-+#include "xe_svm.h"
- #include "xe_sync.h"
- #include "xe_trace_bo.h"
- #include "xe_wa.h"
-@@ -1503,6 +1504,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		}
- 	}
+diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+index 644be30b69c8..e8cce05bf9c2 100644
+--- a/include/linux/migrate.h
++++ b/include/linux/migrate.h
+@@ -226,6 +226,9 @@ void migrate_vma_pages(struct migrate_vma *migrate);
+ void migrate_vma_finalize(struct migrate_vma *migrate);
+ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
+ 			unsigned long npages);
++int migrate_device_vma_range(struct mm_struct *mm, void *pgmap_owner,
++			     unsigned long *src_pfns, unsigned long npages,
++			     unsigned long start);
+ void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
+ 			unsigned long npages);
+ void migrate_device_finalize(unsigned long *src_pfns,
+diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+index 6d66dc1c6ffa..e25f12a132e8 100644
+--- a/mm/migrate_device.c
++++ b/mm/migrate_device.c
+@@ -920,6 +920,59 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
+ }
+ EXPORT_SYMBOL(migrate_device_range);
  
-+	if (flags & XE_VM_FLAG_FAULT_MODE) {
-+		err = xe_svm_init(vm);
-+		if (err)
-+			goto err_close;
++/**
++ * migrate_device_vma_range() - migrate device private pfns to normal memory and
++ * trigger MMU invalidation.
++ * @mm: struct mm of device pages.
++ * @src_pfns: pre-popluated array of source device private pfns to migrate.
++ * @pgmap_owner: page group map owner of device pages.
++ * @npages: number of pages to migrate.
++ * @start: VMA start of device pages.
++ *
++ * Similar to migrate_device_range() but supports non-contiguous pre-popluated
++ * array of device pages to migrate. Also triggers MMU invalidation. Useful in
++ * device memory eviction paths where lock is held protecting the device pages
++ * but where the mmap lock cannot be taken to due to a locking inversion (e.g.
++ * DRM drivers). Since the mmap lock is not required to be held, the MMU
++ * invalidation can race with with VMA start being repurposed, worst case this
++ * would result in an unecessary invalidation.
++ */
++int migrate_device_vma_range(struct mm_struct *mm, void *pgmap_owner,
++			     unsigned long *src_pfns, unsigned long npages,
++			     unsigned long start)
++{
++	struct mmu_notifier_range range;
++	unsigned long i;
++
++	mmu_notifier_range_init_owner(&range, MMU_NOTIFY_MIGRATE, 0,
++				      mm, start, start + npages * PAGE_SIZE,
++				      pgmap_owner);
++	mmu_notifier_invalidate_range_start(&range);
++
++	for (i = 0; i < npages; i++) {
++		struct page *page = pfn_to_page(src_pfns[i]);
++
++		if (!get_page_unless_zero(page)) {
++			src_pfns[i] = 0;
++			continue;
++		}
++
++		if (!trylock_page(page)) {
++			src_pfns[i] = 0;
++			put_page(page);
++			continue;
++		}
++
++		src_pfns[i] = migrate_pfn(src_pfns[i]) | MIGRATE_PFN_MIGRATE;
 +	}
 +
- 	if (number_tiles > 1)
- 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
- 
-@@ -1616,6 +1623,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		xe_vma_destroy_unlocked(vma);
- 	}
- 
-+	if (xe_vm_in_fault_mode(vm))
-+		xe_svm_fini(vm);
++	migrate_device_unmap(src_pfns, npages, NULL);
++	mmu_notifier_invalidate_range_end(&range);
 +
- 	up_write(&vm->lock);
- 
- 	mutex_lock(&xe->usm.lock);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 1764781c376b..bd1c0e368238 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_VM_TYPES_H_
- #define _XE_VM_TYPES_H_
- 
-+#include "drm_gpusvm.h"
- #include <drm/drm_gpuvm.h>
- 
- #include <linux/dma-resv.h>
-@@ -140,6 +141,12 @@ struct xe_vm {
- 	/** @gpuvm: base GPUVM used to track VMAs */
- 	struct drm_gpuvm gpuvm;
- 
-+	/** @svm: Shared virtual memory state */
-+	struct {
-+		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
-+		struct drm_gpusvm gpusvm;
-+	} svm;
++	return 0;
++}
++EXPORT_SYMBOL(migrate_device_vma_range);
 +
- 	struct xe_device *xe;
- 
- 	/* exec queue used for (un)binding vma's */
+ /*
+  * Migrate a device coherent page back to normal memory. The caller should have
+  * a reference on page which will be copied to the new page if migration is
 -- 
 2.34.1
 
