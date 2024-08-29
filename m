@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 806D6C83F2E
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 14:54:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55C3BC83F2E
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 14:55:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 512D510E6F4;
-	Thu, 29 Aug 2024 14:54:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 153D610E6F8;
+	Thu, 29 Aug 2024 14:55:21 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F1910E6F3;
- Thu, 29 Aug 2024 14:54:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 394D210E6F3;
+ Thu, 29 Aug 2024 14:55:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe_=26_drm/i915?=
- =?utf-8?q?=3A_drvdata_usage_changes_follow-up?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe_=26_drm/i915=3A_dr?=
+ =?utf-8?q?vdata_usage_changes_follow-up?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 Aug 2024 14:54:54 -0000
-Message-ID: <172494329473.832174.14356256626546217350@2413ebb6fbb6>
+Date: Thu, 29 Aug 2024 14:55:20 -0000
+Message-ID: <172494332022.832174.16821239412298451026@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <cover.1724942754.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1724942754.git.jani.nikula@intel.com>
@@ -48,14 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 7ae5f4b6787d drm-tip: 2024y-08m-29d-13h-51m-30s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915 & drm/xe: save struct drm_device to drvdata
-Applying: drm/i915: support struct device and pci_dev in to_intel_display()
-Applying: drm/i915/audio: migrate away from kdev_to_i915()
-Applying: drm/i915/hdcp: migrate away from kdev_to_i915() in bind/unbind
-Applying: drm/i915/hdcp: migrate away from kdev_to_i915() in GSC messaging
-Applying: drm/xe/display: remove unused compat kdev_to_i915() and pdev_to_i915()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7984eb7be26e3060ed9cc643587bdc80ea4444c3
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Aug 29 17:47:48 2024 +0300
+
+    drm/xe/display: remove unused compat kdev_to_i915() and pdev_to_i915()
+    
+    The display code no longer uses kdev_to_i915() or pdev_to_i915()
+    helpers. Remove them.
+    
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 7ae5f4b6787d6b8a0ca1ab1f3a71d5bb71783fe2 drm-intel
+215fe7ba1687 drm/i915 & drm/xe: save struct drm_device to drvdata
+5a168ad05fff drm/i915: support struct device and pci_dev in to_intel_display()
+7e5f5e9fc4df drm/i915/audio: migrate away from kdev_to_i915()
+a6cc52fd2311 drm/i915/hdcp: migrate away from kdev_to_i915() in bind/unbind
+a1e0815941c6 drm/i915/hdcp: migrate away from kdev_to_i915() in GSC messaging
+7984eb7be26e drm/xe/display: remove unused compat kdev_to_i915() and pdev_to_i915()
 
 
