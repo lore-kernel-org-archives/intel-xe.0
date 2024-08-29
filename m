@@ -4,27 +4,174 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31806CA0EC0
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 20:57:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD91CA0EC0
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 20:58:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 033D810E1B2;
-	Thu, 29 Aug 2024 20:57:29 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7A7B10E1B2;
- Thu, 29 Aug 2024 20:57:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6050610E77C;
+	Thu, 29 Aug 2024 20:57:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Inx3XMmh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D17810E784;
+ Thu, 29 Aug 2024 20:57:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724965077; x=1756501077;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=IOzqSzU+EVUHYT+E4ZXuhCHRLE38edOiyk/yuWanAgw=;
+ b=Inx3XMmhGo5ZJ/wjrZ6ea7+0EwKuBoJorgkmYDq9jTgmDTGK9xZ8Vi8r
+ N1EJ7yp+Xar7yPFzsC+rBFI5ia6hZcJg/jeWjrExw6egxN+JO6Ru2r/vJ
+ mnZyPVvemt05MH+tinOnsyhsxd2y07taHRZe6M2TogfyM6MKivjq45Bue
+ 6VME2sZQ5n1Uqo/cWI1YKyP7lkNBum6ad237x5o47O304mg+CNkvRKl8x
+ evpx1nrBeIHyQF4G6C68Jtan9cowW7zDvHxv8/Ejq4AAlkOmpkmUZHnpZ
+ nHMEGwjUjJU/7+TLAMOUUK7W7vGk+JmoLqRluHWwcO9rCK82GpQnDHJsA g==;
+X-CSE-ConnectionGUID: R008/p9JRDuyH8GsQ1jz8A==
+X-CSE-MsgGUID: Ha/Dahr2SNWY7RBAUi/N9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="34752523"
+X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="34752523"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 13:57:56 -0700
+X-CSE-ConnectionGUID: 9F9+A7dlQIe4YrrKiYY9rQ==
+X-CSE-MsgGUID: ZHDl0ngaTUqozO8EZ7QiRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="64425480"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Aug 2024 13:57:56 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 29 Aug 2024 13:57:56 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 29 Aug 2024 13:57:55 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 29 Aug 2024 13:57:55 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.171)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 29 Aug 2024 13:57:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=i+IgfsVrz5Ey3DfkDRdNOkdl/lom6PhN4+OlTGUm/Y2rCU0pHHyXfgp2B515FGp9NjvkQWQbwnl5ypcwHGlY64HvRYYOa6xhz193h995MiVHMqVn3J21Gt6BvteWfvd7fky6jGg48eN4V+QGLOtbEgX71IKL5V7Extzxos2eRa/+u42PEzgnaJ3bLVzXX4nYUhLNR6urm3fGdS6GlAcv4qtuzmlCTi+PuzLxY5DvQ4TkalkWAz4qinMp2CuV4pqScH55f2k3NZvnghA2Wz6HCQ1F2uUQrKu08TrNFzwFjxC7xRFrHuzb6U+vRlG4YTympx9cVhX5tFLbaOJC1Qg67A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C4Ug6UN8yRJa36oyORJX9QeTFmWy5Rn5eZGYalY4y14=;
+ b=Dwd/3fvUFoIb7nOdDQaNNgMkLS592+8qO07ZodmYgjaZGYyYMyJOM7005MD87POVqg3c8+/d5snxGGJjY9FH/LefwQz4YS3Tpwvm5SB7Z5OBARVTMMyIKb1Wch2wibU3/09EVhaPWcU91YI2qWdGXpme0YzYTYU9CjlZlSgI2jNq49n4VEox/YBGMQpn0p/zs6MY4V7iw03/Fld07Om0RMlfFL6sCxI5qQjgIRIwYH1HGfmg4zYFJxfY+xOu3lVnHNhCUCGRlIBFQLaI19u0Y6VqDVMDSzUE5JdYFFobZ3ECbkB1T+UrgLCNDpdvZ2L3LA01dqHnTgQ6fUGocc2cxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH7PR11MB8060.namprd11.prod.outlook.com (2603:10b6:510:24f::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.20; Thu, 29 Aug
+ 2024 20:57:50 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7875.018; Thu, 29 Aug 2024
+ 20:57:50 +0000
+Date: Thu, 29 Aug 2024 20:56:23 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <airlied@gmail.com>, <christian.koenig@amd.com>, <matthew.auld@intel.com>,
+ <daniel@ffwll.ch>
+Subject: Re: [RFC PATCH 05/28] drm/gpusvm: Add support for GPU Shared Virtual
+ Memory
+Message-ID: <ZtDgd7bd6RCs2Orl@DUT025-TGLU.fm.intel.com>
+References: <20240828024901.2582335-1-matthew.brost@intel.com>
+ <20240828024901.2582335-6-matthew.brost@intel.com>
+ <d66e492df25e8ec3533575245c10eb7dcca709ca.camel@linux.intel.com>
+ <ZtCzo11oKXBeKmWp@DUT025-TGLU.fm.intel.com>
+ <b657ceec08091a666bdd907f9171727ef395c093.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/xe=3A_Apply_workaround_140?=
- =?utf-8?q?16747170?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan-Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 Aug 2024 20:57:27 -0000
-Message-ID: <172496504767.849378.1242320065294971084@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240829203143.2021381-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20240829203143.2021381-1-jonathan.cavitt@intel.com>
+In-Reply-To: <b657ceec08091a666bdd907f9171727ef395c093.camel@linux.intel.com>
+X-ClientProxiedBy: BY5PR04CA0001.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::11) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB8060:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c995c2a-5253-42d7-3e4c-08dcc86d3e74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?mief7NVwSoXwZ9+O4T5+jInyxNBhpBgbHxuGs4yTTt5uLUBAy0XabT8OYH?=
+ =?iso-8859-1?Q?6IQFbTDckvBi/ANPE5d4BvAsGvyIEuXoaVTyLNEOYNGYwT310jDIaSONEm?=
+ =?iso-8859-1?Q?uzz+fdxkg106ZMatpuW/CMEPVu1ujPOAj/COd5wFVwanTZ16cO7PQdEXba?=
+ =?iso-8859-1?Q?r4t3IqxQGSEcekYQm8bRmGwo7o/CnQNOFeLAkQoD+xGVEhFqQNE77odLD5?=
+ =?iso-8859-1?Q?eSE/Uft8+qWU7isSXyGPC6dPW4A/tIxNGwO3HPUSmi1vbMXE5C4HATymF0?=
+ =?iso-8859-1?Q?QEK2lzmnvIfX/y4CYQ60AKTg3fUa1uqRF956Muoa+lPpPK5/2RmO8d8Moa?=
+ =?iso-8859-1?Q?FKuohG5neJ09pZrN6ZeVNkEchsvKjOjn6HZMpdODK5vokKKUHKH1gWoQQb?=
+ =?iso-8859-1?Q?kWT71ivxrHkJGfrG+S65POrUnX995zAuUKTi1eg7tCua872QPIVPYxnkkn?=
+ =?iso-8859-1?Q?qWWiF13RCsX2Z4y+JdZ/bCa86hT9urNUDRPnzCL198RR/jqub1fyuvVe4D?=
+ =?iso-8859-1?Q?FH/BUzYynzWoXjROiTvSYG0RVd5L3s978Mms5Clw7gvWzeSKUgMcmEHHmY?=
+ =?iso-8859-1?Q?TKPUAdnnE/URRxVmwBZFjs9hiXPzKIhrbn9LtuR5h9YWS0NzpjyrhwC/eK?=
+ =?iso-8859-1?Q?svbiCYN7oNDDNJKFWTBLwe1r56lv31bfP1VEHtdiy7BShNJ5qxTqzjiK8P?=
+ =?iso-8859-1?Q?nn8ELcKtIFb0yiEPTKntXlq2EBb19WQccYYnPSH0h+YLVztcAVtdvXAvSd?=
+ =?iso-8859-1?Q?tOPQ4/B/X05l7d2Wblrz9XGlMAGgX7MND+RC7lJf9WzH7aCcevCtQPudIx?=
+ =?iso-8859-1?Q?h/bDFVTOs4A9TItrwwInumSZhhjyoXkNNXXGsIPOgU/aV33fO9bjpEvC1B?=
+ =?iso-8859-1?Q?zknLtrf+BEE7Fxjv/STGp81FwvvI6tBTWxHgwO6Sict+thFaC5Fuj3jrWf?=
+ =?iso-8859-1?Q?5gA4wluPY1kYQzVO1Tqy+L2qEjXc9+3JvAv0lWMH4rxzOk32I8gRdsnqQZ?=
+ =?iso-8859-1?Q?GHrM4CH0J6TrwNzo4CGDnPCiDkW7J/xybsqbQq2/x0W0PlwxskyqGnb25g?=
+ =?iso-8859-1?Q?1VKrQ0R4uqO76Q+VWOz5joU4udwvcpOUKiwErONCHttFET4M8KYi75HUTF?=
+ =?iso-8859-1?Q?kJ45H+51voFjPDpd/5x2cckd1O9ilWpfxN3NUKEKDmwDiohyBBqrvdB2sF?=
+ =?iso-8859-1?Q?G/yH30HbsUKSLqoh+vs6cxMwQAbare1gBiNKKqGUBtve3OAW3Z45qZQlk1?=
+ =?iso-8859-1?Q?79Fj0dcOhDOjMXnhOWB50qwIR24QqdyELzxUgSikZXug7ZBvpgBd++ywY7?=
+ =?iso-8859-1?Q?t+YCBcTrOdZ7rU5EuqOWLa43yMdcApJ6J0nBZcxg52SHW+Q=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?IuW+KLk7c5ZVReBgIvtc9jlM91N+8+p+CZ3XB8R9Vd45ZyUUfi7rwnehr4?=
+ =?iso-8859-1?Q?qCmC8yeEEQtHjlQZFWLKGclGD+3Umen3lm7dT09xsAWma8R81L1iibpMl2?=
+ =?iso-8859-1?Q?758S9lZqJ9YKK+RqhX8DOxCDwrZUSdZOwuS5ekSgWr4hkc/nsHhAq6quxk?=
+ =?iso-8859-1?Q?gDbHIq9N3snp9JYSIrLB0JQcIV+mKMubgkiQJZbCmrdwRuq3I6qSodiP/s?=
+ =?iso-8859-1?Q?rhKIjE0zJ0zR8lVRWmj3rVSPcyTfXcSE7qKMtbmzKLM5R4fXNHpSQfCchy?=
+ =?iso-8859-1?Q?Ait9D1AdyX7z1L7fzpqeRVWtvQBoKwTTDvCCx4GyQuhhPDaCoetLxAjfrj?=
+ =?iso-8859-1?Q?eQFvX9k4FGktizZ7yBRKeBJLVIcuqI9wIfe6SjCBUXe36TdLpanpy4OBDE?=
+ =?iso-8859-1?Q?lOhPLjwD9g/dgtosQJo3LdurE/zdXL69JTboq5/0Wp0Owuufeht8ySglve?=
+ =?iso-8859-1?Q?wXokU4UiJ4PJnPCPRbhBjv37d+/JPVr1evwOXkcw5D0LGHqKE49bbYZ2EP?=
+ =?iso-8859-1?Q?xv9M0b92Mvc1QuY/uO3e7CO+wKYipoxbGwkDaxT3hMxot3sbc/RSwYiSTm?=
+ =?iso-8859-1?Q?jmGO7buXaB4SWG2popEWmXBgoPtrUo+wiZSZQ/6fPvY9TnurEG8S9s3IW8?=
+ =?iso-8859-1?Q?cfdalAk+CAcvlpFxXigt1NRKJHUxSRi6WUX0SZ1XqHczFtXBSDcx/Euydi?=
+ =?iso-8859-1?Q?hyWjSYBBDUPF0pf9Lt7XO9Fh2jsu40iY80wOgZI28WekikCW3PWeHWyGM+?=
+ =?iso-8859-1?Q?qEs6/P2ith51yi3muZz/6BsP0WiPlRjkmd0LT92lvlglimfs97AXY37PKR?=
+ =?iso-8859-1?Q?JfHScS/22CB8n9vwaTsUr8/UxrMJYoNGFI4mqlI5LZNRm7L8dE9498aaBA?=
+ =?iso-8859-1?Q?A+brD2BSASkXVveNt/0rK5VPHUPpPHVUff4F47ZDt5ivZ4n94p5hjcThso?=
+ =?iso-8859-1?Q?BPN9MIwy4kWf1fqWfOHI6vuiccuWvODvXHns2SAoud7r6MHcKsfTB+jOik?=
+ =?iso-8859-1?Q?rskBGa9Dj5zAQmKoJ1HOEx+WhhQq4kKwA5j0mt5aGIc6eePzhuBUFa9Dtw?=
+ =?iso-8859-1?Q?XFXgZcK5DqUNI99HIrJPPBxYwYYFbA7U/aaZGp7Uw28/1gAnUPKq86htTH?=
+ =?iso-8859-1?Q?AAvcLaZ2p9yynYz6HZ3HPJDqfZITx1FekSEITB59rsyn7ZCu70iuFxfY2L?=
+ =?iso-8859-1?Q?m1mDdrG4KZqm++ES67w3iru5tS/hZ27NTTpwuVZfAiGgelZK9Y3Gwm8QbY?=
+ =?iso-8859-1?Q?q/TzjZ5XuicnHyGJQ4z1iO9HzX89DYi6JbR0eOsDHnWuCG1hdzgT5i1qyq?=
+ =?iso-8859-1?Q?2o4YYKeNZJ26MG0MlILfALtEwv7KMCsVW1YYgFhtCfgE+FkEIRuLQWiHXe?=
+ =?iso-8859-1?Q?u1YnKcRGkYI8+TUIp0up2lOoQUyrjyPy9Oec78EryPcqohR9DVDoPH3sD9?=
+ =?iso-8859-1?Q?2QTPHQZogbOkqWHrZrEHwS7e+oepQDtGr1bs/KSnWGU2EA5ZNdQRhsktB7?=
+ =?iso-8859-1?Q?sDAQmQ0XGz4FXKsldKZmwnKhdaRzjqjNZqhRKgRY3HutDhf6s2N+dSUWSW?=
+ =?iso-8859-1?Q?gbkoOU0TXO7MZQq6dOSQpGH8yLWZxgk2B4VisKInTBDPpjcm7tZOfnRdNl?=
+ =?iso-8859-1?Q?MOIH0S/4U3XcfNzHbNcgOZZH4cXPFUoZ66fa6XK62IbYieD2oqftwCIQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c995c2a-5253-42d7-3e4c-08dcc86d3e74
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2024 20:57:50.6426 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cc6vKGljtDcI/QPrI8FfkEKLPhHLdkZOQHFlCy6j58tfcrOINQmiPRm7Ev3Oxail8WHbWdiF9K4m0M9clvye3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8060
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,1089 +183,3546 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Aug 29, 2024 at 09:18:29PM +0200, Thomas Hellström wrote:
+> Hi, Matthew,
+> 
+> On Thu, 2024-08-29 at 17:45 +0000, Matthew Brost wrote:
+> > On Thu, Aug 29, 2024 at 11:16:49AM +0200, Thomas Hellström wrote:
+> > > Hi, Matt. 
+> > > 
+> > > Some initial design comments / questions:
+> > > 
+> > > On Tue, 2024-08-27 at 19:48 -0700, Matthew Brost wrote:
+> > > > This patch introduces support for GPU Shared Virtual Memory (SVM)
+> > > > in
+> > > > the
+> > > > Direct Rendering Manager (DRM) subsystem. SVM allows for seamless
+> > > > sharing of memory between the CPU and GPU, enhancing performance
+> > > > and
+> > > > flexibility in GPU computing tasks.
+> > > > 
+> > > > The patch adds the necessary infrastructure for SVM, including
+> > > > data
+> > > > structures and functions for managing SVM ranges and notifiers.
+> > > > It
+> > > > also
+> > > > provides mechanisms for allocating, deallocating, and migrating
+> > > > memory
+> > > > regions between system RAM and GPU VRAM.
+> > > > 
+> > > > This mid-layer is largely inspired by GPUVM.
+> > > > 
+> > > > Cc: Dave Airlie <airlied@redhat.com>
+> > > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > > Cc: Christian König <christian.koenig@amd.com>
+> > > > Cc: <dri-devel@lists.freedesktop.org>
+> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/xe/Makefile     |    3 +-
+> > > >  drivers/gpu/drm/xe/drm_gpusvm.c | 2174
+> > > > +++++++++++++++++++++++++++++++
+> > > >  drivers/gpu/drm/xe/drm_gpusvm.h |  415 ++++++
+> > > >  3 files changed, 2591 insertions(+), 1 deletion(-)
+> > > >  create mode 100644 drivers/gpu/drm/xe/drm_gpusvm.c
+> > > >  create mode 100644 drivers/gpu/drm/xe/drm_gpusvm.h
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/xe/Makefile
+> > > > b/drivers/gpu/drm/xe/Makefile
+> > > > index b9670ae09a9e..b8fc2ee58f1a 100644
+> > > > --- a/drivers/gpu/drm/xe/Makefile
+> > > > +++ b/drivers/gpu/drm/xe/Makefile
+> > > > @@ -25,7 +25,8 @@ $(obj)/generated/%_wa_oob.c
+> > > > $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+> > > >  
+> > > >  # core driver code
+> > > >  
+> > > > -xe-y += xe_bb.o \
+> > > > +xe-y += drm_gpusvm.o \
+> > > > +	xe_bb.o \
+> > > >  	xe_bo.o \
+> > > >  	xe_bo_evict.o \
+> > > >  	xe_devcoredump.o \
+> > > > diff --git a/drivers/gpu/drm/xe/drm_gpusvm.c
+> > > > b/drivers/gpu/drm/xe/drm_gpusvm.c
+> > > > new file mode 100644
+> > > > index 000000000000..fc1e44e6ae72
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/xe/drm_gpusvm.c
+> > > > @@ -0,0 +1,2174 @@
+> > > > +// SPDX-License-Identifier: MIT
+> > > > +/*
+> > > > + * Copyright © 2024 Intel Corporation
+> > > > + *
+> > > > + * Authors:
+> > > > + *     Matthew Brost <matthew.brost@intel.com>
+> > > > + */
+> > > > +
+> > > > +#include <linux/dma-mapping.h>
+> > > > +#include <linux/interval_tree_generic.h>
+> > > > +#include <linux/hmm.h>
+> > > > +#include <linux/memremap.h>
+> > > > +#include <linux/migrate.h>
+> > > > +#include <linux/mm_types.h>
+> > > > +#include <linux/pagemap.h>
+> > > > +#include <linux/slab.h>
+> > > > +
+> > > > +#include <drm/drm_device.h>
+> > > > +#include "drm_gpusvm.h"
+> > > > +
+> > > > +/**
+> > > > + * DOC: Overview
+> > > > + *
+> > > > + * GPU Shared Virtual Memory (GPU SVM) layer for the Direct
+> > > > Rendering Manager (DRM)
+> > > > + *
+> > > > + * The GPU SVM layer is a component of the DRM framework
+> > > > designed to
+> > > > manage shared
+> > > > + * virtual memory between the CPU and GPU. It enables efficient
+> > > > data
+> > > > exchange and
+> > > > + * processing for GPU-accelerated applications by allowing
+> > > > memory
+> > > > sharing and
+> > > > + * synchronization between the CPU's and GPU's virtual address
+> > > > spaces.
+> > > > + *
+> > > > + * Key GPU SVM Components:
+> > > > + * - Notifiers: Notifiers: Used for tracking memory intervals
+> > > > and
+> > > > notifying the
+> > > > + *		GPU of changes, notifiers are sized based on a
+> > > > GPU
+> > > > SVM
+> > > > + *		initialization parameter, with a recommendation
+> > > > of
+> > > > 512M or
+> > > > + *		larger. They maintain a Red-BlacK tree and a
+> > > > list of
+> > > > ranges that
+> > > > + *		fall within the notifier interval. Notifiers are
+> > > > tracked within
+> > > > + *		a GPU SVM Red-BlacK tree and list and are
+> > > > dynamically inserted
+> > > > + *		or removed as ranges within the interval are
+> > > > created
+> > > > or
+> > > > + *		destroyed.
+> > > 
+> > > What is the benefit of this extra layer compared to direct
+> > > insertion of
+> > > ranges using mmu_interval_notifier_insert?
+> > > 
+> > > IIRC the argument made previously about having wide notifiers was
+> > > that
+> > > the rb tree lookups inside the core were costly and if there were
+> > > only
+> > > a few, then the rb tree lookups within a notifier range could be
+> > > replaced with the page-table radix-tree-like lookup, so each lookup
+> > > complexity would be O(log(n_notifiers) + page_table_depth).
+> > > 
+> > > But now we have first an rb-tree lookup in the core and then an rb-
+> > > tree
+> > > lookup within each notifier yeilding O(log(n_ranges))
+> > > 
+> > > I can see a small benefit in that inserting directly into the core
+> > > rb-
+> > > tree will block pending ongoing invalidations, but at a cost of an
+> > > extra multiplexing layer.
+> > > 
+> > 
+> > So when the notifier is triggered the search is a smaller range. In a
+> > perfect world eventually I'd like to drop the SVM range completely.
+> > There is a lot of changes required in Xe to make that possible and
+> > not
+> > entirely convinced it is possible and the ROI is worth it (additional
+> > complexity vs. perf benefit). For now, this was a relatively simple
+> > way
+> > to get SVM working (mirrors boths AMD's and Nvidia's implement wrt to
+> > having a range concept) but also is flexible in the sense the
+> > notifier
+> > size can be easily tweaked via a modparam [1] following Jason's
+> > suggestion of larger notifiers.
+> > 
+> > [1]
+> > https://patchwork.freedesktop.org/patch/611007/?series=137870&rev=1
+> 
+> What I meant was the core is already implementing the "one notifier for
+> the whole range", since your notifier duplicates the
+> mmu_interval_notifier functionality.
+> 
+> The mmu_interval_notifier first does an rbtree search to get to the
+> notifier, and then drm_gpusvm does an rbtree search to get to the
+> range.
 
-Series: drm/xe: Apply workaround 14016747170
-URL   : https://patchwork.freedesktop.org/series/137977/
-State : success
+Yes.
 
-== Summary ==
+> 
+> If the svm notifier layer is skipped, mmu_interval_notifier has to
+> perform a wider rbtree search to get to the range. The point is, the
+> complexity is the same for both approaches so there is no point in
+> adding a svm notifier layer for that reason. The width of the notifier
+> just adjust the relative size of the two rbtree searches, so from that
+> point of view the drm_gpusvm does not offer any benefit from inserting
+> the ranges into the mmu_interval_notifier directly (except that the
+> mmu_interval_notifier is slightly more heavyweight).
+> 
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[20:56:19] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:56:23] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for â€˜ioread64_lo_hiâ€™ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for â€˜ioread64_hi_loâ€™ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for â€˜ioread64be_lo_hiâ€™ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for â€˜ioread64be_hi_loâ€™ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for â€˜iowrite64_lo_hiâ€™ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for â€˜iowrite64_hi_loâ€™ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for â€˜iowrite64be_lo_hiâ€™ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for â€˜iowrite64be_hi_loâ€™ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+I think a large part of it was to avoid inserting / removing many
+notifiers as that was expensive. Agree the search is not fundamentally
+faster the way I have this coded. It just avoids heavy inserting /
+removing of notifiers.
 
-[20:56:49] Starting KUnit Kernel (1/1)...
-[20:56:49] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[20:56:49] =================== guc_dbm (7 subtests) ===================
-[20:56:49] [PASSED] test_empty
-[20:56:49] [PASSED] test_default
-[20:56:49] ======================== test_size  ========================
-[20:56:49] [PASSED] 4
-[20:56:49] [PASSED] 8
-[20:56:49] [PASSED] 32
-[20:56:49] [PASSED] 256
-[20:56:49] ==================== [PASSED] test_size ====================
-[20:56:49] ======================= test_reuse  ========================
-[20:56:49] [PASSED] 4
-[20:56:49] [PASSED] 8
-[20:56:49] [PASSED] 32
-[20:56:49] [PASSED] 256
-[20:56:49] =================== [PASSED] test_reuse ====================
-[20:56:49] =================== test_range_overlap  ====================
-[20:56:49] [PASSED] 4
-[20:56:49] [PASSED] 8
-[20:56:49] [PASSED] 32
-[20:56:49] [PASSED] 256
-[20:56:49] =============== [PASSED] test_range_overlap ================
-[20:56:49] =================== test_range_compact  ====================
-[20:56:49] [PASSED] 4
-[20:56:49] [PASSED] 8
-[20:56:49] [PASSED] 32
-[20:56:49] [PASSED] 256
-[20:56:49] =============== [PASSED] test_range_compact ================
-[20:56:49] ==================== test_range_spare  =====================
-[20:56:49] [PASSED] 4
-[20:56:49] [PASSED] 8
-[20:56:49] [PASSED] 32
-[20:56:49] [PASSED] 256
-[20:56:49] ================ [PASSED] test_range_spare =================
-[20:56:49] ===================== [PASSED] guc_dbm =====================
-[20:56:49] =================== guc_idm (6 subtests) ===================
-[20:56:49] [PASSED] bad_init
-[20:56:49] [PASSED] no_init
-[20:56:49] [PASSED] init_fini
-[20:56:49] [PASSED] check_used
-[20:56:49] [PASSED] check_quota
-[20:56:49] [PASSED] check_all
-[20:56:49] ===================== [PASSED] guc_idm =====================
-[20:56:49] ================== no_relay (3 subtests) ===================
-[20:56:49] [PASSED] xe_drops_guc2pf_if_not_ready
-[20:56:49] [PASSED] xe_drops_guc2vf_if_not_ready
-[20:56:49] [PASSED] xe_rejects_send_if_not_ready
-[20:56:49] ==================== [PASSED] no_relay =====================
-[20:56:49] ================== pf_relay (14 subtests) ==================
-[20:56:49] [PASSED] pf_rejects_guc2pf_too_short
-[20:56:49] [PASSED] pf_rejects_guc2pf_too_long
-[20:56:49] [PASSED] pf_rejects_guc2pf_no_payload
-[20:56:49] [PASSED] pf_fails_no_payload
-[20:56:49] [PASSED] pf_fails_bad_origin
-[20:56:49] [PASSED] pf_fails_bad_type
-[20:56:49] [PASSED] pf_txn_reports_error
-[20:56:49] [PASSED] pf_txn_sends_pf2guc
-[20:56:49] [PASSED] pf_sends_pf2guc
-[20:56:49] [SKIPPED] pf_loopback_nop
-[20:56:49] [SKIPPED] pf_loopback_echo
-[20:56:49] [SKIPPED] pf_loopback_fail
-[20:56:49] [SKIPPED] pf_loopback_busy
-[20:56:49] [SKIPPED] pf_loopback_retry
-[20:56:49] ==================== [PASSED] pf_relay =====================
-[20:56:49] ================== vf_relay (3 subtests) ===================
-[20:56:49] [PASSED] vf_rejects_guc2vf_too_short
-[20:56:49] [PASSED] vf_rejects_guc2vf_too_long
-[20:56:49] [PASSED] vf_rejects_guc2vf_no_payload
-[20:56:49] ==================== [PASSED] vf_relay =====================
-[20:56:49] ================= pf_service (11 subtests) =================
-[20:56:49] [PASSED] pf_negotiate_any
-[20:56:49] [PASSED] pf_negotiate_base_match
-[20:56:49] [PASSED] pf_negotiate_base_newer
-[20:56:49] [PASSED] pf_negotiate_base_next
-[20:56:49] [SKIPPED] pf_negotiate_base_older
-[20:56:49] [PASSED] pf_negotiate_base_prev
-[20:56:49] [PASSED] pf_negotiate_latest_match
-[20:56:49] [PASSED] pf_negotiate_latest_newer
-[20:56:49] [PASSED] pf_negotiate_latest_next
-[20:56:49] [SKIPPED] pf_negotiate_latest_older
-[20:56:49] [SKIPPED] pf_negotiate_latest_prev
-[20:56:49] =================== [PASSED] pf_service ====================
-[20:56:49] ===================== lmtt (1 subtest) =====================
-[20:56:49] ======================== test_ops  =========================
-[20:56:49] [PASSED] 2-level
-[20:56:49] [PASSED] multi-level
-[20:56:49] ==================== [PASSED] test_ops =====================
-[20:56:49] ====================== [PASSED] lmtt =======================
-[20:56:49] =================== xe_mocs (2 subtests) ===================
-[20:56:49] ================ xe_live_mocs_kernel_kunit  ================
-[20:56:49] =========== [SKIPPED] xe_live_mocs_kernel_kunit ============
-[20:56:49] ================ xe_live_mocs_reset_kunit  =================
-[20:56:49] ============ [SKIPPED] xe_live_mocs_reset_kunit ============
-[20:56:49] ==================== [SKIPPED] xe_mocs =====================
-[20:56:49] ================= xe_migrate (2 subtests) ==================
-[20:56:49] ================= xe_migrate_sanity_kunit  =================
-[20:56:49] ============ [SKIPPED] xe_migrate_sanity_kunit =============
-[20:56:49] ================== xe_validate_ccs_kunit  ==================
-[20:56:49] ============= [SKIPPED] xe_validate_ccs_kunit ==============
-[20:56:49] =================== [SKIPPED] xe_migrate ===================
-[20:56:49] ================== xe_dma_buf (1 subtest) ==================
-[20:56:49] ==================== xe_dma_buf_kunit  =====================
-[20:56:49] ================ [SKIPPED] xe_dma_buf_kunit ================
-[20:56:49] =================== [SKIPPED] xe_dma_buf ===================
-[20:56:49] ==================== xe_bo (2 subtests) ====================
-[20:56:49] ================== xe_ccs_migrate_kunit  ===================
-[20:56:49] ============== [SKIPPED] xe_ccs_migrate_kunit ==============
-[20:56:49] ==================== xe_bo_evict_kunit  ====================
-[20:56:49] =============== [SKIPPED] xe_bo_evict_kunit ================
-[20:56:49] ===================== [SKIPPED] xe_bo ======================
-[20:56:49] ==================== args (11 subtests) ====================
-[20:56:49] [PASSED] count_args_test
-[20:56:49] [PASSED] call_args_example
-[20:56:49] [PASSED] call_args_test
-[20:56:49] [PASSED] drop_first_arg_example
-[20:56:49] [PASSED] drop_first_arg_test
-[20:56:49] [PASSED] first_arg_example
-[20:56:49] [PASSED] first_arg_test
-[20:56:49] [PASSED] last_arg_example
-[20:56:49] [PASSED] last_arg_test
-[20:56:49] [PASSED] pick_arg_example
-[20:56:49] [PASSED] sep_comma_example
-[20:56:49] ====================== [PASSED] args =======================
-[20:56:49] =================== xe_pci (2 subtests) ====================
-stty: 'standard input': Inappropriate ioctl for device
-[20:56:49] [PASSED] xe_gmdid_graphics_ip
-[20:56:49] [PASSED] xe_gmdid_media_ip
-[20:56:49] ===================== [PASSED] xe_pci ======================
-[20:56:49] =================== xe_rtp (2 subtests) ====================
-[20:56:49] =============== xe_rtp_process_to_sr_tests  ================
-[20:56:49] [PASSED] coalesce-same-reg
-[20:56:49] [PASSED] no-match-no-add
-[20:56:49] [PASSED] match-or
-[20:56:49] [PASSED] match-or-xfail
-[20:56:49] [PASSED] no-match-no-add-multiple-rules
-[20:56:49] [PASSED] two-regs-two-entries
-[20:56:49] [PASSED] clr-one-set-other
-[20:56:49] [PASSED] set-field
-[20:56:49] [PASSED] conflict-duplicate
-[20:56:49] [PASSED] conflict-not-disjoint
-[20:56:49] [PASSED] conflict-reg-type
-[20:56:49] =========== [PASSED] xe_rtp_process_to_sr_tests ============
-[20:56:49] ================== xe_rtp_process_tests  ===================
-[20:56:49] [PASSED] active1
-[20:56:49] [PASSED] active2
-[20:56:49] [PASSED] active-inactive
-[20:56:49] [PASSED] inactive-active
-[20:56:49] [PASSED] inactive-1st_or_active-inactive
-[20:56:49] [PASSED] inactive-2nd_or_active-inactive
-[20:56:49] [PASSED] inactive-last_or_active-inactive
-[20:56:49] [PASSED] inactive-no_or_active-inactive
-[20:56:49] ============== [PASSED] xe_rtp_process_tests ===============
-[20:56:49] ===================== [PASSED] xe_rtp ======================
-[20:56:49] ==================== xe_wa (1 subtest) =====================
-[20:56:49] ======================== xe_wa_gt  =========================
-[20:56:49] [PASSED] TIGERLAKE (B0)
-[20:56:49] [PASSED] DG1 (A0)
-[20:56:49] [PASSED] DG1 (B0)
-[20:56:49] [PASSED] ALDERLAKE_S (A0)
-[20:56:49] [PASSED] ALDERLAKE_S (B0)
-[20:56:49] [PASSED] ALDERLAKE_S (C0)
-[20:56:49] [PASSED] ALDERLAKE_S (D0)
-[20:56:49] [PASSED] ALDERLAKE_P (A0)
-[20:56:49] [PASSED] ALDERLAKE_P (B0)
-[20:56:49] [PASSED] ALDERLAKE_P (C0)
-[20:56:49] [PASSED] ALDERLAKE_S_RPLS (D0)
-[20:56:49] [PASSED] ALDERLAKE_P_RPLU (E0)
-[20:56:49] [PASSED] DG2_G10 (C0)
-[20:56:49] [PASSED] DG2_G11 (B1)
-[20:56:49] [PASSED] DG2_G12 (A1)
-[20:56:49] [PASSED] METEORLAKE (g:A0, m:A0)
-[20:56:49] [PASSED] METEORLAKE (g:A0, m:A0)
-[20:56:49] [PASSED] METEORLAKE (g:A0, m:A0)
-[20:56:49] [PASSED] LUNARLAKE (g:A0, m:A0)
-[20:56:49] [PASSED] LUNARLAKE (g:B0, m:A0)
-[20:56:49] [PASSED] BATTLEMAGE (g:A0, m:A1)
-[20:56:49] ==================== [PASSED] xe_wa_gt =====================
-[20:56:49] ====================== [PASSED] xe_wa ======================
-[20:56:49] ============================================================
-[20:56:49] Testing complete. Ran 121 tests: passed: 106, skipped: 15
-[20:56:50] Elapsed time: 30.216s total, 4.175s configuring, 25.771s building, 0.231s running
+> As I understand it, Jasons comments were based on the assumption that
+> the drm_gpusvm search would be radix tree based, and hence with less
+> complexity than the rbtree search, and therefore providing a clear
+> benefit the larger they could be.
+> 
+> I.e. just calling something similar to xe_vm_invalidate_xxx over the
+> whole range, which will just skip subranges that are not populated.
+> 
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[20:56:50] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:56:51] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for â€˜ioread64_lo_hiâ€™ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for â€˜ioread64_hi_loâ€™ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for â€˜ioread64be_lo_hiâ€™ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for â€˜ioread64be_hi_loâ€™ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for â€˜iowrite64_lo_hiâ€™ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for â€˜iowrite64_hi_loâ€™ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for â€˜iowrite64be_lo_hiâ€™ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for â€˜iowrite64be_hi_loâ€™ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+As stated, I think eventually removing the SVM range is a good longterm
+goal.
 
-[20:57:13] Starting KUnit Kernel (1/1)...
-[20:57:13] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[20:57:13] ============ drm_test_pick_cmdline (2 subtests) ============
-[20:57:13] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[20:57:13] =============== drm_test_pick_cmdline_named  ===============
-[20:57:13] [PASSED] NTSC
-[20:57:13] [PASSED] NTSC-J
-[20:57:13] [PASSED] PAL
-[20:57:13] [PASSED] PAL-M
-[20:57:13] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[20:57:13] ============== [PASSED] drm_test_pick_cmdline ==============
-[20:57:13] ================== drm_buddy (7 subtests) ==================
-[20:57:13] [PASSED] drm_test_buddy_alloc_limit
-[20:57:13] [PASSED] drm_test_buddy_alloc_optimistic
-[20:57:13] [PASSED] drm_test_buddy_alloc_pessimistic
-[20:57:13] [PASSED] drm_test_buddy_alloc_pathological
-[20:57:13] [PASSED] drm_test_buddy_alloc_contiguous
-[20:57:13] [PASSED] drm_test_buddy_alloc_clear
-[20:57:13] [PASSED] drm_test_buddy_alloc_range_bias
-[20:57:13] ==================== [PASSED] drm_buddy ====================
-[20:57:13] ============= drm_cmdline_parser (40 subtests) =============
-[20:57:13] [PASSED] drm_test_cmdline_force_d_only
-[20:57:13] [PASSED] drm_test_cmdline_force_D_only_dvi
-[20:57:13] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[20:57:13] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[20:57:13] [PASSED] drm_test_cmdline_force_e_only
-[20:57:13] [PASSED] drm_test_cmdline_res
-[20:57:13] [PASSED] drm_test_cmdline_res_vesa
-[20:57:13] [PASSED] drm_test_cmdline_res_vesa_rblank
-[20:57:13] [PASSED] drm_test_cmdline_res_rblank
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp
-[20:57:13] [PASSED] drm_test_cmdline_res_refresh
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[20:57:13] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[20:57:13] [PASSED] drm_test_cmdline_res_margins_force_on
-[20:57:13] [PASSED] drm_test_cmdline_res_vesa_margins
-[20:57:13] [PASSED] drm_test_cmdline_name
-[20:57:13] [PASSED] drm_test_cmdline_name_bpp
-[20:57:13] [PASSED] drm_test_cmdline_name_option
-[20:57:13] [PASSED] drm_test_cmdline_name_bpp_option
-[20:57:13] [PASSED] drm_test_cmdline_rotate_0
-[20:57:13] [PASSED] drm_test_cmdline_rotate_90
-[20:57:13] [PASSED] drm_test_cmdline_rotate_180
-[20:57:13] [PASSED] drm_test_cmdline_rotate_270
-[20:57:13] [PASSED] drm_test_cmdline_hmirror
-[20:57:13] [PASSED] drm_test_cmdline_vmirror
-[20:57:13] [PASSED] drm_test_cmdline_margin_options
-[20:57:13] [PASSED] drm_test_cmdline_multiple_options
-[20:57:13] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[20:57:13] [PASSED] drm_test_cmdline_extra_and_option
-[20:57:13] [PASSED] drm_test_cmdline_freestanding_options
-[20:57:13] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[20:57:13] [PASSED] drm_test_cmdline_panel_orientation
-[20:57:13] ================ drm_test_cmdline_invalid  =================
-[20:57:13] [PASSED] margin_only
-[20:57:13] [PASSED] interlace_only
-[20:57:13] [PASSED] res_missing_x
-[20:57:13] [PASSED] res_missing_y
-[20:57:13] [PASSED] res_bad_y
-[20:57:13] [PASSED] res_missing_y_bpp
-[20:57:13] [PASSED] res_bad_bpp
-[20:57:13] [PASSED] res_bad_refresh
-[20:57:13] [PASSED] res_bpp_refresh_force_on_off
-[20:57:13] [PASSED] res_invalid_mode
-[20:57:13] [PASSED] res_bpp_wrong_place_mode
-[20:57:13] [PASSED] name_bpp_refresh
-[20:57:13] [PASSED] name_refresh
-[20:57:13] [PASSED] name_refresh_wrong_mode
-[20:57:13] [PASSED] name_refresh_invalid_mode
-[20:57:13] [PASSED] rotate_multiple
-[20:57:13] [PASSED] rotate_invalid_val
-[20:57:13] [PASSED] rotate_truncated
-[20:57:13] [PASSED] invalid_option
-[20:57:13] [PASSED] invalid_tv_option
-[20:57:13] [PASSED] truncated_tv_option
-[20:57:13] ============ [PASSED] drm_test_cmdline_invalid =============
-[20:57:13] =============== drm_test_cmdline_tv_options  ===============
-[20:57:13] [PASSED] NTSC
-[20:57:13] [PASSED] NTSC_443
-[20:57:13] [PASSED] NTSC_J
-[20:57:13] [PASSED] PAL
-[20:57:13] [PASSED] PAL_M
-[20:57:13] [PASSED] PAL_N
-[20:57:13] [PASSED] SECAM
-[20:57:13] [PASSED] MONO_525
-[20:57:13] [PASSED] MONO_625
-[20:57:13] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[20:57:13] =============== [PASSED] drm_cmdline_parser ================
-[20:57:13] ========== drmm_connector_hdmi_init (19 subtests) ==========
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_valid
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_bpc_8
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_bpc_10
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_bpc_12
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_bpc_invalid
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_bpc_null
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_formats_empty
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_formats_no_rgb
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_null_ddc
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_null_product
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_null_vendor
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_product_length_exact
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_product_length_too_long
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_product_valid
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_vendor_length_exact
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_vendor_length_too_long
-[20:57:13] [PASSED] drm_test_connector_hdmi_init_vendor_valid
-[20:57:13] ========= drm_test_connector_hdmi_init_type_valid  =========
-[20:57:13] [PASSED] HDMI-A
-[20:57:13] [PASSED] HDMI-B
-[20:57:13] ===== [PASSED] drm_test_connector_hdmi_init_type_valid =====
-[20:57:13] ======== drm_test_connector_hdmi_init_type_invalid  ========
-[20:57:13] [PASSED] Unknown
-[20:57:13] [PASSED] VGA
-[20:57:13] [PASSED] DVI-I
-[20:57:13] [PASSED] DVI-D
-[20:57:13] [PASSED] DVI-A
-[20:57:13] [PASSED] Composite
-[20:57:13] [PASSED] SVIDEO
-[20:57:13] [PASSED] LVDS
-[20:57:13] [PASSED] Component
-[20:57:13] [PASSED] DIN
-[20:57:13] [PASSED] DP
-[20:57:13] [PASSED] TV
-[20:57:13] [PASSED] eDP
-[20:57:13] [PASSED] Virtual
-[20:57:13] [PASSED] DSI
-[20:57:13] [PASSED] DPI
-[20:57:13] [PASSED] Writeback
-[20:57:13] [PASSED] SPI
-[20:57:13] [PASSED] USB
-[20:57:13] ==== [PASSED] drm_test_connector_hdmi_init_type_invalid ====
-[20:57:13] ============ [PASSED] drmm_connector_hdmi_init =============
-[20:57:13] ============= drmm_connector_init (3 subtests) =============
-[20:57:13] [PASSED] drm_test_drmm_connector_init
-[20:57:13] [PASSED] drm_test_drmm_connector_init_null_ddc
-[20:57:13] ========= drm_test_drmm_connector_init_type_valid  =========
-[20:57:13] [PASSED] Unknown
-[20:57:13] [PASSED] VGA
-[20:57:13] [PASSED] DVI-I
-[20:57:13] [PASSED] DVI-D
-[20:57:13] [PASSED] DVI-A
-[20:57:13] [PASSED] Composite
-[20:57:13] [PASSED] SVIDEO
-[20:57:13] [PASSED] LVDS
-[20:57:13] [PASSED] Component
-[20:57:13] [PASSED] DIN
-[20:57:13] [PASSED] DP
-[20:57:13] [PASSED] HDMI-A
-[20:57:13] [PASSED] HDMI-B
-[20:57:13] [PASSED] TV
-[20:57:13] [PASSED] eDP
-[20:57:13] [PASSED] Virtual
-[20:57:13] [PASSED] DSI
-[20:57:13] [PASSED] DPI
-[20:57:13] [PASSED] Writeback
-[20:57:13] [PASSED] SPI
-[20:57:13] [PASSED] USB
-[20:57:13] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
-[20:57:13] =============== [PASSED] drmm_connector_init ===============
-[20:57:13] = drm_connector_attach_broadcast_rgb_property (2 subtests) =
-[20:57:13] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property
-[20:57:13] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property_hdmi_connector
-[20:57:13] === [PASSED] drm_connector_attach_broadcast_rgb_property ===
-[20:57:13] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[20:57:13] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[20:57:13] [PASSED] NTSC
-[20:57:13] [PASSED] NTSC-443
-[20:57:13] [PASSED] NTSC-J
-[20:57:13] [PASSED] PAL
-[20:57:13] [PASSED] PAL-M
-[20:57:13] [PASSED] PAL-N
-[20:57:13] [PASSED] SECAM
-[20:57:13] [PASSED] Mono
-[20:57:13] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[20:57:13] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[20:57:13] ============ [PASSED] drm_get_tv_mode_from_name ============
-[20:57:13] = drm_test_connector_hdmi_compute_mode_clock (12 subtests) =
-[20:57:13] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb
-[20:57:13] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc
-[20:57:13] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc_vic_1
-[20:57:13] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc
-[20:57:13] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc_vic_1
-[20:57:13] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_double
-[20:57:13] = drm_test_connector_hdmi_compute_mode_clock_yuv420_valid  =
-[20:57:13] [PASSED] VIC 96
-[20:57:13] [PASSED] VIC 97
-[20:57:13] [PASSED] VIC 101
-[20:57:13] [PASSED] VIC 102
-[20:57:13] [PASSED] VIC 106
-[20:57:13] [PASSED] VIC 107
-[20:57:13] === [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_valid ===
-[20:57:13] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc
-[20:57:13] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc
-[20:57:13] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc
-[20:57:13] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc
-[20:57:13] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc
-[20:57:13] === [PASSED] drm_test_connector_hdmi_compute_mode_clock ====
-[20:57:13] == drm_hdmi_connector_get_broadcast_rgb_name (2 subtests) ==
-[20:57:13] === drm_test_drm_hdmi_connector_get_broadcast_rgb_name  ====
-[20:57:13] [PASSED] Automatic
-[20:57:13] [PASSED] Full
-[20:57:13] [PASSED] Limited 16:235
-[20:57:13] === [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name ===
-[20:57:13] [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name_invalid
-[20:57:13] ==== [PASSED] drm_hdmi_connector_get_broadcast_rgb_name ====
-[20:57:13] == drm_hdmi_connector_get_output_format_name (2 subtests) ==
-[20:57:13] === drm_test_drm_hdmi_connector_get_output_format_name  ====
-[20:57:13] [PASSED] RGB
-[20:57:13] [PASSED] YUV 4:2:0
-[20:57:13] [PASSED] YUV 4:2:2
-[20:57:13] [PASSED] YUV 4:4:4
-[20:57:13] === [PASSED] drm_test_drm_hdmi_connector_get_output_format_name ===
-[20:57:13] [PASSED] drm_test_drm_hdmi_connector_get_output_format_name_invalid
-[20:57:13] ==== [PASSED] drm_hdmi_connector_get_output_format_name ====
-[20:57:13] ============= drm_damage_helper (21 subtests) ==============
-[20:57:13] [PASSED] drm_test_damage_iter_no_damage
-[20:57:13] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[20:57:13] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[20:57:13] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[20:57:13] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[20:57:13] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[20:57:13] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[20:57:13] [PASSED] drm_test_damage_iter_simple_damage
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[20:57:13] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[20:57:13] [PASSED] drm_test_damage_iter_damage
-[20:57:13] [PASSED] drm_test_damage_iter_damage_one_intersect
-[20:57:13] [PASSED] drm_test_damage_iter_damage_one_outside
-[20:57:13] [PASSED] drm_test_damage_iter_damage_src_moved
-[20:57:13] [PASSED] drm_test_damage_iter_damage_not_visible
-[20:57:13] ================ [PASSED] drm_damage_helper ================
-[20:57:13] ============== drm_dp_mst_helper (3 subtests) ==============
-[20:57:13] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[20:57:13] [PASSED] Clock 154000 BPP 30 DSC disabled
-[20:57:13] [PASSED] Clock 234000 BPP 30 DSC disabled
-[20:57:13] [PASSED] Clock 297000 BPP 24 DSC disabled
-[20:57:13] [PASSED] Clock 332880 BPP 24 DSC enabled
-[20:57:13] [PASSED] Clock 324540 BPP 24 DSC enabled
-[20:57:13] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[20:57:13] ============== drm_test_dp_mst_calc_pbn_div  ===============
-[20:57:13] [PASSED] Link rate 2000000 lane count 4
-[20:57:13] [PASSED] Link rate 2000000 lane count 2
-[20:57:13] [PASSED] Link rate 2000000 lane count 1
-[20:57:13] [PASSED] Link rate 1350000 lane count 4
-[20:57:13] [PASSED] Link rate 1350000 lane count 2
-[20:57:13] [PASSED] Link rate 1350000 lane count 1
-[20:57:13] [PASSED] Link rate 1000000 lane count 4
-[20:57:13] [PASSED] Link rate 1000000 lane count 2
-[20:57:13] [PASSED] Link rate 1000000 lane count 1
-[20:57:13] [PASSED] Link rate 810000 lane count 4
-[20:57:13] [PASSED] Link rate 810000 lane count 2
-[20:57:13] [PASSED] Link rate 810000 lane count 1
-[20:57:13] [PASSED] Link rate 540000 lane count 4
-[20:57:13] [PASSED] Link rate 540000 lane count 2
-[20:57:13] [PASSED] Link rate 540000 lane count 1
-[20:57:13] [PASSED] Link rate 270000 lane count 4
-[20:57:13] [PASSED] Link rate 270000 lane count 2
-[20:57:13] [PASSED] Link rate 270000 lane count 1
-[20:57:13] [PASSED] Link rate 162000 lane count 4
-[20:57:13] [PASSED] Link rate 162000 lane count 2
-[20:57:13] [PASSED] Link rate 162000 lane count 1
-[20:57:13] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
-[20:57:13] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[20:57:13] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[20:57:13] [PASSED] DP_POWER_UP_PHY with port number
-[20:57:13] [PASSED] DP_POWER_DOWN_PHY with port number
-[20:57:13] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[20:57:13] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[20:57:13] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[20:57:13] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[20:57:13] [PASSED] DP_QUERY_PAYLOAD with port number
-[20:57:13] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[20:57:13] [PASSED] DP_REMOTE_DPCD_READ with port number
-[20:57:13] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[20:57:13] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[20:57:13] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[20:57:13] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[20:57:13] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[20:57:13] [PASSED] DP_REMOTE_I2C_READ with port number
-[20:57:13] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[20:57:13] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[20:57:13] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[20:57:13] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[20:57:13] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[20:57:13] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[20:57:13] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[20:57:13] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[20:57:13] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[20:57:13] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[20:57:13] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[20:57:13] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[20:57:13] ================ [PASSED] drm_dp_mst_helper ================
-[20:57:13] ================== drm_exec (7 subtests) ===================
-[20:57:13] [PASSED] sanitycheck
-[20:57:13] [PASSED] test_lock
-[20:57:13] [PASSED] test_lock_unlock
-[20:57:13] [PASSED] test_duplicates
-[20:57:13] [PASSED] test_prepare
-[20:57:13] [PASSED] test_prepare_array
-[20:57:13] [PASSED] test_multiple_loops
-[20:57:13] ==================== [PASSED] drm_exec =====================
-[20:57:13] =========== drm_format_helper_test (17 subtests) ===========
-[20:57:13] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[20:57:13] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[20:57:13] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[20:57:13] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[20:57:13] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[20:57:13] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[20:57:13] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[20:57:13] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[20:57:13] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[20:57:13] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[20:57:13] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[20:57:13] ==================== drm_test_fb_swab  =====================
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ================ [PASSED] drm_test_fb_swab =================
-[20:57:13] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
-[20:57:13] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
-[20:57:13] [PASSED] single_pixel_source_buffer
-[20:57:13] [PASSED] single_pixel_clip_rectangle
-[20:57:13] [PASSED] well_known_colors
-[20:57:13] [PASSED] destination_pitch
-[20:57:13] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
-[20:57:13] ================= drm_test_fb_clip_offset  =================
-[20:57:13] [PASSED] pass through
-[20:57:13] [PASSED] horizontal offset
-[20:57:13] [PASSED] vertical offset
-[20:57:13] [PASSED] horizontal and vertical offset
-[20:57:13] [PASSED] horizontal offset (custom pitch)
-[20:57:13] [PASSED] vertical offset (custom pitch)
-[20:57:13] [PASSED] horizontal and vertical offset (custom pitch)
-[20:57:13] ============= [PASSED] drm_test_fb_clip_offset =============
-[20:57:13] ============== drm_test_fb_build_fourcc_list  ==============
-[20:57:13] [PASSED] no native formats
-[20:57:13] [PASSED] XRGB8888 as native format
-[20:57:13] [PASSED] remove duplicates
-[20:57:13] [PASSED] convert alpha formats
-[20:57:13] [PASSED] random formats
-[20:57:13] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
-[20:57:13] =================== drm_test_fb_memcpy  ====================
-[20:57:13] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
-[20:57:13] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
-[20:57:13] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
-[20:57:13] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
-[20:57:13] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
-[20:57:13] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
-[20:57:13] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
-[20:57:13] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
-[20:57:13] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
-[20:57:13] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
-[20:57:13] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
-[20:57:13] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
-[20:57:13] =============== [PASSED] drm_test_fb_memcpy ================
-[20:57:13] ============= [PASSED] drm_format_helper_test ==============
-[20:57:13] ================= drm_format (18 subtests) =================
-[20:57:13] [PASSED] drm_test_format_block_width_invalid
-[20:57:13] [PASSED] drm_test_format_block_width_one_plane
-[20:57:13] [PASSED] drm_test_format_block_width_two_plane
-[20:57:13] [PASSED] drm_test_format_block_width_three_plane
-[20:57:13] [PASSED] drm_test_format_block_width_tiled
-[20:57:13] [PASSED] drm_test_format_block_height_invalid
-[20:57:13] [PASSED] drm_test_format_block_height_one_plane
-[20:57:13] [PASSED] drm_test_format_block_height_two_plane
-[20:57:13] [PASSED] drm_test_format_block_height_three_plane
-[20:57:13] [PASSED] drm_test_format_block_height_tiled
-[20:57:13] [PASSED] drm_test_format_min_pitch_invalid
-[20:57:13] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[20:57:13] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[20:57:13] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[20:57:13] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[20:57:13] [PASSED] drm_test_format_min_pitch_two_plane
-[20:57:13] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[20:57:13] [PASSED] drm_test_format_min_pitch_tiled
-[20:57:13] =================== [PASSED] drm_format ====================
-[20:57:13] =============== drm_framebuffer (1 subtest) ================
-[20:57:13] =============== drm_test_framebuffer_create  ===============
-[20:57:13] [PASSED] ABGR8888 normal sizes
-[20:57:13] [PASSED] ABGR8888 max sizes
-[20:57:13] [PASSED] ABGR8888 pitch greater than min required
-[20:57:13] [PASSED] ABGR8888 pitch less than min required
-[20:57:13] [PASSED] ABGR8888 Invalid width
-[20:57:13] [PASSED] ABGR8888 Invalid buffer handle
-[20:57:13] [PASSED] No pixel format
-[20:57:13] [PASSED] ABGR8888 Width 0
-[20:57:13] [PASSED] ABGR8888 Height 0
-[20:57:13] [PASSED] ABGR8888 Out of bound height * pitch combination
-[20:57:13] [PASSED] ABGR8888 Large buffer offset
-[20:57:13] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[20:57:13] [PASSED] ABGR8888 Valid buffer modifier
-[20:57:13] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[20:57:13] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[20:57:13] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[20:57:13] [PASSED] NV12 Normal sizes
-[20:57:13] [PASSED] NV12 Max sizes
-[20:57:13] [PASSED] NV12 Invalid pitch
-[20:57:13] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[20:57:13] [PASSED] NV12 different  modifier per-plane
-[20:57:13] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[20:57:13] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[20:57:13] [PASSED] NV12 Modifier for inexistent plane
-[20:57:13] [PASSED] NV12 Handle for inexistent plane
-[20:57:13] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[20:57:13] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[20:57:13] [PASSED] YVU420 Normal sizes
-[20:57:13] [PASSED] YVU420 Max sizes
-[20:57:13] [PASSED] YVU420 Invalid pitch
-[20:57:13] [PASSED] YVU420 Different pitches
-[20:57:13] [PASSED] YVU420 Different buffer offsets/pitches
-[20:57:13] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[20:57:13] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[20:57:13] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[20:57:13] [PASSED] YVU420 Valid modifier
-[20:57:13] [PASSED] YVU420 Different modifiers per plane
-[20:57:13] [PASSED] YVU420 Modifier for inexistent plane
-[20:57:13] [PASSED] X0L2 Normal sizes
-[20:57:13] [PASSED] X0L2 Max sizes
-[20:57:13] [PASSED] X0L2 Invalid pitch
-[20:57:13] [PASSED] X0L2 Pitch greater than minimum required
-[20:57:13] [PASSED] X0L2 Handle for inexistent plane
-[20:57:13] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[20:57:13] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[20:57:13] [PASSED] X0L2 Valid modifier
-[20:57:13] [PASSED] X0L2 Modifier for inexistent plane
-[20:57:13] =========== [PASSED] drm_test_framebuffer_create ===========
-[20:57:13] ================= [PASSED] drm_framebuffer =================
-[20:57:13] ================ drm_gem_shmem (8 subtests) ================
-[20:57:13] [PASSED] drm_gem_shmem_test_obj_create
-[20:57:13] [PASSED] drm_gem_shmem_test_obj_create_private
-[20:57:13] [PASSED] drm_gem_shmem_test_pin_pages
-[20:57:13] [PASSED] drm_gem_shmem_test_vmap
-[20:57:13] [PASSED] drm_gem_shmem_test_get_pages_sgt
-[20:57:13] [PASSED] drm_gem_shmem_test_get_sg_table
-[20:57:13] [PASSED] drm_gem_shmem_test_madvise
-[20:57:13] [PASSED] drm_gem_shmem_test_purge
-[20:57:13] ================== [PASSED] drm_gem_shmem ==================
-[20:57:13] === drm_atomic_helper_connector_hdmi_check (22 subtests) ===
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode_vic_1
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode_vic_1
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode_vic_1
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_changed
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_not_changed
-[20:57:13] [PASSED] drm_test_check_hdmi_funcs_reject_rate
-[20:57:13] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback
-[20:57:13] [PASSED] drm_test_check_max_tmds_rate_format_fallback
-[20:57:13] [PASSED] drm_test_check_output_bpc_crtc_mode_changed
-[20:57:13] [PASSED] drm_test_check_output_bpc_crtc_mode_not_changed
-[20:57:13] [PASSED] drm_test_check_output_bpc_dvi
-[20:57:13] [PASSED] drm_test_check_output_bpc_format_vic_1
-[20:57:13] [PASSED] drm_test_check_output_bpc_format_display_8bpc_only
-[20:57:13] [PASSED] drm_test_check_output_bpc_format_display_rgb_only
-[20:57:13] [PASSED] drm_test_check_output_bpc_format_driver_8bpc_only
-[20:57:13] [PASSED] drm_test_check_output_bpc_format_driver_rgb_only
-[20:57:13] [PASSED] drm_test_check_tmds_char_rate_rgb_8bpc
-[20:57:13] [PASSED] drm_test_check_tmds_char_rate_rgb_10bpc
-[20:57:13] [PASSED] drm_test_check_tmds_char_rate_rgb_12bpc
-[20:57:13] ===== [PASSED] drm_atomic_helper_connector_hdmi_check ======
-[20:57:13] === drm_atomic_helper_connector_hdmi_reset (6 subtests) ====
-[20:57:13] [PASSED] drm_test_check_broadcast_rgb_value
-[20:57:13] [PASSED] drm_test_check_bpc_8_value
-[20:57:13] [PASSED] drm_test_check_bpc_10_value
-[20:57:13] [PASSED] drm_test_check_bpc_12_value
-[20:57:13] [PASSED] drm_test_check_format_value
-[20:57:13] [PASSED] drm_test_check_tmds_char_value
-[20:57:13] ===== [PASSED] drm_atomic_helper_connector_hdmi_reset ======
-[20:57:13] ================= drm_managed (2 subtests) =================
-[20:57:13] [PASSED] drm_test_managed_release_action
-[20:57:13] [PASSED] drm_test_managed_run_action
-[20:57:13] =================== [PASSED] drm_managed ===================
-[20:57:13] =================== drm_mm (6 subtests) ====================
-[20:57:13] [PASSED] drm_test_mm_init
-[20:57:13] [PASSED] drm_test_mm_debug
-[20:57:13] [PASSED] drm_test_mm_align32
-[20:57:13] [PASSED] drm_test_mm_align64
-[20:57:13] [PASSED] drm_test_mm_lowest
-[20:57:13] [PASSED] drm_test_mm_highest
-[20:57:13] ===================== [PASSED] drm_mm ======================
-[20:57:13] ============= drm_modes_analog_tv (5 subtests) =============
-[20:57:13] [PASSED] drm_test_modes_analog_tv_mono_576i
-[20:57:13] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[20:57:13] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[20:57:13] [PASSED] drm_test_modes_analog_tv_pal_576i
-[20:57:13] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[20:57:13] =============== [PASSED] drm_modes_analog_tv ===============
-[20:57:13] ============== drm_plane_helper (2 subtests) ===============
-[20:57:13] =============== drm_test_check_plane_state  ================
-[20:57:13] [PASSED] clipping_simple
-[20:57:13] [PASSED] clipping_rotate_reflect
-[20:57:13] [PASSED] positioning_simple
-[20:57:13] [PASSED] upscaling
-[20:57:13] [PASSED] downscaling
-[20:57:13] [PASSED] rounding1
-[20:57:13] [PASSED] rounding2
-[20:57:13] [PASSED] rounding3
-[20:57:13] [PASSED] rounding4
-[20:57:13] =========== [PASSED] drm_test_check_plane_state ============
-[20:57:13] =========== drm_test_check_invalid_plane_state  ============
-[20:57:13] [PASSED] positioning_invalid
-[20:57:13] [PASSED] upscaling_invalid
-stty: 'standard input': Inappropriate ioctl for device
-[20:57:13] [PASSED] downscaling_invalid
-[20:57:13] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[20:57:13] ================ [PASSED] drm_plane_helper =================
-[20:57:13] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[20:57:13] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[20:57:13] [PASSED] None
-[20:57:13] [PASSED] PAL
-[20:57:13] [PASSED] NTSC
-[20:57:13] [PASSED] Both, NTSC Default
-[20:57:13] [PASSED] Both, PAL Default
-[20:57:13] [PASSED] Both, NTSC Default, with PAL on command-line
-[20:57:13] [PASSED] Both, PAL Default, with NTSC on command-line
-[20:57:13] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[20:57:13] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[20:57:13] ================== drm_rect (9 subtests) ===================
-[20:57:13] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[20:57:13] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[20:57:13] [PASSED] drm_test_rect_clip_scaled_clipped
-[20:57:13] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[20:57:13] ================= drm_test_rect_intersect  =================
-[20:57:13] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[20:57:13] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[20:57:13] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[20:57:13] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[20:57:13] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[20:57:13] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[20:57:13] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[20:57:13] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[20:57:13] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[20:57:13] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[20:57:13] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[20:57:13] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[20:57:13] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[20:57:13] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[20:57:13] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[20:57:13] ============= [PASSED] drm_test_rect_intersect =============
-[20:57:13] ================ drm_test_rect_calc_hscale  ================
-[20:57:13] [PASSED] normal use
-[20:57:13] [PASSED] out of max range
-[20:57:13] [PASSED] out of min range
-[20:57:13] [PASSED] zero dst
-[20:57:13] [PASSED] negative src
-[20:57:13] [PASSED] negative dst
-[20:57:13] ============ [PASSED] drm_test_rect_calc_hscale ============
-[20:57:13] ================ drm_test_rect_calc_vscale  ================
-[20:57:13] [PASSED] normal use
-[20:57:13] [PASSED] out of max range
-[20:57:13] [PASSED] out of min range
-[20:57:13] [PASSED] zero dst
-[20:57:13] [PASSED] negative src
-[20:57:13] [PASSED] negative dst
-[20:57:13] ============ [PASSED] drm_test_rect_calc_vscale ============
-[20:57:13] ================== drm_test_rect_rotate  ===================
-[20:57:13] [PASSED] reflect-x
-[20:57:13] [PASSED] reflect-y
-[20:57:13] [PASSED] rotate-0
-[20:57:13] [PASSED] rotate-90
-[20:57:13] [PASSED] rotate-180
-[20:57:13] [PASSED] rotate-270
-[20:57:13] ============== [PASSED] drm_test_rect_rotate ===============
-[20:57:13] ================ drm_test_rect_rotate_inv  =================
-[20:57:13] [PASSED] reflect-x
-[20:57:13] [PASSED] reflect-y
-[20:57:13] [PASSED] rotate-0
-[20:57:13] [PASSED] rotate-90
-[20:57:13] [PASSED] rotate-180
-[20:57:13] [PASSED] rotate-270
-[20:57:13] ============ [PASSED] drm_test_rect_rotate_inv =============
-[20:57:13] ==================== [PASSED] drm_rect =====================
-[20:57:13] ============================================================
-[20:57:13] Testing complete. Ran 515 tests: passed: 515
-[20:57:13] Elapsed time: 23.525s total, 1.730s configuring, 21.608s building, 0.152s running
+I almost coded that in this initial series but ran into a number of
+issues which make this complex and to get something working in simplest
+way possible to enable further test development, start constructive
+upstream discussions which appear to be happening, UMDs / application
+development, and other up[er layer KMD development I stuck with this
+approach.
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/ttm/tests/.kunitconfig
-[20:57:13] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:57:15] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[20:57:24] Starting KUnit Kernel (1/1)...
-[20:57:24] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[20:57:24] ================= ttm_device (5 subtests) ==================
-[20:57:24] [PASSED] ttm_device_init_basic
-[20:57:24] [PASSED] ttm_device_init_multiple
-[20:57:24] [PASSED] ttm_device_fini_basic
-[20:57:24] [PASSED] ttm_device_init_no_vma_man
-[20:57:24] ================== ttm_device_init_pools  ==================
-[20:57:24] [PASSED] No DMA allocations, no DMA32 required
-[20:57:24] [PASSED] DMA allocations, DMA32 required
-[20:57:24] [PASSED] No DMA allocations, DMA32 required
-[20:57:24] [PASSED] DMA allocations, no DMA32 required
-[20:57:24] ============== [PASSED] ttm_device_init_pools ==============
-[20:57:24] =================== [PASSED] ttm_device ====================
-[20:57:24] ================== ttm_pool (8 subtests) ===================
-[20:57:24] ================== ttm_pool_alloc_basic  ===================
-[20:57:24] [PASSED] One page
-[20:57:24] [PASSED] More than one page
-[20:57:24] [PASSED] Above the allocation limit
-[20:57:24] [PASSED] One page, with coherent DMA mappings enabled
-[20:57:24] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[20:57:24] ============== [PASSED] ttm_pool_alloc_basic ===============
-[20:57:24] ============== ttm_pool_alloc_basic_dma_addr  ==============
-[20:57:24] [PASSED] One page
-[20:57:24] [PASSED] More than one page
-[20:57:24] [PASSED] Above the allocation limit
-[20:57:24] [PASSED] One page, with coherent DMA mappings enabled
-[20:57:24] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[20:57:24] ========== [PASSED] ttm_pool_alloc_basic_dma_addr ==========
-[20:57:24] [PASSED] ttm_pool_alloc_order_caching_match
-[20:57:24] [PASSED] ttm_pool_alloc_caching_mismatch
-[20:57:24] [PASSED] ttm_pool_alloc_order_mismatch
-[20:57:24] [PASSED] ttm_pool_free_dma_alloc
-[20:57:24] [PASSED] ttm_pool_free_no_dma_alloc
-[20:57:24] [PASSED] ttm_pool_fini_basic
-[20:57:24] ==================== [PASSED] ttm_pool =====================
-[20:57:24] ================ ttm_resource (8 subtests) =================
-[20:57:24] ================= ttm_resource_init_basic  =================
-[20:57:24] [PASSED] Init resource in TTM_PL_SYSTEM
-[20:57:24] [PASSED] Init resource in TTM_PL_VRAM
-[20:57:24] [PASSED] Init resource in a private placement
-[20:57:24] [PASSED] Init resource in TTM_PL_SYSTEM, set placement flags
-[20:57:24] ============= [PASSED] ttm_resource_init_basic =============
-[20:57:24] [PASSED] ttm_resource_init_pinned
-[20:57:24] [PASSED] ttm_resource_fini_basic
-[20:57:24] [PASSED] ttm_resource_manager_init_basic
-[20:57:24] [PASSED] ttm_resource_manager_usage_basic
-[20:57:24] [PASSED] ttm_resource_manager_set_used_basic
-[20:57:24] [PASSED] ttm_sys_man_alloc_basic
-[20:57:24] [PASSED] ttm_sys_man_free_basic
-[20:57:24] ================== [PASSED] ttm_resource ===================
-[20:57:24] =================== ttm_tt (15 subtests) ===================
-[20:57:24] ==================== ttm_tt_init_basic  ====================
-[20:57:24] [PASSED] Page-aligned size
-[20:57:24] [PASSED] Extra pages requested
-[20:57:24] ================ [PASSED] ttm_tt_init_basic ================
-[20:57:24] [PASSED] ttm_tt_init_misaligned
-[20:57:24] [PASSED] ttm_tt_fini_basic
-[20:57:24] [PASSED] ttm_tt_fini_sg
-[20:57:24] [PASSED] ttm_tt_fini_shmem
-[20:57:24] [PASSED] ttm_tt_create_basic
-[20:57:24] [PASSED] ttm_tt_create_invalid_bo_type
-[20:57:24] [PASSED] ttm_tt_create_ttm_exists
-[20:57:24] [PASSED] ttm_tt_create_failed
-[20:57:24] [PASSED] ttm_tt_destroy_basic
-[20:57:24] [PASSED] ttm_tt_populate_null_ttm
-[20:57:24] [PASSED] ttm_tt_populate_populated_ttm
-[20:57:24] [PASSED] ttm_tt_unpopulate_basic
-[20:57:24] [PASSED] ttm_tt_unpopulate_empty_ttm
-[20:57:24] [PASSED] ttm_tt_swapin_basic
-[20:57:24] ===================== [PASSED] ttm_tt ======================
-[20:57:24] =================== ttm_bo (14 subtests) ===================
-[20:57:24] =========== ttm_bo_reserve_optimistic_no_ticket  ===========
-[20:57:24] [PASSED] Cannot be interrupted and sleeps
-[20:57:24] [PASSED] Cannot be interrupted, locks straight away
-[20:57:24] [PASSED] Can be interrupted, sleeps
-[20:57:24] ======= [PASSED] ttm_bo_reserve_optimistic_no_ticket =======
-[20:57:24] [PASSED] ttm_bo_reserve_locked_no_sleep
-[20:57:24] [PASSED] ttm_bo_reserve_no_wait_ticket
-[20:57:24] [PASSED] ttm_bo_reserve_double_resv
-[20:57:24] [PASSED] ttm_bo_reserve_interrupted
-[20:57:24] [PASSED] ttm_bo_reserve_deadlock
-[20:57:24] [PASSED] ttm_bo_unreserve_basic
-[20:57:24] [PASSED] ttm_bo_unreserve_pinned
-[20:57:24] [PASSED] ttm_bo_unreserve_bulk
-[20:57:24] [PASSED] ttm_bo_put_basic
-[20:57:24] [PASSED] ttm_bo_put_shared_resv
-[20:57:24] [PASSED] ttm_bo_pin_basic
-[20:57:24] [PASSED] ttm_bo_pin_unpin_resource
-[20:57:24] [PASSED] ttm_bo_multiple_pin_one_unpin
-[20:57:24] ===================== [PASSED] ttm_bo ======================
-[20:57:24] ============== ttm_bo_validate (22 subtests) ===============
-[20:57:24] ============== ttm_bo_init_reserved_sys_man  ===============
-[20:57:24] [PASSED] Buffer object for userspace
-[20:57:24] [PASSED] Kernel buffer object
-[20:57:24] [PASSED] Shared buffer object
-[20:57:24] ========== [PASSED] ttm_bo_init_reserved_sys_man ===========
-[20:57:24] ============== ttm_bo_init_reserved_mock_man  ==============
-[20:57:24] [PASSED] Buffer object for userspace
-[20:57:24] [PASSED] Kernel buffer object
-[20:57:24] [PASSED] Shared buffer object
-[20:57:24] ========== [PASSED] ttm_bo_init_reserved_mock_man ==========
-[20:57:24] [PASSED] ttm_bo_init_reserved_resv
-[20:57:24] ================== ttm_bo_validate_basic  ==================
-[20:57:24] [PASSED] Buffer object for userspace
-[20:57:24] [PASSED] Kernel buffer object
-[20:57:24] [PASSED] Shared buffer object
-[20:57:24] ============== [PASSED] ttm_bo_validate_basic ==============
-[20:57:24] [PASSED] ttm_bo_validate_invalid_placement
-[20:57:24] ============= ttm_bo_validate_same_placement  ==============
-[20:57:24] [PASSED] System manager
-[20:57:24] [PASSED] VRAM manager
-[20:57:24] ========= [PASSED] ttm_bo_validate_same_placement ==========
-[20:57:24] [PASSED] ttm_bo_validate_failed_alloc
-[20:57:24] [PASSED] ttm_bo_validate_pinned
-[20:57:24] [PASSED] ttm_bo_validate_busy_placement
-[20:57:24] ================ ttm_bo_validate_multihop  =================
-[20:57:24] [PASSED] Buffer object for userspace
-[20:57:24] [PASSED] Kernel buffer object
-[20:57:24] [PASSED] Shared buffer object
-[20:57:24] ============ [PASSED] ttm_bo_validate_multihop =============
-[20:57:24] ========== ttm_bo_validate_no_placement_signaled  ==========
-[20:57:24] [PASSED] Buffer object in system domain, no page vector
-[20:57:24] [PASSED] Buffer object in system domain with an existing page vector
-[20:57:24] ====== [PASSED] ttm_bo_validate_no_placement_signaled ======
-[20:57:24] ======== ttm_bo_validate_no_placement_not_signaled  ========
-[20:57:24] [PASSED] Buffer object for userspace
-[20:57:24] [PASSED] Kernel buffer object
-[20:57:24] [PASSED] Shared buffer object
-[20:57:24] ==== [PASSED] ttm_bo_validate_no_placement_not_signaled ====
-[20:57:24] [PASSED] ttm_bo_validate_move_fence_signaled
-[20:57:24] ========= ttm_bo_validate_move_fence_not_signaled  =========
-[20:57:24] [PASSED] Waits for GPU
-[20:57:24] [PASSED] Tries to lock straight away
-[20:57:24] ===== [PASSED] ttm_bo_validate_move_fence_not_signaled =====
-[20:57:24] [PASSED] ttm_bo_validate_swapout
-[20:57:24] [PASSED] ttm_bo_validate_happy_evict
-[20:57:24] [PASSED] ttm_bo_validate_all_pinned_evict
-[20:57:24] [PASSED] ttm_bo_validate_allowed_only_evict
-[20:57:24] [PASSED] ttm_bo_validate_deleted_evict
-[20:57:24] [PASSED] ttm_bo_validate_busy_domain_evict
-[20:57:24] [PASSED] ttm_bo_validate_evict_gutting
-[20:57:24] [PASSED] ttm_bo_validate_recrusive_evict
-stty: 'standard input': Inappropriate ioctl for device
-[20:57:24] ================= [PASSED] ttm_bo_validate =================
-[20:57:24] ============================================================
-[20:57:24] Testing complete. Ran 102 tests: passed: 102
-[20:57:24] Elapsed time: 11.216s total, 1.730s configuring, 8.865s building, 0.523s running
+I think for any solution which requires a SVM range (fwiw both AMD and
+Nvidia have a similar concept), attaching the ranges to a larger
+notifier makes sense and is better than 1 notifier per range.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Issues with removing a SVM range:
 
+- Xe bind code stores invalidation / present state in VMA, this would
+  need to be moved to the radix tree. I have Jira open for that work
+  which I believe other developers are going to own.
+- Where would the dma mapping / device pages be stored?
+	- In the radix tree? What if ATS is enabled? We don't have a
+	  driver owned radix tree. How do we reasonably connect a driver
+	  owned radix to a common GPUSVM layer?
+	- In the notifier? What is the notifier is sparsely populated?
+	  We would be wasting huge amounts of memory. What is the
+	  notifier is configured to span the entire virtual address
+	  space?
+- How does the garbage collector work? We can't allocate memory in the
+  notifier so we don't anything to add to the garbage collector. We
+  can't directly modify page tables given you need lock in the path of
+  reclaim.
+- How do we deal with fault storms (e.g. tons of faults hitting the same
+  SVM range in a row)? Without a SVM range no every to know if mapping
+  is valid and GPU page handler can be short circuited.
+- Do we have notifier seqno for every PTE?
 
+I feel like I'm missing a few and likely more issues would arrise when
+implementing this too.
+
+To be clear, I'm saying we shouldn't try to do this and all of the above
+issues are likely workable but doing all this upfront is akin running
+before we can walk. I rather solve of fundamental locking issues first,
+have robust testing in place + passing and UMDs / apps running before
+trying to rework this one. Performance numbers for this would also be
+helpful too.
+
+Matt
+
+> /Thomas
+> 
+> > 
+> > > > + * - Ranges: Represent memory ranges mapped in a DRM device and
+> > > > managed
+> > > > + *	     by GPU SVM. They are sized based on an array of
+> > > > chunk
+> > > > sizes, which
+> > > > + *	     is a GPU SVM initialization parameter, and the CPU
+> > > > address space.
+> > > > + *	     Upon GPU fault, the largest aligned chunk that fits
+> > > > within the
+> > > > + *	     faulting CPU address space is chosen for the range
+> > > > size. Ranges are
+> > > > + *	     expected to be dynamically allocated on GPU fault
+> > > > and
+> > > > removed on an
+> > > > + *	     MMU notifier UNMAP event. As mentioned above,
+> > > > ranges
+> > > > are tracked in
+> > > > + *	     a notifier's Red-Black tree.
+> > > 
+> > > How do ranges and chunks map to
+> > >  
+> > > a) Prefaulting granularity
+> > > b) Migration granularity?
+> > > 
+> > > > + * - Operations: Define the interface for driver-specific SVM
+> > > > operations such as
+> > > > + *		 allocation, page collection, migration,
+> > > > invalidations, and VRAM
+> > > > + *		 release.
+> > > > + *
+> > > > + * This layer provides interfaces for allocating, mapping,
+> > > > migrating, and
+> > > > + * releasing memory ranges between the CPU and GPU. It handles
+> > > > all
+> > > > core memory
+> > > > + * management interactions (DMA mapping, HMM, and migration) and
+> > > > provides
+> > > > + * driver-specific virtual functions (vfuncs). This
+> > > > infrastructure
+> > > > is sufficient
+> > > > + * to build the expected driver components for an SVM
+> > > > implementation
+> > > > as detailed
+> > > > + * below.
+> > > > + *
+> > > > + * Expected Driver Components:
+> > > > + * - GPU page fault handler: Used to create ranges and notifiers
+> > > > based on the
+> > > > + *			     fault address, optionally migrate
+> > > > the
+> > > > range to
+> > > > + *			     VRAM, and create GPU bindings.
+> > > > + * - Garbage collector: Used to destroy GPU bindings for ranges.
+> > > > Ranges are
+> > > > + *			expected to be added to the garbage
+> > > > collector upon
+> > > > + *			MMU_NOTIFY_UNMAP event.
+> > > > + */
+> > > > +
+> > > > +/**
+> > > > + * DOC: Locking
+> > > > + *
+> > > > + * GPU SVM handles locking for core MM interactions, i.e., it
+> > > > locks/unlocks the
+> > > > + * mmap lock as needed. Alternatively, if the driver prefers to
+> > > > handle the mmap
+> > > > + * lock itself, a 'locked' argument is provided to the functions
+> > > > that require
+> > > > + * the mmap lock. This option may be useful for drivers that
+> > > > need to
+> > > > call into
+> > > > + * GPU SVM while also holding a dma-resv lock, thus preventing
+> > > > locking
+> > > > + * inversions between the mmap and dma-resv locks.
+> > > > + *
+> > > > + * GPU SVM introduces a global notifier lock, which safeguards
+> > > > the
+> > > > notifier's
+> > > > + * range RB tree and list, as well as the range's DMA mappings
+> > > > and
+> > > > sequence
+> > > > + * number. GPU SVM manages all necessary locking and unlocking
+> > > > operations,
+> > > > + * except for the recheck of the range's sequence number
+> > > > + * (mmu_interval_read_retry) when the driver is committing GPU
+> > > > bindings. This
+> > > > + * lock corresponds to the 'driver->update' lock mentioned in
+> > > > the
+> > > > HMM
+> > > > + * documentation (TODO: Link). Future revisions may transition
+> > > > from
+> > > > a GPU SVM
+> > > > + * global lock to a per-notifier lock if finer-grained locking
+> > > > is
+> > > > deemed
+> > > > + * necessary.
+> > > > + *
+> > > > + * In addition to the locking mentioned above, the driver should
+> > > > implement a
+> > > > + * lock to safeguard core GPU SVM function calls that modify
+> > > > state,
+> > > > such as
+> > > > + * drm_gpusvm_range_find_or_insert and drm_gpusvm_range_remove.
+> > > > Alternatively,
+> > > > + * these core functions can be called within a single kernel
+> > > > thread,
+> > > > for
+> > > > + * instance, using an ordered work queue. This lock is denoted
+> > > > as
+> > > > + * 'driver_svm_lock' in code examples.
+> > > > + */
+> > > > +
+> > > > +/**
+> > > > + * DOC: Migrataion
+> > > > + *
+> > > > + * The migration support is quite simple, allowing migration
+> > > > between
+> > > > SRAM and
+> > > > + * VRAM at the range granularity. For example, GPU SVM currently
+> > > > does not
+> > > > + * support mixing SRAM and VRAM pages within a range. This means
+> > > > that upon GPU
+> > > > + * fault, the entire range can be migrated to VRAM, and upon CPU
+> > > > fault, the
+> > > > + * entire range is migrated to SRAM.
+> > > > + *
+> > > > + * The reasoning for only supporting range granularity is as
+> > > > follows: it
+> > > > + * simplifies the implementation, and range sizes are driver-
+> > > > defined
+> > > > and should
+> > > > + * be relatively small.
+> > > > + */
+> > > > +
+> > > > +/**
+> > > > + * DOC: Partial Unmapping of Ranges
+> > > > + *
+> > > > + * Partial unmapping of ranges (e.g., 1M out of 2M is unmapped
+> > > > by
+> > > > CPU resulting
+> > > > + * in MMU_NOTIFY_UNMAP event) presents several challenges, with
+> > > > the
+> > > > main one
+> > > > + * being that a subset of the range still has CPU and GPU
+> > > > mappings.
+> > > > If the
+> > > > + * backing store for the range is in VRAM, a subset of the
+> > > > backing
+> > > > store has
+> > > > + * references. One option would be to split the range and VRAM
+> > > > backing store,
+> > > > + * but the implementation for this would be quite complicated.
+> > > > Given
+> > > > that
+> > > > + * partial unmappings are rare and driver-defined range sizes
+> > > > are
+> > > > relatively
+> > > > + * small, GPU SVM does not support splitting of ranges.
+> > > > + *
+> > > > + * With no support for range splitting, upon partial unmapping
+> > > > of a
+> > > > range, the
+> > > > + * driver is expected to invalidate and destroy the entire
+> > > > range. If
+> > > > the range
+> > > > + * has VRAM as its backing, the driver is also expected to
+> > > > migrate
+> > > > any remaining
+> > > > + * pages back to SRAM.
+> > > 
+> > > So what happens if we get a one-page invalidation, say protection
+> > > change event, or NUMA accounting event, in the middle of a range?
+> > > Can
+> > > we unmap just that single gpu pte covering that range, that is, how
+> > > do
+> > > the ranges map to invalidation granularity? Does this differ
+> > > between
+> > > igfx an dgfx?
+> > 
+> > Well the idea of chunks is ranges should be 1 GPU page (the chunk
+> > array
+> > in Xe is 4k, 64k, and 2M). The design is flexible enough that doesn't
+> > have to true but optimized for the thinking each range is most likely
+> > 1
+> > GPU page. If this isn't true, then all GPU pages in the range are
+> > invalidated which isn't ideal but keeps it simple which IMO far out
+> > weighs the potential benefits. In theory a driver could implement
+> > spliting / partial invalidaions too with a couple of updates to
+> > GPUSVM
+> > but would likely largely be a driver implementation rather than
+> > GPUSVM.
+> > 
+> > No difference between igfx an dgfx.
+> > 
+> > You bring up a good point about protection changes, I likely haven't
+> > fully gotten that part of implementation correct either. I can add
+> > this
+> > to my TODO list and also update my IGTs to do things like this.
+> > 
+> > Matt
+> > 
+> > > 
+> > > Thanks,
+> > > Thomas
+> > > 
+> > > 
+> > > 
+> > > 
+> > > > + */
+> > > > +
+> > > > +/**
+> > > > + * DOC: Examples
+> > > > + *
+> > > > + * This section provides two examples of how to build the
+> > > > expected
+> > > > driver
+> > > > + * components: the GPU page fault handler and the garbage
+> > > > collector.
+> > > > A third
+> > > > + * example demonstrates a sample invalidation driver vfunc.
+> > > > + *
+> > > > + * The generic code provided does not include logic for complex
+> > > > migration
+> > > > + * policies, optimized invalidations, or other potentially
+> > > > required
+> > > > driver
+> > > > + * locking (e.g., DMA-resv locks).
+> > > > + *
+> > > > + * 1) GPU page fault handler
+> > > > + *
+> > > > + *	int driver_bind_range(struct drm_gpusvm *gpusvm, struct
+> > > > drm_gpusvm_range *range)
+> > > > + *	{
+> > > > + *		int err = 0;
+> > > > + *
+> > > > + *		driver_alloc_and_setup_memory_for_bind(gpusvm,
+> > > > range);
+> > > > + *
+> > > > + *		drm_gpusvm_notifier_lock(gpusvm);
+> > > > + *		if (drm_gpusvm_range_pages_valid(range))
+> > > > + *			driver_commit_bind(gpusvm, range);
+> > > > + *		else
+> > > > + *			err = -EAGAIN;
+> > > > + *		drm_gpusvm_notifier_unlock(gpusvm);
+> > > > + *
+> > > > + *		return err;
+> > > > + *	}
+> > > > + *
+> > > > + *	int driver_gpu_fault(struct drm_gpusvm *gpusvm, u64
+> > > > fault_addr,
+> > > > + *			     u64 gpuva_start, u64 gpuva_end)
+> > > > + *	{
+> > > > + *		struct drm_gpusvm_ctx ctx = {};
+> > > > + *		int err;
+> > > > + *
+> > > > + *		driver_svm_lock();
+> > > > + *	retry:
+> > > > + *		// Always process UNMAPs first so view of GPU
+> > > > SVM
+> > > > ranges is current
+> > > > + *		driver_garbage_collector(gpusvm);
+> > > > + *
+> > > > + *		range = drm_gpusvm_range_find_or_insert(gpusvm,
+> > > > fault_addr,
+> > > > +
+> > > > *							gpuva_start,
+> > > > gpuva_end,
+> > > > + *						        &ctx);
+> > > > + *		if (IS_ERR(range)) {
+> > > > + *			err = PTR_ERR(range);
+> > > > + *			goto unlock;
+> > > > + *		}
+> > > > + *
+> > > > + *		if (driver_migration_policy(range)) {
+> > > > + *			bo = driver_alloc_bo();
+> > > > + *			err = drm_gpusvm_migrate_to_vram(gpusvm,
+> > > > range, bo, &ctx);
+> > > > + *			if (err)	// CPU mappings may have
+> > > > changed
+> > > > + *				goto retry;
+> > > > + *		}
+> > > > + *
+> > > > + *		err = drm_gpusvm_range_get_pages(gpusvm, range,
+> > > > &ctx);
+> > > > + *		if (err == -EFAULT || err == -EPERM)	// CPU
+> > > > mappings changed
+> > > > + *			goto retry;
+> > > > + *		else if (err)
+> > > > + *			goto unlock;
+> > > > + *
+> > > > + *		err = driver_bind_range(gpusvm, range);
+> > > > + *		if (err == -EAGAIN)	// CPU mappings changed
+> > > > + *			goto retry
+> > > > + *
+> > > > + *	unlock:
+> > > > + *		driver_svm_unlock();
+> > > > + *		return err;
+> > > > + *	}
+> > > > + *
+> > > > + * 2) Garbage Collector.
+> > > > + *
+> > > > + *	void __driver_garbage_collector(struct drm_gpusvm
+> > > > *gpusvm,
+> > > > + *					struct drm_gpusvm_range
+> > > > *range)
+> > > > + *	{
+> > > > + *		struct drm_gpusvm_ctx ctx = {};
+> > > > + *
+> > > > + *		assert_driver_svm_locked(gpusvm);
+> > > > + *
+> > > > + *		// Partial unmap, migrate any remaining VRAM
+> > > > pages
+> > > > back to SRAM
+> > > > + *		if (range->flags.partial_unmap)
+> > > > + *			drm_gpusvm_migrate_to_sram(gpusvm,
+> > > > range,
+> > > > &ctx);
+> > > > + *
+> > > > + *		driver_unbind_range(range);
+> > > > + *		drm_gpusvm_range_remove(gpusvm, range);
+> > > > + *	}
+> > > > + *
+> > > > + *	void driver_garbage_collector(struct drm_gpusvm *gpusvm)
+> > > > + *	{
+> > > > + *		assert_driver_svm_locked(gpusvm);
+> > > > + *
+> > > > + *		for_each_range_in_garbage_collector(gpusvm,
+> > > > range)
+> > > > + *			__driver_garbage_collector(gpusvm,
+> > > > range);
+> > > > + *	}
+> > > > + *
+> > > > + * 3) Invalidation driver vfunc.
+> > > > + *
+> > > > + *	void driver_invalidation(struct drm_gpusvm *gpusvm,
+> > > > + *				 struct drm_gpusvm_notifier
+> > > > *notifier,
+> > > > + *				 const struct mmu_notifier_range
+> > > > *mmu_range)
+> > > > + *	{
+> > > > + *		struct drm_gpusvm_ctx ctx = { .in_notifier =
+> > > > true,
+> > > > };
+> > > > + *		struct drm_gpusvm_range *range = NULL;
+> > > > + *
+> > > > + *		driver_invalidate_device_tlb(gpusvm, mmu_range-
+> > > > > start, mmu_range->end);
+> > > > + *
+> > > > + *		drm_gpusvm_for_each_range(range, notifier,
+> > > > mmu_range->start,
+> > > > + *					  mmu_range->end) {
+> > > > + *			drm_gpusvm_range_unmap_pages(gpusvm,
+> > > > range,
+> > > > &ctx);
+> > > > + *
+> > > > + *			if (mmu_range->event !=
+> > > > MMU_NOTIFY_UNMAP)
+> > > > + *				continue;
+> > > > + *
+> > > > + *			drm_gpusvm_range_set_unmapped(range,
+> > > > mmu_range);
+> > > > + *			driver_garbage_collector_add(gpusvm,
+> > > > range);
+> > > > + *		}
+> > > > + *	}
+> > > > + */
+> > > > +
+> > > > +#define DRM_GPUSVM_RANGE_START(_range)	((_range)->va.start)
+> > > > +#define DRM_GPUSVM_RANGE_END(_range)	((_range)->va.end - 1)
+> > > > +INTERVAL_TREE_DEFINE(struct drm_gpusvm_range, rb.node, u64,
+> > > > rb.__subtree_last,
+> > > > +		     DRM_GPUSVM_RANGE_START,
+> > > > DRM_GPUSVM_RANGE_END,
+> > > > +		     static __maybe_unused, range);
+> > > > +
+> > > > +#define DRM_GPUSVM_NOTIFIER_START(_notifier)	((_notifier)-
+> > > > > interval.start)
+> > > > +#define DRM_GPUSVM_NOTIFIER_END(_notifier)	((_notifier)-
+> > > > > interval.end - 1)
+> > > > +INTERVAL_TREE_DEFINE(struct drm_gpusvm_notifier, rb.node, u64,
+> > > > +		     rb.__subtree_last,
+> > > > DRM_GPUSVM_NOTIFIER_START,
+> > > > +		     DRM_GPUSVM_NOTIFIER_END, static
+> > > > __maybe_unused,
+> > > > notifier);
+> > > > +
+> > > > +/**
+> > > > + * npages_in_range() - Calculate the number of pages in a given
+> > > > range
+> > > > + * @start__: The start address of the range
+> > > > + * @end__: The end address of the range
+> > > > + *
+> > > > + * This macro calculates the number of pages in a given memory
+> > > > range,
+> > > > + * specified by the start and end addresses. It divides the
+> > > > difference
+> > > > + * between the end and start addresses by the page size
+> > > > (PAGE_SIZE)
+> > > > to
+> > > > + * determine the number of pages in the range.
+> > > > + *
+> > > > + * Return: The number of pages in the specified range.
+> > > > + */
+> > > > +#define npages_in_range(start__, end__)	\
+> > > > +	(((end__) - (start__)) >> PAGE_SHIFT)
+> > > > +
+> > > > +/**
+> > > > + * struct drm_gpusvm_zdd - GPU SVM zone device data
+> > > > + *
+> > > > + * @refcount: Reference count for the zdd
+> > > > + * @destroy_work: Work structure for asynchronous zdd
+> > > > destruction
+> > > > + * @range: Pointer to the GPU SVM range
+> > > > + * @vram_allocation: Driver-private pointer to the VRAM
+> > > > allocation
+> > > > + *
+> > > > + * This structure serves as a generic wrapper installed in
+> > > > + * page->zone_device_data. It provides infrastructure for
+> > > > looking up
+> > > > a range
+> > > > + * upon CPU page fault and asynchronously releasing VRAM once
+> > > > the
+> > > > CPU has no
+> > > > + * page references. Asynchronous release is useful because CPU
+> > > > page
+> > > > references
+> > > > + * can be dropped in IRQ contexts, while releasing VRAM likely
+> > > > requires sleeping
+> > > > + * locks.
+> > > > + */
+> > > > +struct drm_gpusvm_zdd {
+> > > > +	struct kref refcount;
+> > > > +	struct work_struct destroy_work;
+> > > > +	struct drm_gpusvm_range *range;
+> > > > +	void *vram_allocation;
+> > > > +};
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_zdd_destroy_work_func - Work function for
+> > > > destroying a
+> > > > zdd
+> > > > + * @w: Pointer to the work_struct
+> > > > + *
+> > > > + * This function releases VRAM, puts GPU SVM range, and frees
+> > > > zdd.
+> > > > + */
+> > > > +static void drm_gpusvm_zdd_destroy_work_func(struct work_struct
+> > > > *w)
+> > > > +{
+> > > > +	struct drm_gpusvm_zdd *zdd =
+> > > > +		container_of(w, struct drm_gpusvm_zdd,
+> > > > destroy_work);
+> > > > +	struct drm_gpusvm_range *range = zdd->range;
+> > > > +	struct drm_gpusvm *gpusvm = range->gpusvm;
+> > > > +
+> > > > +	if (gpusvm->ops->vram_release && zdd->vram_allocation)
+> > > > +		gpusvm->ops->vram_release(zdd->vram_allocation);
+> > > > +	drm_gpusvm_range_put(range);
+> > > > +	kfree(zdd);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_zdd_alloc - Allocate a zdd structure.
+> > > > + * @range: Pointer to the GPU SVM range.
+> > > > + *
+> > > > + * This function allocates and initializes a new zdd structure.
+> > > > It
+> > > > sets up the
+> > > > + * reference count, initializes the destroy work, and links the
+> > > > provided GPU SVM
+> > > > + * range.
+> > > > + *
+> > > > + * Returns:
+> > > > + * Pointer to the allocated zdd on success, ERR_PTR() on
+> > > > failure.
+> > > > + */
+> > > > +static struct drm_gpusvm_zdd *
+> > > > +drm_gpusvm_zdd_alloc(struct drm_gpusvm_range *range)
+> > > > +{
+> > > > +	struct drm_gpusvm_zdd *zdd;
+> > > > +
+> > > > +	zdd = kmalloc(sizeof(*zdd), GFP_KERNEL);
+> > > > +	if (!zdd)
+> > > > +		return NULL;
+> > > > +
+> > > > +	kref_init(&zdd->refcount);
+> > > > +	INIT_WORK(&zdd->destroy_work,
+> > > > drm_gpusvm_zdd_destroy_work_func);
+> > > > +	zdd->range = drm_gpusvm_range_get(range);
+> > > > +	zdd->vram_allocation = NULL;
+> > > > +
+> > > > +	return zdd;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_zdd_get - Get a reference to a zdd structure.
+> > > > + * @zdd: Pointer to the zdd structure.
+> > > > + *
+> > > > + * This function increments the reference count of the provided
+> > > > zdd
+> > > > structure.
+> > > > + *
+> > > > + * Returns: Pointer to the zdd structure.
+> > > > + */
+> > > > +static struct drm_gpusvm_zdd *drm_gpusvm_zdd_get(struct
+> > > > drm_gpusvm_zdd *zdd)
+> > > > +{
+> > > > +	kref_get(&zdd->refcount);
+> > > > +	return zdd;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_zdd_destroy - Destroy a zdd structure.
+> > > > + * @ref: Pointer to the reference count structure.
+> > > > + *
+> > > > + * This function queues the destroy_work of the zdd for
+> > > > asynchronous
+> > > > destruction.
+> > > > + */
+> > > > +static void drm_gpusvm_zdd_destroy(struct kref *ref)
+> > > > +{
+> > > > +	struct drm_gpusvm_zdd *zdd =
+> > > > +		container_of(ref, struct drm_gpusvm_zdd,
+> > > > refcount);
+> > > > +	struct drm_gpusvm *gpusvm = zdd->range->gpusvm;
+> > > > +
+> > > > +	queue_work(gpusvm->zdd_wq, &zdd->destroy_work);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_zdd_put - Put a zdd reference.
+> > > > + * @zdd: Pointer to the zdd structure.
+> > > > + *
+> > > > + * This function decrements the reference count of the provided
+> > > > zdd
+> > > > structure
+> > > > + * and schedules its destruction if the count drops to zero.
+> > > > + */
+> > > > +static void drm_gpusvm_zdd_put(struct drm_gpusvm_zdd *zdd)
+> > > > +{
+> > > > +	kref_put(&zdd->refcount, drm_gpusvm_zdd_destroy);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_find - Find GPU SVM range from GPU SVM
+> > > > notifier
+> > > > + * @notifier: Pointer to the GPU SVM notifier structure.
+> > > > + * @start: Start address of the range
+> > > > + * @end: End address of the range
+> > > > + *
+> > > > + * Return: A pointer to the drm_gpusvm_range if found or NULL
+> > > > + */
+> > > > +struct drm_gpusvm_range *
+> > > > +drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, u64
+> > > > start, u64 end)
+> > > > +{
+> > > > +	return range_iter_first(&notifier->root, start, end -
+> > > > 1);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_for_each_range_safe - Safely iterate over GPU SVM
+> > > > ranges in a notifier
+> > > > + * @range__: Iterator variable for the ranges
+> > > > + * @next__: Iterator variable for the ranges temporay storage
+> > > > + * @notifier__: Pointer to the GPU SVM notifier
+> > > > + * @start__: Start address of the range
+> > > > + * @end__: End address of the range
+> > > > + *
+> > > > + * This macro is used to iterate over GPU SVM ranges in a
+> > > > notifier
+> > > > while
+> > > > + * removing ranges from it.
+> > > > + */
+> > > > +#define drm_gpusvm_for_each_range_safe(range__, next__,
+> > > > notifier__,
+> > > > start__, end__)	\
+> > > > +	for ((range__) = drm_gpusvm_range_find((notifier__),
+> > > > (start__), (end__)),	\
+> > > > +	     (next__) =
+> > > > __drm_gpusvm_range_next(range__);				\
+> > > > +	     (range__) && (range__->va.start <
+> > > > (end__));				\
+> > > > +	     (range__) = (next__), (next__) =
+> > > > __drm_gpusvm_range_next(range__))
+> > > > +
+> > > > +/**
+> > > > + * __drm_gpusvm_notifier_next - get the next drm_gpusvm_notifier
+> > > > in
+> > > > the list
+> > > > + * @notifier: a pointer to the current drm_gpusvm_notifier
+> > > > + *
+> > > > + * Return: A pointer to the next drm_gpusvm_notifier if
+> > > > available,
+> > > > or NULL if
+> > > > + *         the current notifier is the last one or if the input
+> > > > notifier is
+> > > > + *         NULL.
+> > > > + */
+> > > > +static struct drm_gpusvm_notifier *
+> > > > +__drm_gpusvm_notifier_next(struct drm_gpusvm_notifier *notifier)
+> > > > +{
+> > > > +	if (notifier && !list_is_last(&notifier->rb.entry,
+> > > > +				      &notifier->gpusvm-
+> > > > > notifier_list))
+> > > > +		return list_next_entry(notifier, rb.entry);
+> > > > +
+> > > > +	return NULL;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_for_each_notifier - Iterate over GPU SVM notifiers
+> > > > in
+> > > > a gpusvm
+> > > > + * @notifier__: Iterator variable for the notifiers
+> > > > + * @notifier__: Pointer to the GPU SVM notifier
+> > > > + * @start__: Start address of the notifier
+> > > > + * @end__: End address of the notifier
+> > > > + *
+> > > > + * This macro is used to iterate over GPU SVM notifiers in a
+> > > > gpusvm.
+> > > > + */
+> > > > +#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__,
+> > > > start__,
+> > > > end__)		\
+> > > > +	for ((notifier__) = notifier_iter_first(&(gpusvm__)-
+> > > > >root,
+> > > > (start__), (end__) - 1);	\
+> > > > +	     (notifier__) && (notifier__->interval.start <
+> > > > (end__));			\
+> > > > +	     (notifier__) =
+> > > > __drm_gpusvm_notifier_next(notifier__))
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_for_each_notifier_safe - Safely iterate over GPU
+> > > > SVM
+> > > > notifiers in a gpusvm
+> > > > + * @notifier__: Iterator variable for the notifiers
+> > > > + * @next__: Iterator variable for the notifiers temporay storage
+> > > > + * @notifier__: Pointer to the GPU SVM notifier
+> > > > + * @start__: Start address of the notifier
+> > > > + * @end__: End address of the notifier
+> > > > + *
+> > > > + * This macro is used to iterate over GPU SVM notifiers in a
+> > > > gpusvm
+> > > > while
+> > > > + * removing notifiers from it.
+> > > > + */
+> > > > +#define drm_gpusvm_for_each_notifier_safe(notifier__, next__,
+> > > > gpusvm__, start__, end__)	\
+> > > > +	for ((notifier__) = notifier_iter_first(&(gpusvm__)-
+> > > > >root,
+> > > > (start__), (end__) - 1),	\
+> > > > +	     (next__) =
+> > > > __drm_gpusvm_notifier_next(notifier__);				\
+> > > > +	     (notifier__) && (notifier__->interval.start <
+> > > > (end__));			\
+> > > > +	     (notifier__) = (next__), (next__) =
+> > > > __drm_gpusvm_notifier_next(notifier__))
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_invalidate - Invalidate a GPU SVM
+> > > > notifier.
+> > > > + * @mni: Pointer to the mmu_interval_notifier structure.
+> > > > + * @mmu_range: Pointer to the mmu_notifier_range structure.
+> > > > + * @cur_seq: Current sequence number.
+> > > > + *
+> > > > + * This function serves as a generic MMU notifier for GPU SVM.
+> > > > It
+> > > > sets the MMU
+> > > > + * notifier sequence number and calls the driver invalidate
+> > > > vfunc
+> > > > under
+> > > > + * gpusvm->notifier_lock.
+> > > > + *
+> > > > + * Returns:
+> > > > + * true if the operation succeeds, false otherwise.
+> > > > + */
+> > > > +static bool
+> > > > +drm_gpusvm_notifier_invalidate(struct mmu_interval_notifier
+> > > > *mni,
+> > > > +			       const struct mmu_notifier_range
+> > > > *mmu_range,
+> > > > +			       unsigned long cur_seq)
+> > > > +{
+> > > > +	struct drm_gpusvm_notifier *notifier =
+> > > > +		container_of(mni, typeof(*notifier), notifier);
+> > > > +	struct drm_gpusvm *gpusvm = notifier->gpusvm;
+> > > > +
+> > > > +	if (!mmu_notifier_range_blockable(mmu_range))
+> > > > +		return false;
+> > > > +
+> > > > +	down_write(&gpusvm->notifier_lock);
+> > > > +	mmu_interval_set_seq(mni, cur_seq);
+> > > > +	gpusvm->ops->invalidate(gpusvm, notifier, mmu_range);
+> > > > +	up_write(&gpusvm->notifier_lock);
+> > > > +
+> > > > +	return true;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_ops - MMU interval notifier operations
+> > > > for
+> > > > GPU SVM
+> > > > + */
+> > > > +static const struct mmu_interval_notifier_ops
+> > > > drm_gpusvm_notifier_ops = {
+> > > > +	.invalidate = drm_gpusvm_notifier_invalidate,
+> > > > +};
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_init - Initialize the GPU SVM.
+> > > > + * @gpusvm: Pointer to the GPU SVM structure.
+> > > > + * @name: Name of the GPU SVM.
+> > > > + * @drm: Pointer to the DRM device structure.
+> > > > + * @mm: Pointer to the mm_struct for the address space.
+> > > > + * @device_private_page_owner: Device private pages owner.
+> > > > + * @mm_start: Start address of GPU SVM.
+> > > > + * @mm_range: Range of the GPU SVM.
+> > > > + * @notifier_size: Size of individual notifiers.
+> > > > + * @ops: Pointer to the operations structure for GPU SVM.
+> > > > + * @chunk_sizes: Pointer to the array of chunk sizes used in
+> > > > range
+> > > > allocation.
+> > > > + *               Entries should be powers of 2 in descending
+> > > > order
+> > > > with last
+> > > > + *               entry being SZ_4K.
+> > > > + * @num_chunks: Number of chunks.
+> > > > + *
+> > > > + * This function initializes the GPU SVM.
+> > > > + *
+> > > > + * Returns:
+> > > > + * 0 on success, a negative error code on failure.
+> > > > + */
+> > > > +int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+> > > > +		    const char *name, struct drm_device *drm,
+> > > > +		    struct mm_struct *mm, void
+> > > > *device_private_page_owner,
+> > > > +		    u64 mm_start, u64 mm_range, u64
+> > > > notifier_size,
+> > > > +		    const struct drm_gpusvm_ops *ops,
+> > > > +		    const u64 *chunk_sizes, int num_chunks)
+> > > > +{
+> > > > +	if (!ops->invalidate || !num_chunks)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	gpusvm->name = name;
+> > > > +	gpusvm->drm = drm;
+> > > > +	gpusvm->mm = mm;
+> > > > +	gpusvm->device_private_page_owner =
+> > > > device_private_page_owner;
+> > > > +	gpusvm->mm_start = mm_start;
+> > > > +	gpusvm->mm_range = mm_range;
+> > > > +	gpusvm->notifier_size = notifier_size;
+> > > > +	gpusvm->ops = ops;
+> > > > +	gpusvm->chunk_sizes = chunk_sizes;
+> > > > +	gpusvm->num_chunks = num_chunks;
+> > > > +	gpusvm->zdd_wq = system_wq;
+> > > > +
+> > > > +	mmgrab(mm);
+> > > > +	gpusvm->root = RB_ROOT_CACHED;
+> > > > +	INIT_LIST_HEAD(&gpusvm->notifier_list);
+> > > > +
+> > > > +	init_rwsem(&gpusvm->notifier_lock);
+> > > > +
+> > > > +	fs_reclaim_acquire(GFP_KERNEL);
+> > > > +	might_lock(&gpusvm->notifier_lock);
+> > > > +	fs_reclaim_release(GFP_KERNEL);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_find - Find GPU SVM notifier
+> > > > + * @gpusvm__: Pointer to the GPU SVM structure
+> > > > + * @fault_addr__: Fault address
+> > > > + *
+> > > > + * This macro finds the GPU SVM notifier associated with the
+> > > > fault
+> > > > address.
+> > > > + *
+> > > > + * Returns:
+> > > > + * Pointer to the GPU SVM notifier on success, NULL otherwise.
+> > > > + */
+> > > > +#define drm_gpusvm_notifier_find(gpusvm__,
+> > > > fault_addr__)	\
+> > > > +	notifier_iter_first(&(gpusvm__)->root,
+> > > > (fault_addr__),	\
+> > > > +			    (fault_addr__ + 1))
+> > > > +
+> > > > +/**
+> > > > + * to_drm_gpusvm_notifier - retrieve the container struct for a
+> > > > given rbtree node
+> > > > + * @node__: a pointer to the rbtree node embedded within a
+> > > > drm_gpusvm_notifier struct
+> > > > + *
+> > > > + * Return: A pointer to the containing drm_gpusvm_notifier
+> > > > structure.
+> > > > + */
+> > > > +#define
+> > > > to_drm_gpusvm_notifier(__node)				\
+> > > > +	container_of((__node), struct drm_gpusvm_notifier,
+> > > > rb.node)
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_insert - Insert GPU SVM notifier
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @notifier: Pointer to the GPU SVM notifier structure
+> > > > + *
+> > > > + * This function inserts the GPU SVM notifier into the GPU SVM
+> > > > RB
+> > > > tree and list.
+> > > > + */
+> > > > +static void drm_gpusvm_notifier_insert(struct drm_gpusvm
+> > > > *gpusvm,
+> > > > +				       struct
+> > > > drm_gpusvm_notifier
+> > > > *notifier)
+> > > > +{
+> > > > +	struct rb_node *node;
+> > > > +	struct list_head *head;
+> > > > +
+> > > > +	notifier_insert(notifier, &gpusvm->root);
+> > > > +
+> > > > +	node = rb_prev(&notifier->rb.node);
+> > > > +	if (node)
+> > > > +		head = &(to_drm_gpusvm_notifier(node))-
+> > > > >rb.entry;
+> > > > +	else
+> > > > +		head = &gpusvm->notifier_list;
+> > > > +
+> > > > +	list_add(&notifier->rb.entry, head);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_remove - Remove GPU SVM notifier
+> > > > + * @gpusvm__: Pointer to the GPU SVM tructure
+> > > > + * @notifier__: Pointer to the GPU SVM notifier structure
+> > > > + *
+> > > > + * This macro removes the GPU SVM notifier from the GPU SVM RB
+> > > > tree
+> > > > and list.
+> > > > + */
+> > > > +#define drm_gpusvm_notifier_remove(gpusvm__,
+> > > > notifier__)	\
+> > > > +	notifier_remove((notifier__), &(gpusvm__)-
+> > > > >root);	\
+> > > > +	list_del(&(notifier__)->rb.entry)
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_fini - Finalize the GPU SVM.
+> > > > + * @gpusvm: Pointer to the GPU SVM structure.
+> > > > + *
+> > > > + * This function finalizes the GPU SVM by cleaning up any
+> > > > remaining
+> > > > ranges and
+> > > > + * notifiers, and dropping a reference to struct MM.
+> > > > + */
+> > > > +void drm_gpusvm_fini(struct drm_gpusvm *gpusvm)
+> > > > +{
+> > > > +	struct drm_gpusvm_notifier *notifier, *next;
+> > > > +
+> > > > +	drm_gpusvm_for_each_notifier_safe(notifier, next,
+> > > > gpusvm, 0,
+> > > > LONG_MAX) {
+> > > > +		struct drm_gpusvm_range *range, *__next;
+> > > > +
+> > > > +		/*
+> > > > +		 * Remove notifier first to avoid racing with
+> > > > any
+> > > > invalidation
+> > > > +		 */
+> > > > +		mmu_interval_notifier_remove(&notifier-
+> > > > >notifier);
+> > > > +		notifier->flags.removed = true;
+> > > > +
+> > > > +		drm_gpusvm_for_each_range_safe(range, __next,
+> > > > notifier, 0,
+> > > > +					       LONG_MAX)
+> > > > +			drm_gpusvm_range_remove(gpusvm, range);
+> > > > +	}
+> > > > +
+> > > > +	mmdrop(gpusvm->mm);
+> > > > +	WARN_ON(!RB_EMPTY_ROOT(&gpusvm->root.rb_root));
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_alloc - Allocate GPU SVM notifier
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @fault_addr: Fault address
+> > > > + *
+> > > > + * This function allocates and initializes the GPU SVM notifier
+> > > > structure.
+> > > > + *
+> > > > + * Returns:
+> > > > + * Pointer to the allocated GPU SVM notifier on success,
+> > > > ERR_PTR()
+> > > > on failure.
+> > > > + */
+> > > > +static struct drm_gpusvm_notifier *
+> > > > +drm_gpusvm_notifier_alloc(struct drm_gpusvm *gpusvm, u64
+> > > > fault_addr)
+> > > > +{
+> > > > +	struct drm_gpusvm_notifier *notifier;
+> > > > +
+> > > > +	if (gpusvm->ops->notifier_alloc)
+> > > > +		notifier = gpusvm->ops->notifier_alloc();
+> > > > +	else
+> > > > +		notifier = kzalloc(sizeof(*notifier),
+> > > > GFP_KERNEL);
+> > > > +
+> > > > +	if (!notifier)
+> > > > +		return ERR_PTR(-ENOMEM);
+> > > > +
+> > > > +	notifier->gpusvm = gpusvm;
+> > > > +	notifier->interval.start = ALIGN_DOWN(fault_addr,
+> > > > gpusvm-
+> > > > > notifier_size);
+> > > > +	notifier->interval.end = ALIGN(fault_addr + 1, gpusvm-
+> > > > > notifier_size);
+> > > > +	INIT_LIST_HEAD(&notifier->rb.entry);
+> > > > +	notifier->root = RB_ROOT_CACHED;
+> > > > +	INIT_LIST_HEAD(&notifier->range_list);
+> > > > +
+> > > > +	return notifier;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_free - Free GPU SVM notifier
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @notifier: Pointer to the GPU SVM notifier structure
+> > > > + *
+> > > > + * This function frees the GPU SVM notifier structure.
+> > > > + */
+> > > > +static void drm_gpusvm_notifier_free(struct drm_gpusvm *gpusvm,
+> > > > +				     struct drm_gpusvm_notifier
+> > > > *notifier)
+> > > > +{
+> > > > +	WARN_ON(!RB_EMPTY_ROOT(&notifier->root.rb_root));
+> > > > +
+> > > > +	if (gpusvm->ops->notifier_free)
+> > > > +		gpusvm->ops->notifier_free(notifier);
+> > > > +	else
+> > > > +		kfree(notifier);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * to_drm_gpusvm_range - retrieve the container struct for a
+> > > > given
+> > > > rbtree node
+> > > > + * @node__: a pointer to the rbtree node embedded within a
+> > > > drm_gpusvm_range struct
+> > > > + *
+> > > > + * Return: A pointer to the containing drm_gpusvm_range
+> > > > structure.
+> > > > + */
+> > > > +#define to_drm_gpusvm_range(node__)	\
+> > > > +	container_of((node__), struct drm_gpusvm_range, rb.node)
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_insert - Insert GPU SVM range
+> > > > + * @notifier: Pointer to the GPU SVM notifier structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + *
+> > > > + * This function inserts the GPU SVM range into the notifier RB
+> > > > tree
+> > > > and list.
+> > > > + */
+> > > > +static void drm_gpusvm_range_insert(struct drm_gpusvm_notifier
+> > > > *notifier,
+> > > > +				    struct drm_gpusvm_range
+> > > > *range)
+> > > > +{
+> > > > +	struct rb_node *node;
+> > > > +	struct list_head *head;
+> > > > +
+> > > > +	drm_gpusvm_notifier_lock(notifier->gpusvm);
+> > > > +	range_insert(range, &notifier->root);
+> > > > +
+> > > > +	node = rb_prev(&range->rb.node);
+> > > > +	if (node)
+> > > > +		head = &(to_drm_gpusvm_range(node))->rb.entry;
+> > > > +	else
+> > > > +		head = &notifier->range_list;
+> > > > +
+> > > > +	list_add(&range->rb.entry, head);
+> > > > +	drm_gpusvm_notifier_unlock(notifier->gpusvm);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * __drm_gpusvm_range_remove - Remove GPU SVM range
+> > > > + * @notifier__: Pointer to the GPU SVM notifier structure
+> > > > + * @range__: Pointer to the GPU SVM range structure
+> > > > + *
+> > > > + * This macro removes the GPU SVM range from the notifier RB
+> > > > tree
+> > > > and list.
+> > > > + */
+> > > > +#define __drm_gpusvm_range_remove(notifier__,
+> > > > range__)		\
+> > > > +	range_remove((range__), &(notifier__)-
+> > > > >root);		\
+> > > > +	list_del(&(range__)->rb.entry)
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_alloc - Allocate GPU SVM range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @notifier: Pointer to the GPU SVM notifier structure
+> > > > + * @fault_addr: Fault address
+> > > > + * @chunk_size: Chunk size
+> > > > + * @migrate_vram: Flag indicating whether to migrate VRAM
+> > > > + *
+> > > > + * This function allocates and initializes the GPU SVM range
+> > > > structure.
+> > > > + *
+> > > > + * Returns:
+> > > > + * Pointer to the allocated GPU SVM range on success, ERR_PTR()
+> > > > on
+> > > > failure.
+> > > > + */
+> > > > +static struct drm_gpusvm_range *
+> > > > +drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
+> > > > +		       struct drm_gpusvm_notifier *notifier,
+> > > > +		       u64 fault_addr, u64 chunk_size, bool
+> > > > migrate_vram)
+> > > > +{
+> > > > +	struct drm_gpusvm_range *range;
+> > > > +
+> > > > +	if (gpusvm->ops->range_alloc)
+> > > > +		range = gpusvm->ops->range_alloc(gpusvm);
+> > > > +	else
+> > > > +		range = kzalloc(sizeof(*range), GFP_KERNEL);
+> > > > +
+> > > > +	if (!range)
+> > > > +		return ERR_PTR(-ENOMEM);
+> > > > +
+> > > > +	kref_init(&range->refcount);
+> > > > +	range->gpusvm = gpusvm;
+> > > > +	range->notifier = notifier;
+> > > > +	range->va.start = ALIGN_DOWN(fault_addr, chunk_size);
+> > > > +	range->va.end = ALIGN(fault_addr + 1, chunk_size);
+> > > > +	INIT_LIST_HEAD(&range->rb.entry);
+> > > > +	range->notifier_seq = LONG_MAX;
+> > > > +	range->flags.migrate_vram = migrate_vram ? 1 : 0;
+> > > > +
+> > > > +	return range;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_check_pages - Check pages
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @notifier: Pointer to the GPU SVM notifier structure
+> > > > + * @start: Start address
+> > > > + * @end: End address
+> > > > + *
+> > > > + * Check if pages between start and end have been faulted in on
+> > > > the
+> > > > CPU. Use to
+> > > > + * prevent migration of pages without CPU backing store.
+> > > > + *
+> > > > + * Returns:
+> > > > + * True if pages have been faulted into CPU, False otherwise
+> > > > + */
+> > > > +static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
+> > > > +				   struct drm_gpusvm_notifier
+> > > > *notifier,
+> > > > +				   u64 start, u64 end)
+> > > > +{
+> > > > +	struct hmm_range hmm_range = {
+> > > > +		.default_flags = 0,
+> > > > +		.notifier = &notifier->notifier,
+> > > > +		.start = start,
+> > > > +		.end = end,
+> > > > +		.dev_private_owner = gpusvm-
+> > > > > device_private_page_owner,
+> > > > +	};
+> > > > +	unsigned long timeout =
+> > > > +		jiffies +
+> > > > msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> > > > +	unsigned long *pfns;
+> > > > +	unsigned long npages = npages_in_range(start, end);
+> > > > +	int err, i;
+> > > > +
+> > > > +	mmap_assert_locked(gpusvm->mm);
+> > > > +
+> > > > +	pfns = kvmalloc_array(npages, sizeof(*pfns),
+> > > > GFP_KERNEL);
+> > > > +	if (!pfns)
+> > > > +		return false;
+> > > > +
+> > > > +	hmm_range.notifier_seq =
+> > > > mmu_interval_read_begin(&notifier-
+> > > > > notifier);
+> > > > +	hmm_range.hmm_pfns = pfns;
+> > > > +
+> > > > +	while (true) {
+> > > > +		err = hmm_range_fault(&hmm_range);
+> > > > +		if (err == -EBUSY) {
+> > > > +			if (time_after(jiffies, timeout))
+> > > > +				break;
+> > > > +
+> > > > +			hmm_range.notifier_seq =
+> > > > mmu_interval_read_begin(&notifier->notifier);
+> > > > +			continue;
+> > > > +		}
+> > > > +		break;
+> > > > +	}
+> > > > +	if (err)
+> > > > +		goto err_free;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i) {
+> > > > +		if (!(pfns[i] & HMM_PFN_VALID)) {
+> > > > +			err = -EFAULT;
+> > > > +			goto err_free;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +err_free:
+> > > > +	kvfree(pfns);
+> > > > +	return err ? false : true;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_chunk_size - Determine chunk size for GPU
+> > > > SVM
+> > > > range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @notifier: Pointer to the GPU SVM notifier structure
+> > > > + * @vas: Pointer to the virtual memory area structure
+> > > > + * @fault_addr: Fault address
+> > > > + * @gpuva_start: Start address of GPUVA which mirrors CPU
+> > > > + * @gpuva_end: End address of GPUVA which mirrors CPU
+> > > > + * @check_pages: Flag indicating whether to check pages
+> > > > + *
+> > > > + * This function determines the chunk size for the GPU SVM range
+> > > > based on the
+> > > > + * fault address, GPU SVM chunk sizes, existing GPU SVM ranges,
+> > > > and
+> > > > the virtual
+> > > > + * memory area boundaries.
+> > > > + *
+> > > > + * Returns:
+> > > > + * Chunk size on success, LONG_MAX on failure.
+> > > > + */
+> > > > +static u64 drm_gpusvm_range_chunk_size(struct drm_gpusvm
+> > > > *gpusvm,
+> > > > +				       struct
+> > > > drm_gpusvm_notifier
+> > > > *notifier,
+> > > > +				       struct vm_area_struct
+> > > > *vas,
+> > > > +				       u64 fault_addr, u64
+> > > > gpuva_start,
+> > > > +				       u64 gpuva_end, bool
+> > > > check_pages)
+> > > > +{
+> > > > +	u64 start, end;
+> > > > +	int i = 0;
+> > > > +
+> > > > +retry:
+> > > > +	for (; i < gpusvm->num_chunks; ++i) {
+> > > > +		start = ALIGN_DOWN(fault_addr, gpusvm-
+> > > > > chunk_sizes[i]);
+> > > > +		end = ALIGN(fault_addr + 1, gpusvm-
+> > > > >chunk_sizes[i]);
+> > > > +
+> > > > +		if (start >= vas->vm_start && end <= vas->vm_end
+> > > > &&
+> > > > +		    start >= notifier->interval.start &&
+> > > > +		    end <= notifier->interval.end &&
+> > > > +		    start >= gpuva_start && end <= gpuva_end)
+> > > > +			break;
+> > > > +	}
+> > > > +
+> > > > +	if (i == gpusvm->num_chunks)
+> > > > +		return LONG_MAX;
+> > > > +
+> > > > +	/*
+> > > > +	 * If allocation more than page, ensure not to overlap
+> > > > with
+> > > > existing
+> > > > +	 * ranges.
+> > > > +	 */
+> > > > +	if (end - start != SZ_4K) {
+> > > > +		struct drm_gpusvm_range *range;
+> > > > +
+> > > > +		range = drm_gpusvm_range_find(notifier, start,
+> > > > end);
+> > > > +		if (range) {
+> > > > +			++i;
+> > > > +			goto retry;
+> > > > +		}
+> > > > +
+> > > > +		/*
+> > > > +		 * XXX: Only create range on pages CPU has
+> > > > faulted
+> > > > in. Without
+> > > > +		 * this check, or prefault, on BMG
+> > > > 'xe_exec_system_allocator --r
+> > > > +		 * process-many-malloc' fails. In the failure
+> > > > case,
+> > > > each process
+> > > > +		 * mallocs 16k but the CPU VMA is ~128k which
+> > > > results in 64k SVM
+> > > > +		 * ranges. When migrating the SVM ranges, some
+> > > > processes fail in
+> > > > +		 * drm_gpusvm_migrate_to_vram with
+> > > > 'migrate.cpages
+> > > > != npages'
+> > > > +		 * and then upon drm_gpusvm_range_get_pages
+> > > > device
+> > > > pages from
+> > > > +		 * other processes are collected + faulted in
+> > > > which
+> > > > creates all
+> > > > +		 * sorts of problems. Unsure exactly how this
+> > > > happening, also
+> > > > +		 * problem goes away if
+> > > > 'xe_exec_system_allocator --
+> > > > r
+> > > > +		 * process-many-malloc' mallocs at least 64k at
+> > > > a
+> > > > time.
+> > > > +		 */
+> > > > +		if (check_pages &&
+> > > > +		    !drm_gpusvm_check_pages(gpusvm, notifier,
+> > > > start,
+> > > > end)) {
+> > > > +			++i;
+> > > > +			goto retry;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	return end - start;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_find_or_insert - Find or insert GPU SVM
+> > > > range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @fault_addr: Fault address
+> > > > + * @gpuva_start: Start address of GPUVA which mirrors CPU
+> > > > + * @gpuva_end: End address of GPUVA which mirrors CPU
+> > > > + * @ctx: GPU SVM context
+> > > > + *
+> > > > + * This function finds or inserts a newly allocated a GPU SVM
+> > > > range
+> > > > based on the
+> > > > + * fault address. Caller must hold a lock to protect range
+> > > > lookup
+> > > > and insertion.
+> > > > + *
+> > > > + * Returns:
+> > > > + * Pointer to the GPU SVM range on success, ERR_PTR() on
+> > > > failure.
+> > > > + */
+> > > > +struct drm_gpusvm_range *
+> > > > +drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm, u64
+> > > > fault_addr,
+> > > > +				u64 gpuva_start, u64 gpuva_end,
+> > > > +				const struct drm_gpusvm_ctx
+> > > > *ctx)
+> > > > +{
+> > > > +	struct drm_gpusvm_notifier *notifier;
+> > > > +	struct drm_gpusvm_range *range;
+> > > > +	struct mm_struct *mm = gpusvm->mm;
+> > > > +	struct vm_area_struct *vas;
+> > > > +	bool notifier_alloc = false;
+> > > > +	u64 chunk_size;
+> > > > +	int err;
+> > > > +	bool migrate_vram;
+> > > > +
+> > > > +	if (fault_addr < gpusvm->mm_start ||
+> > > > +	    fault_addr > gpusvm->mm_start + gpusvm->mm_range) {
+> > > > +		err = -EINVAL;
+> > > > +		goto err_out;
+> > > > +	}
+> > > > +
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		if (!mmget_not_zero(mm)) {
+> > > > +			err = -EFAULT;
+> > > > +			goto err_out;
+> > > > +		}
+> > > > +		mmap_write_lock(mm);
+> > > > +	}
+> > > > +
+> > > > +	mmap_assert_write_locked(mm);
+> > > > +
+> > > > +	notifier = drm_gpusvm_notifier_find(gpusvm, fault_addr);
+> > > > +	if (!notifier) {
+> > > > +		notifier = drm_gpusvm_notifier_alloc(gpusvm,
+> > > > fault_addr);
+> > > > +		if (IS_ERR(notifier)) {
+> > > > +			err = PTR_ERR(notifier);
+> > > > +			goto err_mmunlock;
+> > > > +		}
+> > > > +		notifier_alloc = true;
+> > > > +		err =
+> > > > mmu_interval_notifier_insert_locked(&notifier-
+> > > > > notifier,
+> > > > +							  mm,
+> > > > notifier->interval.start,
+> > > > +							 
+> > > > notifier-
+> > > > > interval.end -
+> > > > +							 
+> > > > notifier-
+> > > > > interval.start,
+> > > > +							 
+> > > > &drm_gpusvm_notifier_ops);
+> > > > +		if (err)
+> > > > +			goto err_notifier;
+> > > > +	}
+> > > > +
+> > > > +	vas = vma_lookup(mm, fault_addr);
+> > > > +	if (!vas) {
+> > > > +		err = -ENOENT;
+> > > > +		goto err_notifier_remove;
+> > > > +	}
+> > > > +
+> > > > +	if (!ctx->read_only && !(vas->vm_flags & VM_WRITE)) {
+> > > > +		err = -EPERM;
+> > > > +		goto err_notifier_remove;
+> > > > +	}
+> > > > +
+> > > > +	range = drm_gpusvm_range_find(notifier, fault_addr,
+> > > > fault_addr + 1);
+> > > > +	if (range)
+> > > > +		goto out_mmunlock;
+> > > > +	/*
+> > > > +	 * XXX: Short-circuiting migration based on
+> > > > migrate_vma_*
+> > > > current
+> > > > +	 * limitations. If/when migrate_vma_* add more support,
+> > > > this
+> > > > logic will
+> > > > +	 * have to change.
+> > > > +	 */
+> > > > +	migrate_vram = ctx->vram_possible &&
+> > > > +		vma_is_anonymous(vas) &&
+> > > > !is_vm_hugetlb_page(vas);
+> > > > +
+> > > > +	chunk_size = drm_gpusvm_range_chunk_size(gpusvm,
+> > > > notifier,
+> > > > vas,
+> > > > +						 fault_addr,
+> > > > gpuva_start,
+> > > > +						 gpuva_end,
+> > > > migrate_vram &&
+> > > > +						 !ctx-
+> > > > >prefault);
+> > > > +	if (chunk_size == LONG_MAX) {
+> > > > +		err = -EINVAL;
+> > > > +		goto err_notifier_remove;
+> > > > +	}
+> > > > +
+> > > > +	range = drm_gpusvm_range_alloc(gpusvm, notifier,
+> > > > fault_addr,
+> > > > chunk_size,
+> > > > +				       migrate_vram);
+> > > > +	if (IS_ERR(range)) {
+> > > > +		err = PTR_ERR(range);
+> > > > +		goto err_notifier_remove;
+> > > > +	}
+> > > > +
+> > > > +	drm_gpusvm_range_insert(notifier, range);
+> > > > +	if (notifier_alloc)
+> > > > +		drm_gpusvm_notifier_insert(gpusvm, notifier);
+> > > > +
+> > > > +	if (ctx->prefault) {
+> > > > +		struct drm_gpusvm_ctx __ctx = *ctx;
+> > > > +
+> > > > +		__ctx.mmap_locked = true;
+> > > > +		err = drm_gpusvm_range_get_pages(gpusvm, range,
+> > > > &__ctx);
+> > > > +		if (err)
+> > > > +			goto err_range_remove;
+> > > > +	}
+> > > > +
+> > > > +out_mmunlock:
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		mmap_write_unlock(mm);
+> > > > +		mmput(mm);
+> > > > +	}
+> > > > +
+> > > > +	return range;
+> > > > +
+> > > > +err_range_remove:
+> > > > +	__drm_gpusvm_range_remove(notifier, range);
+> > > > +err_notifier_remove:
+> > > > +	if (notifier_alloc)
+> > > > +		mmu_interval_notifier_remove(&notifier-
+> > > > >notifier);
+> > > > +err_notifier:
+> > > > +	if (notifier_alloc)
+> > > > +		drm_gpusvm_notifier_free(gpusvm, notifier);
+> > > > +err_mmunlock:
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		mmap_write_unlock(mm);
+> > > > +		mmput(mm);
+> > > > +	}
+> > > > +err_out:
+> > > > +	return ERR_PTR(err);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * for_each_dma_page - iterate over pages in a DMA regio`n
+> > > > + * @i__: the current page index in the iteration
+> > > > + * @j__: the current page index, log order, in the iteration
+> > > > + * @npages__: the total number of pages in the DMA region
+> > > > + * @order__: the order of the pages in the DMA region
+> > > > + *
+> > > > + * This macro iterates over each page in a DMA region. The DMA
+> > > > region
+> > > > + * is assumed to be composed of 2^@order__ pages, and the macro
+> > > > will
+> > > > + * step through the region one block of 2^@order__ pages at a
+> > > > time.
+> > > > + */
+> > > > +#define for_each_dma_page(i__, j__, npages__, order__)	\
+> > > > +	for ((i__) = 0, (j__) = 0; (i__) < (npages__);	\
+> > > > +	     (j__)++, (i__) += 0x1 << (order__))
+> > > > +
+> > > > +/**
+> > > > + * __drm_gpusvm_range_unmap_pages - Unmap pages associated with
+> > > > a
+> > > > GPU SVM range (internal)
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + *
+> > > > + * This function unmap pages associated with a GPU SVM range.
+> > > > Assumes and
+> > > > + * asserts correct locking is in place when called.
+> > > > + */
+> > > > +static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm
+> > > > *gpusvm,
+> > > > +					   struct
+> > > > drm_gpusvm_range
+> > > > *range)
+> > > > +{
+> > > > +	lockdep_assert_held(&gpusvm->notifier_lock);
+> > > > +
+> > > > +	if (range->pages) {
+> > > > +		unsigned long i, j, npages =
+> > > > npages_in_range(range-
+> > > > > va.start,
+> > > > +							    
+> > > > range-
+> > > > > va.end);
+> > > > +
+> > > > +		if (range->flags.has_dma_mapping) {
+> > > > +			for_each_dma_page(i, j, npages, range-
+> > > > > order)
+> > > > +				dma_unmap_page(gpusvm->drm->dev,
+> > > > +					       range-
+> > > > >dma_addr[j],
+> > > > +					       PAGE_SIZE <<
+> > > > range-
+> > > > > order,
+> > > > +					      
+> > > > DMA_BIDIRECTIONAL);
+> > > > +		}
+> > > > +
+> > > > +		range->flags.has_vram_pages = false;
+> > > > +		range->flags.has_dma_mapping = false;
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_free_pages - Free pages associated with a
+> > > > GPU
+> > > > SVM range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + *
+> > > > + * This function free pages associated with a GPU SVM range.
+> > > > + */
+> > > > +static void drm_gpusvm_range_free_pages(struct drm_gpusvm
+> > > > *gpusvm,
+> > > > +					struct drm_gpusvm_range
+> > > > *range)
+> > > > +{
+> > > > +	lockdep_assert_held(&gpusvm->notifier_lock);
+> > > > +
+> > > > +	if (range->pages) {
+> > > > +		if (range->flags.kfree_mapping) {
+> > > > +			kfree(range->dma_addr);
+> > > > +			range->flags.kfree_mapping = false;
+> > > > +			range->pages = NULL;
+> > > > +		} else {
+> > > > +			kvfree(range->pages);
+> > > > +			range->pages = NULL;
+> > > > +		}
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_remove - Remove GPU SVM range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range to be removed
+> > > > + *
+> > > > + * This function removes the specified GPU SVM range and also
+> > > > removes the parent
+> > > > + * GPU SVM notifier if no more ranges remain in the notifier.
+> > > > The
+> > > > caller must
+> > > > + * hold a lock to protect range and notifier removal.
+> > > > + */
+> > > > +void drm_gpusvm_range_remove(struct drm_gpusvm *gpusvm,
+> > > > +			     struct drm_gpusvm_range *range)
+> > > > +{
+> > > > +	struct drm_gpusvm_notifier *notifier;
+> > > > +
+> > > > +	notifier = drm_gpusvm_notifier_find(gpusvm, range-
+> > > > > va.start);
+> > > > +	if (WARN_ON_ONCE(!notifier))
+> > > > +		return;
+> > > > +
+> > > > +	drm_gpusvm_notifier_lock(gpusvm);
+> > > > +	__drm_gpusvm_range_unmap_pages(gpusvm, range);
+> > > > +	drm_gpusvm_range_free_pages(gpusvm, range);
+> > > > +	__drm_gpusvm_range_remove(notifier, range);
+> > > > +	drm_gpusvm_notifier_unlock(gpusvm);
+> > > > +
+> > > > +	drm_gpusvm_range_put(range);
+> > > > +
+> > > > +	if (RB_EMPTY_ROOT(&notifier->root.rb_root)) {
+> > > > +		if (!notifier->flags.removed)
+> > > > +			mmu_interval_notifier_remove(&notifier-
+> > > > > notifier);
+> > > > +		drm_gpusvm_notifier_remove(gpusvm, notifier);
+> > > > +		drm_gpusvm_notifier_free(gpusvm, notifier);
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_get - Get a reference to GPU SVM range
+> > > > + * @range: Pointer to the GPU SVM range
+> > > > + *
+> > > > + * This function increments the reference count of the specified
+> > > > GPU
+> > > > SVM range.
+> > > > + *
+> > > > + * Returns:
+> > > > + * Pointer to the GPU SVM range.
+> > > > + */
+> > > > +struct drm_gpusvm_range *
+> > > > +drm_gpusvm_range_get(struct drm_gpusvm_range *range)
+> > > > +{
+> > > > +	kref_get(&range->refcount);
+> > > > +
+> > > > +	return range;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_destroy - Destroy GPU SVM range
+> > > > + * @refcount: Pointer to the reference counter embedded in the
+> > > > GPU
+> > > > SVM range
+> > > > + *
+> > > > + * This function destroys the specified GPU SVM range when its
+> > > > reference count
+> > > > + * reaches zero. If a custom range-free function is provided, it
+> > > > is
+> > > > invoked to
+> > > > + * free the range; otherwise, the range is deallocated using
+> > > > kfree().
+> > > > + */
+> > > > +static void drm_gpusvm_range_destroy(struct kref *refcount)
+> > > > +{
+> > > > +	struct drm_gpusvm_range *range =
+> > > > +		container_of(refcount, struct drm_gpusvm_range,
+> > > > refcount);
+> > > > +	struct drm_gpusvm *gpusvm = range->gpusvm;
+> > > > +
+> > > > +	if (gpusvm->ops->range_free)
+> > > > +		gpusvm->ops->range_free(range);
+> > > > +	else
+> > > > +		kfree(range);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_put - Put a reference to GPU SVM range
+> > > > + * @range: Pointer to the GPU SVM range
+> > > > + *
+> > > > + * This function decrements the reference count of the specified
+> > > > GPU
+> > > > SVM range
+> > > > + * and frees it when the count reaches zero.
+> > > > + */
+> > > > +void drm_gpusvm_range_put(struct drm_gpusvm_range *range)
+> > > > +{
+> > > > +	kref_put(&range->refcount, drm_gpusvm_range_destroy);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_pages_valid - GPU SVM range pages valid
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + *
+> > > > + * This function determines if a GPU SVM range pages are valid.
+> > > > Expected be
+> > > > + * called holding gpusvm->notifier_lock and as the last step
+> > > > before
+> > > > commiting a
+> > > > + * GPU binding.
+> > > > + *
+> > > > + * Returns:
+> > > > + * True if GPU SVM range has valid pages, False otherwise
+> > > > + */
+> > > > +bool drm_gpusvm_range_pages_valid(struct drm_gpusvm *gpusvm,
+> > > > +				  struct drm_gpusvm_range
+> > > > *range)
+> > > > +{
+> > > > +	lockdep_assert_held(&gpusvm->notifier_lock);
+> > > > +
+> > > > +	return range->flags.has_vram_pages || range-
+> > > > > flags.has_dma_mapping;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_pages_valid_unlocked - GPU SVM range pages
+> > > > valid
+> > > > unlocked
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + *
+> > > > + * This function determines if a GPU SVM range pages are valid.
+> > > > Expected be
+> > > > + * called without holding gpusvm->notifier_lock.
+> > > > + *
+> > > > + * Returns:
+> > > > + * True if GPU SVM range has valid pages, False otherwise
+> > > > + */
+> > > > +static bool
+> > > > +drm_gpusvm_range_pages_valid_unlocked(struct drm_gpusvm *gpusvm,
+> > > > +				      struct drm_gpusvm_range
+> > > > *range)
+> > > > +{
+> > > > +	bool pages_valid;
+> > > > +
+> > > > +	if (!range->pages)
+> > > > +		return false;
+> > > > +
+> > > > +	drm_gpusvm_notifier_lock(gpusvm);
+> > > > +	pages_valid = drm_gpusvm_range_pages_valid(gpusvm,
+> > > > range);
+> > > > +	if (!pages_valid && range->flags.kfree_mapping) {
+> > > > +		kfree(range->dma_addr);
+> > > > +		range->flags.kfree_mapping = false;
+> > > > +		range->pages = NULL;
+> > > > +	}
+> > > > +	drm_gpusvm_notifier_unlock(gpusvm);
+> > > > +
+> > > > +	return pages_valid;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_get_pages - Get pages for a GPU SVM range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + * @ctx: GPU SVM context
+> > > > + *
+> > > > + * This function gets pages for a GPU SVM range and ensures they
+> > > > are
+> > > > mapped for
+> > > > + * DMA access.
+> > > > + *
+> > > > + * Returns:
+> > > > + * 0 on success, negative error code on failure.
+> > > > + */
+> > > > +int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+> > > > +			       struct drm_gpusvm_range *range,
+> > > > +			       const struct drm_gpusvm_ctx *ctx)
+> > > > +{
+> > > > +	struct mmu_interval_notifier *notifier = &range-
+> > > > >notifier-
+> > > > > notifier;
+> > > > +	struct hmm_range hmm_range = {
+> > > > +		.default_flags = HMM_PFN_REQ_FAULT | (ctx-
+> > > > >read_only
+> > > > ? 0 :
+> > > > +			HMM_PFN_REQ_WRITE),
+> > > > +		.notifier = notifier,
+> > > > +		.start = range->va.start,
+> > > > +		.end = range->va.end,
+> > > > +		.dev_private_owner = gpusvm-
+> > > > > device_private_page_owner,
+> > > > +	};
+> > > > +	struct mm_struct *mm = gpusvm->mm;
+> > > > +	unsigned long timeout =
+> > > > +		jiffies +
+> > > > msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> > > > +	unsigned long i, j;
+> > > > +	unsigned long npages = npages_in_range(range->va.start,
+> > > > range->va.end);
+> > > > +	unsigned int order = 0;
+> > > > +	unsigned long *pfns;
+> > > > +	struct page **pages;
+> > > > +	int err = 0;
+> > > > +	bool vram_pages = !!range->flags.migrate_vram;
+> > > > +	bool alloc_pfns = false, kfree_mapping;
+> > > > +
+> > > > +retry:
+> > > > +	kfree_mapping = false;
+> > > > +	hmm_range.notifier_seq =
+> > > > mmu_interval_read_begin(notifier);
+> > > > +	if (drm_gpusvm_range_pages_valid_unlocked(gpusvm,
+> > > > range))
+> > > > +		return 0;
+> > > > +
+> > > > +	if (range->notifier_seq == hmm_range.notifier_seq &&
+> > > > range-
+> > > > > pages) {
+> > > > +		if (ctx->prefault)
+> > > > +			return 0;
+> > > > +
+> > > > +		pfns = (unsigned long *)range->pages;
+> > > > +		pages = range->pages;
+> > > > +		goto map_pages;
+> > > > +	}
+> > > > +
+> > > > +	if (!range->pages) {
+> > > > +		pfns = kvmalloc_array(npages, sizeof(*pfns),
+> > > > GFP_KERNEL);
+> > > > +		if (!pfns)
+> > > > +			return -ENOMEM;
+> > > > +		alloc_pfns = true;
+> > > > +	} else {
+> > > > +		pfns = (unsigned long *)range->pages;
+> > > > +	}
+> > > > +
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		if (!mmget_not_zero(mm)) {
+> > > > +			err = -EFAULT;
+> > > > +			goto err_out;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	hmm_range.hmm_pfns = pfns;
+> > > > +	while (true) {
+> > > > +		/* Must be checked after mmu_interval_read_begin
+> > > > */
+> > > > +		if (range->flags.unmapped) {
+> > > > +			err = -EFAULT;
+> > > > +			break;
+> > > > +		}
+> > > > +
+> > > > +		if (!ctx->mmap_locked) {
+> > > > +			/*
+> > > > +			 * XXX: HMM locking document indicates
+> > > > only
+> > > > a read-lock
+> > > > +			 * is required but there apears to be a
+> > > > window between
+> > > > +			 * the MMU_NOTIFY_MIGRATE event
+> > > > triggered in
+> > > > a CPU fault
+> > > > +			 * via migrate_vma_setup and the pages
+> > > > actually moving
+> > > > +			 * in migrate_vma_finalize in which this
+> > > > code can grab
+> > > > +			 * garbage pages. Grabbing the write-
+> > > > lock if
+> > > > the range
+> > > > +			 * is attached to vram appears to
+> > > > protect
+> > > > against this
+> > > > +			 * race.
+> > > > +			 */
+> > > > +			if (vram_pages)
+> > > > +				mmap_write_lock(mm);
+> > > > +			else
+> > > > +				mmap_read_lock(mm);
+> > > > +		}
+> > > > +		err = hmm_range_fault(&hmm_range);
+> > > > +		if (!ctx->mmap_locked) {
+> > > > +			if (vram_pages)
+> > > > +				mmap_write_unlock(mm);
+> > > > +			else
+> > > > +				mmap_read_unlock(mm);
+> > > > +		}
+> > > > +
+> > > > +		if (err == -EBUSY) {
+> > > > +			if (time_after(jiffies, timeout))
+> > > > +				break;
+> > > > +
+> > > > +			hmm_range.notifier_seq =
+> > > > mmu_interval_read_begin(notifier);
+> > > > +			continue;
+> > > > +		}
+> > > > +		break;
+> > > > +	}
+> > > > +	if (!ctx->mmap_locked)
+> > > > +		mmput(mm);
+> > > > +	if (err)
+> > > > +		goto err_free;
+> > > > +
+> > > > +	pages = (struct page **)pfns;
+> > > > +
+> > > > +	if (ctx->prefault) {
+> > > > +		range->pages = pages;
+> > > > +		goto set_seqno;
+> > > > +	}
+> > > > +
+> > > > +map_pages:
+> > > > +	if (is_device_private_page(hmm_pfn_to_page(pfns[0]))) {
+> > > > +		WARN_ON_ONCE(!range->vram_allocation);
+> > > > +
+> > > > +		for (i = 0; i < npages; ++i) {
+> > > > +			pages[i] = hmm_pfn_to_page(pfns[i]);
+> > > > +
+> > > > +			if
+> > > > (WARN_ON_ONCE(!is_device_private_page(pages[i]))) {
+> > > > +				err = -EOPNOTSUPP;
+> > > > +				goto err_free;
+> > > > +			}
+> > > > +		}
+> > > > +
+> > > > +		/* Do not race with notifier unmapping pages */
+> > > > +		drm_gpusvm_notifier_lock(gpusvm);
+> > > > +		range->flags.has_vram_pages = true;
+> > > > +		range->pages = pages;
+> > > > +		if (mmu_interval_read_retry(notifier,
+> > > > hmm_range.notifier_seq)) {
+> > > > +			err = -EAGAIN;
+> > > > +			__drm_gpusvm_range_unmap_pages(gpusvm,
+> > > > range);
+> > > > +		}
+> > > > +		drm_gpusvm_notifier_unlock(gpusvm);
+> > > > +	} else {
+> > > > +		dma_addr_t *dma_addr = (dma_addr_t *)pfns;
+> > > > +
+> > > > +		for_each_dma_page(i, j, npages, order) {
+> > > > +			if (WARN_ON_ONCE(i && order !=
+> > > > +					
+> > > > hmm_pfn_to_map_order(pfns[i]))) {
+> > > > +				err = -EOPNOTSUPP;
+> > > > +				npages = i;
+> > > > +				goto err_unmap;
+> > > > +			}
+> > > > +			order = hmm_pfn_to_map_order(pfns[i]);
+> > > > +
+> > > > +			pages[j] = hmm_pfn_to_page(pfns[i]);
+> > > > +			if
+> > > > (WARN_ON_ONCE(is_zone_device_page(pages[j]))) {
+> > > > +				err = -EOPNOTSUPP;
+> > > > +				npages = i;
+> > > > +				goto err_unmap;
+> > > > +			}
+> > > > +
+> > > > +			set_page_dirty_lock(pages[j]);
+> > > > +			mark_page_accessed(pages[j]);
+> > > > +
+> > > > +			dma_addr[j] = dma_map_page(gpusvm->drm-
+> > > > >dev,
+> > > > +						   pages[j], 0,
+> > > > +						   PAGE_SIZE <<
+> > > > order,
+> > > > +						  
+> > > > DMA_BIDIRECTIONAL);
+> > > > +			if (dma_mapping_error(gpusvm->drm->dev,
+> > > > dma_addr[j])) {
+> > > > +				err = -EFAULT;
+> > > > +				npages = i;
+> > > > +				goto err_unmap;
+> > > > +			}
+> > > > +		}
+> > > > +
+> > > > +		/* Huge pages, reduce memory footprint */
+> > > > +		if (order) {
+> > > > +			dma_addr = kmalloc_array(j,
+> > > > sizeof(*dma_addr),
+> > > > +						 GFP_KERNEL);
+> > > > +			if (dma_addr) {
+> > > > +				for (i = 0; i < j; ++i)
+> > > > +					dma_addr[i] =
+> > > > (dma_addr_t)pfns[i];
+> > > > +				kvfree(pfns);
+> > > > +				kfree_mapping = true;
+> > > > +			} else {
+> > > > +				dma_addr = (dma_addr_t *)pfns;
+> > > > +			}
+> > > > +		}
+> > > > +
+> > > > +		/* Do not race with notifier unmapping pages */
+> > > > +		drm_gpusvm_notifier_lock(gpusvm);
+> > > > +		range->order = order;
+> > > > +		range->flags.kfree_mapping = kfree_mapping;
+> > > > +		range->flags.has_dma_mapping = true;
+> > > > +		range->dma_addr = dma_addr;
+> > > > +		range->vram_allocation = NULL;
+> > > > +		if (mmu_interval_read_retry(notifier,
+> > > > hmm_range.notifier_seq)) {
+> > > > +			err = -EAGAIN;
+> > > > +			__drm_gpusvm_range_unmap_pages(gpusvm,
+> > > > range);
+> > > > +		}
+> > > > +		drm_gpusvm_notifier_unlock(gpusvm);
+> > > > +	}
+> > > > +
+> > > > +	if (err == -EAGAIN)
+> > > > +		goto retry;
+> > > > +set_seqno:
+> > > > +	range->notifier_seq = hmm_range.notifier_seq;
+> > > > +
+> > > > +	return 0;
+> > > > +
+> > > > +err_unmap:
+> > > > +	for_each_dma_page(i, j, npages, order)
+> > > > +		dma_unmap_page(gpusvm->drm->dev,
+> > > > +			       (dma_addr_t)pfns[j],
+> > > > +			       PAGE_SIZE << order,
+> > > > DMA_BIDIRECTIONAL);
+> > > > +err_free:
+> > > > +	if (alloc_pfns)
+> > > > +		kvfree(pfns);
+> > > > +err_out:
+> > > > +	return err;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_unmap_pages - Unmap pages associated with a
+> > > > GPU
+> > > > SVM range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + * @ctx: GPU SVM context
+> > > > + *
+> > > > + * This function unmaps pages associated with a GPU SVM range.
+> > > > If
+> > > > @in_notifier
+> > > > + * is set, it is assumed that gpusvm->notifier_lock is held in
+> > > > write
+> > > > mode; if it
+> > > > + * is clear, it acquires gpusvm->notifier_lock in read mode.
+> > > > Must be
+> > > > called on
+> > > > + * each GPU SVM range attached to notifier in gpusvm->ops-
+> > > > > invalidate for IOMMU
+> > > > + * security model.
+> > > > + */
+> > > > +void drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
+> > > > +				  struct drm_gpusvm_range
+> > > > *range,
+> > > > +				  const struct drm_gpusvm_ctx
+> > > > *ctx)
+> > > > +{
+> > > > +	if (ctx->in_notifier)
+> > > > +		lockdep_assert_held_write(&gpusvm-
+> > > > >notifier_lock);
+> > > > +	else
+> > > > +		drm_gpusvm_notifier_lock(gpusvm);
+> > > > +
+> > > > +	__drm_gpusvm_range_unmap_pages(gpusvm, range);
+> > > > +
+> > > > +	if (!ctx->in_notifier)
+> > > > +		drm_gpusvm_notifier_unlock(gpusvm);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migration_put_page - Put a migration page
+> > > > + * @page: Pointer to the page to put
+> > > > + *
+> > > > + * This function unlocks and puts a page.
+> > > > + */
+> > > > +static void drm_gpusvm_migration_put_page(struct page *page)
+> > > > +{
+> > > > +	unlock_page(page);
+> > > > +	put_page(page);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migration_put_pages - Put migration pages
+> > > > + * @npages: Number of pages
+> > > > + * @migrate_pfn: Array of migrate page frame numbers
+> > > > + *
+> > > > + * This function puts an array of pages.
+> > > > + */
+> > > > +static void drm_gpusvm_migration_put_pages(unsigned long npages,
+> > > > +					   unsigned long
+> > > > *migrate_pfn)
+> > > > +{
+> > > > +	unsigned long i;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i) {
+> > > > +		if (!migrate_pfn[i])
+> > > > +			continue;
+> > > > +
+> > > > +		drm_gpusvm_migration_put_page(migrate_pfn_to_pag
+> > > > e(mi
+> > > > grate_pfn[i]));
+> > > > +		migrate_pfn[i] = 0;
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_get_vram_page - Get a reference to a VRAM page
+> > > > + * @page: Pointer to the page
+> > > > + * @zdd: Pointer to the GPU SVM zone device data
+> > > > + *
+> > > > + * This function associates the given page with the specified
+> > > > GPU
+> > > > SVM zone
+> > > > + * device data and initializes it for zone device usage.
+> > > > + */
+> > > > +static void drm_gpusvm_get_vram_page(struct page *page,
+> > > > +				     struct drm_gpusvm_zdd *zdd)
+> > > > +{
+> > > > +	page->zone_device_data = drm_gpusvm_zdd_get(zdd);
+> > > > +	zone_device_page_init(page);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migrate_map_pages() - Map migration pages for GPU
+> > > > SVM
+> > > > migration
+> > > > + * @dev: The device for which the pages are being mapped
+> > > > + * @dma_addr: Array to store DMA addresses corresponding to
+> > > > mapped
+> > > > pages
+> > > > + * @migrate_pfn: Array of migrate page frame numbers to map
+> > > > + * @npages: Number of pages to map
+> > > > + * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
+> > > > + *
+> > > > + * This function maps pages of memory for migration usage in GPU
+> > > > SVM. It
+> > > > + * iterates over each page frame number provided in
+> > > > @migrate_pfn,
+> > > > maps the
+> > > > + * corresponding page, and stores the DMA address in the
+> > > > provided
+> > > > @dma_addr
+> > > > + * array.
+> > > > + *
+> > > > + * Return: 0 on success, -EFAULT if an error occurs during
+> > > > mapping.
+> > > > + */
+> > > > +static int drm_gpusvm_migrate_map_pages(struct device *dev,
+> > > > +					dma_addr_t *dma_addr,
+> > > > +					long unsigned int
+> > > > *migrate_pfn,
+> > > > +					unsigned long npages,
+> > > > +					enum dma_data_direction
+> > > > dir)
+> > > > +{
+> > > > +	unsigned long i;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i) {
+> > > > +		struct page *page =
+> > > > migrate_pfn_to_page(migrate_pfn[i]);
+> > > > +
+> > > > +		if (!page)
+> > > > +			continue;
+> > > > +
+> > > > +		if (WARN_ON_ONCE(is_zone_device_page(page)))
+> > > > +			return -EFAULT;
+> > > > +
+> > > > +		dma_addr[i] = dma_map_page(dev, page, 0,
+> > > > PAGE_SIZE,
+> > > > dir);
+> > > > +		if (dma_mapping_error(dev, dma_addr[i]))
+> > > > +			return -EFAULT;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migrate_unmap_pages() - Unmap pages previously
+> > > > mapped
+> > > > for GPU SVM migration
+> > > > + * @dev: The device for which the pages were mapped
+> > > > + * @dma_addr: Array of DMA addresses corresponding to mapped
+> > > > pages
+> > > > + * @npages: Number of pages to unmap
+> > > > + * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
+> > > > + *
+> > > > + * This function unmaps previously mapped pages of memory for
+> > > > GPU
+> > > > Shared Virtual
+> > > > + * Memory (SVM). It iterates over each DMA address provided in
+> > > > @dma_addr, checks
+> > > > + * if it's valid and not already unmapped, and unmaps the
+> > > > corresponding page.
+> > > > + */
+> > > > +static void drm_gpusvm_migrate_unmap_pages(struct device *dev,
+> > > > +					   dma_addr_t *dma_addr,
+> > > > +					   unsigned long npages,
+> > > > +					   enum
+> > > > dma_data_direction
+> > > > dir)
+> > > > +{
+> > > > +	unsigned long i;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i) {
+> > > > +		if (!dma_addr[i] || dma_mapping_error(dev,
+> > > > dma_addr[i]))
+> > > > +			continue;
+> > > > +
+> > > > +		dma_unmap_page(dev, dma_addr[i], PAGE_SIZE,
+> > > > dir);
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migrate_to_vram - Migrate GPU SVM range to VRAM
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + *                   failure of this function.
+> > > > + * @vram_allocation: Driver-private pointer to the VRAM
+> > > > allocation.
+> > > > The caller
+> > > > + *                   should hold a reference to the VRAM
+> > > > allocation,
+> > > > which
+> > > > + *                   should be dropped via ops->vram_allocation
+> > > > or
+> > > > upon the
+> > > > + *                   failure of this function.
+> > > > + * @ctx: GPU SVM context
+> > > > + *
+> > > > + * This function migrates the specified GPU SVM range to VRAM.
+> > > > It
+> > > > performs the
+> > > > + * necessary setup and invokes the driver-specific operations
+> > > > for
+> > > > migration to
+> > > > + * VRAM. Upon successful return, @vram_allocation can safely
+> > > > reference @range
+> > > > + * until ops->vram_release is called which only upon successful
+> > > > return.
+> > > > + *
+> > > > + * Returns:
+> > > > + * 0 on success, negative error code on failure.
+> > > > + */
+> > > > +int drm_gpusvm_migrate_to_vram(struct drm_gpusvm *gpusvm,
+> > > > +			       struct drm_gpusvm_range *range,
+> > > > +			       void *vram_allocation,
+> > > > +			       const struct drm_gpusvm_ctx *ctx)
+> > > > +{
+> > > > +	u64 start = range->va.start, end = range->va.end;
+> > > > +	struct migrate_vma migrate = {
+> > > > +		.start		= start,
+> > > > +		.end		= end,
+> > > > +		.pgmap_owner	= gpusvm-
+> > > > >device_private_page_owner,
+> > > > +		.flags		= MIGRATE_VMA_SELECT_SYSTEM,
+> > > > +	};
+> > > > +	struct mm_struct *mm = gpusvm->mm;
+> > > > +	unsigned long i, npages = npages_in_range(start, end);
+> > > > +	struct vm_area_struct *vas;
+> > > > +	struct drm_gpusvm_zdd *zdd = NULL;
+> > > > +	struct page **pages;
+> > > > +	dma_addr_t *dma_addr;
+> > > > +	void *buf;
+> > > > +	int err;
+> > > > +
+> > > > +	if (!range->flags.migrate_vram)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	if (!gpusvm->ops->populate_vram_pfn || !gpusvm->ops-
+> > > > > copy_to_vram ||
+> > > > +	    !gpusvm->ops->copy_to_sram)
+> > > > +		return -EOPNOTSUPP;
+> > > > +
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		if (!mmget_not_zero(mm)) {
+> > > > +			err = -EFAULT;
+> > > > +			goto err_out;
+> > > > +		}
+> > > > +		mmap_write_lock(mm);
+> > > > +	}
+> > > > +
+> > > > +	mmap_assert_locked(mm);
+> > > > +
+> > > > +	vas = vma_lookup(mm, start);
+> > > > +	if (!vas) {
+> > > > +		err = -ENOENT;
+> > > > +		goto err_mmunlock;
+> > > > +	}
+> > > > +
+> > > > +	if (end > vas->vm_end || start < vas->vm_start) {
+> > > > +		err = -EINVAL;
+> > > > +		goto err_mmunlock;
+> > > > +	}
+> > > > +
+> > > > +	if (!vma_is_anonymous(vas)) {
+> > > > +		err = -EBUSY;
+> > > > +		goto err_mmunlock;
+> > > > +	}
+> > > > +
+> > > > +	buf = kvcalloc(npages, 2 * sizeof(*migrate.src) +
+> > > > sizeof(*dma_addr) +
+> > > > +		       sizeof(*pages), GFP_KERNEL);
+> > > > +	if (!buf) {
+> > > > +		err = -ENOMEM;
+> > > > +		goto err_mmunlock;
+> > > > +	}
+> > > > +	dma_addr = buf + (2 * sizeof(*migrate.src) * npages);
+> > > > +	pages = buf + (2 * sizeof(*migrate.src) +
+> > > > sizeof(*dma_addr))
+> > > > * npages;
+> > > > +
+> > > > +	zdd = drm_gpusvm_zdd_alloc(range);
+> > > > +	if (!zdd) {
+> > > > +		err = -ENOMEM;
+> > > > +		goto err_free;
+> > > > +	}
+> > > > +
+> > > > +	migrate.vma = vas;
+> > > > +	migrate.src = buf;
+> > > > +	migrate.dst = migrate.src + npages;
+> > > > +
+> > > > +	err = migrate_vma_setup(&migrate);
+> > > > +	if (err)
+> > > > +		goto err_free;
+> > > > +
+> > > > +	/*
+> > > > +	 * FIXME: Below cases, !migrate.cpages and
+> > > > migrate.cpages !=
+> > > > npages, not
+> > > > +	 * always an error. Need to revisit possible cases and
+> > > > how
+> > > > to handle. We
+> > > > +	 * could prefault on migrate.cpages != npages via
+> > > > hmm_range_fault.
+> > > > +	 */
+> > > > +
+> > > > +	if (!migrate.cpages) {
+> > > > +		err = -EFAULT;
+> > > > +		goto err_free;
+> > > > +	}
+> > > > +
+> > > > +	if (migrate.cpages != npages) {
+> > > > +		err = -EBUSY;
+> > > > +		goto err_finalize;
+> > > > +	}
+> > > > +
+> > > > +	err = gpusvm->ops->populate_vram_pfn(gpusvm,
+> > > > vram_allocation, npages,
+> > > > +					     migrate.dst);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +	err = drm_gpusvm_migrate_map_pages(gpusvm->drm->dev,
+> > > > dma_addr,
+> > > > +					   migrate.src, npages,
+> > > > DMA_TO_DEVICE);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i) {
+> > > > +		struct page *page = pfn_to_page(migrate.dst[i]);
+> > > > +
+> > > > +		pages[i] = page;
+> > > > +		migrate.dst[i] = migrate_pfn(migrate.dst[i]);
+> > > > +		drm_gpusvm_get_vram_page(page, zdd);
+> > > > +	}
+> > > > +
+> > > > +	err = gpusvm->ops->copy_to_vram(gpusvm, pages, dma_addr,
+> > > > npages);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +	/* Upon success bind vram allocation to range and zdd */
+> > > > +	range->vram_allocation = vram_allocation;
+> > > > +	WRITE_ONCE(zdd->vram_allocation,
+> > > > vram_allocation);	/*
+> > > > Owns ref */
+> > > > +
+> > > > +err_finalize:
+> > > > +	if (err)
+> > > > +		drm_gpusvm_migration_put_pages(npages,
+> > > > migrate.dst);
+> > > > +	migrate_vma_pages(&migrate);
+> > > > +	migrate_vma_finalize(&migrate);
+> > > > +	drm_gpusvm_migrate_unmap_pages(gpusvm->drm->dev,
+> > > > dma_addr,
+> > > > npages,
+> > > > +				       DMA_TO_DEVICE);
+> > > > +err_free:
+> > > > +	if (zdd)
+> > > > +		drm_gpusvm_zdd_put(zdd);
+> > > > +	kvfree(buf);
+> > > > +err_mmunlock:
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		mmap_write_unlock(mm);
+> > > > +		mmput(mm);
+> > > > +	}
+> > > > +err_out:
+> > > > +	return err;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migrate_populate_sram_pfn - Populate SRAM PFNs for
+> > > > a
+> > > > VM area
+> > > > + * @vas: Pointer to the VM area structure, can be NULL
+> > > > + * @npages: Number of pages to populate
+> > > > + * @src_mpfn: Source array of migrate PFNs
+> > > > + * @mpfn: Array of migrate PFNs to populate
+> > > > + * @addr: Start address for PFN allocation
+> > > > + *
+> > > > + * This function populates the SRAM migrate page frame numbers
+> > > > (PFNs) for the
+> > > > + * specified VM area structure. It allocates and locks pages in
+> > > > the
+> > > > VM area for
+> > > > + * SRAM usage. If vas is non-NULL use alloc_page_vma for
+> > > > allocation,
+> > > > if NULL use
+> > > > + * alloc_page for allocation.
+> > > > + *
+> > > > + * Returns:
+> > > > + * 0 on success, negative error code on failure.
+> > > > + */
+> > > > +static int drm_gpusvm_migrate_populate_sram_pfn(struct
+> > > > vm_area_struct *vas,
+> > > > +						unsigned long
+> > > > npages,
+> > > > +						unsigned long
+> > > > *src_mpfn,
+> > > > +						unsigned long
+> > > > *mpfn,
+> > > > u64 addr)
+> > > > +{
+> > > > +	unsigned long i;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i, addr += PAGE_SIZE) {
+> > > > +		struct page *page;
+> > > > +
+> > > > +		if (!(src_mpfn[i] & MIGRATE_PFN_MIGRATE))
+> > > > +			continue;
+> > > > +
+> > > > +		if (vas)
+> > > > +			page = alloc_page_vma(GFP_HIGHUSER, vas,
+> > > > addr);
+> > > > +		else
+> > > > +			page = alloc_page(GFP_HIGHUSER);
+> > > > +
+> > > > +		if (!page)
+> > > > +			return -ENOMEM;
+> > > > +
+> > > > +		lock_page(page);
+> > > > +		mpfn[i] = migrate_pfn(page_to_pfn(page));
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_evict_to_sram - Evict GPU SVM range to SRAM
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + *
+> > > > + * Similar to __drm_gpusvm_migrate_to_sram but does not require
+> > > > mmap
+> > > > lock and
+> > > > + * migration done via migrate_device_* functions. Fallback path
+> > > > as
+> > > > it is
+> > > > + * preferred to issue migrations with mmap lock.
+> > > > + *
+> > > > + * Returns:
+> > > > + * 0 on success, negative error code on failure.
+> > > > + */
+> > > > +static int drm_gpusvm_evict_to_sram(struct drm_gpusvm *gpusvm,
+> > > > +				    struct drm_gpusvm_range
+> > > > *range)
+> > > > +{
+> > > > +	unsigned long npages;
+> > > > +	struct page **pages;
+> > > > +	unsigned long *src, *dst;
+> > > > +	dma_addr_t *dma_addr;
+> > > > +	void *buf;
+> > > > +	int i, err = 0;
+> > > > +
+> > > > +	npages = npages_in_range(range->va.start, range-
+> > > > >va.end);
+> > > > +
+> > > > +	buf = kvcalloc(npages, 2 * sizeof(*src) +
+> > > > sizeof(*dma_addr)
+> > > > +
+> > > > +		       sizeof(*pages), GFP_KERNEL);
+> > > > +	if (!buf) {
+> > > > +		err = -ENOMEM;
+> > > > +		goto err_out;
+> > > > +	}
+> > > > +	src = buf;
+> > > > +	dst = buf + (sizeof(*src) * npages);
+> > > > +	dma_addr = buf + (2 * sizeof(*src) * npages);
+> > > > +	pages = buf + (2 * sizeof(*src) + sizeof(*dma_addr)) *
+> > > > npages;
+> > > > +
+> > > > +	err = gpusvm->ops->populate_vram_pfn(gpusvm, range-
+> > > > > vram_allocation,
+> > > > +					     npages, src);
+> > > > +	if (err)
+> > > > +		goto err_free;
+> > > > +
+> > > > +	err = migrate_device_vma_range(gpusvm->mm,
+> > > > +				       gpusvm-
+> > > > > device_private_page_owner, src,
+> > > > +				       npages, range->va.start);
+> > > > +	if (err)
+> > > > +		goto err_free;
+> > > > +
+> > > > +	err = drm_gpusvm_migrate_populate_sram_pfn(NULL, npages,
+> > > > src, dst, 0);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +	err = drm_gpusvm_migrate_map_pages(gpusvm->drm->dev,
+> > > > dma_addr,
+> > > > +					   dst, npages,
+> > > > DMA_BIDIRECTIONAL);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i)
+> > > > +		pages[i] = migrate_pfn_to_page(src[i]);
+> > > > +
+> > > > +	err = gpusvm->ops->copy_to_sram(gpusvm, pages, dma_addr,
+> > > > npages);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +err_finalize:
+> > > > +	if (err)
+> > > > +		drm_gpusvm_migration_put_pages(npages, dst);
+> > > > +	migrate_device_pages(src, dst, npages);
+> > > > +	migrate_device_finalize(src, dst, npages);
+> > > > +	drm_gpusvm_migrate_unmap_pages(gpusvm->drm->dev,
+> > > > dma_addr,
+> > > > npages,
+> > > > +				       DMA_BIDIRECTIONAL);
+> > > > +err_free:
+> > > > +	kvfree(buf);
+> > > > +err_out:
+> > > > +
+> > > > +	return err;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * __drm_gpusvm_migrate_to_sram - Migrate GPU SVM range to SRAM
+> > > > (internal)
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @vas: Pointer to the VM area structure
+> > > > + * @page: Pointer to the page for fault handling (can be NULL)
+> > > > + * @start: Start address of the migration range
+> > > > + * @end: End address of the migration range
+> > > > + *
+> > > > + * This internal function performs the migration of the
+> > > > specified
+> > > > GPU SVM range
+> > > > + * to SRAM. It sets up the migration, populates + dma maps SRAM
+> > > > PFNs, and
+> > > > + * invokes the driver-specific operations for migration to SRAM.
+> > > > + *
+> > > > + * Returns:
+> > > > + * 0 on success, negative error code on failure.
+> > > > + */
+> > > > +static int __drm_gpusvm_migrate_to_sram(struct drm_gpusvm
+> > > > *gpusvm,
+> > > > +					struct vm_area_struct
+> > > > *vas,
+> > > > +					struct page *page,
+> > > > +					u64 start, u64 end)
+> > > > +{
+> > > > +	struct migrate_vma migrate = {
+> > > > +		.vma		= vas,
+> > > > +		.pgmap_owner	= gpusvm-
+> > > > >device_private_page_owner,
+> > > > +		.flags		=
+> > > > MIGRATE_VMA_SELECT_DEVICE_PRIVATE,
+> > > > +		.fault_page	= page,
+> > > > +	};
+> > > > +	unsigned long npages;
+> > > > +	struct page **pages;
+> > > > +	dma_addr_t *dma_addr;
+> > > > +	void *buf;
+> > > > +	int i, err = 0;
+> > > > +
+> > > > +	mmap_assert_locked(gpusvm->mm);
+> > > > +
+> > > > +	/* Corner where VMA area struct has been partially
+> > > > unmapped
+> > > > */
+> > > > +	if (start < vas->vm_start)
+> > > > +		start = vas->vm_start;
+> > > > +	if (end > vas->vm_end)
+> > > > +		end = vas->vm_end;
+> > > > +
+> > > > +	migrate.start = start;
+> > > > +	migrate.end = end;
+> > > > +	npages = npages_in_range(start, end);
+> > > > +
+> > > > +	buf = kvcalloc(npages, 2 * sizeof(*migrate.src) +
+> > > > sizeof(*dma_addr) +
+> > > > +		       sizeof(*pages), GFP_KERNEL);
+> > > > +	if (!buf) {
+> > > > +		err = -ENOMEM;
+> > > > +		goto err_out;
+> > > > +	}
+> > > > +	dma_addr = buf + (2 * sizeof(*migrate.src) * npages);
+> > > > +	pages = buf + (2 * sizeof(*migrate.src) +
+> > > > sizeof(*dma_addr))
+> > > > * npages;
+> > > > +
+> > > > +	migrate.vma = vas;
+> > > > +	migrate.src = buf;
+> > > > +	migrate.dst = migrate.src + npages;
+> > > > +
+> > > > +	err = migrate_vma_setup(&migrate);
+> > > > +	if (err)
+> > > > +		goto err_free;
+> > > > +
+> > > > +	/* Raced with another CPU fault, nothing to do */
+> > > > +	if (!migrate.cpages)
+> > > > +		goto err_free;
+> > > > +
+> > > > +	err = drm_gpusvm_migrate_populate_sram_pfn(vas, npages,
+> > > > +						   migrate.src,
+> > > > migrate.dst,
+> > > > +						   start);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +	err = drm_gpusvm_migrate_map_pages(gpusvm->drm->dev,
+> > > > dma_addr,
+> > > > +					   migrate.dst, npages,
+> > > > +					   DMA_BIDIRECTIONAL);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +	for (i = 0; i < npages; ++i)
+> > > > +		pages[i] = migrate_pfn_to_page(migrate.src[i]);
+> > > > +
+> > > > +	err = gpusvm->ops->copy_to_sram(gpusvm, pages, dma_addr,
+> > > > npages);
+> > > > +	if (err)
+> > > > +		goto err_finalize;
+> > > > +
+> > > > +err_finalize:
+> > > > +	if (err)
+> > > > +		drm_gpusvm_migration_put_pages(npages,
+> > > > migrate.dst);
+> > > > +	migrate_vma_pages(&migrate);
+> > > > +	migrate_vma_finalize(&migrate);
+> > > > +	drm_gpusvm_migrate_unmap_pages(gpusvm->drm->dev,
+> > > > dma_addr,
+> > > > npages,
+> > > > +				       DMA_BIDIRECTIONAL);
+> > > > +err_free:
+> > > > +	kvfree(buf);
+> > > > +err_out:
+> > > > +	mmap_assert_locked(gpusvm->mm);
+> > > > +
+> > > > +	return err;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migrate_to_sram - Migrate (evict) GPU SVM range to
+> > > > SRAM
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @range: Pointer to the GPU SVM range structure
+> > > > + * @ctx: GPU SVM context
+> > > > + *
+> > > > + * This function initiates the migration of the specified GPU
+> > > > SVM
+> > > > range to
+> > > > + * SRAM. It performs necessary checks and invokes the internal
+> > > > migration
+> > > > + * function for actual migration.
+> > > > + *
+> > > > + * Returns:
+> > > > + * 0 on success, negative error code on failure.
+> > > > + */
+> > > > +int drm_gpusvm_migrate_to_sram(struct drm_gpusvm *gpusvm,
+> > > > +			       struct drm_gpusvm_range *range,
+> > > > +			       const struct drm_gpusvm_ctx *ctx)
+> > > > +{
+> > > > +	u64 start = range->va.start, end = range->va.end;
+> > > > +	struct mm_struct *mm = gpusvm->mm;
+> > > > +	struct vm_area_struct *vas;
+> > > > +	int err;
+> > > > +	bool retry = false;
+> > > > +
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		if (!mmget_not_zero(mm)) {
+> > > > +			err = -EFAULT;
+> > > > +			goto err_out;
+> > > > +		}
+> > > > +		if (ctx->trylock_mmap) {
+> > > > +			if (!mmap_read_trylock(mm))  {
+> > > > +				err =
+> > > > drm_gpusvm_evict_to_sram(gpusvm, range);
+> > > > +				goto err_mmput;
+> > > > +			}
+> > > > +		} else {
+> > > > +			mmap_read_lock(mm);
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	mmap_assert_locked(mm);
+> > > > +
+> > > > +	/*
+> > > > +	 * Loop required to find all VMA area structs for the
+> > > > corner
+> > > > case when
+> > > > +	 * VRAM backing has been partially unmapped from MM's
+> > > > address space.
+> > > > +	 */
+> > > > +again:
+> > > > +	vas = find_vma(mm, start);
+> > > > +	if (!vas) {
+> > > > +		if (!retry)
+> > > > +			err = -ENOENT;
+> > > > +		goto err_mmunlock;
+> > > > +	}
+> > > > +
+> > > > +	if (end <= vas->vm_start || start >= vas->vm_end) {
+> > > > +		if (!retry)
+> > > > +			err = -EINVAL;
+> > > > +		goto err_mmunlock;
+> > > > +	}
+> > > > +
+> > > > +	err = __drm_gpusvm_migrate_to_sram(gpusvm, vas, NULL,
+> > > > start,
+> > > > end);
+> > > > +	if (err)
+> > > > +		goto err_mmunlock;
+> > > > +
+> > > > +	if (vas->vm_end < end) {
+> > > > +		retry = true;
+> > > > +		start = vas->vm_end;
+> > > > +		goto again;
+> > > > +	}
+> > > > +
+> > > > +	if (!ctx->mmap_locked) {
+> > > > +		mmap_read_unlock(mm);
+> > > > +		/*
+> > > > +		 * Using mmput_async as this function can be
+> > > > called
+> > > > while
+> > > > +		 * holding a dma-resv lock, and a final put can
+> > > > grab
+> > > > the mmap
+> > > > +		 * lock, causing a lock inversion.
+> > > > +		 */
+> > > > +		mmput_async(mm);
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +
+> > > > +err_mmunlock:
+> > > > +	if (!ctx->mmap_locked)
+> > > > +		mmap_read_unlock(mm);
+> > > > +err_mmput:
+> > > > +	if (!ctx->mmap_locked)
+> > > > +		mmput_async(mm);
+> > > > +err_out:
+> > > > +	return err;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_page_free - Put GPU SVM zone device data
+> > > > associated
+> > > > with a page
+> > > > + * @page: Pointer to the page
+> > > > + *
+> > > > + * This function is a callback used to put the GPU SVM zone
+> > > > device
+> > > > data
+> > > > + * associated with a page when it is being released.
+> > > > + */
+> > > > +static void drm_gpusvm_page_free(struct page *page)
+> > > > +{
+> > > > +	drm_gpusvm_zdd_put(page->zone_device_data);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_migrate_to_ram - Migrate GPU SVM range to RAM
+> > > > (page
+> > > > fault handler)
+> > > > + * @vmf: Pointer to the fault information structure
+> > > > + *
+> > > > + * This function is a page fault handler used to migrate a GPU
+> > > > SVM
+> > > > range to RAM.
+> > > > + * It retrieves the GPU SVM range information from the faulting
+> > > > page
+> > > > and invokes
+> > > > + * the internal migration function to migrate the range back to
+> > > > RAM.
+> > > > + *
+> > > > + * Returns:
+> > > > + * VM_FAULT_SIGBUS on failure, 0 on success.
+> > > > + */
+> > > > +static vm_fault_t drm_gpusvm_migrate_to_ram(struct vm_fault
+> > > > *vmf)
+> > > > +{
+> > > > +	struct drm_gpusvm_zdd *zdd = vmf->page-
+> > > > >zone_device_data;
+> > > > +	int err;
+> > > > +
+> > > > +	err = __drm_gpusvm_migrate_to_sram(zdd->range->gpusvm,
+> > > > +					   vmf->vma, vmf->page,
+> > > > +					   zdd->range->va.start,
+> > > > +					   zdd->range->va.end);
+> > > > +
+> > > > +	return err ? VM_FAULT_SIGBUS : 0;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_pagemap_ops - Device page map operations for GPU
+> > > > SVM
+> > > > + */
+> > > > +static const struct dev_pagemap_ops drm_gpusvm_pagemap_ops = {
+> > > > +	.page_free = drm_gpusvm_page_free,
+> > > > +	.migrate_to_ram = drm_gpusvm_migrate_to_ram,
+> > > > +};
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_pagemap_ops_get - Retrieve GPU SVM device page map
+> > > > operations
+> > > > + *
+> > > > + * Returns:
+> > > > + * Pointer to the GPU SVM device page map operations structure.
+> > > > + */
+> > > > +const struct dev_pagemap_ops *drm_gpusvm_pagemap_ops_get(void)
+> > > > +{
+> > > > +	return &drm_gpusvm_pagemap_ops;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_has_mapping - Check if GPU SVM has mapping for the
+> > > > given address range
+> > > > + * @gpusvm: Pointer to the GPU SVM structure.
+> > > > + * @start: Start address
+> > > > + * @end: End address
+> > > > + *
+> > > > + * Returns:
+> > > > + * True if GPU SVM has mapping, False otherwise
+> > > > + */
+> > > > +bool drm_gpusvm_has_mapping(struct drm_gpusvm *gpusvm, u64
+> > > > start,
+> > > > u64 end)
+> > > > +{
+> > > > +	struct drm_gpusvm_notifier *notifier;
+> > > > +
+> > > > +	drm_gpusvm_for_each_notifier(notifier, gpusvm, start,
+> > > > end) {
+> > > > +		struct drm_gpusvm_range *range = NULL;
+> > > > +
+> > > > +		drm_gpusvm_for_each_range(range, notifier,
+> > > > start,
+> > > > end)
+> > > > +			return true;
+> > > > +	}
+> > > > +
+> > > > +	return false;
+> > > > +}
+> > > > diff --git a/drivers/gpu/drm/xe/drm_gpusvm.h
+> > > > b/drivers/gpu/drm/xe/drm_gpusvm.h
+> > > > new file mode 100644
+> > > > index 000000000000..0ea70f8534a8
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/xe/drm_gpusvm.h
+> > > > @@ -0,0 +1,415 @@
+> > > > +/* SPDX-License-Identifier: MIT */
+> > > > +/*
+> > > > + * Copyright © 2024 Intel Corporation
+> > > > + */
+> > > > +
+> > > > +#ifndef __DRM_GPUSVM_H__
+> > > > +#define __DRM_GPUSVM_H__
+> > > > +
+> > > > +#include <linux/kref.h>
+> > > > +#include <linux/mmu_notifier.h>
+> > > > +#include <linux/workqueue.h>
+> > > > +
+> > > > +struct dev_pagemap_ops;
+> > > > +struct drm_device;
+> > > > +struct drm_gpusvm;
+> > > > +struct drm_gpusvm_notifier;
+> > > > +struct drm_gpusvm_ops;
+> > > > +struct drm_gpusvm_range;
+> > > > +
+> > > > +/**
+> > > > + * struct drm_gpusvm_ops - Operations structure for GPU SVM
+> > > > + *
+> > > > + * This structure defines the operations for GPU Shared Virtual
+> > > > Memory (SVM).
+> > > > + * These operations are provided by the GPU driver to manage SVM
+> > > > ranges and
+> > > > + * perform operations such as migration between VRAM and system
+> > > > RAM.
+> > > > + */
+> > > > +struct drm_gpusvm_ops {
+> > > > +	/**
+> > > > +	 * @notifier_alloc: Allocate a GPU SVM notifier
+> > > > (optional)
+> > > > +	 *
+> > > > +	 * This function shall allocate a GPU SVM notifier.
+> > > > +	 *
+> > > > +	 * Returns:
+> > > > +	 * Pointer to the allocated GPU SVM notifier on success,
+> > > > NULL on failure.
+> > > > +	 */
+> > > > +	struct drm_gpusvm_notifier *(*notifier_alloc)(void);
+> > > > +
+> > > > +	/**
+> > > > +	 * @notifier_free: Free a GPU SVM notifier (optional)
+> > > > +	 * @notifier: Pointer to the GPU SVM notifier to be
+> > > > freed
+> > > > +	 *
+> > > > +	 * This function shall free a GPU SVM notifier.
+> > > > +	 */
+> > > > +	void (*notifier_free)(struct drm_gpusvm_notifier
+> > > > *notifier);
+> > > > +
+> > > > +	/**
+> > > > +	 * @range_alloc: Allocate a GPU SVM range (optional)
+> > > > +	 * @gpusvm: Pointer to the GPU SVM
+> > > > +	 *
+> > > > +	 * This function shall allocate a GPU SVM range.
+> > > > +	 *
+> > > > +	 * Returns:
+> > > > +	 * Pointer to the allocated GPU SVM range on success,
+> > > > NULL
+> > > > on failure.
+> > > > +	 */
+> > > > +	struct drm_gpusvm_range *(*range_alloc)(struct
+> > > > drm_gpusvm
+> > > > *gpusvm);
+> > > > +
+> > > > +	/**
+> > > > +	 * @range_free: Free a GPU SVM range (optional)
+> > > > +	 * @range: Pointer to the GPU SVM range to be freed
+> > > > +	 *
+> > > > +	 * This function shall free a GPU SVM range.
+> > > > +	 */
+> > > > +	void (*range_free)(struct drm_gpusvm_range *range);
+> > > > +
+> > > > +	/**
+> > > > +	 * @vram_release: Release VRAM allocation (optional)
+> > > > +	 * @vram_allocation: Driver-private pointer to the VRAM
+> > > > allocation
+> > > > +	 *
+> > > > +	 * This function shall release VRAM allocation and
+> > > > expects
+> > > > to drop a
+> > > > +	 * reference to VRAM allocation.
+> > > > +	 */
+> > > > +	void (*vram_release)(void *vram_allocation);
+> > > > +
+> > > > +	/**
+> > > > +	 * @populate_vram_pfn: Populate VRAM PFN (required for
+> > > > migration)
+> > > > +	 * @gpusvm: Pointer to the GPU SVM
+> > > > +	 * @vram_allocation: Driver-private pointer to the VRAM
+> > > > allocation
+> > > > +	 * @npages: Number of pages to populate
+> > > > +	 * @pfn: Array of page frame numbers to populate
+> > > > +	 *
+> > > > +	 * This function shall populate VRAM page frame numbers
+> > > > (PFN).
+> > > > +	 *
+> > > > +	 * Returns:
+> > > > +	 * 0 on success, a negative error code on failure.
+> > > > +	 */
+> > > > +	int (*populate_vram_pfn)(struct drm_gpusvm *gpusvm,
+> > > > +				 void *vram_allocation,
+> > > > +				 unsigned long npages,
+> > > > +				 unsigned long *pfn);
+> > > > +
+> > > > +	/**
+> > > > +	 * @copy_to_vram: Copy to VRAM (required for migration)
+> > > > +	 * @gpusvm: Pointer to the GPU SVM
+> > > > +	 * @pages: Pointer to array of VRAM pages (destination)
+> > > > +	 * @dma_addr: Pointer to array of DMA addresses (source)
+> > > > +	 * @npages: Number of pages to copy
+> > > > +	 *
+> > > > +	 * This function shall copy pages to VRAM.
+> > > > +	 *
+> > > > +	 * Returns:
+> > > > +	 * 0 on success, a negative error code on failure.
+> > > > +	 */
+> > > > +	int (*copy_to_vram)(struct drm_gpusvm *gpusvm,
+> > > > +			    struct page **pages,
+> > > > +			    dma_addr_t *dma_addr,
+> > > > +			    unsigned long npages);
+> > > > +
+> > > > +	/**
+> > > > +	 * @copy_to_sram: Copy to system RAM (required for
+> > > > migration)
+> > > > +	 * @gpusvm: Pointer to the GPU SVM
+> > > > +	 * @pages: Pointer to array of VRAM pages (source)
+> > > > +	 * @dma_addr: Pointer to array of DMA addresses
+> > > > (destination)
+> > > > +	 * @npages: Number of pages to copy
+> > > > +	 *
+> > > > +	 * This function shall copy pages to system RAM.
+> > > > +	 *
+> > > > +	 * Returns:
+> > > > +	 * 0 on success, a negative error code on failure.
+> > > > +	 */
+> > > > +	int (*copy_to_sram)(struct drm_gpusvm *gpusvm,
+> > > > +			    struct page **pages,
+> > > > +			    dma_addr_t *dma_addr,
+> > > > +			    unsigned long npages);
+> > > > +
+> > > > +	/**
+> > > > +	 * @invalidate: Invalidate GPU SVM notifier (required)
+> > > > +	 * @gpusvm: Pointer to the GPU SVM
+> > > > +	 * @notifier: Pointer to the GPU SVM notifier
+> > > > +	 * @mmu_range: Pointer to the mmu_notifier_range
+> > > > structure
+> > > > +	 *
+> > > > +	 * This function shall invalidate the GPU page tables.
+> > > > It
+> > > > can safely
+> > > > +	 * walk the notifier range RB tree/list in this
+> > > > function.
+> > > > Called while
+> > > > +	 * holding the notifier lock.
+> > > > +	 */
+> > > > +	void (*invalidate)(struct drm_gpusvm *gpusvm,
+> > > > +			   struct drm_gpusvm_notifier *notifier,
+> > > > +			   const struct mmu_notifier_range
+> > > > *mmu_range);
+> > > > +};
+> > > > +
+> > > > +/**
+> > > > + * struct drm_gpusvm_notifier - Structure representing a GPU SVM
+> > > > notifier
+> > > > + *
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @notifier: MMU interval notifier
+> > > > + * @interval: Interval for the notifier
+> > > > + * @rb: Red-black tree node for the parent GPU SVM structure
+> > > > notifier tree
+> > > > + * @root: Cached root node of the RB tree containing ranges
+> > > > + * @range_list: List head containing of ranges in the same order
+> > > > they appear in
+> > > > + *              interval tree. This is useful to keep iterating
+> > > > ranges while
+> > > > + *              doing modifications to RB tree.
+> > > > + * @flags.removed: Flag indicating whether the MMU interval
+> > > > notifier
+> > > > has been
+> > > > + *                 removed
+> > > > + *
+> > > > + * This structure represents a GPU SVM notifier.
+> > > > + */
+> > > > +struct drm_gpusvm_notifier {
+> > > > +	struct drm_gpusvm *gpusvm;
+> > > > +	struct mmu_interval_notifier notifier;
+> > > > +	struct {
+> > > > +		u64 start;
+> > > > +		u64 end;
+> > > > +	} interval;
+> > > > +	struct {
+> > > > +		struct rb_node node;
+> > > > +		struct list_head entry;
+> > > > +		u64 __subtree_last;
+> > > > +	} rb;
+> > > > +	struct rb_root_cached root;
+> > > > +	struct list_head range_list;
+> > > > +	struct {
+> > > > +		u32 removed : 1;
+> > > > +	} flags;
+> > > > +};
+> > > > +
+> > > > +/**
+> > > > + * struct drm_gpusvm_range - Structure representing a GPU SVM
+> > > > range
+> > > > + *
+> > > > + * @gpusvm: Pointer to the GPU SVM structure
+> > > > + * @notifier: Pointer to the GPU SVM notifier
+> > > > + * @refcount: Reference count for the range
+> > > > + * @rb: Red-black tree node for the parent GPU SVM notifier
+> > > > structure range tree
+> > > > + * @va: Virtual address range
+> > > > + * @notifier_seq: Notifier sequence number of the range's pages
+> > > > + * @pages: Pointer to the array of pages (if backing store is in
+> > > > VRAM)
+> > > > + * @dma_addr: DMA address array (if backing store is SRAM and
+> > > > DMA
+> > > > mapped)
+> > > > + * @vram_allocation: Driver-private pointer to the VRAM
+> > > > allocation
+> > > > + * @order: Order of dma mapping. i.e. PAGE_SIZE << order is
+> > > > mapping
+> > > > size
+> > > > + * @flags.migrate_vram: Flag indicating whether the range can be
+> > > > migrated to VRAM
+> > > > + * @flags.unmapped: Flag indicating if the range has been
+> > > > unmapped
+> > > > + * @flags.partial_unmap: Flag indicating if the range has been
+> > > > partially unmapped
+> > > > + * @flags.has_vram_pages: Flag indicating if the range has vram
+> > > > pages
+> > > > + * @flags.has_dma_mapping: Flag indicating if the range has a
+> > > > DMA
+> > > > mapping
+> > > > + * @flags.kfree_mapping: Flag indicating @dma_addr is a compact
+> > > > allocation based
+> > > > + *                       on @order which releases via kfree
+> > > > + *
+> > > > + * This structure represents a GPU SVM range used for tracking
+> > > > memory ranges
+> > > > + * mapped in a DRM device.
+> > > > + */
+> > > > +struct drm_gpusvm_range {
+> > > > +	struct drm_gpusvm *gpusvm;
+> > > > +	struct drm_gpusvm_notifier *notifier;
+> > > > +	struct kref refcount;
+> > > > +	struct {
+> > > > +		struct rb_node node;
+> > > > +		struct list_head entry;
+> > > > +		u64 __subtree_last;
+> > > > +	} rb;
+> > > > +	struct {
+> > > > +		u64 start;
+> > > > +		u64 end;
+> > > > +	} va;
+> > > > +	unsigned long notifier_seq;
+> > > > +	union {
+> > > > +		struct page **pages;
+> > > > +		dma_addr_t *dma_addr;
+> > > > +	};
+> > > > +	void *vram_allocation;
+> > > > +	u16 order;
+> > > > +	struct {
+> > > > +		/* All flags below must be set upon creation */
+> > > > +		u16 migrate_vram : 1;
+> > > > +		/* All flags below must be set / cleared under
+> > > > notifier lock */
+> > > > +		u16 unmapped : 1;
+> > > > +		u16 partial_unmap : 1;
+> > > > +		u16 has_vram_pages : 1;
+> > > > +		u16 has_dma_mapping : 1;
+> > > > +		u16 kfree_mapping : 1;
+> > > > +	} flags;
+> > > > +};
+> > > > +
+> > > > +/**
+> > > > + * struct drm_gpusvm - GPU SVM structure
+> > > > + *
+> > > > + * @name: Name of the GPU SVM
+> > > > + * @drm: Pointer to the DRM device structure
+> > > > + * @mm: Pointer to the mm_struct for the address space
+> > > > + * @device_private_page_owner: Device private pages owner
+> > > > + * @mm_start: Start address of GPU SVM
+> > > > + * @mm_range: Range of the GPU SVM
+> > > > + * @notifier_size: Size of individual notifiers
+> > > > + * @ops: Pointer to the operations structure for GPU SVM
+> > > > + * @chunk_sizes: Pointer to the array of chunk sizes used in
+> > > > range
+> > > > allocation.
+> > > > + *               Entries should be powers of 2 in descending
+> > > > order.
+> > > > + * @num_chunks: Number of chunks
+> > > > + * @notifier_lock: Read-write semaphore for protecting notifier
+> > > > operations
+> > > > + * @zdd_wq: Workqueue for deferred work on zdd destruction
+> > > > + * @root: Cached root node of the Red-Black tree containing GPU
+> > > > SVM
+> > > > notifiers
+> > > > + * @notifier_list: list head containing of notifiers in the same
+> > > > order they
+> > > > + *                 appear in interval tree. This is useful to
+> > > > keep
+> > > > iterating
+> > > > + *                 notifiers while doing modifications to RB
+> > > > tree.
+> > > > + *
+> > > > + * This structure represents a GPU SVM (Shared Virtual Memory)
+> > > > used
+> > > > for tracking
+> > > > + * memory ranges mapped in a DRM (Direct Rendering Manager)
+> > > > device.
+> > > > + *
+> > > > + * No reference counting is provided, as this is expected to be
+> > > > embedded in the
+> > > > + * driver VM structure along with the struct drm_gpuvm, which
+> > > > handles reference
+> > > > + * counting.
+> > > > + */
+> > > > +struct drm_gpusvm {
+> > > > +	const char *name;
+> > > > +	struct drm_device *drm;
+> > > > +	struct mm_struct *mm;
+> > > > +	void *device_private_page_owner;
+> > > > +	u64 mm_start;
+> > > > +	u64 mm_range;
+> > > > +	u64 notifier_size;
+> > > > +	const struct drm_gpusvm_ops *ops;
+> > > > +	const u64 *chunk_sizes;
+> > > > +	int num_chunks;
+> > > > +	struct rw_semaphore notifier_lock;
+> > > > +	struct workqueue_struct *zdd_wq;
+> > > > +	struct rb_root_cached root;
+> > > > +	struct list_head notifier_list;
+> > > > +};
+> > > > +
+> > > > +/**
+> > > > + * struct drm_gpusvm_ctx - DRM GPU SVM context
+> > > > + *
+> > > > + * @mmap_locked: mmap lock is locked
+> > > > + * @trylock_mmap: trylock mmap lock, used to avoid locking
+> > > > inversions
+> > > > + *                (e.g.dma-revs -> mmap lock)
+> > > > + * @in_notifier: entering from a MMU notifier
+> > > > + * @read_only: operating on read-only memory
+> > > > + * @vram_possible: possible to use VRAM
+> > > > + * @prefault: prefault pages
+> > > > + *
+> > > > + * Context that is DRM GPUSVM is operating in (i.e. user
+> > > > arguments).
+> > > > + */
+> > > > +struct drm_gpusvm_ctx {
+> > > > +	u32 mmap_locked :1;
+> > > > +	u32 trylock_mmap :1;
+> > > > +	u32 in_notifier :1;
+> > > > +	u32 read_only :1;
+> > > > +	u32 vram_possible :1;
+> > > > +	u32 prefault :1;
+> > > > +};
+> > > > +
+> > > > +int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+> > > > +		    const char *name, struct drm_device *drm,
+> > > > +		    struct mm_struct *mm, void
+> > > > *device_private_page_owner,
+> > > > +		    u64 mm_start, u64 mm_range, u64
+> > > > notifier_size,
+> > > > +		    const struct drm_gpusvm_ops *ops,
+> > > > +		    const u64 *chunk_sizes, int num_chunks);
+> > > > +void drm_gpusvm_fini(struct drm_gpusvm *gpusvm);
+> > > > +void drm_gpusvm_free(struct drm_gpusvm *gpusvm);
+> > > > +
+> > > > +struct drm_gpusvm_range *
+> > > > +drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm, u64
+> > > > fault_addr,
+> > > > +				u64 gpuva_start, u64 gpuva_end,
+> > > > +				const struct drm_gpusvm_ctx
+> > > > *ctx);
+> > > > +void drm_gpusvm_range_remove(struct drm_gpusvm *gpusvm,
+> > > > +			     struct drm_gpusvm_range *range);
+> > > > +
+> > > > +struct drm_gpusvm_range *
+> > > > +drm_gpusvm_range_get(struct drm_gpusvm_range *range);
+> > > > +void drm_gpusvm_range_put(struct drm_gpusvm_range *range);
+> > > > +
+> > > > +bool drm_gpusvm_range_pages_valid(struct drm_gpusvm *gpusvm,
+> > > > +				  struct drm_gpusvm_range
+> > > > *range);
+> > > > +
+> > > > +int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+> > > > +			       struct drm_gpusvm_range *range,
+> > > > +			       const struct drm_gpusvm_ctx
+> > > > *ctx);
+> > > > +void drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
+> > > > +				  struct drm_gpusvm_range
+> > > > *range,
+> > > > +				  const struct drm_gpusvm_ctx
+> > > > *ctx);
+> > > > +
+> > > > +int drm_gpusvm_migrate_to_vram(struct drm_gpusvm *gpusvm,
+> > > > +			       struct drm_gpusvm_range *range,
+> > > > +			       void *vram_allocation,
+> > > > +			       const struct drm_gpusvm_ctx
+> > > > *ctx);
+> > > > +int drm_gpusvm_migrate_to_sram(struct drm_gpusvm *gpusvm,
+> > > > +			       struct drm_gpusvm_range *range,
+> > > > +			       const struct drm_gpusvm_ctx
+> > > > *ctx);
+> > > > +
+> > > > +const struct dev_pagemap_ops *drm_gpusvm_pagemap_ops_get(void);
+> > > > +
+> > > > +bool drm_gpusvm_has_mapping(struct drm_gpusvm *gpusvm, u64
+> > > > start,
+> > > > u64 end);
+> > > > +
+> > > > +struct drm_gpusvm_range *
+> > > > +drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, u64
+> > > > start, u64 end);
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_lock - Lock GPU SVM notifier
+> > > > + * @gpusvm__: Pointer to the GPU SVM structure.
+> > > > + *
+> > > > + * Abstract client usage GPU SVM notifier lock, take lock
+> > > > + */
+> > > > +#define drm_gpusvm_notifier_lock(gpusvm__)	\
+> > > > +	down_read(&(gpusvm__)->notifier_lock)
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_notifier_unlock - Unlock GPU SVM notifier
+> > > > + * @gpusvm__: Pointer to the GPU SVM structure.
+> > > > + *
+> > > > + * Abstract client usage GPU SVM notifier lock, drop lock
+> > > > + */
+> > > > +#define drm_gpusvm_notifier_unlock(gpusvm__)	\
+> > > > +	up_read(&(gpusvm__)->notifier_lock)
+> > > > +
+> > > > +/**
+> > > > + * __drm_gpusvm_range_next - Get the next GPU SVM range in the
+> > > > list
+> > > > + * @range: a pointer to the current GPU SVM range
+> > > > + *
+> > > > + * Return: A pointer to the next drm_gpusvm_range if available,
+> > > > or
+> > > > NULL if the
+> > > > + *         current range is the last one or if the input range
+> > > > is
+> > > > NULL.
+> > > > + */
+> > > > +static inline struct drm_gpusvm_range *
+> > > > +__drm_gpusvm_range_next(struct drm_gpusvm_range *range)
+> > > > +{
+> > > > +	if (range && !list_is_last(&range->rb.entry,
+> > > > +				   &range->notifier-
+> > > > >range_list))
+> > > > +		return list_next_entry(range, rb.entry);
+> > > > +
+> > > > +	return NULL;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_for_each_range - Iterate over GPU SVM ranges in a
+> > > > notifier
+> > > > + * @range__: Iterator variable for the ranges. If set, it
+> > > > indicates
+> > > > the start of
+> > > > + *	     the iterator. If NULL, call drm_gpusvm_range_find()
+> > > > to
+> > > > get the range.
+> > > > + * @notifier__: Pointer to the GPU SVM notifier
+> > > > + * @start__: Start address of the range
+> > > > + * @end__: End address of the range
+> > > > + *
+> > > > + * This macro is used to iterate over GPU SVM ranges in a
+> > > > notifier.
+> > > > It is safe
+> > > > + * to use while holding the driver SVM lock or the notifier
+> > > > lock.
+> > > > + */
+> > > > +#define drm_gpusvm_for_each_range(range__, notifier__, start__,
+> > > > end__)	\
+> > > > +	for ((range__) = (range__)
+> > > > ?:					\
+> > > > +	     drm_gpusvm_range_find((notifier__), (start__),
+> > > > (end__));	\
+> > > > +	     (range__) && (range__->va.start <
+> > > > (end__));		\
+> > > > +	     (range__) = __drm_gpusvm_range_next(range__))
+> > > > +
+> > > > +/**
+> > > > + * drm_gpusvm_range_set_unmapped - Mark a GPU SVM range as
+> > > > unmapped
+> > > > + * @range: Pointer to the GPU SVM range structure.
+> > > > + * @mmu_range: Pointer to the MMU notifier range structure.
+> > > > + *
+> > > > + * This function marks a GPU SVM range as unmapped and sets the
+> > > > partial_unmap flag
+> > > > + * if the range partially falls within the provided MMU notifier
+> > > > range.
+> > > > + */
+> > > > +static inline void
+> > > > +drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
+> > > > +			      const struct mmu_notifier_range
+> > > > *mmu_range)
+> > > > +{
+> > > > +	lockdep_assert_held_write(&range->gpusvm-
+> > > > >notifier_lock);
+> > > > +
+> > > > +	range->flags.unmapped = true;
+> > > > +	if (range->va.start < mmu_range->start ||
+> > > > +	    range->va.end > mmu_range->end)
+> > > > +		range->flags.partial_unmap = true;
+> > > > +}
+> > > > +
+> > > > +#endif /* __DRM_GPUSVM_H__ */
+> > > 
+> 
