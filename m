@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B61BECA0EC0
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 22:06:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12B83CA0EC6
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 22:06:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8356D10E79B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D077E10E79A;
 	Thu, 29 Aug 2024 22:06:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dPxQ0LIF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZmQLr63b";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 509E210E79A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D87C10E799
  for <intel-xe@lists.freedesktop.org>; Thu, 29 Aug 2024 22:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1724969189; x=1756505189;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Z19XatrijAA2Py1ClUusZgpQZbIH1i2NawzneIcbG3M=;
- b=dPxQ0LIFD/Ir5RfQY5ASJuJ3XSnj0CzBB0ZWiMjQCAcUli1e9A6nGHS5
- wNEb+NcYh4EPFRhFShoHkDLyaDx3daeyD1nqXk4JKM/EgTQSlmvoGT6u4
- nSuB5hBvyCdPSt+YLL7K2b7dR6I8gx7Y9rHv5ZIijVTTInxeaiNQ2O5iE
- aFFVXsD5tu7/Q3Gd3jaVsS0d0sijSnBIDNUIKbaInrVJW7LNy6MMfnwfZ
- QysTm8oqvisJ4UIR0N6S3LU02gvC3y4OE10iBngnor+DFdDpT0IAFBQKl
- HwCUjKUVdNRN49qhwbGR9mrH+9kNN++KOTwRlwAFQJitk2mAw4hy9jRir A==;
-X-CSE-ConnectionGUID: VOpG6PBeSb6n11a0tdv1Cw==
-X-CSE-MsgGUID: dIsq9gwdRHu9cMXV9NgWAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23737583"
-X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="23737583"
+ bh=2LpxLKIdEZQJU2qGkvRCeVFl/EYQpP30A+N5QcnQ10o=;
+ b=ZmQLr63bTBHshd9GkLJHVeMEspE/lP98UIp2Z2GZcgtJfn8xX0mLRCCm
+ OwEpOv9z4eRXPxSlVP+/8sfK0KFK1buRXHwZx1JWy0sHszjrA+/NjiScj
+ MIn0icOAbm/kLaFZxG3l16GFw+WuQoSrAYKJaUznKCO8Tu9DRhxxFPIUd
+ PcRRq60BnRb1wC15/jr/B0aLpFSZwJ09ZKqOQt0BpVSUTYOIobd4L1ufn
+ wt2WDbTiQYVQBGEhU64SLykxK7XgbtirS1ldBidVRvX64Ct7wppBCj9qI
+ qPqvFINrtaDRF4ThImDU3JbjAbvchS6rLeHm2MNitXJLvti+yQBsBC00+ A==;
+X-CSE-ConnectionGUID: sM6UruB+Tje1FrQN05pARQ==
+X-CSE-MsgGUID: BeTQpdIaRbmepJwEcxb8yg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23737582"
+X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="23737582"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Aug 2024 15:06:28 -0700
-X-CSE-ConnectionGUID: 4oZfJ3yNSyW7q6GBMALrCw==
-X-CSE-MsgGUID: DQD3PRHKTSaWBFrFzEEDBg==
+X-CSE-ConnectionGUID: 4a4tes1BTDGUnvcBAtDKLg==
+X-CSE-MsgGUID: mpwXItwlQvq0239VCkWPxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="63555972"
+X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="63555969"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Aug 2024 15:06:28 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 2/2] drm/xe/hwmon: Treat hwmon as a per-device concept
-Date: Thu, 29 Aug 2024 15:06:22 -0700
-Message-ID: <20240829220619.789159-6-matthew.d.roper@intel.com>
+Subject: [PATCH 1/2] drm/xe/pcode: Treat pcode as per-tile rather than per-GT
+Date: Thu, 29 Aug 2024 15:06:21 -0700
+Message-ID: <20240829220619.789159-5-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240829220619.789159-4-matthew.d.roper@intel.com>
 References: <20240829220619.789159-4-matthew.d.roper@intel.com>
@@ -66,373 +66,556 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There's only one instance of hwmon per device, and MMIO access to it is
-always done through the root tile.  The code has been passing around a
-pointer to the root tile's primary GT, which is confusing since this
-isn't really a GT-level concept.  Replace that pointer with an xe_device
-pointer and use xe_root_mmio_gt(xe) to get a pointer when we need to do
-register MMIO.  This makes things easier to follow, and also cleans up
-the code in preparation for a much larger MMIO register access overhaul
-that's coming soon.
+There's only one instance of the pcode per tile, and for GT-related
+accesses both the primary and media GT share the same register
+interface.  Since Xe was using per-GT locking, the pcode mutex wasn't
+actually protecting everything that it should since concurrent accesses
+related to a tile's primary GT and media GT were possible.
 
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 95 +++++++++++++++++++----------------
- 1 file changed, 53 insertions(+), 42 deletions(-)
+One somewhat worrying design that this highlights is that
+xe_pcode_init_min_freq_table is getting called from each GT's SLPC
+initialization with different frequency values.  But since there's
+really only a single shared pcode interface to the hardware, this
+effectively means the media GT values seem to be clobbering the values
+previously set by the primary GT.  We'll need to look closer at that as
+a followup; this patch doesn't attempt to change that (mis?)behavior.
 
+ .../drm/xe/compat-i915-headers/intel_pcode.h  |   8 +-
+ .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+ drivers/gpu/drm/xe/xe_gt.c                    |   2 -
+ drivers/gpu/drm/xe/xe_gt_types.h              |   6 -
+ drivers/gpu/drm/xe/xe_guc_pc.c                |   2 +-
+ drivers/gpu/drm/xe/xe_hwmon.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_pcode.c                 | 104 +++++++++---------
+ drivers/gpu/drm/xe/xe_pcode.h                 |  16 +--
+ drivers/gpu/drm/xe/xe_tile.c                  |   3 +
+ drivers/gpu/drm/xe/xe_vram_freq.c             |   6 +-
+ 11 files changed, 85 insertions(+), 79 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+index 0c47661bdc6a..a473aa6697d0 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+@@ -13,7 +13,7 @@ static inline int
+ snb_pcode_write_timeout(struct intel_uncore *uncore, u32 mbox, u32 val,
+ 			int fast_timeout_us, int slow_timeout_ms)
+ {
+-	return xe_pcode_write_timeout(__compat_uncore_to_gt(uncore), mbox, val,
++	return xe_pcode_write_timeout(__compat_uncore_to_tile(uncore), mbox, val,
+ 				      slow_timeout_ms ?: 1);
+ }
+ 
+@@ -21,13 +21,13 @@ static inline int
+ snb_pcode_write(struct intel_uncore *uncore, u32 mbox, u32 val)
+ {
+ 
+-	return xe_pcode_write(__compat_uncore_to_gt(uncore), mbox, val);
++	return xe_pcode_write(__compat_uncore_to_tile(uncore), mbox, val);
+ }
+ 
+ static inline int
+ snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 *val1)
+ {
+-	return xe_pcode_read(__compat_uncore_to_gt(uncore), mbox, val, val1);
++	return xe_pcode_read(__compat_uncore_to_tile(uncore), mbox, val, val1);
+ }
+ 
+ static inline int
+@@ -35,7 +35,7 @@ skl_pcode_request(struct intel_uncore *uncore, u32 mbox,
+ 		  u32 request, u32 reply_mask, u32 reply,
+ 		  int timeout_base_ms)
+ {
+-	return xe_pcode_request(__compat_uncore_to_gt(uncore), mbox, request, reply_mask, reply,
++	return xe_pcode_request(__compat_uncore_to_tile(uncore), mbox, request, reply_mask, reply,
+ 				timeout_base_ms);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index 083c4da2ea41..eb5b5f0e4bd9 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -17,6 +17,13 @@ static inline struct xe_gt *__compat_uncore_to_gt(struct intel_uncore *uncore)
+ 	return xe_root_mmio_gt(xe);
+ }
+ 
++static inline struct xe_tile *__compat_uncore_to_tile(struct intel_uncore *uncore)
++{
++	struct xe_device *xe = container_of(uncore, struct xe_device, uncore);
++
++	return xe_device_get_root_tile(xe);
++}
++
+ static inline u32 intel_uncore_read(struct intel_uncore *uncore,
+ 				    i915_reg_t i915_reg)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e73fb0c23932..ec7eb7811126 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -208,6 +208,12 @@ struct xe_tile {
+ 		} vf;
+ 	} sriov;
+ 
++	/** @pcode: tile's PCODE */
++	struct {
++		/** @pcode.lock: protecting tile's PCODE mailbox data */
++		struct mutex lock;
++	} pcode;
++
+ 	/** @migrate: Migration helper for vram blits and clearing */
+ 	struct xe_migrate *migrate;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 1bb66db47265..f82b3e8ac5c8 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -48,7 +48,6 @@
+ #include "xe_migrate.h"
+ #include "xe_mmio.h"
+ #include "xe_pat.h"
+-#include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_mocs.h"
+ #include "xe_reg_sr.h"
+@@ -388,7 +387,6 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 	xe_tuning_process_gt(gt);
+ 
+ 	xe_force_wake_init_gt(gt, gt_to_fw(gt));
+-	xe_pcode_init(gt);
+ 	spin_lock_init(&gt->global_invl_lock);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 31946d7fe701..3d1c51de0268 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -329,12 +329,6 @@ struct xe_gt {
+ 	/** @eclass: per hardware engine class interface on the GT */
+ 	struct xe_hw_engine_class_intf  eclass[XE_ENGINE_CLASS_MAX];
+ 
+-	/** @pcode: GT's PCODE */
+-	struct {
+-		/** @pcode.lock: protecting GT's PCODE mailbox data */
+-		struct mutex lock;
+-	} pcode;
+-
+ 	/** @sysfs: sysfs' kobj used by xe_gt_sysfs */
+ 	struct kobject *sysfs;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index def503abeed5..034b29984d5e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -915,7 +915,7 @@ static void pc_init_pcode_freq(struct xe_guc_pc *pc)
+ 	u32 min = DIV_ROUND_CLOSEST(pc->rpn_freq, GT_FREQUENCY_MULTIPLIER);
+ 	u32 max = DIV_ROUND_CLOSEST(pc->rp0_freq, GT_FREQUENCY_MULTIPLIER);
+ 
+-	XE_WARN_ON(xe_pcode_init_min_freq_table(pc_to_gt(pc), min, max));
++	XE_WARN_ON(xe_pcode_init_min_freq_table(gt_to_tile(pc_to_gt(pc)), min, max));
+ }
+ 
+ static int pc_init_freqs(struct xe_guc_pc *pc)
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 98e3ec08279e..aa11728e7e79 100644
+index 1faeca70900e..98e3ec08279e 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -12,7 +12,6 @@
- #include "regs/xe_mchbar_regs.h"
- #include "regs/xe_pcode_regs.h"
- #include "xe_device.h"
--#include "xe_gt.h"
- #include "xe_hwmon.h"
- #include "xe_mmio.h"
- #include "xe_pcode.h"
-@@ -65,8 +64,8 @@ struct xe_hwmon_energy_info {
- struct xe_hwmon {
- 	/** @hwmon_dev: hwmon device for xe */
- 	struct device *hwmon_dev;
--	/** @gt: primary gt */
--	struct xe_gt *gt;
-+	/** @xe: Xe device */
-+	struct xe_device *xe;
- 	/** @hwmon_lock: lock for rw attributes*/
- 	struct mutex hwmon_lock;
- 	/** @scl_shift_power: pkg power unit */
-@@ -82,7 +81,7 @@ struct xe_hwmon {
- static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
- 				      int channel)
- {
--	struct xe_device *xe = gt_to_xe(hwmon->gt);
-+	struct xe_device *xe = hwmon->xe;
- 
- 	switch (hwmon_reg) {
- 	case REG_PKG_RAPL_LIMIT:
-@@ -148,8 +147,9 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
- static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *value)
- {
- 	u64 reg_val, min, max;
--	struct xe_device *xe = gt_to_xe(hwmon->gt);
-+	struct xe_device *xe = hwmon->xe;
- 	struct xe_reg rapl_limit, pkg_power_sku;
-+	struct xe_gt *mmio = xe_root_mmio_gt(xe);
- 
- 	rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
- 	pkg_power_sku = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
-@@ -166,7 +166,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *v
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
--	reg_val = xe_mmio_read32(hwmon->gt, rapl_limit);
-+	reg_val = xe_mmio_read32(mmio, rapl_limit);
- 	/* Check if PL1 limit is disabled */
- 	if (!(reg_val & PKG_PWR_LIM_1_EN)) {
- 		*value = PL1_DISABLE;
-@@ -176,7 +176,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *v
- 	reg_val = REG_FIELD_GET(PKG_PWR_LIM_1, reg_val);
- 	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
- 
--	reg_val = xe_mmio_read64_2x32(hwmon->gt, pkg_power_sku);
-+	reg_val = xe_mmio_read64_2x32(mmio, pkg_power_sku);
- 	min = REG_FIELD_GET(PKG_MIN_PWR, reg_val);
- 	min = mul_u64_u32_shr(min, SF_POWER, hwmon->scl_shift_power);
- 	max = REG_FIELD_GET(PKG_MAX_PWR, reg_val);
-@@ -190,6 +190,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *v
- 
- static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long value)
- {
-+	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
- 	int ret = 0;
- 	u64 reg_val;
- 	struct xe_reg rapl_limit;
-@@ -200,10 +201,10 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long va
- 
- 	/* Disable PL1 limit and verify, as limit cannot be disabled on all platforms */
- 	if (value == PL1_DISABLE) {
--		reg_val = xe_mmio_rmw32(hwmon->gt, rapl_limit, PKG_PWR_LIM_1_EN, 0);
--		reg_val = xe_mmio_read32(hwmon->gt, rapl_limit);
-+		reg_val = xe_mmio_rmw32(mmio, rapl_limit, PKG_PWR_LIM_1_EN, 0);
-+		reg_val = xe_mmio_read32(mmio, rapl_limit);
- 		if (reg_val & PKG_PWR_LIM_1_EN) {
--			drm_warn(&gt_to_xe(hwmon->gt)->drm, "PL1 disable is not supported!\n");
-+			drm_warn(&hwmon->xe->drm, "PL1 disable is not supported!\n");
- 			ret = -EOPNOTSUPP;
- 		}
- 		goto unlock;
-@@ -212,7 +213,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long va
- 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
- 	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
- 	reg_val = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, reg_val);
--	reg_val = xe_mmio_rmw32(hwmon->gt, rapl_limit, PKG_PWR_LIM_1_EN | PKG_PWR_LIM_1, reg_val);
-+	reg_val = xe_mmio_rmw32(mmio, rapl_limit, PKG_PWR_LIM_1_EN | PKG_PWR_LIM_1, reg_val);
- 
- unlock:
- 	mutex_unlock(&hwmon->hwmon_lock);
-@@ -221,6 +222,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long va
- 
- static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, long *value)
- {
-+	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
- 	struct xe_reg reg = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
- 	u64 reg_val;
- 
-@@ -229,7 +231,7 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, l
- 	 * for this register can be skipped.
- 	 * See xe_hwmon_power_is_visible.
- 	 */
--	reg_val = xe_mmio_read32(hwmon->gt, reg);
-+	reg_val = xe_mmio_read32(mmio, reg);
- 	reg_val = REG_FIELD_GET(PKG_TDP, reg_val);
- 	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
- }
-@@ -257,11 +259,12 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, l
- static void
- xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
- {
-+	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
- 	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
- 	u64 reg_val;
- 
--	reg_val = xe_mmio_read32(hwmon->gt, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
--							     channel));
-+	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
-+							channel));
- 
- 	if (reg_val >= ei->reg_val_prev)
- 		ei->accum_energy += reg_val - ei->reg_val_prev;
-@@ -279,19 +282,20 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
- 				 char *buf)
- {
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
- 	u32 x, y, x_w = 2; /* 2 bits */
- 	u64 r, tau4, out;
- 	int sensor_index = to_sensor_dev_attr(attr)->index;
- 
--	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_get(hwmon->xe);
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
--	r = xe_mmio_read32(hwmon->gt, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, sensor_index));
-+	r = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, sensor_index));
- 
- 	mutex_unlock(&hwmon->hwmon_lock);
- 
--	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_put(hwmon->xe);
- 
- 	x = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_X, r);
- 	y = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_Y, r);
-@@ -319,6 +323,7 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 				  const char *buf, size_t count)
- {
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
- 	u32 x, y, rxy, x_w = 2; /* 2 bits */
- 	u64 tau4, r, max_win;
- 	unsigned long val;
-@@ -371,16 +376,16 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 
- 	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
- 
--	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_get(hwmon->xe);
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
--	r = xe_mmio_rmw32(hwmon->gt, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, sensor_index),
-+	r = xe_mmio_rmw32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, sensor_index),
- 			  PKG_PWR_LIM_1_TIME, rxy);
- 
- 	mutex_unlock(&hwmon->hwmon_lock);
- 
--	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_put(hwmon->xe);
- 
- 	return count;
- }
-@@ -406,11 +411,11 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
- 	int ret = 0;
- 
--	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_get(hwmon->xe);
- 
- 	ret = xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, index)) ? attr->mode : 0;
- 
--	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_put(hwmon->xe);
- 
- 	return ret;
- }
-@@ -435,20 +440,24 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
- };
- 
- /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
--static int xe_hwmon_pcode_read_i1(struct xe_gt *gt, u32 *uval)
-+static int xe_hwmon_pcode_read_i1(const struct xe_hwmon *hwmon, u32 *uval)
- {
-+	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-+
- 	/* Avoid Illegal Subcommand error */
--	if (gt_to_xe(gt)->info.platform == XE_DG2)
-+	if (hwmon->xe->info.platform == XE_DG2)
+@@ -441,14 +441,14 @@ static int xe_hwmon_pcode_read_i1(struct xe_gt *gt, u32 *uval)
+ 	if (gt_to_xe(gt)->info.platform == XE_DG2)
  		return -ENXIO;
  
--	return xe_pcode_read(gt_to_tile(gt), PCODE_MBOX(PCODE_POWER_SETUP,
-+	return xe_pcode_read(root_tile, PCODE_MBOX(PCODE_POWER_SETUP,
+-	return xe_pcode_read(gt, PCODE_MBOX(PCODE_POWER_SETUP,
++	return xe_pcode_read(gt_to_tile(gt), PCODE_MBOX(PCODE_POWER_SETUP,
  			     POWER_SETUP_SUBCOMMAND_READ_I1, 0),
  			     uval, NULL);
  }
  
--static int xe_hwmon_pcode_write_i1(struct xe_gt *gt, u32 uval)
-+static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
+ static int xe_hwmon_pcode_write_i1(struct xe_gt *gt, u32 uval)
  {
--	return xe_pcode_write(gt_to_tile(gt), PCODE_MBOX(PCODE_POWER_SETUP,
-+	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-+
-+	return xe_pcode_write(root_tile, PCODE_MBOX(PCODE_POWER_SETUP,
+-	return xe_pcode_write(gt, PCODE_MBOX(PCODE_POWER_SETUP,
++	return xe_pcode_write(gt_to_tile(gt), PCODE_MBOX(PCODE_POWER_SETUP,
  			      POWER_SETUP_SUBCOMMAND_WRITE_I1, 0),
  			      (uval & POWER_SETUP_I1_DATA_MASK));
  }
-@@ -461,7 +470,7 @@ static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 9c4eefdf6642..7397d556996a 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -12,7 +12,6 @@
  
- 	mutex_lock(&hwmon->hwmon_lock);
+ #include "xe_assert.h"
+ #include "xe_device.h"
+-#include "xe_gt.h"
+ #include "xe_mmio.h"
+ #include "xe_pcode_api.h"
  
--	ret = xe_hwmon_pcode_read_i1(hwmon->gt, &uval);
-+	ret = xe_hwmon_pcode_read_i1(hwmon, &uval);
- 	if (ret)
- 		goto unlock;
+@@ -30,7 +29,7 @@
+  * - PCODE for display operations
+  */
  
-@@ -481,7 +490,7 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
- 	mutex_lock(&hwmon->hwmon_lock);
- 
- 	uval = DIV_ROUND_CLOSEST_ULL(value << POWER_SETUP_I1_SHIFT, scale_factor);
--	ret = xe_hwmon_pcode_write_i1(hwmon->gt, uval);
-+	ret = xe_hwmon_pcode_write_i1(hwmon, uval);
- 
- 	mutex_unlock(&hwmon->hwmon_lock);
- 	return ret;
-@@ -489,9 +498,10 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
- 
- static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *value)
+-static int pcode_mailbox_status(struct xe_gt *gt)
++static int pcode_mailbox_status(struct xe_tile *tile)
  {
-+	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
- 	u64 reg_val;
+ 	u32 err;
+ 	static const struct pcode_err_decode err_decode[] = {
+@@ -45,9 +44,9 @@ static int pcode_mailbox_status(struct xe_gt *gt)
+ 		[PCODE_ERROR_MASK] = {-EPROTO, "Unknown"},
+ 	};
  
--	reg_val = xe_mmio_read32(hwmon->gt, xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS, channel));
-+	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS, channel));
- 	/* HW register value in units of 2.5 millivolt */
- 	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
- }
-@@ -510,7 +520,7 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 				       channel)) ? 0444 : 0;
- 	case hwmon_power_crit:
- 		if (channel == CHANNEL_PKG)
--			return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
-+			return (xe_hwmon_pcode_read_i1(hwmon, &uval) ||
- 				!(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
- 		break;
- 	case hwmon_power_label:
-@@ -563,10 +573,10 @@ xe_hwmon_curr_is_visible(const struct xe_hwmon *hwmon, u32 attr, int channel)
- 
- 	switch (attr) {
- 	case hwmon_curr_crit:
--			return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
-+			return (xe_hwmon_pcode_read_i1(hwmon, &uval) ||
- 				(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
- 	case hwmon_curr_label:
--			return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
-+			return (xe_hwmon_pcode_read_i1(hwmon, &uval) ||
- 				(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0444;
- 		break;
- 	default:
-@@ -654,7 +664,7 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
- 	struct xe_hwmon *hwmon = (struct xe_hwmon *)drvdata;
- 	int ret;
- 
--	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_get(hwmon->xe);
- 
- 	switch (type) {
- 	case hwmon_power:
-@@ -674,7 +684,7 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
- 		break;
+-	err = xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_ERROR_MASK;
++	err = xe_mmio_read32(tile->primary_gt, PCODE_MAILBOX) & PCODE_ERROR_MASK;
+ 	if (err) {
+-		drm_err(&gt_to_xe(gt)->drm, "PCODE Mailbox failed: %d %s", err,
++		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
+ 			err_decode[err].str ?: "Unknown");
+ 		return err_decode[err].errno ?: -EPROTO;
  	}
- 
--	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_put(hwmon->xe);
- 
- 	return ret;
+@@ -55,84 +54,85 @@ static int pcode_mailbox_status(struct xe_gt *gt)
+ 	return 0;
  }
-@@ -686,7 +696,7 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
- 	int ret;
  
--	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_get(hwmon->xe);
- 
- 	switch (type) {
- 	case hwmon_power:
-@@ -706,7 +716,7 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 		break;
- 	}
- 
--	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_put(hwmon->xe);
- 
- 	return ret;
- }
-@@ -718,7 +728,7 @@ xe_hwmon_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
- 	int ret;
- 
--	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_get(hwmon->xe);
- 
- 	switch (type) {
- 	case hwmon_power:
-@@ -732,7 +742,7 @@ xe_hwmon_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 		break;
- 	}
- 
--	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
-+	xe_pm_runtime_put(hwmon->xe);
- 
- 	return ret;
- }
-@@ -771,6 +781,7 @@ static const struct hwmon_chip_info hwmon_chip_info = {
- static void
- xe_hwmon_get_preregistration_info(struct xe_device *xe)
+-static int __pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
++static int __pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *data1,
+ 			      unsigned int timeout_ms, bool return_data,
+ 			      bool atomic)
  {
-+	struct xe_gt *mmio = xe_root_mmio_gt(xe);
- 	struct xe_hwmon *hwmon = xe->hwmon;
- 	long energy;
- 	u64 val_sku_unit = 0;
-@@ -783,7 +794,7 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
++	struct xe_gt *mmio = tile->primary_gt;
+ 	int err;
+ 
+-	if (gt_to_xe(gt)->info.skip_pcode)
++	if (tile_to_xe(tile)->info.skip_pcode)
+ 		return 0;
+ 
+-	if ((xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_READY) != 0)
++	if ((xe_mmio_read32(mmio, PCODE_MAILBOX) & PCODE_READY) != 0)
+ 		return -EAGAIN;
+ 
+-	xe_mmio_write32(gt, PCODE_DATA0, *data0);
+-	xe_mmio_write32(gt, PCODE_DATA1, data1 ? *data1 : 0);
+-	xe_mmio_write32(gt, PCODE_MAILBOX, PCODE_READY | mbox);
++	xe_mmio_write32(mmio, PCODE_DATA0, *data0);
++	xe_mmio_write32(mmio, PCODE_DATA1, data1 ? *data1 : 0);
++	xe_mmio_write32(mmio, PCODE_MAILBOX, PCODE_READY | mbox);
+ 
+-	err = xe_mmio_wait32(gt, PCODE_MAILBOX, PCODE_READY, 0,
++	err = xe_mmio_wait32(mmio, PCODE_MAILBOX, PCODE_READY, 0,
+ 			     timeout_ms * USEC_PER_MSEC, NULL, atomic);
+ 	if (err)
+ 		return err;
+ 
+ 	if (return_data) {
+-		*data0 = xe_mmio_read32(gt, PCODE_DATA0);
++		*data0 = xe_mmio_read32(mmio, PCODE_DATA0);
+ 		if (data1)
+-			*data1 = xe_mmio_read32(gt, PCODE_DATA1);
++			*data1 = xe_mmio_read32(mmio, PCODE_DATA1);
+ 	}
+ 
+-	return pcode_mailbox_status(gt);
++	return pcode_mailbox_status(tile);
+ }
+ 
+-static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
++static int pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *data1,
+ 			    unsigned int timeout_ms, bool return_data,
+ 			    bool atomic)
+ {
+-	if (gt_to_xe(gt)->info.skip_pcode)
++	if (tile_to_xe(tile)->info.skip_pcode)
+ 		return 0;
+ 
+-	lockdep_assert_held(&gt->pcode.lock);
++	lockdep_assert_held(&tile->pcode.lock);
+ 
+-	return __pcode_mailbox_rw(gt, mbox, data0, data1, timeout_ms, return_data, atomic);
++	return __pcode_mailbox_rw(tile, mbox, data0, data1, timeout_ms, return_data, atomic);
+ }
+ 
+-int xe_pcode_write_timeout(struct xe_gt *gt, u32 mbox, u32 data, int timeout)
++int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 data, int timeout)
+ {
+ 	int err;
+ 
+-	mutex_lock(&gt->pcode.lock);
+-	err = pcode_mailbox_rw(gt, mbox, &data, NULL, timeout, false, false);
+-	mutex_unlock(&gt->pcode.lock);
++	mutex_lock(&tile->pcode.lock);
++	err = pcode_mailbox_rw(tile, mbox, &data, NULL, timeout, false, false);
++	mutex_unlock(&tile->pcode.lock);
+ 
+ 	return err;
+ }
+ 
+-int xe_pcode_read(struct xe_gt *gt, u32 mbox, u32 *val, u32 *val1)
++int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
+ {
+ 	int err;
+ 
+-	mutex_lock(&gt->pcode.lock);
+-	err = pcode_mailbox_rw(gt, mbox, val, val1, 1, true, false);
+-	mutex_unlock(&gt->pcode.lock);
++	mutex_lock(&tile->pcode.lock);
++	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false);
++	mutex_unlock(&tile->pcode.lock);
+ 
+ 	return err;
+ }
+ 
+-static int pcode_try_request(struct xe_gt *gt, u32 mbox,
++static int pcode_try_request(struct xe_tile *tile, u32 mbox,
+ 			     u32 request, u32 reply_mask, u32 reply,
+ 			     u32 *status, bool atomic, int timeout_us, bool locked)
+ {
+ 	int slept, wait = 10;
+ 
+-	xe_gt_assert(gt, timeout_us > 0);
++	xe_tile_assert(tile, timeout_us > 0);
+ 
+ 	for (slept = 0; slept < timeout_us; slept += wait) {
+ 		if (locked)
+-			*status = pcode_mailbox_rw(gt, mbox, &request, NULL, 1, true,
++			*status = pcode_mailbox_rw(tile, mbox, &request, NULL, 1, true,
+ 						   atomic);
+ 		else
+-			*status = __pcode_mailbox_rw(gt, mbox, &request, NULL, 1, true,
++			*status = __pcode_mailbox_rw(tile, mbox, &request, NULL, 1, true,
+ 						     atomic);
+ 		if ((*status == 0) && ((request & reply_mask) == reply))
+ 			return 0;
+@@ -149,7 +149,7 @@ static int pcode_try_request(struct xe_gt *gt, u32 mbox,
+ 
+ /**
+  * xe_pcode_request - send PCODE request until acknowledgment
+- * @gt: gt
++ * @tile: tile
+  * @mbox: PCODE mailbox ID the request is targeted for
+  * @request: request ID
+  * @reply_mask: mask used to check for request acknowledgment
+@@ -166,17 +166,17 @@ static int pcode_try_request(struct xe_gt *gt, u32 mbox,
+  * Returns 0 on success, %-ETIMEDOUT in case of a timeout, <0 in case of some
+  * other error as reported by PCODE.
+  */
+-int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
+-		      u32 reply_mask, u32 reply, int timeout_base_ms)
++int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
++		     u32 reply_mask, u32 reply, int timeout_base_ms)
+ {
+ 	u32 status;
+ 	int ret;
+ 
+-	xe_gt_assert(gt, timeout_base_ms <= 3);
++	xe_tile_assert(tile, timeout_base_ms <= 3);
+ 
+-	mutex_lock(&gt->pcode.lock);
++	mutex_lock(&tile->pcode.lock);
+ 
+-	ret = pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
++	ret = pcode_try_request(tile, mbox, request, reply_mask, reply, &status,
+ 				false, timeout_base_ms * 1000, true);
+ 	if (!ret)
+ 		goto out;
+@@ -191,20 +191,20 @@ int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
+ 	 * requests, and for any quirks of the PCODE firmware that delays
+ 	 * the request completion.
  	 */
- 	pkg_power_sku_unit = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT, 0);
- 	if (xe_reg_is_valid(pkg_power_sku_unit)) {
--		val_sku_unit = xe_mmio_read32(hwmon->gt, pkg_power_sku_unit);
-+		val_sku_unit = xe_mmio_read32(mmio, pkg_power_sku_unit);
- 		hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
- 		hwmon->scl_shift_energy = REG_FIELD_GET(PKG_ENERGY_UNIT, val_sku_unit);
- 		hwmon->scl_shift_time = REG_FIELD_GET(PKG_TIME_UNIT, val_sku_unit);
-@@ -828,8 +839,8 @@ void xe_hwmon_register(struct xe_device *xe)
- 	if (devm_add_action_or_reset(dev, xe_hwmon_mutex_destroy, hwmon))
- 		return;
+-	drm_err(&gt_to_xe(gt)->drm,
++	drm_err(&tile_to_xe(tile)->drm,
+ 		"PCODE timeout, retrying with preemption disabled\n");
+ 	preempt_disable();
+-	ret = pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
++	ret = pcode_try_request(tile, mbox, request, reply_mask, reply, &status,
+ 				true, 50 * 1000, true);
+ 	preempt_enable();
  
--	/* primary GT to access device level properties */
--	hwmon->gt = xe->tiles[0].primary_gt;
-+	/* There's only one instance of hwmon per device */
-+	hwmon->xe = xe;
+ out:
+-	mutex_unlock(&gt->pcode.lock);
++	mutex_unlock(&tile->pcode.lock);
+ 	return status ? status : ret;
+ }
+ /**
+  * xe_pcode_init_min_freq_table - Initialize PCODE's QOS frequency table
+- * @gt: gt instance
++ * @tile: tile instance
+  * @min_gt_freq: Minimal (RPn) GT frequency in units of 50MHz.
+  * @max_gt_freq: Maximal (RP0) GT frequency in units of 50MHz.
+  *
+@@ -227,30 +227,30 @@ int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
+  * - -EACCES, "PCODE Rejected"
+  * - -EPROTO, "Unknown"
+  */
+-int xe_pcode_init_min_freq_table(struct xe_gt *gt, u32 min_gt_freq,
++int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+ 				 u32 max_gt_freq)
+ {
+ 	int ret;
+ 	u32 freq;
  
- 	xe_hwmon_get_preregistration_info(xe);
+-	if (!gt_to_xe(gt)->info.has_llc)
++	if (!tile_to_xe(tile)->info.has_llc)
+ 		return 0;
+ 
+ 	if (max_gt_freq <= min_gt_freq)
+ 		return -EINVAL;
+ 
+-	mutex_lock(&gt->pcode.lock);
++	mutex_lock(&tile->pcode.lock);
+ 	for (freq = min_gt_freq; freq <= max_gt_freq; freq++) {
+ 		u32 data = freq << PCODE_FREQ_RING_RATIO_SHIFT | freq;
+ 
+-		ret = pcode_mailbox_rw(gt, PCODE_WRITE_MIN_FREQ_TABLE,
++		ret = pcode_mailbox_rw(tile, PCODE_WRITE_MIN_FREQ_TABLE,
+ 				       &data, NULL, 1, false, false);
+ 		if (ret)
+ 			goto unlock;
+ 	}
+ 
+ unlock:
+-	mutex_unlock(&gt->pcode.lock);
++	mutex_unlock(&tile->pcode.lock);
+ 	return ret;
+ }
+ 
+@@ -270,7 +270,7 @@ int xe_pcode_init_min_freq_table(struct xe_gt *gt, u32 min_gt_freq,
+ int xe_pcode_ready(struct xe_device *xe, bool locked)
+ {
+ 	u32 status, request = DGFX_GET_INIT_STATUS;
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
+ 	int timeout_us = 180000000; /* 3 min */
+ 	int ret;
+ 
+@@ -281,15 +281,15 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+ 		return 0;
+ 
+ 	if (locked)
+-		mutex_lock(&gt->pcode.lock);
++		mutex_lock(&tile->pcode.lock);
+ 
+-	ret = pcode_try_request(gt, DGFX_PCODE_STATUS, request,
++	ret = pcode_try_request(tile, DGFX_PCODE_STATUS, request,
+ 				DGFX_INIT_STATUS_COMPLETE,
+ 				DGFX_INIT_STATUS_COMPLETE,
+ 				&status, false, timeout_us, locked);
+ 
+ 	if (locked)
+-		mutex_unlock(&gt->pcode.lock);
++		mutex_unlock(&tile->pcode.lock);
+ 
+ 	if (ret)
+ 		drm_err(&xe->drm,
+@@ -300,14 +300,14 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+ 
+ /**
+  * xe_pcode_init: initialize components of PCODE
+- * @gt: gt instance
++ * @tile: tile instance
+  *
+  * This function initializes the xe_pcode component.
+  * To be called once only during probe.
+  */
+-void xe_pcode_init(struct xe_gt *gt)
++void xe_pcode_init(struct xe_tile *tile)
+ {
+-	drmm_mutex_init(&gt_to_xe(gt)->drm, &gt->pcode.lock);
++	drmm_mutex_init(&tile_to_xe(tile)->drm, &tile->pcode.lock);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+index 3f54c6d2a57d..ba33991d72a7 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.h
++++ b/drivers/gpu/drm/xe/xe_pcode.h
+@@ -7,21 +7,21 @@
+ #define _XE_PCODE_H_
+ 
+ #include <linux/types.h>
+-struct xe_gt;
++struct xe_tile;
+ struct xe_device;
+ 
+-void xe_pcode_init(struct xe_gt *gt);
++void xe_pcode_init(struct xe_tile *tile);
+ int xe_pcode_probe_early(struct xe_device *xe);
+ int xe_pcode_ready(struct xe_device *xe, bool locked);
+-int xe_pcode_init_min_freq_table(struct xe_gt *gt, u32 min_gt_freq,
++int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+ 				 u32 max_gt_freq);
+-int xe_pcode_read(struct xe_gt *gt, u32 mbox, u32 *val, u32 *val1);
+-int xe_pcode_write_timeout(struct xe_gt *gt, u32 mbox, u32 val,
++int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
++int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
+ 			   int timeout_ms);
+-#define xe_pcode_write(gt, mbox, val) \
+-	xe_pcode_write_timeout(gt, mbox, val, 1)
++#define xe_pcode_write(tile, mbox, val) \
++	xe_pcode_write_timeout(tile, mbox, val, 1)
+ 
+-int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
++int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
+ 		     u32 reply_mask, u32 reply, int timeout_ms);
+ 
+ #define PCODE_MBOX(mbcmd, param1, param2)\
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 15ea0a942f67..dda5268507d8 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -9,6 +9,7 @@
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_migrate.h"
++#include "xe_pcode.h"
+ #include "xe_sa.h"
+ #include "xe_tile.h"
+ #include "xe_tile_sysfs.h"
+@@ -124,6 +125,8 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
+ 	if (IS_ERR(tile->primary_gt))
+ 		return PTR_ERR(tile->primary_gt);
+ 
++	xe_pcode_init(tile);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
+index 99ff95e408e0..b26e26d73dae 100644
+--- a/drivers/gpu/drm/xe/xe_vram_freq.c
++++ b/drivers/gpu/drm/xe/xe_vram_freq.c
+@@ -34,7 +34,6 @@ static ssize_t max_freq_show(struct device *dev, struct device_attribute *attr,
+ 			     char *buf)
+ {
+ 	struct xe_tile *tile = dev_to_tile(dev);
+-	struct xe_gt *gt = tile->primary_gt;
+ 	u32 val, mbox;
+ 	int err;
+ 
+@@ -42,7 +41,7 @@ static ssize_t max_freq_show(struct device *dev, struct device_attribute *attr,
+ 		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_P0)
+ 		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
+ 
+-	err = xe_pcode_read(gt, mbox, &val, NULL);
++	err = xe_pcode_read(tile, mbox, &val, NULL);
+ 	if (err)
+ 		return err;
+ 
+@@ -57,7 +56,6 @@ static ssize_t min_freq_show(struct device *dev, struct device_attribute *attr,
+ 			     char *buf)
+ {
+ 	struct xe_tile *tile = dev_to_tile(dev);
+-	struct xe_gt *gt = tile->primary_gt;
+ 	u32 val, mbox;
+ 	int err;
+ 
+@@ -65,7 +63,7 @@ static ssize_t min_freq_show(struct device *dev, struct device_attribute *attr,
+ 		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_PN)
+ 		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
+ 
+-	err = xe_pcode_read(gt, mbox, &val, NULL);
++	err = xe_pcode_read(tile, mbox, &val, NULL);
+ 	if (err)
+ 		return err;
  
 -- 
 2.45.2
