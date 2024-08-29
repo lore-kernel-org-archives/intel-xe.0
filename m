@@ -4,58 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E6CAC6FD35
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 08:10:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B76CC8300F
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 09:03:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0114310E60F;
-	Thu, 29 Aug 2024 08:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E04710E1AC;
+	Thu, 29 Aug 2024 09:03:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MrMjj7ut";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="DIojz1ih";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32D1610E60F
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Aug 2024 08:10:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724919002; x=1756455002;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=io8tizle4srgoLZg0eUitJ2nUu4R96Hmvs92mda5tro=;
- b=MrMjj7ut2jwWb/GGF9SVgHjHxtNZtCjz0LyhjPDIMHbmjKZEe05vStRn
- aX/hkT/ix/jst4is7a4ycVGzu46NWH5hd5NSxpvmkmQfyjDD6M4IjzlK1
- IJPHyQhnJG2hZimGeP9NAh1zOnj5/08r5wWh7Sn2GEcSqc2jcDI/q/Dtr
- b02O688XiftIQ3k7Sb7hSewMbYFU58C59nSa2Df5RYTqIo/kc2U1aunjv
- KW9/X54TP5rlNCzhaxGmeJfxTftbgciv20MEP+6MWhfA2QXsRGG5018Fx
- EGYB+O2icYSRc59JqubTlKlB3UiRIC6BZxki2vVG/qATkzLQqGuAr2LYl Q==;
-X-CSE-ConnectionGUID: nuh7Iv9JR/qgbKIUd62VJw==
-X-CSE-MsgGUID: f2T1vOk+SvicUdJ80XUDEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="34106948"
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="34106948"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 01:10:02 -0700
-X-CSE-ConnectionGUID: djAMn4FPREyh63le+XxDRg==
-X-CSE-MsgGUID: ZZDwcx9GTZu514VM7R4KtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="94301984"
-Received: from fpallare-mobl3.ger.corp.intel.com (HELO [10.245.245.47])
- ([10.245.245.47])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 01:10:01 -0700
-Message-ID: <7db3a5e4-e98e-4e19-9b31-b653c2bba2f6@intel.com>
-Date: Thu, 29 Aug 2024 09:09:59 +0100
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F79010E46D
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Aug 2024 09:03:36 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-371b97cfd6fso237303f8f.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Aug 2024 02:03:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1724922215; x=1725527015; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=3T+CG5v4+Ey9aTOVAUPHmhumNfBgXVe+/Y5GMCSnjeI=;
+ b=DIojz1ihnK7L6RzT2wfu6tCHty6zdJXfYlJfZkPdFb694HceBW1wG4ZgKmemENiv+o
+ CvOxakQ54i/d+DXRLWgszrZoyY3M6YJnar2bze5IQNK2XZB7Qvwp71JqCTh5/XA5ti6e
+ EK1unlW1eFvT91VoAEPpdBSbc/QQhuOOZBDWU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724922215; x=1725527015;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=3T+CG5v4+Ey9aTOVAUPHmhumNfBgXVe+/Y5GMCSnjeI=;
+ b=S1QlO1yWVWesJh8ztDJJshVeso2ZYzTxuV3CFoFn1TC3RuicrKpmoE5RL9aRQ4cngL
+ RzcYOu2Lvbmae2ql0TwlvGhR/eTNoJbIrpjkVhrWFXSctVIptwrhQdsoxoX0m27ybFQI
+ 8lhoQ4Lv6jv72GF2yqrXgtFQR8L+73eyGFntijPAOGMoOU4s+1Q/fnvY9MMPf3XydBeg
+ c+W65QNrkZewgnB4y78E0IcluZm9YzrdZOm++bPcHykfRPkMd0eNKZI3Uc3pDRCkHhPm
+ GYlfof9L4piVBCBw5Xf/+OKxaMXvYyT82m7ifzXr2fuh+RwPsyH9JC5ULEvD6vUySP0h
+ 25EQ==
+X-Gm-Message-State: AOJu0Yyg05cvFI0e/qjz9/U0IVz4ySOhWScx0ign4FHpQrJnRKxNlugY
+ nQCQ7KtkbXHVCaVFgGxJT94iYtJ/Q8uyICLtJ6+0Ct5g1QG5/xalngdNfoAHfudGLx9s9spSbhN
+ I
+X-Google-Smtp-Source: AGHT+IFFUoZ7dP1xkj9gRtOXJYeNO7mqWQbLyi0n+WV1esUiYks97AfRaYMCbbBceCwryiE451o5cg==
+X-Received: by 2002:a5d:6e8f:0:b0:371:83ae:808f with SMTP id
+ ffacd0b85a97d-3749b4d841fmr1389415f8f.0.1724922214393; 
+ Thu, 29 Aug 2024 02:03:34 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3749ee413besm871179f8f.5.2024.08.29.02.03.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Aug 2024 02:03:31 -0700 (PDT)
+Date: Thu, 29 Aug 2024 11:03:29 +0200
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
+Subject: Re: [RFC PATCH 04/28] mm/migrate: Add migrate_device_vma_range
+Message-ID: <ZtA5YVIpmzIUHWc_@phenom.ffwll.local>
+References: <20240828024901.2582335-1-matthew.brost@intel.com>
+ <20240828024901.2582335-5-matthew.brost@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: prevent potential UAF in pf_provision_vf_ggtt()
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
-References: <20240828104341.180111-2-matthew.auld@intel.com>
- <Zs9rI2MIMezCDtA0@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <Zs9rI2MIMezCDtA0@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240828024901.2582335-5-matthew.brost@intel.com>
+X-Operating-System: Linux phenom 6.9.12-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,86 +80,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 28/08/2024 19:23, Rodrigo Vivi wrote:
-> On Wed, Aug 28, 2024 at 11:43:42AM +0100, Matthew Auld wrote:
->> The node ptr can point to an already freed ptr, if we hit the path with
->> an already allocated node. We later dereference that pointer with:
->>
->> 	xe_gt_assert(gt, !xe_ggtt_node_allocated(node));
->>
->> which is a potential UAF.
+On Tue, Aug 27, 2024 at 07:48:37PM -0700, Matthew Brost wrote:
+> Add migrate_device_vma_range which prepares an array of pre-populated
+> device pages for migration and issues a MMU invalidation.
 > 
-> Not true because xe_ggtt_node_allocated is checking for that.
-
-Here the memory that node was pointing to was already freed, but node is 
-still pointing at that freed memory. The node is not NULL at this point 
-and so looks like a valid pointer. The node_allocated() call will then 
-dereference that pointer, which is a UAF, AFAICT.
-
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  include/linux/migrate.h |  3 +++
+>  mm/migrate_device.c     | 53 +++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 56 insertions(+)
 > 
-> But probably after this patch we could remove the check there?!
+> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+> index 644be30b69c8..e8cce05bf9c2 100644
+> --- a/include/linux/migrate.h
+> +++ b/include/linux/migrate.h
+> @@ -226,6 +226,9 @@ void migrate_vma_pages(struct migrate_vma *migrate);
+>  void migrate_vma_finalize(struct migrate_vma *migrate);
+>  int migrate_device_range(unsigned long *src_pfns, unsigned long start,
+>  			unsigned long npages);
+> +int migrate_device_vma_range(struct mm_struct *mm, void *pgmap_owner,
+> +			     unsigned long *src_pfns, unsigned long npages,
+> +			     unsigned long start);
+>  void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
+>  			unsigned long npages);
+>  void migrate_device_finalize(unsigned long *src_pfns,
+> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+> index 6d66dc1c6ffa..e25f12a132e8 100644
+> --- a/mm/migrate_device.c
+> +++ b/mm/migrate_device.c
+> @@ -920,6 +920,59 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
+>  }
+>  EXPORT_SYMBOL(migrate_device_range);
+>  
+> +/**
+> + * migrate_device_vma_range() - migrate device private pfns to normal memory and
+> + * trigger MMU invalidation.
+> + * @mm: struct mm of device pages.
+> + * @src_pfns: pre-popluated array of source device private pfns to migrate.
+> + * @pgmap_owner: page group map owner of device pages.
+> + * @npages: number of pages to migrate.
+> + * @start: VMA start of device pages.
+> + *
+> + * Similar to migrate_device_range() but supports non-contiguous pre-popluated
+> + * array of device pages to migrate. Also triggers MMU invalidation. Useful in
+> + * device memory eviction paths where lock is held protecting the device pages
+> + * but where the mmap lock cannot be taken to due to a locking inversion (e.g.
+> + * DRM drivers). Since the mmap lock is not required to be held, the MMU
+> + * invalidation can race with with VMA start being repurposed, worst case this
+> + * would result in an unecessary invalidation.
+> + */
+> +int migrate_device_vma_range(struct mm_struct *mm, void *pgmap_owner,
+> +			     unsigned long *src_pfns, unsigned long npages,
+> +			     unsigned long start)
+> +{
+> +	struct mmu_notifier_range range;
+> +	unsigned long i;
+> +
+> +	mmu_notifier_range_init_owner(&range, MMU_NOTIFY_MIGRATE, 0,
+> +				      mm, start, start + npages * PAGE_SIZE,
+> +				      pgmap_owner);
+> +	mmu_notifier_invalidate_range_start(&range);
 
-Yeah, I did consider just dropping it altogether, but ending up just 
-keeping it. I can drop it you prefer?
+This isn't needed, try_to_migrate called from migrate_device_unmap already
+has a notifier, if there's actually any ptes to clear. If you need this
+one you've missed a pte clear notification somewhere, or there's some
+other bad bug somewhere.
+-Sima
 
+> +
+> +	for (i = 0; i < npages; i++) {
+> +		struct page *page = pfn_to_page(src_pfns[i]);
+> +
+> +		if (!get_page_unless_zero(page)) {
+> +			src_pfns[i] = 0;
+> +			continue;
+> +		}
+> +
+> +		if (!trylock_page(page)) {
+> +			src_pfns[i] = 0;
+> +			put_page(page);
+> +			continue;
+> +		}
+> +
+> +		src_pfns[i] = migrate_pfn(src_pfns[i]) | MIGRATE_PFN_MIGRATE;
+> +	}
+> +
+> +	migrate_device_unmap(src_pfns, npages, NULL);
+> +	mmu_notifier_invalidate_range_end(&range);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(migrate_device_vma_range);
+> +
+>  /*
+>   * Migrate a device coherent page back to normal memory. The caller should have
+>   * a reference on page which will be copied to the new page if migration is
+> -- 
+> 2.34.1
 > 
->> Fix this by not stashing the ptr for node.
->> Also since it is likely a bad idea to leave config->ggtt_region pointing
->> to a stale ptr, also set that to NULL by calling
->> pf_release_vf_config_ggtt() instead of pf_release_ggtt().
-> 
-> This is a very good idea.
-> 
-> I wonder if this should be a separate patch, or another commit message,
-> but the end result is cleaner code, so no reason to block:
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Thanks.
-
-> 
->>
->> Fixes: 34e804220f69 ("drm/xe: Make xe_ggtt_node struct independent")
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 8 ++++----
->>   1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
->> index 41ed07b153b5..be198a426cdc 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
->> @@ -390,7 +390,7 @@ static void pf_release_vf_config_ggtt(struct xe_gt *gt, struct xe_gt_sriov_confi
->>   static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
->>   {
->>   	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
->> -	struct xe_ggtt_node *node = config->ggtt_region;
->> +	struct xe_ggtt_node *node;
->>   	struct xe_tile *tile = gt_to_tile(gt);
->>   	struct xe_ggtt *ggtt = tile->mem.ggtt;
->>   	u64 alignment = pf_get_ggtt_alignment(gt);
->> @@ -402,14 +402,14 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
->>   
->>   	size = round_up(size, alignment);
->>   
->> -	if (xe_ggtt_node_allocated(node)) {
->> +	if (xe_ggtt_node_allocated(config->ggtt_region)) {
->>   		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
->>   		if (unlikely(err))
->>   			return err;
->>   
->> -		pf_release_ggtt(tile, node);
->> +		pf_release_vf_config_ggtt(gt, config);
->>   	}
->> -	xe_gt_assert(gt, !xe_ggtt_node_allocated(node));
->> +	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
->>   
->>   	if (!size)
->>   		return 0;
->> -- 
->> 2.46.0
->>
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
