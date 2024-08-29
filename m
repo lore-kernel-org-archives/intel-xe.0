@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E85D0C83F12
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 12:25:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDA95C83F12
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 12:31:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79A1710E668;
-	Thu, 29 Aug 2024 12:25:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c4puGOhg";
-	dkim-atps=neutral
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
- [209.85.215.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D7B710E668;
- Thu, 29 Aug 2024 12:25:39 +0000 (UTC)
-Received: by mail-pg1-f173.google.com with SMTP id
- 41be03b00d2f7-7ae3d7222d4so373593a12.3; 
- Thu, 29 Aug 2024 05:25:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1724934338; x=1725539138; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=uLgC67of2OxnhEYp7TL7whcXZx4wSiDzOrDfS5iPKRg=;
- b=c4puGOhgsqrZZR4dIku9OKBMrjOF02XjLxVocRh8EScwH+z5ovgg5QnDqXLNhVQgoU
- CHhkSzjTud8aqiQlLlN0nudzoE7QSmvbnBVlNfgTH9olOgK+I8lHv8i6DSxWsQDUhseX
- x+KBYIwdlcJH5szABmimt1w0inOdDhJc0Fup1EGLSeWCi1AHmwOSIcbyitRRWy1DfITa
- yJoae5cjcYGxruxL7oYfpuQ8PlLO/n/CDf2vIZZ/Clv8FqBtF/a0tuL90NtXYYnV+uZv
- OTBOydUW16tiq8JYNN+mx+I+1SaPeNXVQH8K+SkbLxceHJGnrO4KRZYGqmh4bLm8xXeF
- QmpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724934338; x=1725539138;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=uLgC67of2OxnhEYp7TL7whcXZx4wSiDzOrDfS5iPKRg=;
- b=BtkYDXcVE2fdwlYgys+qsQdUvxAZKGUp0fyjiin0kzdgnW+3P4UkuymCHF6+jAEud9
- 7wyPGKu7HDdB/tqfJzUBCOAW/NGuQPBIL5kkFsN0LLo0KP7R0LyLnziHKKON9E108u/R
- Gw/RyNq9C0FE9dxkrdOv1adaLyJ87twKViMXL3j3Jv1l7OXQixomrKgdwpWE219rf5ED
- kwbMuOfAntHNpfIKusM45i+QO5/YipRvpIOjoZ5hYfqnViuK/oJEVEFsaxp3tU7h9Cku
- DK3qNOWlc5NvO8CQZYEwbJYCr8ziZbj7xqjPUn/XlOxyssmFSYDHvVuB6gKLLeLyP25q
- nwjg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXn1wOd1v+t6nmS7Li0KRDK8Kfnpx9Iy7X+Tp7rKmNplb+rJ2J5298DnMv5ykbaawcLr8JWz4xnAy0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxkcfl+xr5lbTp7DzRCyYSHuCBeioA3MtvsDy+1IjYKvpMDUemo
- qpZZW61tXuaGz1Ip9ynHF1DDhO9JdIfrlZKscQFgTWLE+9My1f6GRPAcneK98Zk=
-X-Google-Smtp-Source: AGHT+IFbGzECTn5MEDYMOOqPFrq1J4b31a/AJPacwWpDembBEANMFKdhc2RZYfaCqNxBiwi5AAkGqQ==
-X-Received: by 2002:a17:90a:9e9:b0:2d3:ba92:b27c with SMTP id
- 98e67ed59e1d1-2d85649e7d0mr2458175a91.42.1724934338290; 
- Thu, 29 Aug 2024 05:25:38 -0700 (PDT)
-Received: from localhost ([134.134.137.72]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-205152cd89bsm10311425ad.68.2024.08.29.05.25.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Aug 2024 05:25:38 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>, imre.deak@intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com
-Subject: [PATCH] drm/i915/display: Fix BMG CCS modifiers
-Date: Thu, 29 Aug 2024 15:29:28 +0300
-Message-ID: <20240829122928.423456-1-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC66210E66B;
+	Thu, 29 Aug 2024 12:31:03 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 024FF10E66A;
+ Thu, 29 Aug 2024 12:31:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Fix_BMG_CCS_modifiers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 Aug 2024 12:31:03 -0000
+Message-ID: <172493466300.831505.2310481128142140657@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240829122928.423456-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240829122928.423456-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,30 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Let I915_FORMAT_MOD_4_TILED_BMG_CCS show up as supported modifier
+== Series Details ==
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series: drm/i915/display: Fix BMG CCS modifiers
+URL   : https://patchwork.freedesktop.org/series/137959/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 9452cad41d07..d28b98e7cbd7 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2453,6 +2453,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
- 	if (gen12_plane_has_mc_ccs(i915, plane_id))
- 		caps |= INTEL_PLANE_CAP_CCS_MC;
- 
-+	if (GRAPHICS_VER(i915) >= 20 && IS_DGFX(i915))
-+		caps |= INTEL_PLANE_CAP_NEED64K_PHYS;
-+
- 	return caps;
- }
- 
--- 
-2.45.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6080b6db64f2 drm-tip: 2024y-08m-29d-11h-37m-45s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Fix BMG CCS modifiers
+
 
