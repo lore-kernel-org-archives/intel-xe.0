@@ -4,63 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC30CC7EE2D
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 07:06:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E6CAC6FD35
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Aug 2024 08:10:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC07710E4EE;
-	Thu, 29 Aug 2024 07:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0114310E60F;
+	Thu, 29 Aug 2024 08:10:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gB1vSJzm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MrMjj7ut";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A3E10E4E4;
- Thu, 29 Aug 2024 07:06:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32D1610E60F
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Aug 2024 08:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724915193; x=1756451193;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=GJcJH9cdSgbkYZkii0sV7KfcdN5fZp0ou6UuOH8qvjQ=;
- b=gB1vSJzmn8Qabm9u//w001PFwrxPoHokGiiFLd6dlm5XK8f2VSvvMI6h
- mTsc87iRIvQGh9iOKR5ZbwBJzjbMzmJOo4pRAtMTlBk5N6+/g7pD76tDm
- U+euO0Y9cIFSS8gCOY+DeoH41DSfYsNDQjBQpN9ttMV5GcX6kX9XcTXPD
- HFxH2BCHZA8rj629LKCXjLBfq7RU2lhNyngu2Q52AGBK0Ss+Fwk1D5qq0
- hFfS3HaCqpmUT7c1QQK7vMtXa+XYuugZaM7Xhd1pTu+s52s81MlthjSD/
- NVLqwE8b0czogC+Ra/wV/2EFxlA/fgJHoYJ8HNZnIJoXVGkR6JPJmtrx3 g==;
-X-CSE-ConnectionGUID: e5EA3wvQSHCosgFgVP3irg==
-X-CSE-MsgGUID: s7BohXe0S7uLK/mLwPFwLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23631846"
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="23631846"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 00:06:32 -0700
-X-CSE-ConnectionGUID: rvj0sBKMSw+CnhSJvwcB4g==
-X-CSE-MsgGUID: bZqzOS5XRfSccHpfvfDHjA==
+ t=1724919002; x=1756455002;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=io8tizle4srgoLZg0eUitJ2nUu4R96Hmvs92mda5tro=;
+ b=MrMjj7ut2jwWb/GGF9SVgHjHxtNZtCjz0LyhjPDIMHbmjKZEe05vStRn
+ aX/hkT/ix/jst4is7a4ycVGzu46NWH5hd5NSxpvmkmQfyjDD6M4IjzlK1
+ IJPHyQhnJG2hZimGeP9NAh1zOnj5/08r5wWh7Sn2GEcSqc2jcDI/q/Dtr
+ b02O688XiftIQ3k7Sb7hSewMbYFU58C59nSa2Df5RYTqIo/kc2U1aunjv
+ KW9/X54TP5rlNCzhaxGmeJfxTftbgciv20MEP+6MWhfA2QXsRGG5018Fx
+ EGYB+O2icYSRc59JqubTlKlB3UiRIC6BZxki2vVG/qATkzLQqGuAr2LYl Q==;
+X-CSE-ConnectionGUID: nuh7Iv9JR/qgbKIUd62VJw==
+X-CSE-MsgGUID: f2T1vOk+SvicUdJ80XUDEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="34106948"
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="34106948"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 01:10:02 -0700
+X-CSE-ConnectionGUID: djAMn4FPREyh63le+XxDRg==
+X-CSE-MsgGUID: ZZDwcx9GTZu514VM7R4KtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63675182"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.20])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 00:06:28 -0700
-Date: Thu, 29 Aug 2024 10:06:25 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <ZtAd8WTw1xiSu_TS@jlahtine-mobl.ger.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="94301984"
+Received: from fpallare-mobl3.ger.corp.intel.com (HELO [10.245.245.47])
+ ([10.245.245.47])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 01:10:01 -0700
+Message-ID: <7db3a5e4-e98e-4e19-9b31-b653c2bba2f6@intel.com>
+Date: Thu, 29 Aug 2024 09:09:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: prevent potential UAF in pf_provision_vf_ggtt()
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
+References: <20240828104341.180111-2-matthew.auld@intel.com>
+ <Zs9rI2MIMezCDtA0@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <Zs9rI2MIMezCDtA0@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,60 +70,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+Hi,
 
-Here goes drm-intel-fixes towards v6.11-rc6.
+On 28/08/2024 19:23, Rodrigo Vivi wrote:
+> On Wed, Aug 28, 2024 at 11:43:42AM +0100, Matthew Auld wrote:
+>> The node ptr can point to an already freed ptr, if we hit the path with
+>> an already allocated node. We later dereference that pointer with:
+>>
+>> 	xe_gt_assert(gt, !xe_ggtt_node_allocated(node));
+>>
+>> which is a potential UAF.
+> 
+> Not true because xe_ggtt_node_allocated is checking for that.
 
-Fix for USB type-C docks, backlight fix for Lenovo Yoga Tab 3 2G version
-and ARL GuC firmware version correction.
+Here the memory that node was pointing to was already freed, but node is 
+still pointing at that freed memory. The node is not NULL at this point 
+and so looks like a valid pointer. The node_allocated() call will then 
+dereference that pointer, which is a UAF, AFAICT.
 
-Regards, Joonas
+> 
+> But probably after this patch we could remove the check there?!
 
-***
+Yeah, I did consider just dropping it altogether, but ending up just 
+keeping it. I can drop it you prefer?
 
-drm-intel-fixes-2024-08-29:
+> 
+>> Fix this by not stashing the ptr for node.
+>> Also since it is likely a bad idea to leave config->ggtt_region pointing
+>> to a stale ptr, also set that to NULL by calling
+>> pf_release_vf_config_ggtt() instead of pf_release_ggtt().
+> 
+> This is a very good idea.
+> 
+> I wonder if this should be a separate patch, or another commit message,
+> but the end result is cleaner code, so no reason to block:
+> 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-- Fix #11195: The external display connect via USB type-C dock stays blank after re-connect the dock
-- Make DSI backlight work for 2G version of Lenovo Yoga Tab 3 X90F
-. Move ARL GuC firmware to correct version
--
+Thanks.
 
-The following changes since commit 5be63fc19fcaa4c236b307420483578a56986a37:
-
-  Linux 6.11-rc5 (2024-08-25 19:07:11 +1200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-08-29
-
-for you to fetch changes up to a2ccc33b88e2953a6bf0b309e7e8849cc5320018:
-
-  drm/i915/dp_mst: Fix MST state after a sink reset (2024-08-28 11:32:25 +0300)
-
-----------------------------------------------------------------
-- Fix #11195: The external display connect via USB type-C dock stays blank after re-connect the dock
-- Make DSI backlight work for 2G version of Lenovo Yoga Tab 3 X90F
-. Move ARL GuC firmware to correct version
--
-
-----------------------------------------------------------------
-Hans de Goede (1):
-      drm/i915/dsi: Make Lenovo Yoga Tab 3 X90F DMI match less strict
-
-Imre Deak (1):
-      drm/i915/dp_mst: Fix MST state after a sink reset
-
-John Harrison (1):
-      drm/i915: ARL requires a newer GSC firmware
-
- drivers/gpu/drm/i915/display/intel_dp.c     | 12 +++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 40 +++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.h |  1 +
- drivers/gpu/drm/i915/display/vlv_dsi.c      |  1 -
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c   | 31 ++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 10 ++++++--
- drivers/gpu/drm/i915/i915_drv.h             |  2 ++
- drivers/gpu/drm/i915/intel_device_info.c    |  7 +++++
- drivers/gpu/drm/i915/intel_device_info.h    |  3 +++
- include/drm/intel/i915_pciids.h             | 11 +++++---
- 10 files changed, 111 insertions(+), 7 deletions(-)
+> 
+>>
+>> Fixes: 34e804220f69 ("drm/xe: Make xe_ggtt_node struct independent")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 8 ++++----
+>>   1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+>> index 41ed07b153b5..be198a426cdc 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+>> @@ -390,7 +390,7 @@ static void pf_release_vf_config_ggtt(struct xe_gt *gt, struct xe_gt_sriov_confi
+>>   static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+>>   {
+>>   	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+>> -	struct xe_ggtt_node *node = config->ggtt_region;
+>> +	struct xe_ggtt_node *node;
+>>   	struct xe_tile *tile = gt_to_tile(gt);
+>>   	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>>   	u64 alignment = pf_get_ggtt_alignment(gt);
+>> @@ -402,14 +402,14 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+>>   
+>>   	size = round_up(size, alignment);
+>>   
+>> -	if (xe_ggtt_node_allocated(node)) {
+>> +	if (xe_ggtt_node_allocated(config->ggtt_region)) {
+>>   		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
+>>   		if (unlikely(err))
+>>   			return err;
+>>   
+>> -		pf_release_ggtt(tile, node);
+>> +		pf_release_vf_config_ggtt(gt, config);
+>>   	}
+>> -	xe_gt_assert(gt, !xe_ggtt_node_allocated(node));
+>> +	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
+>>   
+>>   	if (!size)
+>>   		return 0;
+>> -- 
+>> 2.46.0
+>>
