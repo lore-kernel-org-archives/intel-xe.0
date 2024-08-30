@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75549CA0EE1
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 05:06:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B4BCCA0EE0
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 05:08:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3087510E7CE;
-	Fri, 30 Aug 2024 05:06:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 296E710E1BC;
+	Fri, 30 Aug 2024 05:08:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mNbP2b8Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S3kf0wrc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB4310E7CC
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Aug 2024 05:05:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4584910E1BC;
+ Fri, 30 Aug 2024 05:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724994360; x=1756530360;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Q+8g4UdrwH0nwAcVl3YP+XZbASQJhQuEK4yj/sClCQY=;
- b=mNbP2b8QiEff4WjCzL0MhUkKnkel7iSA6RAH59yvzKUcFFFXzU+zCaxO
- NW6qxtxMA6IYh7FpBrcbxPDPnRD/JZiQMb/HqaoH6ZBQNmxHLRd35MLqi
- e+yPPBlhRJsX6VYGCeI2onsUZEeNXmiWKULSxQgbFX9s65NSbs3cHfF8p
- n8A1x2va/falBzcth3PLnGO7+WlrrOtY1MlyZNxYh7NgWdIcHsHKyspb2
- MCoWXcBpK7/1Uk6A1MjpXW2aE2/8V1PxyR0NFwe+6VPc4/nUJblOVLcwa
- luKnwqfscCTr3OZkDcHN3XqnagGUyQad3b4zxfVum5TpO/2T2JtH5SC0r g==;
-X-CSE-ConnectionGUID: dDrUV7SASWusf+3M+azaMA==
-X-CSE-MsgGUID: Gike3wk9TT6GnL8wKFXtxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="49006509"
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="49006509"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 22:06:00 -0700
-X-CSE-ConnectionGUID: CyL5rb1PTz+WfFakleYGew==
-X-CSE-MsgGUID: bbQ7YEXGQS2wS+xzIeumjw==
+ t=1724994498; x=1756530498;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kqPPN7Kgicq+xqPmPXqcQ+V2aiC8nt2kB4IoS7o8cjo=;
+ b=S3kf0wrcGlDQPJTxUdJWf7RpcSU5P0+anQIPTplgDxT0Dbiv7f/gPNeS
+ nuoANLf8CrNr9a3rlNPZ3OeDaTLOcmZtvHZtjp3QxbzzyVuAY/1Aza8c4
+ 2/l0d6pNNxIAHPvPadLk+0APJJn+lcpoK46KTAVcdCBmVuYZ2NJxbo8jC
+ 00LJwXjYh2jeRd0jfCL/r4NIJGZDNmQVw68AmYGmUacFC+7bKCoTDuuTf
+ kopjK1gVnzg0houbasiTwBJjupFo4NC0mp61Rx6C3LawN5V6Kk25yxI/b
+ RVmfaoWMpAo9mIMroXpmYG5yB/g4E8TIwRv7Yw2ohq782+jsqUzj9Wbkz A==;
+X-CSE-ConnectionGUID: bBUj3sV8RxKp3HgFzfHchw==
+X-CSE-MsgGUID: F0DvXvSeRJSiBZ4TPtFEIg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23421659"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="23421659"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 22:08:17 -0700
+X-CSE-ConnectionGUID: 3mrg5v1USp+GdslnH004QA==
+X-CSE-MsgGUID: +LTJGjZ7RwKGZ6J3D6Ipmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="101302022"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa001.jf.intel.com with ESMTP; 29 Aug 2024 22:05:57 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [RFC 9/9] drm/xe: forcewake debugfs open fails on xe_forcewake_get
- failure
-Date: Fri, 30 Aug 2024 10:53:26 +0530
-Message-Id: <20240830052326.3707019-10-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
-References: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="94610144"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 22:08:15 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 00/19] Consolidation of DSS Control in Separate Files
+Date: Fri, 30 Aug 2024 10:39:30 +0530
+Message-ID: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,61 +66,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A failure in xe_force_wake_get() no longer increments the domain's
-refcount. Therefore, if xe_force_wake_get() fails during forcewake
-debugfs open, return an error. This ensures there are no valid file
-descriptors to close via forcewake debugfs, preventing refcount
-mismanagement.
+Currently, DSS control is configured from various files; this change aims
+to consolidate all DSS-related functionalities, such as display stream
+splitting, joining, MSO configuration, and joining configuration,
+into one place.
 
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c | 26 +++++++++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+A new file, intel_dss_regs.h, will store register information, while the
+helpers to configure DSS and related stuff will be moved to intel_dss.c
+with its corresponding header file intel_dss.h.
+Along with this, the helpers related to retrieve information about the
+pipe joiners are also moved from intel_display.c to intel_joiner.
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 78537bbfe2a4..2788a6b2dea2 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -93,13 +93,33 @@ static int forcewake_open(struct inode *inode, struct file *file)
- {
- 	struct xe_device *xe = inode->i_private;
- 	struct xe_gt *gt;
--	u8 id;
-+	u8 id, last_gt;
-+	int ret;
- 
- 	xe_pm_runtime_get(xe);
--	for_each_gt(gt, xe, id)
--		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	for_each_gt(gt, xe, id) {
-+		last_gt = id;
-+
-+		ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+
-+		if (ret) {
-+			XE_WARN_ON(1);
-+			goto err_fw_get;
-+		}
-+	}
- 
- 	return 0;
-+
-+err_fw_get:
-+	for_each_gt(gt, xe, id) {
-+		if (id < last_gt)
-+			xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+		else
-+			break;
-+	}
-+
-+	xe_pm_runtime_put(xe);
-+	return ret;
- }
- 
- static int forcewake_release(struct inode *inode, struct file *file)
+Additionally, wherever possible, the drm_i915_private structure is
+replaced with the new intel_display structure as part of ongoing efforts
+to phase out the old structure.
+
+Rev2:
+-Addressed review comments from Jani.
+-Moved all joiner stuff into a separate file.
+
+Rev3:
+-Rebase
+
+Ankit Nautiyal (19):
+  drm/i915/display: Move all DSS control registers to a new file
+  drm/i915/dss_regs: Use REG_* macros for the DSS ctl bits
+  drm/i915/ddi: Move all mso related helpers to a new file
+  drm/i915/dss: Move to struct intel_display
+  drm/i915/icl_dsi: Avoid using intel_dsi in configure_dual_link_mode
+  drm/i915/icl_dsi: Use intel_display in configure_dual_link_mode
+  drm/i915/icl_dsi: Move helpers to configure dsi dual link to intel_dss
+  drm/i915/vdsc: Rename helper to check if the pipe supports dsc
+  drm/i915/vdsc: Move all dss stuff in dss files
+  drm/i915/dss: Use struct intel_display in dss dsc helpers
+  drm/i915/display: Move dss stuff in intel_dss files
+  drm/i915/display: Rename static functions that use joiner
+  drm/i915/display: Separate out joiner stuff in a new file
+  drm/i915/display: Move intel_crtc_joined_pipe_mask to intel_joiner
+  drm/i915/display: Move helpers for primary joiner to intel_joiner
+  drm/i915/display: Move intel_crtc_is_joiner_secondary to intel_joiner
+  drm/i915/display: Move intel_crtc_joiner_secondary_pipes to
+    intel_joiner
+  drm/i915/joiner: Use struct intel_display in
+    intel_joiner_enabled_pipes
+  drm/i915/joiner: Use struct intel_display in
+    intel_joiner_supported_pipes
+
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  55 +--
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   3 +-
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  95 +----
+ drivers/gpu/drm/i915/display/intel_display.c  | 359 +++---------------
+ drivers/gpu/drm/i915/display/intel_display.h  |   9 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   7 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_dss.c      | 268 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_dss.h      |  35 ++
+ drivers/gpu/drm/i915/display/intel_dss_regs.h |  51 +++
+ drivers/gpu/drm/i915/display/intel_joiner.c   | 265 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_joiner.h   |  36 ++
+ .../drm/i915/display/intel_modeset_setup.c    |  15 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  74 +---
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |   2 +-
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |  38 --
+ drivers/gpu/drm/xe/Makefile                   |   2 +
+ 20 files changed, 757 insertions(+), 572 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss_regs.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_joiner.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_joiner.h
+
 -- 
-2.34.1
+2.45.2
 
