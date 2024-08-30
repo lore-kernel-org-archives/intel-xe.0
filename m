@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70866CA0EE1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4216CA0EE5
 	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 06:23:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B0AC10E801;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B36010E805;
 	Fri, 30 Aug 2024 06:23:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DoMunWPA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XasiFKzK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4F2010E801
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8743610E7FD
  for <Intel-Xe@lists.freedesktop.org>; Fri, 30 Aug 2024 06:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724998992; x=1756534992;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YPVoBNMq9UD2Sk9rUNMVKO6ZULo5Ws2TJrK2Ykf9LbY=;
- b=DoMunWPANuIKzhuQk4iG0yNa8njze0uDkNiiS1OPQ/DmHSzMmkplPXij
- X+7xEezWlfPjaIn/Rbqd9aA5s+IQ2kQqT5r5leYWPPCNaRGMOVAfDcSM7
- zw9qYaFXEROlrAspxOOG/1Mnr7r6M4nw7XOU6eDUAD5NhqVILNDPTqfP5
- PA/OG7hVJdBzEwH4tooBo92Az2318i+kjShPU00Y8NZulSkhsGEkQ8pj+
- sE2GQTKOZDJnZgsOZcYaN96ppaarTkSvaBTQumxy/7Aa4uLEFtDhaumi/
- rYIqkNfb5sfm4ZqnwOq8kevL830WvaYRUF8aKmiOp0L5Wwt40Gm+ix83L Q==;
-X-CSE-ConnectionGUID: KnrDTEmGQJuLIqm/w4Jxdw==
-X-CSE-MsgGUID: g2aPJnKkQWywIGSLHItlfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="34245218"
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="34245218"
+ t=1724998991; x=1756534991;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sPYCuv9p+rnH6JhkAQUaAAKGMOkn/5hEf33L+8Q1wmk=;
+ b=XasiFKzKpnp5Fuv1W+UOYF/YAlqO8cbuQwuZGRwrN5VRe+OKv2Du1Vmg
+ TFK+gfIOO1ARcwfvYnYhLB649E3F3LCNQOqrXg0gYDhz5kYlgeK056K8B
+ VXB6V1itn1An/vS0bYcKN41JHdWY9/9UJ7UPGwDaQ3/0wZojSNjgFyDbi
+ GXSuS5HWG+0TkPnwLi14BcW4I9Ng502tjfuAcnP60I7JYQDmnGSH03vt3
+ aKwBt2FLjpdfnpXwXsl3/iyl3/ZK9kDXgwDaKFOYlyAtNfyGToSScfe2L
+ whT6CH8CSZ2IzyeZiuJAtqQS8g21eBWmbok2MJy1tQ03o0f4mlQkFdSKQ w==;
+X-CSE-ConnectionGUID: pHu97+C0SaG/B94APWUOvg==
+X-CSE-MsgGUID: IalfX4d2S+iSYVY7I5GLuw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="34245217"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="34245217"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Aug 2024 23:23:11 -0700
-X-CSE-ConnectionGUID: dWeWVL2cStOSsT+rzmCatA==
-X-CSE-MsgGUID: X2fVclGgTke7ZRtBPjZ+9w==
+X-CSE-ConnectionGUID: KDB9XWehQv+mKvk8EeyNcg==
+X-CSE-MsgGUID: HX/MKaWUR3OKK+vlM06JHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="87040562"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="87040559"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa002.fm.intel.com with ESMTP; 29 Aug 2024 23:23:11 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 29 Aug 2024 23:23:10 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v6 1/9] drm/xe/guc: Remove spurious line feed in debug print
-Date: Thu, 29 Aug 2024 23:23:02 -0700
-Message-ID: <20240830062310.3450387-2-John.C.Harrison@Intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v6 0/9] drm/xe/guc: Improve GuC log dumping and add to
+ devcoredump
+Date: Thu, 29 Aug 2024 23:23:01 -0700
+Message-ID: <20240830062310.3450387-1-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240830062310.3450387-1-John.C.Harrison@Intel.com>
-References: <20240830062310.3450387-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
@@ -70,33 +68,79 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Including line feeds at the start of a debug print messes up the
-output when sent to dmesg. The break appears between all the useful
-prefix information and the actual string being printed. In this case,
-each block of data has a very clear start line and an extra delimeter
-is really not necessary. So don't do it.
+There is a debug mechanism for dumping the GuC log as an ASCII hex
+stream via dmesg. This is extremely useful for situations where it is
+not possibe to query the log from debugfs (self tests, bugs that cause
+the driver to fail to load, system hangs, etc.). However, dumping via
+dmesg is not the most reliable. The dmesg buffer is limited in size,
+can be rate limited and a simple hex stream is hard to parse by tools.
 
-v2: Fix typo in commit message (review feedback from Michal W.)
+So add extra information to the dump to make it more robust and
+parsable. This includes adding start and end tags to delimit the dump,
+using longer lines to reduce the per line overhead, adding a rolling
+count to check for missing lines and interleaved concurrent dumps and
+adding other important information such as the GuC version number and
+timestamp offset. Also, switch to using the much more compact ASCII85
+encoding rather than 0x%08X hexdumping.
+
+There are various internal error states that the CTB code can check
+for. These should never happen but when they do (driver bug, firmware
+bug or even hardware bug), they can be a nightmare to debug. So add in
+a capture of the GuC log and CT state at the point of error and
+subsequent dump from a worker thread.
+
+Finally, include the GuC log and full CTBs in a devcoredump capture.
+
+Note that the ultimate aim is to then provide a mechanism for
+generating a devcoredump at an arbitrary point (such as dead CTB or
+failed selftest) and dumping that to dmesg. There are still a few
+issues with doing that, but this is all good steps along the way.
+
+v2: Remove pm get/put as unnecessary (review feedback from Matthew B).
+v3: Add firmware filename and 'wanted' version number.
+v4: Use DRM level line printer wrapper from Michal W. Add 'dead CTB'
+dump support. Lots of restructuring of capture vs dump for both GuC
+log and CTB capture for both the dead CTB dump and for future
+inclusion in devcoredump.
+v5: Add missing kerneldocs and other review feedback from Michal W.
+Fix printf of size_t, clean up re-arming of dead CTBs, add GuC log to
+devcoredump captures.
+v6: Replace hexdumps with much more compact ascii85 encoding, drop
+module parameter (review feedback from Matthew B). Fix potential
+use-after-free bug.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index f24dd5223926..83046a5fbac9 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1523,7 +1523,7 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
- 		drm_puts(p, "H2G CTB (all sizes in DW):\n");
- 		guc_ctb_snapshot_print(&snapshot->h2g, p);
- 
--		drm_puts(p, "\nG2H CTB (all sizes in DW):\n");
-+		drm_puts(p, "G2H CTB (all sizes in DW):\n");
- 		guc_ctb_snapshot_print(&snapshot->g2h, p);
- 
- 		drm_printf(p, "\tg2h outstanding: %d\n",
+
+John Harrison (8):
+  drm/xe/guc: Remove spurious line feed in debug print
+  drm/xe: Add ASCII85 dump helper function
+  drm/xe/guc: Copy GuC log prior to dumping
+  drm/xe/guc: Use a two stage dump for GuC logs and add more info
+  drm/xe/guc: Dead CT helper
+  drm/xe/guc: Dump entire CTB on errors
+  drm/xe/guc: Add GuC log to devcoredump captures
+  drm/xe/guc: Add a helper function for dumping GuC log to dmesg
+
+Michal Wajdeczko (1):
+  drm/print: Introduce drm_line_printer
+
+ drivers/gpu/drm/drm_print.c                   |  14 +
+ .../drm/xe/abi/guc_communication_ctb_abi.h    |   1 +
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h         |   1 +
+ drivers/gpu/drm/xe/xe_devcoredump.c           | 102 ++++-
+ drivers/gpu/drm/xe/xe_devcoredump.h           |   5 +
+ drivers/gpu/drm/xe/xe_devcoredump_types.h     |  14 +-
+ drivers/gpu/drm/xe/xe_guc.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                | 359 ++++++++++++++----
+ drivers/gpu/drm/xe/xe_guc_ct.h                |  10 +-
+ drivers/gpu/drm/xe/xe_guc_ct_types.h          |  25 ++
+ drivers/gpu/drm/xe/xe_guc_log.c               | 200 +++++++++-
+ drivers/gpu/drm/xe/xe_guc_log.h               |   5 +
+ drivers/gpu/drm/xe/xe_guc_log_types.h         |  29 ++
+ include/drm/drm_print.h                       |  64 ++++
+ 14 files changed, 717 insertions(+), 114 deletions(-)
+
 -- 
 2.46.0
 
