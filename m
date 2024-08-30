@@ -4,43 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11508CA0FE8
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 08:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 316CACA0FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 08:45:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3273310E975;
-	Fri, 30 Aug 2024 08:45:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19E0510E962;
+	Fri, 30 Aug 2024 08:45:30 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 532FC10E8C2;
- Fri, 30 Aug 2024 08:45:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF3B10E8EA;
+ Fri, 30 Aug 2024 08:45:15 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 0286C1F7BD;
- Fri, 30 Aug 2024 08:45:11 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id DEB2C1F7B6;
+ Fri, 30 Aug 2024 08:45:13 +0000 (UTC)
 Authentication-Results: smtp-out2.suse.de;
 	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A0F2313A3D;
- Fri, 30 Aug 2024 08:45:10 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8FF3E13A3D;
+ Fri, 30 Aug 2024 08:45:13 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id CDsFJpaG0WbyegAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 30 Aug 2024 08:45:10 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id ePOaIZmG0WbyegAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 30 Aug 2024 08:45:13 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: [PATCH v3 34/81] drm/renesas/rcar-du: Run DRM default client setup
-Date: Fri, 30 Aug 2024 10:40:18 +0200
-Message-ID: <20240830084456.77630-35-tzimmermann@suse.de>
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v3 42/81] drm/tidss: Run DRM default client setup
+Date: Fri, 30 Aug 2024 10:40:26 +0200
+Message-ID: <20240830084456.77630-43-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240830084456.77630-1-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
@@ -48,9 +47,9 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
-X-Spamd-Result: default: False [-4.00 / 50.00]; REPLY(-4.00)[];
- TAGGED_RCPT(0.00)[renesas]
-X-Rspamd-Queue-Id: 0286C1F7BD
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
+X-Rspamd-Queue-Id: DEB2C1F7B6
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Rspamd-Action: no action
@@ -73,45 +72,44 @@ Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-The rcar-du driver specifies a preferred color mode of 32. As this
+The tidss driver specifies a preferred color mode of 32. As this
 is the default if no format has been given, leave it out entirely.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: Jyri Sarha <jyri.sarha@iki.fi>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 ---
- drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c | 4 +++-
+ drivers/gpu/drm/tidss/tidss_drv.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
-index fb719d9aff10..4e0bafc86f50 100644
---- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
-+++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
-@@ -19,6 +19,7 @@
- #include <linux/wait.h>
+diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+index d15f836dca95..2428b9aaa003 100644
+--- a/drivers/gpu/drm/tidss/tidss_drv.c
++++ b/drivers/gpu/drm/tidss/tidss_drv.c
+@@ -11,6 +11,7 @@
  
+ #include <drm/drm_atomic.h>
  #include <drm/drm_atomic_helper.h>
 +#include <drm/drm_client_setup.h>
+ #include <drm/drm_crtc.h>
  #include <drm/drm_drv.h>
  #include <drm/drm_fbdev_dma.h>
- #include <drm/drm_gem_dma_helper.h>
-@@ -606,6 +607,7 @@ static const struct drm_driver rcar_du_driver = {
- 	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
- 	.dumb_create		= rcar_du_dumb_create,
- 	.gem_prime_import_sg_table = rcar_du_gem_prime_import_sg_table,
+@@ -109,6 +110,7 @@ static const struct drm_driver tidss_driver = {
+ 	.fops			= &tidss_fops,
+ 	.release		= tidss_release,
+ 	DRM_GEM_DMA_DRIVER_OPS_VMAP,
 +	DRM_FBDEV_DMA_DRIVER_OPS,
- 	.fops			= &rcar_du_fops,
- 	.name			= "rcar-du",
- 	.desc			= "Renesas R-Car Display Unit",
-@@ -716,7 +718,7 @@ static int rcar_du_probe(struct platform_device *pdev)
+ 	.name			= "tidss",
+ 	.desc			= "TI Keystone DSS",
+ 	.date			= "20180215",
+@@ -186,7 +188,7 @@ static int tidss_probe(struct platform_device *pdev)
+ 		goto err_irq_uninstall;
+ 	}
  
- 	drm_info(&rcdu->ddev, "Device %s probed\n", dev_name(&pdev->dev));
+-	drm_fbdev_dma_setup(ddev, 32);
++	drm_client_setup(ddev, NULL);
  
--	drm_fbdev_dma_setup(&rcdu->ddev, 32);
-+	drm_client_setup(&rcdu->ddev, NULL);
- 
- 	return 0;
+ 	dev_dbg(dev, "%s done\n", __func__);
  
 -- 
 2.46.0
