@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C22E1CA0EE4
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 05:08:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A8E7CA0EE0
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 05:08:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6534110E7E6;
-	Fri, 30 Aug 2024 05:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A33410E7EB;
+	Fri, 30 Aug 2024 05:08:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V+lCHUOw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SJ0AaDaF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15B8D10E7E0;
- Fri, 30 Aug 2024 05:08:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD1CE10E7E0;
+ Fri, 30 Aug 2024 05:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724994524; x=1756530524;
+ t=1724994518; x=1756530518;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E1sQbbyyxDsnXRDlCqMGtEIXYMlVXKOfQ+DmI3PQHrw=;
- b=V+lCHUOwwaua4irs9Cnxny/qWvJ8+NNVbxDnKIaNrkLuYR+qJlNkYzY+
- BTq3CyQGBPjlMQFLXo//ZgkzhTlYBJvAlxiyIOy8NnmUKMJW0VM7jbAYF
- HyvWlgFK2U04FKJ5hRASwiyWy5zQKoRjhe7i6gFgvTaDXrE7QiY5x9Had
- KbEzydB3AfGYJBV9RC5a8NBZEaFnt8RzpD0PMJM9zrfAyLDtwtLh6RayA
- /69QGIczD7zLvi86cbnRXK2Fq6IxLA8nbH3dAq0L3W3rto7l1WRwJk7us
- r5Kja8LGt5bwQgFZuCliU1xt4P7el+BjjEpzxKxv4y3H5h/ChIaLRB4C/ g==;
-X-CSE-ConnectionGUID: y0jB6KqtTQustf0gGFucJw==
-X-CSE-MsgGUID: 3MHLCE9aQ16NcJCCXw2fwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23421689"
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="23421689"
+ bh=se4hm+XelaASNCKt5jQijYX0A75nDFCEM9KN5cHIhyk=;
+ b=SJ0AaDaF0z9OSh5v1mJMXxNebGUmeSyVH76TUfwhCdBC+dJYCjitZGIw
+ bezVZggESxrN90v5j/BW+E7sddR8rkDVlsORa9KbgCJVtR7SF1XwA3hAf
+ 1BfjYAcJN+XNDaWdyM0UhzFgOYOvNiq39Yv0RB94nSPL7otcJ1p5pKVWg
+ HiqJhN11WT6nAyRkg8oYBvUGXQzg/2g9USGyAc7Icnd3ACzy+M/oj2rWk
+ W3HDc9swe6AcNlXQcNC6cExWUYTva927kr6AdBmb5TM6wt4yqgZIEwxR3
+ xjFdXFlxeumyt5/7C9UMUo9SBiGNKgSaQ/+7mvvIuGqPBL4K8qk5Ro+7k w==;
+X-CSE-ConnectionGUID: VUKtdDNRQvCAVDXUab8mKw==
+X-CSE-MsgGUID: JjHjUe1ATQSBO3XylcDQNA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23421686"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="23421686"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 22:08:44 -0700
-X-CSE-ConnectionGUID: RJaSrrf2S2OfGE7wSqdrwA==
-X-CSE-MsgGUID: JrzdLqEFQnS+HsutPzCccw==
+ 29 Aug 2024 22:08:38 -0700
+X-CSE-ConnectionGUID: B4W9ofjjR2qzmoUKTSysxw==
+X-CSE-MsgGUID: lu17uLZ/QeC8f+xT7T+Jvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="94610280"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="94610264"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 22:08:42 -0700
+ 29 Aug 2024 22:08:36 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 13/19] drm/i915/display: Separate out joiner stuff in a new
- file
-Date: Fri, 30 Aug 2024 10:39:43 +0530
-Message-ID: <20240830050950.2528450-14-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 10/19] drm/i915/dss: Use struct intel_display in dss dsc
+ helpers
+Date: Fri, 30 Aug 2024 10:39:40 +0530
+Message-ID: <20240830050950.2528450-11-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
 References: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,666 +69,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move all the static functions intel_joiner* to the new file
-intel_joiner.c.
+Replace struct drm_i915_private with intel_display in the dss dsc
+helpers.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                |   1 +
- drivers/gpu/drm/i915/display/intel_display.c | 234 +------------------
- drivers/gpu/drm/i915/display/intel_display.h |   5 +
- drivers/gpu/drm/i915/display/intel_joiner.c  | 233 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_joiner.h  |  32 +++
- drivers/gpu/drm/xe/Makefile                  |   1 +
- 6 files changed, 278 insertions(+), 228 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_joiner.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_joiner.h
+ drivers/gpu/drm/i915/display/intel_dss.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index e55ce8ba123c..c337385bbe7d 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -333,6 +333,7 @@ i915-y += \
- 	display/intel_encoder.o \
- 	display/intel_gmbus.o \
- 	display/intel_hdmi.o \
-+	display/intel_joiner.o \
- 	display/intel_lspcon.o \
- 	display/intel_lvds.o \
- 	display/intel_panel.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ad72691b47b2..9af3ea6c7642 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -97,6 +97,7 @@
- #include "intel_frontbuffer.h"
- #include "intel_hdmi.h"
- #include "intel_hotplug.h"
-+#include "intel_joiner.h"
- #include "intel_link_bw.h"
- #include "intel_lvds.h"
- #include "intel_lvds_regs.h"
-@@ -249,11 +250,6 @@ is_trans_port_sync_mode(const struct intel_crtc_state *crtc_state)
- 		is_trans_port_sync_slave(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dss.c b/drivers/gpu/drm/i915/display/intel_dss.c
+index b37e9112ab77..fe55f4b1a9bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_dss.c
++++ b/drivers/gpu/drm/i915/display/intel_dss.c
+@@ -154,17 +154,17 @@ static i915_reg_t dss_ctl2_reg(struct intel_crtc *crtc, enum transcoder cpu_tran
+ 
+ void intel_dss_reset(const struct intel_crtc_state *old_crtc_state)
+ {
++	struct intel_display *display = to_intel_display(old_crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 
+-	intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
+-	intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
++	intel_de_write(display, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
++	intel_de_write(display, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
  }
  
--static enum pipe intel_joiner_get_primary_pipe(const struct intel_crtc_state *crtc_state)
--{
--	return ffs(crtc_state->joiner_pipes) - 1;
--}
--
- u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
+ void intel_dss_enable_uncompressed_joiner(const struct intel_crtc_state *crtc_state)
  {
- 	if (crtc_state->joiner_pipes)
-@@ -278,11 +274,6 @@ bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state)
- 		crtc->pipe == intel_joiner_get_primary_pipe(crtc_state);
- }
- 
--static int intel_joiner_get_num_pipes(const struct intel_crtc_state *crtc_state)
--{
--	return hweight8(crtc_state->joiner_pipes);
--}
--
- u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state)
- {
++	struct intel_display *display = to_intel_display(crtc_state);
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -2341,23 +2332,6 @@ static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_state)
- 			ilk_pipe_pixel_rate(crtc_state);
- }
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 dss_ctl1_val = 0;
  
--static void intel_joiner_adjust_timings(const struct intel_crtc_state *crtc_state,
--					struct drm_display_mode *mode)
--{
--	int num_pipes = intel_joiner_get_num_pipes(crtc_state);
--
--	if (num_pipes < 2)
--		return;
--
--	mode->crtc_clock /= num_pipes;
--	mode->crtc_hdisplay /= num_pipes;
--	mode->crtc_hblank_start /= num_pipes;
--	mode->crtc_hblank_end /= num_pipes;
--	mode->crtc_hsync_start /= num_pipes;
--	mode->crtc_hsync_end /= num_pipes;
--	mode->crtc_htotal /= num_pipes;
--}
--
- static void intel_splitter_adjust_timings(const struct intel_crtc_state *crtc_state,
- 					  struct drm_display_mode *mode)
- {
-@@ -2426,21 +2400,6 @@ void intel_encoder_get_config(struct intel_encoder *encoder,
- 	intel_crtc_readout_derived_state(crtc_state);
- }
+ 	if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable) {
+@@ -173,7 +173,7 @@ void intel_dss_enable_uncompressed_joiner(const struct intel_crtc_state *crtc_st
+ 		else
+ 			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
  
--static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
--{
--	int num_pipes = intel_joiner_get_num_pipes(crtc_state);
--	int width, height;
--
--	if (num_pipes < 2)
--		return;
--
--	width = drm_rect_width(&crtc_state->pipe_src);
--	height = drm_rect_height(&crtc_state->pipe_src);
--
--	drm_rect_init(&crtc_state->pipe_src, 0, 0,
--		      width / num_pipes, height);
--}
--
- static int intel_crtc_compute_pipe_src(struct intel_crtc_state *crtc_state)
+-		intel_de_write(dev_priv,
++		intel_de_write(display,
+ 			       dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
+ 			       dss_ctl1_val);
+ 	}
+@@ -182,8 +182,8 @@ void intel_dss_enable_uncompressed_joiner(const struct intel_crtc_state *crtc_st
+ void intel_dss_enable_compressed_joiner(const struct intel_crtc_state *crtc_state,
+ 					int vdsc_instances_per_pipe)
  {
++	struct intel_display *display = to_intel_display(crtc_state);
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -2885,23 +2844,6 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
- 				      TRANS_SET_CONTEXT_LATENCY(dev_priv, cpu_transcoder));
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 dss_ctl1_val = 0;
+ 	u32 dss_ctl2_val = 0;
+ 
+@@ -197,18 +197,18 @@ void intel_dss_enable_compressed_joiner(const struct intel_crtc_state *crtc_stat
+ 		if (!intel_crtc_is_joiner_secondary(crtc_state))
+ 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+ 	}
+-	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
+-	intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
++	intel_de_write(display, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
++	intel_de_write(display, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
  }
  
--static void intel_joiner_adjust_pipe_src(struct intel_crtc_state *crtc_state)
--{
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	int num_pipes = intel_joiner_get_num_pipes(crtc_state);
--	enum pipe primary_pipe, pipe = crtc->pipe;
--	int width;
--
--	if (num_pipes < 2)
--		return;
--
--	primary_pipe = intel_joiner_get_primary_pipe(crtc_state);
--	width = drm_rect_width(&crtc_state->pipe_src);
--
--	drm_rect_translate_to(&crtc_state->pipe_src,
--			      (pipe - primary_pipe) * width, 0);
--}
--
- static void intel_get_pipe_src_size(struct intel_crtc *crtc,
- 				    struct intel_crtc_state *pipe_config)
+ void intel_dss_dsc_get_config(struct intel_crtc_state *crtc_state)
  {
-@@ -3505,20 +3447,6 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
- 	return ret;
- }
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 dss_ctl1, dss_ctl2;
  
--static u8 intel_joiner_supported_pipes(struct drm_i915_private *i915)
--{
--	u8 pipes;
--
--	if (DISPLAY_VER(i915) >= 12)
--		pipes = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D);
--	else if (DISPLAY_VER(i915) >= 11)
--		pipes = BIT(PIPE_B) | BIT(PIPE_C);
--	else
--		pipes = 0;
--
--	return pipes & DISPLAY_RUNTIME_INFO(i915)->pipe_mask;
--}
--
- static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
- 					   enum transcoder cpu_transcoder)
- {
-@@ -3535,66 +3463,6 @@ static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
- 	return tmp & TRANS_DDI_FUNC_ENABLE;
- }
+-	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder));
+-	dss_ctl2 = intel_de_read(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder));
++	dss_ctl1 = intel_de_read(display, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder));
++	dss_ctl2 = intel_de_read(display, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder));
  
--static void intel_joiner_enabled_pipes(struct drm_i915_private *dev_priv,
--				       u8 *primary_pipes, u8 *secondary_pipes)
--{
--	struct intel_crtc *crtc;
--
--	*primary_pipes = 0;
--	*secondary_pipes = 0;
--
--	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc,
--					 intel_joiner_supported_pipes(dev_priv)) {
--		intel_dss_get_compressed_joiner_pipes(crtc,
--						      primary_pipes,
--						      secondary_pipes);
--
--		intel_dss_get_uncompressed_joiner_pipes(crtc,
--							primary_pipes,
--							secondary_pipes);
--	}
--
--	/* Joiner pipes should always be consecutive primary and secondary */
--	drm_WARN(&dev_priv->drm, *secondary_pipes != *primary_pipes << 1,
--		 "Joiner misconfigured (primary pipes 0x%x, secondary pipes 0x%x)\n",
--		 *primary_pipes, *secondary_pipes);
--}
--
--static enum pipe intel_joiner_find_primary_pipe(enum pipe pipe,
--						u8 primary_pipes,
--						u8 secondary_pipes)
--{
--	if ((secondary_pipes & BIT(pipe)) == 0)
--		return pipe;
--
--	/* ignore everything above our pipe */
--	primary_pipes &= ~GENMASK(7, pipe);
--
--	/* highest remaining bit should be our primary pipe */
--	return fls(primary_pipes) - 1;
--}
--
--static u8 intel_joiner_find_secondary_pipes(enum pipe pipe,
--					    u8 primary_pipes,
--					    u8 secondary_pipes)
--{
--	enum pipe primary_pipe, next_primary_pipe;
--
--	primary_pipe = intel_joiner_find_primary_pipe(pipe, primary_pipes, secondary_pipes);
--
--	if ((primary_pipes & BIT(primary_pipe)) == 0)
--		return 0;
--
--	/* ignore our primary pipe and everything below it */
--	primary_pipes &= ~GENMASK(primary_pipe, 0);
--	/* make sure a high bit is set for the ffs() */
--	primary_pipes |= BIT(7);
--	/* lowest remaining bit should be the next primary pipe */
--	next_primary_pipe = ffs(primary_pipes) - 1;
--
--	return secondary_pipes & GENMASK(next_primary_pipe - 1, primary_pipe);
--}
--
- static u8 hsw_panel_transcoders(struct drm_i915_private *i915)
- {
- 	u8 panel_transcoder_mask = BIT(TRANSCODER_EDP);
-@@ -3794,23 +3662,6 @@ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
- 	return transcoder_is_dsi(pipe_config->cpu_transcoder);
- }
- 
--static void intel_joiner_get_config(struct intel_crtc_state *crtc_state)
--{
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	u8 primary_pipes, secondary_pipes;
--	enum pipe pipe = crtc->pipe;
--
--	intel_joiner_enabled_pipes(i915, &primary_pipes, &secondary_pipes);
--
--	if (((primary_pipes | secondary_pipes) & BIT(pipe)) == 0)
--		return;
--
--	crtc_state->joiner_pipes =
--		BIT(intel_joiner_find_primary_pipe(pipe, primary_pipes, secondary_pipes)) |
--		intel_joiner_find_secondary_pipes(pipe, primary_pipes, secondary_pipes);
--}
--
- static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 				struct intel_crtc_state *pipe_config)
- {
-@@ -5822,9 +5673,9 @@ static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
- 		IS_IVYBRIDGE(dev_priv);
- }
- 
--static int intel_crtc_add_joiner_planes(struct intel_atomic_state *state,
--					struct intel_crtc *crtc,
--					struct intel_crtc *other)
-+int intel_crtc_add_joiner_planes(struct intel_atomic_state *state,
-+				 struct intel_crtc *crtc,
-+				 struct intel_crtc *other)
- {
- 	const struct intel_plane_state __maybe_unused *plane_state;
- 	struct intel_plane *plane;
-@@ -5839,32 +5690,6 @@ static int intel_crtc_add_joiner_planes(struct intel_atomic_state *state,
- 	return intel_crtc_add_planes_to_state(state, other, plane_ids);
- }
- 
--static int intel_joiner_add_affected_planes(struct intel_atomic_state *state)
--{
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	const struct intel_crtc_state *crtc_state;
--	struct intel_crtc *crtc;
--	int i;
--
--	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
--		struct intel_crtc *other;
--
--		for_each_intel_crtc_in_pipe_mask(&i915->drm, other,
--						 crtc_state->joiner_pipes) {
--			int ret;
--
--			if (crtc == other)
--				continue;
--
--			ret = intel_crtc_add_joiner_planes(state, crtc, other);
--			if (ret)
--				return ret;
--		}
--	}
--
--	return 0;
--}
--
- static int intel_atomic_check_planes(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-@@ -6049,8 +5874,8 @@ static int intel_atomic_check_joiner(struct intel_atomic_state *state,
- 	return 0;
- }
- 
--static void kill_joiner_secondaries(struct intel_atomic_state *state,
--				    struct intel_crtc *primary_crtc)
-+void intel_crtc_kill_joiner_secondaries(struct intel_atomic_state *state,
-+					struct intel_crtc *primary_crtc)
- {
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	struct intel_crtc_state *primary_crtc_state =
-@@ -6349,53 +6174,6 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
- 	return 0;
- }
- 
--static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
--{
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	struct intel_crtc_state *crtc_state;
--	struct intel_crtc *crtc;
--	u8 affected_pipes = 0;
--	u8 modeset_pipes = 0;
--	int i;
--
--	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
--		affected_pipes |= crtc_state->joiner_pipes;
--		if (intel_crtc_needs_modeset(crtc_state))
--			modeset_pipes |= crtc_state->joiner_pipes;
--	}
--
--	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, affected_pipes) {
--		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
--		if (IS_ERR(crtc_state))
--			return PTR_ERR(crtc_state);
--	}
--
--	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, modeset_pipes) {
--		int ret;
--
--		crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
--
--		crtc_state->uapi.mode_changed = true;
--
--		ret = drm_atomic_add_affected_connectors(&state->base, &crtc->base);
--		if (ret)
--			return ret;
--
--		ret = intel_atomic_add_affected_planes(state, crtc);
--		if (ret)
--			return ret;
--	}
--
--	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
--		/* Kill old joiner link, we may re-establish afterwards */
--		if (intel_crtc_needs_modeset(crtc_state) &&
--		    intel_crtc_is_joiner_primary(crtc_state))
--			kill_joiner_secondaries(state, crtc);
--	}
--
--	return 0;
--}
--
- static int intel_atomic_check_config(struct intel_atomic_state *state,
- 				     struct intel_link_bw_limits *limits,
- 				     enum pipe *failed_pipe)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index b21d9578d5db..6bf423e36bc9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -586,5 +586,10 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port);
- })
- 
- bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
-+int intel_crtc_add_joiner_planes(struct intel_atomic_state *state,
-+				 struct intel_crtc *crtc,
-+				 struct intel_crtc *other);
-+void intel_crtc_kill_joiner_secondaries(struct intel_atomic_state *state,
-+					struct intel_crtc *primary_crtc);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_joiner.c b/drivers/gpu/drm/i915/display/intel_joiner.c
-new file mode 100644
-index 000000000000..b24dfdbc9840
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_joiner.c
-@@ -0,0 +1,233 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <drm/drm_rect.h>
-+
-+#include "i915_drv.h"
-+#include "intel_atomic.h"
-+#include "intel_display.h"
-+#include "intel_display_device.h"
-+#include "intel_display_types.h"
-+#include "intel_dss.h"
-+#include "intel_joiner.h"
-+
-+enum pipe intel_joiner_get_primary_pipe(const struct intel_crtc_state *crtc_state)
-+{
-+	return ffs(crtc_state->joiner_pipes) - 1;
-+}
-+
-+int intel_joiner_get_num_pipes(const struct intel_crtc_state *crtc_state)
-+{
-+	return hweight8(crtc_state->joiner_pipes);
-+}
-+
-+void intel_joiner_adjust_timings(const struct intel_crtc_state *crtc_state,
-+				 struct drm_display_mode *mode)
-+{
-+	int num_pipes = intel_joiner_get_num_pipes(crtc_state);
-+
-+	if (num_pipes < 2)
-+		return;
-+
-+	mode->crtc_clock /= num_pipes;
-+	mode->crtc_hdisplay /= num_pipes;
-+	mode->crtc_hblank_start /= num_pipes;
-+	mode->crtc_hblank_end /= num_pipes;
-+	mode->crtc_hsync_start /= num_pipes;
-+	mode->crtc_hsync_end /= num_pipes;
-+	mode->crtc_htotal /= num_pipes;
-+}
-+
-+void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
-+{
-+	int num_pipes = intel_joiner_get_num_pipes(crtc_state);
-+	int width, height;
-+
-+	if (num_pipes < 2)
-+		return;
-+
-+	width = drm_rect_width(&crtc_state->pipe_src);
-+	height = drm_rect_height(&crtc_state->pipe_src);
-+
-+	drm_rect_init(&crtc_state->pipe_src, 0, 0,
-+		      width / num_pipes, height);
-+}
-+
-+void intel_joiner_adjust_pipe_src(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	int num_pipes = intel_joiner_get_num_pipes(crtc_state);
-+	enum pipe primary_pipe, pipe = crtc->pipe;
-+	int width;
-+
-+	if (num_pipes < 2)
-+		return;
-+
-+	primary_pipe = intel_joiner_get_primary_pipe(crtc_state);
-+	width = drm_rect_width(&crtc_state->pipe_src);
-+
-+	drm_rect_translate_to(&crtc_state->pipe_src,
-+			      (pipe - primary_pipe) * width, 0);
-+}
-+
-+u8 intel_joiner_supported_pipes(struct drm_i915_private *i915)
-+{
-+	u8 pipes;
-+
-+	if (DISPLAY_VER(i915) >= 12)
-+		pipes = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D);
-+	else if (DISPLAY_VER(i915) >= 11)
-+		pipes = BIT(PIPE_B) | BIT(PIPE_C);
-+	else
-+		pipes = 0;
-+
-+	return pipes & DISPLAY_RUNTIME_INFO(i915)->pipe_mask;
-+}
-+
-+void intel_joiner_enabled_pipes(struct drm_i915_private *dev_priv,
-+				u8 *primary_pipes, u8 *secondary_pipes)
-+{
-+	struct intel_crtc *crtc;
-+
-+	*primary_pipes = 0;
-+	*secondary_pipes = 0;
-+
-+	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc,
-+					 intel_joiner_supported_pipes(dev_priv)) {
-+		intel_dss_get_compressed_joiner_pipes(crtc,
-+						      primary_pipes,
-+						      secondary_pipes);
-+
-+		intel_dss_get_uncompressed_joiner_pipes(crtc,
-+							primary_pipes,
-+							secondary_pipes);
-+	}
-+
-+	/* Joiner pipes should always be consecutive primary and secondary */
-+	drm_WARN(&dev_priv->drm, *secondary_pipes != *primary_pipes << 1,
-+		 "Joiner misconfigured (primary pipes 0x%x, secondary pipes 0x%x)\n",
-+		 *primary_pipes, *secondary_pipes);
-+}
-+
-+enum pipe intel_joiner_find_primary_pipe(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
-+{
-+	if ((secondary_pipes & BIT(pipe)) == 0)
-+		return pipe;
-+
-+	/* ignore everything above our pipe */
-+	primary_pipes &= ~GENMASK(7, pipe);
-+
-+	/* highest remaining bit should be our primary pipe */
-+	return fls(primary_pipes) - 1;
-+}
-+
-+u8 intel_joiner_find_secondary_pipes(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
-+{
-+	enum pipe primary_pipe, next_primary_pipe;
-+
-+	primary_pipe = intel_joiner_find_primary_pipe(pipe, primary_pipes, secondary_pipes);
-+
-+	if ((primary_pipes & BIT(primary_pipe)) == 0)
-+		return 0;
-+
-+	/* ignore our primary pipe and everything below it */
-+	primary_pipes &= ~GENMASK(primary_pipe, 0);
-+	/* make sure a high bit is set for the ffs() */
-+	primary_pipes |= BIT(7);
-+	/* lowest remaining bit should be the next primary pipe */
-+	next_primary_pipe = ffs(primary_pipes) - 1;
-+
-+	return secondary_pipes & GENMASK(next_primary_pipe - 1, primary_pipe);
-+}
-+
-+void intel_joiner_get_config(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	u8 primary_pipes, secondary_pipes;
-+	enum pipe pipe = crtc->pipe;
-+
-+	intel_joiner_enabled_pipes(i915, &primary_pipes, &secondary_pipes);
-+
-+	if (((primary_pipes | secondary_pipes) & BIT(pipe)) == 0)
-+		return;
-+
-+	crtc_state->joiner_pipes =
-+		BIT(intel_joiner_find_primary_pipe(pipe, primary_pipes, secondary_pipes)) |
-+		intel_joiner_find_secondary_pipes(pipe, primary_pipes, secondary_pipes);
-+}
-+
-+int intel_joiner_add_affected_planes(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_crtc_state *crtc_state;
-+	struct intel_crtc *crtc;
-+	int i;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-+		struct intel_crtc *other;
-+
-+		for_each_intel_crtc_in_pipe_mask(&i915->drm, other,
-+						 crtc_state->joiner_pipes) {
-+			int ret;
-+
-+			if (crtc == other)
-+				continue;
-+
-+			ret = intel_crtc_add_joiner_planes(state, crtc, other);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_crtc_state *crtc_state;
-+	struct intel_crtc *crtc;
-+	u8 affected_pipes = 0;
-+	u8 modeset_pipes = 0;
-+	int i;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-+		affected_pipes |= crtc_state->joiner_pipes;
-+		if (intel_crtc_needs_modeset(crtc_state))
-+			modeset_pipes |= crtc_state->joiner_pipes;
-+	}
-+
-+	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, affected_pipes) {
-+		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
-+		if (IS_ERR(crtc_state))
-+			return PTR_ERR(crtc_state);
-+	}
-+
-+	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, modeset_pipes) {
-+		int ret;
-+
-+		crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-+
-+		crtc_state->uapi.mode_changed = true;
-+
-+		ret = drm_atomic_add_affected_connectors(&state->base, &crtc->base);
-+		if (ret)
-+			return ret;
-+
-+		ret = intel_atomic_add_affected_planes(state, crtc);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-+		/* Kill old joiner link, we may re-establish afterwards */
-+		if (intel_crtc_needs_modeset(crtc_state) &&
-+		    intel_crtc_is_joiner_primary(crtc_state))
-+			intel_crtc_kill_joiner_secondaries(state, crtc);
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_joiner.h b/drivers/gpu/drm/i915/display/intel_joiner.h
-new file mode 100644
-index 000000000000..3417274de4a2
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_joiner.h
-@@ -0,0 +1,32 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_JOINER_H__
-+#define __INTEL_JOINER_H__
-+
-+#include "linux/types.h"
-+
-+enum pipe;
-+struct drm_display_mode;
-+struct drm_i915_private;
-+struct intel_atomic_state;
-+struct intel_crtc_state;
-+
-+enum pipe intel_joiner_get_primary_pipe(const struct intel_crtc_state *crtc_state);
-+int intel_joiner_get_num_pipes(const struct intel_crtc_state *crtc_state);
-+void intel_joiner_adjust_timings(const struct intel_crtc_state *crtc_state,
-+				 struct drm_display_mode *mode);
-+void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state);
-+void intel_joiner_adjust_pipe_src(struct intel_crtc_state *crtc_state);
-+u8 intel_joiner_supported_pipes(struct drm_i915_private *i915);
-+void intel_joiner_enabled_pipes(struct drm_i915_private *dev_priv,
-+				u8 *primary_pipes, u8 *secondary_pipes);
-+enum pipe intel_joiner_find_primary_pipe(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes);
-+u8 intel_joiner_find_secondary_pipes(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes);
-+void intel_joiner_get_config(struct intel_crtc_state *crtc_state);
-+int intel_joiner_add_affected_planes(struct intel_atomic_state *state);
-+int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state);
-+
-+#endif/* __INTEL_JOINER_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index ff1c0ce6da86..995accd939f9 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -243,6 +243,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_hotplug.o \
- 	i915-display/intel_hotplug_irq.o \
- 	i915-display/intel_hti.o \
-+	i915-display/intel_joiner.o \
- 	i915-display/intel_link_bw.o \
- 	i915-display/intel_lspcon.o \
- 	i915-display/intel_modeset_lock.o \
+ 	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
+ 	if (!crtc_state->dsc.compression_enable)
 -- 
 2.45.2
 
