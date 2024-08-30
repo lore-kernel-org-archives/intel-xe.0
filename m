@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42720CA0EE0
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 05:05:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B28C9CA0EDF
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 05:05:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0296610E1C5;
-	Fri, 30 Aug 2024 05:05:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7426D10E1CA;
+	Fri, 30 Aug 2024 05:05:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j2KcvDrp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VsZRYl6N";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 495C210E1C5
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Aug 2024 05:05:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74E5A10E1CA
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 Aug 2024 05:05:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724994339; x=1756530339;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FnPByX19SnOkYc8eKjzZ2diz1bRuebPNTGniDEMA1JA=;
- b=j2KcvDrpxUYSZtAspVA1c5wyl8oBC2b0Ug+dkSY021Vuw/31kdMOYaIn
- TGygz54CxW+6nJiXwpT5/bCJ6heyBz9mxnteaBPRGe/nnR3SvzyG1axnh
- M+D0oJjnS/lRpxALCPCWxtW55rq2Ob+nWS2ug3yRpZKHT1h50sO7Bon5e
- 6N2WqmRhC3ubhjhoQiNVksCEtY6tFUTvjssR+OJUuyADqyvV604KmORlT
- RiRALQ4o8Iz9PBdeUDlG4yy8abXGZC316e9dJ4P9q7ejncL+Q8vVoEbQU
- cT0O/vSFi0KNYzgObzL7htdWLGyZfUcOviTAvFz/gN5CQ3MsiHp+JvOXY Q==;
-X-CSE-ConnectionGUID: VjaPD2kmRDW079UeoqdC9A==
-X-CSE-MsgGUID: fFmV6IdhTc28dqlACb+s3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="49006466"
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="49006466"
+ t=1724994342; x=1756530342;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RxNaEgH0plbu0YvoA8lpjao30EclVClcoJr/1KQnJ6A=;
+ b=VsZRYl6NpvxwGvzOR/f8x892QjltBApBNB4/o4m3WLkdCOBrG9P8obxm
+ wnZxTKKwv4F0x4H28sYyAJP8vKawV/HQRcAxg5ia6uElcwS4O5dyMyN/c
+ 1qmdk1d/xf+hOMqOkaRXmFlZmGVW6PmVG3TXRny0mzaLo28X0oMxxgHlA
+ tjsqmJD2fYjl1u6jNa/DyEL/9vbkHcM0h358Y1fDgkVpp0ryqIBDnGALo
+ 4zWgEFwHl0ebkYcbCdIbDB394uiOOo+HOFpbOrmO51EQQ2VrUFBBYAZpQ
+ viMyIhBBaQ6jtB9t/XZdr7fjYMjc5blO4jIggBFwfKKH0daIYukgsp3sA w==;
+X-CSE-ConnectionGUID: 8THDHttEQB+E2Z2ztr4iSw==
+X-CSE-MsgGUID: qtly0N2eRWuizWz6YgNaCw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="49006474"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="49006474"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 22:05:39 -0700
-X-CSE-ConnectionGUID: Z+tUvsmPQTaSRKUKQSrJhg==
-X-CSE-MsgGUID: 5Ty298owQPSVJibDGJ6kbQ==
+ 29 Aug 2024 22:05:41 -0700
+X-CSE-ConnectionGUID: SUrfk5i0Q6S0ZSC/GNPSOQ==
+X-CSE-MsgGUID: AmRvOsZtTNCoQDZFukGguQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="101301961"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="101301968"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa001.jf.intel.com with ESMTP; 29 Aug 2024 22:05:35 -0700
+ by orviesa001.jf.intel.com with ESMTP; 29 Aug 2024 22:05:38 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Badal Nilawar <badal.nilawar@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [RFC 0/9] Fix xe_force_wake_get() failure handling
-Date: Fri, 30 Aug 2024 10:53:17 +0530
-Message-Id: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [RFC 1/9] drm/xe: Error handling in xe_force_wake_get()
+Date: Fri, 30 Aug 2024 10:53:18 +0530
+Message-Id: <20240830052326.3707019-2-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
+References: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,116 +69,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In case of xe_force_wake_get() call the refcount for domains
-are incremented irrespective of failure or success, which can lead to
-undefined behaviour: 
-[1] subsequent forcewake call by callee function assumes domains are 
-already awake, which might not be true. This shows perfectly balanced 
-xe_force_wake_get/_put can also cause problem.
-
-[2] The functions are using xe_force_wake_get() and return on failures.
-In this scenario only the first caller returns and other functions will
-always assume domains to be awake.
-
-[1] func_a() {
-	XE_WARN(xe_force_wake_get()) <---> fails but increments refcount
-
-	func_b();
-
-	XE_WARN(xe_force_wake_put());<---> decrements refcounts 
- }
-
-    func_b() {
-	if(xe_force_wake_get()) <---> succeeds due to refcount of caller
-		return;
-
-	does mmio_operations(); <---> Domain might not be awake
-
-	xe_force_wake_put(); <---> decrement refcount
- }
-  	
-[2] func_a() {
-	int err = xe_force_wake_get(); <---> returns if fails, inc refcount
-	if (err)
-		return;
-
-	mmio_operations();
-
-	xe_force_wake_put(); 
- }
-
-    func_b() {
-        if (xe_force_wake_get()) <---> succeeds due to refcnt of func_a()
-              return;
-
-        mmio_operations(); <---> Invalid accesses
-
-        xe_force_wake_put(); <---> decrements refcount for func_b
- }
-
-This RFC proposes not incrementing the refcount in case of
-xe_force_wake_get() failure and putting all domains awakened by the caller 
-to sleep and decrease the reference count for all requested domains. 
-This prevents xe_force_wake_get() from leaving an unhandled reference 
-count in case of failure. 
-
-With these changes in place caller needs to ensure xe_force_wake_put() is
-called only if xe_force_wake_get() succeeds.
-
-Patches breakdown:
-
-1. Changes in xe_force_wake_get() and documentations
-   - Patches 1 to 2
-
-2. Ensure xe_force_wake_put() is called when xe_force_wake_get() succeds
-   - Patches 3 to 7
-
-3. Modify xe_force_wake_put to return void and warn for failure
-   - Patch 8
-
-4. Debugfs handling for forcewake open
-   - Patch 9
+If an acknowledgment timeout occurs for a domain awake request, put to
+sleep all domains awakened by the caller and decrease the reference
+count for all requested domains. This prevents xe_force_wake_get() from
+leaving an unhandled reference count in case of failure.
+While at it, add simple kernel-doc for xe_force_wake_get() and
+xe_force_wake_put() functions.
 
 Cc: Badal Nilawar <badal.nilawar@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Himal Prasad Ghimiray (9):
-  drm/xe: Error handling in xe_force_wake_get()
-  drm/xe: Ensure __must_check for xe_force_wake_get() return
-  drm/xe/gsc: call xe_force_wake_put() only if xe_force_wake_get()
-    succeeds
-  drm/xe/gt: call xe_force_wake_put() only if xe_force_wake_get()
-    succeeds
-  drm/xe/guc: call xe_force_wake_put() only if xe_force_wake_get()
-    succeeds
-  drm/xe/oa: Handle force_wake_get failure in xe_oa_stream_init()
-  drm/xe/gt_tlb_invalidation_ggtt: Call xe_force_wake_put if
-    xe_force_wake_get succeds
-  drm/xe: Change return type to void for xe_force_wake_put
-  drm/xe: forcewake debugfs open fails on xe_forcewake_get failure
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/xe/xe_force_wake.c | 52 +++++++++++++++++++++++++++---
+ 1 file changed, 47 insertions(+), 5 deletions(-)
 
- drivers/gpu/drm/xe/xe_debugfs.c             | 28 +++++++--
- drivers/gpu/drm/xe/xe_device.c              |  3 +-
- drivers/gpu/drm/xe/xe_drm_client.c          |  2 +-
- drivers/gpu/drm/xe/xe_force_wake.c          | 64 +++++++++++++++++----
- drivers/gpu/drm/xe/xe_force_wake.h          |  9 +--
- drivers/gpu/drm/xe/xe_gsc.c                 | 14 +++--
- drivers/gpu/drm/xe/xe_gt.c                  | 25 ++++----
- drivers/gpu/drm/xe/xe_gt_debugfs.c          |  2 +-
- drivers/gpu/drm/xe/xe_gt_idle.c             | 25 +++++---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  9 ++-
- drivers/gpu/drm/xe/xe_guc.c                 |  9 ++-
- drivers/gpu/drm/xe/xe_guc_pc.c              | 15 +++--
- drivers/gpu/drm/xe/xe_oa.c                  | 13 +++--
- drivers/gpu/drm/xe/xe_pat.c                 | 10 ++--
- drivers/gpu/drm/xe/xe_reg_sr.c              |  6 +-
- drivers/gpu/drm/xe/xe_vram.c                |  3 +-
- 16 files changed, 165 insertions(+), 72 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index b263fff15273..8aa8d9b41052 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -150,31 +150,73 @@ static int domain_sleep_wait(struct xe_gt *gt,
+ 					 (ffs(tmp__) - 1))) && \
+ 					 domain__->reg_ctl.addr)
+ 
++/**
++ * xe_force_wake_get : Increase the domain refcount; if it was 0 initially, wake the domain
++ * @fw: struct xe_force_wake
++ * @domains: forcewake domains to get refcount on
++ *
++ * Increment refcount for the force-wake domain. If the domain is
++ * asleep, awaken it and wait for acknowledgment within the specified
++ * timeout. If a timeout occurs, decrement the refcount and put the
++ * caller awaken domains to sleep.
++ *
++ * Return: 0 on success or 1 on ack timeout from domains.
++ */
+ int xe_force_wake_get(struct xe_force_wake *fw,
+ 		      enum xe_force_wake_domains domains)
+ {
+ 	struct xe_gt *gt = fw->gt;
+ 	struct xe_force_wake_domain *domain;
+-	enum xe_force_wake_domains tmp, woken = 0;
++	enum xe_force_wake_domains tmp, awake_rqst = 0, awake_ack = 0;
+ 	unsigned long flags;
+ 	int ret = 0;
+ 
+ 	spin_lock_irqsave(&fw->lock, flags);
+ 	for_each_fw_domain_masked(domain, domains, fw, tmp) {
+ 		if (!domain->ref++) {
+-			woken |= BIT(domain->id);
++			awake_rqst |= BIT(domain->id);
+ 			domain_wake(gt, domain);
+ 		}
+ 	}
+-	for_each_fw_domain_masked(domain, woken, fw, tmp) {
+-		ret |= domain_wake_wait(gt, domain);
++	for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
++		if (domain_wake_wait(gt, domain) == 0)
++			awake_ack |= BIT(domain->id);
++	}
++
++	ret = (awake_ack == awake_rqst) ? 0 : 1;
++
++	/*
++	 * If @domains is XE_FORCEWAKE_ALL and an acknowledgment times out
++	 * for any domain, decrease the reference count and put the awake
++	 * domains to sleep. For individual domains, just decrement the
++	 * reference count.
++	 */
++	if (ret) {
++		for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
++			if (!--domain->ref && (awake_ack & BIT(domain->id)))
++				domain_sleep(gt, domain);
++		}
++		awake_ack = 0;
+ 	}
+-	fw->awake_domains |= woken;
++
++	fw->awake_domains |= awake_ack;
+ 	spin_unlock_irqrestore(&fw->lock, flags);
+ 
+ 	return ret;
+ }
+ 
++/**
++ * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
++ * @fw: Pointer to the force wake structure
++ * @domains: forcewake domains to put reference
++ *
++ * This function reduces the reference counts for specified domains. If
++ * refcount for any of the specified domain reaches 0, it puts the domain to sleep
++ * and waits for acknowledgment for domain to sleep within specified timeout.
++ * Ensure this function is called only in case of successful xe_force_wake_get().
++ *
++ * Returns 0 in case of success or non-zero in case of timeout of ack
++ */
+ int xe_force_wake_put(struct xe_force_wake *fw,
+ 		      enum xe_force_wake_domains domains)
+ {
 -- 
 2.34.1
 
