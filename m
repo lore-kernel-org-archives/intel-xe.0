@@ -4,52 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7542CA0FE8
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 19:49:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89DADCA100E
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 20:09:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7014C10E105;
-	Fri, 30 Aug 2024 19:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA1D10E105;
+	Fri, 30 Aug 2024 20:09:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hMRsXsW8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=smtpservice.net header.i=@smtpservice.net header.b="2eidskBy";
+	dkim=pass (2048-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="IJftvIaS";
+	dkim=pass (1024-bit key; unprotected) header.d=fjasle.eu header.i=@fjasle.eu header.b="P7Vd6NkS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C566710E105
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Aug 2024 19:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725047374; x=1756583374;
- h=date:from:to:cc:subject:message-id;
- bh=v73dA+cWlUfDjiqp4XFEo+6UU2hwhdNgaEX/WE+17KU=;
- b=hMRsXsW8Zdoczu5+pGU72VIEGe/t2YRueD3oG5J8woRU0sZ57UBRjLVm
- NLi7wzJB6xxGwxu+xDFmm0epj0astyYMhO3y0wNeXkYN8F5JwAle8+CRF
- iE+84uq6X1L3yU7F3oHgb/o3zuhF2sWEKw+54gG1Sv4hD4Zwaan1uStPq
- 0jPm4YYz9cjR/392eWy4qmlfR7+N1T7VvM2/zKlJ825oBMDfR1lqP3mkX
- GuUM9q0DI0wg5Aaaw6C20DL8GsDE1H/Gu25B2ItCCcrbUdVlxWokQhmFt
- cSlYkxpNz8qtBv1u3KIpbzKlXC9ABv/Q+dKfYpIjbx7AkuNgvdfxZ8XUd w==;
-X-CSE-ConnectionGUID: lFKQx5OPTq+iJgGF3XbHYQ==
-X-CSE-MsgGUID: lfbcUu7ETNW95/tHEglvjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11180"; a="35072008"
-X-IronPort-AV: E=Sophos;i="6.10,189,1719903600"; d="scan'208";a="35072008"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2024 12:49:34 -0700
-X-CSE-ConnectionGUID: SWRtyvd5Q6y4y1kY2TlP2w==
-X-CSE-MsgGUID: 8NbAN1TvQHaVn9df9EuNVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,189,1719903600"; d="scan'208";a="63941308"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
- by orviesa009.jf.intel.com with ESMTP; 30 Aug 2024 12:49:34 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sk7ch-00020z-1h;
- Fri, 30 Aug 2024 19:49:31 +0000
-Date: Sat, 31 Aug 2024 03:49:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 59d237c8a241168c7ae34c48244059b7bafaff38
-Message-ID: <202408310303.Cwzfqkzu-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-Greylist: delayed 607 seconds by postgrey-1.36 at gabe;
+ Fri, 30 Aug 2024 20:09:14 UTC
+Received: from e3i12.smtp2go.com (e3i12.smtp2go.com [158.120.84.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90FCD10E105
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 Aug 2024 20:09:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smtpservice.net;
+ i=@smtpservice.net; q=dns/txt; s=a1-4; t=1725047644; h=feedback-id :
+ x-smtpcorp-track : date : message-id : to : subject : from : reply-to
+ : sender : list-unsubscribe : list-unsubscribe-post;
+ bh=8ffM0oj/VoAWiRvIYhx2YzkqNpRjhG4e8iNPq0uer6M=;
+ b=2eidskByTSsWDgd+LCHtUHFBwzcj+UaoQt0d3qS20bPhZTH0VKexHxzqIdTRjA8Yb3ErG
+ c9aHWDuxloGp4/iEBeeJ2dpwqpptdtjAPgCtm+PWrCXxS3AAszOE/LFpw1pwW4XqcuMphmT
+ JCR+E0iLDxt2HashjJCwV4NhkeBA+aVM4ddToUfvzFZ2q3zuIVwLi+GC/Od89RzbJD7I82c
+ 6gmF3+fym5f0xapn47hzYitJ/MUByo0hyNFEHFZSXYK0qBW8hbvHSojUX6FDadtDKABoAp6
+ yLjzeKgvGpyb+0tfrt1qTNXwwPq3Lxb8ETlMbch5JdKsF6S8D3T0TOIAORDw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fjasle.eu;
+ i=@fjasle.eu; q=dns/txt; s=s1174286; t=1725047644; h=from : subject :
+ to : message-id : date;
+ bh=8ffM0oj/VoAWiRvIYhx2YzkqNpRjhG4e8iNPq0uer6M=;
+ b=IJftvIaS9leX9whJpufu1xAkcK4qgql2c/mOtvMrHCMkiM8GhikswWi5/lJQdmcyp6Mc9
+ rpoCsbNnYI6QeCIdNFqgIwuRwl+6ysY5tKyxXqWbcVYNmjdytGorEmH8W09SyDiFiyYDp8P
+ 8WBCd59VXU70RM4W/lGpgbrZg2hITaqd5t3couklg9KQpPTT29joI9ERZhjFG44TTxSv75l
+ 5rC41YA5HazHy40oR2IGrEoTZGygQ7zW976YvyoSznU8ipJuwsh9J2OTedWAnoQckVNPRpD
+ E3pa10UyI3ZE4o4/KucWtRUoDANzJI/f+9iKjyWsU0ABIPWQoYZVqgLaNsAw==
+Received: from [10.85.249.164] (helo=leknes.fjasle.eu)
+ by smtpcorp.com with esmtpsa
+ (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.97.1-S2G) (envelope-from <nicolas@fjasle.eu>)
+ id 1sk7gj-FnQW0hPpdBf-nWmg; Fri, 30 Aug 2024 19:53:42 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fjasle.eu; s=mail;
+ t=1725047604; bh=VrcLFN5tqkfWY7mTHOYKMf0e0KvomCFsMPrfJDAaMSY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=P7Vd6NkS50dZUF4ArGNPd4emC0HPqVDT3dc+nak6w/kyFZyIa7wpU0vTqmsiIkRep
+ lFQ7rFhNaD2Mf9eA7RsNhjnIHPRkgubjb0TmusaqfHzYKQpJgQpvZs4tHW5Z4AT4vC
+ fDqmIJfHaxoaJYo+8KfLKLIUurdYOyn4DfkqTbOE=
+Received: by leknes.fjasle.eu (Postfix, from userid 1000)
+ id 423D3449B6; Fri, 30 Aug 2024 21:53:24 +0200 (CEST)
+Date: Fri, 30 Aug 2024 21:53:24 +0200
+From: Nicolas Schier <nicolas@fjasle.eu>
+To: Daniel Gomez <da.gomez@samsung.com>, Masahiro Yamada <masahiroy@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Nathan Chancellor <nathan@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ William Hubbs <w.d.hubbs@gmail.com>,
+ Chris Brannon <chris@the-brannons.com>, Kirk Reiser <kirk@reisers.ca>,
+ Samuel Thibault <samuel.thibault@ens-lyon.org>,
+ Paul Moore <paul@paul-moore.com>,
+ Stephen Smalley <stephen.smalley.work@gmail.com>,
+ Ondrej Mosnacek <omosnace@redhat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Zenghui Yu <yuzenghui@huawei.com>, Jiri Slaby <jirislaby@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "speakup@linux-speakup.org" <speakup@linux-speakup.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+ "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
+ "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
+ Finn Behrens <me@kloenk.dev>,
+ "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
+ "gost.dev@samsung.com" <gost.dev@samsung.com>
+Subject: Re: [PATCH 08/12] include: add elf.h support
+Message-ID: <ZtIjNBhqdxmMBxfM@fjasle.eu>
+References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
+ <20240807-macos-build-support-v1-8-4cd1ded85694@samsung.com>
+ <CGME20240807110435eucas1p2eca071b0a0122b8686d43c57bd94dc8c@eucas1p2.samsung.com>
+ <2024080717-cross-retiree-862e@gregkh>
+ <dxkmmrlhlhsrjulnyabfgcr37ojway2dxaypelf3uchkmhw4jn@z54e33jdpxmr>
+ <2024080720-skyline-recapture-d80d@gregkh>
+ <20240807-mottled-stoic-degu-d1e4cb@lindesnes>
+ <20240823225450.spuvjs5b5ruujim4@AALNPWDAGOMEZ1.aal.scsc.local>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240823225450.spuvjs5b5ruujim4@AALNPWDAGOMEZ1.aal.scsc.local>
+X-Report-Abuse: Please forward a copy of this message, including all headers,
+ to <abuse-report@smtp2go.com>
+Feedback-ID: 1174286m:1174286a9YXZ7r:1174286sfGQOlJjcl
+X-smtpcorp-track: vl0byxy_CcVV.s14Xk-OJvFci.ixZqoQuamBs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,164 +121,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 59d237c8a241168c7ae34c48244059b7bafaff38  drm/xe/hwmon: Fix WRITE_I1 param from u32 to u16
+On Sat, Aug 24, 2024 at 12:54:50AM +0200 Daniel Gomez wrote:
+> On Wed, Aug 07, 2024 at 05:46:03PM +0200, Nicolas Schier wrote:
+> > On Wed, Aug 07, 2024 at 04:18:54PM +0200, Greg Kroah-Hartman wrote:
+> > > On Wed, Aug 07, 2024 at 02:13:57PM +0000, Daniel Gomez wrote:
+> > > > > Also, as this is not internal for the kernel, but rather for userspace
+> > > > > builds, shouldn't the include/ path be different?
+> > > > 
+> > > > Can you suggest an alternative path or provide documentation that could help
+> > > > identify the correct location? Perhaps usr/include?
+> > > 
+> > > That is better than the generic include path as you are attempting to
+> > > mix userspace and kernel headers in the same directory :(
+> > 
+> > Please keep in mind, that usr/include/ currently does not hold a single
+> > header file but is used for dynamically composing the UAPI header tree.
+> > 
+> > In general, I do not like the idea of keeping a elf.h file here that
+> > possibly is out-of-sync with the actual system's version (even though
+> > elf.h should not see that much changes).  Might it be more helpful to
+> > provide a "development kit" for Linux devs that need to build on MacOS
+> > that provides necessary missing system header files, instead of merging
+> > those into upstream?
+> 
+> I took this suggestion and tried pushing a Homebrew formula/package here [1].
+> I think I chose a wrong name and maybe something like "development kit" would
+> have been better. However, would it be possible instead to include the *.rb file
+> in the scripts/ directory? So users of this can generate the development kit in
+> their environments. I would maintain the script to keep it in sync with the
+> required glibc version for the latest kernel version.
+> 
+> [1] https://github.com/Homebrew/homebrew-core/pull/181885
 
-elapsed time: 1772m
+I think it sounds sensible to hold that formula file in the upstream tree.  But
+I am not sure if scripts/ is the best location.
 
-configs tested: 145
-configs skipped: 4
+Masahiro, what do you think?
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc-14.1.0
-alpha                               defconfig   gcc-14.1.0
-arc                              allmodconfig   clang-20
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-14.1.0
-arc                              allyesconfig   clang-20
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-14.1.0
-arc                   randconfig-001-20240830   gcc-14.1.0
-arc                   randconfig-002-20240830   gcc-14.1.0
-arm                              allmodconfig   clang-20
-arm                              allmodconfig   gcc-13.2.0
-arm                               allnoconfig   gcc-14.1.0
-arm                              allyesconfig   clang-20
-arm                              allyesconfig   gcc-13.2.0
-arm                                 defconfig   gcc-14.1.0
-arm                   randconfig-001-20240830   gcc-14.1.0
-arm                   randconfig-002-20240830   gcc-14.1.0
-arm                   randconfig-003-20240830   gcc-14.1.0
-arm                   randconfig-004-20240830   gcc-14.1.0
-arm64                            allmodconfig   clang-20
-arm64                             allnoconfig   gcc-14.1.0
-arm64                               defconfig   gcc-14.1.0
-arm64                 randconfig-001-20240830   gcc-14.1.0
-arm64                 randconfig-002-20240830   gcc-14.1.0
-arm64                 randconfig-003-20240830   gcc-14.1.0
-arm64                 randconfig-004-20240830   gcc-14.1.0
-csky                              allnoconfig   gcc-14.1.0
-csky                                defconfig   gcc-14.1.0
-csky                  randconfig-001-20240830   gcc-14.1.0
-csky                  randconfig-002-20240830   gcc-14.1.0
-hexagon                           allnoconfig   gcc-14.1.0
-hexagon                             defconfig   gcc-14.1.0
-hexagon               randconfig-001-20240830   gcc-14.1.0
-hexagon               randconfig-002-20240830   gcc-14.1.0
-i386                             allmodconfig   clang-18
-i386                              allnoconfig   clang-18
-i386                             allyesconfig   clang-18
-i386         buildonly-randconfig-001-20240830   gcc-12
-i386         buildonly-randconfig-002-20240830   gcc-12
-i386         buildonly-randconfig-003-20240830   gcc-12
-i386         buildonly-randconfig-004-20240830   gcc-12
-i386         buildonly-randconfig-005-20240830   gcc-12
-i386         buildonly-randconfig-006-20240830   gcc-12
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240830   gcc-12
-i386                  randconfig-002-20240830   gcc-12
-i386                  randconfig-003-20240830   gcc-12
-i386                  randconfig-004-20240830   gcc-12
-i386                  randconfig-005-20240830   gcc-12
-i386                  randconfig-006-20240830   gcc-12
-i386                  randconfig-011-20240830   gcc-12
-i386                  randconfig-012-20240830   gcc-12
-i386                  randconfig-013-20240830   gcc-12
-i386                  randconfig-014-20240830   gcc-12
-i386                  randconfig-015-20240830   gcc-12
-i386                  randconfig-016-20240830   gcc-12
-loongarch                        allmodconfig   gcc-14.1.0
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch                           defconfig   gcc-14.1.0
-loongarch             randconfig-001-20240830   gcc-14.1.0
-loongarch             randconfig-002-20240830   gcc-14.1.0
-m68k                             allmodconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                             allyesconfig   gcc-14.1.0
-m68k                                defconfig   gcc-14.1.0
-microblaze                       allmodconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-14.1.0
-microblaze                       allyesconfig   gcc-14.1.0
-microblaze                          defconfig   gcc-14.1.0
-mips                              allnoconfig   gcc-14.1.0
-nios2                             allnoconfig   gcc-14.1.0
-nios2                               defconfig   gcc-14.1.0
-nios2                 randconfig-001-20240830   gcc-14.1.0
-nios2                 randconfig-002-20240830   gcc-14.1.0
-openrisc                          allnoconfig   clang-20
-openrisc                            defconfig   gcc-12
-parisc                            allnoconfig   clang-20
-parisc                              defconfig   gcc-12
-parisc                randconfig-001-20240830   gcc-14.1.0
-parisc                randconfig-002-20240830   gcc-14.1.0
-parisc64                            defconfig   gcc-14.1.0
-powerpc                           allnoconfig   clang-20
-powerpc               randconfig-001-20240830   gcc-14.1.0
-powerpc               randconfig-002-20240830   gcc-14.1.0
-powerpc64             randconfig-001-20240830   gcc-14.1.0
-powerpc64             randconfig-002-20240830   gcc-14.1.0
-powerpc64             randconfig-003-20240830   gcc-14.1.0
-riscv                             allnoconfig   clang-20
-riscv                               defconfig   gcc-12
-riscv                 randconfig-001-20240830   gcc-14.1.0
-riscv                 randconfig-002-20240830   gcc-14.1.0
-s390                             allmodconfig   gcc-14.1.0
-s390                              allnoconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   gcc-12
-s390                  randconfig-001-20240830   gcc-14.1.0
-s390                  randconfig-002-20240830   gcc-14.1.0
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                                  defconfig   gcc-12
-sh                    randconfig-001-20240830   gcc-14.1.0
-sh                    randconfig-002-20240830   gcc-14.1.0
-sparc                            allmodconfig   gcc-14.1.0
-sparc64                             defconfig   gcc-12
-sparc64               randconfig-001-20240830   gcc-14.1.0
-sparc64               randconfig-002-20240830   gcc-14.1.0
-um                                allnoconfig   clang-20
-um                                  defconfig   gcc-12
-um                             i386_defconfig   gcc-12
-um                    randconfig-001-20240830   gcc-14.1.0
-um                    randconfig-002-20240830   gcc-14.1.0
-um                           x86_64_defconfig   gcc-12
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240830   clang-18
-x86_64       buildonly-randconfig-002-20240830   clang-18
-x86_64       buildonly-randconfig-003-20240830   clang-18
-x86_64       buildonly-randconfig-004-20240830   clang-18
-x86_64       buildonly-randconfig-005-20240830   clang-18
-x86_64       buildonly-randconfig-006-20240830   clang-18
-x86_64                              defconfig   clang-18
-x86_64                randconfig-001-20240830   clang-18
-x86_64                randconfig-002-20240830   clang-18
-x86_64                randconfig-003-20240830   clang-18
-x86_64                randconfig-004-20240830   clang-18
-x86_64                randconfig-005-20240830   clang-18
-x86_64                randconfig-006-20240830   clang-18
-x86_64                randconfig-011-20240830   clang-18
-x86_64                randconfig-012-20240830   clang-18
-x86_64                randconfig-013-20240830   clang-18
-x86_64                randconfig-014-20240830   clang-18
-x86_64                randconfig-015-20240830   clang-18
-x86_64                randconfig-016-20240830   clang-18
-x86_64                randconfig-071-20240830   clang-18
-x86_64                randconfig-072-20240830   clang-18
-x86_64                randconfig-073-20240830   clang-18
-x86_64                randconfig-074-20240830   clang-18
-x86_64                randconfig-075-20240830   clang-18
-x86_64                randconfig-076-20240830   clang-18
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-14.1.0
-xtensa                randconfig-001-20240830   gcc-14.1.0
-xtensa                randconfig-002-20240830   gcc-14.1.0
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Kind regards,
+Nicolas
