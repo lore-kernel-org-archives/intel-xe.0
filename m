@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D61ECA0ECB
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 06:05:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FD7DCA0EE1
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 06:10:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1954410E7F8;
-	Fri, 30 Aug 2024 06:05:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC6BA10E7FB;
+	Fri, 30 Aug 2024 06:10:46 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22D7010E7F8;
- Fri, 30 Aug 2024 06:05:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2474217297439753388=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B603C10E7FB;
+ Fri, 30 Aug 2024 06:10:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Fix_xe=5Fforce=5Fwake=5Fget=28?=
- =?utf-8?q?=29_failure_handling?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Consolidation_of_DSS?=
+ =?utf-8?q?_Control_in_Separate_Files_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 30 Aug 2024 06:05:50 -0000
-Message-ID: <172499795013.850462.17292777120876837780@2413ebb6fbb6>
+Date: Fri, 30 Aug 2024 06:10:45 -0000
+Message-ID: <172499824574.850462.17818509191846185282@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
+References: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,35 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2474217297439753388==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix xe_force_wake_get() failure handling
-URL   : https://patchwork.freedesktop.org/series/137982/
+Series: Consolidation of DSS Control in Separate Files (rev3)
+URL   : https://patchwork.freedesktop.org/series/137788/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1863-d77e26a2d2f173b7998932b5d76173816ed5e158_BAT -> xe-pw-137982v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 7)
-------------------------------
-
-  Missing    (2): bat-pvc-2 bat-atsm-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1863-d77e26a2d2f173b7998932b5d76173816ed5e158 -> xe-pw-137982v1
-
-  IGT_7999: a73311079a5d8ac99eb25336a8369a2c3c6b519b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1863-d77e26a2d2f173b7998932b5d76173816ed5e158: d77e26a2d2f173b7998932b5d76173816ed5e158
-  xe-pw-137982v1: 137982v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v1/index.html
-
---===============2474217297439753388==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d6714e4e0e19 drm-tip: 2024y-08m-30d-05h-34m-31s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Move all DSS control registers to a new file
+Applying: drm/i915/dss_regs: Use REG_* macros for the DSS ctl bits
+Applying: drm/i915/ddi: Move all mso related helpers to a new file
+Applying: drm/i915/dss: Move to struct intel_display
+Applying: drm/i915/icl_dsi: Avoid using intel_dsi in configure_dual_link_mode
+Applying: drm/i915/icl_dsi: Use intel_display in configure_dual_link_mode
+Applying: drm/i915/icl_dsi: Move helpers to configure dsi dual link to intel_dss
+Applying: drm/i915/vdsc: Rename helper to check if the pipe supports dsc
+Applying: drm/i915/vdsc: Move all dss stuff in dss files
+Applying: drm/i915/dss: Use struct intel_display in dss dsc helpers
+Applying: drm/i915/display: Move dss stuff in intel_dss files
+Applying: drm/i915/display: Rename static functions that use joiner
+Applying: drm/i915/display: Separate out joiner stuff in a new file
+Applying: drm/i915/display: Move intel_crtc_joined_pipe_mask to intel_joiner
+Applying: drm/i915/display: Move helpers for primary joiner to intel_joiner
+Applying: drm/i915/display: Move intel_crtc_is_joiner_secondary to intel_joiner
+Applying: drm/i915/display: Move intel_crtc_joiner_secondary_pipes to intel_joiner
+Applying: drm/i915/joiner: Use struct intel_display in intel_joiner_enabled_pipes
+Applying: drm/i915/joiner: Use struct intel_display in intel_joiner_supported_pipes
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix xe_force_wake_get() failure handling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137982/">https://patchwork.freedesktop.org/series/137982/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1863-d77e26a2d2f173b7998932b5d76173816ed5e158_BAT -&gt; xe-pw-137982v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 7)</h2>
-<p>Missing    (2): bat-pvc-2 bat-atsm-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1863-d77e26a2d2f173b7998932b5d76173816ed5e158 -&gt; xe-pw-137982v1</li>
-</ul>
-<p>IGT_7999: a73311079a5d8ac99eb25336a8369a2c3c6b519b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1863-d77e26a2d2f173b7998932b5d76173816ed5e158: d77e26a2d2f173b7998932b5d76173816ed5e158<br />
-  xe-pw-137982v1: 137982v1</p>
-
-</body>
-</html>
-
---===============2474217297439753388==--
