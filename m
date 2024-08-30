@@ -4,40 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3236CA0EF9
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 09:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C34B1CA0EFC
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Aug 2024 09:57:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6960B10E8E7;
-	Fri, 30 Aug 2024 09:45:25 +0000 (UTC)
-Received: from cantor.telenet-ops.be (cantor.telenet-ops.be [195.130.132.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 477F210EA1D
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Aug 2024 09:45:24 +0000 (UTC)
-Received: from andre.telenet-ops.be (andre.telenet-ops.be
- [IPv6:2a02:1800:120:4::f00:15])
- by cantor.telenet-ops.be (Postfix) with ESMTPS id 4WwCtp6mWfz4xCtk
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Aug 2024 11:45:22 +0200 (CEST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:f0d5:75e3:232:dfed])
- by andre.telenet-ops.be with cmsmtp
- id 69lM2D00L4wyYGe019lMm3; Fri, 30 Aug 2024 11:45:22 +0200
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1sjyC1-001KOP-Bj;
- Fri, 30 Aug 2024 11:45:21 +0200
-Date: Fri, 30 Aug 2024 11:45:21 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
- javierm@redhat.com, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v3 04/81] drm: Add client-agnostic setup helper
-In-Reply-To: <20240830084456.77630-5-tzimmermann@suse.de>
-Message-ID: <6c78eb72-c555-1fa8-18f9-c1e671a8b12@linux-m68k.org>
-References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-5-tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 253D110EA43;
+	Fri, 30 Aug 2024 09:57:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L3bdrtrf";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B36010EA3F;
+ Fri, 30 Aug 2024 09:57:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725011858; x=1756547858;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=3FoScc8OqoeYOW5WnvboJtGMgXXsAkOBBADX0G20xWo=;
+ b=L3bdrtrfR0gr/61L82faSqV2Hk0UiejRg3FsnwvxnLqAJw5gLjULJdzx
+ aNBp0Zcfz4ICLtjx6fP0vuAifaJ2OUgZmfoHt5KsDcoj/JnjzyN8KaO9S
+ TGo220tkhoojdkg0jV07uG04WROgZH7CutozxwBRunNBm1Ck/RdFhb52c
+ dFWTbRwrScoCOirbDJEIaXzsjS0Iw+Zf0liSEN+gV6uz626vLUpGqn7NU
+ Acvqk1MiCvXJ5McdrjHqcJPUdm0eSUurJ9nNnRhtXwdlN2DsOFWbdxhzJ
+ VmOtSsv+6csP8AWKLwLR213TR/NS30oZXPly/xfwUuDRc9vVsFkQEATL1 Q==;
+X-CSE-ConnectionGUID: F6B+OKceTQancNlvN1NeUw==
+X-CSE-MsgGUID: +dNao+MASzOu3AbjZVr+Eg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="34217007"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="34217007"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 02:57:38 -0700
+X-CSE-ConnectionGUID: riEhT/tmSMqvYAqElQR0mg==
+X-CSE-MsgGUID: lrc9aPowToq5DTiYI6L4Mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="63477655"
+Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
+ [10.245.245.123]) ([10.245.245.123])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 02:57:36 -0700
+Message-ID: <666768946f0d7dbf9373ab6369a4b0c7eefd8e2d.camel@linux.intel.com>
+Subject: Re: [RFC PATCH 05/28] drm/gpusvm: Add support for GPU Shared
+ Virtual Memory
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ airlied@gmail.com, christian.koenig@amd.com, matthew.auld@intel.com, 
+ daniel@ffwll.ch
+Date: Fri, 30 Aug 2024 11:57:33 +0200
+In-Reply-To: <ZtDgd7bd6RCs2Orl@DUT025-TGLU.fm.intel.com>
+References: <20240828024901.2582335-1-matthew.brost@intel.com>
+ <20240828024901.2582335-6-matthew.brost@intel.com>
+ <d66e492df25e8ec3533575245c10eb7dcca709ca.camel@linux.intel.com>
+ <ZtCzo11oKXBeKmWp@DUT025-TGLU.fm.intel.com>
+ <b657ceec08091a666bdd907f9171727ef395c093.camel@linux.intel.com>
+ <ZtDgd7bd6RCs2Orl@DUT025-TGLU.fm.intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,94 +79,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
- 	Hi Thomas,
+Hi, Matthew,
 
-On Fri, 30 Aug 2024, Thomas Zimmermann wrote:
-> DRM may support multiple in-kernel clients that run as soon as a DRM
-> driver has been registered. To select the client(s) in a single place,
-> introduce drm_client_setup().
->
-> Drivers that call the new helper automatically instantiate the kernel's
-> configured default clients. Only fbdev emulation is currently supported.
-> Later versions can add support for DRM-based logging, a boot logo or even
-> a console.
->
-> Some drivers handle the color mode for clients internally. Provide the
-> helper drm_client_setup_with_color_mode() for them.
->
-> v3:
-> - fix build error
-> v2:
-> - add drm_client_setup_with_fourcc() (Laurent)
-> - push default-format handling into actual clients
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Agreed the below might not be important just now, but some ideas:
 
-Thanks for your patch!
+On Thu, 2024-08-29 at 20:56 +0000, Matthew Brost wrote:
+> Issues with removing a SVM range:
+>=20
+> - Xe bind code stores invalidation / present state in VMA, this would
+> =C2=A0 need to be moved to the radix tree. I have Jira open for that work
+> =C2=A0 which I believe other developers are going to own.
 
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_client_setup.c
-
-> +/**
-> + * drm_client_setup_with_fourcc() - Setup in-kernel DRM clients for color mode
-> + * @dev: DRM device
-> + * @fourcc: Preferred pixel format as 4CC code for the device
-> + *
-> + * This function sets up the in-kernel DRM clients. It is equivalent
-> + * to drm_client_setup(), but expects a 4CC code as second argument.
-> + *
-> + * Do not use this function in new drivers. Prefer drm_client_setup() with a
-> + * format of NULL.
-
-Why? To me this looks like the right function to call on hardware
-that does not support ARGB8888 natively.
-
-BTW, once this series is applied, I plan to check again how to wire up
-native fbcon support for monochrome (DRM_FORMAT_R1) and grayscale
-(DRM_FORMAT_R8), as used by the Solomon driver.
-
-> + */
-> +void drm_client_setup_with_fourcc(struct drm_device *dev, u32 fourcc)
-> +{
-> +	drm_client_setup(dev, drm_format_info(fourcc));
-> +}
-> +EXPORT_SYMBOL(drm_client_setup_with_fourcc);
-> +
-> +/**
-> + * drm_client_setup_with_color_mode() - Setup in-kernel DRM clients for color mode
-> + * @dev: DRM device
-> + * @color_mode: Preferred color mode for the device
-> + *
-> + * This function sets up the in-kernel DRM clients. It is equivalent
-> + * to drm_client_setup(), but expects a color mode as second argument.
-> + *
-> + * Do not use this function in new drivers. Prefer drm_client_setup() with a
+Yeah, although we shouldn't *design* around xe bind-code and page-table
+code shortcomings.
 
 
-Yeah, this is definitely not to be used in new drivers, as color_mode is
-ambiguous.
+> - Where would the dma mapping / device pages be stored?
+> 	- In the radix tree? What if ATS is enabled? We don't have a
+> 	=C2=A0 driver owned radix tree. How do we reasonably connect a
+> driver
+> 	=C2=A0 owned radix to a common GPUSVM layer?
 
-> + * format of NULL.
+With ATS you mean IOMMU SVA, right? I think we could assume that any
+user of this code also has a gpu page-table since otherwise they
+couldn't be using VRAM and a simpler solution would be in place.=C2=A0
 
-or drm_client_setup_with_fourcc().
+But to that specific question, drm_gpusvm state would live in a
+drm_gpusvm radix tree and driver-specific stuff in the driver tree. A
+helper based approach would then call drm_gpusvm_unmap_dma(range),
+whereas a middle layer would just traverse the tree and unmap.
 
-> + */
-> +void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode)
-> +{
-> +	u32 fourcc = drm_driver_color_mode_format(dev, color_mode);
-> +
-> +	drm_client_setup_with_fourcc(dev, fourcc);
-> +}
-> +EXPORT_SYMBOL(drm_client_setup_with_color_mode);
+> 	- In the notifier? What is the notifier is sparsely
+> populated?
+> 	=C2=A0 We would be wasting huge amounts of memory. What is the
+> 	=C2=A0 notifier is configured to span the entire virtual address
+> 	=C2=A0 space?
 
-Gr{oetje,eeting}s,
+Let's assume you use a fake page-table like in xe_pt_walk.c as your
+"radix tree", adapted to relevant page-sizes, sparsity is not a
+problem.
 
- 						Geert
+> - How does the garbage collector work? We can't allocate memory in
+> the
+> =C2=A0 notifier so we don't anything to add to the garbage collector. We
+> =C2=A0 can't directly modify page tables given you need lock in the path
+> of
+> =C2=A0 reclaim.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The garbage collector would operate on the whole invalidated range. In
+the case of xe, upon zapping under reclaim you mark individual page-
+table bos that are to be removed as "invalid", the garbage collector
+walks the range removing the "invalid" entries. Subsequent (re-binding)
+avoids the "invalid" entries, (perhaps even helps removing them) and
+can thus race with the garbage collector. Hence, any ranges implied by
+the page-table code are elimitated.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
+> - How do we deal with fault storms (e.g. tons of faults hitting the
+> same
+> =C2=A0 SVM range in a row)? Without a SVM range no every to know if
+> mapping
+> =C2=A0 is valid and GPU page handler can be short circuited.
+
+Perhaps look at page-table tree and check whether the gpu_pte causing
+the fault is valid.
+
+> - Do we have notifier seqno for every PTE?
+
+I'd say no. With this approach it makes sense to have a wide notifier.
+The seqno now only affects binding of new gpu_ptes, so the problem with
+a wide notifier becomes that if invalidation occurs to *any* part of
+the notifier while we're in the read section during binding, we need to
+rerun the binding. Adding more notifiers to mitigate that would be to
+optimize faulting performance over core invalidation performance which
+Jason asked us to avoid.
+
+/Thomas
+
+
+
