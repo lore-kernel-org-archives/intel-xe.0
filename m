@@ -4,52 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FDAACD13DF
-	for <intel-xe@archiver.kernel.org>; Sat, 31 Aug 2024 19:48:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27166C54FC6
+	for <intel-xe@archiver.kernel.org>; Sun,  1 Sep 2024 04:44:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E57310E00B;
-	Sat, 31 Aug 2024 19:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC67710E02D;
+	Sun,  1 Sep 2024 04:44:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WNjpd0II";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="OfwuRpD0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B761210E00B
- for <intel-xe@lists.freedesktop.org>; Sat, 31 Aug 2024 19:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725133699; x=1756669699;
- h=date:from:to:cc:subject:message-id;
- bh=eAQOY6CP/fbEW5KUyyfBk2ikqcdn3TRlaX+rXzGazkU=;
- b=WNjpd0IIBhAWiuplcRdHbN6QYttJ3FVsCMEKIu6i2zX+dhG8DeLW0Oky
- 3A76XR0CdihjYwL+MlEsabPUa6LwOUK/Wie/92+TUNDL7+KjMUQG4qXeX
- Bkv4pmpJR1KSoOYV0pB+I+JqAk2LNIs/AyW0lV6P+sSpg+ZYxrdqYS96f
- fxDuqKSr2Nd0hIdTnfSjIzUy91vTM85bynxD2AI/FGIEz6FnO8vohiAL1
- GC3AKmmOYuSWuBSPJYthWN+V/mfKb9b17Fv1+43ynhAqQjA6PLdlq8Mmm
- CHP1ZmBwv1ntw0aEY27B42X/gsIuGAq71uuD4AADqNlgiUBkva7B4JhKZ Q==;
-X-CSE-ConnectionGUID: i2TTDkDPS2CRvb8iCC623g==
-X-CSE-MsgGUID: 5raxhfGMQm6SqcfvgPyHiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11181"; a="49141784"
-X-IronPort-AV: E=Sophos;i="6.10,192,1719903600"; d="scan'208";a="49141784"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2024 12:48:18 -0700
-X-CSE-ConnectionGUID: KVPqLIvZTg6WXUtHcDKvQQ==
-X-CSE-MsgGUID: WmBsJ7ORRVmEg5rQg/4A0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,192,1719903600"; d="scan'208";a="63823130"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
- by fmviesa006.fm.intel.com with ESMTP; 31 Aug 2024 12:48:17 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1skU51-00033j-0o;
- Sat, 31 Aug 2024 19:48:15 +0000
-Date: Sun, 01 Sep 2024 03:47:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- bf758226c7e6927f1c2c34fd6eb2cb580b77f543
-Message-ID: <202409010318.TkYEIylK-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 666AD10E02D
+ for <intel-xe@lists.freedesktop.org>; Sun,  1 Sep 2024 04:44:03 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1725165836; bh=/yqjZ71myp0b8JA+/fueuP2V7C8I4BK7/EhksjCBIVI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=OfwuRpD0oqVlSd6pGq6dd7DiAt1h+ELAa3AakQVPv1CsLA6sL0N3+QRJB+muWUMNA
+ qMx4k67/PzAfWrjJ/WduAzasks6B3uM6U1LzhvdokLR9J3Es8+UJJ4pmeSgEPwXGhn
+ VzoG/jsArJ6W+Bovux1WBsxTzDgd3/V8QeQooKcmtXytVJSHxegOFQzKXjY0JTxKoT
+ ZHZw6qh27yzELGsjLJ7m86eOWv3RbIaJCMbyZ16S38X5qIJJL+IrPUVzwNFCjybXph
+ 6L1SJlyq/doVGb2rbbVnRwwEXGlITWWF2Ncz2DYMTeCsFTUfx9HiEKa20+IVtvwpik
+ jEnJV+uhEU4oQ==
+Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 4814hoVP1177287
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Sun, 1 Sep 2024 07:43:50 +0300
+Received: (from dhirschfeld@localhost)
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id
+ 4814hnSS1177286; Sun, 1 Sep 2024 07:43:49 +0300
+From: Dafna Hirschfeld <dhirschfeld@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, Dafna Hirschfeld <dhirschfeld@habana.ai>
+Subject: [PATCH] drm/xe: fix missing 'xe_vm_put'
+Date: Sun,  1 Sep 2024 07:42:27 +0300
+Message-Id: <20240901044227.1177211-1-dhirschfeld@habana.ai>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,131 +56,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: bf758226c7e6927f1c2c34fd6eb2cb580b77f543  drm/xe: Invalidate media_gt TLBs in PT code
+Fix memleak caused by missing xe_vm_put
 
-elapsed time: 1468m
+Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-configs tested: 112
-configs skipped: 3
-
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc-14.1.0
-alpha                            allyesconfig   clang-20
-alpha                               defconfig   gcc-14.1.0
-arc                              allmodconfig   clang-20
-arc                               allnoconfig   gcc-14.1.0
-arc                              allyesconfig   clang-20
-arc                                 defconfig   gcc-14.1.0
-arm                              allmodconfig   clang-20
-arm                               allnoconfig   gcc-14.1.0
-arm                              allyesconfig   clang-20
-arm                                 defconfig   gcc-14.1.0
-arm                          ep93xx_defconfig   clang-20
-arm                        realview_defconfig   clang-20
-arm64                            allmodconfig   clang-20
-arm64                             allnoconfig   gcc-14.1.0
-arm64                               defconfig   clang-20
-arm64                               defconfig   gcc-14.1.0
-csky                              allnoconfig   gcc-14.1.0
-csky                                defconfig   gcc-14.1.0
-hexagon                          allmodconfig   clang-20
-hexagon                           allnoconfig   gcc-14.1.0
-hexagon                          allyesconfig   clang-20
-hexagon                             defconfig   gcc-14.1.0
-i386                             allmodconfig   clang-18
-i386                              allnoconfig   clang-18
-i386                             allyesconfig   clang-18
-i386                                defconfig   clang-18
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch                           defconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                          amiga_defconfig   clang-20
-m68k                                defconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-14.1.0
-microblaze                          defconfig   gcc-14.1.0
-mips                              allnoconfig   gcc-14.1.0
-mips                            gpr_defconfig   clang-20
-mips                      malta_kvm_defconfig   clang-20
-mips                         rt305x_defconfig   clang-20
-nios2                            alldefconfig   clang-20
-nios2                             allnoconfig   gcc-14.1.0
-nios2                               defconfig   gcc-14.1.0
-openrisc                          allnoconfig   clang-20
-openrisc                         allyesconfig   gcc-14.1.0
-openrisc                            defconfig   gcc-12
-openrisc                  or1klitex_defconfig   clang-20
-parisc                           allmodconfig   gcc-14.1.0
-parisc                            allnoconfig   clang-20
-parisc                           allyesconfig   gcc-14.1.0
-parisc                              defconfig   gcc-12
-parisc                generic-64bit_defconfig   clang-20
-parisc64                            defconfig   gcc-14.1.0
-powerpc                    adder875_defconfig   clang-20
-powerpc                          allmodconfig   gcc-14.1.0
-powerpc                           allnoconfig   clang-20
-powerpc                          allyesconfig   gcc-14.1.0
-powerpc                    gamecube_defconfig   clang-20
-powerpc                       maple_defconfig   clang-20
-powerpc                 mpc834x_itx_defconfig   clang-20
-riscv                            allmodconfig   gcc-14.1.0
-riscv                             allnoconfig   clang-20
-riscv                            allyesconfig   gcc-14.1.0
-riscv                               defconfig   gcc-12
-riscv                    nommu_k210_defconfig   clang-20
-s390                             allmodconfig   gcc-14.1.0
-s390                              allnoconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   gcc-12
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                                  defconfig   gcc-12
-sh                           se7780_defconfig   clang-20
-sh                   secureedge5410_defconfig   clang-20
-sparc                            allmodconfig   gcc-14.1.0
-sparc64                             defconfig   gcc-12
-um                               allmodconfig   clang-20
-um                                allnoconfig   clang-20
-um                               allyesconfig   clang-20
-um                                  defconfig   gcc-12
-um                             i386_defconfig   gcc-12
-um                           x86_64_defconfig   gcc-12
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240831   clang-18
-x86_64       buildonly-randconfig-002-20240831   clang-18
-x86_64       buildonly-randconfig-003-20240831   clang-18
-x86_64       buildonly-randconfig-004-20240831   clang-18
-x86_64       buildonly-randconfig-005-20240831   clang-18
-x86_64       buildonly-randconfig-006-20240831   clang-18
-x86_64                              defconfig   clang-18
-x86_64                                  kexec   gcc-12
-x86_64                randconfig-001-20240831   clang-18
-x86_64                randconfig-002-20240831   clang-18
-x86_64                randconfig-003-20240831   clang-18
-x86_64                randconfig-004-20240831   clang-18
-x86_64                randconfig-005-20240831   clang-18
-x86_64                randconfig-006-20240831   clang-18
-x86_64                randconfig-011-20240831   clang-18
-x86_64                randconfig-012-20240831   clang-18
-x86_64                randconfig-013-20240831   clang-18
-x86_64                randconfig-014-20240831   clang-18
-x86_64                randconfig-015-20240831   clang-18
-x86_64                randconfig-016-20240831   clang-18
-x86_64                randconfig-071-20240831   clang-18
-x86_64                randconfig-072-20240831   clang-18
-x86_64                randconfig-073-20240831   clang-18
-x86_64                randconfig-074-20240831   clang-18
-x86_64                randconfig-075-20240831   clang-18
-x86_64                randconfig-076-20240831   clang-18
-x86_64                          rhel-8.3-rust   clang-18
-x86_64                               rhel-8.3   gcc-12
-xtensa                            allnoconfig   gcc-14.1.0
-
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index fa4ed168b53b..df3ea337f55c 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -252,8 +252,10 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
+ 							   gt->usm.reserved_bcs_instance,
+ 							   false);
+ 
+-		if (!hwe)
++		if (!hwe) {
++			xe_vm_put(migrate_vm);
+ 			return ERR_PTR(-EINVAL);
++		}
+ 
+ 		q = xe_exec_queue_create(xe, migrate_vm,
+ 					 BIT(hwe->logical_instance), 1, hwe,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
