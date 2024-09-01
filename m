@@ -4,98 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79371C54FC6
-	for <intel-xe@archiver.kernel.org>; Sun,  1 Sep 2024 16:15:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6839C54FC6
+	for <intel-xe@archiver.kernel.org>; Sun,  1 Sep 2024 19:28:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2598410E0A2;
-	Sun,  1 Sep 2024 16:15:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4124910E0C7;
+	Sun,  1 Sep 2024 19:28:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="F5h1/eNL";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=kapsi.fi header.i=@kapsi.fi header.b="Bid52OYq";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCA8D10E09F;
- Sun,  1 Sep 2024 16:15:39 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 904925C3A63;
- Sun,  1 Sep 2024 16:15:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C7FAC4CEC4;
- Sun,  1 Sep 2024 16:15:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1725207338;
- bh=gYIgZOi4sdR4hTdNE3LJJ3LeXGN5BLGNfkofNqnsRBc=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=F5h1/eNLAut+K9xbInA8o1Vqa2sZpvVnt33i+mDoFpaubGehtbFtkTdZKWa1mvOQU
- CSsiRwCvOWvZvMvEO8L0Dsxwyr89B9qMvVFfrWbzq6Z8wKms7E7vADuGZJavaJ+Yq9
- ddCRkatwMBI2yP8xVSOJokY6nLAtiaa47fyw12UjAMSKYqFuQqVvxjY3Vk9ZgQzRoc
- 6bOCtTkFHWjSazc04tEnJCsudAEBR8Pcv/himZ9VWJRdbe++qCe48wzQKqTx7uOX07
- J7ewjUPy7qvCfaKAR8hR3puGLgD0egOP9gXsf94jOOO8lGHC7jbxrL/PZ8tNivTSUu
- C2srQRHZ3LE7g==
-Received: by mail-lf1-f50.google.com with SMTP id
- 2adb3069b0e04-53346132348so4320881e87.2; 
- Sun, 01 Sep 2024 09:15:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCWW1tZQXVM+za6OWwiX8MUi3lwqZR5NaNDZJ0me/fg62g8Kdfp5LKCmHPrTICpnqupPprT8NQ1n4pg=@lists.freedesktop.org,
- AJvYcCX5mDGPw+1qFupqz0TMZ0ilCJTqjxaAmRxBQ8+81/unkDXL1+VeA0kNLGX7sSSZ7dnW6/Mx8/OH2C4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyBkaJiM3mC3WX1XkSKUFzI5760IXJefEGu7rljbGh7VqlKBqIB
- PrL+m+RyXd03kxVLTUmRlYDcHDbidKj3pjQBNeFeV3NK71LVejMUAQfNa+yGMiopuO6SvqCG6xQ
- JC9SBLQftxeBX6/mvY5VPoZ/+U8I=
-X-Google-Smtp-Source: AGHT+IEvW4vK5zxx451a7ZmsPELGu2ASm3u0aIbHJUwKBVb/P5sQhkJtI91jLzLi0FROvKEcgj/L3zpZL4SS+3Wibx0=
-X-Received: by 2002:a05:6512:282b:b0:533:d3e:16e9 with SMTP id
- 2adb3069b0e04-53546bb4402mr4892938e87.57.1725207337206; Sun, 01 Sep 2024
- 09:15:37 -0700 (PDT)
+Received: from mail.kapsi.fi (mail-auth.kapsi.fi [91.232.154.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0CF010E0C7;
+ Sun,  1 Sep 2024 19:28:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+ s=20161220; h=References:Cc:To:Subject:Message-ID:From:
+ Content-Transfer-Encoding:Content-Type:Date:MIME-Version:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=spF0Jr7oCMuWWYaBUzIxTaZcwLNlD+eaLp7borKRh1E=; b=Bid52OYqHgAOY7jLDJTSsnohsQ
+ 8HJ/QIhi5h0NUynX9zGzoZSNow4+OW69kkDpBJISynN58L9uchwl5FYnRqu2WkA9jOsBWEU5E/sJN
+ Bm3QNxpGw4AGQRgD1Fw6pxQbxhN8bZTfupp/RVObfDTGovrXqh1egiGL7t3lwNSSiFUUBv9DTTcRi
+ OqzrUfhCzQMVbVax3u5Iv8Kri3uwKiIpA0JR77aSodJFLwvNMw6nl5GNr6Wt6GF8KqIU2k8cQB1En
+ ruC2/k2kcHt2QzK9gnnbQMZ1xNV1QO+Z8CzanFI2jDo9sWOyDvhkJSFw4UBiXrToxNlgtg7Cj1XbF
+ mZJmgTOw==;
+Received: from webng-gw.kapsi.fi ([91.232.154.200] helo=rainloop.kapsi.fi)
+ by mail.kapsi.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
+ (envelope-from <jyri.sarha@iki.fi>) id 1skqFb-00EgmQ-3B;
+ Sun, 01 Sep 2024 22:28:39 +0300
 MIME-Version: 1.0
-References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
- <20240807-macos-build-support-v1-8-4cd1ded85694@samsung.com>
- <CGME20240807110435eucas1p2eca071b0a0122b8686d43c57bd94dc8c@eucas1p2.samsung.com>
- <2024080717-cross-retiree-862e@gregkh>
- <dxkmmrlhlhsrjulnyabfgcr37ojway2dxaypelf3uchkmhw4jn@z54e33jdpxmr>
- <2024080720-skyline-recapture-d80d@gregkh>
- <20240807-mottled-stoic-degu-d1e4cb@lindesnes>
- <20240823225450.spuvjs5b5ruujim4@AALNPWDAGOMEZ1.aal.scsc.local>
- <ZtIjNBhqdxmMBxfM@fjasle.eu>
-In-Reply-To: <ZtIjNBhqdxmMBxfM@fjasle.eu>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Mon, 2 Sep 2024 01:15:01 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQhHBi7nSG5SAbqD3HFO3uMR6GHckZHcQXgWao7G8i9gw@mail.gmail.com>
-Message-ID: <CAK7LNAQhHBi7nSG5SAbqD3HFO3uMR6GHckZHcQXgWao7G8i9gw@mail.gmail.com>
-Subject: Re: [PATCH 08/12] include: add elf.h support
-To: Nicolas Schier <nicolas@fjasle.eu>
-Cc: Daniel Gomez <da.gomez@samsung.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Nathan Chancellor <nathan@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Paul Moore <paul@paul-moore.com>,
- Stephen Smalley <stephen.smalley.work@gmail.com>, 
- Ondrej Mosnacek <omosnace@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Oliver Upton <oliver.upton@linux.dev>, 
- James Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>, Jiri Slaby <jirislaby@kernel.org>, 
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
- Justin Stitt <justinstitt@google.com>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "speakup@linux-speakup.org" <speakup@linux-speakup.org>, 
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>, 
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>, 
- "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
- "llvm@lists.linux.dev" <llvm@lists.linux.dev>, Finn Behrens <me@kloenk.dev>, 
- "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- "gost.dev@samsung.com" <gost.dev@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+Date: Sun, 01 Sep 2024 19:28:37 +0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+From: jyri.sarha@iki.fi
+Message-ID: <765bab893c9859e4f73af2ea65e943dd913ec7f4@iki.fi>
+Subject: Re: [PATCH v3 43/81] drm/tilcdc: Run DRM default client setup
+To: "Thomas Zimmermann" <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>
+References: undefined <20240830084456.77630-1-tzimmermann@suse.de>
+X-SA-Exim-Connect-IP: 91.232.154.200
+X-SA-Exim-Mail-From: jyri.sarha@iki.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,71 +63,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Aug 31, 2024 at 4:54=E2=80=AFAM Nicolas Schier <nicolas@fjasle.eu> =
-wrote:
+August 30, 2024 at 11:40 AM, "Thomas Zimmermann" <tzimmermann@suse.de mai=
+lto:tzimmermann@suse.de?to=3D%22Thomas%20Zimmermann%22%20%3Ctzimmermann%4=
+0suse.de%3E > wrote:
+
+>=20
+>=20Call drm_client_setup_with_color_mode() to run the kernel's default
+> client setup for DRM. Set fbdev_probe in struct drm_driver, so that
+> the client setup can start the common fbdev client.
+>=20
+>=20v3:
+> - add DRM_FBDEV_DMA_DRIVER_OPS macro
+>=20
+>=20Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Jyri Sarha <jyri.sarha@iki.fi>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+Acked-by: Jyri Sarha <jyri.sarha@iki.fi>
+
+Thanks,
+Jyri
+
+> ---
+> drivers/gpu/drm/tilcdc/tilcdc_drv.c | 5 ++++-
+> 1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+>=20diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/ti=
+lcdc/tilcdc_drv.c
+> index cd5eefa06060..8c9f3705aa6c 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> @@ -14,6 +14,7 @@
+> #include <linux/pm_runtime.h>
+>=20
+>=20#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_client_setup.h>
+> #include <drm/drm_debugfs.h>
+> #include <drm/drm_drv.h>
+> #include <drm/drm_fbdev_dma.h>
+> @@ -374,7 +375,8 @@ static int tilcdc_init(const struct drm_driver *ddr=
+v, struct device *dev)
+>  goto init_failed;
+>  priv->is_registered =3D true;
+>=20
+>=20- drm_fbdev_dma_setup(ddev, bpp);
+> + drm_client_setup_with_color_mode(ddev, bpp);
+> +
+>  return 0;
+>=20
+>=20init_failed:
+> @@ -472,6 +474,7 @@ DEFINE_DRM_GEM_DMA_FOPS(fops);
+> static const struct drm_driver tilcdc_driver =3D {
+>  .driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  DRM_GEM_DMA_DRIVER_OPS,
+> + DRM_FBDEV_DMA_DRIVER_OPS,
+> #ifdef CONFIG_DEBUG_FS
+>  .debugfs_init =3D tilcdc_debugfs_init,
+> #endif
+> --=20
+>=202.46.0
 >
-> On Sat, Aug 24, 2024 at 12:54:50AM +0200 Daniel Gomez wrote:
-> > On Wed, Aug 07, 2024 at 05:46:03PM +0200, Nicolas Schier wrote:
-> > > On Wed, Aug 07, 2024 at 04:18:54PM +0200, Greg Kroah-Hartman wrote:
-> > > > On Wed, Aug 07, 2024 at 02:13:57PM +0000, Daniel Gomez wrote:
-> > > > > > Also, as this is not internal for the kernel, but rather for us=
-erspace
-> > > > > > builds, shouldn't the include/ path be different?
-> > > > >
-> > > > > Can you suggest an alternative path or provide documentation that=
- could help
-> > > > > identify the correct location? Perhaps usr/include?
-> > > >
-> > > > That is better than the generic include path as you are attempting =
-to
-> > > > mix userspace and kernel headers in the same directory :(
-> > >
-> > > Please keep in mind, that usr/include/ currently does not hold a sing=
-le
-> > > header file but is used for dynamically composing the UAPI header tre=
-e.
-> > >
-> > > In general, I do not like the idea of keeping a elf.h file here that
-> > > possibly is out-of-sync with the actual system's version (even though
-> > > elf.h should not see that much changes).  Might it be more helpful to
-> > > provide a "development kit" for Linux devs that need to build on MacO=
-S
-> > > that provides necessary missing system header files, instead of mergi=
-ng
-> > > those into upstream?
-> >
-> > I took this suggestion and tried pushing a Homebrew formula/package her=
-e [1].
-> > I think I chose a wrong name and maybe something like "development kit"=
- would
-> > have been better. However, would it be possible instead to include the =
-*.rb file
-> > in the scripts/ directory? So users of this can generate the developmen=
-t kit in
-> > their environments. I would maintain the script to keep it in sync with=
- the
-> > required glibc version for the latest kernel version.
-> >
-> > [1] https://github.com/Homebrew/homebrew-core/pull/181885
->
-> I think it sounds sensible to hold that formula file in the upstream tree=
-.  But
-> I am not sure if scripts/ is the best location.
->
-> Masahiro, what do you think?
-
-
-I do not know much about the homebrew, but why does the upstream
-kernel need to merge such masOS stuff?
-
-
-
->
-> Kind regards,
-> Nicolas
-
-
-
---=20
-Best Regards
-Masahiro Yamada
