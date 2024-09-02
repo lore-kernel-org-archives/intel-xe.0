@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A9D7CA0ED3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 15:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38AD5CA0ED3
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 15:05:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3D4710E200;
-	Mon,  2 Sep 2024 15:05:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06C9610E30B;
+	Mon,  2 Sep 2024 15:05:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QkgB3kGh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L5yvOk8E";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4486910E331
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 15:05:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEB710E30B;
+ Mon,  2 Sep 2024 15:05:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725289504; x=1756825504;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=aM2M1skW5LhVYkR/tbIcHmk74Xz7+pSoqZ3GagdGiUY=;
- b=QkgB3kGhCwIBvJd/xexnoqyiehjZEBUWH0hG6InSG+kXW0lnJ85PVmmO
- JeWKfn5dw3oqROWJ2ngSlkKkQoBu3KGmrwNTljaS6ovnMu2IAWx8t6zex
- Zl6CchUUUpwfWY5LcXZn09mIvZxp3MpScHuoPRbE0rdO7xT4JPcor6+sO
- jHauSQ67UhEDL+BVSaKI7vaocM+07ExZkp2jBy0jes4oesXZkn9RoIS/Q
- cQjvf+K+U5Cjm0rMlHku6eedHp0BHzwh1vFlP8eckJVTcYPDxQ1nO1eeX
- iuHSooj+57AmjqiAifUKQyrgqXPhGZPVLOS/BmITk/cn4cZYdecGCpZKg A==;
-X-CSE-ConnectionGUID: UIBDZuzSSQy4DcRqWTo+vw==
-X-CSE-MsgGUID: 6ZD8r3VMQFSj8iDlMQlh9Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="23740684"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23740684"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 08:05:03 -0700
-X-CSE-ConnectionGUID: IjxuPAFOTmu93qd0mBvRbQ==
-X-CSE-MsgGUID: AyBJyFc9QjCRjkrPhN1q5w==
+ t=1725289518; x=1756825518;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=7yJoXdxfLptH9x6a72lOfZcD6VcoqoQwvdHt+gOz5B4=;
+ b=L5yvOk8Eg5ff04aTGaZzxM+W2yyquD/I4AdGHnfsSrzHjvJVT/HxtDvn
+ rGWLkmlbIoew1NZFN08iKeIfIHor1uqRY5jBZ1JkJmZvRU85Hzm+sTzhP
+ Nzb7kLVBzlrRmlMyCEdEZ+lqx5iUTwuo+ZQna3JyLbwyPXymWc1nyxNMr
+ In1pHaKgoP8nO4Hy2pmtC4GyBIFm9sRHkDgeaORZU8PAkgbuhZO7b6afv
+ 5oUiWBWQZgZachtfTN4vhleu3q/p+lm8mN4nqtWS8aCYquB+D5BksBq7i
+ fBaNzsF5U5BcMCDLqDaPoCuhEpGSVohyyWBkz+LG3U1KWf4NxqO5ID6r2 g==;
+X-CSE-ConnectionGUID: VaCAMcpoTzy8zXZ5jitFFw==
+X-CSE-MsgGUID: 4LK7qE2pSPCSyV4PsN9Rlg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="35267615"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="35267615"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2024 08:05:18 -0700
+X-CSE-ConnectionGUID: Ws/plex7S8iS0822dV1wqA==
+X-CSE-MsgGUID: 8UF0xfaPTWSHjX3W8x+Dpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="69272422"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.130.175])
- ([10.245.130.175])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 08:05:01 -0700
-Message-ID: <6c905752-e7ea-42ee-9a62-5bda06a38a32@linux.intel.com>
-Date: Mon, 2 Sep 2024 17:04:58 +0200
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="64315439"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2024 08:05:17 -0700
+Date: Mon, 2 Sep 2024 18:05:39 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com
+Subject: Re: [PATCH] drm/i915: Do not explicilty enable FEC in DP_TP_CTL for
+ UHBR rates
+Message-ID: <ZtXUQ7-I_hR0miwa@ideak-desk.fi.intel.com>
+References: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: fix missing 'xe_vm_put'
-To: Dafna Hirschfeld <dhirschfeld@habana.ai>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com
-References: <20240901044227.1177211-1-dhirschfeld@habana.ai>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240901044227.1177211-1-dhirschfeld@habana.ai>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,37 +65,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 9/1/2024 6:42 AM, Dafna Hirschfeld wrote:
-> Fix memleak caused by missing xe_vm_put
->
-> Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
-
-Fixes: 852856e3b6f6 ("drm/xe: Use reserved copy engine for user binds on 
-faulting devices")
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
+On Thu, Aug 22, 2024 at 11:44:48AM +0530, Chaitanya Kumar Borah wrote:
+> In case of UHBR rates, we do not need to explicitly enable FEC by writing
+> to DP_TP_CTL register.
+> For MST use-cases, intel_dp_mst_find_vcpi_slots_for_bpp() takes care of
+> setting fec_enable to false. However, it gets overwritten in
+> intel_dp_dsc_compute_config(). This change keeps fec_enable false across
+> MST and SST use-cases for UHBR rates.
+> 
+> While at it, add a comment explaining why we don't enable FEC in eDP v1.5.
+> 
+> v2: Correct logic to cater to SST use-cases (Jani)
+> 
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_exec_queue.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index fa4ed168b53b..df3ea337f55c 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -252,8 +252,10 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
->   							   gt->usm.reserved_bcs_instance,
->   							   false);
->   
-> -		if (!hwe)
-> +		if (!hwe) {
-> +			xe_vm_put(migrate_vm);
->   			return ERR_PTR(-EINVAL);
-> +		}
->   
->   		q = xe_exec_queue_create(xe, migrate_vm,
->   					 BIT(hwe->logical_instance), 1, hwe,
+>  drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 49a37b996530..de30eaacd9b4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2298,9 +2298,15 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  		&pipe_config->hw.adjusted_mode;
+>  	int ret;
+>  
+> +	/*
+> +	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
+> +	 * Since, FEC is a bandwidth overhead, continue to not enable it for
+> +	 * eDP. Until, there is a good reason to do so.
+> +	 */
+>  	pipe_config->fec_enable = pipe_config->fec_enable ||
+>  		(!intel_dp_is_edp(intel_dp) &&
+> -		 intel_dp_supports_fec(intel_dp, connector, pipe_config));
+> +		 intel_dp_supports_fec(intel_dp, connector, pipe_config) &&
+> +		 !intel_dp_is_uhbr(pipe_config));
+
+I think this should be only computed by the DP encoder specific handler
+(in intel_dp_compute_link_config()) instead of recomputing here for the
+DP MST case as well. Also intel_dp_supports_dsc() just happens to work
+now, since it doesn't check for this flag on MST, so that may need to be
+updated. Both of these can be done as a follow up, so for this patch:
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+>  
+>  	if (!intel_dp_supports_dsc(connector, pipe_config))
+>  		return -EINVAL;
+> -- 
+> 2.25.1
+> 
