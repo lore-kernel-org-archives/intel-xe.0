@@ -4,56 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38AD5CA0ED3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 15:05:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5852ACD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 15:11:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06C9610E30B;
-	Mon,  2 Sep 2024 15:05:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L5yvOk8E";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEB710E30B;
- Mon,  2 Sep 2024 15:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725289518; x=1756825518;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=7yJoXdxfLptH9x6a72lOfZcD6VcoqoQwvdHt+gOz5B4=;
- b=L5yvOk8Eg5ff04aTGaZzxM+W2yyquD/I4AdGHnfsSrzHjvJVT/HxtDvn
- rGWLkmlbIoew1NZFN08iKeIfIHor1uqRY5jBZ1JkJmZvRU85Hzm+sTzhP
- Nzb7kLVBzlrRmlMyCEdEZ+lqx5iUTwuo+ZQna3JyLbwyPXymWc1nyxNMr
- In1pHaKgoP8nO4Hy2pmtC4GyBIFm9sRHkDgeaORZU8PAkgbuhZO7b6afv
- 5oUiWBWQZgZachtfTN4vhleu3q/p+lm8mN4nqtWS8aCYquB+D5BksBq7i
- fBaNzsF5U5BcMCDLqDaPoCuhEpGSVohyyWBkz+LG3U1KWf4NxqO5ID6r2 g==;
-X-CSE-ConnectionGUID: VaCAMcpoTzy8zXZ5jitFFw==
-X-CSE-MsgGUID: 4LK7qE2pSPCSyV4PsN9Rlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="35267615"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="35267615"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 08:05:18 -0700
-X-CSE-ConnectionGUID: Ws/plex7S8iS0822dV1wqA==
-X-CSE-MsgGUID: 8UF0xfaPTWSHjX3W8x+Dpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="64315439"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 08:05:17 -0700
-Date: Mon, 2 Sep 2024 18:05:39 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@intel.com
-Subject: Re: [PATCH] drm/i915: Do not explicilty enable FEC in DP_TP_CTL for
- UHBR rates
-Message-ID: <ZtXUQ7-I_hR0miwa@ideak-desk.fi.intel.com>
-References: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0654F10E320;
+	Mon,  2 Sep 2024 15:11:42 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE57D10E320;
+ Mon,  2 Sep 2024 15:11:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_drm/xe=3A_Use_xe=5Fpm=5Fruntime=5Fget_in_xe=5Fbo=5Fmove=28=29_if?=
+ =?utf-8?q?_reclaim-safe=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Sep 2024 15:11:40 -0000
+Message-ID: <172528990090.907216.3339469288558322508@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240902142042.77581-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240902142042.77581-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,57 +37,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 22, 2024 at 11:44:48AM +0530, Chaitanya Kumar Borah wrote:
-> In case of UHBR rates, we do not need to explicitly enable FEC by writing
-> to DP_TP_CTL register.
-> For MST use-cases, intel_dp_mst_find_vcpi_slots_for_bpp() takes care of
-> setting fec_enable to false. However, it gets overwritten in
-> intel_dp_dsc_compute_config(). This change keeps fec_enable false across
-> MST and SST use-cases for UHBR rates.
-> 
-> While at it, add a comment explaining why we don't enable FEC in eDP v1.5.
-> 
-> v2: Correct logic to cater to SST use-cases (Jani)
-> 
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 49a37b996530..de30eaacd9b4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2298,9 +2298,15 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  		&pipe_config->hw.adjusted_mode;
->  	int ret;
->  
-> +	/*
-> +	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
-> +	 * Since, FEC is a bandwidth overhead, continue to not enable it for
-> +	 * eDP. Until, there is a good reason to do so.
-> +	 */
->  	pipe_config->fec_enable = pipe_config->fec_enable ||
->  		(!intel_dp_is_edp(intel_dp) &&
-> -		 intel_dp_supports_fec(intel_dp, connector, pipe_config));
-> +		 intel_dp_supports_fec(intel_dp, connector, pipe_config) &&
-> +		 !intel_dp_is_uhbr(pipe_config));
+== Series Details ==
 
-I think this should be only computed by the DP encoder specific handler
-(in intel_dp_compute_link_config()) instead of recomputing here for the
-DP MST case as well. Also intel_dp_supports_dsc() just happens to work
-now, since it doesn't check for this flag on MST, so that may need to be
-updated. Both of these can be done as a follow up, so for this patch:
+Series: series starting with [1/2] drm/xe: Use xe_pm_runtime_get in xe_bo_move() if reclaim-safe.
+URL   : https://patchwork.freedesktop.org/series/138098/
+State : success
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+== Summary ==
 
->  
->  	if (!intel_dp_supports_dsc(connector, pipe_config))
->  		return -EINVAL;
-> -- 
-> 2.25.1
-> 
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/
+lib/modules/6.11.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc6-xe/build
+lib/modules/6.11.0-rc6-xe/modules.alias.bin
+lib/modules/6.11.0-rc6-xe/modules.builtin
+lib/modules/6.11.0-rc6-xe/modules.softdep
+lib/modules/6.11.0-rc6-xe/modules.alias
+lib/modules/6.11.0-rc6-xe/modules.order
+lib/modules/6.11.0-rc6-xe/modules.symbols
+lib/modules/6.11.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1725289889:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1725289889:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
