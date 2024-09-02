@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA02CD13CF
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 07:36:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 742C2CD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 07:47:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C55310E216;
-	Mon,  2 Sep 2024 07:36:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QaPNXadH";
-	dkim-atps=neutral
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
- [209.85.210.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E0D210E216;
- Mon,  2 Sep 2024 07:36:29 +0000 (UTC)
-Received: by mail-ot1-f51.google.com with SMTP id
- 46e09a7af769-70f63afb792so1751504a34.1; 
- Mon, 02 Sep 2024 00:36:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725262588; x=1725867388; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=fA1r43W3Mqfhdc614VDk/Bo2YVo04K9ABi/DH+AdGfE=;
- b=QaPNXadHByyY7b/JtSXUzlU5dno3b7GboEw+czCSP+uL1+AcXnVSy70IQdgVcjsWaJ
- aU0MZ6PYeUxKVIE6e/GD8MEQxJNNC0T2LmWbSRt10cb+oqlAxhQoQJlexNZ5z6iQ43Ah
- gczl5LD8WaEw2yTjs6o+8qMj2l3NREsL1gFSdYkxoHzeQVbJbaO2OFdR5/0QqcYk3iDY
- SKpicXb/5vHZaNgPfS1JaJAGFqVeM7vBATGnBiZNpiU2ztjwkFLg1L+bFwNP61aFIrbk
- hfSdmJhsOTrceBKrcuZaMEM3YRP872cKbdCn9TRLCcxDsFOAn3uSnMKWPTYRx0xo7hCJ
- 8k+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725262588; x=1725867388;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=fA1r43W3Mqfhdc614VDk/Bo2YVo04K9ABi/DH+AdGfE=;
- b=pYZv5PnDAuQR6Hw7w090C5I94xDdAmpTgQCapA1WiRUk3oXsEukI9lDN98RLPTiJtz
- ExYYTCpZI2lrSoEXIM8jo+YLjc3qd36azGW0IqAgxz8cvKO29Z38+BgOgK79/3zINd+G
- 7PbOSL4O5lyA7S83HHrBZXSNqKwNvpvqERc76TSuSYdsh3osrJH6Y0s5BJok/RZAcXKZ
- zvoRiMLPV4UUaJmkP6GcZe+2Ji6FD8IkYnpjgRyND4V/NxaP0fD/i/sj8Pp9MOaky04t
- bbo8V0DkJR/VIrZD7nIMFIi6Ui3bRvALbuo5XYu1A/ctuie6/zNFB+kXR+cVdic/kmjF
- QmjA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUbhR+dlVIWbRQvzMBWz+5yBu/ivICP8E0qKp0aklzJKuFnora+58N4JSELRhscWnocJM5mSr/ykeU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy+8NavGFnbQBlUvBrZ7ZVj8kKlCev/HGi8PJ/wshTbT57S+g0M
- Vmaj+A81YUbXrMzwv+pKkrlq2fPd6NB5fUV3OSzLV+JOnq267VazPikS71Y/
-X-Google-Smtp-Source: AGHT+IFJ1q5A9ivLtFWDa0aR2zqV9Ck2TMR38wNLsLdgW6w0E9It5/Yr9+51I5Eg8mJGD1DJnC3z5Q==
-X-Received: by 2002:a05:6830:4194:b0:703:651b:382f with SMTP id
- 46e09a7af769-70f5c3447bfmr15604350a34.3.1725262587685; 
- Mon, 02 Sep 2024 00:36:27 -0700 (PDT)
-Received: from localhost ([192.55.54.41]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-715e55a594bsm6307326b3a.55.2024.09.02.00.36.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Sep 2024 00:36:27 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>, imre.deak@intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com
-Subject: [PATCH v3] drm/i915/display: Fix BMG CCS modifiers
-Date: Mon,  2 Sep 2024 10:40:21 +0300
-Message-ID: <20240902074021.459480-1-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FACD10E066;
+	Mon,  2 Sep 2024 07:47:23 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C74E10E066;
+ Mon,  2 Sep 2024 07:47:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Introduce_DRM_device_wedged_ev?=
+ =?utf-8?q?ent?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Sep 2024 07:47:22 -0000
+Message-ID: <172526324250.888833.13029069316710505504@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240902074859.2992849-1-raag.jadav@intel.com>
+In-Reply-To: <20240902074859.2992849-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,31 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Let I915_FORMAT_MOD_4_TILED_BMG_CCS show up as supported modifier
+== Series Details ==
 
-Fixes: 97c6efb36497 ("drm/i915/display: Plane capability for 64k phys alignment")
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series: Introduce DRM device wedged event
+URL   : https://patchwork.freedesktop.org/series/138070/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 9452cad41d07..17d4c880ecc4 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2453,6 +2453,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
- 	if (gen12_plane_has_mc_ccs(i915, plane_id))
- 		caps |= INTEL_PLANE_CAP_CCS_MC;
- 
-+	if (DISPLAY_VER(i915) >= 14 && IS_DGFX(i915))
-+		caps |= INTEL_PLANE_CAP_NEED64K_PHYS;
-+
- 	return caps;
- }
- 
--- 
-2.45.2
+== Summary ==
+
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/
+lib/modules/6.11.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc5-xe/build
+lib/modules/6.11.0-rc5-xe/modules.alias.bin
+lib/modules/6.11.0-rc5-xe/modules.builtin
+lib/modules/6.11.0-rc5-xe/modules.softdep
+lib/modules/6.11.0-rc5-xe/modules.alias
+lib/modules/6.11.0-rc5-xe/modules.order
+lib/modules/6.11.0-rc5-xe/modules.symbols
+lib/modules/6.11.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1725263230:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1725263230:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
