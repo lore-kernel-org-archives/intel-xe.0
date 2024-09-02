@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB8C7CA0ED3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 16:10:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCDCACD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 16:11:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6F0A10E350;
-	Mon,  2 Sep 2024 16:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4E6110E346;
+	Mon,  2 Sep 2024 16:11:05 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6029B10E350;
- Mon,  2 Sep 2024 16:10:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5514110E343;
+ Mon,  2 Sep 2024 16:11:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_Ensure_Proper?=
- =?utf-8?q?_Unload/Reload_Order_of_MEI_Modules_for_i915/Xe_Driver?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_Ensure_Proper_Unlo?=
+ =?utf-8?q?ad/Reload_Order_of_MEI_Modules_for_i915/Xe_Driver?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Sep 2024 16:10:46 -0000
-Message-ID: <172529344638.907450.10376964811532036181@2413ebb6fbb6>
+Date: Mon, 02 Sep 2024 16:11:05 -0000
+Message-ID: <172529346532.907418.4673794161269853844@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240902141041.18467-1-krishnaiah.bommu@intel.com>
 In-Reply-To: <20240902141041.18467-1-krishnaiah.bommu@intel.com>
@@ -44,13 +44,49 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver
 URL   : https://patchwork.freedesktop.org/series/138099/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f68a30b6b56c drm-tip: 2024y-09m-02d-14h-33m-20s UTC integration manifest
-=== git am output follows ===
-Applying: drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9fe5037901cabbcdf27a6fe0dfb047ca1474d363
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 057ba0c43630fdb67ee13b1528ccab496f6cf898
+Author: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Date:   Mon Sep 2 19:40:41 2024 +0530
+
+    drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver
+    
+    This update addresses the unload/reload sequence of MEI modules in relation to
+    the i915/Xe graphics driver. On platforms where the MEI hardware is integrated
+    with the graphics device (e.g., DG2/BMG), the MEI modules depend on the i915/Xe
+    driver. Conversely, on newer platforms like CLS, where the MEI hardware is
+    separate, this dependency does not exist.
+    
+    The changes introduced ensure that MEI modules are unloaded and reloaded in the
+    correct order based on platform-specific dependencies. This is achieved by adding
+    a MODULE_SOFTDEP directive to the i915 and Xe module code.
+    
+    These changes enhance the robustness of MEI module handling across different hardware
+    platforms, ensuring that the i915/Xe driver can be cleanly unloaded and reloaded
+    without issues.
+    
+    Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+    Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+    Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e drm-intel
+057ba0c43630 drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+This update addresses the unload/reload sequence of MEI modules in relation to
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
 
 
