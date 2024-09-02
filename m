@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C5F1CD13CF
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 07:28:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9599CD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 07:34:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2051410E210;
-	Mon,  2 Sep 2024 07:28:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZIaThZOS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20DB710E210;
- Mon,  2 Sep 2024 07:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725262112; x=1756798112;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sbihx63rRH8gdcp/5yltnhaUOeB9DCjFMU5dJ0lMfjE=;
- b=ZIaThZOSNj0jv2Wc70i+yT2SX9IgjNa+ZZFnAurG+VYxQ4fURNxCNEKZ
- KPBR9y52ZrCWIVB1zV6g1qNqVA2l8NnWULVTD3M6V6dqY2og9tocp0pJs
- SiRifx/Lvo0/Dn1qwET5lYWkRAM5c2tCUKQi+NsB3wHQvlI+Fwn9lqlKx
- 89kyEN5vzlR+aipBS50NxapRE3mo/XFXOLk2NlHnsV88BtDl0PgXH9l5w
- jQD+W3PgjteZiknMFlt5DZbsdIsLPRuF19Gy/tzMB3RQgEUynW8iwGMZK
- ZOodA6tJF+YkLo+n0KuRlogthsDYxgM7IsFT9HpkTKCxipUokkFR7pa3G w==;
-X-CSE-ConnectionGUID: 5oE1r1LMQTKDnaq6iKL2QA==
-X-CSE-MsgGUID: azR6yMElRnqNwUmoUoYiMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="23990680"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23990680"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 00:28:32 -0700
-X-CSE-ConnectionGUID: 6lbmkXkGQhCMTQwEgu8Gjw==
-X-CSE-MsgGUID: 69YR4mQrQ32Bp3j6LhUgWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="68922607"
-Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
- by fmviesa005.fm.intel.com with ESMTP; 02 Sep 2024 00:28:27 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, bellekallu.rajkiran@intel.com,
- saikishore.konda@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 3/3] drm/i915: Use device wedged event
-Date: Mon,  2 Sep 2024 13:18:59 +0530
-Message-Id: <20240902074859.2992849-4-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240902074859.2992849-1-raag.jadav@intel.com>
-References: <20240902074859.2992849-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E9A110E0E1;
+	Mon,  2 Sep 2024 07:34:03 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA7D310E215;
+ Mon,  2 Sep 2024 07:34:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introduce_DRM_device?=
+ =?utf-8?q?_wedged_event?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Sep 2024 07:34:02 -0000
+Message-ID: <172526244294.888723.11755775779529526555@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240902074859.2992849-1-raag.jadav@intel.com>
+In-Reply-To: <20240902074859.2992849-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,31 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have device wedged event supported by DRM core, make use
-of it. With this in place, userspace will be notified of wedged device
-on gt reset failure.
+== Series Details ==
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_reset.c | 2 ++
- 1 file changed, 2 insertions(+)
+Series: Introduce DRM device wedged event
+URL   : https://patchwork.freedesktop.org/series/138070/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 735cd23a43c6..60d09ec536c4 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1409,6 +1409,8 @@ static void intel_gt_reset_global(struct intel_gt *gt,
- 
- 	if (!test_bit(I915_WEDGED, &gt->reset.flags))
- 		kobject_uevent_env(kobj, KOBJ_CHANGE, reset_done_event);
-+	else
-+		drm_dev_wedged(&gt->i915->drm);
- }
- 
- /**
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c689a348137c drm-tip: 2024y-08m-30d-22h-24m-34s UTC integration manifest
+=== git am output follows ===
+Applying: drm: Introduce device wedged event
+Applying: drm/xe: Use device wedged event
+Applying: drm/i915: Use device wedged event
+
 
