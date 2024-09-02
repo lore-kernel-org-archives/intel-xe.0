@@ -4,73 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 217A4CD13CF
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 12:20:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE814CD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 12:21:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1C2A10E2D0;
-	Mon,  2 Sep 2024 12:20:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CF8510E2D6;
+	Mon,  2 Sep 2024 12:21:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="S2UwNRHs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrFLvY4a";
 	dkim-atps=neutral
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5DF610E2D6
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 12:20:25 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-42c2e50ec6aso11481665e9.0
- for <intel-xe@lists.freedesktop.org>; Mon, 02 Sep 2024 05:20:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1725279624; x=1725884424; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=fs8K9SSQie2EcY0vLdYoMEUI8BIofNYlXekWwGQYN7A=;
- b=S2UwNRHszXFJcxnrCsnTQtAc9eKAUBSnUM97/Gso4KNvc5ybg8BD+qAJxB+7eQyRhq
- VwRjgTflIZktWxrxyvtGNPWg0R9hwFxrEBn+5xxOV/h9Hd6wNR4Mt35dvzjSgOoi4WY6
- PitzO98vgModMk8+Zq1o0B1nemwGAKUNcpTI0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725279624; x=1725884424;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fs8K9SSQie2EcY0vLdYoMEUI8BIofNYlXekWwGQYN7A=;
- b=Md32Bigq2tAIJQUJQRfNK14eGguKco7eWRzoaMeyJ7FTVfTACmrrVdKsfs4lgyFH2Q
- nVjqPM8AQDjwxZebt8y1who1wWfC6avMsJAnLjXbiNWy0By7axK1nQxZ7X9l6ulS5DKy
- kbZdsTwkpuN9j96B/Yxz8mOSS7VoNgDE1o9ALlvC8xy7sFFO7BAHtTJIANizZVk0vu0t
- jidLb4EBYD5+U2qjpbOjBmsrTLRv64GXl+BQ1r0cAsSVtaLxCmjmSb3BTDL4a8QjHOG3
- XQ8A4e0jOsOipnkA4r5RjfB2BkyobyF6Tmj3PS9dVjhWjCFSjigTzywxTc00tgUunsPl
- S0fw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXJNGoesKZJQAyrJpddeChmBviucb6dqkAspNnUwSmhD6nEvfGuKngR4EcwLP4bnMKteYsvhRm9lA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy3Y0n+v8ucBR2UOKkIeNVtFeErXACuhm5/ArhbEKsFVOaOFvXu
- +CBnJ6hU4Cf7A3DJGYAVFCcahQjbK2ZkkVHsK+3VZotYYEnkGGadbC/guvXBNas=
-X-Google-Smtp-Source: AGHT+IGUk7nVdjyRqAS0vvlsSJE0TNxg14EUd62pfL7ok/yoYTz7ioH7tS1DY9F+bguytpSQ1AJ/bg==
-X-Received: by 2002:a05:600c:3510:b0:429:ea2e:36e1 with SMTP id
- 5b1f17b1804b1-42bb4caa0c2mr78086385e9.13.1725279624017; 
- Mon, 02 Sep 2024 05:20:24 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42baf7fa745sm151539765e9.31.2024.09.02.05.20.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Sep 2024 05:20:23 -0700 (PDT)
-Date: Mon, 2 Sep 2024 14:20:21 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, airlied@gmail.com,
- christian.koenig@amd.com, matthew.auld@intel.com, daniel@ffwll.ch
-Subject: Re: [RFC PATCH 05/28] drm/gpusvm: Add support for GPU Shared Virtual
- Memory
-Message-ID: <ZtWthfrGthO6GCSB@phenom.ffwll.local>
-References: <20240828024901.2582335-1-matthew.brost@intel.com>
- <20240828024901.2582335-6-matthew.brost@intel.com>
- <b8f536b7f804da791869e6ff8c13b36ff93cd1eb.camel@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D83E110E2DA;
+ Mon,  2 Sep 2024 12:21:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725279668; x=1756815668;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LxYjh18++3UCkOB/cl640SFC2B3RKgGX2+WYZL63xf4=;
+ b=IrFLvY4aTL4CipUDgsgwoPl2Fp7FHOg1z64RFmbgEOoN2t7ALR71BLqa
+ ygPTXLzsAXOaxc5DunfD+PB/WA5fMMH3x2ph8xSVZK8PPmr39vZJY8S0O
+ VrpTajVaxuwImqQbq6NPV6rtN8LDIIAhJ6IW+BoyyWWL4bAYDdYmjjkhW
+ ppVxIYxV4qjkDQStlR+jtr/TJl0etEpdYOl5YZtkBKB6pxAwyEhH+kMXY
+ yI6OhWpts8ABSrsQMvO+M2N8KAC1LIMdz8HUPj1ajX68vFunKoQP/Rr50
+ Bq9b0U14c8WuFHJ86xYP393rD0rDpMSaSmwdIGRYMESUWaTwOrJdo18Zg w==;
+X-CSE-ConnectionGUID: D7pXujBjRli09BGWXsB6hw==
+X-CSE-MsgGUID: bCDv1Qp4QDOBBwQrFxGNOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="41335248"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="41335248"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2024 05:21:08 -0700
+X-CSE-ConnectionGUID: 3YQ075lQR9KQk15e9T+SYA==
+X-CSE-MsgGUID: A0f6pkR1Tl+0D2hJF6+wTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="64604566"
+Received: from ltuz-desk.ger.corp.intel.com (HELO localhost) ([10.245.246.4])
+ by fmviesa008-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 05:21:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com, Gustavo Sousa
+ <gustavo.sousa@intel.com>
+Subject: Re: [PATCH v2 0/6] drm/xe & drm/i915: drvdata usage changes follow-up
+In-Reply-To: <cover.1724942754.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1724942754.git.jani.nikula@intel.com>
+Date: Mon, 02 Sep 2024 15:20:52 +0300
+Message-ID: <871q22utzv.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b8f536b7f804da791869e6ff8c13b36ff93cd1eb.camel@linux.intel.com>
-X-Operating-System: Linux phenom 6.9.12-amd64 
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,78 +67,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 30, 2024 at 11:16:53AM +0200, Thomas Hellström wrote:
-> Hi, Matthew
-> 
-> On Tue, 2024-08-27 at 19:48 -0700, Matthew Brost wrote:
-> > +/**
-> > + * DOC: Overview
-> > + *
-> > + * GPU Shared Virtual Memory (GPU SVM) layer for the Direct
-> > Rendering Manager (DRM)
-> > + *
-> > + * The GPU SVM layer is a component of the DRM framework designed to
-> > manage shared
-> > + * virtual memory between the CPU and GPU. It enables efficient data
-> > exchange and
-> > + * processing for GPU-accelerated applications by allowing memory
-> > sharing and
-> > + * synchronization between the CPU's and GPU's virtual address
-> > spaces.
-> > + *
-> > + * Key GPU SVM Components:
-> > + * - Notifiers: Notifiers: Used for tracking memory intervals and
-> > notifying the
-> > + *		GPU of changes, notifiers are sized based on a GPU
-> > SVM
-> > + *		initialization parameter, with a recommendation of
-> > 512M or
-> > + *		larger. They maintain a Red-BlacK tree and a list of
-> > ranges that
-> > + *		fall within the notifier interval. Notifiers are
-> > tracked within
-> > + *		a GPU SVM Red-BlacK tree and list and are
-> > dynamically inserted
-> > + *		or removed as ranges within the interval are created
-> > or
-> > + *		destroyed.
-> > + * - Ranges: Represent memory ranges mapped in a DRM device and
-> > managed
-> > + *	     by GPU SVM. They are sized based on an array of chunk
-> > sizes, which
-> > + *	     is a GPU SVM initialization parameter, and the CPU
-> > address space.
-> > + *	     Upon GPU fault, the largest aligned chunk that fits
-> > within the
-> > + *	     faulting CPU address space is chosen for the range
-> > size. Ranges are
-> > + *	     expected to be dynamically allocated on GPU fault and
-> > removed on an
-> > + *	     MMU notifier UNMAP event. As mentioned above, ranges
-> > are tracked in
-> > + *	     a notifier's Red-Black tree.
-> > + * - Operations: Define the interface for driver-specific SVM
-> > operations such as
-> > + *		 allocation, page collection, migration,
-> > invalidations, and VRAM
-> > + *		 release.
-> > + *
-> 
-> Another question, since ranges, as I understand it, are per gpuvm and
-> per cpu mm, whereas migration is per device and per cpu_mm, (whe might
-> have multiple gpuvms mapping the same cpu_mm), I figure the gpu_svm is
-> per gpuvm, but that makes migration currently inconsistent, right?
+On Thu, 29 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Follow-up to [1].
 
-I think anything that tracks va must be 1:1 tied to the single specific
-cpu mm that we use for hmm/svm. So I think that's ok.
+Thanks for the reviews, pushed to drm-intel-next.
 
-There's a pile of paths where that 1:1 mapping doesn't capture the entire
-picture. but I think there the right choice is to just completely ignore
-any cpu/gpu mm/vma stuff, and defacto rely on the core mm rmap
-datastructure to make sure we find them all (e.g. to update/invalidate
-ptes during migration).
--Sima
+BR,
+Jani.
+
+>
+> BR,
+> Jani.
+>
+>
+> [1] https://lore.kernel.org/r/cover.1723129920.git.jani.nikula@intel.com
+>
+> Jani Nikula (6):
+>   drm/i915 & drm/xe: save struct drm_device to drvdata
+>   drm/i915: support struct device and pci_dev in to_intel_display()
+>   drm/i915/audio: migrate away from kdev_to_i915()
+>   drm/i915/hdcp: migrate away from kdev_to_i915() in bind/unbind
+>   drm/i915/hdcp: migrate away from kdev_to_i915() in GSC messaging
+>   drm/xe/display: remove unused compat kdev_to_i915() and pdev_to_i915()
+>
+>  drivers/gpu/drm/i915/display/intel_audio.c    | 34 ++++++----
+>  .../drm/i915/display/intel_display_types.h    |  8 ++-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 10 +--
+>  .../drm/i915/display/intel_hdcp_gsc_message.c | 67 +++++++++++++------
+>  drivers/gpu/drm/i915/i915_driver.c            |  2 +-
+>  drivers/gpu/drm/i915/i915_drv.h               |  8 ++-
+>  .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +-
+>  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  7 --
+>  drivers/gpu/drm/xe/xe_device.h                |  8 ++-
+>  drivers/gpu/drm/xe/xe_pci.c                   |  2 +-
+>  10 files changed, 94 insertions(+), 54 deletions(-)
+
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel
