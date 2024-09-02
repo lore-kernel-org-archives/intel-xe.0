@@ -4,27 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2769BCA0ED3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 14:08:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1B32CD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 14:08:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C782410E300;
-	Mon,  2 Sep 2024 14:08:39 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2C6710E300
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 14:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B07DB10E304;
+	Mon,  2 Sep 2024 14:08:41 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 756D910E304
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 14:08:40 +0000 (UTC)
 Received: internal info suppressed
 Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 482E8QnR2526278; Mon, 2 Sep 2024 17:08:26 +0300
+ id 482E8QnS2526278; Mon, 2 Sep 2024 17:08:26 +0300
 From: Ilia Levi <ilia.levi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, michal.wajdeczko@intel.com, jonathan.cavitt@intel.com,
  niranjana.vishwanathapura@intel.com, matthew.brost@intel.com,
  koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH v3 0/4] memirq infra changes
-Date: Mon,  2 Sep 2024 17:08:22 +0300
-Message-ID: <20240902140826.2526259-1-ilia.levi@intel.com>
+Subject: [PATCH v3 1/4] drm/xe: MSI-X support placeholder
+Date: Mon,  2 Sep 2024 17:08:23 +0300
+Message-ID: <20240902140826.2526259-2-ilia.levi@intel.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240902140826.2526259-1-ilia.levi@intel.com>
+References: <20240902140826.2526259-1-ilia.levi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -41,35 +43,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set contains Memory Based Interrupts (memirq) infrastructure
-changes to make it reusable for use cases other than VF 
-(specifically MSI-X). 
+This patch adds a stub to query the platform for MSI-X support.
 
-The main changes are separation from VF and a new mode where hardware
-engines report interrupt source and status to the offset of instance 0
-(for MSI-X support).
+Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-v2: Rebase
-v3: Rebase, refactor according to review comments (Michal)
-
-Ilia Levi (4):
-  drm/xe: MSI-X support placeholder
-  drm/xe: move memirq out of VF
-  drm/xe: memirq infra changes for MSI-X
-  drm/xe: memirq handler changes
-
- drivers/gpu/drm/xe/xe_device.c       |   8 +-
- drivers/gpu/drm/xe/xe_device.h       |  13 +++
- drivers/gpu/drm/xe/xe_device_types.h |   6 +-
- drivers/gpu/drm/xe/xe_guc.c          |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c    |  19 +++-
- drivers/gpu/drm/xe/xe_irq.c          |  40 +++----
- drivers/gpu/drm/xe/xe_lrc.c          |   8 +-
- drivers/gpu/drm/xe/xe_memirq.c       | 151 +++++++++++++++++----------
- drivers/gpu/drm/xe/xe_memirq.h       |   6 +-
- drivers/gpu/drm/xe/xe_memirq_types.h |   4 +-
- 10 files changed, 164 insertions(+), 93 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index f052c06a2d2f..196b72c181f2 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -154,6 +154,12 @@ static inline bool xe_device_has_memirq(struct xe_device *xe)
+ 	return GRAPHICS_VERx100(xe) >= 1250;
+ }
+ 
++static inline bool xe_device_has_msix(struct xe_device *xe)
++{
++	/* TODO: change this when MSI-X support is fully integrated */
++	return false;
++}
++
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
+ 
+ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
 -- 
 2.43.2
 
