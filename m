@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35254CA0ED3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 16:55:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5637DCA0ED3
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 17:01:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F11EF10E346;
-	Mon,  2 Sep 2024 16:55:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 210F910E352;
+	Mon,  2 Sep 2024 17:01:28 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687B510E346;
- Mon,  2 Sep 2024 16:55:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4220956530792002387=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 441D110E352;
+ Mon,  2 Sep 2024 17:01:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_Ensure_Proper_Unload/Relo?=
- =?utf-8?q?ad_Order_of_MEI_Modules_for_i915/Xe_Driver?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/bmg=3A_improv?=
+ =?utf-8?q?e_cache_flushing_behaviour?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Sep 2024 16:55:45 -0000
-Message-ID: <172529614542.907626.12925148421637387067@2413ebb6fbb6>
+Date: Mon, 02 Sep 2024 17:01:26 -0000
+Message-ID: <172529648627.907655.5769861862396093878@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240902141041.18467-1-krishnaiah.bommu@intel.com>
-In-Reply-To: <20240902141041.18467-1-krishnaiah.bommu@intel.com>
+References: <20240902153744.63456-2-matthew.auld@intel.com>
+In-Reply-To: <20240902153744.63456-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4220956530792002387==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver
-URL   : https://patchwork.freedesktop.org/series/138099/
+Series: drm/xe/bmg: improve cache flushing behaviour
+URL   : https://patchwork.freedesktop.org/series/138102/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e_BAT -> xe-pw-138099v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138099v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#1069])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  
-  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: f68a30b6b56c drm-tip: 2024y-09m-02d-14h-33m-20s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/bmg: improve cache flushing behaviour
 
 
-Build changes
--------------
-
-  * Linux: xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e -> xe-pw-138099v1
-
-  IGT_8001: d3a77fc98e89cc94b03be2b0903d44f83480b8a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e: f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e
-  xe-pw-138099v1: 138099v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v1/index.html
-
---===============4220956530792002387==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138099/">https://patchwork.freedesktop.org/series/138099/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e_BAT -&gt; xe-pw-138099v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138099v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_compute_mode@twice-userptr-invalidate:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069">Intel XE#1069</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e -&gt; xe-pw-138099v1</li>
-</ul>
-<p>IGT_8001: d3a77fc98e89cc94b03be2b0903d44f83480b8a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1878-f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e: f68a30b6b56c006ab1d6bca3b4ccf7aed1b2743e<br />
-  xe-pw-138099v1: 138099v1</p>
-
-</body>
-</html>
-
---===============4220956530792002387==--
