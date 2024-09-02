@@ -4,75 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5028CA0ED3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 11:53:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA47BCA0ED3
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 11:55:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88DE610E2BB;
-	Mon,  2 Sep 2024 11:53:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B209E10E2C0;
+	Mon,  2 Sep 2024 11:55:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="NwhKjj4k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R9P7d2zV";
 	dkim-atps=neutral
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B06810E2BA
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 11:53:19 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-374d29ad870so19106f8f.3
- for <intel-xe@lists.freedesktop.org>; Mon, 02 Sep 2024 04:53:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1725277997; x=1725882797; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=L1YmdHPMtFc5UeZxJDx+XreTZWObEMh3B4d924jL/dU=;
- b=NwhKjj4kV4RNXsniqlQKkjeX854iXMtBgVue5aFrpmD5jSU96yzTF/GGsrFdxLWnme
- nlvc+I/Dkym3mW+HHS3hgebVXsrT5kHXXj1Nf5fdvBKD0AoK63gUu1jbHeVQAQoncRQM
- 2h0YYCJlOwY3FCI7J7Fy2j14/VBMNwExdiWd8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725277997; x=1725882797;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=L1YmdHPMtFc5UeZxJDx+XreTZWObEMh3B4d924jL/dU=;
- b=PYODqqor72Y7Jey+PIMGdoxfIQdF8fDje+wKdoOEm4HjHyfH4Buy3zqwz4eMEdPe5P
- K13GSx9kNZMYXxNgAck+0XV6xv4pILRptOdkilZfNIyhGB4y9dLDH85HrbXrc0Q/uFqz
- Up2zN9r+r7recsW4jx3INbr0cyoyHxg1EWp6/erYERFrofBIVduMUhuzxnx1184hpY8D
- uOQwhSz90A7AwbjhG4a40QBQ8jKRS7Yjpv9OQPRAxwXmnNFMP7fV0pljUx9t4X/6ZsFU
- 64u34fSZeqyCmdJI0En76R+99GAwXW/rZvFJg0FUzP0x3P1jELaw6wmghTwIYVDdQfnm
- wt9A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWAY/BXpLyxkyM5OUBBBcj1BOgFeRxTTG8/DWToQThgnILxhTvfrvQwhGFBaoVX3ikABnv0dnYDcw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyrJWCfx47CYRGyXn2j+UU0RqTi0hCvSv80VCFYoDWLCApx465A
- kH0i2FPXuu4a9QMZVvB0Xg8hr6RqSlbKCtZzyE6sCBJzN0+oAGuQ8Ac3MBiHK5c=
-X-Google-Smtp-Source: AGHT+IFw75WrKLC44g/Lo76Hz8UbFbozyFBdmd97W7hVrzCVaYzCAzGDk1/+AvdjF0IRXXdndP0s5A==
-X-Received: by 2002:a5d:6345:0:b0:374:b9d7:5120 with SMTP id
- ffacd0b85a97d-374bf05765bmr4491791f8f.23.1725277997186; 
- Mon, 02 Sep 2024 04:53:17 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42bba57bb20sm112971905e9.4.2024.09.02.04.53.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Sep 2024 04:53:16 -0700 (PDT)
-Date: Mon, 2 Sep 2024 13:53:14 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, airlied@gmail.com,
- christian.koenig@amd.com, thomas.hellstrom@linux.intel.com,
- matthew.auld@intel.com, daniel@ffwll.ch
-Subject: Re: [RFC PATCH 05/28] drm/gpusvm: Add support for GPU Shared Virtual
- Memory
-Message-ID: <ZtWnKvaV964EA6mq@phenom.ffwll.local>
-References: <20240828024901.2582335-1-matthew.brost@intel.com>
- <20240828024901.2582335-6-matthew.brost@intel.com>
- <ZtBDJCfWxaEOqILc@phenom.ffwll.local>
- <ZtCvcVu3SZsManOw@DUT025-TGLU.fm.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9837D10E2C0
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 11:55:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725278122; x=1756814122;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=lym98TrNbvVSwJ/BYSszl/yfOHDEcwcuyEu0spEoZPI=;
+ b=R9P7d2zVRPQOxdALzuH95Nz4uWOV8JBFox6o1utGv56cZ5Qj9nngdFV/
+ gTUbhmN9ng0s6KSXeOD3kkh6WUYM5q3/CzVKkqICwQCcCBWut0WQ/vlav
+ sDOjPH4amgbKyrsfk2gG+H9RQqLPZrd/2mrGEUQchxzeFbm8n1EH3WrcT
+ K++yFAo8mk442/f4C8d+Top1npAbPWkXMyf+EmbPxbwTCVF5UIAqcfyge
+ qL711StWgafM0O2ftFrJSavxXm9GovAerxBKPJ2GnBI2/V2BEB6/m/sbc
+ 9EjophK472Uxb3rhqIqjzv4h4IItuhB10UEnaPOZ/Y6HpdA7Zcl4qIlXp Q==;
+X-CSE-ConnectionGUID: hKlMKkCJSDeF0TQZvLfU9Q==
+X-CSE-MsgGUID: 9N6zLB8UQGWE8187nBpjFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="27643052"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="27643052"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2024 04:51:05 -0700
+X-CSE-ConnectionGUID: 726mQXLVRq6pQSXgODVscA==
+X-CSE-MsgGUID: dVko5NRzTsWFclrBKU/H3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="65307112"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 02 Sep 2024 04:51:05 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 2 Sep 2024 04:51:04 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 2 Sep 2024 04:51:02 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 2 Sep 2024 04:51:02 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 2 Sep 2024 04:50:59 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VmBcXZFuGlMqAaGNEKigExWzs3AVBQUBzc06wV2UmT+aroRUA49VQHtFfMDqkYBdJih29dqSB6zjB/8pf+bhSTst9TIflDnJn78ZxTHQXTDORD5hsBkx1pr5C8uKEABies9EMbXpO/40VztrxIoSJY2k5vB0xfX5O2DIR2oE8rZXEl2cMqLSPphU4+Y7kxchTumKby8VmjNAQjs6CtcX0rHwac8BhGNuKYaGDRWtmEqB0kG+HOjE7QJ+S/8onshHGwYtNmcNlqmIpjaV8BrsjD5JmwztciK4U/Is8muSAa1gxweWASJAzR7IEZMeCytW18oGbTXPMgzY2hFhq/3TEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9B9u9/n0Cmgt2UJQyUyych/Y2d3gCwcU8t3mBh/Y9yQ=;
+ b=YINrmrTgdNqVMePeMOxqunUice1q/fFbbLuFp6PHrq9x9YlV7bOJ/Bb2DsQHzxOTDgjqNgRf+P9T+CixF+3dgeSI+GAdo7yaYk6wh1dZ45FbHhUuDktMM3lCQ6pnoYBECU2XbKABeHA6Olfd7cDHSGfeWC1HpWtf9TQjtkYDY8Oe4I0lQfEzsNtxs7KD82Vt5yrvsbeN3y1wgfTxrzWsZxEz0aAfSd6DcRiAGtPiDlh1T36a2w6sG0D1QVBqktEEaw5CgOE6mSdnBg5IDWhKWehwbHT5NkQOWeShurMJWvm0Xu0Udqv8OnPA1epI1h7gDPn/sujOsq8wqNENwHE9aQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6138.namprd11.prod.outlook.com (2603:10b6:930:2a::11)
+ by IA1PR11MB6292.namprd11.prod.outlook.com (2603:10b6:208:3e4::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.24; Mon, 2 Sep
+ 2024 09:37:10 +0000
+Received: from CY5PR11MB6138.namprd11.prod.outlook.com
+ ([fe80::f24e:b21e:c458:4e74]) by CY5PR11MB6138.namprd11.prod.outlook.com
+ ([fe80::f24e:b21e:c458:4e74%6]) with mapi id 15.20.7918.020; Mon, 2 Sep 2024
+ 09:37:10 +0000
+Date: Mon, 2 Sep 2024 11:37:07 +0200
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 2/2] drm/xe/pf: Reset thresholds when releasing a VF config
+Message-ID: <20240902093707.xromjcrtvmeq5fbm@intel.com>
+References: <20240830132100.1704-1-michal.wajdeczko@intel.com>
+ <20240830132100.1704-3-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZtCvcVu3SZsManOw@DUT025-TGLU.fm.intel.com>
-X-Operating-System: Linux phenom 6.9.12-amd64 
+In-Reply-To: <20240830132100.1704-3-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: MI1P293CA0024.ITAP293.PROD.OUTLOOK.COM (2603:10a6:290:3::6)
+ To CY5PR11MB6138.namprd11.prod.outlook.com
+ (2603:10b6:930:2a::11)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6138:EE_|IA1PR11MB6292:EE_
+X-MS-Office365-Filtering-Correlation-Id: b7c16208-47e9-4372-eef8-08dccb32d1c2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NWcxUExEOGdySjl5NVQyYitjbEYyOUdlVEFiNDd6UXZSYm9LOWdTZnk2RFdH?=
+ =?utf-8?B?VG56SHdTUmZuWGdqZ2REMldJeE4yaW5KNVB6OUZmK2tyQ0RlcnVta28rRzBa?=
+ =?utf-8?B?VUpoZEE1MG9oSWNQZFpBK21zRk1jSDg1WFZHcFV4dTlldUlDR25TWUFyRzUz?=
+ =?utf-8?B?Rkx3bDFadDBmUm5yVkdPcUNkWFdQdE5kdTRoT1c4OWtZS09iVEpBWjh6enU3?=
+ =?utf-8?B?MForbk5IVklEbGthL3BaTko5STNma2thY0tJUkJTVElWUHJqN0RhTUZuQU52?=
+ =?utf-8?B?b2xPZmJLb05hTWVycGV5Y3NOQU92TzNYdzZIQlYxMHcxanNSRkYyTTcrNmpx?=
+ =?utf-8?B?Y2NXaThsVXo0ellsYmdvT3NnS1lUMnl6Q29VdlU2Wm1GUnNlVm9LbzFGYnVZ?=
+ =?utf-8?B?NUdSRFZ0U1FYQ0JsTVJpLzY3THZQQ3U5dUQ4UGlHUEV4NEViK3FmNkRId004?=
+ =?utf-8?B?ejFIeWxsRXRDbzNNeDZCZW9PWGxNbU9FbjdYNWVIK1o2bUQ2NHhFWk43RXFX?=
+ =?utf-8?B?QTZMSTZKWkpUcWtYR2hLY2NlYmpwL0I1WkdtUDJuZzIvTXRFK3ZsTWFOVXJa?=
+ =?utf-8?B?RlFZRUc0UkgvSW1PVlFqNFlPYW4wWnF0WnQ0OXZTNGgwUktIVnQ1NkcxNFRR?=
+ =?utf-8?B?QytXQ2hZY0cvcHpndVl3d2YreVBuR216VFprNHVPN0wwR1V2WUgvV1ZHSUxt?=
+ =?utf-8?B?Ny9oWk1FTGQ5RkhPNEloWW5OZjd0OHBvOFdPNWdrYnpuSWFOL0RjYU5xYkZI?=
+ =?utf-8?B?S01Sb3drUnI2OGdzUnB3cEl4N29Kcm5mU3VZUkRCUXpZbGhLRVZ6ZlNCbmJn?=
+ =?utf-8?B?YkUzbVgwVnNhMXMydWplZHZHOVVxd256b1k0NmZhZTVLdnc0YXdvbGJ4dDRu?=
+ =?utf-8?B?NE9FMW1mQm80dFhaTDR5MXoxSWhFbXkvck5ZUHprYnRyNk5tWG1UeWdMQXc0?=
+ =?utf-8?B?SW83R3RkbElHQ1lDMmlsZUdCK284N2kyM2hUc3ZGUUs5U04zS1Q2VDNkZThF?=
+ =?utf-8?B?c290b3RGMkl2TkhWcGJrNTBVS2k1UVJUcGNSNkFYbTk5cDR6cEdra2NoMG11?=
+ =?utf-8?B?SjZNT09XWVRUQW5vai9ZQS9pejM3TmRMM3loem1mWnI3ZlY5Sm1BTS9iSHlS?=
+ =?utf-8?B?b3RjNmREQkF5NUh4cFRLZHE4Ti8yR0xTM0xhMld6NmdwU3R3RzB3TmQreUpM?=
+ =?utf-8?B?Ty9Gc3E3bytmNi9pZFdoNkd0eDdHTHI1VFNvV3dzQ1lycE1EM0JicTNrbEZV?=
+ =?utf-8?B?cTFJejlmNWFiMnY2ZnVERUtsdWhRRFZ2Vy83VnhSMWRIOFhrOEZZRWtFOUpN?=
+ =?utf-8?B?a05TNk5aN3JORFlaMFhCOHUwdGlCeDBxd1Y5OFZIR0hUbUYwcS9HRjN3eC8z?=
+ =?utf-8?B?TmIwQnJVNTEveDM1MWJXeHVsUGY1eGN3clBHSzBncXFqaVFLbDF0OTRMaFI4?=
+ =?utf-8?B?WExKV1ZjYXNkM0s4dHJGbGdhMnhzZnBrVzF5ZTU2Tm1tb3l4WU1zTkNJMzhF?=
+ =?utf-8?B?Smt0TXNUT2MxbGJLcFh2ZlRhWTlwWWsyd2VLd21wN2Z0SWV6Q2NqaUp2UXJK?=
+ =?utf-8?B?ZGMwSXpiSThVaWdET1RLM0MrSlhkTHFkOXB3dHZQeHk3SGowVEVheGxNRllu?=
+ =?utf-8?B?V1Y1VEdHZFIxOU1BSW91RHBZeVpWdVE4OHpOTzhTUjRIdko5US91d0ZzNHhI?=
+ =?utf-8?B?S1VlU05tengzNFlHY1VkZUZWaHMxNHhzU1JxOUZsdkhJNVMzeFJQd2xadVBC?=
+ =?utf-8?B?TWhtZkJNQkJKQUdxNWRnSVh3VE1KbmJJZGs4UlpIME1OUDArcVU4QnNQQWpq?=
+ =?utf-8?B?bkloSTlXLzZKZTFvRjRVZz09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6138.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXIrOEFrVW0xSTRFU01yTFljZ0p3NW5LaXpQVUpZczY3WnR1cy8wTi9Pem96?=
+ =?utf-8?B?YTBoZjlYbFlxaUN0cnJlM1JZN1R2QXRLN2hibkgxZ3NVK09wbVlBbWV2akJQ?=
+ =?utf-8?B?SW41aUUxeXZLMlQxdEdVK0lUYytXa1g2aFE4SGVtQXZ1WUh6VHZoVXZmTmpL?=
+ =?utf-8?B?Rzk4MUtTOFdNR2J3YlhQeXF6K2RRblVDQ2JzdFB5eThUL3pJd2wraUdqbytO?=
+ =?utf-8?B?TXU5bGh2WXdlZGhMMy9CSnRFM2cvazVpbkR5UzVIaHhGVXF2RVpTT240cWIx?=
+ =?utf-8?B?a1NNUkZ6bTh1Z0F1MEdHTEc0WmF6YzFqL2FDUjhBajNVYnpvUFdoZU5pQkNZ?=
+ =?utf-8?B?NTc5T2hzN1ZNeFdHeTJEV0lmR3VhVldXTXc2Z0VIMEJvTjdYVVJ4RTJFME1t?=
+ =?utf-8?B?TVI5cUVSUzhmaFJrdTNGV1lscVpZQ0NJVXF4MTFWeTkxNzBsbWtQR1VFT0lD?=
+ =?utf-8?B?ZlQwS3cxWDJNSlp0MkoxeVp6YUFIKytUTGxrVTVIL3l6dVdPcFRjZUJld0t1?=
+ =?utf-8?B?aUw0bE5BV1ovNWoxSnZINjdWMnFSSnFnSmRTdE1DK0NiTEwvYU12eXVBbnp1?=
+ =?utf-8?B?aHIxNk9rempzem5YQW55eHFwYkwzOEU1ZmlSQ3AvYTN3cG80cCtrQnBDNTlF?=
+ =?utf-8?B?aHdKbmNrUXFVblh5dDhObXNoSzBkSG04NTdNU2pvejhGZzFyaERVOEFKM2J3?=
+ =?utf-8?B?Y3RLTktETVN4cEhZdlNxUEtzTUhPRFd0dWFCUmw5Sis3cDhzQzhsMUFqZ3Zh?=
+ =?utf-8?B?YkMvNzhleWhEdFh2cmp1TDFCOGpaNXpTeWZJMXlxS1cxaVN2aHVrTDc2SjlR?=
+ =?utf-8?B?NU0wVzhwNTVkVTlhOWlxRWtyTC9ZdHlFaDRwNmlWc1FDUFhTK2FPR0lTSDhu?=
+ =?utf-8?B?dnFwWUxxWlFvdzVHN0NFN1FadjBydWd1M2dLMHVBMytHY3gyVkZCaDNMSXI2?=
+ =?utf-8?B?ZnpNRVNEQ3B2SkNiVWkxcU1lUkQyTXlNanhQVERrOUZ1QTVDUnhENUlTWkYv?=
+ =?utf-8?B?ZVJ1RGpjaHRQYUR2Tjlna0J2c0Z6T3VOWU9SdTlMUXJGbjZwSmF2WHZaYmNn?=
+ =?utf-8?B?cFNieEV2RDltY2pHSDZscGlDbXZXdXU1VG9HeHFDbTJiK1YwcGJxeDk3S3hX?=
+ =?utf-8?B?NC9hUHl6ZmdpVUxDSVl5Y2JKT09RYWVTMzhPUEZXbU9aek82b1BuRjZDVkF1?=
+ =?utf-8?B?VGF3SVE4ZUdmazV6UVNnWVRGUGVwMDV3ZWJycHhoWldWb3VmOVVscGhuNHVF?=
+ =?utf-8?B?ZXlOM2h4c2RXVCs2WnhWczlUUUJyQnpFS1l5Y0IveHV1ZkR0QlVNWjZGRlVM?=
+ =?utf-8?B?WEx1SDRrQjYwZlhUdzZMK1JkRDRoQzZCT2VSN01VMzZrWkZkRHliSWE0a05D?=
+ =?utf-8?B?VHpFalRpa1hRTVQ3SWZnend0VG90NWxxa21RVVZ1emJudGNCS2syN2c5MkEr?=
+ =?utf-8?B?dE5BSmwyOXdtWnlHbnQyeVBXVWUrWDEwMXZGLzVIUmJUWmNjMDZNNkJHTzJw?=
+ =?utf-8?B?QzlMUUdZbmNwRmVNUzJRNG5oWUdoM1pxS0RRVHliQ25DaCs1YXhmZVJQK00w?=
+ =?utf-8?B?a1ZzZXY0cXdBWWh6Qm1UNkdmcFFTbHR5ZktPNXo0WlhqcWJwTVB1cTdPcnRQ?=
+ =?utf-8?B?ZHZFTjdPK3p6b0ZEL1J5cGFvbktHZkVOZWN0Y1JxQ0piaDk3Z0hHTy8wU1FJ?=
+ =?utf-8?B?cWl3R3M3cDBjcHZWSFY4T0QvNDNQeitFMkZmVUJnSlU0QVZrcTZibDF3QW1s?=
+ =?utf-8?B?TGt4Tk0wV0tLMk41bVNJM0ZRRUFubjJNWlhQMTA3TlExQUg2SDRHZ1ZJQVhG?=
+ =?utf-8?B?VnlRZEVrL3BUZWx1Yi9tUmpnYTl4Vm9zalBSbmZLQ1dFMjUzbDJubVQzS2px?=
+ =?utf-8?B?OHRTRW5YNHZ3bW1ibmgwUW1IMDd6a2haVHUxU3RiWi9lbWJvL3RyUW52a0dF?=
+ =?utf-8?B?Z0h1MUJMcGF6VmI4MEJkNzRsQkpjYTBvL05GL1hMdHh2Z3gvOUQ2ZTBrcWxz?=
+ =?utf-8?B?SGMxUHdiTGRKL0tqTWFoazR6WWZoYWNlZzB4QWxIb0M5Zi9qM3dnZDRQcnJQ?=
+ =?utf-8?B?S01QeG9pUFQrdVF5MWVtcCtHQkhucGZDQUVIa09KSlh3YXRVS1QvSkVOKzN6?=
+ =?utf-8?B?ZWIrbFA0ZmM2OW5RaURXU1UxcEcwOElCTFgvdHBNQk9PRm5POTV0aS9NNEJl?=
+ =?utf-8?B?T0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7c16208-47e9-4372-eef8-08dccb32d1c2
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6138.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2024 09:37:10.8620 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GEDQW3QTvgX+fDVlpPlrOe/TeRbu9qSPfO5uq+ALb7kQSlYHSaivfeO5EaV1Q7LaOaCiDHOFwHFcB1bDOHBPspUvEdohmOPeRwSUqfPV1Ns=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6292
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,348 +196,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 29, 2024 at 05:27:13PM +0000, Matthew Brost wrote:
-> On Thu, Aug 29, 2024 at 11:45:08AM +0200, Daniel Vetter wrote:
-> > On Tue, Aug 27, 2024 at 07:48:38PM -0700, Matthew Brost wrote:
-> > > This patch introduces support for GPU Shared Virtual Memory (SVM) in the
-> > > Direct Rendering Manager (DRM) subsystem. SVM allows for seamless
-> > > sharing of memory between the CPU and GPU, enhancing performance and
-> > > flexibility in GPU computing tasks.
-> > > 
-> > > The patch adds the necessary infrastructure for SVM, including data
-> > > structures and functions for managing SVM ranges and notifiers. It also
-> > > provides mechanisms for allocating, deallocating, and migrating memory
-> > > regions between system RAM and GPU VRAM.
-> > > 
-> > > This mid-layer is largely inspired by GPUVM.
-> > > 
-> > > Cc: Dave Airlie <airlied@redhat.com>
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Cc: Christian König <christian.koenig@amd.com>
-> > > Cc: <dri-devel@lists.freedesktop.org>
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > 
-> > Still not sure I've got the right race that you paper over with
-> > mmap_write_lock, but I spotted a few things, commments inline.
-> > 
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on piÄ… [2024-sie-30 15:21:00 +0200]:
+> As part of the VF config release, we should reset all parameters,
+> including thresholds, to always start with the clean VF config.
 > 
-> I've replied to this issue several times, let's table the
-> mmap_write_lock issue in this reply - a lot of other things to get
-> through. Current thinking is try to add a range->migrate_lock like AMD
-> which I state here [1]. Let's continue discussing the mmap lock issue
-> there if possible.
-
-Yeah I wrote replies as I read code, so there's a bit a mess from my side
-here. Apologies for that.
-
-> [1] https://patchwork.freedesktop.org/patch/610957/?series=137870&rev=1#comment_1111169
-
-Some more replies below that I think we haven't covered anywhere else yet.
-
-> > > + * 2) Garbage Collector.
-> > > + *
-> > > + *	void __driver_garbage_collector(struct drm_gpusvm *gpusvm,
-> > > + *					struct drm_gpusvm_range *range)
-> > > + *	{
-> > > + *		struct drm_gpusvm_ctx ctx = {};
-> > > + *
-> > > + *		assert_driver_svm_locked(gpusvm);
-> > > + *
-> > > + *		// Partial unmap, migrate any remaining VRAM pages back to SRAM
-> > > + *		if (range->flags.partial_unmap)
-> > > + *			drm_gpusvm_migrate_to_sram(gpusvm, range, &ctx);
-> > 
-> > Note that the migration back to sram isn't guaranteed to succeed, so you
-> > might be still stuck with partially migrated range. This might be a case
-> > where hmm gives you vram pfns, but the range you have doesn't have any
-> > vram allocation anymore because you droppped it here. Not sure tbh.
-> >
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> Hmm isn't the picture here nor will a VMA once the
-> drm_gpusvm_evict_to_sram path is always taken as discussed here [2]. I
-> might have a corner case BO refcounting / TTM resource lookup bug in
-> somewhere in here which needs to be resolved though (e.g. eviction
-> racing with this code path), will try to close on that.
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index 151eb69ab4ae..a95e546b7744 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -1842,6 +1842,18 @@ u32 xe_gt_sriov_pf_config_get_threshold(struct xe_gt *gt, unsigned int vfid,
+>  	return value;
+>  }
+>  
+> +static void pf_reset_config_thresholds(struct xe_gt *gt, struct xe_gt_sriov_config *config)
+> +{
+> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+> +
+> +#define reset_threshold_config(TAG, ...) ({				\
+> +	config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)] = 0;	\
+> +});
+> +
+> +	MAKE_XE_GUC_KLV_THRESHOLDS_SET(reset_threshold_config);
+> +#undef reset_threshold_config
+> +}
+> +
+>  static void pf_release_vf_config(struct xe_gt *gt, unsigned int vfid)
+>  {
+>  	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+> @@ -1857,6 +1869,7 @@ static void pf_release_vf_config(struct xe_gt *gt, unsigned int vfid)
+>  	pf_release_config_ctxs(gt, config);
+>  	pf_release_config_dbs(gt, config);
+>  	pf_reset_config_sched(gt, config);
+> +	pf_reset_config_thresholds(gt, config);
+>  }
+>  
+>  /**
+
+LGTM:
+Reviewed-by: Piotr PiÃ³rkowski <piotr.piorkowski@intel.com>
+
+> -- 
+> 2.43.0
 > 
-> [2] https://patchwork.freedesktop.org/patch/610955/?series=137870&rev=1#comment_1111164
 
-So maybe my understanding is wrong, but from my reading of the device
-migration code the exact same non-guarantees as for the sram2sram
-migration code apply:
-
-- There's no guarantee the page/folio doesn't have an elevated refcount,
-  which makes the migration fail (in try_to_migrate, where it checks for
-  surplus refcounts).
-
-- There's no guarantee you'll get the page/folio lock, which makes the
-  migration fail. Worse the core mm seems to use a fallback to per-page
-  locking as it's extremely crude "get out of deadlocks due to acquiring
-  multiple page locks" card.
-
-> > > +map_pages:
-> > > +	if (is_device_private_page(hmm_pfn_to_page(pfns[0]))) {
-> > > +		WARN_ON_ONCE(!range->vram_allocation);
-> > > +
-> > > +		for (i = 0; i < npages; ++i) {
-> > > +			pages[i] = hmm_pfn_to_page(pfns[i]);
-> > > +
-> > > +			if (WARN_ON_ONCE(!is_device_private_page(pages[i]))) {
-> > > +				err = -EOPNOTSUPP;
-> > > +				goto err_free;
-> > > +			}
-> > > +		}
-> > 
-> > You can't do the above, because the pfn you get from hmm come with zero
-> > guarantees, you neither hold a page reference nor the page lock. The only
-> > thing you can do is grab the pagetable lock (or mmu notifier locks) and
-> > check it's still valid, before you can touch any state. I think the
-> > range->vram_allocation is probably always valid since you clean that up
-> > under the same lock/thread, but there's good chances the vram allocation
-> > is otherwise already gone for good. Or you get an inconsistent snapshot.
-> > 
-> 
-> I haven't seen this pop in my testing yet which is fairly thorough. My
-> thinking was migration always being enforced at range grainularity we'd
-> never get mixed mappings from the core as migration is completely under
-> control of the driver. Maybe I'm not understanding what you are saying
-> here...
-
-So one scenario is that you race (without the mmap write lock or the
-migration_mutex design ofc) with another invalidate, and get a partial
-view here of mixed vram and sram pages. Until you acquire the mmu notifier
-lock and have made sure your pages are still valid, there's essentially no
-guarantee.
-> 
-> > > +
-> > > +		/* Do not race with notifier unmapping pages */
-> > > +		drm_gpusvm_notifier_lock(gpusvm);
-> > > +		range->flags.has_vram_pages = true;
-> > > +		range->pages = pages;
-> > > +		if (mmu_interval_read_retry(notifier, hmm_range.notifier_seq)) {
-> > > +			err = -EAGAIN;
-> > > +			__drm_gpusvm_range_unmap_pages(gpusvm, range);
-> > > +		}
-> > > +		drm_gpusvm_notifier_unlock(gpusvm);
-> > > +	} else {
-> > > +		dma_addr_t *dma_addr = (dma_addr_t *)pfns;
-> > > +
-> > > +		for_each_dma_page(i, j, npages, order) {
-> > > +			if (WARN_ON_ONCE(i && order !=
-> > > +					 hmm_pfn_to_map_order(pfns[i]))) {
-> > > +				err = -EOPNOTSUPP;
-> > > +				npages = i;
-> > > +				goto err_unmap;
-> > > +			}
-> > > +			order = hmm_pfn_to_map_order(pfns[i]);
-> > > +
-> > > +			pages[j] = hmm_pfn_to_page(pfns[i]);
-> > > +			if (WARN_ON_ONCE(is_zone_device_page(pages[j]))) {
-> > > +				err = -EOPNOTSUPP;
-> > > +				npages = i;
-> > > +				goto err_unmap;
-> > > +			}
-> > > +
-> > > +			set_page_dirty_lock(pages[j]);
-> > > +			mark_page_accessed(pages[j]);
-> > 
-> > You can't do these, because you don't hold a page reference. They're also
-> > not needed because hmm_range_fault goes thorugh the full mkwrite dance,
-> > which takes care of these, unlike the gup family of functions.
-> >
-> 
-> This is a left over from our existing userpte code and it does appear to
-> be incorrect. Let me remove this and fixup our userptr code while I'm at
-> it.
-
-Ack.
-
-> > > +	vas = vma_lookup(mm, start);
-> > > +	if (!vas) {
-> > > +		err = -ENOENT;
-> > > +		goto err_mmunlock;
-> > > +	}
-> > > +
-> > > +	if (end > vas->vm_end || start < vas->vm_start) {
-> > > +		err = -EINVAL;
-> > > +		goto err_mmunlock;
-> > > +	}
-> > > +
-> > > +	if (!vma_is_anonymous(vas)) {
-> > > +		err = -EBUSY;
-> > > +		goto err_mmunlock;
-> > > +	}
-> > > +
-> > > +	buf = kvcalloc(npages, 2 * sizeof(*migrate.src) + sizeof(*dma_addr) +
-> > > +		       sizeof(*pages), GFP_KERNEL);
-> > > +	if (!buf) {
-> > > +		err = -ENOMEM;
-> > > +		goto err_mmunlock;
-> > > +	}
-> > > +	dma_addr = buf + (2 * sizeof(*migrate.src) * npages);
-> > > +	pages = buf + (2 * sizeof(*migrate.src) + sizeof(*dma_addr)) * npages;
-> > > +
-> > > +	zdd = drm_gpusvm_zdd_alloc(range);
-> > > +	if (!zdd) {
-> > > +		err = -ENOMEM;
-> > > +		goto err_free;
-> > > +	}
-> > > +
-> > > +	migrate.vma = vas;
-> > > +	migrate.src = buf;
-> > > +	migrate.dst = migrate.src + npages;
-> > > +
-> > > +	err = migrate_vma_setup(&migrate);
-> > > +	if (err)
-> > > +		goto err_free;
-> > > +
-> > > +	/*
-> > > +	 * FIXME: Below cases, !migrate.cpages and migrate.cpages != npages, not
-> > > +	 * always an error. Need to revisit possible cases and how to handle. We
-> > > +	 * could prefault on migrate.cpages != npages via hmm_range_fault.
-> 
-> This is a bit stale, can update this comment.
-> 
-> > > +	 */
-> > 
-> > Yeah I think especially under contention partial migrations, at least back
-> > to sram due to cpu faults, are pretty much expected. And you need to cope
-> > somehow.
-> > 
-> 
-> I have seen these pop if the IGT calls mlock on the memory. My thinking
-> is migration to VRAM is basically optional and fallback to leaving range
-> in SRAM if an error occurs rather than doing a partial migration. This
-> is what currently happens so it is coped with.
-> 
-> If the memory is marked as must be in VRAM (NIY), well then the user
-> program has done something wrong and can kill the app (akin to
-> segfault).
-
-Yeah SIGBUS for "must be in VRAM" sounds like ok semantics.
-
-> > > +
-> > > +	if (!migrate.cpages) {
-> > > +		err = -EFAULT;
-> > > +		goto err_free;
-> > > +	}
-> > > +
-> > > +	if (migrate.cpages != npages) {
-> > > +		err = -EBUSY;
-> > > +		goto err_finalize;
-> > > +	}
-
-What I think is more fundamental is that I think this one here doesn't
-work. For migrate_to_ram you cannot assume that you can always migrate the
-entire block, I think to uphold the core mm forward progress rules we need
-to allow partial migrations there. And I think your current code allows
-that.
-
-But that then means you also are stuck with partial migration state here.
-That was the point I tried to make.
-
-> > > +/**
-> > > + * __drm_gpusvm_migrate_to_sram - Migrate GPU SVM range to SRAM (internal)
-> > > + * @gpusvm: Pointer to the GPU SVM structure
-> > > + * @vas: Pointer to the VM area structure
-> > > + * @page: Pointer to the page for fault handling (can be NULL)
-> > > + * @start: Start address of the migration range
-> > > + * @end: End address of the migration range
-> > > + *
-> > > + * This internal function performs the migration of the specified GPU SVM range
-> > > + * to SRAM. It sets up the migration, populates + dma maps SRAM PFNs, and
-> > > + * invokes the driver-specific operations for migration to SRAM.
-> > > + *
-> > > + * Returns:
-> > > + * 0 on success, negative error code on failure.
-> > > + */
-> > > +static int __drm_gpusvm_migrate_to_sram(struct drm_gpusvm *gpusvm,
-> > > +					struct vm_area_struct *vas,
-> > > +					struct page *page,
-> > > +					u64 start, u64 end)
-> > > +{
-> > > +	struct migrate_vma migrate = {
-> > > +		.vma		= vas,
-> > > +		.pgmap_owner	= gpusvm->device_private_page_owner,
-> > > +		.flags		= MIGRATE_VMA_SELECT_DEVICE_PRIVATE,
-> > > +		.fault_page	= page,
-> > > +	};
-> > > +	unsigned long npages;
-> > > +	struct page **pages;
-> > > +	dma_addr_t *dma_addr;
-> > > +	void *buf;
-> > > +	int i, err = 0;
-> > > +
-> > > +	mmap_assert_locked(gpusvm->mm);
-> > 
-> > That's the wrong mm, at least for the ->migrate_to_ram path. You might be
-> > called on a anon mapping from a child process. That also means that the
-> > vma you're looking at might have no relationship with anythign you're
-> > tracking in your gpusvm.
-> >
-> 
-> Hmm, as discussed [3] I haven't added tests with child processes yet.
-> Let me do that and update the design as needed. This likely isn't
-> correct as you say.
-> 
-> [3] https://patchwork.freedesktop.org/patch/610957/?series=137870&rev=1#comment_1111169 
-
-Ack. More tests should definitely help here to figure out what's up, and
-what's just me being confused.
-
-> > > +/**
-> > > + * drm_gpusvm_migrate_to_ram - Migrate GPU SVM range to RAM (page fault handler)
-> > > + * @vmf: Pointer to the fault information structure
-> > > + *
-> > > + * This function is a page fault handler used to migrate a GPU SVM range to RAM.
-> > > + * It retrieves the GPU SVM range information from the faulting page and invokes
-> > > + * the internal migration function to migrate the range back to RAM.
-> > > + *
-> > > + * Returns:
-> > > + * VM_FAULT_SIGBUS on failure, 0 on success.
-> > > + */
-> > > +static vm_fault_t drm_gpusvm_migrate_to_ram(struct vm_fault *vmf)
-> > > +{
-> > > +	struct drm_gpusvm_zdd *zdd = vmf->page->zone_device_data;
-> > > +	int err;
-> > > +
-> > > +	err = __drm_gpusvm_migrate_to_sram(zdd->range->gpusvm,
-> > 
-> > So I think zdd->range doesn't work, because even within a single mm the
-> > vma mapping a given piece of anon memory does not need to be unique, you
-> > can duplicate them with mremap.
-> > 
-> 
-> This is attached to a page, not a VMA. Both AMD and Nvidia drivers use a
-> similar lookup mechanism.
-
-Yeah the page->zone_device_data is fine. It's the zone_device_rage->range
-which I think isn't ok.
-
-> > So all you have here is the physical memory and the vma, which might or
-> > might not be from the same process as gpusvm->mm.
-> > 
-> > Also the child process scenario means you using mmap_write on the fault
-> > side doesn't stop all cpu faults migrating stuff back.
-> > 
-> > Somewhat aside, but I think that means amdkfd's svm_range->migration_mutex
-> > is busted, because it's va based and so misses concurrently ongoing
-> > different mappings moving physical storage around underneath.
-> >
-> 
-> I think all of the above which falls into the fork() + child process
-> issues which you have raise. Until I test this out I can't speak to this
-> any level of confidence so I won't. Thanks for raising this issue and
-> let me write test cases as discussed and educate myself. Once I do that,
-> we can engage in further discussions.
-
-I think fork + childs will still result in zdd->range being unique (albeit
-confused about which mm). You need mremap of some of these mappings to
-change the addresses and really cause confusion, which I /think/ (but
-didn't test) is doable with a single process even and duplicating anon
-memory mappings with mremap.
-
-Cheers, Sima
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
