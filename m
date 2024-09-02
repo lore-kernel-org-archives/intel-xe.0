@@ -4,55 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE814CD13CF
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 12:21:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D8C0CD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 12:33:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CF8510E2D6;
-	Mon,  2 Sep 2024 12:21:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40E2F10E2D7;
+	Mon,  2 Sep 2024 12:33:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrFLvY4a";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="cti5KQ48";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D83E110E2DA;
- Mon,  2 Sep 2024 12:21:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725279668; x=1756815668;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=LxYjh18++3UCkOB/cl640SFC2B3RKgGX2+WYZL63xf4=;
- b=IrFLvY4aTL4CipUDgsgwoPl2Fp7FHOg1z64RFmbgEOoN2t7ALR71BLqa
- ygPTXLzsAXOaxc5DunfD+PB/WA5fMMH3x2ph8xSVZK8PPmr39vZJY8S0O
- VrpTajVaxuwImqQbq6NPV6rtN8LDIIAhJ6IW+BoyyWWL4bAYDdYmjjkhW
- ppVxIYxV4qjkDQStlR+jtr/TJl0etEpdYOl5YZtkBKB6pxAwyEhH+kMXY
- yI6OhWpts8ABSrsQMvO+M2N8KAC1LIMdz8HUPj1ajX68vFunKoQP/Rr50
- Bq9b0U14c8WuFHJ86xYP393rD0rDpMSaSmwdIGRYMESUWaTwOrJdo18Zg w==;
-X-CSE-ConnectionGUID: D7pXujBjRli09BGWXsB6hw==
-X-CSE-MsgGUID: bCDv1Qp4QDOBBwQrFxGNOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="41335248"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="41335248"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 05:21:08 -0700
-X-CSE-ConnectionGUID: 3YQ075lQR9KQk15e9T+SYA==
-X-CSE-MsgGUID: A0f6pkR1Tl+0D2hJF6+wTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="64604566"
-Received: from ltuz-desk.ger.corp.intel.com (HELO localhost) ([10.245.246.4])
- by fmviesa008-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 05:21:05 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com, Gustavo Sousa
- <gustavo.sousa@intel.com>
-Subject: Re: [PATCH v2 0/6] drm/xe & drm/i915: drvdata usage changes follow-up
-In-Reply-To: <cover.1724942754.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1724942754.git.jani.nikula@intel.com>
-Date: Mon, 02 Sep 2024 15:20:52 +0300
-Message-ID: <871q22utzv.fsf@intel.com>
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FEFE10E2DC
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 12:33:13 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-42c7a49152aso20598965e9.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 02 Sep 2024 05:33:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1725280392; x=1725885192; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=wW/9NPe0wCKI9QH/gPLOA0sC9Gq4n58Ppr7DKQoFkhI=;
+ b=cti5KQ48kpGVsQLvVEhZ7Zt2bhXvYGs4GQ/w9fE2dspDD7sn4Zw6aFmb9tlFZVMc5n
+ TujHs+q/QRJQXP8ZM6GmP2wyqTYAywWMmUZvYsDXvNmsDxH5u+CHAcGtEEKUBgMpf4xS
+ eJOSP7FkB57F2kQf8fboHvL3aIVYMpJBj3aig=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725280392; x=1725885192;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=wW/9NPe0wCKI9QH/gPLOA0sC9Gq4n58Ppr7DKQoFkhI=;
+ b=gq+IACyNgo4XWYA8huVL6A7tmVHQgoNemixXTQjY3qHQFWMm1WWRw5V6I0ScYVIlel
+ XS0oKQJZcCDKlqYiNRQFqv+uQImgyc5ZQoJiAr5uw/xBckX6EW4O5UtBJLaESev92hbV
+ oOxQoxsoZnR2HnqVEdwi7rRuZxKOkpya2kGOO59LeR3IiWVs5QWDQObylGtnVjCTGsCq
+ iwzP68yw02RCcxuVAK9HpiEHbsZE+7oYPyYGjErvaKNjMF6ZjUCj0ZHF0PF5pg5c9zK0
+ BAZJxCnYEV0J73U1bJv9Qo3r0f3qMrIKxqiPHaycrNkhLWNXIf2CVVXqCK5dlGkxiBdU
+ m/kA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU47FiwR4M+dZtzCNK3WZ1F+ovu7nbPfKyJzZzOjIIIiNFKOgMwcq2x8qnElvoZeirxrS8JEeSR/w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzl1jjH6Sdm/nblZA/sbmWQNGJfspNtfy0X3/4wVkFwWas39bM1
+ fE9Rnfp26pE47XK3H6Xregu5PpxX2vJLTIX9SN3OJ/K8SY/Cfd02xRuZXKhdfDY=
+X-Google-Smtp-Source: AGHT+IFhMI3+K0ot9GPHvGg4UnIy+he1RC85yl4Id26ZlS5NqH3qw40GlRvBpZb/cN8mpaCsM0Xmvw==
+X-Received: by 2002:a05:600c:1c0a:b0:428:15b0:c8dd with SMTP id
+ 5b1f17b1804b1-42bb01c1e95mr138575395e9.20.1725280391485; 
+ Mon, 02 Sep 2024 05:33:11 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42bb6deb3efsm137652655e9.6.2024.09.02.05.33.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Sep 2024 05:33:10 -0700 (PDT)
+Date: Mon, 2 Sep 2024 14:33:08 +0200
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, christian.koenig@amd.com, matthew.auld@intel.com,
+ daniel@ffwll.ch
+Subject: Re: [RFC PATCH 05/28] drm/gpusvm: Add support for GPU Shared Virtual
+ Memory
+Message-ID: <ZtWwhM5rJDVVFbVf@phenom.ffwll.local>
+References: <20240828024901.2582335-1-matthew.brost@intel.com>
+ <20240828024901.2582335-6-matthew.brost@intel.com>
+ <d66e492df25e8ec3533575245c10eb7dcca709ca.camel@linux.intel.com>
+ <ZtCzo11oKXBeKmWp@DUT025-TGLU.fm.intel.com>
+ <b657ceec08091a666bdd907f9171727ef395c093.camel@linux.intel.com>
+ <ZtDgd7bd6RCs2Orl@DUT025-TGLU.fm.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZtDgd7bd6RCs2Orl@DUT025-TGLU.fm.intel.com>
+X-Operating-System: Linux phenom 6.9.12-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,40 +89,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 29 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> Follow-up to [1].
+Jumping in here in the middle, since I think it's a solid place to drop my
+idea of "align with core mm" gpusvm locking ...
 
-Thanks for the reviews, pushed to drm-intel-next.
+On Thu, Aug 29, 2024 at 08:56:23PM +0000, Matthew Brost wrote:
+> On Thu, Aug 29, 2024 at 09:18:29PM +0200, Thomas Hellström wrote:
+> Issues with removing a SVM range:
+> 
+> - Xe bind code stores invalidation / present state in VMA, this would
+>   need to be moved to the radix tree. I have Jira open for that work
+>   which I believe other developers are going to own.
+> - Where would the dma mapping / device pages be stored?
+> 	- In the radix tree? What if ATS is enabled? We don't have a
+> 	  driver owned radix tree. How do we reasonably connect a driver
+> 	  owned radix to a common GPUSVM layer?
 
-BR,
-Jani.
+Yeah this one is really annoying, because the core mm gets away with
+nothing because it can just store the pfn in the pte. And it doesn't need
+anything else. So we probably still need something unfortuantely ...
 
->
-> BR,
-> Jani.
->
->
-> [1] https://lore.kernel.org/r/cover.1723129920.git.jani.nikula@intel.com
->
-> Jani Nikula (6):
->   drm/i915 & drm/xe: save struct drm_device to drvdata
->   drm/i915: support struct device and pci_dev in to_intel_display()
->   drm/i915/audio: migrate away from kdev_to_i915()
->   drm/i915/hdcp: migrate away from kdev_to_i915() in bind/unbind
->   drm/i915/hdcp: migrate away from kdev_to_i915() in GSC messaging
->   drm/xe/display: remove unused compat kdev_to_i915() and pdev_to_i915()
->
->  drivers/gpu/drm/i915/display/intel_audio.c    | 34 ++++++----
->  .../drm/i915/display/intel_display_types.h    |  8 ++-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     | 10 +--
->  .../drm/i915/display/intel_hdcp_gsc_message.c | 67 +++++++++++++------
->  drivers/gpu/drm/i915/i915_driver.c            |  2 +-
->  drivers/gpu/drm/i915/i915_drv.h               |  8 ++-
->  .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +-
->  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  7 --
->  drivers/gpu/drm/xe/xe_device.h                |  8 ++-
->  drivers/gpu/drm/xe/xe_pci.c                   |  2 +-
->  10 files changed, 94 insertions(+), 54 deletions(-)
+> 	- In the notifier? What is the notifier is sparsely populated?
+> 	  We would be wasting huge amounts of memory. What is the
+> 	  notifier is configured to span the entire virtual address
+> 	  space?
 
+So if we go with the radix idea, we could model the radix to exactly match
+the gpu pagetables. That's essentially what the core mm does. Then each
+pagetable at each level has a spinlock for essentially a range lock.
+notifier seqno would be stored into each pagetable (not the endividual
+entries, that's probably too much), which should allow us to very
+effeciently check whether an entire arbitrary va range is still valid on
+the fault side.
+
+On the notifier side we can also very efficiently walk arbitrary ranges,
+because the locking is really fine-grained and in an adaptive way.
+
+> - How does the garbage collector work? We can't allocate memory in the
+>   notifier so we don't anything to add to the garbage collector. We
+>   can't directly modify page tables given you need lock in the path of
+>   reclaim.
+
+Probably no more garbage collector, you deal with pages/folios like the
+core mm expects.
+
+> - How do we deal with fault storms (e.g. tons of faults hitting the same
+>   SVM range in a row)? Without a SVM range no every to know if mapping
+>   is valid and GPU page handler can be short circuited.
+
+So the core mm sorts this out by allowing faults to be handled in
+parallel, without any lock. Essentially:
+- you get a fault (or prefault)
+- you hold just enough read locks to make sure stuff doesn't disappear.
+  Currently that's mmap_read_lock, but strictly speaking we only need the
+  new-ish per-vma lock.
+- you allocate memory, dma_map, everything else you need
+- you grab that very fine-grained radix tree lock (pagetable locks on the
+  cpu side) and recheck whether you've raced: mmu notifier seqno and the
+  pte must still be non-present. If that check fails, you bail out and
+  release all the vram/dma_maps you've created.
+
+> - Do we have notifier seqno for every PTE?
+
+I think per-pagetable, so every node in the radix tree, would make sense.
+If we go with also one lock per pagetable like the cpu mm then tracking
+notifier seqno to match makes the most sense imo.
+
+Again, this is entirely aside from the discussion in this subthread about
+understanding the current design and tradeoffs/reasons. Just figured this
+is a good spot to drop this.
+-Sima
 -- 
-Jani Nikula, Intel
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
