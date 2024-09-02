@@ -4,76 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A626FCD13CF
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 13:02:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D00CACD13CF
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Sep 2024 13:06:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7704B10E2E5;
-	Mon,  2 Sep 2024 13:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 950B810E2F2;
+	Mon,  2 Sep 2024 13:06:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="YzjwDpzn";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="SSFIVcRx";
 	dkim-atps=neutral
 Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
  [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17D1210E2E6
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 13:02:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2D7D10E2F5
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Sep 2024 13:06:01 +0000 (UTC)
 Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-42bfb50e4e6so18615585e9.2
- for <intel-xe@lists.freedesktop.org>; Mon, 02 Sep 2024 06:02:38 -0700 (PDT)
+ 5b1f17b1804b1-42bbe809b06so23687145e9.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 02 Sep 2024 06:06:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1725282156; x=1725886956; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=/hTlVpluWZVbPVSyBVOmertxka/Mx4Twr8Kv26ww/Mo=;
- b=YzjwDpzn7ClY5WHWOLag+ek6wOTTOacBIgdCTAR2P2420yXLR3asoSDKgFVnycD+xA
- 3uhE+W5bors4Ml4EvvvmkjPNp+qfery63NZeryZ7TX8tkXapXQAkWCU6Y126nZFqNe76
- YTq2hnw7NySLUGH/eNeEjoNw9VA6AaLW7c33U=
+ d=ffwll.ch; s=google; t=1725282360; x=1725887160; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=HXdsl6ny5pUe4Du4fYdr1RolydXqWmJVtsW6zLPsr2U=;
+ b=SSFIVcRxfHH7wYdHx1mV5E2NdlVEZ7QpTmUCvqHfzpUhhmohK6raQ5NeqtAARd62Ys
+ EKravBDQXCodKts1dvWSgd6nFDh2YPmP1KpJRQios84Bd+eYVJeg69QyI3dZdT+0a9it
+ ds6wHCuyvmPNtP6UyBnONa8G3YUUZrgAOaHKY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725282156; x=1725886956;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/hTlVpluWZVbPVSyBVOmertxka/Mx4Twr8Kv26ww/Mo=;
- b=cd4s7EEkSNl6AILJyCHpDXpusVUC9y1mNie+OnSOnfCGcbFrHHaZDJvXAjkVV1O5wW
- kcod7LkgWXf28U3QiUAq57GNzK8nm73I5UlSH/lvFaJAUuv6f9J4JYAHfdojfiUUi7CN
- C33x7LinjdFZ56VTKsckZVv9U+BczvYXGgn1QVl0HjEMRcW8Lvrzni9xzXK6pKAIsnTd
- dbLbXPHsdAPvRlL/zlSYpdyLqeA2y/rHrBg+0MXI/2fyw1hiptf5MS0Ga2fRkwpnYWM5
- FuGzr8KaM5Cz9r35KBITFkcAoixOaG9BvCZj25epWra8z+pvlUDaorhAN6LpnNebRjof
- 8D+A==
+ d=1e100.net; s=20230601; t=1725282360; x=1725887160;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HXdsl6ny5pUe4Du4fYdr1RolydXqWmJVtsW6zLPsr2U=;
+ b=CPfb/vhCkztvbNsRX/D9O3lR+WeTsTTmb3wSgc/w+sxmkNfDPfE8uWrYOsp/Y9oXKc
+ GqsTBwpHNIkH7/Fsb8bZAA17B+/SHUmwJ7/arImdO2pT5QviCU8rUNtvsPXjvNa16ifQ
+ kA6Orgfjrwd3cf81C426OQExmukFhsjOmvZvW3KoGAKy3VYo0uKQBpDZP11bHRuxaTVz
+ p73rTiqf4quqUP3eOplG/swjTZVZlLjz6Kj6X4sbbhJjuv0SHVYRGW5fh266NG87GEQd
+ z7adoisI6jkVWQO1c9SemgMTlNbEmaoyoU/XbjekS3PNpIWu7Qa1LzZYcWVqEvbViIv9
+ ZXRg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXi4iGWEXCAZgCYU1i+GVUf1NIBkR0ALv6XLy6YKJPSqe+yGA8Gc1VEsBT5GB5r6BhiPiBGWdNCzQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyUCNjGDOcLbbR5JA0IbEiOQnjIGw0U/xLY/1ni8UVdbJ5Sgko4
- IPoW84SGbKuFE85CpnmCitCGxo5uvEVMSY1/XRLybbGeVllf+WEJl+BdRXhxgfo=
-X-Google-Smtp-Source: AGHT+IHvOaNa1Ku49X21TyNlKIlF0Tegjp8HVvGdTc2rRH6JMbmyTLPm3HNg35NBojjDTSASiHJPrw==
+ AJvYcCXvyR9xftKxy8loJocIHO96WKneNVYwUpJLLx4HRSk8+fWcxxVWH0lGnkOXlrgxz5cEnMA0DNcL6A==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwF2+vRjBQNJfuZlloU0TK5DtfzbkRftfW8iVdLb9gQ3RF+XRZX
+ Wh4dbuyHvFRov34X9pGQ8zLaIcbUfMUHUK4SGBy0B/0Np1UwWnu/FYiHORlCvPILyyOtyLp4IS1
+ 2
+X-Google-Smtp-Source: AGHT+IFwKnL3/4bAg3Js7ct0TuHYR7CskRAGq+xKCA5Do3ABnpYvnKIVk9N0z2g/cwpzFndhrfAX8A==
 X-Received: by 2002:a05:600c:4694:b0:42b:a2fd:3e25 with SMTP id
- 5b1f17b1804b1-42bb27bdc3dmr95961775e9.37.1725282156147; 
- Mon, 02 Sep 2024 06:02:36 -0700 (PDT)
+ 5b1f17b1804b1-42bb27bdc3dmr96044675e9.37.1725282360100; 
+ Mon, 02 Sep 2024 06:06:00 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42ba641db07sm170513455e9.34.2024.09.02.06.02.35
+ ffacd0b85a97d-374c4059811sm5246121f8f.4.2024.09.02.06.05.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Sep 2024 06:02:35 -0700 (PDT)
-Date: Mon, 2 Sep 2024 15:02:33 +0200
+ Mon, 02 Sep 2024 06:05:59 -0700 (PDT)
+Date: Mon, 2 Sep 2024 15:05:57 +0200
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.auld@intel.com, daniel@ffwll.ch,
- "Paneer Selvam, Arunpravin" <Arunpravin.PaneerSelvam@amd.com>
-Subject: Re: [RFC PATCH 23/28] drm/xe: Add SVM VRAM migration
-Message-ID: <ZtW3aaUCqxeLdV2I@phenom.ffwll.local>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, airlied@gmail.com,
+ christian.koenig@amd.com, thomas.hellstrom@linux.intel.com,
+ matthew.auld@intel.com, daniel@ffwll.ch
+Subject: Re: [RFC PATCH 24/28] drm/xe: Basic SVM BO eviction
+Message-ID: <ZtW4NTS5tbXx9wCr@phenom.ffwll.local>
 References: <20240828024901.2582335-1-matthew.brost@intel.com>
- <20240828024901.2582335-24-matthew.brost@intel.com>
- <Zs9LF-jnNrd9ZlxW@phenom.ffwll.local>
- <cbe8aebe-fcad-4ff0-8f56-146628183fd3@amd.com>
- <ZtDsmzQ9qC7icNtm@DUT025-TGLU.fm.intel.com>
+ <20240828024901.2582335-25-matthew.brost@intel.com>
+ <ZtBKHT_vuNfE5Y5j@phenom.ffwll.local>
+ <ZtCaDBtsInEif/E2@DUT025-TGLU.fm.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZtDsmzQ9qC7icNtm@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <ZtCaDBtsInEif/E2@DUT025-TGLU.fm.intel.com>
 X-Operating-System: Linux phenom 6.9.12-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,271 +85,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 29, 2024 at 09:48:11PM +0000, Matthew Brost wrote:
-> On Thu, Aug 29, 2024 at 11:24:26AM +0200, Christian König wrote:
-> >    Am 28.08.24 um 18:06 schrieb Daniel Vetter:
+On Thu, Aug 29, 2024 at 03:55:56PM +0000, Matthew Brost wrote:
+> On Thu, Aug 29, 2024 at 12:14:53PM +0200, Daniel Vetter wrote:
+> > On Tue, Aug 27, 2024 at 07:48:57PM -0700, Matthew Brost wrote:
+> > > Wire xe_bo_move to GPUSVM migration to SRAM with trylocking of mmap
+> > > lock.
+> > > 
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_bo.c       | 35 +++++++++++++++++++++++++++++++-
+> > >  drivers/gpu/drm/xe/xe_bo_types.h |  3 +++
+> > >  drivers/gpu/drm/xe/xe_svm.c      |  2 ++
+> > >  drivers/gpu/drm/xe/xe_svm.h      | 13 ++++++++++++
+> > >  4 files changed, 52 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > > index ad804b6f9e84..ae71fcbe5380 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -25,6 +25,7 @@
+> > >  #include "xe_pm.h"
+> > >  #include "xe_preempt_fence.h"
+> > >  #include "xe_res_cursor.h"
+> > > +#include "xe_svm.h"
+> > >  #include "xe_trace_bo.h"
+> > >  #include "xe_ttm_stolen_mgr.h"
+> > >  #include "xe_vm.h"
+> > > @@ -250,6 +251,8 @@ int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+> > >  static void xe_evict_flags(struct ttm_buffer_object *tbo,
+> > >  			   struct ttm_placement *placement)
+> > >  {
+> > > +	struct xe_bo *bo;
+> > > +
+> > >  	if (!xe_bo_is_xe_bo(tbo)) {
+> > >  		/* Don't handle scatter gather BOs */
+> > >  		if (tbo->type == ttm_bo_type_sg) {
+> > > @@ -261,6 +264,12 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+> > >  		return;
+> > >  	}
+> > >  
+> > > +	bo = ttm_to_xe_bo(tbo);
+> > > +	if (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC) {
+> > > +		*placement = sys_placement;
+> > > +		return;
+> > > +	}
+> > > +
+> > >  	/*
+> > >  	 * For xe, sg bos that are evicted to system just triggers a
+> > >  	 * rebind of the sg list upon subsequent validation to XE_PL_TT.
+> > > @@ -758,6 +767,17 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+> > >  		}
+> > >  	}
+> > >  
+> > > +	if (!move_lacks_source && (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC) &&
+> > > +	    new_mem->mem_type == XE_PL_SYSTEM) {
+> > > +		ret = xe_svm_range_evict(bo->range);
+> > > +		if (!ret) {
+> > > +			drm_dbg(&xe->drm, "Evict system allocator BO success\n");
+> > > +			ttm_bo_move_null(ttm_bo, new_mem);
+> > > +		}
+> > > +
+> > > +		goto out;
+> > > +	}
+> > > +
+> > >  	if (!move_lacks_source &&
+> > >  	    ((old_mem_type == XE_PL_SYSTEM && resource_is_vram(new_mem)) ||
+> > >  	     (mem_type_is_vram(old_mem_type) &&
+> > > @@ -1096,6 +1116,19 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
+> > >  	}
+> > >  }
+> > >  
+> > > +static bool xe_bo_eviction_valuable(struct ttm_buffer_object *ttm_bo,
+> > > +				    const struct ttm_place *place)
+> > > +{
+> > > +	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+> > > +
+> > > +	/* Do not evict SVMs before having a binding */
+> > > +	if (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC &&
+> > > +	    !xe_svm_range_has_vram_binding(bo->range))
+> > > +		return false;
+> > > +
+> > > +	return ttm_bo_eviction_valuable(ttm_bo, place);
+> > > +}
+> > > +
+> > >  const struct ttm_device_funcs xe_ttm_funcs = {
+> > >  	.ttm_tt_create = xe_ttm_tt_create,
+> > >  	.ttm_tt_populate = xe_ttm_tt_populate,
+> > > @@ -1106,7 +1139,7 @@ const struct ttm_device_funcs xe_ttm_funcs = {
+> > >  	.io_mem_reserve = xe_ttm_io_mem_reserve,
+> > >  	.io_mem_pfn = xe_ttm_io_mem_pfn,
+> > >  	.release_notify = xe_ttm_bo_release_notify,
+> > > -	.eviction_valuable = ttm_bo_eviction_valuable,
+> > > +	.eviction_valuable = xe_bo_eviction_valuable,
+> > >  	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
+> > >  };
+> > >  
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+> > > index 2ed558ac2264..4523b033417c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> > > @@ -16,6 +16,7 @@
+> > >  #include "xe_ggtt_types.h"
+> > >  
+> > >  struct xe_device;
+> > > +struct xe_svm_range;
+> > >  struct xe_vm;
+> > >  
+> > >  #define XE_BO_MAX_PLACEMENTS	3
+> > > @@ -47,6 +48,8 @@ struct xe_bo {
+> > >  	struct ttm_bo_kmap_obj kmap;
+> > >  	/** @pinned_link: link to present / evicted list of pinned BO */
+> > >  	struct list_head pinned_link;
+> > > +	/** @range: SVM range for BO */
+> > > +	struct xe_svm_range *range;
+> > >  #ifdef CONFIG_PROC_FS
+> > >  	/**
+> > >  	 * @client: @xe_drm_client which created the bo
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> > > index fd8987e0a506..dc9810828c0a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > > @@ -531,6 +531,8 @@ static struct xe_bo *xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+> > >  			  range->base.va.start, ttm_bo_type_device,
+> > >  			  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+> > >  			  XE_BO_FLAG_SYSTEM_ALLOC | XE_BO_FLAG_SKIP_CLEAR);
+> > > +	if (!IS_ERR(bo))
+> > > +		bo->range = range;
+> > >  	xe_vm_unlock(vm);
+> > >  	if (IS_ERR(bo)) {
+> > >  		err = PTR_ERR(bo);
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+> > > index 3f432483a230..b9cf0e2500da 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.h
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.h
+> > > @@ -46,6 +46,19 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+> > >  	return range->base.flags.has_dma_mapping;
+> > >  }
+> > >  
+> > > +static inline bool xe_svm_range_has_vram_binding(struct xe_svm_range *range)
+> > > +{
+> > > +	return xe_svm_range_in_vram(range) && range->tile_present;
+> > > +}
+> > > +
+> > > +static inline int xe_svm_range_evict(struct xe_svm_range *range)
+> > > +{
+> > > +	struct drm_gpusvm_ctx ctx = { .trylock_mmap = true, };
+> > 
+> > So even trying to acquire an mmap lock for eviction is I think a design
+> > bug for svm memory ranges. It's a bunch of physical memory, you have no
+> > idea how many mm/vma map it and which one you pick as the special one is
+> > fairly arbitrary.
 > > 
 > 
-> A lot to unpack here. Will try to address as much as I can in this
-> single reply to both of you (Daniel, Christian).
+> Let me drop whole trylock this and just evict via
+> drm_gpusvm_evict_to_sram / migrate_device_vma_range which does not
+> require the mmap. I add this code very recently per Matt Auld suggestion
+> and agree it makes the try locking unnecessary.
 > 
-> > On Tue, Aug 27, 2024 at 07:48:56PM -0700, Matthew Brost wrote:
-> > 
-> > Migration is implemented with range granularity, with VRAM backing being
-> > a VM private TTM BO (i.e., shares dma-resv with VM). The lifetime of the
-> > TTM BO is limited to when the SVM range is in VRAM (i.e., when a VRAM
-> > SVM range is migrated to SRAM, the TTM BO is destroyed).
-> > 
-> > The design choice for using TTM BO for VRAM backing store, as opposed to
-> > direct buddy allocation, is as follows:
-> > 
-> > - DRM buddy allocations are not at page granularity, offering no
-> >   advantage over a BO.
-> > 
-> > This one I'm not understanding.
-> >
-> >    Adding Arun as well. I couldn't understand it fully either, but maybe
-> >    it's because the buddy allocator is more optimized for higher orders of
-> >    allocations?
+> > So dont, eviction should entirely ignore va/mm issues at the top level
+> > like the migrate_device_range function does (maybe we need a
+> > scatter-gather version of that instead of just a range.
 > > 
 > 
-> As currently written BO VRAM allocation resolves to a DRM buddy
-> allocation. Unless there is memory pressure this is likely 1 buddy block
-> if the allocation is aligned (SVM should basically also be doing aligned
-> allocations which the common case of 2M at a time).
-> 
-> It was suggested in earlier revs by a colleague of mine allocating
-> directly from DRM buddy pool provided a benefit wrt to freeing a page at
-> a time. It doesn't given even if you bypass a BO most likely you are
-> going to get 1 buddy block which is larger than a page. In either case
-> you need to ref count the allocation or do some wild spliting algorithm
-> (I don't want to that). Or alternatively write a new buddy allocator
-> which easily code with freeing a page at a time (I don't want to that).
-> 
-> Lastly, the common case for getting dev_pagemap_ops.page_free is going
-> to be consecutive calls spanning the entire allocation (e.g. eviction or
-> CPU fault which triggers migration).
-> 
-> > 
-> > 
-> > - DRM buddy allocations do not solve locking inversion problems between
-> >   mmap lock and dma-resv locks.
-> > 
-> > Which mmap -> dma_resv inversion? I've seen a lot ... I guess it also
-> > matters hugely which migration path we're in, i.e. opportunistic
-> > migration, cpu fault where we have to migrate or die, or when we run out
-> > of vram and need to evict stuff to make space.
-> > 
-> >    Mhm I think the locking order between mmap lock and dma-resv lock is
-> >    well defined since dma_resv_lockdep() was added.
-> >
-> 
-> Yes. Also solved the inversion issue by using migrate_device_*. At one
-> point had trylocking of mmap lock (still kinda there) but have agreed
-> based on Daniel's feedback to rip the out.
->  
-> > - Unified eviction is required (SVM VRAM and TTM BOs need to be able to
-> >   evict each other).
-> > 
-> > So core mm handles this by just roughly equally shrinking everything.
-> > Seems to work, and it has a pile of object shrinkers, and the page lru is
-> > also split into page cache and anon memory.
-> > 
-> > I think you need to put in more justification that unified eviction is
-> > required than just stating it, because a look at mm/ gives a very well
-> > established counterexample.
-> > 
-> > 
-> > - For exhaustive eviction [1], SVM VRAM allocations will almost certainly
-> >   require a dma-resv.
-> > 
-> > So from the TTM side we need exhaustive eviction, or at least something a
-> > bit more exhaustive than what ttm currently has. Note that i915-gem also
-> > never really got to perfect exhaustive eviction, it's just a pile better
-> > than ttm right now.
-> > 
-> >    Please define what exhaustive eviction should mean? I think I know what
-> >    it is and I have been pushing TTM into the direction of solving this
-> >    for years.
-> >    The last missing puzzle piece is to use drm_exec for TTM evictions, but
-> >    apart from that everything should work now.
-> >    Regards,
-> >    Christian.
-> 
-> I think Thomas has defined this in his replies. He also touches on our
-> SVM design allows mixing user BO mappings and SVM mappings within the
-> same VM. These need to be able to fairly evict each other. A dma-resv
-> lock provides a level of fairness and ensure forward progress once a
-> flavor of his series lands.
-> 
-> Also worth nothing in addition to user BOs, we have kernel BOs (for page
-> table, user exec queues, etc...) in Xe which absolutely need to be able
-> to evict something or the application dies.
-> 
-> > 
-> > Now if there's also SVM VRAM managed on a page lru, TTM exhaustive
-> 
-> Page LRU isn't used for device pages from my understanding.
+> I needed to add migrate_device_vma_range (might be a bad name) as VRAM
+> may be non-continuous pfns when memory pressure exists where as
+> migrate_device_range only supports continuous pfns.
 
-Yeah, we'd need to manage that ourselves. We could use exactly what the
-core mm is doing, I haven't found anything that prohibits that. I think
-core mm simply doesn't maintain zone device lru because it's not involved
-in any device side access.
+Ah, I think that's another fallout of tying vram allocations and
+management too closely to the gpusvm->mm va layout. Makes sense under the
+assumptions of your design at least.
 
-> > eviction is going to win because the shrinkers can only trylock dma_resv.
-> > So this part works. It actually works so well on the system memory side
-> > that if we're not careful we can trigger oom, because we're too good at
-> > getting at all the memory.
+So I think we can file that under the large discussion item of per
+page/folio or per-range gpusvm design.
+-Sima
+
+> > That function internally makes sure you're in sync with any vma/vm by:
+> > - installing migration ptes everywhere, which does the mmu_notifer dance
+> > - locking the pages to prevent other concurrent migration or other fun
+> >   stuff from happening
+> > - then restore ptes to something sensisble when it's all done
 > > 
-> > SVM VRAM allocations otoh do not need exhaustive evictions. Or at least I
-> > don't see why, because the idea is that thanks to gpu and cpu page faults,
-> > you can always get out of a pinch by just trashing everything for a while
-> > and migrating the handfull of available pages a lot.
+> > And it does that by looping over _all_ possible mappings of a page with
+> > the rmap_walk infrastructure.
 > > 
+> > The only reason when we need the mmap lock (or vma lock or whatever) is if
+> > we need to be coherent with other concurrent mm updates of a specific mm.
+> > That should only be the case when migrating to vram, where the gpusvm->mm
+> > is the special one, and when migrating to sram due to cpu faults, where
+> > the vmf->vma->mm is special (and might at best have a tenous relationship
+> > to the gpusvm->mm). But that's the only cases where a specific mm and vma
+> > have any relevance to svm vram allocations.
 > > 
-> > - Likely allocation size is 2M which makes of size of BO (872)
-> >   acceptable per allocation (872 / 2M == .0004158).
-> > 
-> > With this, using TTM BO for VRAM backing store seems to be an obvious
-> > choice as it allows leveraging of the TTM eviction code.
-> > 
-> > Except it requires that you hold dma_resv, which brings in all kinds of
-> > pain. And for eviction we really don't need a lot of synchronization, so a
 > 
-> Yes, but I think I have solved all those issues wrt to dma-resv.
+> Thanks for the info.
 > 
-> What is really the alternative here? Teaching TTM to evict non-BO SVM
-> allocations? Writing an SVM VRAM allocator which ends up looking also
-> exactly like TTM and teaching it to evict TTM BOs? The later case we'd
-> still need to grab dma-lock...
-
-Yup.
-
-> Do we write a new page based buddy allocator and wire that to TTM if SVM
-> could possibly be used?
-
-Well rebase it on top of a page array, like the buddy allocator in core mm
-would be my first idea.
-
-> This would be tons of code and not really sure what ROI is here.
+> Matt
 > 
-> > lot of that locking is not needed, unlike the case where we have a cpu
-> > fault, where we absolutely need mmap_lock and all that to make sure we
-> > fault in the right page.
+> > -Sima
 > > 
-> > But for eviction we only need to throw out some pages, if we're not
-> > entirely precise with picking the right ones (or have no idea into which
-> > vma they're all currently mapped into) it doesn't matter. That's why
-> > migrate_device_pages doesn't care about any of that at all, it doesn't
-> > need to by design. But by bo backing memory you drag in all that stuff
-> > that's causing headacheds for eviction.
+> > > +
+> > > +	return drm_gpusvm_migrate_to_sram(range->base.gpusvm, &range->base,
+> > > +					  &ctx);
+> > > +}
+> > > +
+> > >  #define xe_svm_notifier_lock(vm__)	\
+> > >  	drm_gpusvm_notifier_lock(&(vm__)->svm.gpusvm)
+> > >  
+> > > -- 
+> > > 2.34.1
+> > > 
 > > 
-> > The only thing migration tries to do is remove all pte, and if that
-> > succeeds, move the page. Specialized for the gpusvm case, looking at mm/
-> > code as cheat sheet, we need roughly:
-> > 
-> > - reverse mapping structure like anon_vma. Except gpusvm can assume that
-> >   there's currently only one gpu side mapping, so we can just stuff the
-> >   gpusvm an va_address into the page, and protect it with the page lock.
-> > 
-> > - we need pagetable locks, so that we can manipulate pagetables (well
-> >   specifically make ptes invalid) without taking any other locks.
-> > 
-> > - everyone else inserting or removing ptes for svm mappings also needs to
-> >   lock the page, or we have races. This might be the hmm_range_fault races
-> >   you're seeing when allowing vram pages, since I don't think there's
-> >   anything else stopping the page lookup otherwise from succeeding.
-> 
-> AMD looks take the range->migration_mutex to prevent races.
-> 
-> > 
-> > - we might also need to stuff migrate ptes into the gpu side, like the cpu
-> >   does, to hold up refaults before the migration has finished. But I think
-> >   those are only needed for anon memory in sram because there's no other
-> >   way to find the right page than swap pte entries, of which migration
-> >   entries are a special case.
-> > 
-> > - core code also expects us to handle the page refcount correctly for svm
-> >   device memory, so we can't free the pages like normal bo pages either
-> >   directly to drm_buddy.
-> > 
-> > Now typing this all up will look an awful lot like what you have, with the
-> > dma_resv lock serving as the page lock and the pagetable lock. The only
-> 
-> dma_resv is indeed one of locks we need for page table updates (binds)
-> as we allocate TTM BOs for page tables and we install fences for binds
-> in dma-resv slots (certainly for non-SVM, might be able to drop that for
-> SVM).
+> > -- 
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
 
-So the way this is solved on the core mm side is with two tricks:
-
-- Page faults race entirely, and races are only resolved at pte insertion
-  time when you acquire the pagetable lock. If there's anything else than
-  a page-not-present pte, you've raced and bail out.
-
-- Pagetables are allocated upfront, with the same trick: If someone else
-  was faster, you bail out. Pagetables are never reclaimed for core mm
-  code, so that avoids someone else nuking it meanwhile. At least while
-  the vma mapping stays valid.
-
-  I'm not sure we can entirely emulate that design with gpusvm.
-
-And yeah there would be a substantial difference in code between the bo
-and the svm world.
-
-> > reason is that these locks are much smaller and nest within all the other
-> > stuff going on and so avoid the inversion issues.
-> > 
-> > So one annoying part is that this is a lot of pointlessly looking typing.
-> > The other is that it's full of races, because core mm really is yolo all
-> > the way down. So lots of ways you lock the wrong page and fun stuff like
-> > that, but the few cases that matter work:
-> > 
-> > - svm fault handling with hmm_range fault retries with mmu notifiers. Note
-> >   that we need to have vram pages locked and the notifier retrie needs to
-> >   be under the pagetable lock, or there's room to escape. At least that's
-> >   what I came up with last time I thought it all through.
-
-Correction: at fault time core mm does not lock pages. Just elevated
-refcount is enough.
-
-> We grab the gpusvm->notifier lock just be committing the bind and check
-> for retry. If we need to retry we completely unwind all locks and
-> restart the GPU fault.
-
-Yeah core mm does the same.
-  
-> > - migrate_to_ram: it will hold a page reference which we know was the
-> >   valid vram page when the cpu pte was locked, but it might not be it
-> >   anymore. So we have to lock the page and check whether it's still gpu
-> >   mapped, and if not retry the entire fault since most likey another
-> >   migrate_to_ram has succeed meanwhile in parallel.
-> > 
-> > - for eviction we don't care, we might actually be migrating a page no one
-> >   even wants anymore.
-> > 
-> > Now I think you can get all this done with the dma_resv lock and maybe the
-> > bo refcount. But it does involve a tremendous amount of headaches and
-> 
-> I don't the headaches are too bad...
-> 
-> > impendence mismatch, because that's not how page faults and migrations
-> > work in core mm.
-> 
-> Agree there is a bit of impendence mismatch but see above I can't really
-> think of a better solution without thousands of lines of new code and
-> invavise changes across the subsystem.
-> 
-> What I have in place appears to work with very little code changes to Xe
-> and none to TTM. AMD also landed on a BO likely for similar reasons I
-> have laid out.
-
-My understanding of the history is that large chunks of the gpusvm
-features where retrofitted, without updating the design. So I'm not
-putting that much weight on amdkfd as a good solution, it's just the
-obvious incremental solution.
-
-Cheers, Sima
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
