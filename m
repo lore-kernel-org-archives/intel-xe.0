@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE5B3CD13CF
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:45:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8689CCD342C
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:53:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB6A10E584;
-	Tue,  3 Sep 2024 12:45:16 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D25F110E584;
- Tue,  3 Sep 2024 12:45:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1D410E595;
+	Tue,  3 Sep 2024 12:53:14 +0000 (UTC)
+X-Greylist: delayed 453 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Sep 2024 03:04:25 UTC
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2591510E062;
+ Tue,  3 Sep 2024 03:04:24 +0000 (UTC)
+Received: from localhost (unknown [124.16.138.129])
+ by APP-01 (Coremail) with SMTP id qwCowADXaarvetZm_EK1AA--.36173S2;
+ Tue, 03 Sep 2024 10:56:47 +0800 (CST)
+From: Chen Ni <nichen@iscas.ac.cn>
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Chen Ni <nichen@iscas.ac.cn>
+Subject: [PATCH] drm/i915: convert comma to semicolon
+Date: Tue,  3 Sep 2024 10:55:58 +0800
+Message-Id: <20240903025558.493977-1-nichen@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/ttm=3A_Really_use_a_?=
- =?utf-8?q?separate_LRU_list_for_swapped-_and_pinned_objects_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Sep 2024 12:45:15 -0000
-Message-ID: <172536751584.912797.5575635589763264667@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240903121958.11078-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240903121958.11078-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qwCowADXaarvetZm_EK1AA--.36173S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7Jw4UZF15Zr47Grykuw4fGrg_yoW3ZFcEkr
+ yrCr4fCFy5CFnFvw17Cr43ur9Ivw4q9F4xW34rt3sIyw17J34UX39ruFy7Z345AF1jyFyD
+ Aa18Wr97ZrnrujkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUbTAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr4
+ 1l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK
+ 67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI
+ 8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAv
+ wI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14
+ v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfU5hL0DUUUU
+X-Originating-IP: [124.16.138.129]
+X-CM-SenderInfo: xqlfxv3q6l2u1dvotugofq/
+X-Mailman-Approved-At: Tue, 03 Sep 2024 12:53:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +61,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Replace a comma between expression statements by a semicolon.
 
-Series: drm/ttm: Really use a separate LRU list for swapped- and pinned objects (rev3)
-URL   : https://patchwork.freedesktop.org/series/138103/
-State : warning
+Signed-off-by: Chen Ni <nichen@iscas.ac.cn>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 707f9d05c039aa43d5cbfc29573b642d3c43b618
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 19498ee455fa..00e98a5ede09 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1313,8 +1313,8 @@ static int intel_hdmi_hdcp_write(struct intel_digital_port *dig_port,
+ 	memcpy(&write_buf[1], buffer, size);
+ 
+ 	msg.addr = DRM_HDCP_DDC_ADDR;
+-	msg.flags = 0,
+-	msg.len = size + 1,
++	msg.flags = 0;
++	msg.len = size + 1;
+ 	msg.buf = write_buf;
+ 
+ 	ret = i2c_transfer(ddc, &msg, 1);
+-- 
+2.25.1
 
