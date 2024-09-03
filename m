@@ -4,61 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CFC5CD343A
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 14:33:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5303DCD343E
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 15:14:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE14010E5C4;
-	Tue,  3 Sep 2024 14:33:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B789610E5D0;
+	Tue,  3 Sep 2024 15:14:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lu+9Zb5N";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LP06qZlg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D45B10E5C4
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 14:33:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725374010; x=1756910010;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=80oH8Wbf2y3WjCqdDat/vN8XUg2s6rZZIyjtfcoCrpo=;
- b=Lu+9Zb5NQnhmSXM9WtSAMs98UhSyaVZhLSgOMT6gPsqeqgxJKzD6Z0GA
- hHgkJmn7uGleVQInVe9DfFTRkb+qTFbyH+1WGl9z2YDXYLrhzIbrro5W6
- 0digo0+Sskk8rclIHM6f8VaAQ+m71yJakPDBYlNnHJWYd+6vuGJcGFFoz
- J5G6VHwKXefqZEZh7HoHbrg6xju26xNpY75cgs4qPy4tMroWvs6rNYAlB
- Iwoir/Sh7ouzg7CO9SPCKcCx95hWo7n6aVrE+CsP/SKIzjuVZZ2FJljMU
- CVb4wFkxq0+aHpHcHDxWkN8ZHFF5g5cyr9Cr3FpzSfJafZoyBmWfmQvNc Q==;
-X-CSE-ConnectionGUID: rUWtPlcgQ725ghTb1WShhg==
-X-CSE-MsgGUID: qQOp4MwTTSqv/qgA3/BAhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23852214"
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; d="scan'208";a="23852214"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 07:33:30 -0700
-X-CSE-ConnectionGUID: qMQhbIFbQL+66zRWCip8MQ==
-X-CSE-MsgGUID: zWovwqDVS42p5snHAGaHLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; d="scan'208";a="69730311"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.244.222])
- ([10.245.244.222])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 07:33:29 -0700
-Message-ID: <22f6de28-49c4-41a5-909b-9cb2bcaa046e@intel.com>
-Date: Tue, 3 Sep 2024 15:33:27 +0100
-MIME-Version: 1.0
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2B2A10E5D4;
+ Tue,  3 Sep 2024 15:14:21 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ob3PNQK5WbDCgvqw4CN6BuaN39D7z04urvMyuPG6mfhiydnm//5UMekl56VHpHjsyvhvRj0j5RiBnrrIbJwVyBow3FJZfdEFd3WhRNRbGgvTQ5dtC19AWgcxTwXOqWPO1TMwrKs6zt4WYFARAonAfOOenr0CLEhfaD9A+1lwbTn85g2bVRhy+kuzWAN6SrSHELHpaFELbcxq70qAbKChnpVrJ1WjkQenWRG7Z8bF38k3qXYpeS/eyjHd7MpTEZf9yvVplabDRwIsPI1pO8pfhbIPcCwwV9QNlHycW5u8qT2ALv3eSaCGUuR4+s/NIIAU+k4X1OwW8/KIajWBgXBAsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gdpHPytcGODVpJvHQhcv1Pz6NxDUL2oxtjx6PAEkUCM=;
+ b=MUXOIOtHz0rJvDByhtQbqsc/5UxxfYKGPyciJz/URFvUXjU132BXJM+8HgODj2ZRqkZkICXFNlUdhgCp4iZi+MZH8aKqoeUa2b70/A5snG4tm1DfqQrtaHRV0kHiarDh9180YHL5M5R6SNSMQTqJ5WLeM1vVKt3A3ZD7ce8oAGv3EmrzZjMCpaVZrSnwmsfVNSNz4SgJ+NqYYe40BOedD/yctIdEhLdkwW1qSExQx2l7mycFFeYpv50Y5KticgfKrnLPXkByqf56IlBBGQUfzCRM5JJ3Maoh3tbHDkHEfwuwaLsOr7ILSzeZ44ABrJ+RveJ/Fm3shWKy8vqzCrgFOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gdpHPytcGODVpJvHQhcv1Pz6NxDUL2oxtjx6PAEkUCM=;
+ b=LP06qZlgdyp+KttsEHLrW0ppa8Yg2X6UN3+oiIeBHYnp02883fqhG48GQwaAMfeUR0ir+0YdDPud6ii0qRj/dWtvLg32dnsNm3doYm9WtNSOeeu0LQC2RGHNhDTF9ojVJvWT1ww9xrLQB4qus/oPkwXdHWB75vdpuAYzpfZ8ZIk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MN2PR12MB4376.namprd12.prod.outlook.com (2603:10b6:208:26c::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Tue, 3 Sep
+ 2024 15:14:19 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.7918.024; Tue, 3 Sep 2024
+ 15:14:19 +0000
+Message-ID: <60e8310d-5f8d-41d9-b889-58bc7cbaa395@amd.com>
+Date: Tue, 3 Sep 2024 17:14:14 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/bmg: improve cache flushing behaviour
-To: Nirmoy Das <nirmoy.das@intel.com>, Nirmoy Das
- <nirmoy.das@linux.intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>
-References: <20240902153744.63456-2-matthew.auld@intel.com>
- <9d3f3a9d-bfde-4a06-a776-743b1ed47236@linux.intel.com>
- <4bcc669d-7fb9-4daa-a94d-22a785f04b22@intel.com>
- <6c4a28d3-1c45-40ee-8401-9557e6bbd060@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <6c4a28d3-1c45-40ee-8401-9557e6bbd060@intel.com>
+Subject: Re: [RFC PATCH] drm/ttm: Forward -ENOSPC to drivers requesting it
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
+References: <20240903133849.17119-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240903133849.17119-1-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0439.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c6::20) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN2PR12MB4376:EE_
+X-MS-Office365-Filtering-Correlation-Id: ffbfd6bf-4b98-4524-20a6-08dccc2b1546
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eFV1elpFbmx1T01IQmVlNlZCUmljRVd0N2RZRFRNSUtGUTlOSU9ZQUVURkNI?=
+ =?utf-8?B?N2EzalhiM0Q5OTNkRFg3ZE5td1pSaEsxd3puYlJrd0dpSWcxL2hqR1BmN2tm?=
+ =?utf-8?B?aU1WUHVXWVA4SHd5VUNBRWxPREgxcmNkWkdiTXU3djl6SjU3V2dHTHZVWjho?=
+ =?utf-8?B?LzBiWVhBUGRPeEhxS2lTMDN1d3FJeTZYcWtFY1NvemNBcFBmWmcyNnVlSE1W?=
+ =?utf-8?B?azlIKzJ1TlVjdFF6TFlKZTFmNTRZUGJlVkhjemxySmhTWkp3d3VkYzdscUFt?=
+ =?utf-8?B?cURlMUU2cjcxMFc1VHNWeDNoU1RLNW94eWhGM2M1NkFsbng1WXFLMHNWYnVP?=
+ =?utf-8?B?VjRha1lwaUthUm5FK3hyZ3ovNGtDUjZaTER2OWNhMTE4VG5YTFZqZGQwOTZY?=
+ =?utf-8?B?M1NYVFBxSmJkTnozSnhpQ3BqNXVLTXFVRkFYMHFyZHhLY3psZkJjTzFrK0RD?=
+ =?utf-8?B?WmtVQlB4aVFOaHZJNjlUbm55UndYdlZFMTFqVEw0VjE3ZXBqODk3NFFTdW5u?=
+ =?utf-8?B?T3VyMGlGNEhiVG1qdVUrdG9vNHFhVFdCamJYU1JaS2Z5WERMZ2ZNVG1OUW9Q?=
+ =?utf-8?B?TWh3bzVxTXlxcENYWDY5cUdUODNWaU5JdVhHNUhLV1pWMi9HSVlxbTBmRkIz?=
+ =?utf-8?B?K3FKbnQ3TFpNU2lCY0w2UU51QUltTHd4amxZaWJQWjNDK0RhOXpzRFgvalQr?=
+ =?utf-8?B?SENEMzBwc2RDSE1BYS9XbUFYNXM0dzNwZVo0c2N3R1pTUE0xb3NrNE1sTDBM?=
+ =?utf-8?B?N2dtZUF5REp4Tit3Q3lQNXg4Qm5tK2tIZG50MktxRzMyQ2x0QUpyOEs1OGNP?=
+ =?utf-8?B?R0FVMkhZL3NkeUNydlBpUDN1aDN0RGk4VGp4c1NLK2w3czg2NGZoekFkS3F3?=
+ =?utf-8?B?SmdROTdkOEw0VEhWcXVBT2w2UXRxSzFXYUZ6MzJRZW5WTXJpcGNvZnovNFBh?=
+ =?utf-8?B?VkhDempkVGpCTjRWWDJkWkRZWS8zc1dib3FiQXVFOFZXT2crWjJOZUwwTmZ6?=
+ =?utf-8?B?TnJ0WGdmS1VoQWEzRFNUQ2lRc3dBMEZFM0hQak1MZDRSNGI2ODJ0QnQ2TUIz?=
+ =?utf-8?B?UzVEdHRpQTZxMW1nUTZyZTNNRXNQbmJucWU5UnNGcFhQZ1U1aGpkWStoMkw2?=
+ =?utf-8?B?ODk0TnpkcWVvN2xhOUhWbUpmVVk0QU8xd2ZoekU1SWx5Sjg1cis0QVNydC9x?=
+ =?utf-8?B?MzhDcXhMM2ZBOEFOY2JqUmR4emdrQzVVTHZNL3IzS2hqSGlqeDQ2Y0RnU0JD?=
+ =?utf-8?B?eHpKWlhhNzk0d0dQQTFadUErSUVGRktnVmtQY29uSWNybDJrSXFYQk9lSDRM?=
+ =?utf-8?B?YkZLRWZjaDBLNGdjZjBzdWtkV3U2Y24xMzVneXpOeGtDWGZhb0l0TFM4SXBk?=
+ =?utf-8?B?aHhESGE4WmtndG1Ta3BjSS9rK1pJUG5JbTdxMm1mQngyd0JZOEY3SWp0K0Ra?=
+ =?utf-8?B?WmJSdnBOTWJEOUxic1JtNDhHWG5vVmdCK3RJWkJpelVXcHVOWmw4czVUYmhT?=
+ =?utf-8?B?YzdUTDhtZGtyaDY0U2Rud3hma3A0S1U4ZmpsV2svcElkcHBhUXkxdHFoWFhs?=
+ =?utf-8?B?U0xOVlBpT0x4RXlZS0xqeTNtVlIvTHQ2cGlmOVZ5dm5laWYwbUZRV1VScitu?=
+ =?utf-8?B?ejJVdzV1YjljYzl1L3ZZeWNHdzZCQmZ5bkhlU0gxZUxzZVZoaEREOWJQUVdz?=
+ =?utf-8?B?ZTVobXZTNWxOQ1h0RDhuL3UyUHVaOGFSQ1dTTkpjbmsyWnRBZjc2TVN5RXRO?=
+ =?utf-8?B?bUVOTUlrbHdLbXRTekpCUWFUcXM3ckU5ZG9SUUJOUEZoK1V5dmhlTndHM08r?=
+ =?utf-8?B?R2toUHBvYVZzSkoxbE1GUT09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2MzV2F0cGRPNmVBUDlKQTRTUyt5YmFHTWxtd0VMR0ROYlluRWF1OTR0Y3FN?=
+ =?utf-8?B?S1lMNDY1Tk5ML0pxbHZkZW1DV29nR1FFajRZZWFUVHA4WlpWT0NsRFhpc0ZG?=
+ =?utf-8?B?QjRMdnc4WS9SVHByb0pyN2VsR3pMWG5PNElwbUV6SEJwMlNpcHZ4T0RTNC9h?=
+ =?utf-8?B?SVdoR3NSOHMvbDR3aTlhQ0U3VG55QmYyaW9MaEI4KytjL3hDSnVCWUgwTWtD?=
+ =?utf-8?B?R1grR0o1T0ZLQ3RxY3g2cUdvZFZlVmFYRkoweDRaQktyaS90WTdEeHJiZzk5?=
+ =?utf-8?B?WGUxRy96ZkpQUFZZeGpLS1dybGxpdUhBaEIvU0ljRWZuVFJINDdsUDRpSzNF?=
+ =?utf-8?B?L21nSEdRb0xwM3RGbFF1akFqbGxBWGw4NjhjVEtxcEpmdVlTdVE2R2g2MkR4?=
+ =?utf-8?B?NnNUYW4yMjIydjFjZERNdkJpWlB5VlplK3pFUEZtQUtPR3MzUXgxRnlKaFVG?=
+ =?utf-8?B?c1BpbVU1eFBxbEl5VDlOM0JpQzEwbUJDSmYrNWZyUzJZVTd4bkxwNlJyazNy?=
+ =?utf-8?B?Vy9BYStCWVZPV1Z2Nk1zS3psQ3ZOazVLa1N5bFhRZURPcnV1WmFMd2dqTCsw?=
+ =?utf-8?B?MzRVTWdhYkVmaEZzbGJqZDY2N0QxQlNURWl0NnZQNytydU9KUEJ2d29GVU5k?=
+ =?utf-8?B?TVo1T3ZPcFIyMnBreHdhUjBKZWdGdHFsTzhrcURVUE9NWEZXL2ZuKzhsMkZo?=
+ =?utf-8?B?ZjhjYU4wdHl1WDI2Y2dUc1M0eHpOelRKVWF3S3NSMnhCRlQ2dkM0T25vTWxr?=
+ =?utf-8?B?dmhiWlhZN3hsT2FUWnFzYmptQ2VrMnZ5aUtaU25PUVdUUFZxdjBiay9MdDN5?=
+ =?utf-8?B?bkxLWmNncHN3NW9qUzMzUm5xWndxRHJzL0txUXlzOHQ2SmlSbWFCdGxYOStk?=
+ =?utf-8?B?MVJVbXZsc3Bsb3pLVkxSclVzcEdNdm9ST21Da3R2WWdsY0t5Si9ZQUJIODdx?=
+ =?utf-8?B?SDEwZUQwOU5ubU5VdkZaTXJRc000NWF2bFR1Q0NsaUFiSy9yKy95REorcXZ3?=
+ =?utf-8?B?Qktrck5Qd1N1RWVWTGZVSDhDd3EycFdkWGdNV051VXBZSURocEoxY2pJeTFQ?=
+ =?utf-8?B?UkhuV1phSGlPTkx1SkhualRub3NnVFhvOHpsL3ZWY0ZnUjVHUzI1UWl1SE1N?=
+ =?utf-8?B?aE1tVTlyN1hUT2E3c0g5bC91RGh6TkxvQnpCV3hGbVFnRXRZV201cjU2Slp5?=
+ =?utf-8?B?ak9JWnF4QnlyN2FETm1mYjdNK0pyTTR0VGd0dlJjWEJmS25Jb3JoeVJTYVlX?=
+ =?utf-8?B?MGNuZHRIMzV5TVdEQ1FXeUNFSmNMb0xyemRWNEtmVXZiaXpTaGxUdzF0WFVy?=
+ =?utf-8?B?MThMRzJqYVFpTC9UZzdyM29rVTVGeXg0YkFrVnBOQjJOWCthWkUzOVhYRytL?=
+ =?utf-8?B?bjJvSUtkTlNFKzBjaTlIZDRTYVBUVWNvanJQbFlad2hwS3ZpUUhhUDU0WXov?=
+ =?utf-8?B?cXo2SkZGWHRWck5udGRCVVNnU050Qm94QnRHNHZJNVMvWDBQMk5oaU11cnNQ?=
+ =?utf-8?B?R1IwdmhLVldYdVhjN013a1FiZ3hwUnFjaGVBN2plZytLdjJVdDNDdXpUNDkx?=
+ =?utf-8?B?eGRWL0NkL21QRFV2bGxidFFsckJLcEIzc3dyWldzNG9nUVhGS3hHQllPNUJ5?=
+ =?utf-8?B?S2Yyb0doZ0I1ZXVWWk9kRFFxam00MTB1Y0tIRmdLSUptWXZNVUtnSVE4ZlNw?=
+ =?utf-8?B?QzhvVUZueGxFSVRDMUNBTWw4SlI0Z1FsNCt0RFQwcWlSRU5NVUJiWTdxMVVh?=
+ =?utf-8?B?cWFIeXY0WjVGRytQSVQxZlp1QWliNDBIR0RkQU8rM3hPMGZ3c3lIN3BGY0JB?=
+ =?utf-8?B?QlpWTUgvMllpMXIxa3JxSTRsUTJ2MFhMZjRJcUxkMnZQMVVBMTFMQ3RrMWxz?=
+ =?utf-8?B?aHBoZVduVjBoWHltZ3RNRG5EdnoxVXZMcHdoVzZlalgwbGRCT3hBQ0hhazZ0?=
+ =?utf-8?B?MG5iWi9vV3Q0eG0rQzRCZllrSlc0SGxGYnNCNm03bFRKYlhva213SUR5OGpt?=
+ =?utf-8?B?aXZkeDVOaVFJK0J3R2ROTmc4aC9PZUJUTWdvcVJRRWtzUFFaUWdSeE5TUlB3?=
+ =?utf-8?B?VWVNWTRTeGw0NWRVajBieG40NUNIT3NWNUUxWUVrSGZUWm9GcFdtL1FOUXBC?=
+ =?utf-8?Q?hOtU=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffbfd6bf-4b98-4524-20a6-08dccc2b1546
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2024 15:14:19.4341 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: G7aDK5fQGGKgdmzDsDlWPtCNLHYKzRrScizYeKgau4MuhP3cGnqfKyNQPnWOEakL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4376
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,135 +159,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 03/09/2024 14:49, Nirmoy Das wrote:
-> 
-> On 9/3/2024 1:08 PM, Matthew Auld wrote:
->> On 03/09/2024 11:53, Nirmoy Das wrote:
->>>
->>> On 9/2/2024 5:37 PM, Matthew Auld wrote:
->>>> The BSpec seems to suggest that EN_L3_RW_CCS_CACHE_FLUSH must be 
->>>> toggled
->>>> on for manual global invalidation to take effect
->>>
->>> I couldn't find this reference, in which bspec is this mentioned ?
->>
->> BSpec: 71718
->>
->> For discrete under global invalidation it says: "Device Cache flushed 
->> if SCRATCH1LPFC bit[0] is set". 
-> 
-> 
-> I was only looking at the register spec.
-> 
-> If I get this correctly, setting SCRATCH1LPFC would flush device 
-> cache/l2 from the L3 without it I assume global inval isn't useful to 
-> flush device cache.
+Am 03.09.24 um 15:38 schrieb Thomas Hellström:
+> Some user-space APIs distinguison between graphics memory OOMs and
+> system (host) memory OOMs. To aid UMDs in determining the type of
+> OOM, allow forwarding the ENOSPC from resource managers to drivers
+> on calls to ttm_bo_validate().
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
- From observation setting SCRATCH1LPFC will result in a flush of the 
-device cache as part of the pipecontrol that is emitted at the end of 
-each batch for compute/render. Basically exactly like LNL. On BMG this 
-is not needed, since SA media is coherent.
+Ah yes that was on my TODO list as well.
 
- From observation if you take this patch as-is which turns off 
-SCRATCH1LPFC, and then stub out the global invalidation in 
-xe_device_l2_flush(), then display engine observes corruption when doing 
-a render copy onto the display surface prior to display flip, using a 
-pat index enabling caching. I assume same thing happens if doing VRAM 
-writes from host side, but did not check this. If you add back the 
-global invalidation then no display corruption. So seems like 
-SCRATCH1LPFC is not needed for global invalidation in order for device 
-cache to be flushed, but is needed for pipecontrol etc.
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 2 +-
+>   include/drm/ttm/ttm_bo.h     | 3 +++
+>   2 files changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index dd867b5e744c..d9a320dc8130 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -836,7 +836,7 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+>   	} while (ret && force_space);
+>   
+>   	/* For backward compatibility with userspace */
+> -	if (ret == -ENOSPC)
+> +	if (ret == -ENOSPC && !ctx->forward_enospc)
 
-> 
-> Can SCRATCH1LPFC be set/reset dynamically, if so then may be set 
-> SCRATCH1LPFC  before global inval and reset it back after that ?
+Mhm, couldn't we put that into the bdev? I would rather like to keep the 
+UAPI consistent at least per driver.
 
-I suppose it might be possible, but not sure what happens with 
-concurrent submission and trying to mess with SCRATCH1LPFC.
+Christian.
 
-> 
-> 
-> 
->> Which is why I originally added this, however this then turns flushing 
->> on for all kinds of stuff like pipecontrol which is not what we want. 
->> But from playing around with this a bunch on BMG that doesn't look to 
->> be true. Also the original WA made no mention of needing to mess with 
->> SCRATCH1LPFC.
->>
->> I'm kind of hoping this helps that compute benchmark with not nuking 
->> entire device cache between submissions.
-> 
-> 
-> I tried this one and is indeed improves compute test bandwidth.
-> 
-> 
-> Regards,
-> 
-> Nirmoy
-> 
->>
->>>
->>>
->>> Regards,
->>>
->>> Nirmoy
->>>
->>>>   and actually flush
->>>> device cache, however this also turns on flushing for things like
->>>> pipecontrol, which occurs between submissions for compute/render. This
->>>> sounds like massive overkill for our needs, where we already have the
->>>> manual flushing on the display side with the global invalidation. Some
->>>> observations on BMG:
->>>>
->>>> 1. Disabling l2 caching for host writes and stubbing out the driver
->>>>     global invalidation but keeping EN_L3_RW_CCS_CACHE_FLUSH 
->>>> enabled, has
->>>>     no impact on wb-transient-vs-display IGT, which makes sense 
->>>> since the
->>>>     pipecontrol is now flushing the device cache after the render copy.
->>>>     Without EN_L3_RW_CCS_CACHE_FLUSH the test then fails, which is also
->>>>     expected since device cache is now dirty and display engine 
->>>> can't see
->>>>     the writes.
->>>>
->>>> 2. Disabling EN_L3_RW_CCS_CACHE_FLUSH, but keeping the driver global
->>>>     invalidation also has no impact on wb-transient-vs-display. This
->>>>     suggests that the global invalidation still works as expected 
->>>> and is
->>>>     flushing the device cache without EN_L3_RW_CCS_CACHE_FLUSH 
->>>> turned on.
->>>>
->>>> With that drop EN_L3_RW_CCS_CACHE_FLUSH.
->>>>
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>>> Cc: Nirmoy Das <nirmoy.das@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 ---
->>>>   drivers/gpu/drm/xe/xe_gt.c           | 1 -
->>>>   2 files changed, 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
->>>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>>> index 0d1a4a9f4e11..88a01970cc5c 100644
->>>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>>> @@ -387,9 +387,6 @@
->>>>   #define XE2_GLOBAL_INVAL            XE_REG(0xb404)
->>>> -#define SCRATCH1LPFC                XE_REG(0xb474)
->>>> -#define   EN_L3_RW_CCS_CACHE_FLUSH        REG_BIT(0)
->>>> -
->>>>   #define XE2LPM_L3SQCREG5            XE_REG_MCR(0xb658)
->>>>   #define XE2_TDF_CTRL                XE_REG(0xb418)
->>>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->>>> index f82b3e8ac5c8..313cc4242281 100644
->>>> --- a/drivers/gpu/drm/xe/xe_gt.c
->>>> +++ b/drivers/gpu/drm/xe/xe_gt.c
->>>> @@ -110,7 +110,6 @@ static void xe_gt_enable_host_l2_vram(struct 
->>>> xe_gt *gt)
->>>>           return;
->>>>       if (!xe_gt_is_media_type(gt)) {
->>>> -        xe_mmio_write32(gt, SCRATCH1LPFC, EN_L3_RW_CCS_CACHE_FLUSH);
->>>>           reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
->>>>           reg |= CG_DIS_CNTLBUS;
->>>>           xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
+>   		return -ENOMEM;
+>   
+>   	/*
+> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+> index 5804408815be..d3e12318d336 100644
+> --- a/include/drm/ttm/ttm_bo.h
+> +++ b/include/drm/ttm/ttm_bo.h
+> @@ -174,6 +174,8 @@ struct ttm_bo_kmap_obj {
+>    * BOs share the same reservation object.
+>    * @force_alloc: Don't check the memory account during suspend or CPU page
+>    * faults. Should only be used by TTM internally.
+> + * @forward_enospc: Don't translate -ENOSPC errors from resource managers to
+> + * -ENOMEM, but forward them to the driver.
+>    * @resv: Reservation object to allow reserved evictions with.
+>    * @bytes_moved: Statistics on how many bytes have been moved.
+>    *
+> @@ -185,6 +187,7 @@ struct ttm_operation_ctx {
+>   	bool no_wait_gpu;
+>   	bool gfp_retry_mayfail;
+>   	bool allow_res_evict;
+> +	bool forward_enospc;
+>   	bool force_alloc;
+>   	struct dma_resv *resv;
+>   	uint64_t bytes_moved;
+
