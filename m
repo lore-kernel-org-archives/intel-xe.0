@@ -4,57 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24A4BCD13CF
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 10:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FB55CD3420
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 10:55:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBFBD10E465;
-	Tue,  3 Sep 2024 10:53:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8E210E46F;
+	Tue,  3 Sep 2024 10:54:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UfJA4ayY";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="taetdBbO";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2TZhhlpB";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="taetdBbO";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2TZhhlpB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B4A10E465
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 10:53:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725360788; x=1756896788;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=YJundqDHt/TqL4x3j24F/34v8ZjizQZsQk0oNBgnQHU=;
- b=UfJA4ayYXRH153QA7CuesEv2P8n+J1wrF/u9MIqFDN3xkjxr/DpgYK2m
- vPDLkhcHu6pjNN94Ac4f4jwQY+FYwoytYx08DB/9AbSGnTsH16zDQR9af
- REyQdMC1dPyU5V6QAS5EZ63qd7sr53Fcjy0mM59AL6b4lTfMl39TiRCJ8
- Xvbvmu//qx7dSoqZBpNCMnAko6k+ZXUeMiHFxAKbDSlVp9WhowdCVej7N
- bbbJQ+T8+wXGO+rp/EjQ6RNRjNBj6iK/7heGnNNzQlR+QeobxYeqNf20t
- 9SawNclXkArJwpxAaAFnt5jL5mCbVRtR4T951k1W9ezXiRUcsy/D+TMEw w==;
-X-CSE-ConnectionGUID: Yx1bp7s8SQOdjL4MQ/6QUw==
-X-CSE-MsgGUID: vJAsvkbwRki7Oaa8iW2Gpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="23758617"
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="23758617"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 03:53:08 -0700
-X-CSE-ConnectionGUID: Ek6FrbPNQ56oX7zYklpLpw==
-X-CSE-MsgGUID: YUa04KdJT7q6JZvVoJZFDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="65376339"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.130.175])
- ([10.245.130.175])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 03:53:07 -0700
-Message-ID: <9d3f3a9d-bfde-4a06-a776-743b1ed47236@linux.intel.com>
-Date: Tue, 3 Sep 2024 12:53:03 +0200
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EEC810E47A;
+ Tue,  3 Sep 2024 10:54:55 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 254DA21CAF;
+ Tue,  3 Sep 2024 10:54:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1725360894; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=QHHnS5NRaEy7s2aux8WACSu9vq2bEoAeipcyRk/dbsA=;
+ b=taetdBbOKtUi6vA8/JfPA+bn8vxWigb0zfTvbG+cTX0VliJJH2lZOHMRJtSDJniZIBF7Mh
+ 59gvsjrAJkha7ZIFu1GfkylnXf1GepQVsoYQz6Von106x9ru2ucyy5W9ixlKzR8yNqy6JC
+ vWM/kxM6IDPBGBG1VAlrTspF1E0v4HY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1725360894;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=QHHnS5NRaEy7s2aux8WACSu9vq2bEoAeipcyRk/dbsA=;
+ b=2TZhhlpBkC+Ec0ATkYYLhwfR1M1DvU+f0eiJuEXtvjgyz073Mu+Uoi/JrDOweie+QuyMeo
+ tZfeH7bSBy2N0KCw==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=taetdBbO;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=2TZhhlpB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1725360894; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=QHHnS5NRaEy7s2aux8WACSu9vq2bEoAeipcyRk/dbsA=;
+ b=taetdBbOKtUi6vA8/JfPA+bn8vxWigb0zfTvbG+cTX0VliJJH2lZOHMRJtSDJniZIBF7Mh
+ 59gvsjrAJkha7ZIFu1GfkylnXf1GepQVsoYQz6Von106x9ru2ucyy5W9ixlKzR8yNqy6JC
+ vWM/kxM6IDPBGBG1VAlrTspF1E0v4HY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1725360894;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=QHHnS5NRaEy7s2aux8WACSu9vq2bEoAeipcyRk/dbsA=;
+ b=2TZhhlpBkC+Ec0ATkYYLhwfR1M1DvU+f0eiJuEXtvjgyz073Mu+Uoi/JrDOweie+QuyMeo
+ tZfeH7bSBy2N0KCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D896013A80;
+ Tue,  3 Sep 2024 10:54:53 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 2CsbM/3q1mYAFgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 03 Sep 2024 10:54:53 +0000
+Message-ID: <82eb3305-4643-40df-aae6-2b57c3eb2c4b@suse.de>
+Date: Tue, 3 Sep 2024 12:54:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/bmg: improve cache flushing behaviour
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-References: <20240902153744.63456-2-matthew.auld@intel.com>
+Subject: Re: [PATCH v3 02/81] drm/fbdev-helper: Set and clear VGA switcheroo
+ client from fb_info
+To: Javier Martinez Canillas <javierm@redhat.com>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+References: <20240830084456.77630-1-tzimmermann@suse.de>
+ <20240830084456.77630-3-tzimmermann@suse.de>
+ <87mskpghvm.fsf@minerva.mail-host-address-is-not-set>
 Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240902153744.63456-2-matthew.auld@intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <87mskpghvm.fsf@minerva.mail-host-address-is-not-set>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 254DA21CAF
+X-Spamd-Result: default: False [-6.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ DWL_DNSWL_MED(-2.00)[suse.de:dkim];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[redhat.com,ffwll.ch,gmail.com];
+ TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ MID_RHS_MATCH_FROM(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ RCPT_COUNT_SEVEN(0.00)[9]; DKIM_TRACE(0.00)[suse.de:+];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,suse.de:mid]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,71 +155,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Javier
 
-On 9/2/2024 5:37 PM, Matthew Auld wrote:
-> The BSpec seems to suggest that EN_L3_RW_CCS_CACHE_FLUSH must be toggled
-> on for manual global invalidation to take effect
-
-I couldn't find this reference, in which bspec is this mentioned ?
-
-
-Regards,
-
-Nirmoy
-
->   and actually flush
-> device cache, however this also turns on flushing for things like
-> pipecontrol, which occurs between submissions for compute/render. This
-> sounds like massive overkill for our needs, where we already have the
-> manual flushing on the display side with the global invalidation. Some
-> observations on BMG:
+Am 03.09.24 um 12:18 schrieb Javier Martinez Canillas:
+> Thomas Zimmermann <tzimmermann@suse.de> writes:
 >
-> 1. Disabling l2 caching for host writes and stubbing out the driver
->     global invalidation but keeping EN_L3_RW_CCS_CACHE_FLUSH enabled, has
->     no impact on wb-transient-vs-display IGT, which makes sense since the
->     pipecontrol is now flushing the device cache after the render copy.
->     Without EN_L3_RW_CCS_CACHE_FLUSH the test then fails, which is also
->     expected since device cache is now dirty and display engine can't see
->     the writes.
+> Hello Thomas,
 >
-> 2. Disabling EN_L3_RW_CCS_CACHE_FLUSH, but keeping the driver global
->     invalidation also has no impact on wb-transient-vs-display. This
->     suggests that the global invalidation still works as expected and is
->     flushing the device cache without EN_L3_RW_CCS_CACHE_FLUSH turned on.
+>> Call vga_switcheroo_client_fb_set() with the PCI device from the
+>> instance of struct fb_info. All fbdev clients now run these calls.
+>> For non-PCI devices or drivers without vga-switcheroo, this does
+>> nothing. For i915 and radeon, it allows these drivers to use a
+>> common fbdev client.
+>>
+>> The device is the same as the one stored in struct drm_client and
+>> struct drm_fb_helper, so there is no difference in behavior. Some
+>> NULL-pointer checks are being removed, where those pointers cannot
+>> be NULL.
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> ---
+>>   drivers/gpu/drm/drm_fb_helper.c | 15 +++++++++++----
+>>   1 file changed, 11 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+>> index af1fe79c701d..13095d38aa42 100644
+>> --- a/drivers/gpu/drm/drm_fb_helper.c
+>> +++ b/drivers/gpu/drm/drm_fb_helper.c
+>> @@ -562,8 +562,12 @@ EXPORT_SYMBOL(drm_fb_helper_release_info);
+>>    */
+>>   void drm_fb_helper_unregister_info(struct drm_fb_helper *fb_helper)
+>>   {
+>> -	if (fb_helper && fb_helper->info)
+>> -		unregister_framebuffer(fb_helper->info);
+> I'm not sure if we can assume these won't be NULL... AFAICT some drivers
+> still have their own struct drm_client_funcs vtable and could potentially
+> pass a NULL struct drm_fb_helper ?
+
+I did a
+
+   git grep -B4 drm_fb_helper_unregister_info
+
+on drm-tip and all callers, such as [1], test fb_helper->info before 
+calling the function. So it's safe to remove the test.
+
+[1] 
+https://elixir.bootlin.com/linux/v6.10/source/drivers/gpu/drm/drm_fbdev_dma.c#L162
+
 >
-> With that drop EN_L3_RW_CCS_CACHE_FLUSH.
+> If you think that's safe to do this and the function semantics should be
+> changed, then I think that the kernel-doc needs to be updated:
 >
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 ---
->   drivers/gpu/drm/xe/xe_gt.c           | 1 -
->   2 files changed, 4 deletions(-)
+> - * @fb_helper: driver-allocated fbdev helper, can be NULL
+> + * @fb_helper: driver-allocated fbdev helper, must not be NULL
+
+Ok.
+
 >
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 0d1a4a9f4e11..88a01970cc5c 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -387,9 +387,6 @@
->   
->   #define XE2_GLOBAL_INVAL			XE_REG(0xb404)
->   
-> -#define SCRATCH1LPFC				XE_REG(0xb474)
-> -#define   EN_L3_RW_CCS_CACHE_FLUSH		REG_BIT(0)
-> -
->   #define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
->   
->   #define XE2_TDF_CTRL				XE_REG(0xb418)
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index f82b3e8ac5c8..313cc4242281 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -110,7 +110,6 @@ static void xe_gt_enable_host_l2_vram(struct xe_gt *gt)
->   		return;
->   
->   	if (!xe_gt_is_media_type(gt)) {
-> -		xe_mmio_write32(gt, SCRATCH1LPFC, EN_L3_RW_CCS_CACHE_FLUSH);
->   		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
->   		reg |= CG_DIS_CNTLBUS;
->   		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
+> Other than that, the patch looks good to me:
+>
+> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+
+Thanks.
+
+Best regards
+Thomas
+
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
