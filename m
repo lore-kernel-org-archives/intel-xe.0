@@ -4,81 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81AEECD13CF
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:07:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4970CD3420
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:08:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49AFB10E537;
-	Tue,  3 Sep 2024 12:07:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 853C110E53E;
+	Tue,  3 Sep 2024 12:08:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="f0+EJh0b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4xlUopU";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C4CE10E53B
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 12:07:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1725365267;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=oAf/TzZtq+rwzNtcBqcoWPNDNpw8IbIKF1x2SXWWyZs=;
- b=f0+EJh0bEfqtP20AhvQ5uchIpeCcH+Xof9NT/a1i5/CsqMjBGiWCfIBEgP78mhj6m5yrQC
- /mYF8LKyH5aTv7ADCcpbX90ZDP2Mf3qKcm4IE2Z+oMEWlGQGuM55z100LgJ25aRQmYsIs9
- ynmK8ONLXJQlK4PkAMfgMg5QveijLOQ=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-171-pOMDBTocOr-HHmASid8yQg-1; Tue, 03 Sep 2024 08:07:46 -0400
-X-MC-Unique: pOMDBTocOr-HHmASid8yQg-1
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-42bb9fa67d7so50471335e9.0
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 05:07:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725365265; x=1725970065;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=oAf/TzZtq+rwzNtcBqcoWPNDNpw8IbIKF1x2SXWWyZs=;
- b=RcaKoYxGixbNAieYxcMO6WoNhQsqv32AKqFyU5S3KzVZ9lrGV6RcDew6yaZqElLpR7
- q65nIqOFqGXrvqd+V6ytxoKDaDLw/SkzE7oEUXXhfQD17LM4mHbtDtaNxigASrTBaUaO
- JspRu6h0hihW7KrGSlVBkGZ1YnFYuiTzMqyygeOwm+lZx3ugyaWam9YaphhyE/1FoTFc
- bN4E+XJAt+/rEt5xSPbfuzf8U4wOjU1E4OkkA4fCNk5L90cxQxqac2mHiZMasOx3KxUs
- GSKFBgAmPUyxHdnXwYopUgB85xTZUcMPg8tniq2LXto9fXyJOcmi1noiiYXKUoErTRgH
- WcRQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU8XU7CLnHAW+Pi5Cung1I9ASc1ijPSQpgyYMKTM/Pe4GKAv+AZB82vzouWY+4hfdJLCWZmVAq+MQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxBfOO5lRHpVxeVsbF7HhF5JXydzSSHNFV+EapEnZkw6SM919TF
- wUFU2JS7d1lTNLAjAkksEW3UA1sCicqx/JmmaQ9MfMTBG9ycPPZG4sOplCvcMEVgZ+7ahC+vmCj
- NXpcaYKTm2TxKJjDJfX4Ol97MQ/uEhYq/1jvlqXvUKBFFm9ZYagMznvMDArmDE5kG
-X-Received: by 2002:adf:f4d1:0:b0:374:c160:269e with SMTP id
- ffacd0b85a97d-374c1602776mr7846590f8f.22.1725365265438; 
- Tue, 03 Sep 2024 05:07:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGCZGf4oyMzQD1xP820+OtoZdwpD9efRDqC8p6dHAxE3oooeovG0mBCFinpOGmjQ84JGX0fEg==
-X-Received: by 2002:adf:f4d1:0:b0:374:c160:269e with SMTP id
- ffacd0b85a97d-374c1602776mr7846571f8f.22.1725365264915; 
- Tue, 03 Sep 2024 05:07:44 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-374b23f20d1sm11428477f8f.35.2024.09.03.05.07.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 05:07:44 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, jfalempe@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Zack Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>
-Subject: Re: [PATCH v3 72/81] drm/vmwgfx: Run DRM default client setup
-In-Reply-To: <20240830084456.77630-73-tzimmermann@suse.de>
-References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-73-tzimmermann@suse.de>
-Date: Tue, 03 Sep 2024 14:07:43 +0200
-Message-ID: <87mskpc54g.fsf@minerva.mail-host-address-is-not-set>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B96710E53E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 12:08:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725365311; x=1756901311;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=WppOB8HdeOF8lvxIs7hkYt1zZx9IbfHz+4OzqJKwK3o=;
+ b=L4xlUopUf601+l40q8VeBQzao76RtIbC50387+xifbZUMTySWA5n4yn2
+ 2s9XF/WptXORaTMQWv0U62fWJg7/nsbdx4kwQoGe97JyL0oHQSzy72jbo
+ dgaEYvBeR2OlwI2Z8y01dUVtumFVUS5SMSPmKvt6D+GXVHxbiRDDEA3bU
+ K1351b303SPd1X730A0H2lCnVHura8YKo1789ngGcxc6u1Mr87D4Ffuhj
+ x90olztlTgonznJ4Ym+33d9i7zmDq1CjVzKDmrlZvJXv0GT0U6nmuvW8t
+ aHVk8ltImKHG9tkYxk5fmVHqOV8wiKgcG5dbDqJBWTFflx8Rb/AuAKM3L A==;
+X-CSE-ConnectionGUID: TdCfQuL/QjS37Cf1daZQoA==
+X-CSE-MsgGUID: BA8Ld5PkQTem+EwjYMizpA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="23526637"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="23526637"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 05:08:31 -0700
+X-CSE-ConnectionGUID: C1QoKTseSWWQfLagtbx9zA==
+X-CSE-MsgGUID: HrNEzSYOT0uguLrdXRHDRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="102314077"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 05:08:30 -0700
+Date: Tue, 3 Sep 2024 14:08:26 +0200
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH] drm: Ensure Proper Unload/Reload Order of MEI Modules
+ for i915/Xe Driver
+Message-ID: <20240903120826.lint4c3v7gk2s2zd@kamilkon-DESK.igk.intel.com>
+References: <20240902141041.18467-1-krishnaiah.bommu@intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240902141041.18467-1-krishnaiah.bommu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,26 +69,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
-
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Zack Rusin <zack.rusin@broadcom.com>
-> Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Hi Bommu,
+On 2024-09-02 at 19:40:41 +0530, Bommu Krishnaiah wrote:
+> This update addresses the unload/reload sequence of MEI modules in relation to
+> the i915/Xe graphics driver. On platforms where the MEI hardware is integrated
+> with the graphics device (e.g., DG2/BMG), the MEI modules depend on the i915/Xe
+> driver. Conversely, on newer platforms like CLS, where the MEI hardware is
+> separate, this dependency does not exist.
+> 
+> The changes introduced ensure that MEI modules are unloaded and reloaded in the
+> correct order based on platform-specific dependencies. This is achieved by adding
+> a MODULE_SOFTDEP directive to the i915 and Xe module code.
+> 
+> These changes enhance the robustness of MEI module handling across different hardware
+> platforms, ensuring that the i915/Xe driver can be cleanly unloaded and reloaded
+> without issues.
+> 
+> Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
+>  drivers/gpu/drm/i915/i915_module.c | 2 ++
 
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+imho as you touch i915 driver you should also Cc to intel-gfx@lists.freedesktop.org
 
--- 
-Best regards,
+Regards,
+Kamil
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+>  drivers/gpu/drm/xe/xe_module.c     | 2 ++
+>  2 files changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+> index 65acd7bf75d0..2ad079ad35db 100644
+> --- a/drivers/gpu/drm/i915/i915_module.c
+> +++ b/drivers/gpu/drm/i915/i915_module.c
+> @@ -75,6 +75,8 @@ static const struct {
+>  };
+>  static int init_progress;
+>  
+> +MODULE_SOFTDEP("pre: mei_gsc_proxy mei_gsc");
+> +
+>  static int __init i915_init(void)
+>  {
+>  	int err, i;
+> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+> index bfc3deebdaa2..5633ea1841b7 100644
+> --- a/drivers/gpu/drm/xe/xe_module.c
+> +++ b/drivers/gpu/drm/xe/xe_module.c
+> @@ -127,6 +127,8 @@ static void xe_call_exit_func(unsigned int i)
+>  	init_funcs[i].exit();
+>  }
+>  
+> +MODULE_SOFTDEP("pre: mei_gsc_proxy mei_gsc");
+> +
+>  static int __init xe_init(void)
+>  {
+>  	int err, i;
+> -- 
+> 2.25.1
+> 
