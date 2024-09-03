@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B9B6CD342C
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 09:48:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFDE8CD3420
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 09:56:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF04210E45C;
-	Tue,  3 Sep 2024 09:48:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nyJ+s81v";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5503F10E45C;
- Tue,  3 Sep 2024 09:48:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725356896; x=1756892896;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NBEA+5Xbs+w9yXVUhN/oHPKwM/zEJa8t1XPXCr+9sZw=;
- b=nyJ+s81vErveF+lKUhv7S3scl7hr1/XyKVNH+8BYbZ7KZn1xgZq19PUx
- P2bB8g6r3xjoQNY8vr2fMOQRUvyrr9V2TmwiTsQtnve5GwaPQN+8luTFi
- HlCvYxXoBvxpa/rou1OSd9B3kp0FATjSxaed6Ar71eyQNfbe3ugbwfBwt
- Kal2iygCMwJXGlIkk+Q3K9NsxuXpPmnE45EbXooIvKPoT/UqqnOvlDwvp
- vdWC96oppzvtD8pRS/itmDjSxUSnXmwa7Go/cz6w8G52ZO0DMhJqui57+
- CwOVEHr9KuwwHJwD5ZW0NPu8S9qWplb7lTtinwKAFiNBiEBFEQ6ABh9hG g==;
-X-CSE-ConnectionGUID: ROYv6ZxERtuvXpUyrdiK2A==
-X-CSE-MsgGUID: tQ0DSjxVQj6LYyZ+zbpVEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="24096947"
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="24096947"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 02:48:15 -0700
-X-CSE-ConnectionGUID: S70p9nmiQBWITSk3Eu7TJA==
-X-CSE-MsgGUID: tSMjl+/MRpSmRN3aHpGjDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="88097312"
-Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
- fedora..) ([10.245.244.199])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 02:48:14 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 2/2] drm/ttm: Move pinned objects off LRU lists when pinning
-Date: Tue,  3 Sep 2024 11:47:53 +0200
-Message-ID: <20240903094753.169449-3-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240903094753.169449-1-thomas.hellstrom@linux.intel.com>
-References: <20240903094753.169449-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41BEB10E458;
+	Tue,  3 Sep 2024 09:56:59 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0141A10E458;
+ Tue,  3 Sep 2024 09:56:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Use_xe=5Fp?=
+ =?utf-8?q?m=5Fruntime=5Fget_in_xe=5Fbo=5Fmove=28=29_if_reclaim-safe=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Sep 2024 09:56:57 -0000
+Message-ID: <172535741798.910690.4363965928320940532@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240903094232.166342-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240903094232.166342-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,57 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The ttm_bo_pin() and ttm_bo_unpin() functions weren't moving their
-resources off the LRU list to the unevictable list.
+== Series Details ==
 
-Make sure that happens so that pinned objects don't accidently linger
-on the LRU lists, and also make sure to move them back once they
-are unpinned.
+Series: drm/xe: Use xe_pm_runtime_get in xe_bo_move() if reclaim-safe.
+URL   : https://patchwork.freedesktop.org/series/138131/
+State : success
 
-v2:
-- Removing from a bulk move must be done with the pin-count still zero.
+== Summary ==
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <dri-devel@lists.freedesktop.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com> #v1
----
- drivers/gpu/drm/ttm/ttm_bo.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: dd987a9431a3 drm-tip: 2024y-09m-03d-08h-19m-03s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Use xe_pm_runtime_get in xe_bo_move() if reclaim-safe.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index ae29915c52c0..38c99acbda76 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -592,8 +592,10 @@ void ttm_bo_pin(struct ttm_buffer_object *bo)
- 	dma_resv_assert_held(bo->base.resv);
- 	WARN_ON_ONCE(!kref_read(&bo->kref));
- 	spin_lock(&bo->bdev->lru_lock);
--	if (bo->resource)
-+	if (bo->resource) {
- 		ttm_resource_del_bulk_move(bo->resource, bo);
-+		ttm_resource_move_to_lru_tail(bo->resource);
-+	}
- 	++bo->pin_count;
- 	spin_unlock(&bo->bdev->lru_lock);
- }
-@@ -613,9 +615,10 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo)
- 		return;
- 
- 	spin_lock(&bo->bdev->lru_lock);
--	--bo->pin_count;
--	if (bo->resource)
-+	if (!--bo->pin_count && bo->resource) {
- 		ttm_resource_add_bulk_move(bo->resource, bo);
-+		ttm_resource_move_to_lru_tail(bo->resource);
-+	}
- 	spin_unlock(&bo->bdev->lru_lock);
- }
- EXPORT_SYMBOL(ttm_bo_unpin);
--- 
-2.46.0
 
