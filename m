@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4081CD343B
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 14:33:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CFC5CD343A
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 14:33:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE2910E5C2;
-	Tue,  3 Sep 2024 14:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE14010E5C4;
+	Tue,  3 Sep 2024 14:33:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UCUFoSRo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lu+9Zb5N";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 482AA10E5C2;
- Tue,  3 Sep 2024 14:33:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D45B10E5C4
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 14:33:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725373993; x=1756909993;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=a8RKAI1W6Ua/G5LlLPHzuhfapELVP9g5b0GjBj+Z4DI=;
- b=UCUFoSRoe6xSKE/b31fZxgmCWOzsaO+0QmA8Cw6dqnr2FWjrt3LcI4Uc
- Wu2zogXmkfozCix4IonbD7jc+5wIkUZmlxnE4yTB3FkC5ZCATsQnc5oY+
- /jeWnCtJ0MwTCm9cvc1mC8NuX23Er4RAlDrn7jT434ExBZun81lDMz2is
- jLUeOTOFumO6eAebnchLgGoKFP93g2aUlLN7aYjGXP+Ms9S0+jeFV0krP
- melgk97ROu6RieIBjbRiz6wfYCuU0Be++XqVxtta27kIJscx5uwQZ3f2R
- m03/q5TWVN8Rxjwf4Zo2gBx47f1m49oy3ag/X6U30BFal1cTW/JauX7XA Q==;
-X-CSE-ConnectionGUID: tOaTnELwTfawI6HesNOW+g==
-X-CSE-MsgGUID: rtTlxRrRTQ2gKjVra4S4jg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23542522"
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; d="scan'208";a="23542522"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 07:32:53 -0700
-X-CSE-ConnectionGUID: QbX3PToxSg29nM0Xwz/6vQ==
-X-CSE-MsgGUID: dJKjf0s4Sy+q3u5ImDerVw==
+ t=1725374010; x=1756910010;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=80oH8Wbf2y3WjCqdDat/vN8XUg2s6rZZIyjtfcoCrpo=;
+ b=Lu+9Zb5NQnhmSXM9WtSAMs98UhSyaVZhLSgOMT6gPsqeqgxJKzD6Z0GA
+ hHgkJmn7uGleVQInVe9DfFTRkb+qTFbyH+1WGl9z2YDXYLrhzIbrro5W6
+ 0digo0+Sskk8rclIHM6f8VaAQ+m71yJakPDBYlNnHJWYd+6vuGJcGFFoz
+ J5G6VHwKXefqZEZh7HoHbrg6xju26xNpY75cgs4qPy4tMroWvs6rNYAlB
+ Iwoir/Sh7ouzg7CO9SPCKcCx95hWo7n6aVrE+CsP/SKIzjuVZZ2FJljMU
+ CVb4wFkxq0+aHpHcHDxWkN8ZHFF5g5cyr9Cr3FpzSfJafZoyBmWfmQvNc Q==;
+X-CSE-ConnectionGUID: rUWtPlcgQ725ghTb1WShhg==
+X-CSE-MsgGUID: qQOp4MwTTSqv/qgA3/BAhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23852214"
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; d="scan'208";a="23852214"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 07:33:30 -0700
+X-CSE-ConnectionGUID: qMQhbIFbQL+66zRWCip8MQ==
+X-CSE-MsgGUID: zWovwqDVS42p5snHAGaHLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; d="scan'208";a="65663287"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.148])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 07:32:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 07/11] drm/i915/pps: pass intel_dp to pps_name()
-In-Reply-To: <ZtcCKQrGqjCMRl62@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1725012870.git.jani.nikula@intel.com>
- <f2a7fec4a2ff1f09cb73e6734604fae99ab6b11a.1725012870.git.jani.nikula@intel.com>
- <ZtcCKQrGqjCMRl62@intel.com>
-Date: Tue, 03 Sep 2024 17:32:35 +0300
-Message-ID: <87le08u7ss.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; d="scan'208";a="69730311"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.244.222])
+ ([10.245.244.222])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 07:33:29 -0700
+Message-ID: <22f6de28-49c4-41a5-909b-9cb2bcaa046e@intel.com>
+Date: Tue, 3 Sep 2024 15:33:27 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/bmg: improve cache flushing behaviour
+To: Nirmoy Das <nirmoy.das@intel.com>, Nirmoy Das
+ <nirmoy.das@linux.intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
+References: <20240902153744.63456-2-matthew.auld@intel.com>
+ <9d3f3a9d-bfde-4a06-a776-743b1ed47236@linux.intel.com>
+ <4bcc669d-7fb9-4daa-a94d-22a785f04b22@intel.com>
+ <6c4a28d3-1c45-40ee-8401-9557e6bbd060@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <6c4a28d3-1c45-40ee-8401-9557e6bbd060@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,52 +73,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 03 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Aug 30, 2024 at 01:15:44PM +0300, Jani Nikula wrote:
->> Currently all of intel_pps.c passes struct intel_dp around. Do the same
->> with pps_name() instead of passing both struct drm_i915_private and
->> struct intel_pps.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_pps.c | 61 +++++++++++++-----------
->>  1 file changed, 32 insertions(+), 29 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/=
-i915/display/intel_pps.c
->> index 68141af4da54..1e87ce95c85d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> @@ -24,9 +24,12 @@ static void vlv_steal_power_sequencer(struct drm_i915=
-_private *dev_priv,
->>  static void pps_init_delays(struct intel_dp *intel_dp);
->>  static void pps_init_registers(struct intel_dp *intel_dp, bool force_di=
-sable_vdd);
->>=20=20
->> -static const char *pps_name(struct drm_i915_private *i915,
->> -			    struct intel_pps *pps)
->> +static const char *pps_name(struct intel_dp *intel_dp)
->>  {
->> +	struct intel_display *display =3D to_intel_display(intel_dp);
->> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
->> +	struct intel_pps *pps =3D &intel_dp->pps;
->> +
->
-> I've been thinking that we'd eventually turn intel_pps into some kind of
-> proper object with a 1:1 relationship to the corresponding hw block.
-> This is sort of going in the opposite direction, but looks trivial
-> enough to deal with if/when we get to reworking intel_pps.
+On 03/09/2024 14:49, Nirmoy Das wrote:
+> 
+> On 9/3/2024 1:08 PM, Matthew Auld wrote:
+>> On 03/09/2024 11:53, Nirmoy Das wrote:
+>>>
+>>> On 9/2/2024 5:37 PM, Matthew Auld wrote:
+>>>> The BSpec seems to suggest that EN_L3_RW_CCS_CACHE_FLUSH must be 
+>>>> toggled
+>>>> on for manual global invalidation to take effect
+>>>
+>>> I couldn't find this reference, in which bspec is this mentioned ?
+>>
+>> BSpec: 71718
+>>
+>> For discrete under global invalidation it says: "Device Cache flushed 
+>> if SCRATCH1LPFC bit[0] is set". 
+> 
+> 
+> I was only looking at the register spec.
+> 
+> If I get this correctly, setting SCRATCH1LPFC would flush device 
+> cache/l2 from the L3 without it I assume global inval isn't useful to 
+> flush device cache.
 
-Right. I think there are more problematic cases than this one.
+ From observation setting SCRATCH1LPFC will result in a flush of the 
+device cache as part of the pipecontrol that is emitted at the end of 
+each batch for compute/render. Basically exactly like LNL. On BMG this 
+is not needed, since SA media is coherent.
 
-> Series is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+ From observation if you take this patch as-is which turns off 
+SCRATCH1LPFC, and then stub out the global invalidation in 
+xe_device_l2_flush(), then display engine observes corruption when doing 
+a render copy onto the display surface prior to display flip, using a 
+pat index enabling caching. I assume same thing happens if doing VRAM 
+writes from host side, but did not check this. If you add back the 
+global invalidation then no display corruption. So seems like 
+SCRATCH1LPFC is not needed for global invalidation in order for device 
+cache to be flushed, but is needed for pipecontrol etc.
 
-Thanks, appreciated. Pushed the lot to drm-intel-next.
+> 
+> Can SCRATCH1LPFC be set/reset dynamically, if so then may be set 
+> SCRATCH1LPFC  before global inval and reset it back after that ?
 
-BR,
-Jani.
+I suppose it might be possible, but not sure what happens with 
+concurrent submission and trying to mess with SCRATCH1LPFC.
 
---=20
-Jani Nikula, Intel
+> 
+> 
+> 
+>> Which is why I originally added this, however this then turns flushing 
+>> on for all kinds of stuff like pipecontrol which is not what we want. 
+>> But from playing around with this a bunch on BMG that doesn't look to 
+>> be true. Also the original WA made no mention of needing to mess with 
+>> SCRATCH1LPFC.
+>>
+>> I'm kind of hoping this helps that compute benchmark with not nuking 
+>> entire device cache between submissions.
+> 
+> 
+> I tried this one and is indeed improves compute test bandwidth.
+> 
+> 
+> Regards,
+> 
+> Nirmoy
+> 
+>>
+>>>
+>>>
+>>> Regards,
+>>>
+>>> Nirmoy
+>>>
+>>>>   and actually flush
+>>>> device cache, however this also turns on flushing for things like
+>>>> pipecontrol, which occurs between submissions for compute/render. This
+>>>> sounds like massive overkill for our needs, where we already have the
+>>>> manual flushing on the display side with the global invalidation. Some
+>>>> observations on BMG:
+>>>>
+>>>> 1. Disabling l2 caching for host writes and stubbing out the driver
+>>>>     global invalidation but keeping EN_L3_RW_CCS_CACHE_FLUSH 
+>>>> enabled, has
+>>>>     no impact on wb-transient-vs-display IGT, which makes sense 
+>>>> since the
+>>>>     pipecontrol is now flushing the device cache after the render copy.
+>>>>     Without EN_L3_RW_CCS_CACHE_FLUSH the test then fails, which is also
+>>>>     expected since device cache is now dirty and display engine 
+>>>> can't see
+>>>>     the writes.
+>>>>
+>>>> 2. Disabling EN_L3_RW_CCS_CACHE_FLUSH, but keeping the driver global
+>>>>     invalidation also has no impact on wb-transient-vs-display. This
+>>>>     suggests that the global invalidation still works as expected 
+>>>> and is
+>>>>     flushing the device cache without EN_L3_RW_CCS_CACHE_FLUSH 
+>>>> turned on.
+>>>>
+>>>> With that drop EN_L3_RW_CCS_CACHE_FLUSH.
+>>>>
+>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>>> Cc: Nirmoy Das <nirmoy.das@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 ---
+>>>>   drivers/gpu/drm/xe/xe_gt.c           | 1 -
+>>>>   2 files changed, 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
+>>>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>>> index 0d1a4a9f4e11..88a01970cc5c 100644
+>>>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>>> @@ -387,9 +387,6 @@
+>>>>   #define XE2_GLOBAL_INVAL            XE_REG(0xb404)
+>>>> -#define SCRATCH1LPFC                XE_REG(0xb474)
+>>>> -#define   EN_L3_RW_CCS_CACHE_FLUSH        REG_BIT(0)
+>>>> -
+>>>>   #define XE2LPM_L3SQCREG5            XE_REG_MCR(0xb658)
+>>>>   #define XE2_TDF_CTRL                XE_REG(0xb418)
+>>>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>>>> index f82b3e8ac5c8..313cc4242281 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>>>> @@ -110,7 +110,6 @@ static void xe_gt_enable_host_l2_vram(struct 
+>>>> xe_gt *gt)
+>>>>           return;
+>>>>       if (!xe_gt_is_media_type(gt)) {
+>>>> -        xe_mmio_write32(gt, SCRATCH1LPFC, EN_L3_RW_CCS_CACHE_FLUSH);
+>>>>           reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
+>>>>           reg |= CG_DIS_CNTLBUS;
+>>>>           xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
