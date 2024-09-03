@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7A70CD342C
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:00:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACCD0CD13CF
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:01:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9221210E4F8;
-	Tue,  3 Sep 2024 12:00:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 782C210E4F9;
+	Tue,  3 Sep 2024 12:01:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UFnIQlbB";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="RETw3OGQ";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64BEC10E4FE
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 12:00:32 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D38E510E4FD
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 12:01:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1725364831;
+ s=mimecast20190719; t=1725364878;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=Wqkxl9KwjevEu+t1uza2Tm1mz4C/9rJUsakscGOOK3I=;
- b=UFnIQlbBUX7tLhnTyMix1Bagd03DzKMKcXTGeoFJ3OdF8TVZrG67PhXHNXMb0oQG/diIjL
- zSESZd+Qj/T2t1cv5D+AgJQZMjFNuUQrfH1hrqJ2FYJLNqaThRGBtwQ02Ffz4zQW450fBP
- rmg1AZ/pzb/wXxYbf+BB4G/MpVJwsUQ=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=V9gsRbdqhPEIKCsQpJy/x7F2uImH8BkNI5v72GFAu1g=;
+ b=RETw3OGQW7l5Y/wfJwheHhz4HumHhsr9xUosn4m5HnAYuxL4HnlKUmx2EfRI6Vdg+eh6qL
+ KStB/fMQ9aMSjROw0oCQduBACllaB2Cx8PK4FA2TdJlzqdCV3326jwMrwznt4vmWb95tCG
+ nYRRHQWiJE1G53Kuy23U49AYmzrpkH8=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-416-BLQu9qViMcOny-CkqlPuJw-1; Tue, 03 Sep 2024 08:00:28 -0400
-X-MC-Unique: BLQu9qViMcOny-CkqlPuJw-1
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-37188f68116so3498232f8f.3
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 05:00:28 -0700 (PDT)
+ us-mta-519-x61G1uQcM4GH4whys56pqQ-1; Tue, 03 Sep 2024 08:01:16 -0400
+X-MC-Unique: x61G1uQcM4GH4whys56pqQ-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-374c54e188dso1154645f8f.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 05:01:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725364827; x=1725969627;
+ d=1e100.net; s=20230601; t=1725364876; x=1725969676;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Wqkxl9KwjevEu+t1uza2Tm1mz4C/9rJUsakscGOOK3I=;
- b=r/gwQ9aCgOI0KCNVXVJ+25dcD3PeDnw6O+ZCtJvugWetlAZKhgevhohLqObVRiIIL5
- A0/6PSTcxXoqyiFINwlW3xSCeYOO5KCeBo+HJTKm8jmeOJojVxa+OkxbCDFAE0AwlSU1
- dH0jlHNZ5OD26tDnxeNmUTdhRaSi6iH1ynknROJn6NFh5s98Tl+fJ3dFKpPhKuql/hRy
- SVLFljfDCjFDvwAqZFfI9M+vw33dOIbdJCH6UjFBdP53zscmJKtbLO6pV7PXUMGcW88n
- 2k2KV4BHATDCkH8iDssSdgWX5ZC56yD61d3M4XAmkzcQjffk8ZhEnZrYfrD/V7h6iiu5
- 4F4w==
+ bh=V9gsRbdqhPEIKCsQpJy/x7F2uImH8BkNI5v72GFAu1g=;
+ b=WYggyjNFXUMvBQJQPyu2w/QWGX/HwVyLqMU0IXXRzvK4c6qpTaw7vicUYatTAVRvqN
+ 5XGD4WaYgWpx012PHSZsfIhJ5XdXa3LNjdq6S/bgKpjzO23tTUZnspr2hxh0fwPr+D/f
+ i7eCWrHHnzdJRHlgooPSVhmsH/+fHkCyhMtQx7WyaM4p8K6EdXlwItD92MEhvOAd4PWj
+ BoEXsf+vg1PPGOxd+Pj3wNNkdEHm21nShwUaf2hGOTR93zSpNYpl58cfQNzB285KKluS
+ C3I0lrs3O0wmzNxsRHz/IcqhssJr2s4Pc8GNgF5YWVZoJuBonYld6k6tsHDmBTBDemov
+ IHEg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVBQ/cv3HM0sLMynf7icHorgaH2c3+O7fdSTlWz6WeNWGiWBnOAvfVHrVRf6kpPJV8IhWsdKQySbg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzuKnaMylXgqZ8o/rVNpJEb9aEtmT5fBau2its3Tjiq3hVtUGQQ
- To8IXzfISJ2Z6Er1Lva1IVHVMe6wtCvBMaiCmwtcJaCos+3EQDplMYEqH3VrcLEbY6/gnusqQJ+
- 2onhOn3M5jHfGh/b4XB53oJMZAMxOydCWMdzAGBGaqjcXKOzMSqf+w6H4h2ROv3Hc
-X-Received: by 2002:adf:e005:0:b0:367:9088:fecd with SMTP id
- ffacd0b85a97d-3749b52e4b2mr11567929f8f.7.1725364827055; 
- Tue, 03 Sep 2024 05:00:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHKbVj02CwoguAfZhg3DQHVPX/ENKLjb8+BLnTX8X8+/N0+IHzNka7Y5ll+wgLPRMt/UdLgcA==
-X-Received: by 2002:adf:e005:0:b0:367:9088:fecd with SMTP id
- ffacd0b85a97d-3749b52e4b2mr11567893f8f.7.1725364826511; 
- Tue, 03 Sep 2024 05:00:26 -0700 (PDT)
+ AJvYcCXglp3cLu+tckvPweeffGAEtYBlhr7xvWePA8myGYqJldjEmivqAt6su9kO5vOMW3zGcoPfCJ2N4A==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyML2mVyWsClktlgQoOrqygC2nNcbbwHw1R8e8WTZhv0Ze2TW04
+ NrJRq+JvP6M0hLSUTqLLlWG8ZDAFu6Vyj7WDFju6qiQd+Y1L2Use9LRwutAQcIYLYbS9prhh2/U
+ E+NVxGRt5T6qLkEl0lkLQr+d+P478kDmUkmQcU0/Et37/IIpOSZkP0HvIgriXUNo5
+X-Received: by 2002:a05:6000:210e:b0:374:cf83:23dd with SMTP id
+ ffacd0b85a97d-374cf83267cmr3482200f8f.2.1725364875770; 
+ Tue, 03 Sep 2024 05:01:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFx2bg2gwLkC+/OnEbJU244Rbdx9z+fiPs23OJRduhZ0HmBzycTM5BYbSjOgqOTznhch3vbqw==
+X-Received: by 2002:a05:6000:210e:b0:374:cf83:23dd with SMTP id
+ ffacd0b85a97d-374cf83267cmr3482168f8f.2.1725364875356; 
+ Tue, 03 Sep 2024 05:01:15 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42ba639643esm208275255e9.1.2024.09.03.05.00.26
+ ffacd0b85a97d-374c23d6a38sm8407636f8f.38.2024.09.03.05.01.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 05:00:26 -0700 (PDT)
+ Tue, 03 Sep 2024 05:01:15 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, jfalempe@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>
-Subject: Re: [PATCH v3 52/81] drm/cirrus: Run DRM default client setup
-In-Reply-To: <20240830084456.77630-53-tzimmermann@suse.de>
+ Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [PATCH v3 53/81] drm/gm12u320: Run DRM default client setup
+In-Reply-To: <20240830084456.77630-54-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-53-tzimmermann@suse.de>
-Date: Tue, 03 Sep 2024 14:00:25 +0200
-Message-ID: <87ikvddk12.fsf@minerva.mail-host-address-is-not-set>
+ <20240830084456.77630-54-tzimmermann@suse.de>
+Date: Tue, 03 Sep 2024 14:01:14 +0200
+Message-ID: <87frqhdjzp.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
@@ -98,16 +98,10 @@ Thomas Zimmermann <tzimmermann@suse.de> writes:
 > for DRM. Set fbdev_probe in struct drm_driver, so that the client
 > setup can start the common fbdev client.
 >
-> The cirrus driver requests the same client pixel format as the value
-> stored in struct drm_mode_config.preferred_depth. The fbdev client
-> also looks at this value for the default pixel format. Thus remove
-> the format selection from cirrus.
->
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Hans de Goede <hdegoede@redhat.com>
 > ---
->  drivers/gpu/drm/tiny/cirrus.c | 4 +++-
+>  drivers/gpu/drm/tiny/gm12u320.c | 4 +++-
 >  1 file changed, 3 insertions(+), 1 deletion(-)
 >
 
