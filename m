@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAD32CD13CF
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 09:42:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E4F1CD3420
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 09:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BB4210E450;
-	Tue,  3 Sep 2024 09:42:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB0CB10E459;
+	Tue,  3 Sep 2024 09:48:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XPW81Ia1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fp8njCWp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88DE810E450
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 09:42:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8690410E455;
+ Tue,  3 Sep 2024 09:48:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725356570; x=1756892570;
+ t=1725356893; x=1756892893;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=7+DWZ6u/yF3RIjuD4/smMAq+K9UetXOFr/tCoMy0vLo=;
- b=XPW81Ia1V24Cp/W+OnJxkRavZcsvrcUepREq14Xp9Odkm8P5w3FkY1/E
- 2z7gJLYkzmlECH2jyukF3bupd3QTOG7pxI6s5EoDL/jhKIPrfqU6KODmb
- gr4mXkGUz4oUsA3CbmoFesPLmskL7kKjDmnA69PGvVnWF39mHGzuU+UK1
- HRNVZoslzqmspsdmZIJs4gJyZsupSq1oTE+Wwz7dY0wGhHefUEI71Ynod
- N6BSkIHKgODYkzP8tfQ1CrHPmjMdgd7ihtaQMZvjG4Ejt5ddCjdCDxzyV
- lcwzhqZwLXTropIQjTl/WYolRBG53G6fSSdbLc+zBx/f++27/3e/EZkay Q==;
-X-CSE-ConnectionGUID: mWkS1E3bS0aX0W+pP697vg==
-X-CSE-MsgGUID: fgBS8HtLSXCFS8WCHbrclw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="24059933"
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="24059933"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 02:42:49 -0700
-X-CSE-ConnectionGUID: 4OstHQCBQ5ekH+QHMWN+fA==
-X-CSE-MsgGUID: GA4HyaNuSROqH5moMxnq/Q==
+ bh=9NgE/2aJzHj8TTErCkyZA74A1+E/tAFpatpunlwuDT4=;
+ b=fp8njCWpX6U3z7fDdXVACkqGqA97KPs/pSdV6Mhn4gSQJNt9qS/YWXjD
+ YNwPFszhahmalrP+byHqVKEd1tRmeXZD0oZx8EY/dT3kc2AjEXnPAFJpc
+ D8XQ8v8ovrxJcrw3EmjuIZDpQ+icU0FCH1xw0EAGlUD/rWvA6XQme2RHu
+ ifFztx5KHCDxc5kQssuKTKuh1pylf/rAtFzvfpRaEnBd2C6CQF6LBA2Fe
+ 0TLsLH+92l0AYLdNH8gu3NY9OzGFQJ5MU7hktxLp6NDmPzlz6k6PUouh4
+ pp+r7VC7hWiz1bq3CcHTD1ZQbI/I2iVWnFQ/+b7BO/M9Cj8rGEqQ7YqIL A==;
+X-CSE-ConnectionGUID: vgcsyhiES6ulYIesjmjR+Q==
+X-CSE-MsgGUID: mQtOm4JXTa2IIstu/Obzzw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="24096937"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="24096937"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 02:48:12 -0700
+X-CSE-ConnectionGUID: jfFAczFUS42uwlokixBh5w==
+X-CSE-MsgGUID: Ee4+zFppR1eawMdNSU/2jg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="95652116"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="88097303"
 Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
  fedora..) ([10.245.244.199])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 02:42:48 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 02:48:11 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH] drm/xe: Use xe_pm_runtime_get in xe_bo_move() if reclaim-safe.
-Date: Tue,  3 Sep 2024 11:42:32 +0200
-Message-ID: <20240903094232.166342-1-thomas.hellstrom@linux.intel.com>
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 0/2] drm/ttm: Really use a separate LRU list for swapped-
+ and pinned objects
+Date: Tue,  3 Sep 2024 11:47:51 +0200
+Message-ID: <20240903094753.169449-1-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -69,85 +69,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_bo_move() might be called in the TTM swapout path from validation
-by another TTM device. If so, we are not likely to have a RPM
-reference. So iff xe_pm_runtime_get() is safe to call from reclaim,
-use it instead of xe_pm_runtime_get_noresume().
+Resources of swapped objects were never moved off their LRU list
+when swapped, and also resources of pinned objects might remain on
+their LRU list unless the driver moved them to the device pinned list
+after pinning.
 
-Strictly this is currently needed only if handle_system_ccs is true,
-but use xe_pm_runtime_get() if possible anyway to increase test
-coverage.
+Rename the device "pinned" list to "unevictable" and ensure that resources
+of objects that are pinned or swapped are moved to that list.
 
-At the same time warn if handle_system_ccs is true and we can't
-call xe_pm_runtime_get() from reclaim context. This will likely trip
-if someone tries to enable SRIOV on LNL, without fixing Xe SRIOV
-runtime resume / suspend.
+RFC: Should we instead of a device-wide unevictable list, introduce an
+unevictable priority so that all objects remain with their resource's
+respective manager?
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Patch 1/2 deals with swapped objects and also handles the problem of
+moving objects back to their manager's LRU list when populating.
+
+Patch 2/2 deals with pinned objects.
+
+v2:
+- Address review comments by Christian König.
+- Make TTM KUNIT tests build.
+
+Cc: Christian König <christian.koenig@amd.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 11 ++++++++++-
- drivers/gpu/drm/xe/xe_pm.c |  9 ++++++++-
- drivers/gpu/drm/xe/xe_pm.h |  1 +
- 3 files changed, 19 insertions(+), 2 deletions(-)
+Cc: <dri-devel@lists.freedesktop.org>
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index a8e4d46d9123..06911e9a3bf5 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -758,7 +758,16 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 
- 	xe_assert(xe, migrate);
- 	trace_xe_bo_move(bo, new_mem->mem_type, old_mem_type, move_lacks_source);
--	xe_pm_runtime_get_noresume(xe);
-+	if (xe_rpm_reclaim_safe(xe)) {
-+		/*
-+		 * We might be called through swapout in the validation path of
-+		 * another TTM device, so unconditionally acquire rpm here.
-+		 */
-+		xe_pm_runtime_get(xe);
-+	} else {
-+		drm_WARN_ON(&xe->drm, handle_system_ccs);
-+		xe_pm_runtime_get_noresume(xe);
-+	}
- 
- 	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
- 		/*
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 2600c936527e..e518557e0eec 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -79,7 +79,14 @@ static struct lockdep_map xe_pm_runtime_nod3cold_map = {
- };
- #endif
- 
--static bool __maybe_unused xe_rpm_reclaim_safe(const struct xe_device *xe)
-+/**
-+ * xe_rpm_reclaim_safe() - Whether runtime resume can be done from reclaim context
-+ * @xe: The xe device.
-+ *
-+ * Return: true if it is safe to runtime resume from reclaim context.
-+ * false otherwise.
-+ */
-+bool xe_rpm_reclaim_safe(const struct xe_device *xe)
- {
- 	return !xe->d3cold.capable && !xe->info.has_sriov;
- }
-diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-index 9aef673b1c8a..998d1ed64556 100644
---- a/drivers/gpu/drm/xe/xe_pm.h
-+++ b/drivers/gpu/drm/xe/xe_pm.h
-@@ -31,6 +31,7 @@ bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
- void xe_pm_assert_unbounded_bridge(struct xe_device *xe);
- int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold);
- void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
-+bool xe_rpm_reclaim_safe(const struct xe_device *xe);
- struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
- int xe_pm_module_init(void);
- 
+Thomas Hellström (2):
+  drm/ttm: Move swapped objects off the manager's LRU list
+  drm/ttm: Move pinned objects off LRU lists when pinning
+
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c    |  4 +-
+ drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |  4 +-
+ drivers/gpu/drm/ttm/tests/ttm_resource_test.c |  6 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                  | 69 +++++++++++++++++--
+ drivers/gpu/drm/ttm/ttm_bo_util.c             |  6 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c               |  2 +-
+ drivers/gpu/drm/ttm/ttm_device.c              |  4 +-
+ drivers/gpu/drm/ttm/ttm_resource.c            | 15 ++--
+ drivers/gpu/drm/ttm/ttm_tt.c                  |  2 +
+ drivers/gpu/drm/xe/xe_bo.c                    |  4 +-
+ include/drm/ttm/ttm_bo.h                      |  2 +
+ include/drm/ttm/ttm_device.h                  |  5 +-
+ include/drm/ttm/ttm_tt.h                      |  5 ++
+ 15 files changed, 102 insertions(+), 30 deletions(-)
+
 -- 
 2.46.0
 
