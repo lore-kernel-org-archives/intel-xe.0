@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF8EECD37AA
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 19:17:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99D96CD37AA
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 19:22:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9993510E099;
-	Tue,  3 Sep 2024 19:17:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6135B10E10C;
+	Tue,  3 Sep 2024 19:22:35 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 027A110E099;
- Tue,  3 Sep 2024 19:17:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3241393340901180885=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F32F310E0D4;
+ Tue,  3 Sep 2024 19:22:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/ttm=3A_Forward_-ENOSPC_to_dr?=
- =?utf-8?q?ivers_requesting_it?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?add_snapshot_capture/print_infra?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Sep 2024 19:17:25 -0000
-Message-ID: <172539104500.920385.730828817555226931@2413ebb6fbb6>
+Date: Tue, 03 Sep 2024 19:22:34 -0000
+Message-ID: <172539135498.920385.12940139816673286406@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240903133849.17119-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240903133849.17119-1-thomas.hellstrom@linux.intel.com>
+References: <cover.1725372032.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1725372032.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3241393340901180885==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/ttm: Forward -ENOSPC to drivers requesting it
-URL   : https://patchwork.freedesktop.org/series/138148/
+Series: drm/i915/display: add snapshot capture/print infra
+URL   : https://patchwork.freedesktop.org/series/138150/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1885-707f9d05c039aa43d5cbfc29573b642d3c43b618_BAT -> xe-pw-138148v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 7378077b0be3 drm-tip: 2024y-09m-03d-18h-08m-38s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: dump display parameters captured in error state, not current
+Applying: drm/i915/display: add intel_display_snapshot abstraction
+Applying: drm/i915/display: move device info and params handling to snapshot
+Applying: drm/i915/display: move dmc snapshotting to new display snapshot
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1885-707f9d05c039aa43d5cbfc29573b642d3c43b618 -> xe-pw-138148v1
-
-  IGT_8001: d3a77fc98e89cc94b03be2b0903d44f83480b8a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1885-707f9d05c039aa43d5cbfc29573b642d3c43b618: 707f9d05c039aa43d5cbfc29573b642d3c43b618
-  xe-pw-138148v1: 138148v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138148v1/index.html
-
---===============3241393340901180885==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Forward -ENOSPC to drivers requesting it</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138148/">https://patchwork.freedesktop.org/series/138148/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138148v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138148v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1885-707f9d05c039aa43d5cbfc29573b642d3c43b618_BAT -&gt; xe-pw-138148v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1885-707f9d05c039aa43d5cbfc29573b642d3c43b618 -&gt; xe-pw-138148v1</li>
-</ul>
-<p>IGT_8001: d3a77fc98e89cc94b03be2b0903d44f83480b8a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1885-707f9d05c039aa43d5cbfc29573b642d3c43b618: 707f9d05c039aa43d5cbfc29573b642d3c43b618<br />
-  xe-pw-138148v1: 138148v1</p>
-
-</body>
-</html>
-
---===============3241393340901180885==--
