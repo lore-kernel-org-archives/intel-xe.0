@@ -4,79 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 549FCCD342C
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:06:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B770ECD342C
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 12:07:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00BC310E52D;
-	Tue,  3 Sep 2024 12:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBD110E530;
+	Tue,  3 Sep 2024 12:07:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Rx3T54+l";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BiVwh+Sc";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91DA910E52B
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 12:06:36 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 418A510E531
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 12:07:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1725365195;
+ s=mimecast20190719; t=1725365224;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=bKH42MPBYmGRwEigr3d5s600iIva9uiUrOTp/Gc7qDw=;
- b=Rx3T54+lHUkqk/yocrmVZl4ElddWnpg1ws27Ew7vxtQBZbkhrnrOe8gy8vtmhm/n+b8w3M
- /1+2UxBPKhq0XoIkXGPzv9a2WeIXE8ouJeB+kbBxv+U9hXj3ROOHZDm6Y24uvKzGKU53HJ
- RwLVi0NfBv9xhnLuH+Zm/7J6Ez2Zoxo=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=zx4hxQtRMdOzrygXNdwQEDskzaynxlUA2aQcUcONdUA=;
+ b=BiVwh+ScsdhggeB/RdB3+G3JoPbn3JtVOTgU+nmq/WEHINBE+GGl0LbltdHKarKNLICNKX
+ l5rqu8MEwqmQeMzi+OlN6gtKcq71DSZtDzPI6LiaXMIzNBVJZCmUA26Vc1+IMA1/ljyqPg
+ 9YDudoBlp4DvU+EE97WP9mgydREFqg0=
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com
+ [209.85.208.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-683-Ae4Gq5dUOlS30Ezb1vLrsA-1; Tue, 03 Sep 2024 08:06:34 -0400
-X-MC-Unique: Ae4Gq5dUOlS30Ezb1vLrsA-1
-Received: by mail-ej1-f72.google.com with SMTP id
- a640c23a62f3a-a870cad2633so459250666b.1
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 05:06:34 -0700 (PDT)
+ us-mta-230-vYRuSkHGP0C_K27O0J2Gjw-1; Tue, 03 Sep 2024 08:07:03 -0400
+X-MC-Unique: vYRuSkHGP0C_K27O0J2Gjw-1
+Received: by mail-lj1-f198.google.com with SMTP id
+ 38308e7fff4ca-2f4062343deso50567181fa.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 05:07:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725365194; x=1725969994;
+ d=1e100.net; s=20230601; t=1725365221; x=1725970021;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=bKH42MPBYmGRwEigr3d5s600iIva9uiUrOTp/Gc7qDw=;
- b=BYwk7tWIeWwaEuuKMtWnrvoekiGOzS8omUO9oEd8Vj+/MLOydP1qz9Hu1bxydqrhmj
- bhbXAf9UFe94N+n1ODVQ8RfSUsFk55GdfzaIjICwqCKM5TulztmhWcefNJuXnhiuwH/E
- /hICGqwXFtsPz5Z6NGp1rrVufeIPxAbFtbMWW3peRYwvOCbgVntSRQs8/8qjMgEiFOlD
- IDD+NPzi+p+wzWoLK+yy/cS5Ro900S6prM67UO37fd3Ii5/xjqmiKjGNjn5FqCvLWaLx
- ZMfLLpg8YKOBK/Evd8PoQSEtibY+7zpMaYaSqXk2cFIh/OMhmHNh01XDly0x0qANHW2O
- I4Pw==
+ bh=zx4hxQtRMdOzrygXNdwQEDskzaynxlUA2aQcUcONdUA=;
+ b=FMm7ZtStbeFmY/MNY3s1Uq2SGoIN6uXT3OiLlSwPEJ7mPG4WIwQ3NqHDYRx3CMmwu9
+ ou9CqEI7kybZDLvq37GM7RhijzYO/IZ/vCZJqZTHRt4ZxzXupGezQjrf9njt0AZpgtlp
+ MbRC2ekqBKJOv+fKn/Qt3kO0hN/kGaz3gcaV71yzbJhrznIBw1iZw1f7gXIDkIJWtaV/
+ 8cq9Sxlt5o0ssgoMrhokC9ghV9M5v1YxSHHNFVnNx1O8K27iY+lQmd5n8S/ktbyxmjYR
+ e9yWLYcd2da5Kyjp5XMdjmmKQQG6sienC9/mvC3SNwEm9RQZupIHRfKPIstH7GlH8M+C
+ skXw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVcBAKJjJTF4FK/W6l5KEltiP381YQVgNkugD42uPr51gGc1anMsiRlpYAbclZGkIjpJ57F9nJsVg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzs1+IjIL8TnDtQpKxZlHT4SPlrOSwlKVkwDsi0svX0zx9DOky+
- TNlNyO+WeWxo305NlWnxyhp7JND+IHyZIyViUUZHLw5DANXr8xhAtocRo5U9Uga4TvQrEHqHc7Z
- o8B2SXvDHbWVzMwsP8EarpX/aP7TSrY955Pc7jMY62LG8SNAhbki4vUyBxZlqssh+
-X-Received: by 2002:a17:907:980d:b0:a77:e2e3:354d with SMTP id
- a640c23a62f3a-a897f83a33bmr1262521566b.23.1725365193657; 
- Tue, 03 Sep 2024 05:06:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHKoeIshuDSdtf/JGgIl6tnQAFAZn+DDFBpQM9QN52xxGXt/DVTGdF5osqSdNpaEvBaP2lGVw==
-X-Received: by 2002:a17:907:980d:b0:a77:e2e3:354d with SMTP id
- a640c23a62f3a-a897f83a33bmr1262519066b.23.1725365193131; 
- Tue, 03 Sep 2024 05:06:33 -0700 (PDT)
+ AJvYcCUuaO42MiuIj67FA8tZR16dn8/5fWLkr26mOsoYhQqGz8OlPCtfXeP7K8M8U0qL+B/yyEz/cwo5Ow==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx1rb8TfzwlQ2VjEj7uYswz0N3VZEiKU5aDV+iPCgfopp1XghR1
+ YwKRgBdDEc7wvS2o8H5g0L6loPrWcY5MgtULz2+84zs+yWKqVJ84pE+HIk8zficXBuZ5b+zcdIo
+ dj8WUQcQksrFm/WN+bnlJKbVegL2QhAndv/pwAUUX5FZa5ZjGEgiUjAPg3aYPdW1PpP/TVhlD
+X-Received: by 2002:a2e:be07:0:b0:2ef:2b53:c77e with SMTP id
+ 38308e7fff4ca-2f62655044fmr76802001fa.7.1725365221300; 
+ Tue, 03 Sep 2024 05:07:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEhYL7VU+pPWXFbZvZO3luoy/PZCZxgIoqNkVLPQzNR06jKjtB+IuiohUKE273yPfAVbpvuDQ==
+X-Received: by 2002:a2e:be07:0:b0:2ef:2b53:c77e with SMTP id
+ 38308e7fff4ca-2f62655044fmr76801781fa.7.1725365220740; 
+ Tue, 03 Sep 2024 05:07:00 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a898900f0acsm674520966b.73.2024.09.03.05.06.32
+ 5b1f17b1804b1-42bb6e273e3sm168566335e9.30.2024.09.03.05.07.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 05:06:32 -0700 (PDT)
+ Tue, 03 Sep 2024 05:07:00 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, jfalempe@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>, Sumit Semwal
- <sumit.semwal@linaro.org>, Yongqin Liu <yongqin.liu@linaro.org>, John
- Stultz <jstultz@google.com>
-Subject: Re: [PATCH v3 67/81] drm/hisilicon/hibmc: Run DRM default client setup
-In-Reply-To: <20240830084456.77630-68-tzimmermann@suse.de>
+ Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>
+Subject: Re: [PATCH v3 70/81] drm/qxl: Run DRM default client setup
+In-Reply-To: <20240830084456.77630-71-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-68-tzimmermann@suse.de>
-Date: Tue, 03 Sep 2024 14:06:32 +0200
-Message-ID: <87v7zdc56f.fsf@minerva.mail-host-address-is-not-set>
+ <20240830084456.77630-71-tzimmermann@suse.de>
+Date: Tue, 03 Sep 2024 14:06:59 +0200
+Message-ID: <87seuhc55o.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
@@ -101,18 +98,14 @@ Thomas Zimmermann <tzimmermann@suse.de> writes:
 > for DRM. Set fbdev_probe in struct drm_driver, so that the client
 > setup can start the common fbdev client.
 >
-> The hibmc driver specifies a preferred color mode of 32. As this
+> The qxl driver specifies a preferred color mode of 32. As this
 > is the default if no format has been given, leave it out entirely.
 >
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Xinliang Liu <xinliang.liu@linaro.org>
-> Cc: Tian Tao <tiantao6@hisilicon.com>
-> Cc: Xinwei Kong <kong.kongxinwei@hisilicon.com>
-> Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> Cc: Yongqin Liu <yongqin.liu@linaro.org>
-> Cc: John Stultz <jstultz@google.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
 > ---
->  drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c | 4 +++-
+>  drivers/gpu/drm/qxl/qxl_drv.c | 4 +++-
 >  1 file changed, 3 insertions(+), 1 deletion(-)
 >
 
