@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A147ECD3420
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 11:09:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB427CD342C
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 11:13:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5659510E46D;
-	Tue,  3 Sep 2024 11:09:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B26210E482;
+	Tue,  3 Sep 2024 11:13:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Jv1iQGsD";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="iTPC5yPL";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78DF110E44F
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 11:09:00 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42E6D10E47E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 11:13:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1725361739;
+ s=mimecast20190719; t=1725361995;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=5KNCsJ15HkUgltOPMm708gH3cAto2XwAuJxZwET5MHs=;
- b=Jv1iQGsDscG4vY8v3IFxvipGXQOyKUxFNWFIKt/GK4B+KQgs/WCoMPZuTgYrEWCnNbKI7j
- tO7q4BYEnp4KtyTmRrrNUF6ve6V2vC8T4eyFHZ4vtg7uNW3Uv9nkcZXw5rJPfSA8NlxMi4
- GYb58T03oEvyJhaNW9uNTaNJYP75cNE=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=eNaLJCzc8McH6yKUfj3b0fV3lUF+xcAOFhE3bUUfh6Y=;
+ b=iTPC5yPLkmUSOh+RjfDuy2ZYvMhO/TKt1+9kZgFBEiB7beCrTPosoTKTQPAAE4a1yvezPQ
+ m9CnLViBY2zra2WdpWZ1Uy0rzHDyFSmy2IDsT99Vjm9i1iLzEPo9wbX8284e9c9QE5BSmS
+ lXxSjGlr3n9hoZWJYzKmYsLP/sg0CZs=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-197-K8clOMKBMbe9Jk881B5h7Q-1; Tue, 03 Sep 2024 07:08:58 -0400
-X-MC-Unique: K8clOMKBMbe9Jk881B5h7Q-1
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-42c7b6358a6so25209505e9.1
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 04:08:57 -0700 (PDT)
+ us-mta-402-lBpptUdsNECYfP2Wf6spHA-1; Tue, 03 Sep 2024 07:13:12 -0400
+X-MC-Unique: lBpptUdsNECYfP2Wf6spHA-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-374c581ce35so1369226f8f.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 04:13:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725361737; x=1725966537;
+ d=1e100.net; s=20230601; t=1725361991; x=1725966791;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5KNCsJ15HkUgltOPMm708gH3cAto2XwAuJxZwET5MHs=;
- b=pji/7yn/MPdHNClW6jcNRwFGpjoCRv0bT62UjDoHLL1nCCeAoe2nJPqm+mjFl3z9qf
- cxw4D5AtNktyTRdY1iuWfL3EJfVn7STIcMYw/ZF5IJmnh/0IF82P1fg86b/7tyP4tDje
- n7R+Jb3kluPQvTuiqmWiTzv+ljBD15fWdwsif0NchKZqL1VT3iKeEP05akmPNKtD7Sma
- Dnmq84G/U+4Rb/qN0JRZxDOpXhgA3CtQVs9euuZcHBrYuNjMK85jsNa3LlZXij8/ytEd
- Qa4DggeZtR4hNpWxCi+okqyLR//tsBXkPJ6hmMBjDAewqtB5JEMkRv6ApKWE5E7ESVDU
- OuOw==
+ bh=eNaLJCzc8McH6yKUfj3b0fV3lUF+xcAOFhE3bUUfh6Y=;
+ b=Fy9SIIvBqXRFOU3wcyAfuvCyEJKC4CTqfiuzvetCMACrDlknmR1DpV/cQpdVci4tdo
+ weMVRFVLz5bbfBFjhl8nzb/QcCPFDnUBBEOXU9AWjzC4Du7fCEoXOE6oCMd8m3tw9b/S
+ GY/TUyLBrpheVEaAiH0ipQ8xdcu5GmF1ePctsPx0yQ22Cds+5S9wptLAVVVMID4UgGtx
+ X/VqIRAluOiPpytF2eMwTmd8Vhipzbf5R9RIxz1VGpvpkCpTOdqM29g/GFf32XWSueqp
+ wKNh9ylNJwV4QHBeR00p5TO7Rz08rS13eupQavS05wYKTzWoGKvGoA1FNqbvdNhtgA3P
+ PxrA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX5UVvT0avYKiP8QKhguWwquOeimFjz2LqOuH3+UQSgy4xZgKT/F19JCaKeUmZDfWavy/sbVdKPOg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywluru6CpfABG6QnR6nVAeAd6SlILRljgpw3SR1A6n03cEk63nd
- H0KXLWd5g+B+7/7ui/aLY5UX/aKx8D5DhNm5x/XQeVHmrxQky2QswE2iVq3mp4liYDmV+AsQd1g
- sCsZoXlucUJyLzaKlDWEFHNRozMxmw1l4/7g11oWNxeGQQwGkhdT0QhmfbnzHEGuc
-X-Received: by 2002:a05:600c:6592:b0:426:61ef:ec36 with SMTP id
- 5b1f17b1804b1-42c82f13bb8mr49158825e9.0.1725361736880; 
- Tue, 03 Sep 2024 04:08:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG/LIzZrmcj69ybDsKA77dubjSmW4Tpk5zW1Gf9bYbxoUzrG0GhAgYYbYf75Z9LDiQ3xPDERQ==
-X-Received: by 2002:a05:600c:6592:b0:426:61ef:ec36 with SMTP id
- 5b1f17b1804b1-42c82f13bb8mr49158605e9.0.1725361736297; 
- Tue, 03 Sep 2024 04:08:56 -0700 (PDT)
+ AJvYcCU7wRQQ2lQLLmKDF3qs6ubo468UJ8MfchI3xGsC/myu1mJe/th3ZVPxiedKJNAs+z6ILcNTPNHI/g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzpjeZWyP7IFks5rkPbRs1p2nnkwQ2UlujSeF84B3ikNVyd71b1
+ fcun+XdyasrnJuI1s61zFnrxgFqUS4PkIiRBAWm1WkCYrsYBFqbh67DeCzrRkBJHP43SxDNsfDo
+ jegJoqn443d0vqHpJwCHUEqnTySeAfiiMc5ryqzRBz+sp0ru/kXAZe9n1fJVrBocY
+X-Received: by 2002:adf:e042:0:b0:374:c8a0:ca8c with SMTP id
+ ffacd0b85a97d-376dea47175mr311000f8f.43.1725361990985; 
+ Tue, 03 Sep 2024 04:13:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IErKuUaZwDVmhsR7doTbtSmBnmM7k053hpSErI0ylM4sAqourCJsbqDohSz+3dvc+wiabrelQ==
+X-Received: by 2002:adf:e042:0:b0:374:c8a0:ca8c with SMTP id
+ ffacd0b85a97d-376dea47175mr310977f8f.43.1725361990502; 
+ Tue, 03 Sep 2024 04:13:10 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42bbc36bd88sm139398275e9.24.2024.09.03.04.08.55
+ 5b1f17b1804b1-42bb6df1066sm167087945e9.18.2024.09.03.04.13.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 04:08:56 -0700 (PDT)
+ Tue, 03 Sep 2024 04:13:10 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, jfalempe@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v3 05/81] drm/fbdev-dma: Support struct
- drm_driver.fbdev_probe
-In-Reply-To: <20240830084456.77630-6-tzimmermann@suse.de>
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alexey Brodkin <abrodkin@synopsys.com>
+Subject: Re: [PATCH v3 06/81] drm/arcgpu: Run DRM default client setup
+In-Reply-To: <20240830084456.77630-7-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-6-tzimmermann@suse.de>
-Date: Tue, 03 Sep 2024 13:08:55 +0200
-Message-ID: <87h6axgfjs.fsf@minerva.mail-host-address-is-not-set>
+ <20240830084456.77630-7-tzimmermann@suse.de>
+Date: Tue, 03 Sep 2024 13:13:09 +0200
+Message-ID: <87ed61gfcq.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
@@ -94,37 +94,16 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-> Rework fbdev probing to support fbdev_probe in struct drm_driver
-> and reimplement the old fb_probe callback on top of it. Provide an
-> initializer macro for struct drm_driver that sets the callback
-> according to the kernel configuration.
+> Call drm_client_setup_with_fourcc() to run the kernel's default client
+> setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
 >
-> This change allows the common fbdev client to run on top of DMA-
-> based DRM drivers.
+> v2:
+> - use drm_client_setup_with_fourcc()
 >
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/gpu/drm/drm_fbdev_dma.c | 60 ++++++++++++++++++++-------------
->  include/drm/drm_fbdev_dma.h     | 12 +++++++
->  2 files changed, 48 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_fbdev_dma.c b/drivers/gpu/drm/drm_fbdev_dma.c
-> index 7ef5a48c8029..aeccf7f7a522 100644
-> --- a/drivers/gpu/drm/drm_fbdev_dma.c
-> +++ b/drivers/gpu/drm/drm_fbdev_dma.c
-> @@ -86,6 +86,40 @@ static const struct fb_ops drm_fbdev_dma_fb_ops = {
->  
->  static int drm_fbdev_dma_helper_fb_probe(struct drm_fb_helper *fb_helper,
->  					 struct drm_fb_helper_surface_size *sizes)
-> +{
 
-static inline for this wrapper maybe ?
-
-> +	return drm_fbdev_dma_driver_fbdev_probe(fb_helper, sizes);
-> +}
-> +
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
 Best regards,
