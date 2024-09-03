@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66444CD3420
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 11:21:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43893CD3420
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 11:23:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCEA10E49A;
-	Tue,  3 Sep 2024 11:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3B0C10E48D;
+	Tue,  3 Sep 2024 11:23:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="e4qM8i0/";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="icboxGNX";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8100910E499
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 11:21:21 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 722D010E1AE
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 11:23:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1725362480;
+ s=mimecast20190719; t=1725362628;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=IQTpGzPFQqB5gAShloE0zxFF7qqYRFvzMaH5N3OQkCs=;
- b=e4qM8i0/QDug9VCPJoIelXDgZF6XSvw9+/4VAy+1SjUN7NAyuH0yjXzVz+lanhWO2qo7WL
- uQPMPV+/YCMcFCib3IcsrOqflPQMZpBN/fPdW2M1zdQbUPc3y1Nl81ySZV5wsVnZBTU2X/
- mcV+1tz+D/lmQuoIQMuGW+zplNeVJNQ=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=bbJNkV9u0ZGr/jKEh9pTFkh2fVXMicyQllArXRfkk5s=;
+ b=icboxGNXrqbTB++QzdU48uG5eOw/phj1SSaxm/2LcAWOFWEhYWNmU44mP8fKGgMcK4JER1
+ Y6RAk3Vu//JPBxzfwUHj3GWHrZHYzL9X1iwcDK/HYCPx4/bQbJBiGrz9jC5x0mkRok590K
+ ODa/kaX14LT1e0rW8VGHGm+W4rV90+0=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-687-dJCVBJkcM6msBqo18js8Qg-1; Tue, 03 Sep 2024 07:21:19 -0400
-X-MC-Unique: dJCVBJkcM6msBqo18js8Qg-1
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-374b69e65e8so2534457f8f.0
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 04:21:19 -0700 (PDT)
+ us-mta-202-b_qURF2FOdC049yOiBfyDQ-1; Tue, 03 Sep 2024 07:23:47 -0400
+X-MC-Unique: b_qURF2FOdC049yOiBfyDQ-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-374ba33b2d2so2325473f8f.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 04:23:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725362478; x=1725967278;
+ d=1e100.net; s=20230601; t=1725362626; x=1725967426;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=IQTpGzPFQqB5gAShloE0zxFF7qqYRFvzMaH5N3OQkCs=;
- b=fiXoZo9Gad8Ap820Lhuv+6zxV8AiVhQUUEIK0By89ThsWiXsQMj9Fo+XHPEXfZ25Bl
- vDTox7C1RohmxjK5bNFjWkPb/58WoJ6MEyT/psrDE4xzoqtKGe215NxBoO2+o6ocpS06
- UyQZGs/6LpjTSwAa33IDnEvSfnqtzH7Y326emUTAoTxI/9NDgCTXz4lTBURpmrK70pUg
- uOrkTrcYiHnGRU3xpkfnY8YCLIMqQaVoFg+t3W5uf+2X3J2kipi8/0uhdLpU0s0NiUwj
- CLOT7ggC/yAUxXPUiLRqxnFGiYd3OUmb55oa8Su25p0bmc17I6pWjjCGEsQgMcRcb2sx
- uogw==
+ bh=bbJNkV9u0ZGr/jKEh9pTFkh2fVXMicyQllArXRfkk5s=;
+ b=aaKh/zXk6g2Mgvj/e/mQA5WCqZ4yXJq84kL/e8xlFLuo+YNYrbTXN7qS8GCZe/anYg
+ 7OrCuVLvAIYdO2UrOwKu1XUiZwGN+pjJy96EJDnSipqbTLR7T89PPqGfu5O9ET2xs/vp
+ Dt/YP8zJ9Ax/MsV4VMmzETROvppxDhDO9vDxlAXrIalUgBive8lFKwpxpxn1+fQXd6kN
+ gQNLHAq8vSjCbWL8TvSYJV9leQZv21d8mn+0nIWQqjaCvU4hRFqEFUMxjTDG2iEVyJ/o
+ U77ZGD++AMs1qu5cjyc/0ivaA4ePugpeOl5Ha6E5pqKH18j1YJ34C60UDxR3wlMf64pV
+ SbNw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUxB4I9MVjMpYnaiTa1JYT0xKdKb1kSIGAiXSHmSCrXsZEeya7JM4HgZQ2Jo25bR5YOFnRi1Kah+w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyZ1iSmOVCLYVtSviNmVP9w5+dT3PzU9iaAqdPFgGEo7MEkqoJT
- VK3JVd0/pmslIP0SmJa9FyjbE2PJ4Ht7+v9vg18lmnZEp/MMBKeqh6GLYqX45CSysugKZ2yMhi5
- o7TO5BNC3y88gXgM86pmim5eVvbqrecUFomRDlSmfczUzTpvSIEnkMwCewtYpcFqa
-X-Received: by 2002:adf:a30c:0:b0:374:baf1:41cb with SMTP id
- ffacd0b85a97d-374ecc67bacmr2268360f8f.4.1725362478470; 
- Tue, 03 Sep 2024 04:21:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHbXnmNinNKcxIoQZ/xbsrsLu5CSXkPJ8NSjds5BWMTJG6QY5z6avZlP02srMBnOR8Wv7uPgg==
-X-Received: by 2002:adf:a30c:0:b0:374:baf1:41cb with SMTP id
- ffacd0b85a97d-374ecc67bacmr2268340f8f.4.1725362478084; 
- Tue, 03 Sep 2024 04:21:18 -0700 (PDT)
+ AJvYcCUCoZ/0XeMcc8++dlMIJJnDTQr8yyoRE19J1QmZW/pY3R0f/bhZEWpQMENA4/9ZZSp5KZXqYWGpJg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyWuAbWB5TabiBudQVoeKC2sW7h2ID0WB9DPNPAyHo+5tqPK0Zl
+ LeR0VnzmhgnmaXu24IOxCanZ7JhLFvWYH07VZV2NGM/9nqK1SVEwaoAi9WfW7P6LSK75dLD5ig0
+ aWsSXIfWib3EwybveCqrUbxxg6/V3SDDGeegNd0fJGRvc6UUET3YCEzuZMvU+0qEK
+X-Received: by 2002:adf:f784:0:b0:374:c69b:5a16 with SMTP id
+ ffacd0b85a97d-374f9e47a5cmr2179063f8f.50.1725362626239; 
+ Tue, 03 Sep 2024 04:23:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFSm/RqGjce7S7ZMEuf3IOUzOzr9uuowr5iGarnhEC2vfQARAToz2WJdH4ddi+cl3DwZjT8sw==
+X-Received: by 2002:adf:f784:0:b0:374:c69b:5a16 with SMTP id
+ ffacd0b85a97d-374f9e47a5cmr2179047f8f.50.1725362625744; 
+ Tue, 03 Sep 2024 04:23:45 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-374be2edf08sm9391463f8f.6.2024.09.03.04.21.17
+ ffacd0b85a97d-374ba30d5b8sm10273357f8f.15.2024.09.03.04.23.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 04:21:17 -0700 (PDT)
+ Tue, 03 Sep 2024 04:23:45 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, jfalempe@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v3 15/81] drm/ili9163: Run DRM default client setup
-In-Reply-To: <20240830084456.77630-16-tzimmermann@suse.de>
+Subject: Re: [PATCH v3 17/81] drm/ili9341: Run DRM default client setup
+In-Reply-To: <20240830084456.77630-18-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-16-tzimmermann@suse.de>
-Date: Tue, 03 Sep 2024 13:21:17 +0200
-Message-ID: <87zfopf0eq.fsf@minerva.mail-host-address-is-not-set>
+ <20240830084456.77630-18-tzimmermann@suse.de>
+Date: Tue, 03 Sep 2024 13:23:44 +0200
+Message-ID: <87wmjtf0an.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
@@ -99,7 +99,7 @@ Thomas Zimmermann <tzimmermann@suse.de> writes:
 >
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > ---
->  drivers/gpu/drm/tiny/ili9163.c | 4 +++-
+>  drivers/gpu/drm/tiny/ili9341.c | 4 +++-
 >  1 file changed, 3 insertions(+), 1 deletion(-)
 >
 
