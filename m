@@ -4,149 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18621CD342F
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 07:57:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF7F0CD13CF
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 08:53:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD8B210E433;
-	Tue,  3 Sep 2024 07:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93C8710E441;
+	Tue,  3 Sep 2024 08:53:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ITiu+lhi";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ey0IEJoR";
 	dkim-atps=neutral
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2043.outbound.protection.outlook.com [40.107.92.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 000AF10E433;
- Tue,  3 Sep 2024 07:57:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RD1um6qm5QVF/vC8vDbPk+rQ3eVqXCaMTlqHxT59VQAMtyAI/0X6BEOZGMz++GW2cRH56p+HOJXCCBvKTCqJHvRgP/sgDps9Zw1Lzn5mc29OJSShx2doUh1uk3FGLSeSz9LyXnWxCB6ag+o2vo9lWCo71/+YwOWtanyVQnLu/dvlmbGNdexG+N/W4BurRydRBbku0OtqJdfUS73hZZhcr2tbUlmkqtjOiXpFTR/iLuGPNGs/DVDhRwLhFeqAtXqVTO1KEZjLLQx9d5PPJaCw8bV/n1JsDGqSTPhR7pCY+iopWJaCx7HeYj4dElwPV7uNbFmvMvNGkpX43aWQefAiZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NPbbxM5++1p2Zcjrx720bL2KDFvO3EOw2X2MR2bLTlY=;
- b=LCUvK20oXZFX8buNYlGiyd1U7AHNJcAIubuvDS6UlP0fEOQgAho1mjptjWJTbZev0mkZBy19gcOa/KstcT4pFNBvYc1PM8JkAgKc/D3eGwjaawjAHgfqHD34pPZ0pJkUzlANXxbE/GFfk4Jzct3WzK7DpryTBHhTTWUpQBWzYZnoMg4kMtwROcar0AivHzM37EDkxcbs1fgb+RefFVU6jnW5Bla2M7QuD3EJxpJi369Ieh3VZI67kTF03sVLBb1D/VU/oxCWEZ7ydP0Ujio7vN7G1p0Yi+4ULGq/KwAPQh2CwrqBQPmJgpLXmb+0XPFri3gPJRBDoOAe5NECaT3BZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NPbbxM5++1p2Zcjrx720bL2KDFvO3EOw2X2MR2bLTlY=;
- b=ITiu+lhioRV7Bq7imMeshDI448NQtdZhCboLtmNZs6Tv8TtoRxTCx9pCUl0vKibvOcsz+4Lf91no18XBuV5yqvEBBY5yi1TzxDl0TWve50QuoY8t5yBfJfm/A4708akAS8McODmzglBzUwpX5/1FWQ20wKChugpF5e4elBjpgXE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH7PR12MB9127.namprd12.prod.outlook.com (2603:10b6:510:2f6::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.23; Tue, 3 Sep
- 2024 07:57:06 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.7918.024; Tue, 3 Sep 2024
- 07:57:06 +0000
-Message-ID: <2faa3873-9d17-4f48-8d19-85a22f970aad@amd.com>
-Date: Tue, 3 Sep 2024 09:57:01 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/ttm: Move pinned objects off LRU lists when
- pinning
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
-References: <20240902154159.78871-1-thomas.hellstrom@linux.intel.com>
- <20240902154159.78871-3-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240902154159.78871-3-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0180.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9f::9) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5474F10E43E;
+ Tue,  3 Sep 2024 08:53:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 46D215C5853;
+ Tue,  3 Sep 2024 08:53:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10C3CC4CEC4;
+ Tue,  3 Sep 2024 08:53:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1725353600;
+ bh=pF9CszNYwjJO5JuUq2dHO3LIuUrYYG12W216C7TCrIQ=;
+ h=Date:From:To:Subject:References:In-Reply-To:From;
+ b=ey0IEJoR3QjObccfvtl+IVNs3bMkadki8pzTl/HbOgT4SApEZdouS3ArzHkc+WJuK
+ Bm66TGtj7EvySvcm78AGruWZcEfGR0U8U8C9NORBB6uqtPSL/5ODv5lyzNJ8KuHeU8
+ PE64NcvpP4nBpdB3U6szU+7jwKRwJ3t1Qa5sVBJMwTxyOLLwT3EaKusSgWAywkv67Q
+ MnIMOz83UtKz01hHrzpvosTwotiuHcLztTI11jWY2NyAfLB8a2yUw01BgLtLSe+PRt
+ kDL2e57VE6D5wCyLXC/9v+pKwUJ6gWmKFfrSuO+aX8ZhSIJlzh215dxW3KfyvfQ3Wa
+ RKPr3mj5OlJWw==
+Date: Tue, 3 Sep 2024 10:53:17 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
+ Zefan Li <lizefan.x@bytedance.com>, 
+ Johannes Weiner <hannes@cmpxchg.org>, Andrew Morton <akpm@linux-foundation.org>,
+ Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@gmail.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Friedrich Vock <friedrich.vock@gmx.de>,
+ cgroups@vger.kernel.org, linux-mm@kvack.org, linux-doc@vger.kernel.org
+Subject: Re: [RFC PATCH 2/6] drm/cgroup: Add memory accounting DRM cgroup
+Message-ID: <20240903-resilient-quiet-oxpecker-d57d7a@houat>
+References: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
+ <20240627154754.74828-3-maarten.lankhorst@linux.intel.com>
+ <20240627-paper-vicugna-of-fantasy-c549ed@houat>
+ <6cb7c074-55cb-4825-9f80-5cf07bbd6745@linux.intel.com>
+ <20240628-romantic-emerald-snake-7b26ca@houat>
+ <70289c58-7947-4347-8600-658821a730b0@linux.intel.com>
+ <40ef0eed-c514-4ec1-9486-2967f23824be@ursulin.net>
+ <ZrIeuLi88jqbQ0FH@phenom.ffwll.local>
+ <20240806-gharial-of-abstract-reverence-aad6ea@houat>
+ <ZrJAnbLcj_dU47ZO@phenom.ffwll.local>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB9127:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1911da9-f32c-4918-cdc2-08dccbee014e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?M1lPVDk3V2NSK1IyT2Z1ZitETXpsSzFreUtiNEQ5bUtRS1BFYUM3QUl0RkdE?=
- =?utf-8?B?N25XMVZXOU5HUzRxclFMS1FDQkJ1R0wrUURFYkpteUJFQU9xQ09lWnhyOXNa?=
- =?utf-8?B?OWhZMW1vanBmYjZHUEJQUUtxdEVoalgyZ0ZDK3R4Q2R5WlkyYUxTMkRTb2w0?=
- =?utf-8?B?Ykl1OXhnak5hY25Gdk5CV3B1N0tWZnlpek1uSW4vSktUYXpWOTlTRmk1aHUw?=
- =?utf-8?B?WHZHelpjSnNzOVlsR1JmcWh3a3FBT0xaM0gxYjBndGEvNzcyMUtOS3lTMHMv?=
- =?utf-8?B?TXhRblBVdE5aS0FBWHpQRHhMYnFlcjNJUHR6cDlqaDBYV2dIM0NhN21wa0p4?=
- =?utf-8?B?K290V0VmbEh5RFQ3NmlDTXBtWkUybDc3bjJ5MXBIU2NWY3M4bjVhQVVKNktj?=
- =?utf-8?B?Zm5jYnFkYTVOZEg2ZEFsVWhFa0kwUy9KRmVoWmRJVkVBU25TaFRxNWx4REsw?=
- =?utf-8?B?V3haaVJlblk0Q2J4aDZDT0Y0YVFlc1Uvc05uZVRva1VoYThIRGZMUVAxSFZ1?=
- =?utf-8?B?QjNDcEFtU1ROZWZJbW1FdW9kSmVhTWdnd0dCQ1ZlMVJPbGx2OFYvWkgwaDJn?=
- =?utf-8?B?YWxrS0MvaTcwWXg0WkRCSVBSeVMya0MvSnNiQ0NCc01iaXNYWVhrRE5nTS9t?=
- =?utf-8?B?MFBKRXovb3FPU2xpWXZsRmlpQ2Y0OGJRNTdLMHk4a1k4Y0VtUDJpUVgvTDRV?=
- =?utf-8?B?ZkN5Q3VPdmtBekNqUjlTNzZId0dhUTFRY2tseHZkZDUrbk1LMWgyV1hVVmRr?=
- =?utf-8?B?Njdtb3ArL2FENmZaSGxnQVRKOGxuaE5vUmpjNXdBSGN2Wi9LQzlnV0p6cDRY?=
- =?utf-8?B?VFZjNFh4RWROWEJDLzJaV3l3V3hIZHNDVWNwVEdvMzdoUXpNcHVpeUVmRXgr?=
- =?utf-8?B?SjB6cGJadmpxdWhCV05IZitzWUViY25HRkxmQUxZSHhHSE9odTcxZUVWVXBz?=
- =?utf-8?B?eXd6TFIzYkNrblVDVVVPM2Vjc2Uvb3dweUx1cDlCUXdLY0Eybks5N21VR3o1?=
- =?utf-8?B?aVFBWk44QnVmbXB6RU9ROS9BYjI3OGx2Y0VKd2syU2dlc0EyTm9tKzd1cDE5?=
- =?utf-8?B?cThSY2E3TWxPUjhic1FPVCs1N1VxTlQ4N215eWV5TEJXY2pCTTBHOHdVSmI3?=
- =?utf-8?B?SURGV3RZZXp1WGZETjc4d3lucCtmcU4vR1NCV1RlYlh1NGVTOFh1QjZ2bHpu?=
- =?utf-8?B?RGFHL1NDZ2RXWll6TXVuelJrQ1MySSttUnU4SlhJVUJteS8vMFU0S2VwcUVn?=
- =?utf-8?B?ZS9CZmI5aG9UTGQ0VEkvblpZaWhQV2RrTmQ4ZzlUeEpKNlJEZGt0b1c4YktH?=
- =?utf-8?B?WmNHT01hcWZzNHJvb2ZNVGo4SXR2M2dhZ1NpYWM4dEY3ODFVeFBPUzFnNmEy?=
- =?utf-8?B?NEdreW1NRHZNc0Y4TkVKTkh6MWVBZitNSHdBZ2dSSFdBYXlUeEd2ampycnBv?=
- =?utf-8?B?L21aU05CSjMrZHRxZFV4RUJUTEJlN3gwUEN6aTFGOWhISTJrWkI5NHVucndK?=
- =?utf-8?B?LzRJYWpMWDhOelBzQmdxTnBkeTdMRlJTMWpRYy95QjZ1NXIvOS9GTTZUTmJQ?=
- =?utf-8?B?UGllUVQ5ZFdjbVJxOUNNbDVNRE11citHcmZnMnJOREh4cHhIMjVsS0k2bWVn?=
- =?utf-8?B?NTRCL29uYWh0Y0tPZWFoTUwwRmx5QTBzRnNUQWdmRk85Sm50Q2hPWDcyZ1hX?=
- =?utf-8?B?aHdMcU5RN3d2K3dVSWJPNlRCR3B5VkJZY3RMZTNEVUJkR1p3S3NBUStsc01q?=
- =?utf-8?B?SmttRDRlZ0NURkdBemhuSEQ0N2t3SHpIb1pVM09JUkRUNHo3TG53VGtUVnJH?=
- =?utf-8?B?R0NURzN6RVN6VlVQUXhkZz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0V4bFI4cTRpSUl5YXdKZ1BkamxhUStWOHhOajdNaDdTOE5NQjZKMi9KZ0Zx?=
- =?utf-8?B?cWYyOUNRNW0vR3U4eDJmZW9xZ2daOHZFb2orOVh0amxRKzcrSEswcjY1MUtD?=
- =?utf-8?B?aTV2a2ZOYVFVVjUwVjZWYUt0ZHh5ejNsV29zSm95NUl6ZW16OHdPbm1BRWJt?=
- =?utf-8?B?cmNhV0JVeVlPcUtDNlFiZ2I3YmpRM3dieDd1aGJYUUwxWUYzQ05Wd3lGSlNr?=
- =?utf-8?B?YUdIQ25KRUl1bldiRXVkOTlYY2N6VHVqd0xLMkZINk4xUW05S2hPcG9QaDFD?=
- =?utf-8?B?ZnZyL0VNL2pZbkxMSitwbk01Qmx5L05BUVZycjdGd0FtNDNCMDJDLzc0dWY1?=
- =?utf-8?B?d0NUVkV5TXI1RG9uWFJJY2QvdkEwSmd6NUE1clBFbFR3VldjVlQreUt2VGdi?=
- =?utf-8?B?WkhFNmFtbTUyWTBlalVMYnJVNkx3SUEvTzY0Y3AzVXpWSmdiZmRsdXdZVnFv?=
- =?utf-8?B?SW5xSDgxV0ZhS1NLeVE4SXRmd2pvRDZ2NC9ra1FuQm1qeTdoRG9ETE53dVRq?=
- =?utf-8?B?cUV2TjhCWHRnbmpGcU1iZ3FCL2FvandWQitCV3ROdjdNRWhqQzNycFdWc0g4?=
- =?utf-8?B?MUZvT1FQUy9JaFFyNWRqV0d5WWVKdnVENElnZVBGNGZYdFkzdVFxTzd6ZVpy?=
- =?utf-8?B?VWVoeWdPTEFYWlc1d2lOa1lzWW9wZ0ljdDVSS1dhOUNNZVJVMm9YNklvY1RK?=
- =?utf-8?B?ZnY0YXJRUE9idDZrQTNYOXB0VFIveVJ4UGJ3M0M1U1JVWjZnQW5NTHp1eWc1?=
- =?utf-8?B?NlcwN0VhVjBlSlpTdkV6RTd4N3lXcS9vNEkyNDRqMkNoamQ5S3V3cVYyNENU?=
- =?utf-8?B?a0ZtaitXK2tkNXlVZklDZXVaUTMzVGV6dGQrcFE5cnVoanNWWjNQdlQwd1NJ?=
- =?utf-8?B?OUxzNm4vWkRoUDFHRlUwVWt6TlJ5bXE0bTdtTTcxWFpRTTNhQ2tiNzk3aVdu?=
- =?utf-8?B?R3E4b2txdU9mTXUyeEpuL0RCbXcvd05pemNBNlpISXNVV29XMTQvYlUvT2lH?=
- =?utf-8?B?Rys3R1RUaXZrTE9UVVBUSW9iLzNadmNNYjE1emNQMllvNXJNYXoyekplYjNS?=
- =?utf-8?B?N25vdEZFdmF6RS94RzkreVhDbDBqeElqbVdrQ2gzMVJnTUJhWm5TbERMRzJ5?=
- =?utf-8?B?RmIrVXNtU1paNnV5a0U4SzU0SGJVK3FhQzI2eTVZTnNTaVRMLytJaExKcmFx?=
- =?utf-8?B?VUZsQUtQcjIzUWVBdmZ2UWFqZWxkdmR2ckMxN1FYOW03emEzdG9tMHVnVWlT?=
- =?utf-8?B?bFIxcXJ1Z1hhTDBMVWtralVpMHhMNnM3bGNhZlptUHFXUVZ1NTFNNVlkTlZa?=
- =?utf-8?B?K3dLekRmd2tjUFpvYnRQREdiUkV1RGxsZnovVjhIaVVSK3ByUG4xelFTNEpy?=
- =?utf-8?B?bVhIc2IxTTM0dG1mcStCczUycDl4Ukc3SEJFZDUzT2V6OFA0Q295TDRJdmtS?=
- =?utf-8?B?UGZkMDl1RmV4c1FXTVF4MUxvZ0xqNFNjZWRCbi9aSnZCa2NDbUhNK1RlY1RU?=
- =?utf-8?B?ZkN6Yk0zWmIyTjVxUUZIeVMvVEtxdTdnZ0hMbnNBb01wWXpQamZ0QUNXVzli?=
- =?utf-8?B?dDlkY3VHclBCVFZwcy9CeUtQeWNhU3JIMU13UUNjQ0ZkOW1MQzdDOGgrMHpt?=
- =?utf-8?B?aXFBNUh2MmJBNytPVlNmdEhLTXd2clVaL1NNU1o0UGlxdW5PY1NVcVNTUzBs?=
- =?utf-8?B?V2g3VU5MQkprUHZxbUR6WTJpNkd4dVNDR09aNW9CaUwzanJ4VlB6QzRRZmRI?=
- =?utf-8?B?Mis2a2pxeHBLVElFMnRVQ3VBanNWOW5iQkpWcmExYmh5VEhHMmpNM1k3SEhU?=
- =?utf-8?B?L0lYZnBMM3hXMDhweFdIZnNpWHl4VTVUbFk5akJucHlYZnZMWnBYUlNJQlJK?=
- =?utf-8?B?Z3M5L1g1NEF0K0J5Rk1henJ0Nng1SUJtZ1FOVzZuS2d1ZmlKdUdRYzlTQktR?=
- =?utf-8?B?bzVqQm04TVZrektIZHVsS2ZjSjVWdXFhaUd0OC9YNXBZVkVlM3NKQjRBV2xn?=
- =?utf-8?B?UnpYdnZ1dGRkMVZlRTVKaXJGT2R1NHRJV2lOUnJVUkNwQVMyRG5ZT0FZUzht?=
- =?utf-8?B?NTdmaWJjR3hLM0x4clk0NVgxcHd3TFFwUTFkOVBUNHVyaXNvNExZM1d1OGZs?=
- =?utf-8?Q?feA479KbNbcawbKQk5FYQQek/?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1911da9-f32c-4918-cdc2-08dccbee014e
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2024 07:57:06.6611 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5Yz0UlRiTgW2quJFlvIz7JvwGY87tpuq+TtP/SFBTlm0qispKsipTxncbSET5aTm
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9127
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="r7g4aiuocov6uk3k"
+Content-Disposition: inline
+In-Reply-To: <ZrJAnbLcj_dU47ZO@phenom.ffwll.local>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,54 +72,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 02.09.24 um 17:41 schrieb Thomas Hellström:
-> The ttm_bo_pin() and ttm_bo_unpin() functions weren't moving their
-> resources off the LRU list to the unevictable list.
->
-> Make sure that happens so that pinned objects don't accidently linger
-> on the LRU lists, and also make sure to move them back once they
-> are unpinned.
->
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-I really can't figure out why we removed that. Anyway Reviewed-by: 
-Christian König <christian.koenig@amd.com> for now.
+--r7g4aiuocov6uk3k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> ---
->   drivers/gpu/drm/ttm/ttm_bo.c | 10 ++++++----
->   1 file changed, 6 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index d244566a7e48..057a65f51969 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -592,9 +592,10 @@ void ttm_bo_pin(struct ttm_buffer_object *bo)
->   	dma_resv_assert_held(bo->base.resv);
->   	WARN_ON_ONCE(!kref_read(&bo->kref));
->   	spin_lock(&bo->bdev->lru_lock);
-> -	if (bo->resource)
-> +	if (!bo->pin_count++ && bo->resource) {
->   		ttm_resource_del_bulk_move(bo->resource, bo);
-> -	++bo->pin_count;
-> +		ttm_resource_move_to_lru_tail(bo->resource);
-> +	}
->   	spin_unlock(&bo->bdev->lru_lock);
->   }
->   EXPORT_SYMBOL(ttm_bo_pin);
-> @@ -613,9 +614,10 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo)
->   		return;
->   
->   	spin_lock(&bo->bdev->lru_lock);
-> -	--bo->pin_count;
-> -	if (bo->resource)
-> +	if (!--bo->pin_count && bo->resource) {
->   		ttm_resource_add_bulk_move(bo->resource, bo);
-> +		ttm_resource_move_to_lru_tail(bo->resource);
-> +	}
->   	spin_unlock(&bo->bdev->lru_lock);
->   }
->   EXPORT_SYMBOL(ttm_bo_unpin);
+On Tue, Aug 06, 2024 at 05:26:21PM GMT, Daniel Vetter wrote:
+> On Tue, Aug 06, 2024 at 04:09:43PM +0200, Maxime Ripard wrote:
+> > On Tue, Aug 06, 2024 at 03:01:44PM GMT, Daniel Vetter wrote:
+> > > On Mon, Jul 01, 2024 at 06:01:41PM +0100, Tvrtko Ursulin wrote:
+> > > >=20
+> > > > On 01/07/2024 10:25, Maarten Lankhorst wrote:
+> > > > > Den 2024-06-28 kl. 16:04, skrev Maxime Ripard:
+> > > > > > Hi,
+> > > > > >=20
+> > > > > > On Thu, Jun 27, 2024 at 09:22:56PM GMT, Maarten Lankhorst wrote:
+> > > > > > > Den 2024-06-27 kl. 19:16, skrev Maxime Ripard:
+> > > > > > > > Hi,
+> > > > > > > >=20
+> > > > > > > > Thanks for working on this!
+> > > > > > > >=20
+> > > > > > > > On Thu, Jun 27, 2024 at 05:47:21PM GMT, Maarten Lankhorst w=
+rote:
+> > > > > > > > > The initial version was based roughly on the rdma and mis=
+c cgroup
+> > > > > > > > > controllers, with a lot of the accounting code borrowed f=
+rom rdma.
+> > > > > > > > >=20
+> > > > > > > > > The current version is a complete rewrite with page count=
+er; it uses
+> > > > > > > > > the same min/low/max semantics as the memory cgroup as a =
+result.
+> > > > > > > > >=20
+> > > > > > > > > There's a small mismatch as TTM uses u64, and page_counte=
+r long pages.
+> > > > > > > > > In practice it's not a problem. 32-bits systems don't rea=
+lly come with
+> > > > > > > > > > =3D4GB cards and as long as we're consistently wrong wi=
+th units, it's
+> > > > > > > > > fine. The device page size may not be in the same units a=
+s kernel page
+> > > > > > > > > size, and each region might also have a different page si=
+ze (VRAM vs GART
+> > > > > > > > > for example).
+> > > > > > > > >=20
+> > > > > > > > > The interface is simple:
+> > > > > > > > > - populate drmcgroup_device->regions[..] name and size fo=
+r each active
+> > > > > > > > >     region, set num_regions accordingly.
+> > > > > > > > > - Call drm(m)cg_register_device()
+> > > > > > > > > - Use drmcg_try_charge to check if you can allocate a chu=
+nk of memory,
+> > > > > > > > >     use drmcg_uncharge when freeing it. This may return a=
+n error code,
+> > > > > > > > >     or -EAGAIN when the cgroup limit is reached. In that =
+case a reference
+> > > > > > > > >     to the limiting pool is returned.
+> > > > > > > > > - The limiting cs can be used as compare function for
+> > > > > > > > >     drmcs_evict_valuable.
+> > > > > > > > > - After having evicted enough, drop reference to limiting=
+ cs with
+> > > > > > > > >     drmcs_pool_put.
+> > > > > > > > >=20
+> > > > > > > > > This API allows you to limit device resources with cgroup=
+s.
+> > > > > > > > > You can see the supported cards in /sys/fs/cgroup/drm.cap=
+acity
+> > > > > > > > > You need to echo +drm to cgroup.subtree_control, and then=
+ you can
+> > > > > > > > > partition memory.
+> > > > > > > > >=20
+> > > > > > > > > Signed-off-by: Maarten Lankhorst<maarten.lankhorst@linux.=
+intel.com>
+> > > > > > > > > Co-developed-by: Friedrich Vock<friedrich.vock@gmx.de>
+> > > > > > > > I'm sorry, I should have wrote minutes on the discussion we=
+ had with TJ
+> > > > > > > > and Tvrtko the other day.
+> > > > > > > >=20
+> > > > > > > > We're all very interested in making this happen, but doing =
+a "DRM"
+> > > > > > > > cgroup doesn't look like the right path to us.
+> > > > > > > >=20
+> > > > > > > > Indeed, we have a significant number of drivers that won't =
+have a
+> > > > > > > > dedicated memory but will depend on DMA allocations one way=
+ or the
+> > > > > > > > other, and those pools are shared between multiple framewor=
+ks (DRM,
+> > > > > > > > V4L2, DMA-Buf Heaps, at least).
+> > > > > > > >=20
+> > > > > > > > This was also pointed out by Sima some time ago here:
+> > > > > > > > https://lore.kernel.org/amd-gfx/YCVOl8%2F87bqRSQei@phenom.f=
+fwll.local/
+> > > > > > > >=20
+> > > > > > > > So we'll want that cgroup subsystem to be cross-framework. =
+We settled on
+> > > > > > > > a "device" cgroup during the discussion, but I'm sure we'll=
+ have plenty
+> > > > > > > > of bikeshedding.
+> > > > > > > >=20
+> > > > > > > > The other thing we agreed on, based on the feedback TJ got =
+on the last
+> > > > > > > > iterations of his series was to go for memcg for drivers no=
+t using DMA
+> > > > > > > > allocations.
+> > > > > > > >=20
+> > > > > > > > It's the part where I expect some discussion there too :)
+> > > > > > > >=20
+> > > > > > > > So we went back to a previous version of TJ's work, and I'v=
+e started to
+> > > > > > > > work on:
+> > > > > > > >=20
+> > > > > > > >     - Integration of the cgroup in the GEM DMA and GEM VRAM=
+ helpers (this
+> > > > > > > >       works on tidss right now)
+> > > > > > > >=20
+> > > > > > > >     - Integration of all heaps into that cgroup but the sys=
+tem one
+> > > > > > > >       (working on this at the moment)
+> > > > > > >=20
+> > > > > > > Should be similar to what I have then. I think you could use =
+my work to
+> > > > > > > continue it.
+> > > > > > >=20
+> > > > > > > I made nothing DRM specific except the name, if you renamed i=
+t the device
+> > > > > > > resource management cgroup and changed the init function sign=
+ature to take a
+> > > > > > > name instead of a drm pointer, nothing would change. This is =
+exactly what
+> > > > > > > I'm hoping to accomplish, including reserving memory.
+> > > > > >=20
+> > > > > > I've started to work on rebasing my current work onto your seri=
+es today,
+> > > > > > and I'm not entirely sure how what I described would best fit. =
+Let's
+> > > > > > assume we have two KMS device, one using shmem, one using DMA
+> > > > > > allocations, two heaps, one using the page allocator, the other=
+ using
+> > > > > > CMA, and one v4l2 device using dma allocations.
+> > > > > >=20
+> > > > > > So we would have one KMS device and one heap using the page all=
+ocator,
+> > > > > > and one KMS device, one heap, and one v4l2 driver using the DMA
+> > > > > > allocator.
+> > > > > >=20
+> > > > > > Would these make different cgroup devices, or different cgroup =
+regions?
+> > > > >=20
+> > > > > Each driver would register a device, whatever feels most logical =
+for that device I suppose.
+> > > > >=20
+> > > > > My guess is that a prefix would also be nice here, so register a =
+device with name of drm/$name or v4l2/$name, heap/$name. I didn't give it m=
+uch thought and we're still experimenting, so just try something. :)
+> > > > >=20
+> > > > > There's no limit to amount of devices, I only fixed amount of poo=
+ls to match TTM, but even that could be increased arbitrarily. I just don't=
+ think there is a point in doing so.
+> > > >=20
+> > > > Do we need a plan for top level controls which do not include regio=
+n names?
+> > > > If the latter will be driver specific then I am thinking of ease of
+> > > > configuring it all from the outside. Especially considering that on=
+e cgroup
+> > > > can have multiple devices in it.
+> > > >=20
+> > > > Second question is about double accounting for shmem backed objects=
+=2E I think
+> > > > they will be seen, for drivers which allocate backing store at buff=
+er
+> > > > objects creation time, under the cgroup of process doing the creati=
+on, in
+> > > > the existing memory controller. Right?
+> > >=20
+> > > We currently don't set __GFP_ACCOUNT respectively use GFP_KERNEL_ACCO=
+UNT,
+> > > so no. Unless someone allocates them with GFP_USER ...
+> > >=20
+> > > > Is there a chance to exclude those from there and only have them in=
+ this new
+> > > > controller? Or would the opposite be a better choice? That is, not =
+see those
+> > > > in the device memory controller but only in the existing one.
+> > >=20
+> > > I missed this, so jumping in super late. I think guidance from Tejun =
+was
+> > > to go the other way around: Exclude allocations from normal system
+> > > memory from device cgroups and instead make sure it's tracked in the
+> > > existing memcg.
+> > >=20
+> > > Which might mean we need memcg shrinkers and the assorted pain ...
+> > >=20
+> > > Also I don't think we ever reached some agreement on where things lik=
+e cma
+> > > allocations should be accounted for in this case.
+> >=20
+> > Yeah, but that's the thing, memcg probably won't cut it for CMA. Because
+> > if you pull the thread, that means that dma-heaps also have to register
+> > their buffers into memcg too, even if it's backed by something else than
+> > RAM.
+>=20
+> For cma I'm kinda leaning towards "both". If you don't have a special cma
+> cgroup and just memcg, you can exhaust the cma easily. But if the cma
+> allocations also aren't tracked in memcg, you have a blind spot there,
+> which isn't great.
 
+I think one of earlier comment from Tejun was that we don't want to
+double-account memory, but I guess your point is that we should double
+account if we allocate CMA buffers from the main CMA allocator, and not
+if we're allocating from a secondary one?
+
+Maxime
+
+--r7g4aiuocov6uk3k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZtbOfQAKCRAnX84Zoj2+
+dnwzAYCEWYkV8bFQQiateI5fA27NPKONLZzvNymw/YlkL6RqCbyy8yQF5/c3OB2y
+FyfBwboBgN6ohy+xL0NP1ul/DCpoJ/yDH0DMRhvYsEGPgvbkGm+8WPbc/KFc/xKt
+alKvNeyYYQ==
+=9H/P
+-----END PGP SIGNATURE-----
+
+--r7g4aiuocov6uk3k--
