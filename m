@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D6DDCD3429
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 11:31:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAD1ECD3420
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Sep 2024 11:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE89110E4DB;
-	Tue,  3 Sep 2024 11:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99EE710E4DD;
+	Tue,  3 Sep 2024 11:31:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="icA1LDHX";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fh0ht9fB";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB8710E4DA
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 11:31:30 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1475910E4DF
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Sep 2024 11:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1725363089;
+ s=mimecast20190719; t=1725363110;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=JsgjyVAoZiwX/0plI8r6xhrkXgx4B8n714qF3W8WxEQ=;
- b=icA1LDHXfDhJPx6egvlxbTUlYG8/aEMOoKtaMxNvlQXo/cYtbKQMNtJrE0e+oXyxoA1KxQ
- Ixw0erSmT1FjryYBnTbO1B84ey8rzjVnPVM2+b3bYNGw57v8fZSgdUuvpVv4hVrqrprKxT
- l17kEb4FDQ7IWhZMU7n3aW1ikgyBgCw=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=G6Z3wxXNuqkdNQKBlR4V5hxpw8pNzMmDdZpwiBC57Mk=;
+ b=fh0ht9fB0pQMTmaRFrBvqK2XzKzffcECjPe3O1FX8dBwoZ1ATDT34N+8nWqXyheQEV8HzU
+ 65JyTTSVUgt2uCrbTUWnh6klbphaob2IoqNEkyq0J6DEY1m9tSDCkCRTYQWZYnyV/bIcgT
+ aFGgm29arWEWLxdTD1wesF80XyaLYl4=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-247-mdICSyUJPxiwZxj6hJZsfw-1; Tue, 03 Sep 2024 07:31:28 -0400
-X-MC-Unique: mdICSyUJPxiwZxj6hJZsfw-1
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-42c78767b90so28514075e9.1
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 04:31:27 -0700 (PDT)
+ us-mta-576-LIsJupfKORiSWdFiVcIDrA-1; Tue, 03 Sep 2024 07:31:48 -0400
+X-MC-Unique: LIsJupfKORiSWdFiVcIDrA-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-42bb6f7e7adso48539675e9.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 03 Sep 2024 04:31:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725363087; x=1725967887;
+ d=1e100.net; s=20230601; t=1725363107; x=1725967907;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=JsgjyVAoZiwX/0plI8r6xhrkXgx4B8n714qF3W8WxEQ=;
- b=uHYMKC9UulAQKNMvN4bwrTuOXXUqTf634Yuwo862hoIIBjFhJAnanBwdP0TAiLLOIQ
- lwCDsr0AZmT5OVKi2xlwwChMavieOZ+wx3ZhWAohXAmTTiN0rmHdQ7s3F2Z2mlUCtNGN
- 7IZNcSM8Hx1bAIA6DRUuHC3rj+BzksnKvUfqRbeDjKotIPueNIL0U2ieMAxlFzzmWVj9
- +IKDg15vpe6is5iP9e8U+32kWl/xNO6p7+C5yZNeazhSdYD1SqSLd6SPfjqEFVvHmu5k
- UGgmTvnfH1ZA66hBd9PcHlirzFuO63V6WJbHVv/TMio863xf1JV8e3Qdf94bNCRUizPt
- 8k5A==
+ bh=G6Z3wxXNuqkdNQKBlR4V5hxpw8pNzMmDdZpwiBC57Mk=;
+ b=wbU9WFpI4oBuoqRWR/XVIFUqCl2hbwkXDcLdm+YBhEjeMYxSI994Apo8QKq1ayz59h
+ wsTnuf8UdSwGXSfm4lqWoA//IdYixprZj7Ujbl4MvAMqHEve3LSiDvRQyxaCCutSH3H/
+ xhB5cNbYNA9ufsoLd0rcpKpi38ipSYOIEzvkBl0bFE4veONRpl65LgA+GBPR1c4sc9bt
+ A3JhPGJP99P6wGckkQR31oHVY3VH7T4wPuLkLEkRUwcr2pbVho1X5ZksuoqfzgX846LJ
+ POKiQu4cNYQo3SASARDl5dt52AONbmS/7FVCuFsI1JcaT3yoQfswhM782liywrD+UAAi
+ zT2Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVJGBm1HT7W/TZ0QJli/Y2RRYzUCrxuEZEvdvx6XgsFKDyZmP8RMOh672FuA7r84ksgUnYqTXFihg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxZvTXScdGXeCkEAiHG0wnRZXFE+qQ493yFeZY1HiNTTG76lrHx
- h3CPwjTyPysF263sebi5Rn/CIPJO+/aOOWqxVOpf1iXTd1dDMw6Lba4kLNpBznOButNeSdFe6iw
- wqMTkc7DJYmxbBb4S1+1zEXBgO1/5EibSEINXwg/1o3ptRYfqi1NMHc8hTI10JEao
-X-Received: by 2002:a05:600c:3ca0:b0:426:5e8e:410a with SMTP id
- 5b1f17b1804b1-42c8810319emr24400915e9.24.1725363086976; 
- Tue, 03 Sep 2024 04:31:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH5maMqjeo2zbQD/i+Rl7OMnLTPEPO4OhEAVhbI0hhGbDze6A2VsY4Z4sxV6OhxoUjaVqcBwg==
-X-Received: by 2002:a05:600c:3ca0:b0:426:5e8e:410a with SMTP id
- 5b1f17b1804b1-42c8810319emr24400635e9.24.1725363086472; 
- Tue, 03 Sep 2024 04:31:26 -0700 (PDT)
+ AJvYcCUxmSaioL5P4pHgeUayzigqozCalEUZEW/fJQ3ikYBy1VZifqXA7UK4DUJ4ZY6c9I3gkb/rQYo7Pg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzEL+9eIU+x6Gn+EwvQaCbRxmAkfRoGZ9KKQLpOzARUmeb5AP1P
+ W5tnosxJz0FxBRMp3uR7FcC4ne09sc0TNs4ylQTHw+QJ55BsQXdaWoFlA5u0Gvq4OgOcsCqzYT8
+ UcBx6BdPUFk4TpJusbYSm+Eku+q+etXHTo42rR/58RfGH5GU3PQO9X8bTDqO4jbUQ
+X-Received: by 2002:a05:600c:4ed0:b0:426:654e:16da with SMTP id
+ 5b1f17b1804b1-42c7b517656mr67767375e9.0.1725363107472; 
+ Tue, 03 Sep 2024 04:31:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEeMOyjzQgizDJPCm6Kr9tFNsJyk2nqnC/B+gZS4uzByo92kWKPWlduCmztovidAzuV/DZW6g==
+X-Received: by 2002:a05:600c:4ed0:b0:426:654e:16da with SMTP id
+ 5b1f17b1804b1-42c7b517656mr67767215e9.0.1725363106992; 
+ Tue, 03 Sep 2024 04:31:46 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42bb6e274b6sm168609195e9.33.2024.09.03.04.31.26
+ ffacd0b85a97d-374c7e62b1esm6705752f8f.36.2024.09.03.04.31.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 04:31:26 -0700 (PDT)
+ Tue, 03 Sep 2024 04:31:46 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, jfalempe@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v3 41/81] drm/sun4i: Run DRM default client setup
-In-Reply-To: <20240830084456.77630-42-tzimmermann@suse.de>
+ Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen
+ <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH v3 42/81] drm/tidss: Run DRM default client setup
+In-Reply-To: <20240830084456.77630-43-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-42-tzimmermann@suse.de>
-Date: Tue, 03 Sep 2024 13:31:25 +0200
-Message-ID: <87wmjtdlde.fsf@minerva.mail-host-address-is-not-set>
+ <20240830084456.77630-43-tzimmermann@suse.de>
+Date: Tue, 03 Sep 2024 13:31:45 +0200
+Message-ID: <87ttexdlcu.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
@@ -99,16 +99,14 @@ Thomas Zimmermann <tzimmermann@suse.de> writes:
 > for DRM. Set fbdev_probe in struct drm_driver, so that the client
 > setup can start the common fbdev client.
 >
-> The sun4i driver specifies as preferred color mode of 32. As this
+> The tidss driver specifies a preferred color mode of 32. As this
 > is the default if no format has been given, leave it out entirely.
 >
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Samuel Holland <samuel@sholland.org>
+> Cc: Jyri Sarha <jyri.sarha@iki.fi>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 > ---
->  drivers/gpu/drm/sun4i/sun4i_drv.c | 4 +++-
+>  drivers/gpu/drm/tidss/tidss_drv.c | 4 +++-
 >  1 file changed, 3 insertions(+), 1 deletion(-)
 >
 
