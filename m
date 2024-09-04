@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FEDDCD4853
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 16:24:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2E3ECD4857
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 16:29:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F35910E807;
-	Wed,  4 Sep 2024 16:24:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7F710E22A;
+	Wed,  4 Sep 2024 16:29:38 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2531C10E807;
- Wed,  4 Sep 2024 16:24:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2678330453670211295=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 568A010E22A;
+ Wed,  4 Sep 2024 16:29:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_use_IS=5FENABLED=28=29?=
- =?utf-8?q?_instead_of_defined=28=29_on_config_options?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/2=5D_drm/xe=3A_Cleanup_has=5Fflat=5Fccs_handling?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Sep 2024 16:24:43 -0000
-Message-ID: <172546708313.934170.3114294313700668591@2413ebb6fbb6>
+Date: Wed, 04 Sep 2024 16:29:37 -0000
+Message-ID: <172546737733.934236.5369139662798186960@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240904145231.3902289-1-jani.nikula@intel.com>
-In-Reply-To: <20240904145231.3902289-1-jani.nikula@intel.com>
+References: <20240904162238.2831202-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240904162238.2831202-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,175 +40,18 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2678330453670211295==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: use IS_ENABLED() instead of defined() on config options
-URL   : https://patchwork.freedesktop.org/series/138216/
-State : failure
+Series: series starting with [1/2] drm/xe: Cleanup has_flat_ccs handling
+URL   : https://patchwork.freedesktop.org/series/138219/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea_BAT -> xe-pw-138216v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-138216v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-138216v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-138216v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Warnings ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-pvc-2:          [SKIP][3] ([Intel XE#1932]) -> [SKIP][4] +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea/bat-pvc-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/bat-pvc-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138216v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [PASS][5] -> [FAIL][6] ([Intel XE#886]) +1 other test fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  [Intel XE#1932]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1932
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c72d3ffc0308 drm-tip: 2024y-09m-04d-10h-20m-22s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Cleanup has_flat_ccs handling
+Applying: drm/xe: Update runtime detection of has_flat_ccs
 
 
-Build changes
--------------
-
-  * IGT: IGT_8004 -> IGT_8005
-  * Linux: xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea -> xe-pw-138216v1
-
-  IGT_8004: 0e443bec0ccfb56c2754437b465fc197ee4fd481 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea: c72d3ffc0308b71024de6f80c3596668991c67ea
-  xe-pw-138216v1: 138216v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/index.html
-
---===============2678330453670211295==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: use IS_ENABLED() instead of defined() on config options</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138216/">https://patchwork.freedesktop.org/series/138216/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea_BAT -&gt; xe-pw-138216v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-138216v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-138216v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-138216v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@sriov_basic@enable-vfs-autoprobe-off:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea/bat-pvc-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1932">Intel XE#1932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/bat-pvc-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138216v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138216v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8004 -&gt; IGT_8005</li>
-<li>Linux: xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea -&gt; xe-pw-138216v1</li>
-</ul>
-<p>IGT_8004: 0e443bec0ccfb56c2754437b465fc197ee4fd481 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1890-c72d3ffc0308b71024de6f80c3596668991c67ea: c72d3ffc0308b71024de6f80c3596668991c67ea<br />
-  xe-pw-138216v1: 138216v1</p>
-
-</body>
-</html>
-
---===============2678330453670211295==--
