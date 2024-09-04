@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A93BECA0ED3
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 07:33:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17033CA0ED3
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 07:34:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 601EA10E69A;
-	Wed,  4 Sep 2024 07:33:01 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5897D10E69A;
- Wed,  4 Sep 2024 07:33:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C461410E69B;
+	Wed,  4 Sep 2024 07:34:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GXwkTzPt";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8776A10E69B;
+ Wed,  4 Sep 2024 07:34:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725435260; x=1756971260;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=FIsHE38a+le7RS1xXMqAYPLkp2CSgXFvGW2hAvRBUes=;
+ b=GXwkTzPtnqfNGgWoi1vWBT32eBjjaLdi4Iqf4I8JxCSXtRTkQrUU40uK
+ dxfcxh/5ML5CEfzabIZRIjqmn86KsGtw/6a13mI38o1Zy7kfvPyOMbxaA
+ A47M5ZCbu4lRXXFqaKS83jaGJRqIATTivTCivDDqtgUjZjjpCXYx+Fekm
+ gIieMa9/+lEa6CoN3sFmJeon/SMH/FnZPskn7rzw/pd8NCZ03QZzmZpDh
+ +qeqz7ULLAPZvCJ17AW82w5289xgi2KRB6DcyYiX06y9+DkuBDK9yF7M6
+ 8ehXPGxFHF71aywk/zlv0g+e+ti8JdItZ8dEvSfxRR/jPkIminZGMkhUJ w==;
+X-CSE-ConnectionGUID: 0+EqGtLBQR2Onw9b/KzHHw==
+X-CSE-MsgGUID: x82nnB/iRgGLgwXiZrqYtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="27865393"
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="27865393"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 00:34:19 -0700
+X-CSE-ConnectionGUID: J0xrbrs6Qke1fCMiw7ISOA==
+X-CSE-MsgGUID: RM7MiZUTQCCaYpEd3jkIeg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="65216800"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.18])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 00:34:16 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+Subject: Re: [PATCH 3/4] drm/xe/display: Kill useless has_display
+In-Reply-To: <20240903223803.380711-4-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240903223803.380711-1-rodrigo.vivi@intel.com>
+ <20240903223803.380711-4-rodrigo.vivi@intel.com>
+Date: Wed, 04 Sep 2024 10:33:59 +0300
+Message-ID: <87a5gnub2w.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/ttm=3A_Really_use_a_?=
- =?utf-8?q?separate_LRU_list_for_swapped-_and_pinned_objects_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Sep 2024 07:33:00 -0000
-Message-ID: <172543518035.931945.1207410439482162198@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240904070808.95126-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240904070808.95126-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +68,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 03 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> When HAS_DISPLAY is false, info.probe_display is set to false.
 
-Series: drm/ttm: Really use a separate LRU list for swapped- and pinned objects (rev4)
-URL   : https://patchwork.freedesktop.org/series/138103/
-State : warning
+Where? xe_display_probe() returns 0 directly when HAS_DISPLAY() is false
+instead of setting info.probe_display.
 
-== Summary ==
+> Hence, all these calls to has_display() are bogus.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast e159ed9ab3ec08042286fb8af2560dbc540beccb
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Also not quite, as intel_display_device_info_runtime_init() checks fuses
+and could change HAS_DISPLAY() to return false after that, with no
+impact on info.probe_display.
 
+BR,
+Jani.
 
+>
+> With only one place left, use the main macro now and entirely
+> kill has_display() local helper.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_display.c | 43 ++++++++-----------------
+>  1 file changed, 14 insertions(+), 29 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 65331bbbc068..daf9b9baa88a 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -29,13 +29,6 @@
+>  #include "intel_opregion.h"
+>  #include "xe_module.h"
+>  
+> -/* Xe device functions */
+> -
+> -static bool has_display(struct xe_device *xe)
+> -{
+> -	return HAS_DISPLAY(&xe->display);
+> -}
+> -
+>  /**
+>   * xe_display_driver_probe_defer - Detect if we need to wait for other drivers
+>   *				   early on
+> @@ -336,8 +329,7 @@ static void xe_display_from_d3cold(struct xe_device *xe)
+>  
+>  	intel_dmc_resume(xe);
+>  
+> -	if (has_display(xe))
+> -		drm_mode_config_reset(&xe->drm);
+> +	drm_mode_config_reset(&xe->drm);
+>  
+>  	intel_display_driver_init_hw(xe);
+>  	intel_hpd_init(xe);
+> @@ -388,11 +380,10 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>  	 */
+>  	intel_power_domains_disable(xe);
+>  	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
+> -	if (has_display(xe)) {
+> -		drm_kms_helper_poll_disable(&xe->drm);
+> -		intel_display_driver_disable_user_access(xe);
+> -		intel_display_driver_suspend(xe);
+> -	}
+> +
+> +	drm_kms_helper_poll_disable(&xe->drm);
+> +	intel_display_driver_disable_user_access(xe);
+> +	intel_display_driver_suspend(xe);
+>  
+>  	xe_display_flush_cleanup_work(xe);
+>  
+> @@ -400,10 +391,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>  
+>  	intel_hpd_cancel_work(xe);
+>  
+> -	if (has_display(xe)) {
+> -		intel_display_driver_suspend_access(xe);
+> -		intel_encoder_suspend_all(&xe->display);
+> -	}
+> +	intel_display_driver_suspend_access(xe);
+> +	intel_encoder_suspend_all(&xe->display);
+>  
+>  	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
+>  
+> @@ -440,23 +429,19 @@ void xe_display_pm_resume(struct xe_device *xe)
+>  
+>  	intel_dmc_resume(xe);
+>  
+> -	if (has_display(xe))
+> -		drm_mode_config_reset(&xe->drm);
+> +	drm_mode_config_reset(&xe->drm);
+>  
+>  	intel_display_driver_init_hw(xe);
+>  	intel_hpd_init(xe);
+>  
+> -	if (has_display(xe))
+> -		intel_display_driver_resume_access(xe);
+> +	intel_display_driver_resume_access(xe);
+>  
+>  	/* MST sideband requires HPD interrupts enabled */
+>  	intel_dp_mst_resume(xe);
+> -	if (has_display(xe)) {
+> -		intel_display_driver_resume(xe);
+> -		drm_kms_helper_poll_enable(&xe->drm);
+> -		intel_display_driver_enable_user_access(xe);
+> -		intel_hpd_poll_disable(xe);
+> -	}
+> +	intel_display_driver_resume(xe);
+> +	drm_kms_helper_poll_enable(&xe->drm);
+> +	intel_display_driver_enable_user_access(xe);
+> +	intel_hpd_poll_disable(xe);
+>  
+>  	intel_opregion_resume(display);
+>  
+> @@ -485,7 +470,7 @@ int xe_display_probe(struct xe_device *xe)
+>  	if (err)
+>  		return err;
+>  
+> -	if (has_display(xe))
+> +	if (HAS_DISPLAY(&xe->display))
+>  		return 0;
+>  
+>  no_display:
+
+-- 
+Jani Nikula, Intel
