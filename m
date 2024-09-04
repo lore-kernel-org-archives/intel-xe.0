@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09E65CD4F21
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99657CD4F23
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 17:04:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C714210E7AA;
-	Wed,  4 Sep 2024 17:04:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DE010E80A;
+	Wed,  4 Sep 2024 17:04:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NLdNUNw+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YpCzbBEL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF8D10E7AA;
- Wed,  4 Sep 2024 17:04:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1141710E7AA;
+ Wed,  4 Sep 2024 17:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725469443; x=1757005443;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0NvObvb7LXWadTVjuIaSckGR1cJn0z2r9rsrcmM7ra0=;
- b=NLdNUNw+3OCm9oPbH/iwDfRkTizbDfmBwEacJOyfl081sWrkUfrlX/3M
- I5oL6XIfZAhhhLeoPzZOvou/cn+l2HPHL0TvqbH6QA4jasZ6R738MBeIX
- Q+1eCt1Lwhrh1OchmkpDjiE5TuQCJiqVXZJBka9G1aydSrlrfBNq+/kQY
- YtBXUAnrekCntbY1lqnpacoksiCRYRuSJfcS2RqgQ6jBqM3VDS1Rl6yVN
- pdp3loe6VPgXuAiDP8+XwnWpzVKTk0vx2YMn+Xa2ed9f8Z8GkvoDe3orv
- +H7mV8uXwfhFEvj+j8jjHKkwUXwiHjqv69CqJwes364vGMRnzLkHcDtwe w==;
-X-CSE-ConnectionGUID: /OE4joL0QsyPycYHhSZgSw==
-X-CSE-MsgGUID: wvgi/tZdRpGIcz7kCe1Ctg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="27067466"
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; d="scan'208";a="27067466"
+ t=1725469444; x=1757005444;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=X4lj0MhEzQzlklp2HvAQHOTCcZzMLk+5St7fbj90pCc=;
+ b=YpCzbBELij4Cn+7wBXhTDMeUe1DY6+y45qXwZ7ePhX22n8OrwzXzOocB
+ pTEVDk+T3Ok95dmOhJ3lEww6cUH9pYZiIFba7gDtz1lbr3/uJn11Tf2bJ
+ pQZq3Z1oSVOuNCpm3hzh2UT7c+lHo+/bao/kLn+amcLskqM8cPtbTeTJx
+ sEYcHdAh5mRu+Zre0bR+mmJE8eyDRsT/PK+MQV7XIRdwwxGuUH0Po7kp8
+ QIleJ9bDOaVNdVFSD+uTMQ4lcsRoxJtqFwtXkDfdQY2hmTt0QrgSB2Wtw
+ EmfFSgwGB1Ohy+ismsUzIMDsPlv7V2xgVZv/ogs1vwnE4ZGZhKqyasgcQ Q==;
+X-CSE-ConnectionGUID: t6Nsl07oSIa6yZ07e4Os0A==
+X-CSE-MsgGUID: 8KPU7M9qSyWU7/WTMwzWAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="27067475"
+X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; d="scan'208";a="27067475"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Sep 2024 10:04:02 -0700
-X-CSE-ConnectionGUID: IQMc7CpGQ5iyeUv/zJ8sLw==
-X-CSE-MsgGUID: AGObfcrYQl6vvF85XD0Hjw==
+X-CSE-ConnectionGUID: SX2JreO0R+m2AiD0/NU0Dg==
+X-CSE-MsgGUID: e/Igj+3YQkmz57yucZ1RPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; d="scan'208";a="70151014"
+X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; d="scan'208";a="70151022"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2024 10:04:01 -0700
+ 04 Sep 2024 10:04:02 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, boris.brezillon@collabora.com,
  lionel.g.landwerlin@intel.com, kenneth.w.graunke@intel.com
-Subject: [PATCH 0/2] Fix extobj dma-resv slot usage in XE's exec IOCTL
-Date: Wed,  4 Sep 2024 10:04:58 -0700
-Message-Id: <20240904170500.3303081-1-matthew.brost@intel.com>
+Subject: [PATCH 2/2] drm/xe: Wire up DRM_XE_VM_CREATE_FLAG_EXTOBJ_BOOKKEEP
+Date: Wed,  4 Sep 2024 10:05:00 -0700
+Message-Id: <20240904170500.3303081-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240904170500.3303081-1-matthew.brost@intel.com>
+References: <20240904170500.3303081-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,21 +68,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bookkeep should be used, not write. Depends on user space beign ready so
-add a per VM opt in flag to use bookkeep.
+Fix external BO's dma-resv usage in exec IOCTL with an opt into bookkeep
+slot. This leaves syncing to user space rather than the KMD blindly
+enforcing write semantics on every external BO.
 
-Matt
-
-Matthew Brost (2):
-  drm/xe: Add DRM_XE_VM_CREATE_FLAG_EXTOBJ_BOOKKEEP
-  drm/xe: Wire up DRM_XE_VM_CREATE_FLAG_EXTOBJ_BOOKKEEP
-
+Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>
+Reported-by: Simona Vetter <simona.vetter@ffwll.ch>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2673
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
  drivers/gpu/drm/xe/xe_exec.c     | 11 +++++++++--
  drivers/gpu/drm/xe/xe_vm.c       |  5 ++++-
  drivers/gpu/drm/xe/xe_vm_types.h |  5 +++--
- include/uapi/drm/xe_drm.h        |  6 ++++++
- 4 files changed, 22 insertions(+), 5 deletions(-)
+ 3 files changed, 16 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 7b38485817dc..ea0aba77db84 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -302,9 +302,16 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	 * the job and let the DRM scheduler / backend clean up the job.
+ 	 */
+ 	xe_sched_job_arm(job);
+-	if (!xe_vm_in_lr_mode(vm))
++	if (!xe_vm_in_lr_mode(vm)) {
++		enum dma_resv_usage extobj_resv_usage = DMA_RESV_USAGE_WRITE;
++
++		/* Override original incorrect behavior */
++		if (vm->flags & XE_VM_FLAG_EXTOBJ_BOOKKEEP)
++			extobj_resv_usage = DMA_RESV_USAGE_BOOKKEEP;
++
+ 		drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, &job->drm.s_fence->finished,
+-					 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_WRITE);
++					 DMA_RESV_USAGE_BOOKKEEP, extobj_resv_usage);
++	}
+ 
+ 	for (i = 0; i < num_syncs; i++) {
+ 		xe_sync_entry_signal(&syncs[i], &job->drm.s_fence->finished);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 7acd5fc9d032..a1f98f233c37 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1713,7 +1713,8 @@ find_ufence_get(struct xe_sync_entry *syncs, u32 num_syncs)
+ 
+ #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
+ 				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
+-				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
++				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE | \
++				    DRM_XE_VM_CREATE_FLAG_EXTOBJ_BOOKKEEP)
+ 
+ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 		       struct drm_file *file)
+@@ -1760,6 +1761,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 		flags |= XE_VM_FLAG_LR_MODE;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+ 		flags |= XE_VM_FLAG_FAULT_MODE;
++	if (args->flags & DRM_XE_VM_CREATE_FLAG_EXTOBJ_BOOKKEEP)
++		flags |= XE_VM_FLAG_EXTOBJ_BOOKKEEP;
+ 
+ 	vm = xe_vm_create(xe, flags);
+ 	if (IS_ERR(vm))
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 7f9a303e51d8..b7056d63d8dc 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -162,8 +162,9 @@ struct xe_vm {
+ #define XE_VM_FLAG_SCRATCH_PAGE		BIT(3)
+ #define XE_VM_FLAG_FAULT_MODE		BIT(4)
+ #define XE_VM_FLAG_BANNED		BIT(5)
+-#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
+-#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
++#define XE_VM_FLAG_EXTOBJ_BOOKKEEP	BIT(6)
++#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(8, 7), flags)
++#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(8, 7), (tile)->id)
+ 	unsigned long flags;
+ 
+ 	/** @composite_fence_ctx: context composite fence */
 -- 
 2.34.1
 
