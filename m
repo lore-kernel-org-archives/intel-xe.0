@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CE34CD37B7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20D25CD37BA
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5B0410E666;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBAD910E667;
 	Wed,  4 Sep 2024 00:21:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k8L0MLTW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nCl2pXUp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAB1610E641
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF5E110E638
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725409278; x=1756945278;
+ t=1725409276; x=1756945276;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=z9h2qwSgYd4KXRq7eYXTDYQzGCBIRGQuIvUFlxK7b5c=;
- b=k8L0MLTWVy4YlL/4HDApOQIF8UUMdLxPCTxd2picTGyG7Z41cYlWiVxb
- 5H8ppsJjviLiAXvNFVjWzP4KmL5zPAuZhMQBe0DYtl3gl/l3wRFlRL+h2
- 0Vr4S26Nzm1gGwP1asynhqN0oeR+b0kQN/NYgEorOp6svXcvwBWZrp3xO
- SzrtE9V3ZSN2FKh2E6p98DeFtMTHhlMFRsYqCxzRmHnhj8IZL4szWWRSQ
- EbtKVTNYyihYdhOdJ4LiMko2gaRnTZrnkNymzL9WDsib2UZnJX5g1yD87
- A0Yf6p0p28OnRYFi6ZCgXZs+HvPq/xWMMFv4UqPqWgyQoW61xlD0XBiiT w==;
-X-CSE-ConnectionGUID: 9kQV/LqRRF+uCUuxfi9ZRA==
-X-CSE-MsgGUID: 8aUoia+5S+6CcJRRzswXCg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904833"
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904833"
+ bh=11R66hYrvyM0r3CevH5gpIZ+IYCeCTPvL4zkz9Mvm1Y=;
+ b=nCl2pXUplaRQdVP5SP2Dn3uc1/9OL9RE+J37OX6MC+BSjqTRZ1kBdfPi
+ XIW0Bsvd1fNeyUqCTB/9fATR4DWyxxd9ylrDs9VJb8f1EJakSzVAMlrnR
+ mwkK+Csip3w8elKg2V9opkcpR+QpLpPcd/2kZXppaCrHz+gHj9qOiNJyv
+ 9PRzhWXsXnpg32xsV0ExYCYyX4PE8Z/6jBoSlQK8AR6C5uq0+3+nXKWJW
+ +4y7vVCBBKw6sHV6qD87jLAJ4bAmQSg4s7HXhQf4/8c1Dm7+8dbSpvpGi
+ ulre/6TEaP5jfRXpCHksXieLoQhw/ZjndFNV+ahGBVYx/+X1Z/uqjukT7 w==;
+X-CSE-ConnectionGUID: D7KkYMItRNSwzN5gwlIRzg==
+X-CSE-MsgGUID: sqPMzvsPQwODOF88PiW9uA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904811"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904811"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:18 -0700
-X-CSE-ConnectionGUID: m6nb5hrDRb20yzH5f+bXug==
-X-CSE-MsgGUID: dZtPTKo5T6a0PIDCbBhRbA==
+ 03 Sep 2024 17:21:16 -0700
+X-CSE-ConnectionGUID: mw7tohdqRhWJyy3Lf1+oIg==
+X-CSE-MsgGUID: K31vhjK1SQyBHWMSeqsE1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944347"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944272"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:18 -0700
+ 03 Sep 2024 17:21:16 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 42/43] drm/xe/ccs_mode: Convert register access to use xe_mmio
-Date: Tue,  3 Sep 2024 17:21:43 -0700
-Message-ID: <20240904002100.2023834-87-matthew.d.roper@intel.com>
+Subject: [PATCH 23/43] drm/xe/gsc: Convert register access to use xe_mmio
+Date: Tue,  3 Sep 2024 17:21:24 -0700
+Message-ID: <20240904002100.2023834-68-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240904002100.2023834-45-matthew.d.roper@intel.com>
 References: <20240904002100.2023834-45-matthew.d.roper@intel.com>
@@ -70,22 +70,104 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gsc.c       | 23 ++++++++++++-----------
+ drivers/gpu/drm/xe/xe_gsc_proxy.c |  4 ++--
+ 2 files changed, 14 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-index d2e4dc3aaf61..9360ac4de489 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-@@ -68,7 +68,7 @@ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
- 		}
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 6fbea70d3d36..9cb326af5931 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -179,7 +179,7 @@ static int query_compatibility_version(struct xe_gsc *gsc)
+ 
+ static int gsc_fw_is_loaded(struct xe_gt *gt)
+ {
+-	return xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
++	return xe_mmio_read32(&gt->mmio, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
+ 			      HECI1_FWSTS1_INIT_COMPLETE;
+ }
+ 
+@@ -190,7 +190,7 @@ static int gsc_fw_wait(struct xe_gt *gt)
+ 	 * executed by the GSCCS. To account for possible submission delays or
+ 	 * other issues, we use a 500ms timeout in the wait here.
+ 	 */
+-	return xe_mmio_wait32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE),
++	return xe_mmio_wait32(&gt->mmio, HECI_FWSTS1(MTL_GSC_HECI1_BASE),
+ 			      HECI1_FWSTS1_INIT_COMPLETE,
+ 			      HECI1_FWSTS1_INIT_COMPLETE,
+ 			      500 * USEC_PER_MSEC, NULL, false);
+@@ -330,7 +330,7 @@ static int gsc_er_complete(struct xe_gt *gt)
+ 	 * so in that scenario we're always guaranteed to find the correct
+ 	 * value.
+ 	 */
+-	er_status = xe_mmio_read32(gt, GSCI_TIMER_STATUS) & GSCI_TIMER_STATUS_VALUE;
++	er_status = xe_mmio_read32(&gt->mmio, GSCI_TIMER_STATUS) & GSCI_TIMER_STATUS_VALUE;
+ 
+ 	if (er_status == GSCI_TIMER_STATUS_TIMER_EXPIRED) {
+ 		/*
+@@ -581,11 +581,11 @@ void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep)
+ 	if (!XE_WA(gt, 14015076503) || !gsc_fw_is_loaded(gt))
+ 		return;
+ 
+-	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE), gs1_clr, gs1_set);
++	xe_mmio_rmw32(&gt->mmio, HECI_H_GS1(MTL_GSC_HECI2_BASE), gs1_clr, gs1_set);
+ 
+ 	if (prep) {
+ 		/* make sure the reset bit is clear when writing the CSR reg */
+-		xe_mmio_rmw32(gt, HECI_H_CSR(MTL_GSC_HECI2_BASE),
++		xe_mmio_rmw32(&gt->mmio, HECI_H_CSR(MTL_GSC_HECI2_BASE),
+ 			      HECI_H_CSR_RST, HECI_H_CSR_IG);
+ 		msleep(200);
  	}
+@@ -599,6 +599,7 @@ void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep)
+ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
++	struct xe_mmio *mmio = &gt->mmio;
+ 	int err;
  
--	xe_mmio_write32(gt, CCS_MODE, mode);
-+	xe_mmio_write32(&gt->mmio, CCS_MODE, mode);
+ 	xe_uc_fw_print(&gsc->fw, p);
+@@ -613,12 +614,12 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ 		return;
  
- 	xe_gt_dbg(gt, "CCS_MODE=%x config:%08x, num_engines:%d, num_slices:%d\n",
- 		  mode, config, num_engines, num_slices);
+ 	drm_printf(p, "\nHECI1 FWSTS: 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x\n",
+-			xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)),
+-			xe_mmio_read32(gt, HECI_FWSTS2(MTL_GSC_HECI1_BASE)),
+-			xe_mmio_read32(gt, HECI_FWSTS3(MTL_GSC_HECI1_BASE)),
+-			xe_mmio_read32(gt, HECI_FWSTS4(MTL_GSC_HECI1_BASE)),
+-			xe_mmio_read32(gt, HECI_FWSTS5(MTL_GSC_HECI1_BASE)),
+-			xe_mmio_read32(gt, HECI_FWSTS6(MTL_GSC_HECI1_BASE)));
++			xe_mmio_read32(mmio, HECI_FWSTS1(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(mmio, HECI_FWSTS2(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(mmio, HECI_FWSTS3(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(mmio, HECI_FWSTS4(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(mmio, HECI_FWSTS5(MTL_GSC_HECI1_BASE)),
++			xe_mmio_read32(mmio, HECI_FWSTS6(MTL_GSC_HECI1_BASE)));
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+index 2d6ea8c01445..6d89c22ae811 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
++++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+@@ -65,7 +65,7 @@ gsc_to_gt(struct xe_gsc *gsc)
+ bool xe_gsc_proxy_init_done(struct xe_gsc *gsc)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+-	u32 fwsts1 = xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE));
++	u32 fwsts1 = xe_mmio_read32(&gt->mmio, HECI_FWSTS1(MTL_GSC_HECI1_BASE));
+ 
+ 	return REG_FIELD_GET(HECI1_FWSTS1_CURRENT_STATE, fwsts1) ==
+ 	       HECI1_FWSTS1_PROXY_STATE_NORMAL;
+@@ -78,7 +78,7 @@ static void __gsc_proxy_irq_rmw(struct xe_gsc *gsc, u32 clr, u32 set)
+ 	/* make sure we never accidentally write the RST bit */
+ 	clr |= HECI_H_CSR_RST;
+ 
+-	xe_mmio_rmw32(gt, HECI_H_CSR(MTL_GSC_HECI2_BASE), clr, set);
++	xe_mmio_rmw32(&gt->mmio, HECI_H_CSR(MTL_GSC_HECI2_BASE), clr, set);
+ }
+ 
+ static void gsc_proxy_irq_clear(struct xe_gsc *gsc)
 -- 
 2.45.2
 
