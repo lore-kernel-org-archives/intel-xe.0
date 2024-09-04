@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F252CA0ED3
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 09:55:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCEDFCA0ED3
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 09:56:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C91210E728;
-	Wed,  4 Sep 2024 09:55:15 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CF0210E728;
- Wed,  4 Sep 2024 09:55:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CF3710E72D;
+	Wed,  4 Sep 2024 09:56:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gmM0EpYw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38E5410E72C;
+ Wed,  4 Sep 2024 09:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725443814; x=1756979814;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=uOpY6pBbY8+sofMp5HwWCX9Rj4x5E+eWT/c0ceGCS8c=;
+ b=gmM0EpYwxUeb7nLp4s/rpoeZ9oz/K8QnLiEV5aA27E0sX6U2p6CI8sXE
+ WGABBqhnYpHTZaHWDPAm9vWWApFZ5hHn9psCksaCSbSBL388GnDq0p6in
+ bYjRTbN4XcLwq02j3wCNpCLu3A6/9t0tcJ0wQooLBW/pwEbW5C5pPS0rv
+ riG70LMDiRhJV/fe5ZN2DF8qFMmuZg9Vnc0JTz5gvKT8HVkmlJs+dDDkv
+ ZpdJAgyhGKmQuxwEVeUHD6YYjWcxvSeO7VbexYECL7Z8KR5icBsDYVOWG
+ N1DNwQpOY0AJeEjMkc9KL9fSKJkXhIyLITDWvAjuSfQa9T73jiYOrLJe0 A==;
+X-CSE-ConnectionGUID: Zj0GQch/Qxu+xkFey+VCTQ==
+X-CSE-MsgGUID: eKDzQrDkRV6PuMpmD2/fdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="27011560"
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="27011560"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 02:56:13 -0700
+X-CSE-ConnectionGUID: ZeIiJMIkT3i+iDEB4VvLQA==
+X-CSE-MsgGUID: WcXOA7AtTGG4iqenHLgfBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="65268994"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.18])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 02:56:11 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com
+Subject: Re: [PATCH 0/8] drm/i915 & drm/xe: shared PCI ID macros
+In-Reply-To: <cover.1725297097.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1725297097.git.jani.nikula@intel.com>
+Date: Wed, 04 Sep 2024 12:55:54 +0300
+Message-ID: <87le07spxx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pciids=3A_more_ADL?=
- =?utf-8?q?-N=2C_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Sep 2024 09:55:14 -0000
-Message-ID: <172544371430.931714.10543771887761906353@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1725443121.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1725443121.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,58 +64,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 02 Sep 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> There's considerable overlap in i915 and xe PCI ID macros, and (as can
+> be seen in this series) they get updated out of sync. With i915 display
+> continuing to use PCI IDs for platforms that i915 core does not support,
+> but xe does, the duplication will just increase. Just use a single file
+> for all of them.
+>
+> BR,
+> Jani.
+>
+> Jani Nikula (8):
+>   drm/i915/pciids: use designated initializers in INTEL_VGA_DEVICE()
+>   drm/i915/pciids: separate ARL and MTL PCI IDs
 
-Series: drm/xe/pciids: more ADL-N, cleanups
-URL   : https://patchwork.freedesktop.org/series/138192/
-State : warning
+Sent these for drm-intel-next:
 
-== Summary ==
+https://lore.kernel.org/r/cover.1725443418.git.jani.nikula@intel.com
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c62d7e164862503a3662a095da1c6c9014248cb2
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 955d7863e19a23ccb9aed530b8cd80c6414cdbb5
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Wed Sep 4 12:46:49 2024 +0300
+>   drm/xe/pciids: add some missing ADL-N PCI IDs
+>   drm/xe/pciids: separate RPL-U and RPL-P PCI IDs
+>   drm/xe/pciids: separate ARL and MTL PCI IDs
 
-    drm/xe/pciids: separate ARL and MTL PCI IDs
-    
-    Avoid including PCI IDs for one platform to the PCI IDs of another. It's
-    more clear to deal with them completely separately at the PCI ID macro
-    level.
-    
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch ca1cd64b4b6f3adcb0d86701486f90a960331c35 drm-intel
-bff4547b39be drm/xe/pciids: add some missing ADL-N PCI IDs
-606f2f08aa0d drm/xe/pciids: separate RPL-U and RPL-P PCI IDs
-955d7863e19a drm/xe/pciids: separate ARL and MTL PCI IDs
--:34: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#34: FILE: include/drm/intel/xe_pciids.h:180:
-+#define XE_ARL_IDS(MACRO__, ...)		\
-+	MACRO__(0x7D41, ## __VA_ARGS__),	\
-+	MACRO__(0x7D51, ## __VA_ARGS__),        \
-+	MACRO__(0x7D67, ## __VA_ARGS__),	\
-+	MACRO__(0x7DD1, ## __VA_ARGS__)
+Sent these for drm-xe-next:
 
--:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
-#34: FILE: include/drm/intel/xe_pciids.h:180:
-+#define XE_ARL_IDS(MACRO__, ...)		\
-+	MACRO__(0x7D41, ## __VA_ARGS__),	\
-+	MACRO__(0x7D51, ## __VA_ARGS__),        \
-+	MACRO__(0x7D67, ## __VA_ARGS__),	\
-+	MACRO__(0x7DD1, ## __VA_ARGS__)
+https://lore.kernel.org/r/cover.1725443121.git.jani.nikula@intel.com
 
-total: 1 errors, 0 warnings, 1 checks, 31 lines checked
+>   drm/i915/pciids: add PVC PCI ID macros
+>   drm/intel/pciids: rename i915_pciids.h to just pciids.h
+>   drm/xe: switch to common PCI ID macros
+
+Dropping these for now, but I might resurrect the idea after the merge
+window.
 
 
+BR,
+Jani.
+
+>
+>  arch/x86/kernel/early-quirks.c                |   2 +-
+>  .../drm/i915/display/intel_display_device.c   |   3 +-
+>  drivers/gpu/drm/i915/i915_pci.c               |   3 +-
+>  drivers/gpu/drm/i915/intel_device_info.c      |   2 +-
+>  drivers/gpu/drm/xe/xe_pci.c                   |  49 ++--
+>  include/drm/intel/{i915_pciids.h => pciids.h} |  63 ++---
+>  include/drm/intel/xe_pciids.h                 | 218 ------------------
+>  7 files changed, 64 insertions(+), 276 deletions(-)
+>  rename include/drm/intel/{i915_pciids.h => pciids.h} (96%)
+>  delete mode 100644 include/drm/intel/xe_pciids.h
+
+-- 
+Jani Nikula, Intel
