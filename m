@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 634B7CD4843
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6BCBCD37A7
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04F3F10E64F;
-	Wed,  4 Sep 2024 00:21:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A935510E645;
+	Wed,  4 Sep 2024 00:21:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DNLH1sbq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tfvj8nnB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33A5910E63B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E468610E63B
  for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1725409277; x=1756945277;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=R0Z0MrXF1pHPAzpY+LanM2PbVz9IgcuwpuvuTV4nVF4=;
- b=DNLH1sbqWJvbtPmDDxF1NqMgxSQURBYytIVedZEuqikpDEZsP7B15lx+
- iDHylKwxXbptKK2uLHP5S5gx4DaJCN9TtOc4HMT0MGGBU9d+qOsIL5l+i
- ZN+GBD4d06AXEPnsSfo3+wDBhMBzgaicXb+KnnVD2ol1RaU8xETa8Mte+
- SmfTO6bmXgtYc5zInufbMMLmObhV7Fw9GNCmcsTHz3YFKZJtuUffYm8Tv
- itKHuCP/ObcNjrjzm2Sw/5WXpS86Jz8Z52F+ZWx9gWSCmwijKVv/QQtmw
- 0rY3/Rtni73AoUcUELNCs886ugaA/tPhyvs60DZBC8i1davpBOnio8k5j w==;
-X-CSE-ConnectionGUID: lPYNK/BbRja5Ju2mWiTYHw==
-X-CSE-MsgGUID: YLt4LY8ZQUyT/Nzoilz0mQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904814"
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904814"
+ bh=ms1R9mLQVPwYxFu5kR2zgHgHlh5OkRbu2zfWePPPJmY=;
+ b=Tfvj8nnBy8ZRP/s1MG4Uj5h72xDq2n3JwS0ib7Gg+2fY7mR5LRpg4vq1
+ O42OnwIMgimY52EZFxwX38Po0J1qMbyQufnHRTGkX/jD0xH45QD34332g
+ EzaXnXQtxdaKMzYYoMK4djAp0OVcHbuRPTnxCuy8+RB9X5ztvm9S1B7+d
+ TmyIUN362JpwoJ4YEMvaQnfbTIhzcRRZ2w3VVeP0BllWUFCkTMJDH2NV6
+ j5Wv5OO1FNZWgdGZ+FNnXsmGnRAfP/DF3WWWse39uZq8s41phWCuOgv0B
+ teLMms8g2FJSDLlAOnRSGr6LJ1Mnu/Q3p0NmEeYFhHftcv3UDQ+fEXH8A A==;
+X-CSE-ConnectionGUID: iJKkXqnZSYueFLn3ew4omA==
+X-CSE-MsgGUID: TL1eqMf/SXOYEKoU9fwiiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904822"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904822"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2024 17:21:17 -0700
-X-CSE-ConnectionGUID: Tgf4NvGWRB+WHEYIN56oug==
-X-CSE-MsgGUID: AwBb4rHaSoOVY8g3GrENzQ==
+X-CSE-ConnectionGUID: wGiDEPg2Ss+9RrAYVcBqcw==
+X-CSE-MsgGUID: oOB3KywrTUymWR+Ex8OVBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944281"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944312"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:16 -0700
+ 03 Sep 2024 17:21:17 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 26/43] drm/xe/mocs: Convert register access to use xe_mmio
-Date: Tue,  3 Sep 2024 17:21:27 -0700
-Message-ID: <20240904002100.2023834-71-matthew.d.roper@intel.com>
+Subject: [PATCH 33/43] drm/xe/execlist: Convert register access to use xe_mmio
+Date: Tue,  3 Sep 2024 17:21:34 -0700
+Message-ID: <20240904002100.2023834-78-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240904002100.2023834-45-matthew.d.roper@intel.com>
 References: <20240904002100.2023834-45-matthew.d.roper@intel.com>
@@ -70,108 +70,65 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_mocs.c |  4 ++--
- drivers/gpu/drm/xe/xe_mocs.c       | 16 ++++++++--------
- 2 files changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_execlist.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-index 79be73b4a02b..ea932c051cc7 100644
---- a/drivers/gpu/drm/xe/tests/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -55,7 +55,7 @@ static void read_l3cc_table(struct xe_gt *gt,
- 			if (regs_are_mcr(gt))
- 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i >> 1));
- 			else
--				reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i >> 1));
-+				reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i >> 1));
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 6a59165b9569..f3b71fe7a96d 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -44,6 +44,7 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 			u32 ctx_id)
+ {
+ 	struct xe_gt *gt = hwe->gt;
++	struct xe_mmio *mmio = &gt->mmio;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u64 lrc_desc;
  
- 			mocs_dbg(gt, "reg_val=0x%x\n", reg_val);
- 		} else {
-@@ -94,7 +94,7 @@ static void read_mocs_table(struct xe_gt *gt,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
- 
- 		mocs_expected = get_entry_control(info, i);
- 		mocs = reg_val;
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 7ff0ac5b799a..8df41cd12d51 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -278,7 +278,7 @@ static void xelp_lncf_dump(struct xe_mocs_info *info, struct xe_gt *gt, struct d
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
- 
- 		drm_printf(p, "LNCFCMOCS[%2d] = [%u, %u, %u] (%#8x)\n",
- 			   j++,
-@@ -310,7 +310,7 @@ static void xelp_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 			if (regs_are_mcr(gt))
- 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 			else
--				reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+				reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
- 
- 			drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u, %u, %u, %u, %u, %u, %u, %u, %u ] (%#8x)\n",
- 				   i,
-@@ -383,7 +383,7 @@ static void xehp_lncf_dump(struct xe_mocs_info *info, unsigned int flags,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
- 
- 		drm_printf(p, "LNCFCMOCS[%2d] = [%u, %u, %u] (%#8x)\n",
- 			   j++,
-@@ -428,7 +428,7 @@ static void pvc_mocs_dump(struct xe_mocs_info *info, unsigned int flags, struct
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
- 
- 		drm_printf(p, "LNCFCMOCS[%2d] = [ %u ] (%#8x)\n",
- 			   j++,
-@@ -510,7 +510,7 @@ static void mtl_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
- 
- 		drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u]  (%#8x)\n",
- 			   i,
-@@ -553,7 +553,7 @@ static void xe2_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
- 
- 		drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u, %u]  (%#8x)\n",
- 			   i,
-@@ -690,7 +690,7 @@ static void __init_mocs_table(struct xe_gt *gt,
- 		if (regs_are_mcr(gt))
- 			xe_gt_mcr_multicast_write(gt, XEHP_GLOBAL_MOCS(i), mocs);
- 		else
--			xe_mmio_write32(gt, XELP_GLOBAL_MOCS(i), mocs);
-+			xe_mmio_write32(&gt->mmio, XELP_GLOBAL_MOCS(i), mocs);
+@@ -58,7 +59,7 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
  	}
+ 
+ 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
+-		xe_mmio_write32(hwe->gt, RCU_MODE,
++		xe_mmio_write32(mmio, RCU_MODE,
+ 				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
+ 
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+@@ -76,17 +77,17 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 	 */
+ 	wmb();
+ 
+-	xe_mmio_write32(gt, RING_HWS_PGA(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_HWS_PGA(hwe->mmio_base),
+ 			xe_bo_ggtt_addr(hwe->hwsp));
+-	xe_mmio_read32(gt, RING_HWS_PGA(hwe->mmio_base));
+-	xe_mmio_write32(gt, RING_MODE(hwe->mmio_base),
++	xe_mmio_read32(mmio, RING_HWS_PGA(hwe->mmio_base));
++	xe_mmio_write32(mmio, RING_MODE(hwe->mmio_base),
+ 			_MASKED_BIT_ENABLE(GFX_DISABLE_LEGACY_MODE));
+ 
+-	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
+ 			lower_32_bits(lrc_desc));
+-	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
+ 			upper_32_bits(lrc_desc));
+-	xe_mmio_write32(gt, RING_EXECLIST_CONTROL(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_CONTROL(hwe->mmio_base),
+ 			EL_CTRL_LOAD);
  }
  
-@@ -730,7 +730,7 @@ static void init_l3cc_table(struct xe_gt *gt,
- 		if (regs_are_mcr(gt))
- 			xe_gt_mcr_multicast_write(gt, XEHP_LNCFCMOCS(i), l3cc);
- 		else
--			xe_mmio_write32(gt, XELP_LNCFCMOCS(i), l3cc);
-+			xe_mmio_write32(&gt->mmio, XELP_LNCFCMOCS(i), l3cc);
- 	}
- }
+@@ -168,8 +169,8 @@ static u64 read_execlist_status(struct xe_hw_engine *hwe)
+ 	struct xe_gt *gt = hwe->gt;
+ 	u32 hi, lo;
  
+-	lo = xe_mmio_read32(gt, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
+-	hi = xe_mmio_read32(gt, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
++	lo = xe_mmio_read32(&gt->mmio, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
++	hi = xe_mmio_read32(&gt->mmio, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
+ 
+ 	return lo | (u64)hi << 32;
+ }
 -- 
 2.45.2
 
