@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADB6FCD3431
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 13:05:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5BD1CD37B4
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 13:08:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76A9510E7B8;
-	Wed,  4 Sep 2024 13:05:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Svb7r8qM";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5C6510E7B8;
- Wed,  4 Sep 2024 13:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725455119; x=1756991119;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=EMsNwGf772/11di/DtcrxHQN/GCXw+wluRRe/ZoGqes=;
- b=Svb7r8qMuVqoNKm7mTF1uGDjdBVlsqwnnai93aTKFLkAUU9IvEitf6YG
- 33s1VyNRf8ioSLiXCjmgzNBnW87Yf34vBeYX1jQ37YXxv/OuWTd8SuXQ9
- 3kN4s33bFmwuQe8DcfIFwT6qCla1YsoPZwnth9Z1AhIFkWcylcmdP1gnu
- j7oNK9HLwX18lcIxKjNV5hZp2YDFST+zWXcyTrAxzmV/+3WA5NEm1Fuu6
- pW85DXtJpsuxFTdG282zpA5OGefzaBNacF0RrJjXKk02y52Q31zvQ7IuZ
- FvzQ4JJJfiQEsVrmAkiw+WWDFSaytKc4bf96I8ivm1uVfzMVjqqcf9Mgu Q==;
-X-CSE-ConnectionGUID: 9LhQOWVZS4CgTqf+HpEyoQ==
-X-CSE-MsgGUID: 20rhA4ikRdyejoRrnGkubA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="34714564"
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="34714564"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2024 06:05:18 -0700
-X-CSE-ConnectionGUID: +y85KcadSvaGJbXkeYckzg==
-X-CSE-MsgGUID: RdM7ZK6gRBmaT4f8cVI7Nw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="95998221"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
- by orviesa002.jf.intel.com with ESMTP; 04 Sep 2024 06:05:17 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1slphC-00086B-3A;
- Wed, 04 Sep 2024 13:05:14 +0000
-Date: Wed, 4 Sep 2024 21:04:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@intel.com
-Subject: Re: [PATCH 2/4] drm/i915/display: add intel_display_snapshot
- abstraction
-Message-ID: <202409042024.IZDvOogv-lkp@intel.com>
-References: <f2cc41111504e062c3ecb287daee6967078b73cc.1725372032.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93A7110E7BC;
+	Wed,  4 Sep 2024 13:08:23 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC97810E7BC;
+ Wed,  4 Sep 2024 13:08:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f2cc41111504e062c3ecb287daee6967078b73cc.1725372032.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm=3A_enable_warnings_on_unus?=
+ =?utf-8?q?ed_static_inlines?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Sep 2024 13:08:21 -0000
+Message-ID: <172545530182.933211.10933765136847713070@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240904123819.3784906-1-jani.nikula@intel.com>
+In-Reply-To: <20240904123819.3784906-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,67 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Jani,
+== Series Details ==
 
-kernel test robot noticed the following build errors:
+Series: drm: enable warnings on unused static inlines
+URL   : https://patchwork.freedesktop.org/series/138205/
+State : success
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on next-20240904]
-[cannot apply to drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.11-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+== Summary ==
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-dump-display-parameters-captured-in-error-state-not-current/20240903-220614
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/f2cc41111504e062c3ecb287daee6967078b73cc.1725372032.git.jani.nikula%40intel.com
-patch subject: [PATCH 2/4] drm/i915/display: add intel_display_snapshot abstraction
-config: i386-randconfig-005-20240904 (https://download.01.org/0day-ci/archive/20240904/202409042024.IZDvOogv-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240904/202409042024.IZDvOogv-lkp@intel.com/reproduce)
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/
+lib/modules/6.11.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc6-xe/build
+lib/modules/6.11.0-rc6-xe/modules.alias.bin
+lib/modules/6.11.0-rc6-xe/modules.builtin
+lib/modules/6.11.0-rc6-xe/modules.softdep
+lib/modules/6.11.0-rc6-xe/modules.alias
+lib/modules/6.11.0-rc6-xe/modules.order
+lib/modules/6.11.0-rc6-xe/modules.symbols
+lib/modules/6.11.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1725455289:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1725455289:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409042024.IZDvOogv-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
-
-   ld: drivers/gpu/drm/i915/display/intel_display_snapshot.o: in function `intel_display_snapshot_capture':
->> drivers/gpu/drm/i915/display/intel_display_snapshot.c:21: undefined reference to `intel_overlay_snapshot_capture'
-   ld: drivers/gpu/drm/i915/display/intel_display_snapshot.o: in function `intel_display_snapshot_print':
->> drivers/gpu/drm/i915/display/intel_display_snapshot.c:32: undefined reference to `intel_overlay_snapshot_print'
-
-
-vim +21 drivers/gpu/drm/i915/display/intel_display_snapshot.c
-
-    12	
-    13	struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_display *display)
-    14	{
-    15		struct intel_display_snapshot *snapshot;
-    16	
-    17		snapshot = kzalloc(sizeof(*snapshot), GFP_ATOMIC);
-    18		if (!snapshot)
-    19			return NULL;
-    20	
-  > 21		snapshot->overlay = intel_overlay_snapshot_capture(display);
-    22	
-    23		return snapshot;
-    24	}
-    25	
-    26	void intel_display_snapshot_print(const struct intel_display_snapshot *snapshot,
-    27					  struct drm_printer *p)
-    28	{
-    29		if (!snapshot)
-    30			return;
-    31	
-  > 32		intel_overlay_snapshot_print(snapshot->overlay, p);
-    33	}
-    34	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
