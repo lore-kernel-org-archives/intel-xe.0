@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31509CD37B8
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5DF4CD37BD
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D772310E64A;
-	Wed,  4 Sep 2024 00:21:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 848C910E641;
+	Wed,  4 Sep 2024 00:21:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ls+WXreO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IumRYkoi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBAD10E638
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 704DC10E638
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725409277; x=1756945277;
+ t=1725409276; x=1756945276;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tfWv6Zu/tzGTstXYCJxG/m5ssLG2YGZwvnCbC50Alfg=;
- b=ls+WXreOqM8ZTSk5qdkkCRsDP1qeJWCfYvWHq5NthAPAWbHYBPOYygWD
- YRlEdPQHiLbzRdSn0ncBI2j7qJbQ0beR3qZQz6HecTdfSPKp5b1fM/53P
- 9EowxAI6nUErBQF9yZf3+MrAmE0vinAl7LO/Dz7JyVK+VQ/zWXyajDzSj
- P0/FnloPRzX8luWrSXC9yCtLsKZHvmA9LboR4aqiAYbjVe7YreBkzPOVc
- PQK+w4aJr4n/FedfahdvqujCVfzX2Lqi1JgheHwbS36Jcd4Lov0prnTt6
- qHbTmucZJIcNblwh0WYmlRV/9PjsDTRVlgb4kEMruHuI44iU9mXmtFNov g==;
-X-CSE-ConnectionGUID: FBg1U7pjSUe53vPI+/u1FQ==
-X-CSE-MsgGUID: cCl1mrOITeS2PuUsoWC+6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904815"
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904815"
+ bh=pqvMAH6lFWcUdrmnm+U7m3xxvi1/0715IM6t5OAGnK4=;
+ b=IumRYkoiplWbPeDnru6jNgdAugu7JftU1e4HVmqOjnN4KzLxXeFbpo3x
+ +iqscO+yXnnK0N/nNXOuQL7epKnYeFNHLrs8n/hIoblsPyl6zn80Vw1/e
+ S2yF7LQfjjuR+b9ry0QozVO9ebOdCejFJsMN1a7hyff2OVXA9Vz1y97K9
+ TK6aTO7djsg9HAHEti2zDR9ESA1wmv31lvMcUI6E/+ECdl3N8t2biZMrf
+ WEacpGQY9chCTNItu9WcIj04FrTGxAoP914TLP4/9eNCXsXfBVIQG6q9c
+ 7n33XY3HSkC2eKrCADTNEiK65JJpOOHO5ah34eGcvP44Y1mdrI0uIhCbO g==;
+X-CSE-ConnectionGUID: Tp+dzLXSTeO9qxxpqkX9BQ==
+X-CSE-MsgGUID: IYMwgSb0QWqWxUFLZYMZwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904807"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904807"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:17 -0700
-X-CSE-ConnectionGUID: ecjj3AeYQUGtnbcwaz0sgQ==
-X-CSE-MsgGUID: xG+hiUEARRmTM5+liihBbA==
+ 03 Sep 2024 17:21:16 -0700
+X-CSE-ConnectionGUID: D2Bw/wSpT2WOPJtIUOCVFA==
+X-CSE-MsgGUID: dxUPwgykSSKxnYJyjBm6jA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944285"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944260"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2024 17:21:16 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 27/43] drm/xe/hw_engine: Convert register access to use xe_mmio
-Date: Tue,  3 Sep 2024 17:21:28 -0700
-Message-ID: <20240904002100.2023834-72-matthew.d.roper@intel.com>
+Subject: [PATCH 19/43] drm/xe/wa: Convert register access to use xe_mmio
+Date: Tue,  3 Sep 2024 17:21:20 -0700
+Message-ID: <20240904002100.2023834-64-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240904002100.2023834-45-matthew.d.roper@intel.com>
 References: <20240904002100.2023834-45-matthew.d.roper@intel.com>
@@ -70,128 +70,27 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 29 +++++++++++++++--------------
- 1 file changed, 15 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_wa.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index c9c3beb3ce8d..0788c2347c84 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -295,7 +295,7 @@ void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe,
- 
- 	reg.addr += hwe->mmio_base;
- 
--	xe_mmio_write32(hwe->gt, reg, val);
-+	xe_mmio_write32(&hwe->gt->mmio, reg, val);
- }
- 
- /**
-@@ -315,7 +315,7 @@ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
- 
- 	reg.addr += hwe->mmio_base;
- 
--	return xe_mmio_read32(hwe->gt, reg);
-+	return xe_mmio_read32(&hwe->gt->mmio, reg);
- }
- 
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
-@@ -324,7 +324,7 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
- 		xe_hw_engine_mask_per_class(hwe->gt, XE_ENGINE_CLASS_COMPUTE);
- 
- 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE && ccs_mask)
--		xe_mmio_write32(hwe->gt, RCU_MODE,
-+		xe_mmio_write32(&hwe->gt->mmio, RCU_MODE,
- 				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
- 
- 	xe_hw_engine_mmio_write32(hwe, RING_HWSTAM(0), ~0x0);
-@@ -354,7 +354,7 @@ static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_gt *gt,
- 	    hwe->class != XE_ENGINE_CLASS_RENDER)
- 		return false;
- 
--	return xe_mmio_read32(hwe->gt, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
-+	return xe_mmio_read32(&hwe->gt->mmio, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
- }
- 
- void
-@@ -612,7 +612,7 @@ static void read_media_fuses(struct xe_gt *gt)
- 
- 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
- 
--	media_fuse = xe_mmio_read32(gt, GT_VEBOX_VDBOX_DISABLE);
-+	media_fuse = xe_mmio_read32(&gt->mmio, GT_VEBOX_VDBOX_DISABLE);
- 
- 	/*
- 	 * Pre-Xe_HP platforms had register bits representing absent engines,
-@@ -657,7 +657,7 @@ static void read_copy_fuses(struct xe_gt *gt)
- 
- 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
- 
--	bcs_mask = xe_mmio_read32(gt, MIRROR_FUSE3);
-+	bcs_mask = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
- 	bcs_mask = REG_FIELD_GET(MEML3_EN_MASK, bcs_mask);
- 
- 	/* BCS0 is always present; only BCS1-BCS8 may be fused off */
-@@ -704,7 +704,7 @@ static void read_compute_fuses_from_reg(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 ccs_mask;
- 
--	ccs_mask = xe_mmio_read32(gt, XEHP_FUSE4);
-+	ccs_mask = xe_mmio_read32(&gt->mmio, XEHP_FUSE4);
- 	ccs_mask = REG_FIELD_GET(CCS_EN_MASK, ccs_mask);
- 
- 	for (int i = XE_HW_ENGINE_CCS0, j = 0; i <= XE_HW_ENGINE_CCS3; ++i, ++j) {
-@@ -742,8 +742,8 @@ static void check_gsc_availability(struct xe_gt *gt)
- 		gt->info.engine_mask &= ~BIT(XE_HW_ENGINE_GSCCS0);
- 
- 		/* interrupts where previously enabled, so turn them off */
--		xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, 0);
--		xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~0);
-+		xe_mmio_write32(&gt->mmio, GUNIT_GSC_INTR_ENABLE, 0);
-+		xe_mmio_write32(&gt->mmio, GUNIT_GSC_INTR_MASK, ~0);
- 
- 		drm_info(&xe->drm, "gsccs disabled due to lack of FW\n");
- 	}
-@@ -809,6 +809,7 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
- 				       struct xe_hw_engine_snapshot *snapshot)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 28b7f95b6c2f..d8a5a85e9ebd 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -883,11 +883,11 @@ void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p)
+  */
+ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
  {
- 	struct xe_gt *gt = hwe->gt;
-+	struct xe_mmio *mmio = &gt->mmio;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	unsigned int dss;
- 	u16 group, instance;
-@@ -820,11 +821,11 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
+-	struct xe_gt *mmio = tile->primary_gt;
++	struct xe_mmio *mmio = &tile->mmio;
  
- 	if (is_slice_common_per_gslice(xe) == false) {
- 		snapshot->reg.instdone.slice_common[0] =
--			xe_mmio_read32(gt, SC_INSTDONE);
-+			xe_mmio_read32(mmio, SC_INSTDONE);
- 		snapshot->reg.instdone.slice_common_extra[0] =
--			xe_mmio_read32(gt, SC_INSTDONE_EXTRA);
-+			xe_mmio_read32(mmio, SC_INSTDONE_EXTRA);
- 		snapshot->reg.instdone.slice_common_extra2[0] =
--			xe_mmio_read32(gt, SC_INSTDONE_EXTRA2);
-+			xe_mmio_read32(mmio, SC_INSTDONE_EXTRA2);
- 	} else {
- 		for_each_geometry_dss(dss, gt, group, instance) {
- 			snapshot->reg.instdone.slice_common[dss] =
-@@ -959,7 +960,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
- 	xe_hw_engine_snapshot_instdone_capture(hwe, snapshot);
+ 	if (IS_SRIOV_VF(tile->xe))
+ 		return;
  
- 	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
--		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
-+		snapshot->reg.rcu_mode = xe_mmio_read32(&hwe->gt->mmio, RCU_MODE);
- 
- 	return snapshot;
+-	if (XE_WA(mmio, 22010954014))
++	if (XE_WA(tile->primary_gt, 22010954014))
+ 		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
  }
-@@ -1150,7 +1151,7 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
- 
- u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
- {
--	return xe_mmio_read64_2x32(hwe->gt, RING_TIMESTAMP(hwe->mmio_base));
-+	return xe_mmio_read64_2x32(&hwe->gt->mmio, RING_TIMESTAMP(hwe->mmio_base));
- }
- 
- enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
 -- 
 2.45.2
 
