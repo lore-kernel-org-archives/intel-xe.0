@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC9F9CD37BC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5296CD37BD
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E07A710E638;
-	Wed,  4 Sep 2024 00:21:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F21F10E647;
+	Wed,  4 Sep 2024 00:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mwqo+7GQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VD0B06zt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7830210E63C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF38D10E638
  for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1725409275; x=1756945275;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3aLR6dGHI7oe0xytilLyHRE59QYfAZ1IGoVcxxZhpKM=;
- b=mwqo+7GQlrW7RwaFpSs+jlYuj4ii8CQNj7Zb9EoqrXYe7mErsHbPgxEP
- N0grh4GtfeY7yz1VGOsB3LtM86pNcQd1CH+chOv9R+qtOZryv1KJqP+Aw
- MOPUgYj1HsJWImfLlVHvCGBsp9IUkxiSQdLbWLwGMDuazMfU/GVj9Oy81
- uvtx4KHN1kqGwr7ImBwAKe66l2NxnnaniDal9N9otXH/gdxQXGyNHkATC
- Td5JM8kxEGxcpxxY41NX07Ioo3vFnPKDTruSuMu8yDcr0fyirxU/yU6yN
- 9duDDKJBvj1Z4CjsqJQg9uo0BVXQCyPkfxOs/1XQn/uuzsGl/35Mi61jS g==;
-X-CSE-ConnectionGUID: VhfBK2BKSoqeQVi8oifbzQ==
-X-CSE-MsgGUID: Rt+xLfrpQNaFuEjChTR00w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904792"
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904792"
+ bh=/XNnGL5IxhommDgc7c/5BV1Akw7UTLbsJSYRRgPUEH8=;
+ b=VD0B06ztUxrAkVRmwT4wxZdYkE70MkHKTbmvjhq3bqcdnwUsNYGYfYBJ
+ uVNU/IUM4ZCuZk3PICowBoSwwcbipFyEs0u21Qash0OVucOs0ekj5BOx7
+ OwqgmYNQIhhzB66/W09muDfMEXqVyVp/ruK+uvBxwj60/k+W2CcNAavUm
+ eJH+SnRyOTCDz+WsAzBigsNebKe5gTJJmOdEksyImNLxI+lLHrfSerdFh
+ 8wO2abBN3ENqXRQDaeXpeyjGVz2Rqha3XhpDfrfL0rlcRKegD00pqwul/
+ NWI332GDjuvuFcIG9Mc+OsqtQMkYZoJc5yw8TacZ5lzrm/xufqzdjM6+y A==;
+X-CSE-ConnectionGUID: oqnLSx2zRiawjc1+gdakmA==
+X-CSE-MsgGUID: 3tU7vB/cSMaZxABDL9k2fg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904801"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904801"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:14 -0700
-X-CSE-ConnectionGUID: 1D9TX73DQrWVCinGFEGQ7g==
-X-CSE-MsgGUID: 6dKL6e8CSSOIWLl6IPRJHQ==
+ 03 Sep 2024 17:21:15 -0700
+X-CSE-ConnectionGUID: M82vDoJHTQqFdbkffp3vzg==
+X-CSE-MsgGUID: jcPaISDvSVS1PH6DXbqL5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944205"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944235"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:14 -0700
+ 03 Sep 2024 17:21:15 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 05/43] drm/xe: Populate GT's mmio iomap from tile during init
-Date: Tue,  3 Sep 2024 17:21:06 -0700
-Message-ID: <20240904002100.2023834-50-matthew.d.roper@intel.com>
+Subject: [PATCH 13/43] drm/xe/vram: Convert register access to use xe_mmio
+Date: Tue,  3 Sep 2024 17:21:14 -0700
+Message-ID: <20240904002100.2023834-58-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240904002100.2023834-45-matthew.d.roper@intel.com>
 References: <20240904002100.2023834-45-matthew.d.roper@intel.com>
@@ -66,37 +66,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Each GT should share the same register iomap as its parent tile.  Future
-patches will switch to access the iomap through the GT's mmio substruct
-rather than through the tile.
+Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/xe/xe_vram.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index c05ca61787be..5b09a1cbd821 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -712,6 +712,8 @@ static int xe_info_init(struct xe_device *xe,
- 		gt->info.type = XE_GT_TYPE_MAIN;
- 		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = graphics_desc->hw_engine_mask;
-+		gt->mmio.regs = tile->mmio.regs;
-+		gt->mmio.regs_length = tile->mmio.regs_length;
- 		if (MEDIA_VER(xe) < 13 && media_desc)
- 			gt->info.engine_mask |= media_desc->hw_engine_mask;
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 5bcd59190353..7e765b1499b1 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -169,7 +169,7 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
+ 		u64 offset_hi, offset_lo;
+ 		u32 nodes, num_enabled;
  
-@@ -730,6 +732,8 @@ static int xe_info_init(struct xe_device *xe,
- 		gt->info.type = XE_GT_TYPE_MEDIA;
- 		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = media_desc->hw_engine_mask;
-+		gt->mmio.regs = tile->mmio.regs;
-+		gt->mmio.regs_length = tile->mmio.regs_length;
- 		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
- 		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
+-		reg = xe_mmio_read32(gt, MIRROR_FUSE3);
++		reg = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
+ 		nodes = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, reg);
+ 		num_enabled = hweight32(nodes); /* Number of enabled l3 nodes */
  
+@@ -184,7 +184,8 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
+ 		offset *= num_enabled; /* convert to SW view */
+ 
+ 		/* We don't expect any holes */
+-		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(gt, GSMBASE) - ccs_size),
++		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(&gt_to_tile(gt)->mmio, GSMBASE) -
++					     ccs_size),
+ 			      "Hole between CCS and GSM.\n");
+ 	} else {
+ 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
+@@ -256,7 +257,7 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+ 	if (xe->info.has_flat_ccs) {
+ 		offset = get_flat_ccs_offset(gt, *tile_size);
+ 	} else {
+-		offset = xe_mmio_read64_2x32(gt, GSMBASE);
++		offset = xe_mmio_read64_2x32(&tile->mmio, GSMBASE);
+ 	}
+ 
+ 	/* remove the tile offset so we have just the available size */
 -- 
 2.45.2
 
