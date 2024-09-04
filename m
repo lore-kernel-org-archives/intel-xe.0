@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58A06CD37B5
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39023CD37B9
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Sep 2024 00:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22F0E10E63B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E545510E64E;
 	Wed,  4 Sep 2024 00:21:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJCnZcJP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bl0S2B8g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0248010E63B
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 076A310E641
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Sep 2024 00:21:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725409277; x=1756945277;
+ t=1725409278; x=1756945278;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8RIEw8W/X7avPsU7KCsMNq58oxYBegrveDyZFs3dkrI=;
- b=PJCnZcJP9O3QD1pFagDIX2jjmDb4ltUURHnRMfFpxtK1G+XRRPq4eQEI
- QQ/CObt+qLJC8Lz2Mvkyx3l6NsAHZbQ0HiLGDuZiBRJ8MW06uJ1GpWfSt
- BMECD6ThUGaw2GnSCVzMHKTp8M3N0J3/f4NYhw5zDE9rb8d87IZC9pOe7
- TZWe5E6Gj3pG3lnuHXJVCYv3E+re8QwRS2HetvR0kBTuwIDwVRP4fLUiX
- sTLLl2ctsg4O79D2dURkbGkV6qBpUr+qvUgJ6Vax+RBsA0LwraXEh8RMa
- vy4ZLt7SEKUwiLc6ScVdYH3hHovfQ2M7XRTd0mZHHLqnnSJ2H68lA6QTz A==;
-X-CSE-ConnectionGUID: HPszYJl/ReSmUQV244F8Sw==
-X-CSE-MsgGUID: C4sqbrRjQY2kLr3w2sYdxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904812"
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904812"
+ bh=ee1bl/F+3gwCW06Ge/IeUpJLV3mqBChY496zzm5vzcA=;
+ b=Bl0S2B8ggQrRE0upE7CenZN9AlXsusBnsS9sX684zYinwleifLlbFOcO
+ 9pcki5KLNFdRmOJsT94+QpjsYDi07dDj1abug9kpYySJZjlMjtWFhdDx+
+ 8b6D0G0P05Bk8N+1cMW5B+8hj/7YzDwviukjE+Bbv6FwYhC2+LTEU5EKp
+ jqm+DNjg7sWDyZ2IIUSVsozb2sq4E3BNZNmgigR1EY8wxxJ4axKVFFPQd
+ bGP/nUPfILCXXiEDyu7Rf5Hh3t2lWFl1UIDj2+CHAR5634IwUBCz7tA05
+ 2Rahx8aNU+qC8P79AQ4Fz10tAY3kJTPfeqMqcwqN15OLmB8YfXStUAo6P w==;
+X-CSE-ConnectionGUID: kaGpbtZ6Q5aAktYQmID50g==
+X-CSE-MsgGUID: fNX6+eFARNC18D/OcKZe+w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23904824"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="23904824"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:16 -0700
-X-CSE-ConnectionGUID: ndnpLoGrTDugq5eVXOwHOg==
-X-CSE-MsgGUID: XydW3KrrRkKvzk3laqdO0g==
+ 03 Sep 2024 17:21:17 -0700
+X-CSE-ConnectionGUID: 3sKjEcTDTWC13R5z7nb9jQ==
+X-CSE-MsgGUID: SL41CZRVSbaQnaMxXZtWew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944275"
+X-IronPort-AV: E=Sophos;i="6.10,200,1719903600"; d="scan'208";a="69944315"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 17:21:16 -0700
+ 03 Sep 2024 17:21:17 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 24/43] drm/xe/query: Convert register access to use xe_mmio
-Date: Tue,  3 Sep 2024 17:21:25 -0700
-Message-ID: <20240904002100.2023834-69-matthew.d.roper@intel.com>
+Subject: [PATCH 34/43] drm/xe/gt_clock: Convert register access to use xe_mmio
+Date: Tue,  3 Sep 2024 17:21:35 -0700
+Message-ID: <20240904002100.2023834-79-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240904002100.2023834-45-matthew.d.roper@intel.com>
 References: <20240904002100.2023834-45-matthew.d.roper@intel.com>
@@ -70,34 +70,40 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_clock.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 28d9bb3b825d..5246a4a2740e 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -91,16 +91,17 @@ __read_timestamps(struct xe_gt *gt,
- 		  u64 *cpu_delta,
- 		  __ktime_func_t cpu_clock)
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 86c2d62b4bdc..cc2ae159298e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -17,7 +17,7 @@
+ 
+ static u32 read_reference_ts_freq(struct xe_gt *gt)
  {
-+	struct xe_mmio *mmio = &gt->mmio;
- 	u32 upper, lower, old_upper, loop = 0;
+-	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE);
++	u32 ts_override = xe_mmio_read32(&gt->mmio, TIMESTAMP_OVERRIDE);
+ 	u32 base_freq, frac_freq;
  
--	upper = xe_mmio_read32(gt, upper_reg);
-+	upper = xe_mmio_read32(mmio, upper_reg);
- 	do {
- 		*cpu_delta = local_clock();
- 		*cpu_ts = cpu_clock();
--		lower = xe_mmio_read32(gt, lower_reg);
-+		lower = xe_mmio_read32(mmio, lower_reg);
- 		*cpu_delta = local_clock() - *cpu_delta;
- 		old_upper = upper;
--		upper = xe_mmio_read32(gt, upper_reg);
-+		upper = xe_mmio_read32(mmio, upper_reg);
- 	} while (upper != old_upper && loop++ < 2);
+ 	base_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK,
+@@ -57,7 +57,7 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
  
- 	*engine_ts = (u64)upper << 32 | lower;
+ int xe_gt_clock_init(struct xe_gt *gt)
+ {
+-	u32 ctc_reg = xe_mmio_read32(gt, CTC_MODE);
++	u32 ctc_reg = xe_mmio_read32(&gt->mmio, CTC_MODE);
+ 	u32 freq = 0;
+ 
+ 	/* Assuming gen11+ so assert this assumption is correct */
+@@ -66,7 +66,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 	if (ctc_reg & CTC_SOURCE_DIVIDE_LOGIC) {
+ 		freq = read_reference_ts_freq(gt);
+ 	} else {
+-		u32 c0 = xe_mmio_read32(gt, RPM_CONFIG0);
++		u32 c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+ 
+ 		freq = get_crystal_clock_freq(c0);
+ 
 -- 
 2.45.2
 
