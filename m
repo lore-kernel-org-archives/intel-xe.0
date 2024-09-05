@@ -4,27 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B520CD4F58
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 12:39:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B99DBCD4F58
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 12:40:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1866710E887;
-	Thu,  5 Sep 2024 12:39:47 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B8D810E887;
- Thu,  5 Sep 2024 12:39:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0493174595700561696=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D05C10E888;
+	Thu,  5 Sep 2024 12:40:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="nhVcv5ug";
+	dkim-atps=neutral
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com
+ [209.85.128.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2429D10E88B
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Sep 2024 12:40:28 +0000 (UTC)
+Received: by mail-yw1-f178.google.com with SMTP id
+ 00721157ae682-6c91f9fb0acso5861757b3.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 05 Sep 2024 05:40:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1725540027; x=1726144827; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=cAsWnhIXMINBCA2LD6vZLoTkLzPunHo5mBHMYdvy5yQ=;
+ b=nhVcv5ughuNkDAPQOnDmixPZCMQ0qmCTw8MD/x+AZUPUsiIe73Fp1Qa2BPybssylN2
+ QwwsJNh0b/5EKFw1UG2EVKG8MJZwjSBstGGFEjaI0wKtksUMzdddSly/Aw/srpWd+nbP
+ 6Y1rI8cVnLQwQHOKtIfdjA6FJTHiDZAe/oEolANoG23fEJqCcw2jMrIa56pgMhl5Upbi
+ jDz+JPgB8kmTDNCmdNiPONUYitV6U7QkKy6a4myaCECl9r7wZFfs8oslIFFflw4dgezq
+ iF7jkA+E4EPL61ObCa7pZiDTs/lJMSIrGejkyrO3T3G1T9R8BTYXweSwCsZLpvX460cb
+ GGjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725540027; x=1726144827;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=cAsWnhIXMINBCA2LD6vZLoTkLzPunHo5mBHMYdvy5yQ=;
+ b=Mpaj9XEbomIqr5WpHuPSqkbk/heuknZyn0/x8MFLBqf83Y4RPRrl+UelWk0f5nRC5Y
+ QbC89wRNDPQD363aUbGDxi4b5JOgJ+CbU50RQFoa9hGfJ449dk/80BLvA7RGW9ZwYcqk
+ j848LOnGRDywT3DpjaKkCgbrUMOZ/Z6t2QWlCMLtETr1obVPTW6mz9lLS/DSYr6T5AMs
+ oKWep7HmxEEUEel/Ut1sFd4D0VE/qL0njFtmbErMS6nHEbAojXOOU1F+jhVGeAsOKsvd
+ bl+YYQpmDpRMRhwuh5QHerxi3q95v6OsCXge8odwDVhcHRz8bxFRkS162W3Niw0gu7Nr
+ gkig==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVRofjivcAohARLq69lPPZqXeN1QgEHzrRRRCqYnTevTMIh35wFssFw7Oo9qZhzaovD/1vNU8I1Lg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwfHvQHRUTcy63aqCqtVis7WSFCfDFOzwjrILB2s+V6IVi7IP5W
+ yZY2G8g4+0a2OQH9aRmexVXS5k4ZMvJZR1deVt/5bRH5AxhVcYKwMnAXt3mtT/u1FDY1yDTmLOS
+ qmoeY6HukgZysC/xnZmXXyK47aAUULessehklug==
+X-Google-Smtp-Source: AGHT+IFIWLL0YlxXEHzETETRS/4fXk/TAU6J/4Fvm95WECnhr++irvMb/d6wkqFe1PbO8tUu5xvRXYLr+luqmfEBPLA=
+X-Received: by 2002:a05:690c:6481:b0:6d5:7b2f:60a0 with SMTP id
+ 00721157ae682-6d57b2f64f8mr207770997b3.34.1725540026953; Thu, 05 Sep 2024
+ 05:40:26 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Implement_Wa=5F14021768792_to_by?=
- =?utf-8?q?pass_m=5Fn_ratio_limit?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Sep 2024 12:39:46 -0000
-Message-ID: <172553998616.950701.14847380979399523656@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240905115505.3629087-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20240905115505.3629087-1-ankit.k.nautiyal@intel.com>
+References: <20240905-fix-dsc-helpers-v1-0-3ae4b5900f89@linaro.org>
+ <172552245933.2905944.14392896379200688443.b4-ty@kernel.org>
+In-Reply-To: <172552245933.2905944.14392896379200688443.b4-ty@kernel.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 5 Sep 2024 15:40:15 +0300
+Message-ID: <CAA8EJprBwTH8R9-b68g-U6yA-FN6z_pt4YComNCj-xvXwvzcCA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] drm: add two missing DRM_DISPLAY_DSC_HELPER selects
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Sean Paul <sean@poorly.run>, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
+ kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +85,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0493174595700561696==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 5 Sept 2024 at 10:48, Maxime Ripard <mripard@kernel.org> wrote:
+>
+> On Thu, 05 Sep 2024 06:08:20 +0300, Dmitry Baryshkov wrote:
+> > Add two selects for DRM_DISPLAY_DSC_HELPER which got missed in the
+> > original commit ca097d4d94d8 ("drm/display: split DSC helpers from DP
+> > helpers") and were later reported by LKP.
+> >
+> >
+>
+> Applied to misc/kernel.git (drm-misc-next).
 
-== Series Details ==
-
-Series: Implement Wa_14021768792 to bypass m_n ratio limit
-URL   : https://patchwork.freedesktop.org/series/138256/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785_BAT -> xe-pw-138256v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138256v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [FAIL][1] ([Intel XE#886]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+Thanks!
 
 
-Build changes
--------------
-
-  * Linux: xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785 -> xe-pw-138256v1
-
-  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785: 39b94594810314dd41c6d73cdade9f56eacc0785
-  xe-pw-138256v1: 138256v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v1/index.html
-
---===============0493174595700561696==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Implement Wa_14021768792 to bypass m_n ratio limit</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138256/">https://patchwork.freedesktop.org/series/138256/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785_BAT -&gt; xe-pw-138256v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138256v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785 -&gt; xe-pw-138256v1</li>
-</ul>
-<p>IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1895-39b94594810314dd41c6d73cdade9f56eacc0785: 39b94594810314dd41c6d73cdade9f56eacc0785<br />
-  xe-pw-138256v1: 138256v1</p>
-
-</body>
-</html>
-
---===============0493174595700561696==--
+-- 
+With best wishes
+Dmitry
