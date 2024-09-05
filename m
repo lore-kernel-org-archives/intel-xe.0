@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52725CD4F4D
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 06:22:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F915CD4F4D
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 06:46:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19E0610E6E5;
-	Thu,  5 Sep 2024 06:22:51 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 577AF10E6E5;
- Thu,  5 Sep 2024 06:22:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6828337855741657717=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC4810E0ED;
+	Thu,  5 Sep 2024 06:46:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P92z3Xjj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 897CF10E09B;
+ Thu,  5 Sep 2024 06:46:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725518765; x=1757054765;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1tUb2cHnHCI1UfWFjh4d2NZFIgqCgIzAE1MSmJGIGGk=;
+ b=P92z3XjjSDotPDB4LkDn0SuS3hXxncQFD9qL+njc6cSGUhECsNyul+wT
+ nNovC8rF5p5O/nXKjM4wq370vkXx0Dr0b9JqVvtLOGEvBO0BL5UDckTz3
+ 1CSv27xKDL9kPSBkx8eHC0sPNYDNAG5qCrjdtiNoaISQ+04L31F3oV0Pl
+ izpE+xmmVemBlKflixykf/EOYp8q7DjiGjNcjszbn3ksKzkIFqbCGWus1
+ eWm7ArPZ6ejWJsImJcXj51DOquxqKiRHw52BtHtE0ro8akk94YXjXWrUD
+ 6gtBmfmJih9hiVDOlg7mXCjJFNU/fjDN2pt7nl89Hyb85esPk3v46ExEb Q==;
+X-CSE-ConnectionGUID: jfMvy0QqSUqWTna5unmYqg==
+X-CSE-MsgGUID: nb4NLEA/TCOckEsGXVfSCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="41719296"
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="41719296"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 23:46:05 -0700
+X-CSE-ConnectionGUID: 5s9NxvsAQGKcVE7xCxWBLA==
+X-CSE-MsgGUID: RGmeaQq1Qa+KH7QmT/0whw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="70325974"
+Received: from unknown (HELO fedora..) ([10.245.245.247])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 23:46:04 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
+Subject: [PATCH v5 0/2] drm/ttm: Really use a separate LRU list for swapped-
+ and pinned objects
+Date: Thu,  5 Sep 2024 08:45:50 +0200
+Message-ID: <20240905064552.5102-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe=5Fgt=5Fidle=3A_add_deb?=
- =?utf-8?q?ugfs_entry_for_powergating_info_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Sep 2024 06:22:50 -0000
-Message-ID: <172551737035.949575.16030137389280484415@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240905052813.4169007-1-riana.tauro@intel.com>
-In-Reply-To: <20240905052813.4169007-1-riana.tauro@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,168 +65,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6828337855741657717==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Resources of swapped objects were never moved off their LRU list
+when swapped, and also resources of pinned objects might remain on
+their LRU list unless the driver moved them to the device pinned list
+after pinning.
 
-== Series Details ==
+Rename the device "pinned" list to "unevictable" and ensure that resources
+of objects that are pinned or swapped are moved to that list.
 
-Series: drm/xe/xe_gt_idle: add debugfs entry for powergating info (rev4)
-URL   : https://patchwork.freedesktop.org/series/136477/
-State : success
+RFC: Should we instead of a device-wide unevictable list, introduce an
+unevictable priority so that all objects remain with their resource's
+respective manager?
 
-== Summary ==
+Patch 1/2 deals with swapped objects and also handles the problem of
+moving objects back to their manager's LRU list when populating.
 
-CI Bug Log - changes from xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d_BAT -> xe-pw-136477v4_BAT
-====================================================
+Patch 2/2 deals with pinned objects.
 
-Summary
--------
+v2:
+- Address review comments by Christian König.
+- Make TTM KUNIT tests build.
 
-  **SUCCESS**
+v3:
+- Fix a couple of NULL pointer dereferences (Intel CI).
 
-  No regressions found.
+v4:
+- Fix even more NULL pointer dereferences (Intel CI).
+  The bulk move handling appears pretty fragile...
 
-  
+v5:
+- Fix resources created for readback of swapped bos
+  ending up on the unevictable list (Intel CI)
 
-Participating hosts (9 -> 9)
-------------------------------
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
 
-  No changes in participating hosts
+Thomas Hellström (2):
+  drm/ttm: Move swapped objects off the manager's LRU list
+  drm/ttm: Move pinned objects off LRU lists when pinning
 
-Known issues
-------------
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c    |  4 +-
+ drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |  4 +-
+ drivers/gpu/drm/ttm/tests/ttm_resource_test.c |  6 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                  | 67 +++++++++++++++++--
+ drivers/gpu/drm/ttm/ttm_bo_util.c             |  6 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c               |  2 +-
+ drivers/gpu/drm/ttm/ttm_device.c              |  4 +-
+ drivers/gpu/drm/ttm/ttm_resource.c            | 29 ++++++--
+ drivers/gpu/drm/ttm/ttm_tt.c                  |  3 +
+ drivers/gpu/drm/xe/xe_bo.c                    |  4 +-
+ include/drm/ttm/ttm_bo.h                      |  2 +
+ include/drm/ttm/ttm_device.h                  |  5 +-
+ include/drm/ttm/ttm_tt.h                      |  5 ++
+ 15 files changed, 115 insertions(+), 30 deletions(-)
 
-  Here are the changes found in xe-pw-136477v4_BAT that come from known issues:
+-- 
+2.46.0
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#1192]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  * igt@xe_pat@pat-index-xelp@render:
-    - bat-adlp-vf:        [PASS][5] -> [DMESG-WARN][6] ([Intel XE#358]) +1 other test dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][8] ([Intel XE#1192])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/358
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d -> xe-pw-136477v4
-
-  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d: 8b1096500fd6fae573f7d9c4416778d6442e985d
-  xe-pw-136477v4: 136477v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/index.html
-
---===============6828337855741657717==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_gt_idle: add debugfs entry for powergating info (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136477/">https://patchwork.freedesktop.org/series/136477/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d_BAT -&gt; xe-pw-136477v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136477v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp@render:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/358">Intel XE#358</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v4/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d -&gt; xe-pw-136477v4</li>
-</ul>
-<p>IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d: 8b1096500fd6fae573f7d9c4416778d6442e985d<br />
-  xe-pw-136477v4: 136477v4</p>
-
-</body>
-</html>
-
---===============6828337855741657717==--
