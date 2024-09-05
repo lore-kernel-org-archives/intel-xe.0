@@ -4,59 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C1D8CD98FE
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 18:16:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E86C5CD5BB8
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 19:29:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B211110E116;
-	Thu,  5 Sep 2024 18:16:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B5710E155;
+	Thu,  5 Sep 2024 19:29:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bUHZhnrx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hk+B68gP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA25F10E116;
- Thu,  5 Sep 2024 18:16:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 227A010E155
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Sep 2024 19:29:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725560171; x=1757096171;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=hPrLiPIB3VsMc/vh3EbBIOPu0Xumo5G9sqxncdrf9jE=;
- b=bUHZhnrxOE2VhHNgVBHBh2xPny45ygylERM0t1nW3QBaUcrwCVdGBeOp
- uVHLy2G0+yls9f7BPf7HI65dkyrNlV23g2NhehSbgIcr9wuZL2R9AJl9R
- 7Vv0AlyY62LeXvAhfd320luyi72pEdwUmVx856BBRoMfUWtWq1gnYf660
- CYstc1IcmQx8NSzjR3dltthkFXZ8B3e9Rd/6MbjQE9EyEsvBj92FNOWtT
- Nt2c+KcwxTfMwiwAzFL0ko4quFTdIfciuoPkRKizVsxygE0oqdSJ2JGSK
- Gzz8nMEPoaHr/vOJvcwz12FkFT9keTu7SgCZEFZ2+qrc9OcN/0ZO6olLd A==;
-X-CSE-ConnectionGUID: gmm2qbs6Ro6QX9G3GQcVlw==
-X-CSE-MsgGUID: o+JkGnLWRBu0790Kv3O+8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="41778279"
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="41778279"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 11:16:08 -0700
-X-CSE-ConnectionGUID: y9koa3zeQAS9rtvn4FLTXg==
-X-CSE-MsgGUID: +49xxhk8SA6Bcdwwmc0V2A==
+ t=1725564590; x=1757100590;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=hyrtKJuHCzKXb70WE8ais5rvnRBZSoizb60YRxiCrCg=;
+ b=Hk+B68gPXodIwfT3N5t2K2ZQPMfHElu2M+oNrXUAWnoaqEl7tZOJa2u2
+ sDNiP+ZgPEBZScBzUTxpfx+vdlxcCT6sCGbm8CGziv2Hsl6mSn6o8gyGo
+ DKFBbCWMJ2Z4J2pLyTIOeaJQOFuxu1mqqtj/hgds67E7tQIGASrKZkzYf
+ lYfhnKdvc2CZWwqzRcfHIfTA9RBpDcbHzTUgcTvncADPsG1KIFrDH7tPz
+ SPgx8v0gvrUiIBjunQMwOI9bylXS4QPQSvRg8NUVuC68DIUG47iP+nIGX
+ OqU5rk6+7SAUpc8Rs5fCbPyy+VjG0LOhbls8ovsw9nM9/sTKYyH5W7tlt A==;
+X-CSE-ConnectionGUID: o7GSy7klQkSv/xSj813eLw==
+X-CSE-MsgGUID: SLDXGmP5R/uw5LPM/F++Pw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="35661242"
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="35661242"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 12:29:50 -0700
+X-CSE-ConnectionGUID: VdBXvaLvRS2n1G/CX/BqoQ==
+X-CSE-MsgGUID: aLlxTHI/TZmNby5lXUhYYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="65745227"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.216])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 11:16:04 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [RFC] drm/xe/display: Merge xe's display info probe and i915
- HAS_DISPLAY checks
-In-Reply-To: <Ztm1yy9JxTUgQMyd@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240904173713.26891-1-rodrigo.vivi@intel.com>
- <ituy73yzuwpjxjdwm53a6etoanj3y7brwk5ag57bhw4hlhf6xs@hs6iaclhkvt7>
- <Ztm1yy9JxTUgQMyd@intel.com>
-Date: Thu, 05 Sep 2024 21:16:00 +0300
-Message-ID: <877cbqotjz.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="66454681"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Sep 2024 12:29:50 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 5 Sep 2024 12:29:49 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 5 Sep 2024 12:29:49 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.42) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 5 Sep 2024 12:29:49 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QIHeZctLH86Df3XM2TgBD9fK2KYsVYO6hfN1w+ZFN9Tz5voHINMoZ7hmGfKVJeQbi2/fi1QXbgOsca4WYQ1gLBaPTsFF8gc5iptTTsjHvVZJ66ZALEUk3R/ibpqnVaPiOa1rjZAPQND+MR3f6mKgeGe/Kk26DA5aeY4l4ZN89VqxpBbBdHsRkiN00H7U+h9RKY+ypZoUmWzpd5HlYBh75ZNduLc110f+N3dp4UfoPia0nQdgkMN4WVzUdLRfs60Gg8fI70Ske7t2oCp4b3uZu2qZgYMHG9mP3rfE0aoFPUOgef7Lf4uBDLpBYnVhZ4yCcapQ09ZYDPJ/ulv5izSgkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=29ukZquaDWEa8A50TiyA+lzczXgiuax1gLxUxqsXoj8=;
+ b=C1/JhN+y5e+DuFeNMtv74Xi1sp5jpx1LHt/2xPPT8mOVNaSXlFcgEmBJ+yCRbYNZipZ5e9Q9HfIjNuK3qwwd4YWnuy8wi8YVMpY/wnGw0i/ZGfEF/h9EFCPOc2VeMjMxQ+wi5Tgjz7UIwgBBA+CBw6tMhu8qHv9DqFlgZqZ/W7ls4meByh7joZpKt0xFBqcQbiryg/UPtTq3uLSjBibp6iqI4P9K1xsptBSThxYE4cA8vqm+jDpXstsT+AbQ/lPs43zQs7otDRciZhuUDQvuWjF1HDXSJ/2N7nA03n8sSsBtRPYMLsF9QIj7h0dWbpdl7jr5Pxy1RA0Wt1CZ972fug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by CH3PR11MB7322.namprd11.prod.outlook.com (2603:10b6:610:14a::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Thu, 5 Sep
+ 2024 19:29:46 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7918.024; Thu, 5 Sep 2024
+ 19:29:46 +0000
+Date: Thu, 5 Sep 2024 15:29:42 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: Re: [RFC 1/9] drm/xe: Error handling in xe_force_wake_get()
+Message-ID: <ZtoGpjVmZbwLsD1s@intel.com>
+References: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
+ <20240830052326.3707019-2-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240830052326.3707019-2-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: MW4PR03CA0072.namprd03.prod.outlook.com
+ (2603:10b6:303:b6::17) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CH3PR11MB7322:EE_
+X-MS-Office365-Filtering-Correlation-Id: 96af71d3-1492-4052-64e9-08dccde11958
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?XC1rUdxq0QB6hhX/fkY7oSjla8+iMDSIDmgIIgIXavdCKg6ms6i61edAt1bf?=
+ =?us-ascii?Q?8G2pk5K6IXx2tfTLN09vTgkUaEACbFJ51guhaHZO/W1pX4Qy5ZZwJgmNmtEj?=
+ =?us-ascii?Q?/SOizZsZh3gPzsNU1dWJiGcPAuvsSmw/rWPx9N059QvjfeSPM3PA5mSNVCqo?=
+ =?us-ascii?Q?Y1Q1ahczXb9puznkZGQJyEj1ZWsnWk/T6fTD26tVBa4IMdYQ/X93jxzP90mw?=
+ =?us-ascii?Q?qEdXhieik8LsHasGcpnJkdcaUpwX8+Nkuw5cxmfSMKG4KXBTy+YPN7/YZlWE?=
+ =?us-ascii?Q?4OmXd9cUtDEnIQ6t3ZEUC3GLXhTDmIx/nk+0qwtmfUxz3IQUWe7QhwvNL4Oq?=
+ =?us-ascii?Q?S6mCqikVSLdZGIbCwk3yKwOL5Pa7R4Kt0pP+U1zFghlk9goAhvjmW6QDeNjT?=
+ =?us-ascii?Q?5it108AgwpPaIZVOsStaEQbtg1TdlyqEEK8PsnmMksjVLfmRaBC2FKf+wTa+?=
+ =?us-ascii?Q?bisZxwSRm9sn24VXrBXlUabUe85dIdkdiIJBPbghYMPtSnrkjcvFHYgarCNJ?=
+ =?us-ascii?Q?Yq/vCnOmp3Xfv9Zu/sezgA3KMhIpeI/Ww/zdrBNY5d+J5U/OvIWvBp0+dgYt?=
+ =?us-ascii?Q?Vg5tN8boZxYuOp0iWkcTNo2rfQ0VCgFDvs16hvDdNVuM3k1i5TmvHKoJ5vFd?=
+ =?us-ascii?Q?OEsx1eu81KG8Ld5G4pxfTzY9Lclf9Baz/dl9ukG1OLxAmDYzUMsvh/0uYdZw?=
+ =?us-ascii?Q?iF6Da+20lJ2hacOX6yMCvm3Vn1eZ6+Ngy5OQE2zmirjjyi4hraz7fTsZM8FA?=
+ =?us-ascii?Q?G66DzWsDQeRrgcKns2/javY5+HOdttviFmaclh2c9OMt5BiwM1m91dKSQk5K?=
+ =?us-ascii?Q?DpSoSMF0bN4Q/aF5WrkfG2x9UM1/tms5kBp5Yz2t+I0h7HU0da6b8eGZSJ+1?=
+ =?us-ascii?Q?atEoLEl/oNW68aRcNiSJizTyG2dTFsGlPCBbSwx8IR8zkIUgzb8GL1Z/s1hU?=
+ =?us-ascii?Q?A4KKmLLFXE8n1uwcCztmhYtb/TWAe0r/tp2C+rQXAenMn2SHUkhkjV4FLpX3?=
+ =?us-ascii?Q?YP+lOMhk2VLc81zVAV1pzZOx0qd7R0RfxRpLUHqM89COOp0oYi6fr7TulDbN?=
+ =?us-ascii?Q?bpI/3k4zcQTlALTxd6b+Rn8NwDSfOknHPWQh3ivI6OrbnBlVhmJ7tm2wdX8w?=
+ =?us-ascii?Q?L+EkCR+ni2x2uC1OW8ex1kQTMIoM3ZsMF2WzabT0wJWAeUzIARE6R3mSXK1L?=
+ =?us-ascii?Q?R5vrU75a6i8eLCDWAcr7PGy5DSs93FKKv+zgwAf81ZCLR07PBxe7UhqisWl1?=
+ =?us-ascii?Q?K9v+aqJD9+6sGvb3boR/JBFOEOUeZLc7vTmIjM7tDY58islrJm+gICAl1y2Q?=
+ =?us-ascii?Q?QqI6koOihmOJR5WF0r/q9N/hFDj4/zdQ7DykmHGjQ8PeCQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EY6ryYw6Cq3AIj1gxVjk0RRQVjUWTYh9zL+5IOwXCZfzQe6xPdQi0EvwzlRw?=
+ =?us-ascii?Q?hIheSm+qtAEzeBGDdamx+ejJAnki1HiLE76rT4WhdkzpSPhM/o+H2HrM/Rg1?=
+ =?us-ascii?Q?RpqVgreDjYWT8Do+1w7Kjtc8cquaYkUribGcRwRcoYMI3RWhovQ2i/0QL2lp?=
+ =?us-ascii?Q?hRDtmarbq+jPVY6LyNQvELdj39CrJkR3P1O9BBKMhs2MIA4gP6VTgzIgDtj/?=
+ =?us-ascii?Q?8mhj5QuMyDBstUKr8Y2r5FuC7ACtuW5RRtE0hPTN8xfSF0RCFmQo/zpjqzqU?=
+ =?us-ascii?Q?9cCzKTTvi2QBK0JJIqJOo63SPf4GoDsSENpyyZ+jzI2LR3SuWvaStmsrBTV6?=
+ =?us-ascii?Q?qnM706aWCamku1a5lLWrUnp+PZU25iHN+g9D/u3OO0yLi/uEP3zQc59WNrPy?=
+ =?us-ascii?Q?ugCw0skGAprtO9OWtJcwsNCjo4/5gU6R1rJ01PLKRKe3BGXfMOAWSFSWlIkh?=
+ =?us-ascii?Q?a5Uu4YT2QqOPv3TTpgrFoNZudjbJUjlU1HilFEb1jwoRb7MUPjwrFNvb7NgC?=
+ =?us-ascii?Q?TEitbBzDf523VWVzxRso4zXTaSgHQ2w+3TSRoTbQuziMLcmaByhO6GMnfbhM?=
+ =?us-ascii?Q?ZvF/nwyFu7az2XvIEqdcJMyLQAjeXn+MZmamIFDuEBj04N6MK4I7aG2+X9eL?=
+ =?us-ascii?Q?NGQX72wQWcV0IH8JL91QfTftnIOTZhl4fyXdFWO5U8S11vILqAUWgCzdHsHa?=
+ =?us-ascii?Q?h4CWfhWiYn7sX94r+EXyqFODS0sVhEZg8MTX0LRT9I8kX0iNlmAsNS/XEPOo?=
+ =?us-ascii?Q?PLWAaDvOlddfWCJ3RkULyJ376yKhSaVE0otSP9kr7oV2Slm2UgxKN2y/ORXC?=
+ =?us-ascii?Q?bDw/4p9o1c5cDfUbOMMFERPGtSo4XUGqr5SFfwZYy1RwQHljgYB8V6zuDXwJ?=
+ =?us-ascii?Q?DU9y3IWx1ZOqHq0nB3+Jt+YvDEzZg3V3hjR6D5DB6x3Sb9IU5CO3Kl8MHMfc?=
+ =?us-ascii?Q?FQynuTnbU+HSSWVhD4RYeOUvihTg5Um9YbQXIkwiPpgrZFy1hfCcfboFR9k+?=
+ =?us-ascii?Q?bI+i6eBJQRi9y108HL1ENm0R5xuopSrRDVm9mt//jjrqZhWE6qfubCWT6YD+?=
+ =?us-ascii?Q?CqDKB+SjtVQ0UyMNJAEp309I9RaEbddudWu0pyQPVBjL5XRptIx4TtEvIkad?=
+ =?us-ascii?Q?l4ZMbYSI5t39WyMHBwsTMvfuy+A6jkcxI8vFWPkrOG7brzX0nnHOcbTk1syM?=
+ =?us-ascii?Q?qFq53sBeCmu2PBRImEu/h3hZs+Am8YPhNQrO1UU8tUsp6o9HowOSsDOFt0ro?=
+ =?us-ascii?Q?fKJHuC+QxkDHgHGz7xKfrY+NhfIw5gvBA0lQnApqVw06rlBRm9p4pQ5AkiEY?=
+ =?us-ascii?Q?NIIZxa7pX3MVfq438RZCgmG5ErvX6pKyeP1rkV0o2c/vNcLZPHihdCpRjs5K?=
+ =?us-ascii?Q?Da3SHhK86ORaKKm2ml0dqcDtcnulY9ZVzDOsGjV/SDajKcYhMTjAOhj+T2XM?=
+ =?us-ascii?Q?UGeo9aGqn87lVgPv2ooWzI46iNvsTFS9qXfKiZu6ni7XC1Q/fLgSnqTqCpnw?=
+ =?us-ascii?Q?u+EtqRbXZFmdm+Qr/A+Cj6aYEkHFIt0AtgXEIOsl+BJq1mE/b8Km5DU1DFom?=
+ =?us-ascii?Q?uDOOqMHnR8nx4kf26tETEWmKV8iwlK4wD9We9X+ZQc54fZZQNWBb9luHU5bj?=
+ =?us-ascii?Q?sw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96af71d3-1492-4052-64e9-08dccde11958
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2024 19:29:46.3407 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IhUimu8HSga1zdJDlCaMh9ROYj+BtVS4azB7dYR7HFHgaK6suEfRO0lHk89242KicLmwp0IpoeJhHb61KW6hTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7322
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,330 +176,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 05 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Sep 05, 2024 at 08:29:22AM -0500, Lucas De Marchi wrote:
->> On Wed, Sep 04, 2024 at 01:37:13PM GMT, Rodrigo Vivi wrote:
->> > Instead of having multiple checks and the has_display in the middle
->> > of the functions, only execute the Xe display functions if
->> > Xe probed display and pipe_masks still have something valid
->> > after i915's runtime init.
->> > 
->> > Cc: Jani Nikula <jani.nikula@intel.com>
->> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> > ---
->> > drivers/gpu/drm/xe/display/xe_display.c | 65 +++++++++++++------------
->> > 1 file changed, 35 insertions(+), 30 deletions(-)
->> > 
->> > diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
->> > index 75736faf2a80..1e248c7aaff0 100644
->> > --- a/drivers/gpu/drm/xe/display/xe_display.c
->> > +++ b/drivers/gpu/drm/xe/display/xe_display.c
->> > @@ -13,7 +13,6 @@
->> > #include <uapi/drm/xe_drm.h>
->> > 
->> > #include "soc/intel_dram.h"
->> > -#include "i915_drv.h"		/* FIXME: HAS_DISPLAY() depends on this */
->> > #include "intel_acpi.h"
->> > #include "intel_audio.h"
->> > #include "intel_bw.h"
->> > @@ -34,7 +33,12 @@
->> > 
->> > static bool has_display(struct xe_device *xe)
->> 
->> I think has_display is already conflated enough. From the xe side I
->> wouldn't call this has_display if it means something else than "the
->> hardware is present or we know how to drive it". That is the meaning of
->> this flag in drivers/gpu/drm/xe/xe_pci.c and this function here later
->> changed to mean something else :-/
->> 
->> > {
->> > -	return HAS_DISPLAY(xe);
->> > +	/*
->> > +	 * Xe has probed and configured the display,
->> > +	 * and some pipes remains enable after
->> > +	 * __intel_display_device_info_runtime_init()
->> > +	 */
->> > +	return xe->info.probe_display && HAS_DISPLAY(&xe->display);
->> 
->> I'm not following the motivation here... Shouldn't we remove the
->> HAS_DISPLAY() from here and rather change the display side to do a
->> return-early?
->> 
->> if probe_display == 1, from the xe perspective we probed display, we
->> shouldn't be looking at the internal state of display to know what to do
->> on this side of the fence.
->
-> Right, but so far we have other if (has_display()) in the middle of our code.
-> Like Jani reminded me yesterday, we still need to check the state of
-> pipe_mask after runtime init function before many calls.
->
-> So, the quick goal here was to just consolidate the checks instead of
-> the current sprinkled 'if (has_display()) calls that we have around.
->
-> So we can proceed with a further clean-up and split on the display
-> calls and then move them out to intel_display and minimize this
-> file as much as we can...
->
-> https://lore.kernel.org/intel-xe/Zth56C3s8lPQMEBB@intel.com
->
-> But another question that I'm making myself since yesterday is:
-> Shouldn't we simply kill the Xe's display modprobe option at this point?
+On Fri, Aug 30, 2024 at 10:53:18AM +0530, Himal Prasad Ghimiray wrote:
+> If an acknowledgment timeout occurs for a domain awake request, put to
+> sleep all domains awakened by the caller and decrease the reference
+> count for all requested domains. This prevents xe_force_wake_get() from
+> leaving an unhandled reference count in case of failure.
+> While at it, add simple kernel-doc for xe_force_wake_get() and
+> xe_force_wake_put() functions.
+> 
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_force_wake.c | 52 +++++++++++++++++++++++++++---
+>  1 file changed, 47 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+> index b263fff15273..8aa8d9b41052 100644
+> --- a/drivers/gpu/drm/xe/xe_force_wake.c
+> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
+> @@ -150,31 +150,73 @@ static int domain_sleep_wait(struct xe_gt *gt,
+>  					 (ffs(tmp__) - 1))) && \
+>  					 domain__->reg_ctl.addr)
+>  
+> +/**
+> + * xe_force_wake_get : Increase the domain refcount; if it was 0 initially, wake the domain
+> + * @fw: struct xe_force_wake
+> + * @domains: forcewake domains to get refcount on
+> + *
+> + * Increment refcount for the force-wake domain. If the domain is
+> + * asleep, awaken it and wait for acknowledgment within the specified
+> + * timeout. If a timeout occurs, decrement the refcount and put the
+> + * caller awaken domains to sleep.
+> + *
+> + * Return: 0 on success or 1 on ack timeout from domains.
 
-That's what my first reaction to the whole parameter was. But apparently
-it's useful for platform enabling. I think the rename helped in
-clarifying what it means.
+* Returns 0 for success, negative error code otherwise.
 
-BR,
-Jani.
+> + */
+>  int xe_force_wake_get(struct xe_force_wake *fw,
+>  		      enum xe_force_wake_domains domains)
+>  {
+>  	struct xe_gt *gt = fw->gt;
+>  	struct xe_force_wake_domain *domain;
+> -	enum xe_force_wake_domains tmp, woken = 0;
+> +	enum xe_force_wake_domains tmp, awake_rqst = 0, awake_ack = 0;
+>  	unsigned long flags;
+>  	int ret = 0;
+>  
+>  	spin_lock_irqsave(&fw->lock, flags);
+>  	for_each_fw_domain_masked(domain, domains, fw, tmp) {
+>  		if (!domain->ref++) {
+> -			woken |= BIT(domain->id);
+> +			awake_rqst |= BIT(domain->id);
+>  			domain_wake(gt, domain);
+>  		}
+>  	}
+> -	for_each_fw_domain_masked(domain, woken, fw, tmp) {
+> -		ret |= domain_wake_wait(gt, domain);
 
->
->> 
->> Lucas De Marchi
->> 
->> > }
->> > 
->> > /**
->> > @@ -104,7 +108,7 @@ static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
->> > {
->> > 	struct xe_device *xe = to_xe_device(dev);
->> > 
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_power_domains_cleanup(xe);
->> > @@ -112,7 +116,7 @@ static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
->> > 
->> > int xe_display_init_nommio(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return 0;
->> > 
->> > 	/* Fake uncore lock */
->> > @@ -129,7 +133,7 @@ static void xe_display_fini_noirq(void *arg)
->> > 	struct xe_device *xe = arg;
->> > 	struct intel_display *display = &xe->display;
->> > 
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_display_driver_remove_noirq(xe);
->> > @@ -141,7 +145,7 @@ int xe_display_init_noirq(struct xe_device *xe)
->> > 	struct intel_display *display = &xe->display;
->> > 	int err;
->> > 
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return 0;
->> > 
->> > 	intel_display_driver_early_probe(xe);
->> > @@ -172,7 +176,7 @@ static void xe_display_fini_noaccel(void *arg)
->> > {
->> > 	struct xe_device *xe = arg;
->> > 
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_display_driver_remove_nogem(xe);
->> > @@ -182,7 +186,7 @@ int xe_display_init_noaccel(struct xe_device *xe)
->> > {
->> > 	int err;
->> > 
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return 0;
->> > 
->> > 	err = intel_display_driver_probe_nogem(xe);
->> > @@ -194,7 +198,7 @@ int xe_display_init_noaccel(struct xe_device *xe)
->> > 
->> > int xe_display_init(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return 0;
->> > 
->> > 	return intel_display_driver_probe(xe);
->> > @@ -202,7 +206,7 @@ int xe_display_init(struct xe_device *xe)
->> > 
->> > void xe_display_fini(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_hpd_poll_fini(xe);
->> > @@ -213,7 +217,7 @@ void xe_display_fini(struct xe_device *xe)
->> > 
->> > void xe_display_register(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_display_driver_register(xe);
->> > @@ -223,7 +227,7 @@ void xe_display_register(struct xe_device *xe)
->> > 
->> > void xe_display_unregister(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_unregister_dsm_handler();
->> > @@ -233,7 +237,7 @@ void xe_display_unregister(struct xe_device *xe)
->> > 
->> > void xe_display_driver_remove(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_display_driver_remove(xe);
->> > @@ -243,7 +247,7 @@ void xe_display_driver_remove(struct xe_device *xe)
->> > 
->> > void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	if (master_ctl & DISPLAY_IRQ)
->> > @@ -254,7 +258,7 @@ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
->> > {
->> > 	struct intel_display *display = &xe->display;
->> > 
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	if (gu_misc_iir & GU_MISC_GSE)
->> > @@ -263,7 +267,7 @@ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
->> > 
->> > void xe_display_irq_reset(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	gen11_display_irq_reset(xe);
->> > @@ -271,7 +275,7 @@ void xe_display_irq_reset(struct xe_device *xe)
->> > 
->> > void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	if (gt->info.id == XE_GT0)
->> > @@ -311,7 +315,7 @@ static void xe_display_flush_cleanup_work(struct xe_device *xe)
->> > /* TODO: System and runtime suspend/resume sequences will be sanitized as a follow-up. */
->> > void xe_display_pm_runtime_suspend(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	if (xe->d3cold.allowed)
->> > @@ -324,7 +328,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->> > {
->> > 	struct intel_display *display = &xe->display;
->> > 	bool s2idle = suspend_to_idle();
->> > -	if (!xe->info.probe_display)
->> > +
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	/*
->> > @@ -333,7 +338,7 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->> > 	 */
->> > 	intel_power_domains_disable(xe);
->> > 	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
->> > -	if (!runtime && has_display(xe)) {
->> > +	if (!runtime) {
->> > 		drm_kms_helper_poll_disable(&xe->drm);
->> > 		intel_display_driver_disable_user_access(xe);
->> > 		intel_display_driver_suspend(xe);
->> > @@ -345,7 +350,7 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->> > 
->> > 	intel_hpd_cancel_work(xe);
->> > 
->> > -	if (!runtime && has_display(xe)) {
->> > +	if (!runtime) {
->> > 		intel_display_driver_suspend_access(xe);
->> > 		intel_encoder_suspend_all(&xe->display);
->> > 	}
->> > @@ -358,7 +363,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->> > void xe_display_pm_suspend_late(struct xe_device *xe)
->> > {
->> > 	bool s2idle = suspend_to_idle();
->> > -	if (!xe->info.probe_display)
->> > +
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_power_domains_suspend(xe, s2idle);
->> > @@ -368,7 +374,7 @@ void xe_display_pm_suspend_late(struct xe_device *xe)
->> > 
->> > void xe_display_pm_runtime_resume(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_hpd_poll_disable(xe);
->> > @@ -379,7 +385,7 @@ void xe_display_pm_runtime_resume(struct xe_device *xe)
->> > 
->> > void xe_display_pm_resume_early(struct xe_device *xe)
->> > {
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_display_power_resume_early(xe);
->> > @@ -391,23 +397,22 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
->> > {
->> > 	struct intel_display *display = &xe->display;
->> > 
->> > -	if (!xe->info.probe_display)
->> > +	if (!has_display(xe))
->> > 		return;
->> > 
->> > 	intel_dmc_resume(xe);
->> > 
->> > -	if (has_display(xe))
->> > -		drm_mode_config_reset(&xe->drm);
->> > +	drm_mode_config_reset(&xe->drm);
->> > 
->> > 	intel_display_driver_init_hw(xe);
->> > 	intel_hpd_init(xe);
->> > 
->> > -	if (!runtime && has_display(xe))
->> > +	if (!runtime)
->> > 		intel_display_driver_resume_access(xe);
->> > 
->> > 	/* MST sideband requires HPD interrupts enabled */
->> > 	intel_dp_mst_resume(xe);
->> > -	if (!runtime && has_display(xe)) {
->> > +	if (!runtime) {
->> > 		intel_display_driver_resume(xe);
->> > 		drm_kms_helper_poll_enable(&xe->drm);
->> > 		intel_display_driver_enable_user_access(xe);
->> > @@ -441,7 +446,7 @@ int xe_display_probe(struct xe_device *xe)
->> > 	if (err)
->> > 		return err;
->> > 
->> > -	if (has_display(xe))
->> > +	if (HAS_DISPLAY(&xe->display))
->> > 		return 0;
->> > 
->> > no_display:
->> > -- 
->> > 2.46.0
->> > 
+now you suppress the mmio error code...
+should be better to find a way to propagate that.
 
--- 
-Jani Nikula, Intel
+> +	for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
+> +		if (domain_wake_wait(gt, domain) == 0)
+> +			awake_ack |= BIT(domain->id);
+> +	}
+> +
+> +	ret = (awake_ack == awake_rqst) ? 0 : 1;
+
+s/1/-EIO/ ?
+
+> +
+> +	/*
+> +	 * If @domains is XE_FORCEWAKE_ALL and an acknowledgment times out
+> +	 * for any domain, decrease the reference count and put the awake
+> +	 * domains to sleep. For individual domains, just decrement the
+> +	 * reference count.
+> +	 */
+> +	if (ret) {
+> +		for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
+> +			if (!--domain->ref && (awake_ack & BIT(domain->id)))
+> +				domain_sleep(gt, domain);
+
+wonder if it would help to extract this in a separate function to be
+used here and in the -put function.
+
+But more then that, I have a question here...
+Do we really need to sleep other domains if we are not getting ack from certain domain?
+Doesn't it generally means that we are busted anyway?
+
+But also, if we really need to sleep, then perhaps shouldn't we also
+call the sleep function even from the guys who didn't ack? perhaps the ack
+timedout, but it really woke-up? how sure we are that this is not possible?
+
+> +		}
+> +		awake_ack = 0;
+>  	}
+> -	fw->awake_domains |= woken;
+> +
+> +	fw->awake_domains |= awake_ack;
+>  	spin_unlock_irqrestore(&fw->lock, flags);
+>  
+>  	return ret;
+>  }
+>  
+> +/**
+> + * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
+> + * @fw: Pointer to the force wake structure
+> + * @domains: forcewake domains to put reference
+> + *
+> + * This function reduces the reference counts for specified domains. If
+> + * refcount for any of the specified domain reaches 0, it puts the domain to sleep
+> + * and waits for acknowledgment for domain to sleep within specified timeout.
+> + * Ensure this function is called only in case of successful xe_force_wake_get().
+> + *
+> + * Returns 0 in case of success or non-zero in case of timeout of ack
+> + */
+>  int xe_force_wake_put(struct xe_force_wake *fw,
+>  		      enum xe_force_wake_domains domains)
+>  {
+> -- 
+> 2.34.1
+> 
