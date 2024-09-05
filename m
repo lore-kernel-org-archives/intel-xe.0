@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48F57CD5BA2
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 09:49:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C39C6CD5BA3
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 09:58:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12B2E10E849;
-	Thu,  5 Sep 2024 09:49:22 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE27F10E848;
- Thu,  5 Sep 2024 09:49:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E74210E84A;
+	Thu,  5 Sep 2024 09:58:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HpcCzhfG";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 620DF10E84A;
+ Thu,  5 Sep 2024 09:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725530324; x=1757066324;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=aZFTDTjknid9BMvLImZZ1eixtmKl6TlEVYbS9i32W38=;
+ b=HpcCzhfGKn+Y/sBrXjnDm+igQE8YWhMsI37vKJcLbw0cQPsfUUfK5m/Q
+ 49I+TVPhbxnn1W9oLeX/8KFOgd3hoHbBwK5EfGiyaakhh3QuBmMx9Vndt
+ Nad/78G0u7ch8whYKCpB6K7peO75ycNXmR5zPtoRd46uETZlDJj6vuHZq
+ qGiyA3VYwVlg6DNRIHw8iEA3CZP9ShA8FFAjVUi0Zp8Ms5keAlSmWoT9+
+ 2lZHcEdJx7p7xy02/Dm/vsaw+sv3xPBb4+xtw7lAH5LxWC1DSFCSX9S/O
+ WWfes4M1AS1SzBXcjCL+5SCFRQjVxnIVWpBG59is190WN7XJL0EaM81Vx Q==;
+X-CSE-ConnectionGUID: JjNJEYjmRJyimDDm9n+Sug==
+X-CSE-MsgGUID: poQ+gTpSQeegdqIWe7RNRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="27158471"
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="27158471"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 02:58:44 -0700
+X-CSE-ConnectionGUID: 0T+xA6YGQ2S/teMtTNzFUg==
+X-CSE-MsgGUID: oAttPQ79TgO+nOpD/RCS0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="70171877"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.139])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 02:58:42 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Luca Coelho <luca@coelho.fi>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/7] drm/i915/wm: move struct intel_watermark_params to
+ i9xx_wm.c
+In-Reply-To: <d1fb6ed8e3808f3d7daa19f5eb5fa46fb697d0ab.camel@coelho.fi>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1724689818.git.jani.nikula@intel.com>
+ <d7408290c909eb67fc7a935469a3c6287b58587d.1724689818.git.jani.nikula@intel.com>
+ <d1fb6ed8e3808f3d7daa19f5eb5fa46fb697d0ab.camel@coelho.fi>
+Date: Thu, 05 Sep 2024 12:58:39 +0300
+Message-ID: <87bk12qv5c.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_use_IS=5FENABL?=
- =?utf-8?q?ED=28=29_instead_of_defined=28=29_on_config_options_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Sep 2024 09:49:20 -0000
-Message-ID: <172552976096.950256.7722390535050951870@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240904145231.3902289-1-jani.nikula@intel.com>
-In-Reply-To: <20240904145231.3902289-1-jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +66,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 05 Sep 2024, Luca Coelho <luca@coelho.fi> wrote:
+> On Mon, 2024-08-26 at 19:31 +0300, Jani Nikula wrote:
+>> The definition is only used within i9xx_wm.c, hide it there.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>
+> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Series: drm/xe: use IS_ENABLED() instead of defined() on config options (rev2)
-URL   : https://patchwork.freedesktop.org/series/138216/
-State : success
+Thanks for the reviews, pushed the lot to drm-intel-next.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast fc94e2f01be0ac3ae239f1c0163ed524c563aa95
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+-- 
+Jani Nikula, Intel
