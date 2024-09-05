@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE2D3CD4F50
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 04:12:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84183CD4F50
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 05:14:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4CAF10E644;
-	Thu,  5 Sep 2024 04:12:34 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD2F910E41E;
- Thu,  5 Sep 2024 04:12:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9081685618673514452=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32EAA10E023;
+	Thu,  5 Sep 2024 05:14:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0ybqhv4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 877FC10E023
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Sep 2024 05:14:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725513259; x=1757049259;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Mlys/B6EOxADkfHMN+Uoo3p/1WE3ap/+Hv6GMvkWmUo=;
+ b=j0ybqhv4vNpBuFVnqJ7/KOeIU1/2RwTnLUe2uHj9znLcN2ZEmQSiDThx
+ uHETRJJbgGAaJHJuRXajGCDSZMDOV2fzaN7fW8G5i+QITjdWXNTg9TgFY
+ NAvvFR4Fh+prVL6pzZ7bFd2LrzNUKtd8CMcCMSfzd906pTTrhe90yTGIR
+ lGS9eLvc+6Y2x4R91zPkOcUj6f3HJ6QqfilFerMVeje15FIndK+lyIvc4
+ sYCnElAhvY7LBX2vUz5569+bLeM7BLISD+NJcN6FRfRYf4nXX+nd13fpc
+ A3A7b8Xn3gP64dFywUPvU+9OfZSNYjD1oJf5nAEkGoHdLIcn/N2jtrRWi g==;
+X-CSE-ConnectionGUID: pnhoWVhNSGasJH73ShsufA==
+X-CSE-MsgGUID: 3y883eNnTsSGmEYWSMnbxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="23717408"
+X-IronPort-AV: E=Sophos;i="6.10,203,1719903600"; d="scan'208";a="23717408"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 22:14:18 -0700
+X-CSE-ConnectionGUID: Ut5TTsceT3qGs6aNlSnDSA==
+X-CSE-MsgGUID: SfsCrF08QzKrHVYKN82pZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,203,1719903600"; d="scan'208";a="65519311"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 22:14:16 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ vinay.belgaumkar@intel.com, badal.nilawar@intel.com
+Subject: [PATCH v4 0/2] drm/xe/xe_gt_idle: add debugfs entry for powergating
+ info
+Date: Thu,  5 Sep 2024 10:58:11 +0530
+Message-Id: <20240905052813.4169007-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_add_two_missing_DRM=5FDIS?=
- =?utf-8?q?PLAY=5FDSC=5FHELPER_selects?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Sep 2024 04:12:32 -0000
-Message-ID: <172550955276.949380.11383363075135122800@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240905-fix-dsc-helpers-v1-0-3ae4b5900f89@linaro.org>
-In-Reply-To: <20240905-fix-dsc-helpers-v1-0-3ae4b5900f89@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9081685618673514452==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add debugfs entry for powergating info
 
-== Series Details ==
+Rev3: do not wake GT if in C6 to read powergating info
+Rev4: modify condition to enable powergating
 
-Series: drm: add two missing DRM_DISPLAY_DSC_HELPER selects
-URL   : https://patchwork.freedesktop.org/series/138226/
-State : success
+Riana Tauro (2):
+  drm/xe/xe_gt_idle: modify powergate enable condition
+  drm/xe/xe_gt_idle: add debugfs entry for powergating info
 
-== Summary ==
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h  |   8 ++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c    |  13 +++
+ drivers/gpu/drm/xe/xe_gt_idle.c       | 115 ++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt_idle.h       |   2 +
+ drivers/gpu/drm/xe/xe_gt_idle_types.h |   2 +
+ 5 files changed, 133 insertions(+), 7 deletions(-)
 
-CI Bug Log - changes from xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d_BAT -> xe-pw-138226v1_BAT
-====================================================
+-- 
+2.40.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d -> xe-pw-138226v1
-
-  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d: 8b1096500fd6fae573f7d9c4416778d6442e985d
-  xe-pw-138226v1: 138226v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138226v1/index.html
-
---===============9081685618673514452==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: add two missing DRM_DISPLAY_DSC_HELPER selects</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138226/">https://patchwork.freedesktop.org/series/138226/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138226v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138226v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d_BAT -&gt; xe-pw-138226v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d -&gt; xe-pw-138226v1</li>
-</ul>
-<p>IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1891-8b1096500fd6fae573f7d9c4416778d6442e985d: 8b1096500fd6fae573f7d9c4416778d6442e985d<br />
-  xe-pw-138226v1: 138226v1</p>
-
-</body>
-</html>
-
---===============9081685618673514452==--
