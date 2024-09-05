@@ -4,187 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CDDBCD5BB8
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 20:02:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D94CCD5BB8
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Sep 2024 20:03:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DED3C10E946;
-	Thu,  5 Sep 2024 20:02:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C1B10E949;
+	Thu,  5 Sep 2024 20:03:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b9dVX2HB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K7Sh2hMB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1783A10E949
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Sep 2024 20:02:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74DBC10E949
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Sep 2024 20:03:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725566573; x=1757102573;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=5Cf1PxSSjz4Pt0B4Eg7hjD4E7bh/i/IpYdMYDwHVtS8=;
- b=b9dVX2HBy4E1NiowtIbxIRoXQle/Pl6kdwyBQMjnHzAQRi0fEIQ6WWQJ
- Ni5Ajze+d7eFpSq6R/iTSUef3sDlq4zSLtuYWSoc7i51IQqXTLQHZmMZG
- kDtugApatcvTdGQiPpGQ9DYBZrzI68/Dj1Ugw4o7jkHbZQdtjTuNdQUb0
- 6QadATiS3PxIDzftkmO6BLvLkfF54Gncf1k5skexRxZMKpHetjGWIYV2x
- aV93X91ainqa0hNFS5Yt0iz1R5AubHCr/v8YqYe7+7sZ54B+jG8LmFpSg
- fOMUZlTvrUDKKGbZLzzQWa11WzQjVk+YeQPLZpL86evmMx9dNwPs+8H0X Q==;
-X-CSE-ConnectionGUID: Fg7BiJCeS5qke4Bt519T5w==
-X-CSE-MsgGUID: lTcU9uBvRxyJbULMgkBYGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="35664085"
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="35664085"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 13:02:52 -0700
-X-CSE-ConnectionGUID: gE7zRPFPR4mRn2qVfI/1VQ==
-X-CSE-MsgGUID: FBc9ofuJR/yrDuTIF0dccA==
+ t=1725566634; x=1757102634;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=nvEhGkhhy8EY1TLB9Pe1nbyKExS2BPkd8jn1Jt7beTU=;
+ b=K7Sh2hMBIUC+tYJSxkBMFar75XBmxJ1iagJAdDqchBdQpI2N9mw4CuYy
+ oZxRoxqSVL3dZu+Tb+zVGQld8vFAweBL2Y2foMex7IZRjxeNPfh9CIL5C
+ 7jt23rrBeasdxQtmPwJjyW9EsEYCyBpydN20t0B4klSnctqrIrWEl6CUx
+ kLP07iOxXgYrojK6m6fQDjMaZJMuUAzDzTl1mqvtf09/D6CGxEb3nSrkv
+ KYNHIDxrgxyoCnRf6mfmGDTcOMCU5sOQaqYCus7vRqPSFx/QHfJJ5xXRP
+ jtKsfxwBjONxAqSRYfSAwpgIz9L8xHxOwyrjcwMDBAsG90OUTGDYjqMr1 g==;
+X-CSE-ConnectionGUID: CvmvHpQ9Tqq9LmADEe7i4A==
+X-CSE-MsgGUID: veH3G8hLQtaVn6g1lfl9tA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="49722684"
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="49722684"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 13:03:54 -0700
+X-CSE-ConnectionGUID: ZR77FDboQn2B5L3xPnK7MQ==
+X-CSE-MsgGUID: DrRc6IA/R5y6vrPcLeKcZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="70526626"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Sep 2024 13:02:52 -0700
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="69874448"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Sep 2024 13:03:54 -0700
 Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 5 Sep 2024 13:02:51 -0700
+ 15.1.2507.39; Thu, 5 Sep 2024 13:03:53 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 5 Sep 2024 13:02:51 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2507.39; Thu, 5 Sep 2024 13:03:53 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 5 Sep 2024 13:02:51 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 5 Sep 2024 13:03:53 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 5 Sep 2024 13:02:51 -0700
+ 15.1.2507.39; Thu, 5 Sep 2024 13:03:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FqnsUprkAibK9SfH34lE1Veyxz7hWJklyYtj0n3iOlLNYcY5LGqd/LPMoeu9R0liocEFRm9ba94PzrLz8/Ux9beuhK8PEI7mcYPsmwwbgBl27jC/ZzqBCYtjy21Q4TGeZQYJT+qLsGbFA4qmbES7JLR54sy/Ru6fm2E1Kki+mR6ex1My1FBWmNgqNrUQ/kQ6Hi3yXs/uWjoLJRV+nlxpPmY5Kj202NYoxeOABn0odI39V8IwRKXk/Tc000lJJassq36/UiYOZnUl1JAC7n8i/doG3VglEEEmaAo2DrWcX+3KnkH45eoBumA3P6YOXFWydNQ9OxlMUfYjjUieO5GYEw==
+ b=OfrIXMGnF32mjqDFs3D/DfWqji0YnppF09xu14ETxXh7uC/u+V1WTpmn5+ci/2+nuXGqcEX48lfrXeszU9jVa0eeTG4bTpi1ywCGWpXLWavd3Oa20GXtqGsQ46OJRamJxY8Y8jqumEn68RPsHLL7F3dsQ/UK0a1ftU4rYMSyaP9At4EuNmYbXtth2ven4B6JgP9sGedOt0MrEWkMQ9aZG3gZ4zJkV5xZaNVfqQMRcEunRjVClOPeRBhmDdy77uUNsjpZXQYv/bbGKQChwUH2v+MgbXI0l4r9PQo50QAUA07FPtl5DKFg5u1INmxmS7it2KX07G1v/TLEh0BZh4jhKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4vf283xsPH+Tt909c9SRk6XZ5zHD8AVdheAH2Nomy0I=;
- b=jl5K35jmsNhjsCz4+nkecBw1/JWzPeZPDcAr6RLhi4MV7VTHZFfSTjtKl991HLwI/HeRUfeAEMaMDzjMmXio0dTfUn56uhe0nGIGdiahNkf8vnyIxlqGJ1IbgvSe+kr2yigfYQ55t6eOAPfDLhEqY1orP4LXwClDsZoIcWJUsZbN8KmJSWGEFpnnsi6AcHDv80amrotuY5vly1frE2LN9GFx6bM95o8yZ7U++DN/BgzISqjl3Jp89O0P/bdMjL4ruSoisviV+meF7ajI8XmMHH3pYvaUX05b85rtezAS0RCbc/Y1zjhfR/FH+E12D8jVSCJP8z5O57CGXTxQ/foP3A==
+ bh=xtOhgyH4FzuQvP3R1IaochH76i5GGHTqzlr3rp+My1s=;
+ b=GjQ0triEW8hpSPxuOBjEQQX/Fl9BDfwL3u168Y1R875RJ4HHbg2DR80vUSXNrdnExiAvpWEcRGAWAZ4EdtvAR47Sq083nKe3+aUOOOf+LAD/zI+4IxoGDBh7EStgS2XJBZmG9icK/FFFfyYvr0ohRVr/J8c2QMz5qOwS8FneOTS4MAVnrtQe9fl6GC+A6zTI1DVL4YPswfnxT9xjILSjb3EOkymd9kjG5r+fvG2J8r/0tW5LQln4sFctMgCTZGE9EkMSJqPr6UpZCstJ1L/agfjkXO9jLgHPCocxP97gM3D8xT9RufPgeWIJ0hMSg3Z1lkKzbXAZqxxYmS5mRyH2nQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by BN9PR11MB5290.namprd11.prod.outlook.com (2603:10b6:408:137::5)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by MW3PR11MB4554.namprd11.prod.outlook.com (2603:10b6:303:5d::7) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Thu, 5 Sep
- 2024 20:02:46 +0000
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5]) by MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5%3]) with mapi id 15.20.7918.024; Thu, 5 Sep 2024
- 20:02:46 +0000
-Message-ID: <82a78b3a-14e6-472a-8e45-2cb4af2ff3a2@intel.com>
-Date: Fri, 6 Sep 2024 01:32:38 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/9] drm/xe: Error handling in xe_force_wake_get()
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-References: <20240830052326.3707019-1-himal.prasad.ghimiray@intel.com>
- <20240830052326.3707019-2-himal.prasad.ghimiray@intel.com>
- <ZtoGpjVmZbwLsD1s@intel.com>
-Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <ZtoGpjVmZbwLsD1s@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0P287CA0001.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:d9::6) To MW4PR11MB7056.namprd11.prod.outlook.com
- (2603:10b6:303:21a::12)
+ 2024 20:03:50 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7918.024; Thu, 5 Sep 2024
+ 20:03:50 +0000
+Date: Thu, 5 Sep 2024 15:03:47 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 01/43] drm/xe: Move forcewake to 'gt.pm' substructure
+Message-ID: <gb3tlrystjtzkexxr24dbl6exvek4nnptcdrhtnc3rxfr2wg77@og6kpxhvjsit>
+References: <20240904002100.2023834-45-matthew.d.roper@intel.com>
+ <20240904002100.2023834-46-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240904002100.2023834-46-matthew.d.roper@intel.com>
+X-ClientProxiedBy: MW4PR04CA0244.namprd04.prod.outlook.com
+ (2603:10b6:303:88::9) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|BN9PR11MB5290:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e487a19-f0d3-4a9d-c809-08dccde5b5b5
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW3PR11MB4554:EE_
+X-MS-Office365-Filtering-Correlation-Id: 56e7fe8f-2fe7-4927-feca-08dccde5dba9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bWlKSEp6SS9oZDh3SmFua0VNdVpCcVFNNHcvSDRRSUtHZVJOeVlsTmFMcjZq?=
- =?utf-8?B?N3Ivelh2RmpBOUJ3dGx3REJkL0xVazlJeXhNU0xiaVQ0bGttRmVUOVk2RlhN?=
- =?utf-8?B?NDNhMU41VHVBcE1IZndnQUxUeWpyeVUvbzNFUTEraXRwVTFsV0IyWm16TllP?=
- =?utf-8?B?QzlLeWpyUGZUeVhNeEd0bWFzQ0tVaFRRNFJ6NW13enFzb05xZC92Ym5Ib2lC?=
- =?utf-8?B?SkZ2cno4aENNaXVpSklKN2N1Y242NWlUV0xkUHhSdUYyalBjNHRzU1FscFZI?=
- =?utf-8?B?TzdzUUpxTkFNYm1aOUNnbU8rNGVPZVVraU9wMUlmZHFkTDJzZWFBQlFmUTJm?=
- =?utf-8?B?R0ZxMmt1b1BIWTZzWVpTRWhLSFB3ZW9JUjZKNkFYRytFVklQTWZDdXNoMG5u?=
- =?utf-8?B?N1NhazJUZFMrc1dKajFaOGZtN1Qwc3N5Vi9JWlJoVkhXdndRVE9IZ1krMHBE?=
- =?utf-8?B?NG9iL2tXa1VmT1RNbTBiUGlVSnFjNTlZU0UvaG93VGxJcTJPRlVVRjFvVlo5?=
- =?utf-8?B?a0ZvS2lZTy9KcWdVakpjVGF6MExmdDBraEM5WnRjaUFqa213ZzZERVhkdnlT?=
- =?utf-8?B?U2haQkppRk5IOE5NODkyT3ZJNzQ1bXRvVlJUOGJoR1g1djBocUtPM2FlK0xq?=
- =?utf-8?B?MFMvbjE5RGhFSHBxSVY4WU9YYkpweEF5QVhXMXJOOHFRWmI4V2JINnAvdk5E?=
- =?utf-8?B?WmgzYWxCRzVzRUVzLzUweUFIYVE5S21EZ25RSFVrd0kxUktRMTN0VVVqMFVN?=
- =?utf-8?B?TVBwN3lBYzBiUFUzSXQ1VS9ERWNMdjdlekg5MUVMOXZVZjlUeEhoOS9jNXFK?=
- =?utf-8?B?VVlMdHJEWTluYXBDZExzQ2dHRWJlYVhwck1sZkZQd05VTDRlOXFBaHpoa3NK?=
- =?utf-8?B?SEhINEhONUVZV3NKSWFuRGdmamJITzVqY1VXMDlIZkpJcWRqT0dvdVh6N0h0?=
- =?utf-8?B?MlpSVWtiOTZvZmpUMkVYUWc4OW0vblZqTm1OWE02TFdnU0x2TXJMYkNXajNO?=
- =?utf-8?B?VVQxZXgreTd5NTNleUpvYWlua2pQK0pUbksrQ0FVaGNnelU3Y3I0SUFJV3FB?=
- =?utf-8?B?WVlDclRsSVd4Z2lCUjh6VE01UGtETUE2ZDhxaGNoV3VoQ0pvaW9NaCtjSEdM?=
- =?utf-8?B?OUtiTXcvaXk4dlo0L3lwUG1WSzZyNXBFb2xqS0c5ZTBSNVlVM2RrYXl4bExO?=
- =?utf-8?B?LzZUZmtGM1ViWnhZU1h0cm5QN2dPZ09jVFEyeE5qZ1FHSnVVSG1IZmo3N3hB?=
- =?utf-8?B?cEZzRXZPcmF2ZzRFMFFVbGlQVXBVTGoxMk5uRXZUazRBalNYQW9IdUNPSlEy?=
- =?utf-8?B?K241OVdaOTVjOENMR0pKdlQrRTVXZ1UyNXlyOElWU21leFErVFpKM05ZUkhP?=
- =?utf-8?B?TlJ6Mjc1eVdSOXQ1cnJ4cldvQ1luaHg3cDNLS0pMZ0U4RmwvNmpkaDJnTEJP?=
- =?utf-8?B?MUVGem5uTWZ6MGIwZzJYZ1A3RGFpVjJDalEreldUYjFnNStpT0l2MVcxVCs5?=
- =?utf-8?B?T0dNWE5sZkd5V29RaHBiWUs5Ri8wbUk3azVpQmd6Y3A0OVRIalM2akVVWnFU?=
- =?utf-8?B?WXAxL3M0cktqSDBDSFlXQU5jTFhlWDIrMVEwTzE0djNseFBFNk1DU1VURXBF?=
- =?utf-8?B?N2ZoZTJ5cFBlR3E2TnM1TVErR2I4UHZkMHNJdTVTYlRoVHBsWk1HbVoyVU41?=
- =?utf-8?B?TTNSUFk4NktsQkN2UW5YbjVWL1NXQUVDVkpiNEluY1FKeHdacE1hSkJ6d1lm?=
- =?utf-8?B?TVE5YWM1Q0JyenIrZUYvYU5zbGhya0FCT1ZxM2hnY1RJcDRGOXFBQi9jVDVv?=
- =?utf-8?B?UytXZ3BZaTMvazkrZ05XUT09?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?b0QnjJhSz6I4pFnS1TZp6JV3mZaHUFxTlpVLnlVtUVjWaOnWY7jRW6AbvR+R?=
+ =?us-ascii?Q?D1X0FfdPpTRS0Nc/Gz8Wo+TrgQGd1E2msu5F6dI7k0KrVbxKnQKpdWpnkw1c?=
+ =?us-ascii?Q?sadHmj5Khr8qL9VKp76Cl9+JZCRSL9ZQaWkLEsl4CwzCcAUSFvCANMW6hvrI?=
+ =?us-ascii?Q?NqnBIo5Bf2JjX0Z9hPUTciyRmf0RZDZTtIOseNGe7gn9RZJ0rIB9GA7IAH8N?=
+ =?us-ascii?Q?3ABtfxRAJBT2tzBOVt+e9fNw//p5wtgrMvprJPtQzKAErtHpD47i8VyG0EhM?=
+ =?us-ascii?Q?FTAsgnTuWFKo9e1KqNUXdQTqzGsAEAkgBtFfpbSKymByxw7k6SN5nlgt7Kkl?=
+ =?us-ascii?Q?sV0llT+PmT+qARrDzwFw7gjpLjMOMP9SiPCaB3jgDhO0awyHupKwG4tc0Ell?=
+ =?us-ascii?Q?95pXWZzxUCLSNOGEIzP9z0oDvwLy+FCzFD0CiIujwLXljMPDcWM0Lim8EZsm?=
+ =?us-ascii?Q?z5eM8AN3ys7VusXr5eI1fvBXr8nYaZZVCgBRHGZOdh2g1gi2JOkCBMp7UAKd?=
+ =?us-ascii?Q?kP3zK8XrcF3qj9w5tyYfGbu8NCkTRCWZaelFNgDGHtgKR4BhaJt60o100YJU?=
+ =?us-ascii?Q?7b/Z7jihTRmvLfwbwzQR9KctpTnrirwXOUxoRbGqOCRxTcn19h+dycD4cLmr?=
+ =?us-ascii?Q?WEdKn3/Q5750km82bkujPrfMyOA9G7sHY7bZfPgG8tr1+qeP+AE9vAvlg9Qw?=
+ =?us-ascii?Q?i9av4Lc+XprYUl/Q5ieT73nc0jlJELky9UJSipCH0tOHcZpE/q81GCPTT7S1?=
+ =?us-ascii?Q?/uNbt+NRRzVlES5lv6oxiPvJvT+dqo9biSu8i10nptFn5Jky+6EzQFMPx59B?=
+ =?us-ascii?Q?KwT7g+WRgX9f+z7brANNW7rQ63Y3W2oMfNsvnaSlpUlS78mvrX6I1RjhMtbE?=
+ =?us-ascii?Q?U8PDJQklV8TBVrVcj2fw/iCKFcGITzK1GrmndJGeZSFVGEI8PM2UFd1ulsuS?=
+ =?us-ascii?Q?i1+747eHrwpQAD1hjEB8HrW2n+m7Z2QID0D4c0bNJTfrT4ODHZUL9MZHPBpA?=
+ =?us-ascii?Q?dTZMW7fSIq3z/Llr2a2E5E8LH57+CuO/k9uAwkQrZdYY9SNiWgDRPi0TUSX6?=
+ =?us-ascii?Q?XIVGqZeCZ5+Zhc7v7PzQ8Or1ufvqIHZvkqZa0zMcMxdLYIP64BRomGiEsKMc?=
+ =?us-ascii?Q?qNNZwqI8c3pWW0PZlw/+imM8gec8RxNHQTP+kfNWLCJQqFqlRIX04VRbrwlc?=
+ =?us-ascii?Q?HzXNDJ52CiMFe3P4XJk+YaV8iocTOQ2jJbzhmeCpRXTpK20WKd/JFNQprBg/?=
+ =?us-ascii?Q?SW1tax3EGZriXyl7DciELFMXILYTm+14NjJtgpulG6Hzfs0weEsn3IQTS9bH?=
+ =?us-ascii?Q?+HTv+LB+rtlUIp0enVpEfsYgEO7hb4XaUYqRQApfl4Pkog=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1VxQWNDQU96dmpnZFJSa0NiaVhXWGtPblRQUHQvMWFuN2c2VFhoVmhpT0Y3?=
- =?utf-8?B?OTNTZ0VNRnc2cnZIaGViaUUzMndteDkrSjNZY25iVFM0bkd6YnZBaVBJYU4y?=
- =?utf-8?B?eHcxOXYwdlliZjlYTDB1aUl2alpCeUI1OUp0NXRwL3doaGVpaXE0ZnlYclFz?=
- =?utf-8?B?OHRvZmNML3Iyb3VlSHpLM3JwSDVQZlkxZDNTZXBmbUYrclpsUjNmNXFseVpz?=
- =?utf-8?B?Mjl2ZTZiczhRWUZQNW85UVpOaDVIaFNUOGNlRnpjMWRmUS85R1RhaHIzT1l1?=
- =?utf-8?B?ZXloZ3RSazU3VVN2Qi9RT2VubFJkc24wQWxidnNNTDROb2JVWnRqSnJFY3hk?=
- =?utf-8?B?d2tEQnRzOXhiN2tYdkhpaEtoWGRxbndPcWFwaWZ1U2FjTnhZV0lFZVNWWEdl?=
- =?utf-8?B?b3JCYTVhUzBQSUNYT0MrOXpBQkhuVEVIUkxpYXpIVXFhYS9kOEt0aGpVd3ow?=
- =?utf-8?B?MlFDZWxRbHZvU0tyRmZsenVLZTJNQllBRnAwVXZlOVhrQVVuVkpZeWxOQndC?=
- =?utf-8?B?YTBQeDJ4MW5nazFzUzBHRUlodDFpUXdYQ2dYemhXdjhMdUxnV0NRRjBSZjhr?=
- =?utf-8?B?S3MvNFRvRXJLNFZDb2pJa21ROVIrcUliVG5yYVdLZjNwbzFRN1pKN1VWcUNL?=
- =?utf-8?B?VzM2d1hFNWtmZmF5MERFRy9rd1JaSnJ5cXc4RkJYZ29laGVrM2NNVkUyMmJZ?=
- =?utf-8?B?UmtkMjBndVpmVWtpVlBmMlcyYlhLZXBwdTZKb3JYZm50bkNzbzR2akYvMlZn?=
- =?utf-8?B?cGEzQ1AydmxEN2tYeGhIaXZKN3BibHZkUzB1USt5ZFg2MUtDbnRkSHVqK1hh?=
- =?utf-8?B?S050QzVlUVJnRzlyb3A1Z3I3VWFDb2s4YmhkMDRBSzJZdTQxTkJrU0llWlZo?=
- =?utf-8?B?NWhXdTM0eVJFSXFsZEdWT2ppeVNhdkRqcllSaHhRVWRPQkVqSERLbjg4TkRY?=
- =?utf-8?B?aWRSdjducG9CNkxjTGdML0RoVk05N0UzdTZic0pqUE9QNmNKaUJlZlBPRUV5?=
- =?utf-8?B?N2NtaXFEMDhlMHNDS1RCTnFNZ2hpWUhKbXY0aGJKK0JxbmxQaldKeTJ1eXFl?=
- =?utf-8?B?ZVAvbU5UeVVEVEN3MWFENUpSMnVuUHRhOEhVbjJUMmRRekVhQzFtbEdHbG0y?=
- =?utf-8?B?VHRJdGVJMFR4MjZJMW5aR1pMZGhWRkt5ZlNEei9JRWhuTjg4d3M3aytaRllJ?=
- =?utf-8?B?aFIwQ3p4WGdXR3VJeHUraFE3M05UNDBJOXRJd0xralRsa2lYSENwWVFOKzNx?=
- =?utf-8?B?UGRqMmhUZTFZQ1ZFYitpTmxKUXFPM1dldVdvTlQwQXdxVDBkTGwwSjAyQUd6?=
- =?utf-8?B?bXdqSWZKWU96VFE4Rmd6RWQwVXlISkNiMUk4Y0F0L2NWdkoyait6Um8yV095?=
- =?utf-8?B?MG5xcnd0MDJYOXNVa1RLNmR6OEdYU3lqRzB0YVR5SlNnK2k0UFdrK3lpNUZ6?=
- =?utf-8?B?MzEvWXd2RGZTWDlLb0J1ZTUxNjd2NGw2QUprbEJrU2hHemNhV1RVZkQvSE0z?=
- =?utf-8?B?M3ZlLzR1YVFydWsreHdXQTQ5MzgzNGdjdFpTejY2dmVxZlcrQ3FsdHJpeFYw?=
- =?utf-8?B?cnhLSVNtRVBaMmJjQXVuS3FieUhKT1dLaGNZT1ZlZjl0VWFJYWNzdXVyQ204?=
- =?utf-8?B?M3FjWkNiajI0TlFaQmRLUmxUZk5WRFRnZ0tMWmVqdE9hZ0RvZnFVZHo4LzRj?=
- =?utf-8?B?R0ZwV0JSYnA2ZDNidXQzQ1FCWjBWSnpYM0NLSFJzNEpCVlVTWkxVejFDcjhL?=
- =?utf-8?B?WmFFdUdERlVjbmp0WTJvbE9nUnZqYmlCUmVzVTdMWjVSZ1NuN1FueVQrNjZB?=
- =?utf-8?B?RG1WRXhBdUlIK2R3VzRHSEFMamdoZ21ZZFJWemtzcW4yV0FwUWJocDlmMUhm?=
- =?utf-8?B?WC9GZFc5NGdtS3RUdlhONkdpRnIzOCtkUFcyQkFyUTI5VitjRG8zT1NNeGZL?=
- =?utf-8?B?N3VJY3R5NkVCVDFIckRNS0pwQUYvVXB5alZmV0RUVTQ0WFpNSUU0WWRKUWFx?=
- =?utf-8?B?U3FFcWc0aDlsNWszOHN4UHgzbStJdXpvcTZMNmVNZzJQQzc1UXVqV1RCK2dQ?=
- =?utf-8?B?dU5KYTFSbnE4UUhoUi84Qm1sdWdZMHc1amFvVk5rQTJNOGVPRlRaZDlOeWU4?=
- =?utf-8?B?emx1VkdTUjhvakovVFlQeDlOL2lUejJ6c01UbW82Q1VlaEdnZm53bjlCVFVX?=
- =?utf-8?Q?mc24uCgeXMlhG7BbSS5I1lg=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e487a19-f0d3-4a9d-c809-08dccde5b5b5
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?A7E/g4D4w/+RhWI9TXtF0NfKxYHOXjJYEv53uoLlsPejk53PY5pN7SNOc8bO?=
+ =?us-ascii?Q?TwLYnz3EEcsyLoc2wNNvo9Yui7MR0EZ5fuAYFOjL4DNFRGhiVuIKH6n/+aVS?=
+ =?us-ascii?Q?2Q7VAV5eay9Jlz09V/Ji8xM153Ogs3Ld0UaOQZq5HJyKIefcp79JP4mi+ZjN?=
+ =?us-ascii?Q?vj/fJafErdwzH41wl7B/saisd0p9EPhnCniVI4j+YWoVhmZt5EPnzTz7cg6n?=
+ =?us-ascii?Q?YYSA0ICO61+SbKvDKv2ZF7yOxHe5Yv4/J7FkG2UhCSl9Wq3k3DguOHdI7n99?=
+ =?us-ascii?Q?1RPjOhVzIxt3Ob/avaW+UWwFdQw5OcOSGPviSS2vUq7wjyE5f2ZzZfDJd0nQ?=
+ =?us-ascii?Q?W1XOx2YoBZ2y4lNF9woqguQuKNLeQY29oCJIIoA2uKX1H5zOHw1emcIiGtnf?=
+ =?us-ascii?Q?afiYBEZYmPJqZXLAM67YlkEp5DYvr6nW3UKi6d+t4LYbloXn3w9Ogf49vVIC?=
+ =?us-ascii?Q?ftUkfYp8zA5y/7BE4jyWg0ANq/dvW5yTd8nA6/4SFXXlTWO48+rHJSsb6AqF?=
+ =?us-ascii?Q?S/qGzCmrK8PgvJ28Dse+akIZSiLnUJ/wfyisQwIpdEo9yuVTv2PzSVhOjZAX?=
+ =?us-ascii?Q?WrK9dQuegzMCWFs+U/HOKKB69aWIAP8obl+dRFFJGEl4vkaSea/NV69Bfzwp?=
+ =?us-ascii?Q?10g4OZfCza7gEF/fQs1zGOvNetx/P1/qeZSLSfe6yQH3R0eHH1SifzvG58lM?=
+ =?us-ascii?Q?UyT4YSBTZdIs2D46whZNqdXMm3SpyDJc8ld/wVJuK7buwFdfNBD554F0FVeM?=
+ =?us-ascii?Q?RSZ5Z3EY+swDCTFkO/RnS51ixtgWwABtUehhweszY9ul4r1h25AdXRC2Wukj?=
+ =?us-ascii?Q?T9GFGsP636mgE0YpffzE5LwzYY1vNWuZoOkSYlrD3fMxv1P1AaiE/Pt2h5n4?=
+ =?us-ascii?Q?+PBy0RLOVcZuplxz7WR3qVgJ7QygzoWdSB1M1zqMSJ6z0FajaV/hMlIDIOiX?=
+ =?us-ascii?Q?pY3JIfiCyWXOANenOjMAYb7Y47cgraSfBmnfpIRDR+LJTtsJ7R+gOp+clDFC?=
+ =?us-ascii?Q?28Z2UTeZkBo99TD1JvVPMgGHSsXYVHYiCuYLxEjabAa2nNWWYRoqUMR+vD2v?=
+ =?us-ascii?Q?/kD/6j3/HKA5Cy1cDgMWfkvT+4VCM02x8gVXEpjBxexq+ki9jOfdBQ43QPq0?=
+ =?us-ascii?Q?c+OEeI6IevItu3Zah1zUClW++7Rp/3c81xh3RRI9veGAsI141s07J9m4bSj+?=
+ =?us-ascii?Q?E1lNsJmHZzpp08+AK7BxO8uEHsS9YJ78m1rCl3tEfiHLPIW+JqSC/ynxZngw?=
+ =?us-ascii?Q?p1laoSjjtpNliGtY2Yhdgm4bNQkglG0X+2DfNJb6vEijOmlC2oMwAGAIX1uu?=
+ =?us-ascii?Q?ATLynlbSu/WTQ3HolHbFpVJuruGkbQ5jJvcuU0m3Kvr7WtGK0beXtFI7e1Gj?=
+ =?us-ascii?Q?WZuCACReN1wPY3RZB+tyv0PYoJ7QYgkAo6v2x3B8U6OthoHHEc8VMevXhB1y?=
+ =?us-ascii?Q?ofE7DY8iAed5WoXlpel06J1lcRQUpIasWGoZkB/fyOV4S4pqQ/+nYA+909e8?=
+ =?us-ascii?Q?pEuiYizUt8oehDEdqcWUqfGGWjgd0WhbBUzpylY9Vv4hXrex5Fz+Z+JQ7zRL?=
+ =?us-ascii?Q?dAVVjtTv9DB0SP1+ie6msp/b4ugV49HmgjnXxT47Ihd98PIx0pqMxwT8zIIy?=
+ =?us-ascii?Q?6Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56e7fe8f-2fe7-4927-feca-08dccde5dba9
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2024 20:02:46.2704 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2024 20:03:50.0429 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /c3wz5bnB6I2QtZRYWzLk4Z6yT+sxJvy9GIqHv11l/xAP8YNU7wxvaTDQ2OYD7/WPKiEL5+eGX9zjhjEnNCaRkNx0I/HaAg1UCs7RS7nuIo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5290
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7mQA3qt/syNGSFPsulIFvjlAB3aAKJQslfRHYZ4oWtZwjPhnnMdBGE2KQGfBBHjBRuSlM7ROgCM96VMGR2X33/F4n2qqTSWtsIdGWamNQps=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4554
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,159 +178,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Sep 03, 2024 at 05:21:02PM GMT, Matt Roper wrote:
+>Forcewake is a general GT power management concept that isn't specific
+>to MMIO register access.  Move the forcewake information for a GT out of
+>the 'mmio' substruct and into a 'pm' substruct.  Also use the gt_to_fw()
+>helper in a few more places where it was being open-coded.
+>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_device.h   |  2 +-
+> drivers/gpu/drm/xe/xe_gt_types.h | 15 ++++++++++++---
+> drivers/gpu/drm/xe/xe_reg_sr.c   |  9 +++++----
+> 3 files changed, 18 insertions(+), 8 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+>index 894f04770454..ec726dcd5f99 100644
+>--- a/drivers/gpu/drm/xe/xe_device.h
+>+++ b/drivers/gpu/drm/xe/xe_device.h
+>@@ -138,7 +138,7 @@ static inline bool xe_device_uc_enabled(struct xe_device *xe)
+>
+> static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
+> {
+>-	return &gt->mmio.fw;
+>+	return &gt->pm.fw;
+> }
+>
+> void xe_device_assert_mem_access(struct xe_device *xe);
+>diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>index 3d1c51de0268..e9026023e240 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_types.h
+>+++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>@@ -145,11 +145,9 @@ struct xe_gt {
+> 	/**
+> 	 * @mmio: mmio info for GT.  All GTs within a tile share the same
+> 	 * register space, but have their own copy of GSI registers at a
+>-	 * specific offset, as well as their own forcewake handling.
+>+	 * specific offset.
+> 	 */
+> 	struct {
+>-		/** @mmio.fw: force wake for GT */
+>-		struct xe_force_wake fw;
+> 		/**
+> 		 * @mmio.adj_limit: adjust MMIO address if address is below this
+> 		 * value
+>@@ -159,6 +157,17 @@ struct xe_gt {
+> 		u32 adj_offset;
+> 	} mmio;
+>
+>+	/**
+>+	 * @pm: power management info for GT.  The driver uses the GT's
+>+	 * "force wake" interface to wake up the GT hardware from C6 sleep
+
+"wake up specific parts of the GT hardware" ...? Because otherwise there
+would be only one forcewake domain
+
+>+	 * states and ensure the hardware remains awake while it is being
+>+	 * actively used.
+>+	 */
+>+	struct {
+>+		/** @mmio.fw: force wake for GT */
+
+@pm.fw
 
 
-On 06-09-2024 00:59, Rodrigo Vivi wrote:
-> On Fri, Aug 30, 2024 at 10:53:18AM +0530, Himal Prasad Ghimiray wrote:
->> If an acknowledgment timeout occurs for a domain awake request, put to
->> sleep all domains awakened by the caller and decrease the reference
->> count for all requested domains. This prevents xe_force_wake_get() from
->> leaving an unhandled reference count in case of failure.
->> While at it, add simple kernel-doc for xe_force_wake_get() and
->> xe_force_wake_put() functions.
->>
->> Cc: Badal Nilawar <badal.nilawar@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Nirmoy Das <nirmoy.das@intel.com>
->> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_force_wake.c | 52 +++++++++++++++++++++++++++---
->>   1 file changed, 47 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
->> index b263fff15273..8aa8d9b41052 100644
->> --- a/drivers/gpu/drm/xe/xe_force_wake.c
->> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
->> @@ -150,31 +150,73 @@ static int domain_sleep_wait(struct xe_gt *gt,
->>   					 (ffs(tmp__) - 1))) && \
->>   					 domain__->reg_ctl.addr)
->>   
->> +/**
->> + * xe_force_wake_get : Increase the domain refcount; if it was 0 initially, wake the domain
->> + * @fw: struct xe_force_wake
->> + * @domains: forcewake domains to get refcount on
->> + *
->> + * Increment refcount for the force-wake domain. If the domain is
->> + * asleep, awaken it and wait for acknowledgment within the specified
->> + * timeout. If a timeout occurs, decrement the refcount and put the
->> + * caller awaken domains to sleep.
->> + *
->> + * Return: 0 on success or 1 on ack timeout from domains.
-> 
-> * Returns 0 for success, negative error code otherwise.
+otherwise,
 
-Hi Rodrigo,
+	Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Sure. Will fix in next version.
+Lucas De Marchi
 
-> 
->> + */
->>   int xe_force_wake_get(struct xe_force_wake *fw,
->>   		      enum xe_force_wake_domains domains)
->>   {
->>   	struct xe_gt *gt = fw->gt;
->>   	struct xe_force_wake_domain *domain;
->> -	enum xe_force_wake_domains tmp, woken = 0;
->> +	enum xe_force_wake_domains tmp, awake_rqst = 0, awake_ack = 0;
->>   	unsigned long flags;
->>   	int ret = 0;
->>   
->>   	spin_lock_irqsave(&fw->lock, flags);
->>   	for_each_fw_domain_masked(domain, domains, fw, tmp) {
->>   		if (!domain->ref++) {
->> -			woken |= BIT(domain->id);
->> +			awake_rqst |= BIT(domain->id);
->>   			domain_wake(gt, domain);
->>   		}
->>   	}
->> -	for_each_fw_domain_masked(domain, woken, fw, tmp) {
->> -		ret |= domain_wake_wait(gt, domain);
-> 
-> now you suppress the mmio error code...
-> should be better to find a way to propagate that.
-
-
-AFAIU the only possible error code from domain_wake_wait is -ETIMEDOUT, 
-was planning to assign same to ret below, which I missed in the RFC.
-
-
-> 
->> +	for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
->> +		if (domain_wake_wait(gt, domain) == 0)
->> +			awake_ack |= BIT(domain->id);
->> +	}
->> +
->> +	ret = (awake_ack == awake_rqst) ? 0 : 1;
-> 
-> s/1/-EIO/ ?
-
-How about -ETIMEDOUT ? Since this is same error which will be propogated 
-in case of domain_wake_wait failure ?
-
-> 
->> +
->> +	/*
->> +	 * If @domains is XE_FORCEWAKE_ALL and an acknowledgment times out
->> +	 * for any domain, decrease the reference count and put the awake
->> +	 * domains to sleep. For individual domains, just decrement the
->> +	 * reference count.
->> +	 */
->> +	if (ret) {
->> +		for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
->> +			if (!--domain->ref && (awake_ack & BIT(domain->id)))
->> +				domain_sleep(gt, domain);
-> 
-> wonder if it would help to extract this in a separate function to be
-> used here and in the -put function.
-
-Let me think around that.
-
-> 
-> But more then that, I have a question here...
-> Do we really need to sleep other domains if we are not getting ack from certain domain?
-> Doesn't it generally means that we are busted anyway?
-
-I have no strong opinion on this, main thing is refcount shouldn't be 
-incremented.
-
-> 
-> But also, if we really need to sleep, then perhaps shouldn't we also
-> call the sleep function even from the guys who didn't ack? perhaps the ack
-> timedout, but it really woke-up? how sure we are that this is not possible?
-
-I didn't want to change the hw state by calling sleep for the "ack 
-failed" domain, so if necessary, Debug tools (PythonSV) can help us 
-pinpoint the exact failure state of the HW registers.
-
-
-> 
->> +		}
->> +		awake_ack = 0;
->>   	}
->> -	fw->awake_domains |= woken;
->> +
->> +	fw->awake_domains |= awake_ack;
->>   	spin_unlock_irqrestore(&fw->lock, flags);
->>   
->>   	return ret;
->>   }
->>   
->> +/**
->> + * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
->> + * @fw: Pointer to the force wake structure
->> + * @domains: forcewake domains to put reference
->> + *
->> + * This function reduces the reference counts for specified domains. If
->> + * refcount for any of the specified domain reaches 0, it puts the domain to sleep
->> + * and waits for acknowledgment for domain to sleep within specified timeout.
->> + * Ensure this function is called only in case of successful xe_force_wake_get().
->> + *
->> + * Returns 0 in case of success or non-zero in case of timeout of ack
->> + */
->>   int xe_force_wake_put(struct xe_force_wake *fw,
->>   		      enum xe_force_wake_domains domains)
->>   {
->> -- 
->> 2.34.1
->>
+>+		struct xe_force_wake fw;
+>+	} pm;
+>+
+> 	/** @sriov: virtualization data related to GT */
+> 	union {
+> 		/** @sriov.pf: PF data. Valid only if driver is running as PF */
+>diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+>index 440ac572f6e5..fb209f1e0f1e 100644
+>--- a/drivers/gpu/drm/xe/xe_reg_sr.c
+>+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+>@@ -15,6 +15,7 @@
+>
+> #include "regs/xe_engine_regs.h"
+> #include "regs/xe_gt_regs.h"
+>+#include "xe_device.h"
+> #include "xe_device_types.h"
+> #include "xe_force_wake.h"
+> #include "xe_gt.h"
+>@@ -194,14 +195,14 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
+>
+> 	xe_gt_dbg(gt, "Applying %s save-restore MMIOs\n", sr->name);
+>
+>-	err = xe_force_wake_get(&gt->mmio.fw, XE_FORCEWAKE_ALL);
+>+	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> 	if (err)
+> 		goto err_force_wake;
+>
+> 	xa_for_each(&sr->xa, reg, entry)
+> 		apply_one_mmio(gt, entry);
+>
+>-	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
+>+	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> 	XE_WARN_ON(err);
+>
+> 	return;
+>@@ -227,7 +228,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+>
+> 	drm_dbg(&xe->drm, "Whitelisting %s registers\n", sr->name);
+>
+>-	err = xe_force_wake_get(&gt->mmio.fw, XE_FORCEWAKE_ALL);
+>+	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> 	if (err)
+> 		goto err_force_wake;
+>
+>@@ -253,7 +254,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+> 		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
+> 	}
+>
+>-	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
+>+	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> 	XE_WARN_ON(err);
+>
+> 	return;
+>-- 
+>2.45.2
+>
