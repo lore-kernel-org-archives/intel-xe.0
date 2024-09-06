@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF250CE7B02
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 12:06:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FB9ECE7AA3
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 12:06:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A62A810EA2A;
-	Fri,  6 Sep 2024 12:06:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FB5110EA2D;
+	Fri,  6 Sep 2024 12:06:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lgT+UBDD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/HLuQ0v";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA96D10EA2A
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 12:06:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DDB210EA2D
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 12:06:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725624387; x=1757160387;
+ t=1725624393; x=1757160393;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5XcY4RBvfjLwH7LOnzldnxkJO4UtkUMRXvMW3/Lbz0k=;
- b=lgT+UBDDOfkKjiy8Zr1nuKinYdQH0FL5SkgSfL+uG8SdfVom4EY8ureT
- s3PKvjJi7DILJvYsqlw9KQRCJzk3Xmq0u36/660pPmcFXT6ry7/0iUWjq
- qxKPTwAxeDYbUhEHNktQWjAIccRF5fQa+uXZOdn2ZQLbUFzOGAjik6BD7
- LydGfmWBe2ctebQft5Aeiuu449vr1r07XJ2e0bmN2/FuFcpNgc9D4sbQR
- 6rQa6O/w1a0ExoiHr34se+kCVyRfubBmLwu7JB3soG/wCBtdiB4N/J3PH
- GjWAv2sSp+lHzgubtkKPKQKQZ+QuWeebAlUiQqXVdFtdP/uS/Gm2rtNgO Q==;
-X-CSE-ConnectionGUID: DvkQJ1VES560B/SO6j3r3g==
-X-CSE-MsgGUID: aTPXGD2MT5yoSY8pBrdpMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="35527215"
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="35527215"
+ bh=5mTp/Egt5jLMuzuaRJ6kwgqUw6pLWkvvITLTdY+JavM=;
+ b=G/HLuQ0ve+xappauJy3ooGCOqMIIywzpMGF7SNEU6D0e8/iQ/CtnXs69
+ CRK4RIVaT3yiUtuLQtdHh5+QvM/YvqJsTk3WyhHacJZC+pZ7ySpjqJBxP
+ +dJef0/z8s7TsOXTgQGJDYxeJfig30i8IaxiSuqBWmPuE4RnAg2oZOvZx
+ UCJua5DdxZTvR3PLcWaczw2PAC+7sKdLb51cVcJXYIOgGf5crnnD/kT66
+ QNcfZ7VbKdthdCB7Wz71rVK7hC0RLAp9gdHU8JmD7ZyJdPZfD3dkv8Knl
+ 5HcrG+vUBKfr5qF0DUgkyqco8Svrst6t+2VczftJqbExOJxGTioSqqwTr g==;
+X-CSE-ConnectionGUID: PI0TzK9jRzysqkH/KQNO9Q==
+X-CSE-MsgGUID: NXQuoLVKTpCcchO4q369vQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="35527224"
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="35527224"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 05:06:26 -0700
-X-CSE-ConnectionGUID: ue35ivq+TTKuPw5dAXDAWw==
-X-CSE-MsgGUID: kiDsj1xeS3GfQXfTr+4Yew==
+ 06 Sep 2024 05:06:32 -0700
+X-CSE-ConnectionGUID: 0KPcU546Tpyf7c3CGzQcnQ==
+X-CSE-MsgGUID: mxMnfdQyTyWTr4Mc271HQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="65982260"
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="65982271"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.62])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 05:06:24 -0700
+ 06 Sep 2024 05:06:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, daniele.ceraolospurio@intel.com,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com
-Subject: [PATCH 2/3] drm/xe/pciids: Add PVC's PCI device ID macros
-Date: Fri,  6 Sep 2024 15:06:03 +0300
-Message-Id: <6ac1829493a53a3fec889c746648d627a0296892.1725624296.git.jani.nikula@intel.com>
+Subject: [PATCH 3/3] drm/xe: Add PVC's PCI device IDs
+Date: Fri,  6 Sep 2024 15:06:04 +0300
+Message-Id: <26820994f2080e988dde4f78c4ea3aad082922b0.1725624296.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725624296.git.jani.nikula@intel.com>
 References: <cover.1725624296.git.jani.nikula@intel.com>
@@ -73,52 +73,51 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Add PVC PCI IDs to the xe_pciids.h header. They're not yet used in the
-driver.
+This patch introduces Ponte Vecchio support in Xe driver.
+
+Please note that besides this patch, likely the force_probe
+still needs to be used in order to actually enable the
+support for PVC.
+
+This patch was separated from the rest so we can ensure
+compliance with DRM uAPI rules on compute platforms.
 
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1154
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 ---
 
-This is for drm-xe-next. Functionally, having the PCI IDs defined
-doesn't mean anything, but it's easier all around to not carry these in
-xe-for-CI.
+This is the minimal patch for xe-for-CI.
 ---
- include/drm/intel/xe_pciids.h | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids.h
-index 644872a35c35..73d972a8aca1 100644
---- a/include/drm/intel/xe_pciids.h
-+++ b/include/drm/intel/xe_pciids.h
-@@ -187,6 +187,22 @@
- 	MACRO__(0x7DD1, ## __VA_ARGS__),        \
- 	MACRO__(0x7DD5, ## __VA_ARGS__)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 2c9f9dc783d9..c05ca61787be 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -323,7 +323,7 @@ static const struct xe_device_desc dg2_desc = {
+ 	.has_display = true,
+ };
  
-+/* PVC */
-+#define XE_PVC_IDS(MACRO__, ...)		\
-+	MACRO__(0x0B69, ## __VA_ARGS__),	\
-+	MACRO__(0x0B6E, ## __VA_ARGS__),	\
-+	MACRO__(0x0BD4, ## __VA_ARGS__),	\
-+	MACRO__(0x0BD5, ## __VA_ARGS__),	\
-+	MACRO__(0x0BD6, ## __VA_ARGS__),	\
-+	MACRO__(0x0BD7, ## __VA_ARGS__),	\
-+	MACRO__(0x0BD8, ## __VA_ARGS__),	\
-+	MACRO__(0x0BD9, ## __VA_ARGS__),	\
-+	MACRO__(0x0BDA, ## __VA_ARGS__),	\
-+	MACRO__(0x0BDB, ## __VA_ARGS__),	\
-+	MACRO__(0x0BE0, ## __VA_ARGS__),	\
-+	MACRO__(0x0BE1, ## __VA_ARGS__),	\
-+	MACRO__(0x0BE5, ## __VA_ARGS__)
-+
- #define XE_LNL_IDS(MACRO__, ...) \
- 	MACRO__(0x6420, ## __VA_ARGS__), \
- 	MACRO__(0x64A0, ## __VA_ARGS__), \
+-static const __maybe_unused struct xe_device_desc pvc_desc = {
++static const struct xe_device_desc pvc_desc = {
+ 	.graphics = &graphics_xehpc,
+ 	DGFX_FEATURES,
+ 	PLATFORM(PVC),
+@@ -392,6 +392,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	XE_DG1_IDS(INTEL_VGA_DEVICE, &dg1_desc),
+ 	XE_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_desc),
+ 	XE_DG2_IDS(INTEL_VGA_DEVICE, &dg2_desc),
++	XE_PVC_IDS(INTEL_VGA_DEVICE, &pvc_desc),
+ 	XE_MTL_IDS(INTEL_VGA_DEVICE, &mtl_desc),
+ 	XE_LNL_IDS(INTEL_VGA_DEVICE, &lnl_desc),
+ 	XE_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
 -- 
 2.39.2
 
