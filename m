@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF19AE6FE4B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 21:52:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 525BDE6FE4C
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 21:52:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7A810EB00;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F246610EB03;
 	Fri,  6 Sep 2024 21:52:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQWrMHKl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WpLzFGZ7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A00A10EB00
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 21:52:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FF7010EB00
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 21:52:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725659522; x=1757195522;
+ t=1725659523; x=1757195523;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cTh2UDWu/BbV5ZZ60HENJN9kk08rqwYGl+soK/f1+Go=;
- b=AQWrMHKl4qpNLL7k3SxpMX14Xh0QUzK+a2ZY5kcq8pBpwvzvIXmWxAaU
- WekTJbBWMEdFhPZhUOqCEh8i+IaHYc1Fw7C8dHA4AFalhwf8dzf3lgcCy
- eVNXvHvuTFzMFmX7mx5hciALVB+2UdLMQE5THyv/1l+ZX5A781KtCH+RP
- UTjMT16bCgy5OL2zstuBkJXEatgY/0Qxrkcygl1sFjpL1tGP/eeF+47KH
- 8XASuIA2K6RSlOA9pRl7OWeu/zphBjhbAZECbr6XL6crglPbca2BVFNUU
- kQ0X7W0eNPRQoMKXIYjtZHNXw3PJfG4QZaOss4UmsjgAMHs7KxeezW6g2 Q==;
-X-CSE-ConnectionGUID: 7HFVIFsER8acMST+02cewg==
-X-CSE-MsgGUID: BnOlekWpRluqM9/R3SAMPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24580573"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="24580573"
+ bh=/+zH2P8ghaGULYv9JRjEPQ1LEQYooS1k1kbCaHBBIvU=;
+ b=WpLzFGZ7LFrUAAI1UnKQfQDsUoQOrHOlHbT3qlKliObxb8pNS0YElBTk
+ Jdhmc2dmV552B3u+Gfs/4PW0FfJvwmCAw2S2Vp2b8FbOkESqL4svaz5T6
+ TfJXiRoaSiWVFV4qu87wjz7XK/7bCqL495hPHaYYocBnz9OT6fJ1p5QE7
+ oFfMojmN+DkOQhAlpjY81nKKTXq7gzUvwtmm3AkQDEHxx8l95/TLyzkOQ
+ aG4SEQNp8HeeYG+/g1R0byc8vzD1oNyj3HBQD4kcR3LYsd7ZQ5fWel22B
+ rMrB0KWB69ICGXG2/OmuhcEyQQK4stCR8Q68xH0kb1wU7FUHu0khf/pBF Q==;
+X-CSE-ConnectionGUID: jLOvLoB2RomShS0r5jjEpg==
+X-CSE-MsgGUID: gMXmwmroTd6BFXKNDTOSrA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24580577"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="24580577"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 14:52:02 -0700
-X-CSE-ConnectionGUID: yXQI7//0QUW8L/W0x8JVsA==
-X-CSE-MsgGUID: 3g5umH20Rq+OgYfd9ieoIA==
+ 06 Sep 2024 14:52:03 -0700
+X-CSE-ConnectionGUID: 2VPvt1jMRUO4Bh15wZHu4g==
+X-CSE-MsgGUID: U7MLEGu+SFm8WNHB8PrfaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="70656321"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="70656326"
 Received: from msatwood-mobl.amr.corp.intel.com (HELO
  msatwood-mobl.hsd1.or.comcast.net) ([10.125.110.176])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 14:52:02 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Haridhar Kalvala <haridhar.kalvala@intel.com>,
+Cc: Francois Dugast <francois.dugast@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 2/9] drm/xe/xe3: Define Xe3 feature flags
-Date: Fri,  6 Sep 2024 14:51:46 -0700
-Message-ID: <20240906215153.31210-3-matthew.s.atwood@intel.com>
+Subject: [PATCH 3/9] drm/xe/xe3: Generate and store the L3 bank mask
+Date: Fri,  6 Sep 2024 14:51:47 -0700
+Message-ID: <20240906215153.31210-4-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240906215153.31210-1-matthew.s.atwood@intel.com>
 References: <20240906215153.31210-1-matthew.s.atwood@intel.com>
@@ -69,92 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Haridhar Kalvala <haridhar.kalvala@intel.com>
+From: Francois Dugast <francois.dugast@intel.com>
 
-Define a common set of Xe3 feature flags
-and definitions that will be used for all
-platforms in this family.
+On Xe3, the register used to indicate which L3 banks are enabled on
+the system is a new one called MIRROR_L3BANK_ENABLE. Each bit
+represents one bank enabled in each node.
+Extend the existing topology code for Xe3 to read this register and
+generate the correct L3 bank mask, which can be read by user space
+throug the topology query.
 
-The feature flags are inherited unchanged from
-Xe2 (XE2_FEATURES) platform.
-
-Following B-spec details inherited from Xe2 feature
-flag definition commit.
-
-Bspec: 58695
- - dma_mask_size remains 46   (not documented in bspec)
- - supports_usm=1             (Bspec 59651)
- - has_flatccs=1              (Bspec 58797)
- - has_4tile=1                (Bspec 58788)
- - has_asid=1                 (Bspec 59654, 59265, 60288)
- - has_range_tlb_invalidate=1 (Bspec 71126)
- - five-level page table      (Bspec 59505)
- - 1 VD + 1 VE + 1 SFC        (Bspec 67103, 70819)
- - platform engine mask       (Bspec 60149)
+Bspec: 72573, 73439
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
+ drivers/gpu/drm/xe/xe_gt_topology.c  | 11 ++++++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index c05ca61787be..b30d09508a38 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -180,6 +180,25 @@ static const struct xe_graphics_desc graphics_xe2 = {
- 	XE2_GFX_FEATURES,
- };
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 0d1a4a9f4e11..8ed855b31e95 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -218,6 +218,9 @@
  
-+#define XE3_GFX_FEATURES \
-+	.dma_mask_size = 46, \
-+	.has_asid = true, \
-+	.has_atomic_enable_pte_bit = 1, \
-+	.has_flat_ccs = true, \
-+	.has_range_tlb_invalidation = true, \
-+	.has_usm = true, \
-+	.va_bits = 48, \
-+	.vm_max_level = 4, \
-+	.hw_engine_mask = \
-+		BIT(XE_HW_ENGINE_RCS0) | \
-+		BIT(XE_HW_ENGINE_BCS8) | BIT(XE_HW_ENGINE_BCS0) | \
-+		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0)
+ #define MIRROR_FUSE1				XE_REG(0x911c)
+ 
++#define MIRROR_L3BANK_ENABLE			XE_REG(0x9130)
++#define   XE3_L3BANK_ENABLE			REG_GENMASK(31, 0)
 +
-+static const struct xe_graphics_desc graphics_xe3 = {
-+	.name = "Xe3_LPG",
-+	XE3_GFX_FEATURES,
-+};
+ #define XELP_EU_ENABLE				XE_REG(0x9134)	/* "_DISABLE" on Xe_LP */
+ #define   XELP_EU_MASK				REG_GENMASK(7, 0)
+ #define XELP_GT_SLICE_ENABLE			XE_REG(0x9138)
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index 0662f71c6ede..56571380a2b5 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -129,7 +129,16 @@ load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 fuse3 = xe_mmio_read32(gt, MIRROR_FUSE3);
+ 
+-	if (GRAPHICS_VER(xe) >= 20) {
++	if (GRAPHICS_VER(xe) >= 30) {
++		xe_l3_bank_mask_t per_node = {};
++		u32 meml3_en = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, fuse3);
++		u32 mirror_l3bank_enable = xe_mmio_read32(gt, MIRROR_L3BANK_ENABLE);
++		u32 bank_val = REG_FIELD_GET(XE3_L3BANK_ENABLE, mirror_l3bank_enable);
 +
- static const struct xe_media_desc media_xem = {
- 	.name = "Xe_M",
- 	.ver = 12,
-@@ -209,7 +228,7 @@ static const struct xe_media_desc media_xelpmp = {
- };
- 
- static const struct xe_media_desc media_xe2 = {
--	.name = "Xe2_LPM / Xe2_HPM",
-+	.name = "Xe2_LPM / Xe2_HPM / Xe3_LPM",
- 	.hw_engine_mask =
- 		GENMASK(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0) |
- 		GENMASK(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0) |
-@@ -361,6 +380,8 @@ static const struct gmdid_map graphics_ip_map[] = {
- 	{ 1274, &graphics_xelpg },	/* Xe_LPG+ */
- 	{ 2001, &graphics_xe2 },
- 	{ 2004, &graphics_xe2 },
-+	{ 3000, &graphics_xe3 },
-+	{ 3001, &graphics_xe3 },
- };
- 
- /* Map of GMD_ID values to media IP */
-@@ -368,6 +389,7 @@ static const struct gmdid_map media_ip_map[] = {
- 	{ 1300, &media_xelpmp },
- 	{ 1301, &media_xe2 },
- 	{ 2000, &media_xe2 },
-+	{ 3000, &media_xe2 },
- };
- 
- #define INTEL_VGA_DEVICE(id, info) {			\
++		bitmap_from_arr32(per_node, &bank_val, 32);
++		gen_l3_mask_from_pattern(xe, l3_bank_mask, per_node, 32,
++					 meml3_en);
++	} else if (GRAPHICS_VER(xe) >= 20) {
+ 		xe_l3_bank_mask_t per_node = {};
+ 		u32 meml3_en = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, fuse3);
+ 		u32 bank_val = REG_FIELD_GET(XE2_GT_L3_MODE_MASK, fuse3);
 -- 
 2.44.0
 
