@@ -4,84 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6617FCE7B1B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:03:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73B3FCE7B1B
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:03:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F01610EA6C;
-	Fri,  6 Sep 2024 14:03:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 252ED10EA6D;
+	Fri,  6 Sep 2024 14:03:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dyMY9vi+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBsCbyP1";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 337A710EA6B;
- Fri,  6 Sep 2024 14:03:21 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id C7DBF5C4AEE;
- Fri,  6 Sep 2024 14:03:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F2BC4AF0B;
- Fri,  6 Sep 2024 14:03:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1725631400;
- bh=cCvVFVarD948ikan+/2TaJVbsKjZAcxCYUNJAassXuo=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=dyMY9vi+Iv/1EE4rQ5BwnYhfwk66+LJ4z96MdbykYSppKKoQ6y3a0sNfUu/b88uyD
- CnMZ+ONw74z6CdB7oB6DTdO6H33Yg0CqFxIeKoXjlAeH7r+IeYZBwiBhKopg0VRDv1
- gzpGPqLViAnfIcvPs8ONYWfyESePiuh7ufuvViitOGQLxvTFW462hGXk6bbFU2yUaH
- L9ypC5UisZq5so1J2EZ4Zsx2oDa8QzGHtDF2R5KDWuQbRupAZrdUcRbDK0gOWrBwUd
- QfmUhasthbSt1k+8xvJ7JF5Ifym3SEZdnZdQXjE4OvCP9je+KurLddBgNN2nspGq59
- NazYJG1NuiiDw==
-Received: by mail-lf1-f54.google.com with SMTP id
- 2adb3069b0e04-5353cd2fa28so2454032e87.3; 
- Fri, 06 Sep 2024 07:03:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUVl780Gw9FG7HvKLh39Go2J173g2kuY8brC2QQt4EnwFRY4xgwZUOZrudNCNYKX2wwJuiznmjps18=@lists.freedesktop.org,
- AJvYcCXsRhrZlF00Q0m3tiKy3aFl+XEU5vfOseLuHwFlCWKggM6R9qPw1sKr6Rc82XJ/DZmACIPsjB8S8zc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx64c408ddXxlGCad52KHvArS7rplCGcYFMLIftMMcReV1UQkHQ
- fHUou6hGmYL/raYa75sq5n4yNvbs+cwIhjx4DghmNy71zGPeFt0zjG72jtGCUzIkmr3ZgJwSRNM
- ZP4X32gJeJhPkFO8slnhC8ldLPRU=
-X-Google-Smtp-Source: AGHT+IEwm1OihzyduuH3GdpU3yiLq9gm3KuXayVrsg5BxQSVxVXk/rmKiVyZVYISmyKuN7IvBRI5rMb23e03P34iqD4=
-X-Received: by 2002:a05:6512:39ce:b0:536:54df:bff2 with SMTP id
- 2adb3069b0e04-53658812f84mr1830079e87.54.1725631398698; Fri, 06 Sep 2024
- 07:03:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
- <20240906-macos-build-support-v2-5-06beff418848@samsung.com>
-In-Reply-To: <20240906-macos-build-support-v2-5-06beff418848@samsung.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Fri, 6 Sep 2024 23:02:42 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQGuXzuA5tNSv0q_AMAy8Zw5MtG2RFRW0nQOwCO8Z5FLw@mail.gmail.com>
-Message-ID: <CAK7LNAQGuXzuA5tNSv0q_AMAy8Zw5MtG2RFRW0nQOwCO8Z5FLw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/8] scripts: add bee-headers support
-To: da.gomez@samsung.com
-Cc: Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Paul Moore <paul@paul-moore.com>,
- Stephen Smalley <stephen.smalley.work@gmail.com>, 
- Ondrej Mosnacek <omosnace@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Oliver Upton <oliver.upton@linux.dev>, 
- James Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
- Simona Vetter <simona.vetter@ffwll.ch>, linux-kernel@vger.kernel.org, 
- linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, speakup@linux-speakup.org, 
- selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- kvmarm@lists.linux.dev, linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
- Finn Behrens <me@kloenk.dev>, "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- gost.dev@samsung.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90F0010EA6D
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 14:03:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725631407; x=1757167407;
+ h=date:from:to:cc:subject:message-id;
+ bh=IfhS4JJlGTf4nPq9q4vJaSLPMzTy0t5rQrFeTYZJaEA=;
+ b=VBsCbyP1VDpBVhcaSy/eIMhGUnA/uc14Atz+jDYOvfxoc5+Ca40yRz4j
+ Os1CR0OucKK+n4ByUhZB77e+/+ni+IsQJpWr1HqK5LTMjuVfjv19tCDzQ
+ 4ca/z0yYdxad7Ny44P+GpI7hlccetXQRJUlXJAmDURLw4siUgyifF+07W
+ A2bwNzBzdZ6tca0ov614OvE9wHKf+6DjEwoHEDbDb4Jm2UWILFgzXSm4S
+ fZ5H2R88SdTl8WfEZEyP2LrCH8hcMSKIEzVKhFDLt1g/z3nJUj/kyQRgM
+ tqyn2lbte6GRotRgFS6XToTdlluPY8JleeWZdst3sncnEYVB0SRTjQE2a g==;
+X-CSE-ConnectionGUID: VoN9NjslTlKt9AeYVVxn8w==
+X-CSE-MsgGUID: UJAg8zfqSFy4jNdtxmZhLQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="23948332"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="23948332"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 07:03:26 -0700
+X-CSE-ConnectionGUID: zpNx/9GMQ+OfBESpREFtvw==
+X-CSE-MsgGUID: KU5ztd5UQa6i9mhpUZB1jg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="65776296"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 06 Sep 2024 07:03:26 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1smZYY-000BKN-3D;
+ Fri, 06 Sep 2024 14:03:23 +0000
+Date: Fri, 06 Sep 2024 22:03:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 4bfc9c553f5ea8cbfe085824f3283885cf173c20
+Message-ID: <202409062208.kRgD6QFL-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,81 +64,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 6, 2024 at 8:01=E2=80=AFPM Daniel Gomez via B4 Relay
-<devnull+da.gomez.samsung.com@kernel.org> wrote:
->
-> From: Daniel Gomez <da.gomez@samsung.com>
->
-> endian.h header is not provided by default in macOS. Use pkg-config with
-> the new development package 'bee-headers' [1] to find the path where the
-> headers are installed.
->
-> [1] Bee Headers Project links:
-> https://github.com/bee-headers/headers
-> https://github.com/bee-headers/homebrew-bee-headers
->
-> It requires to install bee-headers Homebrew Tap:
->   brew tap bee-headers/bee-headers
->   brew install bee-headers/bee-headers/bee-headers
->
-> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-> ---
->  scripts/Makefile     | 4 +++-
->  scripts/mod/Makefile | 5 +++++
->  2 files changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/scripts/Makefile b/scripts/Makefile
-> index 6bcda4b9d054..40f6a9159f8c 100644
-> --- a/scripts/Makefile
-> +++ b/scripts/Makefile
-> @@ -25,8 +25,10 @@ generate_rust_target-rust :=3D y
->  rustdoc_test_builder-rust :=3D y
->  rustdoc_test_gen-rust :=3D y
->
-> -HOSTCFLAGS_sorttable.o =3D -I$(srctree)/tools/include
-> +HOSTCFLAGS_sorttable.o =3D -I$(srctree)/tools/include \
-> +       $(shell $(HOSTPKG_CONFIG) --cflags bee-headers 2> /dev/null)
->  HOSTLDLIBS_sorttable =3D -lpthread
-> +HOSTCFLAGS_insert-sys-cert.o =3D $(shell $(HOSTPKG_CONFIG) --cflags bee-=
-headers 2> /dev/null)
->  HOSTCFLAGS_asn1_compiler.o =3D -I$(srctree)/include
->  HOSTCFLAGS_sign-file.o =3D $(shell $(HOSTPKG_CONFIG) --cflags libcrypto =
-2> /dev/null)
->  HOSTLDLIBS_sign-file =3D $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /=
-dev/null || echo -lcrypto)
-> diff --git a/scripts/mod/Makefile b/scripts/mod/Makefile
-> index 75c12c045f21..33bb032039ba 100644
-> --- a/scripts/mod/Makefile
-> +++ b/scripts/mod/Makefile
-> @@ -9,6 +9,11 @@ modpost-objs   :=3D modpost.o file2alias.o sumversion.o =
-symsearch.o
->  devicetable-offsets-file :=3D devicetable-offsets.h
->
->  HOSTCFLAGS_file2alias.o +=3D -D_UUID_T -D__GETHOSTUUID_H
-> +HOSTCFLAGS_modpost.o =3D $(shell $(HOSTPKG_CONFIG) --cflags bee-headers =
-2> /dev/null)
-> +HOSTCFLAGS_file2alias.o =3D $(shell $(HOSTPKG_CONFIG) --cflags bee-heade=
-rs 2> /dev/null)
-> +HOSTCFLAGS_sumversion.o =3D $(shell $(HOSTPKG_CONFIG) --cflags bee-heade=
-rs 2> /dev/null)
-> +HOSTCFLAGS_symsearch.o =3D $(shell $(HOSTPKG_CONFIG) --cflags bee-header=
-s 2> /dev/null)
-> +HOSTCFLAGS_mk_elfconfig.o =3D $(shell $(HOSTPKG_CONFIG) --cflags bee-hea=
-ders 2> /dev/null)
->
->  $(obj)/$(devicetable-offsets-file): $(obj)/devicetable-offsets.s FORCE
->         $(call filechk,offsets,__DEVICETABLE_OFFSETS_H__)
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 4bfc9c553f5ea8cbfe085824f3283885cf173c20  drm/xe/display: Avoid encoder_suspend at runtime suspend
 
+elapsed time: 1475m
 
+configs tested: 112
+configs skipped: 2
 
-Same as 4/8.
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-NACK.
+tested configs:
+alpha                             allnoconfig   gcc-14.1.0
+alpha                            allyesconfig   clang-20
+arc                              allmodconfig   clang-20
+arc                               allnoconfig   gcc-14.1.0
+arc                              allyesconfig   clang-20
+arm                              allmodconfig   clang-20
+arm                               allnoconfig   gcc-14.1.0
+arm                              allyesconfig   clang-20
+arm                         bcm2835_defconfig   clang-20
+arm                      footbridge_defconfig   clang-20
+arm                         nhk8815_defconfig   clang-20
+arm                         s5pv210_defconfig   clang-20
+arm64                            allmodconfig   clang-20
+arm64                             allnoconfig   gcc-14.1.0
+csky                              allnoconfig   gcc-14.1.0
+hexagon                          allmodconfig   clang-20
+hexagon                           allnoconfig   gcc-14.1.0
+hexagon                          allyesconfig   clang-20
+i386                             allmodconfig   clang-18
+i386                              allnoconfig   clang-18
+i386                             allyesconfig   clang-18
+i386         buildonly-randconfig-001-20240906   gcc-12
+i386         buildonly-randconfig-002-20240906   gcc-12
+i386         buildonly-randconfig-003-20240906   gcc-12
+i386         buildonly-randconfig-004-20240906   gcc-12
+i386         buildonly-randconfig-005-20240906   gcc-12
+i386         buildonly-randconfig-006-20240906   gcc-12
+i386                                defconfig   clang-18
+i386                  randconfig-001-20240906   gcc-12
+i386                  randconfig-002-20240906   gcc-12
+i386                  randconfig-003-20240906   gcc-12
+i386                  randconfig-004-20240906   gcc-12
+i386                  randconfig-005-20240906   gcc-12
+i386                  randconfig-006-20240906   gcc-12
+i386                  randconfig-011-20240906   gcc-12
+i386                  randconfig-012-20240906   gcc-12
+i386                  randconfig-013-20240906   gcc-12
+i386                  randconfig-014-20240906   gcc-12
+i386                  randconfig-015-20240906   gcc-12
+i386                  randconfig-016-20240906   gcc-12
+loongarch                        allmodconfig   gcc-14.1.0
+loongarch                         allnoconfig   gcc-14.1.0
+m68k                             allmodconfig   gcc-14.1.0
+m68k                              allnoconfig   gcc-14.1.0
+m68k                             allyesconfig   gcc-14.1.0
+microblaze                       allmodconfig   gcc-14.1.0
+microblaze                        allnoconfig   gcc-14.1.0
+microblaze                       allyesconfig   gcc-14.1.0
+mips                              allnoconfig   gcc-14.1.0
+mips                     loongson1c_defconfig   clang-20
+mips                      malta_kvm_defconfig   clang-20
+nios2                             allnoconfig   gcc-14.1.0
+openrisc                          allnoconfig   clang-20
+openrisc                            defconfig   gcc-12
+parisc                            allnoconfig   clang-20
+parisc                              defconfig   gcc-12
+powerpc                           allnoconfig   clang-20
+powerpc                      arches_defconfig   clang-20
+powerpc                   bluestone_defconfig   clang-20
+powerpc                 linkstation_defconfig   clang-20
+powerpc                 mpc8315_rdb_defconfig   clang-20
+powerpc                      ppc44x_defconfig   clang-20
+powerpc                      tqm8xx_defconfig   clang-20
+riscv                             allnoconfig   clang-20
+riscv                               defconfig   gcc-12
+s390                              allnoconfig   clang-20
+s390                                defconfig   gcc-12
+sh                                allnoconfig   gcc-14.1.0
+sh                                  defconfig   gcc-12
+sh                          landisk_defconfig   clang-20
+sh                          sdk7780_defconfig   clang-20
+sh                             sh03_defconfig   clang-20
+sh                     sh7710voipgw_defconfig   clang-20
+sh                            titan_defconfig   clang-20
+sparc64                             defconfig   gcc-12
+um                               allmodconfig   clang-20
+um                                allnoconfig   clang-20
+um                               allyesconfig   clang-20
+um                                  defconfig   gcc-12
+um                             i386_defconfig   gcc-12
+um                           x86_64_defconfig   gcc-12
+x86_64                            allnoconfig   clang-18
+x86_64                           allyesconfig   clang-18
+x86_64       buildonly-randconfig-001-20240906   clang-18
+x86_64       buildonly-randconfig-002-20240906   clang-18
+x86_64       buildonly-randconfig-003-20240906   clang-18
+x86_64       buildonly-randconfig-004-20240906   clang-18
+x86_64       buildonly-randconfig-005-20240906   clang-18
+x86_64       buildonly-randconfig-006-20240906   clang-18
+x86_64                              defconfig   clang-18
+x86_64                                  kexec   gcc-12
+x86_64                randconfig-001-20240906   clang-18
+x86_64                randconfig-002-20240906   clang-18
+x86_64                randconfig-003-20240906   clang-18
+x86_64                randconfig-004-20240906   clang-18
+x86_64                randconfig-005-20240906   clang-18
+x86_64                randconfig-006-20240906   clang-18
+x86_64                randconfig-011-20240906   clang-18
+x86_64                randconfig-012-20240906   clang-18
+x86_64                randconfig-013-20240906   clang-18
+x86_64                randconfig-014-20240906   clang-18
+x86_64                randconfig-015-20240906   clang-18
+x86_64                randconfig-016-20240906   clang-18
+x86_64                randconfig-071-20240906   clang-18
+x86_64                randconfig-072-20240906   clang-18
+x86_64                randconfig-073-20240906   clang-18
+x86_64                randconfig-074-20240906   clang-18
+x86_64                randconfig-075-20240906   clang-18
+x86_64                randconfig-076-20240906   clang-18
+x86_64                          rhel-8.3-rust   clang-18
+x86_64                               rhel-8.3   gcc-12
+xtensa                            allnoconfig   gcc-14.1.0
 
-
-
-
---
-Best Regards
-
-Masahiro Yamada
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
