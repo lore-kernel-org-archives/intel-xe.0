@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C27CE7AA5
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 03:15:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74451CE7AA5
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 03:25:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3245E10E964;
-	Fri,  6 Sep 2024 03:15:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D87810E959;
+	Fri,  6 Sep 2024 03:25:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="u7gtWNH6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQECYKQS";
 	dkim-atps=neutral
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EC9010E95D;
- Fri,  6 Sep 2024 03:15:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1725592504;
- bh=QMIlXfEUeKgJL/ulsag1T3e133MiIVGIWcDrY3RH+Ws=;
- h=Date:From:To:Cc:Subject:From;
- b=u7gtWNH6Jk/fXt/kPTWPmYn46m36/+XWV5rXDbFhpEhMbFV0KzSPxHuNXkwpUUwhu
- un11fJcv6HW/eeVsCxbhZ9nw4Z5P5ACPKqLRUtGl5nlEl/gIPR49l59sy2Y5qfPwaz
- CCyru6g3w7liA+94R9AIYqK2tJt/FJSZXCJKfExkQc/NcA+Kur5BNxABhizveFlQMC
- rBbMj2YqU1jUNXXsAvuIT2xOLYjsruzVbDYDpaPWbdemFPYsqpPI+GdgjrKYPphmdE
- eG0oj0befUe6EnzQ3zImoe5e3eyJOH4kdUMAhM5wrEGH5wPszCelbv0J0+w+e9dYJf
- TD1ksuAsByKtA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4X0LvC2zVXz4wxx;
- Fri,  6 Sep 2024 13:15:03 +1000 (AEST)
-Date: Fri, 6 Sep 2024 13:15:02 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
- =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Daniel Vetter
- <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, DRM XE List
- <intel-xe@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: manual merge of the drm-xe tree with the drm-intel tree
-Message-ID: <20240906131502.7a7d1962@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB83A10E959
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 03:25:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725593112; x=1757129112;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TnUkiewmC3jV9ENIm/UzecabKzD6rrU/EmcYp7Vn580=;
+ b=CQECYKQSJkKG+DNpAeXTItZ43czYwlhci2rjaVwvcKmYypkAT2N87qog
+ 2kQMbvXasPaHGyc4ILZVEnNcu635l6kxuGqjJpqbAdV4sQPeCXBfj49eB
+ fEb57LCX4xHqMGx8kw6Mo8qbQ6xgZ2PpnWq6vaV4dJ0A4myuRnl62QkXK
+ c/pONzdHPiB4nHOZBlFnvgSsJm3oYQUl3FUJjwjXhJBvTPSVoO2WmPlyD
+ CBX6o4QsxRl3UL8RGrj6WMehjZzNI1wbdFa56peb9nTe9Ebe80bBmm3y3
+ WeWZJcrzbRFF9F2Yh8YI5vvo0NtOeHfYYqLXoNi5iZp1+GGZZZqMiNcrS g==;
+X-CSE-ConnectionGUID: UXW2XcERS8yUHRX9zQKTeA==
+X-CSE-MsgGUID: T1FV821+SvSbb/LK6kTH+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="24142540"
+X-IronPort-AV: E=Sophos;i="6.10,206,1719903600"; d="scan'208";a="24142540"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 20:25:12 -0700
+X-CSE-ConnectionGUID: PQkMTz0wRB+EJhOc0JD4Rw==
+X-CSE-MsgGUID: 3TUzv+NTSRObPaugI+vsmw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,206,1719903600"; d="scan'208";a="66065101"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 20:25:12 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH] drm/xe: Fix arg to pci_iomap()
+Date: Thu,  5 Sep 2024 20:25:07 -0700
+Message-ID: <20240906032507.2952859-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/F3S_2xZpz8_i.Yz3/rhYYC2";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,68 +66,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/F3S_2xZpz8_i.Yz3/rhYYC2
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Commit 2d8865b27724 ("drm/xe: Move BAR definitions to dedicated file")
+moved the BAR definition to the header, but replaced the wrong arg in
+the pci_iomap() function - the last arg is actuall the length, not the
+BAR. Luckily GTTMMADR_BAR == 0, so it still works. Fix the argument
+to avoid confusion.
 
-Hi all,
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_mmio.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-Today's linux-next merge of the drm-xe tree got a conflict in:
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 3fd462fda625..4aae30880bc6 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -157,15 +157,14 @@ int xe_mmio_init(struct xe_device *xe)
+ {
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	const int mmio_bar = 0;
+ 
+ 	/*
+ 	 * Map the entire BAR.
+ 	 * The first 16MB of the BAR, belong to the root tile, and include:
+ 	 * registers (0-4MB), reserved space (4MB-8MB) and GGTT (8MB-16MB).
+ 	 */
+-	xe->mmio.size = pci_resource_len(pdev, mmio_bar);
+-	xe->mmio.regs = pci_iomap(pdev, mmio_bar, GTTMMADR_BAR);
++	xe->mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
++	xe->mmio.regs = pci_iomap(pdev, GTTMMADR_BAR, 0);
+ 	if (xe->mmio.regs == NULL) {
+ 		drm_err(&xe->drm, "failed to map registers\n");
+ 		return -EIO;
+-- 
+2.43.0
 
-  drivers/gpu/drm/xe/display/xe_display.c
-
-between commit:
-
-  11d0613af7c5 ("drm/i915/display: include drm/drm_probe_helper.h where nee=
-ded")
-
-from the drm-intel tree and commit:
-
-  87d8ecf01544 ("drm/xe: replace #include <drm/xe_drm.h> with <uapi/drm/xe_=
-drm.h>")
-
-from the drm-xe tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/xe/display/xe_display.c
-index 303d00b99a68,75736faf2a80..000000000000
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@@ -10,8 -10,7 +10,8 @@@
- =20
-  #include <drm/drm_drv.h>
-  #include <drm/drm_managed.h>
- +#include <drm/drm_probe_helper.h>
-- #include <drm/xe_drm.h>
-+ #include <uapi/drm/xe_drm.h>
- =20
-  #include "soc/intel_dram.h"
-  #include "i915_drv.h"		/* FIXME: HAS_DISPLAY() depends on this */
-
---Sig_/F3S_2xZpz8_i.Yz3/rhYYC2
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmbac7YACgkQAVBC80lX
-0GyngggAk/um0PJ+wiMnG/0T4jvmtqTKfZ8/LO4Yws+D4nTJ09Qnh7nUyH/3Dt0p
-hfEjzoHhIakOQH7iPgzfwdPxEzszv8WfgSygAunI1g6QZJT6HHnrbZKGdkzGG3ma
-TVBQpTMdDJuT4yBfflM5NCStSonCjDak2SL9lVbSi9Q0mlWTyOSF134tmcxoYZmc
-OMblFMcIOt/g95Tx/1EVzli+iT2hqNc+DT7B7pVHVyqrukVUV9eXovagTF4FejDa
-fUnKx0fS+Ng8h6FUKcILE/i4heCSQ7ziygsLUZ8nWzyHsjsBi4QCIYxjMz+ELZAZ
-eBqeUbREtvf5vAXhIveJqeCNI1anag==
-=x7jU
------END PGP SIGNATURE-----
-
---Sig_/F3S_2xZpz8_i.Yz3/rhYYC2--
