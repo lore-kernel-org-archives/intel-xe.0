@@ -4,27 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD06E6FE2B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 15:45:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E8BEE6FE27
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 15:47:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA9D810EAA8;
-	Fri,  6 Sep 2024 15:45:55 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C18B10EAA8;
- Fri,  6 Sep 2024 15:45:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0803923079306591803=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34C7810EAAD;
+	Fri,  6 Sep 2024 15:47:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=paul-moore.com header.i=@paul-moore.com header.b="GNQFQkEI";
+	dkim-atps=neutral
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com
+ [209.85.222.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E71FD10EAAD
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:47:54 +0000 (UTC)
+Received: by mail-ua1-f42.google.com with SMTP id
+ a1e0cc1a2514c-846c36009d5so619116241.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 06 Sep 2024 08:47:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=paul-moore.com; s=google; t=1725637674; x=1726242474;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bhSj9nfZOKGx2oI8Vgr1Z2YFtbWDQo0OdEcOMXGBUVQ=;
+ b=GNQFQkEIpc0S2dBk5fCWntvvXofs0SQ6uQiCOiMfWof2Y/aKmwemeqsIY6F+alSytz
+ Tjo+R0djhLloULh4oo2f2MMDGyuGa7jo+eYRfxrzGi/w7qJKELg9gE/L57cAyBr0hdLX
+ rob8ftzvkFyUBt0NQmeOqBOatPbwJIpJdieIUx30ezfOfRlcP0uOhh8LJdaP8NPNbEew
+ Aa0SVDKmQV/MugFH9OEAqv/y8LLicH7kb0raWyjrA+QzWffuaNeU1jNpiRZMZyVBpTbL
+ nYODczKMS7YkEvJUymlxhd904K9yzV+KqIFw04ArkZ9ia7tcQ7Z9VN1yK0VCEQ/1ZLn3
+ F5XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725637674; x=1726242474;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=bhSj9nfZOKGx2oI8Vgr1Z2YFtbWDQo0OdEcOMXGBUVQ=;
+ b=Q8oDrs1HiDQCWM+zbkkV0EY9iDbZgv6RM6PXU48tpVxM+/xpkVbeerI3uaE1Din2ka
+ ifhIGE5T9LXLchKH8097Dsh6CnuTcwW/ROJOaxWcjQvSgY8E92mfjDhEK1+kkwbXWxjR
+ 8kQ/GHfoXP9gASkuSf/fD19AnXpPqb8xGdTKKXntzVjmYm+1w2YOYFRNyvHgIm1WuAxj
+ wCkWfd6yB0uCB21Azr1bELK1VsEPec8FTv5FBEdpCPPR1AjNyM29zhsSS6LizVAKSML1
+ rZpbjN9RhLABViUXCqrx6ZsZz+5aq0iz2dqVdNn6Iv817sjJRxWIET723CqVYxQKr6Lh
+ wlKQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUCMjXmomAbPHeJOom43q/L8L6f15y5JFrpaEPje6GY7/QSvXFhb0sv1ST4B7KAKXhAdAYAKKLlBA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxcgynsYfkILEoKxta3VWOpAX0Nj5R8H1M+B9cyRq06/1Q24/Jv
+ Ow4F8YslTwE5M1fhqGG2lZb9nT5NZ1v/EVpkeqCauBnsUBQklFYR3I2YipltoYMIY+KdZlAuRFq
+ WjnXbLWn0UiFbJECxDZwKsXWQaW/si/uAMbwv
+X-Google-Smtp-Source: AGHT+IF7X3uC600GKPCYXtrk3rXSJ/jRYK/ecUEv0Py5v9ieqTUOC1FYqsUcW+C1Bf7xEBaWosXwVByWGbyAX14C8rg=
+X-Received: by 2002:a05:6122:1e16:b0:501:2a26:8ccf with SMTP id
+ 71dfb90a1353d-502141df589mr3197102e0c.6.1725637673925; Fri, 06 Sep 2024
+ 08:47:53 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_Some_intel=5Fdisplay?=
- =?utf-8?q?_conversions?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Sep 2024 15:45:55 -0000
-Message-ID: <172563755517.955274.18343811941426172581@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
+References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
+ <20240906-macos-build-support-v2-7-06beff418848@samsung.com>
+ <CAHC9VhQkstJ8Ox-T+FLU34s9U0gezRba6bMA-tUPs80u6sVh2g@mail.gmail.com>
+ <CAK7LNAQytsDzaJfAJA0nL=KPjxj3DBCRLeuHUwgGDt8fTJ0fTQ@mail.gmail.com>
+In-Reply-To: <CAK7LNAQytsDzaJfAJA0nL=KPjxj3DBCRLeuHUwgGDt8fTJ0fTQ@mail.gmail.com>
+From: Paul Moore <paul@paul-moore.com>
+Date: Fri, 6 Sep 2024 11:47:43 -0400
+Message-ID: <CAHC9VhS19s9+F2LhagbpxTR6DZPu_A8FADmBw7+BdaFQ6vx=LQ@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] selinux: move genheaders to security/selinux/
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: da.gomez@samsung.com, Nathan Chancellor <nathan@kernel.org>, 
+ Nicolas Schier <nicolas@fjasle.eu>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
+ Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
+ Stephen Smalley <stephen.smalley.work@gmail.com>,
+ Ondrej Mosnacek <omosnace@redhat.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Marc Zyngier <maz@kernel.org>, 
+ Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>, 
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
+ Justin Stitt <justinstitt@google.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
+ linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ speakup@linux-speakup.org, selinux@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+ linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
+ Finn Behrens <me@kloenk.dev>, "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
+ gost.dev@samsung.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,124 +103,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0803923079306591803==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Sep 6, 2024 at 11:37=E2=80=AFAM Masahiro Yamada <masahiroy@kernel.o=
+rg> wrote:
+>
+> On Fri, Sep 6, 2024 at 11:54=E2=80=AFPM Paul Moore <paul@paul-moore.com> =
+wrote:
+> >
+> > On Fri, Sep 6, 2024 at 7:01=E2=80=AFAM Daniel Gomez via B4 Relay
+> > <devnull+da.gomez.samsung.com@kernel.org> wrote:
+> > >
+> > > From: Masahiro Yamada <masahiroy@kernel.org>
+> > >
+> > > This tool is only used in security/selinux/Makefile.
+> > >
+> > > There is no reason to keep it under scripts/.
+> > >
+> > > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> > > ---
+> > >  scripts/remove-stale-files                                    | 3 ++=
++
+> > >  scripts/selinux/Makefile                                      | 2 +-
+> > >  scripts/selinux/genheaders/.gitignore                         | 2 --
+> > >  scripts/selinux/genheaders/Makefile                           | 3 --=
+-
+> > >  security/selinux/.gitignore                                   | 1 +
+> > >  security/selinux/Makefile                                     | 7 ++=
++++--
+> > >  {scripts/selinux/genheaders =3D> security/selinux}/genheaders.c | 0
+> > >  7 files changed, 10 insertions(+), 8 deletions(-)
+> >
+> > Did you read my comments on your previous posting of this patch?  Here
+> > is a lore link in case you missed it or it was swallowed by your
+> > inbox:
+> >
+> > https://lore.kernel.org/selinux/3447459d08dd7ebb58972129cddf1c44@paul-m=
+oore.com
+> >
+> > Unless there is an serious need for this relocation, and I don't see
+> > one explicitly documented either in this patchset or the previous, I
+> > don't want to see this patch go upstream.
+>
+>
+> I commented on the previous thread.
 
-== Series Details ==
+I already responded there.
 
-Series: drm/i915: Some intel_display conversions
-URL   : https://patchwork.freedesktop.org/series/138332/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2_BAT -> xe-pw-138332v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138332v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_exec_queue_property@invalid-property:
-    - bat-lnl-1:          [DMESG-WARN][1] -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138332v1/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2 -> xe-pw-138332v1
-
-  IGT_8007: 8f9900c288f4cf1244d66baa71bc6d9355747cbd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2: c60c8a9f80f13dfdeed45927a71d65b0250e17d2
-  xe-pw-138332v1: 138332v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138332v1/index.html
-
---===============0803923079306591803==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Some intel_display conversions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138332/">https://patchwork.freedesktop.org/series/138332/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138332v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138332v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2_BAT -&gt; xe-pw-138332v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138332v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_queue_property@invalid-property:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138332v1/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2 -&gt; xe-pw-138332v1</li>
-</ul>
-<p>IGT_8007: 8f9900c288f4cf1244d66baa71bc6d9355747cbd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1904-c60c8a9f80f13dfdeed45927a71d65b0250e17d2: c60c8a9f80f13dfdeed45927a71d65b0250e17d2<br />
-  xe-pw-138332v1: 138332v1</p>
-
-</body>
-</html>
-
---===============0803923079306591803==--
+--=20
+paul-moore.com
