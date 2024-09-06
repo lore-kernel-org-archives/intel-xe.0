@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D91E6E6FE4B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 22:02:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C80DE6FE4B
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 22:04:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97A0510EB0D;
-	Fri,  6 Sep 2024 22:02:55 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E253C10EB0C;
- Fri,  6 Sep 2024 22:02:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4E2D10EB0C;
+	Fri,  6 Sep 2024 22:04:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WAF9YPQ6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D24A10EB0C
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 22:04:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725660267; x=1757196267;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OCPPQoRBxS+h9YHSWRyyUfBtt0uazaFvGV4yXqtqGAc=;
+ b=WAF9YPQ6AozbCh+mFCsWbLOoxzauKwheSfubWwtlRHSBq0zMtJsBDaBw
+ UfWHcZYVLfOsqzgZF3I8emmFndXI8VyZYRCxQRUUzBC8cFsCPGlgxoaUd
+ NR0Sz5K2FN+f1HVv1Wg3PXF0Oi4VbLcYVd99J3x5HBL8TYNod6lNdPWfU
+ KUgJZsqEqVGn7IPKpKPcpQpHK41lJI9rsHPak7o6RCHQbsKzvtkoWqbfD
+ LmCprO5u6Ciis7W+4+i7iSHOQZehy6o388GUtWtqaqZtGfrswQq9eSHkO
+ dPm11wlYTka4PZ4oGoVDHPwQ2F8TXfaoNny1NAT1hYFhGx+ozd+tdDwoe A==;
+X-CSE-ConnectionGUID: nDfXWrgqTLeJoSGW3FcD/Q==
+X-CSE-MsgGUID: W3++wZjQR9ulF1W8WzIzJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24628696"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="24628696"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 15:04:26 -0700
+X-CSE-ConnectionGUID: oAwz2NRCR725MxdMn+0ZOg==
+X-CSE-MsgGUID: 0BaCC5F1TSWSrP95eFW4Eg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65873534"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 15:04:25 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe: Don't keep stale pointer to bo->ggtt_node
+Date: Sat,  7 Sep 2024 00:03:48 +0200
+Message-Id: <20240906220348.1836-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Mark_reserved_engine?=
- =?utf-8?q?s_in_snapshot?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Sep 2024 22:02:54 -0000
-Message-ID: <172566017491.955480.17342737601317745342@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240906205609.3131330-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240906205609.3131330-1-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +62,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When we fail to map a BO in the GGTT, we release our GGTT node
+placeholder, but leave stale bo->ggtt_node pointer to it, which
+triggers an assert immediately followed by a crash, due to UAF:
 
-Series: drm/xe: Mark reserved engines in snapshot
-URL   : https://patchwork.freedesktop.org/series/138346/
-State : success
+[ ] xe 0000:00:02.0: [drm] Assertion `bo->ggtt_node->base.size == bo->size` failed!
+[ ] WARNING: CPU: 4 PID: 126 at drivers/gpu/drm/xe/xe_ggtt.c:689 xe_ggtt_remove_bo+0x1d9/0x250 [xe]
+[ ] RIP: 0010:xe_ggtt_remove_bo+0x1d9/0x250 [xe]
+[ ] Call Trace:
+[ ]  <TASK>
+[ ]  ? __warn+0x88/0x190
+[ ]  ? xe_ggtt_remove_bo+0x1d9/0x250 [xe]
+[ ]  ? report_bug+0x1c3/0x1d0
+[ ]  ? handle_bug+0x42/0x70
+[ ]  ? exc_invalid_op+0x14/0x70
+[ ]  ? asm_exc_invalid_op+0x16/0x20
+[ ]  ? xe_ggtt_remove_bo+0x1d9/0x250 [xe]
+[ ]  ? xe_ggtt_remove_bo+0x1d9/0x250 [xe]
+[ ]  xe_ttm_bo_destroy+0x11f/0x260 [xe]
+[ ]  ? ttm_bo_release+0x31c/0x350 [ttm]
+[ ]  ? __mutex_unlock_slowpath+0x35/0x270
+[ ]  __xe_bo_create_locked+0x4a0/0x550 [xe]
+[ ]  ? mark_held_locks+0x49/0x80
+[ ]  xe_bo_create_pin_map_at+0x37/0x200 [xe]
+[ ]  xe_bo_create_pin_map+0x11/0x20 [xe]
 
-== Summary ==
+While around, for similar reason, also don't keep an error pointer
+if we fail to allocate ggtt_node placeholder.
 
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soundcore.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/
-lib/modules/6.11.0-rc6-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/cmac.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/ccm.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/cryptd.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.11.0-rc6-xe/build
-lib/modules/6.11.0-rc6-xe/modules.alias.bin
-lib/modules/6.11.0-rc6-xe/modules.builtin
-lib/modules/6.11.0-rc6-xe/modules.softdep
-lib/modules/6.11.0-rc6-xe/modules.alias
-lib/modules/6.11.0-rc6-xe/modules.order
-lib/modules/6.11.0-rc6-xe/modules.symbols
-lib/modules/6.11.0-rc6-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-[0Ksection_end:1725660162:package_x86_64_nodebug
-[0K
-+ echo -e '\e[0Ksection_end:1725660162:package_x86_64_nodebug\r\e[0K'
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Fixes: 34e804220f69 ("drm/xe: Make xe_ggtt_node struct independent")
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index f3fca5565d32..2895f154654c 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -619,16 +619,19 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	bo->ggtt_node = xe_ggtt_node_init(ggtt);
+ 	if (IS_ERR(bo->ggtt_node)) {
+ 		err = PTR_ERR(bo->ggtt_node);
++		bo->ggtt_node = NULL;
+ 		goto out;
+ 	}
+ 
+ 	mutex_lock(&ggtt->lock);
+ 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node->base, bo->size,
+ 					  alignment, 0, start, end, 0);
+-	if (err)
++	if (err) {
+ 		xe_ggtt_node_fini(bo->ggtt_node);
+-	else
++		bo->ggtt_node = NULL;
++	} else {
+ 		xe_ggtt_map_bo(ggtt, bo);
++	}
+ 	mutex_unlock(&ggtt->lock);
+ 
+ 	if (!err && bo->flags & XE_BO_FLAG_GGTT_INVALIDATE)
+-- 
+2.43.0
 
