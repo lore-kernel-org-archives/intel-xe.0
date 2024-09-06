@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3C39CE7B1C
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B01DCE7B1B
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:39:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 939D710EA6F;
-	Fri,  6 Sep 2024 14:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0DB10EA71;
+	Fri,  6 Sep 2024 14:39:35 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DADCC10EA6F;
- Fri,  6 Sep 2024 14:38:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91DF810EA71;
+ Fri,  6 Sep 2024 14:39:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_Some_int?=
- =?utf-8?q?el=5Fdisplay_conversions?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_Some_intel=5F?=
+ =?utf-8?q?display_conversions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Sep 2024 14:38:58 -0000
-Message-ID: <172563353889.954843.4444451707321958288@2413ebb6fbb6>
+Date: Fri, 06 Sep 2024 14:39:33 -0000
+Message-ID: <172563357359.954843.10036010596324519160@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
@@ -44,18 +44,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: Some intel_display conversions
 URL   : https://patchwork.freedesktop.org/series/138332/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6094a8d70f85 drm-tip: 2024y-09m-06d-13h-50m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/cdclk: Add missing braces
-Applying: drm/i915/cdclk: Convert CDCLK code to intel_display
-Applying: drm/i915/power: Convert low level DC state code to intel_display
-Applying: drm/i915/vga: Convert VGA code to intel_display
-Applying: drm/i915/power: Convert "i830 power well" code to intel_display
-Applying: drm/i915/dmc: Convert DMC code to intel_display
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a799ab76dab9756d15c845ede2fc534a88e3b15a
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Fri Sep 6 17:33:06 2024 +0300
+
+    drm/i915/dmc: Convert DMC code to intel_display
+    
+    struct intel_display will replace struct drm_i915_private as
+    the main thing for display code. Convert the DMC code to
+    use it (as much as possible at this stage).
+    
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 6094a8d70f8599700297da58bcf80d5b1915adff drm-intel
+21ad6884653f drm/i915/cdclk: Add missing braces
+6c326db98005 drm/i915/cdclk: Convert CDCLK code to intel_display
+-:1465: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 26)
+#1465: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2103:
++	if (DISPLAY_VER(display) >= 14 || IS_DG2(dev_priv))
+ 		/* NOOP */;
+
+-:1506: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 19)
+#1506: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2140:
++	if (DISPLAY_VER(display) >= 14)
+[...]
+ 		 */;
+
+-:2893: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#2893: FILE: drivers/gpu/drm/i915/display/intel_display_driver.c:95:
++	cdclk_state->logical = cdclk_state->actual = display->cdclk.hw;
+
+total: 0 errors, 2 warnings, 1 checks, 2934 lines checked
+85d00811b21f drm/i915/power: Convert low level DC state code to intel_display
+260fd3797a3d drm/i915/vga: Convert VGA code to intel_display
+0d7e59b0508c drm/i915/power: Convert "i830 power well" code to intel_display
+a799ab76dab9 drm/i915/dmc: Convert DMC code to intel_display
+-:602: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#602: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:645:
++		      !intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)),
+
+-:709: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#709: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:821:
++			    is_dmc_evt_ctl_reg(display, dmc_id, dmc_info->mmioaddr[i]) ? " (EVT_CTL)" :
+
+-:710: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#710: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:822:
++			    is_dmc_evt_htp_reg(display, dmc_id, dmc_info->mmioaddr[i]) ? " (EVT_HTP)" : "",
+
+-:1168: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1168: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1274:
++		   intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)));
+
+total: 0 errors, 4 warnings, 0 checks, 1210 lines checked
 
 
