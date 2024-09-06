@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE1EECE7AB8
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 08:09:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 202A9CE7AE0
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 08:09:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B14310E997;
-	Fri,  6 Sep 2024 08:09:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D55FD10E993;
+	Fri,  6 Sep 2024 08:09:36 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B992510E993;
- Fri,  6 Sep 2024 08:09:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2E410E993;
+ Fri,  6 Sep 2024 08:09:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?Workaround_for_odd_panning_for_planar_yuv_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Worka?=
+ =?utf-8?q?round_for_odd_panning_for_planar_yuv_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nemesa Garg" <nemesa.garg@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Sep 2024 08:09:18 -0000
-Message-ID: <172561015875.953229.7764452740500188400@2413ebb6fbb6>
+Date: Fri, 06 Sep 2024 08:09:36 -0000
+Message-ID: <172561017610.953229.14094786555397164997@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240906070133.3843174-1-nemesa.garg@intel.com>
 In-Reply-To: <20240906070133.3843174-1-nemesa.garg@intel.com>
@@ -44,13 +44,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: Workaround for odd panning for planar yuv (rev2)
 URL   : https://patchwork.freedesktop.org/series/136422/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e0cc4f231c70 drm-tip: 2024y-09m-06d-03h-48m-10s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Workaround for odd panning for planar yuv
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3a006fab3cf00352bd1dc92aa2e319a2f4057fd8
+Author: Nemesa Garg <nemesa.garg@intel.com>
+Date:   Fri Sep 6 12:31:33 2024 +0530
+
+    drm/i915/display: Workaround for odd panning for planar yuv
+    
+    Disable the support for odd x pan for NV12 format as underrun
+    issue is seen.
+    
+    WA: 16024459452
+    
+    Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
++ /mt/dim checkpatch e0cc4f231c70e2eaafe1ef83c5303fea926ea605 drm-intel
+3a006fab3cf0 drm/i915/display: Workaround for odd panning for planar yuv
+-:27: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#27: FILE: drivers/gpu/drm/i915/display/intel_atomic_plane.c:57:
+ 
++
+
+-:60: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/i915/display/intel_display_wa.h:17:
++static inline bool intel_display_needs_wa_16023981245(struct drm_i915_private *i915) { return false; }
+
+total: 0 errors, 1 warnings, 1 checks, 51 lines checked
 
 
