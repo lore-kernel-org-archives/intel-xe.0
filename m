@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99F2FECE57A
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21A3EECE586
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D8B010E555;
-	Mon,  9 Sep 2024 12:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD36210E54D;
+	Mon,  9 Sep 2024 12:37:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kruces-com.20230601.gappssmtp.com header.i=@kruces-com.20230601.gappssmtp.com header.b="niAalKeT";
+	dkim=pass (2048-bit key; unprotected) header.d=kruces-com.20230601.gappssmtp.com header.i=@kruces-com.20230601.gappssmtp.com header.b="kfCVBj2+";
 	dkim-atps=neutral
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE2A210EA8B
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:06:50 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-a8d0d82e76aso40167166b.3
- for <intel-xe@lists.freedesktop.org>; Fri, 06 Sep 2024 08:06:50 -0700 (PDT)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+ [209.85.208.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C31910EA92
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:08:20 +0000 (UTC)
+Received: by mail-ed1-f51.google.com with SMTP id
+ 4fb4d7f45d1cf-5c24ebaa427so4917181a12.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 06 Sep 2024 08:08:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kruces-com.20230601.gappssmtp.com; s=20230601; t=1725635209; x=1726240009;
+ d=kruces-com.20230601.gappssmtp.com; s=20230601; t=1725635299; x=1726240099;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=h9ZAlMwEyYD75XfvfcvFROEESwWLuQ5Z/p2zffJIs9s=;
- b=niAalKeTAM4lYmU02L67UXUbu52qpGanzyxB1eq83ut/HZQ4oVMF4/tZtj0qxgeSyM
- lh22dnbxtp014KbSJy45H98MJjj3Ko3zY819d9tXQ/Ew6toEKAIOS9OnfIMm0qKN9auT
- tzSkCP6kNbeoSl8670kUuTcsV8oGeU7UK7GmWUl3m0wGQAkJz39KTeDoF2mSGCjwWQfv
- CIVL7bLG9DQJunmPBWxz8zjkHsrMUhQsa6K7pEhWawr+tXt46CRqbmfU5GBtkTYF3XDO
- aek/p8CTwuMuYbSIpHp+7ABDyoiZs3EcTIGh5ndjNnhRLWEwS3TjNRf2TM4RNIq0oH5a
- Wt/g==
+ bh=n8bMi8neSlk0H33MBuzRIDN5M+I0beTdNpKiekVDuiU=;
+ b=kfCVBj2+x8fhqIqPEk/bLW1ElOcvkuJtXNTC2L8bmGc1LI58bDPg4JxSUSq/Settso
+ Z+L7IYIff2le1T+mJJ7GcatQiNRM7ID+LDMI0F6HXLRWnRR5Kfl9pX3ymV/v1FI5uqEq
+ A/GO6cQ481nCCpPiGkacChTc7V4yb5DRrnc/+ubTlYwrm5mZLhgq4IjusacokCfjpx06
+ E4MGHhku2FGV0EloV8pMgdXiqsZhnlrdDaMiSvqxCGUExl4eMo8y8SEwKkfZfbSOyq9A
+ JwNcs8n1F8W36+bzs+eCZ9Hj/F+OOylhHj+ScZxjVqWPtF8eRI+8wga/5esB8h5KSMn9
+ k/2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725635209; x=1726240009;
+ d=1e100.net; s=20230601; t=1725635299; x=1726240099;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=h9ZAlMwEyYD75XfvfcvFROEESwWLuQ5Z/p2zffJIs9s=;
- b=PWYUaf5CQ59TQTFnsj3ySrSZTTijP7XkA23IwAXb1VHTj/2xrgmXGLrdlpvFiRErjI
- uF0ZFLw11W6yDgIxF9ybmlBJNxTaEspMCTSa7ZhqkZY7yF7nnf2lBJ3QVl+CW9v2rE0+
- gQ9KmFEr5GntjFq9+04UuvmVsnRmdEgIVNVw4RCyg2n3YCOpOfJSBKTwLeSGyKwU21zL
- 2Hu4SapTREFC7zR1T0bqs84BwGLJWV55nPlM0DUxAc3Qxp6h2WrBczjpw35nQFbLdmwf
- etj0389EfbvS+qW79FU5DWgrb5+7/AzIWCQMoqEJWb91K3vPBwWudj3955gOu6/wzGQ2
- 6XcA==
+ bh=n8bMi8neSlk0H33MBuzRIDN5M+I0beTdNpKiekVDuiU=;
+ b=s9F94t2vEBg41jBQPkXmOut1809HkQovE9w0oeAt0iHt1Bir4xSZO07kAsCBExvmtM
+ BX5m7JbVUNPn42S/HLvtIcfG3W7fAVucvgCb7odiEQy+V6EYMUbk0A6ah2OrqxGTfu2T
+ 7MOy7X6Cm6U5J3oswTryPuqkodBPumCvh0Ynqjb3V5/uxLsYTU/dsxZy5NqUaHL0VefB
+ 2Otb8NfxBANZyXCaXQByNJOq5KZ8eA2h8jT2qx4HrnYItVzqEONTjlpXlk67uNU17YJE
+ JVycT9MwNFb1yYYDflJ2Mv4ZyLnyoScy6rwqnGwokmLYVNd+/zzoTcFvpHjz40OBSGC3
+ QDrw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWpPDIJZ4gGyxAjNV3StzLB0I9EHPt35NeFD4/d6oqSpZyKk4MJtB0aqTr2wloHIl3o1mSERM3Fog==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxWTXCcQzs4vRoe+ap8Key72RECwu4f4RC9rIT1zRiMH8pPS4D6
- LTobrQ+ND6SFWqoP/kbvzOPKztrW8Ryqexg3aKjPBrZVV96hBYXyIyFdwyNuhRhFjoUlQy4goI8
- 0gnKH8QtWFp9/kfspOrvHvrf77jQ6y53usG9YFA==
-X-Google-Smtp-Source: AGHT+IE5oYDSfTzIe6hHUgUBH7wdkZoXXSF0xeHeSRG+IYdoi10a74SFm4+xUjHqeOxdrh5qK7III9nawL/szJxa908=
-X-Received: by 2002:a17:906:c141:b0:a8b:ddf4:46f1 with SMTP id
- a640c23a62f3a-a8bddf45606mr100660666b.63.1725635208952; Fri, 06 Sep 2024
- 08:06:48 -0700 (PDT)
+ AJvYcCVZEA9G1iS/bLXyQnE0IeK4sQjm81sXzpaWtoj/TjP5DFazb+ohcF3nLazuQxGRqei+HtxFAQZplw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwjyKFi5dCSZsaqs3+Qcx9Q3a6C/2iZq7HA0qAH5q5r6SDD331j
+ GZd1V+KD0cmxgY71TwOy7qJZC2Axv5F+xyOyEp2zPYFM9Ec4I5aKrdgA226+4Y6SDamDVLnL1dV
+ VSVuK8cBHkh8kHtIAmkQy6bMlv2Wkq7uj9k/mqg==
+X-Google-Smtp-Source: AGHT+IGUA1wnLPvaqVG65cpWb2qjjv+ZYvS15NsPxrxeFhQA7Z9cxOvMhyKovH+37PHRvGwnr/HounhIwA1d4bXQ4q8=
+X-Received: by 2002:a17:907:ea7:b0:a7d:89ac:9539 with SMTP id
+ a640c23a62f3a-a8a42f8af35mr889231466b.7.1725635298533; Fri, 06 Sep 2024
+ 08:08:18 -0700 (PDT)
 MIME-Version: 1.0
 References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
- <20240906-macos-build-support-v2-7-06beff418848@samsung.com>
- <CAHC9VhQkstJ8Ox-T+FLU34s9U0gezRba6bMA-tUPs80u6sVh2g@mail.gmail.com>
-In-Reply-To: <CAHC9VhQkstJ8Ox-T+FLU34s9U0gezRba6bMA-tUPs80u6sVh2g@mail.gmail.com>
+ <20240906-macos-build-support-v2-6-06beff418848@samsung.com>
+ <CAHC9VhRpHgqN2fp1J3x9=zBqNr3QHsSDgUnoZ7M-SuOQ6hQ4nw@mail.gmail.com>
+In-Reply-To: <CAHC9VhRpHgqN2fp1J3x9=zBqNr3QHsSDgUnoZ7M-SuOQ6hQ4nw@mail.gmail.com>
 From: "Daniel Gomez (Samsung)" <d+samsung@kruces.com>
-Date: Fri, 6 Sep 2024 17:06:22 +0200
-Message-ID: <CABj0suCtCfd58+i0s5LzsTUwwd=1o1nMRvmqsxsraJcTiX2mSQ@mail.gmail.com>
-Subject: Re: [PATCH v2 7/8] selinux: move genheaders to security/selinux/
+Date: Fri, 6 Sep 2024 17:07:52 +0200
+Message-ID: <CABj0suDY3duFeZx8ghEJm3vTuJvcVuoYZ6BpYn9SCaHetw3oNA@mail.gmail.com>
+Subject: Re: [PATCH v2 6/8] selinux: do not include <linux/*.h> headers from
+ host programs
 To: Paul Moore <paul@paul-moore.com>
 Cc: da.gomez@samsung.com, Masahiro Yamada <masahiroy@kernel.org>, 
  Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
@@ -106,7 +107,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 6, 2024 at 4:54=E2=80=AFPM Paul Moore <paul@paul-moore.com> wro=
+On Fri, Sep 6, 2024 at 4:56=E2=80=AFPM Paul Moore <paul@paul-moore.com> wro=
 te:
 >
 > On Fri, Sep 6, 2024 at 7:01=E2=80=AFAM Daniel Gomez via B4 Relay
@@ -114,38 +115,67 @@ te:
 > >
 > > From: Masahiro Yamada <masahiroy@kernel.org>
 > >
-> > This tool is only used in security/selinux/Makefile.
+> > Commit bfc5e3a6af39 ("selinux: use the kernel headers when building
+> > scripts/selinux") is not the right thing to do.
 > >
-> > There is no reason to keep it under scripts/.
+> > It is clear from the warning in include/uapi/linux/types.h:
+> >
+> >   #ifndef __EXPORTED_HEADERS__
+> >   #warning "Attempt to use kernel headers from user space, see https://=
+kernelnewbies.org/KernelHeaders"
+> >   #endif /* __EXPORTED_HEADERS__ */
+> >
+> > If you are inclined to define __EXPORTED_HEADERS__, you are likely doin=
+g
+> > wrong.
+> >
+> > Adding the comment:
+> >
+> >   /* NOTE: we really do want to use the kernel headers here */
+> >
+> > does not justify the hack in any way.
+> >
+> > Currently, <linux/*.h> headers are included for the following purposes:
+> >
+> >  - <linux/capability.h> is included to check CAP_LAST_CAP
+> >  - <linux/socket.h> in included to check PF_MAX
+> >
+> > We can skip these checks when building host programs, as they will
+> > be eventually tested when building the kernel space.
+> >
+> > I got rid of <linux/stddef.h> from initial_sid_to_string.h because
+> > it is likely that NULL is already defined. If you insist on making
+> > it self-contained, you can add the following:
+> >
+> >   #ifdef __KERNEL__
+> >   #include <linux/stddef.h>
+> >   #else
+> >   #include <stddef.h>
+> >   #endif
+> >
+> > scripts/selinux/mdp/mdp.c still includes <linux/kconfig.h>, which is
+> > also discouraged and should be fixed by a follow-up refactoring.
 > >
 > > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > > ---
-> >  scripts/remove-stale-files                                    | 3 +++
-> >  scripts/selinux/Makefile                                      | 2 +-
-> >  scripts/selinux/genheaders/.gitignore                         | 2 --
-> >  scripts/selinux/genheaders/Makefile                           | 3 ---
-> >  security/selinux/.gitignore                                   | 1 +
-> >  security/selinux/Makefile                                     | 7 ++++=
-+--
-> >  {scripts/selinux/genheaders =3D> security/selinux}/genheaders.c | 0
-> >  7 files changed, 10 insertions(+), 8 deletions(-)
+> >  scripts/selinux/genheaders/Makefile              |  4 +---
+> >  scripts/selinux/genheaders/genheaders.c          |  3 ---
+> >  scripts/selinux/mdp/Makefile                     |  2 +-
+> >  scripts/selinux/mdp/mdp.c                        |  4 ----
+> >  security/selinux/include/classmap.h              | 19 ++++++++++++----=
+---
+> >  security/selinux/include/initial_sid_to_string.h |  2 --
+> >  6 files changed, 14 insertions(+), 20 deletions(-)
 >
-> Did you read my comments on your previous posting of this patch?  Here
-> is a lore link in case you missed it or it was swallowed by your
-> inbox:
+> Similar to patch 7/8, please read my comments on your previous posting
+> of this patch, it doesn't appear that you've made any of the changes I
+> asked for in your previous posting.
+
+Sorry for the noise, Paul. I=E2=80=99ll review this one as well.
+
 >
-> https://lore.kernel.org/selinux/3447459d08dd7ebb58972129cddf1c44@paul-moo=
+> https://lore.kernel.org/selinux/317c7d20ab8a72975571cb554589522b@paul-moo=
 re.com
-
-Apologies for the unnecessary noise. I=E2=80=99ll review your feedback and
-revisit the patch accordingly.
-
-Daniel
-
->
-> Unless there is an serious need for this relocation, and I don't see
-> one explicitly documented either in this patchset or the previous, I
-> don't want to see this patch go upstream.
 >
 > --
 > paul-moore.com
