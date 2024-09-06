@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 691C0CE7B02
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 11:01:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FF5ECE7B04
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 11:01:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61DA510EA11;
-	Fri,  6 Sep 2024 11:01:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1DF10EA16;
+	Fri,  6 Sep 2024 11:01:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EsPz/rSi";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MRCQHnm7";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27CFE10EA0E;
- Fri,  6 Sep 2024 11:01:42 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 156A910EA11;
+ Fri,  6 Sep 2024 11:01:43 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 077B3A44EA9;
- Fri,  6 Sep 2024 11:01:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CF6A7C4CECB;
- Fri,  6 Sep 2024 11:01:39 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 107BA5C5AA5;
+ Fri,  6 Sep 2024 11:01:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C72E0C4AF55;
+ Fri,  6 Sep 2024 11:01:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1725620499;
- bh=TZ+5SMHrhrYlL8TOlFpYxPkfKpZGWI5ka+ne8BNKBYU=;
- h=From:Subject:Date:To:Cc:Reply-To:From;
- b=EsPz/rSiQlXGQJZAplFuV7djjKI0Bk3bxrXy/Ay04/nanHb0TmgO15cuYyvw/wTfe
- CMOiE+R6NxyJr3sgSNw9QXoW1Rpm0l2pkUfRrcOSmLmvMZXdDHkXWqZJFEBywNO7pd
- wLX/gscdGoFd8hOxSWeUerNYUdkAWf+r0pTtseDDOcRR6h730Tv4BF5e08xtvnfLO3
- DLF6b/U//YCKX29CEQu1WnDy4LqXIxoYMnYBod5HKshud7A1bjVZ4bO2DJ+19Geizy
- pzJgizOSL+pWSuakTm3zDKxt8KiQszMHHmQwFe69lNmwQm2VjGOGJIBC8DOxzWnNAz
- EFaqTkw9EHZKA==
+ s=k20201202; t=1725620500;
+ bh=XLEFleBi1dpezrCN0L236rCr8UnL4qKgiVJMT/gVdZo=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+ b=MRCQHnm7DALEbPuviJjS6zZwzYuQkJA9x6div0Fqn6MZQ06mWVihWBozJsiUvGcAc
+ bJR6fiu5HZGRuaPcnQFN1Genvd4fYchjFtcLVcT23784VO+uuEQRHSxBO8fDEBnhHa
+ RtINq3H7JdCCsRq12zSOhLMcz03TSXWgNcf/eqBmlmVUYzaKGBFIks6ZbLh2hADNAK
+ cs6fBUh/DRTcvIwpUpNC0qgp0hKNjsyVf276mku+BTTSmdHMdImMz5MqqH2VlWkXWF
+ KN9Rw33I1rINwOweAvT5vZKBA1rJiD1bAr2c5/O7k5JHtpE474mXigAC3KJkRU30W8
+ ouI72lr0Is0kw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id B0AA8CD5BDD;
- Fri,  6 Sep 2024 11:01:39 +0000 (UTC)
+ by smtp.lore.kernel.org (Postfix) with ESMTP id BBCBDCE7B00;
+ Fri,  6 Sep 2024 11:01:40 +0000 (UTC)
 From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
-Subject: [PATCH v2 0/8] Enable build system on macOS hosts
-Date: Fri, 06 Sep 2024 13:01:27 +0200
-Message-Id: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
+Date: Fri, 06 Sep 2024 13:01:35 +0200
+Subject: [PATCH v2 8/8] Documentation: add howto build in macos
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAfh2mYC/32NQQ6CMBBFr0Jm7ZiWoAVX3sOwKJ0KkwglHUo0h
- LtbOYDL95L//gbiI3uBW7FB9CsLhylDeSrADXbqPTJlhlKVlaqVwdG6INglfhFKmucQF2ycVWS
- MpU4byMs5+ie/j+qjzTywLCF+jpNV/+z/3qpRYeVIk6f6cm2qu9hR0tSfXRih3ff9C2+x1CC4A
- AAA
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240906-macos-build-support-v2-8-06beff418848@samsung.com>
+References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
+In-Reply-To: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
 To: Masahiro Yamada <masahiroy@kernel.org>, 
  Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
  Lucas De Marchi <lucas.demarchi@intel.com>, 
@@ -75,14 +73,13 @@ Cc: linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
  linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
  Finn Behrens <me@kloenk.dev>, 
  "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com, 
- Daniel Gomez <da.gomez@samsung.com>, 
- Nick Desaulniers <nick.desaulniers@gmail.com>
+ Daniel Gomez <da.gomez@samsung.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725620498; l=6996;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725620498; l=3295;
  i=da.gomez@samsung.com; s=20240621; h=from:subject:message-id;
- bh=TZ+5SMHrhrYlL8TOlFpYxPkfKpZGWI5ka+ne8BNKBYU=;
- b=ayL2MPQnBtEx4lGC0G1crXfF8O4KlaX6OFWn5S6fsN4KlxD3Qdnjil/2zTLO/l2WVayP0UXIO
- ZVoNG/cKjqEDiiR+0GxTIYS6rNsNoRuqaX/hj9danc0NcoamLKkrxlf
+ bh=d0Jf83ehBVzZd/6sDJAXa3klyzghUuKXMDUak+RyqVk=;
+ b=HHVXUAKYpwg0oAq4Llj7Qicr7YTY8yOi8z/Ymdnnl/W0ykKZJbrrJ5EOU8LrjlVkcwlA+JR2O
+ 50rFNWri/6gCAgythyvckdtJX73zV3YaMq3ZWFUY7eZPAc4+9wznTjX
 X-Developer-Key: i=da.gomez@samsung.com; a=ed25519;
  pk=BqYk31UHkmv0WZShES6pIZcdmPPGay5LbzifAdZ2Ia4=
 X-Endpoint-Received: by B4 Relay for da.gomez@samsung.com/20240621 with
@@ -103,165 +100,107 @@ Reply-To: da.gomez@samsung.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set allows for building the Linux kernel for arm64 in macOS
-with LLVM.
+From: Daniel Gomez <da.gomez@samsung.com>
 
-Patches are based on previous Nick's work and suggestions [1][2][3] to
-enable the Linux kernel build system on macOS hosts.
-
-macOS does not provide certain headers that are available in a GNU/Linux
-distribution with development headers installed, usually provided by
-the GNU C Library (glibc) and/or other projects. These missing headers
-are needed as build dependencies. To address this, the patches depend
-on a new Bee Headers Homebrew Tap formula [6][7][8] that provides them
-together with a pkg-config file to locate the include directory.
-
-To locate them, Makefiles include something like:
-	$(shell $(HOSTPKG_CONFIG) --cflags bee-headers 2> /dev/null)
-
-[6] Project:
-https://github.com/bee-headers
-[7] Headers repository:
-https://github.com/bee-headers/headers.git
-[8] Homebrew Tap formula:
-https://github.com/bee-headers/homebrew-bee-headers.git
-
-To set up the environment, documentation is provided via last patch in
-this series.
-
-More configurations and architectures as well as support for Rust
-(from Finn Behrens [4] [5]) can be added in the future to extend build
-support.
-
-[1]: WIP: build Linux on MacOS
-https://github.com/ClangBuiltLinux/linux/commit/f06333e29addbc3d714adb340355f471c1dfe95a
-
-[2] Subject: [PATCH] scripts: subarch.include: fix SUBARCH on MacOS hosts
-https://lore.kernel.org/all/20221113233812.36784-1-nick.desaulniers@gmail.com/
-
-[3] Subject: Any interest in building the Linux kernel from a MacOS host?
-https://lore.kernel.org/all/CAH7mPvj64Scp6_Nbaj8KOfkoV5f7_N5L=Tv5Z9zGyn5SS+gsUw@mail.gmail.com/
-
-[4] https://github.com/kloenk/linux/commits/rust-project_macos-dylib/
-
-[5] https://kloenk.eu/posts/build-linux-on-m1-macos/
-
-To: Masahiro Yamada <masahiroy@kernel.org>
-To: Nathan Chancellor <nathan@kernel.org>
-To: Nicolas Schier <nicolas@fjasle.eu>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-To: David Airlie <airlied@gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-To: William Hubbs <w.d.hubbs@gmail.com>
-To: Chris Brannon <chris@the-brannons.com>
-To: Kirk Reiser <kirk@reisers.ca>
-To: Samuel Thibault <samuel.thibault@ens-lyon.org>
-To: Paul Moore <paul@paul-moore.com>
-To: Stephen Smalley <stephen.smalley.work@gmail.com>
-To: Ondrej Mosnacek <omosnace@redhat.com>
-To: Catalin Marinas <catalin.marinas@arm.com>
-To: Will Deacon <will@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-To: Oliver Upton <oliver.upton@linux.dev>
-To: James Morse <james.morse@arm.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>
-To: Zenghui Yu <yuzenghui@huawei.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Jiri Slaby <jirislaby@kernel.org>
-To: Nick Desaulniers <ndesaulniers@google.com>
-To: Bill Wendling <morbo@google.com>
-To: Justin Stitt <justinstitt@google.com>
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-kbuild@vger.kernel.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: speakup@linux-speakup.org
-Cc: selinux@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: kvmarm@lists.linux.dev
-Cc: linux-serial@vger.kernel.org
-Cc: llvm@lists.linux.dev
-Cc: Finn Behrens <me@kloenk.dev>
-Cc: Daniel Gomez (Samsung) <d+samsung@kruces.com>
-Cc: gost.dev@samsung.com
+Add documentation under kbuild/llvm to inform about the experimental
+support for building the Linux kernel in macOS hosts environments.
 
 Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
 ---
-Changes in v2:
-- Add documentation and set this 'feature' as experimental.
-- Update cover letter.
-- Drop unnecessary changes. Patches removed:
-	- kbuild: add header_install dependency to scripts
-	- include: add endian.h support
-	- include: add elf.h support
-- Update Makefiles to find Bee Headers with pkg-config.
-- Update file2alias to solve uuid_t conflicts inside Makefile as
-suggested by Nicolas Schier.
-- Adapt xe_gen_wa_oob to solve getprogname()/
-program_invocation_short_name in runtime. as suggested by Lucas De
-Marchi.
-- Remove linux/version.h in accessibility/speakup as suggested by
-Masahiro Yamada.
-- Replace selinux patches with new Masahiro Yamada's patches:
-	Message-id: 20240809122007.1220219-1-masahiroy@kernel.org
-	Link: https://lore.kernel.org/all/20240809122007.1220219-1-masahiroy@kernel.org/
-- Replace tty/vt with new Masahiro Yamada's patch:
-	Message-id: 20240809160853.1269466-1-masahiroy@kernel.org
-	Link: https://lore.kernel.org/all/20240809160853.1269466-1-masahiroy@kernel.org/
-	(Already merged in the linux-next tag used)
-- Replace scripts/kallsyms patch with Masahiro Yamada's patch:
-	Message-id: 20240807181148.660157-1-masahiroy@kernel.org
-	Link: https://lore.kernel.org/all/20240807181148.660157-1-masahiroy@kernel.org/
-	(Already merged in the linux-next tag used)
-- Link to v1: https://lore.kernel.org/r/20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com
+ Documentation/kbuild/llvm.rst | 78 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 78 insertions(+)
 
----
-Daniel Gomez (5):
-      file2alias: fix uuid_t definitions for macos
-      drm/xe: xe_gen_wa_oob: fix program_invocation_short_name for macos
-      arm64: nvhe: add bee-headers support
-      scripts: add bee-headers support
-      Documentation: add howto build in macos
+diff --git a/Documentation/kbuild/llvm.rst b/Documentation/kbuild/llvm.rst
+index 6dc66b4f31a7..de3bde925793 100644
+--- a/Documentation/kbuild/llvm.rst
++++ b/Documentation/kbuild/llvm.rst
+@@ -186,6 +186,84 @@ yet. Bug reports are always welcome at the issue tracker below!
+      - Supported
+      - ``LLVM=1``
+ 
++Experimental Build in macOS
++---------------------------
++
++Building on macOS with LLVM is experimental. This section provides steps to
++install dependencies via Homebrew, set up the environment, and start the build
++process.
++
++1. **Create a Case-Sensitive Volume**
++
++   For fetching and building the project, you need a case-sensitive volume. Use the following
++   command to create one:
++
++   .. code-block:: shell
++
++      diskutil apfs addVolume /dev/disk<N> "Case-sensitive APFS" linux
++
++   Replace `/dev/disk<N>` with the appropriate disk identifier.
++
++2. **Install Build Dependencies**
++
++Use Homebrew to install the required build dependencies.
++
++- **Core Utilities**: `coreutils`, `findutils`, `gnu-sed`, `gnu-tar`, `grep`,
++  `llvm`, `make`, and `pkg-config`.
++
++   .. code-block:: shell
++
++      brew install coreutils findutils gnu-sed gnu-tar grep llvm make pkg-config
++
++- **Bee Headers**: Install byteswap, elf and endian headers using the
++  `Bee Headers Project <https://github.com/bee-headers/headers>`_.
++
++   .. code-block:: shell
++
++      brew tap bee-headers/bee-headers
++      brew install bee-headers/bee-headers/bee-headers
++
++   After installation, verify the `CFLAGS` with `pkg-config`:
++
++   .. code-block:: shell
++
++      pkg-config --cflags bee-headers
++      -I/opt/homebrew/Cellar/bee-headers/0.1/include
++
++3. **Configure the PATH**
++
++   Include all the required GNU tools and LLVM in your `PATH`. This ensures that
++   the necessary tools are available during the build process.
++
++   .. code-block:: shell
++
++      PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
++      PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
++      PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
++      PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
++      PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
++      PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
++      PATH="/opt/homebrew/opt/llvm/bin:$PATH"
++
++Building the Project
++--------------------
++
++Once the environment is set up, you can start the build process using LLVM. Run
++the following commands to initiate the build:
++
++.. code-block:: shell
++
++   make LLVM=1 allyesconfig
++   make LLVM=1 -j$(nproc)
++
++Supported in macOS
++~~~~~~~~~~~~~~~~~~
++
++At the moment, only arm64 is supported and tested with `allyesconfig` Makefile
++configuration target. Other Kconfig options not included in `allyesconfig`
++target and architectures may be supported as well as support in macOS is based
++on LLVM effort and maintenance.
++
+ Getting Help
+ ------------
+ 
 
-Masahiro Yamada (2):
-      selinux: do not include <linux/*.h> headers from host programs
-      selinux: move genheaders to security/selinux/
-
-Nick Desaulniers (1):
-      scripts: subarch.include: fix SUBARCH on macOS hosts
-
- Documentation/kbuild/llvm.rst                      | 78 ++++++++++++++++++++++
- arch/arm64/kernel/pi/Makefile                      |  1 +
- arch/arm64/kernel/vdso32/Makefile                  |  1 +
- arch/arm64/kvm/hyp/nvhe/Makefile                   |  3 +-
- drivers/gpu/drm/xe/xe_gen_wa_oob.c                 |  4 ++
- scripts/Makefile                                   |  4 +-
- scripts/mod/Makefile                               |  7 ++
- scripts/mod/file2alias.c                           |  3 +
- scripts/remove-stale-files                         |  3 +
- scripts/selinux/Makefile                           |  2 +-
- scripts/selinux/genheaders/.gitignore              |  2 -
- scripts/selinux/genheaders/Makefile                |  5 --
- scripts/selinux/mdp/Makefile                       |  2 +-
- scripts/selinux/mdp/mdp.c                          |  4 --
- scripts/subarch.include                            |  2 +-
- security/selinux/.gitignore                        |  1 +
- security/selinux/Makefile                          |  7 +-
- .../genheaders => security/selinux}/genheaders.c   |  3 -
- security/selinux/include/classmap.h                | 19 ++++--
- security/selinux/include/initial_sid_to_string.h   |  2 -
- 20 files changed, 123 insertions(+), 30 deletions(-)
----
-base-commit: ad40aff1edffeccc412cde93894196dca7bc739e
-change-id: 20240807-macos-build-support-9ca0d77adb17
-
-Best regards,
 -- 
-Daniel Gomez <da.gomez@samsung.com>
+2.46.0
 
 
