@@ -4,54 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEBAACE7AB9
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 06:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDF30CE7AB8
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 07:01:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56C0410E7FE;
-	Fri,  6 Sep 2024 06:57:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82B9510E817;
+	Fri,  6 Sep 2024 07:01:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X8Zb+ckk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m/d+Jxvh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE2A10E7FD
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 06:57:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F91210E817
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 07:01:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725605852; x=1757141852;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=E/T81xE0gR9Mkl+eUfNNCXhDzRVMtzegAII5r8kCO14=;
- b=X8Zb+ckkvNvgYsIqzemam3A7aZGZwqJr4RjmMQU06o+sPwDlpRL8XN8E
- sLOneCEiumC12RApzLf2UtDOeSJ6ur0x6T81THc/d9OX2V/vWHKdKdutI
- 8ySobQlS3iM96CnHVhR/4nfe2ccrLuMisqto4XE7dMg9vYzE9YIvKcqsM
- aHEzo22VZ2l98hIgqk4N3SXWxNT891ML50JcPU5Gale6l8RU+xDeEDJid
- R3fCRhXv7kxe6IOYJoHdWd9ozSouciXV2yVs9c/xSFSKREi2UJqiN6Bvh
- FZfocMeP4wM48iz04o8WzRyoZ7AYs1VTEho/otJxwoZRLtIXSTLYcAqDn Q==;
-X-CSE-ConnectionGUID: UuAwPvM3TymNVFiHYVS1uQ==
-X-CSE-MsgGUID: kj7ckm//Q0qmIEkrpEhfFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="35740165"
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="35740165"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 23:57:32 -0700
-X-CSE-ConnectionGUID: uFnkpehvT/OgJ7OFoQbt+Q==
-X-CSE-MsgGUID: tEIdJzuFQXK8pe/I//uNnw==
+ t=1725606098; x=1757142098;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=K2qzTMQ/oTDK2Q1Ag0Tvdv7aBh7JDHAyowvMl1zeZEk=;
+ b=m/d+Jxvhxxj3a70Yo5aisGeeFFwwedtBSD9pm64agyBpZOiAeO+ZwS0a
+ tAJdhVEEeKanhjfGd8JgfZT+C0MRXfQ1x1U1iEi+PjNCjsoyCJRlhmwQF
+ O7HTiMhQtJGFyCW00XwfLnSq0wpsKLI0VeUHKWSjFWblrq8943XEd+YxZ
+ UlXXtKQZo1LGwmclQVNiMPcEVVUaeOvof6EsuJUJRqB1pch1F8k+jLIvV
+ Mpl2duF2SrLGvFrlHhdhGDC+UQW/QB5QCuZVGxjD6/SMQCULmgFWEuV5W
+ aFiJNKB09P5C8OtBESNLKbFCDNYzol9WVLyXI6Y69P8hegsd7uIA3Qtv/ w==;
+X-CSE-ConnectionGUID: kVD/IduMQmWFR1CoV6VWzA==
+X-CSE-MsgGUID: /7VrJ89LTz+g5wQVOTL7oQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="24510425"
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="24510425"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 00:01:38 -0700
+X-CSE-ConnectionGUID: NrdtgNkcQZKmVMnqUHxZNA==
+X-CSE-MsgGUID: ttaDlBv/QxWC/OfdBOYCmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="65684851"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 23:57:31 -0700
-From: Riana Tauro <riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="65857590"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa009.jf.intel.com with ESMTP; 06 Sep 2024 00:01:36 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- vinay.belgaumkar@intel.com, badal.nilawar@intel.com
-Subject: [PATCH v5 2/2] drm/xe/xe_gt_idle: add debugfs entry for powergating
- info
-Date: Fri,  6 Sep 2024 12:41:26 +0530
-Message-Id: <20240906071126.28078-3-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20240906071126.28078-1-riana.tauro@intel.com>
-References: <20240906071126.28078-1-riana.tauro@intel.com>
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH] drm/i915/display: Workaround for odd panning for planar yuv
+Date: Fri,  6 Sep 2024 12:31:33 +0530
+Message-Id: <20240906070133.3843174-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,219 +63,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Coarse Powergating is a power saving technique where Render and Media
-can be power-gated independently irrespective of the rest of the GT.
+Disable the support for odd x pan for NV12 format as underrun
+issue is seen.
 
-For debug purposes, it is useful to expose the powergating information.
+WA: 16024459452
 
-v2: move to debugfs
-    add details to commit message
-    add per-slice status for media
-    define reg bits in descending order (Matt Roper)
-
-v3: fix return statement
-    fix kernel-doc
-    use loop for media slices
-    use helper function for status (Michal)
-
-v4: add pg prefix
-    do not wake GT if in C6 (Badal)
-
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  8 +++
- drivers/gpu/drm/xe/xe_gt_debugfs.c   | 13 ++++
- drivers/gpu/drm/xe/xe_gt_idle.c      | 91 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_idle.h      |  2 +
- 4 files changed, 114 insertions(+)
+ .../gpu/drm/i915/display/intel_atomic_plane.c    | 16 ++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_display_wa.h  |  2 ++
+ drivers/gpu/drm/xe/display/xe_display_wa.c       |  5 +++++
+ 3 files changed, 21 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 0d1a4a9f4e11..cbead3f75fad 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -341,6 +341,14 @@
- #define   CTC_SOURCE_DIVIDE_LOGIC		REG_BIT(0)
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index e979786aa5cf..9b17321f3477 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -47,11 +47,13 @@
+ #include "intel_display_rps.h"
+ #include "intel_display_trace.h"
+ #include "intel_display_types.h"
++#include "intel_display_wa.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
+ #include "skl_scaler.h"
+ #include "skl_watermark.h"
  
- #define FORCEWAKE_RENDER			XE_REG(0xa278)
 +
-+#define POWERGATE_DOMAIN_STATUS			XE_REG(0xa2a0)
-+#define   MEDIA_SLICE3_AWAKE_STATUS		REG_BIT(4)
-+#define   MEDIA_SLICE2_AWAKE_STATUS		REG_BIT(3)
-+#define   MEDIA_SLICE1_AWAKE_STATUS		REG_BIT(2)
-+#define   RENDER_AWAKE_STATUS			REG_BIT(1)
-+#define   MEDIA_SLICE0_AWAKE_STATUS		REG_BIT(0)
-+
- #define FORCEWAKE_MEDIA_VDBOX(n)		XE_REG(0xa540 + (n) * 4)
- #define FORCEWAKE_MEDIA_VEBOX(n)		XE_REG(0xa560 + (n) * 4)
- #define FORCEWAKE_GSC				XE_REG(0xa618)
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 8f95d3a5949b..cbc43973ff7e 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -15,6 +15,7 @@
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
-+#include "xe_gt_idle.h"
- #include "xe_gt_sriov_pf_debugfs.h"
- #include "xe_gt_sriov_vf_debugfs.h"
- #include "xe_gt_stats.h"
-@@ -109,6 +110,17 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
- 	return 0;
- }
- 
-+static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
-+{
-+	int ret;
-+
-+	xe_pm_runtime_get(gt_to_xe(gt));
-+	ret = xe_gt_idle_pg_print(gt, p);
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
-+	return ret;
-+}
-+
- static int force_reset(struct xe_gt *gt, struct drm_printer *p)
+ static void intel_plane_state_reset(struct intel_plane_state *plane_state,
+ 				    struct intel_plane *plane)
  {
- 	xe_pm_runtime_get(gt_to_xe(gt));
-@@ -288,6 +300,7 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
- 	{"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
- 	{"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
-+	{"powergate_info", .show = xe_gt_debugfs_simple_show, .data = powergate_info},
- 	{"register-save-restore", .show = xe_gt_debugfs_simple_show, .data = register_save_restore},
- 	{"workarounds", .show = xe_gt_debugfs_simple_show, .data = workarounds},
- 	{"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index 3924f9f3d0a5..85a35ed153a3 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -53,6 +53,11 @@ pc_to_xe(struct xe_guc_pc *pc)
- 	return gt_to_xe(gt);
- }
- 
-+static inline const char *str_up_down(bool v)
-+{
-+	return v ? "up" : "down";
-+}
+@@ -1029,8 +1031,18 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+ 		 * This allows NV12 and P0xx formats to have odd size and/or odd
+ 		 * source coordinates on DISPLAY_VER(i915) >= 20
+ 		 */
+-		hsub = 1;
+-		vsub = 1;
 +
- static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
++		/*
++		 * Wa_16023981245 for display version 20.
++		 * Do not support odd x-panning for NV12.
++		 */
++		if (intel_display_needs_wa_16023981245(i915) &&
++		    fb->format->format == DRM_FORMAT_NV12) {
++			vsub = 1;
++		} else {
++			hsub = 1;
++			vsub = 1;
++		}
+ 	} else {
+ 		hsub = fb->format->hsub;
+ 		vsub = fb->format->vsub;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index be644ab6ae00..9be35a751503 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -14,8 +14,10 @@ void intel_display_wa_apply(struct drm_i915_private *i915);
+ 
+ #ifdef I915
+ static inline bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915) { return false; }
++static inline bool intel_display_needs_wa_16023981245(struct drm_i915_private *i915) { return false; }
+ #else
+ bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915);
++bool intel_display_needs_wa_16023981245(struct drm_i915_private *i915);
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_display_wa.c b/drivers/gpu/drm/xe/display/xe_display_wa.c
+index 68e3d1959ad6..fde4e09589a3 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_wa.c
++++ b/drivers/gpu/drm/xe/display/xe_display_wa.c
+@@ -14,3 +14,8 @@ bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915)
  {
- 	switch (state) {
-@@ -155,6 +160,92 @@ void xe_gt_idle_disable_pg(struct xe_gt *gt)
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+ 	return XE_WA(xe_root_mmio_gt(i915), 16023588340);
  }
- 
-+/**
-+ * xe_gt_idle_pg_print - Xe powergating info
-+ * @gt: GT object
-+ * @p: drm_printer.
-+ *
-+ * This function prints the powergating information
-+ *
-+ * Return: 0 on success, negative error code otherwise
-+ */
-+int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
++
++bool intel_display_needs_wa_16023981245(struct drm_i915_private *i915)
 +{
-+	struct xe_gt_idle *gtidle = &gt->gtidle;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	enum xe_gt_idle_state state;
-+	u32 pg_enabled, pg_status = 0;
-+	u32 vcs_mask, vecs_mask;
-+	int err, n;
-+	/*
-+	 * Media Slices
-+	 *
-+	 * Slice 0: VCS0, VCS1, VECS0
-+	 * Slice 1: VCS2, VCS3, VECS1
-+	 * Slice 2: VCS4, VCS5, VECS2
-+	 * Slice 3: VCS6, VCS7, VECS3
-+	 */
-+	static const struct {
-+		u64 engines;
-+		u32 status_bit;
-+	} media_slices[] = {
-+		{(BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS1) |
-+		  BIT(XE_HW_ENGINE_VECS0)), MEDIA_SLICE0_AWAKE_STATUS},
-+
-+		{(BIT(XE_HW_ENGINE_VCS2) | BIT(XE_HW_ENGINE_VCS3) |
-+		   BIT(XE_HW_ENGINE_VECS1)), MEDIA_SLICE1_AWAKE_STATUS},
-+
-+		{(BIT(XE_HW_ENGINE_VCS4) | BIT(XE_HW_ENGINE_VCS5) |
-+		   BIT(XE_HW_ENGINE_VECS2)), MEDIA_SLICE2_AWAKE_STATUS},
-+
-+		{(BIT(XE_HW_ENGINE_VCS6) | BIT(XE_HW_ENGINE_VCS7) |
-+		   BIT(XE_HW_ENGINE_VECS3)), MEDIA_SLICE3_AWAKE_STATUS},
-+	};
-+
-+	if (xe->info.platform == XE_PVC) {
-+		drm_printf(p, "Power Gating not supported\n");
-+		return 0;
-+	}
-+
-+	state = gtidle->idle_status(gtidle_to_pc(gtidle));
-+	pg_enabled = gtidle->powergate_enable;
-+
-+	/* Do not wake the GT to read powergating status */
-+	if (state != GT_IDLE_C6) {
-+		err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+		if (err)
-+			return err;
-+
-+		pg_enabled = xe_mmio_read32(gt, POWERGATE_ENABLE);
-+		pg_status = xe_mmio_read32(gt, POWERGATE_DOMAIN_STATUS);
-+
-+		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
-+	}
-+
-+	if (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK) {
-+		drm_printf(p, "Render Power Gating Enabled: %s\n",
-+			   str_yes_no(pg_enabled & RENDER_POWERGATE_ENABLE));
-+
-+		drm_printf(p, "Render Power Gate Status: %s\n",
-+			   str_up_down(pg_status & RENDER_AWAKE_STATUS));
-+	}
-+
-+	vcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_VIDEO_DECODE);
-+	vecs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_VIDEO_ENHANCE);
-+
-+	/* Print media CPG status only if media is present */
-+	if (vcs_mask || vecs_mask) {
-+		drm_printf(p, "Media Power Gating Enabled: %s\n",
-+			   str_yes_no(pg_enabled & MEDIA_POWERGATE_ENABLE));
-+
-+		for (n = 0; n < ARRAY_SIZE(media_slices); n++)
-+			if (gt->info.engine_mask & media_slices[n].engines)
-+				drm_printf(p, "Media Slice%d Power Gate Status: %s\n", n,
-+					   str_up_down(pg_status & media_slices[n].status_bit));
-+	}
-+	return 0;
++	return XE_WA(xe_root_mmio_gt(i915), 22019338487_display);
 +}
-+
- static ssize_t name_show(struct device *dev,
- 			 struct device_attribute *attr, char *buff)
- {
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
-index 554447b5d46d..4455a6501cb0 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.h
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.h
-@@ -8,6 +8,7 @@
- 
- #include "xe_gt_idle_types.h"
- 
-+struct drm_printer;
- struct xe_gt;
- 
- int xe_gt_idle_init(struct xe_gt_idle *gtidle);
-@@ -15,5 +16,6 @@ void xe_gt_idle_enable_c6(struct xe_gt *gt);
- void xe_gt_idle_disable_c6(struct xe_gt *gt);
- void xe_gt_idle_enable_pg(struct xe_gt *gt);
- void xe_gt_idle_disable_pg(struct xe_gt *gt);
-+int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
- 
- #endif /* _XE_GT_IDLE_H_ */
 -- 
-2.40.0
+2.25.1
 
