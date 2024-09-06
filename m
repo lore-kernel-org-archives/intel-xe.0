@@ -4,94 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8400DCE7B1D
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:56:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6E05CE7B1E
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:57:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C3FE10EA80;
-	Fri,  6 Sep 2024 14:56:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=paul-moore.com header.i=@paul-moore.com header.b="dPOKfUUi";
-	dkim-atps=neutral
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com
- [209.85.221.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0076D10EA7F
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 14:56:45 +0000 (UTC)
-Received: by mail-vk1-f169.google.com with SMTP id
- 71dfb90a1353d-502ae81b4daso201240e0c.0
- for <intel-xe@lists.freedesktop.org>; Fri, 06 Sep 2024 07:56:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paul-moore.com; s=google; t=1725634605; x=1726239405;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Z8DQFAISHS7i5IP3gsOeV2GhBMoOIKb1H2ynRnefFiA=;
- b=dPOKfUUi8Tx0Nq6pweEnDfvrHsWvhRo3Z3V5jcYoJ9cNUHhta69WTc4w9BAco4grqk
- kH7yjkWRJuE8JX4pEa2pCZQamABXZv6TCdY1rwmx5DYGv+2RYN5OKQM5Rxnjw/IoYsPL
- s6ImEYCAisN8i/bcFOKemZOL2Y+cnIzonz/IOPjBiF5MNOMEygDoUYfzIUZvmoTbTgcM
- STPVCkKsAArA72Ong+TU5636QPRMP96fkS4P4nZL0az84jpvnqh8bfLBDWSziOAUeIBS
- l1OC3DL9DBKKnSq58CTuvTiHDtK+01U/ICUSZeukB4FfnlVE3sRFOXT2DqAQCwo7x6cr
- AQOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725634605; x=1726239405;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Z8DQFAISHS7i5IP3gsOeV2GhBMoOIKb1H2ynRnefFiA=;
- b=aUZSosYKzbKdrZypfGanVLEXOIHqQTHg2bmztbP9/i8+El8OzF4zxHLrHGpsGmwLV3
- uyccX2nXtz0Ka58h7LBdvNLMf7tQDaCQ04jYk21BAYA11xKimyOobXLWHPkH9NqjL874
- yoVXe9SRoTf9ReCLgUwgNC5PQk3LEZ8/j1g3835NzYYuoTdl7dyIZlZEisBY/OaDJiu2
- U+2MWm2bAN1KzcWB1H5TCgoA/mdA+9s8zrR9DlZP4wAv/qEVp/i8mL0/bWhuoj8XUSbz
- RIWJ4UzvAZjrjrYJ4EU/mA4LDWV6vgzNzfIoXBiZS+0YYMGBdnM4C/asQlL3Q15xSJ9x
- 3yjQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV6TaRYytyhcACcwUPSKhW02BsamQoNgOuAlec6nIadiSlTuXW/2ZtWYYhaV4bf41AURC/xanTIGg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxZ3WgCCHPGYapSoZ2q+UKbro2r3SsCV2TA+55Q9YCllFC/PJZp
- Nf+2YyrRnp2SXAH0WlxwK+ONJkJ4CXS+mRNecw+Yjxiv+zG9jxy5uRQt4j5v8exigt1qmiGxs5A
- 0fo0/8g5YmlhwEV7n7/EfQbD6pQMMSckRkIIF
-X-Google-Smtp-Source: AGHT+IHq7ZiORKnHJ7OGW0/x1cWaLstSbHVVP69Jhc2KtxHBDUWP5W0/AltVyanWWqQY/QWC4tnW0snbDbe3WIJv/jg=
-X-Received: by 2002:a05:6122:3b17:b0:501:2842:428a with SMTP id
- 71dfb90a1353d-50128425272mr4021883e0c.8.1725634604866; Fri, 06 Sep 2024
- 07:56:44 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A43F10EA82;
+	Fri,  6 Sep 2024 14:57:46 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0183810EA82;
+ Fri,  6 Sep 2024 14:57:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
- <20240906-macos-build-support-v2-6-06beff418848@samsung.com>
-In-Reply-To: <20240906-macos-build-support-v2-6-06beff418848@samsung.com>
-From: Paul Moore <paul@paul-moore.com>
-Date: Fri, 6 Sep 2024 10:56:33 -0400
-Message-ID: <CAHC9VhRpHgqN2fp1J3x9=zBqNr3QHsSDgUnoZ7M-SuOQ6hQ4nw@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] selinux: do not include <linux/*.h> headers from
- host programs
-To: da.gomez@samsung.com
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>, 
- Nicolas Schier <nicolas@fjasle.eu>, Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Marc Zyngier <maz@kernel.org>, 
- Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, 
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
- Justin Stitt <justinstitt@google.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
- linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- speakup@linux-speakup.org, selinux@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
- linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
- Finn Behrens <me@kloenk.dev>, "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- gost.dev@samsung.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915=3A_Some_intel=5Fdispl?=
+ =?utf-8?q?ay_conversions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Sep 2024 14:57:45 -0000
+Message-ID: <172563466600.955038.10869450331429824381@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,71 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 6, 2024 at 7:01=E2=80=AFAM Daniel Gomez via B4 Relay
-<devnull+da.gomez.samsung.com@kernel.org> wrote:
->
-> From: Masahiro Yamada <masahiroy@kernel.org>
->
-> Commit bfc5e3a6af39 ("selinux: use the kernel headers when building
-> scripts/selinux") is not the right thing to do.
->
-> It is clear from the warning in include/uapi/linux/types.h:
->
->   #ifndef __EXPORTED_HEADERS__
->   #warning "Attempt to use kernel headers from user space, see https://ke=
-rnelnewbies.org/KernelHeaders"
->   #endif /* __EXPORTED_HEADERS__ */
->
-> If you are inclined to define __EXPORTED_HEADERS__, you are likely doing
-> wrong.
->
-> Adding the comment:
->
->   /* NOTE: we really do want to use the kernel headers here */
->
-> does not justify the hack in any way.
->
-> Currently, <linux/*.h> headers are included for the following purposes:
->
->  - <linux/capability.h> is included to check CAP_LAST_CAP
->  - <linux/socket.h> in included to check PF_MAX
->
-> We can skip these checks when building host programs, as they will
-> be eventually tested when building the kernel space.
->
-> I got rid of <linux/stddef.h> from initial_sid_to_string.h because
-> it is likely that NULL is already defined. If you insist on making
-> it self-contained, you can add the following:
->
->   #ifdef __KERNEL__
->   #include <linux/stddef.h>
->   #else
->   #include <stddef.h>
->   #endif
->
-> scripts/selinux/mdp/mdp.c still includes <linux/kconfig.h>, which is
-> also discouraged and should be fixed by a follow-up refactoring.
->
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
->  scripts/selinux/genheaders/Makefile              |  4 +---
->  scripts/selinux/genheaders/genheaders.c          |  3 ---
->  scripts/selinux/mdp/Makefile                     |  2 +-
->  scripts/selinux/mdp/mdp.c                        |  4 ----
->  security/selinux/include/classmap.h              | 19 ++++++++++++------=
--
->  security/selinux/include/initial_sid_to_string.h |  2 --
->  6 files changed, 14 insertions(+), 20 deletions(-)
+== Series Details ==
 
-Similar to patch 7/8, please read my comments on your previous posting
-of this patch, it doesn't appear that you've made any of the changes I
-asked for in your previous posting.
+Series: drm/i915: Some intel_display conversions
+URL   : https://patchwork.freedesktop.org/series/138332/
+State : success
 
-https://lore.kernel.org/selinux/317c7d20ab8a72975571cb554589522b@paul-moore=
-.com
+== Summary ==
 
---=20
-paul-moore.com
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/
+lib/modules/6.11.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc6-xe/build
+lib/modules/6.11.0-rc6-xe/modules.alias.bin
+lib/modules/6.11.0-rc6-xe/modules.builtin
+lib/modules/6.11.0-rc6-xe/modules.softdep
+lib/modules/6.11.0-rc6-xe/modules.alias
+lib/modules/6.11.0-rc6-xe/modules.order
+lib/modules/6.11.0-rc6-xe/modules.symbols
+lib/modules/6.11.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1725634646:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1725634646:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
