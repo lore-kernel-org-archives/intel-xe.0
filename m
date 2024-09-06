@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CB30E6FE49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 21:52:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19306E6FE4C
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 21:52:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F06610EB02;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAF1910EB06;
 	Fri,  6 Sep 2024 21:52:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bKd5HzIg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GlZNNSnd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0AA810EB02
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 21:52:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 230C810EB02
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 21:52:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725659529; x=1757195529;
+ t=1725659527; x=1757195527;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X04vywirKbDkHIiIVPduDdxU/3amWSaum6jpppYwxhk=;
- b=bKd5HzIg4gcHCe/2RNNqxA7MfxOOpcpZ4IQy2MtdAgrCezHFyGEFzTXD
- IMYEvhP3tRI2Z97cJp4gVmFvXDeeyzTKA9K7PRsQ71E1BcNYTnEXeWOSf
- H18fBiV3uM/zTkThnuwpc9Bd9qiNGwovQK4BBtMosAl1CZllsP35rAmpV
- PGvn+Pj+y7Mb6o31+Mhh0yZ1DV0kOC8VQx8ezsNo9ERFgMHdzsUI7qMxt
- QJFmFvzNQyyquFTsAlIhmeE0ttgQdOvLWOl3L0J/TWdMY36PFayTYyFhH
- ImR4vO+vRGZGKmQB9FCh0fS2DjS5WqKHrtkLE+Vh7R2us0RCVsId8hcHH Q==;
-X-CSE-ConnectionGUID: ezmlbvh/Rdude8l6iS+cqA==
-X-CSE-MsgGUID: Ku22RYxwRk6ptSjxfcv1EA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24580598"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="24580598"
+ bh=TEwvvKAtY+ts/uh5vlZ8YSfSomW5uGv8q1gTmY/4CUY=;
+ b=GlZNNSnd5sppRdEVwQqe0j0zHMfwYtA6NfsTJE8TprEAnimJRKJkRKrX
+ YWo7SmwIdnGA+Fuqv8CeQn6FZ/Xac5kE7JbDCUqV4NGVUquSZaOAP7UH9
+ WX0Ql4gc3PWMNuSTO8DcwYEd8mmUg7ZW/2CS5ZYqMVD9y9FGFwITzN6xb
+ GqjOO+5CyEIBNpextEuWNPYR/S/gvRN34bENXpp1724odKfvu0rghTXAu
+ F6rxv50shiq72Wp8ljVjvUOxAggtZPrL6a+u1OcdL+x8QDqdBGUNIX8w1
+ +qA/phAqoXyEPdbMiQ4BNaMXfCJ4zhypDMlTUErdcqJejrwDUz0aRrtLM g==;
+X-CSE-ConnectionGUID: FQ0sTR+iQvqnwXw24nLF4A==
+X-CSE-MsgGUID: 71pBzvfUR+CgplaUj7Ae8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24580594"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="24580594"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 14:52:08 -0700
-X-CSE-ConnectionGUID: uaVPC9eFT8qsg+HmQfKSEg==
-X-CSE-MsgGUID: rFkb31B+TiiDmODNoACx0g==
+ 06 Sep 2024 14:52:07 -0700
+X-CSE-ConnectionGUID: vb3PxH3ISAyW4ohgUWsoow==
+X-CSE-MsgGUID: ahmBtpchRuK1ClfMPHTc/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="70656350"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="70656347"
 Received: from msatwood-mobl.amr.corp.intel.com (HELO
  msatwood-mobl.hsd1.or.comcast.net) ([10.125.110.176])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 14:52:07 -0700
+ 06 Sep 2024 14:52:06 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Haridhar Kalvala <haridhar.kalvala@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
+Cc: Matt Roper <matthew.d.roper@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 9/9] drm/xe/ptl: Add PTL platform definition
-Date: Fri,  6 Sep 2024 14:51:53 -0700
-Message-ID: <20240906215153.31210-10-matthew.s.atwood@intel.com>
+Subject: [PATCH 8/9] drm/xe/ptl: Add performance tuning settings for PTL
+Date: Fri,  6 Sep 2024 14:51:52 -0700
+Message-ID: <20240906215153.31210-9-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240906215153.31210-1-matthew.s.atwood@intel.com>
 References: <20240906215153.31210-1-matthew.s.atwood@intel.com>
@@ -69,78 +68,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Haridhar Kalvala <haridhar.kalvala@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-PTL is an integrated GPU based on the Xe3 architecture.
+The L3SQCREG5 tuning suggestion remains the same on Xe3 as on Xe2.
 
-Bspec: 72574
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+Bspec: 72161
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c            |  7 +++++++
- drivers/gpu/drm/xe/xe_platform_types.h |  1 +
- include/drm/intel/xe_pciids.h          | 11 +++++++++++
- 3 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_tuning.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index b30d09508a38..e471832a7a7f 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -370,6 +370,12 @@ static const struct xe_device_desc bmg_desc = {
- 	.has_heci_cscfi = 1,
- };
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index faa1bf42e50e..9bb6afaa560a 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -25,15 +25,15 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+ 	  XE_RTP_ACTIONS(SET(XEHP_SQCM, EN_32B_ACCESS))
+ 	},
  
-+static const struct xe_device_desc ptl_desc = {
-+	PLATFORM(PANTHERLAKE),
-+	.has_display = true,
-+	.require_force_probe = true,
-+};
-+
- #undef PLATFORM
- __diag_pop();
+-	/* Xe2 */
++	/* Xe2 / Xe3 */
  
-@@ -418,6 +424,7 @@ static const struct pci_device_id pciidlist[] = {
- 	XE_MTL_IDS(INTEL_VGA_DEVICE, &mtl_desc),
- 	XE_LNL_IDS(INTEL_VGA_DEVICE, &lnl_desc),
- 	XE_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
-+	XE_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
- 	{ }
- };
- MODULE_DEVICE_TABLE(pci, pciidlist);
-diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-index 79b7042c4534..d08574c4cdb8 100644
---- a/drivers/gpu/drm/xe/xe_platform_types.h
-+++ b/drivers/gpu/drm/xe/xe_platform_types.h
-@@ -23,6 +23,7 @@ enum xe_platform {
- 	XE_METEORLAKE,
- 	XE_LUNARLAKE,
- 	XE_BATTLEMAGE,
-+	XE_PANTHERLAKE,
- };
- 
- enum xe_subplatform {
-diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids.h
-index 73d972a8aca1..0e0256072acd 100644
---- a/include/drm/intel/xe_pciids.h
-+++ b/include/drm/intel/xe_pciids.h
-@@ -215,4 +215,15 @@
- 	MACRO__(0xE20D, ## __VA_ARGS__), \
- 	MACRO__(0xE212, ## __VA_ARGS__)
- 
-+#define XE_PTL_P_IDS(MACRO__, ...) \
-+	MACRO__(0xB080, ## __VA_ARGS__)
-+
-+#define XE_PTL_U_IDS(MACRO__, ...) \
-+	MACRO__(0xB090, ## __VA_ARGS__), \
-+	MACRO__(0xB0A0, ## __VA_ARGS__)
-+
-+#define XE_PTL_IDS(MACRO__, ...) \
-+	XE_PTL_P_IDS(MACRO__, ## __VA_ARGS__), \
-+	XE_PTL_U_IDS(MACRO__, ## __VA_ARGS__)
-+
- #endif
+ 	{ XE_RTP_NAME("Tuning: L3 cache"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 3000)),
+ 	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
+ 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
+ 	},
+ 	{ XE_RTP_NAME("Tuning: L3 cache - media"),
+-	  XE_RTP_RULES(MEDIA_VERSION(2000)),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, 3000)),
+ 	  XE_RTP_ACTIONS(FIELD_SET(XE2LPM_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
+ 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
+ 	},
 -- 
 2.44.0
 
