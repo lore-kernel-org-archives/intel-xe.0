@@ -4,167 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9C5DE6FE2F
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 15:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64715E6FE30
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 15:59:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5709110E1BF;
-	Fri,  6 Sep 2024 15:59:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0075110E6BD;
+	Fri,  6 Sep 2024 15:59:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V3fCcDWm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0WS7Tnc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CCEF10E1BF
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:59:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C19510E3DD
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:59:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725638359; x=1757174359;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Bph9YxhjCKLSgKJpmumllgrsaUu0k9j7hBGpDbNuUic=;
- b=V3fCcDWmU65BMxiChE9AX5n2Ss0hAHYChiYwCwGGRy0l7ktpcYCUYzzF
- 9Rz4bwwWqfj6pRZ/GCYZJ3XoBy3YjweyMlTL6bEqMxLRDdm/h1wHEUXBB
- Pba4hj1OdC++HguQdKkiM3vCyZkVSmjUpWZCZN7O2U0KWNbr1UDcXzEVM
- UGlLF0iXjt4dGalStpjiDbWkpbRVAJdyQ+jk+inXkCFLL6wScChva3JCS
- ANvc4tvh8cNhczN/XDejaaY0aCaa/KwMh2b0danrCwiTlTrgbclMK2JPe
- jk5rKCeBVPv556pX/vYKzBbQCRpybxExkk1HwKQo8lxF3/TdFA8ZNZaGf A==;
-X-CSE-ConnectionGUID: KqNtrxGzTGWbiLICA91Fkw==
-X-CSE-MsgGUID: tnQj9gYuRgi1Gn5n6Ac6zw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="34977661"
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="34977661"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 08:59:17 -0700
-X-CSE-ConnectionGUID: OOylMUrtRCaUa/7oWKzRvQ==
-X-CSE-MsgGUID: kjeW5OL1TFKTDEZw/EinsA==
+ t=1725638361; x=1757174361;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KrT6LRPUeO91sFRyN2QQt8XupJ+EkJ3pnFqjEwJwEz8=;
+ b=h0WS7Tnc4mFjQMPoWnB2E4kasmIsKtQK4xcuSUWgavatUMwFlLr/fGoJ
+ KgYo4PMF292CKeEcw5PX3R/Xm14GhqzSKNzgNX5Svy3qTayMZ71DWQI2j
+ bb0HBYT0G7kWbSj7pb4zsqQTKM7WJhkDx4QW6C41BHQw+QRVXMtEiac+e
+ 96tOBp7F5+gdBZLDOSoj/nqcTHpHdqJ/NIdaKumr0HfvbT0Mk1S4URb6n
+ CuP43Pc/hkyj7MRMQuUF+4ICvjB3u1Om1n/k0RdRN7yPsgRD0HJxPBC8F
+ +CnN4m4hpLACAGQ9eut/TwL9BNDqiMGqEkMlz6BY3X2J+zZZPiXbM7dRJ g==;
+X-CSE-ConnectionGUID: P4xq9gNdQ/2r9JENctn6Mg==
+X-CSE-MsgGUID: uR14K1OpTeKOCuCV4/Kzxg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="41883050"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="41883050"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 08:59:20 -0700
+X-CSE-ConnectionGUID: PPUl0+QWS7WIj37AGoT7fw==
+X-CSE-MsgGUID: HC5dEro6QdiSEM8qnWiM7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="65681996"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Sep 2024 08:59:16 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 6 Sep 2024 08:59:16 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 6 Sep 2024 08:59:16 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.44) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 6 Sep 2024 08:59:16 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mLgqqQlP6io1C/u05wr5QFyqYKZlz49iiFnAVadKlR+P0FmSt3NR0Sjet4OaLOPgz6eoc1+OrUCHGO9OPN3xERxWOtfflzSHCiKSLRUrpxgE7x8kxf0/gAjync2qiVd5mZDMIZklnu0l93M18iJTiz04gqo9KPNnq66FTPahXDJS5AA6YCpvkWQp5rnlieW4Cc/u8qFQDzy+19dJ01F900D8XsWHFIUE0/09l5FzsK41yBC6nDlN+EIpO02dvusA3Zx/KeaKd2aOzf6qIE3lJwm9WrEho7nJanDa9OWDky3nHlThybj8Ha0Ql2f4p/18JVTTSxcNRU9pDGLlYTvgow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KPh/BTUucRpYGFl1ffpq3XYw62x5A1dS2/zGjMjoIpk=;
- b=XrWzaxm0SGzYx1yooO5uNMwirF0CIFvT4N5VrCwLCOMaOVPB7ewfUcXj/kkYzzG6odkQ1DuUFPpHzWEHwNJL7JAUMTL2b+wf5VAmx9x1AxID+Nl1+G3YeD+PWbkni5n1Okfj4B1vWmhZFS2ShY01QHl8sy8sZomC2OhTfdNOaFxvEtGC1jPy3fZ7DAPi2QluGtbbhZP0nWaw+FJhz0vwBvxMu6aMFB7DCSjLq1SpySq0pqPxDuYIEiotVCN8ZwBR0ovrqvxU2GY6wEpDXwVxF/Lfuv82HEA86sN7feTI5ttEp+cJwYdKuNCAzrTrJ476GfeNndaUDLnprMwG5GngaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by DS0PR11MB7441.namprd11.prod.outlook.com (2603:10b6:8:141::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.17; Fri, 6 Sep
- 2024 15:59:11 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7918.024; Fri, 6 Sep 2024
- 15:59:11 +0000
-Date: Fri, 6 Sep 2024 11:59:06 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: <intel-xe@lists.freedesktop.org>, <daniele.ceraolospurio@intel.com>,
- <lucas.demarchi@intel.com>, <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH 2/3] drm/xe/pciids: Add PVC's PCI device ID macros
-Message-ID: <Ztsmyp6L4vZEtad6@intel.com>
-References: <cover.1725624296.git.jani.nikula@intel.com>
- <6ac1829493a53a3fec889c746648d627a0296892.1725624296.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6ac1829493a53a3fec889c746648d627a0296892.1725624296.git.jani.nikula@intel.com>
-X-ClientProxiedBy: MW4PR04CA0099.namprd04.prod.outlook.com
- (2603:10b6:303:83::14) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="70395125"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.163])
+ ([10.245.244.163])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 08:59:17 -0700
+Message-ID: <71709bab-5f6d-40d8-9604-3c00041d3f76@intel.com>
+Date: Fri, 6 Sep 2024 16:59:15 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|DS0PR11MB7441:EE_
-X-MS-Office365-Filtering-Correlation-Id: a5711f50-9807-4f96-64f0-08dcce8cd937
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?CX6YKaFgGJh+soghHmG+6VxFrMiBwLaqLS58RJfKaZDXkdvJUh4BiZPgl2?=
- =?iso-8859-1?Q?nSHCPZ46qUwPTSamnelWLo5xQRkA5BBpxFwrTdzhB+p6vvGtoDzYgBasnr?=
- =?iso-8859-1?Q?GM9d+sf/Rcnuarqmn60HMFy37b6XpWkEvMeDMkLeAZdVqal7YvYiIoTypA?=
- =?iso-8859-1?Q?aD2jsTbThYu35iVQOEihOZW/r7CLGQhLvsMf1gXP5BvaxtNqLhCq+9WvFf?=
- =?iso-8859-1?Q?3rNW6mRbm0rGiRDHrcseyqdRqx0ZnQZAnMhZn1i1ouDxOpjKgVhiHT31iD?=
- =?iso-8859-1?Q?L95xmf4MX19S5R8NmIuxokcNaxVNNwWWv6D3D5oR5SG2EYl2EIZ/NIRBpp?=
- =?iso-8859-1?Q?WN+C4rl2y96HzwAxRnFjZdH03RCaP0IMtducOBCIXukgj1Hn1LdNH5/dcO?=
- =?iso-8859-1?Q?tOsxQWy4XoaJqYOpO9efuiMtrMS8k2syl8C6FmmAw0Ehz3doLHUZTkW401?=
- =?iso-8859-1?Q?gxiWOblOjzowDGeahB+drqThksbodANOfdpGk4fO0l0ps6VfSS4vKmXu/+?=
- =?iso-8859-1?Q?TELs8j7efhaWfOrrA6EhVngP3SlQiqSAid/ioXo+kcwRxTeun3jTAh9T5t?=
- =?iso-8859-1?Q?soWpGfQ+NHRA73Rsu2M2tmgIlLnR50xZOpbyuxvbHKfGTypOytgTvMDKwB?=
- =?iso-8859-1?Q?N3ZWL+6p/gQMvqKkyWc8oZUwuTHH2x1GaKVb6UX3Ta2qIKGaE9UkM+zIVZ?=
- =?iso-8859-1?Q?mpaZI5ZbHmuQKOVkhKAqhGMNHGj5lu9+aj1P1gC2IOErQfYlt8UUnFsMwu?=
- =?iso-8859-1?Q?XxnfxTDYwX2briFms1i7eT3MtE6kJJkYvG6BKjSApzhbKsgd3aHwsxyMqa?=
- =?iso-8859-1?Q?MZSGQdfxFQbQOWgImRaXz48uiXRHUDe0wixcjEhBZjEgJedK3vIBXAw95s?=
- =?iso-8859-1?Q?Rh4ZtqofNA1G4tD9Ah8DCwLhyAXvRz5ySfythRULWTeDrw2hmgaY8bQaWk?=
- =?iso-8859-1?Q?wvm8LSiNJlUqO5tZyr1TX8Aq5Yp2ZevFS0Ao4SkpSdQrJ6iNpQ59rbXHQU?=
- =?iso-8859-1?Q?XkkWvSplS5fEnAMZDgrOsSrM5eAaeST1wcWTK+7zoAxsuXVzAEnWFRz742?=
- =?iso-8859-1?Q?FCCe2qk12HvfmSflSFr16zfpI3lNnQpDyRVdnWMokE0xI9E9uYvWylddtQ?=
- =?iso-8859-1?Q?0sKXjvdBPdQXUVZEptrgfSCj9R+IfZWzsIfsFAsOUmifR8aJ1gWxmqlaoB?=
- =?iso-8859-1?Q?pTMXGOc0TjjWjZmIPALIcNbAEgcwb13dFbxgQdJIDJfouZm1gySlhulq5/?=
- =?iso-8859-1?Q?6pyS1ktC1OwI9aKzQOk0acTfwpe2NTUF5HVaqL1ay3HCYQtJe/hBCGIy4H?=
- =?iso-8859-1?Q?bT3OyhZQTTnqxO3sQDpyrFoiv3WardU8ex+ZpqA7a2jlr03eNfbfxePpZd?=
- =?iso-8859-1?Q?HA/b5eQYLod9ntltTHnDN0j89c2NEYuQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?4kZxLaoUH4vQK08w1S+KtUHEcJ5wlliFakbjmYvFUUXWG9EFC8jptr6RlX?=
- =?iso-8859-1?Q?+boWx7bU2bcdstA2a6QCG2SdNJ3uX5w5Q60mCM0xAgKjDZD1Iu7BeDsAtV?=
- =?iso-8859-1?Q?s4W3Id/DiDqu4Ygbpdq+zVMdBe1RjjN8WNrSxzEdISA69TSUQiau1A5UgF?=
- =?iso-8859-1?Q?YqEWOrRZi5jgE/wRAitWMt31nw53DQJ6wew9xZRqeNxCg5qeuft+s307Yt?=
- =?iso-8859-1?Q?OCvBY5+9cQkjfUArWYXH3mExDJ7N8GQe70j+umFt+ugF5BEq2ogblhrhLk?=
- =?iso-8859-1?Q?OurtfBhyBAXHQXGe0CzcxVykl41ocFafvixnLKpGnenVNtouLp6WDANjSw?=
- =?iso-8859-1?Q?xvj8ElpJP7scYQapIxEKuS+8GeKaQA2m3S7j+R4sfH00SphcFoCMjRd4Ma?=
- =?iso-8859-1?Q?dgx+p2vReoq1yvAC12frw7O5dqDIu665rV7X1Md69EAcMYwZEa2c+/91co?=
- =?iso-8859-1?Q?e4qUN6pYjepvII6dcyzTdI76wOYylsUJyBLg7rdI3ZxLgBc7NzyzkZNKdf?=
- =?iso-8859-1?Q?Ujy/C/RLkjoKQbl8U/KbpyNTe2jYIaGsb8QSY4jPpVa0vpk0wHHPcRWFk+?=
- =?iso-8859-1?Q?RqM18Mw0Yfm8oaL49k+c4uy8Kn6BqcjqvyD6ZH+TIssvYfrl2bYYZx/sNQ?=
- =?iso-8859-1?Q?22Vb28SA//YlrNsl2tKXx2q2cRvyM0sBHmlupggh1Se84yhD9MZfJvUf3T?=
- =?iso-8859-1?Q?qNPedHH3nPrfxSmMHqhx27b7VHIoj3aTy6iDH+yinzzgo2JcKF81TiwZ2t?=
- =?iso-8859-1?Q?blLFUWQBipoG7nvO+PU/w1VUOlKTk+Ck7/tXba+mSaabJHVKQiiymmpa86?=
- =?iso-8859-1?Q?UY7HW3m3O42o2lBN7mIpVZIqpQerTN3rgWjhroDy+qLPmD2fQ4aGkyGrX/?=
- =?iso-8859-1?Q?NAoKMW2MFlyepO0GQSKvRdmRkadNmsO3ejKwu6W6hoVFmLSpm9khL4PPf6?=
- =?iso-8859-1?Q?KgiYORnzYioXgwgz9VlXMrm1BUaItdYh3VooCXFGYop9SX60ksu4VsvQoD?=
- =?iso-8859-1?Q?/2poGwojBtgRkkCsPXlIkmHw0/O3lYdrgjo/InyEtYm5CKAnBA4ws0wxil?=
- =?iso-8859-1?Q?qWWGixtakG8wLANBUWsx0TcQdP9tdgV/acad6D3TfUThuvkiwulEmKB2dc?=
- =?iso-8859-1?Q?4r9bg6IB/G4Vr8qY4wVYuyUZHbb3xmXVttAhN5LsD+WuLeXf/zCww9n1OK?=
- =?iso-8859-1?Q?rA8LcuwgHcsZLMnfMAD17Q+A2Eb0luWqkpLhOwwAi1LelYUeZk0C9ql67t?=
- =?iso-8859-1?Q?O7lskY22wNMmCY7K4/GgcAtlMRE7+4VjTL0UWEJqg4yFOOSg/jnZNn/qHM?=
- =?iso-8859-1?Q?9iseayU2hQDN7NXbs07zCd52d0wfgrqHEVYYzyplsrnXlZXafz8SDhezfy?=
- =?iso-8859-1?Q?JOjLuKy25fJClg6QLTRyB5g8odQKBTeNMnFw/v5ixxeJPqkV8XGnr35t0b?=
- =?iso-8859-1?Q?kcPo6SEMAMpVPLz2Ysx2LfSzX2bjNItka7jYEjt1wSR7qrzMmv8NCVkKuD?=
- =?iso-8859-1?Q?XaTgAEybkCeqrr0iQtW628VuAfUvLYXbEuXZJLkLE6kTnp6JTgA/RsUdzg?=
- =?iso-8859-1?Q?Qy3Hc6SqN31SqbPh5TqYzvSkUK46iVPAFWVcZ+c7eU9C/y8r42HvFo7ST4?=
- =?iso-8859-1?Q?JFZEdLc8Px9SZub0ETvI3pr573B8MBtX1MAVAYSvC1w+msD90KWz5JwQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5711f50-9807-4f96-64f0-08dcce8cd937
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2024 15:59:11.6290 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lQEtkryH9Ck+A1QM/2LR5hSqc0PiK2I8aecoSxbliZuE615jcwksR5klwue2NalRIANkTmS3azcsRjopbLF0SA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7441
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Add a xe_bo subtest for shrinking / swapping
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20240905131617.8521-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240905131617.8521-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,64 +71,359 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 06, 2024 at 03:06:03PM +0300, Jani Nikula wrote:
-> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On 05/09/2024 14:16, Thomas Hellström wrote:
+> Add a subtest that tries to allocate twice the amount of
+> buffer object memory available, write data to it and then read
+> all the data back verifying data integrity.
+> In order to be able to do this on systems that
+> have no or not enough swap-space available, allocate some memory
+> as purgeable, and introduce a function to purge such memory from
+> the TTM swap_notify path.
 > 
-> Add PVC PCI IDs to the xe_pciids.h header. They're not yet used in the
-> driver.
+> this test is intended to add test coverage to the current
+> bo swap path and upcoming shrinking path.
 > 
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> The test has previously been part of the xe bo shrinker series.
 > 
+> v2:
+> - Skip test if the execution time is expected to be too long.
+> - Minor code cleanups.
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
+>   drivers/gpu/drm/xe/tests/xe_bo.c | 237 +++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_bo.c       |  32 ++++-
+>   2 files changed, 268 insertions(+), 1 deletion(-)
 > 
-> This is for drm-xe-next. Functionally, having the PCI IDs defined
-> doesn't mean anything, but it's easier all around to not carry these in
-> xe-for-CI.
-
-Cc: Simona Vetter <simona.vetter@ffwll.ch>
-
-either way works for me. I believe that recently we got more conflicts
-on the other file, then in this one here. But I believe it makes
-more sense this way since this file can be more cleanly synced in IGT...
-
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-> ---
->  include/drm/intel/xe_pciids.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids.h
-> index 644872a35c35..73d972a8aca1 100644
-> --- a/include/drm/intel/xe_pciids.h
-> +++ b/include/drm/intel/xe_pciids.h
-> @@ -187,6 +187,22 @@
->  	MACRO__(0x7DD1, ## __VA_ARGS__),        \
->  	MACRO__(0x7DD5, ## __VA_ARGS__)
->  
-> +/* PVC */
-> +#define XE_PVC_IDS(MACRO__, ...)		\
-> +	MACRO__(0x0B69, ## __VA_ARGS__),	\
-> +	MACRO__(0x0B6E, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BD4, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BD5, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BD6, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BD7, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BD8, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BD9, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BDA, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BDB, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BE0, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BE1, ## __VA_ARGS__),	\
-> +	MACRO__(0x0BE5, ## __VA_ARGS__)
+> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+> index 8dac069483e8..d82b7748dd9e 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> @@ -6,6 +6,12 @@
+>   #include <kunit/test.h>
+>   #include <kunit/visibility.h>
+>   
+> +#include <linux/iosys-map.h>
+> +#include <linux/random.h>
+> +#include <linux/swap.h>
 > +
->  #define XE_LNL_IDS(MACRO__, ...) \
->  	MACRO__(0x6420, ## __VA_ARGS__), \
->  	MACRO__(0x64A0, ## __VA_ARGS__), \
-> -- 
-> 2.39.2
-> 
+> +#include <uapi/linux/sysinfo.h>
+> +
+>   #include "tests/xe_kunit_helpers.h"
+>   #include "tests/xe_pci_test.h"
+>   #include "tests/xe_test.h"
+> @@ -358,9 +364,240 @@ static void xe_bo_evict_kunit(struct kunit *test)
+>   	evict_test_run_device(xe);
+>   }
+>   
+> +struct xe_bo_link {
+> +	struct list_head link;
+> +	struct xe_bo *bo;
+> +	u32 val;
+> +};
+> +
+> +#define XE_BO_SHRINK_SIZE ((unsigned long)SZ_64M)
+> +
+> +static int shrink_test_fill_random(struct xe_bo *bo, struct rnd_state *state,
+> +				   struct xe_bo_link *link)
+> +{
+> +	struct iosys_map map;
+> +	int ret = ttm_bo_vmap(&bo->ttm, &map);
+> +	size_t __maybe_unused i;
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < bo->ttm.base.size; i += sizeof(u32)) {
+> +		u32 val = prandom_u32_state(state);
+> +
+> +		iosys_map_wr(&map, i, u32, val);
+> +		if (i == 0)
+> +			link->val = val;
+> +	}
+> +
+> +	ttm_bo_vunmap(&bo->ttm, &map);
+> +	return 0;
+> +}
+> +
+> +static bool shrink_test_verify(struct kunit *test, struct xe_bo *bo,
+> +			       unsigned int bo_nr, struct rnd_state *state,
+> +			       struct xe_bo_link *link)
+> +{
+> +	struct iosys_map map;
+> +	int ret = ttm_bo_vmap(&bo->ttm, &map);
+> +	size_t i;
+> +	bool failed = false;
+> +
+> +	if (ret) {
+> +		KUNIT_FAIL(test, "Error mapping bo %u for content check.\n", bo_nr);
+> +		return true;
+> +	}
+> +
+> +	for (i = 0; i < bo->ttm.base.size; i += sizeof(u32)) {
+> +		u32 val = prandom_u32_state(state);
+> +
+> +		if (iosys_map_rd(&map, i, u32) != val) {
+> +			KUNIT_FAIL(test, "Content not preserved, bo %u offset 0x%016llx",
+> +				   bo_nr, (unsigned long long)i);
+> +			kunit_info(test, "Failed value is 0x%08x, recorded 0x%08x\n",
+> +				   (unsigned int)iosys_map_rd(&map, i, u32), val);
+> +			if (i == 0 && val != link->val)
+> +				kunit_info(test, "Looks like PRNG is out of sync.\n");
+> +			failed = true;
+> +			break;
+> +		}
+> +	}
+> +
+> +	ttm_bo_vunmap(&bo->ttm, &map);
+> +
+> +	return failed;
+> +}
+> +
+> +/*
+> + * Try to create system bos corresponding to twice the amount
+> + * of available system memory to test shrinker functionality.
+> + * If no swap space is available to accommodate the
+> + * memory overcommit, mark bos purgeable.
+> + */
+> +static int shrink_test_run_device(struct xe_device *xe)
+> +{
+> +	struct kunit *test = kunit_get_current_test();
+> +	LIST_HEAD(bos);
+> +	struct xe_bo_link *link, *next;
+> +	struct sysinfo si;
+> +	size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
+> +	unsigned int interrupted = 0, successful = 0, count = 0;
+> +	struct rnd_state prng;
+> +	u64 rand_seed;
+> +	bool failed = false;
+> +
+> +	rand_seed = get_random_u64();
+> +	prandom_seed_state(&prng, rand_seed);
+
+We could maybe print the seed, if we don't already, just in case it's 
+useful to repro something?
+
+Anyway,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> +
+> +	/* Skip if execution time is expected to be too long. */
+> +
+> +	limit = SZ_32G;
+> +	/* IGFX with flat CCS needs to copy when swapping / shrinking */
+> +	if (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe))
+> +		limit = SZ_16G;
+> +
+> +	si_meminfo(&si);
+> +	ram = (size_t)si.freeram * si.mem_unit;
+> +	if (ram > limit) {
+> +		kunit_skip(test, "Too long expected execution time.\n");
+> +		return 0;
+> +	}
+> +	to_alloc = ram * 2;
+> +
+> +	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
+> +	if (to_alloc > ram_and_swap)
+> +		purgeable = to_alloc - ram_and_swap;
+> +	purgeable += purgeable / 5;
+> +
+> +	kunit_info(test, "Free ram is %lu bytes. Will allocate twice of that.\n",
+> +		   (unsigned long)ram);
+> +	for (alloced = 0; alloced < to_alloc; alloced += XE_BO_SHRINK_SIZE) {
+> +		struct xe_bo *bo;
+> +		unsigned int mem_type;
+> +		struct xe_ttm_tt *xe_tt;
+> +
+> +		link = kzalloc(sizeof(*link), GFP_KERNEL);
+> +		if (!link) {
+> +			KUNIT_FAIL(test, "Unexpected link allocation failure\n");
+> +			failed = true;
+> +			break;
+> +		}
+> +
+> +		INIT_LIST_HEAD(&link->link);
+> +
+> +		/* We can create bos using WC caching here. But it is slower. */
+> +		bo = xe_bo_create_user(xe, NULL, NULL, XE_BO_SHRINK_SIZE,
+> +				       DRM_XE_GEM_CPU_CACHING_WB,
+> +				       XE_BO_FLAG_SYSTEM);
+> +		if (IS_ERR(bo)) {
+> +			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
+> +			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
+> +				KUNIT_FAIL(test, "Error creating bo: %pe\n", bo);
+> +			kfree(link);
+> +			failed = true;
+> +			break;
+> +		}
+> +		xe_bo_lock(bo, false);
+> +		xe_tt = container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
+> +
+> +		/*
+> +		 * Allocate purgeable bos first, because if we do it the
+> +		 * other way around, they may not be subject to swapping...
+> +		 */
+> +		if (alloced < purgeable) {
+> +			xe_tt->purgeable = true;
+> +			bo->ttm.priority = 0;
+> +		} else {
+> +			int ret = shrink_test_fill_random(bo, &prng, link);
+> +
+> +			if (ret) {
+> +				xe_bo_unlock(bo);
+> +				xe_bo_put(bo);
+> +				KUNIT_FAIL(test, "Error filling bo with random data: %pe\n",
+> +					   ERR_PTR(ret));
+> +				kfree(link);
+> +				failed = true;
+> +				break;
+> +			}
+> +		}
+> +
+> +		mem_type = bo->ttm.resource->mem_type;
+> +		xe_bo_unlock(bo);
+> +		link->bo = bo;
+> +		list_add_tail(&link->link, &bos);
+> +
+> +		if (mem_type != XE_PL_TT) {
+> +			KUNIT_FAIL(test, "Bo in incorrect memory type: %u\n",
+> +				   bo->ttm.resource->mem_type);
+> +			failed = true;
+> +		}
+> +		cond_resched();
+> +		if (signal_pending(current))
+> +			break;
+> +	}
+> +
+> +	/*
+> +	 * Read back and destroy bos. Reset the pseudo-random seed to get an
+> +	 * identical pseudo-random number sequence for readback.
+> +	 */
+> +	prandom_seed_state(&prng, rand_seed);
+> +	list_for_each_entry_safe(link, next, &bos, link) {
+> +		static struct ttm_operation_ctx ctx = {.interruptible = true};
+> +		struct xe_bo *bo = link->bo;
+> +		struct xe_ttm_tt *xe_tt;
+> +		int ret;
+> +
+> +		count++;
+> +		if (!signal_pending(current) && !failed) {
+> +			bool purgeable, intr = false;
+> +
+> +			xe_bo_lock(bo, NULL);
+> +
+> +			/* xe_tt->purgeable is cleared on validate. */
+> +			xe_tt = container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
+> +			purgeable = xe_tt->purgeable;
+> +			do {
+> +				ret = ttm_bo_validate(&bo->ttm, &tt_placement, &ctx);
+> +				if (ret == -EINTR)
+> +					intr = true;
+> +			} while (ret == -EINTR && !signal_pending(current));
+> +
+> +			if (!ret && !purgeable)
+> +				failed = shrink_test_verify(test, bo, count, &prng, link);
+> +
+> +			xe_bo_unlock(bo);
+> +			if (ret) {
+> +				KUNIT_FAIL(test, "Validation failed: %pe\n",
+> +					   ERR_PTR(ret));
+> +				failed = true;
+> +			} else if (intr) {
+> +				interrupted++;
+> +			} else {
+> +				successful++;
+> +			}
+> +		}
+> +		xe_bo_put(link->bo);
+> +		list_del(&link->link);
+> +		kfree(link);
+> +	}
+> +	kunit_info(test, "Readbacks interrupted: %u successful: %u\n",
+> +		   interrupted, successful);
+> +
+> +	return 0;
+> +}
+> +
+> +static void xe_bo_shrink_kunit(struct kunit *test)
+> +{
+> +	struct xe_device *xe = test->priv;
+> +
+> +	shrink_test_run_device(xe);
+> +}
+> +
+>   static struct kunit_case xe_bo_tests[] = {
+>   	KUNIT_CASE_PARAM(xe_ccs_migrate_kunit, xe_pci_live_device_gen_param),
+>   	KUNIT_CASE_PARAM(xe_bo_evict_kunit, xe_pci_live_device_gen_param),
+> +	KUNIT_CASE_PARAM_ATTR(xe_bo_shrink_kunit, xe_pci_live_device_gen_param,
+> +			      {.speed = KUNIT_SPEED_SLOW}),
+>   	{}
+>   };
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 06911e9a3bf5..a065ba8fda83 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -283,6 +283,8 @@ struct xe_ttm_tt {
+>   	struct device *dev;
+>   	struct sg_table sgt;
+>   	struct sg_table *sg;
+> +	/** @purgeable: Whether the content of the pages of @ttm is purgeable. */
+> +	bool purgeable;
+>   };
+>   
+>   static int xe_tt_map_sg(struct ttm_tt *tt)
+> @@ -761,7 +763,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>   	if (xe_rpm_reclaim_safe(xe)) {
+>   		/*
+>   		 * We might be called through swapout in the validation path of
+> -		 * another TTM device, so unconditionally acquire rpm here.
+> +		 * another TTM device, so acquire rpm here.
+>   		 */
+>   		xe_pm_runtime_get(xe);
+>   	} else {
+> @@ -1082,6 +1084,33 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
+>   	}
+>   }
+>   
+> +static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
+> +{
+> +	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+> +
+> +	if (ttm_bo->ttm) {
+> +		struct ttm_placement place = {};
+> +		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
+> +
+> +		drm_WARN_ON(&xe->drm, ret);
+> +	}
+> +}
+> +
+> +static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
+> +{
+> +	struct ttm_operation_ctx ctx = {
+> +		.interruptible = false
+> +	};
+> +
+> +	if (ttm_bo->ttm) {
+> +		struct xe_ttm_tt *xe_tt =
+> +			container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
+> +
+> +		if (xe_tt->purgeable)
+> +			xe_ttm_bo_purge(ttm_bo, &ctx);
+> +	}
+> +}
+> +
+>   const struct ttm_device_funcs xe_ttm_funcs = {
+>   	.ttm_tt_create = xe_ttm_tt_create,
+>   	.ttm_tt_populate = xe_ttm_tt_populate,
+> @@ -1094,6 +1123,7 @@ const struct ttm_device_funcs xe_ttm_funcs = {
+>   	.release_notify = xe_ttm_bo_release_notify,
+>   	.eviction_valuable = ttm_bo_eviction_valuable,
+>   	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
+> +	.swap_notify = xe_ttm_bo_swap_notify,
+>   };
+>   
+>   static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
