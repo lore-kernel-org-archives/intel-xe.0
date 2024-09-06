@@ -4,84 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8C14E6FE27
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 15:37:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E7D2E6FE2B
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 15:40:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74C4410EAA2;
-	Fri,  6 Sep 2024 15:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC30410EAA6;
+	Fri,  6 Sep 2024 15:40:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="D+uGcia6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WKvLQJ6w";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFF710EAA2;
- Fri,  6 Sep 2024 15:37:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id C307F5C5984;
- Fri,  6 Sep 2024 15:37:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EBEBC4AF0C;
- Fri,  6 Sep 2024 15:37:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1725637075;
- bh=2UKmaZtNLMhEviH6IeYoUF4i0dN1ltzq9GMvMgOlDQg=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=D+uGcia6C1rMFfGtzuNOkJuofRcalbpLcwqkWo4QCWmBvbKYPJGA/uSDWpwZjBbmB
- njLZLd39uJ74CDwwpHnOywo+j9w6RfLW9osPDFdwmgM58Feg3ncW7nfU9kwamY+IMy
- 99Py1s10IMSqqtK6gyrueYStEJqVfklEmVG7fAAmOMmjp7xtwGpS2Qy70uF4wbani/
- Arp55SZxjIHtg+pC2RSd0gh/dunKUeUaGhb0g6r6jx92vIQXhc9rNmXyDaGmHGxnxH
- mMaAlC4PbOxH77iNGW7Pvshd1MvQ6r6pNMr6RuFr1dAs5SjdWnfJTeb/GI6MK/vsYd
- QhGUIsjQ5VrGw==
-Received: by mail-lf1-f52.google.com with SMTP id
- 2adb3069b0e04-5365cf5de24so14543e87.1; 
- Fri, 06 Sep 2024 08:37:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVgCCs/q4YpRFuWjbxgcFtxu1l3/7P5tZZTjLzTnLc/KPrxDR2MQJGsdQiafxo5XkA3Oi6SQjw6aJY=@lists.freedesktop.org,
- AJvYcCXT9wwbg0553RZOI+an1HvAa1Hti3S0YAimUuTeiq9KtD4dY8gEjk72Isk8ZJ8oNLD20zyOxcQBB0o=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzdVRk9PuZ2FhVJdjybZURiiWohPG/aonK+G+X42+kVdiYo3w/q
- eEUKXcWZZ3fPmaynxxfwBFvppTCjtpQvtdGGAaql91Bty7Ar4PAGvAuPbyGOjGqY2KuSW4e1nQ8
- T/5inf4+VbKWX+P6GN/d2wCHWgmk=
-X-Google-Smtp-Source: AGHT+IFANMBQ3/Jcqmb4USNwfdW9Zoa8E3V2AYrxt1g8TZNZwyh6S+HB/OdPYQYnVIS/P9F4Mt5DF0hoACFuvJ/eFH4=
-X-Received: by 2002:a05:6512:104f:b0:533:46cc:a71e with SMTP id
- 2adb3069b0e04-536588103damr2074798e87.54.1725637073910; Fri, 06 Sep 2024
- 08:37:53 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 165B210EAA6
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:40:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725637221; x=1757173221;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rASMXDQpfwxvIu/q14mfxStLq0tovcngzO94d5eqwhM=;
+ b=WKvLQJ6w9X9dmDtekprXCPUIDHbHfb7ZXStYaBz/zvwsfx5sD5/TqA6M
+ 7vwP42UTISrADP3a94cMsG6bxYyRGLfWvovQL9REjdwpzwD5ihWXrcfFU
+ aPjQRRwxE05kQSRZ8ZzkC4adLhwshy/clbEmipIxdmia8FJHFd+Yb6j05
+ 6tBgYB48EiBKmdMjkleTf0Py5091JrsDnye7DJ25OjqfsQysffSq+rtVI
+ DuQYVkVh6ygK/nERrqnNv5+u89qs/bSdWD2PriGjhnxN6zjzX5kWESf0a
+ ZkKoXtzQH/Q7u+gHbYUgLar4paNoS0saJqPZX9GTQmloiFGiTcBH44RyZ w==;
+X-CSE-ConnectionGUID: RMq1MpaqR0SxxIoOAKLDxA==
+X-CSE-MsgGUID: 63enzIo5SWmOvDax+X35hw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24349090"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="24349090"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 08:40:21 -0700
+X-CSE-ConnectionGUID: NJBMECiZSISQ9fORdaaDiA==
+X-CSE-MsgGUID: gfteSjUtQ+K0VaYiqIfT0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="70795537"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa005.jf.intel.com with ESMTP; 06 Sep 2024 08:40:21 -0700
+Received: from [10.246.19.248] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.246.19.248])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id A623C2FC47;
+ Fri,  6 Sep 2024 16:40:19 +0100 (IST)
+Message-ID: <19b33859-03b9-4b0d-943d-e6e6aeea742e@intel.com>
+Date: Fri, 6 Sep 2024 17:40:18 +0200
 MIME-Version: 1.0
-References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
- <20240906-macos-build-support-v2-7-06beff418848@samsung.com>
- <CAHC9VhQkstJ8Ox-T+FLU34s9U0gezRba6bMA-tUPs80u6sVh2g@mail.gmail.com>
-In-Reply-To: <CAHC9VhQkstJ8Ox-T+FLU34s9U0gezRba6bMA-tUPs80u6sVh2g@mail.gmail.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Sat, 7 Sep 2024 00:37:16 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQytsDzaJfAJA0nL=KPjxj3DBCRLeuHUwgGDt8fTJ0fTQ@mail.gmail.com>
-Message-ID: <CAK7LNAQytsDzaJfAJA0nL=KPjxj3DBCRLeuHUwgGDt8fTJ0fTQ@mail.gmail.com>
-Subject: Re: [PATCH v2 7/8] selinux: move genheaders to security/selinux/
-To: Paul Moore <paul@paul-moore.com>
-Cc: da.gomez@samsung.com, Nathan Chancellor <nathan@kernel.org>, 
- Nicolas Schier <nicolas@fjasle.eu>, Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Marc Zyngier <maz@kernel.org>, 
- Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, 
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
- Justin Stitt <justinstitt@google.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
- linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- speakup@linux-speakup.org, selinux@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
- linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
- Finn Behrens <me@kloenk.dev>, "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
- gost.dev@samsung.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix arg to pci_iomap()
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
+References: <20240906032507.2952859-1-lucas.demarchi@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240906032507.2952859-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,66 +71,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 6, 2024 at 11:54=E2=80=AFPM Paul Moore <paul@paul-moore.com> wr=
-ote:
->
-> On Fri, Sep 6, 2024 at 7:01=E2=80=AFAM Daniel Gomez via B4 Relay
-> <devnull+da.gomez.samsung.com@kernel.org> wrote:
-> >
-> > From: Masahiro Yamada <masahiroy@kernel.org>
-> >
-> > This tool is only used in security/selinux/Makefile.
-> >
-> > There is no reason to keep it under scripts/.
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > ---
-> >  scripts/remove-stale-files                                    | 3 +++
-> >  scripts/selinux/Makefile                                      | 2 +-
-> >  scripts/selinux/genheaders/.gitignore                         | 2 --
-> >  scripts/selinux/genheaders/Makefile                           | 3 ---
-> >  security/selinux/.gitignore                                   | 1 +
-> >  security/selinux/Makefile                                     | 7 ++++=
-+--
-> >  {scripts/selinux/genheaders =3D> security/selinux}/genheaders.c | 0
-> >  7 files changed, 10 insertions(+), 8 deletions(-)
->
-> Did you read my comments on your previous posting of this patch?  Here
-> is a lore link in case you missed it or it was swallowed by your
-> inbox:
->
-> https://lore.kernel.org/selinux/3447459d08dd7ebb58972129cddf1c44@paul-moo=
-re.com
->
-> Unless there is an serious need for this relocation, and I don't see
-> one explicitly documented either in this patchset or the previous, I
-> don't want to see this patch go upstream.
 
 
-I commented on the previous thread.
+On 06.09.2024 05:25, Lucas De Marchi wrote:
+> Commit 2d8865b27724 ("drm/xe: Move BAR definitions to dedicated file")
+> moved the BAR definition to the header, but replaced the wrong arg in
+> the pci_iomap() function - the last arg is actuall the length, not the
+> BAR. Luckily GTTMMADR_BAR == 0, so it still works. Fix the argument
+> to avoid confusion.
+> 
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_mmio.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 3fd462fda625..4aae30880bc6 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -157,15 +157,14 @@ int xe_mmio_init(struct xe_device *xe)
+>  {
+>  	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> -	const int mmio_bar = 0;
 
+probably initial change was supposed to be:
 
-I will reword it as follows:
+-	const int mmio_bar = 0;
++	const int mmio_bar = GTTMMADR_BAR;
 
+but below also works for me, thanks for fixing this!
 
---------------->8--------------------
-selinux: move genheaders to security/selinux/
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-This tool is only used in security/selinux/Makefile.
-
-Move it to security/selinux/ so that 'make clean' can clean it up.
-
-Please note 'make clean' does not visit scripts/ because tools under
-scripts/ are often used for external module builds. Obviously, genheaders
-is not the case here.
---------------->8--------------------
-
-
-
-
-
-
---
-Best Regards
-
-Masahiro Yamada
+>  
+>  	/*
+>  	 * Map the entire BAR.
+>  	 * The first 16MB of the BAR, belong to the root tile, and include:
+>  	 * registers (0-4MB), reserved space (4MB-8MB) and GGTT (8MB-16MB).
+>  	 */
+> -	xe->mmio.size = pci_resource_len(pdev, mmio_bar);
+> -	xe->mmio.regs = pci_iomap(pdev, mmio_bar, GTTMMADR_BAR);
+> +	xe->mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
+> +	xe->mmio.regs = pci_iomap(pdev, GTTMMADR_BAR, 0);
+>  	if (xe->mmio.regs == NULL) {
+>  		drm_err(&xe->drm, "failed to map registers\n");
+>  		return -EIO;
