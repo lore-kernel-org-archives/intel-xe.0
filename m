@@ -4,27 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF5C0C54FC6
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 03:48:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6552CCE7AB1
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 03:56:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A8B610E973;
-	Fri,  6 Sep 2024 03:48:21 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3D810E970;
- Fri,  6 Sep 2024 03:48:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A09B610E96C;
+	Fri,  6 Sep 2024 03:56:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ej6PVbNh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 033E010E08F;
+ Fri,  6 Sep 2024 03:56:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725594966; x=1757130966;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=AOgep25YPfbArNphRZ3FzjXtGgRBjP2wdNuj5+iyhso=;
+ b=ej6PVbNhHWYv53x9OsATjQ5txoXG+gcz2rI+b3B899qEEzlf08fxL+ZY
+ I2JOMsPlYIldvEOcb6uveUU59UopgRRUpPpsCuKra7zHNZNwihRmpdyQW
+ Rfa0LXX2PcUy/x59ZqDd29ZqcBlcDFbFGlUWDUF+P6HkR3ppY7ACO4Vp9
+ CaO3m246JJlqIDwTTkZlUlkssj+nfZs2TSzMhph70MFJeUDUiaMM452Z0
+ jtaOZ1MtFGDlYJIPbfuJA0bOaR2Wmzdc4xLLnTDNUKrTgrdZMho8ImmQp
+ qogC61TyzdtWqax0PIRT0Z55E+KKQtz/B3meWRy1oWvzGDGud0EeYv2Zj A==;
+X-CSE-ConnectionGUID: eHjCGSN8TneiIoUSSmm5Yg==
+X-CSE-MsgGUID: ZIJLL3MJSaOOPprCF9nE5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="23849521"
+X-IronPort-AV: E=Sophos;i="6.10,206,1719903600"; d="scan'208";a="23849521"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 20:56:06 -0700
+X-CSE-ConnectionGUID: 6bbdXEE/QD+NC094Jser1Q==
+X-CSE-MsgGUID: El4D01XXR+m56hRhWBK04w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,206,1719903600"; d="scan'208";a="96548787"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+ by orviesa002.jf.intel.com with ESMTP; 05 Sep 2024 20:56:02 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1smQ4l-000AaW-24;
+ Fri, 06 Sep 2024 03:55:59 +0000
+Date: Fri, 6 Sep 2024 11:55:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Zack Rusin <zack.rusin@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com,
+ Sui Jingfeng <suijingfeng@loongson.cn>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [PATCH 1/2] drm/ttm: Change ttm_device_init to use a struct
+ instead of multiple bools
+Message-ID: <202409061145.AtKjpWFJ-lkp@intel.com>
+References: <20240905093322.29786-2-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Fix_arg_to_pci=5Fiom?=
- =?utf-8?q?ap=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Sep 2024 03:48:20 -0000
-Message-ID: <172559450003.952750.12295335260149761788@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240906032507.2952859-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240906032507.2952859-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240905093322.29786-2-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +76,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Thomas,
 
-Series: drm/xe: Fix arg to pci_iomap()
-URL   : https://patchwork.freedesktop.org/series/138290/
-State : success
+kernel test robot noticed the following build errors:
 
-== Summary ==
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on next-20240905]
+[cannot apply to drm-xe/drm-xe-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.11-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soundcore.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/
-lib/modules/6.11.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.11.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.11.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/
-lib/modules/6.11.0-rc6-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/cmac.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/ccm.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/cryptd.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.11.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.11.0-rc6-xe/build
-lib/modules/6.11.0-rc6-xe/modules.alias.bin
-lib/modules/6.11.0-rc6-xe/modules.builtin
-lib/modules/6.11.0-rc6-xe/modules.softdep
-lib/modules/6.11.0-rc6-xe/modules.alias
-lib/modules/6.11.0-rc6-xe/modules.order
-lib/modules/6.11.0-rc6-xe/modules.symbols
-lib/modules/6.11.0-rc6-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-[0Ksection_end:1725594405:package_x86_64_nodebug
-[0K
-+ echo -e '\e[0Ksection_end:1725594405:package_x86_64_nodebug\r\e[0K'
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Change-ttm_device_init-to-use-a-struct-instead-of-multiple-bools/20240905-173606
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240905093322.29786-2-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH 1/2] drm/ttm: Change ttm_device_init to use a struct instead of multiple bools
+config: i386-randconfig-002-20240906 (https://download.01.org/0day-ci/archive/20240906/202409061145.AtKjpWFJ-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240906/202409061145.AtKjpWFJ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409061145.AtKjpWFJ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/drm_gem_vram_helper.c:981:13: error: too many arguments to function call, expected 6, have 7
+     978 |         ret = ttm_device_init(&vmm->bdev, &bo_driver, dev->dev,
+         |               ~~~~~~~~~~~~~~~
+     979 |                                  dev->anon_inode->i_mapping,
+     980 |                                  dev->vma_offset_manager,
+     981 |                                  false, true);
+         |                                         ^~~~
+   include/drm/ttm/ttm_device.h:300:5: note: 'ttm_device_init' declared here
+     300 | int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *funcs,
+         |     ^               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     301 |                     struct device *dev, struct address_space *mapping,
+         |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     302 |                     struct drm_vma_offset_manager *vma_manager,
+         |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     303 |                     const struct ttm_device_init_flags flags);
+         |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 error generated.
 
 
+vim +981 drivers/gpu/drm/drm_gem_vram_helper.c
+
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  969  
+c30b225dba01b4 Thomas Zimmermann 2019-09-11  970  static int drm_vram_mm_init(struct drm_vram_mm *vmm, struct drm_device *dev,
+b0e40e0805221d Thomas Zimmermann 2019-09-11  971  			    uint64_t vram_base, size_t vram_size)
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  972  {
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  973  	int ret;
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  974  
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  975  	vmm->vram_base = vram_base;
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  976  	vmm->vram_size = vram_size;
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  977  
+8af8a109b34fa8 Christian König   2020-10-01  978  	ret = ttm_device_init(&vmm->bdev, &bo_driver, dev->dev,
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  979  				 dev->anon_inode->i_mapping,
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  980  				 dev->vma_offset_manager,
+ee5d2a8e549e90 Christian König   2020-10-24 @981  				 false, true);
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  982  	if (ret)
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  983  		return ret;
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  984  
+37205891d84f92 Dave Airlie       2020-08-04  985  	ret = ttm_range_man_init(&vmm->bdev, TTM_PL_VRAM,
+0fe438cec9e1d2 Christian König   2020-09-11  986  				 false, vram_size >> PAGE_SHIFT);
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  987  	if (ret)
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  988  		return ret;
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  989  
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  990  	return 0;
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  991  }
+6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  992  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
