@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D4C0E6FE49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 22:53:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E349E6FE49
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 22:53:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06D5710E116;
-	Fri,  6 Sep 2024 22:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F052F10E17F;
+	Fri,  6 Sep 2024 22:53:57 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A67810E116;
- Fri,  6 Sep 2024 22:53:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AED6210E17F;
+ Fri,  6 Sep 2024 22:53:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/oa=3A_Enable_?=
- =?utf-8?q?PES_disaggregation?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/oa=3A_Enable_PES_d?=
+ =?utf-8?q?isaggregation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Sep 2024 22:53:44 -0000
-Message-ID: <172566322410.955480.2995362748968370755@2413ebb6fbb6>
+Date: Fri, 06 Sep 2024 22:53:56 -0000
+Message-ID: <172566323671.955479.16337374700084058364@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240906214839.2460360-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20240906214839.2460360-1-ashutosh.dixit@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 217031ad4c96 drm-tip: 2024y-09m-06d-19h-01m-03s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/oa: Enable PES disaggregation
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a63d376d950fe582f58d9d3d624479b71643f0f2
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Fri Sep 6 14:48:39 2024 -0700
+
+    drm/xe/oa: Enable PES disaggregation
+    
+    PES disaggregation for OAG needs to be enabled to obtain disaggregated
+    metrics when disaggregated data is needed.
+    
+    Bspec: 61101
+    Fixes: e936f885f1e9 ("drm/xe/oa/uapi: Expose OA stream fd")
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a drm-intel
+a63d376d950f drm/xe/oa: Enable PES disaggregation
 
 
