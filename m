@@ -4,27 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B01DCE7B1B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:39:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7850CE7B1C
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 14:40:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0DB10EA71;
-	Fri,  6 Sep 2024 14:39:35 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91DF810EA71;
- Fri,  6 Sep 2024 14:39:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E2FB10EA72;
+	Fri,  6 Sep 2024 14:40:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I7cl6zvY";
+	dkim-atps=neutral
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B232010EA72;
+ Fri,  6 Sep 2024 14:39:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 7E23AA4052D;
+ Fri,  6 Sep 2024 14:39:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D571EC4CEDD;
+ Fri,  6 Sep 2024 14:39:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1725633596;
+ bh=rkekp7kqM0gCAalrU8ea199BED7ngZhFWZ9ZDGtHx3k=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=I7cl6zvYFJlUme26uJsip2QA6i0I+jgUU8x1ZBpuFST7iADtX6k0Y5N3HgonMY7N7
+ 6X7bCN3MU33QFTXdj5bjsEiDxoUIb1rbIz9WGvfiqjxFpe9Kl39vZFECdx/Uz2vD2B
+ u5VTZWBu32j/gMhZvIDzDGNYQYzX5vI6vkta+HWWaTMF+98VNhaYIwqp06PqNEQOo1
+ jv3EiVBU1vU3WZyl6atkTXR+tq9C8vpyhGXkPnjnqWVXySMfkJI1bSfwskMZYmUzGC
+ Jzoj4DaWHtefTTcpdDUIeJr1JKVqkj77cgAxHoygdqw8uF1ihuAeHovIp0BQNS9xHO
+ 62WX0rTj2ctDQ==
+Received: by mail-lj1-f176.google.com with SMTP id
+ 38308e7fff4ca-2f50f1d864fso24990471fa.1; 
+ Fri, 06 Sep 2024 07:39:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCULQCFf3h24lhfza1BA4T8zhcY4skba1Kf1AOmmo+AD0O7/vF+4pyuNLVsH/WvCEj/k+Uq4BEBHIhQ=@lists.freedesktop.org,
+ AJvYcCWphgeUZptuE7N3nzBsx6K8B+puFUG8A+6rDTv4+uVTPs+6IJAfqFoJQkEdNV0aoETh9X62WGvE4Zg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwtmMkw/sDHNUSEOZ57APCBqsM+dtiLRFh5xRkrvcYkH2ia+XPT
+ fAJrTTALyXYu9HPaZTcmW5T4OkypqzWZMhr/E7hhtExoPmeuRM2oq4eeba0Xz/ZXBbVETjotzsM
+ 6ELK87LXwHJNyW/kjlUilqC+Oe7k=
+X-Google-Smtp-Source: AGHT+IGL4aTm6msajUBLkGuh4MV69E6msRZnTsKTajf+VgcUyXlt6LjNklxij0DqQwf4v9zWQkEvfMasw6vxEqRUj9Q=
+X-Received: by 2002:a05:6512:39ce:b0:536:54df:bff2 with SMTP id
+ 2adb3069b0e04-53658812f84mr1931952e87.54.1725633595218; Fri, 06 Sep 2024
+ 07:39:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_Some_intel=5F?=
- =?utf-8?q?display_conversions?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Sep 2024 14:39:33 -0000
-Message-ID: <172563357359.954843.10036010596324519160@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
+References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
+ <20240906-macos-build-support-v2-3-06beff418848@samsung.com>
+In-Reply-To: <20240906-macos-build-support-v2-3-06beff418848@samsung.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Fri, 6 Sep 2024 23:39:18 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQDxVGOa5g3f_dqZ5nD_u8_a++T+ussL+AWuOXs-XOsow@mail.gmail.com>
+Message-ID: <CAK7LNAQDxVGOa5g3f_dqZ5nD_u8_a++T+ussL+AWuOXs-XOsow@mail.gmail.com>
+Subject: Re: [PATCH v2 3/8] drm/xe: xe_gen_wa_oob: fix
+ program_invocation_short_name for macos
+To: da.gomez@samsung.com
+Cc: Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
+ Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
+ Paul Moore <paul@paul-moore.com>,
+ Stephen Smalley <stephen.smalley.work@gmail.com>, 
+ Ondrej Mosnacek <omosnace@redhat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Oliver Upton <oliver.upton@linux.dev>, 
+ James Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ Simona Vetter <simona.vetter@ffwll.ch>, linux-kernel@vger.kernel.org, 
+ linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, speakup@linux-speakup.org, 
+ selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ kvmarm@lists.linux.dev, linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
+ Finn Behrens <me@kloenk.dev>, "Daniel Gomez (Samsung)" <d+samsung@kruces.com>,
+ gost.dev@samsung.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,77 +94,146 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Some intel_display conversions
-URL   : https://patchwork.freedesktop.org/series/138332/
-State : warning
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c62d7e164862503a3662a095da1c6c9014248cb2
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit a799ab76dab9756d15c845ede2fc534a88e3b15a
-Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Date:   Fri Sep 6 17:33:06 2024 +0300
-
-    drm/i915/dmc: Convert DMC code to intel_display
-    
-    struct intel_display will replace struct drm_i915_private as
-    the main thing for display code. Convert the DMC code to
-    use it (as much as possible at this stage).
-    
-    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-+ /mt/dim checkpatch 6094a8d70f8599700297da58bcf80d5b1915adff drm-intel
-21ad6884653f drm/i915/cdclk: Add missing braces
-6c326db98005 drm/i915/cdclk: Convert CDCLK code to intel_display
--:1465: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 26)
-#1465: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2103:
-+	if (DISPLAY_VER(display) >= 14 || IS_DG2(dev_priv))
- 		/* NOOP */;
-
--:1506: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 19)
-#1506: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2140:
-+	if (DISPLAY_VER(display) >= 14)
-[...]
- 		 */;
-
--:2893: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#2893: FILE: drivers/gpu/drm/i915/display/intel_display_driver.c:95:
-+	cdclk_state->logical = cdclk_state->actual = display->cdclk.hw;
-
-total: 0 errors, 2 warnings, 1 checks, 2934 lines checked
-85d00811b21f drm/i915/power: Convert low level DC state code to intel_display
-260fd3797a3d drm/i915/vga: Convert VGA code to intel_display
-0d7e59b0508c drm/i915/power: Convert "i830 power well" code to intel_display
-a799ab76dab9 drm/i915/dmc: Convert DMC code to intel_display
--:602: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#602: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:645:
-+		      !intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)),
-
--:709: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#709: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:821:
-+			    is_dmc_evt_ctl_reg(display, dmc_id, dmc_info->mmioaddr[i]) ? " (EVT_CTL)" :
-
--:710: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#710: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:822:
-+			    is_dmc_evt_htp_reg(display, dmc_id, dmc_info->mmioaddr[i]) ? " (EVT_HTP)" : "",
-
--:1168: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#1168: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1274:
-+		   intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)));
-
-total: 0 errors, 4 warnings, 0 checks, 1210 lines checked
+On Fri, Sep 6, 2024 at 8:01=E2=80=AFPM Daniel Gomez via B4 Relay
+<devnull+da.gomez.samsung.com@kernel.org> wrote:
+>
+> From: Daniel Gomez <da.gomez@samsung.com>
+>
+> Use getprogname() [1] instead of program_invocation_short_name() [2]
+> for macOS hosts.
+>
+> [1]:
+> https://www.gnu.org/software/gnulib/manual/html_node/
+> program_005finvocation_005fshort_005fname.html
+>
+> [2]:
+> https://developer.apple.com/library/archive/documentation/System/
+> Conceptual/ManPages_iPhoneOS/man3/getprogname.3.html
+>
+> Fixes build error for macOS hosts:
+>
+> drivers/gpu/drm/xe/xe_gen_wa_oob.c:34:3: error: use of
+> undeclared identifier 'program_invocation_short_name'    34 |
+> program_invocation_short_name);       |                 ^ 1 error
+> generated.
+>
+> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gen_wa_oob.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_g=
+en_wa_oob.c
+> index 904cf47925aa..0d933644d8a0 100644
+> --- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+> +++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+> @@ -8,6 +8,7 @@
+>  #include <errno.h>
+>  #include <stdbool.h>
+>  #include <stdio.h>
+> +#include <stdlib.h>
+>  #include <string.h>
+>
+>  #define HEADER \
+> @@ -30,6 +31,9 @@
+>
+>  static void print_usage(FILE *f)
+>  {
+> +#ifdef __APPLE__
+> +       const char *program_invocation_short_name =3D getprogname();
+> +#endif
+>         fprintf(f, "usage: %s <input-rule-file> <generated-c-source-file>=
+ <generated-c-header-file>\n",
+>                 program_invocation_short_name);
+>  }
+>
+> --
+> 2.46.0
+>
+>
 
 
+
+Before adding such #ifdef, you should check how other programs do.
+
+
+
+
+
+
+
+
+
+Solution 1 : hard-code the program name
+
+
+diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+index 106ee2b027f0..9e9a29e2cecf 100644
+--- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
++++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+@@ -30,8 +30,7 @@
+
+ static void print_usage(FILE *f)
+ {
+-       fprintf(f, "usage: %s <input-rule-file>
+<generated-c-source-file> <generated-c-header-file>\n",
+-               program_invocation_short_name);
++       fprintf(f, "usage: xe_gen_wa_oob <input-rule-file>
+<generated-c-source-file> <generated-c-header-file>\n");
+ }
+
+ static void print_parse_error(const char *err_msg, const char *line,
+
+
+
+
+
+
+
+
+Solution 2: use argv[0]
+
+
+diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+index 106ee2b027f0..600c63e88e46 100644
+--- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
++++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+@@ -28,10 +28,10 @@
+        "\n" \
+        "#endif\n"
+
+-static void print_usage(FILE *f)
++static void print_usage(FILE *f, const char *progname)
+ {
+        fprintf(f, "usage: %s <input-rule-file>
+<generated-c-source-file> <generated-c-header-file>\n",
+-               program_invocation_short_name);
++               progname);
+ }
+
+ static void print_parse_error(const char *err_msg, const char *line,
+@@ -136,7 +136,7 @@ int main(int argc, const char *argv[])
+
+        if (argc < 3) {
+                fprintf(stderr, "ERROR: wrong arguments\n");
+-               print_usage(stderr);
++               print_usage(stderr, argv[0]);
+                return 1;
+        }
+
+
+
+
+
+
+
+
+--=20
+Best Regards
+Masahiro Yamada
