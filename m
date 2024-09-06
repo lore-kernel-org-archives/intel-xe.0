@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64715E6FE30
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 15:59:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 520E5E6FE2F
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Sep 2024 16:17:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0075110E6BD;
-	Fri,  6 Sep 2024 15:59:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F212710E85B;
+	Fri,  6 Sep 2024 16:17:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0WS7Tnc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F5gPLKOn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C19510E3DD
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:59:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB9FE10E7F0;
+ Fri,  6 Sep 2024 16:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725638361; x=1757174361;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KrT6LRPUeO91sFRyN2QQt8XupJ+EkJ3pnFqjEwJwEz8=;
- b=h0WS7Tnc4mFjQMPoWnB2E4kasmIsKtQK4xcuSUWgavatUMwFlLr/fGoJ
- KgYo4PMF292CKeEcw5PX3R/Xm14GhqzSKNzgNX5Svy3qTayMZ71DWQI2j
- bb0HBYT0G7kWbSj7pb4zsqQTKM7WJhkDx4QW6C41BHQw+QRVXMtEiac+e
- 96tOBp7F5+gdBZLDOSoj/nqcTHpHdqJ/NIdaKumr0HfvbT0Mk1S4URb6n
- CuP43Pc/hkyj7MRMQuUF+4ICvjB3u1Om1n/k0RdRN7yPsgRD0HJxPBC8F
- +CnN4m4hpLACAGQ9eut/TwL9BNDqiMGqEkMlz6BY3X2J+zZZPiXbM7dRJ g==;
-X-CSE-ConnectionGUID: P4xq9gNdQ/2r9JENctn6Mg==
-X-CSE-MsgGUID: uR14K1OpTeKOCuCV4/Kzxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="41883050"
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="41883050"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 08:59:20 -0700
-X-CSE-ConnectionGUID: PPUl0+QWS7WIj37AGoT7fw==
-X-CSE-MsgGUID: HC5dEro6QdiSEM8qnWiM7Q==
+ t=1725639445; x=1757175445;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4MFWEaGYoiIhvq0WjaQcpTw7ulGZdB0sqG/5rP90+SI=;
+ b=F5gPLKOnsSofTTp3tu/ZWOqTijbFilZoxidMkw+x9SWopIuOK4oUd8Qk
+ VEdIV0xYsQrlK5gr3gL4QyoKpvCaDE3o0nn+Z9mXy6kF5jBXAdF10dC40
+ Q+T6hkZ8kBe3cgFhjia9W/yBOtruzqbRxfangjtzqgbWGPzomFatgZbH1
+ Drl6LlaTBTQVQ5NhJ5FU+2/zdZZEmULJ1kYNMHwl7mJhgjI5wUS4XOS8w
+ 9fSXABXmXNRSHM7rgI7uzb7xTVV1SP0Y2i6iYpETfTWVjkbPHYD9JdWe+
+ 2/nSFtJ0eWAdcKBhqwqm8tMcR9YE6VuWtDLljkfjONh7NC4wz8m+KPWGv Q==;
+X-CSE-ConnectionGUID: n6HR0AW+Tem+B3owMmjNzg==
+X-CSE-MsgGUID: 7kVVSWb8TSO1O23GhG/acw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="27330591"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="27330591"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 09:17:24 -0700
+X-CSE-ConnectionGUID: BPJqUuy5TJeRwVA2BfkPRA==
+X-CSE-MsgGUID: VlBwN/kuTtiyFWG4yR8XBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="70395125"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.163])
- ([10.245.244.163])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 08:59:17 -0700
-Message-ID: <71709bab-5f6d-40d8-9604-3c00041d3f76@intel.com>
-Date: Fri, 6 Sep 2024 16:59:15 +0100
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66037766"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 06 Sep 2024 09:17:21 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 06 Sep 2024 19:17:21 +0300
+Date: Fri, 6 Sep 2024 19:17:21 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/6] drm/i915/cdclk: Convert CDCLK code to intel_display
+Message-ID: <ZtsrEZ1poYDVwGOm@intel.com>
+References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
+ <20240906143306.15937-3-ville.syrjala@linux.intel.com>
+ <87mskkn731.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Add a xe_bo subtest for shrinking / swapping
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20240905131617.8521-1-thomas.hellstrom@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240905131617.8521-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <87mskkn731.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,359 +71,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 05/09/2024 14:16, Thomas Hellstr√∂m wrote:
-> Add a subtest that tries to allocate twice the amount of
-> buffer object memory available, write data to it and then read
-> all the data back verifying data integrity.
-> In order to be able to do this on systems that
-> have no or not enough swap-space available, allocate some memory
-> as purgeable, and introduce a function to purge such memory from
-> the TTM swap_notify path.
+On Fri, Sep 06, 2024 at 06:18:58PM +0300, Jani Nikula wrote:
+> On Fri, 06 Sep 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> >
+> > struct intel_display will replace struct drm_i915_private as
+> > the main thing for display code. Convert the CDCLK code to
+> > use it (as much as possible at this stage).
+> >
+> > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 > 
-> this test is intended to add test coverage to the current
-> bo swap path and upcoming shrinking path.
+> Some nitpicks inline, but overall
 > 
-> The test has previously been part of the xe bo shrinker series.
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 > 
-> v2:
-> - Skip test if the execution time is expected to be too long.
-> - Minor code cleanups.
+> [snip]
 > 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-> ---
->   drivers/gpu/drm/xe/tests/xe_bo.c | 237 +++++++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_bo.c       |  32 ++++-
->   2 files changed, 268 insertions(+), 1 deletion(-)
+> > @@ -2685,20 +2712,21 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+> >  	else
+> >  		pipe = INVALID_PIPE;
+> >  
+> > -	drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+> > +	drm_WARN_ON(display->drm, !new_cdclk_state->base.changed);
+> >  
+> > -	intel_set_cdclk(i915, &new_cdclk_state->actual, pipe,
+> > +	intel_set_cdclk(display, &new_cdclk_state->actual, pipe,
+> >  			"Post changing CDCLK to");
+> >  }
+> >  
+> >  static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
+> >  {
+> > -	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> > +	struct intel_display *display = to_intel_display(crtc_state->uapi.crtc->dev);
 > 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index 8dac069483e8..d82b7748dd9e 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -6,6 +6,12 @@
->   #include <kunit/test.h>
->   #include <kunit/visibility.h>
->   
-> +#include <linux/iosys-map.h>
-> +#include <linux/random.h>
-> +#include <linux/swap.h>
-> +
-> +#include <uapi/linux/sysinfo.h>
-> +
->   #include "tests/xe_kunit_helpers.h"
->   #include "tests/xe_pci_test.h"
->   #include "tests/xe_test.h"
-> @@ -358,9 +364,240 @@ static void xe_bo_evict_kunit(struct kunit *test)
->   	evict_test_run_device(xe);
->   }
->   
-> +struct xe_bo_link {
-> +	struct list_head link;
-> +	struct xe_bo *bo;
-> +	u32 val;
-> +};
-> +
-> +#define XE_BO_SHRINK_SIZE ((unsigned long)SZ_64M)
-> +
-> +static int shrink_test_fill_random(struct xe_bo *bo, struct rnd_state *state,
-> +				   struct xe_bo_link *link)
-> +{
-> +	struct iosys_map map;
-> +	int ret = ttm_bo_vmap(&bo->ttm, &map);
-> +	size_t __maybe_unused i;
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (i = 0; i < bo->ttm.base.size; i += sizeof(u32)) {
-> +		u32 val = prandom_u32_state(state);
-> +
-> +		iosys_map_wr(&map, i, u32, val);
-> +		if (i == 0)
-> +			link->val = val;
-> +	}
-> +
-> +	ttm_bo_vunmap(&bo->ttm, &map);
-> +	return 0;
-> +}
-> +
-> +static bool shrink_test_verify(struct kunit *test, struct xe_bo *bo,
-> +			       unsigned int bo_nr, struct rnd_state *state,
-> +			       struct xe_bo_link *link)
-> +{
-> +	struct iosys_map map;
-> +	int ret = ttm_bo_vmap(&bo->ttm, &map);
-> +	size_t i;
-> +	bool failed = false;
-> +
-> +	if (ret) {
-> +		KUNIT_FAIL(test, "Error mapping bo %u for content check.\n", bo_nr);
-> +		return true;
-> +	}
-> +
-> +	for (i = 0; i < bo->ttm.base.size; i += sizeof(u32)) {
-> +		u32 val = prandom_u32_state(state);
-> +
-> +		if (iosys_map_rd(&map, i, u32) != val) {
-> +			KUNIT_FAIL(test, "Content not preserved, bo %u offset 0x%016llx",
-> +				   bo_nr, (unsigned long long)i);
-> +			kunit_info(test, "Failed value is 0x%08x, recorded 0x%08x\n",
-> +				   (unsigned int)iosys_map_rd(&map, i, u32), val);
-> +			if (i == 0 && val != link->val)
-> +				kunit_info(test, "Looks like PRNG is out of sync.\n");
-> +			failed = true;
-> +			break;
-> +		}
-> +	}
-> +
-> +	ttm_bo_vunmap(&bo->ttm, &map);
-> +
-> +	return failed;
-> +}
-> +
-> +/*
-> + * Try to create system bos corresponding to twice the amount
-> + * of available system memory to test shrinker functionality.
-> + * If no swap space is available to accommodate the
-> + * memory overcommit, mark bos purgeable.
-> + */
-> +static int shrink_test_run_device(struct xe_device *xe)
-> +{
-> +	struct kunit *test = kunit_get_current_test();
-> +	LIST_HEAD(bos);
-> +	struct xe_bo_link *link, *next;
-> +	struct sysinfo si;
-> +	size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
-> +	unsigned int interrupted = 0, successful = 0, count = 0;
-> +	struct rnd_state prng;
-> +	u64 rand_seed;
-> +	bool failed = false;
-> +
-> +	rand_seed = get_random_u64();
-> +	prandom_seed_state(&prng, rand_seed);
+> This works, but to_intel_display(crtc_state) is enough.
 
-We could maybe print the seed, if we don't already, just in case it's 
-useful to repro something?
+Not entirely sure I like the magic going quite that deep.
+Though I suppose we do have a lot of that, so maybe it's
+best to make it simple as possible.
 
-Anyway,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> > +	struct drm_i915_private *dev_priv = to_i915(display->drm);
+> 
+> I usually don't bother with changing the dev_priv initialization if it
+> keeps working. I just put the display stuff first. But this works.
+> 
+> >  	int pixel_rate = crtc_state->pixel_rate;
+> >  
+> > -	if (DISPLAY_VER(dev_priv) >= 10)
+> > +	if (DISPLAY_VER(display) >= 10)
+> >  		return DIV_ROUND_UP(pixel_rate, 2);
+> > -	else if (DISPLAY_VER(dev_priv) == 9 ||
+> > +	else if (DISPLAY_VER(display) == 9 ||
+> >  		 IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> >  		return pixel_rate;
+> >  	else if (IS_CHERRYVIEW(dev_priv))
+> > @@ -2712,11 +2740,11 @@ static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
+> 
+> [snip]
+> 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+> > index 408c76852495..9ff08dbefc76 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> > @@ -1678,7 +1678,7 @@ static void __intel_display_device_info_runtime_init(struct drm_i915_private *i9
+> >  		}
+> >  	}
+> >  
+> > -	display_runtime->rawclk_freq = intel_read_rawclk(i915);
+> > +	display_runtime->rawclk_freq = intel_read_rawclk(&i915->display);
+> 
+> I generally prefer adding that struct intel_display local variable when
+> I need it the first time, so the subsequent changes are less churn.
 
-> +
-> +	/* Skip if execution time is expected to be too long. */
-> +
-> +	limit = SZ_32G;
-> +	/* IGFX with flat CCS needs to copy when swapping / shrinking */
-> +	if (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe))
-> +		limit = SZ_16G;
-> +
-> +	si_meminfo(&si);
-> +	ram = (size_t)si.freeram * si.mem_unit;
-> +	if (ram > limit) {
-> +		kunit_skip(test, "Too long expected execution time.\n");
-> +		return 0;
-> +	}
-> +	to_alloc = ram * 2;
-> +
-> +	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
-> +	if (to_alloc > ram_and_swap)
-> +		purgeable = to_alloc - ram_and_swap;
-> +	purgeable += purgeable / 5;
-> +
-> +	kunit_info(test, "Free ram is %lu bytes. Will allocate twice of that.\n",
-> +		   (unsigned long)ram);
-> +	for (alloced = 0; alloced < to_alloc; alloced += XE_BO_SHRINK_SIZE) {
-> +		struct xe_bo *bo;
-> +		unsigned int mem_type;
-> +		struct xe_ttm_tt *xe_tt;
-> +
-> +		link = kzalloc(sizeof(*link), GFP_KERNEL);
-> +		if (!link) {
-> +			KUNIT_FAIL(test, "Unexpected link allocation failure\n");
-> +			failed = true;
-> +			break;
-> +		}
-> +
-> +		INIT_LIST_HEAD(&link->link);
-> +
-> +		/* We can create bos using WC caching here. But it is slower. */
-> +		bo = xe_bo_create_user(xe, NULL, NULL, XE_BO_SHRINK_SIZE,
-> +				       DRM_XE_GEM_CPU_CACHING_WB,
-> +				       XE_BO_FLAG_SYSTEM);
-> +		if (IS_ERR(bo)) {
-> +			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
-> +			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
-> +				KUNIT_FAIL(test, "Error creating bo: %pe\n", bo);
-> +			kfree(link);
-> +			failed = true;
-> +			break;
-> +		}
-> +		xe_bo_lock(bo, false);
-> +		xe_tt = container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
-> +
-> +		/*
-> +		 * Allocate purgeable bos first, because if we do it the
-> +		 * other way around, they may not be subject to swapping...
-> +		 */
-> +		if (alloced < purgeable) {
-> +			xe_tt->purgeable = true;
-> +			bo->ttm.priority = 0;
-> +		} else {
-> +			int ret = shrink_test_fill_random(bo, &prng, link);
-> +
-> +			if (ret) {
-> +				xe_bo_unlock(bo);
-> +				xe_bo_put(bo);
-> +				KUNIT_FAIL(test, "Error filling bo with random data: %pe\n",
-> +					   ERR_PTR(ret));
-> +				kfree(link);
-> +				failed = true;
-> +				break;
-> +			}
-> +		}
-> +
-> +		mem_type = bo->ttm.resource->mem_type;
-> +		xe_bo_unlock(bo);
-> +		link->bo = bo;
-> +		list_add_tail(&link->link, &bos);
-> +
-> +		if (mem_type != XE_PL_TT) {
-> +			KUNIT_FAIL(test, "Bo in incorrect memory type: %u\n",
-> +				   bo->ttm.resource->mem_type);
-> +			failed = true;
-> +		}
-> +		cond_resched();
-> +		if (signal_pending(current))
-> +			break;
-> +	}
-> +
-> +	/*
-> +	 * Read back and destroy bos. Reset the pseudo-random seed to get an
-> +	 * identical pseudo-random number sequence for readback.
-> +	 */
-> +	prandom_seed_state(&prng, rand_seed);
-> +	list_for_each_entry_safe(link, next, &bos, link) {
-> +		static struct ttm_operation_ctx ctx = {.interruptible = true};
-> +		struct xe_bo *bo = link->bo;
-> +		struct xe_ttm_tt *xe_tt;
-> +		int ret;
-> +
-> +		count++;
-> +		if (!signal_pending(current) && !failed) {
-> +			bool purgeable, intr = false;
-> +
-> +			xe_bo_lock(bo, NULL);
-> +
-> +			/* xe_tt->purgeable is cleared on validate. */
-> +			xe_tt = container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
-> +			purgeable = xe_tt->purgeable;
-> +			do {
-> +				ret = ttm_bo_validate(&bo->ttm, &tt_placement, &ctx);
-> +				if (ret == -EINTR)
-> +					intr = true;
-> +			} while (ret == -EINTR && !signal_pending(current));
-> +
-> +			if (!ret && !purgeable)
-> +				failed = shrink_test_verify(test, bo, count, &prng, link);
-> +
-> +			xe_bo_unlock(bo);
-> +			if (ret) {
-> +				KUNIT_FAIL(test, "Validation failed: %pe\n",
-> +					   ERR_PTR(ret));
-> +				failed = true;
-> +			} else if (intr) {
-> +				interrupted++;
-> +			} else {
-> +				successful++;
-> +			}
-> +		}
-> +		xe_bo_put(link->bo);
-> +		list_del(&link->link);
-> +		kfree(link);
-> +	}
-> +	kunit_info(test, "Readbacks interrupted: %u successful: %u\n",
-> +		   interrupted, successful);
-> +
-> +	return 0;
-> +}
-> +
-> +static void xe_bo_shrink_kunit(struct kunit *test)
-> +{
-> +	struct xe_device *xe = test->priv;
-> +
-> +	shrink_test_run_device(xe);
-> +}
-> +
->   static struct kunit_case xe_bo_tests[] = {
->   	KUNIT_CASE_PARAM(xe_ccs_migrate_kunit, xe_pci_live_device_gen_param),
->   	KUNIT_CASE_PARAM(xe_bo_evict_kunit, xe_pci_live_device_gen_param),
-> +	KUNIT_CASE_PARAM_ATTR(xe_bo_shrink_kunit, xe_pci_live_device_gen_param,
-> +			      {.speed = KUNIT_SPEED_SLOW}),
->   	{}
->   };
->   
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 06911e9a3bf5..a065ba8fda83 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -283,6 +283,8 @@ struct xe_ttm_tt {
->   	struct device *dev;
->   	struct sg_table sgt;
->   	struct sg_table *sg;
-> +	/** @purgeable: Whether the content of the pages of @ttm is purgeable. */
-> +	bool purgeable;
->   };
->   
->   static int xe_tt_map_sg(struct ttm_tt *tt)
-> @@ -761,7 +763,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   	if (xe_rpm_reclaim_safe(xe)) {
->   		/*
->   		 * We might be called through swapout in the validation path of
-> -		 * another TTM device, so unconditionally acquire rpm here.
-> +		 * another TTM device, so acquire rpm here.
->   		 */
->   		xe_pm_runtime_get(xe);
->   	} else {
-> @@ -1082,6 +1084,33 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
->   	}
->   }
->   
-> +static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
-> +{
-> +	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
-> +
-> +	if (ttm_bo->ttm) {
-> +		struct ttm_placement place = {};
-> +		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
-> +
-> +		drm_WARN_ON(&xe->drm, ret);
-> +	}
-> +}
-> +
-> +static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
-> +{
-> +	struct ttm_operation_ctx ctx = {
-> +		.interruptible = false
-> +	};
-> +
-> +	if (ttm_bo->ttm) {
-> +		struct xe_ttm_tt *xe_tt =
-> +			container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
-> +
-> +		if (xe_tt->purgeable)
-> +			xe_ttm_bo_purge(ttm_bo, &ctx);
-> +	}
-> +}
-> +
->   const struct ttm_device_funcs xe_ttm_funcs = {
->   	.ttm_tt_create = xe_ttm_tt_create,
->   	.ttm_tt_populate = xe_ttm_tt_populate,
-> @@ -1094,6 +1123,7 @@ const struct ttm_device_funcs xe_ttm_funcs = {
->   	.release_notify = xe_ttm_bo_release_notify,
->   	.eviction_valuable = ttm_bo_eviction_valuable,
->   	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
-> +	.swap_notify = xe_ttm_bo_swap_notify,
->   };
->   
->   static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+Yeah, I tried to follow that, unless the surrounding code already has
+tons of &i915->display stuff in it. But here that isn't the case, so
+apparently I just failed to follow the procedure fully.
+
+-- 
+Ville Syrj‰l‰
+Intel
