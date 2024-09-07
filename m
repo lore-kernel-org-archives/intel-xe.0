@@ -4,54 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C314FE6FE49
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40B7CE6FE49
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:30:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8757C10EB5A;
-	Sat,  7 Sep 2024 00:08:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jqqb/8Bm";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF6910EB2D
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667678; x=1757203678;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8lf9hQFaqSiKi3jBXOO9J21cw/uEUbGMROOehBFdwpc=;
- b=Jqqb/8BmGsfW9qZdoLP8UsMDAqntPKfNSnA8Ad8wYUojKd0A3z3Jg+2m
- 6T/wBiI1MUYIhTPjghW9JFMiuZOTCtG6WSHBxew9NAGxBXsSLkU3J7CqA
- lPuPLygtrsgaFw7/DkTCXVqUXygQZV50C/+2YH1WYE3V5QW5Cw+aj1ece
- yuLvnweI4DAasFEEVg1sJqXil5hFeDTgfgYLCj4b2gj+xB49ZjxyGGdlW
- yYuclG8xyu3LYJblrdFIqtGeGCqFOOjIlDqrzlaFXJBEZErIlaJiQBp4I
- ILhC7XuE670h8AWMDHLeKfSakW17AeTzqSuMqbrfpIPRULMVlHCpxaAdy g==;
-X-CSE-ConnectionGUID: vHzLs+oMSkqbLJufxTuPKQ==
-X-CSE-MsgGUID: EMIQo5tGR62ZtED50VCkkQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855307"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855307"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: 7gogFhxfSsiRP6gY8AdVUA==
-X-CSE-MsgGUID: PYumqnjXQ9G/K3r8d2qGDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792666"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 17:07:55 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 17/43] drm/xe/device: Convert register access to use xe_mmio
-Date: Fri,  6 Sep 2024 17:08:06 -0700
-Message-ID: <20240907000748.2614020-62-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
-References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEF0310EB4C;
+	Sat,  7 Sep 2024 00:30:21 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8173910EB4C;
+ Sat,  7 Sep 2024 00:30:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4104547637664549656=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_Xe3_and_Panther_Lake_support?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 07 Sep 2024 00:30:20 -0000
+Message-ID: <172566902052.955479.10516535404327700625@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240906215153.31210-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20240906215153.31210-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,153 +35,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop using GT pointers for register access.
+--===============4104547637664549656==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 37 ++++++++++++++++------------------
- 1 file changed, 17 insertions(+), 20 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 449b85035d3a..cca17422bc2a 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -399,10 +399,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- static void xe_driver_flr(struct xe_device *xe)
- {
- 	const unsigned int flr_timeout = 3 * MICRO; /* specs recommend a 3s wait */
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
- 	int ret;
- 
--	if (xe_mmio_read32(gt, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
-+	if (xe_mmio_read32(mmio, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
- 		drm_info_once(&xe->drm, "BIOS Disabled Driver-FLR\n");
- 		return;
- 	}
-@@ -418,25 +418,25 @@ static void xe_driver_flr(struct xe_device *xe)
- 	 * is still pending (unless the HW is totally dead), but better to be
- 	 * safe in case something unexpected happens
- 	 */
--	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
-+	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
- 	if (ret) {
- 		drm_err(&xe->drm, "Driver-FLR-prepare wait for ready failed! %d\n", ret);
- 		return;
- 	}
--	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
-+	xe_mmio_write32(mmio, GU_DEBUG, DRIVERFLR_STATUS);
- 
- 	/* Trigger the actual Driver-FLR */
--	xe_mmio_rmw32(gt, GU_CNTL, 0, DRIVERFLR);
-+	xe_mmio_rmw32(mmio, GU_CNTL, 0, DRIVERFLR);
- 
- 	/* Wait for hardware teardown to complete */
--	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
-+	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
- 	if (ret) {
- 		drm_err(&xe->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
- 		return;
- 	}
- 
- 	/* Wait for hardware/firmware re-init to complete */
--	ret = xe_mmio_wait32(gt, GU_DEBUG, DRIVERFLR_STATUS, DRIVERFLR_STATUS,
-+	ret = xe_mmio_wait32(mmio, GU_DEBUG, DRIVERFLR_STATUS, DRIVERFLR_STATUS,
- 			     flr_timeout, NULL, false);
- 	if (ret) {
- 		drm_err(&xe->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
-@@ -444,7 +444,7 @@ static void xe_driver_flr(struct xe_device *xe)
- 	}
- 
- 	/* Clear sticky completion status */
--	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
-+	xe_mmio_write32(mmio, GU_DEBUG, DRIVERFLR_STATUS);
- }
- 
- static void xe_driver_flr_fini(void *arg)
-@@ -487,16 +487,15 @@ static int xe_set_dma_info(struct xe_device *xe)
- 	return err;
- }
- 
--static bool verify_lmem_ready(struct xe_gt *gt)
-+static bool verify_lmem_ready(struct xe_device *xe)
- {
--	u32 val = xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT;
-+	u32 val = xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT;
- 
- 	return !!val;
- }
- 
- static int wait_for_lmem_ready(struct xe_device *xe)
- {
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
- 	unsigned long timeout, start;
- 
- 	if (!IS_DGFX(xe))
-@@ -505,7 +504,7 @@ static int wait_for_lmem_ready(struct xe_device *xe)
- 	if (IS_SRIOV_VF(xe))
- 		return 0;
- 
--	if (verify_lmem_ready(gt))
-+	if (verify_lmem_ready(xe))
- 		return 0;
- 
- 	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
-@@ -534,7 +533,7 @@ static int wait_for_lmem_ready(struct xe_device *xe)
- 
- 		msleep(20);
- 
--	} while (!verify_lmem_ready(gt));
-+	} while (!verify_lmem_ready(xe));
- 
- 	drm_dbg(&xe->drm, "lmem ready after %ums",
- 		jiffies_to_msecs(jiffies - start));
-@@ -813,11 +812,9 @@ void xe_device_shutdown(struct xe_device *xe)
-  */
- void xe_device_wmb(struct xe_device *xe)
- {
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
--
- 	wmb();
- 	if (IS_DGFX(xe))
--		xe_mmio_write32(gt, VF_CAP_REG, 0);
-+		xe_mmio_write32(xe_root_tile_mmio(xe), VF_CAP_REG, 0);
- }
- 
- /**
-@@ -858,7 +855,7 @@ void xe_device_td_flush(struct xe_device *xe)
- 		if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GT))
- 			return;
- 
--		xe_mmio_write32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
-+		xe_mmio_write32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
- 		/*
- 		 * FIXME: We can likely do better here with our choice of
- 		 * timeout. Currently we just assume the worst case, i.e. 150us,
-@@ -866,7 +863,7 @@ void xe_device_td_flush(struct xe_device *xe)
- 		 * scenario on current platforms if all cache entries are
- 		 * transient and need to be flushed..
- 		 */
--		if (xe_mmio_wait32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST, 0,
-+		if (xe_mmio_wait32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST, 0,
- 				   150, NULL, false))
- 			xe_gt_err_once(gt, "TD flush timeout\n");
- 
-@@ -889,9 +886,9 @@ void xe_device_l2_flush(struct xe_device *xe)
- 		return;
- 
- 	spin_lock(&gt->global_invl_lock);
--	xe_mmio_write32(gt, XE2_GLOBAL_INVAL, 0x1);
-+	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
- 
--	if (xe_mmio_wait32(gt, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
-+	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
- 		xe_gt_err_once(gt, "Global invalidation timeout\n");
- 	spin_unlock(&gt->global_invl_lock);
- 
--- 
-2.45.2
+Series: Add Xe3 and Panther Lake support
+URL   : https://patchwork.freedesktop.org/series/138349/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a_BAT -> xe-pw-138349v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8008 -> IGT_8010
+  * Linux: xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a -> xe-pw-138349v1
+
+  IGT_8008: 91925eef7a79b1402b9422758311a4d693825362 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8010: 8010
+  xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a: 217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a
+  xe-pw-138349v1: 138349v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138349v1/index.html
+
+--===============4104547637664549656==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add Xe3 and Panther Lake support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138349/">https://patchwork.freedesktop.org/series/138349/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138349v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138349v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a_BAT -&gt; xe-pw-138349v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8008 -&gt; IGT_8010</li>
+<li>Linux: xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a -&gt; xe-pw-138349v1</li>
+</ul>
+<p>IGT_8008: 91925eef7a79b1402b9422758311a4d693825362 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8010: 8010<br />
+  xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a: 217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a<br />
+  xe-pw-138349v1: 138349v1</p>
+
+</body>
+</html>
+
+--===============4104547637664549656==--
