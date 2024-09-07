@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44575EB64CA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 802AFEB64CC
 	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70E7B10EB42;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F6D610EB45;
 	Sat,  7 Sep 2024 00:08:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQurO8SI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQot6H2W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92BBA10EB29
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4573610EB35
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667676; x=1757203676;
+ t=1725667679; x=1757203679;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M4YID2ewG1BoUZKBIV+lCmZrGKjrusuOzP2cJ4iPZeY=;
- b=OQurO8SIyW+gHUmTl6e/mH9gQBqHkWCH4VPkt2PpIoGwLL2HqJrQcIu4
- 59YbKup/RP52nl0mDndbH4iGH8nvwcahQSng3ea9zGkPiM0XUxMe/zKz7
- 9piwdkVYjQYCcz5itywrtGAr/IwGGFP23lVmunXC7O4bLcF3Fyo0xk4zB
- vEBeFRX7v6OPM2WeYHSGfOJ11AnqQsSTGDomoMTj3MAIzkpm09s4dDL68
- WeZjaPMuXiLoQ0CJp4nK/JtsmDEnduQx4XO9SYP7UjizjUEijsPQrBra2
- Jfa/WLLHlZ3+UwSCf8cOtaaPvmjbK8fuVl825EWxjafgEZDS82+RltFWZ w==;
-X-CSE-ConnectionGUID: btBNdnmTTJiJhOI+ovTdVw==
-X-CSE-MsgGUID: RmMPrIRYTUGxcaKM1d5d+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855294"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855294"
+ bh=ms1R9mLQVPwYxFu5kR2zgHgHlh5OkRbu2zfWePPPJmY=;
+ b=XQot6H2W9rCuf8EMyQ3jcepwuJ9/otQ/RoCb+VOcr99iqMhME46kIqC8
+ qaZJM9WeN29T+rbnm59yKQVEHTgLYgYRlnpr/nmnJNlcV6gQ1+842s913
+ ZYvKhfp92PbSFtBwF6g4MSxBFIKJbEBq0zEigtcXZEfXJNADk4C3mgO7Q
+ pJiZU86AFSpLf4H5JoTqYLX92YKa91hA77K29g+AJXLGvmx19405HveLZ
+ S7DtZZrjVTqJpMffjzmkz3+m6gRDYF9Rp3g68hFAZXnrz+k4fGJwlHCK8
+ r7SQdTL/mtcCeu4MEepqxXGT9yXlT2OFrFBklTM6PRPOptaL6tx/hs+rf w==;
+X-CSE-ConnectionGUID: z3sacIofT3me9okkD/9usA==
+X-CSE-MsgGUID: 5D8E+yvxTJ6wl1rHnTdIJA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855323"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855323"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: jls6KIlOTCqLgmlnnWHLHw==
-X-CSE-MsgGUID: tk31GW6sTZudCWgUBDkk4w==
+X-CSE-ConnectionGUID: MNgPID8KR2KPXZ2049EZ5A==
+X-CSE-MsgGUID: FTmZiCYEQrSe2bdsmunG4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792627"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792719"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 04/43] drm/xe: Move GSI offset adjustment fields into
- 'struct xe_mmio'
-Date: Fri,  6 Sep 2024 17:07:53 -0700
-Message-ID: <20240907000748.2614020-49-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v2 33/43] drm/xe/execlist: Convert register access to use
+ xe_mmio
+Date: Fri,  6 Sep 2024 17:08:22 -0700
+Message-ID: <20240907000748.2614020-78-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -68,137 +67,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-By moving the GSI adjustment fields into 'struct xe_mmio' we can replace
-the GT's MMIO substructure with another instance of xe_mmio.  At the
-moment this means MMIO operations wind up pulling information from two
-different places (the tile's xe_mmio for the iomap and the GT's xe_mmio
-for the adjustment), but we'll address that in future patches.
-
-The type headers change a bit with this change, meaning that various
-files should be including xe_device_types.h instead of (or in addition
-to) xe_gt_types.h.
-
-v2:
- - Fix pre-existing kerneldoc typo while moving the fields (Lucas)
+Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_assert.h       |  2 +-
- drivers/gpu/drm/xe/xe_device.h       |  1 +
- drivers/gpu/drm/xe/xe_device_types.h |  7 ++++++-
- drivers/gpu/drm/xe/xe_gt_freq.c      |  2 +-
- drivers/gpu/drm/xe/xe_gt_printk.h    |  2 +-
- drivers/gpu/drm/xe/xe_gt_types.h     | 11 ++---------
- 6 files changed, 12 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_execlist.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
-index e22bbf57fca7..04d6b95c6d87 100644
---- a/drivers/gpu/drm/xe/xe_assert.h
-+++ b/drivers/gpu/drm/xe/xe_assert.h
-@@ -10,7 +10,7 @@
- 
- #include <drm/drm_print.h>
- 
--#include "xe_device_types.h"
-+#include "xe_gt_types.h"
- #include "xe_step.h"
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index ec726dcd5f99..ca8d8ef6342b 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -9,6 +9,7 @@
- #include <drm/drm_util.h>
- 
- #include "xe_device_types.h"
-+#include "xe_gt_types.h"
- 
- static inline struct xe_device *to_xe_device(const struct drm_device *dev)
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 6a59165b9569..f3b71fe7a96d 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -44,6 +44,7 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 			u32 ctx_id)
  {
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index ecf95801743d..85ef36c5d040 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -14,7 +14,6 @@
+ 	struct xe_gt *gt = hwe->gt;
++	struct xe_mmio *mmio = &gt->mmio;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u64 lrc_desc;
  
- #include "xe_devcoredump_types.h"
- #include "xe_heci_gsc.h"
--#include "xe_gt_types.h"
- #include "xe_lmtt_types.h"
- #include "xe_memirq_types.h"
- #include "xe_oa.h"
-@@ -127,6 +126,12 @@ struct xe_mmio {
- 	 * non-register regions such as the GGTT PTEs.
+@@ -58,7 +59,7 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 	}
+ 
+ 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
+-		xe_mmio_write32(hwe->gt, RCU_MODE,
++		xe_mmio_write32(mmio, RCU_MODE,
+ 				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
+ 
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+@@ -76,17 +77,17 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
  	 */
- 	size_t regs_size;
-+
-+	/** adj_limit: adjust MMIO address if address is below this value */
-+	u32 adj_limit;
-+
-+	/** @adj_offset: offset to add to MMIO address when adjusting */
-+	u32 adj_offset;
- };
+ 	wmb();
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
-index 68a5778b4319..552435951f11 100644
---- a/drivers/gpu/drm/xe/xe_gt_freq.c
-+++ b/drivers/gpu/drm/xe/xe_gt_freq.c
-@@ -11,9 +11,9 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
+-	xe_mmio_write32(gt, RING_HWS_PGA(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_HWS_PGA(hwe->mmio_base),
+ 			xe_bo_ggtt_addr(hwe->hwsp));
+-	xe_mmio_read32(gt, RING_HWS_PGA(hwe->mmio_base));
+-	xe_mmio_write32(gt, RING_MODE(hwe->mmio_base),
++	xe_mmio_read32(mmio, RING_HWS_PGA(hwe->mmio_base));
++	xe_mmio_write32(mmio, RING_MODE(hwe->mmio_base),
+ 			_MASKED_BIT_ENABLE(GFX_DISABLE_LEGACY_MODE));
  
--#include "xe_device_types.h"
- #include "xe_gt_sysfs.h"
- #include "xe_gt_throttle.h"
-+#include "xe_gt_types.h"
- #include "xe_guc_pc.h"
- #include "xe_pm.h"
+-	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
+ 			lower_32_bits(lrc_desc));
+-	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
+ 			upper_32_bits(lrc_desc));
+-	xe_mmio_write32(gt, RING_EXECLIST_CONTROL(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_CONTROL(hwe->mmio_base),
+ 			EL_CTRL_LOAD);
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
-index d6228baaff1e..5dc71394372d 100644
---- a/drivers/gpu/drm/xe/xe_gt_printk.h
-+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
-@@ -8,7 +8,7 @@
+@@ -168,8 +169,8 @@ static u64 read_execlist_status(struct xe_hw_engine *hwe)
+ 	struct xe_gt *gt = hwe->gt;
+ 	u32 hi, lo;
  
- #include <drm/drm_print.h>
+-	lo = xe_mmio_read32(gt, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
+-	hi = xe_mmio_read32(gt, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
++	lo = xe_mmio_read32(&gt->mmio, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
++	hi = xe_mmio_read32(&gt->mmio, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
  
--#include "xe_device_types.h"
-+#include "xe_gt_types.h"
- 
- #define xe_gt_printk(_gt, _level, _fmt, ...) \
- 	drm_##_level(&gt_to_xe(_gt)->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index dd6bbef0bbcd..a287b98ee70b 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_GT_TYPES_H_
- #define _XE_GT_TYPES_H_
- 
-+#include "xe_device_types.h"
- #include "xe_force_wake_types.h"
- #include "xe_gt_idle_types.h"
- #include "xe_gt_sriov_pf_types.h"
-@@ -147,15 +148,7 @@ struct xe_gt {
- 	 * register space, but have their own copy of GSI registers at a
- 	 * specific offset.
- 	 */
--	struct {
--		/**
--		 * @mmio.adj_limit: adjust MMIO address if address is below this
--		 * value
--		 */
--		u32 adj_limit;
--		/** @mmio.adj_offset: offect to add to MMIO address when adjusting */
--		u32 adj_offset;
--	} mmio;
-+	struct xe_mmio mmio;
- 
- 	/**
- 	 * @pm: power management info for GT.  The driver uses the GT's
+ 	return lo | (u64)hi << 32;
+ }
 -- 
 2.45.2
 
