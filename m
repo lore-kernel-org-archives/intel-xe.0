@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DDFAE6FE4B
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7242FE6FE4F
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26B4D10EB32;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6303210EB2D;
 	Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jDW/w8h/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WDJ8+dIR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 452A410EB25
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBD210EB25
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667678; x=1757203678;
+ t=1725667676; x=1757203676;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YdpINKyTwwKivL3ODJMyHu9slC12xEhJonTiSdNjJPA=;
- b=jDW/w8h/5MWnXJNc1CaWiTD6sh2ufo0dTkMFopTbVq0FoS3lAQDGMCWH
- GX7QSFeArO58TNjXrVsG6mtnwFITZzMxZQ60cwfUtTpxFkLH5t4L9VTPu
- iqr8DWtPcIp0nmJdEx5T60CoCz1cmdxfccNNt9QbcSPiidM/6vFv2Ij6q
- rDVb9DoQrQfBMppROrvzoXOnDf/UqFCRaKaRWXHZBiAPbMKapGLl9IxNX
- +H2PK58NE2MGxqWJT85AHmdTPCyXbLAGNNsnwhF2A9er7VwFUq4o1yr2T
- JC4DV/z9+ZAA2SSQY9vbMsK7yPvFrNEYJxQ28mO+09eT7na5BY00Uu4Ba w==;
-X-CSE-ConnectionGUID: xj4rw7BXSZGpPFbCwLivZw==
-X-CSE-MsgGUID: JMQGhNFDTQyZNLonHp7L4w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855302"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855302"
+ bh=QCL0LdfZA+gPZ/8lDbHx3V9PGwI5IHFBZuC94IvdhE8=;
+ b=WDJ8+dIR6TEwAQE/scCw2cXA1F5Rvp4S8Y/K73eElXhl4BjVwabzB54m
+ lGe2TV7eRycqgbcFGu/Ef0LRe0l1/p0/jwkhZaxPLxxIx2cf1f6wxxDj3
+ qe2U9fNDbH0BErQ0vGANvj0QGHzbIWN7GgScxBwpsVeXY26SXitTK2T7i
+ oeHKlkPAjWopamsmDbyPwiI/MyhEnrlOcWF5rTaDZvr3ci8VeRG7IxrSz
+ K02oplxQv2NM+pXJ8dgCSR/t+oZVDhV8JhGkfOAkNTw38fjZN0qYDs9qM
+ lpFgb0hWOg/QRMqQUKkroQt+kYvMngc5xpU3/H35PyYHuuT26g6DvB8I+ A==;
+X-CSE-ConnectionGUID: rycZN4hcT6iB7eJsANxbMg==
+X-CSE-MsgGUID: JdZLscgiR9aw8ofc+ELiew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855295"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855295"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: OlaVgE1wQZaB3R6z0IwpnA==
-X-CSE-MsgGUID: JujbIJ61QGWQM9Cb0j7eJQ==
+X-CSE-ConnectionGUID: AL1mD/uvR/SRiHpTvLiZ/Q==
+X-CSE-MsgGUID: n+OX+sESQeOSYqg1vHwqPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792652"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792630"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
@@ -45,9 +45,10 @@ From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 12/43] drm/xe/hwmon: Convert register access to use xe_mmio
-Date: Fri,  6 Sep 2024 17:08:01 -0700
-Message-ID: <20240907000748.2614020-57-matthew.d.roper@intel.com>
+Subject: [PATCH v2 05/43] drm/xe: Populate GT's mmio iomap from tile during
+ init
+Date: Fri,  6 Sep 2024 17:07:54 -0700
+Message-ID: <20240907000748.2614020-50-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -67,90 +68,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop using GT pointers for register access.
+Each GT should share the same register iomap as its parent tile.  Future
+patches will switch to access the iomap through the GT's mmio substruct
+rather than through the tile.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index aa11728e7e79..fde56dad3ab7 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -149,7 +149,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *v
- 	u64 reg_val, min, max;
- 	struct xe_device *xe = hwmon->xe;
- 	struct xe_reg rapl_limit, pkg_power_sku;
--	struct xe_gt *mmio = xe_root_mmio_gt(xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3bce0e550a63..5a6833bf9f56 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -716,6 +716,8 @@ static int xe_info_init(struct xe_device *xe,
+ 		gt->info.type = XE_GT_TYPE_MAIN;
+ 		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
+ 		gt->info.engine_mask = graphics_desc->hw_engine_mask;
++		gt->mmio.regs = tile->mmio.regs;
++		gt->mmio.regs_size = tile->mmio.regs_size;
+ 		if (MEDIA_VER(xe) < 13 && media_desc)
+ 			gt->info.engine_mask |= media_desc->hw_engine_mask;
  
- 	rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
- 	pkg_power_sku = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
-@@ -190,7 +190,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *v
+@@ -734,6 +736,8 @@ static int xe_info_init(struct xe_device *xe,
+ 		gt->info.type = XE_GT_TYPE_MEDIA;
+ 		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
+ 		gt->info.engine_mask = media_desc->hw_engine_mask;
++		gt->mmio.regs = tile->mmio.regs;
++		gt->mmio.regs_size = tile->mmio.regs_size;
+ 		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
+ 		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
  
- static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long value)
- {
--	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	int ret = 0;
- 	u64 reg_val;
- 	struct xe_reg rapl_limit;
-@@ -222,7 +222,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long va
- 
- static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, long *value)
- {
--	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	struct xe_reg reg = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
- 	u64 reg_val;
- 
-@@ -259,7 +259,7 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, l
- static void
- xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
- {
--	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
- 	u64 reg_val;
- 
-@@ -282,7 +282,7 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
- 				 char *buf)
- {
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
--	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	u32 x, y, x_w = 2; /* 2 bits */
- 	u64 r, tau4, out;
- 	int sensor_index = to_sensor_dev_attr(attr)->index;
-@@ -323,7 +323,7 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 				  const char *buf, size_t count)
- {
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
--	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	u32 x, y, rxy, x_w = 2; /* 2 bits */
- 	u64 tau4, r, max_win;
- 	unsigned long val;
-@@ -498,7 +498,7 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
- 
- static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *value)
- {
--	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	u64 reg_val;
- 
- 	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS, channel));
-@@ -781,7 +781,7 @@ static const struct hwmon_chip_info hwmon_chip_info = {
- static void
- xe_hwmon_get_preregistration_info(struct xe_device *xe)
- {
--	struct xe_gt *mmio = xe_root_mmio_gt(xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
- 	struct xe_hwmon *hwmon = xe->hwmon;
- 	long energy;
- 	u64 val_sku_unit = 0;
 -- 
 2.45.2
 
