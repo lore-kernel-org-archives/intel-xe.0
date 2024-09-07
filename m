@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA372E6FE50
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C314FE6FE49
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84D9410EB51;
-	Sat,  7 Sep 2024 00:08:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8757C10EB5A;
+	Sat,  7 Sep 2024 00:08:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UobemugJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jqqb/8Bm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CEF10EB2D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF6910EB2D
  for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667679; x=1757203679;
+ t=1725667678; x=1757203678;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JkqPzILTMesCMwVkv3ZFiTLewDK1ZbgH/GKmp5xJeYc=;
- b=UobemugJkmFBSwkJvcU9EJB+yMHMCmoSbWfvR0+6rc4WLJG0+jaDIyn+
- hXE1OMPhfMkRa7DS0ERynYCqNDw2S8Dp7rk4DOwiUZnDu5igkyYSIDqJB
- tByWCeFs6cqfAiTDP7KaYveHsHzGg15SPVYrGNDLshxNR14d3EgLU4YmW
- SvzSA7eJsmt3CY0lEYM+dnAsi6owiurrj9MCiZa2CpxT+D78Bg0KsNB0l
- EbXpW/cLl/RkSohOcKDbqPoqbHNOE6AxLP+pfOTZ5GTWjfQc2HUBPvc4c
- OjE3TFXwH8FGupbDLgH1buszfe3UH9W7ZchaKMEDko8l/6MtL6Y0KarvS w==;
-X-CSE-ConnectionGUID: tl4UdB2xTDmhYdDST4Mhpw==
-X-CSE-MsgGUID: 9u1UyJHrRk2uoE/QkrXJ7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855315"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855315"
+ bh=8lf9hQFaqSiKi3jBXOO9J21cw/uEUbGMROOehBFdwpc=;
+ b=Jqqb/8BmGsfW9qZdoLP8UsMDAqntPKfNSnA8Ad8wYUojKd0A3z3Jg+2m
+ 6T/wBiI1MUYIhTPjghW9JFMiuZOTCtG6WSHBxew9NAGxBXsSLkU3J7CqA
+ lPuPLygtrsgaFw7/DkTCXVqUXygQZV50C/+2YH1WYE3V5QW5Cw+aj1ece
+ yuLvnweI4DAasFEEVg1sJqXil5hFeDTgfgYLCj4b2gj+xB49ZjxyGGdlW
+ yYuclG8xyu3LYJblrdFIqtGeGCqFOOjIlDqrzlaFXJBEZErIlaJiQBp4I
+ ILhC7XuE670h8AWMDHLeKfSakW17AeTzqSuMqbrfpIPRULMVlHCpxaAdy g==;
+X-CSE-ConnectionGUID: vHzLs+oMSkqbLJufxTuPKQ==
+X-CSE-MsgGUID: EMIQo5tGR62ZtED50VCkkQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855307"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855307"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: 2zCAB5g1QrCLC3MBJrVGbw==
-X-CSE-MsgGUID: xQJR3hiHQNykQo9N8ftwbw==
+X-CSE-ConnectionGUID: 7gogFhxfSsiRP6gY8AdVUA==
+X-CSE-MsgGUID: PYumqnjXQ9G/K3r8d2qGDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792693"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792666"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 25/43] drm/xe/mcr: Convert register access to use xe_mmio
-Date: Fri,  6 Sep 2024 17:08:14 -0700
-Message-ID: <20240907000748.2614020-70-matthew.d.roper@intel.com>
+Subject: [PATCH v2 17/43] drm/xe/device: Convert register access to use xe_mmio
+Date: Fri,  6 Sep 2024 17:08:06 -0700
+Message-ID: <20240907000748.2614020-62-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -70,162 +70,145 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_mcr.c | 39 ++++++++++++++++++----------------
- 1 file changed, 21 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 37 ++++++++++++++++------------------
+ 1 file changed, 17 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 7d7bd0be6233..2671ce6b1a76 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -239,11 +239,13 @@ static const struct xe_mmio_range xe2lpm_instance0_steering_table[] = {
- 
- static void init_steering_l3bank(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 449b85035d3a..cca17422bc2a 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -399,10 +399,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ static void xe_driver_flr(struct xe_device *xe)
  {
-+	struct xe_mmio *mmio = &gt->mmio;
-+
- 	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
- 		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
--						xe_mmio_read32(gt, MIRROR_FUSE3));
-+						xe_mmio_read32(mmio, MIRROR_FUSE3));
- 		u32 bank_mask = REG_FIELD_GET(GT_L3_EXC_MASK,
--					      xe_mmio_read32(gt, XEHP_FUSE4));
-+					      xe_mmio_read32(mmio, XEHP_FUSE4));
+ 	const unsigned int flr_timeout = 3 * MICRO; /* specs recommend a 3s wait */
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	int ret;
  
- 		/*
- 		 * Group selects mslice, instance selects bank within mslice.
-@@ -254,7 +256,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
- 			bank_mask & BIT(0) ? 0 : 2;
- 	} else if (gt_to_xe(gt)->info.platform == XE_DG2) {
- 		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
--						xe_mmio_read32(gt, MIRROR_FUSE3));
-+						xe_mmio_read32(mmio, MIRROR_FUSE3));
- 		u32 bank = __ffs(mslice_mask) * 8;
- 
- 		/*
-@@ -266,7 +268,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
- 		gt->steering[L3BANK].instance_target = bank & 0x3;
- 	} else {
- 		u32 fuse = REG_FIELD_GET(L3BANK_MASK,
--					 ~xe_mmio_read32(gt, MIRROR_FUSE3));
-+					 ~xe_mmio_read32(mmio, MIRROR_FUSE3));
- 
- 		gt->steering[L3BANK].group_target = 0;	/* unused */
- 		gt->steering[L3BANK].instance_target = __ffs(fuse);
-@@ -276,7 +278,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
- static void init_steering_mslice(struct xe_gt *gt)
- {
- 	u32 mask = REG_FIELD_GET(MEML3_EN_MASK,
--				 xe_mmio_read32(gt, MIRROR_FUSE3));
-+				 xe_mmio_read32(&gt->mmio, MIRROR_FUSE3));
- 
- 	/*
- 	 * mslice registers are valid (not terminated) if either the meml3
-@@ -380,7 +382,7 @@ static void init_steering_oaddrm(struct xe_gt *gt)
- static void init_steering_sqidi_psmi(struct xe_gt *gt)
- {
- 	u32 mask = REG_FIELD_GET(XE2_NODE_ENABLE_MASK,
--				 xe_mmio_read32(gt, MIRROR_FUSE3));
-+				 xe_mmio_read32(&gt->mmio, MIRROR_FUSE3));
- 	u32 select = __ffs(mask);
- 
- 	gt->steering[SQIDI_PSMI].group_target = select >> 1;
-@@ -494,8 +496,8 @@ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt)
- 		u32 steer_val = REG_FIELD_PREP(MCR_SLICE_MASK, 0) |
- 			REG_FIELD_PREP(MCR_SUBSLICE_MASK, 2);
- 
--		xe_mmio_write32(gt, MCFG_MCR_SELECTOR, steer_val);
--		xe_mmio_write32(gt, SF_MCR_SELECTOR, steer_val);
-+		xe_mmio_write32(&gt->mmio, MCFG_MCR_SELECTOR, steer_val);
-+		xe_mmio_write32(&gt->mmio, SF_MCR_SELECTOR, steer_val);
- 		/*
- 		 * For GAM registers, all reads should be directed to instance 1
- 		 * (unicast reads against other instances are not allowed),
-@@ -533,7 +535,7 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
- 			continue;
- 
- 		for (int i = 0; gt->steering[type].ranges[i].end > 0; i++) {
--			if (xe_mmio_in_range(gt, &gt->steering[type].ranges[i], reg)) {
-+			if (xe_mmio_in_range(&gt->mmio, &gt->steering[type].ranges[i], reg)) {
- 				*group = gt->steering[type].group_target;
- 				*instance = gt->steering[type].instance_target;
- 				return true;
-@@ -544,7 +546,7 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
- 	implicit_ranges = gt->steering[IMPLICIT_STEERING].ranges;
- 	if (implicit_ranges)
- 		for (int i = 0; implicit_ranges[i].end > 0; i++)
--			if (xe_mmio_in_range(gt, &implicit_ranges[i], reg))
-+			if (xe_mmio_in_range(&gt->mmio, &implicit_ranges[i], reg))
- 				return false;
- 
- 	/*
-@@ -579,7 +581,7 @@ static void mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
- 	 * when a read to the relevant register returns 1.
+-	if (xe_mmio_read32(gt, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
++	if (xe_mmio_read32(mmio, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
+ 		drm_info_once(&xe->drm, "BIOS Disabled Driver-FLR\n");
+ 		return;
+ 	}
+@@ -418,25 +418,25 @@ static void xe_driver_flr(struct xe_device *xe)
+ 	 * is still pending (unless the HW is totally dead), but better to be
+ 	 * safe in case something unexpected happens
  	 */
- 	if (GRAPHICS_VERx100(xe) >= 1270)
--		ret = xe_mmio_wait32(gt, STEER_SEMAPHORE, 0x1, 0x1, 10, NULL,
-+		ret = xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0x1, 10, NULL,
- 				     true);
+-	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
++	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
+ 	if (ret) {
+ 		drm_err(&xe->drm, "Driver-FLR-prepare wait for ready failed! %d\n", ret);
+ 		return;
+ 	}
+-	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
++	xe_mmio_write32(mmio, GU_DEBUG, DRIVERFLR_STATUS);
  
- 	drm_WARN_ON_ONCE(&xe->drm, ret == -ETIMEDOUT);
-@@ -589,7 +591,7 @@ static void mcr_unlock(struct xe_gt *gt) __releases(&gt->mcr_lock)
- {
- 	/* Release hardware semaphore - this is done by writing 1 to the register */
- 	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270)
--		xe_mmio_write32(gt, STEER_SEMAPHORE, 0x1);
-+		xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, 0x1);
+ 	/* Trigger the actual Driver-FLR */
+-	xe_mmio_rmw32(gt, GU_CNTL, 0, DRIVERFLR);
++	xe_mmio_rmw32(mmio, GU_CNTL, 0, DRIVERFLR);
  
- 	spin_unlock(&gt->mcr_lock);
- }
-@@ -603,6 +605,7 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
- 				u8 rw_flag, int group, int instance, u32 value)
- {
- 	const struct xe_reg reg = to_xe_reg(reg_mcr);
-+	struct xe_mmio *mmio = &gt->mmio;
- 	struct xe_reg steer_reg;
- 	u32 steer_val, val = 0;
- 
-@@ -635,12 +638,12 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
- 	if (rw_flag == MCR_OP_READ)
- 		steer_val |= MCR_MULTICAST;
- 
--	xe_mmio_write32(gt, steer_reg, steer_val);
-+	xe_mmio_write32(mmio, steer_reg, steer_val);
- 
- 	if (rw_flag == MCR_OP_READ)
--		val = xe_mmio_read32(gt, reg);
-+		val = xe_mmio_read32(mmio, reg);
- 	else
--		xe_mmio_write32(gt, reg, value);
-+		xe_mmio_write32(mmio, reg, value);
- 
- 	/*
- 	 * If we turned off the multicast bit (during a write) we're required
-@@ -649,7 +652,7 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
- 	 * operation.
- 	 */
- 	if (rw_flag == MCR_OP_WRITE)
--		xe_mmio_write32(gt, steer_reg, MCR_MULTICAST);
-+		xe_mmio_write32(mmio, steer_reg, MCR_MULTICAST);
- 
- 	return val;
- }
-@@ -684,7 +687,7 @@ u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, struct xe_reg_mcr reg_mcr)
- 					   group, instance, 0);
- 		mcr_unlock(gt);
- 	} else {
--		val = xe_mmio_read32(gt, reg);
-+		val = xe_mmio_read32(&gt->mmio, reg);
+ 	/* Wait for hardware teardown to complete */
+-	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
++	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
+ 	if (ret) {
+ 		drm_err(&xe->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
+ 		return;
  	}
  
- 	return val;
-@@ -757,7 +760,7 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
- 	 * to touch the steering register.
- 	 */
- 	mcr_lock(gt);
--	xe_mmio_write32(gt, reg, value);
-+	xe_mmio_write32(&gt->mmio, reg, value);
- 	mcr_unlock(gt);
+ 	/* Wait for hardware/firmware re-init to complete */
+-	ret = xe_mmio_wait32(gt, GU_DEBUG, DRIVERFLR_STATUS, DRIVERFLR_STATUS,
++	ret = xe_mmio_wait32(mmio, GU_DEBUG, DRIVERFLR_STATUS, DRIVERFLR_STATUS,
+ 			     flr_timeout, NULL, false);
+ 	if (ret) {
+ 		drm_err(&xe->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
+@@ -444,7 +444,7 @@ static void xe_driver_flr(struct xe_device *xe)
+ 	}
+ 
+ 	/* Clear sticky completion status */
+-	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
++	xe_mmio_write32(mmio, GU_DEBUG, DRIVERFLR_STATUS);
  }
+ 
+ static void xe_driver_flr_fini(void *arg)
+@@ -487,16 +487,15 @@ static int xe_set_dma_info(struct xe_device *xe)
+ 	return err;
+ }
+ 
+-static bool verify_lmem_ready(struct xe_gt *gt)
++static bool verify_lmem_ready(struct xe_device *xe)
+ {
+-	u32 val = xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT;
++	u32 val = xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT;
+ 
+ 	return !!val;
+ }
+ 
+ static int wait_for_lmem_ready(struct xe_device *xe)
+ {
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
+ 	unsigned long timeout, start;
+ 
+ 	if (!IS_DGFX(xe))
+@@ -505,7 +504,7 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+ 	if (IS_SRIOV_VF(xe))
+ 		return 0;
+ 
+-	if (verify_lmem_ready(gt))
++	if (verify_lmem_ready(xe))
+ 		return 0;
+ 
+ 	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
+@@ -534,7 +533,7 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+ 
+ 		msleep(20);
+ 
+-	} while (!verify_lmem_ready(gt));
++	} while (!verify_lmem_ready(xe));
+ 
+ 	drm_dbg(&xe->drm, "lmem ready after %ums",
+ 		jiffies_to_msecs(jiffies - start));
+@@ -813,11 +812,9 @@ void xe_device_shutdown(struct xe_device *xe)
+  */
+ void xe_device_wmb(struct xe_device *xe)
+ {
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
+-
+ 	wmb();
+ 	if (IS_DGFX(xe))
+-		xe_mmio_write32(gt, VF_CAP_REG, 0);
++		xe_mmio_write32(xe_root_tile_mmio(xe), VF_CAP_REG, 0);
+ }
+ 
+ /**
+@@ -858,7 +855,7 @@ void xe_device_td_flush(struct xe_device *xe)
+ 		if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GT))
+ 			return;
+ 
+-		xe_mmio_write32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
++		xe_mmio_write32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
+ 		/*
+ 		 * FIXME: We can likely do better here with our choice of
+ 		 * timeout. Currently we just assume the worst case, i.e. 150us,
+@@ -866,7 +863,7 @@ void xe_device_td_flush(struct xe_device *xe)
+ 		 * scenario on current platforms if all cache entries are
+ 		 * transient and need to be flushed..
+ 		 */
+-		if (xe_mmio_wait32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST, 0,
++		if (xe_mmio_wait32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST, 0,
+ 				   150, NULL, false))
+ 			xe_gt_err_once(gt, "TD flush timeout\n");
+ 
+@@ -889,9 +886,9 @@ void xe_device_l2_flush(struct xe_device *xe)
+ 		return;
+ 
+ 	spin_lock(&gt->global_invl_lock);
+-	xe_mmio_write32(gt, XE2_GLOBAL_INVAL, 0x1);
++	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
+ 
+-	if (xe_mmio_wait32(gt, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
++	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
+ 		xe_gt_err_once(gt, "Global invalidation timeout\n");
+ 	spin_unlock(&gt->global_invl_lock);
  
 -- 
 2.45.2
