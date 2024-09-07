@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 321DDE6FE54
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1527AE6FE51
 	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBBA310EB38;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A222910EB34;
 	Sat,  7 Sep 2024 00:08:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EH1xK6tB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ay2o/uiW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5C1A10EB30
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8119810EB27
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667679; x=1757203679;
+ t=1725667676; x=1757203676;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=R0Z0MrXF1pHPAzpY+LanM2PbVz9IgcuwpuvuTV4nVF4=;
- b=EH1xK6tBkeGGSr9c5srni9ybGrCRB6nZuJ8N9RGiRkT8nkhHgtKYlvKb
- 3q98ETXQyxZhS8kJMjgkkqQY+pbmlzF0G986e14Zhe96JirKVFhuffP2J
- jstwo7zAmEGc9eKiy1x3YEENtkRTHC/vZaZsiCMlCSW9n/X2gjIh2mu0I
- s6mOGnm0T+r5Hw/4BJ9T+/8BL8N4riJb5hLdL7eqCxBXetu7i7dpRj5et
- neRa4n8A3a3yMUZUlGVBQDgwp8IsGcFWTG5L8hikS8WrInhDYP93rf0WR
- GYviTb2M8imO2vMUts/fVd2OmKm4mUQUWpDZF+dgGLPCBrLUgUj4tbyvR A==;
-X-CSE-ConnectionGUID: cJxNBcP/TLWEGEMPPcS9dw==
-X-CSE-MsgGUID: 1dR6w0Y+TrOQsmhUSE4MLA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855316"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855316"
+ bh=JPZ+mDcPZe7bXYB0Hphdb6Ii07q62FpN5r2l8q5UXKc=;
+ b=ay2o/uiW1/gNkEtqHEkdYyrbfAQxiIYNygFmi79/QHPa8oz8H4OcEWFK
+ UWWFBuMcGJf84p4Tv1tuF3Lic8zPybt7HD5VuC5fs+olnQbb9ZXRnWjEi
+ Ftaa+SS6J4nMBXeYogyOPaAA1TPCW2m23ft2c1HNmDnM4PR2Mciwuqqlc
+ R72D4gF6Thg3uNL9zpeJoRGbGhwE2hNpjJV6uNiQLNJ3P17nyIb/glIPL
+ cBnHV+wo0l5+1VxdUazFYx/zNfEZlYwomUjGDnW29tx9gw1m/ocGbJ7+A
+ TYchu8mE4SiBwxYeR0VUla8xm6cMXyBh4Wg2uIKSbHuD5QqbTNrM3AaIz g==;
+X-CSE-ConnectionGUID: o7uN/OVGSk+yQ8MKio4GEg==
+X-CSE-MsgGUID: K+Autl3wQ8mC33sPCrbJsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855293"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855293"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: WgWPcUzaSHmKg9TMoBv8dg==
-X-CSE-MsgGUID: QelIn6/MRey2/eTl3EFuPQ==
+X-CSE-ConnectionGUID: 4/x954NWRcmHihLnIAhd+g==
+X-CSE-MsgGUID: UyHhBjCSTsGHLIX/0N+Nag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792695"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792624"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 26/43] drm/xe/mocs: Convert register access to use xe_mmio
-Date: Fri,  6 Sep 2024 17:08:15 -0700
-Message-ID: <20240907000748.2614020-71-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2 03/43] drm/xe: Clarify size of MMIO region
+Date: Fri,  6 Sep 2024 17:07:52 -0700
+Message-ID: <20240907000748.2614020-48-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -66,112 +67,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop using GT pointers for register access.
+xe_mmio currently has a size parameter that is assigned but never used
+anywhere.  The current values assigned appear to be the size of the BAR
+region assigned for the tile (both for registers and other purposes such
+as the GGTT).  Since the current field isn't being used for anything,
+change the assignments to 4MB (the size of the register region on all
+current platform) and rename the field to 'regs_size' to more clearly
+describe what it represents.  We can use this value in later patches to
+help ensure no register accesses accidentally go past the end of the
+desired register space (which might not be caught easily if they still
+fall within the iomap).
+
+v2:
+ - s/regs_length/regs_size/  (Lucas)
+ - Clarify kerneldoc description (Lucas)
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_mocs.c |  4 ++--
- drivers/gpu/drm/xe/xe_mocs.c       | 16 ++++++++--------
- 2 files changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_mmio.c         | 10 ++++++++--
+ 2 files changed, 16 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-index 79be73b4a02b..ea932c051cc7 100644
---- a/drivers/gpu/drm/xe/tests/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -55,7 +55,7 @@ static void read_l3cc_table(struct xe_gt *gt,
- 			if (regs_are_mcr(gt))
- 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i >> 1));
- 			else
--				reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i >> 1));
-+				reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i >> 1));
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 5d5b7a9199d8..ecf95801743d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -119,8 +119,14 @@ struct xe_mmio {
+ 	/** @regs: Map used to access registers. */
+ 	void __iomem *regs;
  
- 			mocs_dbg(gt, "reg_val=0x%x\n", reg_val);
- 		} else {
-@@ -94,7 +94,7 @@ static void read_mocs_table(struct xe_gt *gt,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
+-	/** @size: Size of the map. */
+-	size_t size;
++	/**
++	 * @regs_size: Length of the register region within the map.
++	 *
++	 * The size of the iomap set in *regs is generally larger than the
++	 * register mmio space since it includes unused regions and/or
++	 * non-register regions such as the GGTT PTEs.
++	 */
++	size_t regs_size;
+ };
  
- 		mocs_expected = get_entry_control(info, i);
- 		mocs = reg_val;
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 7ff0ac5b799a..8df41cd12d51 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -278,7 +278,7 @@ static void xelp_lncf_dump(struct xe_mocs_info *info, struct xe_gt *gt, struct d
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 3fd462fda625..f210e7470eae 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -36,13 +36,19 @@ static void tiles_fini(void *arg)
+ /*
+  * On multi-tile devices, partition the BAR space for MMIO on each tile,
+  * possibly accounting for register override on the number of tiles available.
++ * tile_mmio_size contains both the tile's 4MB register space, as well as
++ * additional space for the GTT and other (possibly unused) regions).
+  * Resulting memory layout is like below:
+  *
+  * .----------------------. <- tile_count * tile_mmio_size
+  * |         ....         |
+  * |----------------------| <- 2 * tile_mmio_size
++ * |   tile1 GTT + other  |
++ * |----------------------| <- 1 * tile_mmio_size + 4MB
+  * |   tile1->mmio.regs   |
+  * |----------------------| <- 1 * tile_mmio_size
++ * |   tile0 GTT + other  |
++ * |----------------------| <- 4MB
+  * |   tile0->mmio.regs   |
+  * '----------------------' <- 0MB
+  */
+@@ -90,7 +96,7 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
  
- 		drm_printf(p, "LNCFCMOCS[%2d] = [%u, %u, %u] (%#8x)\n",
- 			   j++,
-@@ -310,7 +310,7 @@ static void xelp_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 			if (regs_are_mcr(gt))
- 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 			else
--				reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+				reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
- 
- 			drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u, %u, %u, %u, %u, %u, %u, %u, %u ] (%#8x)\n",
- 				   i,
-@@ -383,7 +383,7 @@ static void xehp_lncf_dump(struct xe_mocs_info *info, unsigned int flags,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
- 
- 		drm_printf(p, "LNCFCMOCS[%2d] = [%u, %u, %u] (%#8x)\n",
- 			   j++,
-@@ -428,7 +428,7 @@ static void pvc_mocs_dump(struct xe_mocs_info *info, unsigned int flags, struct
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
- 
- 		drm_printf(p, "LNCFCMOCS[%2d] = [ %u ] (%#8x)\n",
- 			   j++,
-@@ -510,7 +510,7 @@ static void mtl_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
- 
- 		drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u]  (%#8x)\n",
- 			   i,
-@@ -553,7 +553,7 @@ static void xe2_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
--			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
- 
- 		drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u, %u]  (%#8x)\n",
- 			   i,
-@@ -690,7 +690,7 @@ static void __init_mocs_table(struct xe_gt *gt,
- 		if (regs_are_mcr(gt))
- 			xe_gt_mcr_multicast_write(gt, XEHP_GLOBAL_MOCS(i), mocs);
- 		else
--			xe_mmio_write32(gt, XELP_GLOBAL_MOCS(i), mocs);
-+			xe_mmio_write32(&gt->mmio, XELP_GLOBAL_MOCS(i), mocs);
+ 	regs = xe->mmio.regs;
+ 	for_each_tile(tile, xe, id) {
+-		tile->mmio.size = tile_mmio_size;
++		tile->mmio.regs_size = SZ_4M;
+ 		tile->mmio.regs = regs;
+ 		regs += tile_mmio_size;
  	}
- }
- 
-@@ -730,7 +730,7 @@ static void init_l3cc_table(struct xe_gt *gt,
- 		if (regs_are_mcr(gt))
- 			xe_gt_mcr_multicast_write(gt, XEHP_LNCFCMOCS(i), l3cc);
- 		else
--			xe_mmio_write32(gt, XELP_LNCFCMOCS(i), l3cc);
-+			xe_mmio_write32(&gt->mmio, XELP_LNCFCMOCS(i), l3cc);
+@@ -172,7 +178,7 @@ int xe_mmio_init(struct xe_device *xe)
  	}
- }
  
+ 	/* Setup first tile; other tiles (if present) will be setup later. */
+-	root_tile->mmio.size = SZ_16M;
++	root_tile->mmio.regs_size = SZ_4M;
+ 	root_tile->mmio.regs = xe->mmio.regs;
+ 
+ 	return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);
 -- 
 2.45.2
 
