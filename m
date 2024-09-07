@@ -4,94 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21A3EECE586
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D43D3ECE58F
 	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD36210E54D;
-	Mon,  9 Sep 2024 12:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4033D10E559;
+	Mon,  9 Sep 2024 12:37:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kruces-com.20230601.gappssmtp.com header.i=@kruces-com.20230601.gappssmtp.com header.b="kfCVBj2+";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="TpzqgAL1";
 	dkim-atps=neutral
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
- [209.85.208.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C31910EA92
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Sep 2024 15:08:20 +0000 (UTC)
-Received: by mail-ed1-f51.google.com with SMTP id
- 4fb4d7f45d1cf-5c24ebaa427so4917181a12.1
- for <intel-xe@lists.freedesktop.org>; Fri, 06 Sep 2024 08:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kruces-com.20230601.gappssmtp.com; s=20230601; t=1725635299; x=1726240099;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=n8bMi8neSlk0H33MBuzRIDN5M+I0beTdNpKiekVDuiU=;
- b=kfCVBj2+x8fhqIqPEk/bLW1ElOcvkuJtXNTC2L8bmGc1LI58bDPg4JxSUSq/Settso
- Z+L7IYIff2le1T+mJJ7GcatQiNRM7ID+LDMI0F6HXLRWnRR5Kfl9pX3ymV/v1FI5uqEq
- A/GO6cQ481nCCpPiGkacChTc7V4yb5DRrnc/+ubTlYwrm5mZLhgq4IjusacokCfjpx06
- E4MGHhku2FGV0EloV8pMgdXiqsZhnlrdDaMiSvqxCGUExl4eMo8y8SEwKkfZfbSOyq9A
- JwNcs8n1F8W36+bzs+eCZ9Hj/F+OOylhHj+ScZxjVqWPtF8eRI+8wga/5esB8h5KSMn9
- k/2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725635299; x=1726240099;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=n8bMi8neSlk0H33MBuzRIDN5M+I0beTdNpKiekVDuiU=;
- b=s9F94t2vEBg41jBQPkXmOut1809HkQovE9w0oeAt0iHt1Bir4xSZO07kAsCBExvmtM
- BX5m7JbVUNPn42S/HLvtIcfG3W7fAVucvgCb7odiEQy+V6EYMUbk0A6ah2OrqxGTfu2T
- 7MOy7X6Cm6U5J3oswTryPuqkodBPumCvh0Ynqjb3V5/uxLsYTU/dsxZy5NqUaHL0VefB
- 2Otb8NfxBANZyXCaXQByNJOq5KZ8eA2h8jT2qx4HrnYItVzqEONTjlpXlk67uNU17YJE
- JVycT9MwNFb1yYYDflJ2Mv4ZyLnyoScy6rwqnGwokmLYVNd+/zzoTcFvpHjz40OBSGC3
- QDrw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVZEA9G1iS/bLXyQnE0IeK4sQjm81sXzpaWtoj/TjP5DFazb+ohcF3nLazuQxGRqei+HtxFAQZplw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwjyKFi5dCSZsaqs3+Qcx9Q3a6C/2iZq7HA0qAH5q5r6SDD331j
- GZd1V+KD0cmxgY71TwOy7qJZC2Axv5F+xyOyEp2zPYFM9Ec4I5aKrdgA226+4Y6SDamDVLnL1dV
- VSVuK8cBHkh8kHtIAmkQy6bMlv2Wkq7uj9k/mqg==
-X-Google-Smtp-Source: AGHT+IGUA1wnLPvaqVG65cpWb2qjjv+ZYvS15NsPxrxeFhQA7Z9cxOvMhyKovH+37PHRvGwnr/HounhIwA1d4bXQ4q8=
-X-Received: by 2002:a17:907:ea7:b0:a7d:89ac:9539 with SMTP id
- a640c23a62f3a-a8a42f8af35mr889231466b.7.1725635298533; Fri, 06 Sep 2024
- 08:08:18 -0700 (PDT)
+X-Greylist: delayed 393 seconds by postgrey-1.36 at gabe;
+ Sat, 07 Sep 2024 06:59:15 UTC
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.155.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D7A210E817
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 06:59:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1725692348;
+ bh=yfvC59lnVqCax5p/e7Q8hKA5Ouv+EjV+B2EInFi8R5A=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=TpzqgAL1yMDjcqYM8iUVHQFMuoBV6KPls/Oomci68DwFuR3gWDAw69jL3QyGs90w0
+ J81o4BxluIzChtqn6enHf8nfmQi07SGHCR6tjt+1Dl7e4HAd3gkoES/btbl/86Rg6D
+ 8MzvBwg1Fvmm3G+8qqLDIKrQsDqfoXuelEXcSBME=
+X-QQ-mid: bizesmtpsz9t1725692090tbhj9u3
+X-QQ-Originating-IP: 0YhjS5yZ+OmtEIBzYtwSZmyZaKAh8IOW6App3/aY05c=
+Received: from localhost.localdomain ( [221.226.144.218])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Sat, 07 Sep 2024 14:54:43 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 17723308322550964968
+From: He Lugang <helugang@uniontech.com>
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ He Lugang <helugang@uniontech.com>
+Subject: [PATCH 1/3] drm/xe: use devm_add_action_or_reset() helper
+Date: Sat,  7 Sep 2024 14:54:39 +0800
+Message-ID: <BE0644D06348D90D+20240907065439.1661032-1-helugang@uniontech.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
- <20240906-macos-build-support-v2-6-06beff418848@samsung.com>
- <CAHC9VhRpHgqN2fp1J3x9=zBqNr3QHsSDgUnoZ7M-SuOQ6hQ4nw@mail.gmail.com>
-In-Reply-To: <CAHC9VhRpHgqN2fp1J3x9=zBqNr3QHsSDgUnoZ7M-SuOQ6hQ4nw@mail.gmail.com>
-From: "Daniel Gomez (Samsung)" <d+samsung@kruces.com>
-Date: Fri, 6 Sep 2024 17:07:52 +0200
-Message-ID: <CABj0suDY3duFeZx8ghEJm3vTuJvcVuoYZ6BpYn9SCaHetw3oNA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] selinux: do not include <linux/*.h> headers from
- host programs
-To: Paul Moore <paul@paul-moore.com>
-Cc: da.gomez@samsung.com, Masahiro Yamada <masahiroy@kernel.org>, 
- Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Marc Zyngier <maz@kernel.org>, 
- Oliver Upton <oliver.upton@linux.dev>, James Morse <james.morse@arm.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, 
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
- Justin Stitt <justinstitt@google.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
- linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- speakup@linux-speakup.org, selinux@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
- linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
- Finn Behrens <me@kloenk.dev>, gost.dev@samsung.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:uniontech.com:qybglogicsvrgz:qybglogicsvrgz7a-0
 X-Mailman-Approved-At: Mon, 09 Sep 2024 12:37:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -107,75 +61,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 6, 2024 at 4:56=E2=80=AFPM Paul Moore <paul@paul-moore.com> wro=
-te:
->
-> On Fri, Sep 6, 2024 at 7:01=E2=80=AFAM Daniel Gomez via B4 Relay
-> <devnull+da.gomez.samsung.com@kernel.org> wrote:
-> >
-> > From: Masahiro Yamada <masahiroy@kernel.org>
-> >
-> > Commit bfc5e3a6af39 ("selinux: use the kernel headers when building
-> > scripts/selinux") is not the right thing to do.
-> >
-> > It is clear from the warning in include/uapi/linux/types.h:
-> >
-> >   #ifndef __EXPORTED_HEADERS__
-> >   #warning "Attempt to use kernel headers from user space, see https://=
-kernelnewbies.org/KernelHeaders"
-> >   #endif /* __EXPORTED_HEADERS__ */
-> >
-> > If you are inclined to define __EXPORTED_HEADERS__, you are likely doin=
-g
-> > wrong.
-> >
-> > Adding the comment:
-> >
-> >   /* NOTE: we really do want to use the kernel headers here */
-> >
-> > does not justify the hack in any way.
-> >
-> > Currently, <linux/*.h> headers are included for the following purposes:
-> >
-> >  - <linux/capability.h> is included to check CAP_LAST_CAP
-> >  - <linux/socket.h> in included to check PF_MAX
-> >
-> > We can skip these checks when building host programs, as they will
-> > be eventually tested when building the kernel space.
-> >
-> > I got rid of <linux/stddef.h> from initial_sid_to_string.h because
-> > it is likely that NULL is already defined. If you insist on making
-> > it self-contained, you can add the following:
-> >
-> >   #ifdef __KERNEL__
-> >   #include <linux/stddef.h>
-> >   #else
-> >   #include <stddef.h>
-> >   #endif
-> >
-> > scripts/selinux/mdp/mdp.c still includes <linux/kconfig.h>, which is
-> > also discouraged and should be fixed by a follow-up refactoring.
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > ---
-> >  scripts/selinux/genheaders/Makefile              |  4 +---
-> >  scripts/selinux/genheaders/genheaders.c          |  3 ---
-> >  scripts/selinux/mdp/Makefile                     |  2 +-
-> >  scripts/selinux/mdp/mdp.c                        |  4 ----
-> >  security/selinux/include/classmap.h              | 19 ++++++++++++----=
+Use devm_add_action_or_reset() to release resources in case of failure,
+because the cleanup function will be automatically called.
+
+Signed-off-by: He Lugang <helugang@uniontech.com>
 ---
-> >  security/selinux/include/initial_sid_to_string.h |  2 --
-> >  6 files changed, 14 insertions(+), 20 deletions(-)
->
-> Similar to patch 7/8, please read my comments on your previous posting
-> of this patch, it doesn't appear that you've made any of the changes I
-> asked for in your previous posting.
+ drivers/gpu/drm/xe/xe_gt_freq.c  | 2 +-
+ drivers/gpu/drm/xe/xe_gt_sysfs.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Sorry for the noise, Paul. I=E2=80=99ll review this one as well.
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 68a5778b4319..71bcd60d0866 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -237,7 +237,7 @@ int xe_gt_freq_init(struct xe_gt *gt)
+ 	if (!gt->freq)
+ 		return -ENOMEM;
+ 
+-	err = devm_add_action(xe->drm.dev, freq_fini, gt->freq);
++	err = devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+index a05c3699e8b9..ec2b8246204b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+@@ -51,5 +51,5 @@ int xe_gt_sysfs_init(struct xe_gt *gt)
+ 
+ 	gt->sysfs = &kg->base;
+ 
+-	return devm_add_action(xe->drm.dev, gt_sysfs_fini, gt);
++	return devm_add_action_or_reset(xe->drm.dev, gt_sysfs_fini, gt);
+ }
+-- 
+2.45.2
 
->
-> https://lore.kernel.org/selinux/317c7d20ab8a72975571cb554589522b@paul-moo=
-re.com
->
-> --
-> paul-moore.com
