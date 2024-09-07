@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4E5AEB64C5
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16071EB64C8
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6635310EB41;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ABCC10EB40;
 	Sat,  7 Sep 2024 00:08:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jc60uUbX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XLm9cOQX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45CE710EB29
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14D7110EB2A
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667678; x=1757203678;
+ t=1725667679; x=1757203679;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UndEgX1v1uh8eurQUgubE+xJsJOqy5d/ypWn0pFlcqA=;
- b=Jc60uUbX/eYyn8aH0DMFDPOPA82cacG999EZofm7jhMZAFtMUhvw6dBJ
- WcPbyK8stAw/ntyqu4Upw4oZRGt8VJ4uzWrqxi+JRN+YY8Zcxjmod7pqy
- HrW7NHU1XfkbGe0OKD6PoKzach5TgCrDE++SWGnkD8bcCPEutY1xUoCGQ
- gnMYlWt3Swwd4Bn5D0aTQnwdzf9ziWhJwELAKB+oCTrf5R/xTazLqntFB
- jpjtjtQjn9NeeNdWraUkURXThN86t3rwjhoP0aQwdm5DpKL7smY+fCPzj
- 86b8KB4SCC+V6ojaUq98J9tqSIjA+47IsRrRfPOznYQxdouS/lQURkmKc w==;
-X-CSE-ConnectionGUID: uPyWvrTATyG8VreYUZ+Fdw==
-X-CSE-MsgGUID: OVrSwrPAT7ikPU+bUwCw+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855303"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855303"
+ bh=KO/6N4OHV/g6ex2m4DDwUBVM9tw4ruXzkGIehYo3sXs=;
+ b=XLm9cOQXZRfr8E5xO7x/15eclfyvT7Q9TbS2Z/Jeqv/1K+VJYXKXHXvp
+ Q1sBzFww1/fwAQlvFSqVvVcxFsLkcU7/Kujx2kHjhqdBsFEDqvRaIEECJ
+ 4wWEBWGlPe1aCDZazyf5aIUk9qhF6T2gbsESnBMYfTHZMwrvOxsI+jBpp
+ cJjTl5eSyqV/cYiLJ8sALb6bJwDX83CbmB98gdlkH5oWLR4Xfpcn2sWCC
+ mwmJG20Dxisa0NQAwyf+4eY4h73YQsyD61OY2qe7U3UDIF8EYZ0eSzoBX
+ aQgHFZJQNJtn8eTVAbrmCz04OIVNhktkqWF3fUj2WsJvzFcVaNy5PSJgC g==;
+X-CSE-ConnectionGUID: pa0KxqVKRp20bzfWQQ6BdQ==
+X-CSE-MsgGUID: mMieSVg0T3GACnaXGlFrtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855320"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855320"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: vbs8NXjOTZWDBi0tbLU5Qg==
-X-CSE-MsgGUID: YP+A73kNQmi5jP2nHat0Xw==
+X-CSE-ConnectionGUID: XoJnXGuUQLKZ3I3HEJfyeQ==
+X-CSE-MsgGUID: kkgQPlsjTO2ec61lvb83kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792654"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792709"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 13/43] drm/xe/vram: Convert register access to use xe_mmio
-Date: Fri,  6 Sep 2024 17:08:02 -0700
-Message-ID: <20240907000748.2614020-58-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v2 30/43] drm/xe/wopcm: Convert register access to use xe_mmio
+Date: Fri,  6 Sep 2024 17:08:19 -0700
+Message-ID: <20240907000748.2614020-75-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -67,48 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop using GT pointers for register access.  Note that MIRROR_FUSE3 is a
-GT register and is accessed via gt->mmio, whereas GSMBASE is an sgunit
-register so it is accessed via tile->mmio.
+Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vram.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_wopcm.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 5bcd59190353..7e765b1499b1 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -169,7 +169,7 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
- 		u64 offset_hi, offset_lo;
- 		u32 nodes, num_enabled;
+diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+index d3a99157e523..93c82825d896 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm.c
++++ b/drivers/gpu/drm/xe/xe_wopcm.c
+@@ -123,8 +123,8 @@ static bool __check_layout(struct xe_device *xe, u32 wopcm_size,
+ static bool __wopcm_regs_locked(struct xe_gt *gt,
+ 				u32 *guc_wopcm_base, u32 *guc_wopcm_size)
+ {
+-	u32 reg_base = xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET);
+-	u32 reg_size = xe_mmio_read32(gt, GUC_WOPCM_SIZE);
++	u32 reg_base = xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET);
++	u32 reg_size = xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE);
  
--		reg = xe_mmio_read32(gt, MIRROR_FUSE3);
-+		reg = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
- 		nodes = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, reg);
- 		num_enabled = hweight32(nodes); /* Number of enabled l3 nodes */
+ 	if (!(reg_size & GUC_WOPCM_SIZE_LOCKED) ||
+ 	    !(reg_base & GUC_WOPCM_OFFSET_VALID))
+@@ -150,13 +150,13 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
+ 	XE_WARN_ON(size & ~GUC_WOPCM_SIZE_MASK);
  
-@@ -184,7 +184,8 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
- 		offset *= num_enabled; /* convert to SW view */
+ 	mask = GUC_WOPCM_SIZE_MASK | GUC_WOPCM_SIZE_LOCKED;
+-	err = xe_mmio_write32_and_verify(gt, GUC_WOPCM_SIZE, size, mask,
++	err = xe_mmio_write32_and_verify(&gt->mmio, GUC_WOPCM_SIZE, size, mask,
+ 					 size | GUC_WOPCM_SIZE_LOCKED);
+ 	if (err)
+ 		goto err_out;
  
- 		/* We don't expect any holes */
--		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(gt, GSMBASE) - ccs_size),
-+		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(&gt_to_tile(gt)->mmio, GSMBASE) -
-+					     ccs_size),
- 			      "Hole between CCS and GSM.\n");
- 	} else {
- 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
-@@ -256,7 +257,7 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 	if (xe->info.has_flat_ccs) {
- 		offset = get_flat_ccs_offset(gt, *tile_size);
- 	} else {
--		offset = xe_mmio_read64_2x32(gt, GSMBASE);
-+		offset = xe_mmio_read64_2x32(&tile->mmio, GSMBASE);
- 	}
+ 	mask = GUC_WOPCM_OFFSET_MASK | GUC_WOPCM_OFFSET_VALID | huc_agent;
+-	err = xe_mmio_write32_and_verify(gt, DMA_GUC_WOPCM_OFFSET,
++	err = xe_mmio_write32_and_verify(&gt->mmio, DMA_GUC_WOPCM_OFFSET,
+ 					 base | huc_agent, mask,
+ 					 base | huc_agent |
+ 					 GUC_WOPCM_OFFSET_VALID);
+@@ -169,10 +169,10 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
+ 	drm_notice(&xe->drm, "Failed to init uC WOPCM registers!\n");
+ 	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
+ 		   DMA_GUC_WOPCM_OFFSET.addr,
+-		   xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET));
++		   xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET));
+ 	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
+ 		   GUC_WOPCM_SIZE.addr,
+-		   xe_mmio_read32(gt, GUC_WOPCM_SIZE));
++		   xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE));
  
- 	/* remove the tile offset so we have just the available size */
+ 	return err;
+ }
 -- 
 2.45.2
 
