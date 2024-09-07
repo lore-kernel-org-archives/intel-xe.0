@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59474ECE579
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:35:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0E25ECE585
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F31FF10E386;
-	Mon,  9 Sep 2024 12:35:31 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9A5910E49E;
- Mon,  9 Sep 2024 12:35:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B66A10E54F;
+	Mon,  9 Sep 2024 12:37:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="eTXrB598";
+	dkim-atps=neutral
+X-Greylist: delayed 1933 seconds by postgrey-1.36 at gabe;
+ Sat, 07 Sep 2024 07:27:44 UTC
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D35810E8DB;
+ Sat,  7 Sep 2024 07:27:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1725694031;
+ bh=GyL8TmIDQ+bD5M24U+Q/svXNc0nxdZp+yHraWRrEUVc=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From;
+ b=eTXrB598yAxQMYMS3O6F4mQrW1s5Sj0Y7mxSjqwAQOw/vFna7aLWBOVyDudme4m3N
+ tPjAu08BE39P+fG0hAFL12y25FhdNoRQkL61WTON58TnG2Y1eIAsDRT58sfczYxG5c
+ gfhR1PHKKWkPmloNHpxEOGLQh/mR3VxXdAu0aLxg=
+X-QQ-mid: bizesmtpsz7t1725694024tc4i8op
+X-QQ-Originating-IP: n6f74SI2kunOj+BPe3wcr4jfcIVuh4TlAwUrlKoRSe0=
+Received: from [10.4.11.213] ( [221.226.144.218])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Sat, 07 Sep 2024 15:26:56 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 10451446808615476649
+Message-ID: <0EEC8CD58992A8E7+951a8184-ad2f-447e-94f3-47ffc0714b35@uniontech.com>
+Date: Sat, 7 Sep 2024 15:26:56 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/pps=3A_hide_VLV/CHV_P?=
- =?utf-8?q?PS_pipe_stuff_inside_intel=5Fpps=2Ec?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Sep 2024 12:35:30 -0000
-Message-ID: <172588533068.976018.3072033787199436800@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1725883885.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1725883885.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe: use devm_add_action_or_reset() helper
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <F2C380666CC48547+20240907065152.1660750-1-helugang@uniontech.com>
+From: HeLuang <helugang@uniontech.com>
+In-Reply-To: <F2C380666CC48547+20240907065152.1660750-1-helugang@uniontech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:uniontech.com:qybglogicsvrgz:qybglogicsvrgz7a-0
+X-Mailman-Approved-At: Mon, 09 Sep 2024 12:37:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +60,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+sorry, pls just pass over this email.
 
-Series: drm/i915/pps: hide VLV/CHV PPS pipe stuff inside intel_pps.c
-URL   : https://patchwork.freedesktop.org/series/138403/
-State : success
-
-== Summary ==
-
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/seq/
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soundcore.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/common/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/amd/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/codecs/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/ext/
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/intel/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/
-lib/modules/6.11.0-rc7-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/cmac.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/ccm.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/cryptd.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.11.0-rc7-xe/build
-lib/modules/6.11.0-rc7-xe/modules.alias.bin
-lib/modules/6.11.0-rc7-xe/modules.builtin
-lib/modules/6.11.0-rc7-xe/modules.softdep
-lib/modules/6.11.0-rc7-xe/modules.alias
-lib/modules/6.11.0-rc7-xe/modules.order
-lib/modules/6.11.0-rc7-xe/modules.symbols
-lib/modules/6.11.0-rc7-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1725885319:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1725885319:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+----
+Best Regards,
+Lugang
+在 2024/9/7 14:51, He Lugang 写道:
+> Use devm_add_action_or_reset() to release resources in case of failure,
+> because the cleanup function will be automatically called.
+> 
+> Signed-off-by: He Lugang <helugang@uniontech.com>
+> ---
+>   drivers/gpu/drm/xe/xe_gt_freq.c  | 2 +-
+>   drivers/gpu/drm/xe/xe_gt_sysfs.c | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+> index 68a5778b4319..71bcd60d0866 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+> @@ -237,7 +237,7 @@ int xe_gt_freq_init(struct xe_gt *gt)
+>   	if (!gt->freq)
+>   		return -ENOMEM;
+>   
+> -	err = devm_add_action(xe->drm.dev, freq_fini, gt->freq);
+> +	err = devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
+>   	if (err)
+>   		return err;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> index a05c3699e8b9..ec2b8246204b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> @@ -51,5 +51,5 @@ int xe_gt_sysfs_init(struct xe_gt *gt)
+>   
+>   	gt->sysfs = &kg->base;
+>   
+> -	return devm_add_action(xe->drm.dev, gt_sysfs_fini, gt);
+> +	return devm_add_action_or_reset(xe->drm.dev, gt_sysfs_fini, gt);
+>   }
