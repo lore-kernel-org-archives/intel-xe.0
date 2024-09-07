@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E38ADE6FE49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5492E6FE4B
 	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F0610EB4A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8701110EB44;
 	Sat,  7 Sep 2024 00:08:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YUX6ay2g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S+Jf+6qT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54F5C10EB38
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D11210EB2F
  for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1725667679; x=1757203679;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zepRPI++dAkh20y8tOw/+Q+0vsOszSiZgmoG79ykOeM=;
- b=YUX6ay2gKQg+CPHoioC+ASq1hIUlPlBhEd2WTyQKIbPNgAa+QP6uD5Vj
- 1yEJC9rq5OeszhPrhMHDisDk4oWiLuUzZH1Jpo9EuB2w4q60mN57FPlvN
- GXPYmo9mOnepF02xHik0vBwZUiwPCYK2Xln5afG09UP9fXZmsfjlGLQs4
- AXJ33+TE9UMYbAXwprEKb+4JCK3cJYeUIEufOkDXi0iVShjyzuNgnCbgF
- xsISFPt+eX7Kz8q0I1SMm0nWobItP0K/YMzhciOSCZkb0zpgc63rz6M/h
- gLX4LMAhFRKPPg1rP0wABx+7MAxToV64Th0aDLO/ATT/kAmfTOocXIUn+ g==;
-X-CSE-ConnectionGUID: xlbsV/IhTSWMQ8bXBm/V4Q==
-X-CSE-MsgGUID: lB0FVHPQSmu/EBr8HkJO3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855325"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855325"
+ bh=gd+aZFYXNznc8wG8DRWNlMqVnNdDdHvln/o0Brecc70=;
+ b=S+Jf+6qT2TtJoNlZxjzZkugupdmyu7Dv4i2/7u542Hl0kiVwVFy4Ty9M
+ iGG0lWAxlWaUUh92ALM88U9zc6LTIs92oPQAjGo3nM1TjfvWAlDJviBsF
+ ucmZk01Tlxe0h9fMxOaHzpnkwX2+YWqxQm8XpMvMXBefheMVecy6yGf9t
+ H61wujxUEwFoW+peAYqYfAYnR2oLoe1FyJSsSS89A/9DhrBkit06odRhi
+ ypjL+hpdo4T7mNsgPQ89bo3jEsNwfLiUzwRunYVFy6tpDWYnd65FHzDBv
+ FMKasHsyotf/mg1/stf0PJH1iDFkZLR8yuPCdc4eimmJ1bCFsyI4Vz/0n A==;
+X-CSE-ConnectionGUID: +p+i4IjcQdiFfimUHqaJdw==
+X-CSE-MsgGUID: 03/BwKGfSPi8wbVQIKOt8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855321"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855321"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: s12vnmaBSBqtw3suRHU18Q==
-X-CSE-MsgGUID: XtoilXtATX+v2zzAKT/x3g==
+X-CSE-ConnectionGUID: tlkdRDwAQUmMZzApYPqYmA==
+X-CSE-MsgGUID: 7iq1GUrlQpWfr9Jk4j9Pug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792724"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792713"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 35/43] drm/xe/reg_sr: Convert register access to use xe_mmio
-Date: Fri,  6 Sep 2024 17:08:24 -0700
-Message-ID: <20240907000748.2614020-80-matthew.d.roper@intel.com>
+Subject: [PATCH v2 31/43] drm/xe/oa: Convert register access to use xe_mmio
+Date: Fri,  6 Sep 2024 17:08:20 -0700
+Message-ID: <20240907000748.2614020-76-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -70,49 +70,190 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 48 +++++++++++++++++++++-----------------
+ 1 file changed, 27 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index fb209f1e0f1e..191cb4121acd 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -165,7 +165,7 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
- 	else if (entry->clr_bits + 1)
- 		val = (reg.mcr ?
- 		       xe_gt_mcr_unicast_read_any(gt, reg_mcr) :
--		       xe_mmio_read32(gt, reg)) & (~entry->clr_bits);
-+		       xe_mmio_read32(&gt->mmio, reg)) & (~entry->clr_bits);
- 	else
- 		val = 0;
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 63286ed8457f..75c3b587954f 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -176,7 +176,7 @@ static const struct xe_oa_regs *__oa_regs(struct xe_oa_stream *stream)
  
-@@ -181,7 +181,7 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
- 	if (entry->reg.mcr)
- 		xe_gt_mcr_multicast_write(gt, reg_mcr, val);
- 	else
--		xe_mmio_write32(gt, reg, val);
-+		xe_mmio_write32(&gt->mmio, reg, val);
+ static u32 xe_oa_hw_tail_read(struct xe_oa_stream *stream)
+ {
+-	return xe_mmio_read32(stream->gt, __oa_regs(stream)->oa_tail_ptr) &
++	return xe_mmio_read32(&stream->gt->mmio, __oa_regs(stream)->oa_tail_ptr) &
+ 		OAG_OATAILPTR_MASK;
  }
  
- void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
-@@ -242,7 +242,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+@@ -366,7 +366,7 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 		struct xe_reg oaheadptr = __oa_regs(stream)->oa_head_ptr;
+ 
+ 		spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+-		xe_mmio_write32(stream->gt, oaheadptr,
++		xe_mmio_write32(&stream->gt->mmio, oaheadptr,
+ 				(head + gtt_offset) & OAG_OAHEADPTR_MASK);
+ 		stream->oa_buffer.head = head;
+ 		spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+@@ -377,22 +377,23 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 
+ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+ {
++	struct xe_mmio *mmio = &stream->gt->mmio;
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+ 	u32 oa_buf = gtt_offset | OABUFFER_SIZE_16M | OAG_OABUFFER_MEMORY_SELECT;
+ 	unsigned long flags;
+ 
+ 	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+ 
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_status, 0);
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_head_ptr,
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_status, 0);
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_head_ptr,
+ 			gtt_offset & OAG_OAHEADPTR_MASK);
+ 	stream->oa_buffer.head = 0;
+ 	/*
+ 	 * PRM says: "This MMIO must be set before the OATAILPTR register and after the
+ 	 * OAHEADPTR register. This is to enable proper functionality of the overflow bit".
+ 	 */
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_buffer, oa_buf);
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_tail_ptr,
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_buffer, oa_buf);
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_tail_ptr,
+ 			gtt_offset & OAG_OATAILPTR_MASK);
+ 
+ 	/* Mark that we need updated tail pointer to read from */
+@@ -440,21 +441,23 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
+ 	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
+ 		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
+ 
+-	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
++	xe_mmio_write32(&stream->gt->mmio, regs->oa_ctrl, val);
+ }
+ 
+ static void xe_oa_disable(struct xe_oa_stream *stream)
+ {
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, 0);
+-	if (xe_mmio_wait32(stream->gt, __oa_regs(stream)->oa_ctrl,
++	struct xe_mmio *mmio = &stream->gt->mmio;
++
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctrl, 0);
++	if (xe_mmio_wait32(mmio, __oa_regs(stream)->oa_ctrl,
+ 			   OAG_OACONTROL_OA_COUNTER_ENABLE, 0, 50000, NULL, false))
+ 		drm_err(&stream->oa->xe->drm,
+ 			"wait for OA to be disabled timed out\n");
+ 
+ 	if (GRAPHICS_VERx100(stream->oa->xe) <= 1270 && GRAPHICS_VERx100(stream->oa->xe) != 1260) {
+ 		/* <= XE_METEORLAKE except XE_PVC */
+-		xe_mmio_write32(stream->gt, OA_TLB_INV_CR, 1);
+-		if (xe_mmio_wait32(stream->gt, OA_TLB_INV_CR, 1, 0, 50000, NULL, false))
++		xe_mmio_write32(mmio, OA_TLB_INV_CR, 1);
++		if (xe_mmio_wait32(mmio, OA_TLB_INV_CR, 1, 0, 50000, NULL, false))
+ 			drm_err(&stream->oa->xe->drm,
+ 				"wait for OA tlb invalidate timed out\n");
+ 	}
+@@ -477,7 +480,7 @@ static int __xe_oa_read(struct xe_oa_stream *stream, char __user *buf,
+ 			size_t count, size_t *offset)
+ {
+ 	/* Only clear our bits to avoid side-effects */
+-	stream->oa_status = xe_mmio_rmw32(stream->gt, __oa_regs(stream)->oa_status,
++	stream->oa_status = xe_mmio_rmw32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
+ 					  OASTATUS_RELEVANT_BITS, 0);
+ 	/*
+ 	 * Signal to userspace that there is non-zero OA status to read via
+@@ -748,7 +751,8 @@ static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
+ 	int err;
+ 
+ 	/* Set ccs select to enable programming of OAC_OACONTROL */
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, __oa_ccs_select(stream));
++	xe_mmio_write32(&stream->gt->mmio, __oa_regs(stream)->oa_ctrl,
++			__oa_ccs_select(stream));
+ 
+ 	/* Modify stream hwe context image with regs_context */
+ 	err = xe_oa_modify_ctx_image(stream, stream->exec_q->lrc[0],
+@@ -784,6 +788,7 @@ static u32 oag_configure_mmio_trigger(const struct xe_oa_stream *stream, bool en
+ 
+ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ {
++	struct xe_mmio *mmio = &stream->gt->mmio;
+ 	u32 sqcnt1;
+ 
+ 	/*
+@@ -797,7 +802,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
+ 	}
+ 
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_debug,
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_debug,
+ 			oag_configure_mmio_trigger(stream, false));
+ 
+ 	/* disable the context save/restore or OAR counters */
+@@ -805,13 +810,13 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 		xe_oa_configure_oa_context(stream, false);
+ 
+ 	/* Make sure we disable noa to save power. */
+-	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
++	xe_mmio_rmw32(mmio, RPM_CONFIG1, GT_NOA_ENABLE, 0);
+ 
+ 	sqcnt1 = SQCNT1_PMON_ENABLE |
+ 		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
+ 
+ 	/* Reset PMON Enable to save power. */
+-	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, sqcnt1, 0);
++	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, sqcnt1, 0);
+ }
+ 
+ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+@@ -939,6 +944,7 @@ static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
+ 
+ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ {
++	struct xe_mmio *mmio = &stream->gt->mmio;
+ 	u32 oa_debug, sqcnt1;
+ 	int ret;
+ 
+@@ -965,12 +971,12 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 			OAG_OA_DEBUG_DISABLE_START_TRG_2_COUNT_QUAL |
+ 			OAG_OA_DEBUG_DISABLE_START_TRG_1_COUNT_QUAL;
+ 
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_debug,
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_debug,
+ 			_MASKED_BIT_ENABLE(oa_debug) |
+ 			oag_report_ctx_switches(stream) |
+ 			oag_configure_mmio_trigger(stream, true));
+ 
+-	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
+ 			(OAG_OAGLBCTXCTRL_COUNTER_RESUME |
+ 			 OAG_OAGLBCTXCTRL_TIMER_ENABLE |
+ 			 REG_FIELD_PREP(OAG_OAGLBCTXCTRL_TIMER_PERIOD_MASK,
+@@ -984,7 +990,7 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 	sqcnt1 = SQCNT1_PMON_ENABLE |
+ 		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
+ 
+-	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
++	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, 0, sqcnt1);
+ 
+ 	/* Configure OAR/OAC */
+ 	if (stream->exec_q) {
+@@ -1533,7 +1539,7 @@ u32 xe_oa_timestamp_frequency(struct xe_gt *gt)
+ 	case XE_PVC:
+ 	case XE_METEORLAKE:
+ 		xe_pm_runtime_get(gt_to_xe(gt));
+-		reg = xe_mmio_read32(gt, RPM_CONFIG0);
++		reg = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+ 		xe_pm_runtime_put(gt_to_xe(gt));
+ 
+ 		shift = REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
+@@ -2349,7 +2355,7 @@ static void __xe_oa_init_oa_units(struct xe_gt *gt)
  		}
  
- 		xe_reg_whitelist_print_entry(&p, 0, reg, entry);
--		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot),
-+		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot),
- 				reg | entry->set_bits);
- 		slot++;
- 	}
-@@ -251,7 +251,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
- 		u32 addr = RING_NOPID(mmio_base).addr;
+ 		/* Ensure MMIO trigger remains disabled till there is a stream */
+-		xe_mmio_write32(gt, u->regs.oa_debug,
++		xe_mmio_write32(&gt->mmio, u->regs.oa_debug,
+ 				oag_configure_mmio_trigger(NULL, false));
  
--		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
-+		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
- 	}
- 
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 		/* Set oa_unit_ids now to ensure ids remain contiguous */
 -- 
 2.45.2
 
