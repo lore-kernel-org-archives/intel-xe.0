@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1BEAE6FE49
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E1D1E6FE4E
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F1610EB2A;
-	Sat,  7 Sep 2024 00:08:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 563A710EB2C;
+	Sat,  7 Sep 2024 00:08:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QjOyoBlk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E8TZlM+8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FA9B10EB39
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 458E510EB36
  for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1725667679; x=1757203679;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=q8mTS5qSWrzKSDlE6euQW6GKjNOgI106WutSwrv5GSA=;
- b=QjOyoBlkheFj9lNV5dm3QFwdDbdoZXHood/6s9ei6uDVB479VgNsIR78
- vHRXYUzPOXv7P1l8ZYgI9RncGHFJwcARmvF/Ki6XZZEnIM9rIWpDq0bHP
- DEASxXk99eJJJbWS+0FULcmEflDyWvjGrg8etDU2wsRIoLfm8rYoPAlg8
- k6NWwyBNk2iIE9XBpclgkHEy2VUJF0dEuYq/d+HLZsGKLXZi2BNei7R6N
- oU42WbTZdGn1YAQV9k2T7z60cx0Lo02Mly05uVuB9BVG57xjvPQ1ZRYc6
- rs8r7XIOlqPBJwoOgTh8Zpv5wP5baSI0zT5onBBRPA209EhAMqOvanoH0 A==;
-X-CSE-ConnectionGUID: VlWKkQmqTZKPjNuYXe6gwQ==
-X-CSE-MsgGUID: uvBnI47+RaiGihkJv7kw0w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855327"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855327"
+ bh=ee1bl/F+3gwCW06Ge/IeUpJLV3mqBChY496zzm5vzcA=;
+ b=E8TZlM+8Sz/keGalCkaut197eWIT5zq3wOue+aHVbyuc9e3kGCKsEHd/
+ xgXuhp+P5yrhBs6p/2UODOekL9TNbI27aUX+qrelKWwR1hUhNFqZj/u1x
+ 5awyXMCb02ceECXwZyu4twMSgdum+LpbhNIfPOLtSBCUUPAW7dMTNwN39
+ fBYIYxWh6xv/+npI84enYFMVjE5QTdKTYCeGaefpw+9b6nnvmMfCXpG4L
+ imP/IcoGAY+67R57dLeQ65xnWaMvUOnAfC+sx+6CXbJWXh584WCedSOYz
+ Bh3XQ/AX+069/AtoB+ihas+QUPyeunDg5OK8ybEDQIKikily+8zrf4mog A==;
+X-CSE-ConnectionGUID: btzP8aHzSreqDncuxAJ9/g==
+X-CSE-MsgGUID: 4vu8Ub8+TAeJ/ae7C9pcnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855324"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855324"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: RpdBMZXESKOxq8w8nieWww==
-X-CSE-MsgGUID: rYnUirt3Qf29aZw9eXGj9A==
+X-CSE-ConnectionGUID: +N3uEjthQn+1VsZc0ZMPTA==
+X-CSE-MsgGUID: +zKGkYCMS5yTywxWXn0cng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792731"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792721"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 37/43] drm/xe/sriov: Convert register access to use xe_mmio
-Date: Fri,  6 Sep 2024 17:08:26 -0700
-Message-ID: <20240907000748.2614020-82-matthew.d.roper@intel.com>
+Subject: [PATCH v2 34/43] drm/xe/gt_clock: Convert register access to use
+ xe_mmio
+Date: Fri,  6 Sep 2024 17:08:23 -0700
+Message-ID: <20240907000748.2614020-79-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -70,107 +71,40 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c         | 6 +++---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 6 +++---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 4 ++--
- drivers/gpu/drm/xe/xe_sriov.c               | 2 +-
- 4 files changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_clock.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-index 919d960165d5..065a9878f8e9 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-@@ -74,7 +74,7 @@ static bool pf_needs_enable_ggtt_guest_update(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 86c2d62b4bdc..cc2ae159298e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -17,7 +17,7 @@
  
- static void pf_enable_ggtt_guest_update(struct xe_gt *gt)
+ static u32 read_reference_ts_freq(struct xe_gt *gt)
  {
--	xe_mmio_write32(gt, VIRTUAL_CTRL_REG, GUEST_GTT_UPDATE_EN);
-+	xe_mmio_write32(&gt->mmio, VIRTUAL_CTRL_REG, GUEST_GTT_UPDATE_EN);
- }
+-	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE);
++	u32 ts_override = xe_mmio_read32(&gt->mmio, TIMESTAMP_OVERRIDE);
+ 	u32 base_freq, frac_freq;
  
- /**
-@@ -116,13 +116,13 @@ static void pf_clear_vf_scratch_regs(struct xe_gt *gt, unsigned int vfid)
- 		count = MED_VF_SW_FLAG_COUNT;
- 		for (n = 0; n < count; n++) {
- 			scratch = xe_reg_vf_to_pf(MED_VF_SW_FLAG(n), vfid, stride);
--			xe_mmio_write32(gt, scratch, 0);
-+			xe_mmio_write32(&gt->mmio, scratch, 0);
- 		}
+ 	base_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK,
+@@ -57,7 +57,7 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
+ 
+ int xe_gt_clock_init(struct xe_gt *gt)
+ {
+-	u32 ctc_reg = xe_mmio_read32(gt, CTC_MODE);
++	u32 ctc_reg = xe_mmio_read32(&gt->mmio, CTC_MODE);
+ 	u32 freq = 0;
+ 
+ 	/* Assuming gen11+ so assert this assumption is correct */
+@@ -66,7 +66,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 	if (ctc_reg & CTC_SOURCE_DIVIDE_LOGIC) {
+ 		freq = read_reference_ts_freq(gt);
  	} else {
- 		count = VF_SW_FLAG_COUNT;
- 		for (n = 0; n < count; n++) {
- 			scratch = xe_reg_vf_to_pf(VF_SW_FLAG(n), vfid, stride);
--			xe_mmio_write32(gt, scratch, 0);
-+			xe_mmio_write32(&gt->mmio, scratch, 0);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-index 0e23b7ea4f3e..924e75b94aec 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-@@ -237,7 +237,7 @@ static void read_many(struct xe_gt *gt, unsigned int count,
- 		      const struct xe_reg *regs, u32 *values)
- {
- 	while (count--)
--		*values++ = xe_mmio_read32(gt, *regs++);
-+		*values++ = xe_mmio_read32(&gt->mmio, *regs++);
- }
+-		u32 c0 = xe_mmio_read32(gt, RPM_CONFIG0);
++		u32 c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
  
- static void pf_prepare_runtime_info(struct xe_gt *gt)
-@@ -402,7 +402,7 @@ static int pf_service_runtime_query(struct xe_gt *gt, u32 start, u32 limit,
+ 		freq = get_crystal_clock_freq(c0);
  
- 	for (i = 0; i < count; ++i, ++data) {
- 		addr = runtime->regs[start + i].addr;
--		data->offset = xe_mmio_adjusted_addr(gt, addr);
-+		data->offset = xe_mmio_adjusted_addr(&gt->mmio, addr);
- 		data->value = runtime->values[start + i];
- 	}
- 
-@@ -513,7 +513,7 @@ int xe_gt_sriov_pf_service_print_runtime(struct xe_gt *gt, struct drm_printer *p
- 
- 	for (; size--; regs++, values++) {
- 		drm_printf(p, "reg[%#x] = %#x\n",
--			   xe_mmio_adjusted_addr(gt, regs->addr), *values);
-+			   xe_mmio_adjusted_addr(&gt->mmio, regs->addr), *values);
- 	}
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 4ebc82e607af..d3baba50f085 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -881,7 +881,7 @@ static struct vf_runtime_reg *vf_lookup_reg(struct xe_gt *gt, u32 addr)
-  */
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
- {
--	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
-+	u32 addr = xe_mmio_adjusted_addr(&gt->mmio, reg.addr);
- 	struct vf_runtime_reg *rr;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-@@ -917,7 +917,7 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
-  */
- void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
- {
--	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
-+	u32 addr = xe_mmio_adjusted_addr(&gt->mmio, reg.addr);
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, !reg.vf);
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 5a1d65e4f19f..69a066ef20c0 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -35,7 +35,7 @@ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode)
- 
- static bool test_is_vf(struct xe_device *xe)
- {
--	u32 value = xe_mmio_read32(xe_root_mmio_gt(xe), VF_CAP_REG);
-+	u32 value = xe_mmio_read32(xe_root_tile_mmio(xe), VF_CAP_REG);
- 
- 	return value & VF_CAP;
- }
 -- 
 2.45.2
 
