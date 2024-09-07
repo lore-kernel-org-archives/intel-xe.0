@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E84BDCE7B04
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 03:05:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31567E6FE47
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 03:10:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0B4210E1D9;
-	Sat,  7 Sep 2024 03:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D52E310E1DE;
+	Sat,  7 Sep 2024 03:10:32 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D07F410E1D9;
- Sat,  7 Sep 2024 03:05:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4703764606581862791=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E90010E1DA;
+ Sat,  7 Sep 2024 03:10:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_GuC_based_regi?=
- =?utf-8?q?ster_capture_for_error_capture_=28rev18=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Stop_using_xe=5Fgt_a?=
+ =?utf-8?q?s_a_register_MMIO_target_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 07 Sep 2024 03:05:30 -0000
-Message-ID: <172567833084.955480.9902803510762801170@2413ebb6fbb6>
+Date: Sat, 07 Sep 2024 03:10:32 -0000
+Message-ID: <172567863264.955480.16443739795681752196@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240906222006.279581-1-zhanjun.dong@intel.com>
-In-Reply-To: <20240906222006.279581-1-zhanjun.dong@intel.com>
+References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
+In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4703764606581862791==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Add GuC based register capture for error capture (rev18)
-URL   : https://patchwork.freedesktop.org/series/128077/
+Series: Stop using xe_gt as a register MMIO target (rev2)
+URL   : https://patchwork.freedesktop.org/series/138168/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a_BAT -> xe-pw-128077v18_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8008 -> IGT_8010
-  * Linux: xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a -> xe-pw-128077v18
-
-  IGT_8008: 91925eef7a79b1402b9422758311a4d693825362 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8010: 8010
-  xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a: 217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a
-  xe-pw-128077v18: 128077v18
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v18/index.html
-
---===============4703764606581862791==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 217031ad4c96 drm-tip: 2024y-09m-06d-19h-01m-03s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Move forcewake to 'gt.pm' substructure
+Applying: drm/xe: Create dedicated xe_mmio structure
+Applying: drm/xe: Clarify size of MMIO region
+Applying: drm/xe: Move GSI offset adjustment fields into 'struct xe_mmio'
+Applying: drm/xe: Populate GT's mmio iomap from tile during init
+Applying: drm/xe: Switch mmio_ext to use 'struct xe_mmio'
+Applying: drm/xe: Add xe_tile backpointer to xe_mmio
+Applying: drm/xe: Adjust mmio code to pass VF substructure to SRIOV code
+Applying: drm/xe: Switch MMIO interface to take xe_mmio instead of xe_gt
+Applying: drm/xe/irq: Convert register access to use xe_mmio
+Applying: drm/xe/pcode: Convert register access to use xe_mmio
+Applying: drm/xe/hwmon: Convert register access to use xe_mmio
+Applying: drm/xe/vram: Convert register access to use xe_mmio
+Applying: drm/xe/compat-i915: Convert register access to use xe_mmio
+Applying: drm/xe/lmtt: Convert register access to use xe_mmio
+Applying: drm/xe/stolen: Convert register access to use xe_mmio
+Applying: drm/xe/device: Convert register access to use xe_mmio
+Applying: drm/xe/pci: Convert register access to use xe_mmio
+Applying: drm/xe/wa: Convert register access to use xe_mmio
+Applying: drm/xe/uc: Convert register access to use xe_mmio
+Applying: drm/xe/guc: Convert register access to use xe_mmio
+Applying: drm/xe/huc: Convert register access to use xe_mmio
+Applying: drm/xe/gsc: Convert register access to use xe_mmio
+Applying: drm/xe/query: Convert register access to use xe_mmio
+Applying: drm/xe/mcr: Convert register access to use xe_mmio
+Applying: drm/xe/mocs: Convert register access to use xe_mmio
+Applying: drm/xe/hw_engine: Convert register access to use xe_mmio
+Applying: drm/xe/gt_throttle: Convert register access to use xe_mmio
+Applying: drm/xe/pat: Convert register access to use xe_mmio
+Applying: drm/xe/wopcm: Convert register access to use xe_mmio
+Applying: drm/xe/oa: Convert register access to use xe_mmio
+Applying: drm/xe/topology: Convert register access to use xe_mmio
+Applying: drm/xe/execlist: Convert register access to use xe_mmio
+Applying: drm/xe/gt_clock: Convert register access to use xe_mmio
+Applying: drm/xe/reg_sr: Convert register access to use xe_mmio
+Applying: drm/xe/gt: Convert register access to use xe_mmio
+Applying: drm/xe/sriov: Convert register access to use xe_mmio
+Applying: drm/xe/tlb: Convert register access to use xe_mmio
+Applying: drm/xe/gt_idle: Convert register access to use xe_mmio
+Applying: drm/xe/forcewake: Convert register access to use xe_mmio
+Applying: drm/xe/ggtt: Convert register access to use xe_mmio
+Applying: drm/xe/ccs_mode: Convert register access to use xe_mmio
+Applying: drm/xe/mmio: Drop compatibility macros
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add GuC based register capture for error capture (rev18)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128077/">https://patchwork.freedesktop.org/series/128077/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v18/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v18/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a_BAT -&gt; xe-pw-128077v18_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8008 -&gt; IGT_8010</li>
-<li>Linux: xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a -&gt; xe-pw-128077v18</li>
-</ul>
-<p>IGT_8008: 91925eef7a79b1402b9422758311a4d693825362 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8010: 8010<br />
-  xe-1909-217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a: 217031ad4c962ee8b1b7ac4b30323b4e2ac6d12a<br />
-  xe-pw-128077v18: 128077v18</p>
-
-</body>
-</html>
-
---===============4703764606581862791==--
