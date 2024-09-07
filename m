@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48104E6FE4D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9C56E6FE4E
 	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB2110EB31;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3744310EB25;
 	Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CbVqZ6oE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IqIlZzBq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 258FE10EB25
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B2110EB2B
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667676; x=1757203676;
+ t=1725667678; x=1757203678;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cmdLz4n9UmxCyFa5QMs3hY9IlKJCrUaVxKVwjzs9qeg=;
- b=CbVqZ6oEkhsQE+1LW5VAZt89s9FvVS+29ct6ankzgUkwFL9arKghhTXp
- kLADUv1zlXLNeZaTa48h9I9tJgh9LxBZ/vgtQOduVlORHCmEw26pjIXEt
- 17ChwtWFgVWCqq4zqQvnBcP98V1VvsEpBFGwPOMTdEeLqNs0ux8h/eBG8
- 3TyBblIhN/WydIXuy7eogTwEWBgIJvBbo4k8YEDWSpkiXCbnVukSHdUBA
- sp5s035misEJux/kQKJX1kv64xD8Dn3KQN87o1bpCa/VkDVQJ0f5u/q81
- Eyhb/wWyS2GPHrA/ddT/CLqxOz14VJQvFEhbN1irko1nq9t6XLpUJ5SWh g==;
-X-CSE-ConnectionGUID: jTOKjG4FR5GVJp1MN1PvGA==
-X-CSE-MsgGUID: VSxJLbj8RVSsJWByoeGkGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855292"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855292"
+ bh=YLUvD9hGQY95WPezKBjcv5ATj2Mz4TVd/gztF4CqaQ4=;
+ b=IqIlZzBqL8Ym5axa6EqMKvr6rZKtG6hyr0cGCXTZhWyXfCKvwKWWjyHt
+ huS9SwCyNIGFBs4LfMsenmPvolXwzW3j/DTEt0YrWSX1+o3D0vwRWey3Y
+ O54nvPg208D6v8YZp2+eyGDmyWmENOeYoEqnQbAv2QsNjVwwKKTFm0jGB
+ fl1x4i3b+tbxYhM4698g7PJwYFpB3oPNp0yi+DeTkkQkpO+aUHVIzaRHr
+ eQN/QoVzio72x3SohM0OglPeXsbeRqcPlxRz8hPvQ75oEO6TLnmgQz9lb
+ AXESD71ZdB08wRapfWjK/siNEt4FL4XYsPXZuTjV+IZc+vv3kFda9fqS4 w==;
+X-CSE-ConnectionGUID: e6JxibjUR3qwEMiV9mIQ6g==
+X-CSE-MsgGUID: PFigxmklR0K1JWxrC9fI3A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855301"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855301"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: D4xAKNepS1qRXFWP7MW7JQ==
-X-CSE-MsgGUID: I31nGnrTQsSuwmm5CzS/EQ==
+X-CSE-ConnectionGUID: ZhhDRl8cS4ui19GaV2QsTg==
+X-CSE-MsgGUID: zZgAokO5TuSL6Lq3CSwLCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792621"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792649"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
@@ -45,9 +45,9 @@ From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 02/43] drm/xe: Create dedicated xe_mmio structure
-Date: Fri,  6 Sep 2024 17:07:51 -0700
-Message-ID: <20240907000748.2614020-47-matthew.d.roper@intel.com>
+Subject: [PATCH v2 11/43] drm/xe/pcode: Convert register access to use xe_mmio
+Date: Fri,  6 Sep 2024 17:08:00 -0700
+Message-ID: <20240907000748.2614020-56-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -67,64 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pull the 'mmio' substructure from xe_tile out into a dedicated type.
-Future patches will expand this structure and then eventually move MMIO
-read/write operations over to using this type.
-
-v2:
- - Fix kerneldoc of 'size' field.  The rename/refocusing of this field
-   got moved to the next patch of the series.  (Lucas)
- - Correct commit message; it's the tile, not the device, mmio that's
-   been pulled out to a separate type.  (Michal)
+Stop using GT pointers for register access.  Although some of the pcode
+mailboxes are related to GTs, pcode itself (and the register interface
+to access it) are outside the GT and should be accessed through the
+tile's MMIO.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 24 +++++++++++++++++-------
- 1 file changed, 17 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_pcode.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index ec7eb7811126..5d5b7a9199d8 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -107,6 +107,22 @@ struct xe_mem_region {
- 	void __iomem *mapping;
- };
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 7397d556996a..d95d9835de42 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -44,7 +44,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
+ 		[PCODE_ERROR_MASK] = {-EPROTO, "Unknown"},
+ 	};
  
-+/**
-+ * struct xe_mmio - register mmio structure
-+ *
-+ * Represents an MMIO region that the CPU may use to access registers.  A
-+ * region may share its IO map with other regions (e.g., all GTs within a
-+ * tile share the same map with their parent tile, but represent different
-+ * subregions of the overall IO space).
-+ */
-+struct xe_mmio {
-+	/** @regs: Map used to access registers. */
-+	void __iomem *regs;
-+
-+	/** @size: Size of the map. */
-+	size_t size;
-+};
-+
- /**
-  * struct xe_tile - hardware tile structure
-  *
-@@ -148,13 +164,7 @@ struct xe_tile {
- 	 * * 4MB-8MB: reserved
- 	 * * 8MB-16MB: global GTT
- 	 */
--	struct {
--		/** @mmio.size: size of tile's MMIO space */
--		size_t size;
--
--		/** @mmio.regs: pointer to tile's MMIO space (starting with registers) */
--		void __iomem *regs;
--	} mmio;
-+	struct xe_mmio mmio;
+-	err = xe_mmio_read32(tile->primary_gt, PCODE_MAILBOX) & PCODE_ERROR_MASK;
++	err = xe_mmio_read32(&tile->mmio, PCODE_MAILBOX) & PCODE_ERROR_MASK;
+ 	if (err) {
+ 		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
+ 			err_decode[err].str ?: "Unknown");
+@@ -58,7 +58,7 @@ static int __pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *d
+ 			      unsigned int timeout_ms, bool return_data,
+ 			      bool atomic)
+ {
+-	struct xe_gt *mmio = tile->primary_gt;
++	struct xe_mmio *mmio = &tile->mmio;
+ 	int err;
  
- 	/**
- 	 * @mmio_ext: MMIO-extension info for a tile.
+ 	if (tile_to_xe(tile)->info.skip_pcode)
 -- 
 2.45.2
 
