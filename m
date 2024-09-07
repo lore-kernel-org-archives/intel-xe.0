@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1527AE6FE51
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E37BE6FE53
 	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A222910EB34;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C907A10EB35;
 	Sat,  7 Sep 2024 00:08:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ay2o/uiW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XPkkPfGa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8119810EB27
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9B8A10EB29
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667676; x=1757203676;
+ t=1725667679; x=1757203679;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JPZ+mDcPZe7bXYB0Hphdb6Ii07q62FpN5r2l8q5UXKc=;
- b=ay2o/uiW1/gNkEtqHEkdYyrbfAQxiIYNygFmi79/QHPa8oz8H4OcEWFK
- UWWFBuMcGJf84p4Tv1tuF3Lic8zPybt7HD5VuC5fs+olnQbb9ZXRnWjEi
- Ftaa+SS6J4nMBXeYogyOPaAA1TPCW2m23ft2c1HNmDnM4PR2Mciwuqqlc
- R72D4gF6Thg3uNL9zpeJoRGbGhwE2hNpjJV6uNiQLNJ3P17nyIb/glIPL
- cBnHV+wo0l5+1VxdUazFYx/zNfEZlYwomUjGDnW29tx9gw1m/ocGbJ7+A
- TYchu8mE4SiBwxYeR0VUla8xm6cMXyBh4Wg2uIKSbHuD5QqbTNrM3AaIz g==;
-X-CSE-ConnectionGUID: o7uN/OVGSk+yQ8MKio4GEg==
-X-CSE-MsgGUID: K+Autl3wQ8mC33sPCrbJsg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855293"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855293"
+ bh=tfWv6Zu/tzGTstXYCJxG/m5ssLG2YGZwvnCbC50Alfg=;
+ b=XPkkPfGa4lqRbf5T3plDRGGL7jNbWfqY4JCnwhjGtQWqLEfo52K/jmgt
+ p9zYirXyriwxi+74EQBaZgSObW2NT/JW6NXanj/EX1LhiGlvOx5Xp4JfN
+ xftokx+lTrIIPa5XjqLuTa9TF5EGlm+wLnQuMfR2LroT7z/6l8jSizmjG
+ TYzSi4/Dzs6jJkPzJb3OVV+kJ5W/pKLRbkq49L8ZiB2Y8BmVckKESgg3d
+ z2vKygull2v8XQ7wMAgbJoQ4mMa+ix4095LBgcWKP6MCaHnlRvCxC/xYZ
+ S/HGSkDr13Wfg7Aw5rMzTP2SEBHkyB3GxgNiweMD7IVg0TXv/u+qdhatu w==;
+X-CSE-ConnectionGUID: FzryyIb6S/aU8Y/IMJs9jw==
+X-CSE-MsgGUID: NdyyYHKHS5W5tGRg0NEEkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855317"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855317"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: 4/x954NWRcmHihLnIAhd+g==
-X-CSE-MsgGUID: UyHhBjCSTsGHLIX/0N+Nag==
+X-CSE-ConnectionGUID: YHVLd499RHu1MCrHVZJt3w==
+X-CSE-MsgGUID: teIVMzgfQwC+xgr/7AnulQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792624"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792699"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 03/43] drm/xe: Clarify size of MMIO region
-Date: Fri,  6 Sep 2024 17:07:52 -0700
-Message-ID: <20240907000748.2614020-48-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v2 27/43] drm/xe/hw_engine: Convert register access to use
+ xe_mmio
+Date: Fri,  6 Sep 2024 17:08:16 -0700
+Message-ID: <20240907000748.2614020-72-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -67,91 +67,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_mmio currently has a size parameter that is assigned but never used
-anywhere.  The current values assigned appear to be the size of the BAR
-region assigned for the tile (both for registers and other purposes such
-as the GGTT).  Since the current field isn't being used for anything,
-change the assignments to 4MB (the size of the register region on all
-current platform) and rename the field to 'regs_size' to more clearly
-describe what it represents.  We can use this value in later patches to
-help ensure no register accesses accidentally go past the end of the
-desired register space (which might not be caught easily if they still
-fall within the iomap).
-
-v2:
- - s/regs_length/regs_size/  (Lucas)
- - Clarify kerneldoc description (Lucas)
+Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 10 ++++++++--
- drivers/gpu/drm/xe/xe_mmio.c         | 10 ++++++++--
- 2 files changed, 16 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 29 +++++++++++++++--------------
+ 1 file changed, 15 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 5d5b7a9199d8..ecf95801743d 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -119,8 +119,14 @@ struct xe_mmio {
- 	/** @regs: Map used to access registers. */
- 	void __iomem *regs;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index c9c3beb3ce8d..0788c2347c84 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -295,7 +295,7 @@ void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe,
  
--	/** @size: Size of the map. */
--	size_t size;
-+	/**
-+	 * @regs_size: Length of the register region within the map.
-+	 *
-+	 * The size of the iomap set in *regs is generally larger than the
-+	 * register mmio space since it includes unused regions and/or
-+	 * non-register regions such as the GGTT PTEs.
-+	 */
-+	size_t regs_size;
- };
+ 	reg.addr += hwe->mmio_base;
+ 
+-	xe_mmio_write32(hwe->gt, reg, val);
++	xe_mmio_write32(&hwe->gt->mmio, reg, val);
+ }
  
  /**
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 3fd462fda625..f210e7470eae 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -36,13 +36,19 @@ static void tiles_fini(void *arg)
- /*
-  * On multi-tile devices, partition the BAR space for MMIO on each tile,
-  * possibly accounting for register override on the number of tiles available.
-+ * tile_mmio_size contains both the tile's 4MB register space, as well as
-+ * additional space for the GTT and other (possibly unused) regions).
-  * Resulting memory layout is like below:
-  *
-  * .----------------------. <- tile_count * tile_mmio_size
-  * |         ....         |
-  * |----------------------| <- 2 * tile_mmio_size
-+ * |   tile1 GTT + other  |
-+ * |----------------------| <- 1 * tile_mmio_size + 4MB
-  * |   tile1->mmio.regs   |
-  * |----------------------| <- 1 * tile_mmio_size
-+ * |   tile0 GTT + other  |
-+ * |----------------------| <- 4MB
-  * |   tile0->mmio.regs   |
-  * '----------------------' <- 0MB
-  */
-@@ -90,7 +96,7 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
+@@ -315,7 +315,7 @@ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
  
- 	regs = xe->mmio.regs;
- 	for_each_tile(tile, xe, id) {
--		tile->mmio.size = tile_mmio_size;
-+		tile->mmio.regs_size = SZ_4M;
- 		tile->mmio.regs = regs;
- 		regs += tile_mmio_size;
+ 	reg.addr += hwe->mmio_base;
+ 
+-	return xe_mmio_read32(hwe->gt, reg);
++	return xe_mmio_read32(&hwe->gt->mmio, reg);
+ }
+ 
+ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+@@ -324,7 +324,7 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+ 		xe_hw_engine_mask_per_class(hwe->gt, XE_ENGINE_CLASS_COMPUTE);
+ 
+ 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE && ccs_mask)
+-		xe_mmio_write32(hwe->gt, RCU_MODE,
++		xe_mmio_write32(&hwe->gt->mmio, RCU_MODE,
+ 				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
+ 
+ 	xe_hw_engine_mmio_write32(hwe, RING_HWSTAM(0), ~0x0);
+@@ -354,7 +354,7 @@ static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_gt *gt,
+ 	    hwe->class != XE_ENGINE_CLASS_RENDER)
+ 		return false;
+ 
+-	return xe_mmio_read32(hwe->gt, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
++	return xe_mmio_read32(&hwe->gt->mmio, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
+ }
+ 
+ void
+@@ -612,7 +612,7 @@ static void read_media_fuses(struct xe_gt *gt)
+ 
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 
+-	media_fuse = xe_mmio_read32(gt, GT_VEBOX_VDBOX_DISABLE);
++	media_fuse = xe_mmio_read32(&gt->mmio, GT_VEBOX_VDBOX_DISABLE);
+ 
+ 	/*
+ 	 * Pre-Xe_HP platforms had register bits representing absent engines,
+@@ -657,7 +657,7 @@ static void read_copy_fuses(struct xe_gt *gt)
+ 
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 
+-	bcs_mask = xe_mmio_read32(gt, MIRROR_FUSE3);
++	bcs_mask = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
+ 	bcs_mask = REG_FIELD_GET(MEML3_EN_MASK, bcs_mask);
+ 
+ 	/* BCS0 is always present; only BCS1-BCS8 may be fused off */
+@@ -704,7 +704,7 @@ static void read_compute_fuses_from_reg(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 ccs_mask;
+ 
+-	ccs_mask = xe_mmio_read32(gt, XEHP_FUSE4);
++	ccs_mask = xe_mmio_read32(&gt->mmio, XEHP_FUSE4);
+ 	ccs_mask = REG_FIELD_GET(CCS_EN_MASK, ccs_mask);
+ 
+ 	for (int i = XE_HW_ENGINE_CCS0, j = 0; i <= XE_HW_ENGINE_CCS3; ++i, ++j) {
+@@ -742,8 +742,8 @@ static void check_gsc_availability(struct xe_gt *gt)
+ 		gt->info.engine_mask &= ~BIT(XE_HW_ENGINE_GSCCS0);
+ 
+ 		/* interrupts where previously enabled, so turn them off */
+-		xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, 0);
+-		xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~0);
++		xe_mmio_write32(&gt->mmio, GUNIT_GSC_INTR_ENABLE, 0);
++		xe_mmio_write32(&gt->mmio, GUNIT_GSC_INTR_MASK, ~0);
+ 
+ 		drm_info(&xe->drm, "gsccs disabled due to lack of FW\n");
  	}
-@@ -172,7 +178,7 @@ int xe_mmio_init(struct xe_device *xe)
- 	}
+@@ -809,6 +809,7 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
+ 				       struct xe_hw_engine_snapshot *snapshot)
+ {
+ 	struct xe_gt *gt = hwe->gt;
++	struct xe_mmio *mmio = &gt->mmio;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	unsigned int dss;
+ 	u16 group, instance;
+@@ -820,11 +821,11 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
  
- 	/* Setup first tile; other tiles (if present) will be setup later. */
--	root_tile->mmio.size = SZ_16M;
-+	root_tile->mmio.regs_size = SZ_4M;
- 	root_tile->mmio.regs = xe->mmio.regs;
+ 	if (is_slice_common_per_gslice(xe) == false) {
+ 		snapshot->reg.instdone.slice_common[0] =
+-			xe_mmio_read32(gt, SC_INSTDONE);
++			xe_mmio_read32(mmio, SC_INSTDONE);
+ 		snapshot->reg.instdone.slice_common_extra[0] =
+-			xe_mmio_read32(gt, SC_INSTDONE_EXTRA);
++			xe_mmio_read32(mmio, SC_INSTDONE_EXTRA);
+ 		snapshot->reg.instdone.slice_common_extra2[0] =
+-			xe_mmio_read32(gt, SC_INSTDONE_EXTRA2);
++			xe_mmio_read32(mmio, SC_INSTDONE_EXTRA2);
+ 	} else {
+ 		for_each_geometry_dss(dss, gt, group, instance) {
+ 			snapshot->reg.instdone.slice_common[dss] =
+@@ -959,7 +960,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 	xe_hw_engine_snapshot_instdone_capture(hwe, snapshot);
  
- 	return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);
+ 	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+-		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
++		snapshot->reg.rcu_mode = xe_mmio_read32(&hwe->gt->mmio, RCU_MODE);
+ 
+ 	return snapshot;
+ }
+@@ -1150,7 +1151,7 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
+ 
+ u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
+ {
+-	return xe_mmio_read64_2x32(hwe->gt, RING_TIMESTAMP(hwe->mmio_base));
++	return xe_mmio_read64_2x32(&hwe->gt->mmio, RING_TIMESTAMP(hwe->mmio_base));
+ }
+ 
+ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
 -- 
 2.45.2
 
