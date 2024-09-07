@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91BA0E6FE4B
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40947E6FE4D
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Sep 2024 00:08:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0DD10EB36;
-	Sat,  7 Sep 2024 00:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05BDE10EB4E;
+	Sat,  7 Sep 2024 00:08:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nGELCI3I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B4hREjVh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BDDE10EB33
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F23810EB2E
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Sep 2024 00:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725667679; x=1757203679;
+ t=1725667678; x=1757203678;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=i3RdUvBctd1jC/ElRPonMBHhh3q8Ziea+0w08It6Hyw=;
- b=nGELCI3I4EMoqbPL0I9umTOcPIjGPBrwlfnEQdAGDVUbgoo8/wOCNAVl
- poj4rOuPZ+2qWOm/Npug2rd0b1vxUKcdDrmGbXO9Zr/BFsCjWlw46YWFR
- aa4583aY7FjMne9/ZMQdMHu4CKNIl4ZVJswh3N7+qRY2rM2mlFK2OX3M0
- gO7qm/cOyq/fAgoiu4C1/BzfjcTEpJWGy4N9ACCQODESCwEwKfhFXWK85
- KjzLhhP7KA4SyXlgLRWGHbrCqRt9RRGL67GsqQZn361pLl6pgRX8fbx3W
- 8bH01NmPASOCFfzXX7lsSw1Sdi34D7s1MB+svDECGL29JaYAgn86gFiGQ w==;
-X-CSE-ConnectionGUID: ITuB2GiZQ/KAecV/rXTfvw==
-X-CSE-MsgGUID: ocRsj/EwQL+0xZJGaOEPiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855322"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855322"
+ bh=pqvMAH6lFWcUdrmnm+U7m3xxvi1/0715IM6t5OAGnK4=;
+ b=B4hREjVhUjPPZ7Rq4U2WTUiFxqN6wjuctdI5zJg1fbO26VfUq+V5/Yo5
+ bDz/vCTF2OerxiayPAjR91QrhDllzBT6CeFlTOcS7nQ0LU1P7smWnpb+8
+ SdJrkN1IpL/1vyWIDLxF93r7VsaThT2LJXCfbKxu7Ch0zWycNMOjqQ94x
+ K9tIxtB3jHGWnDFNl6SARfIFBK0paH16/7jbv93YwCuxJyfQN5ouhLE6/
+ EPMnACedCtJm9esEhR3lZqloPBcrrJMmkVVG7RisYa4p/Cs/YWwUjqYZD
+ xurhef5/ik4Q5HylZmuFElYfX9iSXrzVnwrYdpryBBrY3LhljPQXh7Za/ w==;
+X-CSE-ConnectionGUID: d5dLYCeLQ+mcpypwZ8g5Dg==
+X-CSE-MsgGUID: SBT02Gk4RImG8agCDpLFjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="49855309"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="49855309"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
-X-CSE-ConnectionGUID: mZFq1y02Q/CBIquPPCrhMQ==
-X-CSE-MsgGUID: eXnLEJ66QLm5sNnT0I/OSQ==
+X-CSE-ConnectionGUID: uf9+c4W0RO2//sQcKyMrKQ==
+X-CSE-MsgGUID: v1FRmn2JRqOI40wFnwKlmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792716"
+X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; d="scan'208";a="65792672"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Sep 2024 17:07:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 32/43] drm/xe/topology: Convert register access to use
- xe_mmio
-Date: Fri,  6 Sep 2024 17:08:21 -0700
-Message-ID: <20240907000748.2614020-77-matthew.d.roper@intel.com>
+Subject: [PATCH v2 19/43] drm/xe/wa: Convert register access to use xe_mmio
+Date: Fri,  6 Sep 2024 17:08:08 -0700
+Message-ID: <20240907000748.2614020-64-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240907000748.2614020-45-matthew.d.roper@intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
@@ -71,49 +70,27 @@ Stop using GT pointers for register access.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_topology.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_wa.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index 0662f71c6ede..651ba53623e5 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -25,7 +25,7 @@ load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
- 
- 	va_start(argp, numregs);
- 	for (i = 0; i < numregs; i++)
--		fuse_val[i] = xe_mmio_read32(gt, va_arg(argp, struct xe_reg));
-+		fuse_val[i] = xe_mmio_read32(&gt->mmio, va_arg(argp, struct xe_reg));
- 	va_end(argp);
- 
- 	bitmap_from_arr32(mask, fuse_val, numregs * 32);
-@@ -35,7 +35,7 @@ static void
- load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask, enum xe_gt_eu_type *eu_type)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 28b7f95b6c2f..d8a5a85e9ebd 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -883,11 +883,11 @@ void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p)
+  */
+ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
  {
- 	struct xe_device *xe = gt_to_xe(gt);
--	u32 reg_val = xe_mmio_read32(gt, XELP_EU_ENABLE);
-+	u32 reg_val = xe_mmio_read32(&gt->mmio, XELP_EU_ENABLE);
- 	u32 val = 0;
- 	int i;
+-	struct xe_gt *mmio = tile->primary_gt;
++	struct xe_mmio *mmio = &tile->mmio;
  
-@@ -127,7 +127,7 @@ static void
- load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	u32 fuse3 = xe_mmio_read32(gt, MIRROR_FUSE3);
-+	u32 fuse3 = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
+ 	if (IS_SRIOV_VF(tile->xe))
+ 		return;
  
- 	if (GRAPHICS_VER(xe) >= 20) {
- 		xe_l3_bank_mask_t per_node = {};
-@@ -141,7 +141,7 @@ load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
- 		xe_l3_bank_mask_t per_node = {};
- 		xe_l3_bank_mask_t per_mask_bit = {};
- 		u32 meml3_en = REG_FIELD_GET(MEML3_EN_MASK, fuse3);
--		u32 fuse4 = xe_mmio_read32(gt, XEHP_FUSE4);
-+		u32 fuse4 = xe_mmio_read32(&gt->mmio, XEHP_FUSE4);
- 		u32 bank_val = REG_FIELD_GET(GT_L3_EXC_MASK, fuse4);
- 
- 		bitmap_set_value8(per_mask_bit, 0x3, 0);
+-	if (XE_WA(mmio, 22010954014))
++	if (XE_WA(tile->primary_gt, 22010954014))
+ 		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
+ }
 -- 
 2.45.2
 
