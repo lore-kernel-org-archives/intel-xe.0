@@ -4,96 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CB8BECE599
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E01A8ECE587
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0D1410E55F;
-	Mon,  9 Sep 2024 12:37:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9041810E556;
+	Mon,  9 Sep 2024 12:37:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=hendrik.org.uk header.i=@hendrik.org.uk header.b="OY7+Y62Q";
+	dkim=pass (2048-bit key; unprotected) header.d=kruces-com.20230601.gappssmtp.com header.i=@kruces-com.20230601.gappssmtp.com header.b="24PRR2Ef";
 	dkim-atps=neutral
-X-Greylist: delayed 408 seconds by postgrey-1.36 at gabe;
- Sat, 07 Sep 2024 02:13:03 UTC
-Received: from dormouse.ash.relay.mailchannels.net
- (dormouse.ash.relay.mailchannels.net [23.83.222.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6072D10E1D5
- for <Intel-Xe@lists.freedesktop.org>; Sat,  7 Sep 2024 02:13:03 +0000 (UTC)
-X-Sender-Id: 9wt3zsp42r|x-authuser|hendriko@frieza-lon.krystal.uk
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
- by relay.mailchannels.net (Postfix) with ESMTP id E0711841BB7;
- Sat,  7 Sep 2024 02:06:13 +0000 (UTC)
-Received: from frieza-lon.krystal.uk
- (100-96-74-102.trex-nlb.outbound.svc.cluster.local [100.96.74.102])
- (Authenticated sender: 9wt3zsp42r)
- by relay.mailchannels.net (Postfix) with ESMTPA id 92B9E841955;
- Sat,  7 Sep 2024 02:06:12 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1725674773; a=rsa-sha256;
- cv=none;
- b=gyi1fysQgKLcNzfwsGx9lOLzhnHFX0HiZABg9XuyDGGh3YYg5bWiVz4dcBuK+3H7tO9+Kf
- i4Wv14ztoum/Th7sqysraEj662yCKyAptY8OjgxJu3U37ObebN237sQTo0i5LKVXg08hhb
- c7jGxmzCw/j6MXYfLa0rL3U/A0381xrmn1UDdTS86Yiu/dwkoFXtffRSEWvP5ke5IvGIp7
- +LqdXgxJPniTEfrsRRvB4AaAxcZ1wfDNAt1gOP61xkWfiogZGw1FVsNAEamZphwiPZ21CS
- avh21B7zllHCXSVfLMpjyAUfsDtEMyqSe+LkCf2LTxuiK38r5mViF/8ZWUkTqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net; s=arc-2022; t=1725674773;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=m19MevNHze6Nq50mEKtxdtA9QvnVhh9Yw9uVDKP4dPk=;
- b=t4ztdh2ssUtFLWroS669rg9FWwLPRXRss5EkUKEVaSEGKEx2m207ovs6Y3bo2g8cTeoXUH
- 2cTtAWktY/sY3HaGdSNXSxhrYp2YoCUO/zJdDNuQlfMcn9QJJARNa3+twGL4x7bdgDJFA6
- M/wblDmblgOF8RRv+v+RdBqQckXLSYyl1m0tkCX93OBiPHZzZWDXYLiJ41OkYgjSUL9ysJ
- zzflqVnoriAr59Mfyq/WZaX6NRH/wF/lMVPMfLoeqQ/uAWgo5ArkQZrs1RfMOKnvSTv42v
- TjmEn8xj7ISyJXOmrEeKsDREQ3PhAVNdHYHUaEutkPu2NMr5/WaxsjGZl+clJA==
-ARC-Authentication-Results: i=1; rspamd-77766c4bb8-ltk5m;
- auth=pass smtp.auth=9wt3zsp42r smtp.mailfrom=John@Hendrik.org.uk
-X-Sender-Id: 9wt3zsp42r|x-authuser|hendriko@frieza-lon.krystal.uk
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: 9wt3zsp42r|x-authuser|hendriko@frieza-lon.krystal.uk
-X-MailChannels-Auth-Id: 9wt3zsp42r
-X-Occur-Callous: 6c8521513d916acc_1725674773418_2770594003
-X-MC-Loop-Signature: 1725674773418:3129381248
-X-MC-Ingress-Time: 1725674773418
-Received: from frieza-lon.krystal.uk (frieza-lon.krystal.uk [185.194.90.13])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
- by 100.96.74.102 (trex/7.0.2); Sat, 07 Sep 2024 02:06:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=hendrik.org.uk; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=m19MevNHze6Nq50mEKtxdtA9QvnVhh9Yw9uVDKP4dPk=; b=OY7+Y62QvVQzqmiRHAZBXIJKeS
- 1QT/mRXdLwkLFHLxyr2x7ZQpzBpFw6DlKVYExLjlRxD2Y+Y4B0dCpsv/au4yh219mq2SR1BQNHFLy
- +YC5HIoHT2jJArjC5FbOZprmYNsm+PezDKPmKWyeYNmEXhQ2Hvb8gRg501KmfM9uzJPyO2SrsGiXN
- 4kZZg/01I8JDM21fN40Pj99XPiuHY0h1X9iAAZOJS4gfrekaq7grfoFnuEOc4a8EcujUAysaidn8j
- XwYoV+q1+unbR7jzjGrrFFx8j+0Xdx5FwB68oBvkRy0uiRFXtir8AMvoyROn+5uRH7gWOT9218XhL
- VflIRBdA==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]:51216
- helo=[127.0.0.1])
- by frieza-lon.krystal.uk with esmtpsa  (TLS1.3) tls TLS_AES_128_GCM_SHA256
- (Exim 4.96.2) (envelope-from <John@Hendrik.org.uk>)
- id 1smkq5-00GISF-2q; Sat, 07 Sep 2024 03:06:10 +0100
-Message-ID: <b2002802-50d5-42bd-abb3-ffdf8ed33e69@Hendrik.org.uk>
-Date: Fri, 6 Sep 2024 19:06:06 -0700
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
+ [209.85.218.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1403710E244
+ for <intel-xe@lists.freedesktop.org>; Sun,  8 Sep 2024 17:41:04 +0000 (UTC)
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-a8a6d1766a7so379463466b.3
+ for <intel-xe@lists.freedesktop.org>; Sun, 08 Sep 2024 10:41:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kruces-com.20230601.gappssmtp.com; s=20230601; t=1725817262; x=1726422062;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fviFcg3HLptplXdgVPwFETuKylRy16bbpArI+x9x9sA=;
+ b=24PRR2EfhHNTzXFxrvZu3OWT+mK3TkAEz9q4F6q31a2OvFsmLQqj2s73HOoTLg5Ew8
+ W6p1NlYmqr6I6GOf4hmIllzD/MbyVH5PuVGSKXmSK2Mu2msKp9qL63YE6n1oMZtU7Zsb
+ ZmlPJYvGa3HvfpdK+aVlViiYs28Eg6ikc6T+bOvVCTS3NmlR4kLWAXB83jkUrv7X3q1i
+ gva70Rr/594JenNG26Qnafllm/MxwVM5tuLDNDunc6mEKPEFvsi/i4884vqM7aTPoY0C
+ ypyvca+urc+/+IctghJjKyovf1RPEuaY8ZD7LbVTK0o4JkDsNoWsqwG8YV31Ztl4MnMm
+ 3xrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725817262; x=1726422062;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=fviFcg3HLptplXdgVPwFETuKylRy16bbpArI+x9x9sA=;
+ b=rVnAwBw5F753WXpg7tyfQnG15VgcH7jUPB+0sZ1ltI69b0ikmLIFdsY/XBJY5QBqMB
+ CisbGQLLvnxp/C8gSpz1bFMTQ27tflcYJaWjBPaDW85YHhTUsc5kdEFYhVki+wAc9R7y
+ ZrPRMMp36ZmeRvRDw2PoX4/Rzf8jP/jtlUZlhSUl8hfkZXKgHkJR35MhfbOQ0WYWX52K
+ h8RU6GADq3BFVQOHYJ8zEbuCxRZF5Wk2HP5W9WK5VjbJEe6z6vouB8Wp/jeCb6eOuanU
+ vtyzD0hXCCq3dptL4RxDC0PT5qJkQhArL5ihMf5eenLGF4eOOwptgvISgTA+iYDQD8HV
+ UdrQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX3n8xA0JSkT7o0d9XUd7vy2wOb/ZPROjE6bxlUXxOaj06Eks0uqvB17duxShGS7bvqQ0cjlSqADw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxFOAd1dtGQrC3yppErdCGuQRB1B/mcEijNcgbJzaNvs8xvbJ2R
+ gNkqUJmHFFu3VHs2cHp3AVZX9ZZ6M+pUhYSVcmFHcHv/sNMWWKB2BdywkjvGR3AOGgYyBFnyRyH
+ MwcTa3JZ3RgwnKtPkZ190ldAAgloeYywWMYxTAw==
+X-Google-Smtp-Source: AGHT+IG0taDaRweGpDhiFssf20qgh8akE04jwmSCvgTsBJig1BN0pA1T1q/8W0tMp8E8Ed3WvXCdk5VBeHS2T6PZWVU=
+X-Received: by 2002:a17:907:9690:b0:a8d:2faf:d343 with SMTP id
+ a640c23a62f3a-a8d2fafee8fmr226989166b.27.1725817261797; Sun, 08 Sep 2024
+ 10:41:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 03/10] drm/xe/devcoredump: Add ASCII85 dump helper
- function
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Intel-Xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
-References: <20240905205106.1063091-1-John.C.Harrison@Intel.com>
- <20240905205106.1063091-4-John.C.Harrison@Intel.com>
- <sm6iyfzcaq6vbgytgueqqbjjzjniarulya6xzsuo7gyollceyj@iovrnktwvloq>
- <d80bec85-adfe-4410-ae04-e6bb0f41c764@intel.com>
- <avsxdhqepybtshgp3zfhdtv2beqaub7mg3nvkj7yws7utc5e5p@44uqzzgz6h3m>
-Content-Language: en-GB
-From: John Harrison <John@Hendrik.org.uk>
-In-Reply-To: <avsxdhqepybtshgp3zfhdtv2beqaub7mg3nvkj7yws7utc5e5p@44uqzzgz6h3m>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AuthUser: hendriko@frieza-lon.krystal.uk
+References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
+ <20240906-macos-build-support-v2-2-06beff418848@samsung.com>
+ <CAK7LNARw-7uwJB7ibmSYE5nYUtPXcr4J9cHBQqm9BnNS=SRUhQ@mail.gmail.com>
+In-Reply-To: <CAK7LNARw-7uwJB7ibmSYE5nYUtPXcr4J9cHBQqm9BnNS=SRUhQ@mail.gmail.com>
+From: "Daniel Gomez (Samsung)" <d+samsung@kruces.com>
+Date: Sun, 8 Sep 2024 19:40:34 +0200
+Message-ID: <CABj0suCHeWGDXX-S6U9X5iCzwMqn9pq=i84PSKwKtUXhGxaBjQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] file2alias: fix uuid_t definitions for macos
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: da.gomez@samsung.com, Nathan Chancellor <nathan@kernel.org>, 
+ Nicolas Schier <nicolas@fjasle.eu>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
+ Kirk Reiser <kirk@reisers.ca>, Samuel Thibault <samuel.thibault@ens-lyon.org>, 
+ Paul Moore <paul@paul-moore.com>,
+ Stephen Smalley <stephen.smalley.work@gmail.com>, 
+ Ondrej Mosnacek <omosnace@redhat.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Oliver Upton <oliver.upton@linux.dev>, 
+ James Morse <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ Simona Vetter <simona.vetter@ffwll.ch>, linux-kernel@vger.kernel.org, 
+ linux-kbuild@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, speakup@linux-speakup.org, 
+ selinux@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ kvmarm@lists.linux.dev, linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
+ Finn Behrens <me@kloenk.dev>, gost.dev@samsung.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 09 Sep 2024 12:37:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -109,78 +106,249 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 9/5/2024 20:04, Lucas De Marchi wrote:
-> On Thu, Sep 05, 2024 at 07:01:33PM GMT, John Harrison wrote:
->> On 9/5/2024 18:54, Lucas De Marchi wrote:
->>> On Thu, Sep 05, 2024 at 01:50:58PM GMT, John.C.Harrison@Intel.com 
->>> wrote:
->>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>
->>>> There is a need to include the GuC log and other large binary objects
->>>> in core dumps and via dmesg. So add a helper for dumping to a printer
->>>> function via conversion to ASCII85 encoding.
->>>
->>> why are we not dumping the binary data directly to devcoredump?
->> As per earlier comments, there is a WiFi driver or some such that 
->> does exactly that. But all they are dumping is a binary blob.
+On Sun, Sep 8, 2024 at 1:56=E2=80=AFAM Masahiro Yamada <masahiroy@kernel.or=
+g> wrote:
 >
-> In your v5 I see you mentioned
-> drivers/net/wireless/ath/ath10k/coredump.c, but that is a precedence for
-> including it as is from the device rather converting it to ASCII85 or
-> something else. It seems odd to do that type of conversion in kernel
-> space when it could be perfectly done in userspace.
-It really can't. An end user could maybe be expected to zip or tar a 
-coredump file before attaching it to a bug report but they are certainly 
-not going to try to ASCII85 encode random bits of it. Whereas, putting 
-that in the kernel means it is just there. It is done. And it is pretty 
-trivial - just call a helper function and it does everything for you. 
-Also, I very much doubt you can spew raw binary data via dmesg. Even if 
-the kernel would print it for you (which I doubt), the user tools like 
-syslogd and dmesg itself are going to filter it to make it ASCII safe.
+> On Fri, Sep 6, 2024 at 8:01=E2=80=AFPM Daniel Gomez via B4 Relay
+> <devnull+da.gomez.samsung.com@kernel.org> wrote:
+> >
+> > From: Daniel Gomez <da.gomez@samsung.com>
+> >
+> > The uuid_t struct defined in sys/types.h on macOS hosts conflicts with
+> > the one defined in file2alias, resulting in the typedef redefinition
+> > error below. To resolve this conflict, define the _UUID_T and
+> > __GETHOSTUUID_ in file2alias HOSTCFLAGS.
+> >
+> > Error:
+> >   HOSTCC  scripts/mod/file2alias.o scripts/mod/file2alias.c:45:3:
+> > error: typedef redefinition with different types ('struct uuid_t' vs
+> > '__darwin_uuid_t' (aka 'unsigned char[16]'))    45 | } uuid_t;       |
+> > ^
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    sys/_types/_uuid_t.h:31:25: note: previous definition is here 31 |
+> >    typedef __darwin_uuid_t uuid_t;    |                         ^
+> > scripts/mod/file2alias.c:1354:7: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1354 |
+> >  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1354:19: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1354 |
+> >  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1354:31: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1354 |
+> >  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1354:43: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1354 |
+> >  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1354:55: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1354 |
+> >  uuid->b[0], uuid->b[1], uuid->b[2], uuid->b[3], uuid->b[4],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1355:7: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1355 |
+> >  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1355:19: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1355 |
+> >  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1355:31: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1355 |
+> >  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1355:43: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1355 |
+> >  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1355:55: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1355 |
+> >  uuid->b[5], uuid->b[6], uuid->b[7], uuid->b[8], uuid->b[9],      |
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1356:7: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1356 |
+> >  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      =
+|
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1356:20: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1356 |
+> >  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      =
+|
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1356:33: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1356 |
+> >  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      =
+|
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1356:46: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1356 |
+> >  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      =
+|
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1356:59: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1356 |
+> >  uuid->b[10], uuid->b[11], uuid->b[12], uuid->b[13], uuid->b[14],      =
+|
+> >  ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > scripts/mod/file2alias.c:1357:7: error: member reference base
+> >  type 'typeof (((struct tee_client_device_id *)0)->uuid)' (aka
+> >  'unsigned char[16]') is not a structure or union 1357 |
+> >  uuid->b[15]);      |                 ~~~~^ ~
+> > /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/
+> >    secure/_stdio.h:47:56: note: expanded from macro 'sprintf' 47 |
+> >    __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+> >    |                                                        ^~~~~~~~~~~
+> > 17 errors generated.
+> >
+> > Suggested-by: Nicolas Schier <nicolas@fjasle.eu>
+> > Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+> > ---
+> >  scripts/mod/Makefile     | 2 ++
+> >  scripts/mod/file2alias.c | 3 +++
+> >  2 files changed, 5 insertions(+)
+> >
+> > diff --git a/scripts/mod/Makefile b/scripts/mod/Makefile
+> > index c729bc936bae..75c12c045f21 100644
+> > --- a/scripts/mod/Makefile
+> > +++ b/scripts/mod/Makefile
+> > @@ -8,6 +8,8 @@ modpost-objs    :=3D modpost.o file2alias.o sumversion.=
+o symsearch.o
+> >
+> >  devicetable-offsets-file :=3D devicetable-offsets.h
+> >
+> > +HOSTCFLAGS_file2alias.o +=3D -D_UUID_T -D__GETHOSTUUID_H
+> > +
+> >  $(obj)/$(devicetable-offsets-file): $(obj)/devicetable-offsets.s FORCE
+> >         $(call filechk,offsets,__DEVICETABLE_OFFSETS_H__)
+> >
+> > diff --git a/scripts/mod/file2alias.c b/scripts/mod/file2alias.c
+> > index 99dce93a4188..ab743f6d60ef 100644
+> > --- a/scripts/mod/file2alias.c
+> > +++ b/scripts/mod/file2alias.c
+> > @@ -11,6 +11,9 @@
+> >   */
+> >
+> >  #include "modpost.h"
+> > +#ifdef __APPLE__
+> > +#define uuid_t sys_uuid_t
+> > +#endif
+> >  #include "devicetable-offsets.h"
+>
+>
+>
+>
+> Is this what Nicolas suggested?
+> https://lore.kernel.org/lkml/20240807-sexy-roadrunner-of-acceptance-a84bb=
+f@lindesnes/
+>
+>
+> I thought he suggested replacing #ifdef __APPLE__
+> with -D_UUID_T -D__GETHOSTUUID_H.
+>
+>
+> You added -D_UUID_T -D__GETHOSTUUID_H,
+> keeping #ifdef __APPLE__.
 
-The i915 error dumps have been ASCII85 encoded using the kernel's 
-ASCII85 encoding helper function since forever. This patch is just a 
-wrapper around the kernel's existing implementation in order to make it 
-more compatible with printing to dmesg. This is not creating a new 
-precedent. It already exists.
+I forgot to remove this.
+
+Based on your suggestion in the other thread to use/overwrite
+HOSTCFLAGS via the command line, it seems I should drop this patch.
+Can you confirm?
 
 >
-> $ git grep ascii85.h
-> drivers/gpu/drm/i915/i915_gpu_error.c:#include <linux/ascii85.h>
-> drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c:#include <linux/ascii85.h>
-> drivers/gpu/drm/msm/adreno/adreno_gpu.c:#include <linux/ascii85.h>
-> drivers/gpu/drm/xe/xe_lrc.c:#include <linux/ascii85.h>
-> drivers/gpu/drm/xe/xe_vm.c:#include <linux/ascii85.h>
-And the list of drivers which dump raw binary data in a coredump file 
-is... ath10k. ASCII85 wins 3 to 1.
-
-
->
->>
->> We want the devcoredump file to still be human readable. That won't 
->> be the case if you stuff binary data in the middle of it. Most 
->> obvious problem - the zeros in the data will terminate your text file 
->> at that point. Potentially bigger problem for end users - random fake 
->> ANSI codes will destroy your terminal window if you try to cat the 
->> file to read it.
->
-> Users don't get a coredump and cat it to the terminal.
-> =(lk%A8`T7AKYH#FD,6++EqOABHUhsG%5H2ARoq#E$/V$Bl7Q+@<5pmBe<q;Bk;0mCj@.3DIal2FD5Q-+E_RBART+X@VfTuGA2/4Dfp.E@3BN0DfB9.+E1b0F(KAV+:8 
 >
 >
-> Lucas De Marchi
-They might. Either intentionally or accidentally. I've certainly done it 
-myself. And people will certainly want to look at it in any random 
-choice of text editor, pager, etc. 'cos you know, it is meant to be read 
-by humans. If it is full of binary data then that becomes even more 
-difficult than simply being full of ASCII gibberish. No matter what you 
-are doing, the ASCII version is safer and easier to look at the rest of 
-the file around it.
-
-I don't understand why you are so desperate to have raw binary data in 
-the middle of a text file. The disadvantages are multiple but the only 
-advantage is a slightly smaller file. And the true route to smaller 
-files is to add compression like we have in i915.
-
-John.
-
+>
+>
+>
+>
+>
+>
+> >  /* We use the ELF typedefs for kernel_ulong_t but bite the bullet and
+> >
+> > --
+> > 2.46.0
+> >
+> >
+>
+>
+> --
+> Best Regards
+> Masahiro Yamada
