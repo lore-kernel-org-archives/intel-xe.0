@@ -4,72 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F77AECE591
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75789ECE579
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:37:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62CD810E560;
-	Mon,  9 Sep 2024 12:37:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2472410E55A;
+	Mon,  9 Sep 2024 12:37:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nO4Npbpc";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="msrOKWhQ";
 	dkim-atps=neutral
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
- [209.85.215.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90B4C10EAB2;
- Fri,  6 Sep 2024 17:46:11 +0000 (UTC)
-Received: by mail-pg1-f172.google.com with SMTP id
- 41be03b00d2f7-7c1324be8easo2439435a12.1; 
- Fri, 06 Sep 2024 10:46:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725644770; x=1726249570; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=//GMh5wcWPuvbL5byVeOpp7gx8/ceI9tmF4jI5oBjrY=;
- b=nO4NpbpcTbWi0zmIFsKTd7vsqKyz+dk81jitwd+Xta1JCfYpKg3VeJpA9b+ZrYEznc
- pHjxNkqbnc2BosjYzfS9D8tU+TZNDb2VF4STbF6xGVstUNeun57PuY/KsGMxX9qSFA6n
- IcShQC+lONSZC89W/gaUPp+Ai1ot/wgeQ+bS3sZYM7ynAj+NFHZQBrRj+hOs/TQMj3vF
- uTvFWFJ9HQy77vAPbcI/NCdJPn1tau28HW9UQfXBLdQ1bpiaGef+VsSgWBddkGRWZWQY
- j2Q/7goeUVZU8qUR8ss7CyZmHHzMySggDiZJ3S9XnCMCpSHNZHvIw8ICtYNkQuBu/M4b
- hm2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725644770; x=1726249570;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=//GMh5wcWPuvbL5byVeOpp7gx8/ceI9tmF4jI5oBjrY=;
- b=kfZAvPhVdEXdrzMTTxKoDhr0IDd8EvmRZIs1UEdRQON+zWmpXisCKyK5RFw3b2Lrh2
- a53TkgsUSUE1Du22TTCjMKXIasG7pL2CIUR8HFnA1RUTbN6fKmg0c7fzO6ElhX56Vw4r
- EIVPcAiKC2QX9aHgrmMkKMIf60gRNPdMEi5riYtXiLmKL66x00OesXVhbxmq3synKDwG
- t3luFQHgxRSJKKkElmKSQ/F4ez0SvzFsFSP5ncOPAb0NH8pdWwAHmTHLFiPzv8QUHEWo
- /jR2yFfc2yrXEJc6PAuS17AccpAEzqf/8LhmBy0Bbn2qACsmq7U8ojFwHA8TNm8uPNG4
- Lz9w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW/f7ExC6aTILLYvug0S+jRJkeXRmpzL6VeP74eNEMnO13zR5iN+U2l/X5gm+0N8EXNzwtxjFSnG2Y=@lists.freedesktop.org,
- AJvYcCXn50zW6CeqkcaxYeKNwIQ91NINnaZ9jyGAewcFIPo0sWwRcvFjn1iY4whruotCGPvQA4YKi+GSDMc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyqo3OG2ZOW9YkfA7w2GSw+zdpkXSqiZbNV66Y5Uxn3SGm24wkA
- tus4Tiklh2yTaIIm9wDqCa2e9B3/loRd2xM79cdN7Pt48l9wX65ZLd5R6Zpi1fNaIQ==
-X-Google-Smtp-Source: AGHT+IHl1QwGj6f27gy0SNNX8R4uHPJcDOIVI4Q+cvPI+qzi59HzqJAavBhcgc+seszYKXg3rYCwsg==
-X-Received: by 2002:a17:90b:4c42:b0:2c9:7343:71f1 with SMTP id
- 98e67ed59e1d1-2dad511c22fmr5252445a91.14.1725644769664; 
- Fri, 06 Sep 2024 10:46:09 -0700 (PDT)
-Received: from fedora.. ([2405:201:d007:50c2:4888:86b4:6f32:9ae])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2dab6e5dc04sm1466452a91.1.2024.09.06.10.46.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Sep 2024 10:46:09 -0700 (PDT)
-From: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, skhan@linuxfoundation.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/cx0: Use one lane to set power state to ready in DP
- alt mode
-Date: Fri,  6 Sep 2024 23:16:01 +0530
-Message-ID: <20240906174601.9271-1-vamsikrishna.brahmajosyula@gmail.com>
-X-Mailer: git-send-email 2.46.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E21B10E237;
+ Sun,  8 Sep 2024 09:03:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 678C6A4153F;
+ Sun,  8 Sep 2024 09:03:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B215C4CEC3;
+ Sun,  8 Sep 2024 09:03:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1725786223;
+ bh=iaWBGRY0Ga/QyUiWnGcCNwe6GvY+ter/ioZNDc3NI98=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=msrOKWhQM0NPDWGVtAJ5zBEdnKCnebFP9yaFEL1mSerelkJzG94ySzSfD6m0E4ojc
+ kjMQh/ag+VyC/d780XoBD3PFZknFPAaFuYrxlcv/7ehW/GnvHaXFX6vSxvK6izDxeT
+ 1aT8e43zs2q3ex2vaR4U5q7VCLRR17De16EZEcUEMrm6e/Ihnzg7IC+Z3iUYdB/LSl
+ oDcnllCDJdMTn71NrJDIl+KUsuiipPjrCpjpyr+ARjQTJ57aC6uYZR+FfbtZC+MKA/
+ lRKaWi8C3AchITgoKamTtMqoTINB1JW/Ckv5nWk919r8jMsGBxedp0p7u2Dy37tp1T
+ Gwnf0KlvbKv3Q==
+Received: from sofa.misterjones.org ([185.219.108.64]
+ helo=goblin-girl.misterjones.org)
+ by disco-boy.misterjones.org with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <maz@kernel.org>) id 1snDpa-00AcmB-1V;
+ Sun, 08 Sep 2024 10:03:38 +0100
+Date: Sun, 08 Sep 2024 10:03:36 +0100
+Message-ID: <86cylev7o7.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: "Daniel Gomez (Samsung)" <d+samsung@kruces.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,	da.gomez@samsung.com,	Nathan
+ Chancellor <nathan@kernel.org>,	Nicolas Schier <nicolas@fjasle.eu>,	Lucas
+ De Marchi <lucas.demarchi@intel.com>,	Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
+ <thomas.hellstrom@linux.intel.com>,	Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,	Maxime Ripard
+ <mripard@kernel.org>,	Thomas Zimmermann <tzimmermann@suse.de>,	David Airlie
+ <airlied@gmail.com>,	William Hubbs <w.d.hubbs@gmail.com>,	Chris Brannon
+ <chris@the-brannons.com>,	Kirk Reiser <kirk@reisers.ca>,	Samuel Thibault
+ <samuel.thibault@ens-lyon.org>,	Paul Moore <paul@paul-moore.com>,	Stephen
+ Smalley <stephen.smalley.work@gmail.com>,	Ondrej Mosnacek
+ <omosnace@redhat.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Will
+ Deacon <will@kernel.org>,	Oliver Upton <oliver.upton@linux.dev>,	James
+ Morse <james.morse@arm.com>,	Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Zenghui Yu <yuzenghui@huawei.com>,	Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,	Jiri Slaby <jirislaby@kernel.org>,	Nick
+ Desaulniers <ndesaulniers@google.com>,	Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>,	Simona Vetter
+ <simona.vetter@ffwll.ch>,	linux-kernel@vger.kernel.org,
+ linux-kbuild@vger.kernel.org,	intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,	speakup@linux-speakup.org,
+ selinux@vger.kernel.org,	linux-arm-kernel@lists.infradead.org,
+ kvmarm@lists.linux.dev,	linux-serial@vger.kernel.org,	llvm@lists.linux.dev,
+ Finn Behrens <me@kloenk.dev>,	gost.dev@samsung.com
+Subject: Re: [PATCH v2 8/8] Documentation: add howto build in macos
+In-Reply-To: <CABj0suBQCc8=0tLng=OWW=K1hjFuLFZWhbjsqHtz2FzZt4i0sw@mail.gmail.com>
+References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
+ <20240906-macos-build-support-v2-8-06beff418848@samsung.com>
+ <CAK7LNASpWSXbjF_7n0MhosNism=BpvHOnKsa344RPM_wmC9dGA@mail.gmail.com>
+ <CABj0suBQCc8=0tLng=OWW=K1hjFuLFZWhbjsqHtz2FzZt4i0sw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: d+samsung@kruces.com, masahiroy@kernel.org,
+ da.gomez@samsung.com, nathan@kernel.org, nicolas@fjasle.eu,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, w.d.hubbs@gmail.com,
+ chris@the-brannons.com, kirk@reisers.ca, samuel.thibault@ens-lyon.org,
+ paul@paul-moore.com, stephen.smalley.work@gmail.com, omosnace@redhat.com,
+ catalin.marinas@arm.com, will@kernel.org, oliver.upton@linux.dev,
+ james.morse@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, ndesaulniers@google.com,
+ morbo@google.com, justinstitt@google.com, simona.vetter@ffwll.ch,
+ linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ speakup@linux-speakup.org, selinux@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+ linux-serial@vger
+ .kernel.org, llvm@lists.linux.dev, me@kloenk.dev, gost.dev@samsung.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org);
+ SAEximRunCond expanded to false
 X-Mailman-Approved-At: Mon, 09 Sep 2024 12:37:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,42 +111,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In DP alt mode one lane is owned by display and the other by usb
-intel_cx0pll_enable currently performs a power cycle ready on both
-the lanes in all cases.
+On Sat, 07 Sep 2024 10:32:20 +0100,
+"Daniel Gomez (Samsung)" <d+samsung@kruces.com> wrote:
+>=20
+> On Sat, Sep 7, 2024 at 10:33=E2=80=AFAM Masahiro Yamada <masahiroy@kernel=
+.org> wrote:
+> >
+> > On Fri, Sep 6, 2024 at 8:01=E2=80=AFPM Daniel Gomez via B4 Relay
+> > <devnull+da.gomez.samsung.com@kernel.org> wrote:
+> > >
+> > > From: Daniel Gomez <da.gomez@samsung.com>
+> > >
+> > > Add documentation under kbuild/llvm to inform about the experimental
+> > > support for building the Linux kernel in macOS hosts environments.
+> > >
+> > > Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+> >
+> >
+> > Instead, you can add this instruction to:
+> >
+> > https://github.com/bee-headers/homebrew-bee-headers/blob/main/README.md
+>=20
+> Sure, that can be done as well. But the effort here is to have this
+> integrated. So, I think documentation should be in-tree.
 
-Address the todo to perfom power state ready only on the display lane
-when DP alt mode is enabled.
+I think this ship sailed the moment you ended-up with an external
+dependency.
 
-Tested on Meteor Lake-P [Intel Arc Graphics] with DP alt mode.
+Having looked at this series (and in particular patch #4 which falls
+under my remit), I can't help but think that the whole thing should
+simply live as a wrapper around the pristine build system instead of
+hacking things inside of it. You already pull external dependencies
+(the include files). Just add a script that sets things up
+(environment variables that already exist) and calls 'make' in the
+kernel tree.
 
-Signed-off-by: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+I also dislike that this is forcing "native" developers to cater for
+an operating system they are unlikely to have access to. If I break
+this hack tomorrow by adding a new dependency that MacOS doesn't
+provide, how do I fix it? Should I drop my changes on the floor?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 4a6c3040ca15..47aa0418379c 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2949,9 +2949,13 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 
- 	/*
- 	 * 3. Change Phy power state to Ready.
--	 * TODO: For DP alt mode use only one lane.
-+	 * For DP alt mode use only one lane.
- 	 */
--	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
-+	if (intel_tc_port_in_dp_alt_mode(dig_port))
-+		intel_cx0_powerdown_change_sequence(encoder, maxpclk_lane,
-+					    CX0_P2_STATE_READY);
-+	else
-+		intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
- 					    CX0_P2_STATE_READY);
- 
- 	/*
+As an alternative, and since you already have to create a special
+file-system to contain your kernel tree, you may as well run Linux in
+a VM, which I am told works pretty well (QEMU supports HVF, and there
+are plenty of corporate-friendly alternatives). This would solve your
+problem once and for all.
 
-base-commit: b831f83e40a24f07c8dcba5be408d93beedc820f
--- 
-2.46.0
+Please don't take the above the wrong way. I'm sympathetic to what you
+are trying to do. But this is IMO going in the wrong direction.
 
+Thanks,
+
+	M.
+
+--=20
+Without deviation from the norm, progress is not possible.
