@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BA72ECE57A
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 15:32:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 613B4ECE57A
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 15:39:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E726010E5B7;
-	Mon,  9 Sep 2024 15:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 286B210E5B8;
+	Mon,  9 Sep 2024 15:39:48 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4FC210E5B7;
- Mon,  9 Sep 2024 15:32:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4010617044474589424=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B95710E5B8;
+ Mon,  9 Sep 2024 15:39:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/cx0=3A_Use_one_lane_to_?=
- =?utf-8?q?set_power_state_to_ready_in_DP_alt_mode?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?add_snapshot_capture/print_infra_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vamsi Krishna Brahmajosyula" <vamsikrishna.brahmajosyula@gmail.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Sep 2024 15:32:16 -0000
-Message-ID: <172589593686.976496.12962307369961695788@2413ebb6fbb6>
+Date: Mon, 09 Sep 2024 15:39:47 -0000
+Message-ID: <172589638717.976496.6926370630650102397@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240906174601.9271-1-vamsikrishna.brahmajosyula@gmail.com>
-In-Reply-To: <20240906174601.9271-1-vamsikrishna.brahmajosyula@gmail.com>
+References: <cover.1725888718.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1725888718.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4010617044474589424==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/cx0: Use one lane to set power state to ready in DP alt mode
-URL   : https://patchwork.freedesktop.org/series/138412/
+Series: drm/i915/display: add snapshot capture/print infra (rev3)
+URL   : https://patchwork.freedesktop.org/series/138150/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1912-62212ed3e75612eb3e50899f90c81922a0a76220_BAT -> xe-pw-138412v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5d450f427e73 drm-tip: 2024y-09m-09d-14h-46m-19s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: dump display parameters captured in error state, not current
+Applying: drm/i915/display: add intel_display_snapshot abstraction
+Applying: drm/i915/display: move device info and params handling to snapshot
+Applying: drm/i915/display: move dmc snapshotting to new display snapshot
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1912-62212ed3e75612eb3e50899f90c81922a0a76220 -> xe-pw-138412v1
-
-  IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1912-62212ed3e75612eb3e50899f90c81922a0a76220: 62212ed3e75612eb3e50899f90c81922a0a76220
-  xe-pw-138412v1: 138412v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138412v1/index.html
-
---===============4010617044474589424==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/cx0: Use one lane to set power state to ready in DP alt mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138412/">https://patchwork.freedesktop.org/series/138412/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138412v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138412v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1912-62212ed3e75612eb3e50899f90c81922a0a76220_BAT -&gt; xe-pw-138412v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1912-62212ed3e75612eb3e50899f90c81922a0a76220 -&gt; xe-pw-138412v1</li>
-</ul>
-<p>IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1912-62212ed3e75612eb3e50899f90c81922a0a76220: 62212ed3e75612eb3e50899f90c81922a0a76220<br />
-  xe-pw-138412v1: 138412v1</p>
-
-</body>
-</html>
-
---===============4010617044474589424==--
