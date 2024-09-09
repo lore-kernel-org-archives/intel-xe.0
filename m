@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4040FECE587
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 19:32:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2E9BECE587
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 19:37:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B87F610E666;
-	Mon,  9 Sep 2024 19:32:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E02310E66E;
+	Mon,  9 Sep 2024 19:37:17 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 537FD10E1B9;
- Mon,  9 Sep 2024 19:32:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7891361146235692175=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9F0F10E66E;
+ Mon,  9 Sep 2024 19:37:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Drop_xe=5Fmark=5Frange?=
- =?utf-8?q?=5Faccessed_in_HMM_layer?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_split_ou?=
+ =?utf-8?q?t_display_regs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Sep 2024 19:32:18 -0000
-Message-ID: <172591033833.977951.14576750683216914864@2413ebb6fbb6>
+Date: Mon, 09 Sep 2024 19:37:15 -0000
+Message-ID: <172591063595.977796.9297813223781851777@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240909182128.585364-1-matthew.brost@intel.com>
-In-Reply-To: <20240909182128.585364-1-matthew.brost@intel.com>
+References: <cover.1725908151.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1725908151.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,27 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7891361146235692175==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Drop xe_mark_range_accessed in HMM layer
-URL   : https://patchwork.freedesktop.org/series/138425/
+Series: drm/i915: split out display regs
+URL   : https://patchwork.freedesktop.org/series/138426/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca_BAT -> xe-pw-138425v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138425v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138425v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: bd6c4b2266eb drm-tip: 2024y-09m-09d-18h-11m-39s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/reg: fix transcoder timing register style
+Applying: drm/i915/reg: fix g4x pipe data/link m/n register style
+Applying: drm/i915/reg: fix pipe conf, stat etc. register style
+Applying: drm/i915/reg: fix pipe data/link m/n register style
+Applying: drm/i915/reg: fix SKL scaler register style
+Applying: drm/i915/reg: fix PCH transcoder timing and data/link m/n style
+Applying: drm/i915/reg: fix DIP CTL register style
+Applying: drm/i915/reg: fix small register style issues here and there
+Applying: drm/i915/reg: remove unused DSI register macros
+Applying: drm/i915/reg: remove superfluous whitespace
+Applying: drm/i915: split out display regs from i915_reg.h
 
 
-Build changes
--------------
-
-  * Linux: xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca -> xe-pw-138425v1
-
-  IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca: 5908c6f634a16adf10b7c00d7bd400162676b5ca
-  xe-pw-138425v1: 138425v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138425v1/index.html
-
---===============7891361146235692175==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Drop xe_mark_range_accessed in HMM layer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138425/">https://patchwork.freedesktop.org/series/138425/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138425v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138425v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca_BAT -&gt; xe-pw-138425v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138425v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138425v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca -&gt; xe-pw-138425v1</li>
-</ul>
-<p>IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1915-5908c6f634a16adf10b7c00d7bd400162676b5ca: 5908c6f634a16adf10b7c00d7bd400162676b5ca<br />
-  xe-pw-138425v1: 138425v1</p>
-
-</body>
-</html>
-
---===============7891361146235692175==--
