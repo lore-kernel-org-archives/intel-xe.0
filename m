@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD98CCD4F4C
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 04:15:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1AA6CE7AB0
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 05:39:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4485710E152;
-	Mon,  9 Sep 2024 04:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC91810E2B8;
+	Mon,  9 Sep 2024 05:39:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FKlaMSqV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yp5sn7c0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C877310E152;
- Mon,  9 Sep 2024 04:15:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A68810E2B8
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Sep 2024 05:39:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725855349; x=1757391349;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fjngCTaAkgMoNGsEToo127TtuEWe/XSwUcqDyzi5e0M=;
- b=FKlaMSqVe78UikqV4O8J+PJd/PRV+EqAt5xXSdJnAa9SkCl+KY6WjXWQ
- vUgz9T+ZFchySzaFKVPh9p8W9ApZXKYjJOJfTjwyngaIVNYwp1PveS/Gk
- bdKTt5Y88ogpzeLP673GOODTNQLUXz5HMD8EEToMzSg9bRwbXPpCPUi0G
- luxYOE/lDcwLeGPIuT34Dy+O9BP6VFYjhGTbY56eT6sr7d0D4ffwU7Aym
- 58ygepWBLYpRbi1GGGbDsWTGJuR8WHBBN5yE39hUcNkZTu5p2+NnWutt4
- CVxwIgy6W/VOzTIds9vph/H3WVyV+icrwCl9X1qGHYtZEsJM+U9y8HGOD A==;
-X-CSE-ConnectionGUID: nKTTH9zqT/qHMk9UZMj48Q==
-X-CSE-MsgGUID: 1NQmjj4TRUu8YMTRm17E3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="42004729"
-X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; d="scan'208";a="42004729"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2024 21:15:47 -0700
-X-CSE-ConnectionGUID: cBLtfB9ORniCfb7xg55ufg==
-X-CSE-MsgGUID: NWz0a6SPRNuXt7ip6x8Rvg==
+ t=1725860371; x=1757396371;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=mATxQnbmOs8QG9GvlM5RuLq++FJG/Htu+35/8+vTb8Y=;
+ b=Yp5sn7c0M836Yq9st4hwVppk4sCw1rcMjonLAmg0bt3EQTBf02hyfLec
+ E4H2yt/4f+W9C2Fh69zqE9XwBtR+5Bd33e8HM00pIJXQwDUm9I9hea9PK
+ 1PjJyZsEmY6alUKU8AUaVcymZeAIzngguENaUU0mvocGQwd6ncrqwS2f6
+ acX+FYvm97yM5hK6e7XOQJ7OW34n8jx/IxpPn4/Pd0OXmo1spHDzIKxTA
+ RJUadbyhM6rTm2T4RQOPjhD8BSaeZVUxkyUQmjugDm7tlRY60EbQYgAHy
+ 6+ZrTFVVMyz84q9zBdtnVFOZNvFGPTJalg/ZJetReyqvbmQCKhQEcl0dV A==;
+X-CSE-ConnectionGUID: 9PhEiWF2RsGGFzqI4jr0vA==
+X-CSE-MsgGUID: q80f3DLQSEinJkrUUqkVvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="24643206"
+X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; d="scan'208";a="24643206"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2024 22:39:31 -0700
+X-CSE-ConnectionGUID: qMbED8+3QxKxtB/y5ndC7g==
+X-CSE-MsgGUID: Z1wFBQ69TtClRZ2NzPdq9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; d="scan'208";a="66167567"
-Received: from kbommu-desk.iind.intel.com ([10.145.169.159])
- by fmviesa006.fm.intel.com with ESMTP; 08 Sep 2024 21:15:45 -0700
-From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2] drm: Ensure Proper Unload/Reload Order of MEI Modules for
- i915/Xe Driver
-Date: Mon,  9 Sep 2024 09:33:17 +0530
-Message-Id: <20240909040317.17108-1-krishnaiah.bommu@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; d="scan'208";a="66541940"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2024 22:39:29 -0700
+Message-ID: <c3b198eb-6c71-4c8e-9d93-497c14740575@linux.intel.com>
+Date: Mon, 9 Sep 2024 11:12:40 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] drm/xe: Implement device shutdown to make kexec work.
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org
+References: <20240905150052.174895-1-maarten.lankhorst@linux.intel.com>
+ <87frqeovgq.fsf@intel.com>
+ <3cf1bdff-3abe-41b8-9078-c4fc5607f3e7@linux.intel.com>
+ <ZtslkOB3kx4klloM@intel.com>
+Content-Language: en-US
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <ZtslkOB3kx4klloM@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,58 +73,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This update addresses the unload/reload sequence of MEI modules in relation to
-the i915/Xe graphics driver. On platforms where the MEI hardware is integrated
-with the graphics device (e.g., DG2/BMG), the i915/xe driver is depend on the MEI
-modules. Conversely, on newer platforms like MTL and LNL, where the MEI hardware
-is separate, this dependency does not exist.
 
-The changes introduced ensure that MEI modules are unloaded and reloaded in the
-correct order based on platform-specific dependencies. This is achieved by adding
-a MODULE_SOFTDEP directive to the i915 and Xe module code.
+On 06/09/24 21:23, Rodrigo Vivi wrote:
+> On Fri, Sep 06, 2024 at 11:52:43AM +0200, Maarten Lankhorst wrote:
+>>
+>> Den 2024-09-05 kl. 19:34, skrev Jani Nikula:
+>>> On Thu, 05 Sep 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+>>>> Testcase:
+>>>> kexec --reuse-cmdline --initrd=initrd.img -f vmlinuz
+>>>>
+>>>> Because we don't shut down xe correctly, we cannot reload xe afterwards.
+>>>> Implement device shutdown by performing a FLR, then we can load the device
+>>>> cleanly again afterwards.
+>>> Maybe a silly question, but what's FLR?
+>> Function level reset. It resets all the resources on the device, so display, all gt's etc are all turned off.
+>> It's far faster than resetting each component separately. And it even works if display is the cause off a panic
+>> since no locks are qrequired.
+> Just to avoid confusion, I like to call this one as driver-initiated-FLR.
+> It is a feature introduced back in gen11, I believe, where the driver can use
+> MMIO to request the reset of many IP blocks including GT, SGUnit, Display, etc.
+>
+> But it is not the same as the full PCI Function Level Reset as some components
+> won't get reset nor have the memory wiped out.
+>
+> The only way to get the PCI FLR is doing echo 1 to device/reset:
+> echo 1 /sys/class/drm/card1/device/reset
+>
+> On my scripts when I want a full clean start I have something like this:
+>
+> echo -n "0000:00:02.0" | sudo tee /sys/bus/pci/drivers/i915/unbind
+> echo -n 1 | sudo tee /sys/bus/pci/devices/0000\:00\:02.0/reset
+> echo -n "0000:00:02.0" | sudo tee /sys/bus/pci/drivers/i915/bind
+>
+> Hopefully on Xe will be able to support the echo 1 > device/reset
+> without having to unbind and reprobe:
+>
+> https://lore.kernel.org/intel-xe/20240422065756.294679-1-aravind.iddamsetty@linux.intel.com/
+>
+> Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 
-These changes enhance the robustness of MEI module handling across different hardware
-platforms, ensuring that the i915/Xe driver can be cleanly unloaded and reloaded
-without issues.
+will plan to revise it soon.
 
-v2: updated commit message
-
-Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/i915_module.c | 2 ++
- drivers/gpu/drm/xe/xe_module.c     | 2 ++
- 2 files changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
-index 65acd7bf75d0..2ad079ad35db 100644
---- a/drivers/gpu/drm/i915/i915_module.c
-+++ b/drivers/gpu/drm/i915/i915_module.c
-@@ -75,6 +75,8 @@ static const struct {
- };
- static int init_progress;
- 
-+MODULE_SOFTDEP("pre: mei_gsc_proxy mei_gsc");
-+
- static int __init i915_init(void)
- {
- 	int err, i;
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index bfc3deebdaa2..5633ea1841b7 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -127,6 +127,8 @@ static void xe_call_exit_func(unsigned int i)
- 	init_funcs[i].exit();
- }
- 
-+MODULE_SOFTDEP("pre: mei_gsc_proxy mei_gsc");
-+
- static int __init xe_init(void)
- {
- 	int err, i;
--- 
-2.25.1
-
+Thanks,
+Aravind.
+>
+>> Cheers,
+>> ~Maarten
