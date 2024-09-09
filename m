@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC51EECE579
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 14:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 855E1ECE57A
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 14:28:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9995710E1A5;
-	Mon,  9 Sep 2024 14:25:58 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 827F310E0A5;
- Mon,  9 Sep 2024 14:25:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E39710E0B8;
+	Mon,  9 Sep 2024 14:28:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWg7fEuH";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C132A10E0A5;
+ Mon,  9 Sep 2024 14:28:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725892099; x=1757428099;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=cl6CidzYDscG4gBTl6dlkFZo/FJboto+uOZIB8bLZbw=;
+ b=EWg7fEuHWZmccPVPuXKdO1m+OG//w1J/NYEC55qACfaC3VTQ8Wr87fux
+ VTJNN2Iu0M9mu+iMu85OOEXbmbZPF01cfY3H3ZM2gam//EBVG00wW6qex
+ FN6W32HVYZp+ZvFSiW+oYb8/GUIsHuGSu7bd9o8pEXWz+b10ysqtk+7rO
+ h+GuFnfovBSl1ap+Cevpdrw4OHmY0BH4p4nwB5irpAasf8AFo2swxLYUo
+ xFUtW6Bx5oTfxTYH0dbsMUSWxdFRGDvi5jBPMcliiB+tDyC/YbaWIxTF4
+ 3SOzCFUF/J1cKtr7rNIj189PTmFutk4AlrnvGrzvXq50Jj2/7tniHASEa Q==;
+X-CSE-ConnectionGUID: w51OLoV7TVWy7e49PYy+Yw==
+X-CSE-MsgGUID: CrKGkZZzSvOePKDJCL/YrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24742765"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="24742765"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 07:27:47 -0700
+X-CSE-ConnectionGUID: /B9cWlkuSIK5vsmUYIFqCQ==
+X-CSE-MsgGUID: Zn1kXiQWTEKdyK/lRYop/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="66743586"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 09 Sep 2024 07:27:44 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 09 Sep 2024 17:27:44 +0300
+Date: Mon, 9 Sep 2024 17:27:44 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 6/8] drm/i915/pps: rename vlv_pps_init() to
+ vlv_pps_port_enable()
+Message-ID: <Zt8F4D_exqURrQXS@intel.com>
+References: <cover.1725883885.git.jani.nikula@intel.com>
+ <6123d8aa71f352cfe58cf2285c0bb19d58d999e0.1725883885.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/cx0=3A_Use_one_?=
- =?utf-8?q?lane_to_set_power_state_to_ready_in_DP_alt_mode?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vamsi Krishna Brahmajosyula" <vamsikrishna.brahmajosyula@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Sep 2024 14:25:57 -0000
-Message-ID: <172589195752.976496.12662409628125074775@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240906174601.9271-1-vamsikrishna.brahmajosyula@gmail.com>
-In-Reply-To: <20240906174601.9271-1-vamsikrishna.brahmajosyula@gmail.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6123d8aa71f352cfe58cf2285c0bb19d58d999e0.1725883885.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +68,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Sep 09, 2024 at 03:15:41PM +0300, Jani Nikula wrote:
+> Follow the naming for vlv_pps_port_disable(), as these are counterparts.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/g4x_dp.c    | 2 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c | 5 +++--
+>  drivers/gpu/drm/i915/display/intel_pps.h | 4 ++--
+>  3 files changed, 6 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> index e3db1cba11c9..796ec2244a4d 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> @@ -690,7 +690,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
+>  
+>  	with_intel_pps_lock(intel_dp, wakeref) {
+>  		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> -			vlv_pps_init(encoder, pipe_config);
+> +			vlv_pps_port_enable(encoder, pipe_config);
 
-Series: drm/i915/cx0: Use one lane to set power state to ready in DP alt mode
-URL   : https://patchwork.freedesktop.org/series/138412/
-State : warning
+The disable counterpart has the lock on the inside, so this could
+do with an _unlocked() suffix to make the situation a bit clearer.
 
-== Summary ==
+>  
+>  		intel_dp_enable_port(intel_dp, pipe_config);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 33fae565588a..c91d14face20 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -1227,8 +1227,9 @@ void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
+>  		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
+>  }
+>  
+> -void vlv_pps_init(struct intel_encoder *encoder,
+> -		  const struct intel_crtc_state *crtc_state)
+> +/* Call on all DP, not just eDP */
+> +void vlv_pps_port_enable(struct intel_encoder *encoder,
+> +			 const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+> index 58df4cd3addd..b57a0c448e6c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.h
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
+> @@ -48,8 +48,8 @@ void intel_pps_reset_all(struct intel_display *display);
+>  
+>  void vlv_pps_pipe_init(struct intel_dp *intel_dp);
+>  void vlv_pps_pipe_reset(struct intel_dp *intel_dp);
+> -void vlv_pps_init(struct intel_encoder *encoder,
+> -		  const struct intel_crtc_state *crtc_state);
+> +void vlv_pps_port_enable(struct intel_encoder *encoder,
+> +			 const struct intel_crtc_state *crtc_state);
+>  void vlv_pps_port_disable(struct intel_encoder *encoder,
+>  			  const struct intel_crtc_state *crtc_state);
+>  
+> -- 
+> 2.39.2
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 36d222030253864ce07e73f27f631db5112d32c6
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Ville Syrjälä
+Intel
