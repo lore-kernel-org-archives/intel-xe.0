@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6002ECE579
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:22:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7031AECE57A
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Sep 2024 12:22:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 817AE10E507;
-	Mon,  9 Sep 2024 12:22:27 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CEDD10E507;
- Mon,  9 Sep 2024 12:22:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/pps=3A_hide_VLV/?=
- =?utf-8?q?CHV_PPS_pipe_stuff_inside_intel=5Fpps=2Ec?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Sep 2024 12:22:26 -0000
-Message-ID: <172588454624.975780.8987159885062207408@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 401EA10E512;
+	Mon,  9 Sep 2024 12:22:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HE7expHs";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6C0B10E512;
+ Mon,  9 Sep 2024 12:22:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725884561; x=1757420561;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UKtTf4qhGIkjASyprb+6A2AY4AQBivqYR05SA/6uLdI=;
+ b=HE7expHszz7hx8MwbRLjk7zP4JkMVN/zYmCkRombqq4Und4IwcqlS3HM
+ cvGV2j4gxcmZN4u///ERWYDpzDoCtRx9Q7/i4+fBD9mCKu42tHG7WlgNZ
+ VtsS85P4nClocWNoi9FVwtXOcgC3cQ0fqGBeuKEjuTXzemivPBzLG68SW
+ wKjNYlqXNdFJrnKmlYYQFJI53odbI6gEpyM7j/QmdVu00kvHTAnKdndJl
+ CsZdVbLCwpxYGW30wXHOP4z70Ff3gYJqUWroLy0p1zq1vSgRVl0IJMk1R
+ adhq2CyAJ8I657JQswuO1vASe5D/zhk9wOwS4E/1PHDsEWsQm9WX8A3HA w==;
+X-CSE-ConnectionGUID: 3LsI8wHWQ7G9a7rwBl4lsw==
+X-CSE-MsgGUID: Uae0lPOLS+W6nMmg44OEzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="24448704"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="24448704"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 05:22:40 -0700
+X-CSE-ConnectionGUID: FoP0uofJRbOApARwc0J1Dg==
+X-CSE-MsgGUID: DODaI3xCQoGdWoEDUdRsfw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="66289543"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.176])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 05:22:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v2 3/8] drm/i915/pps: add vlv_pps_pipe_init()
+In-Reply-To: <d400819a5017a42223fa226a58892ba974b22c79.1725883885.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1725883885.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1725883885.git.jani.nikula@intel.com>
+ <d400819a5017a42223fa226a58892ba974b22c79.1725883885.git.jani.nikula@intel.com>
+Date: Mon, 09 Sep 2024 15:22:35 +0300
+Message-ID: <87y141kodw.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,47 +65,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 09 Sep 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> We need to track PPS also for non-eDP usage on VLV/CHV. Add new
+> vlv_pps_pipe_init() for initializing the related parts, hiding the PPS
+> pipe details inside PPS code.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c  | 6 ++----
+>  drivers/gpu/drm/i915/display/intel_pps.c | 7 +++++++
+>  drivers/gpu/drm/i915/display/intel_pps.h | 2 ++
+>  3 files changed, 11 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 7e36a7820fec..f0866ddc707e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6869,10 +6869,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  	intel_dp_set_default_sink_rates(intel_dp);
+>  	intel_dp_set_default_max_sink_lane_count(intel_dp);
+>  
+> -	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> -		intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+> -		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
+> -	}
+> +	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> +		vlv_pps_pipe_init(intel_dp);
+>  
+>  	intel_dp_aux_init(intel_dp);
+>  	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 2fb32ac1b7cf..c316950218c0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -1211,6 +1211,13 @@ static void vlv_steal_power_sequencer(struct intel_display *display,
+>  	}
+>  }
+>  
+> +/* Call on all DP, not just eDP */
+> +void vlv_pps_pipe_init(struct intel_dp *intel_dp)
+> +{
+> +	intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+> +	intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
+> +}
+> +
+>  void vlv_pps_init(struct intel_encoder *encoder,
+>  		  const struct intel_crtc_state *crtc_state)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+> index 0c5da83a559e..3061fab30097 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.h
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
+> @@ -42,9 +42,11 @@ void intel_pps_wait_power_cycle(struct intel_dp *intel_dp);
+>  
+>  bool intel_pps_init(struct intel_dp *intel_dp);
+>  void intel_pps_init_late(struct intel_dp *intel_dp);
+> +
 
-Series: drm/i915/pps: hide VLV/CHV PPS pipe stuff inside intel_pps.c
-URL   : https://patchwork.freedesktop.org/series/138403/
-State : success
+Hrmh, where did that snug in. :/
 
-== Summary ==
+>  void intel_pps_encoder_reset(struct intel_dp *intel_dp);
+>  void intel_pps_reset_all(struct intel_display *display);
+>  
+> +void vlv_pps_pipe_init(struct intel_dp *intel_dp);
+>  void vlv_pps_init(struct intel_encoder *encoder,
+>  		  const struct intel_crtc_state *crtc_state);
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c62d7e164862503a3662a095da1c6c9014248cb2
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7f11a61da6156f1f71a439350af34da6a520dd97
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Mon Sep 9 15:15:43 2024 +0300
-
-    drm/i915/pps: move vlv_active_pipe() to intel_pps.c
-    
-    All the users for vlv_active_pipe() are within intel_pps.c now, and
-    there are already uses of g4x_dp_port_enabled() and intel_dp->output_reg
-    in there, so seems fine to reduce interfaces and move vlv_active_pipe()
-    to intel_pps.c too.
-    
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 36d222030253864ce07e73f27f631db5112d32c6 drm-intel
-33d8c024ed33 drm/i915/pps: add vlv_ prefix to pps_pipe and active_pipe members
-9c1993f32aef drm/i915/pps: only touch the vlv_ members on VLV/CHV
-3a4ce5ffbed0 drm/i915/pps: add vlv_pps_pipe_init()
-0d7917a42224 drm/i915/pps: add vlv_pps_pipe_reset()
-540b9f2bffad drm/i915/pps: add vlv_pps_port_disable()
-68ae2d9e122d drm/i915/pps: rename vlv_pps_init() to vlv_pps_port_enable()
-f878697c10d1 drm/i915/pps: add vlv_pps_backlight_initial_pipe()
-7f11a61da615 drm/i915/pps: move vlv_active_pipe() to intel_pps.c
-
-
+-- 
+Jani Nikula, Intel
