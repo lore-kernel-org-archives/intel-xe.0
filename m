@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76CA2EE01FD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BDD1EE01FA
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B820C10E94F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD5CA10E94D;
 	Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FQhuH7QQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlP738Z4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 793E910E8F5
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D617010E8F5
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012049; x=1757548049;
+ t=1726012047; x=1757548047;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CoxCMa92DnL742rOvSx4/NuIIwZcjhW732+f3YTyY6k=;
- b=FQhuH7QQMYhqH9UqD5wImJecFRGoe8l408fIztxEma6tpS7B1ep/gIhA
- BUQ5iqGyZc7LjZSDWwqI1kuzEdiRlH8p7YVCBaJF0ukt78RWkt/eDC87n
- mJel2CKveDNkexDgnMJILY2ncFXM6k0Nhwx4H4aBxppQ0Q9K8jweDKVRh
- rgrcHGS8AjQWGH7ohm3PlG79jRG5HvgJV+VWfWgIWV0gudzgwr/jlGH36
- WW4kDCf8XN1VDYnqOkJf7z7Tsobmp7AkSHyPdwibzrw5FN5L5Hfg4YR7i
- +KBqavLDW7B6WIekPe6Dp1nwd5BSA5Ck38TbCY7uqMV9yFZ9hCGh5pdWf A==;
-X-CSE-ConnectionGUID: KB4QGBSNQxug2N5dC8nHLw==
-X-CSE-MsgGUID: rBnE6T/ZSvmDZaXbZrY6tw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144327"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144327"
+ bh=joYZ81TIH/eIBTbdbAF2J6FPfvmLyVEbUGev/5YqR+M=;
+ b=RlP738Z4wK5nEf9DZOFtmdcrJIrlEpySs5i8taQiT6qgoCFKsyT4Sn0I
+ 6jsQj5mMGp0DuT9L4j0f6Gfjt83GDIyMwAWvfabIynVhq//YOETBiywgu
+ xkaplZorXToxQtOd7brEjTl9yqWEmBUHezFjwMAFEOdoxsWDEg+MHzWzj
+ rkFItTfxWswN6oh1Nzp+3RzAOtMEUmz9vlUCpHKwOw/UEaguRNeyGptoO
+ AZ+9TdWpiqYIjkDhi4n8BlLL0E6ZjBuJi3Wh2JaTaKarO0PCdglvdxTuP
+ ytbZeKSR5WuRM50dfyUMcXiri6GvQK9t4YFQDBBcUmo7HnvPS23sO1K6R Q==;
+X-CSE-ConnectionGUID: QT7skZLPRlSGNap6vjFCzQ==
+X-CSE-MsgGUID: jg14ZwcLRWWWO0clX47raA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144311"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144311"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:29 -0700
-X-CSE-ConnectionGUID: Nc/aBOc6SfuT8opa8H/Lug==
-X-CSE-MsgGUID: fdF+aBMlRPWNEF3LxKclBg==
+ 10 Sep 2024 16:47:27 -0700
+X-CSE-ConnectionGUID: NacXsRyiTXqk39kXDmpUbg==
+X-CSE-MsgGUID: y2UssrhTTcyBPqHVcyTHFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989654"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989602"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:30 -0700
+ 10 Sep 2024 16:47:28 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 35/43] drm/xe/reg_sr: Convert register access to use xe_mmio
-Date: Tue, 10 Sep 2024 16:47:55 -0700
-Message-ID: <20240910234719.3335472-80-matthew.d.roper@intel.com>
+Subject: [PATCH v3 20/43] drm/xe/uc: Convert register access to use xe_mmio
+Date: Tue, 10 Sep 2024 16:47:40 -0700
+Message-ID: <20240910234719.3335472-65-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -72,49 +72,64 @@ Stop using GT pointers for register access.
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index fb209f1e0f1e..191cb4121acd 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -165,7 +165,7 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
- 	else if (entry->clr_bits + 1)
- 		val = (reg.mcr ?
- 		       xe_gt_mcr_unicast_read_any(gt, reg_mcr) :
--		       xe_mmio_read32(gt, reg)) & (~entry->clr_bits);
-+		       xe_mmio_read32(&gt->mmio, reg)) & (~entry->clr_bits);
- 	else
- 		val = 0;
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 821b46c9b4ee..eab9456e051f 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -807,6 +807,7 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+ {
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
+ 	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
++	struct xe_mmio *mmio = &gt->mmio;
+ 	u64 src_offset;
+ 	u32 dma_ctrl;
+ 	int ret;
+@@ -815,34 +816,34 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
  
-@@ -181,7 +181,7 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
- 	if (entry->reg.mcr)
- 		xe_gt_mcr_multicast_write(gt, reg_mcr, val);
- 	else
--		xe_mmio_write32(gt, reg, val);
-+		xe_mmio_write32(&gt->mmio, reg, val);
+ 	/* Set the source address for the uCode */
+ 	src_offset = uc_fw_ggtt_offset(uc_fw) + uc_fw->css_offset;
+-	xe_mmio_write32(gt, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
+-	xe_mmio_write32(gt, DMA_ADDR_0_HIGH,
++	xe_mmio_write32(mmio, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
++	xe_mmio_write32(mmio, DMA_ADDR_0_HIGH,
+ 			upper_32_bits(src_offset) | DMA_ADDRESS_SPACE_GGTT);
+ 
+ 	/* Set the DMA destination */
+-	xe_mmio_write32(gt, DMA_ADDR_1_LOW, offset);
+-	xe_mmio_write32(gt, DMA_ADDR_1_HIGH, DMA_ADDRESS_SPACE_WOPCM);
++	xe_mmio_write32(mmio, DMA_ADDR_1_LOW, offset);
++	xe_mmio_write32(mmio, DMA_ADDR_1_HIGH, DMA_ADDRESS_SPACE_WOPCM);
+ 
+ 	/*
+ 	 * Set the transfer size. The header plus uCode will be copied to WOPCM
+ 	 * via DMA, excluding any other components
+ 	 */
+-	xe_mmio_write32(gt, DMA_COPY_SIZE,
++	xe_mmio_write32(mmio, DMA_COPY_SIZE,
+ 			sizeof(struct uc_css_header) + uc_fw->ucode_size);
+ 
+ 	/* Start the DMA */
+-	xe_mmio_write32(gt, DMA_CTRL,
++	xe_mmio_write32(mmio, DMA_CTRL,
+ 			_MASKED_BIT_ENABLE(dma_flags | START_DMA));
+ 
+ 	/* Wait for DMA to finish */
+-	ret = xe_mmio_wait32(gt, DMA_CTRL, START_DMA, 0, 100000, &dma_ctrl,
++	ret = xe_mmio_wait32(mmio, DMA_CTRL, START_DMA, 0, 100000, &dma_ctrl,
+ 			     false);
+ 	if (ret)
+ 		drm_err(&xe->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
+ 			xe_uc_fw_type_repr(uc_fw->type), dma_ctrl);
+ 
+ 	/* Disable the bits once DMA is over */
+-	xe_mmio_write32(gt, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
++	xe_mmio_write32(mmio, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
+ 
+ 	return ret;
  }
- 
- void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
-@@ -242,7 +242,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 		}
- 
- 		xe_reg_whitelist_print_entry(&p, 0, reg, entry);
--		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot),
-+		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot),
- 				reg | entry->set_bits);
- 		slot++;
- 	}
-@@ -251,7 +251,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
- 		u32 addr = RING_NOPID(mmio_base).addr;
- 
--		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
-+		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
- 	}
- 
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
 -- 
 2.45.2
 
