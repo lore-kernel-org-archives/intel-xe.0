@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6B05EE0218
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14076EE01F1
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:55:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9511210E9C6;
-	Tue, 10 Sep 2024 23:47:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lHGZ9fIL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3120A10E8F5
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012050; x=1757548050;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gD73zDxgsYY8dYWPrWsLBsg18Mq9c/nd1L77CPDtvFM=;
- b=lHGZ9fILs6Zwbot0/8BABAbv3NzCiQXF9q0mvcxLgP1cV+jkDyBxHEBE
- qYZULGsuLicofz132A8ygfGrfx7Zc1tXw8LRcJg6kh1tbZ39ae7NqOYKr
- MqBXvf3gVVoAg5dZ96tRtR4WPg6V2nEavV/DgEeax/m8eXNnHFh4WbDzl
- ioB5l7EunDb9i8eyzM9gngeQV/qdx5G+JPJFnZccwgYXLPJzp2gW96WJP
- wtFb9HDwrPEyu0ciVFRTuDbiLwUgdIn/lgEpuPTQUbLozj8qtAwQ0jHO6
- UEFl4jMq3/Pv0k0oz7JVmaQtcW4XPFvrHbtYP9ER0t4ALwbNNXk96trr6 w==;
-X-CSE-ConnectionGUID: jexuiATCRqeVNahf6hOTsQ==
-X-CSE-MsgGUID: SvKi9ia7QJiuG8hTNy0UGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144337"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144337"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:30 -0700
-X-CSE-ConnectionGUID: E139j5ggSMK8gusYP1cjRA==
-X-CSE-MsgGUID: kiJhRh3gTumMk/Rgqbg0zQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989680"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:30 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 43/43] drm/xe/mmio: Drop compatibility macros
-Date: Tue, 10 Sep 2024 16:48:03 -0700
-Message-ID: <20240910234719.3335472-88-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
-References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C99E010E0C4;
+	Tue, 10 Sep 2024 23:55:33 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B187510E0C4;
+ Tue, 10 Sep 2024 23:55:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Stop_using_xe=5Fgt_a?=
+ =?utf-8?q?s_a_register_MMIO_target_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Sep 2024 23:55:32 -0000
+Message-ID: <172601253272.982706.14002603075378045550@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
+In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,227 +36,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that all parts of the driver have switched over to using xe_mmio for
-direct register access, we can drop the compatibility macros that allow
-continued xe_gt usage.
+== Series Details ==
 
-v2:
- - Move removal of 8/16-bit read and xe_mmio_wait32_not() wrappers to
-   this patch rather than removing them in earlier patches when last
-   caller was removed.  (Rodrigo)
+Series: Stop using xe_gt as a register MMIO target (rev3)
+URL   : https://patchwork.freedesktop.org/series/138168/
+State : success
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_mmio.c | 38 ++++++++++----------
- drivers/gpu/drm/xe/xe_mmio.h | 67 ++++++++----------------------------
- 2 files changed, 34 insertions(+), 71 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 392105ba8311..a48f239cad1c 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -199,7 +199,7 @@ static void mmio_flush_pending_writes(struct xe_mmio *mmio)
- 		writel(0, mmio->regs + DUMMY_REG_OFFSET);
- }
- 
--u8 __xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
-+u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
- {
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 	u8 val;
-@@ -213,7 +213,7 @@ u8 __xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
- 	return val;
- }
- 
--u16 __xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
-+u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
- {
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 	u16 val;
-@@ -227,7 +227,7 @@ u16 __xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
- 	return val;
- }
- 
--void __xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
-+void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
- {
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 
-@@ -239,7 +239,7 @@ void __xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
- 		writel(val, mmio->regs + addr);
- }
- 
--u32 __xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
-+u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
- {
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 	u32 val;
-@@ -257,7 +257,7 @@ u32 __xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
- 	return val;
- }
- 
--u32 __xe_mmio_rmw32(struct xe_mmio *mmio, struct xe_reg reg, u32 clr, u32 set)
-+u32 xe_mmio_rmw32(struct xe_mmio *mmio, struct xe_reg reg, u32 clr, u32 set)
- {
- 	u32 old, reg_val;
- 
-@@ -268,8 +268,8 @@ u32 __xe_mmio_rmw32(struct xe_mmio *mmio, struct xe_reg reg, u32 clr, u32 set)
- 	return old;
- }
- 
--int __xe_mmio_write32_and_verify(struct xe_mmio *mmio,
--				 struct xe_reg reg, u32 val, u32 mask, u32 eval)
-+int xe_mmio_write32_and_verify(struct xe_mmio *mmio,
-+			       struct xe_reg reg, u32 val, u32 mask, u32 eval)
- {
- 	u32 reg_val;
- 
-@@ -279,9 +279,9 @@ int __xe_mmio_write32_and_verify(struct xe_mmio *mmio,
- 	return (reg_val & mask) != eval ? -EINVAL : 0;
- }
- 
--bool __xe_mmio_in_range(const struct xe_mmio *mmio,
--			const struct xe_mmio_range *range,
--			struct xe_reg reg)
-+bool xe_mmio_in_range(const struct xe_mmio *mmio,
-+		      const struct xe_mmio_range *range,
-+		      struct xe_reg reg)
- {
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 
-@@ -310,7 +310,7 @@ bool __xe_mmio_in_range(const struct xe_mmio *mmio,
-  *
-  * Returns the value of the 64-bit register.
-  */
--u64 __xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg)
-+u64 xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg)
- {
- 	struct xe_reg reg_udw = { .addr = reg.addr + 0x4 };
- 	u32 ldw, udw, oldudw, retries;
-@@ -338,8 +338,8 @@ u64 __xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg)
- 	return (u64)udw << 32 | ldw;
- }
- 
--static int ____xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
--			      u32 *out_val, bool atomic, bool expect_match)
-+static int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
-+			    u32 *out_val, bool atomic, bool expect_match)
- {
- 	ktime_t cur = ktime_get_raw();
- 	const ktime_t end = ktime_add_us(cur, timeout_us);
-@@ -410,10 +410,10 @@ static int ____xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask,
-  * @timeout_us for different reasons, specially in non-atomic contexts. Thus,
-  * it is possible that this function succeeds even after @timeout_us has passed.
-  */
--int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
--		     u32 *out_val, bool atomic)
-+int xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
-+		   u32 *out_val, bool atomic)
- {
--	return ____xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, true);
-+	return __xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, true);
- }
- 
- /**
-@@ -429,8 +429,8 @@ int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
-  * This function works exactly like xe_mmio_wait32() with the exception that
-  * @val is expected not to be matched.
-  */
--int __xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
--			 u32 *out_val, bool atomic)
-+int xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
-+		       u32 *out_val, bool atomic)
- {
--	return ____xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, false);
-+	return __xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, false);
- }
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index ac6846447c52..8a46f4006a84 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -14,63 +14,26 @@ struct xe_reg;
- int xe_mmio_init(struct xe_device *xe);
- int xe_mmio_probe_tiles(struct xe_device *xe);
- 
--/*
-- * Temporary transition helper for xe_gt -> xe_mmio conversion.  Allows
-- * continued usage of xe_gt as a parameter to MMIO operations which now
-- * take an xe_mmio structure instead.  Will be removed once the driver-wide
-- * conversion is complete.
-- */
--#define __to_xe_mmio(ptr) \
--	_Generic(ptr, \
--		 const struct xe_gt *: (&((const struct xe_gt *)(ptr))->mmio), \
--		 struct xe_gt *: (&((struct xe_gt *)(ptr))->mmio), \
--		 const struct xe_mmio *: (ptr), \
--		 struct xe_mmio *: (ptr))
--
--u8 __xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg);
--#define xe_mmio_read8(p, reg) __xe_mmio_read8(__to_xe_mmio(p), reg)
--
--u16 __xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg);
--#define xe_mmio_read16(p, reg) __xe_mmio_read16(__to_xe_mmio(p), reg)
--
--void __xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val);
--#define xe_mmio_write32(p, reg, val) __xe_mmio_write32(__to_xe_mmio(p), reg, val)
--
--u32 __xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg);
--#define xe_mmio_read32(p, reg) __xe_mmio_read32(__to_xe_mmio(p), reg)
--
--u32 __xe_mmio_rmw32(struct xe_mmio *mmio, struct xe_reg reg, u32 clr, u32 set);
--#define xe_mmio_rmw32(p, reg, clr, set) __xe_mmio_rmw32(__to_xe_mmio(p), reg, clr, set)
--
--int __xe_mmio_write32_and_verify(struct xe_mmio *mmio, struct xe_reg reg,
--				 u32 val, u32 mask, u32 eval);
--#define xe_mmio_write32_and_verify(p, reg, val, mask, eval) \
--	__xe_mmio_write32_and_verify(__to_xe_mmio(p), reg, val, mask, eval)
--
--bool __xe_mmio_in_range(const struct xe_mmio *mmio,
--			const struct xe_mmio_range *range, struct xe_reg reg);
--#define xe_mmio_in_range(p, range, reg) __xe_mmio_in_range(__to_xe_mmio(p), range, reg)
--
--u64 __xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg);
--#define xe_mmio_read64_2x32(p, reg) __xe_mmio_read64_2x32(__to_xe_mmio(p), reg)
--
--int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
--		     u32 timeout_us, u32 *out_val, bool atomic);
--#define xe_mmio_wait32(p, reg, mask, val, timeout_us, out_val, atomic) \
--	__xe_mmio_wait32(__to_xe_mmio(p), reg, mask, val, timeout_us, out_val, atomic)
--
--int __xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask,
--			 u32 val, u32 timeout_us, u32 *out_val, bool atomic);
--#define xe_mmio_wait32_not(p, reg, mask, val, timeout_us, out_val, atomic) \
--	__xe_mmio_wait32_not(__to_xe_mmio(p), reg, mask, val, timeout_us, out_val, atomic)
--
--static inline u32 __xe_mmio_adjusted_addr(const struct xe_mmio *mmio, u32 addr)
-+u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg);
-+u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg);
-+void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val);
-+u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg);
-+u32 xe_mmio_rmw32(struct xe_mmio *mmio, struct xe_reg reg, u32 clr, u32 set);
-+int xe_mmio_write32_and_verify(struct xe_mmio *mmio, struct xe_reg reg, u32 val, u32 mask, u32 eval);
-+bool xe_mmio_in_range(const struct xe_mmio *mmio, const struct xe_mmio_range *range, struct xe_reg reg);
-+
-+u64 xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg);
-+int xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
-+		   u32 timeout_us, u32 *out_val, bool atomic);
-+int xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask,
-+		       u32 val, u32 timeout_us, u32 *out_val, bool atomic);
-+
-+static inline u32 xe_mmio_adjusted_addr(const struct xe_mmio *mmio, u32 addr)
- {
- 	if (addr < mmio->adj_limit)
- 		addr += mmio->adj_offset;
- 	return addr;
- }
--#define xe_mmio_adjusted_addr(p, addr) __xe_mmio_adjusted_addr(__to_xe_mmio(p), addr)
- 
- static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
- {
--- 
-2.45.2
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: f3eded4f8a05 drm-tip: 2024y-09m-10d-22h-32m-27s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Move forcewake to 'gt.pm' substructure
+Applying: drm/xe: Create dedicated xe_mmio structure
+Applying: drm/xe: Clarify size of MMIO region
+Applying: drm/xe: Move GSI offset adjustment fields into 'struct xe_mmio'
+Applying: drm/xe: Populate GT's mmio iomap from tile during init
+Applying: drm/xe: Switch mmio_ext to use 'struct xe_mmio'
+Applying: drm/xe: Add xe_tile backpointer to xe_mmio
+Applying: drm/xe: Adjust mmio code to pass VF substructure to SRIOV code
+Applying: drm/xe: Switch MMIO interface to take xe_mmio instead of xe_gt
+Applying: drm/xe/irq: Convert register access to use xe_mmio
+Applying: drm/xe/pcode: Convert register access to use xe_mmio
+Applying: drm/xe/hwmon: Convert register access to use xe_mmio
+Applying: drm/xe/vram: Convert register access to use xe_mmio
+Applying: drm/xe/compat-i915: Convert register access to use xe_mmio
+Applying: drm/xe/lmtt: Convert register access to use xe_mmio
+Applying: drm/xe/stolen: Convert register access to use xe_mmio
+Applying: drm/xe/device: Convert register access to use xe_mmio
+Applying: drm/xe/pci: Convert register access to use xe_mmio
+Applying: drm/xe/wa: Convert register access to use xe_mmio
+Applying: drm/xe/uc: Convert register access to use xe_mmio
+Applying: drm/xe/guc: Convert register access to use xe_mmio
+Applying: drm/xe/huc: Convert register access to use xe_mmio
+Applying: drm/xe/gsc: Convert register access to use xe_mmio
+Applying: drm/xe/query: Convert register access to use xe_mmio
+Applying: drm/xe/mcr: Convert register access to use xe_mmio
+Applying: drm/xe/mocs: Convert register access to use xe_mmio
+Applying: drm/xe/hw_engine: Convert register access to use xe_mmio
+Applying: drm/xe/gt_throttle: Convert register access to use xe_mmio
+Applying: drm/xe/pat: Convert register access to use xe_mmio
+Applying: drm/xe/wopcm: Convert register access to use xe_mmio
+Applying: drm/xe/oa: Convert register access to use xe_mmio
+Applying: drm/xe/topology: Convert register access to use xe_mmio
+Applying: drm/xe/execlist: Convert register access to use xe_mmio
+Applying: drm/xe/gt_clock: Convert register access to use xe_mmio
+Applying: drm/xe/reg_sr: Convert register access to use xe_mmio
+Applying: drm/xe/gt: Convert register access to use xe_mmio
+Applying: drm/xe/sriov: Convert register access to use xe_mmio
+Applying: drm/xe/tlb: Convert register access to use xe_mmio
+Applying: drm/xe/gt_idle: Convert register access to use xe_mmio
+Applying: drm/xe/forcewake: Convert register access to use xe_mmio
+Applying: drm/xe/ggtt: Convert register access to use xe_mmio
+Applying: drm/xe/ccs_mode: Convert register access to use xe_mmio
+Applying: drm/xe/mmio: Drop compatibility macros
+
 
