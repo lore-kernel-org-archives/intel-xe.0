@@ -4,86 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91790EE01EB
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 22:58:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E28AEE01F2
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3186C10E930;
-	Tue, 10 Sep 2024 22:58:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91B4110E93A;
+	Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="M8eU1/C1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WIUM2EV0";
 	dkim-atps=neutral
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD8010E0A1
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 22:58:16 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-718e482930bso2320932b3a.2
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 15:58:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1726009093; x=1726613893;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=lpX6a2VZYI0Q3F5tVeOcgdqhZYYv8tYMbEYQg5NYqLQ=;
- b=M8eU1/C1SzYNrlvR0nPWwrLPZ8PoYo2yS776siaP3bJj0KHYUTgGCEWUIqnSegr+pD
- fs3XU9icJKRNHqeX3Td7hY93cCS5oFPyzyHnb53f2myP+cujU+h+PF4DGk/iPbzbjiiz
- Z2yu1KRvv1GF4+KB8BX+Iz/EzaMqkTF9UB0vM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726009093; x=1726613893;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=lpX6a2VZYI0Q3F5tVeOcgdqhZYYv8tYMbEYQg5NYqLQ=;
- b=CK+73hDEOQBiYmL5J0HthAbSo4UJr219gIHYvQTWVV/enNpoeR2UO418ffcs3eZIvl
- xyVK0ujnAsHFpRBrr/6eAnlg0pRHkYF1R2lYP5hG4C/kG8ujJHGNC3AIIRPK9y7uWIIG
- QEnFe6f9GfjlDKGYVVS5xT/Dw2cthJ2LZVai6fKKZpkEV+bnH2fBrxkfrqUPXrOJHik6
- 3Hw+7+RyozDMBaXxMJuu4BXuLc3lPXcXTsQZdUfHcVpGCo0J+Qjq3R0PXFjqb3xBrPcU
- fxBgRzp6gbumj1V+2nAgk+9HjMA2ZawA7PXmB6KJf5iqMHhM2lME7NbbJ7P4jhw7M7sU
- MAEw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUzAqNcZVovplK35/JInyDTcWm/W0xccdbBhJlFf1K3mHDn5sS+xjBjyIVO1Kj+IGw3z6MNM+xYig==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwldeVqD67nIzrzXuD4YXdWT6M38ApEPZ0g9Fmw5p+ydzpRb/JO
- OuMOqRHuSxBs9+5AxwGiA9uidwAJoOmdmiSazuSOcyr9xcnh1h0Xum6kUs2TLQ9HAD7CHOzF4JM
- =
-X-Google-Smtp-Source: AGHT+IHsJA9qAH/vD4OnLTItLoVXVTVewzFkgWkSMbE3lpQiESvnvQxiEtSnIzSTpqH8jUTYUZnIEw==
-X-Received: by 2002:a05:6a21:a4c1:b0:1cf:2d62:8584 with SMTP id
- adf61e73a8af0-1cf5e072e5dmr3093573637.11.1726009093271; 
- Tue, 10 Sep 2024 15:58:13 -0700 (PDT)
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com.
- [209.85.214.177]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-7d823cf2f1fsm5230344a12.25.2024.09.10.15.58.12
- for <intel-xe@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 10 Sep 2024 15:58:12 -0700 (PDT)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-2059204f448so51122655ad.0
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 15:58:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCX+BihvRh8zf50pO5zzp8hzkc9QvSBtB+oq2utMkkTGd9xFfH1LNan5w58dcfDoz5/MhCco78E0cA==@lists.freedesktop.org
-X-Received: by 2002:a17:902:c94b:b0:205:8b9e:964b with SMTP id
- d9443c01a7336-2074c6ae1b8mr29905655ad.39.1726009091533; Tue, 10 Sep 2024
- 15:58:11 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C3D10E8F5
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726012046; x=1757548046;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=YCj8fcXYm5jZz8WAfa6VFIGIPqHgFuW9b0gyYkPKJ4I=;
+ b=WIUM2EV0ZF3U+DgZIvyzkFDY5hIbLUIychFzhiMpaOrfMZqtNXmha+wO
+ CWASW/P2B143vSHxdz58lygkb/d53N/0LKOE6+HZb2owbwD5+ffDkx2+v
+ BIE2qxHyOJqjytmM92wT4eTHJJ5UcJ+8AJJbBTTRqTF97LWuJqImbQ55Y
+ rhXKbdYHix08xzdNEvCvlDGBFZdz8mWt8UhjiOdFn+7Jycqc2PKsE43cg
+ xeyRkGWXA1P29N6kfuAnpVc+MKwwMe9ohGgHS50tgYORBuQwOr7nlJlCK
+ acKrfPOSwbkPRMhorgAJEn6o32e0O1KPFLtSxhdtxKyhY1EENJlEQmKyT Q==;
+X-CSE-ConnectionGUID: VVwWFLUTTomei5vUmIDk3A==
+X-CSE-MsgGUID: lgvxifr0RQeDmnL9pYYWcQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144293"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144293"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 16:47:26 -0700
+X-CSE-ConnectionGUID: fdg7PSgUStqY3qWJgvuJpQ==
+X-CSE-MsgGUID: 91IVcmr8Twmg9Js5PikGbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989528"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 16:47:26 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com,
+	Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v3 02/43] drm/xe: Create dedicated xe_mmio structure
+Date: Tue, 10 Sep 2024 16:47:22 -0700
+Message-ID: <20240910234719.3335472-47-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
+References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-References: <cover.1725962479.git.jani.nikula@intel.com>
- <136ecd978aedd7df39d1b1c37b70596027ff0a3e.1725962479.git.jani.nikula@intel.com>
-In-Reply-To: <136ecd978aedd7df39d1b1c37b70596027ff0a3e.1725962479.git.jani.nikula@intel.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 10 Sep 2024 15:57:45 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XgddDYmOiX1ouQo2ayhJn4GVQrErj-XBy3og5eJ0uBOA@mail.gmail.com>
-Message-ID: <CAD=FV=XgddDYmOiX1ouQo2ayhJn4GVQrErj-XBy3og5eJ0uBOA@mail.gmail.com>
-Subject: Re: [PATCH 4/8] drm/bridge: ti-sn65dsi86: annotate
- ti_sn_pwm_pin_{request, release} with __maybe_unused
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>, 
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,39 +67,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Pull the 'mmio' substructure from xe_tile out into a dedicated type.
+Future patches will expand this structure and then eventually move MMIO
+read/write operations over to using this type.
 
-On Tue, Sep 10, 2024 at 3:04=E2=80=AFAM Jani Nikula <jani.nikula@intel.com>=
- wrote:
->
-> Building with clang, W=3D1, CONFIG_PM=3Dn and CONFIG_OF_GPIO=3Dn leads to
-> warning about unused ti_sn_pwm_pin_request() and
-> ti_sn_pwm_pin_release(). Fix by annotating them with __maybe_unused.
->
-> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
-> inline functions for W=3D1 build").
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> ---
->
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Nathan Chancellor <nathan@kernel.org>
-> ---
->  drivers/gpu/drm/bridge/ti-sn65dsi86.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+v2:
+ - Fix kerneldoc of 'size' field.  The rename/refocusing of this field
+   got moved to the next patch of the series.  (Lucas)
+ - Correct commit message; it's the tile, not the device, mmio that's
+   been pulled out to a separate type.  (Michal)
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 24 +++++++++++++++++-------
+ 1 file changed, 17 insertions(+), 7 deletions(-)
 
-I'm happy to land this in drm-misc-next unless there are any extra
-dependencies. Let me know. In some sense I guess this could even be
-considered a "Fix", though I guess given the history of the compiler
-options that might be a bit of a stretch.
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index ec7eb7811126..5d5b7a9199d8 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -107,6 +107,22 @@ struct xe_mem_region {
+ 	void __iomem *mapping;
+ };
+ 
++/**
++ * struct xe_mmio - register mmio structure
++ *
++ * Represents an MMIO region that the CPU may use to access registers.  A
++ * region may share its IO map with other regions (e.g., all GTs within a
++ * tile share the same map with their parent tile, but represent different
++ * subregions of the overall IO space).
++ */
++struct xe_mmio {
++	/** @regs: Map used to access registers. */
++	void __iomem *regs;
++
++	/** @size: Size of the map. */
++	size_t size;
++};
++
+ /**
+  * struct xe_tile - hardware tile structure
+  *
+@@ -148,13 +164,7 @@ struct xe_tile {
+ 	 * * 4MB-8MB: reserved
+ 	 * * 8MB-16MB: global GTT
+ 	 */
+-	struct {
+-		/** @mmio.size: size of tile's MMIO space */
+-		size_t size;
+-
+-		/** @mmio.regs: pointer to tile's MMIO space (starting with registers) */
+-		void __iomem *regs;
+-	} mmio;
++	struct xe_mmio mmio;
+ 
+ 	/**
+ 	 * @mmio_ext: MMIO-extension info for a tile.
+-- 
+2.45.2
 
--Doug
