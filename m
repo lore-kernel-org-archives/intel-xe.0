@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D64FEE0204
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 723F6EE020D
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3169F10E957;
-	Tue, 10 Sep 2024 23:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06F5510E96C;
+	Tue, 10 Sep 2024 23:47:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YE2N+fAb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VhLf7Ek8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4566310E93B
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407B110E93F
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012048; x=1757548048;
+ t=1726012049; x=1757548049;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EYMLZJyKF2L3xQyJ67195cVyeeM3P6NwBztDo093rJ4=;
- b=YE2N+fAbz4ifWhYYIQiiIEjdC84qY6z2jBFS2gVvTzoeZd+tdXMK8W46
- 7pVVPJeWsm6nc/sIhs1eX0F2iBbL+o1mqXNeelB8MUcwrLDXZVlf7HRnP
- kuRcK76FfUNq7OB5/kjJT2WDLNK8TNhYekaoFJrUEzT3ybNOh5WbH1yzt
- A25LWIDELD7hT736F66In/knSBvALvoFOqklYt7daSup4RFQX5L191j+b
- P+S9VjpuirBo2r68oB8qvFWWhXY+fn7jbJN261henwGst7GOpxmcCUiNy
- E2vmWgtRhesazyQW85UR5tSks/5J8484pfiiAuUg6pM0lec2Ra00Waf/P w==;
-X-CSE-ConnectionGUID: Rl+SCNtLTtyXljsnpGNd9Q==
-X-CSE-MsgGUID: WMB+mbw7QLiiCmJD4tvNTQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144315"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144315"
+ bh=NZDq69PtrSYJT3T1ywy63hIdUMw+1WPVzqRhjGv62JQ=;
+ b=VhLf7Ek8Mu1vwtf1EROLdEGqwUMAvzyZIvT1BaA2O80yDegofPIPLxyg
+ K6x+KlyDLdX5XrZtBQqYUOCwvT3x6w6zRxgdwTytIJnhNeN82NhXmmMg3
+ WpMoDUJ5W/Rf6Ty874L1pvShAXZnrFxyavhdVADeVUJL/AlcbDNcf9Dzd
+ 8Qq08oY/drINT/g5C6GNPawCr4goRI1TfE+E9aZNzPjlLT9YoGS4KYOub
+ ZeJfr4su+BTohD4voUPCleO+BBFmWoL+Z4JgH8tws5ajKzS5hbuB6l78R
+ Nbn2i8R/U8qpXQCMxHhT8CXoOr4zbv1cOUkx06GJWsB9jNhnOE/7zxpEy A==;
+X-CSE-ConnectionGUID: MxTIjjyAT1SOEwbUVDBVIQ==
+X-CSE-MsgGUID: ZYA/sWs9SVuenG/F1rwm1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144325"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144325"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:28 -0700
-X-CSE-ConnectionGUID: Ya5zZS2bStGITNvCKdDNZQ==
-X-CSE-MsgGUID: G/glpRxnQNe9f6vEM/bdZA==
+ 10 Sep 2024 16:47:29 -0700
+X-CSE-ConnectionGUID: Hc2KPRooTS+wbJHDP/W/Ag==
+X-CSE-MsgGUID: ic0exvh/SHaZ6GnpaC3KXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989617"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989647"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Sep 2024 16:47:29 -0700
@@ -45,9 +45,10 @@ From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 24/43] drm/xe/query: Convert register access to use xe_mmio
-Date: Tue, 10 Sep 2024 16:47:44 -0700
-Message-ID: <20240910234719.3335472-69-matthew.d.roper@intel.com>
+Subject: [PATCH v3 33/43] drm/xe/execlist: Convert register access to use
+ xe_mmio
+Date: Tue, 10 Sep 2024 16:47:53 -0700
+Message-ID: <20240910234719.3335472-78-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -72,34 +73,65 @@ Stop using GT pointers for register access.
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_execlist.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 28d9bb3b825d..5246a4a2740e 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -91,16 +91,17 @@ __read_timestamps(struct xe_gt *gt,
- 		  u64 *cpu_delta,
- 		  __ktime_func_t cpu_clock)
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 6a59165b9569..f3b71fe7a96d 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -44,6 +44,7 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 			u32 ctx_id)
  {
+ 	struct xe_gt *gt = hwe->gt;
 +	struct xe_mmio *mmio = &gt->mmio;
- 	u32 upper, lower, old_upper, loop = 0;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u64 lrc_desc;
  
--	upper = xe_mmio_read32(gt, upper_reg);
-+	upper = xe_mmio_read32(mmio, upper_reg);
- 	do {
- 		*cpu_delta = local_clock();
- 		*cpu_ts = cpu_clock();
--		lower = xe_mmio_read32(gt, lower_reg);
-+		lower = xe_mmio_read32(mmio, lower_reg);
- 		*cpu_delta = local_clock() - *cpu_delta;
- 		old_upper = upper;
--		upper = xe_mmio_read32(gt, upper_reg);
-+		upper = xe_mmio_read32(mmio, upper_reg);
- 	} while (upper != old_upper && loop++ < 2);
+@@ -58,7 +59,7 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 	}
  
- 	*engine_ts = (u64)upper << 32 | lower;
+ 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
+-		xe_mmio_write32(hwe->gt, RCU_MODE,
++		xe_mmio_write32(mmio, RCU_MODE,
+ 				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
+ 
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+@@ -76,17 +77,17 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 	 */
+ 	wmb();
+ 
+-	xe_mmio_write32(gt, RING_HWS_PGA(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_HWS_PGA(hwe->mmio_base),
+ 			xe_bo_ggtt_addr(hwe->hwsp));
+-	xe_mmio_read32(gt, RING_HWS_PGA(hwe->mmio_base));
+-	xe_mmio_write32(gt, RING_MODE(hwe->mmio_base),
++	xe_mmio_read32(mmio, RING_HWS_PGA(hwe->mmio_base));
++	xe_mmio_write32(mmio, RING_MODE(hwe->mmio_base),
+ 			_MASKED_BIT_ENABLE(GFX_DISABLE_LEGACY_MODE));
+ 
+-	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
+ 			lower_32_bits(lrc_desc));
+-	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
+ 			upper_32_bits(lrc_desc));
+-	xe_mmio_write32(gt, RING_EXECLIST_CONTROL(hwe->mmio_base),
++	xe_mmio_write32(mmio, RING_EXECLIST_CONTROL(hwe->mmio_base),
+ 			EL_CTRL_LOAD);
+ }
+ 
+@@ -168,8 +169,8 @@ static u64 read_execlist_status(struct xe_hw_engine *hwe)
+ 	struct xe_gt *gt = hwe->gt;
+ 	u32 hi, lo;
+ 
+-	lo = xe_mmio_read32(gt, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
+-	hi = xe_mmio_read32(gt, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
++	lo = xe_mmio_read32(&gt->mmio, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
++	hi = xe_mmio_read32(&gt->mmio, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
+ 
+ 	return lo | (u64)hi << 32;
+ }
 -- 
 2.45.2
 
