@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87F9CEB64DE
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 13:12:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E6A6EB64DE
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 13:29:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58DDC10E7BF;
-	Tue, 10 Sep 2024 13:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D75210E11B;
+	Tue, 10 Sep 2024 13:29:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LtnD7CVv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fhCyCKNs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B96310E7BF
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 13:12:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CFBE10E107;
+ Tue, 10 Sep 2024 13:29:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725973925; x=1757509925;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qjWUbGIb4iAWMs+pKEn7wrq8YkJG7yo7hs9l+w6fUG0=;
- b=LtnD7CVv07NMYDFsC8g+QHNJnXDVYR5Vf+gD4iLZyK7k/KdQNraOKDrZ
- C9S5+BjL0Yqp2sMCqtvFp/VDbtHBLlfptmqJ9oh0lKISO+PpfTdb44iy8
- 6HYdNMWVtOxlJXK5YVP1xUSn/ffVGYr50x6YI6NxeD/skhVReOBEiT4GK
- kc0bN4wXDC17Stk7nu4rCtvGvrxZIaYYp9guUUu9Y/y8lhcf5kPbxpa0S
- iM06l92ecXfYoPWvUZ08iqqbycknehfc8lWTs2I2wTkW0rPk5sEWqPJp9
- y6XL93BYuNx4Kc4mx3yEeTC3nXT4jJUqd8BYtvDgC2J7SmGxwtv3uCnLx w==;
-X-CSE-ConnectionGUID: 6yIrD60mSUSTRLE0QXalkQ==
-X-CSE-MsgGUID: wnZhKg+qTK6d2Uojqc95qA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24861242"
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="24861242"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 06:12:04 -0700
-X-CSE-ConnectionGUID: 1ZxR2oUFSSaPJPt6Ojanig==
-X-CSE-MsgGUID: ZwVh8ikzQmaj5/tpvOWRgA==
+ t=1725974942; x=1757510942;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5e1CMsaYoVzoiSuVGSF2ZnPrmY1/y2CI8sFK2Ci5Pis=;
+ b=fhCyCKNs4nXlO6xPSuFfc9FpDNI/kJ1Dwaeb602K5kg2SvG/+utysdWl
+ I/oR9sllE/P6D3VaFgl9NA3MIolSOA9c4ofFe+BVxQwgVFMq6wy7862ok
+ TMX5Xj+Y41+VsKwYbx0YUT8jiE3RB2Dk/ChWUhgnPe3z3HObul6OPhTtw
+ n2+/vpHifiVSAIY8ejhxyw5AOq4YeDeqh2Xkf3l82dzup0A1VsERiR+om
+ aNhTGXnoI/Xcr1ipqc4cGGUh4S16tQiyFj6QNGjXMQxFfTt5hsgv1gBBj
+ DjuUOeLVJvkCbvLusHFToU4FvSIeWVQEz/1S7TQW117aodL5J61aq8Drp w==;
+X-CSE-ConnectionGUID: RbZlLfjHRKST9v9qNUfBFw==
+X-CSE-MsgGUID: 0ZPdWaL4QHCbIYXeewlVRw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24585428"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="24585428"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 06:29:02 -0700
+X-CSE-ConnectionGUID: cgEvEcj1QAKsirV7YnJkfw==
+X-CSE-MsgGUID: yVXE/OHISTOuK6fIfIfG2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="67037976"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.215])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 06:12:02 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH 4/4] drm/xe/bo: add some annotations in bo_put()
-Date: Tue, 10 Sep 2024 14:11:49 +0100
-Message-ID: <20240910131145.136984-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240910131145.136984-5-matthew.auld@intel.com>
-References: <20240910131145.136984-5-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="104492785"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.43])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 06:28:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH v2 00/11] drm/i915: register style fixes
+Date: Tue, 10 Sep 2024 16:28:44 +0300
+Message-Id: <cover.1725974820.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,60 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the put() triggers bo destroy then there is at least one potential
-sleeping lock. Also annotate bos_lock and ggtt lock.
+Amended style fixes from [1] in preparation of doing the
+display/non-display register split. This doesn't include the actual
+split patch from that series, just the prep.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 14 ++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h |  6 +-----
- 2 files changed, 15 insertions(+), 5 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 53948a965404..4176b302c38d 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2320,6 +2320,20 @@ void xe_bo_put_commit(struct llist_head *deferred)
- 		drm_gem_object_free(&bo->ttm.base.refcount);
- }
- 
-+void xe_bo_put(struct xe_bo *bo)
-+{
-+	might_sleep();
-+	if (bo) {
-+#ifdef CONFIG_PROC_FS
-+		if (bo->client)
-+			might_lock(&bo->client->bos_lock);
-+#endif
-+		if (bo->ggtt_node && bo->ggtt_node->ggtt)
-+			might_lock(&bo->ggtt_node->ggtt->lock);
-+		drm_gem_object_put(&bo->ttm.base);
-+	}
-+}
-+
- /**
-  * xe_bo_dumb_create - Create a dumb bo as backing for a fb
-  * @file_priv: ...
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index dbfb3209615d..6e4be52306df 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -126,11 +126,7 @@ static inline struct xe_bo *xe_bo_get(struct xe_bo *bo)
- 	return bo;
- }
- 
--static inline void xe_bo_put(struct xe_bo *bo)
--{
--	if (bo)
--		drm_gem_object_put(&bo->ttm.base);
--}
-+void xe_bo_put(struct xe_bo *bo);
- 
- static inline void __xe_bo_unset_bulk_move(struct xe_bo *bo)
- {
+
+[1] https://lore.kernel.org/r/cover.1725908151.git.jani.nikula@intel.com
+
+
+Jani Nikula (11):
+  drm/i915/reg: fix transcoder timing register style
+  drm/i915/reg: fix g4x pipe data/link m/n register style
+  drm/i915/reg: fix pipe conf, stat etc. register style
+  drm/i915/reg: fix pipe data/link m/n register style
+  drm/i915/reg: fix SKL scaler register style
+  drm/i915/reg: fix PCH transcoder timing indentation
+  drm/i915/reg: fix PCH transcoder timing and data/link m/n style
+  drm/i915/reg: fix DIP CTL register style
+  drm/i915/reg: fix small register style issues here and there
+  drm/i915/reg: remove unused DSI register macros
+  drm/i915/reg: remove superfluous whitespace
+
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 401 +++++++++---------
+ 2 files changed, 201 insertions(+), 201 deletions(-)
+
 -- 
-2.46.0
+2.39.2
 
