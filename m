@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AF44EE020B
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 268AFEE01F1
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99DC410E961;
-	Tue, 10 Sep 2024 23:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A58110E983;
+	Tue, 10 Sep 2024 23:47:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HAYdVAoz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jRU4CW4W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11E3710E93F
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D50FF10E8F5
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012050; x=1757548050;
+ t=1726012048; x=1757548048;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rAeNHYfWa5PAxFLl6C5iA3cb8gqAknLztES86Ryw17Q=;
- b=HAYdVAoz7eCwD3K7HneEZeq6+CinpbmxyrjPhTpfjA88/1HsN2pClT0M
- cPDkWDBo/L+ku/WSYp+rd9N4KZOeowLihLd5NLQgBkFFBWxekyN+j0NiI
- pBhSc14RMPPyn0fcVy+1N6DXzqSvLHUkZ7TDnKQKaAlXKbQxMOpeQubYM
- s7zQ3Qh0wHwMT69+KR85SpwhrDjuTGKjJeawDyrPSHUcN3NZ4xoswkG5S
- 2BKg/+45L7GA14rX11061bwU5CNV64Cuj/NI0BRYBj2CVDUptdGkwjxNk
- vSOakszQ7S6e5kLlKl8KI93VyIsJrizoFt80/2gihwFWrq1r75IHw8H5+ A==;
-X-CSE-ConnectionGUID: QJf7+Vl2ST+iuGRDyAjzwA==
-X-CSE-MsgGUID: nhlkkLbhTSCf5l+WT9+Q7A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144336"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144336"
+ bh=0K06BXtTO92EhzecWrw42KuUOXJjzuba8DVgcQlkPNE=;
+ b=jRU4CW4W6utVoVjhSwF3odjnRB48/JDFPGcsIwDCEFNzuoxtQYImLOoL
+ MaZb4PHL6E5H7fi3Gq+8pazTM5pNUB9yPK5neYACKnlrUPF6sltdL0FH1
+ vwFe4fq1Cu+CEUhyIGOJdPn9wHuaosTPZ9E8iSOYaLzEpZ76mtCyKXKh+
+ jC3nQb3mrPxdjbCHu7tCa6tKq3n9N18t5GyLHHGMRNRJIF+aJSESc1vus
+ 6x3xzq5pJs1Hvzj7uP/Lxxgi+2BabWIcsC+rHRVa4Nt3stNePe7dkS59N
+ LlhrsPfXbdGFnrOQRJCW9ODgF76zqrC3m0l8u4GHDeepIFEbm+6ShwgSL Q==;
+X-CSE-ConnectionGUID: spPgGkkGQHi7LiTzZCM0uw==
+X-CSE-MsgGUID: RFhmwXEsSneMA42GymzWkA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144320"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144320"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:30 -0700
-X-CSE-ConnectionGUID: lYOaEDxhQQSv1S3V+BFA0g==
-X-CSE-MsgGUID: dbiY/d9IT/GYq3pqpyGiFw==
+ 10 Sep 2024 16:47:28 -0700
+X-CSE-ConnectionGUID: jX6WiKlsRCaLhPGR92U21A==
+X-CSE-MsgGUID: CDW3EHwVRhWuaTrFYNruWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989677"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989634"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:30 -0700
+ 10 Sep 2024 16:47:29 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 42/43] drm/xe/ccs_mode: Convert register access to use
- xe_mmio
-Date: Tue, 10 Sep 2024 16:48:02 -0700
-Message-ID: <20240910234719.3335472-87-matthew.d.roper@intel.com>
+Subject: [PATCH v3 29/43] drm/xe/pat: Convert register access to use xe_mmio
+Date: Tue, 10 Sep 2024 16:47:49 -0700
+Message-ID: <20240910234719.3335472-74-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -73,22 +72,71 @@ Stop using GT pointers for register access.
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pat.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-index d2e4dc3aaf61..9360ac4de489 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-@@ -68,7 +68,7 @@ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
- 		}
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 5bf48e99c939..6bd6adfdfc74 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -165,7 +165,7 @@ static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[
+ 	for (int i = 0; i < n_entries; i++) {
+ 		struct xe_reg reg = XE_REG(_PAT_INDEX(i));
+ 
+-		xe_mmio_write32(gt, reg, table[i].value);
++		xe_mmio_write32(&gt->mmio, reg, table[i].value);
  	}
+ }
  
--	xe_mmio_write32(gt, CCS_MODE, mode);
-+	xe_mmio_write32(&gt->mmio, CCS_MODE, mode);
+@@ -191,7 +191,7 @@ static void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	drm_printf(p, "PAT table:\n");
  
- 	xe_gt_dbg(gt, "CCS_MODE=%x config:%08x, num_engines:%d, num_slices:%d\n",
- 		  mode, config, num_engines, num_slices);
+ 	for (i = 0; i < xe->pat.n_entries; i++) {
+-		u32 pat = xe_mmio_read32(gt, XE_REG(_PAT_INDEX(i)));
++		u32 pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_INDEX(i)));
+ 		u8 mem_type = REG_FIELD_GET(XELP_MEM_TYPE_MASK, pat);
+ 
+ 		drm_printf(p, "PAT[%2d] = %s (%#8x)\n", i,
+@@ -283,7 +283,7 @@ static void xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
+ 		u32 pat;
+ 
+ 		if (xe_gt_is_media_type(gt))
+-			pat = xe_mmio_read32(gt, XE_REG(_PAT_INDEX(i)));
++			pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_INDEX(i)));
+ 		else
+ 			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+ 
+@@ -321,10 +321,10 @@ static void xe2lpm_program_pat(struct xe_gt *gt, const struct xe_pat_table_entry
+ 			       int n_entries)
+ {
+ 	program_pat(gt, table, n_entries);
+-	xe_mmio_write32(gt, XE_REG(_PAT_ATS), xe2_pat_ats.value);
++	xe_mmio_write32(&gt->mmio, XE_REG(_PAT_ATS), xe2_pat_ats.value);
+ 
+ 	if (IS_DGFX(gt_to_xe(gt)))
+-		xe_mmio_write32(gt, XE_REG(_PAT_PTA), xe2_pat_pta.value);
++		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe2_pat_pta.value);
+ }
+ 
+ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+@@ -341,7 +341,7 @@ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	for (i = 0; i < xe->pat.n_entries; i++) {
+ 		if (xe_gt_is_media_type(gt))
+-			pat = xe_mmio_read32(gt, XE_REG(_PAT_INDEX(i)));
++			pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_INDEX(i)));
+ 		else
+ 			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+ 
+@@ -360,7 +360,7 @@ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	 * PPGTT entries.
+ 	 */
+ 	if (xe_gt_is_media_type(gt))
+-		pat = xe_mmio_read32(gt, XE_REG(_PAT_PTA));
++		pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_PTA));
+ 	else
+ 		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_PTA));
+ 
 -- 
 2.45.2
 
