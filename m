@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99212ECE582
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 08:45:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5809ECE582
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 08:50:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C81510E5C3;
-	Tue, 10 Sep 2024 08:45:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E8CC10E627;
+	Tue, 10 Sep 2024 08:50:54 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7DF10E5C3;
- Tue, 10 Sep 2024 08:45:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2339226619797178933=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03F0F10E627;
+ Tue, 10 Sep 2024 08:50:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm=3A_Ensure_Proper_Unload/Relo?=
- =?utf-8?q?ad_Order_of_MEI_Modules_for_i915/Xe_Driver_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_a_xe?=
+ =?utf-8?q?=5Fbo_subtest_for_shrinking_/_swapping_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bommu Krishnaiah" <krishnaiah.bommu@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Sep 2024 08:45:50 -0000
-Message-ID: <172595795037.979556.713206592147004106@2413ebb6fbb6>
+Date: Tue, 10 Sep 2024 08:50:53 -0000
+Message-ID: <172595825300.979733.13079761976442815530@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240909040317.17108-1-krishnaiah.bommu@intel.com>
-In-Reply-To: <20240909040317.17108-1-krishnaiah.bommu@intel.com>
+References: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,114 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2339226619797178933==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver (rev2)
-URL   : https://patchwork.freedesktop.org/series/138099/
-State : failure
+Series: drm/xe: Add a xe_bo subtest for shrinking / swapping (rev3)
+URL   : https://patchwork.freedesktop.org/series/138262/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -> xe-pw-138099v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-138099v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-138099v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (8 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-138099v2_BAT prevented too many machines from booting.
-
-  Missing    (8): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-7 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: bab1666fc237 drm-tip: 2024y-09m-10d-03h-10m-44s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Add a xe_bo subtest for shrinking / swapping
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -> xe-pw-138099v2
-
-  IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114
-  xe-pw-138099v2: 138099v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v2/index.html
-
---===============2339226619797178933==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Ensure Proper Unload/Reload Order of MEI Modules for i915/Xe Driver (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138099/">https://patchwork.freedesktop.org/series/138099/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138099v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -&gt; xe-pw-138099v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-138099v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-138099v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (8 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-138099v2_BAT prevented too many machines from booting.</p>
-<p>Missing    (8): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-7 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -&gt; xe-pw-138099v2</li>
-</ul>
-<p>IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114<br />
-  xe-pw-138099v2: 138099v2</p>
-
-</body>
-</html>
-
---===============2339226619797178933==--
