@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40CD5EE01F2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7B12EE01F1
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0151710E8F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27C4310E93F;
 	Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCq6Gt6O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JkycN8jl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5914910E8F5
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9C9710E8F5
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012047; x=1757548047;
+ t=1726012049; x=1757548049;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5qKwxJrswa/z8fg8j1lzUwwAkK/gEMpkGKIZXZHifRY=;
- b=DCq6Gt6OrryDOhKn/pJK046tGmW4wFENINetAAw2C3CwE6JX1/3egv2J
- VF8xCdhAaB64gh5rEvFmm/xu+8CppTonKUSAiRI085hY6p3uoR8sm5vJc
- zNXa6Sd5dbw3BvMGDtvv3C+aB92FbZ2eTxT9SVVD6nhTwPXl4cOGxa0yF
- 8vLlGWdzvRQ5+jhYWDYn0gB2wjX71Z7/n3o6UiEl9/rSl1yE01kYBfZzs
- Vstm0fl1B9vXhnbOux5o1tGKyk//k7zX2QTzyD+1VNbFRI8UbV0i81bEH
- GTfOUmvQkMqSnqwSZk99LYWE1I8l9pom6xdFSoDFPnojURqWbpm+CRMhz Q==;
-X-CSE-ConnectionGUID: TQJBbyZ2QmmnCnjGweuhPA==
-X-CSE-MsgGUID: vSDZoO7wRj6Jt5XyZr3eWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144306"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144306"
+ bh=G3haiXaWEmuHx37hOQhVl50eBSktpw8wMPvCbnbeNpc=;
+ b=JkycN8jlQYfApZpRklapgF08NgzidKRYWarja+BCTLOKCKMjqcU2D3Ql
+ zco1PgewoReXTwc86i0SZQ2hp0d+QU296vUUh8Lah3SgF06cjsI59q9fr
+ t9vH19nMQehrxypa5ufNC8S5q9XOmK8liR12O2fv0X4Tu11sWw1QGd4wJ
+ 5780vB0dPUE+Dg3xBJ45kjS6mBH3DKpnT6UXfvcjxg5utZLg9gQz1UKP8
+ IQ39vuhtcyS6qJpaV9j+N3Zfmj6xDztXd17IWML2w/AwMgKbkd3qmxgkm
+ Ro6c0Ei4y+RH2rVK/X9wiQJAGoHfkDcl9gKfFrYPwJwEmkupyCFgmX2Vh g==;
+X-CSE-ConnectionGUID: axQHJ5nETuGwsmlEyIb4Rg==
+X-CSE-MsgGUID: UB9rnuH5QaaRmbkz4hPgZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144332"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144332"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:27 -0700
-X-CSE-ConnectionGUID: cYgTnkOeR3m8qSpV6OWklQ==
-X-CSE-MsgGUID: VVRyNNnrSgWV7Pj6F5KIHg==
+ 10 Sep 2024 16:47:29 -0700
+X-CSE-ConnectionGUID: UpXFSCnsQh2kJ9JrCqZgPQ==
+X-CSE-MsgGUID: JT3ZzChgR++NDKAOXr6Sig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989585"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989665"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:28 -0700
+ 10 Sep 2024 16:47:30 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 15/43] drm/xe/lmtt: Convert register access to use xe_mmio
-Date: Tue, 10 Sep 2024 16:47:35 -0700
-Message-ID: <20240910234719.3335472-60-matthew.d.roper@intel.com>
+	Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v3 38/43] drm/xe/tlb: Convert register access to use xe_mmio
+Date: Tue, 10 Sep 2024 16:47:58 -0700
+Message-ID: <20240910234719.3335472-83-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -69,25 +69,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Stop using GT pointers for register access.
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lmtt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index 8999ac511555..a60ceae4c6dd 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -193,7 +193,7 @@ static void lmtt_setup_dir_ptr(struct xe_lmtt *lmtt)
- 	lmtt_assert(lmtt, xe_bo_is_vram(lmtt->pd->bo));
- 	lmtt_assert(lmtt, IS_ALIGNED(offset, SZ_64K));
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index cca9cf536f76..98616de0c5bb 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -274,17 +274,19 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
  
--	xe_mmio_write32(tile->primary_gt,
-+	xe_mmio_write32(&tile->mmio,
- 			GRAPHICS_VER(xe) >= 20 ? XE2_LMEM_CFG : LMEM_CFG,
- 			LMEM_EN | REG_FIELD_PREP(LMTT_DIR_PTR, offset / SZ_64K));
- }
+ 		xe_gt_tlb_invalidation_fence_wait(&fence);
+ 	} else if (xe_device_uc_enabled(xe) && !xe_device_wedged(xe)) {
++		struct xe_mmio *mmio = &gt->mmio;
++
+ 		if (IS_SRIOV_VF(xe))
+ 			return 0;
+ 
+ 		xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
+ 		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
+-			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC1,
++			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
+ 					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
+-			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC0,
++			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0,
+ 					PVC_GUC_TLB_INV_DESC0_VALID);
+ 		} else {
+-			xe_mmio_write32(gt, GUC_TLB_INV_CR,
++			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
+ 					GUC_TLB_INV_CR_INVALIDATE);
+ 		}
+ 		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
 -- 
 2.45.2
 
