@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 602B4EE0213
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D614BEE0215
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C25D110E9A4;
-	Tue, 10 Sep 2024 23:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8662910E9C2;
+	Tue, 10 Sep 2024 23:47:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DckBQuLK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N0CVExDP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E10310E941
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9636E10E941
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012049; x=1757548049;
+ t=1726012048; x=1757548048;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JeMH0C7EYee2ma7CpKWJ6B7ZXSiaUU99jjcAwnf5x6Q=;
- b=DckBQuLKqRsjDQiAUr1NjMQ1h7EzeS21dKavpFq2cUlT5HNP29gBZqUj
- 3cjUj48Mu9JeJ8yMV808tjUTICnEpFU10XHVK44saJH9rFxd7hVkvsCKi
- lyz2wRUVcIkSH9wC9T8yBBvXUVTQsoXcg0m88FXvqVEM0tu3RvHdmlC9G
- N34IiMeBRdQcdRj3CB7AO6WxsskLn5aOVlKhE1GrDo86Al+GQw/A+4XQM
- 4iSffl0dOTLUecD4dE5uidbH5itMhH+UcH/a0VxfvgnavVWNqhVZOp1Te
- MHXN0bL1SlhrnV1xCVwL0gP7IUWBa9BtMuI1H/NHaWPjztmgAv6YNopfL Q==;
-X-CSE-ConnectionGUID: nO2d+vU6TjScEeTFCxQZ4Q==
-X-CSE-MsgGUID: EL6nFlZURn2C8qidYk2Xig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144322"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144322"
+ bh=kg0mvXD9yj5PAI91/CcIkYn/Q7q4K6Qu0AMgL2AaNDU=;
+ b=N0CVExDPFnfjuVvR4dckxsoPbneJksXL6FRXhtBKcv9sWGSf1hbpe0r4
+ 6NGstL/ueLZt80+HJ4j882Hb/mEH2PeZ/zgpjtB21FM1OnATo0+SOjgb9
+ oz5GnDQoLBhO1BexKTyudDuf4N/6nWzrG2aTFxBqIvzM8+2sPpVU7Aj3V
+ lEzr2VeMB4/W2zNePRf9TVtBw0l5uCnWoGbyIeq8Kb8gCPV1MPr+pgNeY
+ J2qdwwXI77VvZLScXU7o+JYejSSA1h3YCIaixfO0MFzo4s22LLiklLlHz
+ xgSF+YG7cnxKcsLpAY4ymXdbl2SXj4KE2UhqbNg/m/lk17l6ebfE3z+Ld w==;
+X-CSE-ConnectionGUID: xy/1xJPcSK+sTY54t7SLHg==
+X-CSE-MsgGUID: Td+6sZmVQzCeSDvUbRdKpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144318"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144318"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:29 -0700
-X-CSE-ConnectionGUID: Xanq58oyQXCWQW0lvUI92A==
-X-CSE-MsgGUID: m/HGuvMTQi+LmEpIeSX0bw==
+ 10 Sep 2024 16:47:28 -0700
+X-CSE-ConnectionGUID: AKrS+Z1LTXSqxYspVojt6g==
+X-CSE-MsgGUID: ZN8FAiOGRpScfSFQwMhQ/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989640"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989627"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Sep 2024 16:47:29 -0700
@@ -45,9 +45,10 @@ From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 31/43] drm/xe/oa: Convert register access to use xe_mmio
-Date: Tue, 10 Sep 2024 16:47:51 -0700
-Message-ID: <20240910234719.3335472-76-matthew.d.roper@intel.com>
+Subject: [PATCH v3 27/43] drm/xe/hw_engine: Convert register access to use
+ xe_mmio
+Date: Tue, 10 Sep 2024 16:47:47 -0700
+Message-ID: <20240910234719.3335472-72-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -72,190 +73,128 @@ Stop using GT pointers for register access.
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 48 +++++++++++++++++++++-----------------
- 1 file changed, 27 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 29 +++++++++++++++--------------
+ 1 file changed, 15 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 63286ed8457f..75c3b587954f 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -176,7 +176,7 @@ static const struct xe_oa_regs *__oa_regs(struct xe_oa_stream *stream)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index ce180faf2592..a7abc4b67e67 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -295,7 +295,7 @@ void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe,
  
- static u32 xe_oa_hw_tail_read(struct xe_oa_stream *stream)
- {
--	return xe_mmio_read32(stream->gt, __oa_regs(stream)->oa_tail_ptr) &
-+	return xe_mmio_read32(&stream->gt->mmio, __oa_regs(stream)->oa_tail_ptr) &
- 		OAG_OATAILPTR_MASK;
+ 	reg.addr += hwe->mmio_base;
+ 
+-	xe_mmio_write32(hwe->gt, reg, val);
++	xe_mmio_write32(&hwe->gt->mmio, reg, val);
  }
  
-@@ -366,7 +366,7 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
- 		struct xe_reg oaheadptr = __oa_regs(stream)->oa_head_ptr;
+ /**
+@@ -315,7 +315,7 @@ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
  
- 		spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
--		xe_mmio_write32(stream->gt, oaheadptr,
-+		xe_mmio_write32(&stream->gt->mmio, oaheadptr,
- 				(head + gtt_offset) & OAG_OAHEADPTR_MASK);
- 		stream->oa_buffer.head = head;
- 		spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
-@@ -377,22 +377,23 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 	reg.addr += hwe->mmio_base;
  
- static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
- {
-+	struct xe_mmio *mmio = &stream->gt->mmio;
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
- 	u32 oa_buf = gtt_offset | OABUFFER_SIZE_16M | OAG_OABUFFER_MEMORY_SELECT;
- 	unsigned long flags;
+-	return xe_mmio_read32(hwe->gt, reg);
++	return xe_mmio_read32(&hwe->gt->mmio, reg);
+ }
  
- 	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+@@ -324,7 +324,7 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+ 		xe_hw_engine_mask_per_class(hwe->gt, XE_ENGINE_CLASS_COMPUTE);
  
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_status, 0);
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_head_ptr,
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_status, 0);
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_head_ptr,
- 			gtt_offset & OAG_OAHEADPTR_MASK);
- 	stream->oa_buffer.head = 0;
+ 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE && ccs_mask)
+-		xe_mmio_write32(hwe->gt, RCU_MODE,
++		xe_mmio_write32(&hwe->gt->mmio, RCU_MODE,
+ 				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
+ 
+ 	xe_hw_engine_mmio_write32(hwe, RING_HWSTAM(0), ~0x0);
+@@ -354,7 +354,7 @@ static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_gt *gt,
+ 	    hwe->class != XE_ENGINE_CLASS_RENDER)
+ 		return false;
+ 
+-	return xe_mmio_read32(hwe->gt, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
++	return xe_mmio_read32(&hwe->gt->mmio, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
+ }
+ 
+ void
+@@ -612,7 +612,7 @@ static void read_media_fuses(struct xe_gt *gt)
+ 
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 
+-	media_fuse = xe_mmio_read32(gt, GT_VEBOX_VDBOX_DISABLE);
++	media_fuse = xe_mmio_read32(&gt->mmio, GT_VEBOX_VDBOX_DISABLE);
+ 
  	/*
- 	 * PRM says: "This MMIO must be set before the OATAILPTR register and after the
- 	 * OAHEADPTR register. This is to enable proper functionality of the overflow bit".
- 	 */
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_buffer, oa_buf);
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_tail_ptr,
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_buffer, oa_buf);
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_tail_ptr,
- 			gtt_offset & OAG_OATAILPTR_MASK);
+ 	 * Pre-Xe_HP platforms had register bits representing absent engines,
+@@ -657,7 +657,7 @@ static void read_copy_fuses(struct xe_gt *gt)
  
- 	/* Mark that we need updated tail pointer to read from */
-@@ -440,21 +441,23 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
- 	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
- 		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
  
--	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
-+	xe_mmio_write32(&stream->gt->mmio, regs->oa_ctrl, val);
- }
+-	bcs_mask = xe_mmio_read32(gt, MIRROR_FUSE3);
++	bcs_mask = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
+ 	bcs_mask = REG_FIELD_GET(MEML3_EN_MASK, bcs_mask);
  
- static void xe_oa_disable(struct xe_oa_stream *stream)
- {
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, 0);
--	if (xe_mmio_wait32(stream->gt, __oa_regs(stream)->oa_ctrl,
-+	struct xe_mmio *mmio = &stream->gt->mmio;
-+
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctrl, 0);
-+	if (xe_mmio_wait32(mmio, __oa_regs(stream)->oa_ctrl,
- 			   OAG_OACONTROL_OA_COUNTER_ENABLE, 0, 50000, NULL, false))
- 		drm_err(&stream->oa->xe->drm,
- 			"wait for OA to be disabled timed out\n");
+ 	/* BCS0 is always present; only BCS1-BCS8 may be fused off */
+@@ -704,7 +704,7 @@ static void read_compute_fuses_from_reg(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 ccs_mask;
  
- 	if (GRAPHICS_VERx100(stream->oa->xe) <= 1270 && GRAPHICS_VERx100(stream->oa->xe) != 1260) {
- 		/* <= XE_METEORLAKE except XE_PVC */
--		xe_mmio_write32(stream->gt, OA_TLB_INV_CR, 1);
--		if (xe_mmio_wait32(stream->gt, OA_TLB_INV_CR, 1, 0, 50000, NULL, false))
-+		xe_mmio_write32(mmio, OA_TLB_INV_CR, 1);
-+		if (xe_mmio_wait32(mmio, OA_TLB_INV_CR, 1, 0, 50000, NULL, false))
- 			drm_err(&stream->oa->xe->drm,
- 				"wait for OA tlb invalidate timed out\n");
+-	ccs_mask = xe_mmio_read32(gt, XEHP_FUSE4);
++	ccs_mask = xe_mmio_read32(&gt->mmio, XEHP_FUSE4);
+ 	ccs_mask = REG_FIELD_GET(CCS_EN_MASK, ccs_mask);
+ 
+ 	for (int i = XE_HW_ENGINE_CCS0, j = 0; i <= XE_HW_ENGINE_CCS3; ++i, ++j) {
+@@ -742,8 +742,8 @@ static void check_gsc_availability(struct xe_gt *gt)
+ 		gt->info.engine_mask &= ~BIT(XE_HW_ENGINE_GSCCS0);
+ 
+ 		/* interrupts where previously enabled, so turn them off */
+-		xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, 0);
+-		xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~0);
++		xe_mmio_write32(&gt->mmio, GUNIT_GSC_INTR_ENABLE, 0);
++		xe_mmio_write32(&gt->mmio, GUNIT_GSC_INTR_MASK, ~0);
+ 
+ 		drm_info(&xe->drm, "gsccs disabled due to lack of FW\n");
  	}
-@@ -477,7 +480,7 @@ static int __xe_oa_read(struct xe_oa_stream *stream, char __user *buf,
- 			size_t count, size_t *offset)
+@@ -809,6 +809,7 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
+ 				       struct xe_hw_engine_snapshot *snapshot)
  {
- 	/* Only clear our bits to avoid side-effects */
--	stream->oa_status = xe_mmio_rmw32(stream->gt, __oa_regs(stream)->oa_status,
-+	stream->oa_status = xe_mmio_rmw32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
- 					  OASTATUS_RELEVANT_BITS, 0);
- 	/*
- 	 * Signal to userspace that there is non-zero OA status to read via
-@@ -748,7 +751,8 @@ static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
- 	int err;
+ 	struct xe_gt *gt = hwe->gt;
++	struct xe_mmio *mmio = &gt->mmio;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	unsigned int dss;
+ 	u16 group, instance;
+@@ -820,11 +821,11 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
  
- 	/* Set ccs select to enable programming of OAC_OACONTROL */
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, __oa_ccs_select(stream));
-+	xe_mmio_write32(&stream->gt->mmio, __oa_regs(stream)->oa_ctrl,
-+			__oa_ccs_select(stream));
+ 	if (is_slice_common_per_gslice(xe) == false) {
+ 		snapshot->reg.instdone.slice_common[0] =
+-			xe_mmio_read32(gt, SC_INSTDONE);
++			xe_mmio_read32(mmio, SC_INSTDONE);
+ 		snapshot->reg.instdone.slice_common_extra[0] =
+-			xe_mmio_read32(gt, SC_INSTDONE_EXTRA);
++			xe_mmio_read32(mmio, SC_INSTDONE_EXTRA);
+ 		snapshot->reg.instdone.slice_common_extra2[0] =
+-			xe_mmio_read32(gt, SC_INSTDONE_EXTRA2);
++			xe_mmio_read32(mmio, SC_INSTDONE_EXTRA2);
+ 	} else {
+ 		for_each_geometry_dss(dss, gt, group, instance) {
+ 			snapshot->reg.instdone.slice_common[dss] =
+@@ -960,7 +961,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 	xe_hw_engine_snapshot_instdone_capture(hwe, snapshot);
  
- 	/* Modify stream hwe context image with regs_context */
- 	err = xe_oa_modify_ctx_image(stream, stream->exec_q->lrc[0],
-@@ -784,6 +788,7 @@ static u32 oag_configure_mmio_trigger(const struct xe_oa_stream *stream, bool en
+ 	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+-		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
++		snapshot->reg.rcu_mode = xe_mmio_read32(&hwe->gt->mmio, RCU_MODE);
  
- static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 	return snapshot;
+ }
+@@ -1153,7 +1154,7 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
+ 
+ u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
  {
-+	struct xe_mmio *mmio = &stream->gt->mmio;
- 	u32 sqcnt1;
- 
- 	/*
-@@ -797,7 +802,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- 					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
- 	}
- 
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_debug,
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_debug,
- 			oag_configure_mmio_trigger(stream, false));
- 
- 	/* disable the context save/restore or OAR counters */
-@@ -805,13 +810,13 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- 		xe_oa_configure_oa_context(stream, false);
- 
- 	/* Make sure we disable noa to save power. */
--	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
-+	xe_mmio_rmw32(mmio, RPM_CONFIG1, GT_NOA_ENABLE, 0);
- 
- 	sqcnt1 = SQCNT1_PMON_ENABLE |
- 		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
- 
- 	/* Reset PMON Enable to save power. */
--	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, sqcnt1, 0);
-+	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, sqcnt1, 0);
+-	return xe_mmio_read64_2x32(hwe->gt, RING_TIMESTAMP(hwe->mmio_base));
++	return xe_mmio_read64_2x32(&hwe->gt->mmio, RING_TIMESTAMP(hwe->mmio_base));
  }
  
- static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
-@@ -939,6 +944,7 @@ static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
- 
- static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- {
-+	struct xe_mmio *mmio = &stream->gt->mmio;
- 	u32 oa_debug, sqcnt1;
- 	int ret;
- 
-@@ -965,12 +971,12 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- 			OAG_OA_DEBUG_DISABLE_START_TRG_2_COUNT_QUAL |
- 			OAG_OA_DEBUG_DISABLE_START_TRG_1_COUNT_QUAL;
- 
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_debug,
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_debug,
- 			_MASKED_BIT_ENABLE(oa_debug) |
- 			oag_report_ctx_switches(stream) |
- 			oag_configure_mmio_trigger(stream, true));
- 
--	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
- 			(OAG_OAGLBCTXCTRL_COUNTER_RESUME |
- 			 OAG_OAGLBCTXCTRL_TIMER_ENABLE |
- 			 REG_FIELD_PREP(OAG_OAGLBCTXCTRL_TIMER_PERIOD_MASK,
-@@ -984,7 +990,7 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- 	sqcnt1 = SQCNT1_PMON_ENABLE |
- 		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
- 
--	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
-+	xe_mmio_rmw32(mmio, XELPMP_SQCNT1, 0, sqcnt1);
- 
- 	/* Configure OAR/OAC */
- 	if (stream->exec_q) {
-@@ -1533,7 +1539,7 @@ u32 xe_oa_timestamp_frequency(struct xe_gt *gt)
- 	case XE_PVC:
- 	case XE_METEORLAKE:
- 		xe_pm_runtime_get(gt_to_xe(gt));
--		reg = xe_mmio_read32(gt, RPM_CONFIG0);
-+		reg = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
- 		xe_pm_runtime_put(gt_to_xe(gt));
- 
- 		shift = REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
-@@ -2349,7 +2355,7 @@ static void __xe_oa_init_oa_units(struct xe_gt *gt)
- 		}
- 
- 		/* Ensure MMIO trigger remains disabled till there is a stream */
--		xe_mmio_write32(gt, u->regs.oa_debug,
-+		xe_mmio_write32(&gt->mmio, u->regs.oa_debug,
- 				oag_configure_mmio_trigger(NULL, false));
- 
- 		/* Set oa_unit_ids now to ensure ids remain contiguous */
+ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
 -- 
 2.45.2
 
