@@ -4,27 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6898ECE564
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 12:30:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00B53ECE58D
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 12:40:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5EFA10E7B0;
-	Tue, 10 Sep 2024 12:30:57 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E97EA10E7B0;
- Tue, 10 Sep 2024 12:30:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3720336339458881562=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC8710E7B6;
+	Tue, 10 Sep 2024 12:40:17 +0000 (UTC)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
+ [209.85.219.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3A1710E673;
+ Tue, 10 Sep 2024 12:40:15 +0000 (UTC)
+Received: by mail-yb1-f180.google.com with SMTP id
+ 3f1490d57ef6-e116d2f5f7fso5148690276.1; 
+ Tue, 10 Sep 2024 05:40:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725972014; x=1726576814;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rxkC6elmujDdAfnsTNRTMrFadUmhU0gDj/DcldHNh9Q=;
+ b=f6U1TIy91UPxqzcucePpSsY51OHp2Fgn5SxRj1hg9AGF02eEcrLwB2D9mSKhgh3s1X
+ rQIhWh+hvQdGYlfvGVozW6qbxK+Jx2gk9KWbJYWX3J96g7WPb7Pn+xW2P6bA8dbqonDg
+ CT3sFGfaLSR+12Lma5lGIajXSWQhfoelhPb2fKRh6GT8+oMVCDXbsSIUu8SbH7IifByt
+ Q33+ZIEOBYP455u/K4Gj5v2xDvrrLMLwWJgSWBt9Sf9Z1eMTwUaGm3W1TuJk4xsV6eDz
+ E3zpc7r+leouyCEQ7XKnRoz1Ad26NuiAjkKj/1K2qH4mECk9WE19cMw/Z12tAbfXHdla
+ OaMw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX3x4DQ1FoJ+ZacDu916Kcyt7ltqpHmP+l9pImn8mSM1Z5zcb8wO0Vx/RDfQLAc+kiB1K3bT6LZ5mE=@lists.freedesktop.org,
+ AJvYcCXwx4692JcfHna67Qnu8o/mWpLtpFcDyE1twczSj+KUZTD3clRJRoDILBK2eaDXm1nIiFSPl9f0GAk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxsaRmrqxXtImQcH/R0/3FI2rSYFq9ZYk6hav+gyG8t2dkaTrkk
+ z2XR1Mjw4XGjJWXo7sDHRh2lxE3PSRMbQcO+UTBV2pzFbxamSFcVeh1cZNLQ
+X-Google-Smtp-Source: AGHT+IFmVAP5rOEd9M5gL23YDPikZl+RDcuMvj39376pdfajUicgricvrRgbGrJI5DpQlRVOm5oCuQ==
+X-Received: by 2002:a05:6902:287:b0:e1c:ff8a:68f9 with SMTP id
+ 3f1490d57ef6-e1d79e74167mr2475640276.11.1725972013535; 
+ Tue, 10 Sep 2024 05:40:13 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com.
+ [209.85.128.176]) by smtp.gmail.com with ESMTPSA id
+ 00721157ae682-6db9652d8fasm2763667b3.142.2024.09.10.05.40.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 10 Sep 2024 05:40:12 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id
+ 00721157ae682-6cdae28014dso40793517b3.1; 
+ Tue, 10 Sep 2024 05:40:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXkV/b2s679LCkUBLcLtXZq/+6c+5mzLTO20/0sypWoFaUuRXWEedyOzsE15DotjUvNZ54xj+J/wvA=@lists.freedesktop.org,
+ AJvYcCXug2mUjyNo9M5SaNwCfKYDs065WXORJsDHtvjlviGFg+vvzBKhuCvZZ6OchbPEaM6McFL5Kd+9bOk=@lists.freedesktop.org
+X-Received: by 2002:a05:690c:25c4:b0:664:74cd:5548 with SMTP id
+ 00721157ae682-6db95311ca7mr24962807b3.1.1725972012286; Tue, 10 Sep 2024
+ 05:40:12 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_fix_and_enable_warnings_o?=
- =?utf-8?q?n_unused_static_inlines?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Sep 2024 12:30:56 -0000
-Message-ID: <172597145695.980661.5652987744782501598@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
 References: <cover.1725962479.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1725962479.git.jani.nikula@intel.com>
+ <f2b721e28b9ee2711d7848abf1774ecb8ce8e5e2.1725962479.git.jani.nikula@intel.com>
+In-Reply-To: <f2b721e28b9ee2711d7848abf1774ecb8ce8e5e2.1725962479.git.jani.nikula@intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Sep 2024 14:39:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJDKO-0o9GiGzuZ=yuYpZ1myB+A00zYwNj=+6baAq3Rw@mail.gmail.com>
+Message-ID: <CAMuHMdWJDKO-0o9GiGzuZ=yuYpZ1myB+A00zYwNj=+6baAq3Rw@mail.gmail.com>
+Subject: Re: [PATCH 2/8] drm: renesas: rcar-du: annotate rcar_cmm_read() with
+ __maybe_unused
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +80,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3720336339458881562==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Jani,
 
-== Series Details ==
+On Tue, Sep 10, 2024 at 12:06=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
+> wrote:
+> Building with clang and and W=3D1 leads to warning about unused
+> rcar_cmm_read(). Fix by annotating it with __maybe_unused.
+>
+> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
+> inline functions for W=3D1 build").
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm: fix and enable warnings on unused static inlines
-URL   : https://patchwork.freedesktop.org/series/138461/
-State : success
+Thanks for your patch!
 
-== Summary ==
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c
+> @@ -32,7 +32,7 @@ struct rcar_cmm {
+>         } lut;
+>  };
+>
+> -static inline int rcar_cmm_read(struct rcar_cmm *rcmm, u32 reg)
+> +static inline __maybe_unused int rcar_cmm_read(struct rcar_cmm *rcmm, u3=
+2 reg)
+>  {
+>         return ioread32(rcmm->base + reg);
+>  }
 
-CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -> xe-pw-138461v1_BAT
-====================================================
+This function was never used. Why not remove it instead?
 
-Summary
--------
+Gr{oetje,eeting}s,
 
-  **SUCCESS**
+                        Geert
 
-  No regressions found.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138461v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138461v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138461v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -> xe-pw-138461v1
-
-  IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114
-  xe-pw-138461v1: 138461v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138461v1/index.html
-
---===============3720336339458881562==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: fix and enable warnings on unused static inlines</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138461/">https://patchwork.freedesktop.org/series/138461/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138461v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138461v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -&gt; xe-pw-138461v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138461v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138461v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138461v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -&gt; xe-pw-138461v1</li>
-</ul>
-<p>IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114<br />
-  xe-pw-138461v1: 138461v1</p>
-
-</body>
-</html>
-
---===============3720336339458881562==--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
