@@ -4,162 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D170EDE9AB
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 18:48:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 802CFEDE9AB
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 18:49:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 401D010E8CD;
-	Tue, 10 Sep 2024 18:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 367EE10E8F2;
+	Tue, 10 Sep 2024 18:49:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OPE+0NG/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VxfMkmkD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 094C110E8CD
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 18:48:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6748910E8F2
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 18:49:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725994135; x=1757530135;
+ t=1725994177; x=1757530177;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=1T0MVTPQ6AeQYCeE6IGsz2hGeYgUFJwkVWsu+8fmN9s=;
- b=OPE+0NG/e37prpQ85UHAHOzK4DhZGMhOZ93CQ051dM4xa+7xBc9DNrqK
- y5sSli6km0U7NsOdX9BQEJ0IsI47AVjouRzZJdZUkmLpuI4Fmzb4nF3UX
- Eo+3kv9nC0mxuDtZmgNKQRAV5t6RBMW/trBFvG7G23oVNSl5ONWpU0omT
- 3A1gdqKoa/uEhXkpM36UX/pn77tKWhK8Bjq15pHoWxPHBU/JGT0ICZYMr
- hxC3iu5txLDgz2tStuDexu5CVGPBd1ZTjwrbGCONZeiq3/1O2OvGh5IX4
- Y8X/fDZ+eF8DBhl8cU355IEJuOZqQuLnALMS1DKMe6EIWr9vchTIBduc9 Q==;
-X-CSE-ConnectionGUID: 9j7KEf7PTciJuJRHD+yPAQ==
-X-CSE-MsgGUID: ltwEGuNVTYyRS+7mXtyVwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="28652953"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="28652953"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 11:48:55 -0700
-X-CSE-ConnectionGUID: UuXo3B4oT+ScvqxMQ8Sqxw==
-X-CSE-MsgGUID: DJVgNs82QjyOD3hU+L3UnA==
+ bh=tsBr+bSrek1NMcNO64ah0cSlUQ2hOEO1Rs2aDw0bz1g=;
+ b=VxfMkmkDJGix/6HUtUY90Pg3yfSoyB0lrrqF0TNwDz9oVCi6gX0OVUB7
+ /ZfMzz6YoohLaiM6Wo5Jmrra4hU3aKL3r/vspLdD3/Ni++K49ZPVcw3ka
+ Fk1l2SY6TSGbSqD/WAUdSEm0f8vXbG1F/CfHJxB1cG1ChlhQTyh4zfjql
+ MPGiiOW8f3GmfDeYcfkuu9ECSx5LQ0gNM/L1wnMh/lMh5dpHSN4qLQf7T
+ E5LuRcndJxhLwfQuFtztt8ABV35Hatk06tno8klnzJi5BTcLh/wC3dv6F
+ MmHOoO91g6nLOsmHMQuD3H2/BdzWhL6WZLfAFkQ6KnhecHkQOKl3giC1o g==;
+X-CSE-ConnectionGUID: xmGlGheiTi21taacmo3zZQ==
+X-CSE-MsgGUID: rl9APYi9RSiYdFbq8i7OXA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24639989"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="24639989"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 11:49:37 -0700
+X-CSE-ConnectionGUID: fIMk5bepS8KtFd4tvEf+cA==
+X-CSE-MsgGUID: 0yQmAFqNSg+ZJ7kAo/GCVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="67413424"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Sep 2024 11:48:55 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="104592517"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Sep 2024 11:49:37 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 10 Sep 2024 11:48:53 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ 15.1.2507.39; Tue, 10 Sep 2024 11:49:36 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 10 Sep 2024 11:49:36 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 10 Sep 2024 11:48:53 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.171)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 10 Sep 2024 11:49:36 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 10 Sep 2024 11:48:53 -0700
+ 15.1.2507.39; Tue, 10 Sep 2024 11:49:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DJ7ISPrC1VRQo2Wyn9pApAs8jZiGB+z+McIUXHPNn4H3lHn3aYQ10jNGfCFnbTj+3/xvJITDGhp8Fbl3GhYk+hwRY1wL0+8SpnLW4iRFO+Wwzd25HTcX5OSiQ76uFS6B8wOeEhlY02cLwgQ7X1VPg9s00W0etOUju8CYXGk0BQynEQi0Y6ZpAwgHgg1svepdM3LScMbKzZX5XlL5DRjDzOBIimDH5Nw1nuJOSSj7JN5+jOt2FRvftnwesbqofH6dawEVC44QMkFo8kKL9Uq8mHIk2/AmvM9DjyOj0OLE2+kB5Vr+jhzEWzs9fsfeF6MU9QvcTVdUmg5XbSqKbSR0rA==
+ b=a56mZgAnHpIV4i+lF4wgPnhEs+keRpAzJSAR8a7Nb2F6OrUUPRF6O/D799JN5PCzS09ZTKgATgR4HVZJl4BW+I6PSkeN4deieyqPP418vSKZnoV35ZbKw3792WiSduJG/kU1aAlks6iYJg18L9k5A7QEB91KKsyb+Y1VZL+RJs/whQpxIN6ICkaizbqYd3eBOdMaCxgBLseIN9WCRI7SY5vV3WWullDL6y59C6osm8jn4SlxbbzdyxzHf3NIO0ipH38dEI+GIluRddPaRU/J0UMhi2yJ0LVtu9xL1ViEjgsApmOxW/RzFmRhgsG6od5tctR5d7eJWPQT17MgUvNVWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qmHu5tHPsC0ing4k3AQ6j4cXRPUryWe3L3gEwKYINoE=;
- b=sbD01MGFeuS9wCZajwNxDdVxZLA/zgumhfa3b+wCI5Ide7aT4S74X8SeiXgVS4CHl+TP+JcyyjcwQE0V3uWv0xdgQdv7bOGlATo5P0rfLI//fCWPG+fBOJNQauBHSZ2464IbC8VIaq+eVzOcm+xooCDYZ4h+BSGXaA78D5BtEacRS/g5VBojttcILNmax6fFaBKn1Xxl075jdGAdnHqtGXZ7SWnWU3inppUqm8KlekXNgVShiU4tIiB08MSIThSK6FfPaSVL89G+jgRncYRtN6i0KPgeaee3UJfjsGHC92bVAHzcTnOViOklxTxuaCsQmz65xSGAN7U6kFH+uNWGHw==
+ bh=HBook0nAd2SvfqD913aQDszIO57ILoii+/LunTVxAp4=;
+ b=reWVbqPJJfJNmbCoDFCcRemuLpICHSOyXNk/XglZ8olWF0TTRSS1ERNPitcrtM5BgTyHLam8SW7s84Qk5Gb2g1OAmio9WfoUCb/uY9spYZKgesRaM04xu1J1IEkt6fyK5QVrwqS8LU+YnQCnuY2DnyaBE1vic+MTMBuAe9f+QuQpezlnVgQO3xRRIZf6CwGyoOCbo7o2TQ+dshMPIfokp6yH9nSu1dkUF20bwljmj7y7p8YugvlyTYlYRJDYEbyNodHPY+ie0gaRZ7c287RAC41qN8JfCLGDgiVs0v3j3A8kMabtzySb3csD+3gH/KxGO+jPVyMfgNRzYQehVBY3YQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by CY5PR11MB6413.namprd11.prod.outlook.com (2603:10b6:930:37::16)
+Received: from CH3PR11MB8185.namprd11.prod.outlook.com (2603:10b6:610:159::12)
+ by MN0PR11MB6208.namprd11.prod.outlook.com (2603:10b6:208:3c4::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Tue, 10 Sep
- 2024 18:48:51 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7918.024; Tue, 10 Sep 2024
- 18:48:51 +0000
-Date: Tue, 10 Sep 2024 14:48:48 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Tue, 10 Sep
+ 2024 18:49:33 +0000
+Received: from CH3PR11MB8185.namprd11.prod.outlook.com
+ ([fe80::1be5:55ed:3261:fefb]) by CH3PR11MB8185.namprd11.prod.outlook.com
+ ([fe80::1be5:55ed:3261:fefb%5]) with mapi id 15.20.7939.022; Tue, 10 Sep 2024
+ 18:49:33 +0000
+Date: Tue, 10 Sep 2024 11:49:30 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 21/43] drm/xe/guc: Convert register access to use
+Subject: Re: [PATCH v2 25/43] drm/xe/mcr: Convert register access to use
  xe_mmio
-Message-ID: <ZuCUkHMtd68BB5W7@intel.com>
+Message-ID: <20240910184930.GE5774@mdroper-desk1.amr.corp.intel.com>
 References: <20240907000748.2614020-45-matthew.d.roper@intel.com>
- <20240907000748.2614020-66-matthew.d.roper@intel.com>
+ <20240907000748.2614020-70-matthew.d.roper@intel.com>
+ <ZuCLuLRwzB-F-_KK@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240907000748.2614020-66-matthew.d.roper@intel.com>
-X-ClientProxiedBy: MW4PR03CA0192.namprd03.prod.outlook.com
- (2603:10b6:303:b8::17) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+In-Reply-To: <ZuCLuLRwzB-F-_KK@intel.com>
+X-ClientProxiedBy: BYAPR07CA0003.namprd07.prod.outlook.com
+ (2603:10b6:a02:bc::16) To CH3PR11MB8185.namprd11.prod.outlook.com
+ (2603:10b6:610:159::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CY5PR11MB6413:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32674a57-6425-433e-ba67-08dcd1c93636
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8185:EE_|MN0PR11MB6208:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7b21fe76-1318-4cb0-65c8-08dcd1c94f55
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/gwGOUaBH5Oz02W5UWi2CEfma57z0rIYuQAguxWQ3gG+l9SOZJzr+XGsDEuJ?=
- =?us-ascii?Q?aaIRHtHomqxN9vKgmfmu0P7IfVnRLT1SLXDPNBEDj2nV+0B5HIK8inWorsQ0?=
- =?us-ascii?Q?gMg7m6DnDfG6yhffy6e2tiY0oSypV33QMDlrz5q79BIVdCFLc54c4nZAOffJ?=
- =?us-ascii?Q?aySvr8SzRob2cYesrNNGArmoWjAyD5zbUiN1+qbuCuVDloioaj6Xw39Ig/Ng?=
- =?us-ascii?Q?HFHAxtbQunSPlaAEzg7Aw9m/SMsLDLaX9L8Rz184cGYpoSO0D/V7qmrRE1Gt?=
- =?us-ascii?Q?lCspZgu1PQkPbzzoq96hKFcsroE6qRgsi6uNq8H67g26GVknU0KPlWwoDOwB?=
- =?us-ascii?Q?FF3wCR/8NmVXhtBzGP3oECxPNq8+wkjEJsiZJ0qyf2eff/zXF2bENkYTBcfz?=
- =?us-ascii?Q?X1dm1eJIYzQapgBRciRym11nO3rmrQYdAc0xgIlG4LrBEW1Fxbo7boAf9jTF?=
- =?us-ascii?Q?cWH52+FkW0uu5SDmaVW7NI6nLAaXKyjDLmU4iDHe++1HKlVoZdONbpxc6KtP?=
- =?us-ascii?Q?AirJ2JhkOcre/NgVEgqP1ixMxE+RZ99if8mGZsphd4P1N3NWFvL6rndJbwXB?=
- =?us-ascii?Q?N5xRhJHq0LKzn61Jwm+WVZmzMGNUdxRRC2gvjVgyHL73X2TM/tx3JWnVcEpO?=
- =?us-ascii?Q?PD6PQ5VLeVHnwWvJjwSWPZyOk9yXZlrzKzSjAKcrXO9xORidVTd4kr3csvS5?=
- =?us-ascii?Q?2ekBFZkAnU5B0rbha+dBrOVVzydoBpHh3rOj3K7DSZKxLyCZ9KMvRHDleVd9?=
- =?us-ascii?Q?F1go0wQHhfKv0G07TtO3pAIr1/B4SqH9reQ5H3n74cN/SY6wgA6vFtX2g190?=
- =?us-ascii?Q?1NZkynbP464KYLFCeCIVDR8cYXveK3d92fkD7t3I8J1nh8fnhRTJ9cHOb96I?=
- =?us-ascii?Q?eAckWknxFX5UdbPIe0yjHcdmcvIPjgM6AJiMIU9GDUzVUP93qdo3jjMGS99p?=
- =?us-ascii?Q?s/hRf+lWg3ISA+alMr6TgbVNo9a4iCxOimCDDtE4G8VpfAUDlSpgrf1v3uy2?=
- =?us-ascii?Q?pWurkHu/LeWnt4/J4g0IYHIGOddb1bwjWVBgTk76XrC+HFFCy4KzB54T1jPt?=
- =?us-ascii?Q?4xBxyGmqA9Zo7vSKCahtNFb7R6iG3nm+t1yuAQ1N1yj8eg1+uFJEgbt3VfG2?=
- =?us-ascii?Q?B/s2B+wq1nOWqfAXhUE+HPP0NEfhnFiQElGOfp5uCjJg1ioXLHTreEnW9jW+?=
- =?us-ascii?Q?p4RrO5pdPT6+BpH68CmslzMdZO7guqFhCZdeGlSQPvRInf7+PUt2Urj0rMDE?=
- =?us-ascii?Q?uPpQG0WdPCc4p21JxUzP23MppgwK9O6N8rBpKf38T83uoIETuUmYHXIcnWcX?=
- =?us-ascii?Q?vQhks9LHPXgFYfPTX32m1QcbZLCHwftIAhGvMH6tlsY7eg=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cdN9dl77b9/Rm1bUGKVi3xrf7Z9J3DFv8oXkrcJbPH34uizMXLfMCBPQHgfF?=
+ =?us-ascii?Q?8KAcFAIzzT5cpHqs/B0WIpE3QmZz/cKrveNYGJIG8Zwmz3K0LAWtgGwgLv+F?=
+ =?us-ascii?Q?PTt9OddIbDaJrjIDaCOm0JGZKamoBmsW0nOVsbfcx4+6v2OCGkdRO25g/AF/?=
+ =?us-ascii?Q?ReSJ+kKo8smpd5Xrl1om6DGI9yloJJ6dL5e6mtF2S5gYhNZQV4xYi8I+dFY0?=
+ =?us-ascii?Q?iF02Lv1BUQ3d/gPWw5kxMnTWrYT0F/VVsTK4hD5vnWoD6oAVKNPaM5zbDGxU?=
+ =?us-ascii?Q?dDkB2ysN+thy8uR7aP+CKoSGsc+b4PJsksfxpF6D9NkiZyCrnFTRkJdMzFOG?=
+ =?us-ascii?Q?qC6/oB8a3sHSwB4R9iDAV/3ogAqeLaFnClSMGPxnog2UIOR2sV1lmm+h/OD1?=
+ =?us-ascii?Q?PONAgWpwq+W/b9wI2SCzo1WDVAojhZhM6UDmb4Wt3BmJAz2urmYZGP3WifVm?=
+ =?us-ascii?Q?j6ThNCRN32IRkTtyJJkIz1w7KwHUt5r9CUjO59hdemx1jkjUDKJb47SATKC8?=
+ =?us-ascii?Q?RjjiCV3YkzCOFPyRGVrMTi1rNz2uSmpgWjUHp5sZ+O2At2m8tesbtx4ECCrt?=
+ =?us-ascii?Q?K9ynlCTlRPJRjK4o6rR7Nu6q+mHsY3WicF3X971SIbemvXpjzHM38V5c0dtg?=
+ =?us-ascii?Q?nV4xSoLIIBM04GD1/jCvh0zjYiWMb3aGOcdxUX9h3ChDRm6rgZCvnsFNfW9n?=
+ =?us-ascii?Q?wdDiYs9IQRVdIce9tlx26rLllnIfrrcJPwnxqUtJplZjdh2ebZaKrbM89LpJ?=
+ =?us-ascii?Q?KLKIvMf61OMbQjhLry6BBxjJLeSTlAQiqTKHlx2PkEroMyLaIuhJmrVSoTsd?=
+ =?us-ascii?Q?+2HuBAjG7EUqFo/9MFOul9Vw0E679VMNgnscTN2W9fr1/sOleM12cbUUxEqt?=
+ =?us-ascii?Q?CG6pjT7Dona3HO1HqOby6X531mYIEJtuQbyk5mmchC5xqnan75oNgry0p9H5?=
+ =?us-ascii?Q?szfQE6egEzzz2ybJQJExedEVB+BVJbtBuuifg2HgdoouCmdoHqVuizI6WP4/?=
+ =?us-ascii?Q?olCdsOesARZWPUAqYOccFeSzQe7JXqTrVgWDd7aVg5MfFH124o1G/N2iihlO?=
+ =?us-ascii?Q?zajmQhvaIJOBzhA7OucHvYAJaStCLGqRaspbv9ve8zThHj5j+JeFktbP6xGr?=
+ =?us-ascii?Q?CBh3NLwnZzwfwv6ireRgP91VbRxtCU1nWNLgNVO1iVF0/Xnj8glCWOrVvyQA?=
+ =?us-ascii?Q?Rg6dyN15hFQa0Qp+J8UrCMHe1pOvgp2HvzFjQAoU/yvho6ySGfdntXLIOUGl?=
+ =?us-ascii?Q?ihD7JqW+q9BFlEQOhWEoA+i8WWmomKu6s/Pgt5ADuQChV6kZKUZizFh3EAJb?=
+ =?us-ascii?Q?bMej8r85stEsEPFyeGZyBds05PY/eKimNxPxoZ9y/g62ng=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB8185.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CrHIlQAIG/yMb1rfcA85wqloOq+L0iClqPtW20RbfxT1JjrQNYfeFnUBDBiI?=
- =?us-ascii?Q?RtOI0nJOdu3nCKYGAA23a59BkpfPONNIaYzHOxe+pQHwU7T3W2JuTaC66FlO?=
- =?us-ascii?Q?7fHBADOrb5SrbL3vJNt5c2Pjk1X2tWT5mRiOUwlVpo4CmimAs/6plC9KVwvx?=
- =?us-ascii?Q?kjt4UMCbz8vAACgzlzrY4FZem5B+DxY/CjVQf+H15CjB1Pin6F8pp6qgErDt?=
- =?us-ascii?Q?nfWCOuX6Vb3mw9AhA6bOmGH1s4w2nhkE1ulPxyHkDT7eLujoOJfwb8v38r7J?=
- =?us-ascii?Q?wpD4SJwrEIRk5W9PQvfRgqL+NRjKdKt0e+Lh9Ri6Mo3EdUo1lsWTMN1FR40B?=
- =?us-ascii?Q?X4G29HMlE5+u9J6I8d0Og2IK5OmcHhXedmQwEp+2f6ljPDi5PcP8Kr9QP5/J?=
- =?us-ascii?Q?qe6tEslK5jNdq4VdaexWTC+nhj2vGs+nKa5/i/AyshcshdChtolOiSUxoUan?=
- =?us-ascii?Q?MLQWQe7RYNEFNW3IX6AXKZQZyvaYyz2LaqCv/HT+0e/uJ7rHiy8xqmCEHTtE?=
- =?us-ascii?Q?VRUS0onMBEdOkcvaZCo7c4CBGV4nIrav1+/Co0ffhxg9u3no1gKMS/rHnd76?=
- =?us-ascii?Q?K+4qFPXofw4Eg+swDkSd2pDHrFn8APOQoOWpKjV71VPjj4IAIIhtLCf5tKQG?=
- =?us-ascii?Q?iO9U1d4A3TulP+bxo8tDap/BQv1LgRZ9+hrdMV3ltg/sG+Ty3HM+0RAJAtVJ?=
- =?us-ascii?Q?S+UBc+q4mb4ueeDcI/9HLvuraZvNGiMjTuvPwjqUXPMgolQYBtLy0Y2+rfmv?=
- =?us-ascii?Q?0Krk3qLufX6tBL8zSXpodF2SWEoGEqTxiiWNXGnv7wM+NyPJfes3OP35YYmu?=
- =?us-ascii?Q?LNs0+oXTBi4gwUJ1eWLEFlhxcpgik1DN4GQ700gQcaVLmF43hnd4QBl3BQPd?=
- =?us-ascii?Q?gkk8+HHmG4I/2tLeFQGFLPBwcwSeIM2G0LvRjFw7LlDLOWYkugMurU0X1VmW?=
- =?us-ascii?Q?OHB4thNZHbM7HmcYTloQhZeck6aT24t+0B8oZZWtfYGu2Hv961SlPecaA8kB?=
- =?us-ascii?Q?90MttpwLQkpxV0zKTxYkzXaABvkOaQvueKcIbXZRA/xJ0EIfe/qDE/KASdYr?=
- =?us-ascii?Q?+6W5vlmyAzQ8Y3YrxMet3gHRtdcymLBljjbRNeN0Nxq0JvyaSwDJrcHcB0LC?=
- =?us-ascii?Q?2XlJ08Lc3VKRY3buOu17yZfJxRDTT+9AmyQENDX7oZ/u8kNiTk5tmIthYPBV?=
- =?us-ascii?Q?mYXFen3WtCGkUaBew67QN7WLYu5ON2kAZRDtrVapwFf0xdoLqEAm/SUEvZj8?=
- =?us-ascii?Q?N1TStiJqvpZWDNtK59EwH/lljelugXVp6Sv7iEE0OF830YJudzJeo4GWUE+3?=
- =?us-ascii?Q?O24cXX/EwiDHus2s1fLp/wL0b83UshAhKKl15hhLdue0dpCG3FCBmOlgnTzo?=
- =?us-ascii?Q?pMGRJsM+x1Z78eUREzP1RMNXZLrKx7MGJqu8YYoT1dlYyMYpbAY0NKAvv0fV?=
- =?us-ascii?Q?gXladakBRCITW9RsjqZS7iB8jmJRW759Dag0Co39V53PZNpa8zaatTaqeL2/?=
- =?us-ascii?Q?0KjV1AzSaJZjUXWd+qleZUC2OjAgq7Y3iT4IARkXR39wUH1wIWn9sP72YzV8?=
- =?us-ascii?Q?tM5aKody20W1An0Bx7FKT7400xJfNAWqaYpkjKVcrYQzTJOVz/1oMWzVDrmf?=
- =?us-ascii?Q?Dw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32674a57-6425-433e-ba67-08dcd1c93636
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bOr+86lBBMpWRebr3q1OSWlCHZQS+CKjv6y9lMM6MOAIhWSFQ1jUNFh4QxxX?=
+ =?us-ascii?Q?fBcFQSL/XyU0xQdyTkhAnLXLEbRot+6UbxHJAANmrRkSv+2fwFbkwPT9IPVN?=
+ =?us-ascii?Q?q9kN+VrZ5ekPNyUSyd5L9czUUrrbji52JjGk35g8USgDsgBjg9v/vEOYsYJp?=
+ =?us-ascii?Q?04Ogy4Puv83bjtheAJdURxad6eh+Rvq2gkBLplL63Bu6wjXE+bVT+4hoXjLq?=
+ =?us-ascii?Q?hlCKDUnT8qagdtJZC6cJPeSUXk6GFWsTS0/RaQTvtiyiRETh4pLCVP6CmoHU?=
+ =?us-ascii?Q?YQ2QK/9xqNVmQtnpyFNNsw02t8cVDkH7Vh7lpMdiJPhi82KvByYwFHVZJN6b?=
+ =?us-ascii?Q?qW7E4O27f+kd5fI17wRKU0q2G7wLakiTjcn2Jdm0nTf0lWrXElqlx53Z2f4R?=
+ =?us-ascii?Q?2hUE34MyWn4P1inKrn3tpSMMKbCQZivEdUI0I6fuhIhXyzQSZLd4GKIIzTie?=
+ =?us-ascii?Q?0DFNEWsdSFrg+H09UFPzMUCzo+Dv50oy7RgH5TBU0EXhXiL0lSWanAMnXCA+?=
+ =?us-ascii?Q?nKfFcHKqxepfjGTV1eS+Xx29IyCmG0aWTSG87YN5mG/ynS3T8FN/8qRUlgvk?=
+ =?us-ascii?Q?ItkgWok6HUmNe2eeU5BayylGmkogGn6rlrXclamm9uy4KAAEFBVjjwsWPYgW?=
+ =?us-ascii?Q?SUeKpf/P13awfdpYmDQ4fjonSrNQ2bRTtdD72H77vKsfgs7r1bDSK+0xyMa6?=
+ =?us-ascii?Q?b9oH35er+vXEyKzeP2AKAWjUFoSTdWmziZoVkT485wRzwWAWiViikmZJw5Gk?=
+ =?us-ascii?Q?wU0rnHD+ILcnSM4XzkCNLPhfnUdTsrsdDRNEB7ZV0uSoo3l2gYLb2Pnz0Yml?=
+ =?us-ascii?Q?itHSISMHQkV6Y0Czep4nAgxNsScvJhcNcZyiadNGYWE3FkRzOeFgV3e2oA86?=
+ =?us-ascii?Q?hLTGucrlSeAdeEkNBnnqRKqtTe5ZQjeserN1ILFoFqaWuNuyy/8HFnk4tmoX?=
+ =?us-ascii?Q?N2lgmcl22330zaod5N2klMSdyWlgXdozE6L7THIuGZR0wg2oIpskPvfQLcjV?=
+ =?us-ascii?Q?2iuT+jPIEKXN5fUsN5Z55KQEEzZlyjTR2HrjlZuwBW4RM6+koRjdY6jweN/U?=
+ =?us-ascii?Q?SFl3N4hP0v1vai7GM3O0fKfA2j/83y5+smYaeOlOMrQtZGgucl/MkKTnuGJ0?=
+ =?us-ascii?Q?Ef9va1TNCKiSecIf0btfvQxDpmjl7OM6j4NAhfKAfhJJT/oTaRQzVLR5pBVm?=
+ =?us-ascii?Q?NjShqmcYnHgA4ymUag8uep16ZHLstdQ4NdHltMk+UgGRFOyENim/blEtwvgo?=
+ =?us-ascii?Q?FeqhlvbFAM/VE0NDQ0BT5SmESb/1ytolVTjHaXKhSH+Esj/EyPm7ciKddJNV?=
+ =?us-ascii?Q?QoHvl1lP+lOOm10wlSHN6jvj2UFjmuG0ZICqj3Gi7hEImr7l4oc3Tcuqz5K1?=
+ =?us-ascii?Q?S9qM5eOAxUhXG2Q8dU4TbqvB2kDOMpnzdB6LvuI7Bv4Gv0nrilFNO5zIdjBf?=
+ =?us-ascii?Q?xCaf35D+5adAlN6hqfqkL9G1ShHuoozizxhqOIduVS8ZEc7uLqWBVYdgCd4/?=
+ =?us-ascii?Q?UeuSHbWby6i20wxgVHO4fyE7mP5Q1xyDz+YY9QAqMB+Vz2JIl2I3pnhqCMmF?=
+ =?us-ascii?Q?htFXZjCspJQABHjIvpd3LcpvXmAiGj8abfvcs5FkRnGvtT6r/sSqW4wVG5IJ?=
+ =?us-ascii?Q?3Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b21fe76-1318-4cb0-65c8-08dcd1c94f55
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8185.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 18:48:51.2270 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 18:49:33.0477 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FbX5M1XijK/s1DW+4GNm8yj+tZ99tcjY1xA5m2I5rG+3CffB6q36c/SO7ZK2IR0QhWOOBm145Eg+K80qZ9VWFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6413
+X-MS-Exchange-CrossTenant-UserPrincipalName: sWNzJuPMeR9YC82916xmTrhrL4ynvuS7Ggwz+RmeZlQ10UU5aGo4h7JmY74NEM/o5BQ7f9q58v0+s0PYKycztvElxma8WS5WbB8yi19uLVM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6208
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,432 +180,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 06, 2024 at 05:08:10PM -0700, Matt Roper wrote:
-> Stop using GT pointers for register access.
+On Tue, Sep 10, 2024 at 02:11:04PM -0400, Rodrigo Vivi wrote:
+> On Fri, Sep 06, 2024 at 05:08:14PM -0700, Matt Roper wrote:
+> > Stop using GT pointers for register access.
+> > 
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_gt_mcr.c | 39 ++++++++++++++++++----------------
+> >  1 file changed, 21 insertions(+), 18 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > index 7d7bd0be6233..2671ce6b1a76 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > @@ -239,11 +239,13 @@ static const struct xe_mmio_range xe2lpm_instance0_steering_table[] = {
+> >  
+> >  static void init_steering_l3bank(struct xe_gt *gt)
+> >  {
+> > +	struct xe_mmio *mmio = &gt->mmio;
+> > +
+> >  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
+> >  		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
+> > -						xe_mmio_read32(gt, MIRROR_FUSE3));
+> > +						xe_mmio_read32(mmio, MIRROR_FUSE3));
+> >  		u32 bank_mask = REG_FIELD_GET(GT_L3_EXC_MASK,
+> > -					      xe_mmio_read32(gt, XEHP_FUSE4));
+> > +					      xe_mmio_read32(mmio, XEHP_FUSE4));
+> >  
+> >  		/*
+> >  		 * Group selects mslice, instance selects bank within mslice.
+> > @@ -254,7 +256,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
+> >  			bank_mask & BIT(0) ? 0 : 2;
+> >  	} else if (gt_to_xe(gt)->info.platform == XE_DG2) {
+> >  		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
+> > -						xe_mmio_read32(gt, MIRROR_FUSE3));
+> > +						xe_mmio_read32(mmio, MIRROR_FUSE3));
+> >  		u32 bank = __ffs(mslice_mask) * 8;
+> >  
+> >  		/*
+> > @@ -266,7 +268,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
+> >  		gt->steering[L3BANK].instance_target = bank & 0x3;
+> >  	} else {
+> >  		u32 fuse = REG_FIELD_GET(L3BANK_MASK,
+> > -					 ~xe_mmio_read32(gt, MIRROR_FUSE3));
+> > +					 ~xe_mmio_read32(mmio, MIRROR_FUSE3));
+> >  
+> >  		gt->steering[L3BANK].group_target = 0;	/* unused */
+> >  		gt->steering[L3BANK].instance_target = __ffs(fuse);
+> > @@ -276,7 +278,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
+> >  static void init_steering_mslice(struct xe_gt *gt)
+> >  {
+> >  	u32 mask = REG_FIELD_GET(MEML3_EN_MASK,
+> > -				 xe_mmio_read32(gt, MIRROR_FUSE3));
+> > +				 xe_mmio_read32(&gt->mmio, MIRROR_FUSE3));
+> >  
+> >  	/*
+> >  	 * mslice registers are valid (not terminated) if either the meml3
+> > @@ -380,7 +382,7 @@ static void init_steering_oaddrm(struct xe_gt *gt)
+> >  static void init_steering_sqidi_psmi(struct xe_gt *gt)
+> >  {
+> >  	u32 mask = REG_FIELD_GET(XE2_NODE_ENABLE_MASK,
+> > -				 xe_mmio_read32(gt, MIRROR_FUSE3));
+> > +				 xe_mmio_read32(&gt->mmio, MIRROR_FUSE3));
+> >  	u32 select = __ffs(mask);
+> >  
+> >  	gt->steering[SQIDI_PSMI].group_target = select >> 1;
+> > @@ -494,8 +496,8 @@ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt)
+> >  		u32 steer_val = REG_FIELD_PREP(MCR_SLICE_MASK, 0) |
+> >  			REG_FIELD_PREP(MCR_SUBSLICE_MASK, 2);
+> >  
+> > -		xe_mmio_write32(gt, MCFG_MCR_SELECTOR, steer_val);
+> > -		xe_mmio_write32(gt, SF_MCR_SELECTOR, steer_val);
+> > +		xe_mmio_write32(&gt->mmio, MCFG_MCR_SELECTOR, steer_val);
+> > +		xe_mmio_write32(&gt->mmio, SF_MCR_SELECTOR, steer_val);
 > 
-> Since GuC was the only part of the driver using xe_mmio_wait32_not(), we
-> can also drop the _Generic wrapper macro for that function as well.
+> what's your threashold on the places that deserve
+> struct xe_mmio *mmio = &gt->mmio; ?
 > 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc.c     | 60 ++++++++++++++++++---------------
->  drivers/gpu/drm/xe/xe_guc_ads.c |  2 +-
->  drivers/gpu/drm/xe/xe_guc_pc.c  | 34 +++++++++----------
->  drivers/gpu/drm/xe/xe_mmio.c    |  4 +--
->  drivers/gpu/drm/xe/xe_mmio.h    |  6 ++--
->  5 files changed, 54 insertions(+), 52 deletions(-)
+> 3+?
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 5599464013bd..1eb5bb7e8771 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -236,10 +236,10 @@ static void guc_write_params(struct xe_guc *guc)
->  
->  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->  
-> -	xe_mmio_write32(gt, SOFT_SCRATCH(0), 0);
-> +	xe_mmio_write32(&gt->mmio, SOFT_SCRATCH(0), 0);
->  
->  	for (i = 0; i < GUC_CTL_MAX_DWORDS; i++)
-> -		xe_mmio_write32(gt, SOFT_SCRATCH(1 + i), guc->params[i]);
-> +		xe_mmio_write32(&gt->mmio, SOFT_SCRATCH(1 + i), guc->params[i]);
->  }
->  
->  static void guc_fini_hw(void *arg)
-> @@ -425,6 +425,7 @@ int xe_guc_post_load_init(struct xe_guc *guc)
->  int xe_guc_reset(struct xe_guc *guc)
->  {
->  	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct xe_mmio *mmio = &gt->mmio;
->  	u32 guc_status, gdrst;
->  	int ret;
->  
-> @@ -433,15 +434,15 @@ int xe_guc_reset(struct xe_guc *guc)
->  	if (IS_SRIOV_VF(gt_to_xe(gt)))
->  		return xe_gt_sriov_vf_bootstrap(gt);
->  
-> -	xe_mmio_write32(gt, GDRST, GRDOM_GUC);
-> +	xe_mmio_write32(mmio, GDRST, GRDOM_GUC);
->  
-> -	ret = xe_mmio_wait32(gt, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
-> +	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
->  	if (ret) {
->  		xe_gt_err(gt, "GuC reset timed out, GDRST=%#x\n", gdrst);
->  		goto err_out;
->  	}
->  
-> -	guc_status = xe_mmio_read32(gt, GUC_STATUS);
-> +	guc_status = xe_mmio_read32(mmio, GUC_STATUS);
->  	if (!(guc_status & GS_MIA_IN_RESET)) {
->  		xe_gt_err(gt, "GuC status: %#x, MIA core expected to be in reset\n",
->  			  guc_status);
-> @@ -459,6 +460,7 @@ int xe_guc_reset(struct xe_guc *guc)
->  static void guc_prepare_xfer(struct xe_guc *guc)
->  {
->  	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct xe_mmio *mmio = &gt->mmio;
->  	struct xe_device *xe =  guc_to_xe(guc);
->  	u32 shim_flags = GUC_ENABLE_READ_CACHE_LOGIC |
->  		GUC_ENABLE_READ_CACHE_FOR_SRAM_DATA |
-> @@ -473,12 +475,12 @@ static void guc_prepare_xfer(struct xe_guc *guc)
->  		shim_flags |= REG_FIELD_PREP(GUC_MOCS_INDEX_MASK, gt->mocs.uc_index);
->  
->  	/* Must program this register before loading the ucode with DMA */
-> -	xe_mmio_write32(gt, GUC_SHIM_CONTROL, shim_flags);
-> +	xe_mmio_write32(mmio, GUC_SHIM_CONTROL, shim_flags);
->  
-> -	xe_mmio_write32(gt, GT_PM_CONFIG, GT_DOORBELL_ENABLE);
-> +	xe_mmio_write32(mmio, GT_PM_CONFIG, GT_DOORBELL_ENABLE);
->  
->  	/* Make sure GuC receives ARAT interrupts */
-> -	xe_mmio_rmw32(gt, PMINTRMSK, ARAT_EXPIRED_INTRMSK, 0);
-> +	xe_mmio_rmw32(mmio, PMINTRMSK, ARAT_EXPIRED_INTRMSK, 0);
->  }
->  
->  /*
-> @@ -494,7 +496,7 @@ static int guc_xfer_rsa(struct xe_guc *guc)
->  	if (guc->fw.rsa_size > 256) {
->  		u32 rsa_ggtt_addr = xe_bo_ggtt_addr(guc->fw.bo) +
->  				    xe_uc_fw_rsa_offset(&guc->fw);
-> -		xe_mmio_write32(gt, UOS_RSA_SCRATCH(0), rsa_ggtt_addr);
-> +		xe_mmio_write32(&gt->mmio, UOS_RSA_SCRATCH(0), rsa_ggtt_addr);
->  		return 0;
->  	}
->  
-> @@ -503,7 +505,7 @@ static int guc_xfer_rsa(struct xe_guc *guc)
->  		return -ENOMEM;
->  
->  	for (i = 0; i < UOS_RSA_SCRATCH_COUNT; i++)
-> -		xe_mmio_write32(gt, UOS_RSA_SCRATCH(i), rsa[i]);
-> +		xe_mmio_write32(&gt->mmio, UOS_RSA_SCRATCH(i), rsa[i]);
->  
->  	return 0;
->  }
-> @@ -593,6 +595,7 @@ static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
->  static void guc_wait_ucode(struct xe_guc *guc)
->  {
->  	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct xe_mmio *mmio = &gt->mmio;
->  	struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
->  	ktime_t before, after, delta;
->  	int load_done;
-> @@ -619,7 +622,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
->  		 * timeouts rather than allowing a huge timeout each time. So basically, need
->  		 * to treat a timeout no different to a value change.
->  		 */
-> -		ret = xe_mmio_wait32_not(gt, GUC_STATUS, GS_UKERNEL_MASK | GS_BOOTROM_MASK,
-> +		ret = xe_mmio_wait32_not(mmio, GUC_STATUS, GS_UKERNEL_MASK | GS_BOOTROM_MASK,
->  					 last_status, 1000 * 1000, &status, false);
->  		if (ret < 0)
->  			count++;
-> @@ -657,7 +660,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
->  		switch (bootrom) {
->  		case XE_BOOTROM_STATUS_NO_KEY_FOUND:
->  			xe_gt_err(gt, "invalid key requested, header = 0x%08X\n",
-> -				  xe_mmio_read32(gt, GUC_HEADER_INFO));
-> +				  xe_mmio_read32(mmio, GUC_HEADER_INFO));
->  			break;
->  
->  		case XE_BOOTROM_STATUS_RSA_FAILED:
-> @@ -672,7 +675,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
->  		switch (ukernel) {
->  		case XE_GUC_LOAD_STATUS_EXCEPTION:
->  			xe_gt_err(gt, "firmware exception. EIP: %#x\n",
-> -				  xe_mmio_read32(gt, SOFT_SCRATCH(13)));
-> +				  xe_mmio_read32(mmio, SOFT_SCRATCH(13)));
->  			break;
->  
->  		case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
-> @@ -824,10 +827,10 @@ static void guc_handle_mmio_msg(struct xe_guc *guc)
->  
->  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->  
-> -	msg = xe_mmio_read32(gt, SOFT_SCRATCH(15));
-> +	msg = xe_mmio_read32(&gt->mmio, SOFT_SCRATCH(15));
->  	msg &= XE_GUC_RECV_MSG_EXCEPTION |
->  		XE_GUC_RECV_MSG_CRASH_DUMP_POSTED;
-> -	xe_mmio_write32(gt, SOFT_SCRATCH(15), 0);
-> +	xe_mmio_write32(&gt->mmio, SOFT_SCRATCH(15), 0);
->  
->  	if (msg & XE_GUC_RECV_MSG_CRASH_DUMP_POSTED)
->  		xe_gt_err(gt, "Received early GuC crash dump notification!\n");
-> @@ -844,14 +847,14 @@ static void guc_enable_irq(struct xe_guc *guc)
->  		REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST);
->  
->  	/* Primary GuC and media GuC share a single enable bit */
-> -	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE,
-> +	xe_mmio_write32(&gt->mmio, GUC_SG_INTR_ENABLE,
->  			REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST));
->  
->  	/*
->  	 * There are separate mask bits for primary and media GuCs, so use
->  	 * a RMW operation to avoid clobbering the other GuC's setting.
->  	 */
-> -	xe_mmio_rmw32(gt, GUC_SG_INTR_MASK, events, 0);
-> +	xe_mmio_rmw32(&gt->mmio, GUC_SG_INTR_MASK, events, 0);
->  }
->  
->  int xe_guc_enable_communication(struct xe_guc *guc)
-> @@ -907,7 +910,7 @@ void xe_guc_notify(struct xe_guc *guc)
->  	 * additional payload data to the GuC but this capability is not
->  	 * used by the firmware yet. Use default value in the meantime.
->  	 */
-> -	xe_mmio_write32(gt, guc->notify_reg, default_notify_data);
-> +	xe_mmio_write32(&gt->mmio, guc->notify_reg, default_notify_data);
->  }
->  
->  int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr)
-> @@ -925,6 +928,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  {
->  	struct xe_device *xe = guc_to_xe(guc);
->  	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct xe_mmio *mmio = &gt->mmio;
->  	u32 header, reply;
->  	struct xe_reg reply_reg = xe_gt_is_media_type(gt) ?
->  		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
-> @@ -947,19 +951,19 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  	/* Not in critical data-path, just do if else for GT type */
->  	if (xe_gt_is_media_type(gt)) {
->  		for (i = 0; i < len; ++i)
-> -			xe_mmio_write32(gt, MED_VF_SW_FLAG(i),
-> +			xe_mmio_write32(mmio, MED_VF_SW_FLAG(i),
->  					request[i]);
-> -		xe_mmio_read32(gt, MED_VF_SW_FLAG(LAST_INDEX));
-> +		xe_mmio_read32(mmio, MED_VF_SW_FLAG(LAST_INDEX));
->  	} else {
->  		for (i = 0; i < len; ++i)
-> -			xe_mmio_write32(gt, VF_SW_FLAG(i),
-> +			xe_mmio_write32(mmio, VF_SW_FLAG(i),
->  					request[i]);
-> -		xe_mmio_read32(gt, VF_SW_FLAG(LAST_INDEX));
-> +		xe_mmio_read32(mmio, VF_SW_FLAG(LAST_INDEX));
->  	}
->  
->  	xe_guc_notify(guc);
->  
-> -	ret = xe_mmio_wait32(gt, reply_reg, GUC_HXG_MSG_0_ORIGIN,
-> +	ret = xe_mmio_wait32(mmio, reply_reg, GUC_HXG_MSG_0_ORIGIN,
->  			     FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC),
->  			     50000, &reply, false);
->  	if (ret) {
-> @@ -969,7 +973,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  		return ret;
->  	}
->  
-> -	header = xe_mmio_read32(gt, reply_reg);
-> +	header = xe_mmio_read32(mmio, reply_reg);
->  	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) ==
->  	    GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
->  		/*
-> @@ -985,7 +989,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  		BUILD_BUG_ON(FIELD_MAX(GUC_HXG_MSG_0_TYPE) != GUC_HXG_TYPE_RESPONSE_SUCCESS);
->  		BUILD_BUG_ON((GUC_HXG_TYPE_RESPONSE_SUCCESS ^ GUC_HXG_TYPE_RESPONSE_FAILURE) != 1);
->  
-> -		ret = xe_mmio_wait32(gt, reply_reg, resp_mask, resp_mask,
-> +		ret = xe_mmio_wait32(mmio, reply_reg, resp_mask, resp_mask,
->  				     1000000, &header, false);
->  
->  		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
-> @@ -1032,7 +1036,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  
->  		for (i = 1; i < VF_SW_FLAG_COUNT; i++) {
->  			reply_reg.addr += sizeof(u32);
-> -			response_buf[i] = xe_mmio_read32(gt, reply_reg);
-> +			response_buf[i] = xe_mmio_read32(mmio, reply_reg);
->  		}
->  	}
->  
-> @@ -1155,7 +1159,7 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
->  	if (err)
->  		return;
->  
-> -	status = xe_mmio_read32(gt, GUC_STATUS);
-> +	status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
->  
->  	drm_printf(p, "\nGuC status 0x%08x:\n", status);
->  	drm_printf(p, "\tBootrom status = 0x%x\n",
-> @@ -1170,7 +1174,7 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
->  	drm_puts(p, "\nScratch registers:\n");
->  	for (i = 0; i < SOFT_SCRATCH_COUNT; i++) {
->  		drm_printf(p, "\t%2d: \t0x%x\n",
-> -			   i, xe_mmio_read32(gt, SOFT_SCRATCH(i)));
-> +			   i, xe_mmio_read32(&gt->mmio, SOFT_SCRATCH(i)));
->  	}
->  
->  	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index d1902a8581ca..66d4e5e95abd 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -684,7 +684,7 @@ static void guc_doorbell_init(struct xe_guc_ads *ads)
->  
->  	if (GRAPHICS_VER(xe) >= 12 && !IS_DGFX(xe)) {
->  		u32 distdbreg =
-> -			xe_mmio_read32(gt, DIST_DBS_POPULATED);
-> +			xe_mmio_read32(&gt->mmio, DIST_DBS_POPULATED);
->  
->  		ads_blob_write(ads,
->  			       system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI],
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 034b29984d5e..2b654f820ae2 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -262,7 +262,7 @@ static void pc_set_manual_rp_ctrl(struct xe_guc_pc *pc, bool enable)
->  	u32 state = enable ? RPSWCTL_ENABLE : RPSWCTL_DISABLE;
->  
->  	/* Allow/Disallow punit to process software freq requests */
-> -	xe_mmio_write32(gt, RP_CONTROL, state);
-> +	xe_mmio_write32(&gt->mmio, RP_CONTROL, state);
->  }
->  
->  static void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
-> @@ -274,7 +274,7 @@ static void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
->  
->  	/* Req freq is in units of 16.66 Mhz */
->  	rpnswreq = REG_FIELD_PREP(REQ_RATIO_MASK, encode_freq(freq));
-> -	xe_mmio_write32(gt, RPNSWREQ, rpnswreq);
-> +	xe_mmio_write32(&gt->mmio, RPNSWREQ, rpnswreq);
->  
->  	/* Sleep for a small time to allow pcode to respond */
->  	usleep_range(100, 300);
-> @@ -334,9 +334,9 @@ static void mtl_update_rpe_value(struct xe_guc_pc *pc)
->  	u32 reg;
->  
->  	if (xe_gt_is_media_type(gt))
-> -		reg = xe_mmio_read32(gt, MTL_MPE_FREQUENCY);
-> +		reg = xe_mmio_read32(&gt->mmio, MTL_MPE_FREQUENCY);
->  	else
-> -		reg = xe_mmio_read32(gt, MTL_GT_RPE_FREQUENCY);
-> +		reg = xe_mmio_read32(&gt->mmio, MTL_GT_RPE_FREQUENCY);
->  
->  	pc->rpe_freq = decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
->  }
-> @@ -353,9 +353,9 @@ static void tgl_update_rpe_value(struct xe_guc_pc *pc)
->  	 * PCODE at a different register
->  	 */
->  	if (xe->info.platform == XE_PVC)
-> -		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP);
-> +		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
->  	else
-> -		reg = xe_mmio_read32(gt, FREQ_INFO_REC);
-> +		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
->  
->  	pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->  }
-> @@ -392,10 +392,10 @@ u32 xe_guc_pc_get_act_freq(struct xe_guc_pc *pc)
->  
->  	/* When in RC6, actual frequency reported will be 0. */
->  	if (GRAPHICS_VERx100(xe) >= 1270) {
-> -		freq = xe_mmio_read32(gt, MTL_MIRROR_TARGET_WP1);
-> +		freq = xe_mmio_read32(&gt->mmio, MTL_MIRROR_TARGET_WP1);
->  		freq = REG_FIELD_GET(MTL_CAGF_MASK, freq);
->  	} else {
-> -		freq = xe_mmio_read32(gt, GT_PERF_STATUS);
-> +		freq = xe_mmio_read32(&gt->mmio, GT_PERF_STATUS);
->  		freq = REG_FIELD_GET(CAGF_MASK, freq);
->  	}
->  
-> @@ -425,7 +425,7 @@ int xe_guc_pc_get_cur_freq(struct xe_guc_pc *pc, u32 *freq)
->  	if (ret)
->  		return ret;
->  
-> -	*freq = xe_mmio_read32(gt, RPNSWREQ);
-> +	*freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
->  
->  	*freq = REG_FIELD_GET(REQ_RATIO_MASK, *freq);
->  	*freq = decode_freq(*freq);
-> @@ -612,10 +612,10 @@ enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc)
->  	u32 reg, gt_c_state;
->  
->  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
-> -		reg = xe_mmio_read32(gt, MTL_MIRROR_TARGET_WP1);
-> +		reg = xe_mmio_read32(&gt->mmio, MTL_MIRROR_TARGET_WP1);
->  		gt_c_state = REG_FIELD_GET(MTL_CC_MASK, reg);
->  	} else {
-> -		reg = xe_mmio_read32(gt, GT_CORE_STATUS);
-> +		reg = xe_mmio_read32(&gt->mmio, GT_CORE_STATUS);
->  		gt_c_state = REG_FIELD_GET(RCN_MASK, reg);
->  	}
->  
-> @@ -638,7 +638,7 @@ u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc)
->  	struct xe_gt *gt = pc_to_gt(pc);
->  	u32 reg;
->  
-> -	reg = xe_mmio_read32(gt, GT_GFX_RC6);
-> +	reg = xe_mmio_read32(&gt->mmio, GT_GFX_RC6);
->  
->  	return reg;
->  }
-> @@ -652,7 +652,7 @@ u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc)
->  	struct xe_gt *gt = pc_to_gt(pc);
->  	u64 reg;
->  
-> -	reg = xe_mmio_read32(gt, MTL_MEDIA_MC6);
-> +	reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_MC6);
->  
->  	return reg;
->  }
-> @@ -665,9 +665,9 @@ static void mtl_init_fused_rp_values(struct xe_guc_pc *pc)
->  	xe_device_assert_mem_access(pc_to_xe(pc));
->  
->  	if (xe_gt_is_media_type(gt))
-> -		reg = xe_mmio_read32(gt, MTL_MEDIAP_STATE_CAP);
-> +		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIAP_STATE_CAP);
->  	else
-> -		reg = xe_mmio_read32(gt, MTL_RP_STATE_CAP);
-> +		reg = xe_mmio_read32(&gt->mmio, MTL_RP_STATE_CAP);
->  
->  	pc->rp0_freq = decode_freq(REG_FIELD_GET(MTL_RP0_CAP_MASK, reg));
->  
-> @@ -683,9 +683,9 @@ static void tgl_init_fused_rp_values(struct xe_guc_pc *pc)
->  	xe_device_assert_mem_access(pc_to_xe(pc));
->  
->  	if (xe->info.platform == XE_PVC)
-> -		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP);
-> +		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
->  	else
-> -		reg = xe_mmio_read32(gt, RP_STATE_CAP);
-> +		reg = xe_mmio_read32(&gt->mmio, RP_STATE_CAP);
->  	pc->rp0_freq = REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->  	pc->rpn_freq = REG_FIELD_GET(RPN_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 29f4e3759106..ccf53a7840d9 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -430,8 +430,8 @@ int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
->   * This function works exactly like xe_mmio_wait32() with the exception that
->   * @val is expected not to be matched.
->   */
-> -int __xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
-> -			 u32 *out_val, bool atomic)
-> +int xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
-> +		       u32 *out_val, bool atomic)
->  {
->  	return ____xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, false);
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-> index 99e3b58c9bb2..2e97dc811d82 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.h
-> +++ b/drivers/gpu/drm/xe/xe_mmio.h
-> @@ -56,10 +56,8 @@ int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
->  #define xe_mmio_wait32(p, reg, mask, val, timeout_us, out_val, atomic) \
->  	__xe_mmio_wait32(__to_xe_mmio(p), reg, mask, val, timeout_us, out_val, atomic)
->  
-> -int __xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask,
-> -			 u32 val, u32 timeout_us, u32 *out_val, bool atomic);
-> -#define xe_mmio_wait32_not(p, reg, mask, val, timeout_us, out_val, atomic) \
-> -	__xe_mmio_wait32_not(__to_xe_mmio(p), reg, mask, val, timeout_us, out_val, atomic)
-> +int xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask,
-> +		       u32 val, u32 timeout_us, u32 *out_val, bool atomic);
->  
+> But no strong opinion on anything different. Just curiosity.
 
-shouldn't this go with the last patch?
-Or avoid the last patch and then in every last usage of a case, like this,
-you remove the unused compat layer?
+Yeah, if there were only 1/2 places to update in a function I accessed
+the gt's mmio pointer directly, whereas if there were three or more I
+made a dedicated local variable.
 
->  static inline u32 __xe_mmio_adjusted_addr(const struct xe_mmio *mmio, u32 addr)
->  {
-> -- 
-> 2.45.2
+
+Matt
+
 > 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> >  		/*
+> >  		 * For GAM registers, all reads should be directed to instance 1
+> >  		 * (unicast reads against other instances are not allowed),
+> > @@ -533,7 +535,7 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+> >  			continue;
+> >  
+> >  		for (int i = 0; gt->steering[type].ranges[i].end > 0; i++) {
+> > -			if (xe_mmio_in_range(gt, &gt->steering[type].ranges[i], reg)) {
+> > +			if (xe_mmio_in_range(&gt->mmio, &gt->steering[type].ranges[i], reg)) {
+> >  				*group = gt->steering[type].group_target;
+> >  				*instance = gt->steering[type].instance_target;
+> >  				return true;
+> > @@ -544,7 +546,7 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+> >  	implicit_ranges = gt->steering[IMPLICIT_STEERING].ranges;
+> >  	if (implicit_ranges)
+> >  		for (int i = 0; implicit_ranges[i].end > 0; i++)
+> > -			if (xe_mmio_in_range(gt, &implicit_ranges[i], reg))
+> > +			if (xe_mmio_in_range(&gt->mmio, &implicit_ranges[i], reg))
+> >  				return false;
+> >  
+> >  	/*
+> > @@ -579,7 +581,7 @@ static void mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
+> >  	 * when a read to the relevant register returns 1.
+> >  	 */
+> >  	if (GRAPHICS_VERx100(xe) >= 1270)
+> > -		ret = xe_mmio_wait32(gt, STEER_SEMAPHORE, 0x1, 0x1, 10, NULL,
+> > +		ret = xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0x1, 10, NULL,
+> >  				     true);
+> >  
+> >  	drm_WARN_ON_ONCE(&xe->drm, ret == -ETIMEDOUT);
+> > @@ -589,7 +591,7 @@ static void mcr_unlock(struct xe_gt *gt) __releases(&gt->mcr_lock)
+> >  {
+> >  	/* Release hardware semaphore - this is done by writing 1 to the register */
+> >  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270)
+> > -		xe_mmio_write32(gt, STEER_SEMAPHORE, 0x1);
+> > +		xe_mmio_write32(&gt->mmio, STEER_SEMAPHORE, 0x1);
+> >  
+> >  	spin_unlock(&gt->mcr_lock);
+> >  }
+> > @@ -603,6 +605,7 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+> >  				u8 rw_flag, int group, int instance, u32 value)
+> >  {
+> >  	const struct xe_reg reg = to_xe_reg(reg_mcr);
+> > +	struct xe_mmio *mmio = &gt->mmio;
+> >  	struct xe_reg steer_reg;
+> >  	u32 steer_val, val = 0;
+> >  
+> > @@ -635,12 +638,12 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+> >  	if (rw_flag == MCR_OP_READ)
+> >  		steer_val |= MCR_MULTICAST;
+> >  
+> > -	xe_mmio_write32(gt, steer_reg, steer_val);
+> > +	xe_mmio_write32(mmio, steer_reg, steer_val);
+> >  
+> >  	if (rw_flag == MCR_OP_READ)
+> > -		val = xe_mmio_read32(gt, reg);
+> > +		val = xe_mmio_read32(mmio, reg);
+> >  	else
+> > -		xe_mmio_write32(gt, reg, value);
+> > +		xe_mmio_write32(mmio, reg, value);
+> >  
+> >  	/*
+> >  	 * If we turned off the multicast bit (during a write) we're required
+> > @@ -649,7 +652,7 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+> >  	 * operation.
+> >  	 */
+> >  	if (rw_flag == MCR_OP_WRITE)
+> > -		xe_mmio_write32(gt, steer_reg, MCR_MULTICAST);
+> > +		xe_mmio_write32(mmio, steer_reg, MCR_MULTICAST);
+> >  
+> >  	return val;
+> >  }
+> > @@ -684,7 +687,7 @@ u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, struct xe_reg_mcr reg_mcr)
+> >  					   group, instance, 0);
+> >  		mcr_unlock(gt);
+> >  	} else {
+> > -		val = xe_mmio_read32(gt, reg);
+> > +		val = xe_mmio_read32(&gt->mmio, reg);
+> >  	}
+> >  
+> >  	return val;
+> > @@ -757,7 +760,7 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+> >  	 * to touch the steering register.
+> >  	 */
+> >  	mcr_lock(gt);
+> > -	xe_mmio_write32(gt, reg, value);
+> > +	xe_mmio_write32(&gt->mmio, reg, value);
+> >  	mcr_unlock(gt);
+> >  }
+> >  
+> > -- 
+> > 2.45.2
+> > 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
