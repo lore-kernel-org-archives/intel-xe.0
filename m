@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2167DEE01F8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 572D7EE01FB
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57CC610E948;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A96D010E94C;
 	Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EHE3fLbd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jpwZDAq1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CB1210E93B
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF3E10E8F5
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012047; x=1757548047;
+ t=1726012048; x=1757548048;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SER8/i8aOi7nmRICY1BjKKINgjyxrOYIy7Zf/sF9BfE=;
- b=EHE3fLbdMud5UNJucpWfXawuyxjuYjgpYKs3o80WXf3QeBvpQP5BphWh
- oBd8h4RBvaj9Kyc/lYEgZ+gM+rzjhaDxJyEQUcGywaay8dM/DQO/n1dT6
- 8GAQf1m6pCEM6qO17q07JeL047DFy7J54AV0Htwukw6tDG2C5j0Jp5dGP
- rHubLwivPt1eVd84IqphgN39q3PfhZtdZpztHtb/gDYLyjTavRL7GySgo
- hW6Rukbb4Tg+5GV5MiubfrO9C0MKd9Ys0DRGtR4ik2Fulhiv7vZrlH/ph
- OM8AFCFQBrLvVZ0PdgkwNLkW6qnqVjkwZNScEfQAJfcDlC+i4nXzeiT1N A==;
-X-CSE-ConnectionGUID: DteYunVQQYmX/FVTd35kOg==
-X-CSE-MsgGUID: 9q9wnap3SeG1DU4qrf1p+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144304"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144304"
+ bh=j+Zcv2PrFK6GzEGq8tqKLvbnJrhtAlJCMOqEYnvFODc=;
+ b=jpwZDAq1FnCfyTVPTwWBZo4qs2Ay8mqpZ+yVvIoDpAcb0QdgEfAqPacO
+ cP1xoC1Dx/dUATTw0a5WaUvuX+4kN3u2aLxtTkvcX9K75Jyu3gG2CvGMA
+ xJLA/6voKI6DWrvXE42pNZhNEPXY+lHBc7vSiZMR4yo4hvTpf8mPhu5S7
+ +gm+DoeyIoLqg1wMUV59kw3u0P3/VOrtyIFvY6uX4Teo+zChMVit9R7Q7
+ 67UuIrPnQXLUcv/X5Lz6kfhbJmJdYlDySuqtaxaUqhM7pFEEEwmv7cmO8
+ YIqKnmZ0itFzxQX330DpDAt461pFbT/zXDUnAVXofEolJ8f7dgkakSpsg Q==;
+X-CSE-ConnectionGUID: 6jEx2LQlRmmrA6OLuOHT1A==
+X-CSE-MsgGUID: v8PQ5F/bTR2n0secRyfaUQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144317"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144317"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:27 -0700
-X-CSE-ConnectionGUID: sYgiGNEBR1yuGr3aXEjRFA==
-X-CSE-MsgGUID: 2SJpig8fQ3WstApz2/c1Ng==
+ 10 Sep 2024 16:47:28 -0700
+X-CSE-ConnectionGUID: GBIOi0mHT5a7bcuHjypBbA==
+X-CSE-MsgGUID: xn05FHcuQ8iAVhj6tzRUqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989576"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989623"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:27 -0700
+ 10 Sep 2024 16:47:29 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 13/43] drm/xe/vram: Convert register access to use xe_mmio
-Date: Tue, 10 Sep 2024 16:47:33 -0700
-Message-ID: <20240910234719.3335472-58-matthew.d.roper@intel.com>
+	Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v3 26/43] drm/xe/mocs: Convert register access to use xe_mmio
+Date: Tue, 10 Sep 2024 16:47:46 -0700
+Message-ID: <20240910234719.3335472-71-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -67,48 +67,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop using GT pointers for register access.  Note that MIRROR_FUSE3 is a
-GT register and is accessed via gt->mmio, whereas GSMBASE is an sgunit
-register so it is accessed via tile->mmio.
+Stop using GT pointers for register access.
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vram.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_mocs.c |  4 ++--
+ drivers/gpu/drm/xe/xe_mocs.c       | 16 ++++++++--------
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 5bcd59190353..7e765b1499b1 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -169,7 +169,7 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
- 		u64 offset_hi, offset_lo;
- 		u32 nodes, num_enabled;
+diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
+index 79be73b4a02b..ea932c051cc7 100644
+--- a/drivers/gpu/drm/xe/tests/xe_mocs.c
++++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
+@@ -55,7 +55,7 @@ static void read_l3cc_table(struct xe_gt *gt,
+ 			if (regs_are_mcr(gt))
+ 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i >> 1));
+ 			else
+-				reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i >> 1));
++				reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i >> 1));
  
--		reg = xe_mmio_read32(gt, MIRROR_FUSE3);
-+		reg = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
- 		nodes = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, reg);
- 		num_enabled = hweight32(nodes); /* Number of enabled l3 nodes */
+ 			mocs_dbg(gt, "reg_val=0x%x\n", reg_val);
+ 		} else {
+@@ -94,7 +94,7 @@ static void read_mocs_table(struct xe_gt *gt,
+ 		if (regs_are_mcr(gt))
+ 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
+ 		else
+-			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
++			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
  
-@@ -184,7 +184,8 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
- 		offset *= num_enabled; /* convert to SW view */
+ 		mocs_expected = get_entry_control(info, i);
+ 		mocs = reg_val;
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 7ff0ac5b799a..8df41cd12d51 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -278,7 +278,7 @@ static void xelp_lncf_dump(struct xe_mocs_info *info, struct xe_gt *gt, struct d
+ 		if (regs_are_mcr(gt))
+ 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
+ 		else
+-			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
++			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
  
- 		/* We don't expect any holes */
--		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(gt, GSMBASE) - ccs_size),
-+		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(&gt_to_tile(gt)->mmio, GSMBASE) -
-+					     ccs_size),
- 			      "Hole between CCS and GSM.\n");
- 	} else {
- 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
-@@ -256,7 +257,7 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 	if (xe->info.has_flat_ccs) {
- 		offset = get_flat_ccs_offset(gt, *tile_size);
- 	} else {
--		offset = xe_mmio_read64_2x32(gt, GSMBASE);
-+		offset = xe_mmio_read64_2x32(&tile->mmio, GSMBASE);
+ 		drm_printf(p, "LNCFCMOCS[%2d] = [%u, %u, %u] (%#8x)\n",
+ 			   j++,
+@@ -310,7 +310,7 @@ static void xelp_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
+ 			if (regs_are_mcr(gt))
+ 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
+ 			else
+-				reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
++				reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
+ 
+ 			drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u, %u, %u, %u, %u, %u, %u, %u, %u ] (%#8x)\n",
+ 				   i,
+@@ -383,7 +383,7 @@ static void xehp_lncf_dump(struct xe_mocs_info *info, unsigned int flags,
+ 		if (regs_are_mcr(gt))
+ 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
+ 		else
+-			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
++			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
+ 
+ 		drm_printf(p, "LNCFCMOCS[%2d] = [%u, %u, %u] (%#8x)\n",
+ 			   j++,
+@@ -428,7 +428,7 @@ static void pvc_mocs_dump(struct xe_mocs_info *info, unsigned int flags, struct
+ 		if (regs_are_mcr(gt))
+ 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
+ 		else
+-			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
++			reg_val = xe_mmio_read32(&gt->mmio, XELP_LNCFCMOCS(i));
+ 
+ 		drm_printf(p, "LNCFCMOCS[%2d] = [ %u ] (%#8x)\n",
+ 			   j++,
+@@ -510,7 +510,7 @@ static void mtl_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
+ 		if (regs_are_mcr(gt))
+ 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
+ 		else
+-			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
++			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
+ 
+ 		drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u]  (%#8x)\n",
+ 			   i,
+@@ -553,7 +553,7 @@ static void xe2_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
+ 		if (regs_are_mcr(gt))
+ 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
+ 		else
+-			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
++			reg_val = xe_mmio_read32(&gt->mmio, XELP_GLOBAL_MOCS(i));
+ 
+ 		drm_printf(p, "GLOB_MOCS[%2d] = [%u, %u, %u]  (%#8x)\n",
+ 			   i,
+@@ -690,7 +690,7 @@ static void __init_mocs_table(struct xe_gt *gt,
+ 		if (regs_are_mcr(gt))
+ 			xe_gt_mcr_multicast_write(gt, XEHP_GLOBAL_MOCS(i), mocs);
+ 		else
+-			xe_mmio_write32(gt, XELP_GLOBAL_MOCS(i), mocs);
++			xe_mmio_write32(&gt->mmio, XELP_GLOBAL_MOCS(i), mocs);
  	}
+ }
  
- 	/* remove the tile offset so we have just the available size */
+@@ -730,7 +730,7 @@ static void init_l3cc_table(struct xe_gt *gt,
+ 		if (regs_are_mcr(gt))
+ 			xe_gt_mcr_multicast_write(gt, XEHP_LNCFCMOCS(i), l3cc);
+ 		else
+-			xe_mmio_write32(gt, XELP_LNCFCMOCS(i), l3cc);
++			xe_mmio_write32(&gt->mmio, XELP_LNCFCMOCS(i), l3cc);
+ 	}
+ }
+ 
 -- 
 2.45.2
 
