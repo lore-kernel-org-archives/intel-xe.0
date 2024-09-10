@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B00B2EE0217
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A89B4EE0216
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE0010E9BA;
-	Tue, 10 Sep 2024 23:47:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D87F610E9B9;
+	Tue, 10 Sep 2024 23:47:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HIGJju55";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cGjD60iM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2955F10E8F5
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFF7610E93F
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726012049; x=1757548049;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=67C8sw54li7fHhOdcHPtcw3p3HdfVJBDkmjsnEoiRfs=;
- b=HIGJju55mzFdQzc2Frn94usoGqjYnNqEIVIF3CNNetSN5YTDI9g5vaCz
- 1nOWzoLQB7sBsDor32N+ErOLYO8ufvyREYQ5WCN2RE38qRvxHr7JBR6nR
- kzvC8Y1NK2+gN8+AMvo2gb/1JzeJw9Bo84cMEWK+K0YgHFopcQAVrhHff
- 7TeCKqtfq/V2BLP+2dv7mbb1rxvij5VZjT46Gi81ZVDPdIRw3sP8eUjDt
- hyIkHdQEz/rqeBkcuTbABR0eP61yyR6XG3EHd+3IwQdQQeumFD8kW4O4X
- ODo5zLumDzaPyShP6m6VAyTAZK4a/R53ZePls5GhkX5aQYRWMuGg6hAhc A==;
-X-CSE-ConnectionGUID: wfZdwt/mQo2Mefl2YwP/yA==
-X-CSE-MsgGUID: w0sJonkMQbya/AmCKgWwcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144323"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144323"
+ bh=36s7AEYfb+EBCd5NijTyt4l8BlSpkW9qgqfWenqmJ7A=;
+ b=cGjD60iMA+toVuzuKoseyWcUmoU7rITgIpUhoPyTpyKtqf9PrbHKL2E1
+ Tal+IykkBgbe+6Cu9hyJ04uXQ+vm1dDrh1XxQdjDULhhXs2Y9kShirEd+
+ +mKv8qkTHM4F2u2Q9Um7e+UHS28Fojc7rm76L+01wEWDNlaMlT/vA+zuW
+ ueZyMS4zM/OoCm2k2MNu/6+x1eUH0TMlCqtOrVtHs+wCXvEP94RDYQ0/U
+ OA/Vk8W5jjcRwmFYYivN4HLollo+PNV2E8ulzRQWQL0smnuq2Eelxjk0F
+ NnLobPGAuUPCFfx6vqhVeUTaO+IjI2dYqU+QsnNYfk3Rx6UW8ifJQ/B4+ A==;
+X-CSE-ConnectionGUID: Aq6N6Vc0TVyXh/YIh2j73A==
+X-CSE-MsgGUID: PY6XzQIkSuyJQga1Czx10A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144321"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144321"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:29 -0700
-X-CSE-ConnectionGUID: niESq8Q+QHGBrXhzEDqRZA==
-X-CSE-MsgGUID: fi28qLt7QFaql6RTW6wavw==
+ 10 Sep 2024 16:47:28 -0700
+X-CSE-ConnectionGUID: w3/wVtdbTN+89FhYASUjBQ==
+X-CSE-MsgGUID: g1j4PLe8R/G2RX+rB4jmCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989644"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989637"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Sep 2024 16:47:29 -0700
@@ -45,10 +45,9 @@ From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 32/43] drm/xe/topology: Convert register access to use
- xe_mmio
-Date: Tue, 10 Sep 2024 16:47:52 -0700
-Message-ID: <20240910234719.3335472-77-matthew.d.roper@intel.com>
+Subject: [PATCH v3 30/43] drm/xe/wopcm: Convert register access to use xe_mmio
+Date: Tue, 10 Sep 2024 16:47:50 -0700
+Message-ID: <20240910234719.3335472-75-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -73,49 +72,53 @@ Stop using GT pointers for register access.
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_topology.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_wopcm.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index 0662f71c6ede..651ba53623e5 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -25,7 +25,7 @@ load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
- 
- 	va_start(argp, numregs);
- 	for (i = 0; i < numregs; i++)
--		fuse_val[i] = xe_mmio_read32(gt, va_arg(argp, struct xe_reg));
-+		fuse_val[i] = xe_mmio_read32(&gt->mmio, va_arg(argp, struct xe_reg));
- 	va_end(argp);
- 
- 	bitmap_from_arr32(mask, fuse_val, numregs * 32);
-@@ -35,7 +35,7 @@ static void
- load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask, enum xe_gt_eu_type *eu_type)
+diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+index d3a99157e523..93c82825d896 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm.c
++++ b/drivers/gpu/drm/xe/xe_wopcm.c
+@@ -123,8 +123,8 @@ static bool __check_layout(struct xe_device *xe, u32 wopcm_size,
+ static bool __wopcm_regs_locked(struct xe_gt *gt,
+ 				u32 *guc_wopcm_base, u32 *guc_wopcm_size)
  {
- 	struct xe_device *xe = gt_to_xe(gt);
--	u32 reg_val = xe_mmio_read32(gt, XELP_EU_ENABLE);
-+	u32 reg_val = xe_mmio_read32(&gt->mmio, XELP_EU_ENABLE);
- 	u32 val = 0;
- 	int i;
+-	u32 reg_base = xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET);
+-	u32 reg_size = xe_mmio_read32(gt, GUC_WOPCM_SIZE);
++	u32 reg_base = xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET);
++	u32 reg_size = xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE);
  
-@@ -127,7 +127,7 @@ static void
- load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	u32 fuse3 = xe_mmio_read32(gt, MIRROR_FUSE3);
-+	u32 fuse3 = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
+ 	if (!(reg_size & GUC_WOPCM_SIZE_LOCKED) ||
+ 	    !(reg_base & GUC_WOPCM_OFFSET_VALID))
+@@ -150,13 +150,13 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
+ 	XE_WARN_ON(size & ~GUC_WOPCM_SIZE_MASK);
  
- 	if (GRAPHICS_VER(xe) >= 20) {
- 		xe_l3_bank_mask_t per_node = {};
-@@ -141,7 +141,7 @@ load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
- 		xe_l3_bank_mask_t per_node = {};
- 		xe_l3_bank_mask_t per_mask_bit = {};
- 		u32 meml3_en = REG_FIELD_GET(MEML3_EN_MASK, fuse3);
--		u32 fuse4 = xe_mmio_read32(gt, XEHP_FUSE4);
-+		u32 fuse4 = xe_mmio_read32(&gt->mmio, XEHP_FUSE4);
- 		u32 bank_val = REG_FIELD_GET(GT_L3_EXC_MASK, fuse4);
+ 	mask = GUC_WOPCM_SIZE_MASK | GUC_WOPCM_SIZE_LOCKED;
+-	err = xe_mmio_write32_and_verify(gt, GUC_WOPCM_SIZE, size, mask,
++	err = xe_mmio_write32_and_verify(&gt->mmio, GUC_WOPCM_SIZE, size, mask,
+ 					 size | GUC_WOPCM_SIZE_LOCKED);
+ 	if (err)
+ 		goto err_out;
  
- 		bitmap_set_value8(per_mask_bit, 0x3, 0);
+ 	mask = GUC_WOPCM_OFFSET_MASK | GUC_WOPCM_OFFSET_VALID | huc_agent;
+-	err = xe_mmio_write32_and_verify(gt, DMA_GUC_WOPCM_OFFSET,
++	err = xe_mmio_write32_and_verify(&gt->mmio, DMA_GUC_WOPCM_OFFSET,
+ 					 base | huc_agent, mask,
+ 					 base | huc_agent |
+ 					 GUC_WOPCM_OFFSET_VALID);
+@@ -169,10 +169,10 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
+ 	drm_notice(&xe->drm, "Failed to init uC WOPCM registers!\n");
+ 	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
+ 		   DMA_GUC_WOPCM_OFFSET.addr,
+-		   xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET));
++		   xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET));
+ 	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
+ 		   GUC_WOPCM_SIZE.addr,
+-		   xe_mmio_read32(gt, GUC_WOPCM_SIZE));
++		   xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE));
+ 
+ 	return err;
+ }
 -- 
 2.45.2
 
