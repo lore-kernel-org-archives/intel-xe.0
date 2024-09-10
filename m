@@ -4,53 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BDD1EE01FA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC6E2EE01FF
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD5CA10E94D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B98A010E951;
 	Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlP738Z4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K7gAqfq3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D617010E8F5
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EEF810E8F5
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012047; x=1757548047;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=joYZ81TIH/eIBTbdbAF2J6FPfvmLyVEbUGev/5YqR+M=;
- b=RlP738Z4wK5nEf9DZOFtmdcrJIrlEpySs5i8taQiT6qgoCFKsyT4Sn0I
- 6jsQj5mMGp0DuT9L4j0f6Gfjt83GDIyMwAWvfabIynVhq//YOETBiywgu
- xkaplZorXToxQtOd7brEjTl9yqWEmBUHezFjwMAFEOdoxsWDEg+MHzWzj
- rkFItTfxWswN6oh1Nzp+3RzAOtMEUmz9vlUCpHKwOw/UEaguRNeyGptoO
- AZ+9TdWpiqYIjkDhi4n8BlLL0E6ZjBuJi3Wh2JaTaKarO0PCdglvdxTuP
- ytbZeKSR5WuRM50dfyUMcXiri6GvQK9t4YFQDBBcUmo7HnvPS23sO1K6R Q==;
-X-CSE-ConnectionGUID: QT7skZLPRlSGNap6vjFCzQ==
-X-CSE-MsgGUID: jg14ZwcLRWWWO0clX47raA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144311"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144311"
+ t=1726012046; x=1757548046;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=orxoeXTf1sHYzMyG6Bx24LGGnW4aF/3BtduEFvn9IbA=;
+ b=K7gAqfq3GgAdDnhUMR+tFtFz3cYZLdaYs5c19TzRk4Km7/Z8R7N7XU/G
+ T2cGKAHMIlArdCSgWzifVCMl+6GSrEdutWKskTP3saL3hr3EEH7tNKZW+
+ j/57TZC09r+5zbT+6p9J+BeOhewc5bkwMA53hiD0oJhLPwNS+hg+W6f91
+ 5uBGutL6DqoyMEQElhyEUzftS9CO1cK5jigdvzn8mqzXccmmkiaiMmpRj
+ MiG6JjQReQxTc3ijKyMDhAAFdJMqBpj2jLaRPOgc4LkQp0CkvzBuISKN9
+ rAH+JVCrCljKZ7Cal8cBLukScNJYw/sJmce/JDJEjq29L9HOMTYFrLe76 w==;
+X-CSE-ConnectionGUID: Vf+A258TQY6E2h5xfmvqvQ==
+X-CSE-MsgGUID: naTfPLTbSkqqF6WJGX1jrA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144291"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144291"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:27 -0700
-X-CSE-ConnectionGUID: NacXsRyiTXqk39kXDmpUbg==
-X-CSE-MsgGUID: y2UssrhTTcyBPqHVcyTHFw==
+ 10 Sep 2024 16:47:25 -0700
+X-CSE-ConnectionGUID: 2asBhrUdReqTYeS2Ae1wEw==
+X-CSE-MsgGUID: FzIfNJzaS2OkwLVXVuFKIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989602"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989520"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:28 -0700
+ 10 Sep 2024 16:47:26 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 20/43] drm/xe/uc: Convert register access to use xe_mmio
-Date: Tue, 10 Sep 2024 16:47:40 -0700
-Message-ID: <20240910234719.3335472-65-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v3 00/43] Stop using xe_gt as a register MMIO target
+Date: Tue, 10 Sep 2024 16:47:20 -0700
+Message-ID: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
-References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,69 +64,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop using GT pointers for register access.
+A "GT" is just one subunit of an Intel GPU (i.e., the part that contains
+the hardware engines, GuC, and programmable execution units).  It is not
+directly related to register MMIO, although a subset of the registers
+our driver interacts with are within the GT.  The driver also interacts
+with, and programs, several other parts of the GPU that live outside the
+GT (e.g., sgunit, pcode, display, etc.), so using an 'xe_gt' structure
+in the driver as the target for all MMIO register operations causes a
+lot of confusion and doesn't match how the hardware is actually
+organized.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+For register MMIO operations, the things that truly matter are:
+ * Where the MMIO region is mapped for CPU access.
+ * Any extra offset that should be "automatically" added to some
+   xe_reg offsets.  (e.g., the 0x380000 offset for GSI registers in the
+   media GT)
+ * Extra metadata for size, valid/invalid subregions of the map, etc.
+   that can be utilized by debug builds to perform extra checks and
+   assertions to catch coding mistakes.
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 821b46c9b4ee..eab9456e051f 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -807,6 +807,7 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- {
- 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
- 	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
-+	struct xe_mmio *mmio = &gt->mmio;
- 	u64 src_offset;
- 	u32 dma_ctrl;
- 	int ret;
-@@ -815,34 +816,34 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- 
- 	/* Set the source address for the uCode */
- 	src_offset = uc_fw_ggtt_offset(uc_fw) + uc_fw->css_offset;
--	xe_mmio_write32(gt, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
--	xe_mmio_write32(gt, DMA_ADDR_0_HIGH,
-+	xe_mmio_write32(mmio, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
-+	xe_mmio_write32(mmio, DMA_ADDR_0_HIGH,
- 			upper_32_bits(src_offset) | DMA_ADDRESS_SPACE_GGTT);
- 
- 	/* Set the DMA destination */
--	xe_mmio_write32(gt, DMA_ADDR_1_LOW, offset);
--	xe_mmio_write32(gt, DMA_ADDR_1_HIGH, DMA_ADDRESS_SPACE_WOPCM);
-+	xe_mmio_write32(mmio, DMA_ADDR_1_LOW, offset);
-+	xe_mmio_write32(mmio, DMA_ADDR_1_HIGH, DMA_ADDRESS_SPACE_WOPCM);
- 
- 	/*
- 	 * Set the transfer size. The header plus uCode will be copied to WOPCM
- 	 * via DMA, excluding any other components
- 	 */
--	xe_mmio_write32(gt, DMA_COPY_SIZE,
-+	xe_mmio_write32(mmio, DMA_COPY_SIZE,
- 			sizeof(struct uc_css_header) + uc_fw->ucode_size);
- 
- 	/* Start the DMA */
--	xe_mmio_write32(gt, DMA_CTRL,
-+	xe_mmio_write32(mmio, DMA_CTRL,
- 			_MASKED_BIT_ENABLE(dma_flags | START_DMA));
- 
- 	/* Wait for DMA to finish */
--	ret = xe_mmio_wait32(gt, DMA_CTRL, START_DMA, 0, 100000, &dma_ctrl,
-+	ret = xe_mmio_wait32(mmio, DMA_CTRL, START_DMA, 0, 100000, &dma_ctrl,
- 			     false);
- 	if (ret)
- 		drm_err(&xe->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
- 			xe_uc_fw_type_repr(uc_fw->type), dma_ctrl);
- 
- 	/* Disable the bits once DMA is over */
--	xe_mmio_write32(gt, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
-+	xe_mmio_write32(mmio, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
- 
- 	return ret;
- }
+Let's add a dedicated 'xe_mmio' structure that encapsulates this
+specific information and can be used as a target for MMIO operations.
+For now an xe_mmio structure is present inside every xe_gt and xe_tile,
+and can be used as the target for GT and non-GT operations respectively.
+In the future additional xe_mmio substructures can be added for other
+specific cases.
+
+Note that there's a (currently unused) "mmio_ext" infrastructure in the
+driver that appears to be an attempt to work around the GT-centric way
+the driver has been doing register MMIO.  That infrastructure is simply
+replaced with an additional instance of "struct xe_mmio" that lives at
+the tile level.  This will allow standard register access logic for
+accessing non-GT registers that exist in a very different BAR region
+and/or reside in a different iomap.  Once code actually shows up to use
+"mmio_ext" it will probably get renamed and accessed via "xe_foo->mmio"
+or "xe_mmio_for_foo(xe)."
+
+Once this general refactor lands, a follow-up will be add some extra
+checking in debug builds to catch cases where the driver might be
+performing MMIO accesses incorrectly (for example, accessing GT
+registers through a non-GT MMIO which wouldn't apply proper GSI
+offsets).
+
+Since converting the entire driver from xe_gt to xe_mmio for register
+access operations is a lot of churn, the original conversion includes
+some _Generic compatibility defines to temporarily allow either xe_gt or
+xe_mmio to be used.  This allows individual parts of the driver to be
+converted in separate patches for ease of review.  The compatibility
+macros are removed again at the end of the series.
+
+
+v2:
+ - Assorted naming and kerneldoc tweaks suggested during review (Lucas,
+   Michal).
+ - Store xe_tile backpointer instead of xe_device in xe_mmio since we
+   can still get to the device from it, but all register MMIO is
+   currently tile-centric so this could let us do better debug logging
+   and such.  (Michal).
+ - Keep an actual GT backpointer for the SRIOV special case rather than
+   an SRIOV backpointer.  But name it so that it's very clear that it
+   can only be used for SRIOV VF purposes and won't be set otherwise.
+   (Michal)
+
+v3:
+ - Move removal of _Generic wrapper for all functions to the final
+   patch; don't remove the wrapper with the last user for 8/16-bit reads
+   or wait calls.  (Rodrigo)
+ - A couple comment and commit message fixes and clarifications.
+   (Rodrigo)
+
+Matt Roper (43):
+  drm/xe: Move forcewake to 'gt.pm' substructure
+  drm/xe: Create dedicated xe_mmio structure
+  drm/xe: Clarify size of MMIO region
+  drm/xe: Move GSI offset adjustment fields into 'struct xe_mmio'
+  drm/xe: Populate GT's mmio iomap from tile during init
+  drm/xe: Switch mmio_ext to use 'struct xe_mmio'
+  drm/xe: Add xe_tile backpointer to xe_mmio
+  drm/xe: Adjust mmio code to pass VF substructure to SRIOV code
+  drm/xe: Switch MMIO interface to take xe_mmio instead of xe_gt
+  drm/xe/irq: Convert register access to use xe_mmio
+  drm/xe/pcode: Convert register access to use xe_mmio
+  drm/xe/hwmon: Convert register access to use xe_mmio
+  drm/xe/vram: Convert register access to use xe_mmio
+  drm/xe/compat-i915: Convert register access to use xe_mmio
+  drm/xe/lmtt: Convert register access to use xe_mmio
+  drm/xe/stolen: Convert register access to use xe_mmio
+  drm/xe/device: Convert register access to use xe_mmio
+  drm/xe/pci: Convert register access to use xe_mmio
+  drm/xe/wa: Convert register access to use xe_mmio
+  drm/xe/uc: Convert register access to use xe_mmio
+  drm/xe/guc: Convert register access to use xe_mmio
+  drm/xe/huc: Convert register access to use xe_mmio
+  drm/xe/gsc: Convert register access to use xe_mmio
+  drm/xe/query: Convert register access to use xe_mmio
+  drm/xe/mcr: Convert register access to use xe_mmio
+  drm/xe/mocs: Convert register access to use xe_mmio
+  drm/xe/hw_engine: Convert register access to use xe_mmio
+  drm/xe/gt_throttle: Convert register access to use xe_mmio
+  drm/xe/pat: Convert register access to use xe_mmio
+  drm/xe/wopcm: Convert register access to use xe_mmio
+  drm/xe/oa: Convert register access to use xe_mmio
+  drm/xe/topology: Convert register access to use xe_mmio
+  drm/xe/execlist: Convert register access to use xe_mmio
+  drm/xe/gt_clock: Convert register access to use xe_mmio
+  drm/xe/reg_sr: Convert register access to use xe_mmio
+  drm/xe/gt: Convert register access to use xe_mmio
+  drm/xe/sriov: Convert register access to use xe_mmio
+  drm/xe/tlb: Convert register access to use xe_mmio
+  drm/xe/gt_idle: Convert register access to use xe_mmio
+  drm/xe/forcewake: Convert register access to use xe_mmio
+  drm/xe/ggtt: Convert register access to use xe_mmio
+  drm/xe/ccs_mode: Convert register access to use xe_mmio
+  drm/xe/mmio: Drop compatibility macros
+
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  36 ++---
+ drivers/gpu/drm/xe/tests/xe_mocs.c            |   4 +-
+ drivers/gpu/drm/xe/xe_assert.h                |   2 +-
+ drivers/gpu/drm/xe/xe_device.c                |  37 +++--
+ drivers/gpu/drm/xe/xe_device.h                |   3 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |  56 ++++++--
+ drivers/gpu/drm/xe/xe_execlist.c              |  19 +--
+ drivers/gpu/drm/xe/xe_force_wake.c            |   4 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  |   8 +-
+ drivers/gpu/drm/xe/xe_gsc.c                   |  23 +--
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |   4 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |  10 +-
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c           |   2 +-
+ drivers/gpu/drm/xe/xe_gt_clock.c              |   6 +-
+ drivers/gpu/drm/xe/xe_gt_freq.c               |   2 +-
+ drivers/gpu/drm/xe/xe_gt_idle.c               |  21 +--
+ drivers/gpu/drm/xe/xe_gt_mcr.c                |  39 ++---
+ drivers/gpu/drm/xe/xe_gt_printk.h             |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c           |   6 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   |   6 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |   4 +-
+ drivers/gpu/drm/xe/xe_gt_throttle.c           |   4 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   |   8 +-
+ drivers/gpu/drm/xe/xe_gt_topology.c           |   8 +-
+ drivers/gpu/drm/xe/xe_gt_types.h              |  22 +--
+ drivers/gpu/drm/xe/xe_guc.c                   |  60 ++++----
+ drivers/gpu/drm/xe/xe_guc_ads.c               |   2 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c                |  34 ++---
+ drivers/gpu/drm/xe/xe_huc.c                   |   6 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             |  29 ++--
+ drivers/gpu/drm/xe/xe_hwmon.c                 |  16 +--
+ drivers/gpu/drm/xe/xe_irq.c                   |  63 ++++----
+ drivers/gpu/drm/xe/xe_lmtt.c                  |   2 +-
+ drivers/gpu/drm/xe/xe_mmio.c                  | 134 +++++++++---------
+ drivers/gpu/drm/xe/xe_mmio.h                  |  35 +++--
+ drivers/gpu/drm/xe/xe_mocs.c                  |  16 +--
+ drivers/gpu/drm/xe/xe_oa.c                    |  48 ++++---
+ drivers/gpu/drm/xe/xe_pat.c                   |  14 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |  26 +++-
+ drivers/gpu/drm/xe/xe_pcode.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_query.c                 |   7 +-
+ drivers/gpu/drm/xe/xe_reg_sr.c                |  17 +--
+ drivers/gpu/drm/xe/xe_sriov.c                 |   2 +-
+ drivers/gpu/drm/xe/xe_trace.h                 |   7 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |   8 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c                 |  17 +--
+ drivers/gpu/drm/xe/xe_vram.c                  |   7 +-
+ drivers/gpu/drm/xe/xe_wa.c                    |   4 +-
+ drivers/gpu/drm/xe/xe_wopcm.c                 |  12 +-
+ 49 files changed, 492 insertions(+), 414 deletions(-)
+
 -- 
 2.45.2
 
