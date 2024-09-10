@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16812EE01F7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF29FEE01F4
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35CA010E944;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE8C10E941;
 	Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXppHBcV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YHjjJk2h";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9F710E93F
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A54FA10E93B
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012049; x=1757548049;
+ t=1726012047; x=1757548047;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6ViqH9bt5cJdyez+OGlxUUPviz/7OHKIpWU7TpebQJ0=;
- b=JXppHBcVit0gpaA3Li+HGmNQOYWzQM+VmKFfTYUY+xgjxxE3xZqtozFV
- kslT5EXc1WvZ9VJxZy2AfcI1gB1M0RAXiDPfgiockEASmPQYlO4CfDM17
- O2VkxGMXTOw0XS7YAk+e/3vE0EEuyikxRSk3wVFZZbuPiteUtfRbBd4NK
- rLxJTrFNpfR0KctdNH3nh6iqM1+sUngobdPGecKdG3MQZ90aAnwiGZm8t
- Bdq7hY61Szoc4exBRF5awiwGv2jihY+brrZUQNFCtxpFN/ekXxx3PcgAH
- gUoTFKaIhQCaKk0Zd8uS/ZcB5gCzDT4qzkxsX85wpsobvvbXEWBYA6tvy g==;
-X-CSE-ConnectionGUID: KT/9IhtQQkmiVh7ug5w57w==
-X-CSE-MsgGUID: jOG6hGS/QD+SkfshWiT54w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144328"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144328"
+ bh=OCQyV5iqCVr0zjkuByKhktD7BuP9fPQ2+hSIRFClPKg=;
+ b=YHjjJk2hna0P2q4Rz+Gc15uRCU78zpKNXXqDQaKJYJj8Pck4vtbLNv8O
+ o8le43UE24tTkBUsM7IcS6QvvT61gYhx6YAfA5ke7fhl7Q3E0N4AtKASY
+ cyKcLPXAaaVLtcY1c0DeVAU1giuqmH9yFVNZO89zeWW9rOv4Bye8tsDPm
+ frlYwDBfgswZM6VAB569kc4f9wPc6XA/cb0Iy2OlHg61MOPrX2w6YShhv
+ PBgO1kzRCFFt6rLSQfjn8Ehvv1oKY0x8GDPGNoft2C3nBKVEw0nybiZbR
+ w9hEVYPPqigG0XlaRAQDMaJhQXHb+yVYYf4+oQx2mFpbDZKxR4PO48Adp w==;
+X-CSE-ConnectionGUID: 9nhtiyfCSIGqFvRsTZmQjQ==
+X-CSE-MsgGUID: LRmYwJPbQz+3nEzzf6jG1g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144309"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144309"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:29 -0700
-X-CSE-ConnectionGUID: BfwX0qGBRei4myc6xNWXBA==
-X-CSE-MsgGUID: 2xfsdil9RQSMJKJcpO0M0A==
+ 10 Sep 2024 16:47:27 -0700
+X-CSE-ConnectionGUID: lLIY2VC8QKKC7wvQF7Dy8w==
+X-CSE-MsgGUID: HjkAAYSHQCmoj1F3CLTbOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989658"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989595"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:30 -0700
+ 10 Sep 2024 16:47:28 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 36/43] drm/xe/gt: Convert register access to use xe_mmio
-Date: Tue, 10 Sep 2024 16:47:56 -0700
-Message-ID: <20240910234719.3335472-81-matthew.d.roper@intel.com>
+Subject: [PATCH v3 18/43] drm/xe/pci: Convert register access to use xe_mmio
+Date: Tue, 10 Sep 2024 16:47:38 -0700
+Message-ID: <20240910234719.3335472-63-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -69,54 +69,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Stop using GT pointers for register access.
 
+v2:
+ - Clarify comment about manual GSI offset handling.  (Rodrigo)
+
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index dd96dec95b19..4a768b5f9542 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -110,7 +110,7 @@ static void xe_gt_enable_host_l2_vram(struct xe_gt *gt)
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index aa0c29450b4a..5ba4ec229494 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -473,13 +473,15 @@ enum xe_gmdid_type {
  
- 	if (!xe_gt_is_media_type(gt)) {
--		xe_mmio_write32(gt, SCRATCH1LPFC, EN_L3_RW_CCS_CACHE_FLUSH);
-+		xe_mmio_write32(&gt->mmio, SCRATCH1LPFC, EN_L3_RW_CCS_CACHE_FLUSH);
- 		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
- 		reg |= CG_DIS_CNTLBUS;
- 		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
-@@ -247,7 +247,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
- 			else if (entry->clr_bits + 1)
- 				val = (reg.mcr ?
- 				       xe_gt_mcr_unicast_read_any(gt, reg_mcr) :
--				       xe_mmio_read32(gt, reg)) & (~entry->clr_bits);
-+				       xe_mmio_read32(&gt->mmio, reg)) & (~entry->clr_bits);
- 			else
- 				val = 0;
+ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver, u32 *revid)
+ {
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	struct xe_reg gmdid_reg = GMD_ID;
+ 	u32 val;
  
-@@ -442,7 +442,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	 * Stash hardware-reported version.  Since this register does not exist
- 	 * on pre-MTL platforms, reading it there will (correctly) return 0.
- 	 */
--	gt->info.gmdid = xe_mmio_read32(gt, GMD_ID);
-+	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
+ 	KUNIT_STATIC_STUB_REDIRECT(read_gmdid, xe, type, ver, revid);
  
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- 	XE_WARN_ON(err);
-@@ -652,8 +652,8 @@ static int do_gt_reset(struct xe_gt *gt)
+ 	if (IS_SRIOV_VF(xe)) {
++		struct xe_gt *gt = xe_root_mmio_gt(xe);
++
+ 		/*
+ 		 * To get the value of the GMDID register, VFs must obtain it
+ 		 * from the GuC using MMIO communication.
+@@ -515,14 +517,17 @@ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver,
+ 		gt->info.type = XE_GT_TYPE_UNINITIALIZED;
+ 	} else {
+ 		/*
+-		 * We need to apply the GSI offset explicitly here as at this
+-		 * point the xe_gt is not fully uninitialized and only basic
+-		 * access to MMIO registers is possible.
++		 * GMD_ID is a GT register, but at this point in the driver
++		 * init we haven't fully initialized the GT yet so we need to
++		 * read the register with the tile's MMIO accessor.  That means
++		 * we need to apply the GSI offset manually since it won't get
++		 * automatically added as it would if we were using a GT mmio
++		 * accessor.
+ 		 */
+ 		if (type == GMDID_MEDIA)
+ 			gmdid_reg.addr += MEDIA_GT_GSI_OFFSET;
  
- 	xe_gsc_wa_14015076503(gt, true);
+-		val = xe_mmio_read32(gt, gmdid_reg);
++		val = xe_mmio_read32(mmio, gmdid_reg);
+ 	}
  
--	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
--	err = xe_mmio_wait32(gt, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
-+	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
-+	err = xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
- 	if (err)
- 		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
- 			  ERR_PTR(err));
+ 	*ver = REG_FIELD_GET(GMD_ID_ARCH_MASK, val) * 100 + REG_FIELD_GET(GMD_ID_RELEASE_MASK, val);
 -- 
 2.45.2
 
