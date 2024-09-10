@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EF82EDE996
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 01:39:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81904EDE996
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 01:47:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE9C10E05C;
-	Tue, 10 Sep 2024 01:39:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EecDhhmu";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5257010E05C
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 01:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725932397; x=1757468397;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=04fFRC1QajYsXhtCzXfulrVBgcTMuBcE3EIz5t70mbQ=;
- b=EecDhhmuTiGA2GXh6T60hUnnFlQyn+UwUyak9Q+H2LKdufuLMTElYcAZ
- hyf0MenyUSkenf3yXSD98qnn7HnVmtM8u7oHKBHJfdJfSeXPvVhrHS4J7
- nSLad7KrR7tJjgeR+/aKMX9s6mFmb6xZ24RwB4VFqW9t11YZIbR2u6KQZ
- 2fOpU1hptX053HGSb03Yvzei4NZfqKznSQkPTDvFYKvKpCMXZyGflSUTI
- WUgGVu+EUDHPswbPb7X/mHPrzbyLkh2XEzZ/rv9DU1PCcejBTMQ4aD9ss
- bTjRwzEI+FXkor5Xg15DI9G+/1rfANyM+eu6xN7GQVS0+bNi96dnXiKuK g==;
-X-CSE-ConnectionGUID: xMTWiE07R4ai14MR6rxlnA==
-X-CSE-MsgGUID: Y4vnwbzYTZK3WnPjuxvEUA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24801758"
-X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="24801758"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 18:39:57 -0700
-X-CSE-ConnectionGUID: CiSqYYUQRDCX2S8GSzCzyw==
-X-CSE-MsgGUID: tPazu8+0Rd6xMUorUA9Vzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="66907854"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 18:39:56 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH] drm/xe/oa: Insert wmb/sfence before enabling OA
-Date: Mon,  9 Sep 2024 18:39:48 -0700
-Message-ID: <20240910013948.2665987-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E3AA10E21F;
+	Tue, 10 Sep 2024 01:47:33 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83EA810E21F;
+ Tue, 10 Sep 2024 01:47:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5382879628163960961=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/oa=3A_Insert_wmb/sfence_b?=
+ =?utf-8?q?efore_enabling_OA_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Sep 2024 01:47:31 -0000
+Message-ID: <172593285153.978639.17381797650480794000@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240910004313.2664510-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20240910004313.2664510-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,40 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are occasionally seeing that OA Buffer register is not programmed (has
-value 0) when OA is enabled. This means OA has been enabled before it has
-been fully configured. Or, the register write enabling OA has overtaken
-previous OA configuration register writes.
+--===============5382879628163960961==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Therefore, insert a wmb/sfence to preserve OA register write ordering
-before enabling OA.
+== Series Details ==
 
-v2: s/wmb()/xe_device_wmb()/
+Series: drm/xe/oa: Insert wmb/sfence before enabling OA (rev4)
+URL   : https://patchwork.freedesktop.org/series/137816/
+State : success
 
-Fixes: e936f885f1e9 ("drm/xe/oa/uapi: Expose OA stream fd")
-Reported-by: Guy Zadicario <guy.zadicario@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 3 +++
- 1 file changed, 3 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 63286ed8457fa..4fb7aae37a94f 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -440,6 +440,9 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
- 	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
- 		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
- 
-+	/* Flush previous writes to HW before enabling OA */
-+	xe_device_wmb(stream->oa->xe);
-+
- 	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
- }
- 
--- 
-2.41.0
+CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -> xe-pw-137816v4_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-137816v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137816v4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -> xe-pw-137816v4
+
+  IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114
+  xe-pw-137816v4: 137816v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137816v4/index.html
+
+--===============5382879628163960961==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/oa: Insert wmb/sfence before enabling OA (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137816/">https://patchwork.freedesktop.org/series/137816/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137816v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137816v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -&gt; xe-pw-137816v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-137816v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137816v4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -&gt; xe-pw-137816v4</li>
+</ul>
+<p>IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114<br />
+  xe-pw-137816v4: 137816v4</p>
+
+</body>
+</html>
+
+--===============5382879628163960961==--
