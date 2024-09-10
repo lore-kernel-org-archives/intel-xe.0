@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AB14ECE564
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 09:18:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF62ECE582
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 09:27:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E035510E72D;
-	Tue, 10 Sep 2024 09:18:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mE/lp1O0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E1EA10E727;
- Tue, 10 Sep 2024 09:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725959917; x=1757495917;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=9UkaC8fd/i5/41jNEC9Gqj95kajF8R8Bx/+4ld0qNLo=;
- b=mE/lp1O0dLOGWbOtWpail92b2cAPmp/2BCCP42toaXz8JgdPwpI2IuwN
- EBVtZ9YCLHWLg+Kwa2QRGHrbhWh9MuSKcwd/Ur1BCuLNCZ9hEESdhjF2j
- D8Co/phfzgoa/aiVM/o/I4LfQQKrT9xg8m++sr939HRpLPSPblX9nQAul
- 9KLvsyNv5bngI5CrKjJ1Pxm3SXQFLDV3CXFlcxPt+Xi6xPwqJCSDkIEPx
- ovJYbKBIXG5ZNe+QvUKrYOTiUiN1wAodZZDTFwPXXMS2jDEZcZy1unpUV
- o+gdy+9M1pj+g3AYJtmXXX23V/P9GxsiZdSbXHc38D/xfpx06oZNcUSi/ Q==;
-X-CSE-ConnectionGUID: 4l+goSG4TyqgvuH+sycodA==
-X-CSE-MsgGUID: OXh3HRXVQF+2LmpaRJj1fw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24800158"
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="24800158"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 02:18:37 -0700
-X-CSE-ConnectionGUID: ARxh0Ws+SgKeWlR+jJ8IWQ==
-X-CSE-MsgGUID: gp6yfiR3RcSi+Q9sCFxY8w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="71563503"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.43])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 02:18:35 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 2/2] drm/i915/hdcp: Use intel_display in hdcp_gsc
-In-Reply-To: <20240910074712.544007-3-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240910074712.544007-1-suraj.kandpal@intel.com>
- <20240910074712.544007-3-suraj.kandpal@intel.com>
-Date: Tue, 10 Sep 2024 12:18:31 +0300
-Message-ID: <875xr3lvdk.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98AB810E73F;
+	Tue, 10 Sep 2024 09:27:44 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63A9C10E73F;
+ Tue, 10 Sep 2024 09:27:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6945298405061341266=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Add_a_xe=5Fbo_subtest_?=
+ =?utf-8?q?for_shrinking_/_swapping_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Sep 2024 09:27:43 -0000
+Message-ID: <172596046339.979952.15988242324076964137@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,372 +36,205 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Sep 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Use intel_display structure instead of drm_i915_private wherever
-> possible in hdcp_gsc related files.
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  4 +-
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 31 ++++++-------
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  4 +-
->  .../drm/i915/display/intel_hdcp_gsc_message.c | 44 +++++++++----------
->  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 23 +++++-----
->  5 files changed, 54 insertions(+), 52 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 964372f4343b..efc62711274f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2306,7 +2306,7 @@ void intel_hdcp_component_init(struct drm_i915_private *i915)
->  	display->hdcp.comp_added = true;
->  	mutex_unlock(&display->hdcp.hdcp_mutex);
->  	if (intel_hdcp_gsc_cs_required(display))
-> -		ret = intel_hdcp_gsc_init(i915);
-> +		ret = intel_hdcp_gsc_init(display);
->  	else
->  		ret = component_add_typed(display->drm->dev, &i915_hdcp_ops,
->  					  I915_COMPONENT_HDCP);
-> @@ -2569,7 +2569,7 @@ void intel_hdcp_component_fini(struct drm_i915_private *i915)
->  	mutex_unlock(&display->hdcp.hdcp_mutex);
->  
->  	if (intel_hdcp_gsc_cs_required(display))
-> -		intel_hdcp_gsc_fini(i915);
-> +		intel_hdcp_gsc_fini(display);
->  	else
->  		component_del(display->drm->dev, &i915_hdcp_ops);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> index dc5cc1d54c85..55965844d829 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -107,8 +107,9 @@ static const struct i915_hdcp_ops gsc_hdcp_ops = {
->  	.close_hdcp_session = intel_hdcp_gsc_close_session,
->  };
->  
-> -static int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private *i915)
-> +static int intel_hdcp_gsc_hdcp2_init(struct intel_display *display)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_hdcp_gsc_message *hdcp_message;
->  	int ret;
->  
-> @@ -121,19 +122,19 @@ static int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private *i915)
->  	 * NOTE: No need to lock the comp mutex here as it is already
->  	 * going to be taken before this function called
->  	 */
-> -	i915->display.hdcp.hdcp_message = hdcp_message;
-> +	display->hdcp.hdcp_message = hdcp_message;
->  	ret = intel_hdcp_gsc_initialize_message(i915, hdcp_message);
->  
->  	if (ret)
-> -		drm_err(&i915->drm, "Could not initialize hdcp_message\n");
-> +		drm_err(display->drm, "Could not initialize hdcp_message\n");
->  
->  	return ret;
->  }
->  
-> -static void intel_hdcp_gsc_free_message(struct drm_i915_private *i915)
-> +static void intel_hdcp_gsc_free_message(struct intel_display *display)
->  {
->  	struct intel_hdcp_gsc_message *hdcp_message =
-> -					i915->display.hdcp.hdcp_message;
-> +					display->hdcp.hdcp_message;
->  
->  	hdcp_message->hdcp_cmd_in = NULL;
->  	hdcp_message->hdcp_cmd_out = NULL;
-> @@ -141,7 +142,7 @@ static void intel_hdcp_gsc_free_message(struct drm_i915_private *i915)
->  	kfree(hdcp_message);
->  }
->  
-> -int intel_hdcp_gsc_init(struct drm_i915_private *i915)
-> +int intel_hdcp_gsc_init(struct intel_display *display)
->  {
->  	struct i915_hdcp_arbiter *data;
->  	int ret;
-> @@ -150,20 +151,20 @@ int intel_hdcp_gsc_init(struct drm_i915_private *i915)
->  	if (!data)
->  		return -ENOMEM;
->  
-> -	mutex_lock(&i915->display.hdcp.hdcp_mutex);
-> -	i915->display.hdcp.arbiter = data;
-> -	i915->display.hdcp.arbiter->hdcp_dev = i915->drm.dev;
-> -	i915->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
-> -	ret = intel_hdcp_gsc_hdcp2_init(i915);
-> -	mutex_unlock(&i915->display.hdcp.hdcp_mutex);
-> +	mutex_lock(&display->hdcp.hdcp_mutex);
-> +	display->hdcp.arbiter = data;
-> +	display->hdcp.arbiter->hdcp_dev = display->drm->dev;
-> +	display->hdcp.arbiter->ops = &gsc_hdcp_ops;
-> +	ret = intel_hdcp_gsc_hdcp2_init(display);
-> +	mutex_unlock(&display->hdcp.hdcp_mutex);
->  
->  	return ret;
->  }
->  
-> -void intel_hdcp_gsc_fini(struct drm_i915_private *i915)
-> +void intel_hdcp_gsc_fini(struct intel_display *display)
->  {
-> -	intel_hdcp_gsc_free_message(i915);
-> -	kfree(i915->display.hdcp.arbiter);
-> +	intel_hdcp_gsc_free_message(display);
-> +	kfree(display->hdcp.arbiter);
->  }
->  
->  static int intel_gsc_send_sync(struct drm_i915_private *i915,
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> index b6aabd855478..5695a5e4f609 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> @@ -17,8 +17,8 @@ bool intel_hdcp_gsc_cs_required(struct intel_display *display);
->  ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
->  				size_t msg_in_len, u8 *msg_out,
->  				size_t msg_out_len);
-> -int intel_hdcp_gsc_init(struct drm_i915_private *i915);
-> -void intel_hdcp_gsc_fini(struct drm_i915_private *i915);
-> +int intel_hdcp_gsc_init(struct intel_display *display);
-> +void intel_hdcp_gsc_fini(struct intel_display *display);
->  bool intel_hdcp_gsc_check_status(struct intel_display *display);
->  
->  #endif /* __INTEL_HDCP_GCS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> index 35bdb532bbb3..129104fa9b16 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> @@ -46,12 +46,12 @@ intel_hdcp_gsc_initiate_session(struct device *dev, struct hdcp_port_data *data,
->  				       (u8 *)&session_init_out,
->  				       sizeof(session_init_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (session_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
->  			    WIRED_INITIATE_HDCP2_SESSION,
->  			    session_init_out.header.status);
->  		return -EIO;
-> @@ -108,12 +108,12 @@ intel_hdcp_gsc_verify_receiver_cert_prepare_km(struct device *dev,
->  				       (u8 *)&verify_rxcert_out,
->  				       sizeof(verify_rxcert_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed: %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed: %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (verify_rxcert_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
->  			    WIRED_VERIFY_RECEIVER_CERT,
->  			    verify_rxcert_out.header.status);
->  		return -EIO;
-> @@ -171,12 +171,12 @@ intel_hdcp_gsc_verify_hprime(struct device *dev, struct hdcp_port_data *data,
->  				       (u8 *)&send_hprime_out,
->  				       sizeof(send_hprime_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (send_hprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
->  			    WIRED_AKE_SEND_HPRIME, send_hprime_out.header.status);
->  		return -EIO;
->  	}
-> @@ -222,12 +222,12 @@ intel_hdcp_gsc_store_pairing_info(struct device *dev, struct hdcp_port_data *dat
->  				       (u8 *)&pairing_info_out,
->  				       sizeof(pairing_info_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (pairing_info_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. Status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. Status: 0x%X\n",
->  			    WIRED_AKE_SEND_PAIRING_INFO,
->  			    pairing_info_out.header.status);
->  		return -EIO;
-> @@ -269,12 +269,12 @@ intel_hdcp_gsc_initiate_locality_check(struct device *dev,
->  	byte = intel_hdcp_gsc_msg_send(i915, (u8 *)&lc_init_in, sizeof(lc_init_in),
->  				       (u8 *)&lc_init_out, sizeof(lc_init_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (lc_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. status: 0x%X\n",
->  			    WIRED_INIT_LOCALITY_CHECK, lc_init_out.header.status);
->  		return -EIO;
->  	}
-> @@ -323,12 +323,12 @@ intel_hdcp_gsc_verify_lprime(struct device *dev, struct hdcp_port_data *data,
->  				       (u8 *)&verify_lprime_out,
->  				       sizeof(verify_lprime_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (verify_lprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
->  			    WIRED_VALIDATE_LOCALITY,
->  			    verify_lprime_out.header.status);
->  		return -EIO;
-> @@ -369,12 +369,12 @@ int intel_hdcp_gsc_get_session_key(struct device *dev,
->  	byte = intel_hdcp_gsc_msg_send(i915, (u8 *)&get_skey_in, sizeof(get_skey_in),
->  				       (u8 *)&get_skey_out, sizeof(get_skey_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (get_skey_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
->  			    WIRED_GET_SESSION_KEY, get_skey_out.header.status);
->  		return -EIO;
->  	}
-> @@ -435,12 +435,12 @@ intel_hdcp_gsc_repeater_check_flow_prepare_ack(struct device *dev,
->  				       (u8 *)&verify_repeater_out,
->  				       sizeof(verify_repeater_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (verify_repeater_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
->  			    WIRED_VERIFY_REPEATER,
->  			    verify_repeater_out.header.status);
->  		return -EIO;
-> @@ -504,12 +504,12 @@ int intel_hdcp_gsc_verify_mprime(struct device *dev,
->  				       sizeof(verify_mprime_out));
->  	kfree(verify_mprime_in);
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (verify_mprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
->  			    WIRED_REPEATER_AUTH_STREAM_REQ,
->  			    verify_mprime_out.header.status);
->  		return -EIO;
-> @@ -552,12 +552,12 @@ int intel_hdcp_gsc_enable_authentication(struct device *dev,
->  				       (u8 *)&enable_auth_out,
->  				       sizeof(enable_auth_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (enable_auth_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
->  			    WIRED_ENABLE_AUTH, enable_auth_out.header.status);
->  		return -EIO;
->  	}
-> @@ -599,12 +599,12 @@ intel_hdcp_gsc_close_session(struct device *dev, struct hdcp_port_data *data)
->  				       (u8 *)&session_close_out,
->  				       sizeof(session_close_out));
->  	if (byte < 0) {
-> -		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
->  		return byte;
->  	}
->  
->  	if (session_close_out.header.status != FW_HDCP_STATUS_SUCCESS) {
-> -		drm_dbg_kms(&i915->drm, "Session Close Failed. status: 0x%X\n",
-> +		drm_dbg_kms(display->drm, "Session Close Failed. status: 0x%X\n",
->  			    session_close_out.header.status);
->  		return -EIO;
->  	}
-> diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> index 5badf90b26de..437839b8c847 100644
-> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> @@ -138,42 +138,43 @@ static const struct i915_hdcp_ops gsc_hdcp_ops = {
->  	.close_hdcp_session = intel_hdcp_gsc_close_session,
->  };
->  
-> -int intel_hdcp_gsc_init(struct xe_device *xe)
-> +int intel_hdcp_gsc_init(struct intel_display *display)
->  {
->  	struct i915_hdcp_arbiter *data;
-> +	struct xe_device *xe = to_xe_device(display->drm);
->  	int ret;
->  
->  	data = kzalloc(sizeof(*data), GFP_KERNEL);
->  	if (!data)
->  		return -ENOMEM;
->  
-> -	mutex_lock(&xe->display.hdcp.hdcp_mutex);
-> -	xe->display.hdcp.arbiter = data;
-> -	xe->display.hdcp.arbiter->hdcp_dev = xe->drm.dev;
-> -	xe->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
-> +	mutex_lock(&display->hdcp.hdcp_mutex);
-> +	display->hdcp.arbiter = data;
-> +	display->hdcp.arbiter->hdcp_dev = display->drm->dev;
-> +	display->hdcp.arbiter->ops = &gsc_hdcp_ops;
->  	ret = intel_hdcp_gsc_hdcp2_init(xe);
+--===============6945298405061341266==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This needs to accept display as well. Or are you going to do the full
-xe_hdcp_gsc.c conversion in a separate patch?
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe: Add a xe_bo subtest for shrinking / swapping (rev3)
+URL   : https://patchwork.freedesktop.org/series/138262/
+State : failure
 
->  	if (ret)
->  		kfree(data);
->  
-> -	mutex_unlock(&xe->display.hdcp.hdcp_mutex);
-> +	mutex_unlock(&display->hdcp.hdcp_mutex);
->  
->  	return ret;
->  }
->  
-> -void intel_hdcp_gsc_fini(struct xe_device *xe)
-> +void intel_hdcp_gsc_fini(struct intel_display *display)
->  {
->  	struct intel_hdcp_gsc_message *hdcp_message =
-> -					xe->display.hdcp.hdcp_message;
-> -	struct i915_hdcp_arbiter *arb = xe->display.hdcp.arbiter;
-> +					display->hdcp.hdcp_message;
-> +	struct i915_hdcp_arbiter *arb = display->hdcp.arbiter;
->  
->  	if (hdcp_message) {
->  		xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
->  		kfree(hdcp_message);
-> -		xe->display.hdcp.hdcp_message = NULL;
-> +		display->hdcp.hdcp_message = NULL;
->  	}
->  
->  	kfree(arb);
-> -	xe->display.hdcp.arbiter = NULL;
-> +	display->hdcp.arbiter = NULL;
->  }
->  
->  static int xe_gsc_send_sync(struct xe_device *xe,
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -> xe-pw-138262v3_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-138262v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-138262v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-138262v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit (NEW):
+    - bat-atsm-2:         NOTRUN -> [SKIP][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT and xe-pw-138262v3_BAT:
+
+### New IGT tests (1) ###
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.38, 43.89] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-138262v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][2] ([Intel XE#2229] / [Intel XE#455]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+    - bat-adlp-7:         [SKIP][4] ([Intel XE#2229] / [Intel XE#455]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-7/igt@xe_live_ktest@xe_bo.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-7/igt@xe_live_ktest@xe_bo.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-adlp-7:         [SKIP][6] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][7] ([Intel XE#2229])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+    - bat-adlp-vf:        [SKIP][8] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][9] ([Intel XE#2229])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -> xe-pw-138262v3
+
+  IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114
+  xe-pw-138262v3: 138262v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/index.html
+
+--===============6945298405061341266==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add a xe_bo subtest for shrinking / swapping (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138262/">https://patchwork.freedesktop.org/series/138262/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT -&gt; xe-pw-138262v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-138262v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-138262v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-138262v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit (NEW):<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114_BAT and xe-pw-138262v3_BAT:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>Statuses : 7 pass(s) 1 skip(s)</li>
+<li>Exec time: [0.38, 43.89] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138262v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">PASS</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-7/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-7/igt@xe_live_ktest@xe_bo.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138262v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114 -&gt; xe-pw-138262v3</li>
+</ul>
+<p>IGT_8011: 26dca87f1252b7f6f0c0f833050256f0244d61e9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1918-40360ec4ceee7e8c16a187299cadf3e6babc8114: 40360ec4ceee7e8c16a187299cadf3e6babc8114<br />
+  xe-pw-138262v3: 138262v3</p>
+
+</body>
+</html>
+
+--===============6945298405061341266==--
