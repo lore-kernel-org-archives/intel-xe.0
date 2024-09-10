@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5720BEE01F9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62C67EE01FC
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Sep 2024 23:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 810F210E94A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D0E10E94B;
 	Tue, 10 Sep 2024 23:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXCcPPL2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcOSUqmT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B8EB10E941
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3895D10E93A
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Sep 2024 23:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726012049; x=1757548049;
+ t=1726012047; x=1757548047;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J8Li877WQRc899X/2VTeVMa8q2x8w5VcjCO0HDF/trQ=;
- b=OXCcPPL2lbx/kyY/OXttPEChA6vNFTZpjOkcJdvrcuydzYHVrJ7K48ev
- eMHMMsULWhhQybcYKvDApsd0bVdFgAHW2kdZjmxtD3LQOlI4KKsgLGDeL
- B+4vhM/GggWNEmBPesLI308E805/Z5b/vJLZ66akld0+x5LE/eAcoL3k4
- yh5DTSsrD7VENyAMfhE8XmGKUuK8ipP4Ar8eL5RuxBBxOqrxRrD14Tqna
- q2TiAm2iw9G56yRHS/lGSfMfsE69qHDypMLpc0cU3z1MM025Jv1dhPz1i
- ogutwDReoEWsFNTtlQLRxGm7m8iKaQppny2/9f9vyRhUR7818Q1dQQqKy Q==;
-X-CSE-ConnectionGUID: ccV2CdU0RUe+tM1xKVMqaw==
-X-CSE-MsgGUID: T/XotF2iTAOc+/lJEAO7gg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144326"
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144326"
+ bh=r4kjA6wi5yyLsz1Yd1twnnsFnbdH4DW6vkr31lQRjP4=;
+ b=hcOSUqmTAxMP8Yq42kT7SPnXpSTcTCk2mc9h+wOXk3pXGdr891u2Jomq
+ BTwRtoqufuJmLhZiVqHTABC/WYdDD/Clf76EVnvXKALnxF7DDrz3akbZv
+ JHExLdsMiHXc7+eTlooD8jM1dhLLQ1oZMzSstS/uA2VD6Hj54Y2L8xl+7
+ //WswSKKVo4XkrBnA1WUVqIIM2wLScqrU38GXMhu/aOqm/iuWX1OekjCC
+ 9SGuTyKN1Z8eLwKFAM3biVwTc2MUNnciir/EAZsOCw6FGRZYrhaujZ2uP
+ iqLmxbjoYNzx4ZxtQn0864cH3kyaNUL9IfCLGFCQAXReqklfOBLLgPAyo A==;
+X-CSE-ConnectionGUID: c6yj3ZbtQiC0IRRnTsm7fg==
+X-CSE-MsgGUID: zAFei9Q5SeCWA7wY03y+Mg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36144303"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="36144303"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:29 -0700
-X-CSE-ConnectionGUID: UEKmsHwASZeVvLl5Kr2PeA==
-X-CSE-MsgGUID: Lc8bhuM1Qzu9+N3r5q+b0Q==
+ 10 Sep 2024 16:47:27 -0700
+X-CSE-ConnectionGUID: UeeKcfVzQiyOgglMspcuBw==
+X-CSE-MsgGUID: ly3p70tiTRW0Df0ClgoXfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989650"
+X-IronPort-AV: E=Sophos;i="6.10,218,1719903600"; d="scan'208";a="71989572"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 16:47:30 -0700
+ 10 Sep 2024 16:47:27 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 34/43] drm/xe/gt_clock: Convert register access to use
- xe_mmio
-Date: Tue, 10 Sep 2024 16:47:54 -0700
-Message-ID: <20240910234719.3335472-79-matthew.d.roper@intel.com>
+	Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v3 12/43] drm/xe/hwmon: Convert register access to use xe_mmio
+Date: Tue, 10 Sep 2024 16:47:32 -0700
+Message-ID: <20240910234719.3335472-57-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240910234719.3335472-45-matthew.d.roper@intel.com>
 References: <20240910234719.3335472-45-matthew.d.roper@intel.com>
@@ -70,43 +69,88 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Stop using GT pointers for register access.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_clock.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 86c2d62b4bdc..cc2ae159298e 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -17,7 +17,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index aa11728e7e79..fde56dad3ab7 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -149,7 +149,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *v
+ 	u64 reg_val, min, max;
+ 	struct xe_device *xe = hwmon->xe;
+ 	struct xe_reg rapl_limit, pkg_power_sku;
+-	struct xe_gt *mmio = xe_root_mmio_gt(xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
  
- static u32 read_reference_ts_freq(struct xe_gt *gt)
+ 	rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
+ 	pkg_power_sku = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
+@@ -190,7 +190,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *v
+ 
+ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long value)
  {
--	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE);
-+	u32 ts_override = xe_mmio_read32(&gt->mmio, TIMESTAMP_OVERRIDE);
- 	u32 base_freq, frac_freq;
+-	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	int ret = 0;
+ 	u64 reg_val;
+ 	struct xe_reg rapl_limit;
+@@ -222,7 +222,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long va
  
- 	base_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK,
-@@ -57,7 +57,7 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
- 
- int xe_gt_clock_init(struct xe_gt *gt)
+ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, long *value)
  {
--	u32 ctc_reg = xe_mmio_read32(gt, CTC_MODE);
-+	u32 ctc_reg = xe_mmio_read32(&gt->mmio, CTC_MODE);
- 	u32 freq = 0;
+-	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	struct xe_reg reg = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
+ 	u64 reg_val;
  
- 	/* Assuming gen11+ so assert this assumption is correct */
-@@ -66,7 +66,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
- 	if (ctc_reg & CTC_SOURCE_DIVIDE_LOGIC) {
- 		freq = read_reference_ts_freq(gt);
- 	} else {
--		u32 c0 = xe_mmio_read32(gt, RPM_CONFIG0);
-+		u32 c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+@@ -259,7 +259,7 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, l
+ static void
+ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+ {
+-	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
+ 	u64 reg_val;
  
- 		freq = get_crystal_clock_freq(c0);
+@@ -282,7 +282,7 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+ 				 char *buf)
+ {
+ 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+-	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	u32 x, y, x_w = 2; /* 2 bits */
+ 	u64 r, tau4, out;
+ 	int sensor_index = to_sensor_dev_attr(attr)->index;
+@@ -323,7 +323,7 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ 				  const char *buf, size_t count)
+ {
+ 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+-	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	u32 x, y, rxy, x_w = 2; /* 2 bits */
+ 	u64 tau4, r, max_win;
+ 	unsigned long val;
+@@ -498,7 +498,7 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
  
+ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *value)
+ {
+-	struct xe_gt *mmio = xe_root_mmio_gt(hwmon->xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	u64 reg_val;
+ 
+ 	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS, channel));
+@@ -781,7 +781,7 @@ static const struct hwmon_chip_info hwmon_chip_info = {
+ static void
+ xe_hwmon_get_preregistration_info(struct xe_device *xe)
+ {
+-	struct xe_gt *mmio = xe_root_mmio_gt(xe);
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	struct xe_hwmon *hwmon = xe->hwmon;
+ 	long energy;
+ 	u64 val_sku_unit = 0;
 -- 
 2.45.2
 
