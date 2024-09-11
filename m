@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A5BEE4990
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 10:23:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71BA1EE498D
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 10:25:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC0D010E783;
-	Wed, 11 Sep 2024 10:23:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MdEdfs44";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B99EF10E749;
- Wed, 11 Sep 2024 10:23:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726050212; x=1757586212;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=5K4tAcFBHvPTFN8Wakkvp/Wjtxx7ZDotyHbB7iJQI5E=;
- b=MdEdfs44InGSpskK7hkFDw3HvkRymI0F6yDIg03t6B1+2eE267Jt1Ev6
- rKg/izDhq5ObJsnbdvQVLvCtmL6kEv/ThZWzc8z0byYZGhoebw1V8hFuS
- liTexmSJpTloEViBPTQSnRVC39qsblh0FqmSvH9+9rtlcrz5WYxni4fqU
- CYxU5feW0IJGdBgZi52HHZ+0gJVKkdTdLc+3hQocmNLtYL9kazSI/w3gL
- RoBS1AmkEB0tvVlKo6iVcuUM/X+A7AdyQF8V38id7nOxeYN2Ay6cKn7tK
- Kt+S5csxXWNY1lbCASTQWbqR5VdhK0yEtJrGdoOLOYXYdavHrZhIj2i9P g==;
-X-CSE-ConnectionGUID: as9V3/LhQwyAsFKbyVSYIA==
-X-CSE-MsgGUID: QI7lxJ8eTMaFQBKsLhmXpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24986952"
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="24986952"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 03:23:32 -0700
-X-CSE-ConnectionGUID: CK2HXmxAT3KuAAFMtdSU6w==
-X-CSE-MsgGUID: 2zqkdFhVQKGTCdjHtZvtsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="104781745"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.181])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 03:23:27 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Marc Gonzalez <mgonzalez@freebox.fr>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Arnaud Vrac <avrac@freebox.fr>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>, Rob
- Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten
- <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 7/8] drm/msmi: annotate pll_cmp_to_fdata() with
- __maybe_unused
-In-Reply-To: <19ac4e25-7609-4d92-8687-585c6ea00c79@freebox.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1725962479.git.jani.nikula@intel.com>
- <3553b1db35665e6ff08592e35eb438a574d1ad65.1725962479.git.jani.nikula@intel.com>
- <4ag2efwiizn5bnskauekqwfhgl4gioafcvetpvsmbdgg37bdja@3g6tt4rlfwcb>
- <19ac4e25-7609-4d92-8687-585c6ea00c79@freebox.fr>
-Date: Wed, 11 Sep 2024 13:23:23 +0300
-Message-ID: <878qvyjxpg.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9B6C10E783;
+	Wed, 11 Sep 2024 10:25:51 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D6D10E783;
+ Wed, 11 Sep 2024 10:25:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pciid=3A_Add_?=
+ =?utf-8?q?new_PCI_id_for_ARL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Sep 2024 10:25:50 -0000
+Message-ID: <172605035054.984119.14773087088625245524@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240911092657.2348978-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20240911092657.2348978-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,71 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Sep 2024, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
-> On 10/09/2024 16:51, Dmitry Baryshkov wrote:
->
->> On Tue, Sep 10, 2024 at 01:03:43PM GMT, Jani Nikula wrote:
->>
->>> Building with clang and and W=1 leads to warning about unused
->>> pll_cmp_to_fdata(). Fix by annotating it with __maybe_unused.
->>>
->>> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
->>> inline functions for W=1 build").
->>>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> I think this function can be dropped. Marc, your call, as an author of
->> the patch?
->
-> ( Why is the patch prefixed "drm/msmi", is "msmi" a typo? )
+== Series Details ==
 
-Whoops, a typo.
+Series: drm/xe/pciid: Add new PCI id for ARL
+URL   : https://patchwork.freedesktop.org/series/138509/
+State : success
 
->
-> -> For the record, Arnaud is the driver's author.
->
-> pll_cmp_to_fdata() was used in hdmi_8998_pll_recalc_rate()
-> in a commented code block which was later removed.
->
-> Thus, yes, it is safe to completely delete the unused function.
-> I'm surprised gcc didn't catch that...
+== Summary ==
 
-Thanks, I'll change this to drop the function.
-
-GCC doesn't catch unused static inlines, while Clang does.
-
-BR,
-Jani.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d597ef70ea92 drm-tip: 2024y-09m-11d-09h-54m-14s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/pciid: Add new PCI id for ARL
 
 
->
-> Regards
->
->
->>> ---
->>>  drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
->>> index 0e3a2b16a2ce..c0bf1f35539e 100644
->>> --- a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
->>> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
->>> @@ -153,7 +153,7 @@ static inline u32 pll_get_pll_cmp(u64 fdata, unsigned long ref_clk)
->>>  	return dividend - 1;
->>>  }
->>>  
->>> -static inline u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
->>> +static inline __maybe_unused u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
->>>  {
->>>  	u64 fdata = ((u64)pll_cmp) * ref_clk * 10;
->>>  
->>> -- 
->>> 2.39.2
->
->
-
--- 
-Jani Nikula, Intel
