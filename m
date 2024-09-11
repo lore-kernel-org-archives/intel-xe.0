@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86F28EE49BC
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 15:55:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F6CCEE0213
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 15:55:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B60C10EA3C;
-	Wed, 11 Sep 2024 15:55:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB36D10EA3E;
+	Wed, 11 Sep 2024 15:55:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W2mn4+jj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OshzWfVa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEDC810EA39
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Sep 2024 15:55:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92BB010EA3A
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Sep 2024 15:55:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726070151; x=1757606151;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=D/GbrL05OJHTIBBaWMmIQ5I4DXUAG07CD3m49MNb4yY=;
- b=W2mn4+jjKZQG15r9Fr0phax6HByKPCPds1I9UrUJtAtcjhpndc4mNj5l
- emZ7EpHqDIe5PIsPYp/tRQg5Ge9slvY8E0jbpKFGRY31qdt2zmV8x/une
- fplPGiy9zRuE4N/CwLemu3HReilDTA65rvTsoRpzNPNPpbhyMMPcZ1aqK
- RfTR9LX4ekx3OSOAne1sov4/4mVvSNhE6jJW8Gp/26G0S3W1uIOKNWtP3
- 2yM1aOeiIL1eH6PawQTyceFBypiFmk3eXNLJqyZDnyxwHitJl+Y4CGAII
- oFz85yJcrl5nAZXkH3wunjsg5D+buvjMVWnSgr15d6EuUs5dKSGL7zaV3 g==;
-X-CSE-ConnectionGUID: 3vERPGEhROuJEX8DlIvezA==
-X-CSE-MsgGUID: o1li+hKsRjqngR43wjipNA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="24703332"
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="24703332"
+ t=1726070155; x=1757606155;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=d9I4hs2RGNU1wEtnB1Vsy7zguFyf2+GDIVPWdJtcovI=;
+ b=OshzWfVawRpFFeI6xr7UYDRYgu+5guaQ6XSVXyPdCtQh3+MZs1oGBRKR
+ rHCOyjq0YBuGKivbjvL4mCd1UJwdAn/Y13fxlheKlWvp6pN17U5ukZDCQ
+ wO12/yfV5Dg+B2wMdyFtx1pFL+drwebVXpijcQwcWTg9Hpbf1LmTyObJY
+ u5UIi1P0FCSXVWVSWMBv1cLy5dKz4+efNS7PjcbcBy3dU/FsCBdoO1UQ+
+ m0XaOGleIPeoWw2Uzhoeu8orLuY/5qz4Z6DjwRk3upTws+0bgVhD56sQn
+ Xbz+wFRSQyV0CDbJ4i+M56sMkporrDE7mvRJ9i2EtXEHYsuQ148AhBnIc Q==;
+X-CSE-ConnectionGUID: e2IUULxYQE6PCvnUbALaXw==
+X-CSE-MsgGUID: 8d/ck/rCRDetqOBHe1ZSyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="24703348"
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="24703348"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 08:55:49 -0700
-X-CSE-ConnectionGUID: 7az0EBxMQbargoKjFD0Zbg==
-X-CSE-MsgGUID: Njip1YpIQXqFD5PJpe9Kgg==
+ 11 Sep 2024 08:55:55 -0700
+X-CSE-ConnectionGUID: T5XUHCsQSSGbDtdwHpKfsQ==
+X-CSE-MsgGUID: 9Mb7/9gVS9ePdc0L1RQXgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="67257815"
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="67257855"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.102])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 08:55:48 -0700
+ 11 Sep 2024 08:55:53 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- stable@vger.kernel.org, Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 1/4] drm/xe/client: fix deadlock in show_meminfo()
-Date: Wed, 11 Sep 2024 16:55:27 +0100
-Message-ID: <20240911155527.178910-5-matthew.auld@intel.com>
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 4/4] drm/xe/bo: add some annotations in bo_put()
+Date: Wed, 11 Sep 2024 16:55:30 +0100
+Message-ID: <20240911155527.178910-8-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20240911155527.178910-5-matthew.auld@intel.com>
+References: <20240911155527.178910-5-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,55 +71,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a real deadlock as well as sleeping in atomic() bug in here, if
-the bo put happens to be the last ref, since bo destruction wants to
-grab the same spinlock and sleeping locks.  Fix that by dropping the ref
-using xe_bo_put_deferred(), and moving the final commit outside of the
-lock. Dropping the lock around the put is tricky since the bo can go
-out of scope and delete itself from the list, making it difficult to
-navigate to the next list entry.
+If the put() triggers bo destroy then there is at least one potential
+sleeping lock. Also annotate bos_lock and ggtt lock.
 
-Fixes: 0845233388f8 ("drm/xe: Implement fdinfo memory stats printing")
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2727
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h |  6 +-----
+ 2 files changed, 15 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index e64f4b645e2e..badfa045ead8 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -196,6 +196,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- 	struct xe_drm_client *client;
- 	struct drm_gem_object *obj;
- 	struct xe_bo *bo;
-+	LLIST_HEAD(deferred);
- 	unsigned int id;
- 	u32 mem_type;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index a4dadd5a424c..5f2f1ec46b57 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2350,6 +2350,20 @@ void xe_bo_put_commit(struct llist_head *deferred)
+ 		drm_gem_object_free(&bo->ttm.base.refcount);
+ }
  
-@@ -215,11 +216,14 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- 	list_for_each_entry(bo, &client->bos_list, client_link) {
- 		if (!kref_get_unless_zero(&bo->ttm.base.refcount))
- 			continue;
++void xe_bo_put(struct xe_bo *bo)
++{
++	might_sleep();
++	if (bo) {
++#ifdef CONFIG_PROC_FS
++		if (bo->client)
++			might_lock(&bo->client->bos_lock);
++#endif
++		if (bo->ggtt_node && bo->ggtt_node->ggtt)
++			might_lock(&bo->ggtt_node->ggtt->lock);
++		drm_gem_object_put(&bo->ttm.base);
++	}
++}
 +
- 		bo_meminfo(bo, stats);
--		xe_bo_put(bo);
-+		xe_bo_put_deferred(bo, &deferred);
- 	}
- 	spin_unlock(&client->bos_lock);
+ /**
+  * xe_bo_dumb_create - Create a dumb bo as backing for a fb
+  * @file_priv: ...
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index dbfb3209615d..6e4be52306df 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -126,11 +126,7 @@ static inline struct xe_bo *xe_bo_get(struct xe_bo *bo)
+ 	return bo;
+ }
  
-+	xe_bo_put_commit(&deferred);
-+
- 	for (mem_type = XE_PL_SYSTEM; mem_type < TTM_NUM_MEM_TYPES; ++mem_type) {
- 		if (!xe_mem_type_to_name[mem_type])
- 			continue;
+-static inline void xe_bo_put(struct xe_bo *bo)
+-{
+-	if (bo)
+-		drm_gem_object_put(&bo->ttm.base);
+-}
++void xe_bo_put(struct xe_bo *bo);
+ 
+ static inline void __xe_bo_unset_bulk_move(struct xe_bo *bo)
+ {
 -- 
 2.46.0
 
