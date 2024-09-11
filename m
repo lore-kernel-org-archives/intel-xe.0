@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92519EE49BC
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 15:29:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8C80EE0213
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 15:30:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33A6610E1B8;
-	Wed, 11 Sep 2024 15:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D30E10E778;
+	Wed, 11 Sep 2024 15:30:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yw1qX9/E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hovs02vD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA74C10E1B8
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Sep 2024 15:29:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C63210E778
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Sep 2024 15:29:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726068597; x=1757604597;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ALbjLirQ3Tu+aiEpJcyBe/OTcYpgkSp/gBGQcjLsNTY=;
- b=Yw1qX9/E1HIGsVnTwM+OrtLtBR8yrS0k8p9OSjDZpaLiwnSkq61JrohU
- 63uMjh5b9rsvwHsLW9sEYQByihzbRzxR6tOrwt/+zJ5cfe8lzM+xOdniq
- zeA0DsGLNF6W6MMpgm3hnZW3roCVY9l/q0pNzGuzh3twrRGD2gteW1RBR
- TklFxS7p/M0xtMpRoL3skqxd324EdzF4p38vQvllGAA/fjgDEoAqCRL+K
- 3puKciT8AD4RuzbPVaBOMxLV+FhtsJwTBM/f3V9Dd1x8bL45O3qoPwz3h
- lgl3virpwgPKbh0rOLOa6212XMUKcIqd8oTkNg5DCo0w8ipByJRUgYvSb A==;
-X-CSE-ConnectionGUID: CVl6G53eRdCDCQc36ughPA==
-X-CSE-MsgGUID: uVUVkDsfS1u0AcnQJXIPRQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="36014220"
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="36014220"
+ t=1726068599; x=1757604599;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ySsUZ3dHdLyMqd1aPPY8pOGjklBgtgc0q96OHBPnR+g=;
+ b=Hovs02vD23UN8Za8HO36ERIAE4a1TCCX+Lq8nLVdisHYUer1MYBn8xmy
+ 9b4VjOrhByZ7UKzGf1KXne5LIla6DkKEc0hpfHZw/aYzKrjiKSFn681ka
+ ovGI2lR0ba/LrD27db6MINRIAh8ZXifDdt5mKD5t+83rB9BZ98EVuOcdZ
+ 64SM3BKXBDP0E3HL0egwDKFfB+Z1tHtFQ5EWsOqPXgaH22k+UtLrVYwVc
+ YbvBfqW1xaj6vZFNpvEGCtErsFwp2kn29hwzczM+xpZLeJfqNBVbV8uIu
+ U3PlQZfepCZEdo+y8cACu3NEsJsfUvOXzF79zr9putuF7Q/YoIdlLEYyR A==;
+X-CSE-ConnectionGUID: y4kVUz5tTpa2lCza2MhZIQ==
+X-CSE-MsgGUID: wd9EtpGxRBetrQti13S/3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="36014222"
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="36014222"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 08:29:57 -0700
-X-CSE-ConnectionGUID: r4wTdVrFTlKMVBg1s1YAYw==
-X-CSE-MsgGUID: RdQZ269KTISM+yGk86L0tg==
+ 11 Sep 2024 08:29:58 -0700
+X-CSE-ConnectionGUID: amMiF05zQ+OMNbgglJjasw==
+X-CSE-MsgGUID: pAGepPkJRXeYuwD9JWWwUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="72182604"
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="72182612"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa003.jf.intel.com with ESMTP; 11 Sep 2024 08:29:55 -0700
+ by orviesa003.jf.intel.com with ESMTP; 11 Sep 2024 08:29:57 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, rodrigo.vivi@intel.com, imre.deak@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 0/2] Move some functions out of runtime sus/resume 
-Date: Wed, 11 Sep 2024 20:57:22 +0530
-Message-ID: <20240911152724.693560-1-suraj.kandpal@intel.com>
+Subject: [PATCH 1/2] drm/xe/display: Do not suspend resume dp mst during
+ runtime
+Date: Wed, 11 Sep 2024 20:57:23 +0530
+Message-ID: <20240911152724.693560-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240911152724.693560-1-suraj.kandpal@intel.com>
+References: <20240911152724.693560-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,90 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch series aims to fix two different lock_dep splats that
-we see by moving intel_fbdev_set_suspend and intel_dp_mst_suspend/
-resume functions out of xe_pm_runtime_suspend/resume functions
-
-The splats are 
-
-1)
-<4> [76.011119] kworker/4:2/192 is trying to acquire lock:
-<4> [76.011122] ffff8881120b3210 (&mgr->lock#2){+.+.}-{3:3}, at:
-drm_dp_mst_topology_mgr_suspend+0x33/0xd0 [drm_display_helper]
-<4> [76.011142] 
-but task is already holding lock:
-<4> [76.011144] ffffffffa0bc3420
-(xe_pm_runtime_lockdep_map){+.+.}-{0:0}, at:
-xe_pm_runtime_suspend+0x51/0x3f0 [xe]
-<4> [76.011223] 
-which lock already depends on the new lock.
-<4> [76.011226] 
-the existing dependency chain (in reverse order) is:
-<4> [76.011229] 
--> #2 (xe_pm_runtime_lockdep_map){+.+.}-{0:0}:
-<4> [76.011233]        pm_runtime_lockdep_prime+0x2f/0x50 [xe]
-<4> [76.011306]        xe_pm_runtime_resume_and_get+0x29/0x90 [xe]
-<4> [76.011377]        intel_display_power_get+0x24/0x70 [xe]
-<4> [76.011466]        intel_digital_port_connected_locked+0x4c/0xf0
-[xe]
-<4> [76.011551]        intel_dp_aux_xfer+0xb8/0x7c0 [xe]
-<4> [76.011633]        intel_dp_aux_transfer+0x166/0x2e0 [xe]
-<4> [76.011715]        drm_dp_dpcd_access+0x87/0x150
-[drm_display_helper]
-<4> [76.011726]        drm_dp_dpcd_probe+0x3d/0xf0 [drm_display_helper]
-<4> [76.011737]        drm_dp_dpcd_read+0xdd/0x130 [drm_display_helper]
-<4> [76.011747]        intel_dp_get_colorimetry_status+0x3a/0x70 [xe]
-<4> [76.011886]        intel_dp_init_connector+0x4ff/0x1030 [xe]
-<4> [76.011969]        intel_ddi_init+0xc5b/0x1030 [xe]
-<4> [76.012058]        intel_bios_for_each_encoder+0x36/0x60 [xe]
-<4> [76.012145]        intel_setup_outputs+0x201/0x460 [xe]
-<4> [76.012233]        intel_display_driver_probe_nogem+0x155/0x1e0 [xe]
-<4> [76.012320]        xe_display_init_noaccel+0x27/0x70 [xe]
-
-2)
- kworker/0:4/198 is trying to acquire lock:
-<4> [77.185594] ffffffff83398500 (console_lock){+.+.}-{0:0}, at:
-intel_fbdev_set_suspend+0x169/0x1f0 [xe]
-<4> [77.185947] 
-but task is already holding lock:
-<4> [77.185949] ffffffffa09e9460
-(xe_pm_runtime_lockdep_map){+.+.}-{0:0}, at:
-xe_pm_runtime_suspend+0x51/0x3f0 [xe]
-<4> [77.186262] 
-which lock already depends on the new lock.
-<4> [77.186264] 
-the existing dependency chain (in reverse order) is:
-<4> [77.186266] 
--> #2 (xe_pm_runtime_lockdep_map){+.+.}-{0:0}:
-<4> [77.186276]        pm_runtime_lockdep_prime+0x2f/0x50 [xe]
-<4> [77.186572]        xe_pm_runtime_resume_and_get+0x29/0x90 [xe]
-<4> [77.186867]        intelfb_create+0x150/0x390 [xe]
-<4> [77.187197]
-__drm_fb_helper_initial_config_and_unlock+0x31c/0x5e0 [drm_kms_helper]
-<4> [77.187243]        drm_fb_helper_initial_config+0x3d/0x50
-[drm_kms_helper]
-<4> [77.187274]        intel_fbdev_client_hotplug+0xb1/0x140 [xe]
-<4> [77.187603]        drm_client_register+0x87/0xd0 [drm]
-<4> [77.187704]        intel_fbdev_setup+0x51c/0x640 [xe]
-<4> [77.188033]        intel_display_driver_register+0xb7/0xf0 [xe]
-<4> [77.188438]        xe_display_register+0x21/0x40 [xe]
-<4> [77.188809]        xe_device_probe+0xa8d/0xbf0 [xe]
-<4> [77.189035]        xe_pci_probe+0x333/0x5b0 [xe]
-<4> [77.189330]        local_pci_probe+0x48/0xb0
-<4> [77.189341]        pci_device_probe+0xc8/0x280
-<4> [77.189351]        really_probe+0xf8/0x390
-<4> [77.189362]        __driver_probe_device+0x8a/0x170
-<4> [77.189373]        driver_probe_device+0x23/0xb0
+Remove intel_dp_mst_suspend/resume from runtime suspend resume
+sequences. It is incorrect as it depends on AUX transfers which
+itself depend on the device being runtime resumed. This is
+also why we see a lock_dep splat here.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-Suraj Kandpal (2):
-  drm/xe/display: Do not suspend resume dp mst during runtime
-  drm/xe/display: Do not do intel_fbdev_set_suspend during runtime
-
- drivers/gpu/drm/xe/display/xe_display.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index c0e9aa7a274f..a09062b7687d 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -342,7 +342,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+ 
+ 	xe_display_flush_cleanup_work(xe);
+ 
+-	intel_dp_mst_suspend(xe);
++	if (!runtime)
++		intel_dp_mst_suspend(xe);
+ 
+ 	intel_hpd_cancel_work(xe);
+ 
+@@ -407,7 +408,9 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
+ 		intel_display_driver_resume_access(xe);
+ 
+ 	/* MST sideband requires HPD interrupts enabled */
+-	intel_dp_mst_resume(xe);
++	if (!runtime)
++		intel_dp_mst_resume(xe);
++
+ 	if (!runtime && has_display(xe)) {
+ 		intel_display_driver_resume(xe);
+ 		drm_kms_helper_poll_enable(&xe->drm);
 -- 
 2.43.2
 
