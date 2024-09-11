@@ -4,64 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8152EE0214
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 08:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03481EE0219
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 08:35:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4533210E816;
-	Wed, 11 Sep 2024 08:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79C4B10E197;
+	Wed, 11 Sep 2024 08:35:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="akWMcRau";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JkcuSRYx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D996510E02D;
- Wed, 11 Sep 2024 08:01:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 270CD10E197
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Sep 2024 08:35:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726041717; x=1757577717;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=FCYJeZC+oSTZJzCIsgcWnGwHPLaijSSXhYP4FcqeAsw=;
- b=akWMcRauXSxyr+f1Dve/LoGwT68KUsgh+Sqiw/LRY7xE4avDiK7hAKG3
- w7d72VenIrGwVOfCFrpR7/lp4poDbGi2ImQ58uf9L7NJjsGZsO2gDT6qL
- QTM/MOzibLdgDB8mb+LV0J9KzxTXeLwV/p68KPT9YWuEDGB3kdZOw6ar0
- E1UMWOzUZ/HRZWutBL/Gph292aA49IOu4GRyDSxe4SO5lKtFFrxcQBGWF
- 3qxX3xJeEasQ20dyl5ChH2ZcRi2D7jSqAudO0kSI8npQX67/JRkx/fckA
- VEBfEY4ZDtdNmLWl1QfXd9WhEizs3thVRHm0307GDJf5L3E/2Nfj2ka9v w==;
-X-CSE-ConnectionGUID: 6uZQIUsSTXKe2nDBEVda8w==
-X-CSE-MsgGUID: t6JjSPHYRaukSv9OtMtzUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="35395833"
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="35395833"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 01:01:56 -0700
-X-CSE-ConnectionGUID: QOdlNPrLS/urVS1FyGk7cg==
-X-CSE-MsgGUID: AD0UmJG7SYq5UonpHZSTkw==
+ t=1726043726; x=1757579726;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=yNsD1Pwsc6IgI8eIFuuaKK/VsJIDLrR8k8TQWAQ1sfs=;
+ b=JkcuSRYxZ9EdlEgPANKSdWLcgdJh0ML6L12/hmnvHAfcvbeKFRVaUpUg
+ i0zo1sJzZs14sGsSc2lDlh0V3GeG9LT9Xb+I9W5g90iZYkDzK6rM7BwwA
+ Slv7aD/RIjfFLkUKVrcmotvNo0dZswucMoX8O9j5T+BpzOVWgLaoGQLQj
+ Ar6WBlQdbOR6LqGa6DOZypwDxN3cKLiRmS4HHUHSkXwLe05deNPfp/cvk
+ 9/4Q0nQanLi2KBtm+xJBGItanH2eu1S0Tn4awRzlJjrAx3LBTWttyTPy9
+ IUh9LJ+/roPk7TeyeeP7ObN5FWRkIgZu3iEgBRuuVJoyhXfG/8pRGRlYO A==;
+X-CSE-ConnectionGUID: YpFzX3kFQOSMmRiinYn9lQ==
+X-CSE-MsgGUID: XQTeltMPQ1Cp5k+kea/hVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24967190"
+X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="24967190"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2024 01:35:25 -0700
+X-CSE-ConnectionGUID: aHDORpfURvmND6l5ypiRFw==
+X-CSE-MsgGUID: QABO1tC+TUWKF7vfdwa8cw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="104752146"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.149])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 01:01:52 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH 4/8] drm/bridge: ti-sn65dsi86: annotate
- ti_sn_pwm_pin_{request, release} with __maybe_unused
-In-Reply-To: <CAD=FV=XgddDYmOiX1ouQo2ayhJn4GVQrErj-XBy3og5eJ0uBOA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1725962479.git.jani.nikula@intel.com>
- <136ecd978aedd7df39d1b1c37b70596027ff0a3e.1725962479.git.jani.nikula@intel.com>
- <CAD=FV=XgddDYmOiX1ouQo2ayhJn4GVQrErj-XBy3og5eJ0uBOA@mail.gmail.com>
-Date: Wed, 11 Sep 2024 11:01:49 +0300
-Message-ID: <87h6amk49e.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="67133809"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.102])
+ ([10.245.244.102])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2024 01:35:24 -0700
+Message-ID: <fea806cc-ed5e-4fd0-adf5-87d98ea5b99d@intel.com>
+Date: Wed, 11 Sep 2024 09:35:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] drm/xe/client: add missing bo locking in
+ show_meminfo()
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+References: <20240910131145.136984-5-matthew.auld@intel.com>
+ <20240910131145.136984-6-matthew.auld@intel.com>
+ <SJ1PR11MB620426C360C56AE7A55D6DA7819B2@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <SJ1PR11MB620426C360C56AE7A55D6DA7819B2@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,47 +75,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Sep 2024, Doug Anderson <dianders@chromium.org> wrote:
-> Hi,
->
-> On Tue, Sep 10, 2024 at 3:04=E2=80=AFAM Jani Nikula <jani.nikula@intel.co=
-m> wrote:
+Hi,
+
+On 11/09/2024 06:39, Upadhyay, Tejas wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Auld, Matthew <matthew.auld@intel.com>
+>> Sent: Tuesday, September 10, 2024 6:42 PM
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; Upadhyay,
+>> Tejas <tejas.upadhyay@intel.com>; Thomas Hellström
+>> <thomas.hellstrom@linux.intel.com>; stable@vger.kernel.org
+>> Subject: [PATCH 2/4] drm/xe/client: add missing bo locking in
+>> show_meminfo()
 >>
->> Building with clang, W=3D1, CONFIG_PM=3Dn and CONFIG_OF_GPIO=3Dn leads to
->> warning about unused ti_sn_pwm_pin_request() and
->> ti_sn_pwm_pin_release(). Fix by annotating them with __maybe_unused.
+>> bo_meminfo() wants to inspect bo state like tt and the ttm resource, however
+>> this state can change at any point leading to stuff like NPD and UAF, if the bo
+>> lock is not held. Grab the bo lock when calling bo_meminfo(), ensuring we
+>> drop any spinlocks first. In the case of object_idr we now also need to hold a
+>> ref.
 >>
->> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
->> inline functions for W=3D1 build").
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>
+>> Fixes: 0845233388f8 ("drm/xe: Implement fdinfo memory stats printing")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>> Cc: <stable@vger.kernel.org> # v6.8+
 >> ---
+>>   drivers/gpu/drm/xe/xe_drm_client.c | 37 +++++++++++++++++++++++++++---
+>>   1 file changed, 34 insertions(+), 3 deletions(-)
 >>
->> Cc: Douglas Anderson <dianders@chromium.org>
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->> Cc: Neil Armstrong <neil.armstrong@linaro.org>
->> Cc: Robert Foss <rfoss@kernel.org>
->> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
->> Cc: Jonas Karlman <jonas@kwiboo.se>
->> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
->> Cc: Nathan Chancellor <nathan@kernel.org>
->> ---
->>  drivers/gpu/drm/bridge/ti-sn65dsi86.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->
-> I'm happy to land this in drm-misc-next unless there are any extra
-> dependencies. Let me know. In some sense I guess this could even be
-> considered a "Fix", though I guess given the history of the compiler
-> options that might be a bit of a stretch.
+>> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c
+>> b/drivers/gpu/drm/xe/xe_drm_client.c
+>> index badfa045ead8..3cca741c500c 100644
+>> --- a/drivers/gpu/drm/xe/xe_drm_client.c
+>> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
+>> @@ -10,6 +10,7 @@
+>>   #include <linux/slab.h>
+>>   #include <linux/types.h>
+>>
+>> +#include "xe_assert.h"
+>>   #include "xe_bo.h"
+>>   #include "xe_bo_types.h"
+>>   #include "xe_device_types.h"
+>> @@ -151,10 +152,13 @@ void xe_drm_client_add_bo(struct xe_drm_client
+>> *client,
+>>    */
+>>   void xe_drm_client_remove_bo(struct xe_bo *bo)  {
+>> +	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
+>>   	struct xe_drm_client *client = bo->client;
+>>
+>> +	xe_assert(xe, !kref_read(&bo->ttm.base.refcount));
+>> +
+>>   	spin_lock(&client->bos_lock);
+>> -	list_del(&bo->client_link);
+>> +	list_del_init(&bo->client_link);
+>>   	spin_unlock(&client->bos_lock);
+>>
+>>   	xe_drm_client_put(client);
+>> @@ -207,7 +211,20 @@ static void show_meminfo(struct drm_printer *p,
+>> struct drm_file *file)
+>>   	idr_for_each_entry(&file->object_idr, obj, id) {
+>>   		struct xe_bo *bo = gem_to_xe_bo(obj);
+>>
+>> -		bo_meminfo(bo, stats);
+>> +		if (dma_resv_trylock(bo->ttm.base.resv)) {
+>> +			bo_meminfo(bo, stats);
+>> +			xe_bo_unlock(bo);
+>> +		} else {
+>> +			xe_bo_get(bo);
+>> +			spin_unlock(&file->table_lock);
+>> +
+>> +			xe_bo_lock(bo, false);
+>> +			bo_meminfo(bo, stats);
+>> +			xe_bo_unlock(bo);
+>> +
+>> +			xe_bo_put(bo);
+>> +			spin_lock(&file->table_lock);
+>> +		}
+>>   	}
+>>   	spin_unlock(&file->table_lock);
+>>
+>> @@ -217,7 +234,21 @@ static void show_meminfo(struct drm_printer *p,
+>> struct drm_file *file)
+>>   		if (!kref_get_unless_zero(&bo->ttm.base.refcount))
+>>   			continue;
+>>
+> 
+> While we have ref to BO, why would it need lock here, can you please explain if I am missing something. I though BO cant be deleted till will hold ref?
 
-drm-misc-next is fine. Agree on not considering this a fix.
+The ref is just about protecting the lifetime of the bo, however the 
+internal bo state in particular the ttm stuff, is all protected by 
+holding the dma-resv bo lock.
 
-BR,
-Jani.
+For example the bo can be moved/evicted around at will and the object 
+state changes with it, but that should be done only when also holding 
+the bo lock. If we are holding the bo lock here then the object state 
+should be stable, making it safe to inspect stuff like bo->ttm.ttm and 
+bo->ttm.resource. As an example, if you look at ttm_bo_move_null() and 
+imagine xe_bo_has_pages() racing with that, then NPD or UAF is possible.
 
-
---=20
-Jani Nikula, Intel
+> 
+> Thanks,
+> Tejas
+>> -		bo_meminfo(bo, stats);
+>> +		if (dma_resv_trylock(bo->ttm.base.resv)) {
+>> +			bo_meminfo(bo, stats);
+>> +			xe_bo_unlock(bo);
+>> +		} else {
+>> +			spin_unlock(&client->bos_lock);
+>> +
+>> +			xe_bo_lock(bo, false);
+>> +			bo_meminfo(bo, stats);
+>> +			xe_bo_unlock(bo);
+>> +
+>> +			spin_lock(&client->bos_lock);
+>> +			/* The bo ref will prevent this bo from being removed
+>> from the list */
+>> +			xe_assert(xef->xe, !list_empty(&bo->client_link));
+>> +		}
+>> +
+>>   		xe_bo_put_deferred(bo, &deferred);
+>>   	}
+>>   	spin_unlock(&client->bos_lock);
+>> --
+>> 2.46.0
+> 
