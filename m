@@ -4,25 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DE4CEE57C6
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 17:05:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E598EEE0206
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 17:06:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2121F10E7C1;
-	Wed, 11 Sep 2024 17:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADDF710E901;
+	Wed, 11 Sep 2024 17:06:12 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7751610E7C1;
- Wed, 11 Sep 2024 17:05:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF9D10E901;
+ Wed, 11 Sep 2024 17:06:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv2=2C1/4=5D_drm/xe/client=3A_fix_deadlock_in_show=5Fmeminfo?=
- =?utf-8?q?=28=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C1/4=5D_drm/xe/client=3A_fix_deadlock_in_show=5Fmeminfo=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Sep 2024 17:05:57 -0000
-Message-ID: <172607435748.985956.15267541259087838289@2413ebb6fbb6>
+Date: Wed, 11 Sep 2024 17:06:11 -0000
+Message-ID: <172607437131.985976.7262584938524056653@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240911155527.178910-5-matthew.auld@intel.com>
 In-Reply-To: <20240911155527.178910-5-matthew.auld@intel.com>
@@ -49,12 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2c6794afc551 drm-tip: 2024y-09m-11d-15h-32m-43s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/client: fix deadlock in show_meminfo()
-Applying: drm/xe/client: add missing bo locking in show_meminfo()
-Applying: drm/xe/client: use mem_type from the current resource
-Applying: drm/xe/bo: add some annotations in bo_put()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit da1e6518f5115b9d266045e7f32c0e438fff8ae4
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Wed Sep 11 16:55:30 2024 +0100
+
+    drm/xe/bo: add some annotations in bo_put()
+    
+    If the put() triggers bo destroy then there is at least one potential
+    sleeping lock. Also annotate bos_lock and ggtt lock.
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 2c6794afc551f7ae5af783b69975fe639aed383d drm-intel
+c27693665744 drm/xe/client: fix deadlock in show_meminfo()
+1c1a7161d76f drm/xe/client: add missing bo locking in show_meminfo()
+0369793e5c62 drm/xe/client: use mem_type from the current resource
+da1e6518f511 drm/xe/bo: add some annotations in bo_put()
 
 
