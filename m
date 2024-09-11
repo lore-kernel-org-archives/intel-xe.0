@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 572C9EE57CB
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 17:44:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C38E5EE57CB
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Sep 2024 17:46:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFB5410E9E9;
-	Wed, 11 Sep 2024 17:44:21 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A48F10E9E9;
- Wed, 11 Sep 2024 17:44:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8902386257748389828=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7866A10E9EB;
+	Wed, 11 Sep 2024 17:46:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RUXBj1q+";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89DD610EA60;
+ Wed, 11 Sep 2024 17:46:57 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 247705C031A;
+ Wed, 11 Sep 2024 17:46:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15002C4CEC0;
+ Wed, 11 Sep 2024 17:46:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1726076816;
+ bh=gmqOGLm0OZGcL+znqyR5wEO+HiAhfmQO/SZmOhbvHTY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=RUXBj1q+hGKavIEy++hSuAbVH/1LtHH91TLQJgIu+y6wdGQ07CWw/l3S50JW1RZmu
+ u7ikYMgmxlF60NvyDWDlJxgUiIXzM9E/0CQ0IoVh+7SeSKRV4a6JmnFVrnVjtl9tqd
+ 6yV8D6FlqxofTnsngqPk8CFg73d9tbAUj0LDqB3WbkRv3g/EvK5jIbazDug8EF8OZj
+ 7DjnpGLcEBrxy8PDrXUVReXOEZ8QktMxRvoJ1vJv2I0BROF9zUk09K5n4xGgQNtjRz
+ B7vkI93dnl3JTaSDnZuOXzIskOqAhEROfnraElps3td6SemllsKe31BM3q+/Fz8yA2
+ no5x3Z8PwtS9A==
+Date: Wed, 11 Sep 2024 10:46:54 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/8] drm: fix and enable warnings on unused static inlines
+Message-ID: <20240911174654.GA2209716@thelio-3990X>
+References: <cover.1725962479.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5Bv2=2C1/4?=
- =?utf-8?q?=5D_drm/xe/client=3A_fix_deadlock_in_show=5Fmeminfo=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Sep 2024 17:44:20 -0000
-Message-ID: <172607666062.986069.7261504216239251702@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240911155527.178910-5-matthew.auld@intel.com>
-In-Reply-To: <20240911155527.178910-5-matthew.auld@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1725962479.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,205 +53,20 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8902386257748389828==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Sep 10, 2024 at 01:03:36PM +0300, Jani Nikula wrote:
+> Follow-up to [1].
+> 
+> Annotate unused static inlines with __maybe_unused. In some cases it
+> might be better to remove them, but it's really up to the maintainers
+> what to do. Then enable the warning on default across subsystem.
 
-== Series Details ==
+I merged drm-misc-next into next-20240910 and applied this series on top
+of the result and it looks like all of the instances are fixed.
 
-Series: series starting with [v2,1/4] drm/xe/client: fix deadlock in show_meminfo()
-URL   : https://patchwork.freedesktop.org/series/138535/
-State : failure
+Tested-by: Nathan Chancellor <nathan@kernel.org> # build
 
-== Summary ==
-
-CI Bug Log - changes from xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3_BAT -> xe-pw-138535v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-138535v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-138535v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-138535v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit (NEW):
-    - bat-atsm-2:         NOTRUN -> [SKIP][1]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-New tests
----------
-
-  New tests have been introduced between xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3_BAT and xe-pw-138535v1_BAT:
-
-### New IGT tests (1) ###
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.37, 44.38] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138535v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][2] ([Intel XE#2229] / [Intel XE#455]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-    - bat-adlp-7:         [SKIP][4] ([Intel XE#2229] / [Intel XE#455]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-7/igt@xe_live_ktest@xe_bo.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-7/igt@xe_live_ktest@xe_bo.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-adlp-7:         [SKIP][6] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][7] ([Intel XE#2229])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-    - bat-adlp-vf:        [SKIP][8] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][9] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3 -> xe-pw-138535v1
-
-  IGT_8012: 8012
-  xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3: f3eded4f8a05d73a0b94f27e05737ea3427450b3
-  xe-pw-138535v1: 138535v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/index.html
-
---===============8902386257748389828==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/4] drm/xe/client: fix deadlock in show_meminfo()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138535/">https://patchwork.freedesktop.org/series/138535/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3_BAT -&gt; xe-pw-138535v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-138535v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-138535v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-138535v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit (NEW):<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3_BAT and xe-pw-138535v1_BAT:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>Statuses : 7 pass(s) 1 skip(s)</li>
-<li>Exec time: [0.37, 44.38] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138535v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">PASS</a></li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-7/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-7/igt@xe_live_ktest@xe_bo.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138535v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3 -&gt; xe-pw-138535v1</li>
-</ul>
-<p>IGT_8012: 8012<br />
-  xe-1924-f3eded4f8a05d73a0b94f27e05737ea3427450b3: f3eded4f8a05d73a0b94f27e05737ea3427450b3<br />
-  xe-pw-138535v1: 138535v1</p>
-
-</body>
-</html>
-
---===============8902386257748389828==--
+Cheers,
+Nathan
