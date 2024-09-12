@@ -4,83 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D14EFEEB56B
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 08:49:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C081EEB569
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 08:54:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1641A10EB18;
-	Thu, 12 Sep 2024 08:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE68010E14F;
+	Thu, 12 Sep 2024 08:54:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="KHboGKWR";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="a8ujsuv2";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A00D510EB1B
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 08:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1726130973;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=Rn+r2sIwqBy2AmjyGIdoT/4prz9KocAo+fqHyKeYSgU=;
- b=KHboGKWROGlahjmrrV76aNP7JfCtZl2chwzrx2GKh8QBiXg5oOL/KNufihS3PgHR8dhLt0
- HGfzFWe+QEuoqOZszM8Cn3ucQXlMyAG9ddS0jvQt+fmGhLOlDT4ia5BEpvHp8C9qBxGnsd
- ZzSKP7pbmbf98vyRtZPEjzMh2A03YC8=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-3-dH0MsJUCPwKlDzCSvv_7Fg-1; Thu, 12 Sep 2024 04:49:30 -0400
-X-MC-Unique: dH0MsJUCPwKlDzCSvv_7Fg-1
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-42ac185e26cso5211465e9.3
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 01:49:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726130969; x=1726735769;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Rn+r2sIwqBy2AmjyGIdoT/4prz9KocAo+fqHyKeYSgU=;
- b=DNWZz7egNb0ADSSbKGbTyIBU76OghlwsYBhXK8wwjKrKqZLKmPiVqS+0bn+FZCEWpW
- C71BrGzamcOCBzUKw0j5UAta1tyg1KRvrmyWWGJysjvHOqlkj+6b1yF8HamSyXNyplyo
- gNq3J0lqDODmTxAymj1LA0Sn9Vs2WGVlg0Fu0f5PcCHtCgNJlJuTTEW+WXetCSsVnT4H
- fCr3xqKOwJd9nQJoU76UPvi/V78M3v+SUSySpFBaq0sOHh+0WmYaHwgvZ96sZJXvNWQn
- mL9AkFRSEyeJo86hV53dIiFWI7E2S/bAwejYdvtKmuVeqppTILriSW2WSWU8WYxfkaKM
- ANSQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWRpLhZR49tUf9ZZRHYN+qkrnZOUMOD7nuHddQwVtt1qtR8u5LuxKJ0TpWDkOedpPUD/oFfDFZLOQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx/sk0Iy/sLTT7TFdeDlGmX2mAYEVnaM2lM88vcn+St6WH2NXyv
- HR6Bf4hTvDVKZyYxkrX3dGCkGdL9I+2gDxr+6Lb6GdiPU99P0OFkcCMGwlnim3QZ+bS1Bf+Vv8t
- DQqEV3WwhcOUaiiqUzvIBL8bSWjdO6R8QCW+qQQ5kTEUTnyPKZHBDQwAB0wshGgPh
-X-Received: by 2002:a05:600c:21d9:b0:42c:b1a4:c3ef with SMTP id
- 5b1f17b1804b1-42cdfb15de5mr6909155e9.33.1726130969014; 
- Thu, 12 Sep 2024 01:49:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFvPrEMPX7BX2I0Ut0bhG8vE1gjyKoSPx0Jzq627zj6SyO0Rc2bUvi9GFKpp4L/h2e+s+2ATA==
-X-Received: by 2002:a05:600c:21d9:b0:42c:b1a4:c3ef with SMTP id
- 5b1f17b1804b1-42cdfb15de5mr6908855e9.33.1726130968447; 
- Thu, 12 Sep 2024 01:49:28 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42caf436998sm163664415e9.29.2024.09.12.01.49.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Sep 2024 01:49:28 -0700 (PDT)
-Date: Thu, 12 Sep 2024 10:49:27 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20240912-phenomenal-upbeat-grouse-a26781@houat>
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0531310EB07
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 08:54:57 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1726131291; bh=h6LtxXqZJyeFnU3kidIVDrDjgPd32dOWHqERkrmjK+g=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=a8ujsuv26HXwW5TQvVfUvEw/d047Y3SOw9z7Mjyd7ZhKvYbUNis7S303bjv//Tb0T
+ jy6GaSDkGJ3g+d5Y9yJAX9n+XiqrJ/HgAr54rZpyhsXw+I5IZ6eLQXOgRQHC15cyez
+ wDHqXgoz3bfs5R4l8i3fvZ7E18dWAWSpg3NuT8Dgmh+4IBGgYojDiDbQYoam0FIewd
+ hUP0D+CpmsppC+qkEcD14uChpdIUoYrVpe1vvnCR9wTQIYEMjOooUjzHccxiy8/Soo
+ P1y1BsjVgzXSoETG1aApxNIAY5xwWE5SrJVGZozHgzoKlFFJsUTFN4EjgU38XW425F
+ O0mQNjRy0JTpw==
+Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 48C8siWX737034; Thu, 12 Sep 2024 11:54:44 +0300
+From: Ilia Levi <illevi@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: ilia.levi@intel.com, michal.wajdeczko@intel.com, jonathan.cavitt@intel.com,
+ niranjana.vishwanathapura@intel.com, koby.elbaz@intel.com,
+ yaron.avizrat@intel.com
+Subject: [PATCH v4 3/3] drm/xe: memirq handler changes
+Date: Thu, 12 Sep 2024 11:54:38 +0300
+Message-ID: <20240912085438.737015-4-illevi@habana.ai>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240912085438.737015-1-illevi@habana.ai>
+References: <20240912085438.737015-1-illevi@habana.ai>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="oby2p3uttw4dxroi"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,74 +55,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Ilia Levi <ilia.levi@intel.com>
 
---oby2p3uttw4dxroi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This patch exposes an interrupt processing handler for a single hw engine.
+This handler also caters for the MSI-X mode, where the hardware engines
+report interrupt source and status to the offset of engine instance zero.
+Refactored code to use this handler from the VF use-case as well.
 
-Hi,
+Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c | 19 ++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_memirq.c    | 31 ++++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_memirq.h    |  1 +
+ 3 files changed, 43 insertions(+), 8 deletions(-)
 
-Here's this week drm-misc-fixes PR
-
-Maxime
-
-drm-misc-fixes-2024-09-12:
-An off-by-one fix for the CMA DMA-buf heap, An init fix for nouveau, a
-config dependency fix for stm, a syncobj leak fix, and two iommu fixes
-for tegra and rockchip.
-The following changes since commit 5a498d4d06d6d9bad76d8a50a7f8fe01670ad46f:
-
-  drm/fbdev-dma: Only install deferred I/O if necessary (2024-09-05 11:05:10 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-09-12
-
-for you to fetch changes up to 45c690aea8ee5b7d012cd593bd288540a4bfdbf0:
-
-  drm/tegra: Use iommu_paging_domain_alloc() (2024-09-10 15:40:27 -0400)
-
-----------------------------------------------------------------
-An off-by-one fix for the CMA DMA-buf heap, An init fix for nouveau, a
-config dependency fix for stm, a syncobj leak fix, and two iommu fixes
-for tegra and rockchip.
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/stm: add COMMON_CLK dependency
-
-Ben Skeggs (1):
-      drm/nouveau/fb: restore init() for ramgp102
-
-Lu Baolu (2):
-      drm/rockchip: Use iommu_paging_domain_alloc()
-      drm/tegra: Use iommu_paging_domain_alloc()
-
-T.J. Mercier (2):
-      dma-buf: heaps: Fix off-by-one in CMA heap fault handler
-      drm/syncobj: Fix syncobj leak in drm_syncobj_eventfd_ioctl
-
- drivers/dma-buf/heaps/cma_heap.c                  |  2 +-
- drivers/gpu/drm/drm_syncobj.c                     | 17 +++++++++++++----
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ram.h      |  2 ++
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.c |  2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp102.c |  1 +
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c       | 10 +++++++---
- drivers/gpu/drm/stm/Kconfig                       |  1 +
- drivers/gpu/drm/tegra/drm.c                       |  5 +++--
- 8 files changed, 29 insertions(+), 11 deletions(-)
-
---oby2p3uttw4dxroi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZuKrFwAKCRAnX84Zoj2+
-dmTsAX4hsPzuvlt8ZKqxlNCSAPeJMRudMslZ70aGRcjD8mQXt69eb7PEMJwM38hn
-bZdv/1EBgIP0LZTBFxRjJi5YnhHtNsnGB8It2dXEzuUi2k+nS0BqdbV/GX6MQQYq
-HTkgc+CGcg==
-=i1WZ
------END PGP SIGNATURE-----
-
---oby2p3uttw4dxroi--
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index a7abc4b67e67..5e82ebb8eb58 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -460,6 +460,20 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 	xe_rtp_process_to_sr(&ctx, engine_entries, &hwe->reg_sr);
+ }
+ 
++static const struct engine_info *find_engine_info(enum xe_engine_class class, int instance)
++{
++	const struct engine_info *info;
++	enum xe_hw_engine_id id;
++
++	for (id = 0; id < XE_NUM_HW_ENGINES; ++id) {
++		info = &engine_infos[id];
++		if (info->class == class && info->instance == instance)
++			return info;
++	}
++
++	return NULL;
++}
++
+ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 				 enum xe_hw_engine_id id)
+ {
+@@ -479,7 +493,10 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	hwe->class = info->class;
+ 	hwe->instance = info->instance;
+ 	hwe->mmio_base = info->mmio_base;
+-	hwe->irq_offset = info->irq_offset;
++	/* For MSI-X, hw engines report to offset of engine instance zero */
++	hwe->irq_offset = xe_device_has_msix(gt_to_xe(gt)) ?
++		find_engine_info(info->class, 0)->irq_offset :
++		info->irq_offset;
+ 	hwe->domain = info->domain;
+ 	hwe->name = info->name;
+ 	hwe->fence_irq = &gt->fence_irq[info->class];
+diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+index c590dc0dd9f1..f78240b05631 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.c
++++ b/drivers/gpu/drm/xe/xe_memirq.c
+@@ -404,6 +404,28 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+ 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+ }
+ 
++/**
++ * xe_memirq_hwe_handler - Check and process interrupts for a specific HW engine.
++ * @memirq: the &xe_memirq
++ * @hwe: the hw engine to process
++ *
++ * This function reads and dispatches `Memory Based Interrupts` for the provided HW engine.
++ */
++void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
++{
++	u16 offset = hwe->irq_offset;
++	u16 instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
++	struct iosys_map src_offset = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
++							    XE_MEMIRQ_SOURCE_OFFSET(instance));
++
++	if (memirq_received(memirq, &src_offset, offset, "SRC")) {
++		struct iosys_map status_offset =
++			IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
++					      XE_MEMIRQ_STATUS_OFFSET(instance) + offset * SZ_16);
++		memirq_dispatch_engine(memirq, &status_offset, hwe);
++	}
++}
++
+ /**
+  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
+  * @memirq: the &xe_memirq
+@@ -431,13 +453,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
+ 		if (gt->tile != tile)
+ 			continue;
+ 
+-		for_each_hw_engine(hwe, gt, id) {
+-			if (memirq_received(memirq, &memirq->source, hwe->irq_offset, "SRC")) {
+-				map = IOSYS_MAP_INIT_OFFSET(&memirq->status,
+-							    hwe->irq_offset * SZ_16);
+-				memirq_dispatch_engine(memirq, &map, hwe);
+-			}
+-		}
++		for_each_hw_engine(hwe, gt, id)
++			xe_memirq_hwe_handler(memirq, hwe);
+ 	}
+ 
+ 	/* GuC and media GuC (if present) must be checked separately */
+diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
+index 15efae2a7a55..06130650e9d6 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.h
++++ b/drivers/gpu/drm/xe/xe_memirq.h
+@@ -20,6 +20,7 @@ u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
+ 
+ void xe_memirq_reset(struct xe_memirq *memirq);
+ void xe_memirq_postinstall(struct xe_memirq *memirq);
++void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe);
+ void xe_memirq_handler(struct xe_memirq *memirq);
+ 
+ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
+-- 
+2.43.2
 
