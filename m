@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AB7AEEB59D
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 19:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF36FEED63A
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 19:24:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFEF910E078;
-	Thu, 12 Sep 2024 19:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE9F10E06D;
+	Thu, 12 Sep 2024 19:24:20 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 848C310E06D;
- Thu, 12 Sep 2024 19:19:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8479999373990010759=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FEA110E06D;
+ Thu, 12 Sep 2024 19:24:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Support_PMT_features_in_Xe_=28re?=
- =?utf-8?q?v12=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Fix_xe=5Fforce=5Fwak?=
+ =?utf-8?q?e=5Fget=28=29_failure_handling_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Sep 2024 19:19:22 -0000
-Message-ID: <172616876253.993401.5855958278854746665@2413ebb6fbb6>
+Date: Thu, 12 Sep 2024 19:24:19 -0000
+Message-ID: <172616905918.993418.8511283917446087969@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240912184210.914612-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20240912184210.914612-1-michael.j.ruhl@intel.com>
+References: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,135 +40,39 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8479999373990010759==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Support PMT features in Xe (rev12)
-URL   : https://patchwork.freedesktop.org/series/133472/
+Series: Fix xe_force_wake_get() failure handling (rev2)
+URL   : https://patchwork.freedesktop.org/series/137982/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc_BAT -> xe-pw-133472v12_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-133472v12_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v12/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#1861])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v12/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9fd27ed0883c drm-tip: 2024y-09m-12d-16h-22m-36s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Error handling in xe_force_wake_get()
+Applying: drm/xe: Modify xe_force_wake_put to handle _get returned mask
+Applying: drm/xe/device: Update handling of xe_force_wake_get return
+Applying: drm/xe/hdcp: Update handling of xe_force_wake_get return
+Applying: drm/xe/gsc: Update handling of xe_force_wake_get return
+Applying: drm/xe/gt: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_gt_idle: Update handling of xe_force_wake_get return
+Applying: drm/xe/devcoredump: Update handling of xe_force_wake_get return
+Applying: drm/xe/tests/mocs: Update xe_force_wake_get() return handling
+Applying: drm/xe/mocs: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_drm_client: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_gt_debugfs: Update handling of xe_force_wake_get return
+Applying: drm/xe/guc: Update handling of xe_force_wake_get return
+Applying: drm/xe/huc: Update handling of xe_force_wake_get return
+Applying: drm/xe/oa: Handle force_wake_get failure in xe_oa_stream_init()
+Applying: drm/xe/pat: Update handling of xe_force_wake_get return
+Applying: drm/xe/gt_tlb_invalidation_ggtt: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_reg_sr: Update handling of xe_force_wake_get return
+Applying: drm/xe/query: Update handling of xe_force_wake_get return
+Applying: drm/xe/vram: Update handling of xe_force_wake_get return
+Applying: drm/xe: forcewake debugfs open fails on xe_forcewake_get failure
+Applying: drm/xe: Ensure __must_check for xe_force_wake_get() return
+Applying: drm/xe: Change return type to void for xe_force_wake_put
 
 
-Build changes
--------------
-
-  * Linux: xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc -> xe-pw-133472v12
-
-  IGT_8015: 8015
-  xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc: 9fd27ed0883cff53777b8db0b7c6db327132dcdc
-  xe-pw-133472v12: 133472v12
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v12/index.html
-
---===============8479999373990010759==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Support PMT features in Xe (rev12)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133472/">https://patchwork.freedesktop.org/series/133472/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v12/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v12/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc_BAT -&gt; xe-pw-133472v12_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-133472v12_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v12/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v12/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc -&gt; xe-pw-133472v12</li>
-</ul>
-<p>IGT_8015: 8015<br />
-  xe-1939-9fd27ed0883cff53777b8db0b7c6db327132dcdc: 9fd27ed0883cff53777b8db0b7c6db327132dcdc<br />
-  xe-pw-133472v12: 133472v12</p>
-
-</body>
-</html>
-
---===============8479999373990010759==--
