@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6B70EEE249
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 18:58:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B186EEE241
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 18:58:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E80910EC1F;
-	Thu, 12 Sep 2024 18:58:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AB7E10EC24;
+	Thu, 12 Sep 2024 18:58:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PtEK6a+x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="azqOqaIq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9682510EC1F
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:58:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E23610EC24
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:58:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726167498; x=1757703498;
+ t=1726167501; x=1757703501;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6UoXQL0Cg5aAOGcVjiIXUlIt17g6TgvcOsQVmvIKu04=;
- b=PtEK6a+xw46rFfM9TNIauqhI1ju+Eg6NpACcmgOFSa1s2kwVTBu8aV9t
- SY9MbEfMHFEbbDcZy8ulV807rSb4MWLoGfq4sP8P5CQP2+mhvSnj82Z0Q
- 4fKYyv0ZMzcYdoeT9FreBBMYIo4oQU2vKTVXcqH5ChyJzRG2mGtBET6PQ
- aNXsNuU7OuEsoGt4BL/4sEh/jybfcizfkePYfWnFXcfoY1YaniRrPbD9Z
- 17UUprRUud17bkIPB7j7iosQzUy5oLOWiW62uYOdq3P2K9MaEMDMD3gd0
- wXiRgodqyyiDqa9Qiy5zji19OMeVJNJRcqvuar0tPgwh4Sio2E9qszpae w==;
-X-CSE-ConnectionGUID: WJI9rgb8Tx+rGFk9Ms3w9w==
-X-CSE-MsgGUID: wOpCeTL2ST2SbWvEeg54+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202951"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202951"
+ bh=YJ/yCBCKtJLOgdZoGBXaBnvjN6c+96Wszpk8T3UR1jM=;
+ b=azqOqaIqd+y4n/65UESqjMQCnmyHCYyMYbRaH7Wf1VK8AEe3ZibDEVHP
+ rNb0mraZptwAqoElpR8wReZuFmLO8WW5bqy7hly+EQy9SnTdK3fcF8zoT
+ 8f5e8hg5x4jynX8UIurw0M89OrkqXWPZqI+PW7arT02Yn8ioVNGsdKkBO
+ o4vnYuT9vQmr4kK11irbYxL/swnKxMQ8j300G1wPk6dfJlJzPZxBXK+ib
+ w0g4SPwlUqkx/afiY0B9l9HuborNb04UsWl/HNL8vFpRyFZrm+dPg4k6u
+ SgWqgokE2+AhkLi4Tpc8DvpFqI7rN4CFYAq0K59u+Dvm9QnSgj8pb/Lfi A==;
+X-CSE-ConnectionGUID: jkF+nYsmTkWb9Uc5D5Yp8g==
+X-CSE-MsgGUID: WkqPnMFiTAq7izzfiB7gjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202963"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202963"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 11:58:18 -0700
-X-CSE-ConnectionGUID: 4fjUpa6xQ0io3L/uMXMoPQ==
-X-CSE-MsgGUID: L4RJSdHmTpe5I7cksy8Efg==
+ 12 Sep 2024 11:58:20 -0700
+X-CSE-ConnectionGUID: Bnz1ZuWeQJG8HQmmOyHACQ==
+X-CSE-MsgGUID: xfY+xqWHT3WhsG/fe5q19w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910144"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910156"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:58:16 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:58:19 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 09/23] drm/xe/tests/mocs: Update xe_force_wake_get() return
- handling
-Date: Fri, 13 Sep 2024 00:45:49 +0530
-Message-Id: <20240912191603.194964-10-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v2 11/23] drm/xe/xe_drm_client: Update handling of
+ xe_force_wake_get return
+Date: Fri, 13 Sep 2024 00:45:51 +0530
+Message-Id: <20240912191603.194964-12-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
 References: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
@@ -68,71 +68,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With xe_force_wake_get() now returning the refcount-incremented domain
-mask, a return value of 0 indicates failure for single domains.
-Change assert condition to incorporate this change in return and
-pass the return value to xe_force_wake_put()
+Since xe_force_wake_get() now returns a domain mask with an incremented
+reference count, a return value of 0 indicates a failure, while a
+non-zero return value that matches the input domain parameter signifies
+success.
+
+Update the return handling of xe_force_wake_get() to reflect this, and
+ensure that the return value is passed to xe_force_wake_put().
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_mocs.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_drm_client.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-index ea932c051cc7..2a4c97d67760 100644
---- a/drivers/gpu/drm/xe/tests/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -45,10 +45,10 @@ static void read_l3cc_table(struct xe_gt *gt,
- 	u32 l3cc, l3cc_expected;
- 	unsigned int i;
- 	u32 reg_val;
--	u32 ret;
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index c4add8b38bbd..01f643f6aaba 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -278,6 +278,7 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+ 	struct xe_hw_engine *hwe;
+ 	struct xe_exec_queue *q;
+ 	u64 gpu_timestamp;
 +	int fw_ref;
  
--	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	KUNIT_ASSERT_NE_MSG(test, fw_ref, 0, "Forcewake Failed.\n");
+ 	xe_pm_runtime_get(xe);
  
- 	for (i = 0; i < info->num_mocs_regs; i++) {
- 		if (!(i & 1)) {
-@@ -72,7 +72,7 @@ static void read_l3cc_table(struct xe_gt *gt,
- 		KUNIT_EXPECT_EQ_MSG(test, l3cc_expected, l3cc,
- 				    "l3cc idx=%u has incorrect val.\n", i);
- 	}
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
+@@ -296,13 +297,16 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+ 			continue;
  
- static void read_mocs_table(struct xe_gt *gt,
-@@ -82,13 +82,13 @@ static void read_mocs_table(struct xe_gt *gt,
- 	u32 mocs, mocs_expected;
- 	unsigned int i;
- 	u32 reg_val;
--	u32 ret;
-+	int fw_ref;
+ 		fw = xe_hw_engine_to_fw_domain(hwe);
+-		if (xe_force_wake_get(gt_to_fw(gt), fw)) {
++
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), fw);
++		if (fw_ref != fw) {
+ 			hwe = NULL;
++			XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), fw_ref));
+ 			break;
+ 		}
  
- 	KUNIT_EXPECT_TRUE_MSG(test, info->unused_entries_index,
- 			      "Unused entries index should have been defined\n");
- 
--	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	KUNIT_ASSERT_NE_MSG(test, fw_ref, 0, "Forcewake Failed.\n");
- 
- 	for (i = 0; i < info->num_mocs_regs; i++) {
- 		if (regs_are_mcr(gt))
-@@ -106,7 +106,7 @@ static void read_mocs_table(struct xe_gt *gt,
- 				    "mocs reg 0x%x has incorrect val.\n", i);
+ 		gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
+-		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), fw));
++		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), fw_ref));
+ 		break;
  	}
  
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- static int mocs_kernel_test_run_device(struct xe_device *xe)
 -- 
 2.34.1
 
