@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87345EED63A
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 18:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA6E6EEE241
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 18:58:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42BF610E1DE;
-	Thu, 12 Sep 2024 18:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DBFE10EC1B;
+	Thu, 12 Sep 2024 18:58:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n07MjV0f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fpKCWsr5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C1F910E1DE
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:57:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12A3810EC1B
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726167479; x=1757703479;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xuUI6SrV8MswX31kGi+NU2yusNAeMPEoTsuKaATyduM=;
- b=n07MjV0fpFyUmc48Txqf2NFZMcC+6siwxcjVIU2INkJbjJY7jXmPvYsn
- KtKlimw9F5bzLu6fsILi+cgMcgC0CfcSIyaXzzTYyH9+HWO22W+T4oor6
- cro1DhLXLsIJT+Q93iTLRcvqiJPdYenmE645FBi1vdC/HH/ydhzKh5t0T
- swC4IYbaZpNw7hs7Gb9DdpX2RNsXNqnqB5tRHl5Sv7y3tWX69SC1eu6e5
- cks4oTNB6Mt56U6REtCPG2wRA3Bl7MutjjdQwuNwqRaziSEzKdW5lR2q9
- 7y+4AFVFVXDLNbzJtKwCI6vKSatk9K9LKGeM7qt7p/6Pq+oOSNh/6K4Ya w==;
-X-CSE-ConnectionGUID: mqa50SF6R0Sb+Pz+EI1YOw==
-X-CSE-MsgGUID: r3jKSJyORGuau1bh8r+gLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202897"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202897"
+ t=1726167492; x=1757703492;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mjZKT0Afjsnylz7u0rBdmQs1RjdQqNq0Ub5F5SXPkZI=;
+ b=fpKCWsr5RzUO39p/2vTT/R2oedv3QN/MYhdo8b8PhE0Urr5oO1uLfnhq
+ wIf3dJXi+FL5rGC9WHb7JtY+nq25CCuCO4ByQyaoytfu0Ae90yi/BECbY
+ g4A2ASnRs2spS95bURh3nS8HDT7zmHSyL1z8cum+Cmhao/EZQrWITqvHJ
+ cS/cjEeO4cMqEANLhguDTajfSfIl3pDebM9jws9e65Jj55FJRmRLUix4/
+ PdBmhASLo5SUNWPjwHPfhXJWZZn9uaJshSJ0hP998BwFMgsnnq02oM7tT
+ mBnONiXSctqz6pvAZR+OERfV650udjNObIgxCTL5A9CxTTs+9JqKAewPT A==;
+X-CSE-ConnectionGUID: XO09CJgzTeO5W/KB/9Q/tA==
+X-CSE-MsgGUID: qlTTTCnMRoO2QM6pa8AGvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202903"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202903"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 11:57:59 -0700
-X-CSE-ConnectionGUID: V0j34gKMQV+iN8ueHuacAA==
-X-CSE-MsgGUID: jQhJcF/cTWmy7EdFA3X6hQ==
+ 12 Sep 2024 11:58:01 -0700
+X-CSE-ConnectionGUID: JKPtFC7PSkqCoVHvl7ydTA==
+X-CSE-MsgGUID: PHXqhyxkRaiYfu/s28fmRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910071"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910080"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:57:56 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:57:59 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Badal Nilawar <badal.nilawar@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH v2 00/23] Fix xe_force_wake_get() failure handling
-Date: Fri, 13 Sep 2024 00:45:40 +0530
-Message-Id: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH v2 01/23] drm/xe: Error handling in xe_force_wake_get()
+Date: Fri, 13 Sep 2024 00:45:41 +0530
+Message-Id: <20240912191603.194964-2-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
+References: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,130 +69,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In case of xe_force_wake_get() call the refcount for domains
-are incremented irrespective of failure or success, which can lead to
-undefined behaviour: 
-[1] subsequent forcewake call by callee function assumes domains are 
-already awake, which might not be true. This shows perfectly balanced 
-xe_force_wake_get/_put can also cause problem.
+If an acknowledgment timeout occurs for a domain awake request, do not
+increment the reference count for the domain. This ensures that
+subsequent _get calls do not incorrectly assume the domain is awake. The
+return value is a mask of domains whose reference counts were
+incremented, and these domains need to be released using
+xe_force_wake_put.
 
-[2] The functions are using xe_force_wake_get() and return on failures.
-In this scenario only the first caller returns and other functions will
-always assume domains to be awake.
+The caller needs to compare the return value with the input domains to
+determine the success or failure of the operation and decide whether to
+continue or return accordingly.
 
-[1] func_a() {
-	XE_WARN(xe_force_wake_get()) <---> fails but increments refcount
-
-	func_b();
-
-	XE_WARN(xe_force_wake_put());<---> decrements refcounts 
- }
-
-    func_b() {
-	if(xe_force_wake_get()) <---> succeeds due to refcount of caller
-		return;
-
-	does mmio_operations(); <---> Domain might not be awake
-
-	xe_force_wake_put(); <---> decrement refcount
- }
-  	
-[2] func_a() {
-	int err = xe_force_wake_get(); <---> returns if fails, inc refcount
-	if (err)
-		return;
-
-	mmio_operations();
-
-	xe_force_wake_put(); 
- }
-
-    func_b() {
-        if (xe_force_wake_get()) <---> succeeds due to refcnt of func_a()
-              return;
-
-        mmio_operations(); <---> Invalid accesses
-
-        xe_force_wake_put(); <---> decrements refcount for func_b
- }
-
-This series ensures refcount is not incremented in case of
-xe_force_wake_get() failure and return mask of successfully refcount 
-incremented domains.
-
-For single domains (except XE_FORCEWAKE_ALL), the return value will be
-0 on failure and doesn't need call to xe_force_wake_put()(if called,
-call will return with check since input mask will be 0).
-For XE_FORCEWAKE_ALL caller need to compare the returned mask with
-XE_FORCEWAKE_ALL to confirm the success of call and need to explicitly
-call xe_force_wake_put() with returned mask to put awaken domains to
-sleep.
- 
-
--v2 (Rodrigo, Badal)
-- Dont put successfully awaken domains to sleep. Instead rely on _put to
-  do that.
-- Modified xe_force_wake_get() to return the refcount-incremented domain
-  mask and xe_force_wake_put() uses this returned mask.
+While at it, add simple kernel-doc for xe_force_wake_get()
 
 Cc: Badal Nilawar <badal.nilawar@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Himal Prasad Ghimiray (23):
-  drm/xe: Error handling in xe_force_wake_get()
-  drm/xe: Modify xe_force_wake_put to handle _get returned mask
-  drm/xe/device: Update handling of xe_force_wake_get return
-  drm/xe/hdcp: Update handling of xe_force_wake_get return
-  drm/xe/gsc: Update handling of xe_force_wake_get return
-  drm/xe/gt: Update handling of xe_force_wake_get return
-  drm/xe/xe_gt_idle: Update handling of xe_force_wake_get return
-  drm/xe/devcoredump: Update handling of xe_force_wake_get return
-  drm/xe/tests/mocs: Update xe_force_wake_get() return handling
-  drm/xe/mocs: Update handling of xe_force_wake_get return
-  drm/xe/xe_drm_client: Update handling of xe_force_wake_get return
-  drm/xe/xe_gt_debugfs: Update handling of xe_force_wake_get return
-  drm/xe/guc: Update handling of xe_force_wake_get return
-  drm/xe/huc: Update handling of xe_force_wake_get return
-  drm/xe/oa: Handle force_wake_get failure in xe_oa_stream_init()
-  drm/xe/pat: Update handling of xe_force_wake_get return
-  drm/xe/gt_tlb_invalidation_ggtt: Update handling of xe_force_wake_get
-    return
-  drm/xe/xe_reg_sr: Update handling of xe_force_wake_get return
-  drm/xe/query: Update handling of xe_force_wake_get return
-  drm/xe/vram: Update handling of xe_force_wake_get return
-  drm/xe: forcewake debugfs open fails on xe_forcewake_get failure
-  drm/xe: Ensure __must_check for xe_force_wake_get() return
-  drm/xe: Change return type to void for xe_force_wake_put
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/xe/xe_force_wake.c | 35 +++++++++++++++++++++++++-----
+ 1 file changed, 29 insertions(+), 6 deletions(-)
 
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c    |   6 +-
- drivers/gpu/drm/xe/tests/xe_mocs.c          |  16 +--
- drivers/gpu/drm/xe/xe_debugfs.c             |  29 ++++-
- drivers/gpu/drm/xe/xe_devcoredump.c         |  13 ++-
- drivers/gpu/drm/xe/xe_device.c              |  25 +++--
- drivers/gpu/drm/xe/xe_drm_client.c          |   8 +-
- drivers/gpu/drm/xe/xe_force_wake.c          |  69 +++++++++---
- drivers/gpu/drm/xe/xe_force_wake.h          |   8 +-
- drivers/gpu/drm/xe/xe_gsc.c                 |  21 ++--
- drivers/gpu/drm/xe/xe_gsc_proxy.c           |   9 +-
- drivers/gpu/drm/xe/xe_gt.c                  | 113 +++++++++++---------
- drivers/gpu/drm/xe/xe_gt_debugfs.c          |  13 ++-
- drivers/gpu/drm/xe/xe_gt_idle.c             |  29 ++---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   6 +-
- drivers/gpu/drm/xe/xe_guc.c                 |  14 +--
- drivers/gpu/drm/xe/xe_guc_pc.c              |  54 ++++++----
- drivers/gpu/drm/xe/xe_huc.c                 |   8 +-
- drivers/gpu/drm/xe/xe_mocs.c                |  10 +-
- drivers/gpu/drm/xe/xe_oa.c                  |  12 ++-
- drivers/gpu/drm/xe/xe_pat.c                 |  50 ++++-----
- drivers/gpu/drm/xe/xe_query.c               |   8 +-
- drivers/gpu/drm/xe/xe_reg_sr.c              |  24 ++---
- drivers/gpu/drm/xe/xe_vram.c                |  11 +-
- 23 files changed, 335 insertions(+), 221 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index a64c14757c84..fa42d652d23f 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -150,26 +150,49 @@ static int domain_sleep_wait(struct xe_gt *gt,
+ 					 (ffs(tmp__) - 1))) && \
+ 					 domain__->reg_ctl.addr)
+ 
++/**
++ * xe_force_wake_get : Increase the domain refcount; if it was 0 initially, wake the domain
++ * @fw: struct xe_force_wake
++ * @domains: forcewake domains to get refcount on
++ *
++ * Increment refcount for the force-wake domain. If the domain is
++ * asleep, awaken it and wait for acknowledgment within the specified
++ * timeout. If a timeout occurs, decrement the refcount.
++ * The caller should compare the return value with the @domains to
++ * determine the success or failure of the operation.
++ *
++ * Return: mask of refcount increased domains. If the return value is
++ * equal to the input parameter @domains, the operation is considered
++ * successful. Otherwise, the operation is considered a failure, and
++ * the caller should handle the failure case, potentially returning
++ * -ETIMEDOUT.
++ */
+ int xe_force_wake_get(struct xe_force_wake *fw,
+ 		      enum xe_force_wake_domains domains)
+ {
+ 	struct xe_gt *gt = fw->gt;
+ 	struct xe_force_wake_domain *domain;
+-	enum xe_force_wake_domains tmp, woken = 0;
++	enum xe_force_wake_domains tmp, awake_rqst = 0, awake_ack = 0;
+ 	unsigned long flags;
+-	int ret = 0;
++	int ret = domains;
+ 
+ 	spin_lock_irqsave(&fw->lock, flags);
+ 	for_each_fw_domain_masked(domain, domains, fw, tmp) {
+ 		if (!domain->ref++) {
+-			woken |= BIT(domain->id);
++			awake_rqst |= BIT(domain->id);
+ 			domain_wake(gt, domain);
+ 		}
+ 	}
+-	for_each_fw_domain_masked(domain, woken, fw, tmp) {
+-		ret |= domain_wake_wait(gt, domain);
++	for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
++		if (domain_wake_wait(gt, domain) == 0) {
++			awake_ack |= BIT(domain->id);
++		} else {
++			ret &= ~BIT(domain->id);
++			--domain->ref;
++		}
+ 	}
+-	fw->awake_domains |= woken;
++
++	fw->awake_domains |= awake_ack;
+ 	spin_unlock_irqrestore(&fw->lock, flags);
+ 
+ 	return ret;
 -- 
 2.34.1
 
