@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6D23EEE249
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9151CEEE245
 	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 18:58:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EDFA10EC1E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A4D210EC1D;
 	Thu, 12 Sep 2024 18:58:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="exgD9ziq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UgfpsFKv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04D7C10EC1C
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:58:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551EB10EC1B
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726167494; x=1757703494;
+ t=1726167493; x=1757703493;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BSgfDyFaWBHP0R/PZChpoW5FIZZamCJkuymlEO7pNRI=;
- b=exgD9ziqeZ8B+ZAJL6FscLyGko72xvAjs4/zrUiAiXnpdGlCFC5IJmwb
- 9CczA5p41u66xLlXpbZ9o5Tf7A54bQiH4jlaqCjBBWh25KWC6wSWGXTeg
- vfrYMUB+dpHJ3vtCbfPw/Nx1OHQ1knhhGgcCbzADBx4Y70zS5HgWR2JNG
- JPrNNetJCIgmtGQvG29fovCdN/xyFMzx+astiSYOZowRLUl4Z2fKmPhH5
- 5kWHYLBOSQZQHMXq/RhhDyBPOXE0iy1hddXVWRFrP+od08z/gp8jWrvsy
- 0XDUqtMDGYJNG4CDBV1/lvi4YRz8KVuhAUnDdurIwweolji++tYWYg4v7 w==;
-X-CSE-ConnectionGUID: H1vkkx3jTAqv2aCgYI7IyA==
-X-CSE-MsgGUID: bSn4Jsn7QJOTRmtZ7ict+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202931"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202931"
+ bh=Lanb4u1cX0aqWD5j5PKwDB0xQYsjKIvSCNHwKAI4aHE=;
+ b=UgfpsFKvJ1Y+ugAonpolINCz21FUMayxazjPi0TRpQ/ordOP2mMykjfE
+ xF1st88U0eiDbYAgQAH+G1b7CPtYQQSrRlelClmJ+rdpOyOIIGduFSG9y
+ /dH0MhSFLB1PDxt7kxaEaibyOD+USx780UwKjlXuPvBNvUGUlDoXZ3S6U
+ QAGIkksTWeQv478JG/WXlRY3l5n54lxSlOsAah0yR88R5SGPMgXiRAtyL
+ gTI3yQzizb3Snui1NsEK3ApIBIDPoc6yRDSkVUbq88AOt5GL1NmVQW95u
+ QaB4QZH4CvcopQ8XiK7RIemNysOSrKNdPw0+QD2+Gb82VvJ14G1nHmy45 w==;
+X-CSE-ConnectionGUID: 0AIFg4ySSoiIN5Rpcd01EQ==
+X-CSE-MsgGUID: JmI8iL7qSvabC8PFp/HTjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202911"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202911"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 11:58:10 -0700
-X-CSE-ConnectionGUID: K0dTBBUfSq+5bXEW8yc78Q==
-X-CSE-MsgGUID: TDBP4XH2T7O10LYOY+uoxg==
+ 12 Sep 2024 11:58:04 -0700
+X-CSE-ConnectionGUID: Q7hRORouRfWayB4SrG+4xQ==
+X-CSE-MsgGUID: 5O2n8LV0SUqwgaf33qD8Ww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910113"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910091"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:58:08 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:58:01 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 05/23] drm/xe/gsc: Update handling of xe_force_wake_get
- return
-Date: Fri, 13 Sep 2024 00:45:45 +0530
-Message-Id: <20240912191603.194964-6-himal.prasad.ghimiray@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH v2 02/23] drm/xe: Modify xe_force_wake_put to handle _get
+ returned mask
+Date: Fri, 13 Sep 2024 00:45:42 +0530
+Message-Id: <20240912191603.194964-3-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
 References: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
@@ -69,146 +70,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With xe_force_wake_get() now returning the refcount-incremented domain
-mask, a return value of 0 indicates failure for single domains
-(excluding XE_FORCEWAKE_ALL).
+Instead of calling xe_force_wake_put on all domains that were input to
+xe_force_wake_get, call _put only on the domains whose reference counts
+were successfully incremented by the _get call. Since the return value
+of _get can be a mask that does not match any specific value in the enum
+xe_force_wake_domains, change the input parameter of _put to int.
 
-A non-zero return value in the case of XE_FORCEWAKE_ALL does not
-necessarily indicate success. Compare the return value with
-XE_FORCEWAKE_ALL to determine the status of the call.
+Add kernel-doc for the xe_force_wake_put()
 
-Modify the return handling of xe_force_wake_get() accordingly and pass
-the return value to xe_force_wake_put().
-
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gsc.c       | 21 ++++++++++++---------
- drivers/gpu/drm/xe/xe_gsc_proxy.c |  9 ++++-----
- 2 files changed, 16 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_force_wake.c | 24 ++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_force_wake.h |  2 +-
+ 2 files changed, 23 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 9cb326af5931..d91a3e885516 100644
---- a/drivers/gpu/drm/xe/xe_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -260,10 +260,11 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
- {
- 	struct xe_gt *gt = gsc_to_gt(gsc);
- 	struct xe_tile *tile = gt_to_tile(gt);
-+	int fw_ref;
- 	int ret;
- 
- 	if (XE_WA(tile->primary_gt, 14018094691)) {
--		ret = xe_force_wake_get(gt_to_fw(tile->primary_gt), XE_FORCEWAKE_ALL);
-+		fw_ref = xe_force_wake_get(gt_to_fw(tile->primary_gt), XE_FORCEWAKE_ALL);
- 
- 		/*
- 		 * If the forcewake fails we want to keep going, because the worst
-@@ -271,7 +272,7 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
- 		 * which is not fatal. We still throw a warning so the issue is
- 		 * seen if it happens.
- 		 */
--		xe_gt_WARN_ON(tile->primary_gt, ret);
-+		xe_gt_WARN_ON(tile->primary_gt, fw_ref != XE_FORCEWAKE_ALL);
- 
- 		xe_gt_mcr_multicast_write(tile->primary_gt,
- 					  EU_SYSTOLIC_LIC_THROTTLE_CTL_WITH_LOCK,
-@@ -281,7 +282,7 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
- 	ret = gsc_upload(gsc);
- 
- 	if (XE_WA(tile->primary_gt, 14018094691))
--		xe_force_wake_put(gt_to_fw(tile->primary_gt), XE_FORCEWAKE_ALL);
-+		xe_force_wake_put(gt_to_fw(tile->primary_gt), fw_ref);
- 
- 	if (ret)
- 		return ret;
-@@ -352,6 +353,7 @@ static void gsc_work(struct work_struct *work)
- 	struct xe_gt *gt = gsc_to_gt(gsc);
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 actions;
-+	int fw_ref;
- 	int ret;
- 
- 	spin_lock_irq(&gsc->lock);
-@@ -360,7 +362,8 @@ static void gsc_work(struct work_struct *work)
- 	spin_unlock_irq(&gsc->lock);
- 
- 	xe_pm_runtime_get(xe);
--	xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC));
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+	xe_gt_WARN_ON(gt, !fw_ref);
- 
- 	if (actions & GSC_ACTION_ER_COMPLETE) {
- 		ret = gsc_er_complete(gt);
-@@ -380,7 +383,7 @@ static void gsc_work(struct work_struct *work)
- 		xe_gsc_proxy_request_handler(gsc);
- 
- out:
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	xe_pm_runtime_put(xe);
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index fa42d652d23f..e91bbcbddb8b 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -198,8 +198,21 @@ int xe_force_wake_get(struct xe_force_wake *fw,
+ 	return ret;
  }
  
-@@ -600,7 +603,7 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
++/**
++ * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
++ * @fw: Pointer to the force wake structure
++ * @domains_mask: forcewake domain mask to put reference
++ *
++ * This function reduces the reference counts for specified domain mask. If
++ * refcount for any of the specified domain reaches 0, it puts the domain to sleep
++ * and waits for acknowledgment for domain to sleep within specified timeout.
++ * Ensure this function is always called with return of xe_force_wake_get() as
++ * @domains_mask.
++ *
++ * Returns 0 in case of success or non-zero in case of timeout of ack
++ */
+ int xe_force_wake_put(struct xe_force_wake *fw,
+-		      enum xe_force_wake_domains domains)
++		      int domains_mask)
  {
- 	struct xe_gt *gt = gsc_to_gt(gsc);
- 	struct xe_mmio *mmio = &gt->mmio;
--	int err;
-+	int fw_ref;
+ 	struct xe_gt *gt = fw->gt;
+ 	struct xe_force_wake_domain *domain;
+@@ -207,8 +220,15 @@ int xe_force_wake_put(struct xe_force_wake *fw,
+ 	unsigned long flags;
+ 	int ret = 0;
  
- 	xe_uc_fw_print(&gsc->fw, p);
++	/*
++	 * Avoid unnecessary lock and unlock when the function is called
++	 * in error path of individual domains.
++	 */
++	if (!domains_mask)
++		return 0;
++
+ 	spin_lock_irqsave(&fw->lock, flags);
+-	for_each_fw_domain_masked(domain, domains, fw, tmp) {
++	for_each_fw_domain_masked(domain, domains_mask, fw, tmp) {
+ 		if (!--domain->ref) {
+ 			sleep |= BIT(domain->id);
+ 			domain_sleep(gt, domain);
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index a2577672f4e3..e2bb6b03e495 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -18,7 +18,7 @@ void xe_force_wake_init_engines(struct xe_gt *gt,
+ int xe_force_wake_get(struct xe_force_wake *fw,
+ 		      enum xe_force_wake_domains domains);
+ int xe_force_wake_put(struct xe_force_wake *fw,
+-		      enum xe_force_wake_domains domains);
++		      int domains_mask);
  
-@@ -609,8 +612,8 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
- 	if (!xe_uc_fw_is_enabled(&gsc->fw))
- 		return;
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
--	if (err)
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+	if (!fw_ref)
- 		return;
- 
- 	drm_printf(p, "\nHECI1 FWSTS: 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x\n",
-@@ -621,5 +624,5 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
- 			xe_mmio_read32(mmio, HECI_FWSTS5(MTL_GSC_HECI1_BASE)),
- 			xe_mmio_read32(mmio, HECI_FWSTS6(MTL_GSC_HECI1_BASE)));
- 
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-index 6d89c22ae811..2e4a6c332412 100644
---- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-@@ -450,22 +450,21 @@ void xe_gsc_proxy_remove(struct xe_gsc *gsc)
- {
- 	struct xe_gt *gt = gsc_to_gt(gsc);
- 	struct xe_device *xe = gt_to_xe(gt);
--	int err = 0;
-+	int fw_ref = 0;
- 
- 	if (!gsc->proxy.component_added)
- 		return;
- 
- 	/* disable HECI2 IRQs */
- 	xe_pm_runtime_get(xe);
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
--	if (err)
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+	if (!fw_ref)
- 		xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
- 
- 	/* try do disable irq even if forcewake failed */
- 	gsc_proxy_irq_toggle(gsc, false);
- 
--	if (!err)
--		xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	xe_pm_runtime_put(xe);
- 
- 	xe_gsc_wait_for_worker_completion(gsc);
+ static inline int
+ xe_force_wake_ref(struct xe_force_wake *fw,
 -- 
 2.34.1
 
