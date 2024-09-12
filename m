@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E7EEED617
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 16:22:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BD5CEED617
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 16:23:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815FA10EBDD;
-	Thu, 12 Sep 2024 16:22:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A8410EBDE;
+	Thu, 12 Sep 2024 16:23:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iWgZ0gUv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LanR7PWB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E38ED10EBD9;
- Thu, 12 Sep 2024 16:22:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A8110EBDE
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 16:23:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726158138; x=1757694138;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fq+dk9/OVpecXphfjVmVkYo0CrNOC5IunjqHpRGc1i0=;
- b=iWgZ0gUvLw6KTTLWeBAYWgmf+/TNJy33urpuTQ8FJ2e6TotOZQU8Qcbv
- L9Hv0Xu8IF4tWwF99ICIkWxi/OLhTob5ZPKD9NdxSfyw8XYrFUKYtWTjh
- 0bc+a7TPw0ViPIOYCYjz3sZkpJdLWyPTFYB+V7CxbWQnXaWDP07O6d2dF
- GioWM0ZwWKJ/nJMeuNG1MuXhkjlOXOaQQlXu43X/APivRp2Uyp8xZKsL9
- un/wTjqajth1yuAuOV+5EZfkJYMN6B3kXzvXnPNYYuNrFqrv5PXTbQJBS
- H9uGCBu7Vev55zAYjzxMmtCZ6wDx7JCpk98OMd8ewS54gjzKfO/l+2xVK A==;
-X-CSE-ConnectionGUID: L6NVpLivSx6TsZ5G41qLkw==
-X-CSE-MsgGUID: mfxa/HqCT+WPX6FtqwhJGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25175099"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25175099"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 09:22:19 -0700
-X-CSE-ConnectionGUID: lC5hSzl5QrKkpCM6jDVKtg==
-X-CSE-MsgGUID: sj9uw+sQTrOWvtwp8EQDgQ==
+ t=1726158221; x=1757694221;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=sYKCvL6KDDBjRuG5hY8h/Zy/UgrVRLisVz2holajHUM=;
+ b=LanR7PWBivyKwLqq0eLWG6TzAbusuyWNWkLyfFiMQiTgBOMPrs01cZ/D
+ QzjpC9kf4JV0j0POD97Rx4JoEegwm/bq2oIZKgFnZW3fnUeMCK6lWGBFC
+ CXOnCRNmA6FhJB5jVu5sT0tcE07wYsDY0KSXxPFsKOmK926MT69Rkggjp
+ 8MasKqt+HNjidgWYkdiAJ7IMA1j4EIY8c2w/HNOtqRrEYigQHUlGcNIPM
+ UyhPaiDzyJ+hRe502SIyJuLbCiInC8uL6F7GHYu01k2RQjKyZPg9vbkx+
+ o4+LryVJXx4vasDLBm6JRT/nxfzsLRXV6mlv8bscl+COEuEn5DP8enSbx w==;
+X-CSE-ConnectionGUID: 4Xf6hLOITga8rx3jFNVMsQ==
+X-CSE-MsgGUID: tLU+GgHeQyKrN9A77oL1RA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="35695264"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="35695264"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 09:23:41 -0700
+X-CSE-ConnectionGUID: DdDaRI0iSKKKWci6aIy7Pg==
+X-CSE-MsgGUID: FGc5UWcmTFyRNkZ6eHDYNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="67848279"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Sep 2024 09:22:16 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Sep 2024 19:22:15 +0300
-Date: Thu, 12 Sep 2024 19:22:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: Don't allow tile4 framebuffer to do
- hflip on Xe2
-Message-ID: <ZuMVN5mQ4aZpF1vm@intel.com>
-References: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="67738893"
+Received: from jhliu1-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.125.81.59])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 09:23:40 -0700
+Date: Thu, 12 Sep 2024 09:07:42 -0700
+Message-ID: <87h6ak3lf5.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2] drm/xe/oa: Fix overflow in oa batch buffer
+In-Reply-To: <20240912153842.35813-1-jose.souza@intel.com>
+References: <20240912153842.35813-1-jose.souza@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,85 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 12, 2024 at 05:46:06PM +0300, Juha-Pekka Heikkila wrote:
-> On Intel Xe2 hw tile4 is not supported with horizontal flip
-> 
-> bspec 69853
+On Thu, 12 Sep 2024 08:38:42 -0700, Jos=E9 Roberto de Souza wrote:
+>
+> By default xe_bb_create_job() appends a MI_BATCH_BUFFER_END to batch
+> buffer, this is not a problem if batch buffer is only used once but
+> oa reuses the batch buffer for the same metric and at each call
+> it appends a MI_BATCH_BUFFER_END, printing the warning below and then
+> overflowing.
+>
+> [  381.072016] ------------[ cut here ]------------
+> [  381.072019] xe 0000:00:02.0: [drm] Assertion `bb->len * 4 + bb_prefetc=
+h(q->gt) <=3D size` failed!
 
-That only seems to apply to LNL, I see no defeature noted for BMG.
+I'd think just this one line from this log is sufficient for the commit mes=
+sage.
 
-Curiously they also seem to have added linear+hflip support for LNL...
-
-> 
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>                platform: LUNARLAKE subplatform: 1
+>                graphics: Xe2_LPG / Xe2_HPG 20.04 step B0
+>                media: Xe2_LPM / Xe2_HPM 20.00 step B0
+>                tile: 0 VRAM 0 B
+>                GT: 0 type 1
+>
+> So here checking if batch buffer already have MI_BATCH_BUFFER_END if
+> not append it.
+>
+> v2:
+> - simply fix, suggestion from Ashutosh
+>
+> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++++++++++
->  drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 ++++++++++++
->  3 files changed, 26 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index d2ff21e98545..c9038d239eb2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -439,6 +439,19 @@ bool intel_fb_needs_64k_phys(u64 modifier)
->  				      INTEL_PLANE_CAP_NEED64K_PHYS);
->  }
->  
-> +/**
-> + * intel_fb_is_tile4_modifier: Check if a modifier is a tile4 modifier type
-> + * @modifier: Modifier to check
-> + *
-> + * Returns:
-> + * Returns %true if @modifier is a tile4 modifier.
-> + */
-> +bool intel_fb_is_tile4_modifier(u64 modifier)
-> +{
-> +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
-> +				      INTEL_PLANE_CAP_TILING_4);
-> +}
-> +
->  static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
->  					     u8 display_ver_from, u8 display_ver_until)
+>  drivers/gpu/drm/xe/xe_bb.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+> index a13e0b3a169ed..ef777dbdf4ecc 100644
+> --- a/drivers/gpu/drm/xe/xe_bb.c
+> +++ b/drivers/gpu/drm/xe/xe_bb.c
+> @@ -65,7 +65,8 @@ __xe_bb_create_job(struct xe_exec_queue *q, struct xe_b=
+b *bb, u64 *addr)
 >  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-> index 068f3aee99aa..bff87994cf2c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-> @@ -35,6 +35,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
->  bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
->  bool intel_fb_is_mc_ccs_modifier(u64 modifier);
->  bool intel_fb_needs_64k_phys(u64 modifier);
-> +bool intel_fb_is_tile4_modifier(u64 modifier);
->  
->  bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
->  int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 17d4c880ecc4..4de41ab5060a 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1591,6 +1591,18 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
->  		return -EINVAL;
->  	}
->  
-> +	/*
-> +	 * Starting with LNL and BMG tile4 hflip is not supported
-> +	 */
-> +	if (rotation & DRM_MODE_REFLECT_X &&
-> +	    intel_fb_is_tile4_modifier(fb->modifier) &&
-> +	    ((DISPLAY_VER(dev_priv) >= 14 && IS_DGFX(dev_priv)) ||
-> +	     (DISPLAY_VER(dev_priv) >= 20 && !IS_DGFX(dev_priv)))) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "horizontal flip is not supported with tile4 surface formats\n");
-> +		return -EINVAL;
-> +	}
-> +
->  	if (drm_rotation_90_or_270(rotation)) {
->  		if (!intel_fb_supports_90_270_rotation(to_intel_framebuffer(fb))) {
->  			drm_dbg_kms(&dev_priv->drm,
-> -- 
-> 2.45.2
+>	u32 size =3D drm_suballoc_size(bb->bo);
+>
+> -	bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
+> +	if (bb->len =3D=3D 0 || bb->cs[bb->len - 1] !=3D MI_BATCH_BUFFER_END)
+> +		bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
 
--- 
-Ville Syrjälä
-Intel
+In any case, thanks for the fix:
+
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+>	xe_gt_assert(q->gt, bb->len * 4 + bb_prefetch(q->gt) <=3D size);
+>
+> --
+> 2.46.0
+>
