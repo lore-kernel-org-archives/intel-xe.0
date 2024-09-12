@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12EC7EED609
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 13:47:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25D65EED606
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 13:47:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9CA710EB97;
-	Thu, 12 Sep 2024 13:47:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A6B10EB95;
+	Thu, 12 Sep 2024 13:47:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i7b9M5oT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsgOs1Rm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32FF310EB8F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16FF010EB8E
  for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 13:46:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726148818; x=1757684818;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=C3haHBnx6xmw6PLmn/I12ArotBQipvhArNU6thPSUAI=;
- b=i7b9M5oTnf0R8OKZviPck+TGw2wf7yVNVzxXt1rRRdfwG34Pk9KBEB5Z
- EUmAln5T0LBZs1ck9sXdHWFKv16TKGhfT9YWB6pnPmGYLKS1rwlr9bgVs
- uT83V95YV6jveyZJUQVEG1s7Q5kCnFMEOQlzosCjmq+LN0wy/HDGkEoDS
- AazLSRbYoVfvJVYIQkH0DRWTYWRz54HQPOdfwJfulpcae0Oib1qA+S4F/
- z87uXPl+btG6PK4RnWMTjAHDC46nartCYgB0TtqzlcvDeWjPnNV/v0CrX
- ORCk+zC6J/77kI4YP15d41Gflle0C7WKED5JGNgvb6I/b4/2k4T/wMP1y Q==;
-X-CSE-ConnectionGUID: 6/CdStBKS6Spd6fLWnB+Qg==
-X-CSE-MsgGUID: NkL9/+J+Sta4D7htIRdtVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="24873133"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="24873133"
+ bh=JieGjiPY6PoGrLlrnFr8u4pPJahJnk4vvy7od0tjy6s=;
+ b=gsgOs1RmTbsd5IEri2R754Zfjm2W19qYwhgRgJc3NiFo3i5lC+o3lJ9Y
+ o01sMhWXQUZwoqdjgsgwc3o3OkYtIinJR2aEVpgeDRrMAzsdSI5J4lf1Y
+ DZRTDPtNMCSg8h6bAslq+A97s0uskkwGGBym67sSzrev1/46APGjM6Vjm
+ nV069MBtd5hOPc3IBbMZrpuj9rXjcZUPx/SoE6vXsrB4A+Sp6dn9MBiGx
+ +4PW2bjdJh1x3orz2qHoLXiG+LXcA+Id6SMc/Nu3wbhZcZ9AYttAUs/T+
+ 933yKqVE0mJekQTfEMtzkntehM1gObd3+Rtp70OKsja9tAKR9gPwpZSAA Q==;
+X-CSE-ConnectionGUID: 3ROFJ8S9RGqd2jUQcLFUCg==
+X-CSE-MsgGUID: IRW6Eh3lR/W0Q31ZturAxg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="24873130"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="24873130"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Sep 2024 06:46:58 -0700
-X-CSE-ConnectionGUID: ZLRuSbH0TwKtwnaAr34cSg==
-X-CSE-MsgGUID: hkdZGxu1Sj+rkhVCAoowqQ==
+X-CSE-ConnectionGUID: AmFTMQTcSD2mkan18cJ6kA==
+X-CSE-MsgGUID: foaK61ShR8qQf9FeCmcPQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="68002497"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="68002494"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
  by orviesa006.jf.intel.com with ESMTP; 12 Sep 2024 06:46:58 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
  Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH v19 5/6] drm/xe/guc: Plumb GuC-capture into dev coredump
-Date: Thu, 12 Sep 2024 06:46:53 -0700
-Message-Id: <20240912134654.161754-6-zhanjun.dong@intel.com>
+Subject: [PATCH v19 4/6] drm/xe/guc: Extract GuC error capture lists
+Date: Thu, 12 Sep 2024 06:46:52 -0700
+Message-Id: <20240912134654.161754-5-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240912134654.161754-1-zhanjun.dong@intel.com>
 References: <20240912134654.161754-1-zhanjun.dong@intel.com>
@@ -66,995 +66,1180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When we decide to kill a job, (from guc_exec_queue_timedout_job), we could
-end up with 4 possible scenarios at this starting point of this decision:
-1. the guc-captured register-dump is already there.
-2. the driver is wedged.mode > 1, so GuC-engine-reset / GuC-err-capture
-   will not happen.
-3. the user has started the driver in execlist-submission mode.
-4. the guc-captured register-dump is not ready yet so we force GuC to kill
-   that context now, but:
-     A. we don't know yet if GuC will be successful on the engine-reset
-        and get the guc-err-capture, else kmd will do a manual reset later
-     OR B. guc will be successful and we will get a guc-err-capture
-           shortly.
+Upon the G2H Notify-Err-Capture event, parse through the
+GuC Log Buffer (error-capture-subregion) and generate one or
+more capture-nodes. A single node represents a single "engine-
+instance-capture-dump" and contains at least 3 register lists:
+global, engine-class and engine-instance. An internal link
+list is maintained to store one or more nodes.
 
-So to accomdate the scenarios of 2 and 4A, we will need to do a manual KMD
-capture first(which is not be reliable in guc-submission mode) and decide
-later if we need to use that for the cases of 2 or 4A. So this flow is
-part of the implementation for this patch.
+Because the link-list node generation happen before the call
+to devcoredump, duplicate global and engine-class register
+lists for each engine-instance register dump if we find
+dependent-engine resets in a engine-capture-group.
 
-Provide xe_guc_capture_get_reg_desc_list to get the register dscriptor
-list.
-Add manual capture by read from hw engine if GuC capture is not ready.
-If it becomes ready at later time, GuC sourced data will be used.
-
-Although there may only be a small delay between (1) the check for whether
-guc-err-capture is available at the start of guc_exec_queue_timedout_job
-and (2) the decision on using a valid guc-err-capture or manual-capture,
-lets not take any chances and lock the matching node down so it doesn't
-get re-claimed if GuC-Err-Capture subsystem is running out of pre-cached
-nodes.
+To avoid dynamically allocate the output nodes during gt reset,
+pre-allocate a fixed number of empty nodes up front (at the
+time of ADS registration) that we can consume from or return to
+an internal cached list of nodes.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c       |  17 +-
- drivers/gpu/drm/xe/xe_devcoredump_types.h |   8 +
- drivers/gpu/drm/xe/xe_gt_mcr.c            |  13 +
- drivers/gpu/drm/xe/xe_gt_mcr.h            |   1 +
- drivers/gpu/drm/xe/xe_guc_capture.c       | 322 +++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_guc_capture.h       |  10 +
- drivers/gpu/drm/xe/xe_guc_submit.c        |  20 +-
- drivers/gpu/drm/xe/xe_hw_engine.c         | 165 ++++++-----
- drivers/gpu/drm/xe/xe_hw_engine.h         |   4 +-
- drivers/gpu/drm/xe/xe_hw_engine_types.h   |   7 +
- drivers/gpu/drm/xe/xe_lrc.c               |  18 --
- drivers/gpu/drm/xe/xe_lrc.h               |  19 +-
- 12 files changed, 501 insertions(+), 103 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |   8 +
+ drivers/gpu/drm/xe/abi/guc_log_abi.h     |  55 ++
+ drivers/gpu/drm/xe/xe_guc_capture.c      | 702 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_capture.h      |   1 +
+ drivers/gpu/drm/xe/xe_guc_ct.c           |   2 +
+ drivers/gpu/drm/xe/xe_guc_log.c          |  36 ++
+ drivers/gpu/drm/xe/xe_guc_log.h          |   3 +
+ drivers/gpu/drm/xe/xe_guc_log_types.h    |   7 +
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  65 ++-
+ drivers/gpu/drm/xe/xe_guc_submit.h       |   2 +
+ 10 files changed, 863 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index bdb76e834e4c..39dbcc680327 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -16,6 +16,7 @@
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-+#include "xe_guc_capture.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_submit.h"
- #include "xe_hw_engine.h"
-@@ -121,6 +122,9 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
- 	xe_guc_ct_snapshot_free(ss->ct);
- 	ss->ct = NULL;
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index 43ad4652c2b2..b54fe40fc5a9 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -176,6 +176,14 @@ enum xe_guc_sleep_state_status {
+ #define GUC_LOG_CONTROL_VERBOSITY_MASK	(0xF << GUC_LOG_CONTROL_VERBOSITY_SHIFT)
+ #define GUC_LOG_CONTROL_DEFAULT_LOGGING	(1 << 8)
  
-+	xe_guc_capture_free(&ss->gt->uc.guc);
-+	ss->matched_node = NULL;
++enum xe_guc_state_capture_event_status {
++	XE_GUC_STATE_CAPTURE_EVENT_STATUS_SUCCESS = 0x0,
++	XE_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE = 0x1,
++};
 +
- 	xe_guc_exec_queue_snapshot_free(ss->ge);
- 	ss->ge = NULL;
++#define XE_GUC_STATE_CAPTURE_EVENT_STATUS_MASK      0x000000FF
++#define XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION_DATA_LEN 1
++
+ #define XE_GUC_TLB_INVAL_TYPE_SHIFT 0
+ #define XE_GUC_TLB_INVAL_MODE_SHIFT 8
+ /* Flush PPC or SMRO caches along with TLB invalidation request */
+diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+index 10db4ffaa17f..554630b7ccd9 100644
+--- a/drivers/gpu/drm/xe/abi/guc_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+@@ -17,4 +17,59 @@ enum guc_log_buffer_type {
  
-@@ -204,6 +208,7 @@ static void xe_devcoredump_free(void *data)
- 	/* To prevent stale data on next snapshot, clear everything */
- 	memset(&coredump->snapshot, 0, sizeof(coredump->snapshot));
- 	coredump->captured = false;
-+	coredump->job = NULL;
- 	drm_info(&coredump_to_xe(coredump)->drm,
- 		 "Xe device coredump has been deleted.\n");
- }
-@@ -214,8 +219,6 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
- 	struct xe_exec_queue *q = job->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct xe_hw_engine *hwe;
--	enum xe_hw_engine_id id;
- 	u32 adj_logical_mask = q->logical_mask;
- 	u32 width_mask = (0x1 << q->width) - 1;
- 	const char *process_name = "no process";
-@@ -231,6 +234,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	strscpy(ss->process_name, process_name);
- 
- 	ss->gt = q->gt;
-+	coredump->job = job;
- 	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
- 
- 	cookie = dma_fence_begin_signalling();
-@@ -252,14 +256,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
- 	coredump->snapshot.vm = xe_vm_snapshot_capture(q->vm);
- 
--	for_each_hw_engine(hwe, q->gt, id) {
--		if (hwe->class != q->hwe->class ||
--		    !(BIT(hwe->logical_instance) & adj_logical_mask)) {
--			coredump->snapshot.hwe[id] = NULL;
--			continue;
--		}
--		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe);
--	}
-+	xe_engine_snapshot_capture_for_job(job);
- 
- 	queue_work(system_unbound_wq, &ss->work);
- 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 440d05d77a5a..3ac7455f8925 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -44,6 +44,12 @@ struct xe_devcoredump_snapshot {
- 	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
- 	/** @job: Snapshot of job state */
- 	struct xe_sched_job_snapshot *job;
-+	/**
-+	 * @matched_node: The matched capture node for timedout job
-+	 * this single-node tracker works because devcoredump will always only
-+	 * produce one hw-engine capture per devcoredump event
-+	 */
-+	struct __guc_capture_parsed_output *matched_node;
- 	/** @vm: Snapshot of VM state */
- 	struct xe_vm_snapshot *vm;
- 
-@@ -69,6 +75,8 @@ struct xe_devcoredump {
- 	bool captured;
- 	/** @snapshot: Snapshot is captured at time of the first crash */
- 	struct xe_devcoredump_snapshot snapshot;
-+	/** @job: Point to the faulting job */
-+	struct xe_sched_job *job;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 7d7bd0be6233..5deef7ee7925 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -352,6 +352,19 @@ void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group,
- 	*instance = dss % gt->steering_dss_per_grp;
- }
+ #define GUC_LOG_BUFFER_TYPE_MAX		3
  
 +/**
-+ * xe_gt_mcr_steering_info_to_dss_id - Get DSS ID from group/instance steering
-+ * @gt: GT structure
-+ * @group: steering group ID
-+ * @instance: steering instance ID
++ * struct guc_log_buffer_state - GuC log buffer state
 + *
-+ * Return: the coverted DSS id.
++ * Below state structure is used for coordination of retrieval of GuC firmware
++ * logs. Separate state is maintained for each log buffer type.
++ * read_ptr points to the location where Xe read last in log buffer and
++ * is read only for GuC firmware. write_ptr is incremented by GuC with number
++ * of bytes written for each log entry and is read only for Xe.
++ * When any type of log buffer becomes half full, GuC sends a flush interrupt.
++ * GuC firmware expects that while it is writing to 2nd half of the buffer,
++ * first half would get consumed by Host and then get a flush completed
++ * acknowledgment from Host, so that it does not end up doing any overwrite
++ * causing loss of logs. So when buffer gets half filled & Xe has requested
++ * for interrupt, GuC will set flush_to_file field, set the sampled_write_ptr
++ * to the value of write_ptr and raise the interrupt.
++ * On receiving the interrupt Xe should read the buffer, clear flush_to_file
++ * field and also update read_ptr with the value of sample_write_ptr, before
++ * sending an acknowledgment to GuC. marker & version fields are for internal
++ * usage of GuC and opaque to Xe. buffer_full_cnt field is incremented every
++ * time GuC detects the log buffer overflow.
 + */
-+u32 xe_gt_mcr_steering_info_to_dss_id(struct xe_gt *gt, u16 group, u16 instance)
-+{
-+	return group * dss_per_group(gt) + instance;
-+}
++struct guc_log_buffer_state {
++	/** @marker: buffer state start marker */
++	u32 marker[2];
++	/** @read_ptr: the last byte offset that was read by KMD previously */
++	u32 read_ptr;
++	/**
++	 * @write_ptr: the next byte offset location that will be written by
++	 * GuC
++	 */
++	u32 write_ptr;
++	/** @size: Log buffer size */
++	u32 size;
++	/**
++	 * @sampled_write_ptr: Log buffer write pointer
++	 * This is written by GuC to the byte offset of the next free entry in
++	 * the buffer on log buffer half full or state capture notification
++	 */
++	u32 sampled_write_ptr;
++	/**
++	 * @wrap_offset: wraparound offset
++	 * This is the byte offset of location 1 byte after last valid guc log
++	 * event entry written by Guc firmware before there was a wraparound.
++	 * This field is updated by guc firmware and should be used by Host
++	 * when copying buffer contents to file.
++	 */
++	u32 wrap_offset;
++	/** @flags: Flush to file flag and buffer full count */
++	u32 flags;
++#define	GUC_LOG_BUFFER_STATE_FLUSH_TO_FILE	GENMASK(0, 0)
++#define	GUC_LOG_BUFFER_STATE_BUFFER_FULL_CNT	GENMASK(4, 1)
++	/** @version: The Guc-Log-Entry format version */
++	u32 version;
++} __packed;
 +
- static void init_steering_dss(struct xe_gt *gt)
- {
- 	gt->steering_dss_per_grp = dss_per_group(gt);
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
-index 8d119a0d5493..c0cd36021c24 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-@@ -28,6 +28,7 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
- 
- void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
- void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance);
-+u32 xe_gt_mcr_steering_info_to_dss_id(struct xe_gt *gt, u16 group, u16 instance);
- 
- /*
-  * Loop over each DSS and determine the group and instance IDs that
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 1f008ad99f67..f18db088f37f 100644
+index f1b9ddcb2d89..1f008ad99f67 100644
 --- a/drivers/gpu/drm/xe/xe_guc_capture.c
 +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -27,11 +27,17 @@
- #include "xe_guc_capture.h"
- #include "xe_guc_capture_types.h"
- #include "xe_guc_ct.h"
-+#include "xe_guc_exec_queue_types.h"
- #include "xe_guc_log.h"
-+#include "xe_guc_submit_types.h"
- #include "xe_guc_submit.h"
- #include "xe_hw_engine_types.h"
-+#include "xe_hw_engine.h"
-+#include "xe_lrc.h"
+@@ -10,6 +10,7 @@
+ 
+ #include "abi/guc_actions_abi.h"
+ #include "abi/guc_capture_abi.h"
++#include "abi/guc_log_abi.h"
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_guc_regs.h"
+@@ -32,6 +33,51 @@
  #include "xe_macros.h"
  #include "xe_map.h"
-+#include "xe_mmio.h"
-+#include "xe_sched_job.h"
  
++/*
++ * struct __guc_capture_bufstate
++ *
++ * Book-keeping structure used to track read and write pointers
++ * as we extract error capture data from the GuC-log-buffer's
++ * error-capture region as a stream of dwords.
++ */
++struct __guc_capture_bufstate {
++	u32 size;
++	u32 data_offset;
++	u32 rd;
++	u32 wr;
++};
++
++/*
++ * struct __guc_capture_parsed_output - extracted error capture node
++ *
++ * A single unit of extracted error-capture output data grouped together
++ * at an engine-instance level. We keep these nodes in a linked list.
++ * See cachelist and outlist below.
++ */
++struct __guc_capture_parsed_output {
++	/*
++	 * A single set of 3 capture lists: a global-list
++	 * an engine-class-list and an engine-instance list.
++	 * outlist in __guc_capture_parsed_output will keep
++	 * a linked list of these nodes that will eventually
++	 * be detached from outlist and attached into to
++	 * xe_codedump in response to a context reset
++	 */
++	struct list_head link;
++	bool is_partial;
++	u32 eng_class;
++	u32 eng_inst;
++	u32 guc_id;
++	u32 lrca;
++	struct gcap_reg_list_info {
++		u32 vfid;
++		u32 num_regs;
++		struct guc_mmio_reg *regs;
++	} reginfo[GUC_STATE_CAPTURE_TYPE_MAX];
++#define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_STATE_CAPTURE_TYPE_GLOBAL)
++#define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS)
++};
++
  /*
-  * struct __guc_capture_bufstate
-@@ -69,6 +75,9 @@ struct __guc_capture_parsed_output {
- 	u32 eng_inst;
- 	u32 guc_id;
- 	u32 lrca;
-+	u32 type;
-+	bool locked;
-+	enum xe_hw_engine_snapshot_source_id source;
- 	struct gcap_reg_list_info {
- 		u32 vfid;
- 		u32 num_regs;
-@@ -275,6 +284,10 @@ struct xe_guc_state_capture {
- 	struct list_head outlist;
+  * Define all device tables of GuC error capture register lists
+  * NOTE:
+@@ -221,6 +267,12 @@ struct xe_guc_state_capture {
+ 						[GUC_STATE_CAPTURE_TYPE_MAX]
+ 						[GUC_CAPTURE_LIST_CLASS_MAX];
+ 	void *ads_null_cache;
++	struct list_head cachelist;
++#define PREALLOC_NODES_MAX_COUNT (3 * GUC_MAX_ENGINE_CLASSES * GUC_MAX_INSTANCES_PER_CLASS)
++#define PREALLOC_NODES_DEFAULT_NUMREGS 64
++
++	int max_mmio_per_node;
++	struct list_head outlist;
  };
  
-+static void
-+guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
-+					   struct __guc_capture_parsed_output *node);
-+
  static const struct __guc_mmio_reg_descr_group *
- guc_capture_get_device_reglist(struct xe_device *xe)
- {
-@@ -303,6 +316,22 @@ guc_capture_get_one_list(const struct __guc_mmio_reg_descr_group *reglists,
- 	return NULL;
- }
- 
-+const struct __guc_mmio_reg_descr_group *
-+xe_guc_capture_get_reg_desc_list(struct xe_gt *gt, u32 owner, u32 type,
-+				 enum guc_capture_list_class_type capture_class, bool is_ext)
-+{
-+	const struct __guc_mmio_reg_descr_group *reglists;
-+
-+	if (is_ext) {
-+		struct xe_guc *guc = &gt->uc.guc;
-+
-+		reglists = guc->capture->extlists;
-+	} else {
-+		reglists = guc_capture_get_device_reglist(gt_to_xe(gt));
-+	}
-+	return guc_capture_get_one_list(reglists, owner, type, capture_class);
-+}
-+
- struct __ext_steer_reg {
- 	const char *name;
- 	struct xe_reg_mcr reg;
-@@ -805,13 +834,14 @@ static void
- guc_capture_add_node_to_list(struct __guc_capture_parsed_output *node,
- 			     struct list_head *list)
- {
--	list_add_tail(&node->link, list);
-+	list_add(&node->link, list);
- }
- 
- static void
- guc_capture_add_node_to_outlist(struct xe_guc_state_capture *gc,
- 				struct __guc_capture_parsed_output *node)
- {
-+	guc_capture_remove_stale_matches_from_list(gc, node);
- 	guc_capture_add_node_to_list(node, &gc->outlist);
- }
- 
-@@ -822,6 +852,31 @@ guc_capture_add_node_to_cachelist(struct xe_guc_state_capture *gc,
- 	guc_capture_add_node_to_list(node, &gc->cachelist);
+@@ -749,11 +801,654 @@ static void check_guc_capture_size(struct xe_guc *guc)
+ 			  buffer_size, spare_size, capture_size);
  }
  
 +static void
-+guc_capture_free_outlist_node(struct xe_guc_state_capture *gc,
-+			      struct __guc_capture_parsed_output *n)
++guc_capture_add_node_to_list(struct __guc_capture_parsed_output *node,
++			     struct list_head *list)
 +{
-+	if (n) {
-+		n->locked = 0;
-+		list_del(&n->link);
-+		/* put node back to cache list */
-+		guc_capture_add_node_to_cachelist(gc, n);
-+	}
++	list_add_tail(&node->link, list);
 +}
 +
 +static void
-+guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
-+					   struct __guc_capture_parsed_output *node)
++guc_capture_add_node_to_outlist(struct xe_guc_state_capture *gc,
++				struct __guc_capture_parsed_output *node)
 +{
-+	struct __guc_capture_parsed_output *n, *ntmp;
-+	int guc_id = node->guc_id;
-+
-+	list_for_each_entry_safe(n, ntmp, &gc->outlist, link) {
-+		if (n != node && !n->locked && n->guc_id == guc_id)
-+			guc_capture_free_outlist_node(gc, n);
-+	}
++	guc_capture_add_node_to_list(node, &gc->outlist);
 +}
 +
- static void
- guc_capture_init_node(struct xe_guc *guc, struct __guc_capture_parsed_output *node)
- {
-@@ -1017,9 +1072,13 @@ guc_capture_get_prealloc_node(struct xe_guc *guc)
- 	} else {
- 		struct __guc_capture_parsed_output *n, *ntmp;
- 
--		/* traverse down and steal back the oldest node already allocated */
--		list_for_each_entry_safe(n, ntmp, &guc->capture->outlist, link) {
--			found = n;
-+		/*
-+		 * traverse reversed and steal back the oldest node already
-+		 * allocated
-+		 */
-+		list_for_each_entry_safe_reverse(n, ntmp, &guc->capture->outlist, link) {
-+			if (!n->locked)
-+				found = n;
- 		}
- 	}
- 	if (found) {
-@@ -1212,6 +1271,8 @@ guc_capture_extract_reglists(struct xe_guc *guc, struct __guc_capture_bufstate *
- 		}
- 		node->is_partial = is_partial;
- 		node->reginfo[datatype].vfid = FIELD_GET(GUC_STATE_CAPTURE_HEADER_VFID, hdr.owner);
-+		node->source = XE_ENGINE_CAPTURE_SOURCE_GUC;
-+		node->type = datatype;
- 
- 		switch (datatype) {
- 		case GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE:
-@@ -1444,6 +1505,259 @@ guc_capture_create_prealloc_nodes(struct xe_guc *guc)
- 	__guc_capture_create_prealloc_nodes(guc);
- }
- 
-+static struct guc_mmio_reg *
-+guc_capture_find_reg(struct gcap_reg_list_info *reginfo, u32 addr, u32 flags)
++static void
++guc_capture_add_node_to_cachelist(struct xe_guc_state_capture *gc,
++				  struct __guc_capture_parsed_output *node)
 +{
++	guc_capture_add_node_to_list(node, &gc->cachelist);
++}
++
++static void
++guc_capture_init_node(struct xe_guc *guc, struct __guc_capture_parsed_output *node)
++{
++	struct guc_mmio_reg *tmp[GUC_STATE_CAPTURE_TYPE_MAX];
 +	int i;
 +
-+	if (reginfo && reginfo->num_regs > 0) {
-+		struct guc_mmio_reg *regs = reginfo->regs;
-+
-+		if (regs)
-+			for (i = 0; i < reginfo->num_regs; i++)
-+				if (regs[i].offset == addr && regs[i].flags == flags)
-+					return &regs[i];
++	for (i = 0; i < GUC_STATE_CAPTURE_TYPE_MAX; ++i) {
++		tmp[i] = node->reginfo[i].regs;
++		memset(tmp[i], 0, sizeof(struct guc_mmio_reg) *
++		       guc->capture->max_mmio_per_node);
 +	}
++	memset(node, 0, sizeof(*node));
++	for (i = 0; i < GUC_STATE_CAPTURE_TYPE_MAX; ++i)
++		node->reginfo[i].regs = tmp[i];
 +
-+	return NULL;
-+}
-+
-+static void
-+snapshot_print_by_list_order(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p,
-+			     u32 type, const struct __guc_mmio_reg_descr_group *list)
-+{
-+	struct xe_gt *gt = snapshot->hwe->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_guc *guc = &gt->uc.guc;
-+	struct xe_devcoredump *devcoredump = &xe->devcoredump;
-+	struct xe_devcoredump_snapshot *devcore_snapshot = &devcoredump->snapshot;
-+	struct gcap_reg_list_info *reginfo = NULL;
-+	u32 last_value, i;
-+	bool is_ext;
-+
-+	if (!list || list->num_regs == 0)
-+		return;
-+	XE_WARN_ON(!devcore_snapshot->matched_node);
-+
-+	is_ext = list == guc->capture->extlists;
-+	reginfo = &devcore_snapshot->matched_node->reginfo[type];
-+
-+	/*
-+	 * loop through descriptor first and find the register in the node
-+	 * this is more scalable for developer maintenance as it will ensure
-+	 * the printout matched the ordering of the static descriptor
-+	 * table-of-lists
-+	 */
-+	for (i = 0; i < list->num_regs; i++) {
-+		const struct __guc_mmio_reg_descr *reg_desc = &list->list[i];
-+		struct guc_mmio_reg *reg;
-+		u32 value;
-+
-+		reg = guc_capture_find_reg(reginfo, reg_desc->reg.addr, reg_desc->flags);
-+		if (!reg)
-+			continue;
-+
-+		value = reg->value;
-+		if (reg_desc->data_type == REG_64BIT_LOW_DW) {
-+			last_value = value;
-+			/* Low 32 bit dword saved, continue for high 32 bit */
-+			continue;
-+		} else if (reg_desc->data_type == REG_64BIT_HI_DW) {
-+			u64 value_qw = ((u64)value << 32) | last_value;
-+
-+			drm_printf(p, "\t%s: 0x%016llx\n", reg_desc->regname, value_qw);
-+			continue;
-+		}
-+
-+		if (is_ext) {
-+			int dss, group, instance;
-+
-+			group = FIELD_GET(GUC_REGSET_STEERING_GROUP, reg_desc->flags);
-+			instance = FIELD_GET(GUC_REGSET_STEERING_INSTANCE, reg_desc->flags);
-+			dss = xe_gt_mcr_steering_info_to_dss_id(gt, group, instance);
-+
-+			drm_printf(p, "\t%s[%u]: 0x%08x\n", reg_desc->regname, dss, value);
-+		} else {
-+			drm_printf(p, "\t%s: 0x%08x\n", reg_desc->regname, value);
-+		}
-+	}
++	INIT_LIST_HEAD(&node->link);
 +}
 +
 +/**
-+ * xe_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
-+ * @snapshot: Xe HW Engine snapshot object.
-+ * @p: drm_printer where it will be printed out.
++ * DOC: Init, G2H-event and reporting flows for GuC-error-capture
 + *
-+ * This function prints out a given Xe HW Engine snapshot object.
++ * KMD Init time flows:
++ * --------------------
++ *     --> alloc A: GuC input capture regs lists (registered to GuC via ADS).
++ *                  xe_guc_ads acquires the register lists by calling
++ *                  xe_guc_capture_getlistsize and xe_guc_capture_getlist 'n' times,
++ *                  where n = 1 for global-reg-list +
++ *                            num_engine_classes for class-reg-list +
++ *                            num_engine_classes for instance-reg-list
++ *                               (since all instances of the same engine-class type
++ *                                have an identical engine-instance register-list).
++ *                  ADS module also calls separately for PF vs VF.
++ *
++ *     --> alloc B: GuC output capture buf (registered via guc_init_params(log_param))
++ *                  Size = #define CAPTURE_BUFFER_SIZE (warns if on too-small)
++ *                  Note2: 'x 3' to hold multiple capture groups
++ *
++ * GUC Runtime notify capture:
++ * --------------------------
++ *     --> G2H STATE_CAPTURE_NOTIFICATION
++ *                   L--> xe_guc_capture_process
++ *                           L--> Loop through B (head..tail) and for each engine instance's
++ *                                err-state-captured register-list we find, we alloc 'C':
++ *      --> alloc C: A capture-output-node structure that includes misc capture info along
++ *                   with 3 register list dumps (global, engine-class and engine-instance)
++ *                   This node is created from a pre-allocated list of blank nodes in
++ *                   guc->capture->cachelist and populated with the error-capture
++ *                   data from GuC and then it's added into guc->capture->outlist linked
++ *                   list. This list is used for matchup and printout by xe_devcoredump_read
++ *                   and xe_hw_engine_snapshot_print, (when user invokes the devcoredump sysfs).
++ *
++ * GUC --> notify context reset:
++ * -----------------------------
++ *     --> guc_exec_queue_timedout_job
++ *                   L--> xe_devcoredump
++ *                          L--> devcoredump_snapshot
++ *                               --> xe_hw_engine_snapshot_capture
++ *
++ * User Sysfs / Debugfs
++ * --------------------
++ *      --> xe_devcoredump_read->
++ *             L--> xxx_snapshot_print
++ *                    L--> xe_hw_engine_snapshot_print
++ *                         Print register lists values saved at
++ *                         guc->capture->outlist
++ *
 + */
-+void xe_engine_guc_capture_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p)
++
++static int guc_capture_buf_cnt(struct __guc_capture_bufstate *buf)
 +{
-+	const char *grptype[GUC_STATE_CAPTURE_GROUP_TYPE_MAX] = {
-+		"full-capture",
-+		"partial-capture"
-+	};
-+	int type;
-+	const struct __guc_mmio_reg_descr_group *list;
-+	enum guc_capture_list_class_type capture_class;
-+
-+	struct xe_gt *gt = snapshot->hwe->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_devcoredump *devcoredump = &xe->devcoredump;
-+	struct xe_devcoredump_snapshot *devcore_snapshot = &devcoredump->snapshot;
-+
-+	if (!snapshot)
-+		return;
-+	XE_WARN_ON(!devcore_snapshot->matched_node);
-+
-+	xe_gt_assert(gt, snapshot->source <= XE_ENGINE_CAPTURE_SOURCE_GUC);
-+	xe_gt_assert(gt, snapshot->hwe);
-+
-+	capture_class = xe_engine_class_to_guc_capture_class(snapshot->hwe->class);
-+
-+	drm_printf(p, "%s (physical), logical instance=%d\n",
-+		   snapshot->name ? snapshot->name : "",
-+		   snapshot->logical_instance);
-+	drm_printf(p, "\tCapture_source: %s\n",
-+		   snapshot->source == XE_ENGINE_CAPTURE_SOURCE_GUC ? "GuC" : "Manual");
-+	drm_printf(p, "\tCoverage: %s\n", grptype[devcore_snapshot->matched_node->is_partial]);
-+	drm_printf(p, "\tForcewake: domain 0x%x, ref %d\n",
-+		   snapshot->forcewake.domain, snapshot->forcewake.ref);
-+
-+	for (type = GUC_STATE_CAPTURE_TYPE_GLOBAL; type < GUC_STATE_CAPTURE_TYPE_MAX; type++) {
-+		list = xe_guc_capture_get_reg_desc_list(gt, GUC_CAPTURE_LIST_INDEX_PF, type,
-+							capture_class, false);
-+		snapshot_print_by_list_order(snapshot, p, type, list);
-+	}
-+
-+	if (capture_class == GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE) {
-+		list = xe_guc_capture_get_reg_desc_list(gt, GUC_CAPTURE_LIST_INDEX_PF,
-+							GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
-+							capture_class, true);
-+		snapshot_print_by_list_order(snapshot, p, GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
-+					     list);
-+	}
-+
-+	drm_puts(p, "\n");
++	if (buf->wr >= buf->rd)
++		return (buf->wr - buf->rd);
++	return (buf->size - buf->rd) + buf->wr;
 +}
 +
-+/**
-+ * xe_guc_capture_get_matching_and_lock - Matching GuC capture for the job.
-+ * @job: The job object.
-+ *
-+ * Search within the capture outlist for the job, could be used for check if
-+ * GuC capture is ready for the job.
-+ * If found, the locked boolean of the node will be flagged.
-+ *
-+ * Returns: found guc-capture node ptr else NULL
-+ */
-+struct __guc_capture_parsed_output *
-+xe_guc_capture_get_matching_and_lock(struct xe_sched_job *job)
++static int guc_capture_buf_cnt_to_end(struct __guc_capture_bufstate *buf)
 +{
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+	struct xe_exec_queue *q;
-+	struct xe_device *xe;
-+	u16 guc_class = GUC_LAST_ENGINE_CLASS + 1;
-+	struct xe_devcoredump_snapshot *ss;
-+
-+	if (!job)
-+		return NULL;
-+
-+	q = job->q;
-+	if (!q || !q->gt)
-+		return NULL;
-+
-+	xe = gt_to_xe(q->gt);
-+	if (xe->wedged.mode >= 2 || !xe_device_uc_enabled(xe))
-+		return NULL;
-+
-+	ss = &xe->devcoredump.snapshot;
-+	if (ss->matched_node && ss->matched_node->source == XE_ENGINE_CAPTURE_SOURCE_GUC)
-+		return ss->matched_node;
-+
-+	/* Find hwe for the job */
-+	for_each_hw_engine(hwe, q->gt, id) {
-+		if (hwe != q->hwe)
-+			continue;
-+		guc_class = xe_engine_class_to_guc_class(hwe->class);
-+		break;
-+	}
-+
-+	if (guc_class <= GUC_LAST_ENGINE_CLASS) {
-+		struct __guc_capture_parsed_output *n, *ntmp;
-+		struct xe_guc *guc =  &q->gt->uc.guc;
-+		u16 guc_id = q->guc->id;
-+		u32 lrca = xe_lrc_ggtt_addr(q->lrc[0]);
-+
-+		/*
-+		 * Look for a matching GuC reported error capture node from
-+		 * the internal output link-list based on engine, guc id and
-+		 * lrca info.
-+		 */
-+		list_for_each_entry_safe(n, ntmp, &guc->capture->outlist, link) {
-+			if (n->eng_class == guc_class && n->eng_inst == hwe->instance &&
-+			    n->guc_id == guc_id && n->lrca == lrca &&
-+			    n->source == XE_ENGINE_CAPTURE_SOURCE_GUC) {
-+				n->locked = 1;
-+				return n;
-+			}
-+		}
-+	}
-+	return NULL;
-+}
-+
-+/**
-+ * xe_engine_snapshot_capture_for_job - Take snapshot of associated engine
-+ * @job: The job object
-+ *
-+ * Take snapshot of associated HW Engine
-+ *
-+ * Returns: None.
-+ */
-+void
-+xe_engine_snapshot_capture_for_job(struct xe_sched_job *job)
-+{
-+	struct xe_exec_queue *q = job->q;
-+	struct xe_device *xe = gt_to_xe(q->gt);
-+	struct xe_devcoredump *coredump = &xe->devcoredump;
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+	u32 adj_logical_mask = q->logical_mask;
-+
-+	for_each_hw_engine(hwe, q->gt, id) {
-+		if (hwe->class != q->hwe->class ||
-+		    !(BIT(hwe->logical_instance) & adj_logical_mask)) {
-+			coredump->snapshot.hwe[id] = NULL;
-+			continue;
-+		}
-+
-+		if (!coredump->snapshot.hwe[id])
-+			coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe, job);
-+
-+		break;
-+	}
++	if (buf->rd > buf->wr)
++		return (buf->size - buf->rd);
++	return (buf->wr - buf->rd);
 +}
 +
 +/*
-+ * xe_guc_capture_free - Cleanup GuC captured register list
++ * GuC's error-capture output is a ring buffer populated in a byte-stream fashion:
++ *
++ * The GuC Log buffer region for error-capture is managed like a ring buffer.
++ * The GuC firmware dumps error capture logs into this ring in a byte-stream flow.
++ * Additionally, as per the current and foreseeable future, all packed error-
++ * capture output structures are dword aligned.
++ *
++ * That said, if the GuC firmware is in the midst of writing a structure that is larger
++ * than one dword but the tail end of the err-capture buffer-region has lesser space left,
++ * we would need to extract that structure one dword at a time straddled across the end,
++ * onto the start of the ring.
++ *
++ * Below function, guc_capture_log_remove_bytes is a helper for that. All callers of this
++ * function would typically do a straight-up memcpy from the ring contents and will only
++ * call this helper if their structure-extraction is straddling across the end of the
++ * ring. GuC firmware does not add any padding. The reason for the no-padding is to ease
++ * scalability for future expansion of output data types without requiring a redesign
++ * of the flow controls.
++ */
++static int
++guc_capture_log_remove_bytes(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			     void *out, int bytes_needed)
++{
++#define GUC_CAPTURE_LOG_BUF_COPY_RETRY_MAX	3
++
++	int fill_size = 0, tries = GUC_CAPTURE_LOG_BUF_COPY_RETRY_MAX;
++	int copy_size, avail;
++
++	xe_assert(guc_to_xe(guc), bytes_needed % sizeof(u32) == 0);
++
++	if (bytes_needed > guc_capture_buf_cnt(buf))
++		return -1;
++
++	while (bytes_needed > 0 && tries--) {
++		int misaligned;
++
++		avail = guc_capture_buf_cnt_to_end(buf);
++		misaligned = avail % sizeof(u32);
++		/* wrap if at end */
++		if (!avail) {
++			/* output stream clipped */
++			if (!buf->rd)
++				return fill_size;
++			buf->rd = 0;
++			continue;
++		}
++
++		/* Only copy to u32 aligned data */
++		copy_size = avail < bytes_needed ? avail - misaligned : bytes_needed;
++		xe_map_memcpy_from(guc_to_xe(guc), out + fill_size, &guc->log.bo->vmap,
++				   buf->data_offset + buf->rd, copy_size);
++		buf->rd += copy_size;
++		fill_size += copy_size;
++		bytes_needed -= copy_size;
++
++		if (misaligned)
++			xe_gt_warn(guc_to_gt(guc),
++				   "Bytes extraction not dword aligned, clipping.\n");
++	}
++
++	return fill_size;
++}
++
++static int
++guc_capture_log_get_group_hdr(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			      struct guc_state_capture_group_header_t *ghdr)
++{
++	int fullsize = sizeof(struct guc_state_capture_group_header_t);
++
++	if (guc_capture_log_remove_bytes(guc, buf, ghdr, fullsize) != fullsize)
++		return -1;
++	return 0;
++}
++
++static int
++guc_capture_log_get_data_hdr(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			     struct guc_state_capture_header_t *hdr)
++{
++	int fullsize = sizeof(struct guc_state_capture_header_t);
++
++	if (guc_capture_log_remove_bytes(guc, buf, hdr, fullsize) != fullsize)
++		return -1;
++	return 0;
++}
++
++static int
++guc_capture_log_get_register(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			     struct guc_mmio_reg *reg)
++{
++	int fullsize = sizeof(struct guc_mmio_reg);
++
++	if (guc_capture_log_remove_bytes(guc, buf, reg, fullsize) != fullsize)
++		return -1;
++	return 0;
++}
++
++static struct __guc_capture_parsed_output *
++guc_capture_get_prealloc_node(struct xe_guc *guc)
++{
++	struct __guc_capture_parsed_output *found = NULL;
++
++	if (!list_empty(&guc->capture->cachelist)) {
++		struct __guc_capture_parsed_output *n, *ntmp;
++
++		/* get first avail node from the cache list */
++		list_for_each_entry_safe(n, ntmp, &guc->capture->cachelist, link) {
++			found = n;
++			break;
++		}
++	} else {
++		struct __guc_capture_parsed_output *n, *ntmp;
++
++		/* traverse down and steal back the oldest node already allocated */
++		list_for_each_entry_safe(n, ntmp, &guc->capture->outlist, link) {
++			found = n;
++		}
++	}
++	if (found) {
++		list_del(&found->link);
++		guc_capture_init_node(guc, found);
++	}
++
++	return found;
++}
++
++static struct __guc_capture_parsed_output *
++guc_capture_clone_node(struct xe_guc *guc, struct __guc_capture_parsed_output *original,
++		       u32 keep_reglist_mask)
++{
++	struct __guc_capture_parsed_output *new;
++	int i;
++
++	new = guc_capture_get_prealloc_node(guc);
++	if (!new)
++		return NULL;
++	if (!original)
++		return new;
++
++	new->is_partial = original->is_partial;
++
++	/* copy reg-lists that we want to clone */
++	for (i = 0; i < GUC_STATE_CAPTURE_TYPE_MAX; ++i) {
++		if (keep_reglist_mask & BIT(i)) {
++			XE_WARN_ON(original->reginfo[i].num_regs  >
++				   guc->capture->max_mmio_per_node);
++
++			memcpy(new->reginfo[i].regs, original->reginfo[i].regs,
++			       original->reginfo[i].num_regs * sizeof(struct guc_mmio_reg));
++
++			new->reginfo[i].num_regs = original->reginfo[i].num_regs;
++			new->reginfo[i].vfid  = original->reginfo[i].vfid;
++
++			if (i == GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS) {
++				new->eng_class = original->eng_class;
++			} else if (i == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
++				new->eng_inst = original->eng_inst;
++				new->guc_id = original->guc_id;
++				new->lrca = original->lrca;
++			}
++		}
++	}
++
++	return new;
++}
++
++static int
++guc_capture_extract_reglists(struct xe_guc *guc, struct __guc_capture_bufstate *buf)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct guc_state_capture_group_header_t ghdr = {0};
++	struct guc_state_capture_header_t hdr = {0};
++	struct __guc_capture_parsed_output *node = NULL;
++	struct guc_mmio_reg *regs = NULL;
++	int i, numlists, numregs, ret = 0;
++	enum guc_state_capture_type datatype;
++	struct guc_mmio_reg tmp;
++	bool is_partial = false;
++
++	i = guc_capture_buf_cnt(buf);
++	if (!i)
++		return -ENODATA;
++
++	if (i % sizeof(u32)) {
++		xe_gt_warn(gt, "Got mis-aligned register capture entries\n");
++		ret = -EIO;
++		goto bailout;
++	}
++
++	/* first get the capture group header */
++	if (guc_capture_log_get_group_hdr(guc, buf, &ghdr)) {
++		ret = -EIO;
++		goto bailout;
++	}
++	/*
++	 * we would typically expect a layout as below where n would be expected to be
++	 * anywhere between 3 to n where n > 3 if we are seeing multiple dependent engine
++	 * instances being reset together.
++	 * ____________________________________________
++	 * | Capture Group                            |
++	 * | ________________________________________ |
++	 * | | Capture Group Header:                | |
++	 * | |  - num_captures = 5                  | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture1:                            | |
++	 * | |  Hdr: GLOBAL, numregs=a              | |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... rega           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture2:                            | |
++	 * | |  Hdr: CLASS=RENDER/COMPUTE, numregs=b| |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... regb           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture3:                            | |
++	 * | |  Hdr: INSTANCE=RCS, numregs=c        | |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... regc           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture4:                            | |
++	 * | |  Hdr: CLASS=RENDER/COMPUTE, numregs=d| |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... regd           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture5:                            | |
++	 * | |  Hdr: INSTANCE=CCS0, numregs=e       | |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... rege           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * |__________________________________________|
++	 */
++	is_partial = FIELD_GET(GUC_STATE_CAPTURE_GROUP_HEADER_CAPTURE_GROUP_TYPE, ghdr.info);
++	numlists = FIELD_GET(GUC_STATE_CAPTURE_GROUP_HEADER_NUM_CAPTURES, ghdr.info);
++
++	while (numlists--) {
++		if (guc_capture_log_get_data_hdr(guc, buf, &hdr)) {
++			ret = -EIO;
++			break;
++		}
++
++		datatype = FIELD_GET(GUC_STATE_CAPTURE_HEADER_CAPTURE_TYPE, hdr.info);
++		if (datatype > GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
++			/* unknown capture type - skip over to next capture set */
++			numregs = FIELD_GET(GUC_STATE_CAPTURE_HEADER_NUM_MMIO_ENTRIES,
++					    hdr.num_mmio_entries);
++			while (numregs--) {
++				if (guc_capture_log_get_register(guc, buf, &tmp)) {
++					ret = -EIO;
++					break;
++				}
++			}
++			continue;
++		} else if (node) {
++			/*
++			 * Based on the current capture type and what we have so far,
++			 * decide if we should add the current node into the internal
++			 * linked list for match-up when xe_devcoredump calls later
++			 * (and alloc a blank node for the next set of reglists)
++			 * or continue with the same node or clone the current node
++			 * but only retain the global or class registers (such as the
++			 * case of dependent engine resets).
++			 */
++			if (datatype == GUC_STATE_CAPTURE_TYPE_GLOBAL) {
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = NULL;
++			} else if (datatype == GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS &&
++				   node->reginfo[GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS].num_regs) {
++				/* Add to list, clone node and duplicate global list */
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = guc_capture_clone_node(guc, node,
++							      GCAP_PARSED_REGLIST_INDEX_GLOBAL);
++			} else if (datatype == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE &&
++				   node->reginfo[GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE].num_regs) {
++				/* Add to list, clone node and duplicate global + class lists */
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = guc_capture_clone_node(guc, node,
++							      (GCAP_PARSED_REGLIST_INDEX_GLOBAL |
++							      GCAP_PARSED_REGLIST_INDEX_ENGCLASS));
++			}
++		}
++
++		if (!node) {
++			node = guc_capture_get_prealloc_node(guc);
++			if (!node) {
++				ret = -ENOMEM;
++				break;
++			}
++			if (datatype != GUC_STATE_CAPTURE_TYPE_GLOBAL)
++				xe_gt_dbg(gt, "Register capture missing global dump: %08x!\n",
++					  datatype);
++		}
++		node->is_partial = is_partial;
++		node->reginfo[datatype].vfid = FIELD_GET(GUC_STATE_CAPTURE_HEADER_VFID, hdr.owner);
++
++		switch (datatype) {
++		case GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE:
++			node->eng_class = FIELD_GET(GUC_STATE_CAPTURE_HEADER_ENGINE_CLASS,
++						    hdr.info);
++			node->eng_inst = FIELD_GET(GUC_STATE_CAPTURE_HEADER_ENGINE_INSTANCE,
++						   hdr.info);
++			node->lrca = hdr.lrca;
++			node->guc_id = hdr.guc_id;
++			break;
++		case GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS:
++			node->eng_class = FIELD_GET(GUC_STATE_CAPTURE_HEADER_ENGINE_CLASS,
++						    hdr.info);
++			break;
++		default:
++			break;
++		}
++
++		numregs = FIELD_GET(GUC_STATE_CAPTURE_HEADER_NUM_MMIO_ENTRIES,
++				    hdr.num_mmio_entries);
++		if (numregs > guc->capture->max_mmio_per_node) {
++			xe_gt_dbg(gt, "Register capture list extraction clipped by prealloc!\n");
++			numregs = guc->capture->max_mmio_per_node;
++		}
++		node->reginfo[datatype].num_regs = numregs;
++		regs = node->reginfo[datatype].regs;
++		i = 0;
++		while (numregs--) {
++			if (guc_capture_log_get_register(guc, buf, &regs[i++])) {
++				ret = -EIO;
++				break;
++			}
++		}
++	}
++
++bailout:
++	if (node) {
++		/* If we have data, add to linked list for match-up when xe_devcoredump calls */
++		for (i = GUC_STATE_CAPTURE_TYPE_GLOBAL; i < GUC_STATE_CAPTURE_TYPE_MAX; ++i) {
++			if (node->reginfo[i].regs) {
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = NULL;
++				break;
++			}
++		}
++		if (node) /* else return it back to cache list */
++			guc_capture_add_node_to_cachelist(guc->capture, node);
++	}
++	return ret;
++}
++
++static int __guc_capture_flushlog_complete(struct xe_guc *guc)
++{
++	u32 action[] = {
++		XE_GUC_ACTION_LOG_BUFFER_FILE_FLUSH_COMPLETE,
++		GUC_LOG_BUFFER_CAPTURE
++	};
++
++	return xe_guc_ct_send_g2h_handler(&guc->ct, action, ARRAY_SIZE(action));
++}
++
++static void __guc_capture_process_output(struct xe_guc *guc)
++{
++	unsigned int buffer_size, read_offset, write_offset, full_count;
++	struct xe_uc *uc = container_of(guc, typeof(*uc), guc);
++	struct guc_log_buffer_state log_buf_state_local;
++	struct __guc_capture_bufstate buf;
++	bool new_overflow;
++	int ret, tmp;
++	u32 log_buf_state_offset;
++	u32 src_data_offset;
++
++	log_buf_state_offset = sizeof(struct guc_log_buffer_state) * GUC_LOG_BUFFER_CAPTURE;
++	src_data_offset = xe_guc_get_log_buffer_offset(&guc->log, GUC_LOG_BUFFER_CAPTURE);
++
++	/*
++	 * Make a copy of the state structure, inside GuC log buffer
++	 * (which is uncached mapped), on the stack to avoid reading
++	 * from it multiple times.
++	 */
++	xe_map_memcpy_from(guc_to_xe(guc), &log_buf_state_local, &guc->log.bo->vmap,
++			   log_buf_state_offset, sizeof(struct guc_log_buffer_state));
++
++	buffer_size = xe_guc_get_log_buffer_size(&guc->log, GUC_LOG_BUFFER_CAPTURE);
++	read_offset = log_buf_state_local.read_ptr;
++	write_offset = log_buf_state_local.sampled_write_ptr;
++	full_count = FIELD_GET(GUC_LOG_BUFFER_STATE_BUFFER_FULL_CNT, log_buf_state_local.flags);
++
++	/* Bookkeeping stuff */
++	tmp = FIELD_GET(GUC_LOG_BUFFER_STATE_FLUSH_TO_FILE, log_buf_state_local.flags);
++	guc->log.stats[GUC_LOG_BUFFER_CAPTURE].flush += tmp;
++	new_overflow = xe_guc_check_log_buf_overflow(&guc->log, GUC_LOG_BUFFER_CAPTURE,
++						     full_count);
++
++	/* Now copy the actual logs. */
++	if (unlikely(new_overflow)) {
++		/* copy the whole buffer in case of overflow */
++		read_offset = 0;
++		write_offset = buffer_size;
++	} else if (unlikely((read_offset > buffer_size) ||
++			(write_offset > buffer_size))) {
++		xe_gt_err(guc_to_gt(guc),
++			  "Register capture buffer in invalid state: read = 0x%X, size = 0x%X!\n",
++			  read_offset, buffer_size);
++		/* copy whole buffer as offsets are unreliable */
++		read_offset = 0;
++		write_offset = buffer_size;
++	}
++
++	buf.size = buffer_size;
++	buf.rd = read_offset;
++	buf.wr = write_offset;
++	buf.data_offset = src_data_offset;
++
++	if (!xe_guc_read_stopped(guc)) {
++		do {
++			ret = guc_capture_extract_reglists(guc, &buf);
++			if (ret && ret != -ENODATA)
++				xe_gt_dbg(guc_to_gt(guc), "Capture extraction failed:%d\n", ret);
++		} while (ret >= 0);
++	}
++
++	/* Update the state of log buffer err-cap state */
++	xe_map_wr(guc_to_xe(guc), &guc->log.bo->vmap,
++		  log_buf_state_offset + offsetof(struct guc_log_buffer_state, read_ptr), u32,
++		  write_offset);
++
++	/*
++	 * Clear the flush_to_file from local first, the local was loaded by above
++	 * xe_map_memcpy_from, then write out the "updated local" through
++	 * xe_map_wr()
++	 */
++	log_buf_state_local.flags &= ~GUC_LOG_BUFFER_STATE_FLUSH_TO_FILE;
++	xe_map_wr(guc_to_xe(guc), &guc->log.bo->vmap,
++		  log_buf_state_offset + offsetof(struct guc_log_buffer_state, flags), u32,
++		  log_buf_state_local.flags);
++	__guc_capture_flushlog_complete(guc);
++}
++
++/*
++ * xe_guc_capture_process - Process GuC register captured data
 + * @guc: The GuC object
 + *
-+ * Free matched_node and all nodes with the equal guc_id from GuC captured
-+ * register list
++ * When GuC captured data is ready, GuC will send message
++ * XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION to host, this function will be
++ * called to process the data comes with the message.
++ *
++ * Returns: None
 + */
-+void xe_guc_capture_free(struct xe_guc *guc)
++void xe_guc_capture_process(struct xe_guc *guc)
 +{
-+	struct xe_device *xe = guc_to_xe(guc);
-+	struct xe_devcoredump *devcoredump = &xe->devcoredump;
-+	struct __guc_capture_parsed_output *n = devcoredump->snapshot.matched_node;
++	if (guc->capture)
++		__guc_capture_process_output(guc);
++}
 +
-+	if (n) {
-+		guc_capture_remove_stale_matches_from_list(guc->capture, n);
-+		guc_capture_free_outlist_node(guc->capture, n);
++static struct __guc_capture_parsed_output *
++guc_capture_alloc_one_node(struct xe_guc *guc)
++{
++	struct drm_device *drm = guc_to_drm(guc);
++	struct __guc_capture_parsed_output *new;
++	int i;
++
++	new = drmm_kzalloc(drm, sizeof(*new), GFP_KERNEL);
++	if (!new)
++		return NULL;
++
++	for (i = 0; i < GUC_STATE_CAPTURE_TYPE_MAX; ++i) {
++		new->reginfo[i].regs = drmm_kzalloc(drm, guc->capture->max_mmio_per_node *
++					       sizeof(struct guc_mmio_reg), GFP_KERNEL);
++		if (!new->reginfo[i].regs) {
++			while (i)
++				drmm_kfree(drm, new->reginfo[--i].regs);
++			drmm_kfree(drm, new);
++			return NULL;
++		}
 +	}
-+	devcoredump->snapshot.matched_node = NULL;
++	guc_capture_init_node(guc, new);
++
++	return new;
++}
++
++static void
++__guc_capture_create_prealloc_nodes(struct xe_guc *guc)
++{
++	struct __guc_capture_parsed_output *node = NULL;
++	int i;
++
++	for (i = 0; i < PREALLOC_NODES_MAX_COUNT; ++i) {
++		node = guc_capture_alloc_one_node(guc);
++		if (!node) {
++			xe_gt_warn(guc_to_gt(guc), "Register capture pre-alloc-cache failure\n");
++			/* dont free the priors, use what we got and cleanup at shutdown */
++			return;
++		}
++		guc_capture_add_node_to_cachelist(guc->capture, node);
++	}
++}
++
++static int
++guc_get_max_reglist_count(struct xe_guc *guc)
++{
++	int i, j, k, tmp, maxregcount = 0;
++
++	for (i = 0; i < GUC_CAPTURE_LIST_INDEX_MAX; ++i) {
++		for (j = 0; j < GUC_STATE_CAPTURE_TYPE_MAX; ++j) {
++			for (k = 0; k < GUC_MAX_ENGINE_CLASSES; ++k) {
++				if (j == GUC_STATE_CAPTURE_TYPE_GLOBAL && k > 0)
++					continue;
++
++				tmp = guc_cap_list_num_regs(guc, i, j, k);
++				if (tmp > maxregcount)
++					maxregcount = tmp;
++			}
++		}
++	}
++	if (!maxregcount)
++		maxregcount = PREALLOC_NODES_DEFAULT_NUMREGS;
++
++	return maxregcount;
++}
++
++static void
++guc_capture_create_prealloc_nodes(struct xe_guc *guc)
++{
++	/* skip if we've already done the pre-alloc */
++	if (guc->capture->max_mmio_per_node)
++		return;
++
++	guc->capture->max_mmio_per_node = guc_get_max_reglist_count(guc);
++	__guc_capture_create_prealloc_nodes(guc);
 +}
 +
  /*
   * xe_guc_capture_steered_list_init - Init steering register list
   * @guc: The GuC object
+  *
+- * Init steering register list for GuC register capture
++ * Init steering register list for GuC register capture, create pre-alloc node
+  */
+ void xe_guc_capture_steered_list_init(struct xe_guc *guc)
+ {
+@@ -765,6 +1460,7 @@ void xe_guc_capture_steered_list_init(struct xe_guc *guc)
+ 	 */
+ 	guc_capture_alloc_steered_lists(guc);
+ 	check_guc_capture_size(guc);
++	guc_capture_create_prealloc_nodes(guc);
+ }
+ 
+ /*
+@@ -783,5 +1479,9 @@ int xe_guc_capture_init(struct xe_guc *guc)
+ 		return -ENOMEM;
+ 
+ 	guc->capture->reglists = guc_capture_get_device_reglist(guc_to_xe(guc));
++
++	INIT_LIST_HEAD(&guc->capture->outlist);
++	INIT_LIST_HEAD(&guc->capture->cachelist);
++
+ 	return 0;
+ }
 diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
-index 4acf44472a63..92ca6ea21906 100644
+index 25d263e2ab1d..4acf44472a63 100644
 --- a/drivers/gpu/drm/xe/xe_guc_capture.h
 +++ b/drivers/gpu/drm/xe/xe_guc_capture.h
-@@ -12,6 +12,9 @@
- #include "xe_guc_fwif.h"
+@@ -37,6 +37,7 @@ xe_engine_class_to_guc_capture_class(enum xe_engine_class class)
+ 	return xe_guc_class_to_capture_class(xe_engine_class_to_guc_class(class));
+ }
  
- struct xe_guc;
-+struct xe_hw_engine;
-+struct xe_hw_engine_snapshot;
-+struct xe_sched_job;
++void xe_guc_capture_process(struct xe_guc *guc);
+ int xe_guc_capture_getlist(struct xe_guc *guc, u32 owner, u32 type,
+ 			   enum guc_capture_list_class_type capture_class, void **outptr);
+ int xe_guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type,
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 4b95f75b1546..dfd4152465a7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1123,6 +1123,8 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		/* Selftest only at the moment */
+ 		break;
+ 	case XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION:
++		ret = xe_guc_error_capture_handler(guc, payload, adj_len);
++		break;
+ 	case XE_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE:
+ 		/* FIXME: Handle this */
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index d6b5ac522b6c..91b6c1e750e8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -9,6 +9,7 @@
  
- static inline enum guc_capture_list_class_type xe_guc_class_to_capture_class(u16 class)
- {
-@@ -44,7 +47,14 @@ int xe_guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type,
- 			       enum guc_capture_list_class_type capture_class, size_t *size);
- int xe_guc_capture_getnullheader(struct xe_guc *guc, void **outptr, size_t *size);
- size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc);
-+const struct __guc_mmio_reg_descr_group *
-+xe_guc_capture_get_reg_desc_list(struct xe_gt *gt, u32 owner, u32 type,
-+				 enum guc_capture_list_class_type capture_class, bool is_ext);
-+struct __guc_capture_parsed_output *xe_guc_capture_get_matching_and_lock(struct xe_sched_job *job);
-+void xe_engine_snapshot_capture_for_job(struct xe_sched_job *job);
-+void xe_engine_guc_capture_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p);
- void xe_guc_capture_steered_list_init(struct xe_guc *guc);
-+void xe_guc_capture_free(struct xe_guc *guc);
- int xe_guc_capture_init(struct xe_guc *guc);
+ #include "xe_bo.h"
+ #include "xe_gt.h"
++#include "xe_gt_printk.h"
+ #include "xe_map.h"
+ #include "xe_module.h"
+ 
+@@ -161,3 +162,38 @@ u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_typ
+ 
+ 	return offset;
+ }
++
++/**
++ * xe_guc_check_log_buf_overflow - Check if log buffer overflowed
++ * @log: The log object.
++ * @type: The log buffer type
++ * @full_cnt: The count of buffer full
++ *
++ * This function will check count of buffer full against previous, mismatch
++ * indicate overflowed.
++ * Update the sampled_overflow counter, if the 4 bit counter overflowed, add
++ * up 16 to correct the value.
++ *
++ * Return: True if overflowed.
++ */
++bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log, enum guc_log_buffer_type type,
++				   unsigned int full_cnt)
++{
++	unsigned int prev_full_cnt = log->stats[type].sampled_overflow;
++	bool overflow = false;
++
++	if (full_cnt != prev_full_cnt) {
++		overflow = true;
++
++		log->stats[type].overflow = full_cnt;
++		log->stats[type].sampled_overflow += full_cnt - prev_full_cnt;
++
++		if (full_cnt < prev_full_cnt) {
++			/* buffer_full_cnt is a 4 bit counter */
++			log->stats[type].sampled_overflow += 16;
++		}
++		xe_gt_notice(log_to_gt(log), "log buffer overflow\n");
++	}
++
++	return overflow;
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+index 87ecd1814854..8eb2102aebbd 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.h
++++ b/drivers/gpu/drm/xe/xe_guc_log.h
+@@ -49,5 +49,8 @@ xe_guc_log_get_level(struct xe_guc_log *log)
+ u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
+ u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type);
+ u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type);
++bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log,
++				   enum guc_log_buffer_type type,
++				   unsigned int full_cnt);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
+index 125080d138a7..dd924a5e2366 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
+@@ -7,6 +7,7 @@
+ #define _XE_GUC_LOG_TYPES_H_
+ 
+ #include <linux/types.h>
++#include "abi/guc_log_abi.h"
+ 
+ struct xe_bo;
+ 
+@@ -18,6 +19,12 @@ struct xe_guc_log {
+ 	u32 level;
+ 	/** @bo: XE BO for GuC log */
+ 	struct xe_bo *bo;
++	/** @stats: logging related stats */
++	struct {
++		u32 sampled_overflow;
++		u32 overflow;
++		u32 flush;
++	} stats[GUC_LOG_BUFFER_TYPE_MAX];
+ };
  
  #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 381be84740cf..294559e3a85b 100644
+index fbbe6a487bbb..381be84740cf 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1073,6 +1073,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	const char *process_name = "no process";
-+	struct xe_device *xe = guc_to_xe(guc);
- 	int err = -ETIME;
- 	pid_t pid = -1;
- 	int i = 0;
-@@ -1100,6 +1101,21 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	if (!skip_timeout_check && !xe_sched_job_started(job))
- 		goto rearm;
- 
-+	/*
-+	 * If devcoredump not captured and GuC capture for the job is not ready
-+	 * do manual capture first and decide later if we need to use it
-+	 */
-+	if (!exec_queue_killed(q) && !xe->devcoredump.captured &&
-+	    !xe_guc_capture_get_matching_and_lock(job)) {
-+		/* take force wake before engine register manual capture */
-+		if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
-+			xe_gt_info(q->gt, "failed to get forcewake for coredump capture\n");
-+
-+		xe_engine_snapshot_capture_for_job(job);
-+
-+		xe_force_wake_put(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
-+	}
-+
- 	/*
- 	 * XXX: Sampling timeout doesn't work in wedged mode as we have to
- 	 * modify scheduling state to read timestamp. We could read the
-@@ -1979,8 +1995,6 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	xe_gt_info(gt, "Engine reset: engine_class=%s, logical_mask: 0x%x, guc_id=%d",
- 		   xe_hw_engine_class_to_str(q->class), q->logical_mask, guc_id);
- 
--	/* FIXME: Do error capture, most likely async */
--
- 	trace_xe_exec_queue_reset(q);
- 
- 	/*
-@@ -2006,7 +2020,7 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
-  * XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION to host, this function will be
-  * called 1st to check status before process the data comes with the message.
-  *
-- * Returns: None
-+ * Returns: error code. 0 if success
-  */
- int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len)
- {
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index ce180faf2592..49e1ad611e14 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -23,6 +23,7 @@
+@@ -27,6 +27,7 @@
+ #include "xe_gt_clock.h"
  #include "xe_gt_printk.h"
- #include "xe_gt_mcr.h"
- #include "xe_gt_topology.h"
+ #include "xe_guc.h"
 +#include "xe_guc_capture.h"
- #include "xe_hw_engine_group.h"
- #include "xe_hw_fence.h"
- #include "xe_irq.h"
-@@ -849,9 +850,69 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
- 	}
+ #include "xe_guc_ct.h"
+ #include "xe_guc_exec_queue_types.h"
+ #include "xe_guc_id_mgr.h"
+@@ -800,7 +801,7 @@ static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
+ 	xe_sched_job_put(job);
  }
  
-+static void
-+xe_hw_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot *snapshot)
-+{
-+	u64 val;
-+
-+	snapshot->reg.ring_execlist_status =
-+		xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0));
-+	val = xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
-+	snapshot->reg.ring_execlist_status |= val << 32;
-+
-+	snapshot->reg.ring_execlist_sq_contents =
-+		xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_LO(0));
-+	val = xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_HI(0));
-+	snapshot->reg.ring_execlist_sq_contents |= val << 32;
-+
-+	snapshot->reg.ring_acthd = xe_hw_engine_mmio_read32(hwe, RING_ACTHD(0));
-+	val = xe_hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
-+	snapshot->reg.ring_acthd |= val << 32;
-+
-+	snapshot->reg.ring_bbaddr = xe_hw_engine_mmio_read32(hwe, RING_BBADDR(0));
-+	val = xe_hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
-+	snapshot->reg.ring_bbaddr |= val << 32;
-+
-+	snapshot->reg.ring_dma_fadd =
-+		xe_hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
-+	val = xe_hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
-+	snapshot->reg.ring_dma_fadd |= val << 32;
-+
-+	snapshot->reg.ring_hwstam = xe_hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
-+	snapshot->reg.ring_hws_pga = xe_hw_engine_mmio_read32(hwe, RING_HWS_PGA(0));
-+	snapshot->reg.ring_start = xe_hw_engine_mmio_read32(hwe, RING_START(0));
-+	if (GRAPHICS_VERx100(hwe->gt->tile->xe) >= 2000) {
-+		val = xe_hw_engine_mmio_read32(hwe, RING_START_UDW(0));
-+		snapshot->reg.ring_start |= val << 32;
-+	}
-+	if (xe_gt_has_indirect_ring_state(hwe->gt)) {
-+		snapshot->reg.indirect_ring_state =
-+			xe_hw_engine_mmio_read32(hwe, INDIRECT_RING_STATE(0));
-+	}
-+
-+	snapshot->reg.ring_head =
-+		xe_hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
-+	snapshot->reg.ring_tail =
-+		xe_hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR;
-+	snapshot->reg.ring_ctl = xe_hw_engine_mmio_read32(hwe, RING_CTL(0));
-+	snapshot->reg.ring_mi_mode =
-+		xe_hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
-+	snapshot->reg.ring_mode = xe_hw_engine_mmio_read32(hwe, RING_MODE(0));
-+	snapshot->reg.ring_imr = xe_hw_engine_mmio_read32(hwe, RING_IMR(0));
-+	snapshot->reg.ring_esr = xe_hw_engine_mmio_read32(hwe, RING_ESR(0));
-+	snapshot->reg.ring_emr = xe_hw_engine_mmio_read32(hwe, RING_EMR(0));
-+	snapshot->reg.ring_eir = xe_hw_engine_mmio_read32(hwe, RING_EIR(0));
-+	snapshot->reg.ipehr = xe_hw_engine_mmio_read32(hwe, RING_IPEHR(0));
-+	xe_hw_engine_snapshot_instdone_capture(hwe, snapshot);
-+
-+	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
-+		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
-+}
-+
- /**
-  * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
-  * @hwe: Xe HW Engine.
-+ * @job: The job object.
-  *
-  * This can be printed out in a later stage like during dev_coredump
-  * analysis.
-@@ -860,11 +921,11 @@ xe_hw_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
-  * caller, using `xe_hw_engine_snapshot_free`.
-  */
- struct xe_hw_engine_snapshot *
--xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
-+xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_sched_job *job)
+-static int guc_read_stopped(struct xe_guc *guc)
++int xe_guc_read_stopped(struct xe_guc *guc)
  {
- 	struct xe_hw_engine_snapshot *snapshot;
- 	size_t len;
--	u64 val;
-+	struct __guc_capture_parsed_output *node;
- 
- 	if (!xe_hw_engine_is_valid(hwe))
- 		return NULL;
-@@ -909,58 +970,24 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
- 	if (IS_SRIOV_VF(gt_to_xe(hwe->gt)))
- 		return snapshot;
- 
--	snapshot->reg.ring_execlist_status =
--		xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0));
--	val = xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
--	snapshot->reg.ring_execlist_status |= val << 32;
--
--	snapshot->reg.ring_execlist_sq_contents =
--		xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_LO(0));
--	val = xe_hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_HI(0));
--	snapshot->reg.ring_execlist_sq_contents |= val << 32;
--
--	snapshot->reg.ring_acthd = xe_hw_engine_mmio_read32(hwe, RING_ACTHD(0));
--	val = xe_hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
--	snapshot->reg.ring_acthd |= val << 32;
--
--	snapshot->reg.ring_bbaddr = xe_hw_engine_mmio_read32(hwe, RING_BBADDR(0));
--	val = xe_hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
--	snapshot->reg.ring_bbaddr |= val << 32;
--
--	snapshot->reg.ring_dma_fadd =
--		xe_hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
--	val = xe_hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
--	snapshot->reg.ring_dma_fadd |= val << 32;
--
--	snapshot->reg.ring_hwstam = xe_hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
--	snapshot->reg.ring_hws_pga = xe_hw_engine_mmio_read32(hwe, RING_HWS_PGA(0));
--	snapshot->reg.ring_start = xe_hw_engine_mmio_read32(hwe, RING_START(0));
--	if (GRAPHICS_VERx100(hwe->gt->tile->xe) >= 2000) {
--		val = xe_hw_engine_mmio_read32(hwe, RING_START_UDW(0));
--		snapshot->reg.ring_start |= val << 32;
--	}
--	if (xe_gt_has_indirect_ring_state(hwe->gt)) {
--		snapshot->reg.indirect_ring_state =
--			xe_hw_engine_mmio_read32(hwe, INDIRECT_RING_STATE(0));
-+	if (job) {
-+		/* If got guc capture, set source to GuC */
-+		node = xe_guc_capture_get_matching_and_lock(job);
-+		if (node) {
-+			struct xe_device *xe = gt_to_xe(hwe->gt);
-+			struct xe_devcoredump *coredump = &xe->devcoredump;
-+
-+			coredump->snapshot.matched_node = node;
-+			snapshot->source = XE_ENGINE_CAPTURE_SOURCE_GUC;
-+			xe_gt_dbg(hwe->gt, "Found and locked GuC-err-capture node");
-+			return snapshot;
-+		}
- 	}
- 
--	snapshot->reg.ring_head =
--		xe_hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
--	snapshot->reg.ring_tail =
--		xe_hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR;
--	snapshot->reg.ring_ctl = xe_hw_engine_mmio_read32(hwe, RING_CTL(0));
--	snapshot->reg.ring_mi_mode =
--		xe_hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
--	snapshot->reg.ring_mode = xe_hw_engine_mmio_read32(hwe, RING_MODE(0));
--	snapshot->reg.ring_imr = xe_hw_engine_mmio_read32(hwe, RING_IMR(0));
--	snapshot->reg.ring_esr = xe_hw_engine_mmio_read32(hwe, RING_ESR(0));
--	snapshot->reg.ring_emr = xe_hw_engine_mmio_read32(hwe, RING_EMR(0));
--	snapshot->reg.ring_eir = xe_hw_engine_mmio_read32(hwe, RING_EIR(0));
--	snapshot->reg.ipehr = xe_hw_engine_mmio_read32(hwe, RING_IPEHR(0));
--	xe_hw_engine_snapshot_instdone_capture(hwe, snapshot);
--
--	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
--		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
-+	/* otherwise, do manual capture */
-+	xe_hw_engine_manual_capture(hwe, snapshot);
-+	snapshot->source = XE_ENGINE_CAPTURE_SOURCE_MANUAL;
-+	xe_gt_dbg(hwe->gt, "Proceeding with manual engine snapshot");
- 
- 	return snapshot;
+ 	return atomic_read(&guc->submission_state.stopped);
  }
-@@ -1008,19 +1035,9 @@ xe_hw_engine_snapshot_instdone_print(struct xe_hw_engine_snapshot *snapshot, str
- 	}
- }
+@@ -822,7 +823,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+ 	set_min_preemption_timeout(guc, q);
+ 	smp_rmb();
+ 	ret = wait_event_timeout(guc->ct.wq, !exec_queue_pending_enable(q) ||
+-				 guc_read_stopped(guc), HZ * 5);
++				 xe_guc_read_stopped(guc), HZ * 5);
+ 	if (!ret) {
+ 		struct xe_gpu_scheduler *sched = &q->guc->sched;
  
--/**
-- * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
-- * @snapshot: Xe HW Engine snapshot object.
-- * @p: drm_printer where it will be printed out.
-- *
-- * This function prints out a given Xe HW Engine snapshot object.
-- */
--void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
--				 struct drm_printer *p)
-+static void __xe_hw_engine_manual_print(struct xe_hw_engine_snapshot *snapshot,
-+					struct drm_printer *p)
+@@ -948,7 +949,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 		 */
+ 		ret = wait_event_timeout(guc->ct.wq,
+ 					 !exec_queue_pending_disable(q) ||
+-					 guc_read_stopped(guc), HZ * 5);
++					 xe_guc_read_stopped(guc), HZ * 5);
+ 		if (!ret) {
+ 			drm_warn(&xe->drm, "Schedule disable failed to respond");
+ 			xe_sched_submission_start(sched);
+@@ -1016,8 +1017,8 @@ static void enable_scheduling(struct xe_exec_queue *q)
+ 
+ 	ret = wait_event_timeout(guc->ct.wq,
+ 				 !exec_queue_pending_enable(q) ||
+-				 guc_read_stopped(guc), HZ * 5);
+-	if (!ret || guc_read_stopped(guc)) {
++				 xe_guc_read_stopped(guc), HZ * 5);
++	if (!ret || xe_guc_read_stopped(guc)) {
+ 		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
+ 		set_exec_queue_banned(q);
+ 		xe_gt_reset_async(q->gt);
+@@ -1122,8 +1123,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 			 */
+ 			ret = wait_event_timeout(guc->ct.wq,
+ 						 !exec_queue_pending_enable(q) ||
+-						 guc_read_stopped(guc), HZ * 5);
+-			if (!ret || guc_read_stopped(guc))
++						 xe_guc_read_stopped(guc), HZ * 5);
++			if (!ret || xe_guc_read_stopped(guc))
+ 				goto trigger_reset;
+ 
+ 			/*
+@@ -1147,8 +1148,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		smp_rmb();
+ 		ret = wait_event_timeout(guc->ct.wq,
+ 					 !exec_queue_pending_disable(q) ||
+-					 guc_read_stopped(guc), HZ * 5);
+-		if (!ret || guc_read_stopped(guc)) {
++					 xe_guc_read_stopped(guc), HZ * 5);
++		if (!ret || xe_guc_read_stopped(guc)) {
+ trigger_reset:
+ 			if (!ret)
+ 				xe_gt_warn(guc_to_gt(guc), "Schedule disable failed to respond");
+@@ -1334,7 +1335,7 @@ static void suspend_fence_signal(struct xe_exec_queue *q)
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+ 	xe_assert(xe, exec_queue_suspended(q) || exec_queue_killed(q) ||
+-		  guc_read_stopped(guc));
++		  xe_guc_read_stopped(guc));
+ 	xe_assert(xe, q->guc->suspend_pending);
+ 
+ 	__suspend_fence_signal(q);
+@@ -1348,9 +1349,9 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
+ 	if (guc_exec_queue_allowed_to_change_state(q) && !exec_queue_suspended(q) &&
+ 	    exec_queue_enabled(q)) {
+ 		wait_event(guc->ct.wq, q->guc->resume_time != RESUME_PENDING ||
+-			   guc_read_stopped(guc));
++			   xe_guc_read_stopped(guc));
+ 
+-		if (!guc_read_stopped(guc)) {
++		if (!xe_guc_read_stopped(guc)) {
+ 			s64 since_resume_ms =
+ 				ktime_ms_delta(ktime_get(),
+ 					       q->guc->resume_time);
+@@ -1475,7 +1476,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 
+ 	q->entity = &ge->entity;
+ 
+-	if (guc_read_stopped(guc))
++	if (xe_guc_read_stopped(guc))
+ 		xe_sched_stop(sched);
+ 
+ 	mutex_unlock(&guc->submission_state.lock);
+@@ -1631,7 +1632,7 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ 	ret = wait_event_interruptible_timeout(q->guc->suspend_wait,
+ 					       !READ_ONCE(q->guc->suspend_pending) ||
+ 					       exec_queue_killed(q) ||
+-					       guc_read_stopped(guc),
++					       xe_guc_read_stopped(guc),
+ 					       HZ * 5);
+ 
+ 	if (!ret) {
+@@ -1757,7 +1758,7 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+ void xe_guc_submit_reset_wait(struct xe_guc *guc)
  {
--	if (!snapshot)
--		return;
--
- 	drm_printf(p, "%s (physical), logical instance=%d\n",
- 		   snapshot->name ? snapshot->name : "",
- 		   snapshot->logical_instance);
-@@ -1059,6 +1076,24 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_puts(p, "\n");
+ 	wait_event(guc->ct.wq, xe_device_wedged(guc_to_xe(guc)) ||
+-		   !guc_read_stopped(guc));
++		   !xe_guc_read_stopped(guc));
  }
  
-+/**
-+ * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
-+ * @snapshot: Xe HW Engine snapshot object.
-+ * @p: drm_printer where it will be printed out.
+ void xe_guc_submit_stop(struct xe_guc *guc)
+@@ -1766,7 +1767,7 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+ 	unsigned long index;
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+-	xe_assert(xe, guc_read_stopped(guc) == 1);
++	xe_assert(xe, xe_guc_read_stopped(guc) == 1);
+ 
+ 	mutex_lock(&guc->submission_state.lock);
+ 
+@@ -1804,7 +1805,7 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 	unsigned long index;
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+-	xe_assert(xe, guc_read_stopped(guc) == 1);
++	xe_assert(xe, xe_guc_read_stopped(guc) == 1);
+ 
+ 	mutex_lock(&guc->submission_state.lock);
+ 	atomic_dec(&guc->submission_state.stopped);
+@@ -1995,6 +1996,36 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	return 0;
+ }
+ 
++/*
++ * xe_guc_error_capture_handler - Handler of GuC captured message
++ * @guc: The GuC object
++ * @msg: Point to the message
++ * @len: The message length
 + *
-+ * This function prints out a given Xe HW Engine snapshot object.
++ * When GuC captured data is ready, GuC will send message
++ * XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION to host, this function will be
++ * called 1st to check status before process the data comes with the message.
++ *
++ * Returns: None
 + */
-+void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
-+				 struct drm_printer *p)
++int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len)
 +{
-+	if (!snapshot)
-+		return;
++	u32 status;
 +
-+	if (snapshot->source == XE_ENGINE_CAPTURE_SOURCE_MANUAL)
-+		__xe_hw_engine_manual_print(snapshot, p);
-+	else
-+		xe_engine_guc_capture_print(snapshot, p);
++	if (unlikely(len != XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION_DATA_LEN)) {
++		xe_gt_dbg(guc_to_gt(guc), "Invalid length %u", len);
++		return -EPROTO;
++	}
++
++	status = msg[0] & XE_GUC_STATE_CAPTURE_EVENT_STATUS_MASK;
++	if (status == XE_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE)
++		xe_gt_warn(guc_to_gt(guc), "G2H-Error capture no space");
++
++	xe_guc_capture_process(guc);
++
++	return 0;
 +}
- /**
-  * xe_hw_engine_snapshot_free - Free all allocated objects for a given snapshot.
-  * @snapshot: Xe HW Engine snapshot object.
-@@ -1092,7 +1127,7 @@ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p)
++
+ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 					       u32 len)
  {
- 	struct xe_hw_engine_snapshot *snapshot;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index bdf8c9f3d24a..9b71a986c6ca 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -20,12 +20,14 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
  
--	snapshot = xe_hw_engine_snapshot_capture(hwe);
-+	snapshot = xe_hw_engine_snapshot_capture(hwe, NULL);
- 	xe_hw_engine_snapshot_print(snapshot, p);
- 	xe_hw_engine_snapshot_free(snapshot);
- }
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 022819a4a8eb..c2428326a366 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -11,6 +11,7 @@
- struct drm_printer;
- struct drm_xe_engine_class_instance;
- struct xe_device;
-+struct xe_sched_job;
++int xe_guc_read_stopped(struct xe_guc *guc);
+ int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 					       u32 len);
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
++int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
  
- #ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MIN
- #define XE_HW_ENGINE_JOB_TIMEOUT_MIN CONFIG_DRM_XE_JOB_TIMEOUT_MIN
-@@ -54,9 +55,8 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec);
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe);
- u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
- 				enum xe_engine_class engine_class);
--
- struct xe_hw_engine_snapshot *
--xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe);
-+xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_sched_job *job);
- void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot);
- void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 				 struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index be60edb3e673..55805c78d9d1 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -152,6 +152,11 @@ struct xe_hw_engine {
- 	struct xe_hw_engine_group *hw_engine_group;
- };
- 
-+enum xe_hw_engine_snapshot_source_id {
-+	XE_ENGINE_CAPTURE_SOURCE_MANUAL,
-+	XE_ENGINE_CAPTURE_SOURCE_GUC
-+};
-+
- /**
-  * struct xe_hw_engine_snapshot - Hardware engine snapshot
-  *
-@@ -160,6 +165,8 @@ struct xe_hw_engine {
- struct xe_hw_engine_snapshot {
- 	/** @name: name of the hw engine */
- 	char *name;
-+	/** @source: Data source, either manual or GuC */
-+	enum xe_hw_engine_snapshot_source_id source;
- 	/** @hwe: hw engine */
- 	struct xe_hw_engine *hwe;
- 	/** @logical_instance: logical instance of this hw engine */
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index aec7db39c061..52f8d202e262 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -38,24 +38,6 @@
- 
- #define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
- 
--struct xe_lrc_snapshot {
--	struct xe_bo *lrc_bo;
--	void *lrc_snapshot;
--	unsigned long lrc_size, lrc_offset;
--
--	u32 context_desc;
--	u32 indirect_context_desc;
--	u32 head;
--	struct {
--		u32 internal;
--		u32 memory;
--	} tail;
--	u32 start_seqno;
--	u32 seqno;
--	u32 ctx_timestamp;
--	u32 ctx_job_timestamp;
--};
--
- static struct xe_device *
- lrc_to_xe(struct xe_lrc *lrc)
- {
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index c24542e89318..40d8f6906d3e 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -17,9 +17,26 @@ enum xe_engine_class;
- struct xe_gt;
- struct xe_hw_engine;
- struct xe_lrc;
--struct xe_lrc_snapshot;
- struct xe_vm;
- 
-+struct xe_lrc_snapshot {
-+	struct xe_bo *lrc_bo;
-+	void *lrc_snapshot;
-+	unsigned long lrc_size, lrc_offset;
-+
-+	u32 context_desc;
-+	u32 indirect_context_desc;
-+	u32 head;
-+	struct {
-+		u32 internal;
-+		u32 memory;
-+	} tail;
-+	u32 start_seqno;
-+	u32 seqno;
-+	u32 ctx_timestamp;
-+	u32 ctx_job_timestamp;
-+};
-+
- #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
- 
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+ struct xe_guc_submit_exec_queue_snapshot *
+ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
 -- 
 2.34.1
 
