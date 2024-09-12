@@ -4,51 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7488AEEB59D
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 11:57:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A2EAEEB59D
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 11:58:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 380E110EB57;
-	Thu, 12 Sep 2024 11:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65C0E10EB5A;
+	Thu, 12 Sep 2024 11:58:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iPlUIzGF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNUOQQ0y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D2DB10EB57
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 11:57:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB7F10EB5A;
+ Thu, 12 Sep 2024 11:58:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726142261; x=1757678261;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=01l6fcpz1v1SzaZVL88oCKA0nKIt8H/gpRvY03chk5E=;
- b=iPlUIzGFesQ/uQ0iY/LJt5o7fjb43OC5+lgJhJKNL0gkiafLCkZMqx4L
- dfJ3A2AOZxeCVlyCjPy2R0a5dfDPYDNFu9V/XfFl9K72DUhk9HRf3d3UR
- ITcV3Dm7Poj04N1SuPfZX7rgHmbUzBv526S3kmMmYxS5xbLehR8RAk8VF
- GOpWoGplc1MB6GcYEoikCP7df/4Q6mPMRqrToPK7VVNKVEl0fFq1BYqsb
- l8LX7VNLuQ/RjZYUNWGyOULYOu2I36KwPIIei+DX9e/xmz+V2NAajrBFE
- 3YGdPo3AqD2zTDvB7mVpXS0APVZxPX2PQPSPL3+YliDmU3E6AFJWeLz7R w==;
-X-CSE-ConnectionGUID: UVdGFVqJTD6nPl5AvBMhrg==
-X-CSE-MsgGUID: 8CwEbnGeRlOfDAquQpjOSw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="50405238"
-X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="50405238"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 04:57:40 -0700
-X-CSE-ConnectionGUID: CXfYg/t+Rj+uHL28FWnlVQ==
-X-CSE-MsgGUID: YvWZnwWSQh20EQdpeNn2Ew==
+ t=1726142287; x=1757678287;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=rZwhzSG3RZuOJIcOwHzu2U3Gm5WtNCqcmHpkRL8aIzY=;
+ b=FNUOQQ0yaqqpbMzb6FyEWkKfwpGsw1QmTbPKcdLu+B2U9fDvQSXr3oJk
+ E3X9/+Xb9EEVowXUcnMJe6ci/R2AJA60ZkszDpEj8z5RprBvsfSeoLQn/
+ dLV2N9gZ9/HkXq06YCyzcqJhnfeNp0WCYLARNzYd76V4fACiSbWeP05MC
+ FM3lY+W3qjQt+iYR9pXeHwBKliBgTRIgDCZg8XlzJu20Oj6KlTMk5Mf9i
+ 0ZvjQf0LZNUw9wkM/FonCQQ8WHRPm5uz/hni7Rh+g5SdOgLLbD9Hwn0f0
+ 26KocyhI/E9y72Clcg5O96xerP84m1OH9YUgHwr01dRuJ4fJRc8hL9aH6 g==;
+X-CSE-ConnectionGUID: JnxnQl/IQJ+v8NQqWMm8Lg==
+X-CSE-MsgGUID: Rt/GBjF0TaGWvDwVM/oOfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="25090871"
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="25090871"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 04:58:07 -0700
+X-CSE-ConnectionGUID: iqIFXzJJQIu6hJFiFqVJGg==
+X-CSE-MsgGUID: ouenDk1aTCi7Wi0AVtm0fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="67977304"
-Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orviesa006.jf.intel.com with ESMTP; 12 Sep 2024 04:57:38 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [v2] drm/xe/pciid: Add new PCI id for ARL
-Date: Thu, 12 Sep 2024 17:29:06 +0530
-Message-Id: <20240912115906.2730577-1-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="105133631"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 04:57:59 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/5] drm/i915/bios: Round PCI ROM VBT allocation to
+ multiple of 4
+In-Reply-To: <20240910134219.28479-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240910134219.28479-1-ville.syrjala@linux.intel.com>
+ <20240910134219.28479-3-ville.syrjala@linux.intel.com>
+Date: Thu, 12 Sep 2024 14:57:56 +0300
+Message-ID: <874j6lgk3f.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,29 +70,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new PCI id for ARL platform.
+On Tue, 10 Sep 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The SPI code rounds the VBT allocation to a multiple of four bytes
+> (presumably because it reads the VBT 4 bytes at a time). Do the
+> same for the PCI ROM side to eliminate pointless differences between
+> the two codepaths. This will make no functional difference.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-v2: Fix typo in PCI id (SaiTeja)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- include/drm/intel/xe_pciids.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 86b81fd23f58..cc4a4cc2bf3e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -3166,7 +3166,7 @@ static struct vbt_header *oprom_get_vbt(struct inte=
+l_display *display,
+>  	}
+>=20=20
+>  	/* The rest will be validated by intel_bios_is_valid_vbt() */
+> -	vbt =3D kmalloc(vbt_size, GFP_KERNEL);
+> +	vbt =3D kmalloc(round_up(vbt_size, 4), GFP_KERNEL);
+>  	if (!vbt)
+>  		goto err_unmap_oprom;
 
-diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids.h
-index 79001afa7d27d..b733555258b13 100644
---- a/include/drm/intel/xe_pciids.h
-+++ b/include/drm/intel/xe_pciids.h
-@@ -181,7 +181,8 @@
- 	MACRO__(0x7D41, ## __VA_ARGS__),	\
- 	MACRO__(0x7D51, ## __VA_ARGS__),        \
- 	MACRO__(0x7D67, ## __VA_ARGS__),	\
--	MACRO__(0x7DD1, ## __VA_ARGS__)
-+	MACRO__(0x7DD1, ## __VA_ARGS__),	\
-+	MACRO__(0xB640, ## __VA_ARGS__)
- 
- /* MTL */
- #define XE_MTL_IDS(MACRO__, ...)		\
--- 
-2.34.1
-
+--=20
+Jani Nikula, Intel
