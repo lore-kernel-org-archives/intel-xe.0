@@ -4,28 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E948EEEE270
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 23:02:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37E55EEE270
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 23:09:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC37D10EC63;
-	Thu, 12 Sep 2024 23:02:48 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8D710EC63;
- Thu, 12 Sep 2024 23:02:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4359630589215023820=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B848210EC6A;
+	Thu, 12 Sep 2024 23:09:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FTaY/E4U";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F3B310E08B
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 23:09:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726182556; x=1757718556;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ruQK6n9cLcshpF6wXKCaLxrjjNftnUEQy5V/tubRvqw=;
+ b=FTaY/E4U+yZguxJLnU9t1klGEyyDerXRMOBnxmrClLO3tsbnrZD2eADW
+ VM8/GucAChwU6Kbh5GcF93HLb3/jDd0o2F4e4DSadxftuEEZrZA7OHnqK
+ RgCrD5Tsb+weU0Q4kSLFtH+QTE6oRAlqUoonOIDRoMVXfLVXBzwGrsZGy
+ fkKvOSfMLahn7GV5iiuZsjuy1B0roZ/zTuYtAocxEByrqXISqC+kuMtcK
+ ACSL293klJYxJRtNzYhhZ8G0kwBsmOqTxhvL8P8UgjAyUAhESn/6uJLbC
+ jJHvoTjpygTO5OfI4TqYNj39Fc/x27MlJj3aFPQjzsrtt+E+qMKzm84Fk A==;
+X-CSE-ConnectionGUID: nmZypnAwTs68k14dNDcKsg==
+X-CSE-MsgGUID: U7F2L9tURfqiJBt46aRNhA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="24557126"
+X-IronPort-AV: E=Sophos;i="6.10,224,1719903600"; d="scan'208";a="24557126"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 16:09:15 -0700
+X-CSE-ConnectionGUID: vA6ntN8TTnaszaAddzmNBQ==
+X-CSE-MsgGUID: 1vgXCwVPT1uf0UQJl4CoSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,224,1719903600"; d="scan'208";a="72658605"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by orviesa005.jf.intel.com with ESMTP; 12 Sep 2024 16:09:14 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v20 2/6] drm/xe/guc: Add XE_LP steered register lists
+Date: Thu, 12 Sep 2024 16:09:09 -0700
+Message-Id: <20240912230913.381482-3-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240912230913.381482-1-zhanjun.dong@intel.com>
+References: <20240912230913.381482-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
- =?utf-8?q?rm/xe=3A_Don=27t_try_to_derive_GT_clock_freq_from_display_registe?=
- =?utf-8?q?r_on_Xe2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Sep 2024 23:02:47 -0000
-Message-ID: <172618216750.994125.6416430888180601781@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240912215559.4070443-3-matthew.d.roper@intel.com>
-In-Reply-To: <20240912215559.4070443-3-matthew.d.roper@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,106 +63,320 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4359630589215023820==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add the ability for runtime allocation and freeing of
+steered register list extentions that depend on the
+detected HW config fuses.
 
-== Series Details ==
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ads.c     |   6 +
+ drivers/gpu/drm/xe/xe_guc_capture.c | 212 ++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_capture.h |   1 +
+ 3 files changed, 206 insertions(+), 13 deletions(-)
 
-Series: series starting with [1/2] drm/xe: Don't try to derive GT clock freq from display register on Xe2
-URL   : https://patchwork.freedesktop.org/series/138611/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 39acd6490d6b..44e939c53404 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -596,6 +596,12 @@ static int guc_capture_prep_lists(struct xe_guc_ads *ads)
+ 	void *ptr;
+ 	int i, j;
+ 
++	/*
++	 * GuC Capture's steered reg-list needs to be allocated and initialized
++	 * after the GuC-hwconfig is available which guaranteed from here.
++	 */
++	xe_guc_capture_steered_list_init(ads_to_guc(ads));
++
+ 	capture_offset = guc_ads_capture_offset(ads);
+ 	ads_ggtt = xe_bo_ggtt_addr(ads->bo);
+ 	info_map = IOSYS_MAP_INIT_OFFSET(ads_to_map(ads),
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 279db5cb1cce..4256051a04b6 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -211,6 +211,11 @@ struct __guc_capture_ads_cache {
+ 
+ struct xe_guc_state_capture {
+ 	const struct __guc_mmio_reg_descr_group *reglists;
++	/**
++	 * NOTE: steered registers have multiple instances depending on the HW configuration
++	 * (slices or dual-sub-slices) and thus depends on HW fuses discovered
++	 */
++	struct __guc_mmio_reg_descr_group *extlists;
+ 	struct __guc_capture_ads_cache ads_cache[GUC_CAPTURE_LIST_INDEX_MAX]
+ 						[GUC_STATE_CAPTURE_TYPE_MAX]
+ 						[GUC_CAPTURE_LIST_CLASS_MAX];
+@@ -245,14 +250,156 @@ guc_capture_get_one_list(const struct __guc_mmio_reg_descr_group *reglists,
+ 	return NULL;
+ }
+ 
++struct __ext_steer_reg {
++	const char *name;
++	struct xe_reg_mcr reg;
++};
++
++static const struct __ext_steer_reg xe_extregs[] = {
++	{"SAMPLER_INSTDONE",		SAMPLER_INSTDONE},
++	{"ROW_INSTDONE",		ROW_INSTDONE}
++};
++
++static const struct __ext_steer_reg xehpg_extregs[] = {
++	{"SC_INSTDONE",			XEHPG_SC_INSTDONE},
++	{"SC_INSTDONE_EXTRA",		XEHPG_SC_INSTDONE_EXTRA},
++	{"SC_INSTDONE_EXTRA2",		XEHPG_SC_INSTDONE_EXTRA2},
++	{"INSTDONE_GEOM_SVGUNIT",	XEHPG_INSTDONE_GEOM_SVGUNIT}
++};
++
++static void __fill_ext_reg(struct __guc_mmio_reg_descr *ext,
++			   const struct __ext_steer_reg *extlist,
++			   int slice_id, int subslice_id)
++{
++	if (!ext || !extlist)
++		return;
++
++	ext->reg = XE_REG(extlist->reg.__reg.addr);
++	ext->flags = FIELD_PREP(GUC_REGSET_STEERING_NEEDED, 1);
++	ext->flags = FIELD_PREP(GUC_REGSET_STEERING_GROUP, slice_id);
++	ext->flags |= FIELD_PREP(GUC_REGSET_STEERING_INSTANCE, subslice_id);
++	ext->regname = extlist->name;
++}
++
++static int
++__alloc_ext_regs(struct drm_device *drm, struct __guc_mmio_reg_descr_group *newlist,
++		 const struct __guc_mmio_reg_descr_group *rootlist, int num_regs)
++{
++	struct __guc_mmio_reg_descr *list;
++
++	list = drmm_kzalloc(drm, num_regs * sizeof(struct __guc_mmio_reg_descr), GFP_KERNEL);
++	if (!list)
++		return -ENOMEM;
++
++	newlist->list = list;
++	newlist->num_regs = num_regs;
++	newlist->owner = rootlist->owner;
++	newlist->engine = rootlist->engine;
++	newlist->type = rootlist->type;
++
++	return 0;
++}
++
++static int guc_capture_get_steer_reg_num(struct xe_device *xe)
++{
++	int num = ARRAY_SIZE(xe_extregs);
++
++	if (GRAPHICS_VERx100(xe) >= 1255)
++		num += ARRAY_SIZE(xehpg_extregs);
++
++	return num;
++}
++
++static void guc_capture_alloc_steered_lists(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	u16 slice, subslice;
++	int iter, i, total = 0;
++	const struct __guc_mmio_reg_descr_group *lists = guc->capture->reglists;
++	const struct __guc_mmio_reg_descr_group *list;
++	struct __guc_mmio_reg_descr_group *extlists;
++	struct __guc_mmio_reg_descr *extarray;
++	bool has_xehpg_extregs = GRAPHICS_VERx100(gt_to_xe(gt)) >= 1255;
++	struct drm_device *drm = &gt_to_xe(gt)->drm;
++	bool has_rcs_ccs = false;
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++
++	/*
++	 * If GT has no rcs/ccs, no need to alloc steered list.
++	 * Currently, only rcs/ccs has steering register, if in the future,
++	 * other engine types has steering register, this condition check need
++	 * to be extended
++	 */
++	for_each_hw_engine(hwe, gt, id) {
++		if (xe_engine_class_to_guc_capture_class(hwe->class) ==
++		    GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE) {
++			has_rcs_ccs = true;
++			break;
++		}
++	}
++
++	if (!has_rcs_ccs)
++		return;
++
++	/* steered registers currently only exist for the render-class */
++	list = guc_capture_get_one_list(lists, GUC_CAPTURE_LIST_INDEX_PF,
++					GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
++					GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE);
++	/*
++	 * Skip if this platform has no engine class registers or if extlists
++	 * was previously allocated
++	 */
++	if (!list || guc->capture->extlists)
++		return;
++
++	total = bitmap_weight(gt->fuse_topo.g_dss_mask, sizeof(gt->fuse_topo.g_dss_mask) * 8) *
++		guc_capture_get_steer_reg_num(guc_to_xe(guc));
++
++	if (!total)
++		return;
++
++	/* allocate an extra for an end marker */
++	extlists = drmm_kzalloc(drm, 2 * sizeof(struct __guc_mmio_reg_descr_group), GFP_KERNEL);
++	if (!extlists)
++		return;
++
++	if (__alloc_ext_regs(drm, &extlists[0], list, total)) {
++		drmm_kfree(drm, extlists);
++		return;
++	}
++
++	/* For steering registers, the list is generated at run-time */
++	extarray = (struct __guc_mmio_reg_descr *)extlists[0].list;
++	for_each_dss_steering(iter, gt, slice, subslice) {
++		for (i = 0; i < ARRAY_SIZE(xe_extregs); ++i) {
++			__fill_ext_reg(extarray, &xe_extregs[i], slice, subslice);
++			++extarray;
++		}
++
++		if (has_xehpg_extregs)
++			for (i = 0; i < ARRAY_SIZE(xehpg_extregs); ++i) {
++				__fill_ext_reg(extarray, &xehpg_extregs[i], slice, subslice);
++				++extarray;
++			}
++	}
++
++	extlists[0].num_regs = total;
++
++	xe_gt_dbg(guc_to_gt(guc), "capture found %d ext-regs.\n", total);
++	guc->capture->extlists = extlists;
++}
++
+ static int
+ guc_capture_list_init(struct xe_guc *guc, u32 owner, u32 type,
+ 		      enum guc_capture_list_class_type capture_class, struct guc_mmio_reg *ptr,
+ 		      u16 num_entries)
+ {
+-	u32 i = 0;
++	u32 ptr_idx = 0, list_idx = 0;
+ 	const struct __guc_mmio_reg_descr_group *reglists = guc->capture->reglists;
++	struct __guc_mmio_reg_descr_group *extlists = guc->capture->extlists;
+ 	const struct __guc_mmio_reg_descr_group *match;
++	u32 list_num;
+ 
+ 	if (!reglists)
+ 		return -ENODEV;
+@@ -261,16 +408,28 @@ guc_capture_list_init(struct xe_guc *guc, u32 owner, u32 type,
+ 	if (!match)
+ 		return -ENODATA;
+ 
+-	for (i = 0; i < num_entries && i < match->num_regs; ++i) {
+-		ptr[i].offset = match->list[i].reg.addr;
+-		ptr[i].value = 0xDEADF00D;
+-		ptr[i].flags = match->list[i].flags;
+-		ptr[i].mask = match->list[i].mask;
++	list_num = match->num_regs;
++	for (list_idx = 0; ptr_idx < num_entries && list_idx < list_num; ++list_idx, ++ptr_idx) {
++		ptr[ptr_idx].offset = match->list[list_idx].reg.addr;
++		ptr[ptr_idx].value = 0xDEADF00D;
++		ptr[ptr_idx].flags = match->list[list_idx].flags;
++		ptr[ptr_idx].mask = match->list[list_idx].mask;
+ 	}
+ 
+-	if (i < num_entries)
+-		xe_gt_dbg(guc_to_gt(guc), "Got short capture reglist init: %d out %d.\n", i,
+-			  num_entries);
++	match = guc_capture_get_one_list(extlists, owner, type, capture_class);
++	if (match)
++		for (ptr_idx = list_num, list_idx = 0;
++		     ptr_idx < num_entries && list_idx < match->num_regs;
++		     ++ptr_idx, ++list_idx) {
++			ptr[ptr_idx].offset = match->list[list_idx].reg.addr;
++			ptr[ptr_idx].value = 0xDEADF00D;
++			ptr[ptr_idx].flags = match->list[list_idx].flags;
++			ptr[ptr_idx].mask = match->list[list_idx].mask;
++		}
++
++	if (ptr_idx < num_entries)
++		xe_gt_dbg(guc_to_gt(guc), "Got short capture reglist init: %d out-of %d.\n",
++			  ptr_idx, num_entries);
+ 
+ 	return 0;
+ }
+@@ -280,12 +439,22 @@ guc_cap_list_num_regs(struct xe_guc *guc, u32 owner, u32 type,
+ 		      enum guc_capture_list_class_type capture_class)
+ {
+ 	const struct __guc_mmio_reg_descr_group *match;
++	int num_regs = 0;
+ 
+ 	match = guc_capture_get_one_list(guc->capture->reglists, owner, type, capture_class);
+-	if (!match)
+-		return 0;
++	if (match)
++		num_regs = match->num_regs;
++
++	match = guc_capture_get_one_list(guc->capture->extlists, owner, type, capture_class);
++	if (match)
++		num_regs += match->num_regs;
++	else
++		/* Estimate steering register size for rcs/ccs */
++		if (capture_class == GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE)
++			num_regs += guc_capture_get_steer_reg_num(guc_to_xe(guc)) *
++				    XE_MAX_DSS_FUSE_BITS;
+ 
+-	return match->num_regs;
++	return num_regs;
+ }
+ 
+ static int
+@@ -500,6 +669,23 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc)
+ 	return PAGE_ALIGN(total_size);
+ }
+ 
++/*
++ * xe_guc_capture_steered_list_init - Init steering register list
++ * @guc: The GuC object
++ *
++ * Init steering register list for GuC register capture
++ */
++void xe_guc_capture_steered_list_init(struct xe_guc *guc)
++{
++	/*
++	 * For certain engine classes, there are slice and subslice
++	 * level registers requiring steering. We allocate and populate
++	 * these based on hw config and add it as an extension list at
++	 * the end of the pre-populated render list.
++	 */
++	guc_capture_alloc_steered_lists(guc);
++}
++
+ /**
+  * xe_guc_capture_init - Init for GuC register capture
+  * @guc: The GuC object
+@@ -507,7 +693,7 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc)
+  * Init for GuC register capture, alloc memory for capture data structure.
+  *
+  * Returns: 0 if success.
+-	    -ENOMEM if out of memory
++ *	    -ENOMEM if out of memory
+  */
+ int xe_guc_capture_init(struct xe_guc *guc)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
+index 55c1cedcb923..25d263e2ab1d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.h
++++ b/drivers/gpu/drm/xe/xe_guc_capture.h
+@@ -43,6 +43,7 @@ int xe_guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type,
+ 			       enum guc_capture_list_class_type capture_class, size_t *size);
+ int xe_guc_capture_getnullheader(struct xe_guc *guc, void **outptr, size_t *size);
+ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc);
++void xe_guc_capture_steered_list_init(struct xe_guc *guc);
+ int xe_guc_capture_init(struct xe_guc *guc);
+ 
+ #endif
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-1940-e55e4cc47de4150012eec3e54b6d710967d66510_BAT -> xe-pw-138611v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1940-e55e4cc47de4150012eec3e54b6d710967d66510 -> xe-pw-138611v1
-
-  IGT_8015: 8015
-  xe-1940-e55e4cc47de4150012eec3e54b6d710967d66510: e55e4cc47de4150012eec3e54b6d710967d66510
-  xe-pw-138611v1: 138611v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138611v1/index.html
-
---===============4359630589215023820==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Don&#x27;t try to derive GT clock freq from display register on Xe2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138611/">https://patchwork.freedesktop.org/series/138611/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138611v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138611v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1940-e55e4cc47de4150012eec3e54b6d710967d66510_BAT -&gt; xe-pw-138611v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1940-e55e4cc47de4150012eec3e54b6d710967d66510 -&gt; xe-pw-138611v1</li>
-</ul>
-<p>IGT_8015: 8015<br />
-  xe-1940-e55e4cc47de4150012eec3e54b6d710967d66510: e55e4cc47de4150012eec3e54b6d710967d66510<br />
-  xe-pw-138611v1: 138611v1</p>
-
-</body>
-</html>
-
---===============4359630589215023820==--
