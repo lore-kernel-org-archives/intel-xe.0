@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B444EED60A
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 14:09:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4775BEED60D
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 14:34:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4565910E0F0;
-	Thu, 12 Sep 2024 14:09:57 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 533E710E0F0;
- Thu, 12 Sep 2024 14:09:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id F376910EB91;
+	Thu, 12 Sep 2024 14:34:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFWIFVyR";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33FB810EB91;
+ Thu, 12 Sep 2024 14:34:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726151661; x=1757687661;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dkuAbsj2+yCr8LUrLcQw3/cxUi/vpyscienoQh3nIjU=;
+ b=IFWIFVyRScxPY3qE/czXq0ywJJKBVXoVHJmGhy6cwIk2wmhcnv7x9LvF
+ U0p5YQSNE1lOvAqE3RqIlMfhzrD6E0M+JQ0htd8Dz+bTu9Wk0iIUg9KlF
+ dPYGVZ3cbCQwiI0fPpqI17eHMNmiH1d/eZJJv/fJyLh6stJRt2scCRJma
+ WbQ1YkKBuZ0qnwNpAEfIwZ6keKs7IIMj47Q9lFPrUW38bmf088kbM6p4T
+ QcyiQjgJe9gx5WFUoaQgtBcpjyPv+flOLc3PiWOG5LYiUvOJnTAfZBM0B
+ FyQI9jzpchyiScdC47LSve3B5ZsqVgfZ+zTLAbM7F4KbgZ81uOH0bydDi A==;
+X-CSE-ConnectionGUID: sWZTLVAwSOKszeC6QI2M9A==
+X-CSE-MsgGUID: 58ILpH16RTOw9TiyxssRzw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25108948"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25108948"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 07:34:21 -0700
+X-CSE-ConnectionGUID: ER+I4FcsSvyGaPTCCSWSXw==
+X-CSE-MsgGUID: Z8DQkVbNS++2EDStQ8N4oQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="72514867"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 07:34:20 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	rodrigo.vivi@intel.com
+Subject: [PATCH v3 0/4] drm/i915/display: add snapshot capture/print infra
+Date: Thu, 12 Sep 2024 17:34:10 +0300
+Message-Id: <cover.1726151571.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/guc=3A_Add_Gu?=
- =?utf-8?q?C_based_register_capture_for_error_capture_=28rev19=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Sep 2024 14:09:55 -0000
-Message-ID: <172615019533.992113.14241631106792854462@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240912134654.161754-1-zhanjun.dong@intel.com>
-In-Reply-To: <20240912134654.161754-1-zhanjun.dong@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,33 +64,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Rebased [1].
 
-Series: drm/xe/guc: Add GuC based register capture for error capture (rev19)
-URL   : https://patchwork.freedesktop.org/series/128077/
-State : failure
+BR,
+Jani.
 
-== Summary ==
+[1] https://lore.kernel.org/r/cover.1725888718.git.jani.nikula@intel.com
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5c43f7fc693a drm-tip: 2024y-09m-12d-10h-31m-18s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_hw_engine.c:909
-error: drivers/gpu/drm/xe/xe_hw_engine.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-hint: When you have resolved this problem, run "git am --continue".
-hint: If you prefer to skip this patch, run "git am --skip" instead.
-hint: To restore the original branch and stop patching, run "git am --abort".
-hint: Disable this message with "git config advice.mergeConflict false"
-Applying: drm/xe/guc: Prepare GuC register list and update ADS size for error capture
-Applying: drm/xe/guc: Add XE_LP steered register lists
-Applying: drm/xe/guc: Add capture size check in GuC log buffer
-Applying: drm/xe/guc: Extract GuC error capture lists
-Applying: drm/xe/guc: Plumb GuC-capture into dev coredump
-Patch failed at 0005 drm/xe/guc: Plumb GuC-capture into dev coredump
+Jani Nikula (4):
+  drm/i915: dump display parameters captured in error state, not current
+  drm/i915/display: add intel_display_snapshot abstraction
+  drm/i915/display: move device info and params handling to snapshot
+  drm/i915/display: move dmc snapshotting to new display snapshot
 
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ .../drm/i915/display/intel_display_params.c   |  8 ++-
+ .../drm/i915/display/intel_display_params.h   |  5 +-
+ .../drm/i915/display/intel_display_snapshot.c | 72 +++++++++++++++++++
+ .../drm/i915/display/intel_display_snapshot.h | 16 +++++
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 38 +++++++---
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  6 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  | 16 +++--
+ drivers/gpu/drm/i915/display/intel_overlay.h  | 25 ++++---
+ drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         | 25 ++-----
+ drivers/gpu/drm/i915/i915_gpu_error.h         | 11 +--
+ 12 files changed, 166 insertions(+), 59 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_snapshot.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_snapshot.h
+
+-- 
+2.39.2
 
