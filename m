@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3486EED617
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 15:49:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E7EEED617
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 16:22:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 706B610EBDB;
-	Thu, 12 Sep 2024 15:49:47 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA6110EBD9;
- Thu, 12 Sep 2024 15:49:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_Don?=
- =?utf-8?q?=27t_allow_tile4_framebuffer_to_do_hflip_on_Xe2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Sep 2024 15:49:46 -0000
-Message-ID: <172615618618.992641.16718519448020830262@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 815FA10EBDD;
+	Thu, 12 Sep 2024 16:22:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iWgZ0gUv";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38ED10EBD9;
+ Thu, 12 Sep 2024 16:22:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726158138; x=1757694138;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Fq+dk9/OVpecXphfjVmVkYo0CrNOC5IunjqHpRGc1i0=;
+ b=iWgZ0gUvLw6KTTLWeBAYWgmf+/TNJy33urpuTQ8FJ2e6TotOZQU8Qcbv
+ L9Hv0Xu8IF4tWwF99ICIkWxi/OLhTob5ZPKD9NdxSfyw8XYrFUKYtWTjh
+ 0bc+a7TPw0ViPIOYCYjz3sZkpJdLWyPTFYB+V7CxbWQnXaWDP07O6d2dF
+ GioWM0ZwWKJ/nJMeuNG1MuXhkjlOXOaQQlXu43X/APivRp2Uyp8xZKsL9
+ un/wTjqajth1yuAuOV+5EZfkJYMN6B3kXzvXnPNYYuNrFqrv5PXTbQJBS
+ H9uGCBu7Vev55zAYjzxMmtCZ6wDx7JCpk98OMd8ewS54gjzKfO/l+2xVK A==;
+X-CSE-ConnectionGUID: L6NVpLivSx6TsZ5G41qLkw==
+X-CSE-MsgGUID: mfxa/HqCT+WPX6FtqwhJGg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25175099"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25175099"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 09:22:19 -0700
+X-CSE-ConnectionGUID: lC5hSzl5QrKkpCM6jDVKtg==
+X-CSE-MsgGUID: sj9uw+sQTrOWvtwp8EQDgQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="67848279"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 12 Sep 2024 09:22:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 12 Sep 2024 19:22:15 +0300
+Date: Thu, 12 Sep 2024 19:22:15 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: Don't allow tile4 framebuffer to do
+ hflip on Xe2
+Message-ID: <ZuMVN5mQ4aZpF1vm@intel.com>
 References: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 In-Reply-To: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +67,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Sep 12, 2024 at 05:46:06PM +0300, Juha-Pekka Heikkila wrote:
+> On Intel Xe2 hw tile4 is not supported with horizontal flip
+> 
+> bspec 69853
 
-Series: drm/i915/display: Don't allow tile4 framebuffer to do hflip on Xe2
-URL   : https://patchwork.freedesktop.org/series/138591/
-State : warning
+That only seems to apply to LNL, I see no defeature noted for BMG.
 
-== Summary ==
+Curiously they also seem to have added linear+hflip support for LNL...
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 7fc279c7cf796102479291b06b2969d3c27deeb8
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> 
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 ++++++++++++
+>  3 files changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index d2ff21e98545..c9038d239eb2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -439,6 +439,19 @@ bool intel_fb_needs_64k_phys(u64 modifier)
+>  				      INTEL_PLANE_CAP_NEED64K_PHYS);
+>  }
+>  
+> +/**
+> + * intel_fb_is_tile4_modifier: Check if a modifier is a tile4 modifier type
+> + * @modifier: Modifier to check
+> + *
+> + * Returns:
+> + * Returns %true if @modifier is a tile4 modifier.
+> + */
+> +bool intel_fb_is_tile4_modifier(u64 modifier)
+> +{
+> +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
+> +				      INTEL_PLANE_CAP_TILING_4);
+> +}
+> +
+>  static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
+>  					     u8 display_ver_from, u8 display_ver_until)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+> index 068f3aee99aa..bff87994cf2c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+> @@ -35,6 +35,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
+>  bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+>  bool intel_fb_is_mc_ccs_modifier(u64 modifier);
+>  bool intel_fb_needs_64k_phys(u64 modifier);
+> +bool intel_fb_is_tile4_modifier(u64 modifier);
+>  
+>  bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
+>  int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 17d4c880ecc4..4de41ab5060a 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -1591,6 +1591,18 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+>  		return -EINVAL;
+>  	}
+>  
+> +	/*
+> +	 * Starting with LNL and BMG tile4 hflip is not supported
+> +	 */
+> +	if (rotation & DRM_MODE_REFLECT_X &&
+> +	    intel_fb_is_tile4_modifier(fb->modifier) &&
+> +	    ((DISPLAY_VER(dev_priv) >= 14 && IS_DGFX(dev_priv)) ||
+> +	     (DISPLAY_VER(dev_priv) >= 20 && !IS_DGFX(dev_priv)))) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "horizontal flip is not supported with tile4 surface formats\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	if (drm_rotation_90_or_270(rotation)) {
+>  		if (!intel_fb_supports_90_270_rotation(to_intel_framebuffer(fb))) {
+>  			drm_dbg_kms(&dev_priv->drm,
+> -- 
+> 2.45.2
 
-
+-- 
+Ville Syrjälä
+Intel
