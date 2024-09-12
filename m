@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F7A7EED631
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 17:48:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FBB0EED634
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 17:48:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4509610EBF2;
-	Thu, 12 Sep 2024 17:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FAD110EBFA;
+	Thu, 12 Sep 2024 17:48:21 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 421F510EBF2;
- Thu, 12 Sep 2024 17:48:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6D610EBFA;
+ Thu, 12 Sep 2024 17:48:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/oa=3A_Fix_ove?=
- =?utf-8?q?rflow_in_oa_batch_buffer?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/oa=3A_Fix_overflow?=
+ =?utf-8?q?_in_oa_batch_buffer?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Souza, Jose" <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Sep 2024 17:48:09 -0000
-Message-ID: <172616328926.992962.8025269416479457255@2413ebb6fbb6>
+Date: Thu, 12 Sep 2024 17:48:20 -0000
+Message-ID: <172616330031.992962.7512154374622093135@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240912153842.35813-1-jose.souza@intel.com>
 In-Reply-To: <20240912153842.35813-1-jose.souza@intel.com>
@@ -48,9 +48,45 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9fd27ed0883c drm-tip: 2024y-09m-12d-16h-22m-36s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/oa: Fix overflow in oa batch buffer
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1b4b40ce92f2c4774a7570a194a2fceab3cfc070
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Thu Sep 12 08:38:42 2024 -0700
+
+    drm/xe/oa: Fix overflow in oa batch buffer
+    
+    By default xe_bb_create_job() appends a MI_BATCH_BUFFER_END to batch
+    buffer, this is not a problem if batch buffer is only used once but
+    oa reuses the batch buffer for the same metric and at each call
+    it appends a MI_BATCH_BUFFER_END, printing the warning below and then
+    overflowing.
+    
+    [  381.072016] ------------[ cut here ]------------
+    [  381.072019] xe 0000:00:02.0: [drm] Assertion `bb->len * 4 + bb_prefetch(q->gt) <= size` failed!
+                   platform: LUNARLAKE subplatform: 1
+                   graphics: Xe2_LPG / Xe2_HPG 20.04 step B0
+                   media: Xe2_LPM / Xe2_HPM 20.00 step B0
+                   tile: 0 VRAM 0 B
+                   GT: 0 type 1
+    
+    So here checking if batch buffer already have MI_BATCH_BUFFER_END if
+    not append it.
+    
+    v2:
+    - simply fix, suggestion from Ashutosh
+    
+    Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+    Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 9fd27ed0883cff53777b8db0b7c6db327132dcdc drm-intel
+1b4b40ce92f2 drm/xe/oa: Fix overflow in oa batch buffer
 
 
