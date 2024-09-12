@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1845EED600
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 12:15:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 036DBEEB59D
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 12:16:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC7C10EB6A;
-	Thu, 12 Sep 2024 12:15:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0mWNjrO";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B15010EB68;
- Thu, 12 Sep 2024 12:15:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726143356; x=1757679356;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=dkXbE0V2XUPBdXQ0CPd28jecEyo2WBrv17CENlfSlzo=;
- b=b0mWNjrOtmznMOc/ZlpPpFKkR12n+4elGRqDFQZZmJZMIJbFfb3vVRwe
- QFq14CT3hHMYmoAx0oJjyNHZ0gbs9hVx0MJ1EJ4tfZm7E949YeW8Mcsms
- OdyLgzEKXa/EReH2bg12ms+g1L2liIwba6GaLFUUYNJt2a4/P3Wx41Guu
- hhJF1VM5yU3NlJqhFe//GKyYG+w3tvSgmqf6IKenGqp9vIjffH424j4yN
- FJU/HG7D75dtGX6UM2t/CH4Q+IQ1Xzz/XAOkzO+H/JbQR1AzPzG+Rxw8/
- aSe3KeKf9AmCyydm72xxzNMtPyVkDRYmpbL8/AcHCY6Ir5ERZLO0NTy74 w==;
-X-CSE-ConnectionGUID: JWFnb56cTB+vGwraLxcKRA==
-X-CSE-MsgGUID: GN/Zb0njSnyYAxovHKdmbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="42505787"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="42505787"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 05:15:56 -0700
-X-CSE-ConnectionGUID: EY8J7mzfQ8CWlTw7TRSm9w==
-X-CSE-MsgGUID: heJqZZwvRMeLkMFCfEjBWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="67309476"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 05:15:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] drm/i915/bios: Extract vbt_signature[]
-In-Reply-To: <20240910134219.28479-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240910134219.28479-1-ville.syrjala@linux.intel.com>
- <20240910134219.28479-5-ville.syrjala@linux.intel.com>
-Date: Thu, 12 Sep 2024 15:15:52 +0300
-Message-ID: <87y13xf4p3.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBECA10EB6B;
+	Thu, 12 Sep 2024 12:16:15 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DDE410EB6B;
+ Thu, 12 Sep 2024 12:16:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/pciid=3A_Add_new_PCI_id?=
+ =?utf-8?q?_for_ARL_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Sep 2024 12:16:14 -0000
+Message-ID: <172614337437.991568.16632818988485812237@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240912115906.2730577-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20240912115906.2730577-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,80 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 10 Sep 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Replace the three hand rolled "$VBT"s with a vbt_signature[]
-> to avoid accidents.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index cbbda94c3dab..0b92b494117f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2964,6 +2964,8 @@ static const struct bdb_header *get_bdb_header(cons=
-t struct vbt_header *vbt)
->  	return _vbt + vbt->bdb_offset;
->  }
->=20=20
-> +static const char vbt_signature[4] =3D "$VBT";
+== Series Details ==
 
-Always a bit scary to add strings without termination, but I guess it's
-justified here.
+Series: drm/xe/pciid: Add new PCI id for ARL (rev2)
+URL   : https://patchwork.freedesktop.org/series/138509/
+State : success
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
+
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/
+lib/modules/6.11.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc7-xe/build
+lib/modules/6.11.0-rc7-xe/modules.alias.bin
+lib/modules/6.11.0-rc7-xe/modules.builtin
+lib/modules/6.11.0-rc7-xe/modules.softdep
+lib/modules/6.11.0-rc7-xe/modules.alias
+lib/modules/6.11.0-rc7-xe/modules.order
+lib/modules/6.11.0-rc7-xe/modules.symbols
+lib/modules/6.11.0-rc7-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1726143362:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1726143362:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-> +
->  /**
->   * intel_bios_is_valid_vbt - does the given buffer contain a valid VBT
->   * @display:	display device
-> @@ -2986,7 +2988,7 @@ bool intel_bios_is_valid_vbt(struct intel_display *=
-display,
->  		return false;
->  	}
->=20=20
-> -	if (memcmp(vbt->signature, "$VBT", 4)) {
-> +	if (memcmp(vbt->signature, vbt_signature, sizeof(vbt_signature))) {
->  		drm_dbg_kms(display->drm, "VBT invalid signature\n");
->  		return false;
->  	}
-> @@ -3082,9 +3084,11 @@ static struct vbt_header *spi_oprom_get_vbt(struct=
- intel_display *display,
->  	oprom_offset =3D intel_uncore_read(&i915->uncore, OROM_OFFSET);
->  	oprom_offset &=3D OROM_OFFSET_MASK;
->=20=20
-> +	BUILD_BUG_ON(sizeof(vbt_signature) !=3D sizeof(u32));
-> +
->  	for (count =3D 0; count < oprom_size; count +=3D 4) {
->  		data =3D intel_spi_read32(&i915->uncore, oprom_offset + count);
-> -		if (data =3D=3D *((const u32 *)"$VBT")) {
-> +		if (data =3D=3D *((const u32 *)vbt_signature)) {
->  			found =3D oprom_offset + count;
->  			break;
->  		}
-> @@ -3144,9 +3148,11 @@ static struct vbt_header *oprom_get_vbt(struct int=
-el_display *display,
->  	if (!oprom)
->  		return NULL;
->=20=20
-> +	BUILD_BUG_ON(sizeof(vbt_signature) !=3D sizeof(u32));
-> +
->  	/* Scour memory looking for the VBT signature. */
->  	for (i =3D 0; i + 4 < size; i +=3D 4) {
-> -		if (ioread32(oprom + i) !=3D *((const u32 *)"$VBT"))
-> +		if (ioread32(oprom + i) !=3D *((const u32 *)vbt_signature))
->  			continue;
->=20=20
->  		p =3D oprom + i;
-
---=20
-Jani Nikula, Intel
