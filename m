@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE265EEE245
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A11E1EEE241
 	for <intel-xe@archiver.kernel.org>; Thu, 12 Sep 2024 18:58:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E46410EC27;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CAD810EC25;
 	Thu, 12 Sep 2024 18:58:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EOBpE7dm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZaSV/G53";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBBD510EC25
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:58:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D1B110EC1F
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Sep 2024 18:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726167506; x=1757703506;
+ t=1726167496; x=1757703496;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rNE0eVzQR40gQ5QMeheh1ym3OIjvSiAwX7Kmy8a+5YA=;
- b=EOBpE7dmAnFzLg+eJYtlyW90k2p/ZSM1uXjvxVtsIKKt725VeLH4GNV3
- HGpaD7uuP5DGXq27dhmmInxR8I3zPf54HoN7Ajo67+BtHYkgMP/AfO/OH
- J3GGFfJLI5nVZ//FBz3zUiJcZJ17BwswXEZ4riiZDe/w6JobkQaHxUXt2
- 44lkU25D9TXOJ3QBpvjuKE0WicS06y84/8v8jT1Td7Md25TrWg8eGGkhP
- qYtq7O7pCu64VM9N87IUZcxu5z6VG82IfkY4M+eZXtYXF25FIN7y0YivH
- p/Ei/JvVBw4fVymsHRrLr2N9GWnlyHDekGMTl9g5P4IOIh7q42LXs5xcn Q==;
-X-CSE-ConnectionGUID: b4NK0Fm3SnGNle3NP2rL4w==
-X-CSE-MsgGUID: H8KZb/kvQoKvyWgg2hjezw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202977"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202977"
+ bh=11O5zYUVjjrHpO/C0HoWYdZi+mw5/dFLYBKDNdG26bA=;
+ b=ZaSV/G53e6yIRjVsgO/HDRMSYJakISENLOq3BkFaShaHyCH1CqfEIVv4
+ uplv+LO6BSUn9OJmT01D2XkFVU7B9k7yF6itahYqNB9aoUo2+KG8NuRR/
+ VrRO7r3gwarXMk19g6RrPbHR59mI+hI6vb8AUhYAgFF6dKVeqtZQ+pVvX
+ T2ANSpAeHnxsj6Z8HLXbmlMtAc7nQ2iV+Z09Lum0vQiqMi48Vir2/ll8k
+ fbSbH4S6ihrsgdwrZg66kMaXeteOwv+pDjbl4G0OYD2o4zNSaCq24JkV5
+ fydb46NLi+aDRtBepCGTb138J9vaI/Dsmk1UYwcKJLc1bxxjx2leqliKF g==;
+X-CSE-ConnectionGUID: 6je7OZDLRMCieH6STqTY3g==
+X-CSE-MsgGUID: 6CmSgpfFQOOnGQQPrvdYwA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25202947"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25202947"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 11:58:26 -0700
-X-CSE-ConnectionGUID: OxNPwFSvQ3KXFy9xMsSDrA==
-X-CSE-MsgGUID: 2KsAaIPqTvynNcXt3mqRPw==
+ 12 Sep 2024 11:58:16 -0700
+X-CSE-ConnectionGUID: bjZV3QukS0+21oQMxAG8xQ==
+X-CSE-MsgGUID: 3U5qI67mS5ymyVZwEB4Lew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910186"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="71910140"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:58:25 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2024 11:58:14 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 14/23] drm/xe/huc: Update handling of xe_force_wake_get
- return
-Date: Fri, 13 Sep 2024 00:45:54 +0530
-Message-Id: <20240912191603.194964-15-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v2 08/23] drm/xe/devcoredump: Update handling of
+ xe_force_wake_get return
+Date: Fri, 13 Sep 2024 00:45:48 +0530
+Message-Id: <20240912191603.194964-9-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
 References: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
@@ -70,48 +69,70 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 With xe_force_wake_get() now returning the refcount-incremented domain
-mask, a return value of 0 indicates failure for single domains
-(excluding XE_FORCEWAKE_ALL).
+mask, a non-zero return value in the case of XE_FORCEWAKE_ALL does not
+necessarily indicate success. Compare the return value with
+XE_FORCEWAKE_ALL to determine the status of the call.
 
 Modify the return handling of xe_force_wake_get() accordingly and pass
 the return value to xe_force_wake_put().
 
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_huc.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
-index 77c5830309cf..8908267ce5f3 100644
---- a/drivers/gpu/drm/xe/xe_huc.c
-+++ b/drivers/gpu/drm/xe/xe_huc.c
-@@ -296,19 +296,19 @@ void xe_huc_sanitize(struct xe_huc *huc)
- void xe_huc_print_info(struct xe_huc *huc, struct drm_printer *p)
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index bdb76e834e4c..6174cea6ef72 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -141,13 +141,15 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
  {
- 	struct xe_gt *gt = huc_to_gt(huc);
--	int err;
+ 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
+ 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
 +	int fw_ref;
  
- 	xe_uc_fw_print(&huc->fw, p);
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+-	if (xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL))
++	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
++	if (fw_ref != XE_FORCEWAKE_ALL)
+ 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+ 	xe_vm_snapshot_capture_delayed(ss->vm);
+ 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
+-	xe_force_wake_put(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
++	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
  
- 	if (!xe_uc_fw_is_enabled(&huc->fw))
- 		return;
+ 	/* Calculate devcoredump size */
+ 	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
+@@ -220,7 +222,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	u32 width_mask = (0x1 << q->width) - 1;
+ 	const char *process_name = "no process";
  
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
- 		return;
+-	int i;
++	int i, fw_ref;
+ 	bool cookie;
  
- 	drm_printf(p, "\nHuC status: 0x%08x\n",
- 		   xe_mmio_read32(&gt->mmio, HUC_KERNEL_LOAD_INFO));
+ 	ss->snapshot_time = ktime_get_real();
+@@ -244,7 +246,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	}
  
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+-	if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
++	fw_ref = xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
++	if (fw_ref != XE_FORCEWAKE_ALL)
+ 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+ 
+ 	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+@@ -263,7 +266,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ 	queue_work(system_unbound_wq, &ss->work);
+ 
+-	xe_force_wake_put(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
++	xe_force_wake_put(gt_to_fw(q->gt), fw_ref);
+ 	dma_fence_end_signalling(cookie);
  }
+ 
 -- 
 2.34.1
 
