@@ -4,65 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1771AFA3747
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 11:26:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1AC0FA3747
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 11:40:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB5FB10ECF1;
-	Fri, 13 Sep 2024 11:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACC8E10E14A;
+	Fri, 13 Sep 2024 11:40:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXk2TvDJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PS2kigIZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 342E410EC88
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 11:26:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726226772; x=1757762772;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=frckdRbr7MP8FaJIiqMK7TISqsRJJCWGQNi+nqu9vPw=;
- b=kXk2TvDJ6zsuqE9camCu+VdGENKshvWVUAffXY6YCvXEsSnH3J1VMnqx
- 3snT2pAJzbdnbxqQ5rL6Y9ro45rRfZqCqVwKftWAUcEbjEVXoGLFvY8e1
- a/Uo8hwMwCae0z1lAJWdMfaTA45pG8kp790vmHbm70EkxzAXv1hzComdw
- DCR4XGw/w6I3Dv8gO3mej8sceYVXQet3lgkoEMghvI1suxwQDQpAKW2rs
- 3xjpTNb26hf3sBkWNm4Cj+WBcXnYoYwhSA6vdXLlxGcH7YtokYqO/pchE
- ecowPlCnchmfjrUPIcgEjenK5PczIwVdUXTE+7ql+SEBry2PM0JrmyKig A==;
-X-CSE-ConnectionGUID: AKzXMaJfTUKsAiyxD59zgQ==
-X-CSE-MsgGUID: Dq24y9WXQS62q4YuJS48hg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="24611610"
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="24611610"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 04:26:11 -0700
-X-CSE-ConnectionGUID: 4FxTt0MJSXOTJaCR7aC7ZA==
-X-CSE-MsgGUID: HUF/t9tJSNOq2vmk4YGtXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="98843375"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa001.fm.intel.com with ESMTP; 13 Sep 2024 04:26:08 -0700
-Received: from [10.245.84.117] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.84.117])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 3C2522878B;
- Fri, 13 Sep 2024 12:26:07 +0100 (IST)
-Message-ID: <6ea536da-fed3-429f-82d4-f118d53309dc@intel.com>
-Date: Fri, 13 Sep 2024 13:26:06 +0200
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8E7610E14A;
+ Fri, 13 Sep 2024 11:40:47 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-a86e9db75b9so290356766b.1; 
+ Fri, 13 Sep 2024 04:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1726227646; x=1726832446; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=PsmzJiZpgu/V4zwLxzLuozkXG0kgNcMeiAbXKqeCLwM=;
+ b=PS2kigIZw3YJa5E5iD4fkCQLPBEHnbnN7d7D3xB71143IzcboGlKysiFyF05zFZcrN
+ kMf21zDrG4BDiuKxLIhXmv4sOTTDdqvjtfGHwH+H2+Hiu3t2BzXlL6hyW+01KoPTeYwQ
+ M8PNNRHQKULDXB8UDWO8mdxuF2JGMxnLHYIWmIENeh0IpzyzDDny85GC+RgKkiUXPxxr
+ em5VL0CydF3dEi3Fgt2cDRRvtG51jLGC6hWux4YPertmQxiyDgdk90YlK34ynh/oIvE5
+ 4ZZlO2bvZx1s1k93aEkYJx1/EWxwI30ztHsVQxKIgUhp228oeU7NfDRsDSG+AHgiTBMc
+ gaAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726227646; x=1726832446;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=PsmzJiZpgu/V4zwLxzLuozkXG0kgNcMeiAbXKqeCLwM=;
+ b=U7w+eC9A6J9v4rx+Ft9IIKT+Fyr2WDqbZR6cw/+vrr7jFDnccQDUj3FHSsf058Z9Ew
+ eC+YvuTj/jJsX89+AWY2qHMojs46gOu1UuG9fkD6HLE9TQoU222bjEOPDtTYZveZD/60
+ /tLVR4QyfzNACkmStfBddrsVU7d5DqFFoqtz3yu3FJZ4cCyYDMrdlae/YX1OUBWzIcfE
+ 6A00j8OI/KjLQVYsD2GWzcAJOoubw1MX3u9klfENu1olBxDAKW+i/QbgrnsfiuQff72L
+ JKp5RpBzO5HaXSkY+dBCXe3mN9BAY2D80MkSG67FSpoLk2+T7pJOfoVkFNYaWQqvqvu5
+ GMRQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWqxW+kOuyyiBNDsAQV+d9jkPzp4qnzvo6LINs86P0gyy6zPjdKmlJjuakZasKRSG7EjrRO8LLGj/s=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyX7r+d0ewj6Kr7F9AK/dQ0QLSXMy4djJIL8NS3FwGEiH+oxT9J
+ sBR5ROqvs6OE2SQJ7MryquQcMWq1mQMvJB9SQShcPzSXX+mFJqc2
+X-Google-Smtp-Source: AGHT+IFKp1Bb2EQHR+KGOXE9B/ZyvauB6ECboSoX2Mpq3jFFIIB9V3WH/JGQJxLIgw+3kfrp+0ujJg==
+X-Received: by 2002:a17:907:e64e:b0:a86:7d62:4c28 with SMTP id
+ a640c23a62f3a-a90295a6016mr591075066b.30.1726227645468; 
+ Fri, 13 Sep 2024 04:40:45 -0700 (PDT)
+Received: from [0.0.0.0] ([134.134.139.77])
+ by smtp.googlemail.com with ESMTPSA id
+ a640c23a62f3a-a8d259528ecsm862175966b.67.2024.09.13.04.40.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 13 Sep 2024 04:40:45 -0700 (PDT)
+Message-ID: <8fb2f095-2a05-4f2a-ac15-f366829aa665@gmail.com>
+Date: Fri, 13 Sep 2024 14:40:36 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/23] drm/xe: Error handling in xe_force_wake_get()
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-References: <20240912191603.194964-1-himal.prasad.ghimiray@intel.com>
- <20240912191603.194964-2-himal.prasad.ghimiray@intel.com>
- <ad2bb8fa-bd4c-4880-b4a6-f3483e6a2b7d@intel.com>
- <31983baa-d613-4a79-b39b-3d315b87a14d@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Don't allow tile4 framebuffer to do
+ hflip on Xe2
+To: Matt Roper <matthew.d.roper@intel.com>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+ <20240912195022.GJ5774@mdroper-desk1.amr.corp.intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <31983baa-d613-4a79-b39b-3d315b87a14d@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240912195022.GJ5774@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,265 +85,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 13.09.2024 05:59, Ghimiray, Himal Prasad wrote:
-> 
-> 
-> On 13-09-2024 03:01, Michal Wajdeczko wrote:
+On 12.9.2024 22.50, Matt Roper wrote:
+> On Thu, Sep 12, 2024 at 05:46:06PM +0300, Juha-Pekka Heikkila wrote:
+>> On Intel Xe2 hw tile4 is not supported with horizontal flip
 >>
->>
->> On 12.09.2024 21:15, Himal Prasad Ghimiray wrote:
->>> If an acknowledgment timeout occurs for a domain awake request, do not
->>> increment the reference count for the domain. This ensures that
->>> subsequent _get calls do not incorrectly assume the domain is awake. The
->>> return value is a mask of domains whose reference counts were
->>> incremented, and these domains need to be released using
->>> xe_force_wake_put.
->>>
->>> The caller needs to compare the return value with the input domains to
->>> determine the success or failure of the operation and decide whether to
->>> continue or return accordingly.
->>>
->>> While at it, add simple kernel-doc for xe_force_wake_get()
->>>
->>> Cc: Badal Nilawar <badal.nilawar@intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: Nirmoy Das <nirmoy.das@intel.com>
->>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_force_wake.c | 35 +++++++++++++++++++++++++-----
->>>   1 file changed, 29 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c
->>> b/drivers/gpu/drm/xe/xe_force_wake.c
->>> index a64c14757c84..fa42d652d23f 100644
->>> --- a/drivers/gpu/drm/xe/xe_force_wake.c
->>> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
->>> @@ -150,26 +150,49 @@ static int domain_sleep_wait(struct xe_gt *gt,
->>>                        (ffs(tmp__) - 1))) && \
->>>                        domain__->reg_ctl.addr)
->>>   +/**
->>> + * xe_force_wake_get : Increase the domain refcount; if it was 0
->>> initially, wake the domain
->>
->> while likely this is still recognized by the kernel-doc tool, this is
->> not correct notation for the function() documentation
+>> bspec 69853
 > 
+> The notes on this page seem to say that, but there's also bspec 68904
+> which seems to have two two conflicting statements that apply to Xe2:
 > 
-> I assume you are suggesting %s/xe_force_wake_get/xe_force_wake_get()
-> will fix it.
+>          "Horizontal flip (mirror the image from right to left) supported
+>          with tile modes other than linear."
 > 
+> implies this _is_ supported for Tile4 (and TileX), but immediately below
+> that,
 > 
->>
->> [1]
->> https://docs.kernel.org/doc-guide/kernel-doc.html#function-documentation
->>
->>> + * @fw: struct xe_force_wake
->>> + * @domains: forcewake domains to get refcount on
->>> + *
->>> + * Increment refcount for the force-wake domain. If the domain is
->>> + * asleep, awaken it and wait for acknowledgment within the specified
->>> + * timeout. If a timeout occurs, decrement the refcount.
->>
->> not sure if doc shall be 1:1 of low level implementation details
+>          "Horizontal flip (mirror the image from right to left) is not
+>          supported with tile mode of Tile4.  Horizontal flip (mirror the
+>          image from right to left) is supported with tile mode of
+>          linear."
 > 
-> Does this sound okay ?
-> This function takes references for the input @domains and wakes them if
-> they are asleep.
+> says pretty much the opposite for Tile4 and linear.
 > 
->>
->>> + * The caller should compare the return value with the @domains to
->>> + * determine the success or failure of the operation.
->>> + *
->>> + * Return: mask of refcount increased domains.
->>
->> if we return a 'mask' then maybe it should be of 'unsigned int' type?
+> It might be worth explicitly confirming this with the hardware guys and
+> getting them to re-visit the tagging of these bspec pages to avoid the
+> conflicting information.
 > 
-> Agreed. Will fix in next version.
-> 
->>
->>> If the return value is
->>> + * equal to the input parameter @domains, the operation is considered
->>> + * successful. Otherwise, the operation is considered a failure, and
->>> + * the caller should handle the failure case, potentially returning
->>> + * -ETIMEDOUT.
->>
->> it looks that all problems with the nice API is due to the
->> XE_FORCEWAKE_ALL that is not a single domain ID and requires extra care
->>
->> maybe there should be different pair of functions:
-> 
-> I am not convinced with different pair of functions:
-> 
-> In current implementation:
-> 
-> int mask = xe_force_wake_get(fw, domains)
-> if (mask != domains) {
->     Non critical path continue with warning;
->      or
->     critical path:
->         xe_force_wake_put(fw, mask);
->         return -ETIMEDOUT;
-> }
-> 
-> do_ops;
-> xe_force_wake_put(fw, mask);
-> return err;
-> 
-> Above flow remains intact irrespective of individual domains or
-> FORCEWAKE_ALL.
-> 
-> In case of individual domains if (mask != domains) can be replaced with
-> (!mask) and user can avoid xe_force_wake_put(fw, mask) in failure path
-> since mask is 0;
 
-so maybe we should have (by reinventing i915?):
+Thanks Matt, I think I'll need to start to bother hw guys with this 
+issue to get clarity. Lucas also pointed this is not a limitation on BMG 
+but I see LNL and BMG failing same way even if one is display 20 and 
+other is display 14 .. and MTL display 14 does work with hflip + tile4.
 
-// opaque, but zero means failure/no domains are awake
-typedef unsigned long xe_wakeref_t;
-
-
-// caller should test for ref != 0
-// but shall call put if ref != 0
-xe_wakeref_t xe_force_wake_get(fw, enum xe_force_wake_domains d)
-
-// safe to call with ref == 0
-void xe_force_wake_put(fw, xe_wakeref_t ref)
-
-
-// helpers for critical work that must be sure about domain
-
-// compares opaque ref with explicit domain != ALL
-// can be used by the code that obtained the ref
-bool xe_wakeref_has_domain(xe_wakeref_t, enum xe_force_wake_domains d)
-
-// compares fw with explicit domain != ALL
-// can be used by the code that does not have direct access to the ref
-bool xe_force_wake_is_awake(fw, enum xe_force_wake_domains d)
-
-
-// helpers for checking correctness
-void xe_force_wake_assert_held(fw, enum xe_force_wake_domains d)
-
-
-then usage would be:
-
-xe_wakeref_t ref;
-
-ref = xe_force_wake_get(fw, d);
-if (ref) {
-	// ...
-	xe_force_wake_put(fw, ref);
-}
-
-or:
-
-xe_wakeref_t ref;
-
-ref = xe_force_wake_get(fw, ALL);
-if (xe_wakeref_has_domain(ref, d1))
-	// ... critical work1
-if (xe_wakeref_has_domain(ref, d2))
-	// ... critical work2
-xe_force_wake_put(fw, ref);
-
-
-so above will be very similar to what you have but by having explicit
-types IMO it will help connect all functions into proper use-case flow
-
-> 
-> 
->>
->> // for single domain where ret=0 is success, ret<0 is error
-> 
-> This leads to caller only calling xe_force_wake_put incase of get
-> success. so in case of caller continuing with failure, he will need to
-> ensure the put is not called.
-> 
-> for example:
-> int ret;
-> 
-> ret = xe_force_wake_get(fw, DOMAIN_GT);
-> XE_WARN_ON(ret)
-> if(!ret)
->     xe_force_wake_put(fw, DOMAIN_GT);
-> 
->> int xe_force_wake_get(fw, enum xe_force_wake_domain_id id);
->> void xe_force_wake_put(fw, enum xe_force_wake_domain_id id);
->>
->> and
->>
->> // for all domain where ret=0 is success, ret<0 is error
->> int int xe_force_wake_get_all(fw);
->> void xe_force_wake_put_all(fw);
-> 
-> In case of xe_force_wake_get_all(fw) failure, how the caller will know
-> which domains got awake and which failed ?
-> 
-> ret = xe_force_wake_get_all(fw);
-> if(!ret)
->    No way to put awake domains to sleep
-
-in case of failure, it would be the responsibility of the
-xe_force_wake_get_all() to put all partial awakes immediately, since it
-failed to awake all requested domains (same as in single domain case)
-
-but let's drop this idea
+/Juha-Pekka
 
 > 
 >>
->> and
+>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
+>>   drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 ++++++++++++
+>>   3 files changed, 26 insertions(+)
 >>
->> // input: mask of domains, return: mask of domain
->> unsigned int xe_force_wake_get_mask(fw, mask);
->> void xe_force_wake_put_mask(fw, mask);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+>> index d2ff21e98545..c9038d239eb2 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+>> @@ -439,6 +439,19 @@ bool intel_fb_needs_64k_phys(u64 modifier)
+>>   				      INTEL_PLANE_CAP_NEED64K_PHYS);
+>>   }
+>>   
+>> +/**
+>> + * intel_fb_is_tile4_modifier: Check if a modifier is a tile4 modifier type
+>> + * @modifier: Modifier to check
+>> + *
+>> + * Returns:
+>> + * Returns %true if @modifier is a tile4 modifier.
+>> + */
+>> +bool intel_fb_is_tile4_modifier(u64 modifier)
+>> +{
+>> +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
+>> +				      INTEL_PLANE_CAP_TILING_4);
+>> +}
+>> +
+>>   static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
+>>   					     u8 display_ver_from, u8 display_ver_until)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+>> index 068f3aee99aa..bff87994cf2c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+>> @@ -35,6 +35,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
+>>   bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+>>   bool intel_fb_is_mc_ccs_modifier(u64 modifier);
+>>   bool intel_fb_needs_64k_phys(u64 modifier);
+>> +bool intel_fb_is_tile4_modifier(u64 modifier);
+>>   
+>>   bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
+>>   int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
+>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> index 17d4c880ecc4..4de41ab5060a 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> @@ -1591,6 +1591,18 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+>>   		return -EINVAL;
+>>   	}
+>>   
+>> +	/*
+>> +	 * Starting with LNL and BMG tile4 hflip is not supported
+>> +	 */
+>> +	if (rotation & DRM_MODE_REFLECT_X &&
+>> +	    intel_fb_is_tile4_modifier(fb->modifier) &&
+>> +	    ((DISPLAY_VER(dev_priv) >= 14 && IS_DGFX(dev_priv)) ||
+>> +	     (DISPLAY_VER(dev_priv) >= 20 && !IS_DGFX(dev_priv)))) {
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "horizontal flip is not supported with tile4 surface formats\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>>   	if (drm_rotation_90_or_270(rotation)) {
+>>   		if (!intel_fb_supports_90_270_rotation(to_intel_framebuffer(fb))) {
+>>   			drm_dbg_kms(&dev_priv->drm,
+>> -- 
+>> 2.45.2
 >>
->> this last one can be just main implementation (static or public if we
->> really want to continue with random set of enabled domains)
->>
->>> + */
->>>   int xe_force_wake_get(struct xe_force_wake *fw,
->>>                 enum xe_force_wake_domains domains)
->>>   {
->>>       struct xe_gt *gt = fw->gt;
->>>       struct xe_force_wake_domain *domain;
->>> -    enum xe_force_wake_domains tmp, woken = 0;
->>> +    enum xe_force_wake_domains tmp, awake_rqst = 0, awake_ack = 0;
->>
->> it looks that you're abusing even more all enum variables by treating
->> them as plain integers
 > 
-> Miss at my end. Will address them in next version.
-> 
->>
->>>       unsigned long flags;
->>> -    int ret = 0;
->>> +    int ret = domains;
->>>         spin_lock_irqsave(&fw->lock, flags);
->>>       for_each_fw_domain_masked(domain, domains, fw, tmp) {
->>>           if (!domain->ref++) {
->>> -            woken |= BIT(domain->id);
->>> +            awake_rqst |= BIT(domain->id);
->>>               domain_wake(gt, domain);
->>>           }
->>>       }
->>> -    for_each_fw_domain_masked(domain, woken, fw, tmp) {
->>> -        ret |= domain_wake_wait(gt, domain);
->>> +    for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
->>> +        if (domain_wake_wait(gt, domain) == 0) {
->>> +            awake_ack |= BIT(domain->id);
->>> +        } else {
->>> +            ret &= ~BIT(domain->id);
->>> +            --domain->ref;
->>> +        }
->>>       }
->>> -    fw->awake_domains |= woken;
->>> +
->>> +    fw->awake_domains |= awake_ack;
->>>       spin_unlock_irqrestore(&fw->lock, flags);
->>>         return ret;
+
