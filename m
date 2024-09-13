@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98331FC6162
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 16:29:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 332B8FC6160
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 16:29:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 630F510EBE0;
-	Fri, 13 Sep 2024 16:29:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01A9310EBE4;
+	Fri, 13 Sep 2024 16:29:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MDnNNJbl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGT2SYbG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58D7310EBE0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75D6810EB26
  for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 16:29:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726244956; x=1757780956;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=m3JDQfnYFXyBkTWIrnOD9B48tk9YlRsQkWUguOUhyG4=;
- b=MDnNNJbl26Vesg9mrwXIyaC2lXOLJjZ/aw1vsWNptx6adsdlxxd0p7q1
- 4daifdYpbVePqq4NovLBl7ZyOhw/0qAWSdvaajt+VPudxIaVNUC6ejCQ3
- IcYPJ6zhS/cWaDaYP1rQ5x90CAAjiRFqZjjOml/Ud3j4U8gOOTDso8ALE
- 6vTmo4a0g1X0cCprOgnslXGF40hme6vtvwFmD0Fol7bjdMt0hky4MdOUu
- 4Uhpr1sey0dw+OooqYrEAwM/CcGTHkfaZUkNrWm44Pg+tXVCYxC/4pgyt
- KE5DjYg983cS9kHX7xz1Bc/sBryFauMn4PNKzUjtX5tkRVXF/gpxkPeek Q==;
-X-CSE-ConnectionGUID: IJ4IL+3KT+KyRqgt6vuLEA==
-X-CSE-MsgGUID: KrgfyERmQpG2XZV9SzXR6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="24692391"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="24692391"
+ bh=zcDJLqEDmgAOsPDaZzXl4IKSesYpY/xIxeuiDhFi7vk=;
+ b=ZGT2SYbGoySQ6NnuCM77zhwDVU83F4d/HzrOzdJeBUJLqr0PuP1L9CY2
+ U9jGc+7vSM6mw+TW4dQALVRDVO1RhjQ55sKjTmxg9TIv0y4bgjjU3hrXS
+ Ve+rX2TgjCfAkfqxrYPEaftIzLmtaa02u8B2UKGowmB+9jTBt2X66YwiV
+ p/e01utbKxTpPwXmvpWaizxFGY9iNSlQgbjEGWlDg1K7Lq8s8PUk9t0vI
+ DhzIS3SVMUAAYbEXYiYHLbxR+rlYfUklCBacAn0jfvmgZs8ag+IZHH86O
+ 4TuhESl20+vO69HugMckAmcT7oWrcWj/kvq8F6rOaLWsRGl+bGLyTybea Q==;
+X-CSE-ConnectionGUID: rnRw3DkmTMS8QhpNqgBHsg==
+X-CSE-MsgGUID: BDoA3YJzScaKOdtLuGjzbQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="24692392"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="24692392"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Sep 2024 09:29:15 -0700
-X-CSE-ConnectionGUID: LbhcG+dTRMiW9JMqQ2dZTg==
-X-CSE-MsgGUID: qzUn4kx1TQeZIqzdCiGKAA==
+X-CSE-ConnectionGUID: b8uhj1PFT1+uokzvwUfaXA==
+X-CSE-MsgGUID: R0tC1tYRSAWQPsZJB/zgfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68440206"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68440209"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 09:29:15 -0700
+ 13 Sep 2024 09:29:16 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 2/3] drm/xe: Don't try to derive GT clock freq from display
- register on Xe2
-Date: Fri, 13 Sep 2024 09:29:12 -0700
-Message-ID: <20240913162910.4145142-5-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com, Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Jakub Kolakowski <jakub1.kolakowski@intel.com>
+Subject: [PATCH v2 3/3] drm/xe/sriov: Drop TIMESTAMP_OVERRIDE from Xe2 runtime
+ regs
+Date: Fri, 13 Sep 2024 09:29:13 -0700
+Message-ID: <20240913162910.4145142-6-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240913162910.4145142-4-matthew.d.roper@intel.com>
 References: <20240913162910.4145142-4-matthew.d.roper@intel.com>
@@ -68,78 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Driver initialization has two approaches for calculating the GT clock --
-it either derives it from the crystal clock frequency as read from a GT
-register, or it derives it from the display's TIMESTAMP_OVERRIDE
-register.  The driver is informed of which approach needs to be used by
-a bit setting in the CTC_MODE register.
+TIMESTAMP_OVERRIDE is never used to initialize the GT clock frequency on
+Xe2 platforms (and the register itself no longer exists on LNL) so drop
+it from the list of runtime registers.
 
-Use of a display register to initialize the GT frequency seems a bit
-suspicious and doesn't seem to really be documented clearly in the
-bspec.  However there is a note on the CTC_MODE register indicating that
-the setting that corresponds to use of the display register (which the
-bspec simply describes as "Broadwell Divide logic") is no longer
-supported on Xe2 and beyond.  Furthermore, the TIMESTAMP_OVERRIDE
-register itself was removed in display version 20.  Rework the GT clock
-init function to only consider CTC_MODE (and then possibly use display's
-TIMESTAMP_OVERRIDE) on pre-Xe2 platforms.
-
-Bspec: 62395
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Acked-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_clock.c | 30 +++++++++++++++---------------
- 1 file changed, 15 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 886c071c10f5..93940dc2c146 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -43,29 +43,29 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
- int xe_gt_clock_init(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	u32 ctc_reg = xe_mmio_read32(&gt->mmio, CTC_MODE);
--	u32 freq = 0;
-+	u32 c0, freq = 0;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+index 924e75b94aec..a5bd577227d4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+@@ -173,7 +173,6 @@ static const struct xe_reg ver_2000_runtime_regs[] = {
+ 	XE2_GT_GEOMETRY_DSS_2,		/* _MMIO(0x9154) */
+ 	CTC_MODE,			/* _MMIO(0xa26c) */
+ 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
+-	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
+ };
  
- 	/* Assuming gen11+ so assert this assumption is correct */
- 	xe_gt_assert(gt, GRAPHICS_VER(xe) >= 11);
- 
--	if (ctc_reg & CTC_SOURCE_DIVIDE_LOGIC) {
-+	if (GRAPHICS_VER(gt_to_xe(gt)) < 20 &&
-+	    xe_mmio_read32(&gt->mmio, CTC_MODE) & CTC_SOURCE_DIVIDE_LOGIC) {
- 		xe_gt_assert(gt, xe->info.probe_display);
-+		gt->info.reference_clock = xe_display_read_ref_ts_freq(xe);
- 
--		freq = xe_display_read_ref_ts_freq(xe);
--	} else {
--		u32 c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
--
--		freq = get_crystal_clock_freq(c0);
--
--		/*
--		 * Now figure out how the command stream's timestamp
--		 * register increments from this frequency (it might
--		 * increment only every few clock cycle).
--		 */
--		freq >>= 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, c0);
-+		return 0;
- 	}
- 
-+	c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
-+	freq = get_crystal_clock_freq(c0);
-+
-+	/*
-+	 * Now figure out how the command stream's timestamp
-+	 * register increments from this frequency (it might
-+	 * increment only every few clock cycle).
-+	 */
-+	freq >>= 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, c0);
-+
- 	gt->info.reference_clock = freq;
- 	return 0;
- }
+ static const struct xe_reg *pick_runtime_regs(struct xe_device *xe, unsigned int *count)
 -- 
 2.45.2
 
