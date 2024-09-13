@@ -4,46 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93046FC6172
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 19:56:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 937FDFC6177
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 20:16:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D81810ED72;
-	Fri, 13 Sep 2024 19:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51FE210ED7A;
+	Fri, 13 Sep 2024 20:16:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OsRZJTzc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ds5oqPYL";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5EE010ED72
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 19:56:52 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id F13FFA4589F;
- Fri, 13 Sep 2024 19:56:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 092E0C4CEC0;
- Fri, 13 Sep 2024 19:56:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726257411;
- bh=H4iuit7q2Nhczj3gCT7sLvpA5SYC76bEMMwawG37qtw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OsRZJTzcX0JBzJnguzxpW3eyXYH4bVwaYzfnDvVaeKI0NoZx0MlP36i1m2jNM7NDo
- pPRffbfLFaJjIKN1UEQLApwrtP5ZI67nAQIywvmYxVuhF537m/VCRNoixu+Au6h0XJ
- 6vMoH/O9ldFYu6VNnI4ph4vqRZufXbWllKTizQ/L/LtQDper9p2kkaxAJHWCXxQ2X0
- Sy9df5VtnmRaWspN8rAPvzJT6lcICvje9JBuPqHHW/bCGQm+T7pp3NGZFcUmNLrb10
- GuEMJDKLxpV4tOymvZc9RCJkH9opnth9ww6eOkk+dGSENbSXiuRRQOxFoi9kJhAZ+n
- EoqO7FqDI/c+g==
-Date: Fri, 13 Sep 2024 12:56:49 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: Re: [PATCH v3] drm/xe: Add a xe_bo subtest for shrinking / swapping
-Message-ID: <20240913195649.GA61514@thelio-3990X>
-References: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BDA210ED7A
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 20:15:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726258558; x=1757794558;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=WCrOYBky2bVttTB1oqHZPUkqfxK04jdTfZMAyMJCOhY=;
+ b=ds5oqPYLWWJU5axZr7mGV8M+ICTOZlQ+YvUCY789xgDphhWtNhWwZlAR
+ HfK2MQ/UnmKx+5Kr7+p9o5NE+Ico4161BVGVvboVOX6bmuvLsDxmjUCHR
+ idockE0CBtn4Ch/OMmj3ydkd+hoAZ4/hgMnpcGHT95PxWxG7hYYahDyDX
+ dYs+mk/Y8O56nrN7LonNuFWKaGAtlCQq/hfLjKLRkoy6WKyas/MXOq6S7
+ 3obdGu4gZ388jXK5em1QGV/tOasdUEw4+N123+VdMTVfETdhZjeH+gHCQ
+ xhRertVu5Hy3ZzInFn6ZfetAFtBv1KTQehZLrL2bX4C0XFdbbF8aXAxXX g==;
+X-CSE-ConnectionGUID: RF5EWwGlSC2lO2bz99/e5w==
+X-CSE-MsgGUID: r3hFm/aMTj2DSIGqEKGBww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="28957007"
+X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; d="scan'208";a="28957007"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 13:15:58 -0700
+X-CSE-ConnectionGUID: in4rv4UGR7WJTplWWTlNFA==
+X-CSE-MsgGUID: amLDaeuuRra/Ol9F5pS3OA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; d="scan'208";a="99032666"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Sep 2024 13:15:58 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 13 Sep 2024 13:15:57 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 13 Sep 2024 13:15:57 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 13 Sep 2024 13:15:57 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eaLg946ju14uYvtlqx4g1Bs+GbsTzMzb3j5kfCeaeJnRDvoXOrY3BdZLGLiQffHfaw1bDbAPo+kmUp5mJl5d8r2y9gt5Mb7MM4z/CreyxW3CkxjjLSPUpKs13fJj72denYvKWtDiPjOBsBAMLccmWFtdaWj6T+qz/uk62wZ6UIxDQvwmE12icTfWV7faVvRo1b9zh5qDv5hOeS0dGvcZ+A9NYLBA2my2+q3BcVAO0jLD3d/sfRrAL8kDhnTeGJulD8QPH0HgBdMiJWAGsxyLFNbFWD0WzEVGuUosLoQlgjnS6D96mZ8O1B3UZKWxtb9tPq6FTiL73E+KIA67drWI7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=INeIaZBXwuueKA5Qucoz0KsVJrm/OKCePxvJycy7MWc=;
+ b=gDXMpAUiwoo5ah4LdR49dqgNPfks4ptww9jvkqE9g3AKzEpt9aALLVCRXVsMp37sQGpeARa+kSQhRR527IIIuzVzJjW9FI2cysayhT52Q7oU0WnHwjyx3BJG8WKUGHB6aCXqXBu+7E4C4EHdSW8hbqQgbzOlSCMIGNZqcVZgrulH1lQBEaal5szJCe9T7dB7vTpLb5V0fFRzH99vGI77G0UeKP3LLrARj5ltFtqBwqY9jZlyqlsBZj4PPAPEL6MgQlmV5HkP2WVars/XUl1Rxf2EIhoWAUi7xwMUVOG8gDfGI1wyuCQytcCWM6IVtDATcpyXmfU6Oi/fe45PiXoCkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB2859.namprd11.prod.outlook.com (2603:10b6:5:c9::14) by
+ SA0PR11MB4702.namprd11.prod.outlook.com (2603:10b6:806:92::23) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7962.18; Fri, 13 Sep 2024 20:15:54 +0000
+Received: from DM6PR11MB2859.namprd11.prod.outlook.com
+ ([fe80::4063:4fec:bf76:f095]) by DM6PR11MB2859.namprd11.prod.outlook.com
+ ([fe80::4063:4fec:bf76:f095%7]) with mapi id 15.20.7939.022; Fri, 13 Sep 2024
+ 20:15:54 +0000
+Date: Fri, 13 Sep 2024 16:15:49 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [RFC v1] drm/xe: Use fault injection infrastructure to find
+ issues at probe time
+Message-ID: <ZuSdddkrFZgCDkqt@intel.com>
+References: <20240913143305.2262927-1-francois.dugast@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240913143305.2262927-1-francois.dugast@intel.com>
+X-ClientProxiedBy: MW4PR03CA0139.namprd03.prod.outlook.com
+ (2603:10b6:303:8c::24) To DM6PR11MB2859.namprd11.prod.outlook.com
+ (2603:10b6:5:c9::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2859:EE_|SA0PR11MB4702:EE_
+X-MS-Office365-Filtering-Correlation-Id: 48aca5a7-b161-4663-9e7a-08dcd430dd8e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?bVPgj+e7YrqxvDbP/1n1K/N5fJUsLSG0o8B3LAcFEx72VFX67FzS7ePpFb?=
+ =?iso-8859-1?Q?dE5YRhA2U2AjK3nMJ8l7sNbBpozEHkpTGEOHGdoGm034ftoiVeItF8JB3s?=
+ =?iso-8859-1?Q?a1agjK17bjd9nEPlj282NkuWPNN0WCknNp1JI9qk3SjakeY3NKGNBexJql?=
+ =?iso-8859-1?Q?wSy5fAGzzMwOtTqmfB0O2jHQhuInwezOf223Pe7Qeg+1qPjWoYtrr6xJIO?=
+ =?iso-8859-1?Q?iHYlBd9xpBCFa2ptcb1irZBdu8FpZjAF6q+jeWG11dNbXnWHvjGox9iNrh?=
+ =?iso-8859-1?Q?15QTxz3cZnLxh78eERTJl9Q3W9xhwaMTthzlTAnwmADTiJZpPdYbgSqwrl?=
+ =?iso-8859-1?Q?tfdYoXpzBjrNXzPq3d4vDoSj+o7sDYbsQaBxg2cTTZZxLqRWX3+uR837YT?=
+ =?iso-8859-1?Q?AL2hUIAlfitji1uFKwCuBb/adcVEtxWiQ61qEDwi3pxxEc0bdPMpmfO12U?=
+ =?iso-8859-1?Q?47sbJuNdyXhCmPZ28ekTDd/cSM2vl0R+Oow0Ok4iyDFeDnK+zTyif0pOwS?=
+ =?iso-8859-1?Q?Pfxd464gtecnD7XEwIGeRmGPaxvdmRJjhp9uUD420tEpgkPO/socjHl/CG?=
+ =?iso-8859-1?Q?a4bY5Seq3I6IZx7xbm7mfiSVlDloHRyjWrs5RMM7740yIH7R/5Ko4xecU7?=
+ =?iso-8859-1?Q?m9elehDQmUkjnwTdWSbBeZdFEOCSJfjBKMby9tBtF3uPQmn0ZkhZ6G+0hm?=
+ =?iso-8859-1?Q?PDUWRUWSvHJOdu977HcGktkuDLyekdOqnD1npqcd0tamZvVwLa2cwzNUwQ?=
+ =?iso-8859-1?Q?OHpRZ26MYfemT9sjcmgcANh9/TZBuzdmibEbkBDH5GGcR8gI0F/nfzusSU?=
+ =?iso-8859-1?Q?5sAWXX4fZ6Idjhg16CDYWMpTMex0X0UefOJ3H/BqsHG4Ru95qiW107gmo0?=
+ =?iso-8859-1?Q?fUedqrqGDuxUFEd9wrus5bfDGjCZtSst/6iZw4LP7m7Irk2MIYzzyd2rNS?=
+ =?iso-8859-1?Q?L+sBQk+A95cRlitzIbh0v7JpNEJKfM1yx8isau+iJQVGArc6VN17/exTBg?=
+ =?iso-8859-1?Q?mj2tiNgmJ33ZSygK272lqbjjd0zFBLAH3J6AgAlPgKKxxpEoMcQqwW5hee?=
+ =?iso-8859-1?Q?sPA+D3ZKuZJnAQUf08s/DRIUjfozae5xoyRylzSqY27HCH/C5yMErHXwy2?=
+ =?iso-8859-1?Q?8NsSABYOfAIEnnOIqXW0uG0Yl+jB8IFgHVu+B9YETquf7Tmek18WpIeSrL?=
+ =?iso-8859-1?Q?uyyMv6Br4eWyZWnirbfn86bwDpJ/o0ePaC+VjVY99dp5uQEjaIzwI+676Y?=
+ =?iso-8859-1?Q?JaCLCnEhAE880z8k1AboQoL98V6TvGAkRoBsDekdsXA/JGh95vM6jEm2UK?=
+ =?iso-8859-1?Q?dQkgKQPW5a3Dmb8K/rqjJ5qkqNj+AuMLvruPCrYvyBZOptM=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Jv6R9zMrGagmky4IfT4dvIYMqupuiCj0RciS+a4CY77mY578eLSaFJljZH?=
+ =?iso-8859-1?Q?W81n75GTtLaaDdPhHNeB2MjxfdAiwbvI6I/iR9UOhJ21zdNmf1W50fFLUE?=
+ =?iso-8859-1?Q?cMoxagdej3ORedjxd2Nb/6y9Yzmx/ww3ay3mncR17/nwWdV2Y3acn7HBIh?=
+ =?iso-8859-1?Q?bHcl2JUNNrHdrUKNBArprUhR6pU9ArWFayO9LEh1Hczdc08NnJYUthqgdE?=
+ =?iso-8859-1?Q?qIP+r+EDWzceX+lGTBV6GsKR3T8dAHzAveYfByGZ08i9YLSz0ZR4bWHhEV?=
+ =?iso-8859-1?Q?kWA4aqX94pzlVtcIhku87KxVswfXil43irFhCiDtQGzxxO4zXXi2RBGFfC?=
+ =?iso-8859-1?Q?iyq5r67SMFFXQ71nHf10Xflq+w9qf2nppgwda8QCqBeeyRvKfw1nEYXzO/?=
+ =?iso-8859-1?Q?Sn48+ETp8VuA/+JzaV5e+WR9IXjrZC3mnC78ZlA0zao/t9NWm0Ro4qmDXE?=
+ =?iso-8859-1?Q?8JU0yyj2oPWg7YWuwROe4AWbFYcjB0CgLpIQenEuGBvQ9OFyMS8MZNnn76?=
+ =?iso-8859-1?Q?dbNFWaivYLhCHJrvHIMb+HUYgsyN+leZyZCg+RdWu9vg+BvHC+RyoN/ynP?=
+ =?iso-8859-1?Q?dj/fOylqbKnC5spFSZ/vjjJeKatNigXiq9iY9nYdgwTh9Xjo6P9VZrfBts?=
+ =?iso-8859-1?Q?jeeYTwDp4Ars1wQDLyG3OyQM4d4pCwD2JSFJ4hmAzTbDTII4/DbUdowkKh?=
+ =?iso-8859-1?Q?0x1uYPIT3r3ZS5qLo0KZB5ijqbPvHe07zcAnwQrExWzDGIlJsxndFUOv1r?=
+ =?iso-8859-1?Q?JTkNjeLvdYIBNMDvScoYlWwyMu17zeQ8G+ffstaFHomvg11AguMfJvlCl+?=
+ =?iso-8859-1?Q?5JZHTXpEYSmjash8aNzMsITOAI2Q4Hh8I/Dpg6bqR4fBcXyg176ZBEVGMo?=
+ =?iso-8859-1?Q?hOL4oWqZLrpONnxoWaysQYNAFo2umCSpFXbytBbZnroO3COvg3C0bYRotq?=
+ =?iso-8859-1?Q?C8Os9JRqyiBdSJN6eJKSIDgsfTByXqN2YzefySqhy9XVQX3FHy6voS3vYB?=
+ =?iso-8859-1?Q?G3BKE0yk25gZgbVHvr4HhOcbWcHag6LjdYorg1SpCKa5naBs0QLIX+goO6?=
+ =?iso-8859-1?Q?qiSVK43XwGCvnRbF1fEbGbRLpTq9Ngiw+O7QDW6NVNRgiM7+U1et3Q7OzE?=
+ =?iso-8859-1?Q?3hebS8WWHNTkls9WTk/9a9hNwbN9BYqAmiaZRKqJ76l0DeLGPv04dcQcLX?=
+ =?iso-8859-1?Q?OD0C0pS69xqEt7Vvrd779X4Q9rGztpti4+xZSClvpaT61Pb/U0pcY0SENl?=
+ =?iso-8859-1?Q?6BeaqSP1GXJWkR9PwVn4cBDVIGevih4gOylMXjx1EBVTelKnh5F6ewZdTz?=
+ =?iso-8859-1?Q?nNtwjPZKzPKyOStl4VwmepLE3SoEDasuq1Ri+66FSqRinbr0fgzm+UCUCy?=
+ =?iso-8859-1?Q?6ubGh/k03baAWZ2UrrbY0VeWjgCCn0iQvIsfiGdpPJRDyNo5tHzky3Y7wM?=
+ =?iso-8859-1?Q?v8oIrAmYUJ0GudKTbxgTpPL8io+eleuurZgcSrdN1smVgM5gsALZtjkAUV?=
+ =?iso-8859-1?Q?+35BY6yfxNyz3m68VYmcPKLaHu/9uigBtAjaQy3DwmFh7cY2sU1kQltpNH?=
+ =?iso-8859-1?Q?4c+pUx8BLc/fhz0BjrpwlX3OszoFUNDV56dNBfq3gm6tuE2gs710p8oysX?=
+ =?iso-8859-1?Q?T5qDhu85BmrXW5ipGbmtY4QapwoHQCIGyYb9dsmyJhdGBKyJXO8ixSTg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48aca5a7-b161-4663-9e7a-08dcd430dd8e
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2024 20:15:54.8345 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Pm4oMb07bmwZu75FJ+a5wvWOdHHYGh4OBV330CltOTWs9Esd2Bp/rGhXBZi9XvYOLn5Sm2wldv91CZ/r8WULjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4702
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,248 +177,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
-
-On Mon, Sep 09, 2024 at 10:56:54AM +0200, Thomas Hellström wrote:
-> Add a subtest that tries to allocate twice the amount of
-> buffer object memory available, write data to it and then read
-> all the data back verifying data integrity.
-> In order to be able to do this on systems that
-> have no or not enough swap-space available, allocate some memory
-> as purgeable, and introduce a function to purge such memory from
-> the TTM swap_notify path.
+On Fri, Sep 13, 2024 at 04:33:05PM +0200, Francois Dugast wrote:
+> This RFC is a rework of https://patchwork.freedesktop.org/series/137314/
+> but instead of importing custom macros from i915, it makes use of the
+> standard kernel fault injection infrastructure, see fault-injection.rst.
 > 
-> this test is intended to add test coverage to the current
-> bo swap path and upcoming shrinking path.
+> In particular, it leverages error injectable functions with the macro
+> ALLOW_ERROR_INJECTION(). This macro requires minimal code changes to the
+> faulting function, if it meets the injectable functions requirements:
+> fault-injection.html#requirements-for-the-error-injectable-functions
 > 
-> The test has previously been part of the xe bo shrinker series.
+> Unfortunately this is not the case in most of the injection points of the
+> original series, so a wrapper is added if needed. Only a few examples are
+> shown in this RFC to discuss the proper pattern to apply.
 > 
-> v2:
-> - Skip test if the execution time is expected to be too long.
-> - Minor code cleanups.
+> The return code of the functions using ALLOW_ERROR_INJECTION() can be
+> conditionnally modified at runtime by tuning some debugfs entries. This
+> requires CONFIG_FUNCTION_ERROR_INJECTION (among others).
 > 
-> v3:
-> - Print random seed. (Matthew Auld)
+> One way to use fault injection at probe time by making each of those
+> functions fail one at a time is:
 > 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>     FAILTYPE=fail_function
+>     DEVICE="0000:00:08.0" # depends on the system
+>     ERRNO=-12 # -ENOMEM, other value might be needed depending on error handling
+> 
+>     echo N > /sys/kernel/debug/$FAILTYPE/task-filter
+>     echo 100 > /sys/kernel/debug/$FAILTYPE/probability
+>     echo 0 > /sys/kernel/debug/$FAILTYPE/interval
+>     echo -1 > /sys/kernel/debug/$FAILTYPE/times
+>     echo 0 > /sys/kernel/debug/$FAILTYPE/space
+>     echo 1 > /sys/kernel/debug/$FAILTYPE/verbose
+> 
+>     modprobe xe
+>     echo $DEVICE > /sys/bus/pci/drivers/xe/unbind
+> 
+>     grep -oP "^.* \[xe\]" /sys/kernel/debug/$FAILTYPE/injectable | cut -d ' ' -f 1 | while read -r FUNCTION ; do
+>         echo "Injecting fault in $FUNCTION"
+>         echo "" > /sys/kernel/debug/$FAILTYPE/inject
+>         echo $FUNCTION > /sys/kernel/debug/$FAILTYPE/inject
+>         printf %#x $ERRNO > /sys/kernel/debug/$FAILTYPE/$FUNCTION/retval
+>         echo $DEVICE > /sys/bus/pci/drivers/xe/bind
+>     done
+> 
+>     rmmod xe
+> 
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-...
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index 8dac069483e8..7d3fd720478b 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-...
-> +/*
-> + * Try to create system bos corresponding to twice the amount
-> + * of available system memory to test shrinker functionality.
-> + * If no swap space is available to accommodate the
-> + * memory overcommit, mark bos purgeable.
-> + */
-> +static int shrink_test_run_device(struct xe_device *xe)
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c | 37 +++++++++++++++++++++++++++++++---
+>  drivers/gpu/drm/xe/xe_tile.c   | 18 +++++++++++++++++
+>  drivers/gpu/drm/xe/xe_wopcm.c  |  3 +++
+>  3 files changed, 55 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 4d3c794f134c..2db62aa45b39 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -6,6 +6,7 @@
+>  #include "xe_device.h"
+>  
+>  #include <linux/delay.h>
+> +#include <linux/fault-inject.h>
+>  #include <linux/units.h>
+>  
+>  #include <drm/drm_aperture.h>
+> @@ -300,6 +301,37 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+>  	ttm_device_fini(&xe->ttm);
+>  }
+>  
+> +/* Wrapper for fault injection */
+> +static noinline int device_create_ttm_device_init(struct xe_device *xe)
 > +{
-> +	struct kunit *test = kunit_get_current_test();
-> +	LIST_HEAD(bos);
-> +	struct xe_bo_link *link, *next;
-> +	struct sysinfo si;
-> +	size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
-> +	unsigned int interrupted = 0, successful = 0, count = 0;
-> +	struct rnd_state prng;
-> +	u64 rand_seed;
-> +	bool failed = false;
+> +	/*
+> +	 * In case of error injection, the flow is modified because ttm_device_init()
+> +	 * executes (likely without error) but the return code is overridden in any
+> +	 * case to indicate an error in ttm_device_init(), which likely did not
+> +	 * occur.
+> +	 */
+> +	return ttm_device_init(&xe->ttm, &xe_ttm_funcs, xe->drm.dev,
+> +			       xe->drm.anon_inode->i_mapping,
+> +			       xe->drm.vma_offset_manager, false, false);
 > +
-> +	rand_seed = get_random_u64();
-> +	prandom_seed_state(&prng, rand_seed);
-> +	kunit_info(test, "Random seed is 0x%016llx.\n",
-> +		   (unsigned long long)rand_seed);
+> +	/*
+> +	 * The alternative below would also change the flow because in case of error
+> +	 * injection, ttm_device_init() would not be executed at all.
+> +	 *
+> +	 * int err = device_create_ttm_device_init_inject_fault();
+> +	 * if (err)
+> +	 *	return err;
+> +	 * return ttm_device_init(&xe->ttm, &xe_ttm_funcs, xe->drm.dev,
+> +	 *		       xe->drm.anon_inode->i_mapping,
+> +	 *		       xe->drm.vma_offset_manager, false, false);
+> +	 *
+> +	 * ...
+> +	 * static noinline int device_create_ttm_device_init_inject_fault() { return 0; }
+> +	 * ALLOW_ERROR_INJECTION(device_create_ttm_device_init_inject_fault, ERRNO);
+> +	 */
+> +}
+> +ALLOW_ERROR_INJECTION(device_create_ttm_device_init, ERRNO);
 > +
-> +	/* Skip if execution time is expected to be too long. */
-> +
-> +	limit = SZ_32G;
-> +	/* IGFX with flat CCS needs to copy when swapping / shrinking */
-> +	if (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe))
-> +		limit = SZ_16G;
-> +
-> +	si_meminfo(&si);
-> +	ram = (size_t)si.freeram * si.mem_unit;
-> +	if (ram > limit) {
-> +		kunit_skip(test, "Too long expected execution time.\n");
-> +		return 0;
-> +	}
-> +	to_alloc = ram * 2;
-> +
-> +	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
-> +	if (to_alloc > ram_and_swap)
-> +		purgeable = to_alloc - ram_and_swap;
-> +	purgeable += purgeable / 5;
-> +
-> +	kunit_info(test, "Free ram is %lu bytes. Will allocate twice of that.\n",
-> +		   (unsigned long)ram);
-> +	for (alloced = 0; alloced < to_alloc; alloced += XE_BO_SHRINK_SIZE) {
-> +		struct xe_bo *bo;
-> +		unsigned int mem_type;
-> +		struct xe_ttm_tt *xe_tt;
-> +
-> +		link = kzalloc(sizeof(*link), GFP_KERNEL);
-> +		if (!link) {
-> +			KUNIT_FAIL(test, "Unexpected link allocation failure\n");
-> +			failed = true;
-> +			break;
-> +		}
-> +
-> +		INIT_LIST_HEAD(&link->link);
-> +
-> +		/* We can create bos using WC caching here. But it is slower. */
-> +		bo = xe_bo_create_user(xe, NULL, NULL, XE_BO_SHRINK_SIZE,
-> +				       DRM_XE_GEM_CPU_CACHING_WB,
-> +				       XE_BO_FLAG_SYSTEM);
-> +		if (IS_ERR(bo)) {
-> +			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
-> +			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
-> +				KUNIT_FAIL(test, "Error creating bo: %pe\n", bo);
-> +			kfree(link);
-> +			failed = true;
-> +			break;
-> +		}
-> +		xe_bo_lock(bo, false);
-> +		xe_tt = container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
-> +
-> +		/*
-> +		 * Allocate purgeable bos first, because if we do it the
-> +		 * other way around, they may not be subject to swapping...
-> +		 */
-> +		if (alloced < purgeable) {
-> +			xe_tt->purgeable = true;
-> +			bo->ttm.priority = 0;
-> +		} else {
-> +			int ret = shrink_test_fill_random(bo, &prng, link);
-> +
-> +			if (ret) {
-> +				xe_bo_unlock(bo);
-> +				xe_bo_put(bo);
-> +				KUNIT_FAIL(test, "Error filling bo with random data: %pe\n",
-> +					   ERR_PTR(ret));
-> +				kfree(link);
-> +				failed = true;
-> +				break;
-> +			}
-> +		}
-> +
-> +		mem_type = bo->ttm.resource->mem_type;
-> +		xe_bo_unlock(bo);
-> +		link->bo = bo;
-> +		list_add_tail(&link->link, &bos);
-> +
-> +		if (mem_type != XE_PL_TT) {
-> +			KUNIT_FAIL(test, "Bo in incorrect memory type: %u\n",
-> +				   bo->ttm.resource->mem_type);
-> +			failed = true;
-> +		}
-> +		cond_resched();
-> +		if (signal_pending(current))
-> +			break;
-> +	}
+>  struct xe_device *xe_device_create(struct pci_dev *pdev,
+>  				   const struct pci_device_id *ent)
+>  {
+> @@ -316,9 +348,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+>  	if (IS_ERR(xe))
+>  		return xe;
+>  
+> -	err = ttm_device_init(&xe->ttm, &xe_ttm_funcs, xe->drm.dev,
+> -			      xe->drm.anon_inode->i_mapping,
+> -			      xe->drm.vma_offset_manager, false, false);
+> +	err = device_create_ttm_device_init(xe);
 
-This function introduces three warnings with clang:
+I believe the function name could be simplified to xe_device_init_ttm...
 
-  $ make -skj"$(nproc)" ARCH=i386 LLVM=1 allmodconfig drivers/gpu/drm/xe/xe_bo.o
-  ...
-  In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
-  drivers/gpu/drm/xe/tests/xe_bo.c:456:10: error: implicit conversion from 'unsigned long long' to 'size_t' (aka 'unsigned int') changes value from 34359738368 to 0 [-Werror,-Wconstant-conversion]
-    456 |         limit = SZ_32G;
-        |               ~ ^~~~~~
-  include/linux/sizes.h:49:19: note: expanded from macro 'SZ_32G'
-     49 | #define SZ_32G                          _AC(0x800000000, ULL)
-        |                                         ^~~~~~~~~~~~~~~~~~~~~
-  include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
-     21 | #define _AC(X,Y)        __AC(X,Y)
-        |                         ^~~~~~~~~
-  include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
-     20 | #define __AC(X,Y)       (X##Y)
-        |                          ^~~~
-  <scratch space>:31:1: note: expanded from here
-     31 | 0x800000000ULL
-        | ^~~~~~~~~~~~~~
-  In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
-  drivers/gpu/drm/xe/tests/xe_bo.c:459:11: error: implicit conversion from 'unsigned long long' to 'size_t' (aka 'unsigned int') changes value from 17179869184 to 0 [-Werror,-Wconstant-conversion]
-    459 |                 limit = SZ_16G;
-        |                       ~ ^~~~~~
-  include/linux/sizes.h:48:19: note: expanded from macro 'SZ_16G'
-     48 | #define SZ_16G                          _AC(0x400000000, ULL)
-        |                                         ^~~~~~~~~~~~~~~~~~~~~
-  include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
-     21 | #define _AC(X,Y)        __AC(X,Y)
-        |                         ^~~~~~~~~
-  include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
-     20 | #define __AC(X,Y)       (X##Y)
-        |                          ^~~~
-  <scratch space>:32:1: note: expanded from here
-     32 | 0x400000000ULL
-        | ^~~~~~~~~~~~~~
-  In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
-  drivers/gpu/drm/xe/tests/xe_bo.c:470:6: error: variable 'purgeable' is used uninitialized whenever 'if' condition is false [-Werror,-Wsometimes-uninitialized]
-    470 |         if (to_alloc > ram_and_swap)
-        |             ^~~~~~~~~~~~~~~~~~~~~~~
-  drivers/gpu/drm/xe/tests/xe_bo.c:472:2: note: uninitialized use occurs here
-    472 |         purgeable += purgeable / 5;
-        |         ^~~~~~~~~
-  drivers/gpu/drm/xe/tests/xe_bo.c:470:2: note: remove the 'if' if its condition is always true
-    470 |         if (to_alloc > ram_and_swap)
-        |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    471 |                 purgeable = to_alloc - ram_and_swap;
-  drivers/gpu/drm/xe/tests/xe_bo.c:443:37: note: initialize the variable 'purgeable' to silence this warning
-    443 |         size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
-        |                                            ^
-        |                                             = 0
-  3 errors generated.
+>  	if (WARN_ON(err))
+>  		goto err;
+>  
+> @@ -550,6 +580,7 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+>  
+>  	return 0;
+>  }
+> +ALLOW_ERROR_INJECTION(wait_for_lmem_ready, ERRNO);
 
-I tried to make GCC show the same warnings with an explicit
--Wmaybe-uninitialized but only the overflow warnings show up (is
-purgeable always set because of the if condition?):
+I liked how simple that is....
 
-  $ make -skj"$(nproc)" ARCH=i386 CROSS_COMPILE=i386-linux- KCFLAGS=-Wmaybe-uninitialized allmodconfig drivers/gpu/drm/xe/xe_bo.o
-  In file included from include/vdso/const.h:5,
-                   from include/linux/const.h:4,
-                   from include/linux/bits.h:5,
-                   from include/linux/ratelimit_types.h:5,
-                   from include/linux/printk.h:9,
-                   from include/asm-generic/bug.h:22,
-                   from arch/x86/include/asm/bug.h:99,
-                   from include/linux/bug.h:5,
-                   from include/linux/mmdebug.h:5,
-                   from include/linux/mm.h:6,
-                   from include/linux/pagemap.h:8,
-                   from include/drm/ttm/ttm_tt.h:30,
-                   from drivers/gpu/drm/xe/xe_bo.h:9,
-                   from drivers/gpu/drm/xe/xe_bo.c:6:
-  drivers/gpu/drm/xe/tests/xe_bo.c: In function 'shrink_test_run_device':
-  include/uapi/linux/const.h:20:25: error: conversion from 'long long unsigned int' to 'size_t' {aka 'unsigned int'} changes value from '34359738368' to '0' [-Werror=overflow]
-     20 | #define __AC(X,Y)       (X##Y)
-        |                         ^
-  include/uapi/linux/const.h:21:25: note: in expansion of macro '__AC'
-     21 | #define _AC(X,Y)        __AC(X,Y)
-        |                         ^~~~
-  include/linux/sizes.h:49:41: note: in expansion of macro '_AC'
-     49 | #define SZ_32G                          _AC(0x800000000, ULL)
-        |                                         ^~~
-  drivers/gpu/drm/xe/tests/xe_bo.c:456:17: note: in expansion of macro 'SZ_32G'
-    456 |         limit = SZ_32G;
-        |                 ^~~~~~
-  include/uapi/linux/const.h:20:25: error: conversion from 'long long unsigned int' to 'size_t' {aka 'unsigned int'} changes value from '17179869184' to '0' [-Werror=overflow]
-     20 | #define __AC(X,Y)       (X##Y)
-        |                         ^
-  include/uapi/linux/const.h:21:25: note: in expansion of macro '__AC'
-     21 | #define _AC(X,Y)        __AC(X,Y)
-        |                         ^~~~
-  include/linux/sizes.h:48:41: note: in expansion of macro '_AC'
-     48 | #define SZ_16G                          _AC(0x400000000, ULL)
-        |                                         ^~~
-  drivers/gpu/drm/xe/tests/xe_bo.c:459:25: note: in expansion of macro 'SZ_16G'
-    459 |                 limit = SZ_16G;
-        |                         ^~~~~~
-  cc1: all warnings being treated as errors
+>  
+>  static void update_device_info(struct xe_device *xe)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+> index dda5268507d8..22c0a42af9c2 100644
+> --- a/drivers/gpu/drm/xe/xe_tile.c
+> +++ b/drivers/gpu/drm/xe/xe_tile.c
+> @@ -3,6 +3,8 @@
+>   * Copyright © 2023 Intel Corporation
+>   */
+>  
+> +#include <linux/fault-inject.h>
+> +
+>  #include <drm/drm_managed.h>
+>  
+>  #include "xe_device.h"
+> @@ -99,6 +101,12 @@ static int xe_tile_alloc(struct xe_tile *tile)
+>  	return 0;
+>  }
+>  
+> +static noinline int tile_init_early_inject_fault(void)
+> +{
+> +	return 0;
+> +}
+> +ALLOW_ERROR_INJECTION(tile_init_early_inject_fault, ERRNO);
+> +
+>  /**
+>   * xe_tile_init_early - Initialize the tile and primary GT
+>   * @tile: Tile to initialize
+> @@ -117,6 +125,16 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
+>  	tile->xe = xe;
+>  	tile->id = id;
+>  
+> +	/*
+> +	 * The flow is modified because xe_tile_init_early() fails before the
+> +	 * first possible error, from xe_tile_alloc(). It is does not match the
+> +	 * 2nd requirement of
+> +	 * fault-injection.html#requirements-for-the-error-injectable-functions
+> +	 */
 
-Cheers,
-Nathan
+I'm afraid I didn't understand this.
+
+and the name could perhaps start with fault_inject?!
+
+or maybe:
+
+xe_fault_inject_tile_init_early();
+
+> +	err = tile_init_early_inject_fault();
+> +	if (err)
+> +		return err;
+> +
+>  	err = xe_tile_alloc(tile);
+>  	if (err)
+>  		return err;
+> diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+> index 93c82825d896..88a201122a22 100644
+> --- a/drivers/gpu/drm/xe/xe_wopcm.c
+> +++ b/drivers/gpu/drm/xe/xe_wopcm.c
+> @@ -5,6 +5,8 @@
+>  
+>  #include "xe_wopcm.h"
+>  
+> +#include <linux/fault-inject.h>
+> +
+>  #include "regs/xe_guc_regs.h"
+>  #include "xe_device.h"
+>  #include "xe_force_wake.h"
+> @@ -268,3 +270,4 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
+>  
+>  	return ret;
+>  }
+> +ALLOW_ERROR_INJECTION(xe_wopcm_init, ERRNO);
+> -- 
+> 2.43.0
+> 
