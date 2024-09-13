@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14A39FC6171
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 18:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA25AFC6172
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 18:58:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D073E10ED83;
-	Fri, 13 Sep 2024 18:43:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M0HmyQiN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACC2C10ED75;
- Fri, 13 Sep 2024 18:43:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726253037; x=1757789037;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=6aY6Y5Lw+g00/+wdUciKaN5K8FrRHnLN7FCWwccNJss=;
- b=M0HmyQiNf/7zYo7kXbm8mTbdXTdENpWA/7J8M3klfZA77snuSHSUE4Fu
- j3UX1lIm02AzE8ktaPYmOxsA1neO1svgDf7SBMy0mHLdn3FOUShS5+oQp
- u4LUS1Z0NsHkqBjdUKiNh+yljZ/pp9aOyCNFJlb5g3xwzpdvExBN++qdb
- vCTdgm6rNmx+FE7ASq74nponsDJ+AlL5I8MDdMCzgYDBvA7Nuu2PMchiJ
- LYeSnCYXykYJu7JXyexTKEJS/EH72QbRWWVWRm0CJoN8H6qS9m7AyBR4a
- n+aTTVGuCeL7QmY0ELcniCHmwjB1uFyN+EOM3vBau02oQEITTsifWtgE3 Q==;
-X-CSE-ConnectionGUID: eZ8xHIY6QdOaI0oBY+qtsQ==
-X-CSE-MsgGUID: gTLYxyweSAmxCXLbekXd1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25101898"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="25101898"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 11:43:56 -0700
-X-CSE-ConnectionGUID: UIfzSvizSaOB7rS5xJyTcw==
-X-CSE-MsgGUID: CRmxfzHpSx+CftlA0AviKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68931103"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.187])
- ([10.245.245.187])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 11:43:55 -0700
-Message-ID: <57f44ae3-9cd9-4bd9-ba5d-67e8ae0d7f09@linux.intel.com>
-Date: Fri, 13 Sep 2024 20:44:01 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819C110ED74;
+	Fri, 13 Sep 2024 18:58:59 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A2CA10ED74;
+ Fri, 13 Sep 2024 18:58:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6357905269019616803=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
- <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
- <ZuRykc_etbea6063@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <ZuRykc_etbea6063@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Add_GuC_based_regi?=
+ =?utf-8?q?ster_capture_for_error_capture_=28rev21=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Sep 2024 18:58:58 -0000
+Message-ID: <172625393816.997912.4939749842744161403@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240912230913.381482-1-zhanjun.dong@intel.com>
+In-Reply-To: <20240912230913.381482-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,67 +36,163 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6357905269019616803==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe/guc: Add GuC based register capture for error capture (rev21)
+URL   : https://patchwork.freedesktop.org/series/128077/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328_BAT -> xe-pw-128077v21_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-128077v21_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-128077v21_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-128077v21_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-lnl-2:          [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v21/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-128077v21_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [FAIL][3] ([Intel XE#886]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v21/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
 
 
-Den 2024-09-13 kl. 19:12, skrev Ville Syrjälä:
-> On Fri, Sep 13, 2024 at 01:47:53PM +0200, Maarten Lankhorst wrote:
->> Add the scanout flag to force WC caching, and add the memory barrier
->> where needed.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>  drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
->>  1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->> index f99d901a3214f..f7949bf5426af 100644
->> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->> @@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
->>  	if (!vma)
->>  		return false;
->>  
->> +	/* Set scanout flag for WC mapping */
->>  	obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
->>  				   NULL, PAGE_ALIGN(size),
->>  				   ttm_bo_type_kernel,
->>  				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> -				   XE_BO_FLAG_GGTT);
->> +				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
->>  	if (IS_ERR(obj)) {
->>  		kfree(vma);
->>  		return false;
->> @@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
->>  
->>  void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
->>  {
->> -	/* TODO: add xe specific flush_map() for dsb buffer object. */
->> +	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
-> 
-> MMIO itself should be sufficient to flush the WC buffer.
-> But I guess no real harm in hammering it a bit harder.
+Build changes
+-------------
 
-You would say that, I still saw a spurious DSB timeout without the flush. :)
+  * IGT: IGT_8016 -> IGT_8017
+  * Linux: xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328 -> xe-pw-128077v21
 
-"Memory mapped I/O usually takes place through memory locations that are part of
-a window in the CPU's memory space that has different properties assigned than
-the usual RAM directed window.
+  IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8017: 8017
+  xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328: df3eecb1fa97d6d35569c2fa39f0da78b9f13328
+  xe-pw-128077v21: 128077v21
 
-Amongst these properties is usually the fact that such accesses bypass the
-caching entirely and go directly to the device buses.  This means MMIO accesses
-may, in effect, overtake accesses to cached memory that were emitted earlier."
+== Logs ==
 
-Since the memory is write combined, the memory barrier itself is sufficient
-and no further invalidation is required.
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v21/index.html
 
-Just the workaround should be fine. The l2 flush should be moved after the mb as well.
-I'll do that in a followup patch.
+--===============6357905269019616803==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->>  }
->> -- 
->> 2.45.2
-> 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Add GuC based register capture for error capture (rev21)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128077/">https://patchwork.freedesktop.org/series/128077/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v21/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v21/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328_BAT -&gt; xe-pw-128077v21_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-128077v21_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-128077v21_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-128077v21_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v21/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-128077v21_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v21/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8016 -&gt; IGT_8017</li>
+<li>Linux: xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328 -&gt; xe-pw-128077v21</li>
+</ul>
+<p>IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8017: 8017<br />
+  xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328: df3eecb1fa97d6d35569c2fa39f0da78b9f13328<br />
+  xe-pw-128077v21: 128077v21</p>
+
+</body>
+</html>
+
+--===============6357905269019616803==--
