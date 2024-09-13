@@ -4,171 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E8D4FA3750
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 19:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93046FC6172
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 19:56:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7FAD10ED4F;
-	Fri, 13 Sep 2024 19:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D81810ED72;
+	Fri, 13 Sep 2024 19:56:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nSZWYW+7";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OsRZJTzc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C51C10ED4D;
- Fri, 13 Sep 2024 19:54:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726257295; x=1757793295;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=jakCn51y8k2Msxnjsq+fpKMwK3HgzkHo+Sm8e7Ubg14=;
- b=nSZWYW+7MegstTdtQMmmfFBoprcQtHRDZg2/AzDKgznNL/wHmmr+qdec
- JMeo+0Lij/pnrk3lZI8ezf1qXQexhgKxziMU0yP7f2w39nv0k3ue3CVVO
- zMB1AysTI3mE+FIazvMrhjDAA6ZGa3L4cg2RZDlP5+NjhxfQTMlxPJjZ0
- r9Zum+Jyj1Iu4O/YwLWNa3jTtO7Xnj/A/DCttgBAQfJNbd4plUVlrbI8n
- mypwnaDHP3FsdDLETxiW4zL0fOLki5fKKkK0bDmIhywiIQ6QkTcVMBgnI
- LcQQCjbtF+2TSH4PIaWmVgA8g3kobNJSRdaSEZPVnumXkXke3Sf3svz1K Q==;
-X-CSE-ConnectionGUID: ff53eYjhST2K9nSp10fwSw==
-X-CSE-MsgGUID: G/J2HioOSXy/NXbRcHmpPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="36520175"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="36520175"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 12:54:55 -0700
-X-CSE-ConnectionGUID: yBj2U+zsQDiM6WiKQLGqVQ==
-X-CSE-MsgGUID: 6u6S0N0bQeyVJhKRdSvlyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="67882912"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Sep 2024 12:54:55 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 13 Sep 2024 12:54:54 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 13 Sep 2024 12:54:54 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 13 Sep 2024 12:54:54 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.46) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 13 Sep 2024 12:54:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A4LEQR13uxmE8BmfLrInF6fGVon393UywRR7Jdj7A2uM4FhZ0sUe06b+v+GpzlYaZdlW6eJDTrfSIy7QxVh3JgwG0UpmqHE3593RTy+TrjAqCwq3Cc9gfFZyG1GgvHydIfFr8fSlyXqdXOxYZ6nVNccuMVCWOtDD6lWJf+UqVXozSXd0IO5r83iGPBJYTp/kdLu96ddSXKJ3HUXVkzlO8TTU95sWSjrdWT3j4BWmLXpgxAodVanIL8mR7fdX0IR70rI0coVRBiRzajTkMqvk81kDdLBTckAOfV6rFqMcKzTG0N9iC7Rg3SOLcSXI2NB9FEISjTeQgTP1p0+HW5M+FA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aXD4wazc+uWn/9ax1RLxOfTZ9XN+uVlxb7hRxgsYg1A=;
- b=NEKhJZnqC1a+Xm6qTEbB/n54Wj4/GUNAYNIwtFyILVRaLporXztrwC+OKF5VGy9ajJVrvF1pVqAy7ZWQwZlq6yCgEHsLN5h1eOrK0BABx8aXcWMjG9VVSFff9lAWsFcnxx3Z7/QXUQTRJPlmW8ZkpSOYhcM0UphOed9y+cMlCEPN4T1iZxznGBDfAZPCbqRejas1RTTX5rG4/NSzTC7XOfKpY3AtW+78N8d3L+rZl3BPU9bzMIrD+9Sf7WQWv8IEXbGpr4YI4bb2afP3xZlL4/NjPgK9f7HX9t+6MtajJHz3IxQy7QQBqj9G2b8IGWFZyy0emra8mKx/4GVVnA1vvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB2859.namprd11.prod.outlook.com (2603:10b6:5:c9::14) by
- CY8PR11MB7848.namprd11.prod.outlook.com (2603:10b6:930:6c::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7962.18; Fri, 13 Sep 2024 19:54:52 +0000
-Received: from DM6PR11MB2859.namprd11.prod.outlook.com
- ([fe80::4063:4fec:bf76:f095]) by DM6PR11MB2859.namprd11.prod.outlook.com
- ([fe80::4063:4fec:bf76:f095%7]) with mapi id 15.20.7939.022; Fri, 13 Sep 2024
- 19:54:51 +0000
-Date: Fri, 13 Sep 2024 15:54:37 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-CC: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- <lucas.demarchi@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, Abaci Robot <abaci@linux.alibaba.com>
-Subject: Re: [PATCH v3 -next] drm/xe/irq: Remove unneeded semicolon
-Message-ID: <ZuSYffyZCKW9YJMp@intel.com>
-References: <20240913060254.26678-1-jiapeng.chong@linux.alibaba.com>
- <6bef5f38-5490-4cd0-8e8f-2b2271d20d44@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <6bef5f38-5490-4cd0-8e8f-2b2271d20d44@intel.com>
-X-ClientProxiedBy: MW4PR04CA0251.namprd04.prod.outlook.com
- (2603:10b6:303:88::16) To DM6PR11MB2859.namprd11.prod.outlook.com
- (2603:10b6:5:c9::14)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5EE010ED72
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 19:56:52 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id F13FFA4589F;
+ Fri, 13 Sep 2024 19:56:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 092E0C4CEC0;
+ Fri, 13 Sep 2024 19:56:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1726257411;
+ bh=H4iuit7q2Nhczj3gCT7sLvpA5SYC76bEMMwawG37qtw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=OsRZJTzcX0JBzJnguzxpW3eyXYH4bVwaYzfnDvVaeKI0NoZx0MlP36i1m2jNM7NDo
+ pPRffbfLFaJjIKN1UEQLApwrtP5ZI67nAQIywvmYxVuhF537m/VCRNoixu+Au6h0XJ
+ 6vMoH/O9ldFYu6VNnI4ph4vqRZufXbWllKTizQ/L/LtQDper9p2kkaxAJHWCXxQ2X0
+ Sy9df5VtnmRaWspN8rAPvzJT6lcICvje9JBuPqHHW/bCGQm+T7pp3NGZFcUmNLrb10
+ GuEMJDKLxpV4tOymvZc9RCJkH9opnth9ww6eOkk+dGSENbSXiuRRQOxFoi9kJhAZ+n
+ EoqO7FqDI/c+g==
+Date: Fri, 13 Sep 2024 12:56:49 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH v3] drm/xe: Add a xe_bo subtest for shrinking / swapping
+Message-ID: <20240913195649.GA61514@thelio-3990X>
+References: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2859:EE_|CY8PR11MB7848:EE_
-X-MS-Office365-Filtering-Correlation-Id: 54f1b278-9e6a-4843-637f-08dcd42de864
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7416014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lGUw3wn4ME4z/Wti8rbNOWP/uPjhKECP33tMu0RLLmcIM/m1ip7twApC0LG5?=
- =?us-ascii?Q?RtN/OVgTSSWzu6zt1MEiD23jSWnZmIQMf/IU6vhCfRGVm6utpym5ATYM2Kbc?=
- =?us-ascii?Q?pOLKBgp9AI4q8KBor5nxBszZf/EZLkjA9L4XwiEbjIT+Yxwbg20bXZROR3jL?=
- =?us-ascii?Q?S851ZsmIexSvxopr8Up4n2Cm4H6qGEAbT8JF8u5MxpLhg/ClQh/l/+HyXKxE?=
- =?us-ascii?Q?WTtHxfu5jbaGy6+v8ONFths5vlPav/8TfY2Pd7373+p45QNdTLogKMdIL98Q?=
- =?us-ascii?Q?CG8LXO/JDMfm/JNPpR+D5Q+LaiV4f0ZXxVGj+LobviUOsWdeKvmvWb/43bvn?=
- =?us-ascii?Q?dT8xY3RWcBgCnapnfep0/wNF8JHE64XvFh69MyKLPREigFyx42nRt/bfbY9i?=
- =?us-ascii?Q?//vQYBAKoncKT56ffGScrkMmcxFSSkCrnFgtsEYwV1d6Ox7yHB2mYRRGKWdI?=
- =?us-ascii?Q?lDjeRbryHaCo7NKWxED1GyZkNSad/QLJy5JIyz3hJxEp37YVjfB/PzDet+A3?=
- =?us-ascii?Q?obQ9Knt6DSN6ss9hJ5HYFnWRBPXTW+Pr74yYgU1kO9pcMQ5zZBjmRP89eQU8?=
- =?us-ascii?Q?Eux/bcuk5JM+/U7sBQ1WDUb4jjKpV1kQJhPcvrvVU0aRramq0wf5lF1Ux8Qr?=
- =?us-ascii?Q?zmM4I+b0dT/cMaHVyS2OVmCt+uJEh2AupUyWZdFyIwzkrJobwmc32PKHfr6V?=
- =?us-ascii?Q?hw3MPDeALqy14oGe0cCoBi0TRlOsJ/9dpc2YVztGhdhEWolfveN9FXTNbqAQ?=
- =?us-ascii?Q?okeiddpwCHRXeTIX4YrkLIZAYqffWBKFFduG3iNwF5iQEIYGR29hYC9xQ8Td?=
- =?us-ascii?Q?WCeL0grOw5nzVzuBLlimhxMa4byFhdOeXw3yzM+YN3p4iOHRAwa9A6qNIEbp?=
- =?us-ascii?Q?08jgiOiKc/dHZj+vAcvkOQbROKnJawKMaisyfX1sO3I0sJmfM4oFilNzbor8?=
- =?us-ascii?Q?sb0nC/Y8cSfIgnEAGBLBi8Up5sgAv8DexXQRUuUsnaHpXRhiyzIXBy5KvYtK?=
- =?us-ascii?Q?4PA4ssSATtCdGJioK9MeXwY4p9zZO3CoLi+5eK/6xRgr5aql/bmUhApKvbMV?=
- =?us-ascii?Q?7J795Eo3lKtKmB2+susHykJ1lqg37XM6xJ5MryJR+wAPeyGDeF5AiqA3D9QL?=
- =?us-ascii?Q?eVW7olNmi+cGmLa4FkLX7hu8JrDVcDflftLDZg8RJkBKHEjtsinkxOkM3WRc?=
- =?us-ascii?Q?mulm5nOAHoyYM9NNvG4HmlHJkQntsQ2uDhhMXZsd4gPLJzOVTfooPmC/YgLI?=
- =?us-ascii?Q?XjREM4yOaCjN/fmX8Ee9XnnQuMo0Q7KbPZHbiV5M6dzjvWpHWxnDJif3ABVv?=
- =?us-ascii?Q?fn4=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB2859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7416014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kh5KcC9O0G4/raOiPlsAGY7O3/rcwbmPw/6ShIHaV9vJbQuO+ofCzeE+Ngp3?=
- =?us-ascii?Q?Rx2Qy7ydKymMgIkdReCxOXyQwxKJtbJghFJTvMrlrazhi9Iz5Nj7viajrF5N?=
- =?us-ascii?Q?hkGlWljHNE6N8pHgbEMPuyP+HAanxs84F5PlCvS/ihbIVDy5TkAQHj8aL0tB?=
- =?us-ascii?Q?05xvnobYu7mUiGjkmxQjEsU9ACU91XwaatZ8TesRMJFhmOPxfA0epjn0boeY?=
- =?us-ascii?Q?TLZzquowQTizkksexGXyWHzqTGe4b/G1IpBsa3INqc7ioAqwAqg+98BNjNsy?=
- =?us-ascii?Q?CPmeiJ94JwgUgEsqZfhdmFLB7yzDz6xtjtFEyCwqEiFlzJQDYj6YLiH49Ss7?=
- =?us-ascii?Q?IIdTzBRf3I0lq/53MSuutVgXx6G78vhbfN/zjw/vVdgP00BftvCjm0GEvysc?=
- =?us-ascii?Q?v2jItXccVMXMS2wyg+61sdKQyJ4cwOYEpste4i/bJTDeCku5LySWRhf+QeML?=
- =?us-ascii?Q?1+A9HWkeX0sCj2LgZ/CC0/XBqBP9SZNJ1IXJLnqSL0Sz5pqzuXuwc2YmCiUr?=
- =?us-ascii?Q?jhT9Wt7zkiYKV3ZYEePKlIIiHnjqQka7fK4rCBl4Mgq4ypd4ORtzMlNbCMF+?=
- =?us-ascii?Q?b/7gxnu5jnTjMRy0pD2Qnmoaj7JOF/9uOfKrYuEP1F7xxzvZEzY2pOxNliHV?=
- =?us-ascii?Q?3f9fAnc0qNPE4Hlr6177wSPIby4F51S19GsQOWQFRSfN2d/u7pvrZ4RdRGm+?=
- =?us-ascii?Q?d1N+OM7XrihZr/jTQB4n0lkbI5fkim1GR3ogcvQwJLvAP5DBMPEJ6Ei3MwZJ?=
- =?us-ascii?Q?rn4DPpCNmWVElEmNF+WBKPckTT4h5q8xDNtMeGEIHWJuZM95cGj3sm1F4Xdo?=
- =?us-ascii?Q?w4ld6w3QHnNCDOjtuC3snjA4296B/O9m7UwjgLqg1LOIok10D/FaUK4VUfVz?=
- =?us-ascii?Q?ReClXgU+sPant9iAxT6f59OThDDuxzlNuG6hXnKXQGk/Vkrz5dxKhx/dY/+/?=
- =?us-ascii?Q?LqT+/VI0V6YjbSAd55pdL5GQN/be97xxQZt8xxGwVqTuZcQUkWrW3IhyQE0S?=
- =?us-ascii?Q?RHfuVA/Ewuhp4YAmG0Sq2eEP614HuFtDhU3NbKvE+aNFAHdu5hKK8li3wwWz?=
- =?us-ascii?Q?t/aEjS2C6BEAqIAqDmxwtj3o1nkTFHApekDxnoJkvZ68cKK5OrRjRx51JxYq?=
- =?us-ascii?Q?4GDpU6RulMZXjH7T8fj5mEpFFH6ZEBOwWud76xaQAe9/fr2bFf5K4yfXQeRc?=
- =?us-ascii?Q?wequkC5COCNigQbP7O7Wx4UPWhiPik/WgxYmMxT+gfFneuCBvoz3t8w/8iOD?=
- =?us-ascii?Q?o0fCUAuRVBaDoLAJfk1gkMv0z0kSGV7Bk9H3BTOJVf43zKmMszLZGohlrerk?=
- =?us-ascii?Q?VchxPox0p4fL5NoKdMEW0a42LhQBMuHn9yclNbqVEkdf/koORY4WSzdNDk69?=
- =?us-ascii?Q?weKfrOs0HfGNKo+l5VGR1s89YMopg16SUGR3J+8g5AgH+i0U2D4QNvrjGmYn?=
- =?us-ascii?Q?zUz6jAD9w+xiL1HkLF3dELkxf9YBAWa1UOLWA+WtVDCJLSKSuqnIOnf4Q24W?=
- =?us-ascii?Q?awkAqAF7wgOxr1sDVPHBIwzRgwVGt8wPIhUayxErDPx0gFB++AhvlWtjOW7j?=
- =?us-ascii?Q?ofH6o1pPlteuGB1icgrTDWJg4dRS0hB5Cwahq5dkuNF3lIvZnvHONX1dOtS+?=
- =?us-ascii?Q?wA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54f1b278-9e6a-4843-637f-08dcd42de864
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2024 19:54:51.0144 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZR1ZoKnSSA4inIkrD6wWfsJNE7ZR52RVUzLBdNLd9ARc9aJ85xfm5z7xGL7o6YxJo/5yKnxfnyc38CZG6WUzFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7848
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,43 +58,248 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 13, 2024 at 11:53:05AM +0530, Ghimiray, Himal Prasad wrote:
-> 
-> 
-> On 13-09-2024 11:32, Jiapeng Chong wrote:
-> > Remove unnecessary semicolon in pick_engine_gt().
-> > 
-> > Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> > Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=8757
-> 
-> LGTM
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Hi Thomas,
 
-pushed to drm-xe-next
-
-Thanks,
-Rodrigo.
-
+On Mon, Sep 09, 2024 at 10:56:54AM +0200, Thomas Hellström wrote:
+> Add a subtest that tries to allocate twice the amount of
+> buffer object memory available, write data to it and then read
+> all the data back verifying data integrity.
+> In order to be able to do this on systems that
+> have no or not enough swap-space available, allocate some memory
+> as purgeable, and introduce a function to purge such memory from
+> the TTM swap_notify path.
 > 
+> this test is intended to add test coverage to the current
+> bo swap path and upcoming shrinking path.
 > 
-> > Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-> > ---
-> > Changes in v3:
-> >    -Amend the submission information to "Remove unnecessary semicolon in pick_engine_gt()".
-> > 
-> >   drivers/gpu/drm/xe/xe_irq.c | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> > index 07577b418205..e501002e8a04 100644
-> > --- a/drivers/gpu/drm/xe/xe_irq.c
-> > +++ b/drivers/gpu/drm/xe/xe_irq.c
-> > @@ -280,7 +280,7 @@ static struct xe_gt *pick_engine_gt(struct xe_tile *tile,
-> >   			return tile->media_gt;
-> >   		default:
-> >   			break;
-> > -		};
-> > +		}
-> >   		fallthrough;
-> >   	default:
-> >   		return tile->primary_gt;
+> The test has previously been part of the xe bo shrinker series.
+> 
+> v2:
+> - Skip test if the execution time is expected to be too long.
+> - Minor code cleanups.
+> 
+> v3:
+> - Print random seed. (Matthew Auld)
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+...
+> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+> index 8dac069483e8..7d3fd720478b 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+...
+> +/*
+> + * Try to create system bos corresponding to twice the amount
+> + * of available system memory to test shrinker functionality.
+> + * If no swap space is available to accommodate the
+> + * memory overcommit, mark bos purgeable.
+> + */
+> +static int shrink_test_run_device(struct xe_device *xe)
+> +{
+> +	struct kunit *test = kunit_get_current_test();
+> +	LIST_HEAD(bos);
+> +	struct xe_bo_link *link, *next;
+> +	struct sysinfo si;
+> +	size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
+> +	unsigned int interrupted = 0, successful = 0, count = 0;
+> +	struct rnd_state prng;
+> +	u64 rand_seed;
+> +	bool failed = false;
+> +
+> +	rand_seed = get_random_u64();
+> +	prandom_seed_state(&prng, rand_seed);
+> +	kunit_info(test, "Random seed is 0x%016llx.\n",
+> +		   (unsigned long long)rand_seed);
+> +
+> +	/* Skip if execution time is expected to be too long. */
+> +
+> +	limit = SZ_32G;
+> +	/* IGFX with flat CCS needs to copy when swapping / shrinking */
+> +	if (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe))
+> +		limit = SZ_16G;
+> +
+> +	si_meminfo(&si);
+> +	ram = (size_t)si.freeram * si.mem_unit;
+> +	if (ram > limit) {
+> +		kunit_skip(test, "Too long expected execution time.\n");
+> +		return 0;
+> +	}
+> +	to_alloc = ram * 2;
+> +
+> +	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
+> +	if (to_alloc > ram_and_swap)
+> +		purgeable = to_alloc - ram_and_swap;
+> +	purgeable += purgeable / 5;
+> +
+> +	kunit_info(test, "Free ram is %lu bytes. Will allocate twice of that.\n",
+> +		   (unsigned long)ram);
+> +	for (alloced = 0; alloced < to_alloc; alloced += XE_BO_SHRINK_SIZE) {
+> +		struct xe_bo *bo;
+> +		unsigned int mem_type;
+> +		struct xe_ttm_tt *xe_tt;
+> +
+> +		link = kzalloc(sizeof(*link), GFP_KERNEL);
+> +		if (!link) {
+> +			KUNIT_FAIL(test, "Unexpected link allocation failure\n");
+> +			failed = true;
+> +			break;
+> +		}
+> +
+> +		INIT_LIST_HEAD(&link->link);
+> +
+> +		/* We can create bos using WC caching here. But it is slower. */
+> +		bo = xe_bo_create_user(xe, NULL, NULL, XE_BO_SHRINK_SIZE,
+> +				       DRM_XE_GEM_CPU_CACHING_WB,
+> +				       XE_BO_FLAG_SYSTEM);
+> +		if (IS_ERR(bo)) {
+> +			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
+> +			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
+> +				KUNIT_FAIL(test, "Error creating bo: %pe\n", bo);
+> +			kfree(link);
+> +			failed = true;
+> +			break;
+> +		}
+> +		xe_bo_lock(bo, false);
+> +		xe_tt = container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
+> +
+> +		/*
+> +		 * Allocate purgeable bos first, because if we do it the
+> +		 * other way around, they may not be subject to swapping...
+> +		 */
+> +		if (alloced < purgeable) {
+> +			xe_tt->purgeable = true;
+> +			bo->ttm.priority = 0;
+> +		} else {
+> +			int ret = shrink_test_fill_random(bo, &prng, link);
+> +
+> +			if (ret) {
+> +				xe_bo_unlock(bo);
+> +				xe_bo_put(bo);
+> +				KUNIT_FAIL(test, "Error filling bo with random data: %pe\n",
+> +					   ERR_PTR(ret));
+> +				kfree(link);
+> +				failed = true;
+> +				break;
+> +			}
+> +		}
+> +
+> +		mem_type = bo->ttm.resource->mem_type;
+> +		xe_bo_unlock(bo);
+> +		link->bo = bo;
+> +		list_add_tail(&link->link, &bos);
+> +
+> +		if (mem_type != XE_PL_TT) {
+> +			KUNIT_FAIL(test, "Bo in incorrect memory type: %u\n",
+> +				   bo->ttm.resource->mem_type);
+> +			failed = true;
+> +		}
+> +		cond_resched();
+> +		if (signal_pending(current))
+> +			break;
+> +	}
+
+This function introduces three warnings with clang:
+
+  $ make -skj"$(nproc)" ARCH=i386 LLVM=1 allmodconfig drivers/gpu/drm/xe/xe_bo.o
+  ...
+  In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
+  drivers/gpu/drm/xe/tests/xe_bo.c:456:10: error: implicit conversion from 'unsigned long long' to 'size_t' (aka 'unsigned int') changes value from 34359738368 to 0 [-Werror,-Wconstant-conversion]
+    456 |         limit = SZ_32G;
+        |               ~ ^~~~~~
+  include/linux/sizes.h:49:19: note: expanded from macro 'SZ_32G'
+     49 | #define SZ_32G                          _AC(0x800000000, ULL)
+        |                                         ^~~~~~~~~~~~~~~~~~~~~
+  include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
+     21 | #define _AC(X,Y)        __AC(X,Y)
+        |                         ^~~~~~~~~
+  include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
+     20 | #define __AC(X,Y)       (X##Y)
+        |                          ^~~~
+  <scratch space>:31:1: note: expanded from here
+     31 | 0x800000000ULL
+        | ^~~~~~~~~~~~~~
+  In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
+  drivers/gpu/drm/xe/tests/xe_bo.c:459:11: error: implicit conversion from 'unsigned long long' to 'size_t' (aka 'unsigned int') changes value from 17179869184 to 0 [-Werror,-Wconstant-conversion]
+    459 |                 limit = SZ_16G;
+        |                       ~ ^~~~~~
+  include/linux/sizes.h:48:19: note: expanded from macro 'SZ_16G'
+     48 | #define SZ_16G                          _AC(0x400000000, ULL)
+        |                                         ^~~~~~~~~~~~~~~~~~~~~
+  include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
+     21 | #define _AC(X,Y)        __AC(X,Y)
+        |                         ^~~~~~~~~
+  include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
+     20 | #define __AC(X,Y)       (X##Y)
+        |                          ^~~~
+  <scratch space>:32:1: note: expanded from here
+     32 | 0x400000000ULL
+        | ^~~~~~~~~~~~~~
+  In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
+  drivers/gpu/drm/xe/tests/xe_bo.c:470:6: error: variable 'purgeable' is used uninitialized whenever 'if' condition is false [-Werror,-Wsometimes-uninitialized]
+    470 |         if (to_alloc > ram_and_swap)
+        |             ^~~~~~~~~~~~~~~~~~~~~~~
+  drivers/gpu/drm/xe/tests/xe_bo.c:472:2: note: uninitialized use occurs here
+    472 |         purgeable += purgeable / 5;
+        |         ^~~~~~~~~
+  drivers/gpu/drm/xe/tests/xe_bo.c:470:2: note: remove the 'if' if its condition is always true
+    470 |         if (to_alloc > ram_and_swap)
+        |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    471 |                 purgeable = to_alloc - ram_and_swap;
+  drivers/gpu/drm/xe/tests/xe_bo.c:443:37: note: initialize the variable 'purgeable' to silence this warning
+    443 |         size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
+        |                                            ^
+        |                                             = 0
+  3 errors generated.
+
+I tried to make GCC show the same warnings with an explicit
+-Wmaybe-uninitialized but only the overflow warnings show up (is
+purgeable always set because of the if condition?):
+
+  $ make -skj"$(nproc)" ARCH=i386 CROSS_COMPILE=i386-linux- KCFLAGS=-Wmaybe-uninitialized allmodconfig drivers/gpu/drm/xe/xe_bo.o
+  In file included from include/vdso/const.h:5,
+                   from include/linux/const.h:4,
+                   from include/linux/bits.h:5,
+                   from include/linux/ratelimit_types.h:5,
+                   from include/linux/printk.h:9,
+                   from include/asm-generic/bug.h:22,
+                   from arch/x86/include/asm/bug.h:99,
+                   from include/linux/bug.h:5,
+                   from include/linux/mmdebug.h:5,
+                   from include/linux/mm.h:6,
+                   from include/linux/pagemap.h:8,
+                   from include/drm/ttm/ttm_tt.h:30,
+                   from drivers/gpu/drm/xe/xe_bo.h:9,
+                   from drivers/gpu/drm/xe/xe_bo.c:6:
+  drivers/gpu/drm/xe/tests/xe_bo.c: In function 'shrink_test_run_device':
+  include/uapi/linux/const.h:20:25: error: conversion from 'long long unsigned int' to 'size_t' {aka 'unsigned int'} changes value from '34359738368' to '0' [-Werror=overflow]
+     20 | #define __AC(X,Y)       (X##Y)
+        |                         ^
+  include/uapi/linux/const.h:21:25: note: in expansion of macro '__AC'
+     21 | #define _AC(X,Y)        __AC(X,Y)
+        |                         ^~~~
+  include/linux/sizes.h:49:41: note: in expansion of macro '_AC'
+     49 | #define SZ_32G                          _AC(0x800000000, ULL)
+        |                                         ^~~
+  drivers/gpu/drm/xe/tests/xe_bo.c:456:17: note: in expansion of macro 'SZ_32G'
+    456 |         limit = SZ_32G;
+        |                 ^~~~~~
+  include/uapi/linux/const.h:20:25: error: conversion from 'long long unsigned int' to 'size_t' {aka 'unsigned int'} changes value from '17179869184' to '0' [-Werror=overflow]
+     20 | #define __AC(X,Y)       (X##Y)
+        |                         ^
+  include/uapi/linux/const.h:21:25: note: in expansion of macro '__AC'
+     21 | #define _AC(X,Y)        __AC(X,Y)
+        |                         ^~~~
+  include/linux/sizes.h:48:41: note: in expansion of macro '_AC'
+     48 | #define SZ_16G                          _AC(0x400000000, ULL)
+        |                                         ^~~
+  drivers/gpu/drm/xe/tests/xe_bo.c:459:25: note: in expansion of macro 'SZ_16G'
+    459 |                 limit = SZ_16G;
+        |                         ^~~~~~
+  cc1: all warnings being treated as errors
+
+Cheers,
+Nathan
