@@ -4,22 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90ACBEEE26C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E671FA374F
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 11:47:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 322AF10ECF2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A02C10ECF0;
 	Fri, 13 Sep 2024 11:47:51 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD1C010ECEF;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCBE010ECE7;
  Fri, 13 Sep 2024 11:47:49 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 0/2] drm/xe: Re-enable DSB.
-Date: Fri, 13 Sep 2024 13:47:52 +0200
-Message-ID: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
+Date: Fri, 13 Sep 2024 13:47:53 +0200
+Message-ID: <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
+References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -36,18 +38,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix coherency issues with DSB, and then try enabling DSB again.
+Add the scanout flag to force WC caching, and add the memory barrier
+where needed.
 
-Animesh Manna (1):
-  drm/xe: Revert "drm/i915: Disable DSB in Xe KMD"
-
-Maarten Lankhorst (1):
-  drm/xe: Fix DSB buffer coherency
-
- drivers/gpu/drm/i915/display/intel_dsb.c   | 4 ----
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
  drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
- 2 files changed, 3 insertions(+), 6 deletions(-)
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+index f99d901a3214f..f7949bf5426af 100644
+--- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
++++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+@@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
+ 	if (!vma)
+ 		return false;
+ 
++	/* Set scanout flag for WC mapping */
+ 	obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
+ 				   NULL, PAGE_ALIGN(size),
+ 				   ttm_bo_type_kernel,
+ 				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+-				   XE_BO_FLAG_GGTT);
++				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
+ 	if (IS_ERR(obj)) {
+ 		kfree(vma);
+ 		return false;
+@@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
+ 
+ void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
+ {
+-	/* TODO: add xe specific flush_map() for dsb buffer object. */
++	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
+ }
 -- 
 2.45.2
 
