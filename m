@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29906FA375E
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 15:50:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D43D2FA375E
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 15:56:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9F7910ED42;
-	Fri, 13 Sep 2024 15:50:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B69810E05E;
+	Fri, 13 Sep 2024 15:56:35 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18D7210ED42;
- Fri, 13 Sep 2024 15:50:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5326664356073840472=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7870C10E05E;
+ Fri, 13 Sep 2024 15:56:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_PF=3A_Initial_support_to_save/re?=
- =?utf-8?q?store_VF_GuC_state_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/debugfs=3A_?=
+ =?utf-8?q?intel=5Fdisplay=5Fcaps?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Sep 2024 15:50:53 -0000
-Message-ID: <172624265309.997276.12494310321702053057@2413ebb6fbb6>
+Date: Fri, 13 Sep 2024 15:56:34 -0000
+Message-ID: <172624299448.997293.13342795985617800167@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240912203817.1880-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240912203817.1880-1-michal.wajdeczko@intel.com>
+References: <cover.1726231866.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1726231866.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,151 +40,18 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5326664356073840472==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: PF: Initial support to save/restore VF GuC state (rev2)
-URL   : https://patchwork.freedesktop.org/series/138609/
+Series: drm/i915/debugfs: intel_display_caps
+URL   : https://patchwork.freedesktop.org/series/138649/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151_BAT -> xe-pw-138609v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138609v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@nullptr:
-    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#877])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-bmg-1/igt@fbdev@nullptr.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/bat-bmg-1/igt@fbdev@nullptr.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [PASS][3] -> [FAIL][4] ([Intel XE#886]) +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][5] ([Intel XE#1861]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 8c9686621372 drm-tip: 2024y-09m-13d-15h-03m-33s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/debugfs: remove superfluous kernel_param_lock/unlock
+Applying: drm/i915/debugfs: add dedicated intel_display_caps debugfs for display
 
 
-Build changes
--------------
-
-  * Linux: xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151 -> xe-pw-138609v2
-
-  IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151: d624a4cafbe6227571d2ed755b3ce48918afe151
-  xe-pw-138609v2: 138609v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/index.html
-
---===============5326664356073840472==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>PF: Initial support to save/restore VF GuC state (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138609/">https://patchwork.freedesktop.org/series/138609/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151_BAT -&gt; xe-pw-138609v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138609v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@nullptr:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-bmg-1/igt@fbdev@nullptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/bat-bmg-1/igt@fbdev@nullptr.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138609v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151 -&gt; xe-pw-138609v2</li>
-</ul>
-<p>IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151: d624a4cafbe6227571d2ed755b3ce48918afe151<br />
-  xe-pw-138609v2: 138609v2</p>
-
-</body>
-</html>
-
---===============5326664356073840472==--
