@@ -4,61 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48422FA375B
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 15:46:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15744FA375B
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 15:50:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E37C10ED3D;
-	Fri, 13 Sep 2024 15:46:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C777A10ED41;
+	Fri, 13 Sep 2024 15:50:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FRqpap0L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DawwYdNj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBE910ED3D
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 15:46:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C02D210ED41
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 15:50:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726242404; x=1757778404;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bZNt8Mf5wxrHqTShvc4n6+p6237Aro3oGQiNu7OSN0A=;
- b=FRqpap0LEwHAT8hSgEpLG19oAU42XKPtcyUTWgNpkeUK/CPCMMvmdFkg
- RdQwOdSPAeFyB3DBgI57ad6EvMFg3v7y+5DJc37q1JQ4jezZSuDTN9W7M
- V/Gust/7XBHSG9WzaR6nhMGYZGuGsj7KBmSU32NqjWnVXI7dvxIUSwJtA
- evzaSLwDps/DDLaoWtu4l/008q+MwDd33b6VsKeK9wRf4ODe+g3Px3G0n
- Y/RrwcSHHERe+fwJDrQYGb5v6qRX08jeJED1rk9+BINOkAXtuuv+GLDL1
- RbywEGhY15LDOGF2prN/s3uvlYBGdCa4apxl6g3basfvV0UzmlvUXIcSw Q==;
-X-CSE-ConnectionGUID: zrofyP3/Q9qheIj19v26Lg==
-X-CSE-MsgGUID: Bh4DyPRjSH2BEMvBiR5IUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25300606"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="25300606"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 08:46:44 -0700
-X-CSE-ConnectionGUID: PS3UQ2OfTvqYNH+dZQFTPw==
-X-CSE-MsgGUID: UjuhWq4NQYeEZ0Wsex3jMw==
+ t=1726242650; x=1757778650;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=b5xHpICE9B4szQckFzc6Me5Ow8hQjbProgIQqUh4340=;
+ b=DawwYdNj3ZuEHxxWScRRoAU3NHweS/Gto5M+u1kEmv74ufuGnuJsUR69
+ QMI0kRvWboslbPUDA9xoYlz5m7J0de04sn2MODt2iL5237U7waKJMcrA3
+ XzBICIlWdoUBdxk2iOD6LK1TwUaEpqUdl7ALuklDrY+zIhzek7RoEY8XQ
+ vDRAi9e0dbDKAgl/4FmUARfCpg9CVl++s2COy8smOiTlwypYq1zx34bKA
+ xqHk+dD6f5doQYlW9lBig+bp5aeLLGd2bHtYZ4HGeAH2Nta5/2ERyJ01z
+ 1xHH/eWK4RYcpxnYflnPwfKRabxJpMNEyXucgC6tBPSVWVkKKsfMUiYF7 Q==;
+X-CSE-ConnectionGUID: WGobJ3j2Rou6iHrTILxGEg==
+X-CSE-MsgGUID: Qk5aoj/uQ76o77Eris9IYw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="29042192"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="29042192"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 08:50:50 -0700
+X-CSE-ConnectionGUID: Q+HWhg1sTb+g2tm1tnCW6g==
+X-CSE-MsgGUID: Buy18oZSSpaF9pMlYhIPDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68028421"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa009.jf.intel.com with ESMTP; 13 Sep 2024 08:46:41 -0700
-Received: from [10.245.84.117] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.84.117])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 84F842FC5D;
- Fri, 13 Sep 2024 16:46:39 +0100 (IST)
-Message-ID: <f1e97677-0d0a-410c-a911-43a9fb692412@intel.com>
-Date: Fri, 13 Sep 2024 17:46:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6] drm/xe: Add driver load error injection
-To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20240913140139.2257069-1-francois.dugast@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="98942000"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Sep 2024 08:50:48 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 13 Sep 2024 08:50:48 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 13 Sep 2024 08:50:48 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 13 Sep 2024 08:50:48 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.171)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 13 Sep 2024 08:50:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LeoTcao0c7JAbRvxhBaVwmgooW56nn/rxrJ/6RQLaHzBV30J4wIFboBHpDwH8rFa/Qdh3d5wXhLIjY05AWKP9+2bKQ09Tm1sS2JsFdEkphbgWtSqORWUXjuGAUeDvLVUJv5anb2FDOxD6AWRQ5eZF5EQnVwP3lFmrIiC5q/kGXLNVhjMCLgpw2YLxPQCxDVy1NQZBI3z2+XoOTUkw4qBEFg5S+yK17nbXlesmxDxc4jSk1rv7SCaXQNHpOHMC3Y6ifmOX7XqqU/vYkwG6Ns+Ij59WbmL7YQKed5JDgWyWoJQ8IhSEkED+ivEP2AVfGdeEV8SrYgy2cE6Y4tKumrphQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/BRYwxuFH+4Y4X/KLjc/WoTiMHE8GpuECCUrFjaPpnk=;
+ b=ej948kF4zprTaZgxYnS4pYK3o4ehk5W4vr0u2R3aLjMyYmOOB7ryrj+F7w4alIB9x4xZ878e11IT3QHDVwskR1Jwh3CUhkrAzwInP5MTm5RS+Px/hrjjpL/hrQer3vwkqtjZi23NOE0bUpgtcKPhTzDfF/Sy8+6LIk4+HmRfgt1VlVEGdPoBLZmyl1ygrwuRh1pT7eQtsTx1gBNo1/eTl+6a8maXZImptl0McQAGwP5ppfc6P5u2iYLFeod+Ny8coTcqVfgjGIBUjJshJgAT4FEU1t66zuZofR8s5F17SlmkhSg2TntnEd3/EBAxLPqH1oVUl33fQXJLPXJWKSdqgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
+ by PH7PR11MB6770.namprd11.prod.outlook.com (2603:10b6:510:1b4::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.19; Fri, 13 Sep
+ 2024 15:50:41 +0000
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::df5a:a32c:8904:15f1]) by CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::df5a:a32c:8904:15f1%4]) with mapi id 15.20.7962.016; Fri, 13 Sep 2024
+ 15:50:41 +0000
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ "rafael@kernel.org" <rafael@kernel.org>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/xe: Restore pci state upon resume
+Thread-Topic: [PATCH] drm/xe: Restore pci state upon resume
+Thread-Index: AQHbBUbLBVvG9/fELUmHMXiDmfbEybJVjhuAgABOzgCAAAEl4A==
+Date: Fri, 13 Sep 2024 15:50:41 +0000
+Message-ID: <CY5PR11MB62116B4BFDAB0E07D93C588E95652@CY5PR11MB6211.namprd11.prod.outlook.com>
+References: <20240912190530.435976-1-rodrigo.vivi@intel.com>
+ <ZuQbnRfh-wkuMR83@intel.com> <ZuRduLqXs4za8_PN@intel.com>
+In-Reply-To: <ZuRduLqXs4za8_PN@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240913140139.2257069-1-francois.dugast@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|PH7PR11MB6770:EE_
+x-ms-office365-filtering-correlation-id: 9cc52635-a4c6-4243-8e09-08dcd40bd237
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?pDyFe6rW+IesyCYoBU5MYdqaAYTpidXH/+lp09hfPzLihhDPcp8QtqFGs2?=
+ =?iso-8859-1?Q?nAYHXaX0iGmQ77Ztt1y5Tmmz34pQhBeAfmFaK9Bu5LWjNnedaRTgNlUgbs?=
+ =?iso-8859-1?Q?ogSsuy1X23UHNJqL09FtVcfmmuLVQQMcpxE62y4G8c99F7qPh0mvJhw+EY?=
+ =?iso-8859-1?Q?quoLtNowD1BkdvUwCVToCKq5sVLd1Se/RdcaF0hvz80JwGFI1i9rhYCw20?=
+ =?iso-8859-1?Q?xcP9cCjuzUcKg4mjgQrHxSXkjRb56d8WHerFQA4xeIhqhZkVGSiVNL5dLC?=
+ =?iso-8859-1?Q?IyMwlq3U7BsA0sQqx5vSbwZn7fRssX8VNT/Cqfjsy4tCOn6ygdrPqIG1dZ?=
+ =?iso-8859-1?Q?zzUxS4R9fr/6kckM6a8vt4RSJHrajijavM5OG62G9sR7nsPR72L9gEuhmh?=
+ =?iso-8859-1?Q?8RLwwh0zNSbF1o6G0wQbNewlUZTiYFoo/1Fa+9sI+rTI+uiWc5f1o83p+g?=
+ =?iso-8859-1?Q?Ow1g5gl/lDvG2qDCK5SiNC+I9BTcEsqR3fOaz8ZYEjlgMeYVmUDGZT4bo3?=
+ =?iso-8859-1?Q?KRwkxg41/txnGQ1qBxIWAeOKvEHUYmvI0bZpz81+vp4HneT38n4KejM5jA?=
+ =?iso-8859-1?Q?rCkyhoroHtSKXX+68BNs1HjQ6KWI/YkctFNwsoqsVyaocQZo4MPueE/j13?=
+ =?iso-8859-1?Q?o83Rag6DDW2MvqDW/e+lyiEPg/R+Lgyl9iorCiIzKYPTShFThem5t58Epl?=
+ =?iso-8859-1?Q?RcTNRPSF7pnGdKW6pIUPEv6sKfV7FymNT2gT4a1hBG9D9GWE0QePLNt5kV?=
+ =?iso-8859-1?Q?b5V81QCyqVW85YcRxLNJf8ylH0uAAYE7/ksUBDfkFFYMg46XP2mQlPAm63?=
+ =?iso-8859-1?Q?xcEFGjrYFnW7CycdePZ6rn5hJYF0QxWIL1cFzCQm80PMBnP6P3qUiPZ1oQ?=
+ =?iso-8859-1?Q?m2wvGY682sFfqGs8mJUhQ7PJPnMgY7UTM5iJLabBOX8yJWnGlpLip1n3L8?=
+ =?iso-8859-1?Q?kUTDeIVboh4vi1cJBcuL1gi/Uxe6k8PmEXZTh3nS6FrW3CPsmbVxP/IJa/?=
+ =?iso-8859-1?Q?GnXActAjrLjOsut9dd+2sgY22S3+PMxUyy+ddbbEZJojcc8TdIpLcOToOe?=
+ =?iso-8859-1?Q?mSWQUq1RlOm9tm2/MDcKyQVG1tWCXG1XGqUidEa21OSMYMgxPtpOewHvjn?=
+ =?iso-8859-1?Q?EOAd1Cy69nErDsyE077Yj8enBByNDFCuHvEub5aoP5/Jf9Gn9rpe64ct2A?=
+ =?iso-8859-1?Q?d7DRXNV/tGvCa2h/mc/bjM5clE2KG0lpkoZkrhP3jR/TjG5b+cSTV0rjzS?=
+ =?iso-8859-1?Q?tUBdd1bpdCMmcy6EewTvIbKaM5VLuiIqDMotBMrYgKZ9vA55zhq4w8DTdy?=
+ =?iso-8859-1?Q?vA58PFXfoBa6v+rUDRLqfj0G+nqgyCfd4h4o9HiePHwFX/vXwym5XZJklZ?=
+ =?iso-8859-1?Q?tynpTA/5P5tA90jOg9vfev9wxFPBtj+c6BW8TXZEPctl+duWHgu0OeeNUQ?=
+ =?iso-8859-1?Q?ZtosGH20Y+hrONQaWuhUrVlBoO24m0gXWJLWKQ=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?QSqdJFjd+DJCP3gVpwF6mDLTI1pR8q9VQp1gTiDNGijTe0z2BWbbyQpL+c?=
+ =?iso-8859-1?Q?//dGFKHsf8+z6MCDXCusFkzltGrjoMUk0rpLI2Hnzcp9XSuqysWmwG4Z23?=
+ =?iso-8859-1?Q?oq02AEu5gE5gb5oMOQdGdC+p/Ogwruo+HVxQOGbrWPaXA8fTsGsSuLaOZa?=
+ =?iso-8859-1?Q?Ji/rICE0OMmHrXGWcxjsugkymGU63aE3VV5KILxMzUltivugEpcK5Sf7pC?=
+ =?iso-8859-1?Q?y4tAjtoX6YW6Th9wdiGFweC+TC0/yzggESiH6rb5jD9VlkDeha6pD06ti2?=
+ =?iso-8859-1?Q?u8oyaSXmJh2tP/SBetKlGs9KOwHrISh3yRAOnzqX/Znz5dNPGGcN179vMv?=
+ =?iso-8859-1?Q?Wk+RSEIa3EZRJa5SCvFbiqbvjRCaFGHHbiu74+UgAkaqzoy/n7TYN6j1oo?=
+ =?iso-8859-1?Q?S0rjvSfFYlhVJ2TCf/3dVfTGhoVLnQRwMwlowSwQgH3gkeW/LrtZpN9izb?=
+ =?iso-8859-1?Q?U31wDwORAtKMNPN49IrR9YQmngjO7M3LK0oFpKdNC9wcrHM1LtJN/7K2JW?=
+ =?iso-8859-1?Q?UAN+GbF60mvTkVR2dND/zZFVvLGj5ealzXhvA6lYk7s6PoiTVCMzHz30Su?=
+ =?iso-8859-1?Q?nPC6n8yYp1TTCk38WoW5KS7c7UBkVYWe7c0oJolQ0C69bRv4RlujsWzukJ?=
+ =?iso-8859-1?Q?pHEZpHZzzTYXU/mUvWYxj6X2Tq7tNfQiKb5qIhav8Qjr5FyuYQ/NCBDKkY?=
+ =?iso-8859-1?Q?iecG2hQvKjvLEUiEaf8FaYJR+OUPL1ly7Zg8iMroETcY4gmB7krgDjwHbv?=
+ =?iso-8859-1?Q?aX9mHDP/wJ220oHpATszAGFJ7ZH8F3OaVJcObZAjRPxwnBYD0cXSd7HOjP?=
+ =?iso-8859-1?Q?OwMGyl6WmK/SBslu2dW/V+qB6XkAn7BFgnGlsr8XfDRDtYPR1m13PupP21?=
+ =?iso-8859-1?Q?/NWG0/TNJFGeZPCBFVhYx9ySbLsTQiSFo1LAXFWyG6SJxNOFNGiPkhQKUd?=
+ =?iso-8859-1?Q?sVFB14vImGWHAEP9xrpKkYLh1vWaIU8L6XiTidpI/VW4so2s5FX0b5X1li?=
+ =?iso-8859-1?Q?cvxb+Wgkdu059U7rfOdClELrhKHjdh8bT/4IiXT01K+oHu86Dcj0x7m5K4?=
+ =?iso-8859-1?Q?1zE5nWGR6AHm4lefU+ZfgzSwSzHTqY/pBQs3it0vZYm9pe+ndZwr0UvylD?=
+ =?iso-8859-1?Q?ryjy+SvqfdEwi8Zqi+qV8jW/HdFYdKUEfrWYMvhMUmnveHvu97C3bSm4So?=
+ =?iso-8859-1?Q?4Rmf4frsGdi+Uab9fqkvIdjoA8HFazfUAjmki2lq6R3clnnlACAQxQtJmI?=
+ =?iso-8859-1?Q?P70W9/0FteZRBQij53s2vtxhMYf6f+mKFyqkpLThowI1W6ia4ZgEBqcUnh?=
+ =?iso-8859-1?Q?ORmNE1988hM8LnMBhjxVQKHluxhRpxLIchOuvg0FSxHn4qu4UrwwazdEoB?=
+ =?iso-8859-1?Q?vcLk5XHWgsvrWS0ElOVy1MqPDwUtydnVmh5Fg2dpXsmFR4eimTp2rxdUUF?=
+ =?iso-8859-1?Q?VPCN4/kL1Men4AHcPQ9fXCQ0PKpmaLNFhZeXEuE90eyZ0Yge5WwAX7uPJ/?=
+ =?iso-8859-1?Q?Dbd5PDgiXwurjYn/Ss7Dl3OFPiKmdXCFznHpu2WgZseNomeJIm8rHdtoOM?=
+ =?iso-8859-1?Q?r7/3UNBdbacW69kUOqizSqkHur2Rp3TD4MHZQmKC7da2hfO3NY12gNH3tB?=
+ =?iso-8859-1?Q?QsObkl+Zcj5FffebZpYQmMSU1YEOsY4bwv?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cc52635-a4c6-4243-8e09-08dcd40bd237
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2024 15:50:41.5996 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YwXCsaihtzbZaRpNElAQ8cxcNlSlFsbcSI7uBpNCGGPcB093JXzPzKgHqK1RGAJnfWl2PysDvF/1ZmIpcW/Y14yH1nMDdtlStuT3dXxkJ8M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6770
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,611 +187,148 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 13.09.2024 16:01, Francois Dugast wrote:
-> Those new macros inject errors by overriding return codes. They must
-> manually be called, preferably at the very beginning of the function
+> -----Original Message-----
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Rodr=
+igo
+> Vivi
+> Sent: Friday, September 13, 2024 9:14 PM
+> To: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>; rafael@kernel.org
+> Cc: intel-xe@lists.freedesktop.org
+> Subject: Re: [PATCH] drm/xe: Restore pci state upon resume
+>=20
+> On Fri, Sep 13, 2024 at 02:01:49PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Sep 12, 2024 at 03:05:30PM -0400, Rodrigo Vivi wrote:
+> > > The pci state was saved, but not restored. Restore right after the
+> > > power state transition request like every other driver.
+> > >
+> > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+> > > GPUs")
+> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_pci.c | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_pci.c
+> > > b/drivers/gpu/drm/xe/xe_pci.c index 5ba4ec229494..6d29ef4b396f
+> > > 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > @@ -949,6 +949,8 @@ static int xe_pci_resume(struct device *dev)
+> > >  	if (err)
+> > >  		return err;
+> > >
+> > > +	pci_restore_state(pdev);
+> >
+> > Why is xe even doing this stuff by hand instead of letting the pci
+> > core handle it?
+>=20
+> That's a fair question, given that there's not much documentation around =
+it.
+>=20
+> Looking the pci code, it looks that the pci core is not calling itself fo=
+r the
+> restoration of the config space anywhere and looking to other drivers aro=
+und it
+> looks like a safe thing to do.
+I observed below pci dbg logs which indicates, save/restore done by pci cor=
+e during suspend/resume.
 
-hmm, "at the very beginning of the function" there is nothing to
-override, so likely we need other wording here
-
-> that will fault, otherwise if not possible by turning this pattern:
-> 
->     err = foo();
->     if (err)
->         return err;
-> 
-> into:
-> 
->     err = foo();
->     err = xe_device_inject_driver_probe_error(xe, err);
->     if (err)
->         return err;
-
-as already highlighted few times, this may introduce errors, as
-successful foo() may expect that there will be foo_fini() that your
-example will completely ignore
-
-> 
-> When CONFIG_DRM_XE_DEBUG is not set, this has no effect.
-> 
-> When CONFIG_DRM_XE_DEBUG is set, the error code at checkpoint X will
-> be overridden when the module argument inject_driver_load_error is
-> set to value X. By doing so, it is possible to test proper error
-> handling and improve robustness for current and future code. A few
-> injection points are added in this patch but more need to be added.
-> One way to use this error injection at driver probe is:
-> 
->     for i in {1..200}; do
->         echo "Run $i"
->         modprobe xe inject_driver_probe_error=$i;
->         rmmod xe;
->     done
-> 
-> In the future this is expected to be replaced by the infrastructure
-> provided by fault-inject.h
-> 
-> v2: Fix style and build errors, modparam to 0 after probe, rename to
->     xe_device_inject_driver_probe_error, check type when compiled out,
->     add _return macro, move some uses to the beginning of the function
-> v3: Rebase
-> v4: Improve commit message and comments, keep if/return rather than
->     change the flow inside the macro (Lucas De Marchi)
-> v5: Rebase, add comments, keep existing return points (Lucas De Marchi)
->     Add finish wrapper, move to function beginning for all xe functions
->     (Michal Wajdeczko) Bolt into i915 error injection (Jani Nikula)
-> v6: Fix documentation of __xe_device_inject_driver_probe_error, fix
->     checkpatch warning (Rodrigo Vivi)
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/display/ext/i915_utils.c |  4 +-
->  drivers/gpu/drm/xe/xe_device.c              | 49 +++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_device.h              | 30 +++++++++++++
->  drivers/gpu/drm/xe/xe_device_types.h        |  5 +++
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c |  5 +++
->  drivers/gpu/drm/xe/xe_guc.c                 |  1 +
->  drivers/gpu/drm/xe/xe_guc_ct.c              |  1 +
->  drivers/gpu/drm/xe/xe_guc_pc.c              |  4 ++
->  drivers/gpu/drm/xe/xe_mmio.c                |  5 +++
->  drivers/gpu/drm/xe/xe_module.c              | 18 ++++++++
->  drivers/gpu/drm/xe/xe_module.h              |  3 ++
->  drivers/gpu/drm/xe/xe_pci.c                 |  5 +++
->  drivers/gpu/drm/xe/xe_pm.c                  |  5 +++
->  drivers/gpu/drm/xe/xe_sriov.c               |  7 ++-
->  drivers/gpu/drm/xe/xe_sriov_pf.c            |  6 +++
->  drivers/gpu/drm/xe/xe_tile.c                | 13 ++++++
->  drivers/gpu/drm/xe/xe_uc.c                  |  4 ++
->  drivers/gpu/drm/xe/xe_wa.c                  |  8 +++-
->  drivers/gpu/drm/xe/xe_wopcm.c               |  7 ++-
->  19 files changed, 174 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/ext/i915_utils.c b/drivers/gpu/drm/xe/display/ext/i915_utils.c
-> index 43b10a2cc508..11d8377a125f 100644
-> --- a/drivers/gpu/drm/xe/display/ext/i915_utils.c
-> +++ b/drivers/gpu/drm/xe/display/ext/i915_utils.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include "i915_drv.h"
-> +#include "xe_device.h"
->  
->  bool i915_vtd_active(struct drm_i915_private *i915)
->  {
-> @@ -16,11 +17,10 @@ bool i915_vtd_active(struct drm_i915_private *i915)
->  
->  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
->  
-> -/* i915 specific, just put here for shutting it up */
->  int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
->  			      const char *func, int line)
->  {
-> -	return 0;
-> +	return __xe_device_inject_driver_probe_error(i915, err, 0, func, line);
->  }
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 4d3c794f134c..5ea78477c51f 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -319,6 +319,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->  	err = ttm_device_init(&xe->ttm, &xe_ttm_funcs, xe->drm.dev,
->  			      xe->drm.anon_inode->i_mapping,
->  			      xe->drm.vma_offset_manager, false, false);
-> +	err = xe_device_inject_driver_probe_error_override(xe, err);
-
-by doing this you're leaking ttm_device_fini()
-
->  	if (WARN_ON(err))
->  		goto err;
->  
-> @@ -487,6 +488,7 @@ static int xe_set_dma_info(struct xe_device *xe)
->  		goto mask_err;
->  
->  	err = dma_set_coherent_mask(xe->drm.dev, DMA_BIT_MASK(mask_size));
-> +	err = xe_device_inject_driver_probe_error_override(xe, err);
->  	if (err)
->  		goto mask_err;
->  
-> @@ -507,6 +509,11 @@ static bool verify_lmem_ready(struct xe_device *xe)
->  static int wait_for_lmem_ready(struct xe_device *xe)
->  {
->  	unsigned long timeout, start;
-> +	int err;
-> +
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
->  
->  	if (!IS_DGFX(xe))
->  		return 0;
-> @@ -759,6 +766,8 @@ int xe_device_probe(struct xe_device *xe)
->  	for_each_gt(gt, xe, id)
->  		xe_gt_sanitize_freq(gt);
->  
-> +	xe_device_inject_driver_probe_error_finish();
-> +
->  	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
->  
->  err_fini_display:
-> @@ -1025,3 +1034,43 @@ void xe_device_declare_wedged(struct xe_device *xe)
->  	for_each_gt(gt, xe, id)
->  		xe_gt_declare_wedged(gt);
->  }
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-
-I know that it's easier to add code to the existing .c file but maybe
-this error injection code could be placed in its own files?
-
-xe-$(CONFIG_DRM_XE_DEBUG) += xe_error_injection.o
-
-> +/**
-> + * __xe_device_inject_driver_probe_error - Inject an error during device probe
-> + * @xe: xe device instance
-> + * @err_injected: the error to inject
-> + * @err_real: the error returned by the actual function
-> + * @func: the name of the function where this is called from
-> + * @line: the line where this is called from
-> + *
-> + * This is not meant to be called directly, only through xe_device_inject_driver_probe_error.
-> + *
-> + * Return: err_real if != 0, 0 if this is not the Nth iteration of the requested iterations from
-> + * modparam.inject_driver_probe_error, err_injected if in the Nth iteration
-> + */
-> +int __xe_device_inject_driver_probe_error(struct xe_device *xe, int err_injected, int err_real,
-> +					  const char *func, int line)
-
-IMO this error override variant is too error-prone and may introduce
-more fake problems to the flow, can't we just use explicit inserts?
-
-> +{
-> +	if (err_real != 0)
-> +		return err_real;
-> +
-> +	if (xe->inject_driver_probe_error >= xe_modparam.inject_driver_probe_error)
-> +		return 0;
-> +
-> +	if (++xe->inject_driver_probe_error < xe_modparam.inject_driver_probe_error)
-> +		return 0;
-> +
-> +	drm_info(&xe->drm, "Injecting failure %d at checkpoint %u [%s:%d]\n",
-> +		 err_injected, xe->inject_driver_probe_error, func, line);
-> +
-> +	xe_modparam.inject_driver_probe_error = 0;
-> +	return err_injected;
-> +}
-> +
-> +void __xe_device_inject_driver_probe_error_finish(void)
-> +{
-> +	/* After probe finishes, stop checking for error injection */
-> +	xe_modparam.inject_driver_probe_error = 0;
-> +}
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index ca8d8ef6342b..96882ba18890 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -179,4 +179,34 @@ void xe_device_declare_wedged(struct xe_device *xe);
->  struct xe_file *xe_file_get(struct xe_file *xef);
->  void xe_file_put(struct xe_file *xef);
->  
-> +#define XE_DEVICE_INJECTED_ERR -ENODEV
-> +#define xe_device_inject_driver_probe_error(__xe) \
-> +	__xe_device_inject_driver_probe_error(__xe, XE_DEVICE_INJECTED_ERR, 0, __func__, __LINE__)
-
-nit: can we have a xe_gt/xe_tile variants of error injection functions?
-
-> +#define xe_device_inject_driver_probe_error_override(__xe, __err_real) \
-> +	__xe_device_inject_driver_probe_error(__xe, XE_DEVICE_INJECTED_ERR, __err_real, __func__, \
-> +					      __LINE__)
-> +#define xe_device_inject_driver_probe_error_finish()	\
-> +	__xe_device_inject_driver_probe_error_finish()
-
-this looks like a overkill, can't we just have two variants of the
-xe_device_inject_driver_probe_error_finish() below?
-
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> +
-> +int __xe_device_inject_driver_probe_error(struct xe_device *xe,
-> +					  int err_injected, int err_real,
-> +					  const char *func, int line);
-> +
-> +void __xe_device_inject_driver_probe_error_finish(void);
-> +
-> +#else
-> +
-> +static inline int __xe_device_inject_driver_probe_error(struct xe_device *xe,
-> +							int err_injected, int err_real,
-> +							const char *func, int line)
-> +{
-> +	return 0;
-> +}
-> +
-> +static inline void __xe_device_inject_driver_probe_error_finish(void) {};
-> +
-> +#endif
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index c92df0a2423f..49dd81e8a63e 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -513,6 +513,11 @@ struct xe_device {
->  		int mode;
->  	} wedged;
->  
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> +	/** @inject_driver_probe_error: Counter used for error injection during probe */
-> +	int inject_driver_probe_error;
-> +#endif
-> +
->  #ifdef TEST_VM_OPS_ERROR
->  	/**
->  	 * @vm_inject_error_position: inject errors at different places in VM
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> index 924e75b94aec..719695ed4681 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> @@ -12,6 +12,7 @@
->  #include "regs/xe_guc_regs.h"
->  #include "regs/xe_regs.h"
->  
-> +#include "xe_device.h"
->  #include "xe_mmio.h"
->  #include "xe_gt_sriov_printk.h"
->  #include "xe_gt_sriov_pf_helpers.h"
-> @@ -275,6 +276,10 @@ int xe_gt_sriov_pf_service_init(struct xe_gt *gt)
->  {
->  	int err;
->  
-> +	err = xe_device_inject_driver_probe_error(gt_to_xe(gt));
-> +	if (err)
-> +		return err;
-> +
->  	pf_init_versions(gt);
->  
->  	err = pf_alloc_runtime_info(gt);
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 1eb5bb7e8771..a03df396129b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -353,6 +353,7 @@ int xe_guc_init(struct xe_guc *guc)
->  	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOADABLE);
->  
->  	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini_hw, guc);
-> +	ret = xe_device_inject_driver_probe_error_override(guc_to_xe(guc), ret);
-
-why here?
-better to insert errors in
-- xe_uc_fw_init
-- xe_guc_log_init
-- xe_guc_ads_init
-- xe_guc_ct_init
-- xe_guc_relay_init
-
-or if you want just minimum changes, move to:
-- xe_uc_init
-
->  	if (ret)
->  		goto out;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 4b95f75b1546..51ffb05605bb 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -202,6 +202,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
->  	ct->bo = bo;
->  
->  	err = drmm_add_action_or_reset(&xe->drm, guc_ct_fini, ct);
-> +	err = xe_device_inject_driver_probe_error_override(xe, err);
->  	if (err)
->  		return err;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 2b654f820ae2..08bf9e8182b4 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -1064,6 +1064,10 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
->  	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
->  	int err;
->  
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
-> +
->  	if (xe->info.skip_guc_pc)
->  		return 0;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index a48f239cad1c..807b366e2d96 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -144,6 +144,11 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
->  {
->  	size_t tile_mmio_size = SZ_16M;
->  	size_t tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
-> +	int err;
-> +
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
->  
->  	mmio_multi_tile_setup(xe, tile_mmio_size);
->  	mmio_extension_setup(xe, tile_mmio_size, tile_mmio_ext_size);
-> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-> index 77ce9f9ca7a5..dc964b450e49 100644
-> --- a/drivers/gpu/drm/xe/xe_module.c
-> +++ b/drivers/gpu/drm/xe/xe_module.c
-> @@ -56,6 +56,24 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
->  MODULE_PARM_DESC(force_probe,
->  		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
->  
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> +/*
-> + * The error code at checkpoint X will be overridden when the module argument
-> + * inject_driver_load_error is set to value X. By doing so, it is possible to
-> + * test proper error handling and improve robustness for current and future
-> + * code. One way to test multiple error injection points:
-> + *
-> + * for i in {1..200}; do
-> + *     echo "Run $i"
-> + *     modprobe xe inject_driver_probe_error=$i;
-> + *     rmmod xe;
-> + * done
-> + */
-> +module_param_named_unsafe(inject_driver_probe_error, xe_modparam.inject_driver_probe_error, int,
-> +			  0600);
-> +MODULE_PARM_DESC(inject_driver_probe_error, "Inject driver probe error");
-> +#endif
-> +
->  #ifdef CONFIG_PCI_IOV
->  module_param_named(max_vfs, xe_modparam.max_vfs, uint, 0400);
->  MODULE_PARM_DESC(max_vfs,
-> diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-> index 161a5e6f717f..47cefaf8d79b 100644
-> --- a/drivers/gpu/drm/xe/xe_module.h
-> +++ b/drivers/gpu/drm/xe/xe_module.h
-> @@ -20,6 +20,9 @@ struct xe_modparam {
->  	char *force_probe;
->  #ifdef CONFIG_PCI_IOV
->  	unsigned int max_vfs;
-> +#endif
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> +	int inject_driver_probe_error;
->  #endif
->  	int wedged_mode;
->  };
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 5ba4ec229494..0c5109e9573e 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -649,8 +649,13 @@ static int xe_info_init(struct xe_device *xe,
->  	u32 graphics_gmdid_revid = 0, media_gmdid_revid = 0;
->  	struct xe_tile *tile;
->  	struct xe_gt *gt;
-> +	int err;
->  	u8 id;
->  
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
-> +
->  	/*
->  	 * If this platform supports GMD_ID, we'll detect the proper IP
->  	 * descriptor to use from hardware registers. desc->graphics will only
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 33eb039053e4..d975524cb4e9 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -258,6 +258,7 @@ int xe_pm_init_early(struct xe_device *xe)
->  		return err;
->  
->  	err = drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
-> +	err = xe_device_inject_driver_probe_error_override(xe, err);
-
-can't we just insert error at the begin of xe_pm_init_early() ?
-
->  	if (err)
->  		return err;
->  
-> @@ -276,6 +277,10 @@ int xe_pm_init(struct xe_device *xe)
->  {
->  	int err;
->  
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
-> +
->  	/* For now suspend/resume is only allowed with GuC */
->  	if (!xe_device_uc_enabled(xe))
->  		return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-> index 69a066ef20c0..efb0692c9956 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov.c
-> @@ -102,11 +102,13 @@ static void fini_sriov(struct drm_device *drm, void *arg)
->   */
->  int xe_sriov_init(struct xe_device *xe)
->  {
-> +	int err;
-> +
->  	if (!IS_SRIOV(xe))
->  		return 0;
->  
->  	if (IS_SRIOV_PF(xe)) {
-> -		int err = xe_sriov_pf_init_early(xe);
-> +		err = xe_sriov_pf_init_early(xe);
->  
->  		if (err)
->  			return err;
-> @@ -114,7 +116,8 @@ int xe_sriov_init(struct xe_device *xe)
->  
->  	xe_assert(xe, !xe->sriov.wq);
->  	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
-> -	if (!xe->sriov.wq)
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (!xe->sriov.wq || err)
->  		return -ENOMEM;
-
-this is wrong!
-
-by doing this you're leaking WQ as it won't be released by fini_sriov
-that we're registering below
-
->  
->  	return drmm_add_action_or_reset(&xe->drm, fini_sriov, xe);
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> index 0f721ae17b26..8d75bb6570f0 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> @@ -80,8 +80,14 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
->   */
->  int xe_sriov_pf_init_early(struct xe_device *xe)
->  {
-> +	int err;
-> +
->  	xe_assert(xe, IS_SRIOV_PF(xe));
->  
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
-> +
->  	return drmm_mutex_init(&xe->drm, &xe->sriov.pf.master_lock);
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index dda5268507d8..774668ac67b4 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -114,6 +114,10 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
->  {
->  	int err;
->  
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
-> +
->  	tile->xe = xe;
->  	tile->id = id;
->  
-> @@ -127,6 +131,15 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
->  
->  	xe_pcode_init(tile);
->  
-> +	/*
-> +	 * xe_tile_alloc() and xe_gt_alloc() only fail with -ENOMEM.
-> +	 * drmm_zalloc() is used so resources will be freed even if
-> +	 * an error is injected.
-> +	 */
-
-why do we need this comment?
-what's special in drmm_zalloc vs drmm_mutex?
-
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-> index 0d073a9987c2..6eaef7a3c58e 100644
-> --- a/drivers/gpu/drm/xe/xe_uc.c
-> +++ b/drivers/gpu/drm/xe/xe_uc.c
-> @@ -135,6 +135,10 @@ int xe_uc_init_hwconfig(struct xe_uc *uc)
->  {
->  	int ret;
->  
-> +	ret = xe_device_inject_driver_probe_error(uc_to_xe(uc));
-> +	if (ret)
-> +		return ret;
-> +
->  	/* GuC submission not enabled, nothing to do */
->  	if (!xe_device_uc_enabled(uc_to_xe(uc)))
->  		return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> index 22c148b1e996..660bacaf66e4 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.c
-> +++ b/drivers/gpu/drm/xe/xe_wa.c
-> @@ -829,6 +829,11 @@ int xe_wa_init(struct xe_gt *gt)
->  	struct xe_device *xe = gt_to_xe(gt);
->  	size_t n_oob, n_lrc, n_engine, n_gt, total;
->  	unsigned long *p;
-> +	int err;
-> +
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (err)
-> +		return err;
->  
->  	n_gt = BITS_TO_LONGS(ARRAY_SIZE(gt_was));
->  	n_engine = BITS_TO_LONGS(ARRAY_SIZE(engine_was));
-> @@ -837,7 +842,8 @@ int xe_wa_init(struct xe_gt *gt)
->  	total = n_gt + n_engine + n_lrc + n_oob;
->  
->  	p = drmm_kzalloc(&xe->drm, sizeof(*p) * total, GFP_KERNEL);
-> -	if (!p)
-> +	err = xe_device_inject_driver_probe_error(xe);
-> +	if (!p || err)
->  		return -ENOMEM;
-
-can't we just inject error _before_ calling the drmm_kzalloc?
-
->  
->  	gt->wa_active.gt = p;
-> diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-> index 93c82825d896..c59376b45bab 100644
-> --- a/drivers/gpu/drm/xe/xe_wopcm.c
-> +++ b/drivers/gpu/drm/xe/xe_wopcm.c
-> @@ -206,6 +206,10 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
->  	bool locked;
->  	int ret = 0;
->  
-> +	ret = xe_device_inject_driver_probe_error(xe);
-> +	if (ret)
-> +		return ret;
-> +
->  	if (!guc_fw_size)
->  		return -EINVAL;
->  
-> @@ -252,8 +256,9 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
->  		guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
->  
->  check:
-> +	ret = xe_device_inject_driver_probe_error_override(xe, ret);
->  	if (__check_layout(xe, wopcm->size, guc_wopcm_base, guc_wopcm_size,
-> -			   guc_fw_size, huc_fw_size)) {
-> +			   guc_fw_size, huc_fw_size) && !ret) {
-
-do we have to make this condition even less readable?
-can't we just have single injected error at the begin of the function?
-
-or at least move injection to __check_layout()
-
->  		wopcm->guc.base = guc_wopcm_base;
->  		wopcm->guc.size = guc_wopcm_size;
->  		XE_WARN_ON(!wopcm->guc.base);
+[  414.365382] i915 0000:03:00.0: saving config space at offset 0x0 (readin=
+g 0x56938086)
+[  414.373199] i915 0000:03:00.0: saving config space at offset 0x4 (readin=
+g 0x100007)
+[  414.380852] i915 0000:03:00.0: saving config space at offset 0x8 (readin=
+g 0x3000004)
+[  414.388587] i915 0000:03:00.0: saving config space at offset 0xc (readin=
+g 0x0)
+[  414.395806] i915 0000:03:00.0: saving config space at offset 0x10 (readi=
+ng 0x60000004)
+[  414.403725] i915 0000:03:00.0: saving config space at offset 0x14 (readi=
+ng 0x0)
+[  414.411022] i915 0000:03:00.0: saving config space at offset 0x18 (readi=
+ng 0x8000000c)
+[  414.418928] i915 0000:03:00.0: saving config space at offset 0x1c (readi=
+ng 0x40)
+[  414.426319] i915 0000:03:00.0: saving config space at offset 0x20 (readi=
+ng 0x0)
+[  414.433628] i915 0000:03:00.0: saving config space at offset 0x24 (readi=
+ng 0x0)
+[  414.440926] i915 0000:03:00.0: saving config space at offset 0x28 (readi=
+ng 0x0)
+[  414.448235] i915 0000:03:00.0: saving config space at offset 0x2c (readi=
+ng 0x49058086)
+[  414.456147] i915 0000:03:00.0: saving config space at offset 0x30 (readi=
+ng 0xffe00000)
+[  414.464057] i915 0000:03:00.0: saving config space at offset 0x34 (readi=
+ng 0x40)
+[  414.471449] i915 0000:03:00.0: saving config space at offset 0x38 (readi=
+ng 0x0)
+[  414.478753] i915 0000:03:00.0: saving config space at offset 0x3c (readi=
+ng 0xff)
+---------------------------------------------------------------------------=
+-----------------------------------------------
+[  444.303318] i915 0000:03:00.0: restoring config space at offset 0x3c (wa=
+s 0xffffffff, writing 0xff)
+[  444.312456] i915 0000:03:00.0: restoring config space at offset 0x38 (wa=
+s 0xffffffff, writing 0x0)
+[  444.321402] i915 0000:03:00.0: restoring config space at offset 0x34 (wa=
+s 0xffffffff, writing 0x40)
+[  444.330430] i915 0000:03:00.0: restoring config space at offset 0x30 (wa=
+s 0xffffffff, writing 0xffe00000)
+[  444.339978] i915 0000:03:00.0: restoring config space at offset 0x2c (wa=
+s 0xffffffff, writing 0x49058086)
+[  444.349525] i915 0000:03:00.0: restoring config space at offset 0x28 (wa=
+s 0xffffffff, writing 0x0)
+[  444.358469] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.368417] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.378371] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.388318] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.398266] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.408207] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.418192] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.428138] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.438085] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.448026] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.457970] i915 0000:03:00.0: restoring config space at offset 0x24 (wa=
+s 0xffffffff, writing 0x0)
+[  444.466912] i915 0000:03:00.0: restoring config space at offset 0x20 (wa=
+s 0xffffffff, writing 0x0)
+[  444.476858] i915 0000:03:00.0: restoring config space at offset 0x20 (wa=
+s 0xffffffff, writing 0x0)
+Thanks,
+Anshuman
+>=20
+> And the pci_restore_state is paired with the pci_save_state.
+> Both i915 and Xe are doing the pci_save_state and not restoring it.
+>=20
+> So, we either add the restore state to both, or we remove the save state.=
+ Adding
+> seems to be the most conservative approach, hence this patch (i915 is que=
+ued
+> in a branch with other display refactor).
+>=20
+> Rafael, any guidance here?
+>=20
+> Cc: Rafael J. Wysocki <rafael@kernel.org>
+>=20
+> >
+> > > +
+> > >  	err =3D pci_enable_device(pdev);
+> > >  	if (err)
+> > >  		return err;
+> > > --
+> > > 2.46.0
+> >
+> > --
+> > Ville Syrj=E4l=E4
+> > Intel
