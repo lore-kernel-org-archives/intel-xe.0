@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC93EFC6168
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 17:12:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2255FFC6169
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 17:25:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 778A110ED51;
-	Fri, 13 Sep 2024 17:12:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E15D710ED54;
+	Fri, 13 Sep 2024 17:25:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="go/HW/My";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L/T1YsWG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8781710E28D;
- Fri, 13 Sep 2024 17:12:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1556310ED54
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 17:25:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726247573; x=1757783573;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=9LchBqf6k/tNCJWHz96riOHuR9lD+rEQIppqxed0cdc=;
- b=go/HW/MyoMCQ+XdYxF5R2pLSw3zq6RiAx93MZeRTE6OeoTUkhHgPUJNa
- byjiOmrcpYlHSIfhyePBbMBUuwRWq6Qa1e6QigB4acgtRqwvK6MSxCaCS
- XyGqmzk6qIsdN4xq1/q27BBKmG+o6Z5BOBfQ7KvOAyeYC1hWbHQkRwd9V
- hVU0mfDZqCUXOgi6Ue6sSjEwlg23wpUTo9dPnYo3ml0jY7WS4sPUCc8nb
- XF00GwV/kDs3O4mHuGrJHb4ndFXCOz8CDgsUkPqQueDRrZ+WXULR7yoMn
- zGgCZYbDDBaTuqOyMc7cPQfRuzidoCEPQtvTPemN2shmX0uqzJ/L2n1eo w==;
-X-CSE-ConnectionGUID: QJfxHgKARQ2xRajO3QOkzQ==
-X-CSE-MsgGUID: 19z0dY7pQTSd0LHEkyrx6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="24981070"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="24981070"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 10:12:53 -0700
-X-CSE-ConnectionGUID: uYvanj2QQ+Cfu2dHQnFA6A==
-X-CSE-MsgGUID: lMnD5RTDRhOkh6DDKml4sw==
+ t=1726248311; x=1757784311;
+ h=date:from:to:cc:subject:message-id;
+ bh=pWXIEZuczVcq9Usp8lLhJg4vPiHuSGcjdm7nVOhGVKo=;
+ b=L/T1YsWGZ0ZAvCpTEHGvmST+OTC/AUfTgl7sGpaeMEbbCGLdtklIEIoY
+ Ku1mQaX0RXEcZNJwjUwSpbM7jYn09XxGGB+UJdfXwQQXYqbiU4Zqzvd1S
+ s2vTLrcalG6or/pGYWaXnjgzdPUpagRrAojJvl7FWA4Uzt1pUdNUdKMgD
+ A1VKTnudFc3IC1mpzOgD0q+pHousLb+dKgeg+gdDpk3XloJxYkd8NH25y
+ 3Ux6eHIQ1pN0KZW7z6EvOL9MT/gntZCTv7iakcpXKrUK8rMnqg2yrNE0+
+ jjogfj7yFY7agRI5MYB4TGbOYcl+DwOlqw16HEWc3g1EJftiNYBQXIAvz A==;
+X-CSE-ConnectionGUID: qa7NpibdStCreI4rK3SqLg==
+X-CSE-MsgGUID: M5ymf9uGSBORvkUs2ISuCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="47672531"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="47672531"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 10:25:10 -0700
+X-CSE-ConnectionGUID: 2BlRdLVaTJ+6RH6Tkvz2RA==
+X-CSE-MsgGUID: 3s2FKRHAQjOOs/zTE+DYJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68229664"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 13 Sep 2024 10:12:50 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Sep 2024 20:12:49 +0300
-Date: Fri, 13 Sep 2024 20:12:49 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
-Message-ID: <ZuRykc_etbea6063@intel.com>
-References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
- <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68458039"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+ by orviesa006.jf.intel.com with ESMTP; 13 Sep 2024 10:25:09 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1spA2c-0006jw-13;
+ Fri, 13 Sep 2024 17:25:06 +0000
+Date: Sat, 14 Sep 2024 01:24:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next-fixes] BUILD SUCCESS
+ f1a4dceeb2bd4b4478e4f0c77dac55569d153fb3
+Message-ID: <202409140140.NO6FWC40-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,47 +64,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 13, 2024 at 01:47:53PM +0200, Maarten Lankhorst wrote:
-> Add the scanout flag to force WC caching, and add the memory barrier
-> where needed.
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> index f99d901a3214f..f7949bf5426af 100644
-> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> @@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
->  	if (!vma)
->  		return false;
->  
-> +	/* Set scanout flag for WC mapping */
->  	obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
->  				   NULL, PAGE_ALIGN(size),
->  				   ttm_bo_type_kernel,
->  				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-> -				   XE_BO_FLAG_GGTT);
-> +				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
->  	if (IS_ERR(obj)) {
->  		kfree(vma);
->  		return false;
-> @@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
->  
->  void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
->  {
-> -	/* TODO: add xe specific flush_map() for dsb buffer object. */
-> +	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next-fixes
+branch HEAD: f1a4dceeb2bd4b4478e4f0c77dac55569d153fb3  drm/xe: Fix missing conversion to xe_display_pm_runtime_resume
 
-MMIO itself should be sufficient to flush the WC buffer.
-But I guess no real harm in hammering it a bit harder.
+elapsed time: 1039m
 
->  }
-> -- 
-> 2.45.2
+configs tested: 81
+configs skipped: 2
 
--- 
-Ville Syrjälä
-Intel
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-14.1.0
+alpha                            allyesconfig    clang-20
+arc                              allmodconfig    clang-20
+arc                               allnoconfig    gcc-14.1.0
+arc                              allyesconfig    clang-20
+arm                              allmodconfig    clang-20
+arm                               allnoconfig    gcc-14.1.0
+arm                              allyesconfig    clang-20
+arm64                            allmodconfig    clang-20
+arm64                             allnoconfig    gcc-14.1.0
+csky                              allnoconfig    gcc-14.1.0
+hexagon                          allmodconfig    clang-20
+hexagon                           allnoconfig    gcc-14.1.0
+hexagon                          allyesconfig    clang-20
+i386                             allmodconfig    clang-18
+i386                              allnoconfig    clang-18
+i386                             allyesconfig    clang-18
+i386        buildonly-randconfig-001-20240913    clang-18
+i386        buildonly-randconfig-002-20240913    clang-18
+i386        buildonly-randconfig-003-20240913    clang-18
+i386        buildonly-randconfig-004-20240913    clang-18
+i386        buildonly-randconfig-005-20240913    clang-18
+i386        buildonly-randconfig-006-20240913    clang-18
+i386                                defconfig    clang-18
+i386                  randconfig-001-20240913    clang-18
+i386                  randconfig-002-20240913    clang-18
+i386                  randconfig-003-20240913    clang-18
+i386                  randconfig-004-20240913    clang-18
+i386                  randconfig-005-20240913    clang-18
+i386                  randconfig-006-20240913    clang-18
+i386                  randconfig-011-20240913    clang-18
+i386                  randconfig-012-20240913    clang-18
+i386                  randconfig-013-20240913    clang-18
+i386                  randconfig-014-20240913    clang-18
+i386                  randconfig-015-20240913    clang-18
+i386                  randconfig-016-20240913    clang-18
+loongarch                        allmodconfig    gcc-14.1.0
+loongarch                         allnoconfig    gcc-14.1.0
+m68k                             allmodconfig    gcc-14.1.0
+m68k                              allnoconfig    gcc-14.1.0
+m68k                             allyesconfig    gcc-14.1.0
+microblaze                       allmodconfig    gcc-14.1.0
+microblaze                        allnoconfig    gcc-14.1.0
+microblaze                       allyesconfig    gcc-14.1.0
+mips                              allnoconfig    gcc-14.1.0
+nios2                             allnoconfig    gcc-14.1.0
+openrisc                          allnoconfig    clang-20
+openrisc                         allyesconfig    gcc-14.1.0
+openrisc                            defconfig    gcc-12
+parisc                           allmodconfig    gcc-14.1.0
+parisc                            allnoconfig    clang-20
+parisc                           allyesconfig    gcc-14.1.0
+parisc                              defconfig    gcc-12
+powerpc                          allmodconfig    gcc-14.1.0
+powerpc                           allnoconfig    clang-20
+powerpc                          allyesconfig    gcc-14.1.0
+riscv                            allmodconfig    gcc-14.1.0
+riscv                             allnoconfig    clang-20
+riscv                            allyesconfig    gcc-14.1.0
+riscv                               defconfig    gcc-12
+s390                             allmodconfig    gcc-14.1.0
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.1.0
+s390                                defconfig    gcc-12
+sh                               allmodconfig    gcc-14.1.0
+sh                                allnoconfig    gcc-14.1.0
+sh                               allyesconfig    gcc-14.1.0
+sh                                  defconfig    gcc-12
+sparc                            allmodconfig    gcc-14.1.0
+sparc64                             defconfig    gcc-12
+um                               allmodconfig    clang-20
+um                                allnoconfig    clang-20
+um                               allyesconfig    clang-20
+um                                  defconfig    gcc-12
+um                             i386_defconfig    gcc-12
+um                           x86_64_defconfig    gcc-12
+x86_64                            allnoconfig    clang-18
+x86_64                           allyesconfig    clang-18
+x86_64                              defconfig    clang-18
+x86_64                          rhel-8.3-rust    clang-18
+xtensa                            allnoconfig    gcc-14.1.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
