@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 332B8FC6160
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 16:29:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D380EFC6166
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 16:46:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01A9310EBE4;
-	Fri, 13 Sep 2024 16:29:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGT2SYbG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75D6810EB26
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 16:29:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726244956; x=1757780956;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zcDJLqEDmgAOsPDaZzXl4IKSesYpY/xIxeuiDhFi7vk=;
- b=ZGT2SYbGoySQ6NnuCM77zhwDVU83F4d/HzrOzdJeBUJLqr0PuP1L9CY2
- U9jGc+7vSM6mw+TW4dQALVRDVO1RhjQ55sKjTmxg9TIv0y4bgjjU3hrXS
- Ve+rX2TgjCfAkfqxrYPEaftIzLmtaa02u8B2UKGowmB+9jTBt2X66YwiV
- p/e01utbKxTpPwXmvpWaizxFGY9iNSlQgbjEGWlDg1K7Lq8s8PUk9t0vI
- DhzIS3SVMUAAYbEXYiYHLbxR+rlYfUklCBacAn0jfvmgZs8ag+IZHH86O
- 4TuhESl20+vO69HugMckAmcT7oWrcWj/kvq8F6rOaLWsRGl+bGLyTybea Q==;
-X-CSE-ConnectionGUID: rnRw3DkmTMS8QhpNqgBHsg==
-X-CSE-MsgGUID: BDoA3YJzScaKOdtLuGjzbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="24692392"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="24692392"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 09:29:15 -0700
-X-CSE-ConnectionGUID: b8uhj1PFT1+uokzvwUfaXA==
-X-CSE-MsgGUID: R0tC1tYRSAWQPsZJB/zgfw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68440209"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 09:29:16 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Jakub Kolakowski <jakub1.kolakowski@intel.com>
-Subject: [PATCH v2 3/3] drm/xe/sriov: Drop TIMESTAMP_OVERRIDE from Xe2 runtime
- regs
-Date: Fri, 13 Sep 2024 09:29:13 -0700
-Message-ID: <20240913162910.4145142-6-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240913162910.4145142-4-matthew.d.roper@intel.com>
-References: <20240913162910.4145142-4-matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9692010EC40;
+	Fri, 13 Sep 2024 16:46:04 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A90F10EC40;
+ Fri, 13 Sep 2024 16:46:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5344092135395817755=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/debugfs=3A_intel=5Fdisp?=
+ =?utf-8?q?lay=5Fcaps?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Sep 2024 16:46:03 -0000
+Message-ID: <172624596356.997501.10046900085694777551@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1726231866.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1726231866.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,33 +36,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TIMESTAMP_OVERRIDE is never used to initialize the GT clock frequency on
-Xe2 platforms (and the register itself no longer exists on LNL) so drop
-it from the list of runtime registers.
+--===============5344092135395817755==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Acked-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 1 -
- 1 file changed, 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-index 924e75b94aec..a5bd577227d4 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-@@ -173,7 +173,6 @@ static const struct xe_reg ver_2000_runtime_regs[] = {
- 	XE2_GT_GEOMETRY_DSS_2,		/* _MMIO(0x9154) */
- 	CTC_MODE,			/* _MMIO(0xa26c) */
- 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
--	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
- };
- 
- static const struct xe_reg *pick_runtime_regs(struct xe_device *xe, unsigned int *count)
--- 
-2.45.2
+Series: drm/i915/debugfs: intel_display_caps
+URL   : https://patchwork.freedesktop.org/series/138649/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151_BAT -> xe-pw-138649v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-138649v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138649v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138649v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151 -> xe-pw-138649v1
+
+  IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151: d624a4cafbe6227571d2ed755b3ce48918afe151
+  xe-pw-138649v1: 138649v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138649v1/index.html
+
+--===============5344092135395817755==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/debugfs: intel_display_caps</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138649/">https://patchwork.freedesktop.org/series/138649/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138649v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138649v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151_BAT -&gt; xe-pw-138649v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138649v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138649v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138649v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151 -&gt; xe-pw-138649v1</li>
+</ul>
+<p>IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1946-d624a4cafbe6227571d2ed755b3ce48918afe151: d624a4cafbe6227571d2ed755b3ce48918afe151<br />
+  xe-pw-138649v1: 138649v1</p>
+
+</body>
+</html>
+
+--===============5344092135395817755==--
