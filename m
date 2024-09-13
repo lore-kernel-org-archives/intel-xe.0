@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B0D1FC616A
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 17:58:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62082FC616A
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 18:10:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6698010E096;
-	Fri, 13 Sep 2024 17:58:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+zhdEIl";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D83A10E096;
- Fri, 13 Sep 2024 17:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726250290; x=1757786290;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=H7Yz3dfytNZ1zvBYOm2N1qFKjIgWDm5DFgICqnKD8M4=;
- b=U+zhdEIldYLjVi8wghapJYqQWo8zoRdG/ZKJIvIeMNqor9ggQgMehcte
- 4JUFR2wMBIxbdhRkODkeiaLISMz9f8vFw+ONTIGaxoun/PC7aNSmbvpCB
- dJGRshaT980M9qUiqnSLscLZ1fhEhz5Fe+S0Kb1j3zZbalCCNfGISnqEM
- bQU2bpXEcesW14TqJXaRtYwIbkTDXQayx/8LdJCHjfOWBh/neiGnahtr4
- /TSpVaYT+eRwwJbkCGNL3JhSjM4Dfe8Tq9jw8sr49TkJ9jImqVVWJSbAm
- POZAMO4k4+tocJOEgNN6lftkrMeOhixXcWtUHVGBGaBkFmkhrdUVvLi1P A==;
-X-CSE-ConnectionGUID: UIuK1v0zQjSxqXG15XJ4Zg==
-X-CSE-MsgGUID: acmObzNuTDOiP7E5VlewQg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="24985848"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="24985848"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 10:58:09 -0700
-X-CSE-ConnectionGUID: HBwUtqwOTcuGi17ivmaSmA==
-X-CSE-MsgGUID: 9nzbUaPVT3OCR/UhKEjroA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="72735314"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.187])
- ([10.245.245.187])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 10:58:07 -0700
-Message-ID: <aab1a4a6-0222-47ad-9249-02ab9db2d213@linux.intel.com>
-Date: Fri, 13 Sep 2024 19:58:12 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A22810E29E;
+	Fri, 13 Sep 2024 18:10:13 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C966710E29E;
+ Fri, 13 Sep 2024 18:10:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4882506684152863053=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
- <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
- <41a9a2c5-91c6-4079-b73d-087ebc8d68c5@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <41a9a2c5-91c6-4079-b73d-087ebc8d68c5@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Shrinker_series_squash?=
+ =?utf-8?q?ed?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Sep 2024 18:10:11 -0000
+Message-ID: <172625101181.997763.3698341966630114646@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240913141519.3141-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240913141519.3141-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,49 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4882506684152863053==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe: Shrinker series squashed
+URL   : https://patchwork.freedesktop.org/series/138653/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328_BAT -> xe-pw-138653v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-138653v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [FAIL][1] ([Intel XE#886]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138653v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
 
 
-Den 2024-09-13 kl. 14:04, skrev Matthew Auld:
-> On 13/09/2024 12:47, Maarten Lankhorst wrote:
->> Add the scanout flag to force WC caching, and add the memory barrier
->> where needed.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>   drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
->>   1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->> index f99d901a3214f..f7949bf5426af 100644
->> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
->> @@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
->>       if (!vma)
->>           return false;
->>   +    /* Set scanout flag for WC mapping */
->>       obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
->>                      NULL, PAGE_ALIGN(size),
->>                      ttm_bo_type_kernel,
->>                      XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> -                   XE_BO_FLAG_GGTT);
->> +                   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
->>       if (IS_ERR(obj)) {
->>           kfree(vma);
->>           return false;
->> @@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
->>     void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
->>   {
->> -    /* TODO: add xe specific flush_map() for dsb buffer object. */
->> +    xe_device_wmb(dsb_buf->vma->bo->tile->xe);
-> 
-> Kind of orthogonal, but we could maybe also move the l2 flush here? I assume it's better to flush once at the end.
-Eww, I didn't see that one. I totally would have if I saw it, the amount of calls for a single 4 byte write would remove any point of using DSB on BMG otherwise.
+Build changes
+-------------
 
-I'll send a followup patch. :)
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> 
->>   }
+  * IGT: IGT_8016 -> IGT_8017
+  * Linux: xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328 -> xe-pw-138653v1
 
+  IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8017: 8017
+  xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328: df3eecb1fa97d6d35569c2fa39f0da78b9f13328
+  xe-pw-138653v1: 138653v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138653v1/index.html
+
+--===============4882506684152863053==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Shrinker series squashed</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138653/">https://patchwork.freedesktop.org/series/138653/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138653v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138653v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328_BAT -&gt; xe-pw-138653v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138653v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138653v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8016 -&gt; IGT_8017</li>
+<li>Linux: xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328 -&gt; xe-pw-138653v1</li>
+</ul>
+<p>IGT_8016: 786f0469afc0665a02dd82bf17544868188fbdeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8017: 8017<br />
+  xe-1948-df3eecb1fa97d6d35569c2fa39f0da78b9f13328: df3eecb1fa97d6d35569c2fa39f0da78b9f13328<br />
+  xe-pw-138653v1: 138653v1</p>
+
+</body>
+</html>
+
+--===============4882506684152863053==--
