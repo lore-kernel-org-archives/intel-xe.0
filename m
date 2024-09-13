@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E4F3FC6181
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 21:47:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D945FC6172
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 21:47:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155A810EDBC;
-	Fri, 13 Sep 2024 21:47:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5923910EDBD;
+	Fri, 13 Sep 2024 21:47:40 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECD9B10EDBA;
- Fri, 13 Sep 2024 21:47:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B459D10EDBA;
+ Fri, 13 Sep 2024 21:47:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?fix_typo_in_the_comment?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_fix_t?=
+ =?utf-8?q?ypo_in_the_comment?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Yan Zhen" <yanzhen@vivo.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Sep 2024 21:47:27 -0000
-Message-ID: <172626404796.998524.7567417731797262238@2413ebb6fbb6>
+Date: Fri, 13 Sep 2024 21:47:39 -0000
+Message-ID: <172626405973.998525.8169026418532320256@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240913061727.170198-1-yanzhen@vivo.com>
 In-Reply-To: <20240913061727.170198-1-yanzhen@vivo.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2530827ab017 drm-tip: 2024y-09m-13d-19h-54m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: fix typo in the comment
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4ab67deed8c75d532dc7adfef6a01fa8bb405342
+Author: Yan Zhen <yanzhen@vivo.com>
+Date:   Fri Sep 13 14:17:27 2024 +0800
+
+    drm/i915/display: fix typo in the comment
+    
+    Correctly spelled comments make it easier for the reader to understand
+    the code.
+    
+    Replace 'platformas' with 'platforms' in the comment &
+    replace 'prefere' with 'prefer' in the comment &
+    replace 'corresponsding' with 'corresponding' in the comment &
+    replace 'harizontal' with 'horizontal' in the comment.
+    
+    Signed-off-by: Yan Zhen <yanzhen@vivo.com>
++ /mt/dim checkpatch 2530827ab017894f2339dd308356366d6e87a72d drm-intel
+4ab67deed8c7 drm/i915/display: fix typo in the comment
 
 
