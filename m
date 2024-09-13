@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08A58EEE272
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 06:37:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF488EEEC39
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 06:39:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C672D10EC22;
-	Fri, 13 Sep 2024 06:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1A6610E20F;
+	Fri, 13 Sep 2024 06:39:09 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14E5710EBFC;
- Fri, 13 Sep 2024 06:37:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A916510E20F;
+ Fri, 13 Sep 2024 06:39:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0772497888504038905=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/irq=3A_remove_unneeded_?=
- =?utf-8?q?semicolon_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/display=3A_Don=27t_allo?=
+ =?utf-8?q?w_tile4_framebuffer_to_do_hflip_on_Xe2?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jiapeng Chong" <jiapeng.chong@linux.alibaba.com>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Sep 2024 06:37:18 -0000
-Message-ID: <172620943807.995037.3637927781025596382@2413ebb6fbb6>
+Date: Fri, 13 Sep 2024 06:39:08 -0000
+Message-ID: <172620954868.995038.5997003140786871665@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240913060254.26678-1-jiapeng.chong@linux.alibaba.com>
-In-Reply-To: <20240913060254.26678-1-jiapeng.chong@linux.alibaba.com>
+References: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,114 +40,125 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0772497888504038905==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/irq: remove unneeded semicolon (rev2)
-URL   : https://patchwork.freedesktop.org/series/132423/
+Series: drm/i915/display: Don't allow tile4 framebuffer to do hflip on Xe2
+URL   : https://patchwork.freedesktop.org/series/138591/
 State : success
 
 == Summary ==
 
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/seq/
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soundcore.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/common/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/amd/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/codecs/
-lib/modules/6.11.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/ext/
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.11.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/intel/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.11.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/
-lib/modules/6.11.0-rc7-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/cmac.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/ccm.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/cryptd.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.11.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.11.0-rc7-xe/build
-lib/modules/6.11.0-rc7-xe/modules.alias.bin
-lib/modules/6.11.0-rc7-xe/modules.builtin
-lib/modules/6.11.0-rc7-xe/modules.softdep
-lib/modules/6.11.0-rc7-xe/modules.alias
-lib/modules/6.11.0-rc7-xe/modules.order
-lib/modules/6.11.0-rc7-xe/modules.symbols
-lib/modules/6.11.0-rc7-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1726209052:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1726209052:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+CI Bug Log - changes from xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03_BAT -> xe-pw-138591v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-138591v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][1] ([Intel XE#1861]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138591v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
 
 
+Build changes
+-------------
+
+  * IGT: IGT_8013 -> IGT_8014
+  * Linux: xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03 -> xe-pw-138591v1
+
+  IGT_8013: 8013
+  IGT_8014: 98173eeaa9d688090abe1e180f855f47e5bad9c0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03: 33996ab92ebe57dd8b2c984fa7d0b0e622b32a03
+  xe-pw-138591v1: 138591v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138591v1/index.html
+
+--===============0772497888504038905==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Don&#x27;t allow tile4 framebuffer to do hflip on Xe2</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138591/">https://patchwork.freedesktop.org/series/138591/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138591v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138591v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03_BAT -&gt; xe-pw-138591v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138591v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138591v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8013 -&gt; IGT_8014</li>
+<li>Linux: xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03 -&gt; xe-pw-138591v1</li>
+</ul>
+<p>IGT_8013: 8013<br />
+  IGT_8014: 98173eeaa9d688090abe1e180f855f47e5bad9c0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1937-33996ab92ebe57dd8b2c984fa7d0b0e622b32a03: 33996ab92ebe57dd8b2c984fa7d0b0e622b32a03<br />
+  xe-pw-138591v1: 138591v1</p>
+
+</body>
+</html>
+
+--===============0772497888504038905==--
