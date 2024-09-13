@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A00A7FA3748
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 11:59:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71198FA3748
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Sep 2024 12:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A2BD10ECF9;
-	Fri, 13 Sep 2024 11:59:35 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3285610ECF9;
- Fri, 13 Sep 2024 11:59:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3620B10ECFC;
+	Fri, 13 Sep 2024 12:00:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kt5UHgOw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD24C10ECFC
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Sep 2024 12:00:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726228836; x=1757764836;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VSREkogkTS0YL1zLDNSmjcGWshYNnY6/tpxyX7kLXv8=;
+ b=Kt5UHgOweOkYkDNR118Ws/oRfUM+BVXNlwpv1p+bj2b/taH6sc+2zfNT
+ 3pIBywRjLfDnKIV15eFZh4hYPwtBfLM42Wm29rIYMReKK6Yr/1B4aZQvf
+ 3l/SAnbxQxOzq7vV9raYNOBgBMRazeKkuOFGsEsQjNmp+lGHfjH7LbzRi
+ A70P7wNTBK312shWHHaF8WqK6zIbJjmjYOyoY7mRL7Xo2+DFoV6TL2pO6
+ GuBM7+JtvKSD2Aik5Kp8CdzTKPUm3p/Vj15zcmLAYp6cfiORy4q5Xzz26
+ T/9P1pVafO1eqEj0tIXrqx6VjtStIxi8XclVdQ/1DYKSeIHJdHGT1KakG g==;
+X-CSE-ConnectionGUID: RPmsYmQ8TeW4X0Zlk1PU/Q==
+X-CSE-MsgGUID: nKg5rZrZR+KdZoZyOh2Xew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="36473333"
+X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="36473333"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 05:00:35 -0700
+X-CSE-ConnectionGUID: x9ds3quBTzSYDOok44wDsQ==
+X-CSE-MsgGUID: tcvZ4fsWRqyjTQqL3eUq+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="68532648"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.158])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 05:00:34 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
+ Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org
+Subject: [PATCH v2] drm/xe/vram: fix ccs offset calculation
+Date: Fri, 13 Sep 2024 13:00:24 +0100
+Message-ID: <20240913120023.310565-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Re-enable_DSB?=
- =?utf-8?q?=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Sep 2024 11:59:34 -0000
-Message-ID: <172622877420.996315.4640540057097619328@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,45 +65,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Spec says SW is expected to round up to the nearest 128K, if not already
+aligned for the CC unit view of CCS. We are seeing the assert sometimes
+pop on BMG to tell us that there is a hole between GSM and CCS, as well
+as popping other asserts with having a vram size with strange alignment,
+which is likely caused by misaligned offset here.
 
-Series: drm/xe: Re-enable DSB.
-URL   : https://patchwork.freedesktop.org/series/138645/
-State : success
+BSpec: 68023
+Fixes: b5c2ca0372dc ("drm/xe/xe2hpg: Determine flat ccs offset for vram")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: <stable@vger.kernel.org> # v6.10+
+---
+ drivers/gpu/drm/xe/xe_vram.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c62d7e164862503a3662a095da1c6c9014248cb2
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit bc2c0a589fbfca50a2da84288a3637cba102fbae
-Author: Animesh Manna <animesh.manna@intel.com>
-Date:   Fri Sep 13 13:47:54 2024 +0200
-
-    drm/xe: Revert "drm/i915: Disable DSB in Xe KMD"
-    
-    This reverts commit c27f010aa1884276ee5dae72034d84987060c769.
-    
-    After fix from [1] dsb timeout issue is not reproducible on local testing
-    with xe driver. Checking CI result to confirm and not for review.
-    
-    [1] https://patchwork.freedesktop.org/series/130783/
-    
-    Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-    Link: https://patchwork.freedesktop.org/patch/msgid/20240708055630.4058818-1-animesh.manna@intel.com
-    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-+ /mt/dim checkpatch ceffbbae8df33f194ae06e0174dfb0a7d726b2f7 drm-intel
-869f7d204352 drm/xe: Fix DSB buffer coherency
-bc2c0a589fbf drm/xe: Revert "drm/i915: Disable DSB in Xe KMD"
-
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 7e765b1499b1..8e65cb4cc477 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -181,6 +181,7 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
+ 
+ 		offset = offset_hi << 32; /* HW view bits 39:32 */
+ 		offset |= offset_lo << 6; /* HW view bits 31:6 */
++		offset = round_up(offset, SZ_128K); /* SW must round up to nearest 128K */
+ 		offset *= num_enabled; /* convert to SW view */
+ 
+ 		/* We don't expect any holes */
+-- 
+2.46.0
 
