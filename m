@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DADE3C3ABB2
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 09:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51777C3ABB2
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 09:28:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9C810E322;
-	Mon, 16 Sep 2024 09:27:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18ED610E324;
+	Mon, 16 Sep 2024 09:28:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="n0LoAxo0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="o2V+2BTJ";
 	dkim-atps=neutral
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B961B10E31F;
- Mon, 16 Sep 2024 09:27:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D65610E324;
+ Mon, 16 Sep 2024 09:28:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 83CC55C05FE;
- Mon, 16 Sep 2024 09:27:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04422C4CEC4;
- Mon, 16 Sep 2024 09:27:41 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id C1F7C5C461D;
+ Mon, 16 Sep 2024 09:28:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E4BC4CECD;
+ Mon, 16 Sep 2024 09:28:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726478862;
- bh=pUAMi86rwTq+wVgJgsM5jMxxeBpOkJO3emrkyOgd2JQ=;
+ s=k20201202; t=1726478924;
+ bh=HHUgW1boYFxsRq7ez/mJftbzVuWDocQVG+uAfB4jUpg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=n0LoAxo0hDsXYtBeVuVt0ft4mZW3HZUYeDl0Q/kED3+MwrED5vAuFGnVpfVemwzM3
- it+g1Hb+0fpACtumqFcyD/RKJSZMR6uYb5c48nuhJbX0x6JV/C6VsS7KL0sfqpieI+
- bmE5p4okg2YXdu0WfJktgHa0Dl6pA8JEYhNNxORslZibW5/7KRyDEs55+yQBWjp8f8
- v+topeF22rxS9vzC5mw+XyOFbivWr8UawD+jIwykyylbSBE882XbA/pWMSHAXc1nzi
- sPCu3LukN9D5uiohLJRHSSm71FWJbu/HKYxMQpScYdtFjmxK6was6MCNK/o7L3YIeb
- AXG6+VEs0IccQ==
-Date: Mon, 16 Sep 2024 11:27:35 +0200
+ b=o2V+2BTJYV3NhsJTPZR0edYF0TIE5JqINAzERFaJWLuAbj1GVVCzzHgW7e21Bs9MS
+ MW50QT88ifdVFoDKkDgEH9ksLco0WTiM4uXWVwcvwjQlFRf4vVfeni/ijF2pPjjo0B
+ H6Rtu4Ew0GRAGsYxfjfKkhg5IcNXOb0t4GXDKXiUMt6ABfQNHtdo9tSIZso3qNt9dn
+ zPsFgF5uqq9JeCnvPlDjCBHuurszTYKSljTOwWbeEjpse9OsONC+gigw+HlPqElOB4
+ 1nLnTj912VaGn0jHMUqvY3NyuBL+iF4W9LAWvOU4RdwnUsCW8Cl8I+87Nl+tlr7UOQ
+ mus1sRdlVEwww==
+Date: Mon, 16 Sep 2024 11:28:38 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Yuesong Li <liyuesong@vivo.com>
+To: Yan Zhen <yanzhen@vivo.com>
 Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, 
  joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, 
+ simona@ffwll.ch, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, opensource.kernel@vivo.com
-Subject: Re: [PATCH v1] drm/i915/dp: Remove double assignment in
- intel_dp_compute_as_sdp()
-Message-ID: <thvv6gywqkygj2tcmbnmpwp7opy3nswphc7n3nxdj7r3roshsf@tm4ntfmv7dun>
-References: <20240823023612.3027849-1-liyuesong@vivo.com>
+ linux-kernel@vger.kernel.org, 
+ opensource.kernel@vivo.com, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v1] drm/i915/display: fix typo in the comment
+Message-ID: <hl7izclcyvkwi3z42iud3fv6aolzrmvilcd6gt4f2uyf7cefdz@2wswztqazz3g>
+References: <20240913061727.170198-1-yanzhen@vivo.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240823023612.3027849-1-liyuesong@vivo.com>
+In-Reply-To: <20240913061727.170198-1-yanzhen@vivo.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,13 +60,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Yuesong,
+Hi Yan,
 
-On Fri, Aug 23, 2024 at 10:36:12AM GMT, Yuesong Li wrote:
-> cocci report a double assignment warning. 'as_sdp->duration_incr_ms'
-> was assigned twice in intel_dp_compute_as_sdp().
+On Fri, Sep 13, 2024 at 02:17:27PM GMT, Yan Zhen wrote:
+> Correctly spelled comments make it easier for the reader to understand
+> the code.
 > 
-> Signed-off-by: Yuesong Li <liyuesong@vivo.com>
+> Replace 'platformas' with 'platforms' in the comment &
+> replace 'prefere' with 'prefer' in the comment &
+> replace 'corresponsding' with 'corresponding' in the comment &
+> replace 'harizontal' with 'horizontal' in the comment.
+> 
+> Signed-off-by: Yan Zhen <yanzhen@vivo.com>
 
 reviewed and merged to drm-intel-next.
 
