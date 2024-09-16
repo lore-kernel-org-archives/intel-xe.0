@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33B9FC3ABB2
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 13:58:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E73D5C3ABCE
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 13:58:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00B3410E383;
-	Mon, 16 Sep 2024 13:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2FDD10E38A;
+	Mon, 16 Sep 2024 13:58:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FBQ2WfF1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RdqPE0Tb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3E010E37A;
- Mon, 16 Sep 2024 13:58:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F06410E380;
+ Mon, 16 Sep 2024 13:58:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726495082; x=1758031082;
+ t=1726495138; x=1758031138;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eUyFHGpLnm0GiFr6R45QRYKMqFyqBiOPWuSQdcI130g=;
- b=FBQ2WfF1Qz2v9ys0z/HFLmS/eVRRmd85G6m8N1CZbMrxpwmgCRpqgASU
- +v8FzrZKXW2DD6NXloktd/ymUwjhDu8WvpjrHuADyescTamsoHxF88Kke
- QY//CQdaSnZFjUQTd+/+SzW2Ovy5FUKI5He1gLtTyrNDKe8W1wE5IH2XT
- sj526BBfj2A9HQVsi0pKmuGIINTMOAQ07/o7rpGWN/4KhV2mPMzXM/IKn
- OfXtm5PWM1b/1b2dh7MHCLeZ5PbRJ3UA6YEGzo6AKr8OUKCG1+KxvRw2P
- oOsgc1N+zf4Sv8eNsnsCq4fhTYEH7E6q+QBQFUOW//jiETgHs+nrpojNf A==;
-X-CSE-ConnectionGUID: Diec3PwMTuSUiO7KgSPwWg==
-X-CSE-MsgGUID: 4EeyHhT7SaG30irD9qgQ/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="36666863"
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="36666863"
+ bh=XwjfPtNKP3xj4mYiGTP+Pjdqb0DSUXkzIDtfWZSx5QA=;
+ b=RdqPE0TbqNBmgTctIMcwV5oJn5jUZV+YCAkl2kCJdOGU+8OWepmwaEfA
+ oF+V8Jsg/odnyn4kB3T0XZgiJFBWuius+I94MJkTc3SMrwHoUkVz9P4FG
+ gCmYWxCuN37q2L+93AyiIf5k8vQ5DVWRjg7VE8QBTH6P/6kqxr24Kd4K4
+ fHy1m2Io2ThknznLCE3YJy2kUS9g5l5ZJgKz4pizhq91j3m6P0PbzmKcK
+ odlVE/RTTiIrcyU2YwaJV1+5gJ3ZXJQvX0lBhRztGKatHuICefNhVg0S2
+ fpdnYcVHEK0g0OmdisTKSlnqtNAHrHuggmIPmjSWUd9BjaWAvn85AKpf0 g==;
+X-CSE-ConnectionGUID: 7Xxm+M3aQW27jGAZG2tAuA==
+X-CSE-MsgGUID: VTuff+seTIOhWOEA3lpJ/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="36666901"
+X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="36666901"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2024 06:58:02 -0700
-X-CSE-ConnectionGUID: q7F9RPWMQp+GnsXAS4DLZQ==
-X-CSE-MsgGUID: WE17oruOQryIwiRDcEDN2Q==
+ 16 Sep 2024 06:58:12 -0700
+X-CSE-ConnectionGUID: 2veiaqVQRSezaq52EQaNLQ==
+X-CSE-MsgGUID: wmGrMlcLSc6g4I8AYGZDbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="68837396"
+X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="68837453"
 Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2024 06:57:57 -0700
+ 16 Sep 2024 06:58:08 -0700
 From: Alexander Usyskin <alexander.usyskin@intel.com>
 To: Mark Brown <broonie@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -58,9 +58,9 @@ Cc: Tomas Winkler <tomas.winkler@intel.com>,
  Vitaly Lubart <vitaly.lubart@intel.com>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-spi@vger.kernel.org,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH v6 07/12] spi: intel-dg: wake card on operations
-Date: Mon, 16 Sep 2024 16:49:23 +0300
-Message-Id: <20240916134928.3654054-8-alexander.usyskin@intel.com>
+Subject: [PATCH v6 09/12] drm/i915/spi: add intel_spi_region map
+Date: Mon, 16 Sep 2024 16:49:25 +0300
+Message-Id: <20240916134928.3654054-10-alexander.usyskin@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240916134928.3654054-1-alexander.usyskin@intel.com>
 References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
@@ -80,142 +80,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable runtime PM in spi driver to notify graphics driver that
-whole card should be kept awake while spi operations are
-performed through this driver.
+From: Tomas Winkler <tomas.winkler@intel.com>
 
+Add the dGFX spi region map and convey it via auxiliary device
+to the spi child device.
+
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
 CC: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 ---
- drivers/spi/spi-intel-dg.c | 44 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ drivers/gpu/drm/i915/spi/intel_spi.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/spi/spi-intel-dg.c b/drivers/spi/spi-intel-dg.c
-index c76b0a70f8d8..a14fc3190520 100644
---- a/drivers/spi/spi-intel-dg.c
-+++ b/drivers/spi/spi-intel-dg.c
-@@ -12,11 +12,14 @@
- #include <linux/module.h>
- #include <linux/mtd/mtd.h>
- #include <linux/mtd/partitions.h>
-+#include <linux/pm_runtime.h>
- #include <linux/string.h>
- #include <linux/slab.h>
- #include <linux/sizes.h>
- #include <linux/types.h>
+diff --git a/drivers/gpu/drm/i915/spi/intel_spi.c b/drivers/gpu/drm/i915/spi/intel_spi.c
+index 4b90e42b0f86..200139531d26 100644
+--- a/drivers/gpu/drm/i915/spi/intel_spi.c
++++ b/drivers/gpu/drm/i915/spi/intel_spi.c
+@@ -11,6 +11,13 @@
  
-+#define INTEL_DG_SPI_RPM_TIMEOUT 500
+ #define GEN12_GUNIT_SPI_SIZE 0x80
+ 
++static const struct intel_dg_spi_region regions[INTEL_DG_SPI_REGIONS] = {
++	[0] = { .name = "DESCRIPTOR", },
++	[2] = { .name = "GSC", },
++	[11] = { .name = "OptionROM", },
++	[12] = { .name = "DAM", },
++};
 +
- struct intel_dg_spi {
- 	struct kref refcnt;
- 	struct mtd_info mtd;
-@@ -471,6 +474,12 @@ static int intel_dg_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- 	total_len = info->len;
- 	addr = info->addr;
- 
-+	ret = pm_runtime_resume_and_get(mtd->dev.parent);
-+	if (ret < 0) {
-+		dev_err(&mtd->dev, "rpm: get failed %d\n", ret);
-+		return ret;
-+	}
-+
- 	mutex_lock(&spi->lock);
- 
- 	while (total_len > 0) {
-@@ -512,6 +521,8 @@ static int intel_dg_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- 
- out:
- 	mutex_unlock(&spi->lock);
-+	pm_runtime_mark_last_busy(mtd->dev.parent);
-+	pm_runtime_put_autosuspend(mtd->dev.parent);
- 	return ret;
+ static void i915_spi_release_dev(struct device *dev)
+ {
  }
+@@ -31,6 +38,7 @@ void intel_spi_init(struct drm_i915_private *dev_priv)
+ 	spi->bar.end = spi->bar.start + GEN12_GUNIT_SPI_SIZE - 1;
+ 	spi->bar.flags = IORESOURCE_MEM;
+ 	spi->bar.desc = IORES_DESC_NONE;
++	spi->regions = regions;
  
-@@ -545,6 +556,12 @@ static int intel_dg_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
- 	if (len > spi->regions[idx].size - from)
- 		len = spi->regions[idx].size - from;
- 
-+	ret = pm_runtime_resume_and_get(mtd->dev.parent);
-+	if (ret < 0) {
-+		dev_err(&mtd->dev, "rpm: get failed %zd\n", ret);
-+		return ret;
-+	}
-+
- 	mutex_lock(&spi->lock);
- 
- 	ret = spi_read(spi, region, from, len, buf);
-@@ -557,6 +574,8 @@ static int intel_dg_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
- 	*retlen = ret;
- 
- 	mutex_unlock(&spi->lock);
-+	pm_runtime_mark_last_busy(mtd->dev.parent);
-+	pm_runtime_put_autosuspend(mtd->dev.parent);
- 	return 0;
- }
- 
-@@ -590,6 +609,12 @@ static int intel_dg_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
- 	if (len > spi->regions[idx].size - to)
- 		len = spi->regions[idx].size - to;
- 
-+	ret = pm_runtime_resume_and_get(mtd->dev.parent);
-+	if (ret < 0) {
-+		dev_err(&mtd->dev, "rpm: get failed %zd\n", ret);
-+		return ret;
-+	}
-+
- 	mutex_lock(&spi->lock);
- 
- 	ret = spi_write(spi, region, to, len, buf);
-@@ -602,6 +627,8 @@ static int intel_dg_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
- 	*retlen = ret;
- 
- 	mutex_unlock(&spi->lock);
-+	pm_runtime_mark_last_busy(mtd->dev.parent);
-+	pm_runtime_put_autosuspend(mtd->dev.parent);
- 	return 0;
- }
- 
-@@ -747,6 +774,17 @@ static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
- 		}
- 	}
- 
-+	pm_runtime_enable(device);
-+
-+	pm_runtime_set_autosuspend_delay(device, INTEL_DG_SPI_RPM_TIMEOUT);
-+	pm_runtime_use_autosuspend(device);
-+
-+	ret = pm_runtime_resume_and_get(device);
-+	if (ret < 0) {
-+		dev_err(device, "rpm: get failed %d\n", ret);
-+		goto err_norpm;
-+	}
-+
- 	spi->base = devm_ioremap_resource(device, &ispi->bar);
- 	if (IS_ERR(spi->base)) {
- 		dev_err(device, "mmio not mapped\n");
-@@ -769,9 +807,13 @@ static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
- 
- 	dev_set_drvdata(&aux_dev->dev, spi);
- 
-+	pm_runtime_put(device);
- 	return 0;
- 
- err:
-+	pm_runtime_put(device);
-+err_norpm:
-+	pm_runtime_disable(device);
- 	kref_put(&spi->refcnt, intel_dg_spi_release);
- 	return ret;
- }
-@@ -783,6 +825,8 @@ static void intel_dg_spi_remove(struct auxiliary_device *aux_dev)
- 	if (!spi)
- 		return;
- 
-+	pm_runtime_disable(&aux_dev->dev);
-+
- 	mtd_device_unregister(&spi->mtd);
- 
- 	dev_set_drvdata(&aux_dev->dev, NULL);
+ 	aux_dev->name = "spi";
+ 	aux_dev->id = (pci_domain_nr(pdev->bus) << 16) |
 -- 
 2.34.1
 
