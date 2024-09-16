@@ -4,68 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AEC2C3ABD7
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 13:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ED04C3ABCE
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 14:00:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1A4F10E393;
-	Mon, 16 Sep 2024 13:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2309810E383;
+	Mon, 16 Sep 2024 14:00:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DQ9CvYAW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R75ubJVm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18E9310E37A;
- Mon, 16 Sep 2024 13:58:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B785310E191;
+ Mon, 16 Sep 2024 14:00:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726495139; x=1758031139;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+i+Z8QNOPGGxK7/2DGH5tcM27kZR7UTgKdQ4u2/N/78=;
- b=DQ9CvYAWEs6jQ4anrzJwHkmj3gIeuRghu/VxiUAsHshIENVuJREjJJxQ
- X/0jD778EV+naGyx56vKgclcIuGZVh6QKJTRumF12JwGfDfCWFgwLGeXw
- g0bJgNPgjm7yLtilUcbspcMLY4GTuZCSQwkBvM8w/f1MiKnc25ZlfH1L3
- nNPlmYCgRohpfFudq8bn6CHFV2LKDJhyvGwU5SaST5U6yjZwmnbsP/A9W
- 72Fxwm6RTuPmQnwgBsWC+2mnjW+PrECnUPdyUZvtS+DlLevTcIoJaaR/h
- lJbf3w3WcDdB/3cJPmrz5sgLbhh/YX3voRCox3EOqLDrQAuEYrEqIxSlN w==;
-X-CSE-ConnectionGUID: UyPM3e6vQ6+Fyh2ZxxwOtA==
-X-CSE-MsgGUID: JRdZN8JjTuq4rrlNutfAiw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="36666921"
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="36666921"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2024 06:58:17 -0700
-X-CSE-ConnectionGUID: thWLqYcMRqeTDE/7hRAl2g==
-X-CSE-MsgGUID: Bfg0s3z/SpeARIr8/1frjw==
+ t=1726495258; x=1758031258;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=KTQjwZHHiSqkh5lM354P8c235yJpVLBjBFd2tnP+YGw=;
+ b=R75ubJVmXWqOgXh0s+V3Aad7OkR+0esOTBqm6NBe88VGMEpJqiG0J+jh
+ btZqTijwFsR1rqbe7F2h89ugdQfX/JsEVJUFct4pRpqfr7iVU4UXa6swO
+ s/w1tWqfyFdR53aofyclpjQqPIULcWgnLqHaPg17QUoInoCTwweHl1V6B
+ ZKZAl5r34PB3BTOovy7A43mnSSnTbndRr/szkXlB1zF7vo+YD0fs0N7Qd
+ NlQzyr527EvXMV4qcz+IrozSsTdZt4QhDmYAYU2wEAS5RFrwu8GW0qKgh
+ O+NMKcKgkR/LoOH7tc5y/rf52E+om2u2FW0aXEx8MJUR4c9e7FK8WUwOJ g==;
+X-CSE-ConnectionGUID: xqhZcqz7TciU6RtdqKIaFw==
+X-CSE-MsgGUID: S9t+8eWpRlSR8St9zM56Fw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="42795890"
+X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="42795890"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2024 07:00:57 -0700
+X-CSE-ConnectionGUID: uiKCoy98Sg+/xz/SlRuCAg==
+X-CSE-MsgGUID: P5ZkOCGoQhaed088masrZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="68837481"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2024 06:58:13 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Mark Brown <broonie@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Tomas Winkler <tomas.winkler@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-spi@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-Subject: [PATCH v6 10/12] drm/i915/spi: add support for access mode
-Date: Mon, 16 Sep 2024 16:49:26 +0300
-Message-Id: <20240916134928.3654054-11-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240916134928.3654054-1-alexander.usyskin@intel.com>
-References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="68983149"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 16 Sep 2024 07:00:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 16 Sep 2024 17:00:54 +0300
+Date: Mon, 16 Sep 2024 17:00:54 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
+Message-ID: <Zug6Ft6BCuhGd_y0@intel.com>
+References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
+ <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
+ <ZuRykc_etbea6063@intel.com>
+ <57f44ae3-9cd9-4bd9-ba5d-67e8ae0d7f09@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <57f44ae3-9cd9-4bd9-ba5d-67e8ae0d7f09@linux.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,64 +72,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check SPI access mode from GSC FW status registers
-and overwrite access status read from SPI descriptor, if needed.
+On Fri, Sep 13, 2024 at 08:44:01PM +0200, Maarten Lankhorst wrote:
+> 
+> 
+> Den 2024-09-13 kl. 19:12, skrev Ville Syrjälä:
+> > On Fri, Sep 13, 2024 at 01:47:53PM +0200, Maarten Lankhorst wrote:
+> >> Add the scanout flag to force WC caching, and add the memory barrier
+> >> where needed.
+> >>
+> >> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> >> ---
+> >>  drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
+> >>  1 file changed, 3 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> >> index f99d901a3214f..f7949bf5426af 100644
+> >> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> >> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> >> @@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
+> >>  	if (!vma)
+> >>  		return false;
+> >>  
+> >> +	/* Set scanout flag for WC mapping */
+> >>  	obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
+> >>  				   NULL, PAGE_ALIGN(size),
+> >>  				   ttm_bo_type_kernel,
+> >>  				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+> >> -				   XE_BO_FLAG_GGTT);
+> >> +				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
+> >>  	if (IS_ERR(obj)) {
+> >>  		kfree(vma);
+> >>  		return false;
+> >> @@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
+> >>  
+> >>  void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
+> >>  {
+> >> -	/* TODO: add xe specific flush_map() for dsb buffer object. */
+> >> +	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
+> > 
+> > MMIO itself should be sufficient to flush the WC buffer.
+> > But I guess no real harm in hammering it a bit harder.
+> 
+> You would say that, I still saw a spurious DSB timeout without the flush. :)
+> 
+> "Memory mapped I/O usually takes place through memory locations that are part of
+> a window in the CPU's memory space that has different properties assigned than
+> the usual RAM directed window.
+> 
+> Amongst these properties is usually the fact that such accesses bypass the
+> caching entirely and go directly to the device buses.  This means MMIO accesses
+> may, in effect, overtake accesses to cached memory that were emitted earlier."
 
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/gpu/drm/i915/spi/intel_spi.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+WC != cached
 
-diff --git a/drivers/gpu/drm/i915/spi/intel_spi.c b/drivers/gpu/drm/i915/spi/intel_spi.c
-index 200139531d26..e2b76e5cbc0c 100644
---- a/drivers/gpu/drm/i915/spi/intel_spi.c
-+++ b/drivers/gpu/drm/i915/spi/intel_spi.c
-@@ -10,6 +10,7 @@
- #include "spi/intel_spi.h"
- 
- #define GEN12_GUNIT_SPI_SIZE 0x80
-+#define HECI_FW_STATUS_2_SPI_ACCESS_MODE BIT(3)
- 
- static const struct intel_dg_spi_region regions[INTEL_DG_SPI_REGIONS] = {
- 	[0] = { .name = "DESCRIPTOR", },
-@@ -22,6 +23,29 @@ static void i915_spi_release_dev(struct device *dev)
- {
- }
- 
-+static bool i915_spi_writeable_override(struct drm_i915_private *dev_priv)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
-+	resource_size_t base;
-+	bool writeable_override;
-+
-+	if (IS_DG1(dev_priv)) {
-+		base = DG1_GSC_HECI2_BASE;
-+	} else if (IS_DG2(dev_priv)) {
-+		base = DG2_GSC_HECI2_BASE;
-+	} else {
-+		dev_err(&pdev->dev, "Unknown platform\n");
-+		return true;
-+	}
-+
-+	writeable_override =
-+		!(intel_uncore_read(&dev_priv->uncore, HECI_FWSTS(base, 2)) &
-+		  HECI_FW_STATUS_2_SPI_ACCESS_MODE);
-+	if (writeable_override)
-+		dev_info(&pdev->dev, "SPI access overridden by jumper\n");
-+	return writeable_override;
-+}
-+
- void intel_spi_init(struct drm_i915_private *dev_priv)
- {
- 	struct intel_dg_spi_dev *spi = &dev_priv->spi;
-@@ -33,6 +57,7 @@ void intel_spi_init(struct drm_i915_private *dev_priv)
- 	if (!IS_DGFX(dev_priv))
- 		return;
- 
-+	spi->writeable_override = i915_spi_writeable_override(dev_priv);
- 	spi->bar.parent = &pdev->resource[0];
- 	spi->bar.start = GEN12_GUNIT_SPI_BASE + pdev->resource[0].start;
- 	spi->bar.end = spi->bar.start + GEN12_GUNIT_SPI_SIZE - 1;
+Any uncached access is supposed to flush the WC buffer,
+same as sfence.
+
+Sounds like you have some other issue and the sfence just happens
+to work around it somehow. Either that or the CPU is broken.
+
+> 
+> Since the memory is write combined, the memory barrier itself is sufficient
+> and no further invalidation is required.
+> 
+> Just the workaround should be fine. The l2 flush should be moved after the mb as well.
+> I'll do that in a followup patch.
+> 
+> >>  }
+> >> -- 
+> >> 2.45.2
+> > 
+
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
