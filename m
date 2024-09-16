@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E70CEC3ABD8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AEC2C3ABD7
 	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 13:59:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D28010E395;
-	Mon, 16 Sep 2024 13:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1A4F10E393;
+	Mon, 16 Sep 2024 13:59:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VfTjWjNW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DQ9CvYAW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29DFF10E38D;
- Mon, 16 Sep 2024 13:59:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18E9310E37A;
+ Mon, 16 Sep 2024 13:58:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726495140; x=1758031140;
+ t=1726495139; x=1758031139;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GLSPhxFQuwCUJaUzoFVv0KCk3ODi4LtuNYrNi+eFn0Q=;
- b=VfTjWjNW+RvX7VI8i6BzdObXYNf+4GPszNrOtm4udeUUbOpzW9x0j3qy
- lnDp5REWMz0i91zIKauCumvhn9xhQbSog2s5Etw08O1b8MPSJ45bUY0Uh
- aQse+6L7807+alXDhXm6wTzBEU4EzDBOscCEtRXojQyZK4kRStT4/BMcW
- 9fnjVfceu2drlhFbAD3nS6YWc35cp1K4Qtup2OD09c/tVYDfa4fEbs8za
- Fgy6sxwX9Xpb6QEOs3Sb5Gy/o4BHRRmX6m254Sc8XNSNmqdrEuvTMcMFD
- Fb/Mt9umwOdyQkUCpnLkGM2ROk0EwAjwJ/FopB60eKGrsieYXUjFlrG7f Q==;
-X-CSE-ConnectionGUID: 4ySVEzPnTtWeMEoKHT5wXQ==
-X-CSE-MsgGUID: mc+a7K7iTNmqa8Sh5fmuVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="36666949"
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="36666949"
+ bh=+i+Z8QNOPGGxK7/2DGH5tcM27kZR7UTgKdQ4u2/N/78=;
+ b=DQ9CvYAWEs6jQ4anrzJwHkmj3gIeuRghu/VxiUAsHshIENVuJREjJJxQ
+ X/0jD778EV+naGyx56vKgclcIuGZVh6QKJTRumF12JwGfDfCWFgwLGeXw
+ g0bJgNPgjm7yLtilUcbspcMLY4GTuZCSQwkBvM8w/f1MiKnc25ZlfH1L3
+ nNPlmYCgRohpfFudq8bn6CHFV2LKDJhyvGwU5SaST5U6yjZwmnbsP/A9W
+ 72Fxwm6RTuPmQnwgBsWC+2mnjW+PrECnUPdyUZvtS+DlLevTcIoJaaR/h
+ lJbf3w3WcDdB/3cJPmrz5sgLbhh/YX3voRCox3EOqLDrQAuEYrEqIxSlN w==;
+X-CSE-ConnectionGUID: UyPM3e6vQ6+Fyh2ZxxwOtA==
+X-CSE-MsgGUID: JRdZN8JjTuq4rrlNutfAiw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="36666921"
+X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="36666921"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2024 06:58:28 -0700
-X-CSE-ConnectionGUID: BLp70Ys2TA6lzGVaidXI+g==
-X-CSE-MsgGUID: jditMBM2SzC/ynWhLRt3Vw==
+ 16 Sep 2024 06:58:17 -0700
+X-CSE-ConnectionGUID: thWLqYcMRqeTDE/7hRAl2g==
+X-CSE-MsgGUID: Bfg0s3z/SpeARIr8/1frjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="68837515"
+X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="68837481"
 Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2024 06:58:24 -0700
+ 16 Sep 2024 06:58:13 -0700
 From: Alexander Usyskin <alexander.usyskin@intel.com>
 To: Mark Brown <broonie@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -58,9 +58,9 @@ Cc: Tomas Winkler <tomas.winkler@intel.com>,
  Vitaly Lubart <vitaly.lubart@intel.com>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-spi@vger.kernel.org,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH v6 12/12] drm/xe/spi: add support for access mode
-Date: Mon, 16 Sep 2024 16:49:28 +0300
-Message-Id: <20240916134928.3654054-13-alexander.usyskin@intel.com>
+Subject: [PATCH v6 10/12] drm/i915/spi: add support for access mode
+Date: Mon, 16 Sep 2024 16:49:26 +0300
+Message-Id: <20240916134928.3654054-11-alexander.usyskin@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240916134928.3654054-1-alexander.usyskin@intel.com>
 References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
@@ -85,102 +85,56 @@ and overwrite access status read from SPI descriptor, if needed.
 
 Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gsc_regs.h |  4 ++++
- drivers/gpu/drm/xe/xe_heci_gsc.c      |  5 +---
- drivers/gpu/drm/xe/xe_spi.c           | 33 ++++++++++++++++++++++++++-
- 3 files changed, 37 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/spi/intel_spi.c | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-index 7702364b65f1..9b66cc972a63 100644
---- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-@@ -16,6 +16,10 @@
- #define MTL_GSC_HECI1_BASE	0x00116000
- #define MTL_GSC_HECI2_BASE	0x00117000
+diff --git a/drivers/gpu/drm/i915/spi/intel_spi.c b/drivers/gpu/drm/i915/spi/intel_spi.c
+index 200139531d26..e2b76e5cbc0c 100644
+--- a/drivers/gpu/drm/i915/spi/intel_spi.c
++++ b/drivers/gpu/drm/i915/spi/intel_spi.c
+@@ -10,6 +10,7 @@
+ #include "spi/intel_spi.h"
  
-+#define DG1_GSC_HECI2_BASE	0x00259000
-+#define PVC_GSC_HECI2_BASE	0x00285000
-+#define DG2_GSC_HECI2_BASE	0x00374000
-+
- #define HECI_H_CSR(base)	XE_REG((base) + 0x4)
- #define   HECI_H_CSR_IE		REG_BIT(0)
- #define   HECI_H_CSR_IS		REG_BIT(1)
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index 65b2e147c4b9..27734085164e 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -11,14 +11,11 @@
- #include "xe_device_types.h"
- #include "xe_drv.h"
- #include "xe_heci_gsc.h"
-+#include "regs/xe_gsc_regs.h"
- #include "xe_platform_types.h"
+ #define GEN12_GUNIT_SPI_SIZE 0x80
++#define HECI_FW_STATUS_2_SPI_ACCESS_MODE BIT(3)
  
- #define GSC_BAR_LENGTH  0x00000FFC
- 
--#define DG1_GSC_HECI2_BASE			0x259000
--#define PVC_GSC_HECI2_BASE			0x285000
--#define DG2_GSC_HECI2_BASE			0x374000
--
- static void heci_gsc_irq_mask(struct irq_data *d)
- {
- 	/* generic irq handling */
-diff --git a/drivers/gpu/drm/xe/xe_spi.c b/drivers/gpu/drm/xe/xe_spi.c
-index 37080b82e9ae..8ac6376f663e 100644
---- a/drivers/gpu/drm/xe/xe_spi.c
-+++ b/drivers/gpu/drm/xe/xe_spi.c
-@@ -5,7 +5,10 @@
- 
- #include <linux/intel_dg_spi_aux.h>
- #include <linux/pci.h>
-+#include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_mmio.h"
-+#include "regs/xe_gsc_regs.h"
- #include "xe_spi.h"
- #include "xe_sriov.h"
- 
-@@ -24,6 +27,34 @@ static void xe_spi_release_dev(struct device *dev)
+ static const struct intel_dg_spi_region regions[INTEL_DG_SPI_REGIONS] = {
+ 	[0] = { .name = "DESCRIPTOR", },
+@@ -22,6 +23,29 @@ static void i915_spi_release_dev(struct device *dev)
  {
  }
  
-+static bool xe_spi_writeable_override(struct xe_device *xe)
++static bool i915_spi_writeable_override(struct drm_i915_private *dev_priv)
 +{
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
 +	resource_size_t base;
 +	bool writeable_override;
 +
-+	if (xe->info.platform == XE_BATTLEMAGE) {
-+		base = DG2_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_PVC) {
-+		base = PVC_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_DG2) {
-+		base = DG2_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_DG1) {
++	if (IS_DG1(dev_priv)) {
 +		base = DG1_GSC_HECI2_BASE;
++	} else if (IS_DG2(dev_priv)) {
++		base = DG2_GSC_HECI2_BASE;
 +	} else {
 +		dev_err(&pdev->dev, "Unknown platform\n");
 +		return true;
 +	}
 +
 +	writeable_override =
-+		!(xe_mmio_read32(&gt->mmio, HECI_H_GS1(base)) &
++		!(intel_uncore_read(&dev_priv->uncore, HECI_FWSTS(base, 2)) &
 +		  HECI_FW_STATUS_2_SPI_ACCESS_MODE);
 +	if (writeable_override)
 +		dev_info(&pdev->dev, "SPI access overridden by jumper\n");
 +	return writeable_override;
 +}
 +
- void xe_spi_init(struct xe_device *xe)
+ void intel_spi_init(struct drm_i915_private *dev_priv)
  {
- 	struct intel_dg_spi_dev *spi = &xe->spi;
-@@ -38,7 +69,7 @@ void xe_spi_init(struct xe_device *xe)
- 	if (IS_SRIOV_VF(xe))
+ 	struct intel_dg_spi_dev *spi = &dev_priv->spi;
+@@ -33,6 +57,7 @@ void intel_spi_init(struct drm_i915_private *dev_priv)
+ 	if (!IS_DGFX(dev_priv))
  		return;
  
--	spi->writeable_override = false;
-+	spi->writeable_override = xe_spi_writeable_override(xe);
++	spi->writeable_override = i915_spi_writeable_override(dev_priv);
  	spi->bar.parent = &pdev->resource[0];
  	spi->bar.start = GEN12_GUNIT_SPI_BASE + pdev->resource[0].start;
  	spi->bar.end = spi->bar.start + GEN12_GUNIT_SPI_SIZE - 1;
