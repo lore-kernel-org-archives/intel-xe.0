@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD050C3ABA2
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 09:11:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DADE3C3ABB2
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Sep 2024 09:27:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99CF110E319;
-	Mon, 16 Sep 2024 09:11:40 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7747910E329;
- Mon, 16 Sep 2024 09:11:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9C810E322;
+	Mon, 16 Sep 2024 09:27:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="n0LoAxo0";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B961B10E31F;
+ Mon, 16 Sep 2024 09:27:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 83CC55C05FE;
+ Mon, 16 Sep 2024 09:27:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04422C4CEC4;
+ Mon, 16 Sep 2024 09:27:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1726478862;
+ bh=pUAMi86rwTq+wVgJgsM5jMxxeBpOkJO3emrkyOgd2JQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=n0LoAxo0hDsXYtBeVuVt0ft4mZW3HZUYeDl0Q/kED3+MwrED5vAuFGnVpfVemwzM3
+ it+g1Hb+0fpACtumqFcyD/RKJSZMR6uYb5c48nuhJbX0x6JV/C6VsS7KL0sfqpieI+
+ bmE5p4okg2YXdu0WfJktgHa0Dl6pA8JEYhNNxORslZibW5/7KRyDEs55+yQBWjp8f8
+ v+topeF22rxS9vzC5mw+XyOFbivWr8UawD+jIwykyylbSBE882XbA/pWMSHAXc1nzi
+ sPCu3LukN9D5uiohLJRHSSm71FWJbu/HKYxMQpScYdtFjmxK6was6MCNK/o7L3YIeb
+ AXG6+VEs0IccQ==
+Date: Mon, 16 Sep 2024 11:27:35 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Yuesong Li <liyuesong@vivo.com>
+Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, 
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, opensource.kernel@vivo.com
+Subject: Re: [PATCH v1] drm/i915/dp: Remove double assignment in
+ intel_dp_compute_as_sdp()
+Message-ID: <thvv6gywqkygj2tcmbnmpwp7opy3nswphc7n3nxdj7r3roshsf@tm4ntfmv7dun>
+References: <20240823023612.3027849-1-liyuesong@vivo.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/vram=3A_fix_ccs_o?=
- =?utf-8?q?ffset_calculation_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Sep 2024 09:11:39 -0000
-Message-ID: <172647789948.1017579.10213640832531827912@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240916084911.13119-2-matthew.auld@intel.com>
-In-Reply-To: <20240916084911.13119-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240823023612.3027849-1-liyuesong@vivo.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +58,18 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Yuesong,
 
-Series: drm/xe/vram: fix ccs offset calculation (rev3)
-URL   : https://patchwork.freedesktop.org/series/138646/
-State : success
+On Fri, Aug 23, 2024 at 10:36:12AM GMT, Yuesong Li wrote:
+> cocci report a double assignment warning. 'as_sdp->duration_incr_ms'
+> was assigned twice in intel_dp_compute_as_sdp().
+> 
+> Signed-off-by: Yuesong Li <liyuesong@vivo.com>
 
-== Summary ==
+reviewed and merged to drm-intel-next.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 69e534b8a94723926a286f6aa2e2999cd99bcb45
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Thanks,
+Andi
