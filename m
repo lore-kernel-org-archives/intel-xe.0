@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EDADCAC599
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 19:42:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65CFECAC599
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 19:53:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F144310E4F8;
-	Tue, 17 Sep 2024 19:42:06 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E42A310E4FC;
- Tue, 17 Sep 2024 19:42:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E943E10E179;
+	Tue, 17 Sep 2024 19:53:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U5qjt3d3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E7A510E179
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 19:53:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726602807; x=1758138807;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=h+LwxHVJBgcHPLusvXk0u4+Uc42sXYJbZ7NHrvE97JQ=;
+ b=U5qjt3d3UZHiV1bjFR6qbI7XoWZseuMctPKjGT30hpJguRTyQQ6lMeNV
+ 39deHlflMkLuP8utrQD4+mFkhHLJ1FyKLdOC7SDej6buTmiTfb9QSDekp
+ i3SP6IDLgcqiT39PbP0MgPsUJFyT/3gA9jrV6TEg8zJa4BMVoQHl02Zt5
+ U1Y3ITk5f45ieC47qPHYXAQ7nuSoGKSe4ebv8u0S/fUSvBcNAPzOMnpu1
+ lZb52MGRCIoBOpsUWYdXQRCSzLeXQbpyAuef6zHVTs9BQypLhGVO9wZ01
+ jGc/7aPt5MAiXS/qGeuytAHF7QjfTZw8R0kzUljBPkXx2RayUqzr3bICE w==;
+X-CSE-ConnectionGUID: FabLu0WXTliWn0IfektYHw==
+X-CSE-MsgGUID: hkgixUGERnaB9ZXYI4XsyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="36053433"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="36053433"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 12:53:26 -0700
+X-CSE-ConnectionGUID: /+Os8IWNQWCa84/jlaLVaA==
+X-CSE-MsgGUID: JLHUbyM9SGmA69Kqz48xDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="73397769"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa003.fm.intel.com with ESMTP; 17 Sep 2024 12:53:25 -0700
+Received: from [10.245.120.199] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.120.199])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 45AE7312D3;
+ Tue, 17 Sep 2024 20:53:22 +0100 (IST)
+Message-ID: <de0b4f71-590e-43cf-9f7a-3299290f0297@intel.com>
+Date: Tue, 17 Sep 2024 21:53:21 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/5] drm/xe: memirq handler changes
+To: Ilia Levi <illevi@habana.ai>, intel-xe@lists.freedesktop.org
+Cc: ilia.levi@intel.com, jonathan.cavitt@intel.com, koby.elbaz@intel.com,
+ yaron.avizrat@intel.com
+References: <20240917112307.1242329-1-illevi@habana.ai>
+ <20240917112307.1242329-6-illevi@habana.ai>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240917112307.1242329-6-illevi@habana.ai>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Fix_xe=5Fforce=5Fwake=5F?=
- =?utf-8?q?get=28=29_failure_handling_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Sep 2024 19:42:05 -0000
-Message-ID: <172660212593.1023612.13193504544283837904@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240917181425.515871-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240917181425.515871-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +70,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Fix xe_force_wake_get() failure handling (rev4)
-URL   : https://patchwork.freedesktop.org/series/137982/
-State : success
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 38e1b615fb395b928e514108e908cd6edf3d34c3
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
 
 
+On 17.09.2024 13:23, Ilia Levi wrote:
+> From: Ilia Levi <ilia.levi@intel.com>
+> 
+> Expose an interrupt processing handler for a single hw engine.
+> Refactor code to use this handler from the VF.
+> This handler also caters for the MSI-X mode, where the hardware engines
+> report interrupt source and status to the offset of engine instance zero.
+
+nit: maybe you should also add here that "this new function will be used
+soon in upcoming MSIX enabling series."
+
+> 
+> Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+
+but still LGTM
+
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
