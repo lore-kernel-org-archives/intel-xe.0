@@ -4,59 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1B37C36018
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 12:27:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2515EC021A7
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 13:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E16D10E46F;
-	Tue, 17 Sep 2024 12:27:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OxpdhwjS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B96210E489;
- Tue, 17 Sep 2024 12:27:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726576051; x=1758112051;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=C388/p0KkfFSczWDhC+oM8+M0fwsTF4om3mrCuBaRCQ=;
- b=OxpdhwjSTl1d59oNGEJVEm84pBESewZ6YE91z6oeqQLkX5KI/QmuIshx
- AG/Y3sPXBzhbjvsw6EDpFCZa9D2TK/m0rhj/0CS5d4UayCO9mI1yKe1QQ
- /aiJrBx99yDB8HH3KoZt+qU+Zl6U3R0iXMUs7o+0gd5aWtBk5tOxDENgL
- aGVzxHFM06IQMjk3OsDlAEMWT3CL+Z+wLv2J//1MUqxazI628GFcAh3yq
- qoc+Xd7zcQQEbojs2YSq3F2z+aGHBN2NQdPhcCeAWJXtMlLe+d1puTCKR
- n/rqEe/eKGRB/ZS5XUGCy4rY1CXPN3sr+n0NHJk3U5VGyQBX3JKM9HZK4 A==;
-X-CSE-ConnectionGUID: SEYPk8ktQKWKJ7myAk/Yfg==
-X-CSE-MsgGUID: whlmkhi4QHWkweRPRurtLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="50840167"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="50840167"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 05:27:31 -0700
-X-CSE-ConnectionGUID: iOU+OWzsQZeK/qDa10Fu0g==
-X-CSE-MsgGUID: O5ppqt9eRHiWE6YrR15YZQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69264104"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Sep 2024 05:27:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 17 Sep 2024 15:27:28 +0300
-Date: Tue, 17 Sep 2024 15:27:28 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- suraj.kandpal@intel.com
-Subject: Re: [PATCH 1/2] drm/i915: Add some essential functionality for joiners
-Message-ID: <Zul1sJjHUEyCWa_b@intel.com>
-References: <20240917082359.2383204-1-ankit.k.nautiyal@intel.com>
- <20240917082359.2383204-2-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD58710E473;
+	Tue, 17 Sep 2024 13:13:23 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 082EE10E473;
+ Tue, 17 Sep 2024 13:13:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2783556636602231142=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240917082359.2383204-2-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_memirq_infra_changes_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ilia Levi" <ilia.levi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Sep 2024 13:13:22 -0000
+Message-ID: <172657880202.1022041.12814512645334841595@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240917112307.1242329-1-illevi@habana.ai>
+In-Reply-To: <20240917112307.1242329-1-illevi@habana.ai>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,134 +35,122 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 17, 2024 at 01:53:57PM +0530, Ankit Nautiyal wrote:
-> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> 
-> In most of the cases we now try to avoid mentioning things like
-> "bigjoiner" or "ultrajoiner" trying to unify the API and refer
-> mostly to all this functionality as "joiner".
-> In majority cases that should be way to go.
-> However in some cases we still need to distinguish between
-> bigjoiner primaries and secondaries(such as DSC register programming).
-> 
-> Create correspondent helper functions and start using them,
-> in order be prepared for adding ultrajoiner functionality.
-> 
-> v2: Fixed checkpatch warnings (Ankit)
-> v3: Introduce ultrajoiner helpers in next patch.
-> v4: Streamline the helpers and add few more. (Ville)
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 41 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.h |  2 +
->  drivers/gpu/drm/i915/display/intel_vdsc.c    |  4 +-
->  3 files changed, 45 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index d4a371edfcdd..deacdf82e143 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -254,6 +254,47 @@ static enum pipe joiner_primary_pipe(const struct intel_crtc_state *crtc_state)
->  	return ffs(crtc_state->joiner_pipes) - 1;
->  }
->  
-> +static bool is_bigjoiner(const struct intel_crtc_state *crtc_state)
-> +{
-> +	return hweight8(crtc_state->joiner_pipes) >= 2;
-> +}
-> +
-> +static u8 bigjoiner_primary_pipes(const struct intel_crtc_state *crtc_state)
-> +{
-> +	if (!is_bigjoiner(crtc_state))
-> +		return 0;
-> +
-> +	return crtc_state->joiner_pipes & (0b01010101 << joiner_primary_pipe(crtc_state));
-> +}
-> +
-> +static unsigned int bigjoiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
-> +{
-> +	if (!is_bigjoiner(crtc_state))
-> +		return 0;
-> +
-> +	return crtc_state->joiner_pipes & (0b10101010 << joiner_primary_pipe(crtc_state));
-> +}
-> +
-> +bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +
-> +	if (!is_bigjoiner(crtc_state))
-> +		return false;
-> +
-> +	return BIT(crtc->pipe) & bigjoiner_primary_pipes(crtc_state);
-> +}
-> +
-> +bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +
-> +	if (!is_bigjoiner(crtc_state))
-> +		return false;
-> +
-> +	return BIT(crtc->pipe) & bigjoiner_secondary_pipes(crtc_state);
-> +}
+--===============2783556636602231142==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We probably want a comment around these somewhere indicating that
-(despite the name) these apply to both bigjoiner and uncompressed
-joiner.
+== Series Details ==
 
-Unless someone can come up with a better term to use instead of
-"bigjoiner" in these? I'm drawing a blank myself.
+Series: memirq infra changes (rev6)
+URL   : https://patchwork.freedesktop.org/series/137643/
+State : failure
 
-Anyways, with some clarification added this is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Summary ==
 
->  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
->  {
->  	if (crtc_state->joiner_pipes)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index 7ca26e5cb20e..894f58ead279 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -426,6 +426,8 @@ bool is_trans_port_sync_master(const struct intel_crtc_state *state);
->  u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state);
->  bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
->  bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
-> +bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state);
-> +bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state);
->  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
->  struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
->  bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index 2e849b015e74..8158e3702ed5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -742,7 +742,7 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
->  	u32 dss_ctl1_val = 0;
->  
->  	if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable) {
-> -		if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		if (intel_crtc_is_bigjoiner_secondary(crtc_state))
->  			dss_ctl1_val |= UNCOMPRESSED_JOINER_SECONDARY;
->  		else
->  			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
-> @@ -771,7 +771,7 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
->  	}
->  	if (crtc_state->joiner_pipes) {
->  		dss_ctl1_val |= BIG_JOINER_ENABLE;
-> -		if (!intel_crtc_is_joiner_secondary(crtc_state))
-> +		if (intel_crtc_is_bigjoiner_primary(crtc_state))
->  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
->  	}
->  	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-> -- 
-> 2.45.2
+CI Bug Log - changes from xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3_BAT -> xe-pw-137643v6_BAT
+====================================================
 
--- 
-Ville Syrjälä
-Intel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-137643v6_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-137643v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 0)
+------------------------------
+
+  ERROR: It appears as if the changes made in xe-pw-137643v6_BAT prevented too many machines from booting.
+
+  Missing    (9): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-pvc-2 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-7 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8022 -> IGT_8023
+  * Linux: xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3 -> xe-pw-137643v6
+
+  IGT_8022: 2d82f767a959d58c04ff3876d59d67924208d4ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8023: 20a0ae35cb9fbae774dce8b78e20b2eb658171aa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3: 38e1b615fb395b928e514108e908cd6edf3d34c3
+  xe-pw-137643v6: 137643v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137643v6/index.html
+
+--===============2783556636602231142==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>memirq infra changes (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137643/">https://patchwork.freedesktop.org/series/137643/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137643v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137643v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3_BAT -&gt; xe-pw-137643v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-137643v6_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-137643v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 0)</h2>
+<p>ERROR: It appears as if the changes made in xe-pw-137643v6_BAT prevented too many machines from booting.</p>
+<p>Missing    (9): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-pvc-2 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-7 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8022 -&gt; IGT_8023</li>
+<li>Linux: xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3 -&gt; xe-pw-137643v6</li>
+</ul>
+<p>IGT_8022: 2d82f767a959d58c04ff3876d59d67924208d4ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8023: 20a0ae35cb9fbae774dce8b78e20b2eb658171aa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3: 38e1b615fb395b928e514108e908cd6edf3d34c3<br />
+  xe-pw-137643v6: 137643v6</p>
+
+</body>
+</html>
+
+--===============2783556636602231142==--
