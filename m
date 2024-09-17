@@ -4,38 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAA99C36016
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B84DDC36015
 	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D73310E283;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78B2A10E211;
 	Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="lny35bSU";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="OyKT5Fe5";
 	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD2F010E0D0
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 11:24:00 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA1C10E283
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 11:24:01 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1726572233; bh=BSvGuAk5tcpHwmbT24tB69FntC6fuCqspPDGL3xc0m4=;
- h=From:To:Cc:Subject:Date:From;
- b=lny35bSUNYPw+DfWVPBRt7HSruPfz6sQ6E6EpNg/D1I3Poyvzr6lwf0szn6wEYnbd
- CeKQl/5fyJKiw2klOq1BhbWckwVqV2tt+0wAB39oYPUDtaCXaq60Q3CYxE2izsb0vD
- icRm68b3FQo6NRg4e1V/dqf5a8wt0AKw1nel98nR0inrBkAcg+HlDYmPbjiXu3QQT2
- lBi6thy99W29nMEhbfhPYQuidv5VIuY6bo7qjzVFpMs6fXSW+8txyN/ifD6JMhclw3
- jwZ+Hd2Ru1CG22NHJUW6RE7/HJhkiAoMfP+sciCSoraTMR/+IisOUIHfXBb7meuJMQ
- OHf1gkQ0jcR6A==
+ t=1726572235; bh=RHWc+cHMPZ4RAvusNHud5kFuOh4gPU8sDbSVjyniNcU=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=OyKT5Fe5QBHssM4USGO+n8q6asfApjPl1ftbxRiIEY8qxLAnGVA/aNVDv2Zt2v7ar
+ dmhbgdjQMzBEXxqfgSw9pY6zYR6TgDvsFxPzUCsyBkjsJ/KSEkMi8CYvb94qz6wwiA
+ 6VNXl+fnHckdOYz595Rdwknw2uscnQ2Y70i1PDPfYO58Scn5d350H/eKbn2yh1AEaG
+ ilTHCmAmc83UYCcA99PwzhyXrhKlmq5yQ1S+C/bw/ZuBy1RoosVXZAXoFvqX/gbm6w
+ AFcLleJu7o07OVGI+x17HcR/NtfkYk4JMhlS22ry5BduybGpsCl/njgWbG8fRt5g2c
+ /iGI9j2iYvXgA==
 Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 48HBNmuK1242354; Tue, 17 Sep 2024 14:23:48 +0300
+ id 48HBNmuO1242354; Tue, 17 Sep 2024 14:23:48 +0300
 From: Ilia Levi <illevi@habana.ai>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, michal.wajdeczko@intel.com, jonathan.cavitt@intel.com,
  koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH v5 0/5] memirq infra changes
-Date: Tue, 17 Sep 2024 14:23:02 +0300
-Message-ID: <20240917112307.1242329-1-illevi@habana.ai>
+Subject: [PATCH v5 4/5] drm/xe: memirq infra changes for MSI-X
+Date: Tue, 17 Sep 2024 14:23:06 +0300
+Message-ID: <20240917112307.1242329-5-illevi@habana.ai>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240917112307.1242329-1-illevi@habana.ai>
+References: <20240917112307.1242329-1-illevi@habana.ai>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -54,41 +56,279 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ilia Levi <ilia.levi@intel.com>
 
+When using MSI-X, hw engines report interrupt status and source to engine
+instance 0. For this scenario, in order to differentiate between the
+engines, we need to pass different status/source pointers in the LRC.
 
-This patch set contains Memory Based Interrupts (memirq) infrastructure
-changes to make it reusable for use cases other than VF 
-(specifically MSI-X). 
+The requirements on those pointers are:
+- Interrupt status should be 4KiB aligned
+- Interrupt source should be 64 bytes aligned
 
-The main changes are separation from VF and a new mode where hardware
-engines report interrupt source and status to the offset of instance 0
-(for MSI-X support).
+To accommodate this, we duplicate the current memirq page layout -
+allocating a page for each engine instance and pass this page in the LRC.
+Note that the same page can be reused for different engine types.
+For example, an LRC executing on CCS #x will have pointers to page #x,
+and an LRC executing on BCS #x will have the same pointers. Thus, to
+locate the proper page, the pointer accessors were modified to receive
+the hw engine.
 
-v2: Rebase
-v3: Rebase, refactor according to review comments (Michal)
-v4: Rebase, address review comments (Michal)
-v5: Rebase, fix more review comments (Michal)
+Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h       |  8 ++-
+ drivers/gpu/drm/xe/xe_lrc.c          |  4 +-
+ drivers/gpu/drm/xe/xe_memirq.c       | 89 +++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_memirq.h       |  5 +-
+ drivers/gpu/drm/xe/xe_memirq_types.h |  4 +-
+ 5 files changed, 89 insertions(+), 21 deletions(-)
 
-
-Ilia Levi (5):
-  drm/xe: Introduce dedicated config for memirq debug
-  drm/xe: Introduce xe_device_uses_memirq()
-  drm/xe: move memirq out of VF
-  drm/xe: memirq infra changes for MSI-X
-  drm/xe: memirq handler changes
-
- drivers/gpu/drm/xe/Kconfig.debug     |  12 ++
- drivers/gpu/drm/xe/xe_device.c       |   8 +-
- drivers/gpu/drm/xe/xe_device.h       |  12 ++
- drivers/gpu/drm/xe/xe_device_types.h |   6 +-
- drivers/gpu/drm/xe/xe_guc.c          |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c    |  28 +++-
- drivers/gpu/drm/xe/xe_irq.c          |   8 +-
- drivers/gpu/drm/xe/xe_lrc.c          |   8 +-
- drivers/gpu/drm/xe/xe_memirq.c       | 190 +++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_memirq.h       |   6 +-
- drivers/gpu/drm/xe/xe_memirq_types.h |   4 +-
- 11 files changed, 205 insertions(+), 79 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 11a63384d3a8..4c3f0ebe78a9 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -155,6 +155,12 @@ static inline bool xe_device_has_sriov(struct xe_device *xe)
+ 	return xe->info.has_sriov;
+ }
+ 
++static inline bool xe_device_has_msix(struct xe_device *xe)
++{
++	/* TODO: change this when MSI-X support is fully integrated */
++	return false;
++}
++
+ static inline bool xe_device_has_memirq(struct xe_device *xe)
+ {
+ 	return GRAPHICS_VERx100(xe) >= 1250;
+@@ -162,7 +168,7 @@ static inline bool xe_device_has_memirq(struct xe_device *xe)
+ 
+ static inline bool xe_device_uses_memirq(struct xe_device *xe)
+ {
+-	return xe_device_has_memirq(xe) && IS_SRIOV_VF(xe);
++	return xe_device_has_memirq(xe) && (IS_SRIOV_VF(xe) || xe_device_has_msix(xe));
+ }
+ 
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index e40f48f4240f..f0976230012a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -613,9 +613,9 @@ static void set_memory_based_intr(u32 *regs, struct xe_hw_engine *hwe)
+ 	regs[CTX_LRI_INT_REPORT_PTR] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(2) |
+ 				       MI_LRI_LRM_CS_MMIO | MI_LRI_FORCE_POSTED;
+ 	regs[CTX_INT_STATUS_REPORT_REG] = RING_INT_STATUS_RPT_PTR(0).addr;
+-	regs[CTX_INT_STATUS_REPORT_PTR] = xe_memirq_status_ptr(memirq);
++	regs[CTX_INT_STATUS_REPORT_PTR] = xe_memirq_status_ptr(memirq, hwe);
+ 	regs[CTX_INT_SRC_REPORT_REG] = RING_INT_SRC_RPT_PTR(0).addr;
+-	regs[CTX_INT_SRC_REPORT_PTR] = xe_memirq_source_ptr(memirq);
++	regs[CTX_INT_SRC_REPORT_PTR] = xe_memirq_source_ptr(memirq, hwe);
+ }
+ 
+ static int lrc_ring_mi_mode(struct xe_hw_engine *hwe)
+diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+index 8b12209d995a..ae4279a7f947 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.c
++++ b/drivers/gpu/drm/xe/xe_memirq.c
+@@ -115,6 +115,44 @@ static const char *guc_name(struct xe_guc *guc)
+  *            |           |
+  *            |           |
+  *            +-----------+
++ *
++ *
++ * MSI-X use case
++ *
++ * When using MSI-X, hw engines report interrupt status and source to engine
++ * instance 0. For this scenario, in order to differentiate between the
++ * engines, we need to pass different status/source pointers in the LRC.
++ *
++ * The requirements on those pointers are:
++ * - Interrupt status should be 4KiB aligned
++ * - Interrupt source should be 64 bytes aligned
++ *
++ * To accommodate this, we duplicate the memirq page layout above -
++ * allocating a page for each engine instance and pass this page in the LRC.
++ * Note that the same page can be reused for different engine types.
++ * For example, an LRC executing on CCS #x will have pointers to page #x,
++ * and an LRC executing on BCS #x will have the same pointers.
++ *
++ * ::
++ *
++ *   0x0000   +==============================+  <== page for instance 0 (BCS0, CCS0, etc.)
++ *            | Interrupt Status Report Page |
++ *   0x0400   +==============================+
++ *            | Interrupt Source Report Page |
++ *   0x0440   +==============================+
++ *            | Interrupt Enable Mask        |
++ *            +==============================+
++ *            | Not used                     |
++ *   0x1000   +==============================+  <== page for instance 1 (BCS1, CCS1, etc.)
++ *            | Interrupt Status Report Page |
++ *   0x1400   +==============================+
++ *            | Interrupt Source Report Page |
++ *   0x1440   +==============================+
++ *            | Not used                     |
++ *   0x2000   +==============================+  <== page for instance 2 (BCS2, CCS2, etc.)
++ *            | ...                          |
++ *            +==============================+
++ *
+  */
+ 
+ static void __release_xe_bo(struct drm_device *drm, void *arg)
+@@ -124,18 +162,30 @@ static void __release_xe_bo(struct drm_device *drm, void *arg)
+ 	xe_bo_unpin_map_no_vm(bo);
+ }
+ 
++static inline bool hw_reports_to_instance_zero(struct xe_memirq *memirq)
++{
++	/*
++	 * When the HW engines are configured to use MSI-X,
++	 * they report interrupt status and source to the offset of
++	 * engine instance 0.
++	 */
++	return xe_device_has_msix(memirq_to_xe(memirq));
++}
++
+ static int memirq_alloc_pages(struct xe_memirq *memirq)
+ {
+ 	struct xe_device *xe = memirq_to_xe(memirq);
+ 	struct xe_tile *tile = memirq_to_tile(memirq);
++	size_t bo_size = hw_reports_to_instance_zero(memirq) ?
++		XE_HW_ENGINE_MAX_INSTANCE * SZ_4K : SZ_4K;
+ 	struct xe_bo *bo;
+ 	int err;
+ 
+-	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET, SZ_64));
+-	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET, SZ_4K));
++	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET(0), SZ_64));
++	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET(0), SZ_4K));
+ 
+ 	/* XXX: convert to managed bo */
+-	bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4K,
++	bo = xe_bo_create_pin_map(xe, tile, NULL, bo_size,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_FLAG_SYSTEM |
+ 				  XE_BO_FLAG_GGTT |
+@@ -150,19 +200,20 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+ 	memirq_assert(memirq, !xe_bo_is_vram(bo));
+ 	memirq_assert(memirq, !memirq->bo);
+ 
+-	iosys_map_memset(&bo->vmap, 0, 0, SZ_4K);
++	iosys_map_memset(&bo->vmap, 0, 0, bo_size);
+ 
+ 	memirq->bo = bo;
+-	memirq->source = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OFFSET);
+-	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET);
++	memirq->source = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OFFSET(0));
++	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET(0));
+ 	memirq->mask = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_ENABLE_OFFSET);
+ 
+ 	memirq_assert(memirq, !memirq->source.is_iomem);
+ 	memirq_assert(memirq, !memirq->status.is_iomem);
+ 	memirq_assert(memirq, !memirq->mask.is_iomem);
+ 
+-	memirq_debug(memirq, "page offsets: source %#x status %#x\n",
+-		     xe_memirq_source_ptr(memirq), xe_memirq_status_ptr(memirq));
++	memirq_debug(memirq, "page offsets: bo %#x bo_size %zu source %#x status %#x\n",
++		     xe_bo_ggtt_addr(bo), bo_size, XE_MEMIRQ_SOURCE_OFFSET(0),
++		     XE_MEMIRQ_STATUS_OFFSET(0));
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, __release_xe_bo, memirq->bo);
+ 
+@@ -213,35 +264,45 @@ int xe_memirq_init(struct xe_memirq *memirq)
+ /**
+  * xe_memirq_source_ptr - Get GGTT's offset of the `Interrupt Source Report Page`_.
+  * @memirq: the &xe_memirq to query
++ * @hwe: the hw engine for which we want the report page
+  *
+  * Shall be called when `Memory Based Interrupts`_ are used
+  * and xe_memirq_init() didn't fail.
+  *
+  * Return: GGTT's offset of the `Interrupt Source Report Page`_.
+  */
+-u32 xe_memirq_source_ptr(struct xe_memirq *memirq)
++u32 xe_memirq_source_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
+ {
++	u16 instance;
++
+ 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
+ 	memirq_assert(memirq, memirq->bo);
+ 
+-	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET;
++	instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
++
++	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET(instance);
+ }
+ 
+ /**
+  * xe_memirq_status_ptr - Get GGTT's offset of the `Interrupt Status Report Page`_.
+  * @memirq: the &xe_memirq to query
++ * @hwe: the hw engine for which we want the report page
+  *
+  * Shall be called when `Memory Based Interrupts`_ are used
+  * and xe_memirq_init() didn't fail.
+  *
+  * Return: GGTT's offset of the `Interrupt Status Report Page`_.
+  */
+-u32 xe_memirq_status_ptr(struct xe_memirq *memirq)
++u32 xe_memirq_status_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
+ {
++	u16 instance;
++
+ 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
+ 	memirq_assert(memirq, memirq->bo);
+ 
+-	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET;
++	instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
++
++	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET(instance);
+ }
+ 
+ /**
+@@ -284,8 +345,8 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
+ 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
+ 	memirq_assert(memirq, memirq->bo);
+ 
+-	source = xe_memirq_source_ptr(memirq) + offset;
+-	status = xe_memirq_status_ptr(memirq) + offset * SZ_16;
++	source = xe_memirq_source_ptr(memirq, NULL) + offset;
++	status = xe_memirq_status_ptr(memirq, NULL) + offset * SZ_16;
+ 
+ 	err = xe_guc_self_cfg64(guc, GUC_KLV_SELF_CFG_MEMIRQ_SOURCE_ADDR_KEY,
+ 				source);
+diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
+index 2d40d03c3095..15efae2a7a55 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.h
++++ b/drivers/gpu/drm/xe/xe_memirq.h
+@@ -9,12 +9,13 @@
+ #include <linux/types.h>
+ 
+ struct xe_guc;
++struct xe_hw_engine;
+ struct xe_memirq;
+ 
+ int xe_memirq_init(struct xe_memirq *memirq);
+ 
+-u32 xe_memirq_source_ptr(struct xe_memirq *memirq);
+-u32 xe_memirq_status_ptr(struct xe_memirq *memirq);
++u32 xe_memirq_source_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe);
++u32 xe_memirq_status_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe);
+ u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
+ 
+ void xe_memirq_reset(struct xe_memirq *memirq);
+diff --git a/drivers/gpu/drm/xe/xe_memirq_types.h b/drivers/gpu/drm/xe/xe_memirq_types.h
+index 625b6b8736cc..9d0f6c1cdb9d 100644
+--- a/drivers/gpu/drm/xe/xe_memirq_types.h
++++ b/drivers/gpu/drm/xe/xe_memirq_types.h
+@@ -11,9 +11,9 @@
+ struct xe_bo;
+ 
+ /* ISR */
+-#define XE_MEMIRQ_STATUS_OFFSET		0x0
++#define XE_MEMIRQ_STATUS_OFFSET(inst)	((inst) * SZ_4K + 0x0)
+ /* IIR */
+-#define XE_MEMIRQ_SOURCE_OFFSET		0x400
++#define XE_MEMIRQ_SOURCE_OFFSET(inst)	((inst) * SZ_4K + 0x400)
+ /* IMR */
+ #define XE_MEMIRQ_ENABLE_OFFSET		0x440
+ 
 -- 
 2.43.2
 
