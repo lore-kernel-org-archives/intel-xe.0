@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76F38CF9C69
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:40:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DB1FCF9C6E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:40:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46F4110E3FC;
-	Mon, 23 Sep 2024 12:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF9F10E3FB;
+	Mon, 23 Sep 2024 12:40:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Gu7bq1ly";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OD8/CcQ9";
 	dkim-atps=neutral
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5FF910E3C2;
- Mon, 16 Sep 2024 18:01:45 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-2053a0bd0a6so49016065ad.3; 
- Mon, 16 Sep 2024 11:01:45 -0700 (PDT)
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
+ [209.85.210.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E819910E3CF;
+ Tue, 17 Sep 2024 12:44:57 +0000 (UTC)
+Received: by mail-pf1-f172.google.com with SMTP id
+ d2e1a72fcca58-71971d20a95so706113b3a.3; 
+ Tue, 17 Sep 2024 05:44:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1726509705; x=1727114505; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1726577097; x=1727181897; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=HM7yZDstT32KnRF5TqsXhuhE8I3k19PJmZPriUtEwCM=;
- b=Gu7bq1lyJKPj2Z/oEgp0mNiDnQfY4fxzfPfS4k4Ioo8XCMHJk5KIdogz9K+/z8EPTj
- s7e8Yvv7eMzV5guUu7/qCFnZiL8dG17D/w2nuTuUjkOKiyZ2cpfmJb+s1nutL0w6hE8V
- psXDgytXMEFsMOzjUoEHxFrXCBytkXa8M2dpCt2d4XnupjumZsn3eM1L7TTy373niwUm
- wySLcUfm/K2UtRNMUqCfudrCYyvfmaviFL5wpJtkwTGAXLS7jyPjN0liBEvO/qw6iCo8
- mhIIk7muKAfrAFWHJWLEa1n9LzzPVe9BhNE8Vu3ry6fwwXOvi5ftZkBmOGPg2s14kFih
- vp8Q==
+ bh=PuR2oEx7UOd4jtIaDKowFjYpkaW0nFWhgHvIpNqBCnA=;
+ b=OD8/CcQ9/OKsuHE0BeKboW0Ftw1sKJhOiAWEMG/xZ2l9MMuwbEPWRBrFli1sS7GcBe
+ GjWZBwdByqJ0FysNx3NzVJba6x7QpxFfe7WmFGvP+vQ6uKS36gB7gWMJvJCGa5fNXzIr
+ UZ5b+NuheLt+KztlEhLcmalAIzhob2fq/psJmA2ofFuFZVOR921UHexyIb2GD8Cxiimg
+ DB9HA5Brk75IYL+EfcDzpi3N54CPZuxAZc14MXf6DG/+qT22VlnGzvMu/CRW/OuNZDCi
+ im3DTajAbKUkUlQ/gkw44+N/hPVWnGQ9+KS1XDQMy18Dty3t1iSGf9hbmw2DAnUCrC9d
+ BDOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726509705; x=1727114505;
+ d=1e100.net; s=20230601; t=1726577097; x=1727181897;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=HM7yZDstT32KnRF5TqsXhuhE8I3k19PJmZPriUtEwCM=;
- b=qnfj9NCA6hDoCQewPKYU+6RUXF99LmfPxK/QhNJC7C5iLLrkzLQH4pphGxV7+ulasY
- 1563MCPmqMkG0bzpuIvxFVUntaAeordOTaxe32jjmpfewi6wvqvjJtSY75QGZyAPdAZB
- DR1+sxxcJ1UFn7gmM4ozSuA+NZcMvHZzLdAU+fmTOEUTtKfKyEzIC7jRv7gCDqYX6bkY
- 5lkztzdLaTb2NurI9Leg8SDUXJBC9ImCMvXrf4Rn88oEiVEKDDpJG6r82Bq+1kkmTEHD
- 9IVVru4sCenWxKHTUfFSKHD84xvS8/4Ck4/0wYqukbIXL9jbgYWkCwT4y7MS0pQD/P9L
- uQBQ==
+ bh=PuR2oEx7UOd4jtIaDKowFjYpkaW0nFWhgHvIpNqBCnA=;
+ b=HKPglcKBnvPNnazZVPcA93gk+pxqiQBuRykNqQV0RDJGTWk9fw2ALCImhR8VzfucrQ
+ perqoJQLaIP5YVAGF9K+1lKiuLuNsdNNFUMReiVI79f7bGK1c1eOVSXtw6ovvJXQbtx3
+ YU5BudaPdK1NeGuTccc4cmrfsQOci38LrueUu8iLwFacxMovZBFgGCJn4+Hj504i8xDG
+ 5nmidjbrtJplT1cxV6tZvVRnr014zph2HGPsmQQQIeid2lsmBVcAGxtxDtOTO7PHUrRI
+ f1Yqyi+Id8r6mAhgBIezIKr9Zonf9RSmkNj/CZwD+XsNLOualseaIBeAq8N8BqOKASXe
+ plCw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUDHZ6e7tS1kHY5sKwZHycOXjq8rkwZySvBqyLlDaVLtRa+0p5jDz/sdBmM9uiYC54rqwE7cnMV9bs=@lists.freedesktop.org,
- AJvYcCVBnx6/jFGdV2CshgmfZeCKiNohS/H/I2lQ13/IteCZAr+OkY8NikCgif6z2cQFsf2wBrgpmppi9sI=@lists.freedesktop.org,
- AJvYcCWukKy/qObBS0nr8Tqneca/CtebpB5nVtTpBDV5OGZ7jTadAz0Yyow5h/yUHjkcMRGTwIxNyLjHNp6x@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzTc00xYJqtxK6a5r2yiiljHPijj9uF0QVsTtEzpwaWI+I1qkDe
- qU30zBb43AV0YWVCvr6v4oeVIBGDUIwpvlFPDm4LuyTQvaqPecLD
-X-Google-Smtp-Source: AGHT+IF/+A6mrgl6Ock23OiKbg4Cer/TYYH0w02Pdbq5FW/ya8TUeOPtqQhk7tXeYaNhDI1b5GUG3Q==
-X-Received: by 2002:a17:902:face:b0:205:3e6d:9949 with SMTP id
- d9443c01a7336-2076e42e171mr181216255ad.52.1726509704832; 
- Mon, 16 Sep 2024 11:01:44 -0700 (PDT)
+ AJvYcCWvW3SPf38+1463xLx04bu0La+D5pRIPVMNn+zXA5YRMMu7/eaWsRxsKERBxxFOnAgPMA2cxX8aXOg=@lists.freedesktop.org,
+ AJvYcCX1YUxH8u4u1qFffc0Wa493pA/DUjMuRvcULyukF2sYmKUMPOHBb/IV2m5ZcMQRUTwgiJoN94dO1A4=@lists.freedesktop.org,
+ AJvYcCX6ro5T2sQqDsBEBjJlX+krA720PnbOuKlhPgqM59vCkX5253A/XHHE4NNU/4nL72QV414klcgu2FIM@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxrGjwWQexYNpX3hlrtV0I5ECAOauxoPmMbpdDpieWlqFd6fMmu
+ LyAQsrej3GFTSxOnkdJwJSAnGWd64JcbvpX3JirpUUgmPvyDCptw
+X-Google-Smtp-Source: AGHT+IElrNVLMYeSdPugu8LX32nYuMCgAY1uSEYXmKx1Xd1xFBDpCzFzwKVITNzv1ITogJ2layOxZg==
+X-Received: by 2002:a05:6a00:27a0:b0:714:20a8:d79f with SMTP id
+ d2e1a72fcca58-71936a60409mr23039083b3a.14.1726577097122; 
+ Tue, 17 Sep 2024 05:44:57 -0700 (PDT)
 Received: from fedora.. ([2405:201:d007:50c2:4888:86b4:6f32:9ae])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-207945da788sm38868525ad.18.2024.09.16.11.01.40
+ d2e1a72fcca58-71944a973d7sm5117415b3a.6.2024.09.17.05.44.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Sep 2024 11:01:44 -0700 (PDT)
+ Tue, 17 Sep 2024 05:44:56 -0700 (PDT)
 From: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
 To: gustavo.sousa@intel.com, jani.nikula@linux.intel.com,
  rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
@@ -64,11 +64,11 @@ To: gustavo.sousa@intel.com, jani.nikula@linux.intel.com,
 Cc: skhan@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v2] drm/i915/cx0: Set power state to ready only on owned PHY
+Subject: [PATCH v3] drm/i915/cx0: Set power state to ready only on owned PHY
  lanes
-Date: Mon, 16 Sep 2024 23:31:37 +0530
-Message-ID: <20240916180137.9203-1-vamsikrishna.brahmajosyula@gmail.com>
-X-Mailer: git-send-email 2.46.0
+Date: Tue, 17 Sep 2024 18:14:49 +0530
+Message-ID: <20240917124449.223206-1-vamsikrishna.brahmajosyula@gmail.com>
+X-Mailer: git-send-email 2.46.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 23 Sep 2024 12:40:18 +0000
@@ -87,14 +87,19 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 In DP alt mode, when pin assignment is D, only one PHY lane is owned
-by the display. intel_cx0pll_enable currently performs a power cycle
+by the display. intel_cx0pll_enable currently performs a power state
 ready on both the lanes in all cases.
 
 Address the todo to perfom power state ready on owned lanes.
 
 Tested on Meteor Lake-P [Intel Arc Graphics] with DP alt mode.
 
-v1 -> v2: Address comments from Gustavo Sousa
+v2 -> v3:
+- Fix changelog per Jani Nikula's feedback
+v1 -> v2: Address Gustavo Sousa's feedback
+- Use owned lanes mask to set Phy power state to Ready, instead of
+  maxpclk_lane with DP alt mode check.
+- Owned lanes are obtained from intel_cx0_get_owned_lane_mask().
 
 Signed-off-by: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
 ---
