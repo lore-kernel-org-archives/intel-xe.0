@@ -4,61 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9FF3C3600D
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 10:58:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47AD7C36013
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D14B10E0BA;
-	Tue, 17 Sep 2024 10:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1666710E0D0;
+	Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hyEEu/as";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="NVt+bIX/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E28F010E0BA;
- Tue, 17 Sep 2024 10:58:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726570705; x=1758106705;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=2c7W4MA7crR+usWbrUN6tGpOQPk1ZULDldpxYD/f0MQ=;
- b=hyEEu/aslZXQWpsMK47n9/S/AxpZCf7KR9kLZo22sNNym08zcEsz4tfU
- jaaEwl/DSmsPJxhrXGalxu0eaV+wRgIg/wqnyxipviw3MuJ+brLD3xbe1
- Bf40eEQt2ZQ8ofnELWRnSFIc1kmshED9D7rS3Ul+KY/QPu1THdbewAbH6
- oBIAUx4lJWTs3Tm/FFE5eYcgOEfleq1m8ShV3g5cGhySWEKekSZs22/qo
- 3dQ3DonG/AvxZHH5I5RIBbwaSe4mvgYgYvMofyBbgCbspkKfxsvi+TeWK
- iK7pL/nUTU6kav8QRnvWL/Cm+IXNP7ja6TGkv4CzaHousCq1opw+yrqaj w==;
-X-CSE-ConnectionGUID: BCU155uPQgK/GhEZ/rxoUg==
-X-CSE-MsgGUID: WF4gAtSfT5WLSmjFv2Fycg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="42895140"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="42895140"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 03:58:25 -0700
-X-CSE-ConnectionGUID: TM1nJLhtQpCmM+yUF5u9tQ==
-X-CSE-MsgGUID: iedZbYgJTxyr8HE81gnzbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69371525"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.102])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 03:58:22 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Tvrtko Ursulin <tursulin@ursulin.net>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Ville Syrjala <ville.syrjala@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/i915/display: remove small micro-optimizations
- in irq handling
-In-Reply-To: <52605aa7-7067-4ba2-aed8-feeb7aa67032@ursulin.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240408125445.3227678-1-jani.nikula@intel.com>
- <lh5rutbeu54tjlp2o477nb4xuqyblgjh7nemgecizqrceidabc@hcuihs4fxh6n>
- <875xwfxapf.fsf@intel.com>
- <52605aa7-7067-4ba2-aed8-feeb7aa67032@ursulin.net>
-Date: Tue, 17 Sep 2024 13:58:19 +0300
-Message-ID: <877cbaczsk.fsf@intel.com>
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD96310E1B0
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 11:24:00 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1726572233; bh=NvQbOVNbrIFyFJT1WAR+02uvPORwPCSVe1dCPetzVeI=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=NVt+bIX/R1qJKY8ESQMusiV1ekNCOoSwxnm0o2yaFqeVRpJwXfnnygI0zOLV+icmq
+ fLfBebUtaAb3TmRrlEQsljRBzUsOCc6EeIOAQyq8KV2/0pRZorCd0rS2vqYJJ5u5Bt
+ JCiewUKMiWozACLOM3Gskqrz/zcPCqoWFXD0TWAECmaeCUv2YabeyFOuFOpvfUhNIa
+ O+LlHLNq1OiJ5LRtiweJw57DaKQiTdprgIO55Mmfr8p8oZbVsM1U6xhG/U6n1g7um4
+ Xkkx5JLo/RpCcJot7GXmxb5gYsh3FdfopqjElAtfSMLj1KJ4zGTIF4S6hQ3OOWb9bV
+ 7LQahRDNzYqpg==
+Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 48HBNmuP1242354; Tue, 17 Sep 2024 14:23:48 +0300
+From: Ilia Levi <illevi@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: ilia.levi@intel.com, michal.wajdeczko@intel.com, jonathan.cavitt@intel.com,
+ koby.elbaz@intel.com, yaron.avizrat@intel.com
+Subject: [PATCH v5 5/5] drm/xe: memirq handler changes
+Date: Tue, 17 Sep 2024 14:23:07 +0300
+Message-ID: <20240917112307.1242329-6-illevi@habana.ai>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240917112307.1242329-1-illevi@habana.ai>
+References: <20240917112307.1242329-1-illevi@habana.ai>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,145 +54,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 18 Apr 2024, Tvrtko Ursulin <tursulin@ursulin.net> wrote:
-> On 18/04/2024 10:49, Jani Nikula wrote:
->> On Wed, 17 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>> On Mon, Apr 08, 2024 at 03:54:44PM GMT, Jani Nikula wrote:
->>>> The raw register reads/writes are there as micro-optimizations to avoid
->>>> multiple pointer indirections on uncore->regs. Presumably this is useful
->>>> when there are plenty of register reads/writes in the same
->>>> function. However, the display irq handling only has a few raw
->>>> reads/writes. Remove them for simplification.
->>>
->>> I think that comment didn't age well. Not to say there's something wrong
->>> with this commit, but just to make sure we are aware of the additional
->>> stuff going on and we if we are ok with that.
->>>
->>> using intel_de_read() in place of raw_reg_read() will do (for newer
->>> platforms):
->>>
->>> 	1) Read FPGA_DBG to detect unclaimed access before the actual read
->>> 	2) Find the relevant forcewake for that register, acquire and wait for ack
->>> 	3) readl(reg)
->>> 	4) Read FPGA_DBG to detect unclaimed access after the actual read
->>> 	5) Trace reg rw
->>>
->>> That's much more than a pointer indirection. Are we ok with that in the
->>> irq?  Also, I don't know why but we have variants to skip tracing (step
->>> 5 above), but on my books a disabled tracepoint is order of magnitudes
->>> less overhead than 1, 2 and 4.
->> 
->> Honestly, I don't really know.
->> 
->> The thing is, we have these ad hoc optimizations all over the place. Why
->> do we have the raw access in two places, but not everywhere in irq
->> handling? The pointer indirection thing really only makes sense if you
->> have a lot of access in a function, but that's not the case. You do have
->> a point about everything else.
->
-> The "why only two" places is I think simply an artefact of refactoring 
-> and code evolution. Initially all IRQ handling was in one function, then 
-> later gen11 and display parts got split out as more platforms were 
-> added. For example a3265d851e28 ("drm/i915/irq: Refactor gen11 display 
-> interrupt handling").
->
-> As for the original rationale, it was described in commits like:
->
-> 2e4a5b25886c ("drm/i915: Prune gen8_gt_irq_handler")
-> c48a798a7447 ("drm/i915: Trim the ironlake+ irq handler")
->
-> Obviosuly, once a portion of a handler was/is extracted, pointer caching 
-> to avoid uncore->regs reloads may not make full sense any more due 
-> function calls potentially overshadowing that cost.
->
-> As for unclaimed debug, I would say it is probably okay to not burden 
-> the irq handlers with it, but if the display folks think a little bit of 
-> extra cost in this sub-handlers is fine that would sound plausible to me 
-> given the frequency of display related interrupts is low. So for me 
-> patch is fine if it makes the display decoupling easier.
->
->> What would the interface be like if display were its own module? We
->> couldn't just wrap it all in a bunch of macros and static inlines. Is
->> the end result that display irq handling needs to call functions via
->> pointers in another module? Or do we need to move the register level irq
->> handling to xe and i915 cores, and handle the display parts at a higher
->> abstraction level?
->
-> AFAIR no trace variants were not for performance but to avoid log spam 
-> when debugging stuff. From things like busy/polling loops.
+From: Ilia Levi <ilia.levi@intel.com>
 
-Bumping a forgotten topic.
+Expose an interrupt processing handler for a single hw engine.
+Refactor code to use this handler from the VF.
+This handler also caters for the MSI-X mode, where the hardware engines
+report interrupt source and status to the offset of engine instance zero.
 
-Ville, Rodrigo, are we okay with the changes here?
+Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c | 28 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_memirq.c    | 31 ++++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_memirq.h    |  1 +
+ 3 files changed, 52 insertions(+), 8 deletions(-)
 
-BR,
-Jani.
-
->
-> Regards,
->
-> Tvrtko
->>>
->>> btw, if we drop the raw accesses, then we can probably drop (1) above.
->>>
->>> Lucas De Marchi
->>>
->>>>
->>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>>> ---
->>>> drivers/gpu/drm/i915/display/intel_display_irq.c | 15 +++++++--------
->>>> 1 file changed, 7 insertions(+), 8 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
->>>> index f846c5b108b5..d4ae9139be39 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
->>>> @@ -1148,15 +1148,14 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->>>>
->>>> u32 gen11_gu_misc_irq_ack(struct drm_i915_private *i915, const u32 master_ctl)
->>>> {
->>>> -	void __iomem * const regs = intel_uncore_regs(&i915->uncore);
->>>> 	u32 iir;
->>>>
->>>> 	if (!(master_ctl & GEN11_GU_MISC_IRQ))
->>>> 		return 0;
->>>>
->>>> -	iir = raw_reg_read(regs, GEN11_GU_MISC_IIR);
->>>> +	iir = intel_de_read(i915, GEN11_GU_MISC_IIR);
->>>> 	if (likely(iir))
->>>> -		raw_reg_write(regs, GEN11_GU_MISC_IIR, iir);
->>>> +		intel_de_write(i915, GEN11_GU_MISC_IIR, iir);
->>>>
->>>> 	return iir;
->>>> }
->>>> @@ -1169,18 +1168,18 @@ void gen11_gu_misc_irq_handler(struct drm_i915_private *i915, const u32 iir)
->>>>
->>>> void gen11_display_irq_handler(struct drm_i915_private *i915)
->>>> {
->>>> -	void __iomem * const regs = intel_uncore_regs(&i915->uncore);
->>>> -	const u32 disp_ctl = raw_reg_read(regs, GEN11_DISPLAY_INT_CTL);
->>>> +	u32 disp_ctl;
->>>>
->>>> 	disable_rpm_wakeref_asserts(&i915->runtime_pm);
->>>> 	/*
->>>> 	 * GEN11_DISPLAY_INT_CTL has same format as GEN8_MASTER_IRQ
->>>> 	 * for the display related bits.
->>>> 	 */
->>>> -	raw_reg_write(regs, GEN11_DISPLAY_INT_CTL, 0x0);
->>>> +	disp_ctl = intel_de_read(i915, GEN11_DISPLAY_INT_CTL);
->>>> +
->>>> +	intel_de_write(i915, GEN11_DISPLAY_INT_CTL, 0);
->>>> 	gen8_de_irq_handler(i915, disp_ctl);
->>>> -	raw_reg_write(regs, GEN11_DISPLAY_INT_CTL,
->>>> -		      GEN11_DISPLAY_IRQ_ENABLE);
->>>> +	intel_de_write(i915, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
->>>>
->>>> 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
->>>> }
->>>> -- 
->>>> 2.39.2
->>>>
->> 
-
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index a7abc4b67e67..d7408d06ee20 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -460,6 +460,30 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 	xe_rtp_process_to_sr(&ctx, engine_entries, &hwe->reg_sr);
+ }
+ 
++static const struct engine_info *find_engine_info(enum xe_engine_class class, int instance)
++{
++	const struct engine_info *info;
++	enum xe_hw_engine_id id;
++
++	for (id = 0; id < XE_NUM_HW_ENGINES; ++id) {
++		info = &engine_infos[id];
++		if (info->class == class && info->instance == instance)
++			return info;
++	}
++
++	return NULL;
++}
++
++static u16 get_msix_irq_offset(struct xe_gt *gt, enum xe_engine_class class)
++{
++	/* For MSI-X, hw engines report to offset of engine instance zero */
++	const struct engine_info *info = find_engine_info(class, 0);
++
++	xe_gt_assert(gt, info);
++
++	return info ? info->irq_offset : 0;
++}
++
+ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 				 enum xe_hw_engine_id id)
+ {
+@@ -479,7 +503,9 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	hwe->class = info->class;
+ 	hwe->instance = info->instance;
+ 	hwe->mmio_base = info->mmio_base;
+-	hwe->irq_offset = info->irq_offset;
++	hwe->irq_offset = xe_device_has_msix(gt_to_xe(gt)) ?
++		get_msix_irq_offset(gt, info->class) :
++		info->irq_offset;
+ 	hwe->domain = info->domain;
+ 	hwe->name = info->name;
+ 	hwe->fence_irq = &gt->fence_irq[info->class];
+diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+index ae4279a7f947..3f8d4ca64302 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.c
++++ b/drivers/gpu/drm/xe/xe_memirq.c
+@@ -437,6 +437,28 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+ 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+ }
+ 
++/**
++ * xe_memirq_hwe_handler - Check and process interrupts for a specific HW engine.
++ * @memirq: the &xe_memirq
++ * @hwe: the hw engine to process
++ *
++ * This function reads and dispatches `Memory Based Interrupts` for the provided HW engine.
++ */
++void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
++{
++	u16 offset = hwe->irq_offset;
++	u16 instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
++	struct iosys_map src_offset = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
++							    XE_MEMIRQ_SOURCE_OFFSET(instance));
++
++	if (memirq_received(memirq, &src_offset, offset, "SRC")) {
++		struct iosys_map status_offset =
++			IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
++					      XE_MEMIRQ_STATUS_OFFSET(instance) + offset * SZ_16);
++		memirq_dispatch_engine(memirq, &status_offset, hwe);
++	}
++}
++
+ /**
+  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
+  * @memirq: the &xe_memirq
+@@ -464,13 +486,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
+ 		if (gt->tile != tile)
+ 			continue;
+ 
+-		for_each_hw_engine(hwe, gt, id) {
+-			if (memirq_received(memirq, &memirq->source, hwe->irq_offset, "SRC")) {
+-				map = IOSYS_MAP_INIT_OFFSET(&memirq->status,
+-							    hwe->irq_offset * SZ_16);
+-				memirq_dispatch_engine(memirq, &map, hwe);
+-			}
+-		}
++		for_each_hw_engine(hwe, gt, id)
++			xe_memirq_hwe_handler(memirq, hwe);
+ 	}
+ 
+ 	/* GuC and media GuC (if present) must be checked separately */
+diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
+index 15efae2a7a55..06130650e9d6 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.h
++++ b/drivers/gpu/drm/xe/xe_memirq.h
+@@ -20,6 +20,7 @@ u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
+ 
+ void xe_memirq_reset(struct xe_memirq *memirq);
+ void xe_memirq_postinstall(struct xe_memirq *memirq);
++void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe);
+ void xe_memirq_handler(struct xe_memirq *memirq);
+ 
+ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
 -- 
-Jani Nikula, Intel
+2.43.2
+
