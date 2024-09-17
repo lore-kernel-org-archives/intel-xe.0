@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FF13CAC58D
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 16:16:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA2FCAC587
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 16:22:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5217210E4B9;
-	Tue, 17 Sep 2024 16:16:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nqIpOQQp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E579810E4BA;
- Tue, 17 Sep 2024 16:16:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726589791; x=1758125791;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wFrA3ay8wpk9G44li2rwF37TXTUqCBP2Tnwgp4/kLn8=;
- b=nqIpOQQp/t1cuWo5fP8GdMXQFKzVudLuaWd2mQ/UuG9fceKYvwc/Iynj
- Y0H8ViDQRMuffGSgbaORspAvVs0TjhY/5xHPMJfXODgNuZrIdW2KjINoY
- qTFuTZ+H6s3YIjq61qQr5Y1gwyg97sKxCl9nlBtbCmSiPt/U885D8ZKMQ
- w/Gng1sIfchH9xrriNt4hRh4A6Ah4aivneCBg1/MMHufFrsHhXqpc5Uep
- JCRpzIxaxUiJcACmcrRD34fc5ekI/5eC8mFpbfRDMNNSm6ug5ayDc7dWG
- UsSkIQkjdbnjlLnVHFveHEoEpKgh1AG3G+Fwl7JXcJCpyWWu0jGsQndKK w==;
-X-CSE-ConnectionGUID: pkGoBOIPRnq3CY3RjQCmOw==
-X-CSE-MsgGUID: NQl5HyH5RoKZ4R4vVTS5Iw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="42934542"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="42934542"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 09:16:26 -0700
-X-CSE-ConnectionGUID: khFYrgkeQr6B2OVCF3c6kg==
-X-CSE-MsgGUID: 9CjWAI5gR1WG1RNViqxhxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="70023623"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.102])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 09:16:22 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
- jani.nikula@intel.com
-Subject: [PATCH 22/22] drm/xe: eradicate -Ddrm_i915_gem_object=xe_bo
-Date: Tue, 17 Sep 2024 19:14:01 +0300
-Message-Id: <0eae2b62b635acafe5dc97dc4b205aaa34ce1e53.1726589119.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1726589119.git.jani.nikula@intel.com>
-References: <cover.1726589119.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E1D110E4C1;
+	Tue, 17 Sep 2024 16:22:10 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53BFD10E4BD;
+ Tue, 17 Sep 2024 16:22:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915_=26_drm/xe?=
+ =?utf-8?q?=3A_kill_off_-Ddrm=5Fi915=5Fgem=5Fobject=3Dxe=5Fbo?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Sep 2024 16:22:09 -0000
+Message-ID: <172659012933.1022761.15866549277461291267@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1726589119.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1726589119.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,30 +36,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We've now completely stopped using drm_i915_gem_object in display code
-that gets built for xe. Kill off the -Ddrm_i915_gem_object=xe_bo
-hack. Good riddance.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/Makefile | 1 -
- 1 file changed, 1 deletion(-)
+Series: drm/i915 & drm/xe: kill off -Ddrm_i915_gem_object=xe_bo
+URL   : https://patchwork.freedesktop.org/series/138773/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index e1ab68d3e066..ae245fbd91ee 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -149,7 +149,6 @@ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
- 	-I$(src)/display/ext \
- 	-I$(src)/compat-i915-headers \
- 	-I$(srctree)/drivers/gpu/drm/i915/display/ \
--	-Ddrm_i915_gem_object=xe_bo \
- 	-Ddrm_i915_private=xe_device
- 
- # Rule to build SOC code shared with i915
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 38e1b615fb39 drm-tip: 2024y-09m-17d-09h-15m-36s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: start a buffer object abstraction layer
+Applying: drm/i915/display: convert intel_atomic_plane.c to struct drm_gem_object
+Applying: drm/i915/fb: convert parts of intel_fb.c to struct drm_gem_object
+Applying: drm/i915/fbdev: convert intel_fbdev.c to struct drm_gem_object
+Applying: drm/i915/display: convert skl_universal_plane.c to struct drm_gem_object
+Applying: drm/i915/fb: convert intel_framebuffer_init() to struct drm_gem_object
+Applying: drm/i915/fb: convert intel_fb_bo_lookup_valid_bo() to struct drm_gem_object
+Applying: drm/i915/fb: convert intel_fb_bo_framebuffer_init() to struct drm_i915_gem_object
+Applying: drm/i915/fb: convert intel_fb_bo_framebuffer_fini() to struct drm_i915_gem_object
+Applying: drm/xe/display: use correct bo type in intel_fbdev_fb_alloc()
+Applying: drm/i915/fb: convert intel_framebuffer_create() to struct drm_gem_object
+Applying: drm/xe/display: stop using intel_fb_obj() in xe_fb_pin.c
+Applying: drm/i915/display: add intel_bo_read_from_page() and use it
+Applying: drm/i915/display: add intel_bo_get/set_frontbuffer() and use them
+Applying: drm/i915/frontbuffer: convert intel_frontbuffer_get() to struct drm_gem_object
+Applying: drm/i915/frontbuffer: convert frontbuffer->obj to struct drm_gem_object
+Applying: drm/i915/display: add intel_bo_describe() and use it
+Applying: drm/i915/fb: remove intel_fb_obj()
+Applying: drm/i915/display: clean up some gem/ includes
+Applying: drm/xe/compat: remove a bunch of compat gem headers
+Applying: drm/xe: remove a number of superfluous compat macros
+Applying: drm/xe: eradicate -Ddrm_i915_gem_object=xe_bo
+
 
