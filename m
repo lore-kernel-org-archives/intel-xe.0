@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15F08C36018
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 12:03:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3B99C35FFF
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 12:03:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC1B910E283;
-	Tue, 17 Sep 2024 12:03:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B2310E059;
+	Tue, 17 Sep 2024 12:03:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K0yEagGy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g3Oc6Ehe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7F710E21B
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 12:03:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 024A010E467
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 12:03:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726574622; x=1758110622;
+ t=1726574625; x=1758110625;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/Ooq3jG6MdvAncHIm3Um8EUhY+Nexl5kyYKeVYR3MB0=;
- b=K0yEagGytSq9yQABUGExKXShIiWYDtIAw8v5jAVGLsMwkzZZYgZO/qNh
- iyI8Q9LtcVui99psFwOCuA7Kajs/BcQuDfCTBrPomR9mXU99V73XrN0ku
- L7zMzGLA6XReGCXf0vBm9WUVqp9UPv+G9HTRm4wAyCE4qtqY8IdDMrzco
- IAvFO2dQvrBwVna95SPCr2NlcmZV4gladsCLGOK/kIc2ZQcybeQsGMWSt
- wZDlJIaThWgm9QfdESzBeG3AEaufwG57Edv08d/qAVgUiKxHmsebhd4yF
- MXMnhpTEcy3jXaF9xvyjIuh/p+Yt8OrNkfxkfmCBayHhA6D4gbMCObySb g==;
-X-CSE-ConnectionGUID: PXG0ZFy/SzSsMefTND8QJw==
-X-CSE-MsgGUID: 4PszZkayTdmT95QYOEQVGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="29210609"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="29210609"
+ bh=DrJ73U0+yU4BwWml9L2k0nqb3I9HBxTYcQZGfqBZSBI=;
+ b=g3Oc6EheYNV7AK3WCzO6ifuLDXW5hvRtBr06JYdHrJtHOfcX5P1SYsmA
+ UVS5H/o4qXJcYBrAbeA+RchwtJ5V4G55es6lkSkL7GxhMj5/WB93h5Syn
+ c8bNOLEyRJUEtJwwFDK1iMIB/pih27gZ9e/E6SO1AyDTvdyX1F4CNTq8U
+ GitFIAdlBAry9te1PLyMRTF8HA1vZPwNITXA4Jh+ORp7j1n0ZGOBtcNlP
+ oUTszRU9+6HRtCk8qiUGJ4icKTde0v9O/sOAdb26Nhpw9Y4Db8CPkHR4D
+ ITwMLPfpSsy1464exvpZgHvmT+pJ/GCjKzsmuqUI8kFrgbTdjvBnJYqqW w==;
+X-CSE-ConnectionGUID: guwnHynJRiSmZ8RU/QbQ7A==
+X-CSE-MsgGUID: wfEsVXH/Q6u4r9kXam4PZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="29210625"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="29210625"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 05:03:42 -0700
-X-CSE-ConnectionGUID: kJK6SEaiT3GVfaJrmGP86A==
-X-CSE-MsgGUID: 0y/akIIWSRmlBY1jtd39+Q==
+ 17 Sep 2024 05:03:44 -0700
+X-CSE-ConnectionGUID: LE/eG4FhRWyVEGhmVSqlIg==
+X-CSE-MsgGUID: SX7FZGa1Rqyoof+XU4G70Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69388511"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69388523"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa010.fm.intel.com with ESMTP; 17 Sep 2024 05:03:41 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 17 Sep 2024 05:03:42 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 12/23] drm/xe/xe_gt_debugfs: Update handling of
- xe_force_wake_get return
-Date: Tue, 17 Sep 2024 17:51:15 +0530
-Message-Id: <20240917122126.438448-13-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v3 13/23] drm/xe/guc: Update handling of xe_force_wake_get
+ return
+Date: Tue, 17 Sep 2024 17:51:16 +0530
+Message-Id: <20240917122126.438448-14-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240917122126.438448-1-himal.prasad.ghimiray@intel.com>
 References: <20240917122126.438448-1-himal.prasad.ghimiray@intel.com>
@@ -68,59 +69,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With xe_force_wake_get() now returning the refcount-incremented
-domain mask, a non-zero return value in the case of XE_FORCEWAKE_ALL does
-not necessarily indicate success. Compare the return value with
+With xe_force_wake_get() now returning the refcount-incremented domain
+mask, a return value of 0 indicates failure for single domains
+(excluding XE_FORCEWAKE_ALL).
+
+A non-zero return value in the case of XE_FORCEWAKE_ALL does not
+necessarily indicate success. Compare the return value with
 XE_FORCEWAKE_ALL to determine the status of the call.
 
-Modify the return handling of xe_force_wake_get() accordingly and
-pass the return value to xe_force_wake_put().
+Modify the return handling of xe_force_wake_get() accordingly and pass
+the return value to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
 - xe_force_wake_put() error doesn't need to be checked. It internally
 WARNS on domain ack failure.
 
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c    | 14 ++++++----
+ drivers/gpu/drm/xe/xe_guc_pc.c | 51 +++++++++++++++++++++-------------
+ 2 files changed, 40 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index cbc43973ff7e..011f30956644 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -90,22 +90,21 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
--	int err;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 1eb5bb7e8771..fcf61f4b8178 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -246,10 +246,12 @@ static void guc_fini_hw(void *arg)
+ {
+ 	struct xe_guc *guc = arg;
+ 	struct xe_gt *gt = guc_to_gt(guc);
 +	xe_wakeref_t fw_ref;
  
- 	xe_pm_runtime_get(xe);
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	if (err) {
+-	xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
 +	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (fw_ref != XE_FORCEWAKE_ALL) {
- 		xe_pm_runtime_put(xe);
--		return err;
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+		return -ETIMEDOUT;
++	xe_gt_WARN_ON(gt, fw_ref != XE_FORCEWAKE_ALL);
+ 	xe_uc_fini_hw(&guc_to_gt(guc)->uc);
+-	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ }
+ 
+ /**
+@@ -1149,14 +1151,14 @@ int xe_guc_start(struct xe_guc *guc)
+ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
++	xe_wakeref_t fw_ref;
+ 	u32 status;
+-	int err;
+ 	int i;
+ 
+ 	xe_uc_fw_print(&guc->fw, p);
+ 
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (err)
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (!fw_ref)
+ 		return;
+ 
+ 	status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
+@@ -1177,7 +1179,7 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
+ 			   i, xe_mmio_read32(&gt->mmio, SOFT_SCRATCH(i)));
  	}
  
- 	for_each_hw_engine(hwe, gt, id)
- 		xe_hw_engine_print(hwe, p);
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
 +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	xe_pm_runtime_put(xe);
--	if (err)
--		return err;
+ 
+ 	xe_guc_ct_print(&guc->ct, p, false);
+ 	xe_guc_submit_print(guc, p);
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 2b654f820ae2..5650adb104af 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -415,22 +415,24 @@ u32 xe_guc_pc_get_act_freq(struct xe_guc_pc *pc)
+ int xe_guc_pc_get_cur_freq(struct xe_guc_pc *pc, u32 *freq)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
+-	int ret;
++	xe_wakeref_t fw_ref;
+ 
+ 	/*
+ 	 * GuC SLPC plays with cur freq request when GuCRC is enabled
+ 	 * Block RC6 for a more reliable read.
+ 	 */
+-	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (ret)
+-		return ret;
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (fw_ref != XE_FORCEWAKE_ALL) {
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++		return -ETIMEDOUT;
++	}
+ 
+ 	*freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
+ 
+ 	*freq = REG_FIELD_GET(REQ_RATIO_MASK, *freq);
+ 	*freq = decode_freq(*freq);
+ 
+-	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	return 0;
+ }
+ 
+@@ -480,6 +482,7 @@ u32 xe_guc_pc_get_rpn_freq(struct xe_guc_pc *pc)
+ int xe_guc_pc_get_min_freq(struct xe_guc_pc *pc, u32 *freq)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
++	xe_wakeref_t fw_ref;
+ 	int ret;
+ 
+ 	mutex_lock(&pc->freq_lock);
+@@ -493,9 +496,11 @@ int xe_guc_pc_get_min_freq(struct xe_guc_pc *pc, u32 *freq)
+ 	 * GuC SLPC plays with min freq request when GuCRC is enabled
+ 	 * Block RC6 for a more reliable read.
+ 	 */
+-	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (ret)
+-		goto out;
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (fw_ref != XE_FORCEWAKE_ALL) {
++		ret = -ETIMEDOUT;
++		goto fw;
++	}
+ 
+ 	ret = pc_action_query_task_state(pc);
+ 	if (ret)
+@@ -504,7 +509,7 @@ int xe_guc_pc_get_min_freq(struct xe_guc_pc *pc, u32 *freq)
+ 	*freq = pc_get_min_freq(pc);
+ 
+ fw:
+-	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ out:
+ 	mutex_unlock(&pc->freq_lock);
+ 	return ret;
+@@ -855,6 +860,7 @@ int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc)
+ {
+ 	struct xe_device *xe = pc_to_xe(pc);
+ 	struct xe_gt *gt = pc_to_gt(pc);
++	xe_wakeref_t fw_ref;
+ 	int ret = 0;
+ 
+ 	if (xe->info.skip_guc_pc)
+@@ -864,13 +870,15 @@ int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc)
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (ret)
+-		return ret;
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (fw_ref != XE_FORCEWAKE_ALL) {
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++		return -ETIMEDOUT;
++	}
+ 
+ 	xe_gt_idle_disable_c6(gt);
+ 
+-	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
  
  	return 0;
  }
+@@ -956,13 +964,16 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 	struct xe_device *xe = pc_to_xe(pc);
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
++	xe_wakeref_t fw_ref;
+ 	int ret;
+ 
+ 	xe_gt_assert(gt, xe_device_uc_enabled(xe));
+ 
+-	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (ret)
+-		return ret;
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (fw_ref != XE_FORCEWAKE_ALL) {
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++		return -ETIMEDOUT;
++	}
+ 
+ 	if (xe->info.skip_guc_pc) {
+ 		if (xe->info.platform != XE_PVC)
+@@ -1005,7 +1016,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 	ret = pc_action_setup_gucrc(pc, GUCRC_FIRMWARE_CONTROL);
+ 
+ out:
+-	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	return ret;
+ }
+ 
+@@ -1037,18 +1048,20 @@ static void xe_guc_pc_fini_hw(void *arg)
+ {
+ 	struct xe_guc_pc *pc = arg;
+ 	struct xe_device *xe = pc_to_xe(pc);
++	xe_wakeref_t fw_ref;
+ 
+ 	if (xe_device_wedged(xe))
+ 		return;
+ 
+-	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
++	fw_ref = xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL);
++	XE_WARN_ON(fw_ref != XE_FORCEWAKE_ALL);
+ 	xe_guc_pc_gucrc_disable(pc);
+ 	XE_WARN_ON(xe_guc_pc_stop(pc));
+ 
+ 	/* Bind requested freq to mert_freq_cap before unload */
+ 	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), pc->rpe_freq));
+ 
+-	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL);
++	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), fw_ref);
+ }
+ 
+ /**
 -- 
 2.34.1
 
