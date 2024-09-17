@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47AD7C36013
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9481BC36014
 	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1666710E0D0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6357A10E1B0;
 	Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="NVt+bIX/";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="BDAqJkQE";
 	dkim-atps=neutral
 Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD96310E1B0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDCCE10E211
  for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 11:24:00 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1726572233; bh=NvQbOVNbrIFyFJT1WAR+02uvPORwPCSVe1dCPetzVeI=;
+ t=1726572233; bh=8tHOmflhhbOHNnDOy+Ergsyj8ip+uyoigqAc0fI00Ew=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=NVt+bIX/R1qJKY8ESQMusiV1ekNCOoSwxnm0o2yaFqeVRpJwXfnnygI0zOLV+icmq
- fLfBebUtaAb3TmRrlEQsljRBzUsOCc6EeIOAQyq8KV2/0pRZorCd0rS2vqYJJ5u5Bt
- JCiewUKMiWozACLOM3Gskqrz/zcPCqoWFXD0TWAECmaeCUv2YabeyFOuFOpvfUhNIa
- O+LlHLNq1OiJ5LRtiweJw57DaKQiTdprgIO55Mmfr8p8oZbVsM1U6xhG/U6n1g7um4
- Xkkx5JLo/RpCcJot7GXmxb5gYsh3FdfopqjElAtfSMLj1KJ4zGTIF4S6hQ3OOWb9bV
- 7LQahRDNzYqpg==
+ b=BDAqJkQEqMcfhds8/rFTJj67xtpxQlKtwDWJ1PRokHo7C60OtT3WcIjgeckeUjGO3
+ tvAUgy+0LYn4f+e6ojx3hOZ2bJ1aZav5ijCEU8B/+8FYzcab1mKLNE4BKFzQk9wrnR
+ KadtQl6nGYMjHCMYeD+2U42l3VwrkQE4iaPzY9QgVBAnKNRgw7Xpd71CF/0/pUQFfY
+ JabDQxdCxk3qFCOKoBSr6PuK5AK1PfTZJIcbUWvxdrxBFwOUT8MXcQ54k5RQSw2z0Y
+ QhSpl7dgXIG770+Xvrs+/FVn44q6mG02qcQ2wpcqnbcAuB5p3EuOeVicAQUDgKlLK5
+ VK24VlHCGF0iw==
 Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 48HBNmuP1242354; Tue, 17 Sep 2024 14:23:48 +0300
+ id 48HBNmuN1242354; Tue, 17 Sep 2024 14:23:48 +0300
 From: Ilia Levi <illevi@habana.ai>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, michal.wajdeczko@intel.com, jonathan.cavitt@intel.com,
  koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH v5 5/5] drm/xe: memirq handler changes
-Date: Tue, 17 Sep 2024 14:23:07 +0300
-Message-ID: <20240917112307.1242329-6-illevi@habana.ai>
+Subject: [PATCH v5 3/5] drm/xe: move memirq out of VF
+Date: Tue, 17 Sep 2024 14:23:05 +0300
+Message-ID: <20240917112307.1242329-4-illevi@habana.ai>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240917112307.1242329-1-illevi@habana.ai>
 References: <20240917112307.1242329-1-illevi@habana.ai>
@@ -56,125 +56,245 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ilia Levi <ilia.levi@intel.com>
 
-Expose an interrupt processing handler for a single hw engine.
-Refactor code to use this handler from the VF.
-This handler also caters for the MSI-X mode, where the hardware engines
-report interrupt source and status to the offset of engine instance zero.
+Up until now only VF used Memory Based Interrupts (memirq).
+Moving it out of VF to cater for other usages, specifically MSI-X.
 
 Signed-off-by: Ilia Levi <ilia.levi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 28 +++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_memirq.c    | 31 ++++++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_memirq.h    |  1 +
- 3 files changed, 52 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c       |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h |  6 ++--
+ drivers/gpu/drm/xe/xe_guc.c          |  2 +-
+ drivers/gpu/drm/xe/xe_irq.c          |  6 ++--
+ drivers/gpu/drm/xe/xe_lrc.c          |  2 +-
+ drivers/gpu/drm/xe/xe_memirq.c       | 48 ++++++++++++++++------------
+ 6 files changed, 36 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index a7abc4b67e67..d7408d06ee20 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -460,6 +460,30 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 	xe_rtp_process_to_sr(&ctx, engine_entries, &hwe->reg_sr);
- }
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 4719d9b04069..bccd985f6c62 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -671,7 +671,7 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+ 			return err;
+-		err = xe_memirq_init(&tile->sriov.vf.memirq);
++		err = xe_memirq_init(&tile->memirq);
+ 		if (err)
+ 			return err;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c92df0a2423f..2eb68bf66062 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -226,14 +226,14 @@ struct xe_tile {
+ 			struct xe_lmtt lmtt;
+ 		} pf;
+ 		struct {
+-			/** @sriov.vf.memirq: Memory Based Interrupts. */
+-			struct xe_memirq memirq;
+-
+ 			/** @sriov.vf.ggtt_balloon: GGTT regions excluded from use. */
+ 			struct xe_ggtt_node *ggtt_balloon[2];
+ 		} vf;
+ 	} sriov;
  
-+static const struct engine_info *find_engine_info(enum xe_engine_class class, int instance)
-+{
-+	const struct engine_info *info;
-+	enum xe_hw_engine_id id;
++	/** @memirq: Memory Based Interrupts. */
++	struct xe_memirq memirq;
 +
-+	for (id = 0; id < XE_NUM_HW_ENGINES; ++id) {
-+		info = &engine_infos[id];
-+		if (info->class == class && info->instance == instance)
-+			return info;
-+	}
-+
-+	return NULL;
-+}
-+
-+static u16 get_msix_irq_offset(struct xe_gt *gt, enum xe_engine_class class)
-+{
-+	/* For MSI-X, hw engines report to offset of engine instance zero */
-+	const struct engine_info *info = find_engine_info(class, 0);
-+
-+	xe_gt_assert(gt, info);
-+
-+	return info ? info->irq_offset : 0;
-+}
-+
- static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 				 enum xe_hw_engine_id id)
+ 	/** @pcode: tile's PCODE */
+ 	struct {
+ 		/** @pcode.lock: protecting tile's PCODE mailbox data */
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 1eb5bb7e8771..b6cd5e941f19 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -866,7 +866,7 @@ int xe_guc_enable_communication(struct xe_guc *guc)
+ 		struct xe_gt *gt = guc_to_gt(guc);
+ 		struct xe_tile *tile = gt_to_tile(gt);
+ 
+-		err = xe_memirq_init_guc(&tile->sriov.vf.memirq, guc);
++		err = xe_memirq_init_guc(&tile->memirq, guc);
+ 		if (err)
+ 			return err;
+ 	} else {
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 250036abec52..5eb7775c0fd2 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -567,7 +567,7 @@ static void vf_irq_reset(struct xe_device *xe)
+ 
+ 	for_each_tile(tile, xe, id) {
+ 		if (xe_device_has_memirq(xe))
+-			xe_memirq_reset(&tile->sriov.vf.memirq);
++			xe_memirq_reset(&tile->memirq);
+ 		else
+ 			gt_irq_reset(tile);
+ 	}
+@@ -610,7 +610,7 @@ static void vf_irq_postinstall(struct xe_device *xe)
+ 
+ 	for_each_tile(tile, xe, id)
+ 		if (xe_device_has_memirq(xe))
+-			xe_memirq_postinstall(&tile->sriov.vf.memirq);
++			xe_memirq_postinstall(&tile->memirq);
+ 
+ 	if (GRAPHICS_VERx100(xe) < 1210)
+ 		xelp_intr_enable(xe, true);
+@@ -653,7 +653,7 @@ static irqreturn_t vf_mem_irq_handler(int irq, void *arg)
+ 	spin_unlock(&xe->irq.lock);
+ 
+ 	for_each_tile(tile, xe, id)
+-		xe_memirq_handler(&tile->sriov.vf.memirq);
++		xe_memirq_handler(&tile->memirq);
+ 
+ 	return IRQ_HANDLED;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 50d9521ba9f5..e40f48f4240f 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -599,7 +599,7 @@ static void set_context_control(u32 *regs, struct xe_hw_engine *hwe)
+ 
+ static void set_memory_based_intr(u32 *regs, struct xe_hw_engine *hwe)
  {
-@@ -479,7 +503,9 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	hwe->class = info->class;
- 	hwe->instance = info->instance;
- 	hwe->mmio_base = info->mmio_base;
--	hwe->irq_offset = info->irq_offset;
-+	hwe->irq_offset = xe_device_has_msix(gt_to_xe(gt)) ?
-+		get_msix_irq_offset(gt, info->class) :
-+		info->irq_offset;
- 	hwe->domain = info->domain;
- 	hwe->name = info->name;
- 	hwe->fence_irq = &gt->fence_irq[info->class];
+-	struct xe_memirq *memirq = &gt_to_tile(hwe->gt)->sriov.vf.memirq;
++	struct xe_memirq *memirq = &gt_to_tile(hwe->gt)->memirq;
+ 	struct xe_device *xe = gt_to_xe(hwe->gt);
+ 
+ 	if (!xe_device_uses_memirq(xe))
 diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index ae4279a7f947..3f8d4ca64302 100644
+index 464cb9d7fee2..8b12209d995a 100644
 --- a/drivers/gpu/drm/xe/xe_memirq.c
 +++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -437,6 +437,28 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
- 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+@@ -19,15 +19,25 @@
+ #include "xe_hw_engine.h"
+ #include "xe_map.h"
+ #include "xe_memirq.h"
+-#include "xe_sriov.h"
+-#include "xe_sriov_printk.h"
+ 
+ #define memirq_assert(m, condition)	xe_tile_assert(memirq_to_tile(m), condition)
+-#define memirq_debug(m, msg...)		xe_sriov_dbg_verbose(memirq_to_xe(m), "MEMIRQ: " msg)
++#define memirq_printk(m, _level, _fmt, ...)			\
++	drm_##_level(&memirq_to_xe(m)->drm, "MEMIRQ%u: " _fmt,	\
++		     memirq_to_tile(m)->id, ##__VA_ARGS__)
++
++#ifdef CONFIG_DRM_XE_DEBUG_MEMIRQ
++#define memirq_debug(m, _fmt, ...)	memirq_printk(m, dbg, _fmt, ##__VA_ARGS__)
++#else
++#define memirq_debug(...)
++#endif
++
++#define memirq_err(m, _fmt, ...)	memirq_printk(m, err, _fmt, ##__VA_ARGS__)
++#define memirq_err_ratelimited(m, _fmt, ...)	\
++	memirq_printk(m, err_ratelimited, _fmt, ##__VA_ARGS__)
+ 
+ static struct xe_tile *memirq_to_tile(struct xe_memirq *memirq)
+ {
+-	return container_of(memirq, struct xe_tile, sriov.vf.memirq);
++	return container_of(memirq, struct xe_tile, memirq);
  }
  
-+/**
-+ * xe_memirq_hwe_handler - Check and process interrupts for a specific HW engine.
-+ * @memirq: the &xe_memirq
-+ * @hwe: the hw engine to process
-+ *
-+ * This function reads and dispatches `Memory Based Interrupts` for the provided HW engine.
-+ */
-+void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
-+{
-+	u16 offset = hwe->irq_offset;
-+	u16 instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
-+	struct iosys_map src_offset = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
-+							    XE_MEMIRQ_SOURCE_OFFSET(instance));
-+
-+	if (memirq_received(memirq, &src_offset, offset, "SRC")) {
-+		struct iosys_map status_offset =
-+			IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
-+					      XE_MEMIRQ_STATUS_OFFSET(instance) + offset * SZ_16);
-+		memirq_dispatch_engine(memirq, &status_offset, hwe);
-+	}
-+}
-+
- /**
-  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
-  * @memirq: the &xe_memirq
-@@ -464,13 +486,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
- 		if (gt->tile != tile)
- 			continue;
+ static struct xe_device *memirq_to_xe(struct xe_memirq *memirq)
+@@ -157,8 +167,7 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+ 	return drmm_add_action_or_reset(&xe->drm, __release_xe_bo, memirq->bo);
  
--		for_each_hw_engine(hwe, gt, id) {
--			if (memirq_received(memirq, &memirq->source, hwe->irq_offset, "SRC")) {
--				map = IOSYS_MAP_INIT_OFFSET(&memirq->status,
--							    hwe->irq_offset * SZ_16);
--				memirq_dispatch_engine(memirq, &map, hwe);
--			}
--		}
-+		for_each_hw_engine(hwe, gt, id)
-+			xe_memirq_hwe_handler(memirq, hwe);
+ out:
+-	xe_sriov_err(memirq_to_xe(memirq),
+-		     "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
++	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
+ 	return err;
+ }
+ 
+@@ -178,9 +187,7 @@ static void memirq_set_enable(struct xe_memirq *memirq, bool enable)
+  *
+  * These allocations are managed and will be implicitly released on unload.
+  *
+- * Note: This function shall be called only by the VF driver.
+- *
+- * If this function fails then VF driver won't be able to operate correctly.
++ * If this function fails then the driver won't be able to operate correctly.
+  * If `Memory Based Interrupts`_ are not used this function will return 0.
+  *
+  * Return: 0 on success or a negative error code on failure.
+@@ -207,7 +214,7 @@ int xe_memirq_init(struct xe_memirq *memirq)
+  * xe_memirq_source_ptr - Get GGTT's offset of the `Interrupt Source Report Page`_.
+  * @memirq: the &xe_memirq to query
+  *
+- * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
++ * Shall be called when `Memory Based Interrupts`_ are used
+  * and xe_memirq_init() didn't fail.
+  *
+  * Return: GGTT's offset of the `Interrupt Source Report Page`_.
+@@ -224,7 +231,7 @@ u32 xe_memirq_source_ptr(struct xe_memirq *memirq)
+  * xe_memirq_status_ptr - Get GGTT's offset of the `Interrupt Status Report Page`_.
+  * @memirq: the &xe_memirq to query
+  *
+- * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
++ * Shall be called when `Memory Based Interrupts`_ are used
+  * and xe_memirq_init() didn't fail.
+  *
+  * Return: GGTT's offset of the `Interrupt Status Report Page`_.
+@@ -241,7 +248,7 @@ u32 xe_memirq_status_ptr(struct xe_memirq *memirq)
+  * xe_memirq_enable_ptr - Get GGTT's offset of the Interrupt Enable Mask.
+  * @memirq: the &xe_memirq to query
+  *
+- * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
++ * Shall be called when `Memory Based Interrupts`_ are used
+  * and xe_memirq_init() didn't fail.
+  *
+  * Return: GGTT's offset of the Interrupt Enable Mask.
+@@ -262,7 +269,7 @@ u32 xe_memirq_enable_ptr(struct xe_memirq *memirq)
+  * Register `Interrupt Source Report Page`_ and `Interrupt Status Report Page`_
+  * to be used by the GuC when `Memory Based Interrupts`_ are required.
+  *
+- * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
++ * Shall be called when `Memory Based Interrupts`_ are used
+  * and xe_memirq_init() didn't fail.
+  *
+  * Return: 0 on success or a negative error code on failure.
+@@ -293,9 +300,8 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
+ 	return 0;
+ 
+ failed:
+-	xe_sriov_err(memirq_to_xe(memirq),
+-		     "Failed to setup report pages in %s (%pe)\n",
+-		     guc_name(guc), ERR_PTR(err));
++	memirq_err(memirq, "Failed to setup report pages in %s (%pe)\n",
++		   guc_name(guc), ERR_PTR(err));
+ 	return err;
+ }
+ 
+@@ -305,7 +311,7 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
+  *
+  * This is part of the driver IRQ setup flow.
+  *
+- * This function shall only be used by the VF driver on platforms that use
++ * This function shall only be used on platforms that use
+  * `Memory Based Interrupts`_.
+  */
+ void xe_memirq_reset(struct xe_memirq *memirq)
+@@ -322,7 +328,7 @@ void xe_memirq_reset(struct xe_memirq *memirq)
+  *
+  * This is part of the driver IRQ setup flow.
+  *
+- * This function shall only be used by the VF driver on platforms that use
++ * This function shall only be used on platforms that use
+  * `Memory Based Interrupts`_.
+  */
+ void xe_memirq_postinstall(struct xe_memirq *memirq)
+@@ -341,9 +347,9 @@ static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
+ 	value = iosys_map_rd(vector, offset, u8);
+ 	if (value) {
+ 		if (value != 0xff)
+-			xe_sriov_err_ratelimited(memirq_to_xe(memirq),
+-						 "Unexpected memirq value %#x from %s at %u\n",
+-						 value, name, offset);
++			memirq_err_ratelimited(memirq,
++					       "Unexpected memirq value %#x from %s at %u\n",
++					       value, name, offset);
+ 		iosys_map_wr(vector, offset, u8, 0x00);
  	}
  
- 	/* GuC and media GuC (if present) must be checked separately */
-diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
-index 15efae2a7a55..06130650e9d6 100644
---- a/drivers/gpu/drm/xe/xe_memirq.h
-+++ b/drivers/gpu/drm/xe/xe_memirq.h
-@@ -20,6 +20,7 @@ u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
- 
- void xe_memirq_reset(struct xe_memirq *memirq);
- void xe_memirq_postinstall(struct xe_memirq *memirq);
-+void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe);
- void xe_memirq_handler(struct xe_memirq *memirq);
- 
- int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
 -- 
 2.43.2
 
