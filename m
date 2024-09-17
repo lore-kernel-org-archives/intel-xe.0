@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04CD4CAC593
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 17:44:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0531CAC593
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 17:46:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C484910E4DC;
-	Tue, 17 Sep 2024 17:44:21 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 888E010E4DC;
- Tue, 17 Sep 2024 17:44:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4823921368836207765=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61E4210E4DC;
+	Tue, 17 Sep 2024 17:46:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BLyrKMIr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEE1210E4DC;
+ Tue, 17 Sep 2024 17:46:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726595183; x=1758131183;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=UZPkGsA8BhQaBvGp9Z/am4ccEZRAfTs9KXYwamIS17w=;
+ b=BLyrKMIroITYdOY8sykCAA8rYw7kMz4fTZOZbC6zw0RaGTS8h/SYKTIC
+ Ttge779e3l2kTgNCr/rjYbQ4Bqm1fchsTia9sUAer5h6uEECAmygNOUZE
+ XAznBq0ab98GF19EXhBnfKBplMt8JiGnJJfDuu+uNE4zi+GmckGihkNB3
+ fv0GvEFVoKGZzkUlOOnnXLR3qyrhNivhQgH7BAK6p/zFeytlNJ++lJ4gk
+ NH1cNrGrlXTsu2ojY3xf8A1T9jbtchGBC3gdMy50JbuqSYWonC7yicHo0
+ rj8TWMpug6RnDUu7BmmuPsk3N6KcFYIrbC/FE95ztpZCJWF9Jx5mDz5+6 Q==;
+X-CSE-ConnectionGUID: oUxnrg+DQdGtjZPKPwpufg==
+X-CSE-MsgGUID: NRHTR1E1TVeChd9NdoS7vQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="13561593"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="13561593"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 10:46:20 -0700
+X-CSE-ConnectionGUID: 9mVBQlCAR2i4zoekHdU3TA==
+X-CSE-MsgGUID: P/C6NnXxTCirSIqHq8LXeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="100105266"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.102])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 10:46:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/4] Add bits for link_n_exended for DISPLAY >= 14
+In-Reply-To: <20240917174200.2563528-2-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240917174200.2563528-1-ankit.k.nautiyal@intel.com>
+ <20240917174200.2563528-2-ankit.k.nautiyal@intel.com>
+Date: Tue, 17 Sep 2024 20:46:14 +0300
+Message-ID: <871q1icgwp.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/xe2=3A_Extend_performance?=
- =?utf-8?q?_tuning_to_media_GT?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Sep 2024 17:44:20 -0000
-Message-ID: <172659506054.1023055.5163950302447487122@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240917165400.40592-1-gustavo.sousa@intel.com>
-In-Reply-To: <20240917165400.40592-1-gustavo.sousa@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,261 +64,149 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4823921368836207765==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 17 Sep 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> LINK_N register has bits 31:24 for extended link N value used for
+> HDMI2.1 and for an alternate mode of operation of DP TG DDA
+> (Bspec:50488).
+>
+> Add support for these extra bits.
+>
+> v2: Drop extra link_n_ext member. (Jani)
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_display.h  |  2 +-
+>  .../gpu/drm/i915/display/intel_pch_display.c  |  4 ++--
+>  drivers/gpu/drm/i915/i915_reg.h               |  2 ++
+>  4 files changed, 21 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 426074afef43..4b1bb1f43adb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2633,9 +2633,12 @@ void intel_zero_m_n(struct intel_link_m_n *m_n)
+>  
+>  void intel_set_m_n(struct drm_i915_private *i915,
+>  		   const struct intel_link_m_n *m_n,
+> +		   u8 link_n_ext,
+>  		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>  {
+> +	u8 link_n = m_n->link_n;
 
-== Series Details ==
+You also don't need the parameter. You don't need to pass it
+around. Please read my previous review.
 
-Series: drm/xe/xe2: Extend performance tuning to media GT
-URL   : https://patchwork.freedesktop.org/series/138776/
-State : failure
+BR,
+Jani.
 
-== Summary ==
+> +
+>  	intel_de_write(i915, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
+>  	intel_de_write(i915, data_n_reg, m_n->data_n);
+>  	intel_de_write(i915, link_m_reg, m_n->link_m);
+> @@ -2643,7 +2646,11 @@ void intel_set_m_n(struct drm_i915_private *i915,
+>  	 * On BDW+ writing LINK_N arms the double buffered update
+>  	 * of all the M/N registers, so it must be written last.
+>  	 */
+> -	intel_de_write(i915, link_n_reg, m_n->link_n);
+> +
+> +	if (DISPLAY_VER(i915) >= 14 && link_n_ext)
+> +		link_n |= PIPE_LINK_N1_EXTENDED(link_n_ext);
+> +
+> +	intel_de_write(i915, link_n_reg, link_n);
+>  }
+>  
+>  bool intel_cpu_transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
+> @@ -2663,13 +2670,13 @@ void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
+>  	enum pipe pipe = crtc->pipe;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 5)
+> -		intel_set_m_n(dev_priv, m_n,
+> +		intel_set_m_n(dev_priv, m_n, 0,
+>  			      PIPE_DATA_M1(dev_priv, transcoder),
+>  			      PIPE_DATA_N1(dev_priv, transcoder),
+>  			      PIPE_LINK_M1(dev_priv, transcoder),
+>  			      PIPE_LINK_N1(dev_priv, transcoder));
+>  	else
+> -		intel_set_m_n(dev_priv, m_n,
+> +		intel_set_m_n(dev_priv, m_n, 0,
+>  			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
+>  			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
+>  }
+> @@ -2683,7 +2690,7 @@ void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
+>  	if (!intel_cpu_transcoder_has_m2_n2(dev_priv, transcoder))
+>  		return;
+>  
+> -	intel_set_m_n(dev_priv, m_n,
+> +	intel_set_m_n(dev_priv, m_n, 0,
+>  		      PIPE_DATA_M2(dev_priv, transcoder),
+>  		      PIPE_DATA_N2(dev_priv, transcoder),
+>  		      PIPE_LINK_M2(dev_priv, transcoder),
+> @@ -3351,7 +3358,11 @@ void intel_get_m_n(struct drm_i915_private *i915,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>  {
+>  	m_n->link_m = intel_de_read(i915, link_m_reg) & DATA_LINK_M_N_MASK;
+> -	m_n->link_n = intel_de_read(i915, link_n_reg) & DATA_LINK_M_N_MASK;
+> +	m_n->link_n = intel_de_read(i915, link_n_reg);
+> +
+> +	if (DISPLAY_VER(i915) < 14)
+> +		m_n->link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
+> +
+>  	m_n->data_m = intel_de_read(i915, data_m_reg) & DATA_LINK_M_N_MASK;
+>  	m_n->data_n = intel_de_read(i915, data_n_reg) & DATA_LINK_M_N_MASK;
+>  	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(i915, data_m_reg)) + 1;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 4bdb48084cab..3b12d7f7c6c3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -473,7 +473,7 @@ bool intel_fuzzy_clock_check(int clock1, int clock2);
+>  
+>  void intel_zero_m_n(struct intel_link_m_n *m_n);
+>  void intel_set_m_n(struct drm_i915_private *i915,
+> -		   const struct intel_link_m_n *m_n,
+> +		   const struct intel_link_m_n *m_n, u8 link_n_ext,
+>  		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg);
+>  void intel_get_m_n(struct drm_i915_private *i915,
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> index f13ab680c2cf..74bc4de6d123 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> @@ -178,7 +178,7 @@ static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum pipe pipe = crtc->pipe;
+>  
+> -	intel_set_m_n(dev_priv, m_n,
+> +	intel_set_m_n(dev_priv, m_n, 0,
+>  		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
+>  		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
+>  }
+> @@ -189,7 +189,7 @@ static void intel_pch_transcoder_set_m2_n2(struct intel_crtc *crtc,
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum pipe pipe = crtc->pipe;
+>  
+> -	intel_set_m_n(dev_priv, m_n,
+> +	intel_set_m_n(dev_priv, m_n, 0,
+>  		      PCH_TRANS_DATA_M2(pipe), PCH_TRANS_DATA_N2(pipe),
+>  		      PCH_TRANS_LINK_M2(pipe), PCH_TRANS_LINK_N2(pipe));
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 7396fc630e29..a770b5dbf5e4 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2158,6 +2158,8 @@
+>  
+>  #define _PIPEA_LINK_N1		0x60044
+>  #define _PIPEB_LINK_N1		0x61044
+> +#define  PIPE_LINK_N1_EXTENDED_MASK	REG_GENMASK(31, 24)
+> +#define  PIPE_LINK_N1_EXTENDED(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXTENDED_MASK, (val))
+>  #define PIPE_LINK_N1(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N1)
+>  
+>  #define _PIPEA_LINK_M2		0x60048
 
-CI Bug Log - changes from xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3_BAT -> xe-pw-138776v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-138776v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-138776v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-138776v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-lnl-2:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1:
-    - bat-lnl-1:          [PASS][3] -> [DMESG-WARN][4] +5 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:
-    - bat-bmg-1:          [PASS][5] -> [DMESG-WARN][6] +6 other tests dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-bmg-1:          [PASS][7] -> [SKIP][8] +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - {bat-bmg-2}:        [PASS][9] -> [SKIP][10] +2 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html
-
-  * igt@xe_module_load@load:
-    - {bat-bmg-2}:        [PASS][11] -> [DMESG-WARN][12] +1 other test dmesg-warn
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-2/igt@xe_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-2/igt@xe_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138776v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3:
-    - bat-bmg-1:          [PASS][13] -> [DMESG-WARN][14] ([Intel XE#877]) +1 other test dmesg-warn
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3.html
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-lnl-1:          [PASS][15] -> [SKIP][16] ([Intel XE#1192]) +2 other tests skip
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-1/igt@xe_live_ktest@xe_bo.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-1/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-lnl-2:          [PASS][17] -> [SKIP][18] ([Intel XE#1192]) +2 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * IGT: IGT_8022 -> IGT_8023
-  * Linux: xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3 -> xe-pw-138776v1
-
-  IGT_8022: 2d82f767a959d58c04ff3876d59d67924208d4ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8023: 20a0ae35cb9fbae774dce8b78e20b2eb658171aa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3: 38e1b615fb395b928e514108e908cd6edf3d34c3
-  xe-pw-138776v1: 138776v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/index.html
-
---===============4823921368836207765==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe2: Extend performance tuning to media GT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138776/">https://patchwork.freedesktop.org/series/138776/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3_BAT -&gt; xe-pw-138776v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-138776v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-138776v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-138776v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html">DMESG-WARN</a> +5 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html">DMESG-WARN</a> +6 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf:</p>
-<ul>
-<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138776v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-hdmi-a-3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-1/igt@xe_live_ktest@xe_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-1/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138776v1/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8022 -&gt; IGT_8023</li>
-<li>Linux: xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3 -&gt; xe-pw-138776v1</li>
-</ul>
-<p>IGT_8022: 2d82f767a959d58c04ff3876d59d67924208d4ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8023: 20a0ae35cb9fbae774dce8b78e20b2eb658171aa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1961-38e1b615fb395b928e514108e908cd6edf3d34c3: 38e1b615fb395b928e514108e908cd6edf3d34c3<br />
-  xe-pw-138776v1: 138776v1</p>
-
-</body>
-</html>
-
---===============4823921368836207765==--
+-- 
+Jani Nikula, Intel
