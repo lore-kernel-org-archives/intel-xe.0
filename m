@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7765C36018
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 12:04:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1B37C36018
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 12:27:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9576310E207;
-	Tue, 17 Sep 2024 12:04:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E16D10E46F;
+	Tue, 17 Sep 2024 12:27:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kpHIQjsv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OxpdhwjS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED24210E467
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 12:04:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B96210E489;
+ Tue, 17 Sep 2024 12:27:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726574645; x=1758110645;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=66G2SZmku9FiMMXs6Yn4nfEvPsOztUtaGSvtx41Vb3Q=;
- b=kpHIQjsvox/SZJwAmz8H+U2hwZlyevCUvtcfPFQMVZcJ5GZzWgpXSHrV
- wz0BHsxEnjXABrN3gqpQ1CB7YyOnXYS9CQimRge+nArazI9QVRWFrbCUn
- he41Ml7THU2DgV0ptlWW4SpuLUtkjTQ5glUiMvRvZoj+tkuFd/XE3R7S1
- uw9IEhubpD0ESjeLn5BQkdspWZ/qtX4f1KLcrIh+Wqj24p1iC/WqIyt2e
- uaYl7Ia89uSuCxl6djpPheUQ0dXyEpWFidmNxxfyaIpVRAqshByskgHPk
- NfGSAwmn+M3QWv7zHe8QUfePq7XkGCi+26ggIolOjXnA7O5/dGv2v5LRx w==;
-X-CSE-ConnectionGUID: HcSyqo63S6K24JAMb402iQ==
-X-CSE-MsgGUID: 9iYK8wYkQUCooXApu6GA/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="29210738"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="29210738"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 05:04:04 -0700
-X-CSE-ConnectionGUID: IxHHB3KISE6RpOk9HbOo2Q==
-X-CSE-MsgGUID: SvzzKjXDTQSXFl7Ft8O4uQ==
+ t=1726576051; x=1758112051;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=C388/p0KkfFSczWDhC+oM8+M0fwsTF4om3mrCuBaRCQ=;
+ b=OxpdhwjSTl1d59oNGEJVEm84pBESewZ6YE91z6oeqQLkX5KI/QmuIshx
+ AG/Y3sPXBzhbjvsw6EDpFCZa9D2TK/m0rhj/0CS5d4UayCO9mI1yKe1QQ
+ /aiJrBx99yDB8HH3KoZt+qU+Zl6U3R0iXMUs7o+0gd5aWtBk5tOxDENgL
+ aGVzxHFM06IQMjk3OsDlAEMWT3CL+Z+wLv2J//1MUqxazI628GFcAh3yq
+ qoc+Xd7zcQQEbojs2YSq3F2z+aGHBN2NQdPhcCeAWJXtMlLe+d1puTCKR
+ n/rqEe/eKGRB/ZS5XUGCy4rY1CXPN3sr+n0NHJk3U5VGyQBX3JKM9HZK4 A==;
+X-CSE-ConnectionGUID: SEYPk8ktQKWKJ7myAk/Yfg==
+X-CSE-MsgGUID: whlmkhi4QHWkweRPRurtLw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="50840167"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="50840167"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 05:27:31 -0700
+X-CSE-ConnectionGUID: iOU+OWzsQZeK/qDa10Fu0g==
+X-CSE-MsgGUID: O5ppqt9eRHiWE6YrR15YZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69388705"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa010.fm.intel.com with ESMTP; 17 Sep 2024 05:04:02 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH v3 23/23] drm/xe: Change return type to void for
- xe_force_wake_put
-Date: Tue, 17 Sep 2024 17:51:26 +0530
-Message-Id: <20240917122126.438448-24-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240917122126.438448-1-himal.prasad.ghimiray@intel.com>
-References: <20240917122126.438448-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69264104"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 17 Sep 2024 05:27:28 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 17 Sep 2024 15:27:28 +0300
+Date: Tue, 17 Sep 2024 15:27:28 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 1/2] drm/i915: Add some essential functionality for joiners
+Message-ID: <Zul1sJjHUEyCWa_b@intel.com>
+References: <20240917082359.2383204-1-ankit.k.nautiyal@intel.com>
+ <20240917082359.2383204-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240917082359.2383204-2-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,87 +71,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no need to return an error from xe_force_wake_put(), as a
-failure implicitly indicates that the domain failed to sleep.
+On Tue, Sep 17, 2024 at 01:53:57PM +0530, Ankit Nautiyal wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> 
+> In most of the cases we now try to avoid mentioning things like
+> "bigjoiner" or "ultrajoiner" trying to unify the API and refer
+> mostly to all this functionality as "joiner".
+> In majority cases that should be way to go.
+> However in some cases we still need to distinguish between
+> bigjoiner primaries and secondaries(such as DSC register programming).
+> 
+> Create correspondent helper functions and start using them,
+> in order be prepared for adding ultrajoiner functionality.
+> 
+> v2: Fixed checkpatch warnings (Ankit)
+> v3: Introduce ultrajoiner helpers in next patch.
+> v4: Streamline the helpers and add few more. (Ville)
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 41 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.h |  2 +
+>  drivers/gpu/drm/i915/display/intel_vdsc.c    |  4 +-
+>  3 files changed, 45 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index d4a371edfcdd..deacdf82e143 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -254,6 +254,47 @@ static enum pipe joiner_primary_pipe(const struct intel_crtc_state *crtc_state)
+>  	return ffs(crtc_state->joiner_pipes) - 1;
+>  }
+>  
+> +static bool is_bigjoiner(const struct intel_crtc_state *crtc_state)
+> +{
+> +	return hweight8(crtc_state->joiner_pipes) >= 2;
+> +}
+> +
+> +static u8 bigjoiner_primary_pipes(const struct intel_crtc_state *crtc_state)
+> +{
+> +	if (!is_bigjoiner(crtc_state))
+> +		return 0;
+> +
+> +	return crtc_state->joiner_pipes & (0b01010101 << joiner_primary_pipe(crtc_state));
+> +}
+> +
+> +static unsigned int bigjoiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
+> +{
+> +	if (!is_bigjoiner(crtc_state))
+> +		return 0;
+> +
+> +	return crtc_state->joiner_pipes & (0b10101010 << joiner_primary_pipe(crtc_state));
+> +}
+> +
+> +bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +
+> +	if (!is_bigjoiner(crtc_state))
+> +		return false;
+> +
+> +	return BIT(crtc->pipe) & bigjoiner_primary_pipes(crtc_state);
+> +}
+> +
+> +bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +
+> +	if (!is_bigjoiner(crtc_state))
+> +		return false;
+> +
+> +	return BIT(crtc->pipe) & bigjoiner_secondary_pipes(crtc_state);
+> +}
 
-v3
-- Move kernel-doc to this patch (Badal)
+We probably want a comment around these somewhere indicating that
+(despite the name) these apply to both bigjoiner and uncompressed
+joiner.
 
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_force_wake.c | 20 ++++++++++++++++----
- drivers/gpu/drm/xe/xe_force_wake.h |  4 ++--
- 2 files changed, 18 insertions(+), 6 deletions(-)
+Unless someone can come up with a better term to use instead of
+"bigjoiner" in these? I'm drawing a blank myself.
 
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 48aa4fca34b5..c2def95ef744 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.c
-+++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -11,6 +11,7 @@
- #include "regs/xe_reg_defs.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-+#include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
- 
-@@ -196,8 +197,20 @@ xe_wakeref_t __must_check xe_force_wake_get(struct xe_force_wake *fw,
- 	return ret;
- }
- 
--int xe_force_wake_put(struct xe_force_wake *fw,
--		      xe_wakeref_t domains_mask)
-+/**
-+ * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
-+ * @fw: Pointer to the force wake structure
-+ * @domains_mask: forcewake domain mask to put reference
-+ *
-+ * This function reduces the reference counts for specified domain mask. If
-+ * refcount for any of the specified domain reaches 0, it puts the domain to sleep
-+ * and waits for acknowledgment for domain to sleep within specified timeout.
-+ * Ensure this function is always called with return of xe_force_wake_get() as
-+ * @domains_mask.
-+ * Warns in case of timeout of ack from domain.
-+ */
-+void xe_force_wake_put(struct xe_force_wake *fw,
-+		       xe_wakeref_t domains_mask)
- {
- 	struct xe_gt *gt = fw->gt;
- 	struct xe_force_wake_domain *domain;
-@@ -210,7 +223,7 @@ int xe_force_wake_put(struct xe_force_wake *fw,
- 	 * in error path of individual domains.
- 	 */
- 	if (!domains_mask)
--		return 0;
-+		return;
- 
- 	spin_lock_irqsave(&fw->lock, flags);
- 	for_each_fw_domain_masked(domain, domains_mask, fw, tmp) {
-@@ -228,5 +241,4 @@ int xe_force_wake_put(struct xe_force_wake *fw,
- 
- 	xe_gt_WARN(gt, ret, "domain%s %#x failed to acknowledgment sleep\n",
- 		   str_plural(hweight_long(ret)), ret);
--	return ret;
- }
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
-index 43e7aa7bead8..e5b3d450b396 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.h
-+++ b/drivers/gpu/drm/xe/xe_force_wake.h
-@@ -17,8 +17,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt,
- 				struct xe_force_wake *fw);
- xe_wakeref_t __must_check xe_force_wake_get(struct xe_force_wake *fw,
- 					    enum xe_force_wake_domains domains);
--int xe_force_wake_put(struct xe_force_wake *fw,
--		      xe_wakeref_t domains_mask);
-+void xe_force_wake_put(struct xe_force_wake *fw,
-+		       xe_wakeref_t domains_mask);
- 
- static inline int
- xe_force_wake_ref(struct xe_force_wake *fw,
+Anyways, with some clarification added this is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
+>  {
+>  	if (crtc_state->joiner_pipes)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 7ca26e5cb20e..894f58ead279 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -426,6 +426,8 @@ bool is_trans_port_sync_master(const struct intel_crtc_state *state);
+>  u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state);
+>  bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
+>  bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
+> +bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state);
+> +bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state);
+>  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
+>  struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
+>  bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index 2e849b015e74..8158e3702ed5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -742,7 +742,7 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+>  	u32 dss_ctl1_val = 0;
+>  
+>  	if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable) {
+> -		if (intel_crtc_is_joiner_secondary(crtc_state))
+> +		if (intel_crtc_is_bigjoiner_secondary(crtc_state))
+>  			dss_ctl1_val |= UNCOMPRESSED_JOINER_SECONDARY;
+>  		else
+>  			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
+> @@ -771,7 +771,7 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
+>  	}
+>  	if (crtc_state->joiner_pipes) {
+>  		dss_ctl1_val |= BIG_JOINER_ENABLE;
+> -		if (!intel_crtc_is_joiner_secondary(crtc_state))
+> +		if (intel_crtc_is_bigjoiner_primary(crtc_state))
+>  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+>  	}
+>  	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
+> -- 
+> 2.45.2
+
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
