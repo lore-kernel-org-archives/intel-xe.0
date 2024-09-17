@@ -4,40 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89262C36017
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 11:24:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAA99C36016
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 330AE10E464;
-	Tue, 17 Sep 2024 11:24:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D73310E283;
+	Tue, 17 Sep 2024 11:24:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="XVESKSta";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="lny35bSU";
 	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0EA10E464
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 11:24:01 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD2F010E0D0
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 11:24:00 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1726572235; bh=glmQr+6BxE2wbEQkHooFpG9kdIUNEYxdjAXEfry2cxw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XVESKStatv4yRPpzbABbFZFN0G+1yvXBfVsc7R8DvBPNyQsUSQNfeO9gvH3vR21zr
- m2QQFL01l1Vzg7jE9eFhq0yTQ2OosMGl0GIGXMOcxqoIpcBg24yKDZFPW8i5XeAwXS
- 8e+dFgy0JpXT0UkAEv9qMoH6gw3eFGKXkF9w5J3YSQHtZRMr660Oc92rLpd047S3vN
- AS3bbuJduDP9zArfGOIonsFTBz8ZUTs5CcaBF+MzIQXgV6kNsdKIqhGMrFRFzCiVr4
- Zz9DbNE7K9z+2xc5lFmCDD30INRSS+dc5fXUlG+8KXxOm6r4tTyU0uNV0FYGzCG2UX
- 5hjp8I9+6JTmA==
+ t=1726572233; bh=BSvGuAk5tcpHwmbT24tB69FntC6fuCqspPDGL3xc0m4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=lny35bSUNYPw+DfWVPBRt7HSruPfz6sQ6E6EpNg/D1I3Poyvzr6lwf0szn6wEYnbd
+ CeKQl/5fyJKiw2klOq1BhbWckwVqV2tt+0wAB39oYPUDtaCXaq60Q3CYxE2izsb0vD
+ icRm68b3FQo6NRg4e1V/dqf5a8wt0AKw1nel98nR0inrBkAcg+HlDYmPbjiXu3QQT2
+ lBi6thy99W29nMEhbfhPYQuidv5VIuY6bo7qjzVFpMs6fXSW+8txyN/ifD6JMhclw3
+ jwZ+Hd2Ru1CG22NHJUW6RE7/HJhkiAoMfP+sciCSoraTMR/+IisOUIHfXBb7meuJMQ
+ OHf1gkQ0jcR6A==
 Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 48HBNmuL1242354; Tue, 17 Sep 2024 14:23:48 +0300
+ id 48HBNmuK1242354; Tue, 17 Sep 2024 14:23:48 +0300
 From: Ilia Levi <illevi@habana.ai>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, michal.wajdeczko@intel.com, jonathan.cavitt@intel.com,
  koby.elbaz@intel.com, yaron.avizrat@intel.com
-Subject: [PATCH v5 1/5] drm/xe: Introduce dedicated config for memirq debug
-Date: Tue, 17 Sep 2024 14:23:03 +0300
-Message-ID: <20240917112307.1242329-2-illevi@habana.ai>
+Subject: [PATCH v5 0/5] memirq infra changes
+Date: Tue, 17 Sep 2024 14:23:02 +0300
+Message-ID: <20240917112307.1242329-1-illevi@habana.ai>
 X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240917112307.1242329-1-illevi@habana.ai>
-References: <20240917112307.1242329-1-illevi@habana.ai>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -56,39 +54,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ilia Levi <ilia.levi@intel.com>
 
-Separate config for memory based interrupts (memirq) infrastructure.
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
----
- drivers/gpu/drm/xe/Kconfig.debug | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+This patch set contains Memory Based Interrupts (memirq) infrastructure
+changes to make it reusable for use cases other than VF 
+(specifically MSI-X). 
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index bc177368af6c..2de0de41b8dd 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -40,9 +40,21 @@ config DRM_XE_DEBUG_VM
- 
- 	  If in doubt, say "N".
- 
-+config DRM_XE_DEBUG_MEMIRQ
-+	bool "Enable extra memirq debugging"
-+	default n
-+	help
-+	  Choose this option to enable additional debugging info for
-+	  memory based interrupts.
-+
-+	  Recommended for driver developers only.
-+
-+	  If in doubt, say "N".
-+
- config DRM_XE_DEBUG_SRIOV
- 	bool "Enable extra SR-IOV debugging"
- 	default n
-+	select DRM_XE_DEBUG_MEMIRQ
- 	help
- 	  Enable extra SR-IOV debugging info.
- 
+The main changes are separation from VF and a new mode where hardware
+engines report interrupt source and status to the offset of instance 0
+(for MSI-X support).
+
+v2: Rebase
+v3: Rebase, refactor according to review comments (Michal)
+v4: Rebase, address review comments (Michal)
+v5: Rebase, fix more review comments (Michal)
+
+
+Ilia Levi (5):
+  drm/xe: Introduce dedicated config for memirq debug
+  drm/xe: Introduce xe_device_uses_memirq()
+  drm/xe: move memirq out of VF
+  drm/xe: memirq infra changes for MSI-X
+  drm/xe: memirq handler changes
+
+ drivers/gpu/drm/xe/Kconfig.debug     |  12 ++
+ drivers/gpu/drm/xe/xe_device.c       |   8 +-
+ drivers/gpu/drm/xe/xe_device.h       |  12 ++
+ drivers/gpu/drm/xe/xe_device_types.h |   6 +-
+ drivers/gpu/drm/xe/xe_guc.c          |   2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c    |  28 +++-
+ drivers/gpu/drm/xe/xe_irq.c          |   8 +-
+ drivers/gpu/drm/xe/xe_lrc.c          |   8 +-
+ drivers/gpu/drm/xe/xe_memirq.c       | 190 +++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_memirq.h       |   6 +-
+ drivers/gpu/drm/xe/xe_memirq_types.h |   4 +-
+ 11 files changed, 205 insertions(+), 79 deletions(-)
+
 -- 
 2.43.2
 
