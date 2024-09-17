@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71102CAC592
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 17:18:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5A6ECAC593
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 17:40:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3976C10E091;
-	Tue, 17 Sep 2024 17:18:38 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 944F510E091;
- Tue, 17 Sep 2024 17:18:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A192810E4CF;
+	Tue, 17 Sep 2024 17:40:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nZtmFt8C";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2BA10E4CF;
+ Tue, 17 Sep 2024 17:40:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726594813; x=1758130813;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PjSnxBUHpRIExDOmYpL1roHQZgUyzygYPXEhBuyKKwc=;
+ b=nZtmFt8CYRbds7E5y9v6bwMWsX0f/cwf9QNfKkPl+D5vZyeUefCZH/Qg
+ BO8cDg6uZ2fis+zIom3aOSgWYu3BYkDJt02R0/LsrprYoinhVckkGX8tK
+ XctLVaNI2k5vaT/8pFg/OFSuODIP5nJ9B5mZRchAjKkTXjy8WjHjUO4FB
+ K/ghoaLH29mcBqhPi+37lX54EfVZu/bLFDAVTqXeYSBhbbgpQjOH5U2ci
+ pr+5S2Yt2aGUZXj4OZKE8b9ScF1eL0uljELNvqvdNa8Vas6w2z4A1hEMG
+ vlhcOkBeoAGkRiufrzwuEoFPEEq9Tc8KexuUyJzfaIxnE/NyiXxKl8UFL g==;
+X-CSE-ConnectionGUID: skg3RAkrRm2nLKXO+m5uFA==
+X-CSE-MsgGUID: VotTwpK+RMmOe2sZYgTIoQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="13560977"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="13560977"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 10:40:12 -0700
+X-CSE-ConnectionGUID: pbh3plsMSz6vv0EbpLRKcQ==
+X-CSE-MsgGUID: 1liiCLedQbqnop3LvGJv9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69486131"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 10:40:11 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com
+Subject: [PATCH 0/4] Implement Wa_14021768792 to bypass m_n ratio limit
+Date: Tue, 17 Sep 2024 23:11:56 +0530
+Message-ID: <20240917174200.2563528-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/xe2=3A_Extend_per?=
- =?utf-8?q?formance_tuning_to_media_GT?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Sep 2024 17:18:37 -0000
-Message-ID: <172659351760.1022932.5867447857593770048@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240917165400.40592-1-gustavo.sousa@intel.com>
-In-Reply-To: <20240917165400.40592-1-gustavo.sousa@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +62,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+For Platforms that support higher link rates, there is a limitation on
+Link M /Link N ratio.
+If the CEILING( Link M / Link N ) ratio is greater than 10.0, then
+hardware cannot support the given resolution / refresh rate at the given
+configuration.
+For BMG Wa_14021768792 helps to bypass this limitation and allows it to
+support the ratio till 15.0.
 
-Series: drm/xe/xe2: Extend performance tuning to media GT
-URL   : https://patchwork.freedesktop.org/series/138776/
-State : success
+This series adds the missing restrictions for earlier platforms and adds
+the Wa_14021768792 for BMG as per Bspec:49266
 
-== Summary ==
+Rev2:
+-Drop new member link_n_extended.
+-Avoid WA framework for XE
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 38e1b615fb395b928e514108e908cd6edf3d34c3
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Ankit Nautiyal (4):
+  Add bits for link_n_exended for DISPLAY >= 14
+  drm/i915/display: Limit m/n ratio to 10 for display > 12
+  drm/i915/display: Add bits for Wa_14021768792 for linkm/n ratio > 10
+  drm/i915/display: Implement Wa_14021768792 for BMG DP for link_m/n
+    ratio > 10
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/i915/display/intel_display.c  | 147 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_display.h  |  15 +-
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  62 ++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h       |   5 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  37 +++--
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  15 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |   4 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   7 +
+ 9 files changed, 243 insertions(+), 51 deletions(-)
 
+-- 
+2.45.2
 
