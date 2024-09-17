@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7EF6CAC5AB
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 22:16:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76FF4CAC5AA
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Sep 2024 22:18:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4DF10E02A;
-	Tue, 17 Sep 2024 22:16:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40E0410E507;
+	Tue, 17 Sep 2024 22:18:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XRxl3GdU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gE8abm+k";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2B9810E02A
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 22:16:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5177E10E507
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Sep 2024 22:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726611386; x=1758147386;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=c9urFwejiqEG4z1c3C/osq4SXpfEtUw0q66cUis0j0c=;
- b=XRxl3GdUWs0sHkISYD635CTcWXxSWYzlwagJI1jddxkC7w62qaSBZIUk
- wHVnRwefUJX/4zyRfcJpCKyJLkuEhp9BALdpgGTWP6zs50Qxz4uRpfeJE
- b80a4b+B4h5hJHQH4Ha1DRNCf2N6RJ1KmQccBmn294ogDcEjCdoAU7CmD
- kLng20f++ckqREm79VWI1Wb4FlY9ACSj2g4qlNGmNH6Npzkp8jMiU1jRb
- 8Qm2YmCr5uRBQU5+DpG1QVsenET+3ZcBsk4Y9ZNUpX55LqJqU57oRe1kA
- DF83wVFDEIU1wuQqpQ2IkzykkgVj0vFs8aZsf/HNrMb1OZT2dXLlmdcTi g==;
-X-CSE-ConnectionGUID: sxgNkTUeQve0uEjLko4e8g==
-X-CSE-MsgGUID: YUpIv9mvRXCMw+N/VbLR0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25657438"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="25657438"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 15:16:26 -0700
-X-CSE-ConnectionGUID: 1VeImA8fTC+n8+IjWtagpw==
-X-CSE-MsgGUID: GK24hpORTwyg1zXuYUi65g==
+ t=1726611483; x=1758147483;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=tGT+GywthEdWVC2ubeLXqxMX8qwKTabmJCUYjc3KeU8=;
+ b=gE8abm+khEdWxw8YKjflRu3pnuFI72xMi2F33lnX+JFtMbdV/g4l3fdV
+ QudB6dFU6YHA8oAj6f16g7dR4+pXOwoxEHCGwfyXOA37rCkdILGCJuoTE
+ RGVbi9ZsmyZHU3XHP/B/dRpI0WgmpO9QzBQIl9njU0fc/HCqAcC66LNaG
+ M+ls6BTNqnTnX7klmMew5Aid35DYuYsSU1todiaFIFKqDDKJ0qXuSzSvz
+ RgVBvwoyfNs2IHWwv5C3jvAM9145lmrqu1DK1h4Y53QqvZr6MuUiieS/h
+ atFtGhK+SQV5KK5uD14iPd1ZfHrRwbuJx3bNjUamLV+5Ckl3X+eizEIsE Q==;
+X-CSE-ConnectionGUID: IsTNAN6dTpu8Z2od3/OB2w==
+X-CSE-MsgGUID: Gmdtg64ASXiy1zCwSCLqzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="29287130"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="29287130"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 15:18:03 -0700
+X-CSE-ConnectionGUID: oFMYqANSTCmWYx52PgDHxQ==
+X-CSE-MsgGUID: bjgBsifGT8SyOHZ610LDdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69559000"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 15:16:25 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH] drm/xe: Defer gt->mmio initialization until after multi-tile
- setup
-Date: Tue, 17 Sep 2024 15:16:16 -0700
-Message-ID: <20240917221615.875962-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.46.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="74173133"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.138])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 15:18:03 -0700
+Date: Tue, 17 Sep 2024 15:18:03 -0700
+Message-ID: <85ed5h7wmc.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/7] drm/xe/oa: Signal output fences
+In-Reply-To: <20240830221618.2103948-5-ashutosh.dixit@intel.com>
+References: <20240830221618.2103948-1-ashutosh.dixit@intel.com>	<20240830221618.2103948-5-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,136 +69,260 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the recent xe_mmio redesign, tiles and GTs each have their own MMIO
-accessor, with the GT inheriting some of the information (such as the
-iomap pointer) from their containing tile.  Given that non-root tiles
-get initialized later than the root tile (and currently after the point
-at which GT MMIO is initialized for _all_ GTs), we wind up incorrectly
-inheriting uninitialized pointers for the initialization of GT MMIO for
-GTs that reside on non-root tiles.  This causes a driver crash on
-multi-tile PVC platforms.
+On Fri, 30 Aug 2024 15:16:15 -0700, Ashutosh Dixit wrote:
+>
 
-With the general xe_mmio redesign, it's now only necessary to do the
-GT-level MMIO setup before the point we start reading/writing GT
-registers.  Move initialization of gt->mmio out of xe_info_init (which
-runs before non-root tiles are initialized) and to the beginning of
-where we start actually accessing the GTs themselves.
+Hi Matt,
 
-The high-level initialization flow now boils down to:
- - General device init, software-only setup
- - (no register access possible yet)
- - Root tile initialization
- - (access to device/tile0 registers possible via xe_root_tile_mmio())
- - Initialization of non-root tiles
- - (access to any tile's registers possible via tile->mmio)
- - GT MMIO initialization, inheriting iomap from each GT's tile
- - (access to any GT's registers possible via gt->mmio)
+> Introduce 'struct xe_oa_fence' which includes the dma_fence used to signal
+> output fences in the xe_sync array. The fences are signaled
+> asynchronously. When there are no output fences to signal, the OA
+> configuration wait is synchronously re-introduced into the ioctl.
+>
+> v2: Don't wait in the work, use callback + delayed work (Matt B)
+>     Use a single, not a per-fence spinlock (Matt Brost)
 
-Fixes: fa599b8c95a7 ("drm/xe: Populate GT's mmio iomap from tile during init")
-Reported-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c |  7 +++++++
- drivers/gpu/drm/xe/xe_gt.c     | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt.h     |  1 +
- drivers/gpu/drm/xe/xe_pci.c    | 12 ------------
- 4 files changed, 32 insertions(+), 12 deletions(-)
+Want to check with you about this "single, not per-fence spinlock" issue
+below.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4d3c794f134c..998165962cad 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -656,6 +656,13 @@ int xe_device_probe(struct xe_device *xe)
- 		err = xe_gt_init_early(gt);
- 		if (err)
- 			return err;
-+
-+		/*
-+		 * Only after this point can GT-specific MMIO operations
-+		 * (including things like communication with the GuC)
-+		 * be performed.
-+		 */
-+		xe_gt_mmio_init(gt);
- 	}
- 
- 	for_each_tile(tile, xe, id) {
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index b32fb3fdf80d..9b0218109647 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -624,6 +624,30 @@ int xe_gt_init(struct xe_gt *gt)
- 	return 0;
- }
- 
-+/**
-+ * xe_gt_mmio_init() - Initialize GT's MMIO access
-+ * @gt: the GT object
-+ *
-+ * Initialize GT's MMIO accessor, which will be used to access registers inside
-+ * this GT.
-+ */
-+void xe_gt_mmio_init(struct xe_gt *gt)
-+{
-+	struct xe_tile *tile = gt_to_tile(gt);
-+
-+	gt->mmio.regs = tile->mmio.regs;
-+	gt->mmio.regs_size = tile->mmio.regs_size;
-+	gt->mmio.tile = tile;
-+
-+	if (gt->info.type == XE_GT_TYPE_MEDIA) {
-+		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
-+		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
-+	}
-+
-+	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+		gt->mmio.sriov_vf_gt = gt;
-+}
-+
- void xe_gt_record_user_engines(struct xe_gt *gt)
- {
- 	struct xe_hw_engine *hwe;
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 97def44afa4c..05c8351d0f39 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -37,6 +37,7 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
- int xe_gt_init_hwconfig(struct xe_gt *gt);
- int xe_gt_init_early(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
-+void xe_gt_mmio_init(struct xe_gt *gt);
- void xe_gt_declare_wedged(struct xe_gt *gt);
- int xe_gt_record_default_lrcs(struct xe_gt *gt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 5ba4ec229494..2afa05799b8d 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -721,11 +721,6 @@ static int xe_info_init(struct xe_device *xe,
- 		gt->info.type = XE_GT_TYPE_MAIN;
- 		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = graphics_desc->hw_engine_mask;
--		gt->mmio.regs = tile->mmio.regs;
--		gt->mmio.regs_size = tile->mmio.regs_size;
--		gt->mmio.tile = tile;
--		if (IS_SRIOV_VF(xe))
--			gt->mmio.sriov_vf_gt = gt;
- 
- 		if (MEDIA_VER(xe) < 13 && media_desc)
- 			gt->info.engine_mask |= media_desc->hw_engine_mask;
-@@ -745,13 +740,6 @@ static int xe_info_init(struct xe_device *xe,
- 		gt->info.type = XE_GT_TYPE_MEDIA;
- 		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = media_desc->hw_engine_mask;
--		gt->mmio.regs = tile->mmio.regs;
--		gt->mmio.regs_size = tile->mmio.regs_size;
--		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
--		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
--		gt->mmio.tile = tile;
--		if (IS_SRIOV_VF(xe))
--			gt->mmio.sriov_vf_gt = gt;
- 
- 		/*
- 		 * FIXME: At the moment multi-tile and standalone media are
--- 
-2.46.0
+> v3: Move ofence alloc before job submission (Matt)
+>     Assert, don't fail, from dma_fence_add_callback (Matt)
+>     Additional dma_fence_get for dma_fence_wait (Matt)
+>     Change dma_fence_wait to non-interruptible (Matt)
+> v4: Introduce last_fence to prevent uaf if stream is closed with
+>     pending OA config jobs
+>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_oa.c       | 117 ++++++++++++++++++++++++++-----
+>  drivers/gpu/drm/xe/xe_oa_types.h |   6 ++
+>  2 files changed, 106 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index b4b68019d35b7..56f95fd431bf9 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> @@ -100,6 +100,15 @@ struct xe_oa_config_bo {
+>	struct xe_bb *bb;
+>  };
+>
+> +struct xe_oa_fence {
+> +	/* @base: dma fence base */
+> +	struct dma_fence base;
+> +	/* @work: work to signal @base */
+> +	struct delayed_work work;
+> +	/* @cb: callback to schedule @work */
+> +	struct dma_fence_cb cb;
+> +};
+> +
+>  #define DRM_FMT(x) DRM_XE_OA_FMT_TYPE_##x
+>
+>  static const struct xe_oa_format oa_formats[] = {
+> @@ -172,10 +181,10 @@ static struct xe_oa_config *xe_oa_get_oa_config(struct xe_oa *oa, int metrics_se
+>	return oa_config;
+>  }
+>
+> -static void free_oa_config_bo(struct xe_oa_config_bo *oa_bo)
+> +static void free_oa_config_bo(struct xe_oa_config_bo *oa_bo, struct dma_fence *last_fence)
+>  {
+>	xe_oa_config_put(oa_bo->oa_config);
+> -	xe_bb_free(oa_bo->bb, NULL);
+> +	xe_bb_free(oa_bo->bb, last_fence);
+>	kfree(oa_bo);
+>  }
+>
+> @@ -648,7 +657,8 @@ static void xe_oa_free_configs(struct xe_oa_stream *stream)
+>
+>	xe_oa_config_put(stream->oa_config);
+>	llist_for_each_entry_safe(oa_bo, tmp, stream->oa_config_bos.first, node)
+> -		free_oa_config_bo(oa_bo);
+> +		free_oa_config_bo(oa_bo, stream->last_fence);
+> +	dma_fence_put(stream->last_fence);
+>  }
+>
+>  static void xe_oa_store_flex(struct xe_oa_stream *stream, struct xe_lrc *lrc,
+> @@ -945,40 +955,112 @@ xe_oa_alloc_config_buffer(struct xe_oa_stream *stream, struct xe_oa_config *oa_c
+>	return oa_bo;
+>  }
+>
+> +static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct dma_fence *fence)
+> +{
+> +	dma_fence_put(stream->last_fence);
+> +	stream->last_fence = dma_fence_get(fence);
+> +}
+> +
+> +static void xe_oa_fence_work_fn(struct work_struct *w)
+> +{
+> +	struct xe_oa_fence *ofence = container_of(w, typeof(*ofence), work.work);
+> +
+> +	/* Signal fence to indicate new OA configuration is active */
+> +	dma_fence_signal(&ofence->base);
+> +	dma_fence_put(&ofence->base);
+> +}
+> +
+> +static void xe_oa_config_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
+> +{
+> +	/* Additional empirical delay needed for NOA programming after registers are written */
+> +#define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
+> +
+> +	struct xe_oa_fence *ofence = container_of(cb, typeof(*ofence), cb);
+> +
+> +	INIT_DELAYED_WORK(&ofence->work, xe_oa_fence_work_fn);
+> +	queue_delayed_work(system_unbound_wq, &ofence->work,
+> +			   usecs_to_jiffies(NOA_PROGRAM_ADDITIONAL_DELAY_US));
+> +	dma_fence_put(fence);
+> +}
+> +
+> +static const char *xe_oa_get_driver_name(struct dma_fence *fence)
+> +{
+> +	return "xe_oa";
+> +}
+> +
+> +static const char *xe_oa_get_timeline_name(struct dma_fence *fence)
+> +{
+> +	return "unbound";
+> +}
+> +
+> +static const struct dma_fence_ops xe_oa_fence_ops = {
+> +	.get_driver_name = xe_oa_get_driver_name,
+> +	.get_timeline_name = xe_oa_get_timeline_name,
+> +};
+> +
+>  static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config *config)
+>  {
+>  #define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
+>	struct xe_oa_config_bo *oa_bo;
+> -	int err = 0, us = NOA_PROGRAM_ADDITIONAL_DELAY_US;
+> +	struct xe_oa_fence *ofence;
+> +	int i, err, num_signal = 0;
+>	struct dma_fence *fence;
+> -	long timeout;
+>
+> -	/* Emit OA configuration batch */
+> +	ofence = kzalloc(sizeof(*ofence), GFP_KERNEL);
+> +	if (!ofence) {
+> +		err = -ENOMEM;
+> +		goto exit;
+> +	}
+> +
+>	oa_bo = xe_oa_alloc_config_buffer(stream, config);
+>	if (IS_ERR(oa_bo)) {
+>		err = PTR_ERR(oa_bo);
+>		goto exit;
+>	}
+>
+> +	/* Emit OA configuration batch */
+>	fence = xe_oa_submit_bb(stream, XE_OA_SUBMIT_ADD_DEPS, oa_bo->bb);
+>	if (IS_ERR(fence)) {
+>		err = PTR_ERR(fence);
+>		goto exit;
+>	}
+>
+> -	/* Wait till all previous batches have executed */
+> -	timeout = dma_fence_wait_timeout(fence, false, 5 * HZ);
+> -	dma_fence_put(fence);
+> -	if (timeout < 0)
+> -		err = timeout;
+> -	else if (!timeout)
+> -		err = -ETIME;
+> -	if (err)
+> -		drm_dbg(&stream->oa->xe->drm, "dma_fence_wait_timeout err %d\n", err);
+> +	/* Point of no return: initialize and set fence to signal */
+> +	dma_fence_init(&ofence->base, &xe_oa_fence_ops, &stream->oa_fence_lock, 0, 0);
 
+About stream->oa_fence_lock. This was added in response to this comment
+from you in v1 of this patch:
+
+	/* No per fence spin lock, global OA one for user_signal */
+
+here:
+	https://patchwork.freedesktop.org/patch/607602/?series=137058&rev=1#comment_1104327
+
+However, I just realized that, the way it is implemented, there is a uaf
+here: lock memory can be freed before the lock is accessed in
+dma_fence_signal() in xe_oa_fence_work_fn() (when the oa stream is
+destroyed).
+
+Of course we can implement some reference counting etc. to solve the uaf,
+but the simplest way to solve it seems to be to go back to the per-fence
+lock, unless doing so is incorrect? Looking at dma_fence_init calls, I do
+see per fence locks being used occasionally (xe_preempt_fence, vgem_fence
+etc.).
+
+So just want to check with you if it's ok to go back to the per fence lock,
+or we should solve it some other way.
+
+Thanks.
+--
+Ashutosh
+
+>
+> -	/* Additional empirical delay needed for NOA programming after registers are written */
+> -	usleep_range(us, 2 * us);
+> +	for (i = 0; i < stream->num_syncs; i++) {
+> +		if (stream->syncs[i].flags & DRM_XE_SYNC_FLAG_SIGNAL)
+> +			num_signal++;
+> +		xe_sync_entry_signal(&stream->syncs[i], &ofence->base);
+> +	}
+> +
+> +	/* Additional dma_fence_get in case we dma_fence_wait */
+> +	if (!num_signal)
+> +		dma_fence_get(&ofence->base);
+> +
+> +	/* Update last fence too before adding callback */
+> +	xe_oa_update_last_fence(stream, fence);
+> +
+> +	/* Add job fence callback to schedule work to signal ofence->base */
+> +	err = dma_fence_add_callback(fence, &ofence->cb, xe_oa_config_cb);
+> +	xe_gt_assert(stream->gt, !err || err == -ENOENT);
+> +	if (err == -ENOENT)
+> +		xe_oa_config_cb(fence, &ofence->cb);
+> +
+> +	/* If nothing needs to be signaled we wait synchronously */
+> +	if (!num_signal) {
+> +		dma_fence_wait(&ofence->base, false);
+> +		dma_fence_put(&ofence->base);
+> +	}
+> +
+> +	/* Done with syncs */
+> +	for (i = 0; i < stream->num_syncs; i++)
+> +		xe_sync_entry_cleanup(&stream->syncs[i]);
+> +	kfree(stream->syncs);
+> +
+> +	return 0;
+>  exit:
+> +	kfree(ofence);
+>	return err;
+>  }
+>
+> @@ -1479,6 +1561,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+>		goto err_free_oa_buf;
+>	}
+>
+> +	spin_lock_init(&stream->oa_fence_lock);
+>	ret = xe_oa_enable_metric_set(stream);
+>	if (ret) {
+>		drm_dbg(&stream->oa->xe->drm, "Unable to enable metric set\n");
+> diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+> index 99f4b2d4bdcf6..935f98772a948 100644
+> --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> @@ -239,6 +239,12 @@ struct xe_oa_stream {
+>	/** @no_preempt: Whether preemption and timeslicing is disabled for stream exec_q */
+>	u32 no_preempt;
+>
+> +	/** @last_fence: fence to use in stream destroy when needed */
+> +	struct dma_fence *last_fence;
+> +
+> +	/** @oa_fence_lock: Lock for struct xe_oa_fence */
+> +	spinlock_t oa_fence_lock;
+> +
+>	/** @num_syncs: size of @syncs array */
+>	u32 num_syncs;
+>
+> --
+> 2.41.0
+>
