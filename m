@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02D9FCDD54F
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 19:13:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3602ECDD54F
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 19:13:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C135E10E626;
-	Wed, 18 Sep 2024 19:13:12 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 243A710E626;
- Wed, 18 Sep 2024 19:13:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 031E110E62A;
+	Wed, 18 Sep 2024 19:13:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nkWwd+U8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68F1C10E295;
+ Wed, 18 Sep 2024 19:13:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726686818; x=1758222818;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=eNBnYslySoOGoXOYuYo2s42wWDyOwKG5VmXAOIOY/60=;
+ b=nkWwd+U829MTrO0LzT6GxvRy/NaXk6kvW+R86dcX1FDZBb+ZS5yTlvKa
+ RydNHpOP8YsXvF091S5hMTPRwNRW/S3v1FdBhOT7xpqZIHVSLdxXPyKnX
+ F0M+hM8vRdxdGWCxi4YlPbZ7PKAnD9fkXDEGJWIX+xLoWWVfTusNRdfvo
+ WbMgGKiuuPqKSEmHTfrK9lSMmwwpSQwDY3dN8PSVu/MCUmtGb9bcayrYp
+ H4oCfk3hdp1E4Q0Lbum626qhDXM00T+qK712iiE+exHJUHVnF7S9iX3IX
+ TZOlC/NRAzmXSB+MXCrvnFfttWUp8NSracMpmfavf+uRXdHWCYq61A+kl w==;
+X-CSE-ConnectionGUID: h9C8ZQhpS7SMT/cUXzKpnw==
+X-CSE-MsgGUID: ncksOOFsRp+d9Ut88hUcsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25817713"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="25817713"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 12:13:38 -0700
+X-CSE-ConnectionGUID: hNdPKWzNRPelIkJF4KUB4Q==
+X-CSE-MsgGUID: UmAadNHxT/6c3vY+VlyxGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="69788121"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 18 Sep 2024 12:13:36 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Sep 2024 22:13:35 +0300
+Date: Wed, 18 Sep 2024 22:13:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 3/9] drm/i915/pps: only touch the vlv_ members on
+ VLV/CHV
+Message-ID: <ZusmX8cRJHIKRAx8@intel.com>
+References: <cover.1726681620.git.jani.nikula@intel.com>
+ <158c7b30e56d22aa3f9c9e51e87b9d89687d74d5.1726681620.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/debugfs=3A_Display?=
- =?utf-8?q?_gpuva_info_in_debugfs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Oak Zeng" <oak.zeng@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Sep 2024 19:13:11 -0000
-Message-ID: <172668679114.1027297.16797235103466962963@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240918164545.3955824-1-oak.zeng@intel.com>
-In-Reply-To: <20240918164545.3955824-1-oak.zeng@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <158c7b30e56d22aa3f9c9e51e87b9d89687d74d5.1726681620.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,57 +68,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Sep 18, 2024 at 08:47:43PM +0300, Jani Nikula wrote:
+> While the struct intel_pps vlv_pps_pipe and vlv_active_pipe members are
+> only relevant for VLV/CHV, we still initialize them on all platforms and
+> check them on BXT/GLK. Wrap all access inside VLV/CHV checks for
+> consistency.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c  |  6 +++---
+>  drivers/gpu/drm/i915/display/intel_pps.c | 11 ++++++-----
+>  2 files changed, 9 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 9dd86523012f..9f908dbd45ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6867,8 +6867,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  		return false;
+>  
+>  	intel_dp->reset_link_params = true;
+> -	intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+> -	intel_dp->pps.vlv_active_pipe = INVALID_PIPE;
+>  
+>  	/* Preserve the current hw state. */
+>  	intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
+> @@ -6895,8 +6893,10 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  	intel_dp_set_default_sink_rates(intel_dp);
+>  	intel_dp_set_default_max_sink_lane_count(intel_dp);
+>  
+> -	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> +	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> +		intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+>  		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
+> +	}
+>  
+>  	intel_dp_aux_init(intel_dp);
+>  	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 2d8d911988ab..649dc6ad2278 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -472,16 +472,17 @@ void intel_pps_reset_all(struct intel_display *display)
+>  	for_each_intel_dp(display->drm, encoder) {
+>  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+> -		drm_WARN_ON(display->drm,
+> -			    intel_dp->pps.vlv_active_pipe != INVALID_PIPE);
+> +		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> +			drm_WARN_ON(display->drm,
+> +				    intel_dp->pps.vlv_active_pipe != INVALID_PIPE);
 
-Series: drm/xe/debugfs: Display gpuva info in debugfs
-URL   : https://patchwork.freedesktop.org/series/138834/
-State : warning
+Might make sense to just split this whole function
+into vlv/chv vs. bxt/glk versions. It's called from
+platform specific code only so each caller knows
+which one it wants.
 
-== Summary ==
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c62d7e164862503a3662a095da1c6c9014248cb2
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 3aa8f80ee39eec3a3b1d95c47ccd32bcacf03834
-Author: Oak Zeng <oak.zeng@intel.com>
-Date:   Wed Sep 18 12:45:45 2024 -0400
+>  
+>  		if (encoder->type != INTEL_OUTPUT_EDP)
+>  			continue;
+>  
+> -		if (DISPLAY_VER(display) >= 9)
+> -			intel_dp->pps.bxt_pps_reset = true;
+> -		else
+> +		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>  			intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+> +		else
+> +			intel_dp->pps.bxt_pps_reset = true;
+>  	}
+>  }
+>  
+> -- 
+> 2.39.2
 
-    drm/xe/debugfs: Display gpuva info in debugfs
-    
-    Add debugfs entry to display all the gpuva that is bound to the
-    device. This is done by walking all the VMs created for each device
-    process, and display va information of each VM. This is useful for
-    gpuvm debugging. With this change, user can display gpuva info
-    as below:
-    
-    root@DUT7279PVC:/home/gta# cat /sys/kernel/debug/dri/0/gpuvas
-    Process "your process name" GPU VA space
-    DRM GPU VA space (Xe VM) [0x0000000000000000;0x0200000000000000]
-    Kernel reserved node [0x0000000000000000;0x0000000000000000]
-    
-     VAs | start              | range              | end                | object             | object offset
-    -------------------------------------------------------------------------------------------------------------
-         | 0x0000000000000000 | 0x00007ffff5db7000 | 0x00007ffff5db7000 | 0x0000000000000000 | 0x0000000000000000
-         | 0x00007ffff5db7000 | 0x0000000000001000 | 0x00007ffff5db8000 | 0x0000000000000000 | 0x00007ffff5db7000
-         | 0x00007ffff5db8000 | 0x00ff80000a248000 | 0x0100000000000000 | 0x0000000000000000 | 0x0000000000000000
-    
-    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-+ /mt/dim checkpatch 15aeb2cced25e1bfa15f1aa538247d79cf8b0a05 drm-intel
-3aa8f80ee39e drm/xe/debugfs: Display gpuva info in debugfs
--:17: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#17: 
- VAs | start              | range              | end                | object             | object offset
-
-total: 0 errors, 1 warnings, 0 checks, 59 lines checked
-
-
+-- 
+Ville Syrjälä
+Intel
