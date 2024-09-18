@@ -4,27 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CF33CCD192
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 09:25:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBCB3CCD192
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 09:29:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CEB110E1D9;
-	Wed, 18 Sep 2024 09:25:11 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D276D10E1D9;
- Wed, 18 Sep 2024 09:25:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85EB489336;
+	Wed, 18 Sep 2024 09:29:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VH0NOZPO";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1CBD89101;
+ Wed, 18 Sep 2024 09:29:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726651795; x=1758187795;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=JeafycqQxEl4VvkrF3w8mPrUTJJvNEmTotRgPXPeDCE=;
+ b=VH0NOZPOuW7N20GLmHkfI/+pP16blillMXxcVLF5SP6vqjMJ7DwjFFTZ
+ cKl2cIv0BT/9CFKs+GGl/dyh2Z2TH18c1lZtm2yaJMLkbx1xjXUo0NMfa
+ 1Au6Y+BFjthLcZ3EaOYQk1Odrw6Qn22JTrOZ3ZpN3ijmFC9kABeF5bcB1
+ VdpPJpjTOr77N38oY1xkbyIUT0lX3LcBNp0pssTxOxOeFpzABxgKAEe3d
+ ErePyzPjp8MZpUgvJ7QSAORqNaGrwglrW//xYMWE/6mpUSudBFDw847og
+ gPk0oADi0Pr8cV/Jnpq1GtjMvOVWoCDSgYcfEwTIvn4BvqARifG8A0UWo w==;
+X-CSE-ConnectionGUID: 5M/A8s1KS82CSulz7mqq/g==
+X-CSE-MsgGUID: LGh/5ooMSLytiQOl0jOqfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="43024081"
+X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="43024081"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 02:29:54 -0700
+X-CSE-ConnectionGUID: M6XzF8VwRy+CDitQq/cZrw==
+X-CSE-MsgGUID: clrNjX+sRay4U6eosKHC+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="70272235"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 02:29:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Markus Elfring <Markus.Elfring@web.de>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org, Daniel
+ Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@gmail.com>, Faith
+ Ekstrand <faith.ekstrand@collabora.com>, Francois Dugast
+ <francois.dugast@intel.com>, =?utf-8?Q?Jos=C3=A9?= Roberto de Souza
+ <jose.souza@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime Ripard
+ <mripard@kernel.org>, Nirmoy Das <nirmoy.das@intel.com>, Philippe Lecluse
+ <philippe.lecluse@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/query: Refactor copy_to_user() usage in four
+ functions
+In-Reply-To: <d1f1eb7f-1de7-4d73-a7d0-00cc1eac3d5d@web.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <d1f1eb7f-1de7-4d73-a7d0-00cc1eac3d5d@web.de>
+Date: Wed, 18 Sep 2024 12:29:42 +0300
+Message-ID: <87plp1b989.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915_=26_drm/xe=3A_k?=
- =?utf-8?q?ill_off_-Ddrm=5Fi915=5Fgem=5Fobject=3Dxe=5Fbo_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Sep 2024 09:25:09 -0000
-Message-ID: <172665150985.1025157.7996210102086774638@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1726589119.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1726589119.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +78,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 18 Sep 2024, Markus Elfring <Markus.Elfring@web.de> wrote:
+> From: Markus Elfring <elfring@users.sourceforge.net>
+> Date: Wed, 18 Sep 2024 09:43:07 +0200
+>
+> Assign return values from copy_to_user() calls to additional local variables
+> so that four kfree() calls and return statements can be omitted accordingly.
+>
+> This issue was transformed by using the Coccinelle software.
+>
+> Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+> ---
+>  drivers/gpu/drm/xe/xe_query.c | 32 ++++++++++++--------------------
+>  1 file changed, 12 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 5246a4a2740e..6195e720176d 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -220,13 +220,11 @@ static int query_engines(struct xe_device *xe,
+>
+>  	engines->num_engines = i;
+>
+> -	if (copy_to_user(query_ptr, engines, size)) {
+> +	{
 
-Series: drm/i915 & drm/xe: kill off -Ddrm_i915_gem_object=xe_bo (rev2)
-URL   : https://patchwork.freedesktop.org/series/138773/
-State : warning
+Please don't leave blocks like this behind when you remove the if.
 
-== Summary ==
+BR,
+Jani.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a7c4f56f92ff668c90423c9601e213f1944ff09a
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> +		unsigned long ctu = copy_to_user(query_ptr, engines, size);
+>  		kfree(engines);
+> -		return -EFAULT;
+> +		return ctu ? -EFAULT : 0;
+>  	}
+> -	kfree(engines);
+> -
+> -	return 0;
+>  }
+>
+>  static size_t calc_mem_regions_size(struct xe_device *xe)
+> @@ -344,13 +342,11 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+>  	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
+>  		xe_exec_queue_device_get_max_priority(xe);
+>
+> -	if (copy_to_user(query_ptr, config, size)) {
+> +	{
+> +		unsigned long ctu = copy_to_user(query_ptr, config, size);
+>  		kfree(config);
+> -		return -EFAULT;
+> +		return ctu ? -EFAULT : 0;
+>  	}
+> -	kfree(config);
+> -
+> -	return 0;
+>  }
+>
+>  static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query)
+> @@ -414,13 +410,11 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+>  			REG_FIELD_GET(GMD_ID_REVID, gt->info.gmdid);
+>  	}
+>
+> -	if (copy_to_user(query_ptr, gt_list, size)) {
+> +	{
+> +		unsigned long ctu = copy_to_user(query_ptr, gt_list, size);
+>  		kfree(gt_list);
+> -		return -EFAULT;
+> +		return ctu ? -EFAULT : 0;
+>  	}
+> -	kfree(gt_list);
+> -
+> -	return 0;
+>  }
+>
+>  static int query_hwconfig(struct xe_device *xe,
+> @@ -444,13 +438,11 @@ static int query_hwconfig(struct xe_device *xe,
+>
+>  	xe_guc_hwconfig_copy(&gt->uc.guc, hwconfig);
+>
+> -	if (copy_to_user(query_ptr, hwconfig, size)) {
+> +	{
+> +		unsigned long ctu = copy_to_user(query_ptr, hwconfig, size);
+>  		kfree(hwconfig);
+> -		return -EFAULT;
+> +		return ctu ? -EFAULT : 0;
+>  	}
+> -	kfree(hwconfig);
+> -
+> -	return 0;
+>  }
+>
+>  static size_t calc_topo_query_size(struct xe_device *xe)
+> --
+> 2.46.0
+>
 
-
+-- 
+Jani Nikula, Intel
