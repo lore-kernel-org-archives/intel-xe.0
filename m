@@ -4,152 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C5E6CAC5B3
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 15:19:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92C70CDD541
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 15:25:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDF0710E26E;
-	Wed, 18 Sep 2024 15:19:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA2010E1A6;
+	Wed, 18 Sep 2024 15:25:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="qu5q0BhZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OsX8d0gP";
 	dkim-atps=neutral
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8EB610E5E5;
- Wed, 18 Sep 2024 15:19:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD1D10E113
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Sep 2024 15:25:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726673150; x=1758209150;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=XZVjIAIe5ua8lm1j1ZdxUdRT9mTXOqAG3d0TAnSxx3g=;
+ b=OsX8d0gP7TzP6N7QRnDXogPXqVJ9EpxAyvklxCsJERkeK7GNsFD0S8f/
+ hbN6Iuq0lY69RCzXIlcATUPcOmUHa1daeoUOXZ97IDsy7OysWDyBreZnP
+ pWg/dJorZ4XE73PIiL/efFmmbpib9ZKtp69DLZriD3zTPGNBWxo7InCrt
+ kAVaZ+cMQMhL0dUJpZ1F90x5w3p0dLw+Nj0eQaeHKiLY2j4mlC4i0MfWH
+ AT/uh4gENcOiI5iPyIvxaIYsbCIZGEZYnAJX5iUUzi++eWgWapuQzZJ9e
+ 7/MHUGJ50nljkPXVnL8mU58+waNOqETZ7dgcnuGPPiu2WlU7bbLCPbxGW Q==;
+X-CSE-ConnectionGUID: 3hAVYpkASU6XBq9WA8e/QQ==
+X-CSE-MsgGUID: z7vEq7KPQJuLR8IWRQ3Rzw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="36174664"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="36174664"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 08:25:46 -0700
+X-CSE-ConnectionGUID: UOUz4fBcTbmR94A6EgxGMg==
+X-CSE-MsgGUID: IrpsAv67RXyf0IgPAyn+kw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="92907780"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Sep 2024 08:25:43 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 18 Sep 2024 08:25:41 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 18 Sep 2024 08:25:41 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 18 Sep 2024 08:25:41 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FS/Wty2SnGfJDVyfWQ7iMo7VockQR3ACZDKQqvxL+VutaWwQcZKmGU+53hUbqr+qhbWjyjTMVHIQBPVIdUHlSjFX3UMKtoWO68cb2oRzpgtvDy9och+B+WeC4TBTvERycqXWwzw4w1iePwddvs/2w/9Mtz84Om2D69HF8zDs+zHpQCcjF7oDP+UqdwrAnNgI6SCFqbt8EghIzfPmQayBPMyWLeL+eS26ovpJZq6qsh3OSw1Om8Umsulsi6u9+yCq/WB0S5aRX8fYqtfAFbtAyCBrFsAYSRWJduS8hDNPiz/i5fzf2MuT7Ts5MSGdFWwQpLCtOafdVHyhdQQ73B5bNA==
+ b=wamVx+SpQ77fMjyXvv9gjywxxtlPIQ0e2Eptje7QRowmRmKUAkkUs5TpIdLAU1ideK3gPtgMJzUQk+o37MIUBc/ILCrRfy2B2riaWBNR1b8RviclGZVRH0bDwRTOeHxF5T4S/J3z5f6MMltm9pkCzYvS7081HGpfVHqdika160jF6/Cm/0YC23ynMX/bNvZlKWe9GVloueHRGzrh7K7ir+c3/h2jYOPiPrFHcPN2QNXvN21miacQ+k005cd3jjzB0RU4r2Lf3cVHGihqN2ZMUxZSgne/Ih/T4tKSCG/kkClXjrvCg4EusZokyI2iUvqqKhsTzMBpg9rGul3pq6ddsg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Cze8gnuxUanvY9fzYis4Ve+DXuVkfnvVemaMNtXbf1c=;
- b=L3rJb//4S7FKfbiRFk24vUK6fldboQ2mkc0Cch1ke7OoA3Qp//ZkRnEjNyPwHYviDLYOber6U8LaFKfZGALbXDrCenNoKL3SlKpA/MEjcNqWZb253oKByRfdni2AQqgpy9sMo2ity/NiJ0JhLx2KEG1r9M7kHI98ND/V5NqbVuhyBbXyPZ8kITl5q7mbuxk6OHrI6meCBf7aDBdLxl78K3LZ17Mx53NGxqwxxQflEPmtGuK82ZJSDcaWn9HztkEnBKufi0y7Qj1VlJoQrArVuYLzbjRbUMugWq76jK4dq5j//6FsElDzctagW0AEf2ad4f1uZJAtK4f2Zrkhyfihqw==
+ bh=K84+Z71vKFgnr5ns3rkqAE3BlcnGN6mgKz5EgOFgN2U=;
+ b=c3iwvWEsfMeXmF8tBMQ4Vu1VcB+hDbcWfxqXhUnkCqgHol4drt9zaI3L2bokaKWOvAeWTukMSeUGZmcMjSkno6/WpovciBKKm7akZpirpFrjcujZkGQ55xEpuXbWu4XwbtUkQls03ePkjgTLQQIYhA4S4VQUkrB9IzuTIG+GiwqPO8v+WhZ0ggo376bGH4xnAmRtgirKLOPAhmOktUMv8W/KpO24NS5pYULirUmjEkHAkAIpiElW1AL17c0r2cnvSsSgBfUhu8OQ0m7a7ecx1w7mMv/7IYxjElxPbC6xLYjYC0SIJajW4y28a88kDT746dk3YKD+HbB2v9ta9ZW+xg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Cze8gnuxUanvY9fzYis4Ve+DXuVkfnvVemaMNtXbf1c=;
- b=qu5q0BhZlt3MfOB9O93nboElvREivbrU1K93FansGvllSUpL+X7XkoOk8b3ffkUjO7EHL1BPOf4WyjZrAamBTfhNj4R7iIkxqdMyH0HAUPw4V144MJacigDAnCCGx1dhvPBFjFEb31aJnsSqlAEl1kBDOrn2hxk5N98iFIk693TAOGUJYBmUT9JH8kHVC9JMlfS7Nvr8FRqdxLPIcZJaxkPp1EspQtPqwjXvvOQJIuD7z2F3WdLIUbzdKMTnLzZUmNu24PfJheeZxsOw4bsNaVlt51qhfD4m1qO4ak86B93PmAOVA4Lsenz7DFOGJnRZgGJrSUs1uXUawHolyK56dg==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
- IA1PR12MB7711.namprd12.prod.outlook.com (2603:10b6:208:421::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.24; Wed, 18 Sep
- 2024 15:18:59 +0000
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe%3]) with mapi id 15.20.7982.016; Wed, 18 Sep 2024
- 15:18:59 +0000
-References: <20240911030337.870160-1-matthew.brost@intel.com>
- <20240911030337.870160-2-matthew.brost@intel.com>
- <87mskehjtc.fsf@nvdebian.thelocal>
- <ZuS/NH/P8Fl+qptx@DUT025-TGLU.fm.intel.com>
-User-agent: mu4e 1.10.8; emacs 29.1
-From: Alistair Popple <apopple@nvidia.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org, simona.vetter@ffwll.ch,
- Philip.Yang@amd.com, akpm@linux-foundation.org, felix.kuehling@amd.com,
- christian.koenig@amd.com
-Subject: Re: [PATCH 1/1] mm/migrate: Trylock device page in do_swap_page
-Date: Thu, 19 Sep 2024 01:10:49 +1000
-In-reply-to: <ZuS/NH/P8Fl+qptx@DUT025-TGLU.fm.intel.com>
-Message-ID: <87msk5our1.fsf@nvdebian.thelocal>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: SY6PR01CA0130.ausprd01.prod.outlook.com
- (2603:10c6:10:1b9::11) To DS0PR12MB7726.namprd12.prod.outlook.com
- (2603:10b6:8:130::6)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB6816.namprd11.prod.outlook.com (2603:10b6:a03:485::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Wed, 18 Sep
+ 2024 15:25:39 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.7982.012; Wed, 18 Sep 2024
+ 15:25:39 +0000
+Date: Wed, 18 Sep 2024 15:24:03 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe: Convert to USM lock to rwsem
+Message-ID: <ZurwkyNtFvcbIJ5F@DUT025-TGLU.fm.intel.com>
+References: <20240918054436.1971839-1-matthew.brost@intel.com>
+ <148ac588-d4bd-4a86-849b-5e28b530b3b7@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <148ac588-d4bd-4a86-849b-5e28b530b3b7@intel.com>
+X-ClientProxiedBy: BY5PR04CA0011.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::21) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|IA1PR12MB7711:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5eff9c57-b173-47fb-fafe-08dcd7f53806
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB6816:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7e0a88d9-2c87-4b48-cea9-08dcd7f626ac
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|7416014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U25WWHRDVGVFL0hidWEvRXlqSnJhUTB1Y3NGNnNWNmErQXNLV0FZYlN1blhn?=
- =?utf-8?B?b2NVRGs3N0hIaUozUVFQRW8rNTVONlhUdU1lK3hmbklxMGV3ZTF5RzhOYVJp?=
- =?utf-8?B?ekV1SEg1cTdRajZCbU9xRS9ONWhCcjBFakFaU3RBMExKcHNSTlA2RlJOUGxN?=
- =?utf-8?B?ZnN5WE5LSmpMdkc0WEhtTUFXN0NRNHZVbVN5NDZRd3ljRWE4TzJUU2JXNDJY?=
- =?utf-8?B?anphVlpyNFk4SnJBQkhhZytkY0srQXAvS1R2V3VNcnpXcnl1ZmtsUUF2c3JR?=
- =?utf-8?B?bzl6SnFMM2pvNzdUWW9WWEFnKzgrcExiblVNLzd0ck9GLzhIczVFbEZyWURB?=
- =?utf-8?B?VnJHeE9PcnBBR1dyN0ZUd251c0JSNEFLeFVDaFhaa0RKV0FzTkw2NGYvbjlE?=
- =?utf-8?B?dHdGbDJCTFRiUUY1SytEU3p0S1RrN05BSHJFM25BRG95ekZlNUFrcGpQR0Ix?=
- =?utf-8?B?dVhtcmh3cXI3MjROdFFhNUZlcjFrd1VBamVhaFNSVG9RTGU0OWE0OWdZTjZF?=
- =?utf-8?B?eDY3YzVqVVJsWDRUWE1hOEk3NHFSRXV2Ri9kd0Y2amdLNWdZd1FSaURUYmlF?=
- =?utf-8?B?Z3RCUWFFdEpuUk85RDgrRjl3d25xVzhXc29tTW9NMEZvcDdhbHh5ZDNMTW1P?=
- =?utf-8?B?anNzQnpIT1d3T1ZkN29nT2hzcW1vRFQ2Q25vOU01YytlOElpZG4vYzhKRDVR?=
- =?utf-8?B?bFREdDR1OUs4Q2NRbG5ZTVIxVnlaeEM1MitTWVh2Nm4xaGVJOGVhTTdURXJB?=
- =?utf-8?B?cFE2a0R1aEdSKy8zeWlGZnloUmpvNURHZzlvcVpQQXNhbU81R0JlRFZsaHhl?=
- =?utf-8?B?S0dTOWN4bXF6MEd6TTRPMS9Ddkk0ZkNpS0lQbitXbmtyRGVDKzBnNGc2b25Y?=
- =?utf-8?B?NTFmVjZwOVBkYlhRSmVUMkRCREd3VE1ucHcxbXFDOTgrQnQvd3JzcGtFZXZr?=
- =?utf-8?B?ZDM0TEJXazVHWXQrdXNlMzUyd1BnOEEyS0NONXdaSXRKdm1NeEVxNDBHUnBq?=
- =?utf-8?B?dHpxRDlZUDFHSndJMENlb3FpLy81MVRyK1Q4WS9kVklZL3oxajQ3dWJpL1Iz?=
- =?utf-8?B?NUdleTNUZUd1ZXp5WWRVZ2FGYy9SQzdoejE1ZmY5V0ZhSWZsOWEvelBwZjlD?=
- =?utf-8?B?UGhvcVM2VW9RTSsyL084Wm8vakdqNTJwSHh3RCtlOTVhMEFxTXlZUkphQ25r?=
- =?utf-8?B?cjZQVEUrR2NPWWJJS09GU1JlTU5xd094VWNlZldMaThUanoxd2g3RHowTjRR?=
- =?utf-8?B?aDdhS29oVlJySyt4VnNIdlgzUVk4cHNPZUdPYnRCb1Bod2U3NlJqYlV2ZFcw?=
- =?utf-8?B?cEcwaWpRUWxrM0VGRldjQWFaMjBLR21uT1ZKSExHczlsOXhQZis3NGdvNC8y?=
- =?utf-8?B?SUVEOFQzeE5lYzZGdElPVVpML2tqbi8vVlMxZ1ljWEFuMzlyV1ZlS2V4UjVT?=
- =?utf-8?B?V0lVYVdCbEdYQTVUQlk3QUMxMS8zMDc0azJVS2JHeXdyVExPR0hDdjZJZWRM?=
- =?utf-8?B?V3hkVUFVSWUzenFGVGN0dmhkYlFMcnRjK0dRSThtZ2hNRzFHbjFiY3czOVRC?=
- =?utf-8?B?VG5RT29RK29XMGdpV3VjaDVTVkw3N2R0ZGVpamsram9mTkFXUHQyTU1yWThF?=
- =?utf-8?B?dkd6SkZRd0xiQ1BsbzdqeHVSL0VWT0JoN0NJTFpTU01sNW9TZFRXUWx6QnVm?=
- =?utf-8?B?amxqTTg3a1ZuTUNBSVlDTnBJVm80YWR0TDd4aFBrTXcxTFdtdEtudUZKaUJH?=
- =?utf-8?B?dDQrMUVKb2dUYmJlNFN0Y2ExY25IUUhMaUJ1M3k5cVZ6dUJnM3crNkd1UEx3?=
- =?utf-8?B?KzF3MjNLL2JLVjQ1RUlQZz09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?kKhufvDFJsvlb8YUwRjvL9u/8AT2Wazu+i/ACLONIQhVyD9EUB2LYU9aCFz1?=
+ =?us-ascii?Q?f5L9uOLXK6pghnhczSpYSQiv8XrVs+9Yw/L3FahRtWD80ehT03qqylq5yCQL?=
+ =?us-ascii?Q?o3WDiGJ+HovvAifLPepZrq1wrV/Kmy5C1y8+L2KI6dT5Wqv/lGTLrPOKk5BS?=
+ =?us-ascii?Q?D+BdU8OlS5+Nd2TqKeG2dHH7npKPliKf3kcuvt3nm8nl27O1mMYQBA0sJqyX?=
+ =?us-ascii?Q?MoE7iP9XQed3H2x4BWcMu4D0cHxy0W99dsnuNsxByStTFLxYMATYuawxyI+u?=
+ =?us-ascii?Q?+GNgN++0JKsNMSRE2MjemWqX53OMGLwZ7mLvaD3MCQNCDuFMO6fFgCo3OTZQ?=
+ =?us-ascii?Q?GNHcKgqftMqyWYKPjwMKm2Wd7Up5jlQQkcAZQXZXvzb9rLOrLmvjnyW6ZU1f?=
+ =?us-ascii?Q?othTpB4+ZqxtdmyGQXZhJekRMqHa0ef33E7urSyf7MEzVqvHJKQYddvs7jcy?=
+ =?us-ascii?Q?KFGag7Ab7IY7dLWX83nCydkg6lVOUum5Ht+V8QkJuBxkn7qbErjW9vAuYv31?=
+ =?us-ascii?Q?GZDKycjZNlp7c/zmLcV7gQlqbpdeFeBoIXGj0MNaXY4WNu2b/lfxLrhk+Oix?=
+ =?us-ascii?Q?6chjY8LyxAxrDg2ShTX68Ox9nYXn7EaCJ3es8LtdUBWRBr4P9mGk8ufnjj9t?=
+ =?us-ascii?Q?rtqsUSNSf0T9+QEfHC8P+IsEqtF0D3BaM2uSaGJZokCjgpxNuhqtIFbyLMFV?=
+ =?us-ascii?Q?A6KWmdZTb3rmDku2/LF4rKOjejXf5hxiNNV4pn/qoCLu1jKJOmnST+gv3EZg?=
+ =?us-ascii?Q?KbyG2W655+lISPrKQemsSpPD9N71gJvAv9Yr+dLRQ5CcpSNE1//n79Gqf+J4?=
+ =?us-ascii?Q?DztiFShnL4Xj/4jb0/YZ52LSUS72q+IR+0uaPDvQJWQzqwW7Tz+xybqiy695?=
+ =?us-ascii?Q?95p+vih0h0ZL+uTIEacXAJeJUjhHGtFgS77ACL9GaZDLAD9lVNvhEoyn/9YJ?=
+ =?us-ascii?Q?p+1U072v93XVCksW4QmM+Hef6x8TtIBOymB4vDbf1a621efWaSv4qU9+M/5b?=
+ =?us-ascii?Q?850Nh+0OS8u0emEUC6ndi4ROonacjz/+cYVtLm7CNiwHfSgarycZH4kkBm0G?=
+ =?us-ascii?Q?dBA4VXNR4+wXbwlS/WiuvqMLq3NgiOwc1kinqh3cZ6TvmxqI7GfJ/KSSLxjC?=
+ =?us-ascii?Q?feWHdGZ0NuqBAdX+ojSOvB7xOU37eFCK8LMnw7l6jsGFQbxrJG/9UWOAQeXe?=
+ =?us-ascii?Q?7dEsCX/U0tyNBGyvZPBqzYS7un4nVfEtWFgBP37UGYcwrbanij5YsNBUGpnR?=
+ =?us-ascii?Q?KQOoYOO1y/qF6SUBW3SsYTrIqguBZW4CLL/aGw2kbw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(7416014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cHBiclVXazJIWG1FY3poUzFnM245emNFRmcxUmxrZVIrWFByTWMxeWpKY25O?=
- =?utf-8?B?V21WUE1va0w5NVU2QnNYTVUrUVNNWGx0Y0pjVHNMOUl2RzIweW05bExaeUJ6?=
- =?utf-8?B?K3VBd1JjdzhlZzFHV1RLcy9hV0RqS3U1Z0hDNTNzUmRObGlFZ21XRit5YThr?=
- =?utf-8?B?S1J0QnRFaVU0Zk1EWGtlT3N1bHRUR2dqUnhCQlR4bHJkRVpwdUdwMzVvVXVZ?=
- =?utf-8?B?Y21QR2h0aFE3dENxak5xaXlIQTZIQUJiVlpmNWRJRHp0dHR4cGx6K0NjL0dK?=
- =?utf-8?B?ZTk0UDZaa3VUei9sMUowTTc0a3plYlJuY1F6UE1Bck9aSStLM0dxR1dBY3dY?=
- =?utf-8?B?WW00b1ZlWDRpeDdPZzFFWHRLZkxJTmVYaTlDc0pOOGp2Vm1BMU5BUHVSdGRz?=
- =?utf-8?B?QkhDYks1VXVxd0lQN3EvN2M2YjhsZ0hzcG1PWGRQM3d2V2Y5REJaM1ZqUFdK?=
- =?utf-8?B?UVdKeFI0TGtOWU9Uc0Z1ZnV6Uzl6V0pBSEphSk9UVDBtM3hVVDd2bVljaFhL?=
- =?utf-8?B?cERLc0tLY1lHN2xRSStsTW5LcStYcHdTQTJIOWtveUhkUkFUVkZXM3NFYmVW?=
- =?utf-8?B?OXZZL1hxRkcxaDFCWjNpMGNKR3piY1l6bnMvZmVmZVZwaWZXa1NpeUZLaEFy?=
- =?utf-8?B?aDV1YkZpYmQ3clFHUFVNNUZPTzA1MDIvQktpTGh0SCs2Q1lsRzBiSE5qcGRv?=
- =?utf-8?B?cDZ1cjY3cE1PSVZuY04rMGdGWjRHYzBLYXFIVzAvRERORWs2Vi93SEVSREc5?=
- =?utf-8?B?aXZ5d3pKcEh1UjZkTlZQWW50cWlTNkNWQ1YxRzI0cGE2N2dSWnNnek1POGFq?=
- =?utf-8?B?a05oWkxLQ1hwRnZtRVVRYXN6bVFSSVJxaG1EUUtvREpZTm1HcjhOUEVwelh4?=
- =?utf-8?B?Y3lySEVvZk9uYzFpd2V6U3gxRHY3R2VISFkxWjRjZ29taE5VWGg1UktEVGFu?=
- =?utf-8?B?UkJZL2JBUHVwajdyVGNFWCtFaDR0MU9nRWZrYmc0c2RkTTZ2dlZBWnVLSUo4?=
- =?utf-8?B?NWtlQzQ2Vlg5dm1JZFNHTnFRV2wrV2I0Z0hESnNNU1FTcXlxQ044NnpjbW9O?=
- =?utf-8?B?Zjlaayt4ZitXK0YxZkpvaDJ0OWl5bE04MytLRUVvNjVSemN4KzNtZDJ0eEov?=
- =?utf-8?B?S2RNWWNzSDA5ME9CK3JWbklEUWNVNWpRcnNOejdGT2FXN1Jvc0YwZDRYWW4v?=
- =?utf-8?B?aWN0MHhKeUNCUkpPczBjVE5ta3lNRXlma1oyWFZTSmdScm9tRmFNYnZpTmhx?=
- =?utf-8?B?elhXb05pQVpNaW9BdmhyUm1ZTDhaWDZzUVBVQnlwYXJ3WlJTaTg2RnhSdlo3?=
- =?utf-8?B?a3hwbkFqOC9lSS9pbWF6Q3ZoVHB4SzhBNHY0QmRpcGtkYllCMnp2cm44MGF0?=
- =?utf-8?B?RWdBSzRTTWhaM05CTVVNMEdLbXl2MGZLQ2p0d0dEcFdmV0xzQWV4cjMwQTQ1?=
- =?utf-8?B?ZzV0STVtV3p0ZWVMcENBdllQbmNpSmdiWUJ5ZjcvRGRVMEpkdkptbklweG5N?=
- =?utf-8?B?cmpvU1MweUFPMVJBd05PRmYzMnZ6RVk4ZFFEMHhCZXlXeEZ1NEt5eThTcEdF?=
- =?utf-8?B?eHdjOTYrMUcwaTB0K0FsZlViSG9pSVdFUkVuUmdiOFB1TG9XV3RvRG50MXo4?=
- =?utf-8?B?NE9UYmNibkZIMi9RQ09KRU5kTzNncmppVEQ5ZGM3Y1k0Y0RYRnZoRHptaGVk?=
- =?utf-8?B?NlY1dTRzc1dvbFJ0T2ZLN0V5U2oyZ1hoQTJCZklDdjU1RHg1aVlkWURBOVVN?=
- =?utf-8?B?VFptd2tuZ05mRmFGQTNJcE42eUZNNVU3S3ZNYVdvKzFjZVNPckJVZWFONVRq?=
- =?utf-8?B?OWp1bEt3aVFMR2VxNkNKQk43MENXVEthb290dE4xY2svRkRZMUtueUk4MWQ3?=
- =?utf-8?B?Z2dEbVVtZGVIQkpiSkNiclNEZnk5R09HMGd0emxVbVd1a0xtVElxeXJWOFpX?=
- =?utf-8?B?bjBPOVYrYkw0SU5ZUzBNOEVOZ1hTTzdESEdmR1R6SERoaDVzQXhaNGdJTkVm?=
- =?utf-8?B?UzNpeVVWUFpXbVJJSFFhc0w0V1NCSWUvc1hrZXI4WVV5NE1YanpZby8zVlB0?=
- =?utf-8?B?eUpaTG1jVUo2elYxc1I4bWlzQTQwRXh4bmFGeHlMSlZZRnRhTjZuS25Na3Iy?=
- =?utf-8?Q?jjcoqnpUpIHE4A5ncIISC/6EJ?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5eff9c57-b173-47fb-fafe-08dcd7f53806
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W1cnZEYaQQk1UdjSOE8ZPBGGiZk+LFS36jb9h/YHLGWyf+6+1BW1pdID5t/l?=
+ =?us-ascii?Q?QqCALscz6pgxBvw0KztvFOUvMfZ8av9OwYqzxFVV7swxZAZ+wK9qreFeEfhM?=
+ =?us-ascii?Q?FpCOCpVPLarCPNDa6Ly9Dl8T2FNRouaEO38WuZdGWbq5wI9rq9cTjLFJfPTa?=
+ =?us-ascii?Q?JhJps6As7FRAxCoDg7A3fWIJCPSnHnszGgx/IjFTz74wKdcclf3EJ27feTQJ?=
+ =?us-ascii?Q?jiaXufYqYwyfjBfYNlNROvYefJhYczcXOk47n437j7b7Qs1B7/hNtSj0K7r4?=
+ =?us-ascii?Q?KDZUftdC5o+o1TewO6xXDlry2eZfQGKLp14KKlrYSwUdL/wNMDGWUr3L/xMf?=
+ =?us-ascii?Q?WAfcx4ccTa9f1vU5WVOTVzQ2gQAAVWU143w1yjsh+5Q9qRJLoDkfFE34Olt6?=
+ =?us-ascii?Q?+D74pIv1Uj9fWdlu89DXRIXZCVKCd4U8IU8FsljGUBtp7XGU8xrJiVn+Kt35?=
+ =?us-ascii?Q?VG7ZOeXFA8jc62r1lBbO5QxwBKzkPDx//bS0ncH9bXcuevCTTAet3BBoFrS3?=
+ =?us-ascii?Q?XpDLbmKksLt795E5Z7TrJbaxsb7t7efcHe/DxEeT2Y3MIg3vy7HsHBY2JBQ+?=
+ =?us-ascii?Q?92Vw+pngzSzG5qMwu8CELcwaQv08v5cfROU4ZBLR7XZSiIspwXlhihliEHtn?=
+ =?us-ascii?Q?k8gvrl3qf9ixsISuvaFg64RaxgjMVQcWYBQqfa3BLucd88mN3VK84xDsdH6b?=
+ =?us-ascii?Q?SsrjyctsKfKMdYSsQmUzp35Qo+5tioQUKAsKfZjU7+PuQoUBAlIZvEFVYs9c?=
+ =?us-ascii?Q?orAs5Bc5pud6xU9zuXlhnSWiJJDwopuR+0TLMiGhmoG5DkHVtIInuXVyRM43?=
+ =?us-ascii?Q?P90E2pv655u2NpRWsXJHitlJHiD2jYSy27PTCa/WTYB9aFZ3Dvxk4PMJyFZC?=
+ =?us-ascii?Q?KnWodZWFDWe2Dy1gFPR9IN9cLrOFRJ8vDwZGfXFjG6RePyVcLw/9QX7rO9kq?=
+ =?us-ascii?Q?XfOC/Ph0g1wq6+/KlxFRTfp/thMNjLSLu84PP7dmvZy+iAAGUYVA64/eHTeW?=
+ =?us-ascii?Q?abKKZp8dlqIDbKrFzCCr1la7OqV7ZecALrsiUieasm8zuZ+e5GYUsH0C1HyV?=
+ =?us-ascii?Q?bxQ6yPd2lvRlChXkH1jn2tEBFQsl+3KtKWVtkYwXtDjY2SlfM0exFMwQC4+O?=
+ =?us-ascii?Q?U5YA0J+ZestjTfNKm37+QfXR2oKdLhQVUdQXfyn79ADy511QunyPXpOsWOCs?=
+ =?us-ascii?Q?fnI6PfDaEmuIwDzzX7hd+RtSI5dGE645rJRzXmWpBJOTneZJVd+yzF41lOlS?=
+ =?us-ascii?Q?wVSsnrbixQ1NulfbDgt3xPXv/oGv0QSm4VNL6wpZgSe1sFdm7J4adSE0fijt?=
+ =?us-ascii?Q?yya/cM7MnJoTJ8HXnlfnfp8w5PHAChUy1GbnaKH5Tm1PxGmqwNSD2iUvy47I?=
+ =?us-ascii?Q?FEehb/MjP/D8ODls5urkxmsPtMPizZjjuOF6nl1eBVZ5H4+MoPaSrg2nb5MT?=
+ =?us-ascii?Q?QWtZG+D9WIQ0UfVBKsb6mOLlvphn5Kq5HNGS4vi2WSllaH4n0vUyNRZKeiTr?=
+ =?us-ascii?Q?pxaidoQY5vWqjPlgDSm+I+nbu2nqhrQ65G2YpM1nOrnaNrUUc8en17KSWAJs?=
+ =?us-ascii?Q?7Sx4HAwXOeAdZcoAnLoUQOYgZkeTw4GMy7c+e5sLWl5/o8BNU2yZ0kByAEVF?=
+ =?us-ascii?Q?Kw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e0a88d9-2c87-4b48-cea9-08dcd7f626ac
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2024 15:18:59.2815 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2024 15:25:39.1574 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0qr65yZzYOswJOKxVO43ZKvBNQE5ctvUqNIsSgM9w0Ul/q35lDO2lI5OabGbm7FSpkDWJdDizHqFWoWtAhzf2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7711
+X-MS-Exchange-CrossTenant-UserPrincipalName: nw/+7JEl1YG1rdW43H1BYobxwvNJPwPaAmJpj1z+B+aXqi6i+ClCm60Ykc7ORvSwtmZYBmnqy72afgbHS/2cmQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6816
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,259 +173,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Sep 18, 2024 at 08:56:26AM +0100, Matthew Auld wrote:
+> On 18/09/2024 06:44, Matthew Brost wrote:
+> > Remove contention from GPU fault path for ASID->VM lookup.
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_device.c       | 4 +---
+> >   drivers/gpu/drm/xe/xe_device_types.h | 2 +-
+> >   drivers/gpu/drm/xe/xe_gt_pagefault.c | 8 ++++----
+> >   drivers/gpu/drm/xe/xe_vm.c           | 8 ++++----
+> >   4 files changed, 10 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > index 4d3c794f134c..38eade07a004 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -335,9 +335,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+> >   	init_waitqueue_head(&xe->ufence_wq);
+> > -	err = drmm_mutex_init(&xe->drm, &xe->usm.lock);
+> > -	if (err)
+> > -		goto err;
+> > +	init_rwsem(&xe->usm.lock);
+> >   	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC);
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index c92df0a2423f..4507a5756a05 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -395,7 +395,7 @@ struct xe_device {
+> >   		/** @usm.next_asid: next ASID, used to cyclical alloc asids */
+> >   		u32 next_asid;
+> >   		/** @usm.lock: protects UM state */
+> > -		struct mutex lock;
+> > +		struct rw_semaphore lock;
+> >   	} usm;
+> >   	/** @pinned: pinned BO state */
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > index 00af059a8971..5c3af2bb5402 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > @@ -198,13 +198,13 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+> >   		return -EFAULT;
+> >   	/* ASID to VM */
+> > -	mutex_lock(&xe->usm.lock);
+> > +	down_read(&xe->usm.lock);
+> >   	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
+> >   	if (vm && xe_vm_in_fault_mode(vm))
+> >   		xe_vm_get(vm);
+> >   	else
+> >   		vm = NULL;
+> > -	mutex_unlock(&xe->usm.lock);
+> > +	up_read(&xe->usm.lock);
+> >   	if (!vm)
+> >   		return -EINVAL;
+> > @@ -549,11 +549,11 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+> >   		return -EINVAL;
+> >   	/* ASID to VM */
+> > -	mutex_lock(&xe->usm.lock);
+> > +	down_read(&xe->usm.lock);
+> >   	vm = xa_load(&xe->usm.asid_to_vm, acc->asid);
+> >   	if (vm)
+> >   		xe_vm_get(vm);
+> > -	mutex_unlock(&xe->usm.lock);
+> > +	up_read(&xe->usm.lock);
+> >   	if (!vm || !xe_vm_in_fault_mode(vm))
+> >   		return -EINVAL;
+> 
+> Looks like we potentially leak the vm here. Could maybe make this the same
 
-Matthew Brost <matthew.brost@intel.com> writes:
+Yep, noticed that too. Was going to do in follow up today.
 
-> On Wed, Sep 11, 2024 at 02:53:31PM +1000, Alistair Popple wrote:
->>=20
->> Matthew Brost <matthew.brost@intel.com> writes:
->>=20
->> I haven't seen the same in the NVIDIA UVM driver (out-of-tree, I know)
->
-> Still a driver.
+Matt
 
-Indeed, and I'm happy to answer any questions about our implementation.
-
->> but theoretically it seems like it should be possible. However we
->> serialize migrations of the same virtual address range to avoid these
->> kind of issues as they can happen the other way too (ie. multiple
->> threads trying to migrate to GPU).
->>=20
->> So I suspect what happens in UVM is that one thread wins and installs
->> the migration entry while the others fail to get the driver migration
->> lock and bail out sufficiently early in the fault path to avoid the
->> live-lock.
->>=20
->
-> I had to try hard to show this, doubt an actual user could trigger this.
->
-> I wrote a test which kicked 8 threads, each thread did a pthread join,
-> and then tried to read the same page. This repeats in loop for like 512
-> pages or something. I needed an exclusive lock in migrate_to_ram vfunc
-> for it to livelock. Without an exclusive lock I think on average I saw
-> about 32k retries (i.e. migrate_to_ram calls on the same page) before a
-> thread won this race.
->
-> From reading UVM, pretty sure if you tried hard enough you could trigger
-> a livelock given it appears you take excluvise locks in migrate_to_ram.
-
-Yes, I suspect you're correct here and that we just haven't tried hard
-enough to trigger it.
-
->> > Cc: Philip Yang <Philip.Yang@amd.com>
->> > Cc: Felix Kuehling <felix.kuehling@amd.com>
->> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
->> > Cc: Andrew Morton <akpm@linux-foundation.org>
->> > Suggessted-by: Simona Vetter <simona.vetter@ffwll.ch>
->> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> > ---
->> >  mm/memory.c         | 13 +++++++---
->> >  mm/migrate_device.c | 60 +++++++++++++++++++++++++++++++-------------=
--
->> >  2 files changed, 50 insertions(+), 23 deletions(-)
->> >
->> > diff --git a/mm/memory.c b/mm/memory.c
->> > index 3c01d68065be..bbd97d16a96a 100644
->> > --- a/mm/memory.c
->> > +++ b/mm/memory.c
->> > @@ -4046,10 +4046,15 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
->> >  			 * Get a page reference while we know the page can't be
->> >  			 * freed.
->> >  			 */
->> > -			get_page(vmf->page);
->> > -			pte_unmap_unlock(vmf->pte, vmf->ptl);
->> > -			ret =3D vmf->page->pgmap->ops->migrate_to_ram(vmf);
->> > -			put_page(vmf->page);
->> > +			if (trylock_page(vmf->page)) {
->> > +				get_page(vmf->page);
->> > +				pte_unmap_unlock(vmf->pte, vmf->ptl);
->>=20
->> This is all beginning to look a lot like migrate_vma_collect_pmd(). So
->> rather than do this and then have to pass all this context
->> (ie. fault_page) down to the migrate_vma_* functions could we instead
->> just do what migrate_vma_collect_pmd() does here? Ie. we already have
->> the PTL and the page lock so there's no reason we couldn't just setup
->> the migration entry prior to calling migrate_to_ram().
->>=20
->> Obviously calling migrate_vma_setup() would show the page as not
->> migrating, but drivers could easily just fill in the src_pfn info after
->> calling migrate_vma_setup().
->>=20
->> This would eliminate the whole fault_page ugliness.
->>
->
-> This seems like it would work and agree it likely be cleaner. Let me
-> play around with this and see what I come up with. Multi-tasking a bit
-> so expect a bit of delay here.
->
-> Thanks for the input,
-> Matt
->
->> > +				ret =3D vmf->page->pgmap->ops->migrate_to_ram(vmf);
->> > +				put_page(vmf->page);
->> > +				unlock_page(vmf->page);
->> > +			} else {
->> > +				pte_unmap_unlock(vmf->pte, vmf->ptl);
->> > +			}
->> >  		} else if (is_hwpoison_entry(entry)) {
->> >  			ret =3D VM_FAULT_HWPOISON;
->> >  		} else if (is_pte_marker_entry(entry)) {
->> > diff --git a/mm/migrate_device.c b/mm/migrate_device.c
->> > index 6d66dc1c6ffa..049893a5a179 100644
->> > --- a/mm/migrate_device.c
->> > +++ b/mm/migrate_device.c
->> > @@ -60,6 +60,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
->> >  				   struct mm_walk *walk)
->> >  {
->> >  	struct migrate_vma *migrate =3D walk->private;
->> > +	struct folio *fault_folio =3D migrate->fault_page ?
->> > +		page_folio(migrate->fault_page) : NULL;
->> >  	struct vm_area_struct *vma =3D walk->vma;
->> >  	struct mm_struct *mm =3D vma->vm_mm;
->> >  	unsigned long addr =3D start, unmapped =3D 0;
->> > @@ -88,11 +90,13 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
->> > =20
->> >  			folio_get(folio);
->> >  			spin_unlock(ptl);
->> > -			if (unlikely(!folio_trylock(folio)))
->> > +			if (unlikely(fault_folio !=3D folio &&
->> > +				     !folio_trylock(folio)))
->> >  				return migrate_vma_collect_skip(start, end,
->> >  								walk);
->> >  			ret =3D split_folio(folio);
->> > -			folio_unlock(folio);
->> > +			if (fault_folio !=3D folio)
->> > +				folio_unlock(folio);
->> >  			folio_put(folio);
->> >  			if (ret)
->> >  				return migrate_vma_collect_skip(start, end,
->> > @@ -192,7 +196,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
->> >  		 * optimisation to avoid walking the rmap later with
->> >  		 * try_to_migrate().
->> >  		 */
->> > -		if (folio_trylock(folio)) {
->> > +		if (fault_folio =3D=3D folio || folio_trylock(folio)) {
->> >  			bool anon_exclusive;
->> >  			pte_t swp_pte;
->> > =20
->> > @@ -204,7 +208,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
->> > =20
->> >  				if (folio_try_share_anon_rmap_pte(folio, page)) {
->> >  					set_pte_at(mm, addr, ptep, pte);
->> > -					folio_unlock(folio);
->> > +					if (fault_folio !=3D folio)
->> > +						folio_unlock(folio);
->> >  					folio_put(folio);
->> >  					mpfn =3D 0;
->> >  					goto next;
->> > @@ -363,6 +368,8 @@ static unsigned long migrate_device_unmap(unsigned=
- long *src_pfns,
->> >  					  unsigned long npages,
->> >  					  struct page *fault_page)
->> >  {
->> > +	struct folio *fault_folio =3D fault_page ?
->> > +		page_folio(fault_page) : NULL;
->> >  	unsigned long i, restore =3D 0;
->> >  	bool allow_drain =3D true;
->> >  	unsigned long unmapped =3D 0;
->> > @@ -427,7 +434,8 @@ static unsigned long migrate_device_unmap(unsigned=
- long *src_pfns,
->> >  		remove_migration_ptes(folio, folio, false);
->> > =20
->> >  		src_pfns[i] =3D 0;
->> > -		folio_unlock(folio);
->> > +		if (fault_folio !=3D folio)
->> > +			folio_unlock(folio);
->> >  		folio_put(folio);
->> >  		restore--;
->> >  	}
->> > @@ -536,6 +544,8 @@ int migrate_vma_setup(struct migrate_vma *args)
->> >  		return -EINVAL;
->> >  	if (args->fault_page && !is_device_private_page(args->fault_page))
->> >  		return -EINVAL;
->> > +	if (args->fault_page && !PageLocked(args->fault_page))
->> > +		return -EINVAL;
->> > =20
->> >  	memset(args->src, 0, sizeof(*args->src) * nr_pages);
->> >  	args->cpages =3D 0;
->> > @@ -799,19 +809,13 @@ void migrate_vma_pages(struct migrate_vma *migra=
-te)
->> >  }
->> >  EXPORT_SYMBOL(migrate_vma_pages);
->> > =20
->> > -/*
->> > - * migrate_device_finalize() - complete page migration
->> > - * @src_pfns: src_pfns returned from migrate_device_range()
->> > - * @dst_pfns: array of pfns allocated by the driver to migrate memory=
- to
->> > - * @npages: number of pages in the range
->> > - *
->> > - * Completes migration of the page by removing special migration entr=
-ies.
->> > - * Drivers must ensure copying of page data is complete and visible t=
-o the CPU
->> > - * before calling this.
->> > - */
->> > -void migrate_device_finalize(unsigned long *src_pfns,
->> > -			unsigned long *dst_pfns, unsigned long npages)
->> > +static void __migrate_device_finalize(unsigned long *src_pfns,
->> > +				      unsigned long *dst_pfns,
->> > +				      unsigned long npages,
->> > +				      struct page *fault_page)
->> >  {
->> > +	struct folio *fault_folio =3D fault_page ?
->> > +		page_folio(fault_page) : NULL;
->> >  	unsigned long i;
->> > =20
->> >  	for (i =3D 0; i < npages; i++) {
->> > @@ -838,7 +842,8 @@ void migrate_device_finalize(unsigned long *src_pf=
-ns,
->> >  		src =3D page_folio(page);
->> >  		dst =3D page_folio(newpage);
->> >  		remove_migration_ptes(src, dst, false);
->> > -		folio_unlock(src);
->> > +		if (fault_folio !=3D src)
->> > +			folio_unlock(src);
->> > =20
->> >  		if (is_zone_device_page(page))
->> >  			put_page(page);
->> > @@ -854,6 +859,22 @@ void migrate_device_finalize(unsigned long *src_p=
-fns,
->> >  		}
->> >  	}
->> >  }
->> > +
->> > +/*
->> > + * migrate_device_finalize() - complete page migration
->> > + * @src_pfns: src_pfns returned from migrate_device_range()
->> > + * @dst_pfns: array of pfns allocated by the driver to migrate memory=
- to
->> > + * @npages: number of pages in the range
->> > + *
->> > + * Completes migration of the page by removing special migration entr=
-ies.
->> > + * Drivers must ensure copying of page data is complete and visible t=
-o the CPU
->> > + * before calling this.
->> > + */
->> > +void migrate_device_finalize(unsigned long *src_pfns,
->> > +			unsigned long *dst_pfns, unsigned long npages)
->> > +{
->> > +	return __migrate_device_finalize(src_pfns, dst_pfns, npages, NULL);
->> > +}
->> >  EXPORT_SYMBOL(migrate_device_finalize);
->> > =20
->> >  /**
->> > @@ -869,7 +890,8 @@ EXPORT_SYMBOL(migrate_device_finalize);
->> >   */
->> >  void migrate_vma_finalize(struct migrate_vma *migrate)
->> >  {
->> > -	migrate_device_finalize(migrate->src, migrate->dst, migrate->npages)=
-;
->> > +	__migrate_device_finalize(migrate->src, migrate->dst, migrate->npage=
-s,
->> > +				  migrate->fault_page);
->> >  }
->> >  EXPORT_SYMBOL(migrate_vma_finalize);
->>=20
-
+> as above? Maybe even a small helper.
+> 
+> Anyway,
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> 
+> 
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index 7acd5fc9d032..a3d7cb7cfd22 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -1613,7 +1613,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> >   	up_write(&vm->lock);
+> > -	mutex_lock(&xe->usm.lock);
+> > +	down_write(&xe->usm.lock);
+> >   	if (vm->usm.asid) {
+> >   		void *lookup;
+> > @@ -1623,7 +1623,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> >   		lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
+> >   		xe_assert(xe, lookup == vm);
+> >   	}
+> > -	mutex_unlock(&xe->usm.lock);
+> > +	up_write(&xe->usm.lock);
+> >   	for_each_tile(tile, xe, id)
+> >   		xe_range_fence_tree_fini(&vm->rftree[id]);
+> > @@ -1772,11 +1772,11 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+> >   		goto err_close_and_put;
+> >   	if (xe->info.has_asid) {
+> > -		mutex_lock(&xe->usm.lock);
+> > +		down_write(&xe->usm.lock);
+> >   		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
+> >   				      XA_LIMIT(1, XE_MAX_ASID - 1),
+> >   				      &xe->usm.next_asid, GFP_KERNEL);
+> > -		mutex_unlock(&xe->usm.lock);
+> > +		up_write(&xe->usm.lock);
+> >   		if (err < 0)
+> >   			goto err_free_id;
