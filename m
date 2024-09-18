@@ -4,73 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DB1FCF9C6E
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:40:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0B31CF9C6E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:40:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF9F10E3FB;
-	Mon, 23 Sep 2024 12:40:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4811D10E3F6;
+	Mon, 23 Sep 2024 12:40:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OD8/CcQ9";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="Ue/5miBt";
 	dkim-atps=neutral
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
- [209.85.210.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E819910E3CF;
- Tue, 17 Sep 2024 12:44:57 +0000 (UTC)
-Received: by mail-pf1-f172.google.com with SMTP id
- d2e1a72fcca58-71971d20a95so706113b3a.3; 
- Tue, 17 Sep 2024 05:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1726577097; x=1727181897; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=PuR2oEx7UOd4jtIaDKowFjYpkaW0nFWhgHvIpNqBCnA=;
- b=OD8/CcQ9/OKsuHE0BeKboW0Ftw1sKJhOiAWEMG/xZ2l9MMuwbEPWRBrFli1sS7GcBe
- GjWZBwdByqJ0FysNx3NzVJba6x7QpxFfe7WmFGvP+vQ6uKS36gB7gWMJvJCGa5fNXzIr
- UZ5b+NuheLt+KztlEhLcmalAIzhob2fq/psJmA2ofFuFZVOR921UHexyIb2GD8Cxiimg
- DB9HA5Brk75IYL+EfcDzpi3N54CPZuxAZc14MXf6DG/+qT22VlnGzvMu/CRW/OuNZDCi
- im3DTajAbKUkUlQ/gkw44+N/hPVWnGQ9+KS1XDQMy18Dty3t1iSGf9hbmw2DAnUCrC9d
- BDOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726577097; x=1727181897;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=PuR2oEx7UOd4jtIaDKowFjYpkaW0nFWhgHvIpNqBCnA=;
- b=HKPglcKBnvPNnazZVPcA93gk+pxqiQBuRykNqQV0RDJGTWk9fw2ALCImhR8VzfucrQ
- perqoJQLaIP5YVAGF9K+1lKiuLuNsdNNFUMReiVI79f7bGK1c1eOVSXtw6ovvJXQbtx3
- YU5BudaPdK1NeGuTccc4cmrfsQOci38LrueUu8iLwFacxMovZBFgGCJn4+Hj504i8xDG
- 5nmidjbrtJplT1cxV6tZvVRnr014zph2HGPsmQQQIeid2lsmBVcAGxtxDtOTO7PHUrRI
- f1Yqyi+Id8r6mAhgBIezIKr9Zonf9RSmkNj/CZwD+XsNLOualseaIBeAq8N8BqOKASXe
- plCw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWvW3SPf38+1463xLx04bu0La+D5pRIPVMNn+zXA5YRMMu7/eaWsRxsKERBxxFOnAgPMA2cxX8aXOg=@lists.freedesktop.org,
- AJvYcCX1YUxH8u4u1qFffc0Wa493pA/DUjMuRvcULyukF2sYmKUMPOHBb/IV2m5ZcMQRUTwgiJoN94dO1A4=@lists.freedesktop.org,
- AJvYcCX6ro5T2sQqDsBEBjJlX+krA720PnbOuKlhPgqM59vCkX5253A/XHHE4NNU/4nL72QV414klcgu2FIM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxrGjwWQexYNpX3hlrtV0I5ECAOauxoPmMbpdDpieWlqFd6fMmu
- LyAQsrej3GFTSxOnkdJwJSAnGWd64JcbvpX3JirpUUgmPvyDCptw
-X-Google-Smtp-Source: AGHT+IElrNVLMYeSdPugu8LX32nYuMCgAY1uSEYXmKx1Xd1xFBDpCzFzwKVITNzv1ITogJ2layOxZg==
-X-Received: by 2002:a05:6a00:27a0:b0:714:20a8:d79f with SMTP id
- d2e1a72fcca58-71936a60409mr23039083b3a.14.1726577097122; 
- Tue, 17 Sep 2024 05:44:57 -0700 (PDT)
-Received: from fedora.. ([2405:201:d007:50c2:4888:86b4:6f32:9ae])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-71944a973d7sm5117415b3a.6.2024.09.17.05.44.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Sep 2024 05:44:56 -0700 (PDT)
-From: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
-To: gustavo.sousa@intel.com, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, daniel@ffwll.ch
-Cc: skhan@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v3] drm/i915/cx0: Set power state to ready only on owned PHY
- lanes
-Date: Tue, 17 Sep 2024 18:14:49 +0530
-Message-ID: <20240917124449.223206-1-vamsikrishna.brahmajosyula@gmail.com>
-X-Mailer: git-send-email 2.46.1
+X-Greylist: delayed 326 seconds by postgrey-1.36 at gabe;
+ Wed, 18 Sep 2024 08:18:25 UTC
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81D7E10E562
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Sep 2024 08:18:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1726647503; x=1727252303; i=markus.elfring@web.de;
+ bh=kInQ//rPSsqlgcK7FpGZP43VvDdx4dvgsVxHv3VH3nI=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
+ Subject:Content-Type:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=Ue/5miBtymfmWClE8LciHCo5cZfb0DyDBN2/eMhfG9xAUnLrDaVgaHzbt64cfyw7
+ b/LHBaJeXwAuC0tqWqxQBh38Zp4I8T2xg32XNkE/7N30bMzstCiJm24cbOJFKv+39
+ f88DaSFZc6HDXd1WCCp0DljsmaD6kMnkNEhtS2QKZ/bhmYM+ZxjM7yP8ft5hQt9RF
+ N3pkHpgC5/SmnQiv0L6jXjm6JC9BfG6eI2fc6Tb9NBEKx12wakeJhS+dL5lOmz/bK
+ +u7+WtbWLQZh0XdQMOwi/YGZL4f+6kikf9vbly3iGhQEdtZwjexPJyHbNKMy9sFQZ
+ kyo8STvBjLbK5/cprg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.85.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1Mfc8y-1sJhy70VPE-00ixjw; Wed, 18
+ Sep 2024 10:12:43 +0200
+Message-ID: <d1f1eb7f-1de7-4d73-a7d0-00cc1eac3d5d@web.de>
+Date: Wed, 18 Sep 2024 10:12:14 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Nirmoy Das <nirmoy.das@intel.com>,
+ Philippe Lecluse <philippe.lecluse@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Content-Language: en-GB
+Cc: LKML <linux-kernel@vger.kernel.org>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] drm/xe/query: Refactor copy_to_user() usage in four functions
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:1KMy0yAdh4GMhkxbk+tvy/qZLdxiPwbW85tozVJiNzbZLOB1351
+ y1EfCORR2QuAvKPUa3Uu4Ky2IV+rP4QYTjXAWmNPfRbFlIwWIc00b9COnmrgieUmd6iIzpC
+ fdVGkt7xuob2v19OTCBJk5tqpLbZ5+ESSPbTb+cnm9KVR2HlxH3Y4UZ4bb14+s3XPmzZAnM
+ bJiYIpXwLw0AGvmQ6xqjQ==
+UI-OutboundReport: notjunk:1;M01:P0:bEwwIokSgR8=;i+Y0FoBMpBnbnH0hcDMkoQPYAMM
+ I+ccWEz1jOLbv9zlQmrv6N6nZNl/FdeRR2+6QzFimHCnsgNKGn4YODvweNtXKXWool/reGauW
+ 4XKrbu1g4n1pYZhdi6vtqmXordcX0BFSNnfxC4+mmSruLrNad7ZbSYcpHSmugYdES9Yr2g4zT
+ N9Cn4eQYnzjGpTRhKdm14GUVldutqbwKFuaKYilmcJHzcgRzEh6E8eS4SgagwG3Cb9jzMTIXJ
+ lwEhp8C13eyR+kpfl3qgvsnDVUjeFoZp1RQHKfM8TQo/lEaN3HeAjL+/fCU3Iduwzi4c8cPrd
+ b1yowroZ82WSIAE/eUVCCmDERztgfuNz3zRFVfZ0paNN87rpNJ5u1uhQn158J+d9su/ghc3UD
+ f5pA+6Rybd/LzoCR8FTuO+upXoBv30E6pAfeA6VmHD/uAuUFeq8EDfuDMo1OPbSJiNSJK3IhP
+ A8I4HePoS/VA4lAgL0E2KDHxwn3r1LNytNcBvRnwm9dDy0OQOZKNHLHuRvjcziDf2uhuZLH/b
+ iHPyCK4BwH+WYAwvfllWco18VKyBHwO8Gg03o3CRDXuPTgeI7llhyErAKfDMmO4Ile2bqATij
+ qsQhKkYyndjSNtAw7uEf3xb0l5pdg9eCH+m2jn4lqbxWKanZpn5pRRjsVNxNuSxdEfM8I7zmM
+ VK9tsBaNldrZSZKGXv9LJ/m1KSjjCgbI5L5M/uZIk7f5uAYMSGwcpyxeyaKtDyfHaA38qZZnA
+ mPVVlH1NySTOufkQRewTIwfKmj6DZbOb29+tv814Ap/su7NBvzkL/Tzrpx5m/FIW/Wmf1J0tI
+ JbO1TfITS1yranyTetAabHDQ==
 X-Mailman-Approved-At: Mon, 23 Sep 2024 12:40:18 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,53 +93,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In DP alt mode, when pin assignment is D, only one PHY lane is owned
-by the display. intel_cx0pll_enable currently performs a power state
-ready on both the lanes in all cases.
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Wed, 18 Sep 2024 09:43:07 +0200
 
-Address the todo to perfom power state ready on owned lanes.
+Assign return values from copy_to_user() calls to additional local variabl=
+es
+so that four kfree() calls and return statements can be omitted accordingl=
+y.
 
-Tested on Meteor Lake-P [Intel Arc Graphics] with DP alt mode.
+This issue was transformed by using the Coccinelle software.
 
-v2 -> v3:
-- Fix changelog per Jani Nikula's feedback
-v1 -> v2: Address Gustavo Sousa's feedback
-- Use owned lanes mask to set Phy power state to Ready, instead of
-  maxpclk_lane with DP alt mode check.
-- Owned lanes are obtained from intel_cx0_get_owned_lane_mask().
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/gpu/drm/xe/xe_query.c | 32 ++++++++++++--------------------
+ 1 file changed, 12 insertions(+), 20 deletions(-)
 
-Signed-off-by: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 5246a4a2740e..6195e720176d 100644
+=2D-- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -220,13 +220,11 @@ static int query_engines(struct xe_device *xe,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 4a6c3040ca15..cbed53d3b250 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2934,6 +2934,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
-+	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
- 	u8 maxpclk_lane = lane_reversal ? INTEL_CX0_LANE1 :
- 					  INTEL_CX0_LANE0;
- 	intel_wakeref_t wakeref = intel_cx0_phy_transaction_begin(encoder);
-@@ -2948,10 +2949,9 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	intel_cx0_phy_lane_reset(encoder, lane_reversal);
- 
- 	/*
--	 * 3. Change Phy power state to Ready.
--	 * TODO: For DP alt mode use only one lane.
-+	 * 3. Change Phy power state to Ready on owned lanes.
- 	 */
--	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
-+	intel_cx0_powerdown_change_sequence(encoder, owned_lane_mask,
- 					    CX0_P2_STATE_READY);
- 
- 	/*
+ 	engines->num_engines =3D i;
 
-base-commit: ad060dbbcfcfcba624ef1a75e1d71365a98b86d8
--- 
+-	if (copy_to_user(query_ptr, engines, size)) {
++	{
++		unsigned long ctu =3D copy_to_user(query_ptr, engines, size);
+ 		kfree(engines);
+-		return -EFAULT;
++		return ctu ? -EFAULT : 0;
+ 	}
+-	kfree(engines);
+-
+-	return 0;
+ }
+
+ static size_t calc_mem_regions_size(struct xe_device *xe)
+@@ -344,13 +342,11 @@ static int query_config(struct xe_device *xe, struct=
+ drm_xe_device_query *query)
+ 	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =3D
+ 		xe_exec_queue_device_get_max_priority(xe);
+
+-	if (copy_to_user(query_ptr, config, size)) {
++	{
++		unsigned long ctu =3D copy_to_user(query_ptr, config, size);
+ 		kfree(config);
+-		return -EFAULT;
++		return ctu ? -EFAULT : 0;
+ 	}
+-	kfree(config);
+-
+-	return 0;
+ }
+
+ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query=
+ *query)
+@@ -414,13 +410,11 @@ static int query_gt_list(struct xe_device *xe, struc=
+t drm_xe_device_query *query
+ 			REG_FIELD_GET(GMD_ID_REVID, gt->info.gmdid);
+ 	}
+
+-	if (copy_to_user(query_ptr, gt_list, size)) {
++	{
++		unsigned long ctu =3D copy_to_user(query_ptr, gt_list, size);
+ 		kfree(gt_list);
+-		return -EFAULT;
++		return ctu ? -EFAULT : 0;
+ 	}
+-	kfree(gt_list);
+-
+-	return 0;
+ }
+
+ static int query_hwconfig(struct xe_device *xe,
+@@ -444,13 +438,11 @@ static int query_hwconfig(struct xe_device *xe,
+
+ 	xe_guc_hwconfig_copy(&gt->uc.guc, hwconfig);
+
+-	if (copy_to_user(query_ptr, hwconfig, size)) {
++	{
++		unsigned long ctu =3D copy_to_user(query_ptr, hwconfig, size);
+ 		kfree(hwconfig);
+-		return -EFAULT;
++		return ctu ? -EFAULT : 0;
+ 	}
+-	kfree(hwconfig);
+-
+-	return 0;
+ }
+
+ static size_t calc_topo_query_size(struct xe_device *xe)
+=2D-
 2.46.0
 
