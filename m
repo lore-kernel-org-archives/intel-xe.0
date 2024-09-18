@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 175E7CCD1A0
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 13:45:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED379CCD1A0
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 13:51:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7EA910E5AC;
-	Wed, 18 Sep 2024 13:45:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hDOpX9Cj";
-	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A55710E5AC;
- Wed, 18 Sep 2024 13:45:15 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 79C0EA40446;
- Wed, 18 Sep 2024 13:45:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B95F5C4CEC2;
- Wed, 18 Sep 2024 13:45:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726667114;
- bh=cL6lpSz/kdR6T4KeqPH7EEkrh+WFPe2uL9PykCNsqqY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=hDOpX9CjSUgIJakr6qUKjN5axzMtd8hgKuof/Sdcp5Nycftg8xK/C7FXXdSYEJ6RY
- rF2arMHrM5eHns0mgfL4ag/MTKsKgc8bHXAPzT/bwILqhw7OWKPCSpqmhl5goy5eQD
- hT6dXCh+UzloN+FYe2OOvJ9dDuAWDqU7HUHjUpDQJTz656Vkk2127KpSVstIOuLy+4
- 1od+pJwL/MAl+H3aQkoplS5sDz2Pr1NSVmwiqDCNyjehCVY2Ikd36bl9rg6wAlac/g
- l47uTubbe1Tb/5G9HJXfJYSR+HzceovEWL+4R47XpkaxIewKWeOnfEjv8qjahUGwb2
- PTufLyENcV4gw==
-Date: Wed, 18 Sep 2024 15:45:11 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Tomas Winkler <tomas.winkler@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-spi@vger.kernel.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v6 00/12] spi: add driver for Intel discrete graphics
-Message-ID: <ZurZZ1pzmbWifjAD@finisterre.sirena.org.uk>
-References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2F3910E240;
+	Wed, 18 Sep 2024 13:51:36 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CDDF10E240;
+ Wed, 18 Sep 2024 13:51:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="Bs8sGvs52rAy0duI"
-Content-Disposition: inline
-In-Reply-To: <20240916134928.3654054-1-alexander.usyskin@intel.com>
-X-Cookie: Editing is a rewording activity.
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_memirq_infra_changes_=28rev8?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ilia Levi" <ilia.levi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Sep 2024 13:51:35 -0000
+Message-ID: <172666749556.1026460.16490490919632874161@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240918053942.1331811-1-illevi@habana.ai>
+In-Reply-To: <20240918053942.1331811-1-illevi@habana.ai>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,44 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---Bs8sGvs52rAy0duI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Series: memirq infra changes (rev8)
+URL   : https://patchwork.freedesktop.org/series/137643/
+State : success
 
-On Mon, Sep 16, 2024 at 04:49:16PM +0300, Alexander Usyskin wrote:
-> Add driver for access to Intel discrete graphics card
-> internal SPI device.
-> Expose device on auxiliary bus by i915 and Xe drivers and
-> provide spi driver to register this device with MTD framework.
+== Summary ==
 
-As far as I can tell this does not actually provide a SPI driver, there
-is no call to any SPI API that I've noticed here.  The SPI framework
-does have support for SPI controllers with specific flash support via
-spi_controller_mem_ops but this does not appear to use them.  Either it
-should do that or it should just be a MTD driver.
+lib/modules/6.11.0-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-xe/kernel/arch/
+lib/modules/6.11.0-xe/kernel/arch/x86/
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-xe/kernel/crypto/
+lib/modules/6.11.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-xe/build
+lib/modules/6.11.0-xe/modules.alias.bin
+lib/modules/6.11.0-xe/modules.builtin
+lib/modules/6.11.0-xe/modules.softdep
+lib/modules/6.11.0-xe/modules.alias
+lib/modules/6.11.0-xe/modules.order
+lib/modules/6.11.0-xe/modules.symbols
+lib/modules/6.11.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1726667475:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1726667475:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-The series is also split up into too many patches with minimal
-explanation, making it hard to follow what's going on.  I would
-recommend making the first patch be a minimal functional driver and then
-building on top of that.
 
---Bs8sGvs52rAy0duI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbq2WYACgkQJNaLcl1U
-h9BCZgf/W29Rkg31k8d/BbDhUYZW8jjlXYf12ChmIOuQyLVOpr4YRUpMoFKl1KGz
-iu+tQ3AK35GqadvAzuEC3U4cyrM0bdthCUNFlH2I7zC5gMFFutdGumdF9D7EYke7
-ygehHFnVZ/bHZg+Nt7zCqPpJtlboc8Tf130goHxzBougrUA4+HCH0r00lPgnVwJP
-pOOAFgyYXEhvUKbZffE4jTorrTGcWGZm17TnTA6VtDL+KYBYls2ltLbB1pseRelB
-tmGZMqJmU7cyJY1tVl4Hh4wsnziLPCyi/JAzZnS5WwFWgq3si4ZV1V9mTXkq6MM/
-JqOpqfUJbVvxSSXkYUVoFFqqwjjcWQ==
-=JQuG
------END PGP SIGNATURE-----
-
---Bs8sGvs52rAy0duI--
