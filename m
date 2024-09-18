@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BBBFCCD1A0
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 11:31:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5205DCCD1A2
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 11:31:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35BDD10E589;
-	Wed, 18 Sep 2024 11:31:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VO0C0OHU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B49D510E58A;
- Wed, 18 Sep 2024 11:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726659071; x=1758195071;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=OJrNEhSOsy3j4Cz2hwE2E5f6GquprjhhwcVphim765M=;
- b=VO0C0OHU+6Supf53rq2hjr8EFA/b12sTQwdMXApxp4htcx2UxbSdQIoE
- IrU4BUdcfVA6a4zShp4BlZ1jcJQK7mQsJo2/WALhB04gU12O5nljgHOMG
- 9Un/seB0vIYWfYcC5RRydGBUv65Cfkh5DtOKKV3/tsoFYvf01sqTlTPRd
- 14DqLPS4x/EDJO+8QN1VjZGRisJ8umeR5OHbap39X2aU2HGaBV1l7O5IM
- e2rhKpxcqiwgmL51eq8Li0qMVCI+atGD7tCNsst3b6QAPe1GqMP4VaNtY
- 2P/AGiIJIHSvPxB6q6sl41FsoIsjgSEIs8iAKa8KDX/riZhTcvZ+rf91v w==;
-X-CSE-ConnectionGUID: pcv2CanGSeK8T/8Epr726Q==
-X-CSE-MsgGUID: zOPw7EoBQveOZYxNXjwjgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25050560"
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="25050560"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 04:31:10 -0700
-X-CSE-ConnectionGUID: QNoauVOSRPOCuXCOB+EF9A==
-X-CSE-MsgGUID: jXJGSoPdQ7uMSlaK1CbmDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="100211240"
-Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.245.137])
- ([10.245.245.137])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 04:31:08 -0700
-Message-ID: <30f6a93c-eb20-4f48-b006-e8e4fa2315f9@intel.com>
-Date: Wed, 18 Sep 2024 12:31:06 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA6A10E260;
+	Wed, 18 Sep 2024 11:31:28 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22AA110E57C;
+ Wed, 18 Sep 2024 11:31:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7304734473068595527=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] drm/i915/gem: fix bitwise and logical AND mixup
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, stable@vger.kernel.org
-References: <cover.1726658138.git.jani.nikula@intel.com>
- <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Modify_iterators_to_prepare_for_?=
+ =?utf-8?q?ultrajoiner_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Sep 2024 11:31:26 -0000
+Message-ID: <172665908613.1025579.3920650085198650200@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240918063016.2667721-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240918063016.2667721-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,23 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/09/2024 12:17, Jani Nikula wrote:
-> CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND is an int, defaulting to 250. When
-> the wakeref is non-zero, it's either -1 or a dynamically allocated
-> pointer, depending on CONFIG_DRM_I915_DEBUG_RUNTIME_PM. It's likely that
-> the code works by coincidence with the bitwise AND, but with
-> CONFIG_DRM_I915_DEBUG_RUNTIME_PM=y, there's the off chance that the
-> condition evaluates to false, and intel_wakeref_auto() doesn't get
-> called. Switch to the intended logical AND.
-> 
-> Fixes: ad74457a6b5a ("drm/i915/dgfx: Release mmap on rpm suspend")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v6.1+
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+--===============7304734473068595527==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Modify iterators to prepare for ultrajoiner (rev2)
+URL   : https://patchwork.freedesktop.org/series/138750/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a_BAT -> xe-pw-138750v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-138750v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229]) +2 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][2] ([Intel XE#358]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][4] ([Intel XE#1192]) -> [PASS][5] +2 other tests pass
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/358
+
+
+Build changes
+-------------
+
+  * Linux: xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a -> xe-pw-138750v2
+
+  IGT_8023: 20a0ae35cb9fbae774dce8b78e20b2eb658171aa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a: a7c4f56f92ff668c90423c9601e213f1944ff09a
+  xe-pw-138750v2: 138750v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/index.html
+
+--===============7304734473068595527==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Modify iterators to prepare for ultrajoiner (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138750/">https://patchwork.freedesktop.org/series/138750/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a_BAT -&gt; xe-pw-138750v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138750v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/358">Intel XE#358</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138750v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a -&gt; xe-pw-138750v2</li>
+</ul>
+<p>IGT_8023: 20a0ae35cb9fbae774dce8b78e20b2eb658171aa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1965-a7c4f56f92ff668c90423c9601e213f1944ff09a: a7c4f56f92ff668c90423c9601e213f1944ff09a<br />
+  xe-pw-138750v2: 138750v2</p>
+
+</body>
+</html>
+
+--===============7304734473068595527==--
