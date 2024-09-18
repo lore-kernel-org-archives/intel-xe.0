@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4593DCDD55E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E169CCDD55D
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 20:48:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08D4110E63B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEBFD10E63C;
 	Wed, 18 Sep 2024 20:48:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I5LdDtRi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MP7eNb8D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CC1B10E63A
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Sep 2024 20:48:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B3510E63A
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Sep 2024 20:48:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726692525; x=1758228525;
+ t=1726692526; x=1758228526;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WkMCwP0rQ6Oja2rVi5WJp/RJF7IFYi6Fw5CCUirGCkU=;
- b=I5LdDtRidcS5SCiD5GDaTENXK/56ARd8xL77/pHvyoeKy5gVUJahFkvM
- g5LVIysWdkKCo0lnhNgzt4f0LqUXxKIJ8SRv3Br8NZ4FKptXhYb3RiN+i
- YXl2qNronUr20jC9XtaMRCu3Ye/uscWIJM3Li50j2rD43PAEnCDxBT0iQ
- 0eCzMcSuFtmhs1TdjXgDNZa0uyWezAsK2is4lwSslB8VdLYxUutIi2lOz
- oYqew9a/YN8SSrP5gxDrK2i5fTaUbrRD8MkYp31+hb+7cCZ4FZkXXnUMH
- EXN4IWvgz4f0+I796TioeQuvtk3IFBEQOF9Q3MP+Gya5kAY6mLi1U4NAs w==;
-X-CSE-ConnectionGUID: DCDvxcJuR7q70KiyubSVTw==
-X-CSE-MsgGUID: QvSLSw9tSgWO9OSd/5luoQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25509484"
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="25509484"
+ bh=DfH2LRcapnjp30ngau/CmC83iEVBMqa71u0zifkvbl0=;
+ b=MP7eNb8DpMXHeP10Mdx0P+6/aOGVX0bGuNNbWQWuGiZjGckKgQubytRJ
+ eCSag8wZfyoj6kogLhWE0VzVbtpkEjeK9lIdjZtl4zGMCWebcFikXWviw
+ EjHt2lT37QLxXD12VVk4nfq8GNaNOjtJeNk6xAaT/jY6Wp2WrSoEd/wqa
+ lPfjuyTwvpySXFqnrD07JGnTASb1Fh5tBK2doLxh/cEjPQf+sTPGJh9HE
+ FdwYGB0O/hGEVk29uc5VBNHmFKR7OnFShKMIXaqqExnHrE/GMmTrxTduQ
+ LNSk3z7UmnIhzwCKjTWsP/dU5nS32d2mkc9UNNY3QWRm7o9hcfrxwgQrI A==;
+X-CSE-ConnectionGUID: ddz3bgeUThiMZxEIxtYOxQ==
+X-CSE-MsgGUID: AVW3P4p8RvOARtoDueGu9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25509489"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="25509489"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 13:48:45 -0700
-X-CSE-ConnectionGUID: MaLRCiQZSp+k10zIhFLs/g==
-X-CSE-MsgGUID: 7Wj2KlJAR9SmxACWMctHAQ==
+ 18 Sep 2024 13:48:46 -0700
+X-CSE-ConnectionGUID: CU71s8g+QWSUq/+D+SbCBg==
+X-CSE-MsgGUID: +w6pOXRCT6SVy11nDioQlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="74246623"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="74246635"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.125.109.171])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 13:48:44 -0700
+ 18 Sep 2024 13:48:45 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 2/3] drm/xe/xe2: Assume tuning settings also apply for future
- media GT
-Date: Wed, 18 Sep 2024 17:47:30 -0300
-Message-ID: <20240918204830.49880-3-gustavo.sousa@intel.com>
+Subject: [PATCH 3/3] drm/xe/xe2: Add performance tuning for L3 cache flushing
+Date: Wed, 18 Sep 2024 17:47:31 -0300
+Message-ID: <20240918204830.49880-4-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.46.1
 In-Reply-To: <20240918204830.49880-1-gustavo.sousa@intel.com>
 References: <20240918204830.49880-1-gustavo.sousa@intel.com>
@@ -68,66 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already make the assumption that recommended tuning settings for
-primary GT on Xe2 will also apply for future releases. Let's make the
-same assumption for the media GT. We can come back and define closed
-ranges when that becomes necessary.
+A recommended performance tuning for LNL related to L3 cache flushing
+was recently introduced in Bspec. Implement it.
 
-Bspec: 72161
+Bspec: 70821
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tuning.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 5 +++++
+ drivers/gpu/drm/xe/xe_tuning.c       | 8 ++++++++
+ 2 files changed, 13 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 6ec2d2c11d77..ccd18cdd5b50 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -389,6 +389,9 @@
+ #define L3SQCREG3				XE_REG_MCR(0xb108)
+ #define   COMPPWOVERFETCHEN			REG_BIT(28)
+ 
++#define SCRATCH3LBCF				XE_REG_MCR(0xb154)
++#define   RWFLUSHALLEN				REG_BIT(17)
++
+ #define XEHP_L3SQCREG5				XE_REG_MCR(0xb158)
+ #define   L3_PWM_TIMER_INIT_VAL_MASK		REG_GENMASK(9, 0)
+ 
+@@ -406,6 +409,8 @@
+ 
+ #define XE2LPM_L3SQCREG3			XE_REG_MCR(0xb608)
+ 
++#define XE2LPM_SCRATCH3LBCF			XE_REG_MCR(0xb654)
++
+ #define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
+ 
+ #define XE2_TDF_CTRL				XE_REG(0xb418)
 diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 7a5b852af8d7..f62622f0be85 100644
+index f62622f0be85..4dd77b44ac82 100644
 --- a/drivers/gpu/drm/xe/xe_tuning.c
 +++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -33,7 +33,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
- 	},
- 	{ XE_RTP_NAME("Tuning: L3 cache - media"),
--	  XE_RTP_RULES(MEDIA_VERSION(2000)),
-+	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(FIELD_SET(XE2LPM_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
- 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
- 	},
-@@ -43,7 +43,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 			 SET(CCCHKNREG1, L3CMPCTRL))
- 	},
- 	{ XE_RTP_NAME("Tuning: Compression Overfetch - media"),
--	  XE_RTP_RULES(MEDIA_VERSION(2000)),
-+	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(CLR(XE2LPM_CCCHKNREG1, ENCOMPPERFFIX),
- 			 SET(XE2LPM_CCCHKNREG1, L3CMPCTRL))
- 	},
-@@ -52,7 +52,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 	  XE_RTP_ACTIONS(SET(L3SQCREG3, COMPPWOVERFETCHEN))
- 	},
- 	{ XE_RTP_NAME("Tuning: Enable compressible partial write overfetch in L3 - media"),
--	  XE_RTP_RULES(MEDIA_VERSION(2000)),
-+	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(SET(XE2LPM_L3SQCREG3, COMPPWOVERFETCHEN))
- 	},
- 	{ XE_RTP_NAME("Tuning: L2 Overfetch Compressible Only"),
-@@ -61,7 +61,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 			     COMPMEMRD256BOVRFETCHEN))
- 	},
- 	{ XE_RTP_NAME("Tuning: L2 Overfetch Compressible Only - media"),
--	  XE_RTP_RULES(MEDIA_VERSION(2000)),
-+	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(SET(XE2LPM_L3SQCREG2,
- 			     COMPMEMRD256BOVRFETCHEN))
- 	},
-@@ -71,7 +71,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+@@ -80,6 +80,14 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+ 	  XE_RTP_ACTIONS(FIELD_SET(XELPMP_STATELESS_COMPRESSION_CTRL, UNIFIED_COMPRESSION_FORMAT,
  				   REG_FIELD_PREP(UNIFIED_COMPRESSION_FORMAT, 0)))
  	},
- 	{ XE_RTP_NAME("Tuning: Stateless compression control - media"),
--	  XE_RTP_RULES(MEDIA_VERSION(2000)),
++	{ XE_RTP_NAME("Tuning: L3 RW flush all Cache"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2004, XE_RTP_END_VERSION_UNDEFINED)),
++	  XE_RTP_ACTIONS(SET(SCRATCH3, RWFLUSHALLEN))
++	},
++	{ XE_RTP_NAME("Tuning: L3 RW flush all cache - media"),
 +	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(FIELD_SET(STATELESS_COMPRESSION_CTRL, UNIFIED_COMPRESSION_FORMAT,
- 				   REG_FIELD_PREP(UNIFIED_COMPRESSION_FORMAT, 0)))
- 	},
++	  XE_RTP_ACTIONS(SET(XE2LPM_SCRATCH3LBCF, RWFLUSHALLEN))
++	},
+ 	{}
+ };
+ 
 -- 
 2.46.1
 
