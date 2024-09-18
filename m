@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA94FCDD560
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 23:28:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 758B7CDD55F
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 23:45:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EE5410E1CA;
-	Wed, 18 Sep 2024 23:28:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="OC50h1Cj";
-	dkim-atps=neutral
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53DB410E1B6;
- Wed, 18 Sep 2024 23:27:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1726702074;
- bh=Bt9ELa2GeiYVRmNenmyVyQi+u/04qU1WIiulWlet/f0=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=OC50h1Cjn2iLle7reaPstl1d2eNvEvbXEkv3WoXagMwHEUMU2yRNEsJH4TR9kmyhE
- E6LxGWLGdHr9et6ZTHN/r+9Gr/HEz8MxckVneortLy4o0/U9ZaNKGX0tBhl2Chz+En
- ssOg95RimhNmLJSnW+I5rpR8Jp8HDTDvcRXp06HfaHoWGU2FezphjqmXSxNd8VW+if
- 9EvMBrnal4SSjEF03rPkFP0Wbp2H27Jyd/raikb5iCfM/2H2rpyBRiAVbOejeOHbmW
- X1aw7lifYHS63n6n7TzgSfEiqHI/ZlUtyUmWEmWiHkd8PDu0uQBg8abzRzzhM5uFxL
- qXJfuMxH6bJ8Q==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4X8FF53JPxz4x8D;
- Thu, 19 Sep 2024 09:27:53 +1000 (AEST)
-Date: Thu, 19 Sep 2024 09:27:52 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
- =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>
-Cc: Kees Cook <kees@kernel.org>, Riana Tauro <riana.tauro@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>, DRM XE List <intel-xe@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>, Dave Airlie
- <airlied@redhat.com>, DRI <dri-devel@lists.freedesktop.org>
-Subject: Re: linux-next: build failure after merge of the kspp tree
-Message-ID: <20240919092752.5a832aaa@canb.auug.org.au>
-In-Reply-To: <20240909195939.067c1c13@canb.auug.org.au>
-References: <20240909195939.067c1c13@canb.auug.org.au>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3929810E273;
+	Wed, 18 Sep 2024 23:45:38 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 082B510E273;
+ Wed, 18 Sep 2024 23:45:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5080915715697835505=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/LiyUh+CzuED8EVHPam0+hFK";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/oa=3A_xe=5Fsyncs_for_OA_?=
+ =?utf-8?q?=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Sep 2024 23:45:37 -0000
+Message-ID: <172670313702.1027297.6231938657382123782@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240918195330.3167756-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20240918195330.3167756-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,99 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/LiyUh+CzuED8EVHPam0+hFK
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+--===============5080915715697835505==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+== Series Details ==
 
-On Mon, 9 Sep 2024 19:59:39 +1000 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
->
-> After merging the kspp tree, today's linux-next build (x86_64
-> allmodconfig) failed like this:
->=20
-> drivers/gpu/drm/xe/xe_gt_idle.c:56:27: error: redefinition of 'str_up_dow=
-n'
->    56 | static inline const char *str_up_down(bool v)
->       |                           ^~~~~~~~~~~
-> In file included from include/linux/string_helpers.h:7,
->                  from drivers/gpu/drm/xe/xe_assert.h:9,
->                  from drivers/gpu/drm/xe/xe_force_wake.h:9,
->                  from drivers/gpu/drm/xe/xe_gt_idle.c:8:
-> include/linux/string_choices.h:62:27: note: previous definition of 'str_u=
-p_down' with type 'const char *(bool)' {aka 'const char *(_Bool)'}
->    62 | static inline const char *str_up_down(bool v)
->       |                           ^~~~~~~~~~~
->=20
-> Caused by commit
->=20
->   a98ae7f045b2 ("lib/string_choices: Add str_up_down() helper")
->=20
-> interacting with commit
->=20
->   0914c1e45d3a ("drm/xe/xe_gt_idle: add debugfs entry for powergating inf=
-o")
->=20
-> from the drm-xe tree.
->=20
-> I have applied the following patch for today.
->=20
-> From: Stephen Rothwell <sfr@canb.auug.org.au>
-> Date: Mon, 9 Sep 2024 19:40:17 +1000
-> Subject: [PATCH] fix up for "lib/string_choices: Add str_up_down() helper"
->=20
-> interacting wit commit "drm/xe/xe_gt_idle: add debugfs entry for
-> powergating info" from the drm-xe tree.
->=20
-> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> ---
->  drivers/gpu/drm/xe/xe_gt_idle.c | 5 -----
->  1 file changed, 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_i=
-dle.c
-> index 85a35ed153a3..0f98c1539c64 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-> @@ -53,11 +53,6 @@ pc_to_xe(struct xe_guc_pc *pc)
->  	return gt_to_xe(gt);
->  }
-> =20
-> -static inline const char *str_up_down(bool v)
-> -{
-> -	return v ? "up" : "down";
-> -}
-> -
->  static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
->  {
->  	switch (state) {
-> --=20
-> 2.45.2
+Series: drm/xe/oa: xe_syncs for OA (rev6)
+URL   : https://patchwork.freedesktop.org/series/137058/
+State : success
 
-This is now needed in the merge between Linus' tree and the drm-xe tree.
+== Summary ==
 
---=20
-Cheers,
-Stephen Rothwell
+CI Bug Log - changes from xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d_BAT -> xe-pw-137058v6_BAT
+====================================================
 
---Sig_/LiyUh+CzuED8EVHPam0+hFK
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Summary
+-------
 
------BEGIN PGP SIGNATURE-----
+  **SUCCESS**
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmbrYfgACgkQAVBC80lX
-0Gyv3wf+LJfbXwQUt38mt6FZfvFVeKG/GC4SVPJFFIVwJP+8Jl30Yk/jJNf6vppD
-w8XOQFY/FGiinjnfMJFkZccll7mF4gAhhfgL7NWoH2mAfRRQ4Ltiw6ecMAi9iK7y
-MsogrW7dprxJFo+HR+nJMmePMceVfUDiiD2LD57eN69VUS+sbiWw1drS/BuZbxFS
-qjOCqPgbR19Y2Ov5aLi6UL/r+o53yWN1l+9WpyosYA4BcJujARauhnWXvqYxUNCV
-jnl7n/dxBQGOz7tjqjxt++uFvy5vbPdCPnk4HrtKdg4lx16YLJefYI6nJRk8qQhN
-ZZ4GJrhMCMFn/CkNCJU7LlFZxouauQ==
-=F3w5
------END PGP SIGNATURE-----
+  No regressions found.
 
---Sig_/LiyUh+CzuED8EVHPam0+hFK--
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-137058v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-bad-modifier:
+    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#877])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-bmg-1/igt@kms_addfb_basic@addfb25-bad-modifier.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137058v6/bat-bmg-1/igt@kms_addfb_basic@addfb25-bad-modifier.html
+
+  
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
+
+
+Build changes
+-------------
+
+  * Linux: xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d -> xe-pw-137058v6
+
+  IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d: 2141344f9b4f0bcd6bb20a45afaef94209743c0d
+  xe-pw-137058v6: 137058v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137058v6/index.html
+
+--===============5080915715697835505==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/oa: xe_syncs for OA (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137058/">https://patchwork.freedesktop.org/series/137058/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137058v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137058v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d_BAT -&gt; xe-pw-137058v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-137058v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_addfb_basic@addfb25-bad-modifier:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-bmg-1/igt@kms_addfb_basic@addfb25-bad-modifier.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137058v6/bat-bmg-1/igt@kms_addfb_basic@addfb25-bad-modifier.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d -&gt; xe-pw-137058v6</li>
+</ul>
+<p>IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d: 2141344f9b4f0bcd6bb20a45afaef94209743c0d<br />
+  xe-pw-137058v6: 137058v6</p>
+
+</body>
+</html>
+
+--===============5080915715697835505==--
