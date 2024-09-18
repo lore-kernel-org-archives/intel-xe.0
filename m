@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6152CDD560
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 23:50:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDC31CDD55F
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 23:51:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF1B10E273;
-	Wed, 18 Sep 2024 23:50:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A58D310E273;
+	Wed, 18 Sep 2024 23:51:05 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28FBF10E273;
- Wed, 18 Sep 2024 23:50:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F60310E273;
+ Wed, 18 Sep 2024 23:51:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Xe2_performance_tuni?=
- =?utf-8?q?ng_updates?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Xe2_performance_tuning_up?=
+ =?utf-8?q?dates?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Sep 2024 23:50:51 -0000
-Message-ID: <172670345116.1027924.14350689754596769604@2413ebb6fbb6>
+Date: Wed, 18 Sep 2024 23:51:04 -0000
+Message-ID: <172670346418.1027924.9430170621194965736@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240918204830.49880-1-gustavo.sousa@intel.com>
 In-Reply-To: <20240918204830.49880-1-gustavo.sousa@intel.com>
@@ -48,11 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2141344f9b4f drm-tip: 2024y-09m-18d-21h-15m-07s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2: Extend performance tuning to media GT
-Applying: drm/xe/xe2: Assume tuning settings also apply for future media GT
-Applying: drm/xe/xe2: Add performance tuning for L3 cache flushing
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 29ff5c767106d015524722190a456bb0cd35280c
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Wed Sep 18 17:47:31 2024 -0300
+
+    drm/xe/xe2: Add performance tuning for L3 cache flushing
+    
+    A recommended performance tuning for LNL related to L3 cache flushing
+    was recently introduced in Bspec. Implement it.
+    
+    Bspec: 70821
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 2141344f9b4f0bcd6bb20a45afaef94209743c0d drm-intel
+b8fae12e6d77 drm/xe/xe2: Extend performance tuning to media GT
+b949cee5a311 drm/xe/xe2: Assume tuning settings also apply for future media GT
+29ff5c767106 drm/xe/xe2: Add performance tuning for L3 cache flushing
 
 
