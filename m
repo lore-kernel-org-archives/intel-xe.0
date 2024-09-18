@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C44FCCD1BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC426CCD1BC
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 14:42:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC0910E5B8;
-	Wed, 18 Sep 2024 14:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE64F10E5CB;
+	Wed, 18 Sep 2024 14:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MMJkwcjh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TJGT8OCa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05C8A10E5C8;
- Wed, 18 Sep 2024 14:42:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3DF10E5B8;
+ Wed, 18 Sep 2024 14:42:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726670529; x=1758206529;
+ t=1726670533; x=1758206533;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qe72ZSLcbXjGmAx1e41UjU/MJLZF+dx8xFFi/dzxrV4=;
- b=MMJkwcjh5fsbrI8IVJQW6nOU1tTXSJ946jeQ5EcHsgmY5Ir3mOrRsZSJ
- M9/HQEBGF/vvnrdTJknZl86H8vt5jk/y24htbg9CATtV+y4jYDSIlbl6C
- Pu8MWwY4SXivtA5ubOOsihgI4xii7lbpAL7FKVUdJ/z+8FAY3gN2qM9o0
- T/0Ju+Ao1GcXBJ6H9wGdemkaHMCWKJvNBbG6NDqpu1vTGyJjPi7BxBM4h
- POp//0AOavXqptFICUJWSSMYImLx6mUOoFP7/w/4AxAu8Ot6IXBJpam0N
- fBTqR+F3I+Mrpt7jU4FAIuFbopixLTFW/p/+YxK7X1nSIZQpfnZLUZ/qc w==;
-X-CSE-ConnectionGUID: Ru9Nkk4aTP+HnDLqb+M7pA==
-X-CSE-MsgGUID: Unuwp2VoT0OvmBPpnlHUcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="29481741"
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="29481741"
+ bh=GbsCtk0OuNmMpU6Q8I33y7QzIgodbZwOatjIntmYpkE=;
+ b=TJGT8OCaaHR4y34zIojJIWSDF5OQmhy0wbHEFfMl1nMZwC+LUKFBVuKJ
+ x3RTsE4FlXKU+a3G+UtL/Ye9tlGT8GfmaViD27qSGDIGc669IhQbaBc0t
+ SvPN/0q3D+Gwy0YuSEkuasSz1QmHOYffAuabXjRhbNGdfPFMW54wsNKJ2
+ qywNSwhfoarCTBfvHXuNAhamqXNmDCS4LR1XV52pHna0Dh8ijSPXVT5GU
+ 9vmdWXp1J+9X23nQc8I3FOA1kYmvD89NgoDaer3qknoGyT7LDKoAyf9P7
+ x8VQtTOlSPNu9nlCSNhPBuUBcrPNrnKSUgQnP8vsvMI3bnnVLmaIW/Sr0 A==;
+X-CSE-ConnectionGUID: ptHvVHAATlGQV4lwG8C7og==
+X-CSE-MsgGUID: FTrxW8cJSYWD2/zOnC31mA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="29481753"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="29481753"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 07:42:09 -0700
-X-CSE-ConnectionGUID: R3k7NT8LQdK62bYIcK2e6A==
-X-CSE-MsgGUID: rlwhvLVSSO2befOs7drgug==
+ 18 Sep 2024 07:42:12 -0700
+X-CSE-ConnectionGUID: 9jmFOjuzTWqhJJX/g8Z6pQ==
+X-CSE-MsgGUID: Q9eQbUxKRqiEFhB4l93aIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="69200385"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="69200391"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 07:42:07 -0700
+ 18 Sep 2024 07:42:10 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 08/15] drm/i915: Add bigjoiner and uncompressed joiner hw
- readout sanity checks
-Date: Wed, 18 Sep 2024 20:13:36 +0530
-Message-ID: <20240918144343.2876184-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 10/15] drm/i915: Implement hw state readout and checks for
+ ultrajoiner
+Date: Wed, 18 Sep 2024 20:13:38 +0530
+Message-ID: <20240918144343.2876184-11-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240918144343.2876184-1-ankit.k.nautiyal@intel.com>
 References: <20240918144343.2876184-1-ankit.k.nautiyal@intel.com>
@@ -70,46 +70,74 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Add sanity checks for primary and secondary bigjoiner/uncompressed
-bitmasks, should make it easier to spot possible issues.
+Ultrajoiner mode has some new bits and states to be
+read out from the hw. Lets make changes accordingly.
 
-v2:
--Streamline the expected masks and add few more drm_WARNs. (Ville)
--Use %#x format specifier for printing joiner masks. (Ville)
--Use struct intel_display instead of struct drm_i915_private. (Ankit)
+v2: Fix checkpatch warnings. (Ankit)
+v3: Add separate functions for computing expected secondary_big/ultrajoiner
+pipes. (Ankit)
+v4:
+-Streamline the helpers for ultrajoiner. (Ville)
+-Add fixup to accommodate PIPED check for ultrajoiner. (Ville)
+-Add more Ultrajoiner drm_WARNs. (Ville)
+v5: Remove spurious newline. (Ville)
 
 Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com> (v1)
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 49 +++++++++++++++++++-
- 1 file changed, 47 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 81 +++++++++++++++++--
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |  2 +
+ 2 files changed, 78 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 28447d4c8934..a17e89fb5eb9 100644
+index a17e89fb5eb9..1ce334f3a3ae 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3654,26 +3654,71 @@ static void enabled_bigjoiner_pipes(struct intel_display *display,
- 	}
+@@ -3674,13 +3674,58 @@ static u8 expected_bigjoiner_secondary_pipes(u8 bigjoiner_primary_pipes)
+ 	return expected_secondary_pipes(bigjoiner_primary_pipes, 2);
  }
  
-+static u8 expected_secondary_pipes(u8 primary_pipes, int num_pipes)
++static u8 expected_ultrajoiner_secondary_pipes(u8 ultrajoiner_primary_pipes)
 +{
-+	u8 secondary_pipes = 0;
-+
-+	for (int i = 1; i < num_pipes; i++)
-+		secondary_pipes |= primary_pipes << i;
-+
-+	return secondary_pipes;
++	return expected_secondary_pipes(ultrajoiner_primary_pipes, 4);
 +}
 +
-+static u8 expected_uncompjoiner_secondary_pipes(u8 uncompjoiner_primary_pipes)
++static u8 fixup_ultrajoiner_secondary_pipes(u8 ultrajoiner_primary_pipes,
++					    u8 ultrajoiner_secondary_pipes)
 +{
-+	return expected_secondary_pipes(uncompjoiner_primary_pipes, 2);
++	return ultrajoiner_secondary_pipes | ultrajoiner_primary_pipes << 3;
 +}
 +
-+static u8 expected_bigjoiner_secondary_pipes(u8 bigjoiner_primary_pipes)
++static void enabled_ultrajoiner_pipes(struct drm_i915_private *i915,
++				      u8 *primary_pipes, u8 *secondary_pipes)
 +{
-+	return expected_secondary_pipes(bigjoiner_primary_pipes, 2);
++	struct intel_crtc *crtc;
++
++	*primary_pipes = 0;
++	*secondary_pipes = 0;
++
++	if (!HAS_ULTRAJOINER(i915))
++		return;
++
++	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
++					 joiner_pipes(i915)) {
++		enum intel_display_power_domain power_domain;
++		enum pipe pipe = crtc->pipe;
++		intel_wakeref_t wakeref;
++
++		power_domain = intel_dsc_power_domain(crtc, (enum transcoder)pipe);
++		with_intel_display_power_if_enabled(i915, power_domain, wakeref) {
++			u32 tmp = intel_de_read(i915, ICL_PIPE_DSS_CTL1(pipe));
++
++			if (!(tmp & ULTRA_JOINER_ENABLE))
++				continue;
++
++			if (tmp & PRIMARY_ULTRA_JOINER_ENABLE)
++				*primary_pipes |= BIT(pipe);
++			else
++				*secondary_pipes |= BIT(pipe);
++		}
++	}
 +}
 +
  static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
@@ -117,50 +145,81 @@ index 28447d4c8934..a17e89fb5eb9 100644
  {
  	struct intel_display *display = to_intel_display(&dev_priv->drm);
  	u8 primary_uncompressed_joiner_pipes, primary_bigjoiner_pipes;
++	u8 primary_ultrajoiner_pipes;
  	u8 secondary_uncompressed_joiner_pipes, secondary_bigjoiner_pipes;
-+	u8 uncompressed_joiner_pipes, bigjoiner_pipes;
+-	u8 uncompressed_joiner_pipes, bigjoiner_pipes;
++	u8 secondary_ultrajoiner_pipes;
++	u8 uncompressed_joiner_pipes, bigjoiner_pipes, ultrajoiner_pipes;
  
  	enabled_uncompressed_joiner_pipes(display, &primary_uncompressed_joiner_pipes,
  					  &secondary_uncompressed_joiner_pipes);
+@@ -3694,13 +3739,33 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+ 	drm_WARN_ON(display->drm,
+ 		    (primary_bigjoiner_pipes & secondary_bigjoiner_pipes) != 0);
  
-+	drm_WARN_ON(display->drm,
-+		    (primary_uncompressed_joiner_pipes & secondary_uncompressed_joiner_pipes) != 0);
++	enabled_ultrajoiner_pipes(dev_priv, &primary_ultrajoiner_pipes,
++				  &secondary_ultrajoiner_pipes);
++	/*
++	 * For some strange reason the last pipe in the set of four
++	 * shouldn't have ultrajoiner enable bit set in hardware.
++	 * Set the bit anyway to make life easier.
++	 */
++	drm_WARN_ON(&dev_priv->drm,
++		    expected_secondary_pipes(primary_ultrajoiner_pipes, 3) !=
++		    secondary_ultrajoiner_pipes);
++	secondary_ultrajoiner_pipes =
++		fixup_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes,
++						  secondary_ultrajoiner_pipes);
 +
- 	enabled_bigjoiner_pipes(display, &primary_bigjoiner_pipes,
- 				&secondary_bigjoiner_pipes);
++	drm_WARN_ON(&dev_priv->drm, (primary_ultrajoiner_pipes & secondary_ultrajoiner_pipes) != 0);
++
+ 	uncompressed_joiner_pipes = primary_uncompressed_joiner_pipes |
+ 				    secondary_uncompressed_joiner_pipes;
+ 	bigjoiner_pipes = primary_bigjoiner_pipes | secondary_bigjoiner_pipes;
++	ultrajoiner_pipes = primary_ultrajoiner_pipes | secondary_ultrajoiner_pipes;
  
-+	drm_WARN_ON(display->drm,
-+		    (primary_bigjoiner_pipes & secondary_bigjoiner_pipes) != 0);
+ 	drm_WARN(display->drm, (uncompressed_joiner_pipes & bigjoiner_pipes) != 0,
+ 		 "Uncomressed joiner pipes(%#x) and bigjoiner pipes(%#x) can't intersect\n",
+ 		 uncompressed_joiner_pipes, bigjoiner_pipes);
++	drm_WARN(display->drm, (ultrajoiner_pipes & bigjoiner_pipes) != ultrajoiner_pipes,
++		 "Ultrajoiner pipes(%#x) should be bigjoiner pipes(%#x)\n",
++		 ultrajoiner_pipes, bigjoiner_pipes);
+ 	drm_WARN(display->drm, secondary_bigjoiner_pipes !=
+ 		 expected_bigjoiner_secondary_pipes(primary_bigjoiner_pipes),
+ 		 "Wrong secondary bigjoiner pipes(expected %#x, current %#x)\n",
+@@ -3711,10 +3776,16 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+ 		 "Wrong secondary uncompressed joiner pipes(expected %#x, current %#x)\n",
+ 		 expected_uncompjoiner_secondary_pipes(primary_uncompressed_joiner_pipes),
+ 		 secondary_uncompressed_joiner_pipes);
+-
+-	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes;
+-
+-	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes;
++	drm_WARN(display->drm, secondary_ultrajoiner_pipes !=
++		 expected_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes),
++		 "Wrong secondary ultrajoiner pipes(expected %x, current %x)\n",
++		 expected_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes),
++		 secondary_ultrajoiner_pipes);
 +
-+	uncompressed_joiner_pipes = primary_uncompressed_joiner_pipes |
-+				    secondary_uncompressed_joiner_pipes;
-+	bigjoiner_pipes = primary_bigjoiner_pipes | secondary_bigjoiner_pipes;
-+
-+	drm_WARN(display->drm, (uncompressed_joiner_pipes & bigjoiner_pipes) != 0,
-+		 "Uncomressed joiner pipes(%#x) and bigjoiner pipes(%#x) can't intersect\n",
-+		 uncompressed_joiner_pipes, bigjoiner_pipes);
-+	drm_WARN(display->drm, secondary_bigjoiner_pipes !=
-+		 expected_bigjoiner_secondary_pipes(primary_bigjoiner_pipes),
-+		 "Wrong secondary bigjoiner pipes(expected %#x, current %#x)\n",
-+		 expected_bigjoiner_secondary_pipes(primary_bigjoiner_pipes),
-+		 secondary_bigjoiner_pipes);
-+	drm_WARN(display->drm, secondary_uncompressed_joiner_pipes !=
-+		 expected_uncompjoiner_secondary_pipes(primary_uncompressed_joiner_pipes),
-+		 "Wrong secondary uncompressed joiner pipes(expected %#x, current %#x)\n",
-+		 expected_uncompjoiner_secondary_pipes(primary_uncompressed_joiner_pipes),
-+		 secondary_uncompressed_joiner_pipes);
-+
- 	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes;
- 
- 	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes;
++	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes |
++			 primary_ultrajoiner_pipes;
++	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes |
++			 secondary_ultrajoiner_pipes;
  
  	/* Joiner pipes should always be consecutive primary and secondary */
--	drm_WARN(&dev_priv->drm, *secondary_pipes != *primary_pipes << 1,
--		 "Joiner misconfigured (primary pipes 0x%x, secondary pipes 0x%x)\n",
-+	drm_WARN(display->drm, *secondary_pipes != *primary_pipes << 1,
-+		 "Joiner misconfigured (primary pipes %#x, secondary pipes %#x)\n",
- 		 *primary_pipes, *secondary_pipes);
- }
+ 	drm_WARN(display->drm, *secondary_pipes != *primary_pipes << 1,
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+index f921ad67b587..bf32a3b46fb1 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+@@ -37,6 +37,8 @@
+ #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
+ #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
+ #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
++#define  ULTRA_JOINER_ENABLE			REG_BIT(23)
++#define  PRIMARY_ULTRA_JOINER_ENABLE		REG_BIT(22)
+ #define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
+ #define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
  
 -- 
 2.45.2
