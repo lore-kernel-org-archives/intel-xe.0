@@ -4,179 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C5FFCAC5B8
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 03:59:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8110CCAC5B8
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 04:58:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FFC210E08B;
-	Wed, 18 Sep 2024 03:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1369E10E062;
+	Wed, 18 Sep 2024 04:58:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uun/OmTX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iAROXUyO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A80B10E08B;
- Wed, 18 Sep 2024 03:59:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 050C710E062;
+ Wed, 18 Sep 2024 04:58:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726631946; x=1758167946;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=f+d4hDJTe0EXI+xNlfX3If51la8Pe2ggo9jjoVSbbnM=;
- b=Uun/OmTXo9meqjM+rw1r3cB9U9Ogfx7DKcVmaqgi6YSJeauvbssIX/7d
- dpqv5iwGW0eMrhA702kq676gDzJZdpFhVaD1QrB1qqvcc9/ols1e3B1yP
- f7hTY2QY4nDQyH2ds98YAcGyWqjj8ybygd2J4ajuuAPM5Z5c2oLZIXoM0
- 53WVOOZCYBv5dfV8drM71J3LAptrlMT6EYkTLtg+Qo3WGscHaqh9OwOkB
- sw1QOj51sxd9z5Dhywefhvxl1Ld3kKa1wm5BQKK+HVFvKX2Bs3r2hs1uA
- LHa72yCD5mw5js416IfeRgtOXw+IY4+5LDHYISSius2qUUJDjqZtB+a9r Q==;
-X-CSE-ConnectionGUID: 79Vfw8ibQIGdwvcYcxDTmg==
-X-CSE-MsgGUID: guCa5ubCTd238+rajmj81w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="43041567"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="43041567"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 20:59:05 -0700
-X-CSE-ConnectionGUID: tauP8G6RTN+w6RRZc3Ze8w==
-X-CSE-MsgGUID: O9pBUjoTTPC2UOvklARiaw==
+ t=1726635504; x=1758171504;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=DVuiLtA0kdgMpckpl7DamZGY4vorROQeNI09dBYqv/g=;
+ b=iAROXUyOWwj7zBvcjfxCON4DrZunAi8rir3efDGbVmftLzF+OpjwuQbp
+ TnyWwexQl1iSbY6J6Knx2BUJuOOhFBtRwTs6TKJeGgG48KyIcTf3yI9xz
+ gbYK5WWdKRFQsUZwVIKGGbltMhOxcg9dYvbUhAPLNwATcL2UBgRQJMDSH
+ SMjuLbSPPf2ch8Qu6LeSo5NCbpB87GaMuFsDfi5WPv1n8ri/IVcgJuRH5
+ i/j3Mwp6/a7egWMBBoNZiRpZLwHgZLIP9oUKYNJQuM4aG7xtmXnW3GbTt
+ 3o/IIibU5spphfrTei3/+s7fORXxfbhIuKPM25oTr9+yISEVg+3P7sX10 g==;
+X-CSE-ConnectionGUID: tcxbGi1QQlulLZg6hGnV0Q==
+X-CSE-MsgGUID: AwD9g5nEREi+TA8XFlZ7Kw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25014265"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="25014265"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 21:58:24 -0700
+X-CSE-ConnectionGUID: cYqqsilYSYqGqzgfg+HOuw==
+X-CSE-MsgGUID: M64n475uRDOArCUTUOukyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69033702"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Sep 2024 20:59:05 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69279220"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 17 Sep 2024 21:58:24 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 17 Sep 2024 20:59:04 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 17 Sep 2024 21:58:22 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 17 Sep 2024 20:59:04 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 17 Sep 2024 21:58:22 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 17 Sep 2024 20:59:04 -0700
+ 15.1.2507.39; Tue, 17 Sep 2024 21:58:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rlV5i0OE8IgM4FYsJMBaJm8PaMsm9nLXaO4bIAG64Ql1pARTJE+jabwkhWFGIJaV+KJfkt10cFyzSE16Y4YOaSOF3FJ2Vqnk+51xmcHGUq0o+2KvSUL72maoz9ZGLj8d9MjYFucFZiTZ0U1lbcjUT5lXu3balqAMivJ4xGvEVaOCKIj+MAGRykqxoE2LaIztzIcvCNEoadnceM2xlK7D2CwSwzzJstT730iOjxS3GcQYc+qUAO1juuncMjbITuBIh8FZ7F56eyIanJap4JQTa4Eb86a8xO1YoXxI24JArxci7LRo1oMbTKlxJZpxBhbPBbur6timCjgbboefAvrJpQ==
+ b=osKhpPY8B9/gfvWShB588/QvFvNqtzvOOOGREbG9gMtgS1BwAF3B+L/nrRGt6eNR1k52GOFR47uWtAfIs8mqXEm36NZanFgbqR9ELcT8yIdSZIGXmdcNVeTqgAb/c0GkD86I9q10HlnIO4dvtlLjwXg6oGEC3zS88awP2CUpbdqLt/6i3b7w4CwK3IPn2S+QFOCZDY7rv+PDyjUyONL57lS9Lp8UJ/z9VkxM/O3ifwP9gXFNo4f1UJBX4SBBLI7vczfgtfFfVigrwoEzbi10+iIP7LKeUwzOTZ+qSAlqtkc2X5URSuPto97h9Trfn4B8/OgKg/2zQWXaxESV7+/noQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pkEXRBSiGpTFU+urxb9AYekyMPrrEPJa4/keTHcFhiY=;
- b=hRT8U4c9yqY3B0T54GhfJlePlHJ5pjbzdHEgyNsH45fN5BM9CwwDamoOYHZFcGKJKa6lzVGHiShggppsAdJojs4w/kpNi4xVXzpldNC7x62SMauYU64Sl24x9QKXH+RCOlFpvlUUDDeUi2oW8ZLfkysIvz9cmT+q2qohPTN3Sk1sS/TpqQZKZ4WC3nZuE5nA7Lu9VoW+8tPCP572lNZYBgdGYOJdsWBxEYG0rkGptOloRRHwiqFMGDnJLGrl8oI/JKyr/Qt2OtvWcXwRWx9RSM44bmAcARAW/w0CuhspLUydX44PBpmTvvxI3DGsVeJ0/KmKmKbdlLwmpFEV7pjApw==
+ bh=4suVkKr/fG4HOQZV6mY1ona76IFxMoZeyvUNpA7Hhfk=;
+ b=HYCdLaAFIAbOKcG0+LZbEZ9IBaGWWiz8cpPze4s0QLfKnuNbuypQ7+0IRkmeocOF2grYuIUarJYDF87MhC1BJFOtaMFfVM8E8923BD3ZjZMrgEHWzVA984Qj9caVlvrRGS3w278bMUqbx0rW8QyCsIlxvoL+iyTaWDTAPifNVIy4Yas6ItpKsR/ggJmTsrFEutY9G5CKLwg3tinywU7J5yQ4FJdi59yGf2yplQHdyh4xiu/PXFsgQgI8TFOxlCsfZwrErsIJOUc5sJaRMg+udZCklnA1KCJF4moXdxXMwK10AHlPVLonJXI7gCikqN0zqMw5jlcn3mLkur/oh/zkTg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SJ0PR11MB6719.namprd11.prod.outlook.com (2603:10b6:a03:478::11) with
+ by SN7PR11MB7601.namprd11.prod.outlook.com (2603:10b6:806:34a::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Wed, 18 Sep
- 2024 03:59:01 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.24; Wed, 18 Sep
+ 2024 04:58:17 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.7962.025; Wed, 18 Sep 2024
- 03:59:01 +0000
-Message-ID: <8f497e8d-45cb-40b5-af0a-e32c9a585e57@intel.com>
-Date: Wed, 18 Sep 2024 09:28:55 +0530
+ 04:58:17 +0000
+Message-ID: <1921984c-4824-4c9c-9563-8e4d522b1351@intel.com>
+Date: Wed, 18 Sep 2024 10:28:10 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] Add bits for link_n_exended for DISPLAY >= 14
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-References: <20240917174200.2563528-1-ankit.k.nautiyal@intel.com>
- <20240917174200.2563528-2-ankit.k.nautiyal@intel.com>
- <871q1icgwp.fsf@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/display: Enhance iterators for modeset
+ en/disable
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <suraj.kandpal@intel.com>
+References: <20240917082359.2383204-1-ankit.k.nautiyal@intel.com>
+ <20240917082359.2383204-3-ankit.k.nautiyal@intel.com>
+ <ZumEsRf6MS7H_Z6T@intel.com>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <871q1icgwp.fsf@intel.com>
+In-Reply-To: <ZumEsRf6MS7H_Z6T@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0048.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:81::19) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0PR01CA0050.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ac::7) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ0PR11MB6719:EE_
-X-MS-Office365-Filtering-Correlation-Id: d26bcf4b-e5b3-41e5-d15b-08dcd7963ad4
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SN7PR11MB7601:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6b483d7-7a18-4ff8-12df-08dcd79e8204
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bUFsenhFSk9kUjFjaFVaMjlQY2J2Q1hFeGdvUXN4MmxCOUt2Yy9lTGJQUElt?=
- =?utf-8?B?RGNuNDl6a01xNm4zMFNPcDljWGRnQ1lENWZFV1BDdkNWT3J4QXlxTkhtMnh1?=
- =?utf-8?B?WktPZTlMdzA4Wjd6SDhKZmcvdWdjVVNlZ21KMnA4QU9LMzdWaHIrUGs2YXJl?=
- =?utf-8?B?TTRvYXZIUUdNS2Y3aVpjZ2JZTmZUNWxVMnpRdWRVaFYrdVZ4ZGxqVkFxaUdV?=
- =?utf-8?B?M2wvYTZzSlcrc2FVZ2plYUhja24xazljQ0FUenRXTkRaT05CUzhyWEpKSy81?=
- =?utf-8?B?MkI2cThIMjJnYURmZnFnL1doaXhzaGROb0FLeVdSVFAvODZOWVdlcHhCbVRO?=
- =?utf-8?B?R0h0MFdJOVJDSFVKZGthVHlWOHR6akIvdGZlZzgzdTRFS0J3K1Zjc2pYVnhB?=
- =?utf-8?B?ZUg1QlpPTk45dGRIcjUrMHlXaHJMUzJiVlljcUgwWmdDR3VuY3A0M1RLTTUx?=
- =?utf-8?B?ejZuK0UyckxHWlhGVDVXbEhwa0greUdwOFNQK1hacWFHblNPendXMlZ1NG5h?=
- =?utf-8?B?RjhFT1BnZlNIWHhlQmRGUWhLVm5oYkdyekg0eUtvNVJISDJhcUZTWm5pU25k?=
- =?utf-8?B?ZHdEaFJGdWFGNElrZEZzMCtzamc2SzVRRW14NUw0NWhScmNEQlhsQW9BTi8r?=
- =?utf-8?B?ZzV2WmFoQUJmbXFKRTZwMlBTdjNhKzhKTHJ1Q2FEN3pjL2RMdmpsczF0dit0?=
- =?utf-8?B?a2Z2ODRGaWZxb0tnRHVNZUxjUURSNE4yNTJ4NENObmpqZUVrVURVNG9nVmdw?=
- =?utf-8?B?b2lja0ZHejNiUTUyeUtSRUxPeEpQSjdHbzAwTm11OUZId3hRcmdGWTcrZGZn?=
- =?utf-8?B?K2h3Y1BIZ0FabnhMWVJ0ZG4xczM1TFNkNUNTYXV5NXI1TWkzc2xYZFJyRmpI?=
- =?utf-8?B?VFVKemFBNWxqK0JRcFNyaS94U2V1ak8xQ0U5WGlpSmtVVkZ2TURQNEE3RElN?=
- =?utf-8?B?UjZSRWVUL3JSY0dwT0xISXYzNGVCUDR5a1c3U0FzTXNoYTdxWjA5dTE0eFZw?=
- =?utf-8?B?UDd5SjRQaEkwZXIxL0ZTUGF5S0dSQ292Mi9DaXdkTGpYeFZySEpjalpKM242?=
- =?utf-8?B?M2hSeXlVZnZWcEUybFNmTFNiVzlOamlreWtxMnA2emNGelZPK3c1VEMzT1lw?=
- =?utf-8?B?N1ZtZ2p2U0ZHNjV3aEM3THBCZHJPZVMzZjBCRW5ieUZoUWlEM1R5NjlPMzlv?=
- =?utf-8?B?WE9SQ0VhVkVPK3hJd1FCazBhajRPeWZvNDlTbVpWYm5aN3FrZTdZbzFSWUxN?=
- =?utf-8?B?WFJYU2xWek5RQ2tZL2ZEZWNOUHZ5QUxRc0lNd0dSdVVwUVVzTEJDVWROTi9h?=
- =?utf-8?B?THdpUU5Wb3NFRmhRVGF3b1hxWW90L2podUlTbWdXakJNeGlQczZERGErMnJi?=
- =?utf-8?B?TmRMZVorcWw5YUpjUjBUZDgzU1ZOQUlneVFkdFh6dXFQWG5hLzViUDhuRmds?=
- =?utf-8?B?bU5jWWd4d3RNQnc5aVQ0MWc0TGNWVG9KZmhPQjRmOEY0ZC9xNnpaMGxyZUZT?=
- =?utf-8?B?MHBQZzNTWTBjR2VCQkNjNG1jVURjcGk2cStEZ0tvOHptMm1nQnpqSzZuNklS?=
- =?utf-8?B?a2RpTTIycjhySTlBYkxzZFVrQlBFR1o0bVM1VXdFbk1GTW9UZXkzejg5d3lN?=
- =?utf-8?B?TmN4Y0J4dHhqWk5qcEdLRG1SN0FwdUs4R1NLYzhSdzJ4a2NqbWdVMjVNSVJ6?=
- =?utf-8?B?bWdZK2FqUmZxKzU5bEZ6NE01TjZOSWFDTnd6T3YwKzBCeU9ZS29nQWFnPT0=?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SGVFeHJOVVZzK3htSlNBK0FaMlB0aWdUTEZvOFV0MVdrK0hNaTVXTkZCdHdS?=
+ =?utf-8?B?VlRhTHBYQVZySWF0Um1KVTlHbVl2ZnR4Q1JXUmJUc3loaVRET2dVbWRwNlZ4?=
+ =?utf-8?B?NW5pTjJvdmNNMHdDaEhRa3pnSkFpZXVJTVpacWhkODEzMHN1WDFLNmQxRHZy?=
+ =?utf-8?B?MzhKT0NTSms1eWVXQzNaRkRjNDdkZ3lTRzFySmNJZFVkUmJXanc4M01xUURN?=
+ =?utf-8?B?aEJOalpmTXJWM3RLK0VEdURWZU53TTdlaEU2Zytabzk5VjVOMkkxUTVzc2I0?=
+ =?utf-8?B?RW5rT21jUnVqUVBtK1Z5MzdkcTR0cFowVGlWa0tldUd4azAxb21LV0R6SUo2?=
+ =?utf-8?B?NVVudENZTUR4NzJaQkV5ZVdzRStWd0tTdlNGRFllNW5CS08zRkdPUmJadDJz?=
+ =?utf-8?B?SFovYStLS2hZUmoyT1N5S2xmdDNOVHJqQ1BsMlVLNFNyNUFuRHdrbktleDZB?=
+ =?utf-8?B?WXRuSDNIMEQ4NkVJRTYvTlRObFpUK0tJMTNtUjIwQWQxNGF1ZE1DeFd0SjZi?=
+ =?utf-8?B?SFlPQjRpMUM2L1ZXL3dtdEd5WFJGdDF4bEVYRkxrMTNCc0lyTVJDSmx3Vk4z?=
+ =?utf-8?B?TGpPdGd5L281OWU3bHc5K05xU1VOQjNhUjE5R2JUUUNHWlAxSDdLQ1dqdDcv?=
+ =?utf-8?B?dGJ1aENDcExsN2NDbFBCQWttWDFiSmR1K0pVOGJrblJYWjFlSXpoVU0yTTVM?=
+ =?utf-8?B?bGRyMFl5NWlVRFgxd2pPODZjL3JwNFl6cXVWR2s2LzhYQ2pYRW5pOC9oSkZu?=
+ =?utf-8?B?Ym5Ud2ZYRTJNN1gxalYrTFFJQnpsblR5RjBjSUR1aUw0TUNyZC9NQVlMalk2?=
+ =?utf-8?B?NUd5ZExTYWZVMENabkpkNXpweDFMUWZYTTlpNmNyNTl6aDhOd3Z6aGxJQlpC?=
+ =?utf-8?B?QlN5YjFpaFJEVmM5Q0ttVDFqamR6V3Y2dEsxWEFOVWwrMityMHBtNmVsYzlu?=
+ =?utf-8?B?WWo5WnBsdGhNbEFDWGVodStvUHZ5Z3E4RjRQUXhoSW5YU1c1TE5VdU1hY0Vz?=
+ =?utf-8?B?Y0tWMi8zaEllNmtQRndzNVZYVUgrWmVQaTlUbXBJWjgvT1RoUWhNMXBIM3lN?=
+ =?utf-8?B?cXZqV0VDbGRZYXhYektiWnVmbmJpV0pCWFJRT3gxZFpOai9MOS8vWEl2MzFW?=
+ =?utf-8?B?Z2pvZ2FUZmxVTVJLSXN1VlhYS2FpM1pDbGdiSXlCWjBSZ0FHOWVWTTBkT1E0?=
+ =?utf-8?B?RDVhNVdabkNlOUMwN1VJcHdVbjByYTU0NEpPZGN2WXUzdWhmSGZiTFZrbG1T?=
+ =?utf-8?B?YThkQVFWeVBuVCsxcno1VlNnSzFUY1dnRFV6VDRDKzBBZnJoMFBNdm42ZTNa?=
+ =?utf-8?B?bDZZWDZrRFBuc1YvSVFINSt5eVNZb2VrckVVcFZRWTFhWWVyRVZRampYUzRs?=
+ =?utf-8?B?R2w3NVJ0dGlQUXNXSEtTNkJLK0daUTR5QWhkNlk1ekYvNnlvWlcrLytCcWcx?=
+ =?utf-8?B?cU8yU0ZFUlNQa3BoaXFTOHdEQ0d0YTNhNG8wTzNQLzU0QnBFakdZUXRkR3hY?=
+ =?utf-8?B?L0JQZ2p5eUVWS1NVamN1dkdPZWJTeCtwdmV0c2xndkJya3lCbms1dUVVMjYv?=
+ =?utf-8?B?aFRYLzcrOUt1K1VUMmxoUGJBakdIK1lBbSt1U3BQaTd6OUgyMEJXVmpPU3J2?=
+ =?utf-8?B?TjJaTStnQ0VROWZVaDZ0M1RiSXpoL0RmM2hxa0diandob2J2WmdQeWs4S2Jn?=
+ =?utf-8?B?Qkt2Q1F2aTA4SGpkVkpadTV6Q2VRdWp6eWJYYUNuSXJJdHh2UUdaKzgrYUpl?=
+ =?utf-8?B?MHd0M3pqRWpRdzJXQ0FIc0Fkbm9GM1hJZm0zY1k5SFk5YmJEaGkzVUZwcTFo?=
+ =?utf-8?B?dkxTbkRleWdNUy81Ung5QT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aFNhWFA4WmUxU1h6d3o0NmJzWVIrWWlVZTZ1bGhlMGs4UGErMTFKdUxicHdu?=
- =?utf-8?B?QjEzb1k1aStSZHcxcy9JaDdwUkcwclFVcEhIR3RNQ284RkhacjZLczUzNUhp?=
- =?utf-8?B?MzZSYTQzTWNsK3FhTkF4QmRzK0JIYTVTNTNzM3dKeGE4aHp5SlhVaExwc2JB?=
- =?utf-8?B?amVadVN2Y3hQNzM4NmFudkliNHJtQUc5NitSQkxuNnBRMFhLMWh3anZxZFAx?=
- =?utf-8?B?bS9qV1g0ZXNrYUdIbHB1RC9iaUVWMTY5a0hPWm9LR0VidTlzRnlKR2lpN1lP?=
- =?utf-8?B?aTlhaWdNeVI4RDEyVVRyUW80SzREYzFXcFVuZnVyLzZtYkFzNE9mZmVFTGpE?=
- =?utf-8?B?VTZYTEExbGs2V1huaWR6VmF3RVRUYjFvMTdSL1JEajhRTW04b2wzb21hMElL?=
- =?utf-8?B?K0ZuWmVGcDB1S2p6RDJDK3pQbkROd2s0dTNKL2dwVlF6RHp5QU9PaU5Jc3ph?=
- =?utf-8?B?bVBBQzJsYWtiRUZWUjZFZUd4OURuUnhGRk5lSXREcUVDOW5rWmVxUEVSQUh3?=
- =?utf-8?B?Mi9mVHFoaEs4S2wyd0FGNklvUkltdXNucXJqb291SDU0bmZUU2lDaGQ2cm1V?=
- =?utf-8?B?Y2Yvd3gyWk1MTDlJYTZVM1dHVXpEWkgxMkQxWmRnWUtlaXVXdDVvTlBUejc4?=
- =?utf-8?B?TTJSYjI5SngrVUp5UUhVNVF3elM0SDNDOGRRa254NFZsYjNuUDJkV2FQek8z?=
- =?utf-8?B?S1d5cGJ0LzYyOEMzOEVYV1NYTTdqc1hURFB2TDVTYm9KTXNDalBIWE1wbzRY?=
- =?utf-8?B?RGhNcXpQSGVjZ1pDT1BwQUJxWkNWSUxJa1IxbVhoSTBBaFJhNEhDcGtJa2g5?=
- =?utf-8?B?QVFPN0NhTGRYWHBxOHZnbjdNZTlrbzVVcEw2YmVRTkxtZzRRNnVDbGdXSitI?=
- =?utf-8?B?TEhkYTZjTUp5VUVsQ2FTUjN6SVVWUmV6Y3g5OWN5d1hHN3o1MzNzOHlCazZ3?=
- =?utf-8?B?KzJ5T0V4aHRkVGZTV2xCYXpTVjBKaGRxOGFrZmJZRUU0dXFYbitnL2dCWFhE?=
- =?utf-8?B?YzM4MVBvdnBnNnVZVDYvV1dnYk5ucFdxNXZQTVRtWnBRbCtxM3NjdHB5RkpM?=
- =?utf-8?B?MzNKWEdKaXpmVUh3bHhhL2RvdHp2YUdyR3lmZEViZ0lrQldVcm1jUWwvNDRi?=
- =?utf-8?B?blF3RGVlMmNYZ0JtYmhyZVpuT3I1NXVHU2RESnZUNDFmZVJFRlJIMVdVMUg4?=
- =?utf-8?B?TkZ5aW00enlyOEl4dmJ5OExBYlhiMUNkNHBWU3lXSU5mU25LYWoxYXBnU1RS?=
- =?utf-8?B?cHZHdVJLYkJvVEpQNlVRd1ZxM3A4ck1nTStheHU2S3V4QmdFbzJ2VUo1M25C?=
- =?utf-8?B?aDRCRWZoSEZiVGh6YU1ZMVFNMXZ0cmNIM3l2YTljLzdWVjg3d0N1TGV0THFo?=
- =?utf-8?B?ZEg2MVREYVV1UWtGYndFQkFjUmpTWXpZZ1lKakI0NjJYbkQyeDdyUEVCODRp?=
- =?utf-8?B?cVZ5eTBwZ1ZobFRSZUM5MDVBQ2R2OUhzaENkUTVUdGtIQ3FUKzMyNnpMd3Fv?=
- =?utf-8?B?czRZdGx5Sjc3dktmY0ovajBtcmRyRzRraERQNDgwRnpsZG95UWJTcXdNVVBs?=
- =?utf-8?B?eEU4MXJFbis4QkpidzRvSWhlck9DQjIrdG9UZlViRi9Ea3o1eldnSU1yVTF5?=
- =?utf-8?B?bHdyMkFCc3h0WWxLNmRhenpiZ3BEdG1kWGxpWURSRTlxTXRVUzlwWGoyWnJT?=
- =?utf-8?B?a0xuL2RmdGptZEdlTkdzQ2FhcVRpaXZVV1JnUC96STloVVRMVFNkTEFlU1VD?=
- =?utf-8?B?Ujh2c296cTZyV1Y4VnZlZXlyMnFSblp0MlNtbGduQVFJZUZ1ZFhQMHFEMjc4?=
- =?utf-8?B?b1lmczJaV3lnMWZaOGdCRTJiUFgzVHZEaFg2SG1oKzUzM0djZUZ2QTZ5WW40?=
- =?utf-8?B?Y2RIc0pwNjBXR3BvQ0E5cGpaS2gyRUtNSUZucitDcm1pbTlwSnRsRUxDYmhN?=
- =?utf-8?B?eUN4OGpaQ3pjSmdDSXlBYjNwRG9iWnB2ZUlDNXF1d2wvbmhCcDExalZXaVpF?=
- =?utf-8?B?YjhXN2I2Ulk1ZDJNckthcE1YbE1iK2VHK29razJ0VVBWTjl4Tm1qd1NRbjlW?=
- =?utf-8?B?RlFFb1ZhT0NtUGFoSFhhTGEwcEZSajJtaXgxZTRFZWdEUjN0Zm94aitDd3Av?=
- =?utf-8?B?UlI2RTNQcnNybUdOOEVrNjNBU0oxSit1QXdXQ2ZHQXhXY3VwTzFONXBmaTgy?=
- =?utf-8?B?c3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d26bcf4b-e5b3-41e5-d15b-08dcd7963ad4
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?czJDYXEzdGxzNmV3QU5kMWE4N0NRY2RoOU5YK08vSG5HS3EzdktLRXlNS3ZX?=
+ =?utf-8?B?aE01MGZKd20rSVFNR1VTd3FzSVV1eFpVci9INXVuMnZzV2tIOGxKSnJFU3c2?=
+ =?utf-8?B?V2xjRkJ6cmZybUFDeFZ3WkQxT1R3WW1MM2xrYUdSN0ZIOTlRazJCSzhheXZl?=
+ =?utf-8?B?OUNlL0lmTFRvYVJDelJ6VFFyZzE0WUpDNDA3NEdoRVpJOGpGUVNJQ1RGOFM1?=
+ =?utf-8?B?WjJQMHJmWGRaa3pQc0FVcWNHZ3RaU2c4MXV0TDZhbVJOS0tHZE1MUXFUY2hq?=
+ =?utf-8?B?OFlVSjZsZ0hHZjgxeHlpYkhqYVF6U3JpOXorSENWek1kZFdQN0ZWd2Ezd1d2?=
+ =?utf-8?B?OWx0RHkzN20rM1BZbERMUFN0SEljTk9McERKRFhZaER0TURFZUUxNFMvRjFB?=
+ =?utf-8?B?UlVwMjRkdS9zMjdmT0dzTmx2MUxWUDJtdXVTMW55c0lSU3QwcFAvUlZ6VTUr?=
+ =?utf-8?B?OExRYzVRdGg3U0JXKzlGWko3em1RUkd2VGN0ZVF6bnFmbkY4c0V1N0dmKzNI?=
+ =?utf-8?B?aFNmcTZMZHZydGhzRWNMdGpVNG5ZUlE4KzVDNFkrbmZIcFpQRnZRVXFHV3Zy?=
+ =?utf-8?B?QkpxQUtqZjloTjdWY1RZQmdUVmtkN3lsdEltSWUwYlBzOWhRSjJXZkMyZjBp?=
+ =?utf-8?B?dCtqeDNxbld6eU91MC9rNUhsM3BaekRNOUFtVWdLcERPSlpNTHJXbFhKRnlj?=
+ =?utf-8?B?dE0rWGhYRWFySzF0NksyQ2dBais5UEdxZm9wREVnYzV4WU9sMHd1WUhwTkNw?=
+ =?utf-8?B?OWErOFkrTFpwQXZJNG4wVjNYenJxN28zRUFDK1ozdzczN1NpaG9Qb2syay94?=
+ =?utf-8?B?Z3Z0Q3dZeEltUExrZ2hydGdWUitVRGxtRm5vYTY4U0E4UlhhcHNiTDJoQzhn?=
+ =?utf-8?B?c2Q5UmVGaFdkcUx4TEtSandYczBOYWhIMmwrT3ZoY1dOQ0dqanFKdXFvR2xV?=
+ =?utf-8?B?YnZTdjhjWmoyRHlYMVMrZDRSVW9ZWmFMaXUvQ3lVelBvTUdYWGc2MmJIbU1K?=
+ =?utf-8?B?Zi9mZDhIalRYMmcyNktReEpnUlZTK2RRNFg3d0Q5NkZiWkhjazBZNndSZVZ0?=
+ =?utf-8?B?Q0Q3c1c0SXBCSTdTMm96THN3cCtiVTlLcEg3YnJOdDFLREdmK1pnS0VESzhp?=
+ =?utf-8?B?eFlmNURGVk5BMnNjMTYzSXlCZjQ0cUJxUXo1bGd4Z041eUVvUyttc2lKWkpy?=
+ =?utf-8?B?bkFrR215bWdVSVFLZVVseFAvQmZwbFM4OU4yR0NUZkptRkVURmg0c0ljalI5?=
+ =?utf-8?B?ak44UXpsd3pZS1lFRzVuMVZIR2JqaXp1cVE0cWhiVzhwK010dk5hUFNlNEZa?=
+ =?utf-8?B?NUF1NEFMd29lRTdNKzRMSEdCc0ZLclgxTS9IamhKMUZKUFNlMlhOaWh3OEhm?=
+ =?utf-8?B?T0pJQ0tsM2RtdCtBTURxMXZYazJPRGR5c21Qd2hLYjM1MnlqcTNJZ2J6a1dh?=
+ =?utf-8?B?R1VQVW95L0JnLy93aGk5K1kySk9XL0liRWJ2SVVUemc0M0RXUTZuY2NYaVZO?=
+ =?utf-8?B?Z3NmT0dVaHNpdUxCTGNvUDVTV05WN2hnQmlBSkhhNWZib3huOUxpTFoxWkc1?=
+ =?utf-8?B?VWNiaWtLUkVKMDhPVUJaUGcwMmk1V3licitIWU8xbzZ6YkNHZzRKKzNvZmJL?=
+ =?utf-8?B?R2ZoaDhBa2EyekdjdmJNcWxXb3VGd09lT01CQ0p3bjgyN0ovai9HZTBLeUMv?=
+ =?utf-8?B?bTI3a0ZUSUQ3dkhwbFhDdm9NKytqeWVMSmxLajE4RFUyV1V1U0pVK0RJaEhw?=
+ =?utf-8?B?TFJPRnordU8xcVYxcDBrMmVMYml3UG93ME1jdkRFU1cwVXBnTGZNeUFZYXlE?=
+ =?utf-8?B?SVRPUjhTVHFVb3g4cXMwU0pUNTZHN1NBbUdzTk40bGEzeTJlM3VTdWYweCtj?=
+ =?utf-8?B?T2NyNWk5OE5MZXVjOFlrRzhkUUZWZFhGNW1DdTg2ZDZ4bmFQSDJlOHhJTjdw?=
+ =?utf-8?B?ejk1Zzdtc3Q3ZVQyTDM5WU03Q3NZWG1ZNzhuOXAvQ3RXVURRdWRVL0hQUEZG?=
+ =?utf-8?B?UnBUMldCTHZTWndSQTAvSmI4ek4zVHpEb2JZUS9DY1E1SFZ2K05nTXdaZldU?=
+ =?utf-8?B?K2ZHdVorblNxcDJ5V3Vjb3ZSZ3hxcGNMaDNjdlk3anh6YlJTUWd1anphb2ZH?=
+ =?utf-8?B?VHVacVJyQU13U05RaU5YZzZHTkhpejNhOE1GOUorUlo5MEMvc0tzNFk1UUpF?=
+ =?utf-8?B?T1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6b483d7-7a18-4ff8-12df-08dcd79e8204
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2024 03:59:01.6017 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2024 04:58:17.0629 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: j4dGZkGn1aMrYmGLL9sDzlRrpgBAbiQZK8sLVv5RXjMLVwxhwT3kekxMWiHVaIr9DDL65S/pmDN1pLuZHdZT5DUhhQcMWQmTJudFvPINTfE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6719
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8OOKVo22DlliHEamxuF+rMdVgWngJ7AO8uEdR7132pM0tgpFFEHoxn6jPsM5sQYP0ja66QF6XzEIi3gVmwGoB19lTA6etHtkb34ea7aijts=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7601
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -193,169 +197,346 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 9/17/2024 11:16 PM, Jani Nikula wrote:
-> On Tue, 17 Sep 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->> LINK_N register has bits 31:24 for extended link N value used for
->> HDMI2.1 and for an alternate mode of operation of DP TG DDA
->> (Bspec:50488).
+On 9/17/2024 7:01 PM, Ville Syrjälä wrote:
+> On Tue, Sep 17, 2024 at 01:53:58PM +0530, Ankit Nautiyal wrote:
+>> Joiners have specific enabling and disabling order dependent on primary
+>> and secondary pipes. This becomes more complex with ultrajoiner where we
+>> have ultrajoiner primary/secondary pipes in addition to bigjoiner
+>> primary/secondary pipes. To unify the approach that works for present
+>> and future joiner cases, use primary and secondary pipe masks to
+>> iterate over pipes.
 >>
->> Add support for these extra bits.
+>> If joiner is used, derive bigoiner primary and secondary pipe masks
+>> and use following sequences:
+>> Disabling : disable primary pipes followed by secondary pipes,
+>> Enabling: enable secondary pipes followed by primary pipes.
 >>
->> v2: Drop extra link_n_ext member. (Jani)
+>> This works well with ultrajoiner too, as ultrajoiner has 2 bigjoiner
+>> primary/secondary pairs (AC, BD).
+>>
+>> For non joiner case, enable/disable based on usual pipe order A-D, D-A
+>> respectively.
 >>
 >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++++++++++++-----
->>   drivers/gpu/drm/i915/display/intel_display.h  |  2 +-
->>   .../gpu/drm/i915/display/intel_pch_display.c  |  4 ++--
->>   drivers/gpu/drm/i915/i915_reg.h               |  2 ++
->>   4 files changed, 21 insertions(+), 8 deletions(-)
+>>   drivers/gpu/drm/i915/display/intel_ddi.c     | 13 ++++---
+>>   drivers/gpu/drm/i915/display/intel_display.c | 41 +++++++++++++-------
+>>   drivers/gpu/drm/i915/display/intel_display.h | 26 +++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_dp_mst.c  | 14 +++----
+>>   4 files changed, 66 insertions(+), 28 deletions(-)
 >>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index b1c294236cc8..60603839f495 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -3117,9 +3117,10 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
+>>   {
+>>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>   	struct intel_crtc *pipe_crtc;
+>> +	enum pipe pipes;
+> Those should be u32 or something everywhere as they are those
+> double bitmasks of pipes.
+Oops, this was unintended. Thanks for catching this.
+>
+> But actually, I think we can just get rid of this variable entirely. We
+> only use it once within the loop anyway, so could just calculate it on
+> the spot inside the macro with:
+>    for_each_if((crtc) && ((first_pipes) << I915_MAX_PIPES | (second_pipes)) & BIT(i))
+> etc.
+
+Got it will drop pipes.
+
+
+>> +	int i;
+>>
+>> -	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, pipe_crtc,
+>> -					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_disable(dev_priv, pipe_crtc, old_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *old_pipe_crtc_state =
+>>   			intel_atomic_get_old_crtc_state(state, pipe_crtc);
+>>   
+>> @@ -3130,8 +3131,7 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
+>>   
+>>   	intel_ddi_disable_transcoder_func(old_crtc_state);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, pipe_crtc,
+>> -					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_disable(dev_priv, pipe_crtc, old_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *old_pipe_crtc_state =
+>>   			intel_atomic_get_old_crtc_state(state, pipe_crtc);
+>>   
+>> @@ -3384,6 +3384,8 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
+>>   {
+>>   	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>   	struct intel_crtc *pipe_crtc;
+>> +	enum pipe pipes;
+>> +	int i;
+>>   
+>>   	intel_ddi_enable_transcoder_func(encoder, crtc_state);
+>>   
+>> @@ -3394,8 +3396,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
+>>   
+>>   	intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask_reverse(&i915->drm, pipe_crtc,
+>> -						 intel_crtc_joined_pipe_mask(crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_enable(i915, pipe_crtc, crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *pipe_crtc_state =
+>>   			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+>>   
 >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 426074afef43..4b1bb1f43adb 100644
+>> index deacdf82e143..179aa7c66081 100644
 >> --- a/drivers/gpu/drm/i915/display/intel_display.c
 >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -2633,9 +2633,12 @@ void intel_zero_m_n(struct intel_link_m_n *m_n)
+>> @@ -295,6 +295,21 @@ bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state
+>>   	return BIT(crtc->pipe) & bigjoiner_secondary_pipes(crtc_state);
+>>   }
 >>   
->>   void intel_set_m_n(struct drm_i915_private *i915,
->>   		   const struct intel_link_m_n *m_n,
->> +		   u8 link_n_ext,
->>   		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
->>   		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>> +u8 _modeset_primary_pipes(const struct intel_crtc_state *crtc_state)
+> We probably want to call these "_intel_modeset_..." to keep
+> to a some kind of sensible namespace.
+
+Makes sense, will change this.
+
+
+>> +{
+>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> +
+>> +	if (!is_bigjoiner(crtc_state))
+>> +		return BIT(crtc->pipe);
+>> +
+>> +	return bigjoiner_primary_pipes(crtc_state);
+>> +}
+>> +
+>> +u8 _modeset_secondary_pipes(const struct intel_crtc_state *crtc_state)
+>> +{
+>> +	return bigjoiner_secondary_pipes(crtc_state);
+>> +}
+>> +
+>>   u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
 >>   {
->> +	u8 link_n = m_n->link_n;
-> You also don't need the parameter. You don't need to pass it
-> around. Please read my previous review.
+>>   	if (crtc_state->joiner_pipes)
+>> @@ -1725,18 +1740,17 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>>   	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+>>   	struct intel_crtc *pipe_crtc;
+>> +	enum pipe pipes;
+>> +	int i;
+>>   
+>>   	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
+>>   		return;
+>> -
+>> -	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, pipe_crtc,
+>> -						 intel_crtc_joined_pipe_mask(new_crtc_state))
+>> +	for_each_pipe_crtc_modeset_enable(dev_priv, pipe_crtc, new_crtc_state, pipes, i)
+>>   		intel_dmc_enable_pipe(display, pipe_crtc->pipe);
+>>   
+>>   	intel_encoders_pre_pll_enable(state, crtc);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, pipe_crtc,
+>> -						 intel_crtc_joined_pipe_mask(new_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_enable(dev_priv, pipe_crtc, new_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *pipe_crtc_state =
+>>   			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+>>   
+>> @@ -1746,8 +1760,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>>   
+>>   	intel_encoders_pre_enable(state, crtc);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, pipe_crtc,
+>> -						 intel_crtc_joined_pipe_mask(new_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_enable(dev_priv, pipe_crtc, new_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *pipe_crtc_state =
+>>   			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+>>   
+>> @@ -1765,8 +1778,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>>   	if (!transcoder_is_dsi(cpu_transcoder))
+>>   		hsw_configure_cpu_transcoder(new_crtc_state);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, pipe_crtc,
+>> -						 intel_crtc_joined_pipe_mask(new_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_enable(dev_priv, pipe_crtc, new_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *pipe_crtc_state =
+>>   			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+>>   
+>> @@ -1801,8 +1813,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>>   
+>>   	intel_encoders_enable(state, crtc);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, pipe_crtc,
+>> -						 intel_crtc_joined_pipe_mask(new_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_enable(dev_priv, pipe_crtc, new_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *pipe_crtc_state =
+>>   			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+>>   		enum pipe hsw_workaround_pipe;
+>> @@ -1889,6 +1900,8 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
+>>   	const struct intel_crtc_state *old_crtc_state =
+>>   		intel_atomic_get_old_crtc_state(state, crtc);
+>>   	struct intel_crtc *pipe_crtc;
+>> +	enum pipe pipes;
+>> +	int i;
+>>   
+>>   	/*
+>>   	 * FIXME collapse everything to one hook.
+>> @@ -1897,8 +1910,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
+>>   	intel_encoders_disable(state, crtc);
+>>   	intel_encoders_post_disable(state, crtc);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask(&i915->drm, pipe_crtc,
+>> -					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_disable(i915, pipe_crtc, old_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *old_pipe_crtc_state =
+>>   			intel_atomic_get_old_crtc_state(state, pipe_crtc);
+>>   
+>> @@ -1907,8 +1919,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
+>>   
+>>   	intel_encoders_post_pll_disable(state, crtc);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask(&i915->drm, pipe_crtc,
+>> -					 intel_crtc_joined_pipe_mask(old_crtc_state))
+>> +	for_each_pipe_crtc_modeset_disable(i915, pipe_crtc, old_crtc_state, pipes, i)
+>>   		intel_dmc_disable_pipe(display, pipe_crtc->pipe);
+>>   }
+>>   
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+>> index 894f58ead279..eeee03a9796b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> @@ -402,6 +402,30 @@ enum phy_fia {
+>>   			     ((connector) = to_intel_connector((__state)->base.connectors[__i].ptr), \
+>>   			     (new_connector_state) = to_intel_digital_connector_state((__state)->base.connectors[__i].new_state), 1))
+>>   
+>> +#define for_each_crtc_in_masks(__dev_priv, crtc, first_pipes, second_pipes, pipes, i) \
+> Please pass in 'display' instead of 'dev_priv'.
+>
+> And if the callers don't have 'display' already available,
+> you should declare one at the start of each caller.
+>
+> For the encoder hooks it's best to grab it via the encoder (ie.
+> display=to_intel_display(encoder) since the top level atomic state
+> might be NULL on account of intel_sanitize_encoder() being an
+> idiot (someone really needs to introduce a temporary atomic state
+> to fix this footgun...).
+>
+> For .crtc_{enable,disable}() you can grab it via the top level
+> atomic state safely (ie. display=to_intel_display(state)).
+Noted, will change accordingly.
+>
+>> +	for ((i) = 0, (pipes) = ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)); \
+>> +             (i) < 8 && ((crtc) = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), (i) % I915_MAX_PIPES), 1); \
+> s/8/I915_MAX_PIPES * 2/
 
-Thank you for your feedback. I was trying to avoid mixing link_n with 
-link_n_ext bits, which as I understand gets filled with different kinds 
-of things.
+Missed to change this.
 
-If we want to have link_n along with ext bits, then perhaps we need to 
-mask these whenever we want to retrieve link_n.
 
-So I will:
+>
+>> +             (i)++) \
+>> +                for_each_if((crtc) && (pipes) & BIT(i))
+>> +
+>> +#define for_each_crtc_in_masks_reverse(__dev_priv, crtc, first_pipes, second_pipes, pipes, i) \
+>> +	for ((i) = 7, (pipes) = ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)); \
+> s/7/I915_MAX_PIPES * 2 - 1/
 
-->mask the extended bits in this patch, as suggested.
+This as well.
 
-->have link_n filled with extended bits during compute_config if 
-required, in intel_link_compute_m_n()
 
-->change the places where m_n->link_n is used (e.g in 
-intel_dotclock_calculate() ) to mask the extended bits, before use.
+>> +             (i) >= 0 && ((crtc) = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), (i) % I915_MAX_PIPES), 1); \
+>> +             (i)--) \
+>> +                for_each_if((crtc) && (pipes) & BIT(i))
+>> +
+>> +#define for_each_pipe_crtc_modeset_disable(__dev_priv, crtc, crtc_state, pipes, i) \
+>> +	for_each_crtc_in_masks(__dev_priv, crtc, \
+>> +			       _modeset_primary_pipes(crtc_state), \
+>> +			       _modeset_secondary_pipes(crtc_state), \
+>> +			       pipes, i)
+>> +
+>> +#define for_each_pipe_crtc_modeset_enable(__dev_priv, crtc, crtc_state, pipes, i) \
+>> +	for_each_crtc_in_masks_reverse(__dev_priv, crtc, \
+>> +				       _modeset_primary_pipes(crtc_state), \
+>> +				       _modeset_secondary_pipes(crtc_state), \
+>> +				       pipes, i)
 
-Please let me know if this approach seems alright or  if there is 
-another way you would prefer.
+Here I had taken liberty to change the suggested macros to always have 
+primary_pipes as first_pipes and secondary_pipes as second_pipes.
 
-Thanks & Regards,
+We always shift second_pipes by num_pipes in both in-order and 
+reverse-order, just in reverse order we start from the last bit.
+
+Regards,
 
 Ankit
 
 
->
-> BR,
-> Jani.
->
+
+
+
+
 >> +
->>   	intel_de_write(i915, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
->>   	intel_de_write(i915, data_n_reg, m_n->data_n);
->>   	intel_de_write(i915, link_m_reg, m_n->link_m);
->> @@ -2643,7 +2646,11 @@ void intel_set_m_n(struct drm_i915_private *i915,
->>   	 * On BDW+ writing LINK_N arms the double buffered update
->>   	 * of all the M/N registers, so it must be written last.
->>   	 */
->> -	intel_de_write(i915, link_n_reg, m_n->link_n);
->> +
->> +	if (DISPLAY_VER(i915) >= 14 && link_n_ext)
->> +		link_n |= PIPE_LINK_N1_EXTENDED(link_n_ext);
->> +
->> +	intel_de_write(i915, link_n_reg, link_n);
->>   }
+>>   int intel_atomic_check(struct drm_device *dev, struct drm_atomic_state *state);
+>>   int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
+>>   				     struct intel_crtc *crtc);
+>> @@ -429,6 +453,8 @@ bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
+>>   bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state);
+>>   bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state);
+>>   u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
+>> +u8 _modeset_primary_pipes(const struct intel_crtc_state *crtc_state);
+>> +u8 _modeset_secondary_pipes(const struct intel_crtc_state *crtc_state);
+>>   struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
+>>   bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
+>>   bool intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> index 15541932b809..0be11db7d880 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> @@ -1001,6 +1001,8 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+>>   	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>>   	struct intel_crtc *pipe_crtc;
+>>   	bool last_mst_stream;
+>> +	enum pipe pipes;
+>> +	int i;
 >>   
->>   bool intel_cpu_transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
->> @@ -2663,13 +2670,13 @@ void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
->>   	enum pipe pipe = crtc->pipe;
+>>   	intel_dp->active_mst_links--;
+>>   	last_mst_stream = intel_dp->active_mst_links == 0;
+>> @@ -1008,8 +1010,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+>>   		    DISPLAY_VER(dev_priv) >= 12 && last_mst_stream &&
+>>   		    !intel_dp_mst_is_master_trans(old_crtc_state));
 >>   
->>   	if (DISPLAY_VER(dev_priv) >= 5)
->> -		intel_set_m_n(dev_priv, m_n,
->> +		intel_set_m_n(dev_priv, m_n, 0,
->>   			      PIPE_DATA_M1(dev_priv, transcoder),
->>   			      PIPE_DATA_N1(dev_priv, transcoder),
->>   			      PIPE_LINK_M1(dev_priv, transcoder),
->>   			      PIPE_LINK_N1(dev_priv, transcoder));
->>   	else
->> -		intel_set_m_n(dev_priv, m_n,
->> +		intel_set_m_n(dev_priv, m_n, 0,
->>   			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
->>   			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
->>   }
->> @@ -2683,7 +2690,7 @@ void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
->>   	if (!intel_cpu_transcoder_has_m2_n2(dev_priv, transcoder))
->>   		return;
+>> -	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, pipe_crtc,
+>> -					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_disable(dev_priv, pipe_crtc, old_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *old_pipe_crtc_state =
+>>   			intel_atomic_get_old_crtc_state(state, pipe_crtc);
 >>   
->> -	intel_set_m_n(dev_priv, m_n,
->> +	intel_set_m_n(dev_priv, m_n, 0,
->>   		      PIPE_DATA_M2(dev_priv, transcoder),
->>   		      PIPE_DATA_N2(dev_priv, transcoder),
->>   		      PIPE_LINK_M2(dev_priv, transcoder),
->> @@ -3351,7 +3358,11 @@ void intel_get_m_n(struct drm_i915_private *i915,
->>   		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
->>   {
->>   	m_n->link_m = intel_de_read(i915, link_m_reg) & DATA_LINK_M_N_MASK;
->> -	m_n->link_n = intel_de_read(i915, link_n_reg) & DATA_LINK_M_N_MASK;
->> +	m_n->link_n = intel_de_read(i915, link_n_reg);
->> +
->> +	if (DISPLAY_VER(i915) < 14)
->> +		m_n->link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
->> +
->>   	m_n->data_m = intel_de_read(i915, data_m_reg) & DATA_LINK_M_N_MASK;
->>   	m_n->data_n = intel_de_read(i915, data_n_reg) & DATA_LINK_M_N_MASK;
->>   	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(i915, data_m_reg)) + 1;
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->> index 4bdb48084cab..3b12d7f7c6c3 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->> @@ -473,7 +473,7 @@ bool intel_fuzzy_clock_check(int clock1, int clock2);
+>> @@ -1033,8 +1034,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
 >>   
->>   void intel_zero_m_n(struct intel_link_m_n *m_n);
->>   void intel_set_m_n(struct drm_i915_private *i915,
->> -		   const struct intel_link_m_n *m_n,
->> +		   const struct intel_link_m_n *m_n, u8 link_n_ext,
->>   		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
->>   		   i915_reg_t link_m_reg, i915_reg_t link_n_reg);
->>   void intel_get_m_n(struct drm_i915_private *i915,
->> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
->> index f13ab680c2cf..74bc4de6d123 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
->> @@ -178,7 +178,7 @@ static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
->>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->>   	enum pipe pipe = crtc->pipe;
+>>   	intel_ddi_disable_transcoder_func(old_crtc_state);
 >>   
->> -	intel_set_m_n(dev_priv, m_n,
->> +	intel_set_m_n(dev_priv, m_n, 0,
->>   		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
->>   		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
->>   }
->> @@ -189,7 +189,7 @@ static void intel_pch_transcoder_set_m2_n2(struct intel_crtc *crtc,
->>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->>   	enum pipe pipe = crtc->pipe;
+>> -	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, pipe_crtc,
+>> -					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
+>> +	for_each_pipe_crtc_modeset_disable(dev_priv, pipe_crtc, old_crtc_state, pipes, i) {
+>>   		const struct intel_crtc_state *old_pipe_crtc_state =
+>>   			intel_atomic_get_old_crtc_state(state, pipe_crtc);
 >>   
->> -	intel_set_m_n(dev_priv, m_n,
->> +	intel_set_m_n(dev_priv, m_n, 0,
->>   		      PCH_TRANS_DATA_M2(pipe), PCH_TRANS_DATA_N2(pipe),
->>   		      PCH_TRANS_LINK_M2(pipe), PCH_TRANS_LINK_N2(pipe));
->>   }
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> index 7396fc630e29..a770b5dbf5e4 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -2158,6 +2158,8 @@
+>> @@ -1253,7 +1253,8 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+>>   	enum transcoder trans = pipe_config->cpu_transcoder;
+>>   	bool first_mst_stream = intel_dp->active_mst_links == 1;
+>>   	struct intel_crtc *pipe_crtc;
+>> -	int ret;
+>> +	enum pipe pipes;
+>> +	int ret, i;
 >>   
->>   #define _PIPEA_LINK_N1		0x60044
->>   #define _PIPEB_LINK_N1		0x61044
->> +#define  PIPE_LINK_N1_EXTENDED_MASK	REG_GENMASK(31, 24)
->> +#define  PIPE_LINK_N1_EXTENDED(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXTENDED_MASK, (val))
->>   #define PIPE_LINK_N1(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N1)
+>>   	drm_WARN_ON(&dev_priv->drm, pipe_config->has_pch_encoder);
 >>   
->>   #define _PIPEA_LINK_M2		0x60048
+>> @@ -1300,8 +1301,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+>>   
+>>   	intel_enable_transcoder(pipe_config);
+>>   
+>> -	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, pipe_crtc,
+>> -						 intel_crtc_joined_pipe_mask(pipe_config)) {
+>> +	for_each_pipe_crtc_modeset_enable(dev_priv, pipe_crtc, pipe_config, pipes, i) {
+>>   		const struct intel_crtc_state *pipe_crtc_state =
+>>   			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+>>   
+>> -- 
+>> 2.45.2
