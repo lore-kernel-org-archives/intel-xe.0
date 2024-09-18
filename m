@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14BA0CCD1BE
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 15:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ED50CCD1BF
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 15:13:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E28410E5E1;
-	Wed, 18 Sep 2024 15:05:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fi1GILGD";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C860F10E5D9;
- Wed, 18 Sep 2024 15:05:45 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 5389C5C0643;
- Wed, 18 Sep 2024 15:05:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41C37C4CEC2;
- Wed, 18 Sep 2024 15:05:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726671944;
- bh=NEbsoDGarkF9DcJ1oPB0XKgElHrM+/7uFjvxWCETW0Q=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=fi1GILGDGqdRw5CBleFgjz4TidR4S1TdejI62SRowk6vuJvj9pjXHpSAGdlPfuI1M
- c3oeEEdj1SqjpjawyCLABhDqu1sCnDS+03+xoA9DYwRWke5QOxrKvgrb+NF/fYtMsY
- VIFXPeamYNM2JkxHyIaU6Nil5kCJ8iYR+Iv9rNBh7BCaujHbYFPWR64ho6UDyUrYsT
- 9ckVpjAZHZVEqjv9mYDoOZXB1Xlag32yFPdhICgUt8BNTKeqYMYHlaQr17xMflUtaf
- 8/vEFafIFhm2kX5+RPV1NTouAhBw/rsvEdF4mDTTC/ita6U5rdLUV5bviZlp7H4KZO
- KkWckROIB9C4w==
-Date: Wed, 18 Sep 2024 08:05:42 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 1/5] drm/i915/gem: fix bitwise and logical AND mixup
-Message-ID: <20240918150542.GA4049109@thelio-3990X>
-References: <cover.1726658138.git.jani.nikula@intel.com>
- <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A1E610E5DA;
+	Wed, 18 Sep 2024 15:13:09 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7767510E5DA;
+ Wed, 18 Sep 2024 15:13:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/1=5D?=
+ =?utf-8?q?_drm/xe=3A_Move_l2_flush_to_a_more_sensible_place?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Sep 2024 15:13:08 -0000
+Message-ID: <172667238848.1027064.1216014762723719478@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240918141817.99842-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240918141817.99842-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,63 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 18, 2024 at 02:17:44PM +0300, Jani Nikula wrote:
-> CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND is an int, defaulting to 250. When
-> the wakeref is non-zero, it's either -1 or a dynamically allocated
-> pointer, depending on CONFIG_DRM_I915_DEBUG_RUNTIME_PM. It's likely that
-> the code works by coincidence with the bitwise AND, but with
-> CONFIG_DRM_I915_DEBUG_RUNTIME_PM=y, there's the off chance that the
-> condition evaluates to false, and intel_wakeref_auto() doesn't get
-> called. Switch to the intended logical AND.
-> 
-> Fixes: ad74457a6b5a ("drm/i915/dgfx: Release mmap on rpm suspend")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v6.1+
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 5c72462d1f57..c157ade48c39 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -1131,7 +1131,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->  		GEM_WARN_ON(!i915_ttm_cpu_maps_iomem(bo->resource));
->  	}
->  
-> -	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-> +	if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+== Series Details ==
 
-This is going to result in a clang warning:
+Series: series starting with [1/1] drm/xe: Move l2 flush to a more sensible place
+URL   : https://patchwork.freedesktop.org/series/138824/
+State : success
 
-  drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1134:14: error: use of logical '&&' with constant operand [-Werror,-Wconstant-logical-operand]
-   1134 |         if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-        |                     ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1134:14: note: use '&' for a bitwise operation
-   1134 |         if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-        |                     ^~
-        |                     &
-  drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1134:14: note: remove constant to silence this warning
-   1134 |         if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-        |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  1 error generated.
+== Summary ==
 
-Consider adding the explicit '!= 0' to make it clear this should be a
-boolean expression.
+lib/modules/6.11.0-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-xe/kernel/arch/
+lib/modules/6.11.0-xe/kernel/arch/x86/
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-xe/kernel/crypto/
+lib/modules/6.11.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-xe/build
+lib/modules/6.11.0-xe/modules.alias.bin
+lib/modules/6.11.0-xe/modules.builtin
+lib/modules/6.11.0-xe/modules.softdep
+lib/modules/6.11.0-xe/modules.alias
+lib/modules/6.11.0-xe/modules.order
+lib/modules/6.11.0-xe/modules.symbols
+lib/modules/6.11.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1726672376:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1726672376:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-Cheers,
-Nathan
 
->  		intel_wakeref_auto(&to_i915(obj->base.dev)->runtime_pm.userfault_wakeref,
->  				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
->  
-> -- 
-> 2.39.2
-> 
