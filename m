@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7805ACDD543
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 15:40:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8978DCDD541
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 15:40:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 473F610E5DF;
-	Wed, 18 Sep 2024 15:40:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58B3910E5DF;
+	Wed, 18 Sep 2024 15:40:30 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1DBB10E5DF;
- Wed, 18 Sep 2024 15:40:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 212C710E5E1;
+ Wed, 18 Sep 2024 15:40:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/1=5D_drm/xe=3A_Move_l2_flush_to_a_more_sensible_place?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/1=5D_drm/xe=3A_Move_l2_flush_to_a_more_sensible_place?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Sep 2024 15:40:16 -0000
-Message-ID: <172667401665.1027206.4025116619721813235@2413ebb6fbb6>
+Date: Wed, 18 Sep 2024 15:40:29 -0000
+Message-ID: <172667402913.1027206.6100662478464327923@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240918142004.100164-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240918142004.100164-1-maarten.lankhorst@linux.intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3abb1f2faac1 drm-tip: 2024y-09m-18d-14h-10m-28s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Move l2 flush to a more sensible place
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c62d7e164862503a3662a095da1c6c9014248cb2
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3f54aa23cb73ddf0f33c0737f5ee69262cdcf7a1
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Wed Sep 18 16:20:03 2024 +0200
+
+    drm/xe: Move l2 flush to a more sensible place
+    
+    Flushing l2 is only needed after all data has been written.
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Fixes: 01570b446939 ("drm/xe/bmg: implement Wa_16023588340")
+    Cc: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 3abb1f2faac15a9f09824d692d1a38e0c485dc6b drm-intel
+3f54aa23cb73 drm/xe: Move l2 flush to a more sensible place
 
 
