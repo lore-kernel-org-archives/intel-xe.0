@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44879CDD548
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 16:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 689E3CDD548
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Sep 2024 16:40:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CDB110E290;
-	Wed, 18 Sep 2024 16:34:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 395A210E5EA;
+	Wed, 18 Sep 2024 16:40:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lgA5bbuI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIGp0qDz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DE1510E290
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Sep 2024 16:34:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59E610E290
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Sep 2024 16:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726677262; x=1758213262;
+ t=1726677648; x=1758213648;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=5bsPXyQl162HOc3kxKj3OyvWR3EgwqRDH180VZ2R5i8=;
- b=lgA5bbuIt5GbI5WDGyNuXOc/uOh6Kq6Q+O5z4TOOOR8IAxwq+htzOYlL
- o/jKtR2uBj/E5otCWxyXSy2PARaCM4BbykckJ/5X8yCxkj2wj0EGMWrVl
- cjmMA8hJPQMK6ENNT8+gYZ+8t2/byLKjFEfxt7PWcy1kEnYHMnxx9bisg
- TLobGY09r+HAUwXxwFUVpY0yu8560u+UjxQtlSx+opBTqjnxM5Hm5yxFw
- DxjKBLR/0ZmmHBUHXNZFWQljH3pMPFOH3NjJ+o8WncNvwVUEL3hrB0+Wo
- 6VWRjiu/bG1TbRC4RO55bp8rYVzpWi1TKiV/k8NUkykeAsv8mkxWc7qOt g==;
-X-CSE-ConnectionGUID: 2jrMEPQrTwa1M5cvkLmEfg==
-X-CSE-MsgGUID: ogyxKX2UQjqiSR/HHSiF7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="13577658"
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="13577658"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 09:34:22 -0700
-X-CSE-ConnectionGUID: 5Njn6CrsTlyD7XfP4uBfug==
-X-CSE-MsgGUID: Sw0Pf0DTRb+OB9MvvEIDFA==
+ bh=kpnf+YS1J5wJQZgPDzlXmiViv8KvZ9xgsEKhDMciaxc=;
+ b=kIGp0qDz8pwF7nTyN8AvjfksiudonFV9Y25TtKK6iE8Gh0NSFnm6+Iqt
+ bBq90eveBDioIbHjqXIURgFrkKocLGfL+jWvdu+XICRGC5pqO6ZgMgAuO
+ RtZi7blmxd0DRZ/Y0CkPwTHwBqM2pyHNG0Os7jirXOnfClGJio9v762Qf
+ 7hwxvUkPh6LqnJoR8RSD7eEzgUvlmj2d/+gKFqQarwLjaqSOnmEuxsDDP
+ otP0201eTqlIQWHpj6A+K13t30OWGS8vwzc2Iw3sxw1NGcoI6xsYxU4oX
+ I8dqo+vpXnIqxPY9Efdqzpgls8j5wNgKG6a3PDX+58v+9MdNh1le0bh1N Q==;
+X-CSE-ConnectionGUID: ZZoKc55qTRSxcA+hI1bilw==
+X-CSE-MsgGUID: lbvtDPF5QcqBvHxoZaqE4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25751933"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="25751933"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 09:40:48 -0700
+X-CSE-ConnectionGUID: kU77SN9yRriqFH8rutu3gQ==
+X-CSE-MsgGUID: dQCXvq8yRPOZ52sSSVtlwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="70473171"
-Received: from szeng-desk.jf.intel.com ([10.165.21.149])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 09:34:22 -0700
-From: Oak Zeng <oak.zeng@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="70091006"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by orviesa007.jf.intel.com with ESMTP; 18 Sep 2024 09:40:47 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: dakr@redhat.com
-Subject: [PATCH] drm/gpuvm: merge adjacent gpuva range during a map operation
-Date: Wed, 18 Sep 2024 12:47:40 -0400
-Message-Id: <20240918164740.3955915-1-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH 0/7] FOR-CI: test null pointer fix
+Date: Wed, 18 Sep 2024 09:40:39 -0700
+Message-Id: <20240918164046.1086803-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,175 +63,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Considder this example. Before a map operation, the gpuva ranges
-in a vm looks like below:
+Do not review.
 
- VAs | start              | range              | end                | object             | object offset
--------------------------------------------------------------------------------------------------------------
-     | 0x0000000000000000 | 0x00007ffff5cd0000 | 0x00007ffff5cd0000 | 0x0000000000000000 | 0x0000000000000000
-     | 0x00007ffff5cf0000 | 0x00000000000c7000 | 0x00007ffff5db7000 | 0x0000000000000000 | 0x0000000000000000
+This is for CI to trigger null pointer fix test.
 
-Now user want to map range [0x00007ffff5cd0000 - 0x00007ffff5cf0000).
-With existing codes, the range walking in __drm_gpuvm_sm_map won't
-find any range, so we end up a single map operation for range
-[0x00007ffff5cd0000 - 0x00007ffff5cf0000). This result in:
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 
- VAs | start              | range              | end                | object             | object offset
--------------------------------------------------------------------------------------------------------------
-     | 0x0000000000000000 | 0x00007ffff5cd0000 | 0x00007ffff5cd0000 | 0x0000000000000000 | 0x0000000000000000
-     | 0x00007ffff5cd0000 | 0x0000000000020000 | 0x00007ffff5cf0000 | 0x0000000000000000 | 0x0000000000000000
-     | 0x00007ffff5cf0000 | 0x00000000000c7000 | 0x00007ffff5db7000 | 0x0000000000000000 | 0x0000000000000000
+Zhanjun Dong (7):
+  drm/xe: Add null pointer check for xe_migrate_copy
+  drm/xe/guc: Prepare GuC register list and update ADS size for error
+    capture
+  drm/xe/guc: Add XE_LP steered register lists
+  drm/xe/guc: Add capture size check in GuC log buffer
+  drm/xe/guc: Extract GuC error capture lists
+  drm/xe/guc: Plumb GuC-capture into dev coredump
+  drm/xe/guc: Save manual engine capture into capture list
 
-The correct behavior is to merge those 3 ranges. So __drm_gpuvm_sm_map
-is slightly modified to handle this corner case. The walker is changed
-to find the range just before or after the mapping request, and merge
-adjacent ranges using unmap and map operations. with this change, the
-end result of above example is as below:
+ drivers/gpu/drm/xe/Makefile               |    1 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h  |    8 +
+ drivers/gpu/drm/xe/abi/guc_capture_abi.h  |  186 ++
+ drivers/gpu/drm/xe/abi/guc_log_abi.h      |   75 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h      |    2 +
+ drivers/gpu/drm/xe/xe_bo.c                |    4 +-
+ drivers/gpu/drm/xe/xe_devcoredump.c       |   20 +-
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |    8 +
+ drivers/gpu/drm/xe/xe_gt_mcr.c            |   13 +
+ drivers/gpu/drm/xe/xe_gt_mcr.h            |    1 +
+ drivers/gpu/drm/xe/xe_guc.c               |    5 +
+ drivers/gpu/drm/xe/xe_guc.h               |    5 +
+ drivers/gpu/drm/xe/xe_guc_ads.c           |  157 +-
+ drivers/gpu/drm/xe/xe_guc_ads_types.h     |    2 +
+ drivers/gpu/drm/xe/xe_guc_capture.c       | 1938 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_capture.h       |   61 +
+ drivers/gpu/drm/xe/xe_guc_capture_types.h |   68 +
+ drivers/gpu/drm/xe/xe_guc_ct.c            |    2 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h          |   26 +-
+ drivers/gpu/drm/xe/xe_guc_log.c           |  101 ++
+ drivers/gpu/drm/xe/xe_guc_log.h           |   10 +-
+ drivers/gpu/drm/xe/xe_guc_log_types.h     |    7 +
+ drivers/gpu/drm/xe/xe_guc_submit.c        |   83 +-
+ drivers/gpu/drm/xe/xe_guc_submit.h        |    2 +
+ drivers/gpu/drm/xe/xe_guc_types.h         |    2 +
+ drivers/gpu/drm/xe/xe_hw_engine.c         |  251 +--
+ drivers/gpu/drm/xe/xe_hw_engine.h         |    6 +-
+ drivers/gpu/drm/xe/xe_hw_engine_types.h   |   66 +-
+ drivers/gpu/drm/xe/xe_lrc.c               |   18 -
+ drivers/gpu/drm/xe/xe_lrc.h               |   19 +-
+ drivers/gpu/drm/xe/xe_migrate.c           |   24 +-
+ 31 files changed, 2781 insertions(+), 390 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/abi/guc_capture_abi.h
+ create mode 100644 drivers/gpu/drm/xe/abi/guc_log_abi.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_types.h
 
- VAs | start              | range              | end                | object             | object offset
--------------------------------------------------------------------------------------------------------------
-     | 0x0000000000000000 | 0x00007ffff5db7000 | 0x00007ffff5db7000 | 0x0000000000000000 | 0x0000000000000000
-
-Even though this fixes a real problem, the codes looks a little ugly.
-So I welcome any better fix or suggestion.
-
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
----
- drivers/gpu/drm/drm_gpuvm.c | 62 +++++++++++++++++++++++++------------
- 1 file changed, 43 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index 4b6fcaea635e..51825c794bdc 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -2104,28 +2104,30 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- {
- 	struct drm_gpuva *va, *next;
- 	u64 req_end = req_addr + req_range;
-+	u64 merged_req_addr = req_addr;
-+	u64 merged_req_end = req_end;
- 	int ret;
- 
- 	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req_addr, req_range)))
- 		return -EINVAL;
- 
--	drm_gpuvm_for_each_va_range_safe(va, next, gpuvm, req_addr, req_end) {
-+	drm_gpuvm_for_each_va_range_safe(va, next, gpuvm, req_addr - 1, req_end + 1) {
- 		struct drm_gem_object *obj = va->gem.obj;
- 		u64 offset = va->gem.offset;
- 		u64 addr = va->va.addr;
- 		u64 range = va->va.range;
- 		u64 end = addr + range;
--		bool merge = !!va->gem.obj;
-+		bool merge;
- 
- 		if (addr == req_addr) {
--			merge &= obj == req_obj &&
-+			merge = obj == req_obj &&
- 				 offset == req_offset;
- 
- 			if (end == req_end) {
- 				ret = op_unmap_cb(ops, priv, va, merge);
- 				if (ret)
- 					return ret;
--				break;
-+				continue;
- 			}
- 
- 			if (end < req_end) {
-@@ -2162,22 +2164,33 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- 			};
- 			struct drm_gpuva_op_unmap u = { .va = va };
- 
--			merge &= obj == req_obj &&
--				 offset + ls_range == req_offset;
-+			merge = (obj && obj == req_obj &&
-+				 offset + ls_range == req_offset) ||
-+				 (!obj && !req_obj);
- 			u.keep = merge;
- 
- 			if (end == req_end) {
- 				ret = op_remap_cb(ops, priv, &p, NULL, &u);
- 				if (ret)
- 					return ret;
--				break;
-+				continue;
- 			}
- 
- 			if (end < req_end) {
--				ret = op_remap_cb(ops, priv, &p, NULL, &u);
--				if (ret)
--					return ret;
--				continue;
-+				if (end == req_addr) {
-+					if (merge) {
-+						ret = op_unmap_cb(ops, priv, va, merge);
-+						if (ret)
-+							return ret;
-+						merged_req_addr = addr;
-+						continue;
-+					}
-+				} else {
-+					ret = op_remap_cb(ops, priv, &p, NULL, &u);
-+					if (ret)
-+						return ret;
-+					continue;
-+				}
- 			}
- 
- 			if (end > req_end) {
-@@ -2195,15 +2208,16 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- 				break;
- 			}
- 		} else if (addr > req_addr) {
--			merge &= obj == req_obj &&
-+			merge = (obj && obj == req_obj &&
- 				 offset == req_offset +
--					   (addr - req_addr);
-+					   (addr - req_addr)) ||
-+				 (!obj && !req_obj);
- 
- 			if (end == req_end) {
- 				ret = op_unmap_cb(ops, priv, va, merge);
- 				if (ret)
- 					return ret;
--				break;
-+				continue;
- 			}
- 
- 			if (end < req_end) {
-@@ -2225,16 +2239,26 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- 					.keep = merge,
- 				};
- 
--				ret = op_remap_cb(ops, priv, NULL, &n, &u);
--				if (ret)
--					return ret;
--				break;
-+				if (addr == req_end) {
-+					if (merge) {
-+						ret = op_unmap_cb(ops, priv, va, merge);
-+						if (ret)
-+							return ret;
-+						merged_req_end = end;
-+						break;
-+					}
-+				} else {
-+					ret = op_remap_cb(ops, priv, NULL, &n, &u);
-+					if (ret)
-+						return ret;
-+					break;
-+				}
- 			}
- 		}
- 	}
- 
- 	return op_map_cb(ops, priv,
--			 req_addr, req_range,
-+			 merged_req_addr, merged_req_end - merged_req_addr,
- 			 req_obj, req_offset);
- }
- 
 -- 
-2.26.3
+2.34.1
 
