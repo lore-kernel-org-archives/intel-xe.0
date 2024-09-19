@@ -4,65 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D29ECE8D67
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 09:49:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2814DCE8D67
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 09:52:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA5510E6C1;
-	Thu, 19 Sep 2024 09:49:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RLvQI01U";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98CDE10E2A4;
- Thu, 19 Sep 2024 09:49:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726739347; x=1758275347;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=cxsp43UY5idT5FpVZL41ilEMCbKZEwpam7hNJrKRT8c=;
- b=RLvQI01UBIIk6q3ecP9I+ct20JvESf8QBd0eM5gkx+mnXQrOWCUnOlo5
- FHCO5kb/OmgiPjaHRZYYtBR8SZrMdSN1CT8bhj53v67UJF0HVxR5MNoPP
- IdTJmAquVr+Xfsr4KYgq9o4UnDB950GicImRLAwbD3x88Hbarfnm6+SJD
- fWaukK0R4TgrimUvftBqK/eN6pPu15K203vs0w7EsfWZegj/HIz0GoQhH
- AX7CRX1IZzfGjpcC1kE20JdjUaUT+AG0AiTppHXElSGK4hPJaJ9uBiCcD
- vgzwjXXgbrREE3m+YXLXL29gzcsNf8gcBTLosm5S80f5Tktoi7d7YhYx+ g==;
-X-CSE-ConnectionGUID: s95bklhfQYydlC8TCaHcsg==
-X-CSE-MsgGUID: MMkQHbufRiqej9eRUJNeRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="36360873"
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="36360873"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 02:49:07 -0700
-X-CSE-ConnectionGUID: Xw2xPRC4T7WJ2EION4u45w==
-X-CSE-MsgGUID: K/Yj8wXRQ7SEcbi52b+Cjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="74670761"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.82])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 02:49:03 -0700
-Date: Thu, 19 Sep 2024 12:49:00 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <ZuvzjAbx2pmjahxK@jlahtine-mobl.ger.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E043110E6BF;
+	Thu, 19 Sep 2024 09:52:03 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94E0010E6BF;
+ Thu, 19 Sep 2024 09:52:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5676548211341053569=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_dma-buf/dma-fence=3A_Use_a_succe?=
+ =?utf-8?q?ssful_read=5Ftrylock=28=29_annotation_for_dma=5Ffence=5Fbegin=5Fs?=
+ =?utf-8?q?ignalling=28=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Sep 2024 09:52:02 -0000
+Message-ID: <172673952260.1046308.14257306967039591789@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20230428125233.228353-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230428125233.228353-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,52 +37,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+--===============5676548211341053569==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Here goes drm-intel-next-fixes PR towards 6.12.
+== Series Details ==
 
-Three display fixes; One to limit BMG to UHBR13.5 and two PSR ones.
+Series: dma-buf/dma-fence: Use a successful read_trylock() annotation for dma_fence_begin_signalling() (rev2)
+URL   : https://patchwork.freedesktop.org/series/117113/
+State : success
 
-Regards, Joonas
+== Summary ==
 
-***
+CI Bug Log - changes from xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d_BAT -> xe-pw-117113v2_BAT
+====================================================
 
-drm-intel-next-fixes-2024-09-19:
+Summary
+-------
 
-- Fix BMG support to UHBR13.5
-- Two PSR fixes
+  **SUCCESS**
 
-The following changes since commit bf05aeac230e390a5aee4bd3dc978b0c4d7e745f:
+  No regressions found.
 
-  Merge tag 'drm-intel-next-fixes-2024-09-12' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-next (2024-09-13 16:26:05 +1000)
+  
 
-are available in the Git repository at:
+Participating hosts (9 -> 9)
+------------------------------
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2024-09-19
+  No changes in participating hosts
 
-for you to fetch changes up to ec2231b8dd2dc515912ff7816c420153b4a95e92:
 
-  drm/i915/dp: Fix AUX IO power enabling for eDP PSR (2024-09-16 09:11:48 +0300)
+Changes
+-------
 
-----------------------------------------------------------------
-- Fix BMG support to UHBR13.5
-- Two PSR fixes
+  No changes found
 
-----------------------------------------------------------------
-Arun R Murthy (1):
-      drm/i915/display: BMG supports UHBR13.5
 
-Imre Deak (1):
-      drm/i915/dp: Fix AUX IO power enabling for eDP PSR
+Build changes
+-------------
 
-Jouni Högander (1):
-      drm/i915/psr: Do not wait for PSR being idle on on Panel Replay
+  * IGT: IGT_8024 -> IGT_8027
+  * Linux: xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d -> xe-pw-117113v2
 
- drivers/gpu/drm/i915/display/intel_ddi.c |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c  | 13 +++++++++++--
- drivers/gpu/drm/i915/display/intel_psr.c | 32 +++++++++++++++++++++-----------
- drivers/gpu/drm/i915/display/intel_psr.h |  2 ++
- 4 files changed, 35 insertions(+), 14 deletions(-)
+  IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8027: f7297a5e6bc52d3ae7258a5a7e6fb053ed6ec7db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d: 2141344f9b4f0bcd6bb20a45afaef94209743c0d
+  xe-pw-117113v2: 117113v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117113v2/index.html
+
+--===============5676548211341053569==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>dma-buf/dma-fence: Use a successful read_trylock() annotation for dma_fence_begin_signalling() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117113/">https://patchwork.freedesktop.org/series/117113/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117113v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117113v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d_BAT -&gt; xe-pw-117113v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8024 -&gt; IGT_8027</li>
+<li>Linux: xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d -&gt; xe-pw-117113v2</li>
+</ul>
+<p>IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8027: f7297a5e6bc52d3ae7258a5a7e6fb053ed6ec7db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d: 2141344f9b4f0bcd6bb20a45afaef94209743c0d<br />
+  xe-pw-117113v2: 117113v2</p>
+
+</body>
+</html>
+
+--===============5676548211341053569==--
