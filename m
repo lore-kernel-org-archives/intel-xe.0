@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91BBBCE8D7A
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 11:39:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 399AACE8D78
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 11:55:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA1210E6BC;
-	Thu, 19 Sep 2024 11:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06AEF10E027;
+	Thu, 19 Sep 2024 11:55:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JuQgax3y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KIPZ0gQ4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B2C910E6B6;
- Thu, 19 Sep 2024 11:39:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 858E110E027
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Sep 2024 11:55:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726745985; x=1758281985;
+ t=1726746914; x=1758282914;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Y8dAMOx+bWQDSiZGPdZgZgJqUPonqc4uKwIf+QkQXcw=;
- b=JuQgax3y57sVgmxFtIQRs+OkdS1rRuJvawRqaTRXhYcWWiGkxUjyNz61
- 4SLMB1i4OlSmrvli/a+zd3QjWxFrY/LbroU1I8eNEl5ENgpAjGQx8ly3j
- SEzvI24bhDbaewTeE0jmIWHA0Gjh8GXke+kKrPFyNIYuAa6K51P/xOqdX
- W5wSOeSnMfIlCXrjYX+IOUZ4O900L3neTixWlUV71To0r2a166XuAmnlH
- Yk6aU49ecB4jn8jrNkqUnYNnhSNKLTR/XSBz1TbndUh7WQlvQ26EVeYtY
- 5BIP6vDqCjc4HltRo8NNgM5RsysDNVK9GGM01rLvaEN82CNPTVpFy/PCz A==;
-X-CSE-ConnectionGUID: RvWIHQmVSiWsgCfGPQNvmg==
-X-CSE-MsgGUID: 81zgUzcnRFKjEosrz28mMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="36276858"
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="36276858"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 04:39:43 -0700
-X-CSE-ConnectionGUID: USzyEnurR2iOaINjcsoBEg==
-X-CSE-MsgGUID: +XagU88wTw2Z8+as0MoAIw==
+ message-id:mime-version:content-transfer-encoding;
+ bh=eZHu1GmcnxvcPIDnhObQygkmEYbjneTFLIofcvlfa6E=;
+ b=KIPZ0gQ4p+eEGNa20+ThKliLAQ+1TpC5JHzshgt8qAOdzVTT9OWew6+G
+ yuycC9wxw+VADPDS/1NYt8vS3Ih5NA0GplfIWeENxan+f9vDkgUekyviO
+ ixQaZSXvK0qX2po9T4a0pUlmpeJjxgcCgVsdmz+vYQTgajljTDaND0sb4
+ ymfUugotHbtqyPMrDrfPrNNaHdTs0JrW4BHs2Z3W5hfeGQzW/cK9lIm2N
+ zUOPcAtgLqAG/B0vbA6BepMppeCTtVf+fdcrW1u80BJZrz3BpuOkv1PWy
+ +q9B8YjaDW2tRoYbvf+SD02Xlj/zyjx91ksSIeG8KC6zFTm3dreQDSPf/ w==;
+X-CSE-ConnectionGUID: w9ddYNalQZSX2eGGag/esg==
+X-CSE-MsgGUID: 7kTbqaLeR1e6yajlh4+KOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="37082486"
+X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="37082486"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2024 04:55:14 -0700
+X-CSE-ConnectionGUID: +hDa3kOxTwm7r9DLHxHUkQ==
+X-CSE-MsgGUID: nvNNYG03QQ29MgDieIoTaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="70157210"
+X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="74697040"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 04:39:39 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, lina@asahilina.net,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com
-Subject: Re: [PATCH v5 2/4] drm: Expose wedge recovery methods
-In-Reply-To: <ZuwMB6LrO_7IW4j-@black.fi.intel.com>
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2024 04:55:11 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>
+Cc: intel-xe@lists.freedesktop.org, daniele.ceraolospurio@intel.com,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com
+Subject: Re: [PATCH 2/3] drm/xe/pciids: Add PVC's PCI device ID macros
+In-Reply-To: <Ztsmyp6L4vZEtad6@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240917040235.197019-1-raag.jadav@intel.com>
- <20240917040235.197019-3-raag.jadav@intel.com> <87msk6d8jw.fsf@intel.com>
- <ZuujCuVxFnOAKdgR@black.fi.intel.com> <87r09g9jp0.fsf@intel.com>
- <ZuvjGpIdOgGpbBQu@black.fi.intel.com> <87ikus9eti.fsf@intel.com>
- <ZuwMB6LrO_7IW4j-@black.fi.intel.com>
-Date: Thu, 19 Sep 2024 14:39:35 +0300
-Message-ID: <877cb7an48.fsf@intel.com>
+References: <cover.1725624296.git.jani.nikula@intel.com>
+ <6ac1829493a53a3fec889c746648d627a0296892.1725624296.git.jani.nikula@intel.com>
+ <Ztsmyp6L4vZEtad6@intel.com>
+Date: Thu, 19 Sep 2024 14:55:08 +0300
+Message-ID: <874j6bameb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,56 +71,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 19 Sep 2024, Raag Jadav <raag.jadav@intel.com> wrote:
-> On Thu, Sep 19, 2024 at 12:24:09PM +0300, Jani Nikula wrote:
->> On Thu, 19 Sep 2024, Raag Jadav <raag.jadav@intel.com> wrote:
->> > On Thu, Sep 19, 2024 at 10:38:51AM +0300, Jani Nikula wrote:
->> >> On Thu, 19 Sep 2024, Raag Jadav <raag.jadav@intel.com> wrote:
->> >> > On Tue, Sep 17, 2024 at 10:49:07AM +0300, Jani Nikula wrote:
->> >> >> On Tue, 17 Sep 2024, Raag Jadav <raag.jadav@intel.com> wrote:
->> >> >> >  
->> >> >> > +extern const char *const wedge_recovery_opts[];
->> >> >> 
->> >> >> Data is not an interface. Please add a function for this.
->> >> >
->> >> > For a single user?
->> >> 
->> >> Yes.
->> >> 
->> >> Well, you kind of have two, and both places need to do bounds checking
->> >> on indexing the array. You also need to do bounds checking on the string
->> >> manipulation, you can't just strcat and assume it'll be all right.
->> >
->> > Which would be true if we were to receive an unknown string. Here we sorta
->> > know it offhand so we're not gonna shoot in our foot :D
->> 
->> The thing about long term code maintenance is that "we know" often turns
->> into "not too obvious" and "probably" somewhere down the line, as
->> features get added and code gets refactored and moved about.
->> 
->> Here, it only takes a new, longer string, and failure to manually check
->> that the lengths don't exceed the magic 32 bytes. Just be safe from the
->> start, and you don't have to worry about it later.
+On Fri, 06 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Fri, Sep 06, 2024 at 03:06:03PM +0300, Jani Nikula wrote:
+>> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>=20
+>> Add PVC PCI IDs to the xe_pciids.h header. They're not yet used in the
+>> driver.
+>>=20
+>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>=20
+>> ---
+>>=20
+>> This is for drm-xe-next. Functionally, having the PCI IDs defined
+>> doesn't mean anything, but it's easier all around to not carry these in
+>> xe-for-CI.
 >
-> On that note...
+> Cc: Simona Vetter <simona.vetter@ffwll.ch>
 >
->> > Anyway, would you prefer strlcat instead?
->> 
->> I think the cleaner option is:
->> 
->> 	char event_string[32];
->> 
->> 	snprintf(event_string, sizeof(event_string), "WEDGED=%s", wedge_name(method));
->> 
->> which is also what most other code constructing environments for
->> kobject_uevent_env() do.
+> either way works for me. I believe that recently we got more conflicts
+> on the other file, then in this one here. But I believe it makes
+> more sense this way since this file can be more cleanly synced in IGT...
 >
-> ...should we use kasprintf instead of hardcoding size?
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-You can if you want.
+I merged this one to drm-xe-next with Sima's IRC ack.
+
+The drm-tip rebuild works, and handles the merge just fine. But I can't
+apply patches 1 and 3 to topic/xe-for-CI, because it won't build
+standalone. It needs a rebase on drm-xe-next, but I can't push that:
+
+remote: GitLab: You are not allowed to force push code to a protected branc=
+h on this project.
+To ssh://gitlab.freedesktop.org/drm/xe/kernel.git
+ ! [remote rejected]           topic/xe-for-CI -> topic/xe-for-CI (pre-rece=
+ive hook declined)
+error: failed to push some refs to 'ssh://gitlab.freedesktop.org/drm/xe/ker=
+nel.git'
+
+I'll have to leave the cleanup to you.
+
+BR,
+Jani.
+
 
 >
-> Raag
+>> ---
+>>  include/drm/intel/xe_pciids.h | 16 ++++++++++++++++
+>>  1 file changed, 16 insertions(+)
+>>=20
+>> diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids=
+.h
+>> index 644872a35c35..73d972a8aca1 100644
+>> --- a/include/drm/intel/xe_pciids.h
+>> +++ b/include/drm/intel/xe_pciids.h
+>> @@ -187,6 +187,22 @@
+>>  	MACRO__(0x7DD1, ## __VA_ARGS__),        \
+>>  	MACRO__(0x7DD5, ## __VA_ARGS__)
+>>=20=20
+>> +/* PVC */
+>> +#define XE_PVC_IDS(MACRO__, ...)		\
+>> +	MACRO__(0x0B69, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0B6E, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BD4, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BD5, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BD6, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BD7, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BD8, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BD9, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BDA, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BDB, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BE0, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BE1, ## __VA_ARGS__),	\
+>> +	MACRO__(0x0BE5, ## __VA_ARGS__)
+>> +
+>>  #define XE_LNL_IDS(MACRO__, ...) \
+>>  	MACRO__(0x6420, ## __VA_ARGS__), \
+>>  	MACRO__(0x64A0, ## __VA_ARGS__), \
+>> --=20
+>> 2.39.2
+>>=20
 
--- 
+--=20
 Jani Nikula, Intel
