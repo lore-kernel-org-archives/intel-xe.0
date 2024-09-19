@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92EC8CF395D
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 17:15:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ADBACF395D
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 17:15:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64BBB10E735;
-	Thu, 19 Sep 2024 17:15:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 680FC10E736;
+	Thu, 19 Sep 2024 17:15:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MGaSuXwM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KvvUzxQI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0259710E6E9
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Sep 2024 17:15:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 601A010E733
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Sep 2024 17:15:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726766148; x=1758302148;
+ t=1726766149; x=1758302149;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=THrae6pEJrl6FdpEg+3oMYtIsf4UYgOCXnS/DzHoGF8=;
- b=MGaSuXwM/D73HOJ3CF0lMDnJJ9KCa8ikhaofiushAXGltHr+WD3sAbv3
- k58/lqDlDPODUWBj3N6hlNR+jCWWyQsKqo0Df1GrzhDrX/XJOw0o15Vbk
- osqiS8Qx+jngi1njNzspmJiLt7hxWMaDP60LGGRR/Juijqngbwekk2vJ6
- a/5ImC0aUmihEwNkIRJJTl9woMuN7XQgVy4UzFQyNyCcmU1TuThJoIZzI
- OAU2ktkyLaI45VB9VRSURAqBvyHqsRHQ/nn45UaaSPeNLQ20TwScWqQ8k
- oioUDtf8xxMtiMjQt0A3kYOnBP93rmAlHVY4hF0CX55JojdoJX8drvQ9S A==;
-X-CSE-ConnectionGUID: 4rwhFN5cSD2N075VL1k6Kg==
-X-CSE-MsgGUID: WzKOkI2RQ5+gQ/TU1GW51g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="29534497"
-X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="29534497"
+ bh=Rib1OCkJH2QK4DLlTfopNFRWeZ3p5+/fN6UVkKpIU7U=;
+ b=KvvUzxQIpE8JeeTHVAex3fG0JKVJloF+urd9D00B2YEIrraL0JSfD3C4
+ eNYt1zb++qgIpk6znK3VQj2VGObBfohknFFnXEXDCd2TuXtFzJHl4KPWh
+ GF1jDKJyoRveo7wxRq6YtmZv9I8NnbZqbn7dhzBysLtkuJPfA0/00evgp
+ QGsZSnV276NcfSsbymfj/chuYbLDSIXfpDsJnSyjG+BXJS8C0VekabMur
+ otBznpK+1hud9ICjH318J/tV8Xb5vFB4AznGd1E01NxK0uSG/WsyqWruS
+ 9W3z86W2jCtT4E3XRLc/eiZGQFeZg5XKzG79K9wXffKCMMGBJ8nzKEmvZ A==;
+X-CSE-ConnectionGUID: VboMW8xaS9iLqqEYCwG6Hg==
+X-CSE-MsgGUID: +a7MMDFUSSyfMUywyEQVmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="29534498"
+X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="29534498"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 10:15:48 -0700
-X-CSE-ConnectionGUID: OdBo0WqISd2bQv0G4AlYoA==
-X-CSE-MsgGUID: 8NCP98sNQcCbEnt23KqmPA==
+ 19 Sep 2024 10:15:49 -0700
+X-CSE-ConnectionGUID: goaN6EACRhigFi45E/SmLg==
+X-CSE-MsgGUID: PG00yuKtSMqOJhOtuBgaIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="107481138"
+X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="107481145"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.120.199])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 10:15:47 -0700
+ 19 Sep 2024 10:15:49 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 3/5] drm/xe/pf: Allow to encode subset of VF configuration KLVs
-Date: Thu, 19 Sep 2024 19:15:26 +0200
-Message-Id: <20240919171528.1451-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 4/5] drm/xe/pf: Add functions to save and restore VF
+ configuration blob
+Date: Thu, 19 Sep 2024 19:15:27 +0200
+Message-Id: <20240919171528.1451-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240919171528.1451-1-michal.wajdeczko@intel.com>
 References: <20240919171528.1451-1-michal.wajdeczko@intel.com>
@@ -66,95 +67,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to reuse format of the GuC KLVs while saving and restoring
-VF configuration by the PF driver, but some of those KLVs (like
-doorbell begin index or GGTT starting offset) are not strictly
-needed to correctly restore VF configuration. Modify functions to
-omit encoding of some of the KLVs with GuC only details.
+We already have support to save and restore GuC VF state, but that
+will only work when the target VF configuration (provisioning) will
+be exactly the same as the source VF configuration. To help with
+assuring that both configurations match, allow to encode whole VF
+configuration that can be saved as blob and restored later.
+
+In the future we may want to use such captured configuration blobs
+as templates to make sure we provision VFs with exactly the same
+configuration that was previously tested or recommended, or when
+debugfs knobs are not be available.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 32 +++++++++++++---------
- 1 file changed, 19 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 170 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |   4 +
+ 2 files changed, 174 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 27a593b1d52a..28e2b26c2d88 100644
+index 28e2b26c2d88..a863e50b756e 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -229,14 +229,16 @@ static struct xe_gt_sriov_config *pf_pick_vf_config(struct xe_gt *gt, unsigned i
+@@ -34,6 +34,8 @@
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_wopcm.h"
+ 
++#define make_u64_from_u32(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
++
+ /*
+  * Return: number of KLVs that were successfully parsed and saved,
+  *         negative error code on failure.
+@@ -2074,6 +2076,174 @@ bool xe_gt_sriov_pf_config_is_empty(struct xe_gt *gt, unsigned int vfid)
+ 	return empty;
  }
  
- /* Return: number of configuration dwords written */
--static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config)
-+static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config, bool details)
- {
- 	u32 n = 0;
- 
- 	if (xe_ggtt_node_allocated(config->ggtt_region)) {
--		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_GGTT_START);
--		cfg[n++] = lower_32_bits(config->ggtt_region->base.start);
--		cfg[n++] = upper_32_bits(config->ggtt_region->base.start);
-+		if (details) {
-+			cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_GGTT_START);
-+			cfg[n++] = lower_32_bits(config->ggtt_region->base.start);
-+			cfg[n++] = upper_32_bits(config->ggtt_region->base.start);
++/**
++ * xe_gt_sriov_pf_config_save - Save a VF provisioning config as binary blob.
++ * @gt: the &xe_gt
++ * @vfid: the VF identifier (can't be PF)
++ * @buf: the buffer to save a config to (or NULL if query the buf size)
++ * @size: the size of the buffer (or 0 if query the buf size)
++ *
++ * This function can only be called on PF.
++ *
++ * Return: mininum size of the buffer or the number of bytes saved,
++ *         or a negative error code on failure.
++ */
++ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *buf, size_t size)
++{
++	struct xe_gt_sriov_config *config;
++	ssize_t ret;
++
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	xe_gt_assert(gt, vfid);
++	xe_gt_assert(gt, !(!buf ^ !size));
++
++	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
++	ret = pf_validate_vf_config(gt, vfid);
++	if (!size) {
++		ret = ret ? 0 : SZ_4K;
++	} else if (!ret) {
++		if (size < SZ_4K) {
++			ret = -ENOBUFS;
++		} else {
++			config = pf_pick_vf_config(gt, vfid);
++			ret = encode_config(buf, config, false) * sizeof(u32);
 +		}
- 
- 		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_GGTT_SIZE);
- 		cfg[n++] = lower_32_bits(config->ggtt_region->base.size);
-@@ -247,20 +249,24 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config)
- }
- 
- /* Return: number of configuration dwords written */
--static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config)
-+static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool details)
- {
- 	u32 n = 0;
- 
--	n += encode_config_ggtt(cfg, config);
-+	n += encode_config_ggtt(cfg, config, details);
- 
--	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_BEGIN_CONTEXT_ID);
--	cfg[n++] = config->begin_ctx;
-+	if (details) {
-+		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_BEGIN_CONTEXT_ID);
-+		cfg[n++] = config->begin_ctx;
 +	}
- 
- 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_NUM_CONTEXTS);
- 	cfg[n++] = config->num_ctxs;
- 
--	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_BEGIN_DOORBELL_ID);
--	cfg[n++] = config->begin_db;
-+	if (details) {
-+		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_BEGIN_DOORBELL_ID);
-+		cfg[n++] = config->begin_db;
++	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
++
++	return ret;
++}
++
++static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
++				    u32 key, u32 len, const u32 *value)
++{
++	switch (key) {
++	case GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY:
++		if (len != GUC_KLV_VF_CFG_NUM_CONTEXTS_LEN)
++			return -EBADMSG;
++		return pf_provision_vf_ctxs(gt, vfid, value[0]);
++
++	case GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY:
++		if (len != GUC_KLV_VF_CFG_NUM_DOORBELLS_LEN)
++			return -EBADMSG;
++		return pf_provision_vf_dbs(gt, vfid, value[0]);
++
++	case GUC_KLV_VF_CFG_EXEC_QUANTUM_KEY:
++		if (len != GUC_KLV_VF_CFG_EXEC_QUANTUM_LEN)
++			return -EBADMSG;
++		return pf_provision_exec_quantum(gt, vfid, value[0]);
++
++	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
++		if (len != GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_LEN)
++			return -EBADMSG;
++		return pf_provision_preempt_timeout(gt, vfid, value[0]);
++
++	/* auto-generate case statements */
++#define define_threshold_key_to_provision_case(TAG, ...)				\
++	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
++		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
++		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
++			return -EBADMSG;						\
++		return pf_provision_threshold(gt, vfid,					\
++					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
++					      value[0]);
++
++	MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_threshold_key_to_provision_case)
++#undef define_threshold_key_to_provision_case
 +	}
++
++	if (xe_gt_is_media_type(gt))
++		return -EKEYREJECTED;
++
++	switch (key) {
++	case GUC_KLV_VF_CFG_GGTT_SIZE_KEY:
++		if (len != GUC_KLV_VF_CFG_GGTT_SIZE_LEN)
++			return -EBADMSG;
++		return pf_provision_vf_ggtt(gt, vfid, make_u64_from_u32(value[1], value[0]));
++
++	case GUC_KLV_VF_CFG_LMEM_SIZE_KEY:
++		if (!IS_DGFX(gt_to_xe(gt)))
++			return -EKEYREJECTED;
++		if (len != GUC_KLV_VF_CFG_LMEM_SIZE_LEN)
++			return -EBADMSG;
++		return pf_provision_vf_lmem(gt, vfid, make_u64_from_u32(value[1], value[0]));
++	}
++
++	return -EKEYREJECTED;
++}
++
++static int pf_restore_vf_config(struct xe_gt *gt, unsigned int vfid,
++				const u32 *klvs, size_t num_dwords)
++{
++	int err;
++
++	while (num_dwords >= GUC_KLV_LEN_MIN) {
++		u32 key = FIELD_GET(GUC_KLV_0_KEY, klvs[0]);
++		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
++
++		klvs += GUC_KLV_LEN_MIN;
++		num_dwords -= GUC_KLV_LEN_MIN;
++
++		if (num_dwords < len)
++			err = -EBADMSG;
++		else
++			err = pf_restore_vf_config_klv(gt, vfid, key, len, klvs);
++
++		if (err) {
++			xe_gt_sriov_dbg(gt, "restore failed on key %#x (%pe)\n", key, ERR_PTR(err));
++			return err;
++		}
++
++		klvs += len;
++		num_dwords -= len;
++	}
++
++	return pf_validate_vf_config(gt, vfid);
++}
++
++/**
++ * xe_gt_sriov_pf_config_restore - Restore a VF provisioning config from binary blob.
++ * @gt: the &xe_gt
++ * @vfid: the VF identifier (can't be PF)
++ * @buf: the buffer with config data
++ * @size: the size of the config data
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
++				  const void *buf, size_t size)
++{
++	int err;
++
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	xe_gt_assert(gt, vfid);
++
++	if (!size)
++		return -ENODATA;
++
++	if (size % sizeof(u32))
++		return -EINVAL;
++
++	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV)) {
++		struct drm_printer p = xe_gt_info_printer(gt);
++
++		drm_printf(&p, "restoring VF%u config:\n", vfid);
++		xe_guc_klv_print(buf, size / sizeof(u32), &p);
++	}
++
++	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
++	err = pf_send_vf_cfg_reset(gt, vfid);
++	if (!err) {
++		pf_release_vf_config(gt, vfid);
++		err = pf_restore_vf_config(gt, vfid, buf, size / sizeof(u32));
++	}
++	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
++
++	return err;
++}
++
+ /**
+  * xe_gt_sriov_pf_config_restart - Restart SR-IOV configurations after a GT reset.
+  * @gt: the &xe_gt
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index 42e64769f666..b74ec38baa18 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -54,6 +54,10 @@ int xe_gt_sriov_pf_config_sanitize(struct xe_gt *gt, unsigned int vfid, long tim
+ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force);
+ int xe_gt_sriov_pf_config_push(struct xe_gt *gt, unsigned int vfid, bool refresh);
  
- 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_NUM_DOORBELLS);
- 	cfg[n++] = config->num_dbs;
-@@ -301,7 +307,7 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
- 	if (!cfg)
- 		return -ENOMEM;
++ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *buf, size_t size);
++int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
++				  const void *buf, size_t size);
++
+ bool xe_gt_sriov_pf_config_is_empty(struct xe_gt *gt, unsigned int vfid);
  
--	num_dwords = encode_config(cfg, config);
-+	num_dwords = encode_config(cfg, config, true);
- 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
- 
- 	if (xe_gt_is_media_type(gt)) {
-@@ -309,10 +315,10 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
- 		struct xe_gt_sriov_config *other = pf_pick_vf_config(primary, vfid);
- 
- 		/* media-GT will never include a GGTT config */
--		xe_gt_assert(gt, !encode_config_ggtt(cfg + num_dwords, config));
-+		xe_gt_assert(gt, !encode_config_ggtt(cfg + num_dwords, config, true));
- 
- 		/* the GGTT config must be taken from the primary-GT instead */
--		num_dwords += encode_config_ggtt(cfg + num_dwords, other);
-+		num_dwords += encode_config_ggtt(cfg + num_dwords, other, true);
- 	}
- 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
- 
+ void xe_gt_sriov_pf_config_restart(struct xe_gt *gt);
 -- 
 2.43.0
 
