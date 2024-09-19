@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ADBACF395D
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 17:15:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65CFBCF3962
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Sep 2024 17:44:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 680FC10E736;
-	Thu, 19 Sep 2024 17:15:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KvvUzxQI";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 601A010E733
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Sep 2024 17:15:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726766149; x=1758302149;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Rib1OCkJH2QK4DLlTfopNFRWeZ3p5+/fN6UVkKpIU7U=;
- b=KvvUzxQIpE8JeeTHVAex3fG0JKVJloF+urd9D00B2YEIrraL0JSfD3C4
- eNYt1zb++qgIpk6znK3VQj2VGObBfohknFFnXEXDCd2TuXtFzJHl4KPWh
- GF1jDKJyoRveo7wxRq6YtmZv9I8NnbZqbn7dhzBysLtkuJPfA0/00evgp
- QGsZSnV276NcfSsbymfj/chuYbLDSIXfpDsJnSyjG+BXJS8C0VekabMur
- otBznpK+1hud9ICjH318J/tV8Xb5vFB4AznGd1E01NxK0uSG/WsyqWruS
- 9W3z86W2jCtT4E3XRLc/eiZGQFeZg5XKzG79K9wXffKCMMGBJ8nzKEmvZ A==;
-X-CSE-ConnectionGUID: VboMW8xaS9iLqqEYCwG6Hg==
-X-CSE-MsgGUID: +a7MMDFUSSyfMUywyEQVmg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="29534498"
-X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="29534498"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 10:15:49 -0700
-X-CSE-ConnectionGUID: goaN6EACRhigFi45E/SmLg==
-X-CSE-MsgGUID: PG00yuKtSMqOJhOtuBgaIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="107481145"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.120.199])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 10:15:49 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 4/5] drm/xe/pf: Add functions to save and restore VF
- configuration blob
-Date: Thu, 19 Sep 2024 19:15:27 +0200
-Message-Id: <20240919171528.1451-5-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20240919171528.1451-1-michal.wajdeczko@intel.com>
-References: <20240919171528.1451-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15F7610E73F;
+	Thu, 19 Sep 2024 17:44:41 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18DA610E73F;
+ Thu, 19 Sep 2024 17:44:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6097498144144991606=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Attempt_to_reduce_exec?=
+ =?utf-8?q?ution_time_for_the_xe=5Fbo=5Fshrink_dynamic_test?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Sep 2024 17:44:40 -0000
+Message-ID: <172676788009.1047667.4385762520514912803@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240919165122.17751-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240919165122.17751-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,229 +36,217 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have support to save and restore GuC VF state, but that
-will only work when the target VF configuration (provisioning) will
-be exactly the same as the source VF configuration. To help with
-assuring that both configurations match, allow to encode whole VF
-configuration that can be saved as blob and restored later.
+--===============6097498144144991606==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-In the future we may want to use such captured configuration blobs
-as templates to make sure we provision VFs with exactly the same
-configuration that was previously tested or recommended, or when
-debugfs knobs are not be available.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 170 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |   4 +
- 2 files changed, 174 insertions(+)
+Series: drm/xe: Attempt to reduce execution time for the xe_bo_shrink dynamic test
+URL   : https://patchwork.freedesktop.org/series/138873/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 28e2b26c2d88..a863e50b756e 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -34,6 +34,8 @@
- #include "xe_ttm_vram_mgr.h"
- #include "xe_wopcm.h"
- 
-+#define make_u64_from_u32(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
-+
- /*
-  * Return: number of KLVs that were successfully parsed and saved,
-  *         negative error code on failure.
-@@ -2074,6 +2076,174 @@ bool xe_gt_sriov_pf_config_is_empty(struct xe_gt *gt, unsigned int vfid)
- 	return empty;
- }
- 
-+/**
-+ * xe_gt_sriov_pf_config_save - Save a VF provisioning config as binary blob.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier (can't be PF)
-+ * @buf: the buffer to save a config to (or NULL if query the buf size)
-+ * @size: the size of the buffer (or 0 if query the buf size)
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: mininum size of the buffer or the number of bytes saved,
-+ *         or a negative error code on failure.
-+ */
-+ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *buf, size_t size)
-+{
-+	struct xe_gt_sriov_config *config;
-+	ssize_t ret;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, vfid);
-+	xe_gt_assert(gt, !(!buf ^ !size));
-+
-+	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-+	ret = pf_validate_vf_config(gt, vfid);
-+	if (!size) {
-+		ret = ret ? 0 : SZ_4K;
-+	} else if (!ret) {
-+		if (size < SZ_4K) {
-+			ret = -ENOBUFS;
-+		} else {
-+			config = pf_pick_vf_config(gt, vfid);
-+			ret = encode_config(buf, config, false) * sizeof(u32);
-+		}
-+	}
-+	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-+
-+	return ret;
-+}
-+
-+static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
-+				    u32 key, u32 len, const u32 *value)
-+{
-+	switch (key) {
-+	case GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY:
-+		if (len != GUC_KLV_VF_CFG_NUM_CONTEXTS_LEN)
-+			return -EBADMSG;
-+		return pf_provision_vf_ctxs(gt, vfid, value[0]);
-+
-+	case GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY:
-+		if (len != GUC_KLV_VF_CFG_NUM_DOORBELLS_LEN)
-+			return -EBADMSG;
-+		return pf_provision_vf_dbs(gt, vfid, value[0]);
-+
-+	case GUC_KLV_VF_CFG_EXEC_QUANTUM_KEY:
-+		if (len != GUC_KLV_VF_CFG_EXEC_QUANTUM_LEN)
-+			return -EBADMSG;
-+		return pf_provision_exec_quantum(gt, vfid, value[0]);
-+
-+	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
-+		if (len != GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_LEN)
-+			return -EBADMSG;
-+		return pf_provision_preempt_timeout(gt, vfid, value[0]);
-+
-+	/* auto-generate case statements */
-+#define define_threshold_key_to_provision_case(TAG, ...)				\
-+	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
-+		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
-+		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
-+			return -EBADMSG;						\
-+		return pf_provision_threshold(gt, vfid,					\
-+					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
-+					      value[0]);
-+
-+	MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_threshold_key_to_provision_case)
-+#undef define_threshold_key_to_provision_case
-+	}
-+
-+	if (xe_gt_is_media_type(gt))
-+		return -EKEYREJECTED;
-+
-+	switch (key) {
-+	case GUC_KLV_VF_CFG_GGTT_SIZE_KEY:
-+		if (len != GUC_KLV_VF_CFG_GGTT_SIZE_LEN)
-+			return -EBADMSG;
-+		return pf_provision_vf_ggtt(gt, vfid, make_u64_from_u32(value[1], value[0]));
-+
-+	case GUC_KLV_VF_CFG_LMEM_SIZE_KEY:
-+		if (!IS_DGFX(gt_to_xe(gt)))
-+			return -EKEYREJECTED;
-+		if (len != GUC_KLV_VF_CFG_LMEM_SIZE_LEN)
-+			return -EBADMSG;
-+		return pf_provision_vf_lmem(gt, vfid, make_u64_from_u32(value[1], value[0]));
-+	}
-+
-+	return -EKEYREJECTED;
-+}
-+
-+static int pf_restore_vf_config(struct xe_gt *gt, unsigned int vfid,
-+				const u32 *klvs, size_t num_dwords)
-+{
-+	int err;
-+
-+	while (num_dwords >= GUC_KLV_LEN_MIN) {
-+		u32 key = FIELD_GET(GUC_KLV_0_KEY, klvs[0]);
-+		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
-+
-+		klvs += GUC_KLV_LEN_MIN;
-+		num_dwords -= GUC_KLV_LEN_MIN;
-+
-+		if (num_dwords < len)
-+			err = -EBADMSG;
-+		else
-+			err = pf_restore_vf_config_klv(gt, vfid, key, len, klvs);
-+
-+		if (err) {
-+			xe_gt_sriov_dbg(gt, "restore failed on key %#x (%pe)\n", key, ERR_PTR(err));
-+			return err;
-+		}
-+
-+		klvs += len;
-+		num_dwords -= len;
-+	}
-+
-+	return pf_validate_vf_config(gt, vfid);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_config_restore - Restore a VF provisioning config from binary blob.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier (can't be PF)
-+ * @buf: the buffer with config data
-+ * @size: the size of the config data
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
-+				  const void *buf, size_t size)
-+{
-+	int err;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, vfid);
-+
-+	if (!size)
-+		return -ENODATA;
-+
-+	if (size % sizeof(u32))
-+		return -EINVAL;
-+
-+	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV)) {
-+		struct drm_printer p = xe_gt_info_printer(gt);
-+
-+		drm_printf(&p, "restoring VF%u config:\n", vfid);
-+		xe_guc_klv_print(buf, size / sizeof(u32), &p);
-+	}
-+
-+	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-+	err = pf_send_vf_cfg_reset(gt, vfid);
-+	if (!err) {
-+		pf_release_vf_config(gt, vfid);
-+		err = pf_restore_vf_config(gt, vfid, buf, size / sizeof(u32));
-+	}
-+	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-+
-+	return err;
-+}
-+
- /**
-  * xe_gt_sriov_pf_config_restart - Restart SR-IOV configurations after a GT reset.
-  * @gt: the &xe_gt
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-index 42e64769f666..b74ec38baa18 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-@@ -54,6 +54,10 @@ int xe_gt_sriov_pf_config_sanitize(struct xe_gt *gt, unsigned int vfid, long tim
- int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force);
- int xe_gt_sriov_pf_config_push(struct xe_gt *gt, unsigned int vfid, bool refresh);
- 
-+ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *buf, size_t size);
-+int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
-+				  const void *buf, size_t size);
-+
- bool xe_gt_sriov_pf_config_is_empty(struct xe_gt *gt, unsigned int vfid);
- 
- void xe_gt_sriov_pf_config_restart(struct xe_gt *gt);
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d_BAT -> xe-pw-138873v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-138873v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-138873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-138873v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-pvc-2:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-pvc-2/igt@xe_live_ktest@xe_bo.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-pvc-2/igt@xe_live_ktest@xe_bo.html
+    - bat-atsm-2:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-atsm-2/igt@xe_live_ktest@xe_bo.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-atsm-2/igt@xe_live_ktest@xe_bo.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-atsm-2:         [SKIP][5] ([Intel XE#2229]) -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+    - bat-pvc-2:          [SKIP][7] ([Intel XE#2229]) -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-pvc-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-pvc-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-138873v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - bat-adlp-7:         [PASS][9] -> [DMESG-WARN][10] ([Intel XE#2496]) +31 other tests dmesg-warn
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [PASS][11] -> [SKIP][12] ([Intel XE#455]) +5 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][13] ([Intel XE#1861]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8024 -> IGT_8027
+  * Linux: xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d -> xe-pw-138873v1
+
+  IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8027: f7297a5e6bc52d3ae7258a5a7e6fb053ed6ec7db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d: 2141344f9b4f0bcd6bb20a45afaef94209743c0d
+  xe-pw-138873v1: 138873v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/index.html
+
+--===============6097498144144991606==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Attempt to reduce execution time for the xe_bo_shrink dynamic test</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138873/">https://patchwork.freedesktop.org/series/138873/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d_BAT -&gt; xe-pw-138873v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-138873v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-138873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-138873v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-pvc-2/igt@xe_live_ktest@xe_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-pvc-2/igt@xe_live_ktest@xe_bo.html">INCOMPLETE</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-atsm-2/igt@xe_live_ktest@xe_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-atsm-2/igt@xe_live_ktest@xe_bo.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-atsm-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a></li>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-pvc-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-pvc-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138873v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-0:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) +31 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +5 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138873v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8024 -&gt; IGT_8027</li>
+<li>Linux: xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d -&gt; xe-pw-138873v1</li>
+</ul>
+<p>IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8027: f7297a5e6bc52d3ae7258a5a7e6fb053ed6ec7db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1971-2141344f9b4f0bcd6bb20a45afaef94209743c0d: 2141344f9b4f0bcd6bb20a45afaef94209743c0d<br />
+  xe-pw-138873v1: 138873v1</p>
+
+</body>
+</html>
+
+--===============6097498144144991606==--
