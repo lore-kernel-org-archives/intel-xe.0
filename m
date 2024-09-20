@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D3DBCF58C0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0AD4CF58C1
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 03:21:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAC8710E790;
-	Fri, 20 Sep 2024 03:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE9A10E79B;
+	Fri, 20 Sep 2024 03:21:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hOYzeQcu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cpz+YESY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8749C10E798
- for <Intel-Xe@lists.freedesktop.org>; Fri, 20 Sep 2024 03:21:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AD1A10E785;
+ Fri, 20 Sep 2024 03:21:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726802471; x=1758338471;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XEdILZGFHVVr2nRvhsvgVC2PkstSC+lh/vnz6+dBdp4=;
- b=hOYzeQcuITCVP0mwuOcTbs7a9hx7H6eHfnrRNr4cl8c1BCpsFTrgjxF/
- FoUjqifgHt8E/UQxZ6heNfK9f7i3y48u1vGD8FWDowFC3mHgQIBOUu0M5
- Z7TYkaOS5bj0w9LNwJYvRqLt9Uw+MFUG7ji041bUofCLdk5U42S+XWavr
- pzdXk/e8npu+hyhm5MfF8vMcrhVw5kS2631lXYua/+etk72IRpyKvXUGt
- PT9N/udqW6ddlGK1g3WXY3Sq5zOH2WeaSoEb0asoqhb1/c/GtejN4AHjZ
- q6ITvEZo+u4opW1C+9P/B77tE2vwGEpdpsdWGB4pzlV9z3U5ifo8q1d8+ A==;
-X-CSE-ConnectionGUID: HZYt+H7oSQOqyOjrgZGCyQ==
-X-CSE-MsgGUID: CF5PdPZKSrCwGsrqEOBeiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25983966"
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="25983966"
+ bh=pE9rJGNQU6bQS1D6Z7/XELNdvYB1vUUF7MaKDUcK7KY=;
+ b=Cpz+YESYivTNh5IX4zysgMcGBqEaUchALCAVUNwoXB0zuSahCQyC4hsh
+ wv9EkytJaFNfLi9hTMTyBaq37+hvny5UWPFL3V9nzbeA65PBque6Cwf+U
+ Aldyjsv3JvKxHyNMpzu4NfKIxom9l7jqZuzLxTlEcN7hBJB/S+rWYPLtp
+ OLQdqwVe+/Ed73jqND8aoUlsrUer5BGHyBI4z6HmUh3rtIH+lB/MHYbDX
+ p6hFUb2eL0MGpT402FDUFBNql7w5+kkg6k/OwQmFDthJRDZrrdC0jYqNW
+ Geh2mEVWKwXHkSlXhjmbKYuuti3FX9bxzPD22LnYBVCvGrDCLHqDHzUzu g==;
+X-CSE-ConnectionGUID: A1fqAA0oSra9QqwB9xA1Xw==
+X-CSE-MsgGUID: i+OoBFdwTI2vbGmdNyPQrA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25983964"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="25983964"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Sep 2024 20:21:11 -0700
-X-CSE-ConnectionGUID: uLajYpR4S6+5ivQZKGulXQ==
-X-CSE-MsgGUID: /FSzF96ZQqmjdlGLNUxx6g==
+X-CSE-ConnectionGUID: jggxG7e5R1msNQPpepwiIQ==
+X-CSE-MsgGUID: QsUxaPFxS7+RwF8KC2Q1VQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="74504467"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="74504458"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by fmviesa005.fm.intel.com with ESMTP; 19 Sep 2024 20:21:10 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v8 09/11] drm/xe/guc: Dump entire CTB on errors
-Date: Thu, 19 Sep 2024 20:21:06 -0700
-Message-ID: <20240920032108.629796-10-John.C.Harrison@Intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>, dri-devel@lists.freedesktop.org
+Subject: [PATCH v8 07/11] drm/print: Introduce drm_line_printer
+Date: Thu, 19 Sep 2024 20:21:04 -0700
+Message-ID: <20240920032108.629796-8-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240920032108.629796-1-John.C.Harrison@Intel.com>
 References: <20240920032108.629796-1-John.C.Harrison@Intel.com>
@@ -68,247 +69,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-The dump of the CT buffers was only showing the unprocessed data which
-is not generally useful for saying why a hang occurred - because it
-was probably caused by the commands that were just processed. So save
-and dump the entire buffer but in a more compact dump format. Also
-zero fill it on allocation to avoid confusion over uninitialised data
-in the dump.
+This drm printer wrapper can be used to increase the robustness of
+the captured output generated by any other drm_printer to make sure
+we didn't lost any intermediate lines of the output by adding line
+numbers to each output line. Helpful for capturing some crash data.
 
-v2: Add kerneldoc - review feedback from Michal W.
-v3: Fix kerneldoc.
-v4: Use ascii85 instead of hexdump (review feedback from Matthew B).
-v5: Dump the entire CTB object rather than separately dumping just the
-H2G and G2H sections. That way it includes the full header info.
+v2: Extended short int counters to full int (JohnH)
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c       | 94 ++++++++++------------------
- drivers/gpu/drm/xe/xe_guc_ct.h       |  8 +--
- drivers/gpu/drm/xe/xe_guc_ct_types.h |  6 +-
- 3 files changed, 41 insertions(+), 67 deletions(-)
+ drivers/gpu/drm/drm_print.c | 14 ++++++++
+ include/drm/drm_print.h     | 64 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 78 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 90701fd465c9..5546d4f87ebb 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -17,6 +17,7 @@
- #include "abi/guc_actions_sriov_abi.h"
- #include "abi/guc_klvs_abi.h"
- #include "xe_bo.h"
-+#include "xe_devcoredump.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_pagefault.h"
-@@ -435,6 +436,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 0081190201a7..08cfea04e22b 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -235,6 +235,20 @@ void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf)
+ }
+ EXPORT_SYMBOL(__drm_printfn_err);
  
- 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
++void __drm_printfn_line(struct drm_printer *p, struct va_format *vaf)
++{
++	unsigned int counter = ++p->line.counter;
++	const char *prefix = p->prefix ?: "";
++	const char *pad = p->prefix ? " " : "";
++
++	if (p->line.series)
++		drm_printf(p->arg, "%s%s%u.%u: %pV",
++			   prefix, pad, p->line.series, counter, vaf);
++	else
++		drm_printf(p->arg, "%s%s%u: %pV", prefix, pad, counter, vaf);
++}
++EXPORT_SYMBOL(__drm_printfn_line);
++
+ /**
+  * drm_puts - print a const string to a &drm_printer stream
+  * @p: the &drm printer
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index d2676831d765..b3906dc04388 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -177,6 +177,10 @@ struct drm_printer {
+ 	void *arg;
+ 	const void *origin;
+ 	const char *prefix;
++	struct {
++		unsigned int series;
++		unsigned int counter;
++	} line;
+ 	enum drm_debug_category category;
+ };
  
-+	xe_map_memset(xe, &ct->bo->vmap, 0, 0, ct->bo->size);
- 	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
- 	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
+@@ -187,6 +191,7 @@ void __drm_puts_seq_file(struct drm_printer *p, const char *str);
+ void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf);
+ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf);
+ void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf);
++void __drm_printfn_line(struct drm_printer *p, struct va_format *vaf);
  
-@@ -1562,48 +1564,33 @@ static void g2h_worker_func(struct work_struct *w)
- 	receive_g2h(ct);
+ __printf(2, 3)
+ void drm_printf(struct drm_printer *p, const char *f, ...);
+@@ -411,6 +416,65 @@ static inline struct drm_printer drm_err_printer(struct drm_device *drm,
+ 	return p;
  }
  
--static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
--				     struct guc_ctb_snapshot *snapshot,
--				     bool atomic)
-+struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic)
- {
--	u32 head, tail;
-+	struct xe_guc_ct_snapshot *snapshot;
- 
--	xe_map_memcpy_from(xe, &snapshot->desc, &ctb->desc, 0,
--			   sizeof(struct guc_ct_buffer_desc));
--	memcpy(&snapshot->info, &ctb->info, sizeof(struct guc_ctb_info));
-+	snapshot = kzalloc(sizeof(*snapshot), atomic ? GFP_ATOMIC : GFP_KERNEL);
-+	if (!snapshot)
-+		return NULL;
- 
--	snapshot->cmds = kmalloc_array(ctb->info.size, sizeof(u32),
--				       atomic ? GFP_ATOMIC : GFP_KERNEL);
--	if (!snapshot->cmds) {
--		drm_err(&xe->drm, "Skipping CTB commands snapshot. Only CT info will be available.\n");
--		return;
-+	if (ct->bo) {
-+		snapshot->ctb_size = ct->bo->size;
-+		snapshot->ctb = kmalloc(snapshot->ctb_size, atomic ? GFP_ATOMIC : GFP_KERNEL);
- 	}
- 
--	head = snapshot->desc.head;
--	tail = snapshot->desc.tail;
--
--	if (head != tail) {
--		struct iosys_map map =
--			IOSYS_MAP_INIT_OFFSET(&ctb->cmds, head * sizeof(u32));
--
--		while (head != tail) {
--			snapshot->cmds[head] = xe_map_rd(xe, &map, 0, u32);
--			++head;
--			if (head == ctb->info.size) {
--				head = 0;
--				map = ctb->cmds;
--			} else {
--				iosys_map_incr(&map, sizeof(u32));
--			}
--		}
--	}
-+	return snapshot;
++/**
++ * drm_line_printer - construct a &drm_printer that prefixes outputs with line numbers
++ * @p: the &struct drm_printer which actually generates the output
++ * @prefix: optional output prefix, or NULL for no prefix
++ * @series: optional unique series identifier, or 0 to omit identifier in the output
++ *
++ * This printer can be used to increase the robustness of the captured output
++ * to make sure we didn't lost any intermediate lines of the output. Helpful
++ * while capturing some crash data.
++ *
++ * Example 1::
++ *
++ *	void crash_dump(struct drm_device *drm)
++ *	{
++ *		static unsigned int id;
++ *		struct drm_printer p = drm_err_printer(drm, "crash");
++ *		struct drm_printer lp = drm_line_printer(&p, "dump", ++id);
++ *
++ *		drm_printf(&lp, "foo");
++ *		drm_printf(&lp, "bar");
++ *	}
++ *
++ * Above code will print into the dmesg something like::
++ *
++ *	[ ] 0000:00:00.0: [drm] *ERROR* crash dump 1.1: foo
++ *	[ ] 0000:00:00.0: [drm] *ERROR* crash dump 1.2: bar
++ *
++ * Example 2::
++ *
++ *	void line_dump(struct device *dev)
++ *	{
++ *		struct drm_printer p = drm_info_printer(dev);
++ *		struct drm_printer lp = drm_line_printer(&p, NULL, 0);
++ *
++ *		drm_printf(&lp, "foo");
++ *		drm_printf(&lp, "bar");
++ *	}
++ *
++ * Above code will print::
++ *
++ *	[ ] 0000:00:00.0: [drm] 1: foo
++ *	[ ] 0000:00:00.0: [drm] 2: bar
++ *
++ * RETURNS:
++ * The &drm_printer object
++ */
++static inline struct drm_printer drm_line_printer(struct drm_printer *p,
++						  const char *prefix,
++						  unsigned int series)
++{
++	struct drm_printer lp = {
++		.printfn = __drm_printfn_line,
++		.arg = p,
++		.prefix = prefix,
++		.line = { .series = series, },
++	};
++	return lp;
 +}
 +
-+static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
-+				     struct guc_ctb_snapshot *snapshot)
-+{
-+	xe_map_memcpy_from(xe, &snapshot->desc, &ctb->desc, 0,
-+			   sizeof(struct guc_ct_buffer_desc));
-+	memcpy(&snapshot->info, &ctb->info, sizeof(struct guc_ctb_info));
- }
- 
- static void guc_ctb_snapshot_print(struct guc_ctb_snapshot *snapshot,
- 				   struct drm_printer *p)
- {
--	u32 head, tail;
--
- 	drm_printf(p, "\tsize: %d\n", snapshot->info.size);
- 	drm_printf(p, "\tresv_space: %d\n", snapshot->info.resv_space);
- 	drm_printf(p, "\thead: %d\n", snapshot->info.head);
-@@ -1613,25 +1600,6 @@ static void guc_ctb_snapshot_print(struct guc_ctb_snapshot *snapshot,
- 	drm_printf(p, "\thead (memory): %d\n", snapshot->desc.head);
- 	drm_printf(p, "\ttail (memory): %d\n", snapshot->desc.tail);
- 	drm_printf(p, "\tstatus (memory): 0x%x\n", snapshot->desc.status);
--
--	if (!snapshot->cmds)
--		return;
--
--	head = snapshot->desc.head;
--	tail = snapshot->desc.tail;
--
--	while (head != tail) {
--		drm_printf(p, "\tcmd[%d]: 0x%08x\n", head,
--			   snapshot->cmds[head]);
--		++head;
--		if (head == snapshot->info.size)
--			head = 0;
--	}
--}
--
--static void guc_ctb_snapshot_free(struct guc_ctb_snapshot *snapshot)
--{
--	kfree(snapshot->cmds);
- }
- 
- /**
-@@ -1652,9 +1620,7 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_guc_ct_snapshot *snapshot;
- 
--	snapshot = kzalloc(sizeof(*snapshot),
--			   atomic ? GFP_ATOMIC : GFP_KERNEL);
--
-+	snapshot = xe_guc_ct_snapshot_alloc(ct, atomic);
- 	if (!snapshot) {
- 		xe_gt_err(ct_to_gt(ct), "Skipping CTB snapshot entirely.\n");
- 		return NULL;
-@@ -1663,12 +1629,13 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
- 	if (xe_guc_ct_enabled(ct) || ct->state == XE_GUC_CT_STATE_STOPPED) {
- 		snapshot->ct_enabled = true;
- 		snapshot->g2h_outstanding = READ_ONCE(ct->g2h_outstanding);
--		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g,
--					 &snapshot->h2g, atomic);
--		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h,
--					 &snapshot->g2h, atomic);
-+		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g, &snapshot->h2g);
-+		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h, &snapshot->g2h);
- 	}
- 
-+	if (ct->bo && snapshot->ctb)
-+		xe_map_memcpy_from(xe, snapshot->ctb, &ct->bo->vmap, 0, snapshot->ctb_size);
-+
- 	return snapshot;
- }
- 
-@@ -1691,9 +1658,15 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
- 
- 		drm_puts(p, "G2H CTB (all sizes in DW):\n");
- 		guc_ctb_snapshot_print(&snapshot->g2h, p);
--
- 		drm_printf(p, "\tg2h outstanding: %d\n",
- 			   snapshot->g2h_outstanding);
-+
-+		if (snapshot->ctb) {
-+			xe_print_blob_ascii85(p, "CTB data", snapshot->ctb, 0, snapshot->ctb_size);
-+		} else {
-+			drm_printf(p, "CTB snapshot missing!\n");
-+			return;
-+		}
- 	} else {
- 		drm_puts(p, "CT disabled\n");
- 	}
-@@ -1711,8 +1684,7 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
- 	if (!snapshot)
- 		return;
- 
--	guc_ctb_snapshot_free(&snapshot->h2g);
--	guc_ctb_snapshot_free(&snapshot->g2h);
-+	kfree(snapshot->ctb);
- 	kfree(snapshot);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 293041bed7ed..338f0b75d29f 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -9,6 +9,7 @@
- #include "xe_guc_ct_types.h"
- 
- struct drm_printer;
-+struct xe_device;
- 
- int xe_guc_ct_init(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
-@@ -16,10 +17,9 @@ void xe_guc_ct_disable(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
- 
--struct xe_guc_ct_snapshot *
--xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
--void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
--			      struct drm_printer *p);
-+struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic);
-+struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
-+void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
- void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-index 85e127ec91d7..8e1b9d981d61 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-@@ -52,8 +52,6 @@ struct guc_ctb {
- struct guc_ctb_snapshot {
- 	/** @desc: snapshot of the CTB descriptor */
- 	struct guc_ct_buffer_desc desc;
--	/** @cmds: snapshot of the CTB commands */
--	u32 *cmds;
- 	/** @info: snapshot of the CTB info */
- 	struct guc_ctb_info info;
- };
-@@ -70,6 +68,10 @@ struct xe_guc_ct_snapshot {
- 	struct guc_ctb_snapshot g2h;
- 	/** @h2g: H2G CTB snapshot */
- 	struct guc_ctb_snapshot h2g;
-+	/** @ctb_size: size of the snapshot of the CTB */
-+	size_t ctb_size;
-+	/** @ctb: snapshot of the entire CTB */
-+	u32 *ctb;
- };
- 
- /**
+ /*
+  * struct device based logging
+  *
 -- 
 2.46.0
 
