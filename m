@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D6DC78850
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87C58C78849
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 13:47:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7718D10E100;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51FD910E04D;
 	Fri, 20 Sep 2024 13:47:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RF1mkp/z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZvhCjERL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F280810E844
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 13:46:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9785910E844
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 13:47:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726840019; x=1758376019;
+ t=1726840023; x=1758376023;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A3zdtPpB21wE4XBY9UTTIqy3DpDmOY4FfCGnYHQ7dSI=;
- b=RF1mkp/zH8dPgs7YEjPf/eOxazOu4HW3+DXvFqh8Lo6NAByzAx5Mk2CZ
- hwUN2MBMU+cDyutAo0yPIZVRauytbNMGJqlCzS2mwHOC19ckfFZkW13yi
- xKaravzmWlXl3e9MMpdibFy8BHZgOIfmXw0uFPUMVsnaCuepEI1T4pCGF
- m2utXSCD2JnyGhrLYxtL+WSxC9H+V4OBddx/YSiHjabbObyzm9aNwdmd/
- AMshmA+00VRa7hFlJvn6ztl3XQzLrfrVU8Cl0SuBTWyZwsJwpHlOwexHH
- I926bs0OcGAQMFkbKCdk42NFBeQ8Kwf7OmnBGjFyQ3SDf1EwzUJGQ/Wa3 Q==;
-X-CSE-ConnectionGUID: JULH9TouQ3Kh/8IgA1WyEg==
-X-CSE-MsgGUID: 8nZ9OLUCQaSFFdFpK7s+YA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25363745"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25363745"
+ bh=JiYp0JTKsse6P3reeYD55+C11gx5sAfAGQi1wDVAsrs=;
+ b=ZvhCjERLZchhfGVwW28AYWnBmaDHtnj4vuNpOm4IJbVX5eEkTTYYP4pc
+ 54/UgN2UqdScItT7KFJ34WMW2NlXret+eCxWj7V2+8QDAPqaEf9ajL+oK
+ 5wVqXVciawG255tvOu6v3kFDGsFEwKIeMcQ29R2QWaFMCNCX1EbYUehAw
+ BZjELq+NN5g5WhvKq8l+XctL5QV5bos9t2iVCdHqEwZf2nk4n24y9EUas
+ DXUqaMr1XUgJ/1DP6xGb+Vanz6PhCI204/z9FJ1fBSWh97Oy+6n8m7Ga8
+ rJdTGuAc1qEGjGU/LEwMsW/ISR8pFjIHpzG18PDagP/PcH9dCD3bxDad0 Q==;
+X-CSE-ConnectionGUID: hCyFfJNDTaC3Po241XBCQg==
+X-CSE-MsgGUID: /HWOfwz0QMi2ngsA7mE0dA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25363748"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25363748"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 06:46:59 -0700
-X-CSE-ConnectionGUID: pgT9bPEjS6i6eAgRlJ1a7w==
-X-CSE-MsgGUID: Hl5OW1yiT02NjYkpyGiPjg==
+ 20 Sep 2024 06:47:02 -0700
+X-CSE-ConnectionGUID: Nofq2aYITmaUapzxAroLiA==
+X-CSE-MsgGUID: gJad4YxtRjaYDcT0/kSmUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="74684469"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="74684498"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.59])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 06:46:57 -0700
+ 20 Sep 2024 06:47:00 -0700
 From: bnilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com,
 	john.c.harrison@intel.com
-Subject: [[CI] 05/12] drm/xe/guc: Copy GuC log prior to dumping
-Date: Fri, 20 Sep 2024 19:36:39 +0530
-Message-Id: <20240920140646.618008-6-badal.nilawar@intel.com>
+Subject: [[CI] 07/12] drm/print: Introduce drm_line_printer
+Date: Fri, 20 Sep 2024 19:36:41 +0530
+Message-Id: <20240920140646.618008-8-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240920140646.618008-1-badal.nilawar@intel.com>
 References: <20240920140646.618008-1-badal.nilawar@intel.com>
@@ -67,97 +67,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-Add an extra stage to the GuC log print to copy the log buffer into
-regular host memory first, rather than printing the live GPU buffer
-object directly. Doing so helps prevent inconsistencies due to the log
-being updated as it is being dumped. It also allows the use of the
-ASCII85 helper function for printing the log in a more compact form
-than a straight hex dump.
+This drm printer wrapper can be used to increase the robustness of
+the captured output generated by any other drm_printer to make sure
+we didn't lost any intermediate lines of the output by adding line
+numbers to each output line. Helpful for capturing some crash data.
 
-v2: Use %zx instead of %lx for size_t prints.
-v3: Replace hexdump code with ascii85 call (review feedback from
-Matthew B). Move chunking code into next patch as that reduces the
-deltas of both.
-v4: Add a prefix to the ASCII85 output to aid tool parsing.
+v2: Extended short int counters to full int (JohnH)
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_log.c | 40 +++++++++++++++++++--------------
- 1 file changed, 23 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/drm_print.c | 14 ++++++++
+ include/drm/drm_print.h     | 64 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 78 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index a37ee3419428..be47780ec2a7 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -6,9 +6,12 @@
- #include "xe_guc_log.h"
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 0081190201a7..08cfea04e22b 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -235,6 +235,20 @@ void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf)
+ }
+ EXPORT_SYMBOL(__drm_printfn_err);
  
- #include <drm/drm_managed.h>
-+#include <linux/vmalloc.h>
++void __drm_printfn_line(struct drm_printer *p, struct va_format *vaf)
++{
++	unsigned int counter = ++p->line.counter;
++	const char *prefix = p->prefix ?: "";
++	const char *pad = p->prefix ? " " : "";
++
++	if (p->line.series)
++		drm_printf(p->arg, "%s%s%u.%u: %pV",
++			   prefix, pad, p->line.series, counter, vaf);
++	else
++		drm_printf(p->arg, "%s%s%u: %pV", prefix, pad, counter, vaf);
++}
++EXPORT_SYMBOL(__drm_printfn_line);
++
+ /**
+  * drm_puts - print a const string to a &drm_printer stream
+  * @p: the &drm printer
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index d2676831d765..b3906dc04388 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -177,6 +177,10 @@ struct drm_printer {
+ 	void *arg;
+ 	const void *origin;
+ 	const char *prefix;
++	struct {
++		unsigned int series;
++		unsigned int counter;
++	} line;
+ 	enum drm_debug_category category;
+ };
  
- #include "xe_bo.h"
-+#include "xe_devcoredump.h"
- #include "xe_gt.h"
-+#include "xe_gt_printk.h"
- #include "xe_map.h"
- #include "xe_module.h"
+@@ -187,6 +191,7 @@ void __drm_puts_seq_file(struct drm_printer *p, const char *str);
+ void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf);
+ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf);
+ void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf);
++void __drm_printfn_line(struct drm_printer *p, struct va_format *vaf);
  
-@@ -49,32 +52,35 @@ static size_t guc_log_size(void)
- 		CAPTURE_BUFFER_SIZE;
+ __printf(2, 3)
+ void drm_printf(struct drm_printer *p, const char *f, ...);
+@@ -411,6 +416,65 @@ static inline struct drm_printer drm_err_printer(struct drm_device *drm,
+ 	return p;
  }
  
 +/**
-+ * xe_guc_log_print - dump a copy of the GuC log to some useful location
-+ * @log: GuC log structure
-+ * @p: the printer object to output to
++ * drm_line_printer - construct a &drm_printer that prefixes outputs with line numbers
++ * @p: the &struct drm_printer which actually generates the output
++ * @prefix: optional output prefix, or NULL for no prefix
++ * @series: optional unique series identifier, or 0 to omit identifier in the output
++ *
++ * This printer can be used to increase the robustness of the captured output
++ * to make sure we didn't lost any intermediate lines of the output. Helpful
++ * while capturing some crash data.
++ *
++ * Example 1::
++ *
++ *	void crash_dump(struct drm_device *drm)
++ *	{
++ *		static unsigned int id;
++ *		struct drm_printer p = drm_err_printer(drm, "crash");
++ *		struct drm_printer lp = drm_line_printer(&p, "dump", ++id);
++ *
++ *		drm_printf(&lp, "foo");
++ *		drm_printf(&lp, "bar");
++ *	}
++ *
++ * Above code will print into the dmesg something like::
++ *
++ *	[ ] 0000:00:00.0: [drm] *ERROR* crash dump 1.1: foo
++ *	[ ] 0000:00:00.0: [drm] *ERROR* crash dump 1.2: bar
++ *
++ * Example 2::
++ *
++ *	void line_dump(struct device *dev)
++ *	{
++ *		struct drm_printer p = drm_info_printer(dev);
++ *		struct drm_printer lp = drm_line_printer(&p, NULL, 0);
++ *
++ *		drm_printf(&lp, "foo");
++ *		drm_printf(&lp, "bar");
++ *	}
++ *
++ * Above code will print::
++ *
++ *	[ ] 0000:00:00.0: [drm] 1: foo
++ *	[ ] 0000:00:00.0: [drm] 2: bar
++ *
++ * RETURNS:
++ * The &drm_printer object
 + */
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- {
- 	struct xe_device *xe = log_to_xe(log);
- 	size_t size;
--	int i, j;
-+	void *copy;
- 
--	xe_assert(xe, log->bo);
-+	if (!log->bo) {
-+		drm_puts(p, "GuC log buffer not allocated");
-+		return;
-+	}
- 
- 	size = log->bo->size;
- 
--#define DW_PER_READ		128
--	xe_assert(xe, !(size % (DW_PER_READ * sizeof(u32))));
--	for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
--		u32 read[DW_PER_READ];
--
--		xe_map_memcpy_from(xe, read, &log->bo->vmap, i * sizeof(u32),
--				   DW_PER_READ * sizeof(u32));
--#define DW_PER_PRINT		4
--		for (j = 0; j < DW_PER_READ / DW_PER_PRINT; ++j) {
--			u32 *print = read + j * DW_PER_PRINT;
--
--			drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
--				   *(print + 0), *(print + 1),
--				   *(print + 2), *(print + 3));
--		}
-+	copy = vmalloc(size);
-+	if (!copy) {
-+		drm_printf(p, "Failed to allocate %zu", size);
-+		return;
- 	}
++static inline struct drm_printer drm_line_printer(struct drm_printer *p,
++						  const char *prefix,
++						  unsigned int series)
++{
++	struct drm_printer lp = {
++		.printfn = __drm_printfn_line,
++		.arg = p,
++		.prefix = prefix,
++		.line = { .series = series, },
++	};
++	return lp;
++}
 +
-+	xe_map_memcpy_from(xe, copy, &log->bo->vmap, 0, size);
-+
-+	xe_print_blob_ascii85(p, "Log data", copy, 0, size);
-+
-+	vfree(copy);
- }
- 
- int xe_guc_log_init(struct xe_guc_log *log)
+ /*
+  * struct device based logging
+  *
 -- 
 2.34.1
 
