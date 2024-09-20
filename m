@@ -4,156 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FDD3CE8D45
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 09:57:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 335C7CE8D45
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 10:07:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E1D110E0BB;
-	Fri, 20 Sep 2024 09:57:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1005210E7FC;
+	Fri, 20 Sep 2024 10:07:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="s0ZPmlhe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HoUAD/MT";
 	dkim-atps=neutral
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAFA10E06C;
- Fri, 20 Sep 2024 09:57:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y/lOk743h5Txm4fkKEv+vHBQQyBh+g40+7xKYzJN+haat6+UsCXxyKKJOqQuAw7cBCCUrpkj2fRnu8/fJtg9q0f4lGzaGC1Pnfz1QJxwnLuYudQ8PNHh0T7T52q+DVb/wjbiuOTLK0ld0cMe0cazl3ftP/uCWxEZzpG5OfJhOryOME7qmYPZYS5+LVE7hOOmtHn9rvwnYLO8gNKLSVCuqFYMET+rq9p0G0TYYRaX+k+p0CcGO78gW6Nuv1BkShHUoFF6p3S4okGfpf1Pj1jjQKUIFcZeJLGcOdMDMXdbbLWPbQtU91BeDwnGo+92/gHbCasVCscn5r5oSDXAjYXDvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=61qMzP9iVslx33iMVTuXK1dCaibDXpSbQ7jDxA1/7mY=;
- b=EGwjC2eUASXcabB8SGzan8w79Vg2YyA9KqIvmcZUDQ/gfECaCwNDMt/3JjxSgPIACgLD8Co7vUIxvbExYsgB26/qOOt+emcAcNYkGGgIzFY1CZDAW+CKvLc8UrT+DXChLTtKrXoqS5suH+wlzkT4Fxs3BMCh1wIYisUAjkoUNmholIAH3Fp7+hT87kHFb2D4eSF70CruydjFbexfql47p0gQXOuAyybzRKpJ15wm0DZ0S7foSMhtU+q/fEEpSXHZ8LLKhrC4TylnUZ/T37GhrEFmgoPGhAbDO+DRettAWH2Gf3FZ1N+5hnSUEgM/8NqPvTp+gtQNoF2yT2dISNb2MA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=61qMzP9iVslx33iMVTuXK1dCaibDXpSbQ7jDxA1/7mY=;
- b=s0ZPmlhejf4vy6J0EAWSDk0c1T0vN0EFCcyA2JDn1+AZfqjmH1H6rgNcQ9MBdMhCcPAMkGMQtqzVCZTMcjsRHH9sihUsia9SIoVpmSpxABVAb6j2W680+huAdQ7RqyFMTqwiC3CiKHDmAHTj87E6xm1AiQDXiN6PLi9JFibUeds=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH7PR12MB7916.namprd12.prod.outlook.com (2603:10b6:510:26a::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Fri, 20 Sep
- 2024 09:57:42 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.7982.012; Fri, 20 Sep 2024
- 09:57:42 +0000
-Message-ID: <15a36075-2800-4274-a404-402ceafde5a0@amd.com>
-Date: Fri, 20 Sep 2024 11:57:34 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] PCI: Add support for VF Resizable Bar extended cap
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Matt Roper <matthew.d.roper@intel.com>
-References: <20240919223557.1897608-1-michal.winiarski@intel.com>
- <20240919223557.1897608-2-michal.winiarski@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240919223557.1897608-2-michal.winiarski@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0017.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1d::20) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6D3910E0BB;
+ Fri, 20 Sep 2024 10:07:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726826863; x=1758362863;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=a/GhloYEALPRDkcu3EqoS6jgoiprwztckTrjPmmx4+k=;
+ b=HoUAD/MTD88d8esyP6Z/u1MOmkO66b12XycT7aDHF5UBX4NB/JdEQskI
+ askBh+ewH5V40HblvHQ/13tClWJLDyfRk6cHWBHnwwdJQd9bM22BX9DvV
+ BOQcnIcQR8GwC9wOwkT6MYBHiZ/27yiVhxpaREFTZAfRb7T+ktnoJenOY
+ Hogt1NHuwsQD6/Wzv6kGNpdkHQSUi69KAvT49PwqdrMA/tTTfUiTDY2s9
+ iNDXCUiy2ih2w7+MOGJlve5Q3Qn2OagT0Tv2oorq6gSri3v3m1C93M9a0
+ qemP2stg0SDBMZark1IdkwcLroscSbuMx3BIZHbwZ+5tpLrX7Q7zEwnB0 g==;
+X-CSE-ConnectionGUID: /Qek722nQqGZ/8Y6oeKcxA==
+X-CSE-MsgGUID: 79L3uFX0RAaxNSMMOfs+JA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25976317"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25976317"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2024 03:07:43 -0700
+X-CSE-ConnectionGUID: 3i/TlKB2QTiqVvBA/4a1iA==
+X-CSE-MsgGUID: 4h9q4ZmIS/C2ILcBcXiwVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="69850972"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.245.43])
+ ([10.245.245.43])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2024 03:07:38 -0700
+Message-ID: <445713a6-2427-4c53-8ec2-3a894ec62405@linux.intel.com>
+Date: Fri, 20 Sep 2024 12:07:44 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB7916:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2257a16-cbf8-4bc9-c2ae-08dcd95aaade
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S0ZmOVdhUGZiQXRRWm9obFhLSEtJVWZDQWhXVU1MRHlHa1hpNUl0a3FXWTNr?=
- =?utf-8?B?SU5LRUZwOGR5QjJZczlYZ2RxMXN0dS93U0lSZmxhVXV4elRQc3BRUnVxZE11?=
- =?utf-8?B?NkJPclpsNUs1NDRWTkJGdnBVOUZBcjFqdmZFYTJUejV4QWw0MmYrNWd5YUhl?=
- =?utf-8?B?TC9pWmpaSlpIUDZNQWpzbW43T1plS2VkaXZqWE5IeEJ2cnU3SGQ2N3UyTFhD?=
- =?utf-8?B?S2FhblFYd0tsWC9MU0NEQTh6MHN2NUl4b3lsZGhsNE5Qc0xFVy9HMEJJRnQw?=
- =?utf-8?B?NkNON3gveVN4aUt0VStncnE1ZXhianRBUkpFR1drbUlHZzhRQTlQNjVnQkNk?=
- =?utf-8?B?L1J6aTEzbDlkTjJuKzN0Z0N4bzVDQ3Y2T2NBUHprd0srNzdZaDhRazN3SlBo?=
- =?utf-8?B?Y0Zzbi9kaWRNNEwyMk1YM0JqR1dBSVlOdDMvTld3WGNnMGZ4TXZVTVRBVHIx?=
- =?utf-8?B?TzQ4NlpoUkdLckNkVE9hZ3BtY2Z3ZXNFWUNrWWJlU0ZON2JGVnpuWDdlR2Vj?=
- =?utf-8?B?SXQxTFBKWm5zOUdJblNWMW51NWZQOXJWTGlMRkJPOXUvemdFS1JvSjYzakxt?=
- =?utf-8?B?ajV3T3RMdVJnOU5ES09nY3Z2T2dETWJ5RlpyR1pPRkpHZlh0emh1bVQzc25J?=
- =?utf-8?B?Q3FwMTBvckhVTDV4aG9ldWE3Z3hsU0ZUdkJMNGJLdCtDdDNlakN3MDZMNnB3?=
- =?utf-8?B?TTJLY2hScnJUOHF4ekpsb3hNaDUwZ1RyRnpqelorNGptTVVZWm83a0FuL3Ro?=
- =?utf-8?B?dS83QjRGeVp1R3RBRVozNHNTczljaVdyeDhUR1I0NjJkV1NiZlBQbE5SSmF3?=
- =?utf-8?B?UEdvQkt1QzdtU3pVQ09CZlVuY2Q1NC8vcjY4R1c3NStsMVJTTU1TYjZ3NFJT?=
- =?utf-8?B?NE5jZ2NRSGs2NENneWh4S0JOTkx3a3p1bGdrK1JGZ3RnNHVKaWNhVEtEOTNC?=
- =?utf-8?B?V2VpN3c2TFFGSDI4dnJ0K2QwNWwzQm5ZZmJVcVRhajJSYTFmSDd0Sm81K0lx?=
- =?utf-8?B?QWhrZG1jZjBtVWRRR0JqUHFoMlIyNUZYTXQxSFFhVEd4Q21ibG9aZlEwZlVL?=
- =?utf-8?B?VnF2d3ZiK2k1SUFuTlpzZXJKZkFjRXN5dy9ob2lLc0VtZHczUGVSOHZETHdY?=
- =?utf-8?B?a3dPaDR1MGNiTlVwTjVxSVY0ekJTZE9rMW43TExqSXpzUThLZ0dwT25yMkxX?=
- =?utf-8?B?bDJqZmNQRUJkTlFnQm4rSmVSQlVjTTMxMXR3ckNtY3RpM3JQdUVVcUtiaUNX?=
- =?utf-8?B?aTFKK2JxL2toaUVXRzhqMGU1UmQyVTZqWDRCUTAzZFBzUG9mbzc4Q1NIYVMw?=
- =?utf-8?B?OEsrOFJuMGhWWkVkWjBvcHY2VkFrczl5eWJjdlN4dTJjQ1lBRU1RZ2xBKzFF?=
- =?utf-8?B?WHROR3o2ZXdQTFNGWXlvU2syMnpLZEZpZTlBeVFzRVJsNHZMTU1Eb0NFcEt0?=
- =?utf-8?B?MDdWZjJTWkJxcnNFTGhjVHRCVERaamRWZVNEbzZxdUVaSThBZkR6M1RGYWx3?=
- =?utf-8?B?RWFZZlM2SVJ0RE5nVlpuSFI4ZCsyeW9kaXFVMTM5TjBlZElyeEtYbWwwakNV?=
- =?utf-8?B?Q1JMMk1LZXh0dEpFekx4VlgrZDhZTVY5ejhZMmtBZmxaNHQ4TE15dXVNb21S?=
- =?utf-8?B?TG9sMi92dFVOc0plcnkvdHVFNlEvY1REYTlkdFNTTXRvZ1Fmc2FVVmxSMVhX?=
- =?utf-8?B?cm1JZnZLQUs5Rzh1VWs2SVNHUitrK3E5NnBVRnVES2FDNTBaaytlS3NRPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MGp5MGR3cFdoTytmZFRVRHRBc2VWVlpjckl1amwvbHptQk5FVER1UUI3NGFt?=
- =?utf-8?B?WFpDWVFBcUFUZWM0WU9SR2VjbDBlRVgxSklJVEJ1MUNXajlMVCtiUFU5YnJT?=
- =?utf-8?B?dE84bzdSTjg0b0xxeUxrNTQyMmNZY3FSbXMvK09FR0oxK1RIUjFEN3JIZC9Y?=
- =?utf-8?B?SnpRdjBHckd1bVU0QzQyaEcyY0xRWW9PeG05RW1scEltcWJBUkJJSVhuSDU1?=
- =?utf-8?B?RFhpek8za3F3WGx5aWc5cmp1dWJJelJHUHNVSW9aSXFETnR0M1ZYRWM3cWY2?=
- =?utf-8?B?M0dFckFEM2l0RnpkTnpHSFZOMU9Nb0tpSHlxYi9QcFR1Z3YyTnNPbFJxdCtn?=
- =?utf-8?B?ZlhaV2NlL2U3UEJwNk9BS3pWMkJMNlVNVjhVVFRhN1JRZWM2aUJHdERSd3FG?=
- =?utf-8?B?MVUvOFFnaXMwZGE1cEk2VlFoMWVaOFhYRFoyME9zYVJ4NklDM0c0N1lZMU4w?=
- =?utf-8?B?M0xidEpYamZLM1BUMXRpZmhNWEpENDIxZThrRGRwSmxsa2JNY05rbnNOZ0RH?=
- =?utf-8?B?aTBLa2wvdkVYZi90WklqWXlyRXRFNkxGaEJnVUY0eWhmQjgvWTJYeE0xdHky?=
- =?utf-8?B?ZFRHZGR2V29NWHhzOEVMTEM4Z0ZBOUtzZFZ4cDJOUmgzYzBJdURJVzE5Ulp2?=
- =?utf-8?B?MG9vaERMR29aZklwL1ZENTVwTFpHdis0MnJTQUVKdnpLOTQxVTg3ZzhMb0FV?=
- =?utf-8?B?RTdTYkMzaGFSbjhXbTBOVFd5YkJoNUNqSGNTaFAxclBaTThZZ0JsSlNOODRz?=
- =?utf-8?B?TkRFY3QxN2VQQXQwR3hUaEZYSFUzYmFlcVVLOVY0dG5SQm5ZeWQ0RE54TVNW?=
- =?utf-8?B?ZStHMHkvdktIY25ZSmFZYUpzMkNKc3lFQTQ1Wi9sU3Y2cVM1bGNyRG01UlNC?=
- =?utf-8?B?WUZmaWsxNmIyNGVFQjRFQzErbW1yMGl4dXlCRFpkakJvdmZNMHhEU2t6cW84?=
- =?utf-8?B?NllWK1ZOTmFXVld6b1V4UUhWTTBESTJVTU1NQXBaVDdsVWFiS1ltb21Rd1Ba?=
- =?utf-8?B?MzkxQ0c0Sm5aZnQxS21SbTE0VmV0VUFaQzlkOUF3N20rRmp3WCs2OXpJYloz?=
- =?utf-8?B?U001TzVsaVV5cE9jRXQ4bE1RTVhlUjh6ajFWWE1xZnNSSDg5QUx1QnFIQ2Vl?=
- =?utf-8?B?Ky9hVWZNSXE2MkkvOFFkc3I1UHZVZjRxNm1hejVabHMrdGlaQWlxUG1FUHE3?=
- =?utf-8?B?RitINW81NnB1cUIzRDhOUDFLVUFvWlg3YXBVSW5LazVlSmhmZTNaZnBQRFBX?=
- =?utf-8?B?MW9pMStqRkt5TUdjbURNR2I4ZUtKRENUbHNJMEcwc0xKLy9QeHRDMlhUeVlK?=
- =?utf-8?B?cG9QcWhzK21sdGpLTU9MZ2xlUGFMWG1qTnVqQU05clQyeXpZSG9rVEV1MC9D?=
- =?utf-8?B?Y00wQk05ekdaaCtQbWthMitoY3M3QXBEU0xUdGVsNVNCOUc1VGJZelhiK3l6?=
- =?utf-8?B?STlhVnp0RkpPMDhoeHdYdEJkUm8raHZybyt0VjRVQVhESm5CRnZtSlR3WW1q?=
- =?utf-8?B?ZVdNcjdrbGwvMGtWWmttQkJ0aGltY2lldG43RU0rbldzVFI1WDBlbnVVL3da?=
- =?utf-8?B?ekNScHVudUphNWVYUk1hWlBmWDBmTXg4SjRYbjdlaisxZjVrRG9DVGFJMHpV?=
- =?utf-8?B?Vi9ReUc1dTVTakQ5RysvNnQrYVRPT01VcnN3dG03eUNHdldOaStDZ1IzSThn?=
- =?utf-8?B?b1hzeVA3WUpjaVYxTkZiRUh2VXYyakhWbi8zNm9tRFd3MmU5d2JQMnlDaDBH?=
- =?utf-8?B?TDFqWEowNENxZWIxWlZVeTkxbDVCZlBWZXBrNmtpVk1HOXMwamZHMExSSzh1?=
- =?utf-8?B?RXMwYU1qRDVETi9OYnBTbkVnR0pocEpidmVoSTVSalpRaWVqZFEvYVVTbmpz?=
- =?utf-8?B?NWdsdDY0YVBnZUtOclBqeWVIbGJ5dUJmMFFUeUxjaXRQcG4va0xweHhqZDNy?=
- =?utf-8?B?cjd4WUtWOHhBWDRCYkxQSHlRVkl0Yi9RN3NjU2lWdThOc05USWdPd0Mwelht?=
- =?utf-8?B?d05SeFVxUjc0ZVNOSnFaSU0rWERkbktReDBtT3Y1cjM0azMyQjN3ZlBURmFy?=
- =?utf-8?B?TTdJU3RRT3g5bW94bHhPTEVESkc4V3N2RDVSd0Y5dTNJa1dNUVZkNVFUaDYx?=
- =?utf-8?Q?UYg4=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2257a16-cbf8-4bc9-c2ae-08dcd95aaade
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2024 09:57:41.9344 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kNLPfDc20R3drrfv0jE6Zvru/Mj+YDgJO4LWurgP5KNi5Fe3Y0hEcDh4sGhxP1O7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7916
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,285 +76,477 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 20.09.24 um 00:35 schrieb Michał Winiarski:
-> Similar to regular resizable BAR, VF BAR can also be resized.
-> The structures are very similar, which means we can reuse most of the
-> implementation. See PCIe r4.0, sec 9.3.7.4.
->
-> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-> ---
->   drivers/pci/iov.c             | 28 ++++++++++++++++++++++
->   drivers/pci/pci.c             | 40 ++++++++++++++++++++++++++++++-
->   drivers/pci/pci.h             | 14 ++++++++++-
->   drivers/pci/setup-res.c       | 44 ++++++++++++++++++++++++++++++-----
->   include/uapi/linux/pci_regs.h |  1 +
->   5 files changed, 119 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-> index aaa33e8dc4c97..e8ccd2ae0f024 100644
-> --- a/drivers/pci/iov.c
-> +++ b/drivers/pci/iov.c
-> @@ -153,6 +153,34 @@ resource_size_t pci_iov_resource_size(struct pci_dev *dev, int resno)
->   	return dev->sriov->barsz[resno - PCI_IOV_RESOURCES];
->   }
->   
-> +bool pci_resource_is_iov(struct pci_dev *dev, int resno)
-> +{
-> +	if (resno >= PCI_IOV_RESOURCES && resno <= PCI_IOV_RESOURCE_END)
-> +		return true;
-> +
-> +	return false;
-> +}
+Hi Dave, Simona,
 
-When you want to generalize that check you should probably but it in a 
-header and change the existing checks in pci.h and setup-res.c as well. 
-Otherwise I don't really see the value in having a separate function.
+First pull request for v6.12!
 
-Additional to that please code that something like "return resno >=...." 
-the extra if just increases the number of lines without adding any value.
+Enjoy!
 
-> +
-> +void pci_iov_resource_set_size(struct pci_dev *dev, int resno, resource_size_t size)
-> +{
-> +	if (!pci_resource_is_iov(dev, resno)) {
-> +		dev_WARN(&dev->dev, "%s is not an IOV resource\n",
-> +			 pci_resource_name(dev, resno));
-> +		return;
-> +	}
-> +
-> +	dev->sriov->barsz[resno - PCI_IOV_RESOURCES] = size;
-> +}
-> +
-> +bool pci_iov_memory_decoding_enabled(struct pci_dev *dev)
-> +{
-> +	u16 cmd;
-> +
-> +	pci_read_config_word(dev, dev->sriov->pos + PCI_SRIOV_CTRL, &cmd);
-> +
-> +	return cmd & PCI_SRIOV_CTRL_MSE;
-> +}
-> +
->   static void pci_read_vf_config_common(struct pci_dev *virtfn)
->   {
->   	struct pci_dev *physfn = virtfn->physfn;
-> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> index ffaaca0978cbc..d4522e365e7ba 100644
-> --- a/drivers/pci/pci.c
-> +++ b/drivers/pci/pci.c
-> @@ -1901,6 +1901,35 @@ static void pci_restore_rebar_state(struct pci_dev *pdev)
->   	}
->   }
->   
-> +static void pci_restore_vf_rebar_state(struct pci_dev *pdev)
-> +{
-> +	unsigned int pos, nbars, i;
-> +	u32 ctrl;
-> +
-> +	if (!pdev->is_physfn)
-> +		return;
-> +
-> +	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_VF_REBAR);
-> +	if (!pos)
-> +		return;
-> +
-> +	pci_read_config_dword(pdev, pos + PCI_REBAR_CTRL, &ctrl);
-> +	nbars = FIELD_GET(PCI_REBAR_CTRL_NBAR_MASK, ctrl);
-> +
-> +	for (i = 0; i < nbars; i++, pos += 8) {
-> +		struct resource *res;
-> +		int bar_idx, size;
-> +
-> +		pci_read_config_dword(pdev, pos + PCI_REBAR_CTRL, &ctrl);
-> +		bar_idx = ctrl & PCI_REBAR_CTRL_BAR_IDX;
-> +		res = pdev->resource + bar_idx;
+Cheers,
+~Maarten
 
-The variable res seems to be unused.
+drm-misc-next-2024-09-20:
+drm-misc-next for v6.12:
 
-In general I think you should split up the patch into restoring the VF 
-rebar state on resume and implementing the new resize API.
+UAPI Changes:
+- Add panthor/DEV_QUERY_TIMESTAMP_INFO query.
 
-> +		size = pci_rebar_bytes_to_size(pdev->sriov->barsz[bar_idx]);
-> +		ctrl &= ~PCI_REBAR_CTRL_BAR_SIZE;
-> +		ctrl |= FIELD_PREP(PCI_REBAR_CTRL_BAR_SIZE, size);
-> +		pci_write_config_dword(pdev, pos + PCI_REBAR_CTRL, ctrl);
-> +	}
-> +}
-> +
->   /**
->    * pci_restore_state - Restore the saved state of a PCI device
->    * @dev: PCI device that we're dealing with
-> @@ -1916,6 +1945,7 @@ void pci_restore_state(struct pci_dev *dev)
->   	pci_restore_ats_state(dev);
->   	pci_restore_vc_state(dev);
->   	pci_restore_rebar_state(dev);
-> +	pci_restore_vf_rebar_state(dev);
->   	pci_restore_dpc_state(dev);
->   	pci_restore_ptm_state(dev);
->   
-> @@ -3703,10 +3733,18 @@ void pci_acs_init(struct pci_dev *dev)
->    */
->   static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
->   {
-> +	int cap = PCI_EXT_CAP_ID_REBAR;
->   	unsigned int pos, nbars, i;
->   	u32 ctrl;
->   
-> -	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_REBAR);
-> +#ifdef CONFIG_PCI_IOV
-> +	if (pci_resource_is_iov(pdev, bar)) {
-> +		cap = PCI_EXT_CAP_ID_VF_REBAR;
-> +		bar -= PCI_IOV_RESOURCES;
-> +	}
-> +#endif
-> +
-> +	pos = pci_find_ext_capability(pdev, cap);
->   	if (!pos)
->   		return -ENOTSUPP;
->   
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 79c8398f39384..e763b3fd4c7a2 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -556,6 +556,9 @@ void pci_restore_iov_state(struct pci_dev *dev);
->   int pci_iov_bus_range(struct pci_bus *bus);
->   extern const struct attribute_group sriov_pf_dev_attr_group;
->   extern const struct attribute_group sriov_vf_dev_attr_group;
-> +bool pci_resource_is_iov(struct pci_dev *dev, int resno);
-> +bool pci_iov_memory_decoding_enabled(struct pci_dev *dev);
-> +void pci_iov_resource_set_size(struct pci_dev *dev, int resno, resource_size_t size);
->   #else
->   static inline int pci_iov_init(struct pci_dev *dev)
->   {
-> @@ -568,7 +571,16 @@ static inline int pci_iov_bus_range(struct pci_bus *bus)
->   {
->   	return 0;
->   }
-> -
-> +static inline bool pci_iov_memory_decoding_enabled(struct pci_dev *dev)
-> +{
-> +	return false;
-> +}
-> +static inline bool pci_resource_is_iov(struct pci_dev *dev, int resno)
-> +{
-> +	return false;
-> +}
-> +static inline void pci_iov_resource_set_size(struct pci_dev *dev, int resno,
-> +					     resource_size_t size) { }
->   #endif /* CONFIG_PCI_IOV */
->   
->   #ifdef CONFIG_PCIE_PTM
-> diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
-> index c6d933ddfd464..87a952a114f38 100644
-> --- a/drivers/pci/setup-res.c
-> +++ b/drivers/pci/setup-res.c
-> @@ -427,13 +427,44 @@ void pci_release_resource(struct pci_dev *dev, int resno)
->   }
->   EXPORT_SYMBOL(pci_release_resource);
->   
-> +static bool pci_memory_decoding_enabled(struct pci_dev *dev)
-> +{
+Cross-subsystem Changes:
+- Updated dt bindings.
+- Add documentation explaining default errnos for fences.
+- Mark dma-buf heaps creation functions as __init.
 
-I don't really see the value in making it a separate function, just keep 
-the check inside the only caller.
+Core Changes:
+- Split DSC helpers from DP helpers.
+- Clang build fixes for drm/mm test.
+- Remove simple pipeline support for gem-vram,
+  no longer any users left after converting bochs.
+- Add erno to drm_sched_start to distinguish between GPU and queue
+  reset.
+- Add drm_framebuffer testcases.
+- Fix uninitialized spinlock acquisition with CONFIG_DRM_PANIC=n.
+- Use read_trylock instead of read_lock in dma_fence_begin_signalling to
+  quiesce lockdep.
 
-> +	u16 cmd;
-> +
-> +	pci_read_config_word(dev, PCI_COMMAND, &cmd);
-> +
-> +	return cmd & PCI_COMMAND_MEMORY;
-> +}
-> +
-> +static int pci_resize_check_memory_decoding(struct pci_dev *dev, int resno)
+Driver Changes:
+- Assorted small fixes and updates for tegra, host1x, imagination,
+  nouveau, panfrost, panthor, panel/ili9341, mali, exynos,
+  panel/samsung-s6e3fa7, ast, bridge/ti-sn65dsi86, panel/himax-hx83112a,
+  bridge/tc358767, bridge/imx8mp-hdmi-tx, panel/khadas-ts050,
+  panel/nt36523, panel/sony-acx565akm, kmb, accel/qaic, omap, v3d.
+- Add bridge/TI TDP158.
+- Assorted documentation updates.
+- Convert bochs from simple drm to gem shmem, and check modes
+  against available memory.
+- Many VC4 fixes, most related to scaling and YUV support.
+- Convert some drivers to use SYSTEM_SLEEP_PM_OPS and RUNTIME_PM_OPS.
+- Rockchip 4k@60 support.
+The following changes since commit b615b9c36cae0468491547206406a909a9a37f26:
 
-Also doesn't look like much value in having that a separate function.
+  Merge v6.11-rc7 into drm-next (2024-09-11 09:18:15 +0200)
 
-> +{
-> +	if (!pci_resource_is_iov(dev, resno) && pci_memory_decoding_enabled(dev))
-> +		return -EBUSY;
-> +	else if (pci_resource_is_iov(dev, resno) && pci_iov_memory_decoding_enabled(dev))
-> +		return -EBUSY;
+are available in the Git repository at:
 
-Well that is coded as ugly as it could be.
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-09-20
 
-I strongly suggest to not call pci_resource_is_iov() twice and to move 
-the -EBUSY return code outside of the function (if you really want a 
-separate function for that).
+for you to fetch changes up to 2facdd6002ad67357dd7f77a388ae602bc910ace:
 
-E.g. something like "bool pci_resize_is_decoding_enabled(...)" and then 
-"if (pci_resize_is_decoding_enabled(...)) return -EBUSY;" in the caller.
+  dma-buf/dma-fence: Use a successful read_trylock() annotation for dma_fence_begin_signalling() (2024-09-20 09:27:00 +0200)
 
-Regards,
-Christian.
+----------------------------------------------------------------
+drm-misc-next for v6.12:
 
-> +
-> +	return 0;
-> +}
-> +
-> +static void pci_resize_resource_set_size(struct pci_dev *dev, int resno, int size)
-> +{
-> +	resource_size_t res_size = pci_rebar_size_to_bytes(size);
-> +	struct resource *res = dev->resource + resno;
-> +
-> +	if (!pci_resource_is_iov(dev, resno)) {
-> +		res->end = res->start + res_size - 1;
-> +	} else {
-> +		res->end = res->start + res_size * pci_sriov_get_totalvfs(dev) - 1;
-> +		pci_iov_resource_set_size(dev, resno, res_size);
-> +	}
-> +}
-> +
->   int pci_resize_resource(struct pci_dev *dev, int resno, int size)
->   {
->   	struct resource *res = dev->resource + resno;
->   	struct pci_host_bridge *host;
->   	int old, ret;
->   	u32 sizes;
-> -	u16 cmd;
->   
->   	/* Check if we must preserve the firmware's resource assignment */
->   	host = pci_find_host_bridge(dev->bus);
-> @@ -444,9 +475,9 @@ int pci_resize_resource(struct pci_dev *dev, int resno, int size)
->   	if (!(res->flags & IORESOURCE_UNSET))
->   		return -EBUSY;
->   
-> -	pci_read_config_word(dev, PCI_COMMAND, &cmd);
-> -	if (cmd & PCI_COMMAND_MEMORY)
-> -		return -EBUSY;
-> +	ret = pci_resize_check_memory_decoding(dev, resno);
-> +	if (ret)
-> +		return ret;
->   
->   	sizes = pci_rebar_get_possible_sizes(dev, resno);
->   	if (!sizes)
-> @@ -463,7 +494,7 @@ int pci_resize_resource(struct pci_dev *dev, int resno, int size)
->   	if (ret)
->   		return ret;
->   
-> -	res->end = res->start + pci_rebar_size_to_bytes(size) - 1;
-> +	pci_resize_resource_set_size(dev, resno, size);
->   
->   	/* Check if the new config works by trying to assign everything. */
->   	if (dev->bus->self) {
-> @@ -475,7 +506,8 @@ int pci_resize_resource(struct pci_dev *dev, int resno, int size)
->   
->   error_resize:
->   	pci_rebar_set_size(dev, resno, old);
-> -	res->end = res->start + pci_rebar_size_to_bytes(old) - 1;
-> +	pci_resize_resource_set_size(dev, resno, old);
-> +
->   	return ret;
->   }
->   EXPORT_SYMBOL(pci_resize_resource);
-> diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
-> index 94c00996e633e..cb010008c6bb3 100644
-> --- a/include/uapi/linux/pci_regs.h
-> +++ b/include/uapi/linux/pci_regs.h
-> @@ -738,6 +738,7 @@
->   #define PCI_EXT_CAP_ID_L1SS	0x1E	/* L1 PM Substates */
->   #define PCI_EXT_CAP_ID_PTM	0x1F	/* Precision Time Measurement */
->   #define PCI_EXT_CAP_ID_DVSEC	0x23	/* Designated Vendor-Specific */
-> +#define PCI_EXT_CAP_ID_VF_REBAR 0x24	/* VF Resizable BAR */
->   #define PCI_EXT_CAP_ID_DLF	0x25	/* Data Link Feature */
->   #define PCI_EXT_CAP_ID_PL_16GT	0x26	/* Physical Layer 16.0 GT/s */
->   #define PCI_EXT_CAP_ID_PL_32GT  0x2A    /* Physical Layer 32.0 GT/s */
+UAPI Changes:
+- Add panthor/DEV_QUERY_TIMESTAMP_INFO query.
 
+Cross-subsystem Changes:
+- Updated dt bindings.
+- Add documentation explaining default errnos for fences.
+- Mark dma-buf heaps creation functions as __init.
+
+Core Changes:
+- Split DSC helpers from DP helpers.
+- Clang build fixes for drm/mm test.
+- Remove simple pipeline support for gem-vram,
+  no longer any users left after converting bochs.
+- Add erno to drm_sched_start to distinguish between GPU and queue
+  reset.
+- Add drm_framebuffer testcases.
+- Fix uninitialized spinlock acquisition with CONFIG_DRM_PANIC=n.
+- Use read_trylock instead of read_lock in dma_fence_begin_signalling to
+  quiesce lockdep.
+
+Driver Changes:
+- Assorted small fixes and updates for tegra, host1x, imagination,
+  nouveau, panfrost, panthor, panel/ili9341, mali, exynos,
+  panel/samsung-s6e3fa7, ast, bridge/ti-sn65dsi86, panel/himax-hx83112a,
+  bridge/tc358767, bridge/imx8mp-hdmi-tx, panel/khadas-ts050,
+  panel/nt36523, panel/sony-acx565akm, kmb, accel/qaic, omap, v3d.
+- Add bridge/TI TDP158.
+- Assorted documentation updates.
+- Convert bochs from simple drm to gem shmem, and check modes
+  against available memory.
+- Many VC4 fixes, most related to scaling and YUV support.
+- Convert some drivers to use SYSTEM_SLEEP_PM_OPS and RUNTIME_PM_OPS.
+- Rockchip 4k@60 support.
+
+----------------------------------------------------------------
+Alexander Stein (3):
+      drm/bridge: tc358767: Use dev_err_probe
+      drm/bridge: tc358767: Only print GPIO debug output if they actually occur
+      drm/bridge: tc358767: Support write-only registers
+
+Andrew Kreimer (1):
+      drm/rockchip: Fix a typo
+
+Andy Shevchenko (3):
+      drm/panel: ili9341: Remove duplicate code
+      drm/mm: Mark drm_mm_interval_tree*() functions with __maybe_unused
+      drm/panel: sony-acx565akm: Use %*ph to print small buffer
+
+Aryabhatta Dey (1):
+      Documentation/gpu: Fix typo in Documentation/gpu/komeda-kms.rst
+
+Carlos Eduardo Gallo Filho (9):
+      drm/tests: Stop using deprecated dev_private member on drm_framebuffer tests
+      drm/tests: Add parameters to the drm_test_framebuffer_create test
+      drm/tests: Replace strcpy to strscpy on drm_test_framebuffer_create test
+      drm/tests: Add test case for drm_internal_framebuffer_create()
+      drm/tests: Add test for drm_framebuffer_check_src_coords()
+      drm/tests: Add test for drm_framebuffer_cleanup()
+      drm/tests: Add test for drm_framebuffer_lookup()
+      drm/tests: Add test for drm_framebuffer_init()
+      drm/tests: Add test for drm_framebuffer_free()
+
+Chen Yufan (1):
+      drm/imagination: Convert to use time_before macro
+
+Christian König (4):
+      drm/sched: add optional errno to drm_sched_start()
+      dma-buf: give examples of error codes to use
+      drm/doc: Document submission error signaling
+      drm/todos: add entry for drm_syncobj error handling
+
+Colin Ian King (1):
+      drm/tegra: hdmi: Make read-only const array freqs static
+
+Dave Stevenson (8):
+      drm/vc4: crtc: Force trigger of dlist update on margins change
+      drm/vc4: hvs: Set AXI panic modes for the HVS
+      drm/vc4: hvs: Don't write gamma luts on 2711
+      drm/vc4: plane: YUV planes require vertical scaling to always be enabled
+      drm/vc4: hvs: Fix dlist debug not resetting the next entry pointer
+      drm/vc4: hvs: Remove incorrect limit from hvs_dlist debugfs function
+      drm/vc4: plane: Move the buffer offset out of the vc4_plane_state
+      drm/vc4: hvs: Correct logic on stopping an HVS channel
+
+Detlev Casanova (1):
+      dt-bindings: gpu: Add rockchip,rk3576-mali compatible
+
+Dmitry Baryshkov (15):
+      drm/display: split DSC helpers from DP helpers
+      dt-bindings: display: fsl-imx-drm: drop edid property support
+      dt-bindings: display: imx/ldb: drop ddc-i2c-bus property
+      drm/imx: cleanup the imx-drm header
+      drm/imx: parallel-display: drop edid override support
+      drm/imx: ldb: drop custom EDID support
+      drm/imx: ldb: drop custom DDC bus support
+      drm/imx: ldb: switch to drm_panel_bridge
+      drm/imx: parallel-display: switch to drm_panel_bridge
+      drm/imx: add internal bridge handling display-timings DT node
+      drm/imx: ldb: switch to imx_legacy_bridge / drm_bridge_connector
+      drm/imx: parallel-display: switch to imx_legacy_bridge / drm_bridge_connector
+      drm/imx: move imx_drm_connector_destroy to imx-tve
+      drm/xe: select DRM_DISPLAY_DSC_HELPER
+      drm/msm: add another DRM_DISPLAY_DSC_HELPER selection
+
+Dom Cobley (7):
+      drm/vc4: plane: Keep fractional source coords inside state
+      drm/vc4: plane: Handle fractional coordinates using the phase field
+      drm/vc4: hdmi: Avoid log spam for audio start failure
+      drm/vc4: plane: Add support for YUV444 formats
+      drm/vc4: hdmi: Increase audio MAI fifo dreq threshold
+      drm/vc4: hdmi: Avoid hang with debug registers when suspended
+      drm/vc4: hvs: Remove ABORT_ON_EMPTY flag
+
+Dominique Martinet (1):
+      drm/bridge: imx8mp-hdmi-tx: allow 0.5% margin with selected clock
+
+Douglas Anderson (2):
+      drm/rockchip: dw_hdmi: Set cur_ctr to 0 always
+      drm/rockchip: dw_hdmi: Use auto-generated tables
+
+Fabio Estevam (6):
+      drm/bridge: imx8mp-hdmi-tx: Switch to SYSTEM_SLEEP_PM_OPS()
+      drm/bridge: imx8qm-ldb: Switch to RUNTIME_PM_OPS()
+      drm/bridge: imx8qxp-pixel-combiner: Switch to RUNTIME_PM_OPS()
+      drm/bridge: samsung-dsim: Switch to RUNTIME_PM_OPS()
+      drm/bridge: dw-hdmi-cec: Switch to SYSTEM_SLEEP_PM_OPS()
+      drm/bridge: imx8qxp-ldb: Switch to RUNTIME_PM_OPS()
+
+Jani Nikula (8):
+      drm/tegra: fix potential uninitialized variable use
+      drm/exynos: hdmi: use display_info for printing display dimensions
+      drm/exynos: hdmi: convert to struct drm_edid
+      drm/mm: annotate drm_mm_node_scanned_block() with __maybe_unused
+      drm/bridge/tdp158: fix build failure
+      drm/bridge: ti-sn65dsi86: annotate ti_sn_pwm_pin_{request, release} with __maybe_unused
+      drm/kmb: annotate set_test_mode_src_osc_freq_target_{low, hi}_bits() with __maybe_unused
+      drm/imagination: annotate pvr_fw_version_packed() with __maybe_unused
+
+Jianhua Lu (1):
+      drm: panel: nt36523: use devm_mipi_dsi_* function to register and attach dsi
+
+Jinjie Ruan (4):
+      drm/nouveau: Use for_each_child_of_node_scoped()
+      drm/imagination: Use memdup_user() helper to simplify code
+      drm/imagination: Use memdup_user() helper
+      drm/panthor: Use the BITS_PER_LONG macro
+
+Jonas Karlman (3):
+      drm/rockchip: dw_hdmi: Filter modes based on hdmiphy_clk
+      drm/rockchip: dw_hdmi: Enable 4K@60Hz mode on RK3399 and RK356x
+      drm/rockchip: Load crtc devices in preferred order
+
+Kunwu Chan (1):
+      gpu: host1x: Make host1x_context_device_bus_type constant
+
+Li Zetao (1):
+      drm/nouveau/volt: use clamp() in nvkm_volt_map()
+
+Longlong Xia (1):
+      accel/qaic: Change to use DEFINE_SHOW_ATTRIBUTE macro
+
+Lu Baolu (1):
+      drm/nouveau/tegra: Use iommu_paging_domain_alloc()
+
+Lyude Paul (1):
+      drm/panic: Fix uninitialized spinlock acquisition with CONFIG_DRM_PANIC=n
+
+Marc Gonzalez (2):
+      dt-bindings: display: bridge: add TI TDP158
+      drm/bridge: add support for TI TDP158
+
+Mary Guillemard (3):
+      drm/panfrost: Add SYSTEM_TIMESTAMP and SYSTEM_TIMESTAMP_FREQUENCY parameters
+      drm/panfrost: Add cycle counter job requirement
+      drm/panthor: Add DEV_QUERY_TIMESTAMP_INFO dev query
+
+Matt Coster (1):
+      drm/imagination: Use pvr_vm_context_get()
+
+Maxime Ripard (15):
+      drm/vc4: hdmi: Warn if writing to an unknown HDMI register
+      drm/vc4: hvs: More logging for dlist generation
+      drm/vc4: hvs: Print error if we fail an allocation
+      drm/vc4: plane: Add more debugging for LBM allocation
+      drm/vc4: plane: Use return variable in atomic_check
+      drm/vc4: crtc: Move assigned_channel to a variable
+      drm/vc4: Introduce generation number enum
+      drm/vc4: Make v3d paths unavailable on any generation newer than vc4
+      drm/vc4: hvs: Use switch statement to simplify vc4_hvs_get_fifo_from_output
+      drm/vc4: hvs: Create hw_init function
+      drm/vc4: hvs: Create cob_init function
+      drm/vc4: hvs: Rename hvs_regs list
+      drm/vc4: plane: Change ptr0_offset to an array
+      drm/vc4: hvs: Rework LBM alignment
+      drm/vc4: hvs: Change prototype of __vc4_hvs_alloc to pass registers
+
+Mikko Perttunen (6):
+      drm/tegra: gem: Open code drm_prime_gem_destroy
+      drm/tegra: gem: Don't attach dma-bufs when not needed
+      gpu: host1x: Fix _writel function declarations
+      gpu: host1x: Handle CDMA wraparound when debug printing
+      gpu: host1x: Complete stream ID entry tables
+      gpu: host1x: Add MLOCK recovery for rest of engines
+
+Min-Hua Chen (1):
+      drm/panel: khadas-ts050: make ts050[v2]_panel_data static
+
+Nickey Yang (1):
+      drm/rockchip: dw_hdmi: Add phy_config for 594Mhz pixel clock
+
+Steven Price (1):
+      drm/panthor: Display FW version information
+
+T.J. Mercier (1):
+      dma-buf: heaps: Add __init to CMA and system heap module_init functions
+
+Tejas Vipin (3):
+      drm/panel: samsung-s6e3fa7: transition to mipi_dsi wrapped functions
+      drm/panel: himax-hx83112a: transition to mipi_dsi wrapped functions
+      drm/panel: raydium-rm69380: transition to mipi_dsi wrapped functions
+
+Thierry Reding (1):
+      Revert "drm/tegra: gr3d: Convert into dev_pm_domain_attach|detach_list()"
+
+Thomas Hellström (1):
+      dma-buf/dma-fence: Use a successful read_trylock() annotation for dma_fence_begin_signalling()
+
+Thomas Zimmermann (26):
+      Merge drm/drm-next into drm-misc-next
+      drm/bochs: Remove manual format test from fb_create
+      drm/bochs: Use helpers for struct drm_edid
+      drm/bochs: Do managed resource cleanup
+      drm/bochs: Pass bochs device to various functions
+      drm/bochs: Upcast with to_bochs_device()
+      drm/bochs: Allocate DRM device in struct bochs_device
+      drm/bochs: Use regular atomic helpers
+      drm/bochs: Use GEM SHMEM helpers for memory management
+      drm/bochs: Validate display modes against available video memory
+      drm/gem-vram: Remove support for simple display pipelines
+      Merge drm/drm-next into drm-misc-next
+      drm/ast: Remove TX-chip bitmask
+      drm/ast: astdp: Inline ast_astdp_connector_init()
+      drm/ast: astdp: Avoid upcasting to struct ast_device
+      drm/ast: astdp: Replace power_on helpers
+      drm/ast: astdp: Replace ast_dp_set_on_off()
+      drm/ast: dp501: Inline ast_dp501_connector_init()
+      drm/ast: dp501: Avoid upcasting to struct ast_device
+      drm/ast: sil164: Inline ast_sil164_connector_init()
+      drm/ast: vga: Inline ast_vga_connector_init()
+      drm/ast: Respect return value from CRTC init
+      drm/ast: Avoid upcasting to struct ast_device
+      drm/ast: Rename register constants for TX-chip types
+      drm/ast: Use TX-chip register constants
+      drm/ast: Warn about unsupported TX chips
+
+Tim Gover (1):
+      drm/vc4: hvs: Enable SCALER_CONTROL early in HVS init
+
+Tomi Valkeinen (3):
+      drm/omap: Fix possible NULL dereference
+      drm/omap: Hide sparse warnings
+      drm/omap: Fix locking in omap_gem_new_dmabuf()
+
+Tvrtko Ursulin (1):
+      drm/v3d: Appease lockdep while updating GPU stats
+
+Yakir Yang (1):
+      drm/rockchip: dw_hdmi: Adjust cklvl & txlvl for RF/EMI
+
+Yan Zhao (1):
+      drm/bochs: use devm_ioremap_wc() to map framebuffer
+
+ .../bindings/display/bridge/ti,tdp158.yaml         |  57 +++
+ .../bindings/display/imx/fsl-imx-drm.txt           |   2 -
+ .../devicetree/bindings/display/imx/ldb.txt        |   1 -
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |   1 +
+ Documentation/gpu/drm-uapi.rst                     |  27 +-
+ Documentation/gpu/komeda-kms.rst                   |   2 +-
+ Documentation/gpu/todo.rst                         |  16 +
+ drivers/accel/qaic/qaic_debugfs.c                  |  43 +--
+ drivers/dma-buf/dma-fence.c                        |   6 +-
+ drivers/dma-buf/heaps/cma_heap.c                   |   4 +-
+ drivers/dma-buf/heaps/system_heap.c                |   2 +-
+ drivers/gpu/drm/amd/amdgpu/Kconfig                 |   1 +
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c    |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |   2 +-
+ drivers/gpu/drm/ast/ast_dp.c                       | 137 ++++----
+ drivers/gpu/drm/ast/ast_dp501.c                    | 111 +++---
+ drivers/gpu/drm/ast/ast_drv.c                      |   2 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |  19 +-
+ drivers/gpu/drm/ast/ast_main.c                     |  67 ++--
+ drivers/gpu/drm/ast/ast_mode.c                     |  34 +-
+ drivers/gpu/drm/ast/ast_post.c                     |  36 +-
+ drivers/gpu/drm/ast/ast_reg.h                      |  41 +--
+ drivers/gpu/drm/ast/ast_sil164.c                   |  59 ++--
+ drivers/gpu/drm/ast/ast_vga.c                      |  59 ++--
+ drivers/gpu/drm/bridge/Kconfig                     |   7 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/imx/Kconfig                 |  10 +
+ drivers/gpu/drm/bridge/imx/Makefile                |   1 +
+ drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c     |  87 +++++
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c        |  20 +-
+ drivers/gpu/drm/bridge/imx/imx8qm-ldb.c            |   9 +-
+ drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c           |   9 +-
+ .../gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c    |   9 +-
+ drivers/gpu/drm/bridge/samsung-dsim.c              |   8 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c      |   8 +-
+ drivers/gpu/drm/bridge/tc358767.c                  |  56 +--
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c              |   4 +-
+ drivers/gpu/drm/bridge/ti-tdp158.c                 | 111 ++++++
+ drivers/gpu/drm/display/Kconfig                    |   6 +
+ drivers/gpu/drm/display/Makefile                   |   5 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |   2 +-
+ drivers/gpu/drm/drm_framebuffer.c                  |   2 +
+ drivers/gpu/drm/drm_gem_vram_helper.c              |  45 ---
+ drivers/gpu/drm/drm_mm.c                           |   4 +-
+ drivers/gpu/drm/drm_mode_object.c                  |   1 +
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c            |   2 +-
+ drivers/gpu/drm/exynos/exynos_hdmi.c               |  25 +-
+ drivers/gpu/drm/i915/Kconfig                       |   1 +
+ drivers/gpu/drm/imagination/pvr_ccb.c              |   2 +-
+ drivers/gpu/drm/imagination/pvr_context.c          |  18 +-
+ drivers/gpu/drm/imagination/pvr_drv.c              |   2 +-
+ drivers/gpu/drm/imagination/pvr_job.c              |  13 +-
+ drivers/gpu/drm/imagination/pvr_queue.c            |   4 +-
+ drivers/gpu/drm/imagination/pvr_vm.c               |   4 +-
+ drivers/gpu/drm/imx/ipuv3/Kconfig                  |  10 +-
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c           |   7 -
+ drivers/gpu/drm/imx/ipuv3/imx-drm.h                |  14 -
+ drivers/gpu/drm/imx/ipuv3/imx-ldb.c                | 203 +++--------
+ drivers/gpu/drm/imx/ipuv3/imx-tve.c                |   8 +-
+ drivers/gpu/drm/imx/ipuv3/parallel-display.c       | 139 ++------
+ drivers/gpu/drm/kmb/kmb_dsi.c                      |   4 +-
+ drivers/gpu/drm/lima/lima_sched.c                  |   2 +-
+ drivers/gpu/drm/msm/Kconfig                        |   2 +
+ drivers/gpu/drm/nouveau/nouveau_connector.c        |   5 +-
+ drivers/gpu/drm/nouveau/nouveau_sched.c            |   2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c |   4 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c    |   2 +-
+ drivers/gpu/drm/omapdrm/dss/base.c                 |  25 +-
+ drivers/gpu/drm/omapdrm/dss/omapdss.h              |   3 +-
+ drivers/gpu/drm/omapdrm/omap_dmm_tiler.c           |   6 +-
+ drivers/gpu/drm/omapdrm/omap_drv.c                 |   4 +-
+ drivers/gpu/drm/omapdrm/omap_gem.c                 |  10 +-
+ drivers/gpu/drm/panel/Kconfig                      |   6 +-
+ drivers/gpu/drm/panel/panel-himax-hx83112a.c       | 291 +++++++--------
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c       | 210 +----------
+ drivers/gpu/drm/panel/panel-khadas-ts050.c         |   4 +-
+ drivers/gpu/drm/panel/panel-novatek-nt36523.c      |  16 +-
+ drivers/gpu/drm/panel/panel-raydium-rm69380.c      |  87 ++---
+ drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c      |  71 ++--
+ drivers/gpu/drm/panel/panel-sony-acx565akm.c       |   3 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c            |  45 ++-
+ drivers/gpu/drm/panfrost/panfrost_gpu.c            |  12 +
+ drivers/gpu/drm/panfrost/panfrost_gpu.h            |   1 +
+ drivers/gpu/drm/panfrost/panfrost_job.c            |  30 +-
+ drivers/gpu/drm/panfrost/panfrost_regs.h           |   2 +
+ drivers/gpu/drm/panthor/panthor_drv.c              |  43 ++-
+ drivers/gpu/drm/panthor/panthor_fw.c               |  57 ++-
+ drivers/gpu/drm/panthor/panthor_gpu.c              |  47 +++
+ drivers/gpu/drm/panthor/panthor_gpu.h              |   4 +
+ drivers/gpu/drm/panthor/panthor_mmu.c              |   6 +-
+ drivers/gpu/drm/panthor/panthor_sched.c            |   2 +-
+ drivers/gpu/drm/rockchip/cdn-dp-reg.h              |   2 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 162 ++++-----
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |  23 ++
+ drivers/gpu/drm/scheduler/sched_main.c             |   7 +-
+ drivers/gpu/drm/tegra/gem.c                        |  65 ++--
+ drivers/gpu/drm/tegra/gem.h                        |  21 ++
+ drivers/gpu/drm/tegra/gr3d.c                       |  46 ++-
+ drivers/gpu/drm/tegra/hdmi.c                       |   2 +-
+ drivers/gpu/drm/tests/drm_framebuffer_test.c       | 375 +++++++++++++++++++-
+ drivers/gpu/drm/tiny/Kconfig                       |   4 +-
+ drivers/gpu/drm/tiny/bochs.c                       | 390 ++++++++++++---------
+ drivers/gpu/drm/v3d/v3d_sched.c                    |  46 ++-
+ drivers/gpu/drm/vc4/tests/vc4_mock.c               |  14 +-
+ drivers/gpu/drm/vc4/vc4_bo.c                       |  28 +-
+ drivers/gpu/drm/vc4/vc4_crtc.c                     |  35 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                      |  22 +-
+ drivers/gpu/drm/vc4/vc4_drv.h                      |  29 +-
+ drivers/gpu/drm/vc4/vc4_gem.c                      |  24 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |  25 +-
+ drivers/gpu/drm/vc4/vc4_hdmi_regs.h                |   5 +-
+ drivers/gpu/drm/vc4/vc4_hvs.c                      | 359 +++++++++++--------
+ drivers/gpu/drm/vc4/vc4_irq.c                      |  10 +-
+ drivers/gpu/drm/vc4/vc4_kms.c                      |  14 +-
+ drivers/gpu/drm/vc4/vc4_perfmon.c                  |  20 +-
+ drivers/gpu/drm/vc4/vc4_plane.c                    | 281 ++++++++++-----
+ drivers/gpu/drm/vc4/vc4_regs.h                     |   1 +
+ drivers/gpu/drm/vc4/vc4_render_cl.c                |   2 +-
+ drivers/gpu/drm/vc4/vc4_v3d.c                      |  10 +-
+ drivers/gpu/drm/vc4/vc4_validate.c                 |   8 +-
+ drivers/gpu/drm/vc4/vc4_validate_shaders.c         |   2 +-
+ drivers/gpu/drm/xe/Kconfig                         |   1 +
+ drivers/gpu/host1x/context_bus.c                   |   2 +-
+ drivers/gpu/host1x/dev.c                           | 150 ++++----
+ drivers/gpu/host1x/dev.h                           |   6 +-
+ drivers/gpu/host1x/hw/cdma_hw.c                    |  12 +
+ drivers/gpu/host1x/hw/debug_hw.c                   |  15 +-
+ include/drm/bridge/imx.h                           |  13 +
+ include/drm/drm_gem_vram_helper.h                  |  13 -
+ include/drm/drm_panic.h                            |  14 +
+ include/drm/gpu_scheduler.h                        |   2 +-
+ include/linux/dma-fence.h                          |   6 +
+ include/linux/host1x.h                             |   5 +
+ include/linux/host1x_context_bus.h                 |   2 +-
+ include/uapi/drm/panfrost_drm.h                    |   3 +
+ include/uapi/drm/panthor_drm.h                     |  22 ++
+ 137 files changed, 2765 insertions(+), 2131 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c
+ create mode 100644 drivers/gpu/drm/bridge/ti-tdp158.c
+ create mode 100644 include/drm/bridge/imx.h
