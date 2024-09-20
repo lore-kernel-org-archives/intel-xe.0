@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CC30CF58C7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25534CF58C3
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 03:21:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64BFA10E7A3;
-	Fri, 20 Sep 2024 03:21:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E016910E79E;
+	Fri, 20 Sep 2024 03:21:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="esIYSvkY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SgCBEhj8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CADF10E78C
- for <Intel-Xe@lists.freedesktop.org>; Fri, 20 Sep 2024 03:21:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ED1E10E798
+ for <Intel-Xe@lists.freedesktop.org>; Fri, 20 Sep 2024 03:21:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726802470; x=1758338470;
+ t=1726802471; x=1758338471;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Fs+XtVZS44nUEnynpVBODDwfTEqbVLcWu7ct5t+H1QI=;
- b=esIYSvkYj0iZ5eGIHPnS5+ha/3cKpAlaCr9QAxvHDzjqns+wPWvw74NM
- PkF6MCyA0NVe11bKjU1+4t6S+GK/W4d40N0m5RStOvGMmotUExxveJrN9
- NYIwwsi3C7g1v+chZvebpW29Vxbl8taF1Cxh+fbWrmTHR8Acy0jY+r72C
- MIHLxEJNcowrSOfnzqDZ4cW+eYeZo0NsIWysCWEVeH2zuz1lc5WZVaWH0
- BgPYqaE4kOVjJ21KXheZCbLRpzLEfXn0Zt4O4jg7XTuc2HdI/YMYiU5ic
- 5ZdZ6c+9cVCfskjL4raR2a+vZkB/2c2J3A4My7jAlXLQ8iyi/2t2ClQMo w==;
-X-CSE-ConnectionGUID: PTqLCd9STCq9reLVcxMh0g==
-X-CSE-MsgGUID: UXyVZYTmTyqdGdcej4CDMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25983961"
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="25983961"
+ bh=2EA07CHP74Jtj+3CNFXkgzHYFj+GgGu0dgxebYLIwks=;
+ b=SgCBEhj8+9Eeq9DFF1MEBgff0GC7eZ4CGpo1NCTMqGRAme+dujZ64riC
+ jmcMgGgNhbym0Xxh4UY+DjsQN9YiusLbE+P7Q7jh7Rxdm1feuxrTum2Qr
+ qhq2/q31O6XdXc0L+zPzWOGFyn5Zg6Uk/3k6vZA6tT27I+NoEYR77GhJW
+ 185DP0LrqT/dn22MTIw0kE4vDMZj/IK7/aWTrMB+FwPYh9lAlVPVdkmR1
+ qS3T0AyXAIJGizmegFdggZ4ksevLR4GyebWBuSIk+zK5BS/jcwzmfw+vj
+ Mok8cDJ023Cwc8s2Nz7DDdRWTt40Buf0OgtBwPNXz9ieLqGDqCMxLlMGl w==;
+X-CSE-ConnectionGUID: a3jld/vDQjeOH13ymCseRw==
+X-CSE-MsgGUID: 6o0/QFJ/SUGC1KyKw+3T3g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25983965"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="25983965"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 20:21:10 -0700
-X-CSE-ConnectionGUID: tWLqEog0Qymfj4036MDmNg==
-X-CSE-MsgGUID: W7U01XvYRLmyaPWKJiV/lA==
+ 19 Sep 2024 20:21:11 -0700
+X-CSE-ConnectionGUID: 828IAEysTcKl5geK/Jatvw==
+X-CSE-MsgGUID: fwLIF6inRI2fPPlw+q2FWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="74504449"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="74504462"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa005.fm.intel.com with ESMTP; 19 Sep 2024 20:21:09 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 19 Sep 2024 20:21:10 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v8 04/11] drm/xe/devcoredump: Add ASCII85 dump helper function
-Date: Thu, 19 Sep 2024 20:21:01 -0700
-Message-ID: <20240920032108.629796-5-John.C.Harrison@Intel.com>
+Subject: [PATCH v8 08/11] drm/xe/guc: Dead CT helper
+Date: Thu, 19 Sep 2024 20:21:05 -0700
+Message-ID: <20240920032108.629796-9-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240920032108.629796-1-John.C.Harrison@Intel.com>
 References: <20240920032108.629796-1-John.C.Harrison@Intel.com>
@@ -69,148 +69,642 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-There is a need to include the GuC log and other large binary objects
-in core dumps and via dmesg. So add a helper for dumping to a printer
-function via conversion to ASCII85 encoding.
+Add a worker function helper for asynchronously dumping state when an
+internal/fatal error is detected in CT processing. Being asynchronous
+is required to avoid deadlocks and scheduling-while-atomic or
+process-stalled-for-too-long issues. Also check for a bunch more error
+conditions and improve the handling of some existing checks.
 
-Another issue with dumping such a large buffer is that it can be slow,
-especially if dumping to dmesg over a serial port. So add a yield to
-prevent the 'task has been stuck for 120s' kernel hang check feature
-from firing.
-
-v2: Add a prefix to the output string. Fix memory allocation bug.
-v3: Correct a string size calculation and clean up a define (review
-feedback from Julia F).
+v2: Use compile time CONFIG check for new (but not directly CT_DEAD
+related) checks and use unsigned int for a bitmask, rename
+CT_DEAD_RESET to CT_DEAD_REARM and add some explaining comments,
+rename 'hxg' macro parameter to 'ctb' - review feedback from Michal W.
+Drop CT_DEAD_ALIVE as no need for a bitfield define to just set the
+entire mask to zero.
+v3: Fix kerneldoc
+v4: Nullify some floating pointers after free.
+v5: Add section headings and device info to make the state dump look
+more like a devcoredump to allow parsing by the same tools (eventual
+aim is to just call the devcoredump code itself, but that currently
+requires an xe_sched_job, which is not available in the CT code).
+v6: Fix potential for leaking snapshots with concurrent error
+conditions (review feedback from Julia F).
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 87 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_devcoredump.h |  6 ++
- 2 files changed, 93 insertions(+)
+ .../drm/xe/abi/guc_communication_ctb_abi.h    |   1 +
+ drivers/gpu/drm/xe/xe_guc.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                | 320 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_ct.h                |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct_types.h          |  23 ++
+ 5 files changed, 318 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 2690f1d1cde4..0884c49942fe 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -6,6 +6,7 @@
- #include "xe_devcoredump.h"
- #include "xe_devcoredump_types.h"
+diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+index 8f86a16dc577..f58198cf2cf6 100644
+--- a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+@@ -52,6 +52,7 @@ struct guc_ct_buffer_desc {
+ #define GUC_CTB_STATUS_OVERFLOW				(1 << 0)
+ #define GUC_CTB_STATUS_UNDERFLOW			(1 << 1)
+ #define GUC_CTB_STATUS_MISMATCH				(1 << 2)
++#define GUC_CTB_STATUS_DISABLED				(1 << 3)
+ 	u32 reserved[13];
+ } __packed;
+ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index fa2b4ae1257a..b867f30847e5 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1180,7 +1180,7 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
  
-+#include <linux/ascii85.h>
- #include <linux/devcoredump.h>
- #include <generated/utsrelease.h>
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
  
-@@ -315,3 +316,89 @@ int xe_devcoredump_init(struct xe_device *xe)
+-	xe_guc_ct_print(&guc->ct, p, false);
++	xe_guc_ct_print(&guc->ct, p);
+ 	xe_guc_submit_print(guc, p);
  }
  
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index a63fe0a9077a..90701fd465c9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -25,12 +25,48 @@
+ #include "xe_gt_sriov_pf_monitor.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_guc.h"
++#include "xe_guc_log.h"
+ #include "xe_guc_relay.h"
+ #include "xe_guc_submit.h"
+ #include "xe_map.h"
+ #include "xe_pm.h"
+ #include "xe_trace_guc.h"
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++enum {
++	/* Internal states, not error conditions */
++	CT_DEAD_STATE_REARM,			/* 0x0001 */
++	CT_DEAD_STATE_CAPTURE,			/* 0x0002 */
 +
-+/**
-+ * xe_print_blob_ascii85 - print a BLOB to some useful location in ASCII85
-+ *
-+ * The output is split to multiple lines because some print targets, e.g. dmesg
-+ * cannot handle arbitrarily long lines. Note also that printing to dmesg in
-+ * piece-meal fashion is not possible, each separate call to drm_puts() has a
-+ * line-feed automatically added! Therefore, the entire output line must be
-+ * constructed in a local buffer first, then printed in one atomic output call.
-+ *
-+ * There is also a scheduler yield call to prevent the 'task has been stuck for
-+ * 120s' kernel hang check feature from firing when printing to a slow target
-+ * such as dmesg over a serial port.
-+ *
-+ * TODO: Add compression prior to the ASCII85 encoding to shrink huge buffers down.
-+ *
-+ * @p: the printer object to output to
-+ * @prefix: optional prefix to add to output string
-+ * @blob: the Binary Large OBject to dump out
-+ * @offset: offset in bytes to skip from the front of the BLOB, must be a multiple of sizeof(u32)
-+ * @size: the size in bytes of the BLOB, must be a multiple of sizeof(u32)
-+ */
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+			   const void *blob, size_t offset, size_t size)
-+{
-+	const u32 *blob32 = (const u32 *)blob;
-+	char buff[ASCII85_BUFSZ], *line_buff;
-+	size_t line_pos = 0;
++	/* Error conditions */
++	CT_DEAD_SETUP,				/* 0x0004 */
++	CT_DEAD_H2G_WRITE,			/* 0x0008 */
++	CT_DEAD_H2G_HAS_ROOM,			/* 0x0010 */
++	CT_DEAD_G2H_READ,			/* 0x0020 */
++	CT_DEAD_G2H_RECV,			/* 0x0040 */
++	CT_DEAD_G2H_RELEASE,			/* 0x0080 */
++	CT_DEAD_DEADLOCK,			/* 0x0100 */
++	CT_DEAD_PROCESS_FAILED,			/* 0x0200 */
++	CT_DEAD_FAST_G2H,			/* 0x0400 */
++	CT_DEAD_PARSE_G2H_RESPONSE,		/* 0x0800 */
++	CT_DEAD_PARSE_G2H_UNKNOWN,		/* 0x1000 */
++	CT_DEAD_PARSE_G2H_ORIGIN,		/* 0x2000 */
++	CT_DEAD_PARSE_G2H_TYPE,			/* 0x4000 */
++};
 +
-+#define DMESG_MAX_LINE_LEN	800
-+#define MIN_SPACE		(ASCII85_BUFSZ + 2)		/* 85 + "\n\0" */
++static void ct_dead_worker_func(struct work_struct *w);
++static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code);
 +
-+	if (size & 3)
-+		drm_printf(p, "Size not word aligned: %zu", size);
-+	if (offset & 3)
-+		drm_printf(p, "Offset not word aligned: %zu", size);
++#define CT_DEAD(ct, ctb, reason_code)		ct_dead_capture((ct), (ctb), CT_DEAD_##reason_code)
++#else
++#define CT_DEAD(ct, ctb, reason)			\
++	do {						\
++		struct guc_ctb *_ctb = (ctb);		\
++		if (_ctb)				\
++			_ctb->info.broken = true;	\
++	} while (0)
++#endif
 +
-+	line_buff = kzalloc(DMESG_MAX_LINE_LEN, GFP_KERNEL);
-+	if (IS_ERR_OR_NULL(line_buff)) {
-+		drm_printf(p, "Failed to allocate line buffer: %pe", line_buff);
+ /* Used when a CT send wants to block and / or receive data */
+ struct g2h_fence {
+ 	u32 *response_buffer;
+@@ -183,6 +219,10 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 	xa_init(&ct->fence_lookup);
+ 	INIT_WORK(&ct->g2h_worker, g2h_worker_func);
+ 	INIT_DELAYED_WORK(&ct->safe_mode_worker, safe_mode_worker_func);
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++	spin_lock_init(&ct->dead.lock);
++	INIT_WORK(&ct->dead.worker, ct_dead_worker_func);
++#endif
+ 	init_waitqueue_head(&ct->wq);
+ 	init_waitqueue_head(&ct->g2h_fence_wq);
+ 
+@@ -419,10 +459,22 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 	if (ct_needs_safe_mode(ct))
+ 		ct_enter_safe_mode(ct);
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++	/*
++	 * The CT has now been reset so the dumper can be re-armed
++	 * after any existing dead state has been dumped.
++	 */
++	spin_lock_irq(&ct->dead.lock);
++	if (ct->dead.reason)
++		ct->dead.reason |= CT_DEAD_STATE_REARM;
++	spin_unlock_irq(&ct->dead.lock);
++#endif
++
+ 	return 0;
+ 
+ err_out:
+ 	xe_gt_err(gt, "Failed to enable GuC CT (%pe)\n", ERR_PTR(err));
++	CT_DEAD(ct, NULL, SETUP);
+ 
+ 	return err;
+ }
+@@ -466,6 +518,19 @@ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+ 
+ 	if (cmd_len > h2g->info.space) {
+ 		h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
++
++		if (h2g->info.head > h2g->info.size) {
++			struct xe_device *xe = ct_to_xe(ct);
++			u32 desc_status = desc_read(xe, h2g, status);
++
++			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
++
++			xe_gt_err(ct_to_gt(ct), "CT: invalid head offset %u >= %u)\n",
++				  h2g->info.head, h2g->info.size);
++			CT_DEAD(ct, h2g, H2G_HAS_ROOM);
++			return false;
++		}
++
+ 		h2g->info.space = CIRC_SPACE(h2g->info.tail, h2g->info.head,
+ 					     h2g->info.size) -
+ 				  h2g->info.resv_space;
+@@ -521,10 +586,24 @@ static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
+ 
+ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
+ {
++	bool bad = false;
++
+ 	lockdep_assert_held(&ct->fast_lock);
+-	xe_gt_assert(ct_to_gt(ct), ct->ctbs.g2h.info.space + g2h_len <=
+-		     ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
+-	xe_gt_assert(ct_to_gt(ct), ct->g2h_outstanding);
++
++	bad = ct->ctbs.g2h.info.space + g2h_len >
++		     ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space;
++	bad |= !ct->g2h_outstanding;
++
++	if (bad) {
++		xe_gt_err(ct_to_gt(ct), "Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
++			  ct->ctbs.g2h.info.space, g2h_len,
++			  ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
++			  ct->ctbs.g2h.info.space + g2h_len,
++			  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
++			  ct->g2h_outstanding);
++		CT_DEAD(ct, &ct->ctbs.g2h, G2H_RELEASE);
 +		return;
 +	}
+ 
+ 	ct->ctbs.g2h.info.space += g2h_len;
+ 	if (!--ct->g2h_outstanding)
+@@ -551,12 +630,43 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	u32 full_len;
+ 	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
+ 							 tail * sizeof(u32));
++	u32 desc_status;
+ 
+ 	full_len = len + GUC_CTB_HDR_LEN;
+ 
+ 	lockdep_assert_held(&ct->lock);
+ 	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
+-	xe_gt_assert(gt, tail <= h2g->info.size);
 +
-+	blob32 += offset / sizeof(*blob32);
-+	size /= sizeof(*blob32);
-+
-+	if (prefix) {
-+		strscpy(line_buff, prefix, DMESG_MAX_LINE_LEN - MIN_SPACE - 2);
-+		line_pos = strlen(line_buff);
-+
-+		line_buff[line_pos++] = ':';
-+		line_buff[line_pos++] = ' ';
++	desc_status = desc_read(xe, h2g, status);
++	if (desc_status) {
++		xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
++		goto corrupted;
 +	}
 +
-+	while (size--) {
-+		u32 val = *(blob32++);
++	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
++		u32 desc_tail = desc_read(xe, h2g, tail);
++		u32 desc_head = desc_read(xe, h2g, head);
 +
-+		strscpy(line_buff + line_pos, ascii85_encode(val, buff),
-+			DMESG_MAX_LINE_LEN - line_pos);
-+		line_pos += strlen(line_buff + line_pos);
++		if (tail != desc_tail) {
++			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_MISMATCH);
++			xe_gt_err(gt, "CT write: tail was modified %u != %u\n", desc_tail, tail);
++			goto corrupted;
++		}
 +
-+		if ((line_pos + MIN_SPACE) >= DMESG_MAX_LINE_LEN) {
-+			line_buff[line_pos++] = '\n';
-+			line_buff[line_pos++] = 0;
++		if (tail > h2g->info.size) {
++			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
++			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
++				  tail, h2g->info.size);
++			goto corrupted;
++		}
 +
-+			drm_puts(p, line_buff);
++		if (desc_head >= h2g->info.size) {
++			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
++			xe_gt_err(gt, "CT write: invalid head offset %u >= %u)\n",
++				  desc_head, h2g->info.size);
++			goto corrupted;
++		}
++	}
+ 
+ 	/* Command will wrap, zero fill (NOPs), return and check credits again */
+ 	if (tail + full_len > h2g->info.size) {
+@@ -609,6 +719,10 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 			     desc_read(xe, h2g, head), h2g->info.tail);
+ 
+ 	return 0;
 +
-+			line_pos = 0;
++corrupted:
++	CT_DEAD(ct, &ct->ctbs.h2g, H2G_WRITE);
++	return -EPIPE;
+ }
+ 
+ /*
+@@ -720,7 +834,6 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_gt *gt = ct_to_gt(ct);
+-	struct drm_printer p = xe_gt_info_printer(gt);
+ 	unsigned int sleep_period_ms = 1;
+ 	int ret;
+ 
+@@ -773,8 +886,13 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 			goto broken;
+ #undef g2h_avail
+ 
+-		if (dequeue_one_g2h(ct) < 0)
++		ret = dequeue_one_g2h(ct);
++		if (ret < 0) {
++			if (ret != -ECANCELED)
++				xe_gt_err(ct_to_gt(ct), "CTB receive failed (%pe)",
++					  ERR_PTR(ret));
+ 			goto broken;
++		}
+ 
+ 		goto try_again;
+ 	}
+@@ -783,8 +901,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 
+ broken:
+ 	xe_gt_err(gt, "No forward process on H2G, reset required\n");
+-	xe_guc_ct_print(ct, &p, true);
+-	ct->ctbs.h2g.info.broken = true;
++	CT_DEAD(ct, &ct->ctbs.h2g, DEADLOCK);
+ 
+ 	return -EDEADLK;
+ }
+@@ -1011,6 +1128,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		else
+ 			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
+ 				  type, fence);
++		CT_DEAD(ct, NULL, PARSE_G2H_RESPONSE);
+ 
+ 		return -EPROTO;
+ 	}
+@@ -1019,8 +1137,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	if (unlikely(!g2h_fence)) {
+ 		/* Don't tear down channel, as send could've timed out */
+ 		xe_gt_warn(gt, "G2H fence (%u) not found!\n", fence);
++		CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN);
+ 		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
+-		return 0;
++		return -EPROTO;
+ 	}
+ 
+ 	xe_gt_assert(gt, fence == g2h_fence->seqno);
+@@ -1062,7 +1181,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
+ 		xe_gt_err(gt, "G2H channel broken on read, origin=%u, reset required\n",
+ 			  origin);
+-		ct->ctbs.g2h.info.broken = true;
++		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_ORIGIN);
+ 
+ 		return -EPROTO;
+ 	}
+@@ -1080,7 +1199,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	default:
+ 		xe_gt_err(gt, "G2H channel broken on read, type=%u, reset required\n",
+ 			  type);
+-		ct->ctbs.g2h.info.broken = true;
++		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_TYPE);
+ 
+ 		ret = -EOPNOTSUPP;
+ 	}
+@@ -1157,9 +1276,11 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
+ 	}
+ 
+-	if (ret)
++	if (ret) {
+ 		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
+ 			  action, ERR_PTR(ret));
++		CT_DEAD(ct, NULL, PROCESS_FAILED);
++	}
+ 
+ 	return 0;
+ }
+@@ -1169,7 +1290,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_gt *gt = ct_to_gt(ct);
+ 	struct guc_ctb *g2h = &ct->ctbs.g2h;
+-	u32 tail, head, len;
++	u32 tail, head, len, desc_status;
+ 	s32 avail;
+ 	u32 action;
+ 	u32 *hxg;
+@@ -1188,6 +1309,50 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 
+ 	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
+ 
++	desc_status = desc_read(xe, g2h, status);
++	if (desc_status) {
++		if (desc_status & GUC_CTB_STATUS_DISABLED) {
++			/*
++			 * Potentially valid if a CLIENT_RESET request resulted in
++			 * contexts/engines being reset. But should never happen as
++			 * no contexts should be active when CLIENT_RESET is sent.
++			 */
++			xe_gt_err(gt, "CT read: unexpected G2H after GuC has stopped!\n");
++			desc_status &= ~GUC_CTB_STATUS_DISABLED;
++		}
 +
-+			/* Prevent 'stuck thread' time out errors */
-+			cond_resched();
++		if (desc_status) {
++			xe_gt_err(gt, "CT read: non-zero status: %u\n", desc_status);
++			goto corrupted;
 +		}
 +	}
 +
-+	if (line_pos) {
-+		line_buff[line_pos++] = '\n';
-+		line_buff[line_pos++] = 0;
++	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
++		u32 desc_tail = desc_read(xe, g2h, tail);
++		u32 desc_head = desc_read(xe, g2h, head);
 +
-+		drm_puts(p, line_buff);
++		if (g2h->info.head != desc_head) {
++			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_MISMATCH);
++			xe_gt_err(gt, "CT read: head was modified %u != %u\n",
++				  desc_head, g2h->info.head);
++			goto corrupted;
++		}
++
++		if (g2h->info.head > g2h->info.size) {
++			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
++			xe_gt_err(gt, "CT read: head out of range: %u vs %u\n",
++				  g2h->info.head, g2h->info.size);
++			goto corrupted;
++		}
++
++		if (desc_tail >= g2h->info.size) {
++			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
++			xe_gt_err(gt, "CT read: invalid tail offset %u >= %u)\n",
++				  desc_tail, g2h->info.size);
++			goto corrupted;
++		}
 +	}
 +
-+	kfree(line_buff);
-+
-+#undef MIN_SPACE
-+#undef DMESG_MAX_LINE_LEN
-+}
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
-index e2fa65ce0932..a4eebc285fc8 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.h
-@@ -6,6 +6,9 @@
- #ifndef _XE_DEVCOREDUMP_H_
- #define _XE_DEVCOREDUMP_H_
+ 	/* Calculate DW available to read */
+ 	tail = desc_read(xe, g2h, tail);
+ 	avail = tail - g2h->info.head;
+@@ -1204,9 +1369,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 	if (len > avail) {
+ 		xe_gt_err(gt, "G2H channel broken on read, avail=%d, len=%d, reset required\n",
+ 			  avail, len);
+-		g2h->info.broken = true;
+-
+-		return -EPROTO;
++		goto corrupted;
+ 	}
  
-+#include <linux/types.h>
-+
-+struct drm_printer;
- struct xe_device;
- struct xe_sched_job;
+ 	head = (g2h->info.head + 1) % g2h->info.size;
+@@ -1252,6 +1415,10 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 			     action, len, g2h->info.head, tail);
  
-@@ -23,4 +26,7 @@ static inline int xe_devcoredump_init(struct xe_device *xe)
+ 	return len;
++
++corrupted:
++	CT_DEAD(ct, &ct->ctbs.g2h, G2H_READ);
++	return -EPROTO;
  }
- #endif
  
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+			   const void *blob, size_t offset, size_t size);
+ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+@@ -1278,9 +1445,11 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		xe_gt_warn(gt, "NOT_POSSIBLE");
+ 	}
+ 
+-	if (ret)
++	if (ret) {
+ 		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
+ 			  action, ERR_PTR(ret));
++		CT_DEAD(ct, NULL, FAST_G2H);
++	}
+ }
+ 
+ /**
+@@ -1340,7 +1509,6 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+ 
+ static void receive_g2h(struct xe_guc_ct *ct)
+ {
+-	struct xe_gt *gt = ct_to_gt(ct);
+ 	bool ongoing;
+ 	int ret;
+ 
+@@ -1377,9 +1545,8 @@ static void receive_g2h(struct xe_guc_ct *ct)
+ 		mutex_unlock(&ct->lock);
+ 
+ 		if (unlikely(ret == -EPROTO || ret == -EOPNOTSUPP)) {
+-			struct drm_printer p = xe_gt_info_printer(gt);
+-
+-			xe_guc_ct_print(ct, &p, false);
++			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d", ret);
++			CT_DEAD(ct, NULL, G2H_RECV);
+ 			kick_reset(ct);
+ 		}
+ 	} while (ret == 1);
+@@ -1407,9 +1574,8 @@ static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
+ 
+ 	snapshot->cmds = kmalloc_array(ctb->info.size, sizeof(u32),
+ 				       atomic ? GFP_ATOMIC : GFP_KERNEL);
+-
+ 	if (!snapshot->cmds) {
+-		drm_err(&xe->drm, "Skipping CTB commands snapshot. Only CTB info will be available.\n");
++		drm_err(&xe->drm, "Skipping CTB commands snapshot. Only CT info will be available.\n");
+ 		return;
+ 	}
+ 
+@@ -1490,7 +1656,7 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
+ 			   atomic ? GFP_ATOMIC : GFP_KERNEL);
+ 
+ 	if (!snapshot) {
+-		drm_err(&xe->drm, "Skipping CTB snapshot entirely.\n");
++		xe_gt_err(ct_to_gt(ct), "Skipping CTB snapshot entirely.\n");
+ 		return NULL;
+ 	}
+ 
+@@ -1554,16 +1720,114 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
+  * xe_guc_ct_print - GuC CT Print.
+  * @ct: GuC CT.
+  * @p: drm_printer where it will be printed out.
+- * @atomic: Boolean to indicate if this is called from atomic context like
+- * reset or CTB handler or from some regular path like debugfs.
+  *
+  * This function quickly capture a snapshot and immediately print it out.
+  */
+-void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool atomic)
++void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p)
+ {
+ 	struct xe_guc_ct_snapshot *snapshot;
+ 
+-	snapshot = xe_guc_ct_snapshot_capture(ct, atomic);
++	snapshot = xe_guc_ct_snapshot_capture(ct, false);
+ 	xe_guc_ct_snapshot_print(snapshot, p);
+ 	xe_guc_ct_snapshot_free(snapshot);
+ }
 +
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
++{
++	struct xe_guc_log_snapshot *snapshot_log;
++	struct xe_guc_ct_snapshot *snapshot_ct;
++	struct xe_guc *guc = ct_to_guc(ct);
++	unsigned long flags;
++	bool have_capture;
++
++	if (ctb)
++		ctb->info.broken = true;
++
++	/* Ignore further errors after the first dump until a reset */
++	if (ct->dead.reported)
++		return;
++
++	spin_lock_irqsave(&ct->dead.lock, flags);
++
++	/* And only capture one dump at a time */
++	have_capture = ct->dead.reason & CT_DEAD_STATE_CAPTURE;
++	ct->dead.reason |= (1 << reason_code) |
++			   (1 << CT_DEAD_STATE_CAPTURE);
++
++	spin_unlock_irqrestore(&ct->dead.lock, flags);
++
++	if (have_capture)
++		return;
++
++	snapshot_log = xe_guc_log_snapshot_capture(&guc->log, true);
++	snapshot_ct = xe_guc_ct_snapshot_capture((ct), true);
++
++	spin_lock_irqsave(&ct->dead.lock, flags);
++
++	if (ct->dead.snapshot_log || ct->dead.snapshot_ct) {
++		xe_gt_err(ct_to_gt(ct), "Got unexpected dead CT capture!\n");
++		xe_guc_log_snapshot_free(snapshot_log);
++		xe_guc_ct_snapshot_free(snapshot_ct);
++	} else {
++		ct->dead.snapshot_log = snapshot_log;
++		ct->dead.snapshot_ct = snapshot_ct;
++	}
++
++	spin_unlock_irqrestore(&ct->dead.lock, flags);
++
++	queue_work(system_unbound_wq, &(ct)->dead.worker);
++}
++
++static void ct_dead_print(struct xe_dead_ct *dead)
++{
++	struct xe_guc_ct *ct = container_of(dead, struct xe_guc_ct, dead);
++	struct xe_device *xe = ct_to_xe(ct);
++	struct xe_gt *gt = ct_to_gt(ct);
++	static int g_count;
++	struct drm_printer ip = xe_gt_info_printer(gt);
++	struct drm_printer lp = drm_line_printer(&ip, "Capture", ++g_count);
++
++	if (!dead->reason) {
++		xe_gt_err(gt, "CTB is dead for no reason!?\n");
++		return;
++	}
++
++	drm_printf(&lp, "CTB is dead - reason=0x%X\n", dead->reason);
++
++	/* Can't generate a genuine core dump at this point, so just do the good bits */
++	drm_printf(&lp, "**** Xe Device Coredump ****\n");
++	xe_device_snapshot_print(xe, &lp);
++	drm_printf(&lp, "**** GuC Log ****\n");
++	xe_guc_log_snapshot_print(dead->snapshot_log, &lp);
++	drm_printf(&lp, "**** GuC CT ****\n");
++	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp);
++
++	drm_printf(&lp, "Done.\n");
++}
++
++static void ct_dead_worker_func(struct work_struct *w)
++{
++	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, dead.worker);
++
++	if (!ct->dead.reported) {
++		ct->dead.reported = true;
++		ct_dead_print(&ct->dead);
++	}
++
++	spin_lock_irq(&ct->dead.lock);
++
++	xe_guc_log_snapshot_free(ct->dead.snapshot_log);
++	ct->dead.snapshot_log = NULL;
++	xe_guc_ct_snapshot_free(ct->dead.snapshot_ct);
++	ct->dead.snapshot_ct = NULL;
++
++	if (ct->dead.reason & CT_DEAD_STATE_REARM) {
++		/* A reset has occurred so re-arm the error reporting */
++		ct->dead.reason = 0;
++		ct->dead.reported = false;
++	}
++
++	spin_unlock_irq(&ct->dead.lock);
++}
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 190202fce2d0..293041bed7ed 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -21,7 +21,7 @@ xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
+ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
+ 			      struct drm_printer *p);
+ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
+-void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool atomic);
++void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p);
+ 
+ static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index 761cb9031298..85e127ec91d7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -86,6 +86,24 @@ enum xe_guc_ct_state {
+ 	XE_GUC_CT_STATE_ENABLED,
+ };
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++/** struct xe_dead_ct - Information for debugging a dead CT */
++struct xe_dead_ct {
++	/** @lock: protects memory allocation/free operations, and @reason updates */
++	spinlock_t lock;
++	/** @reason: bit mask of CT_DEAD_* reason codes */
++	unsigned int reason;
++	/** @reported: for preventing multiple dumps per error sequence */
++	bool reported;
++	/** @worker: worker thread to get out of interrupt context before dumping */
++	struct work_struct worker;
++	/** snapshot_ct: copy of CT state and CTB content at point of error */
++	struct xe_guc_ct_snapshot *snapshot_ct;
++	/** snapshot_log: copy of GuC log at point of error */
++	struct xe_guc_log_snapshot *snapshot_log;
++};
++#endif
++
+ /**
+  * struct xe_guc_ct - GuC command transport (CT) layer
+  *
+@@ -128,6 +146,11 @@ struct xe_guc_ct {
+ 	u32 msg[GUC_CTB_MSG_MAX_LEN];
+ 	/** @fast_msg: Message buffer */
+ 	u32 fast_msg[GUC_CTB_MSG_MAX_LEN];
++
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++	/** @dead: information for debugging dead CTs */
++	struct xe_dead_ct dead;
++#endif
+ };
+ 
  #endif
 -- 
 2.46.0
