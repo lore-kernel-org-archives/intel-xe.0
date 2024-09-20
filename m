@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB00C78830
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 12:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E708C78830
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 12:39:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FEB510E830;
-	Fri, 20 Sep 2024 12:34:55 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 644CB10E82F;
- Fri, 20 Sep 2024 12:34:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEB4B10E82F;
+	Fri, 20 Sep 2024 12:39:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EOemehYx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC86610E82F
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 12:39:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726835998; x=1758371998;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=umP9Eh3HHtH+2RE7AoiWYIkD8ktJgdL3V3Hkgr4Mwgs=;
+ b=EOemehYxSlK8IleP5E4dAq2A9hoIg7icH/Ia3eGCSRwbgvJVk7RBFPam
+ 2MwxLIr4CWauZTsh88wtKTlGZrJ6D0+9haFORBJAtVEUWnkLEZ2Is6Zb+
+ U/kHhgFuchIsxMIZMsixUJ+6xM2i7Kvk98hLP4U5eL5FQfLUm3sNE8+Xs
+ JYQ7yV8wUWF+7kHYK9kDA61zFlpX8CniI1guLf2lr79J/jZv3fz7lfHb3
+ TlmSjaNzxP3rLpIhd0da0F4NE3aRQb6unxwxq80/HDFrtPFSfAIDxily9
+ dmJ58/FQfFHv237GagHV9loaFYY2svSq1HIAvB36eqWvjdlTF0ZzeB7GV g==;
+X-CSE-ConnectionGUID: Pjt/XhzMTGmxgirl0VTfhw==
+X-CSE-MsgGUID: zWMav/4iQSOvsFyVDll5xw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="26023949"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="26023949"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2024 05:39:57 -0700
+X-CSE-ConnectionGUID: YrW+I/n3SfmdJl1aGMzDmg==
+X-CSE-MsgGUID: 12CzCK0cSwe6JVIHthg97Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="70416793"
+Received: from opintica-mobl1 (HELO mwauld-desk.intel.com) ([10.245.245.19])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2024 05:39:56 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] drm/xe/guc_submit: fix UAF in run_job()
+Date: Fri, 20 Sep 2024 13:38:07 +0100
+Message-ID: <20240920123806.176709-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/dp=3A_clean_up_?=
- =?utf-8?q?DP_testing?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Sep 2024 12:34:54 -0000
-Message-ID: <172683569440.1050690.17043152654632978112@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1726833193.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1726833193.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +62,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The initial kref from dma_fence_init() should match up with whatever
+signals the fence, however here we are submitting the job first to the
+hw and only then grabbing the extra ref and even then we touch some
+fence state before this. This might be too late if the fence is
+signalled before we can grab the extra ref. Rather always grab the
+refcount early before we do the submission part.
 
-Series: drm/i915/dp: clean up DP testing
-URL   : https://patchwork.freedesktop.org/series/138918/
-State : warning
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2811
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 128ccc5f71d7b9d84ce8f0651aa713ae490f4990
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index fbbe6a487bbb..b33f3d23a068 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -766,12 +766,15 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	bool lr = xe_exec_queue_is_lr(q);
++	struct dma_fence *fence;
+ 
+ 	xe_assert(xe, !(exec_queue_destroyed(q) || exec_queue_pending_disable(q)) ||
+ 		  exec_queue_banned(q) || exec_queue_suspended(q));
+ 
+ 	trace_xe_sched_job_run(job);
+ 
++	dma_fence_get(job->fence);
++
+ 	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
+ 		if (!exec_queue_registered(q))
+ 			register_exec_queue(q);
+@@ -782,12 +785,16 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 
+ 	if (lr) {
+ 		xe_sched_job_set_error(job, -EOPNOTSUPP);
+-		return NULL;
++		fence = NULL;
+ 	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
+-		return job->fence;
++		fence = job->fence;
+ 	} else {
+-		return dma_fence_get(job->fence);
++		fence = dma_fence_get(job->fence);
+ 	}
++
++	dma_fence_put(job->fence);
++
++	return fence;
+ }
+ 
+ static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
+-- 
+2.46.0
 
