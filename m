@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B925CF9C68
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 22:34:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3A4CCF9C68
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 22:35:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5643110E002;
-	Fri, 20 Sep 2024 22:34:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 809B310E002;
+	Fri, 20 Sep 2024 22:35:04 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 442B110E002;
- Fri, 20 Sep 2024 22:34:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8BAF10E002;
+ Fri, 20 Sep 2024 22:35:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Post-mi?=
- =?utf-8?q?gration_recovery_worker_basis?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/vf=3A_Post-migrati?=
+ =?utf-8?q?on_recovery_worker_basis?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tomasz Lis" <tomasz.lis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Sep 2024 22:34:45 -0000
-Message-ID: <172687168527.1052288.15608543993362506628@2413ebb6fbb6>
+Date: Fri, 20 Sep 2024 22:35:02 -0000
+Message-ID: <172687170294.1052286.7545988146252219928@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240920222926.846985-1-tomasz.lis@intel.com>
 In-Reply-To: <20240920222926.846985-1-tomasz.lis@intel.com>
@@ -44,16 +44,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/vf: Post-migration recovery worker basis
 URL   : https://patchwork.freedesktop.org/series/138935/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: caa511d74cfe drm-tip: 2024y-09m-20d-20h-39m-19s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vf: React to MIGRATED interrupt
-Applying: drm/xe/vf: Send RESFIX_DONE message at end of VF restore
-Applying: drm/xe/vf: Start post-migration fixups with GuC MMIO handshake
-Applying: drm/xe/vf: Defer fixups if migrated twice fast
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0254b7b8013a737605c0b11d97e60a2ca2bd2a25
+Author: Tomasz Lis <tomasz.lis@intel.com>
+Date:   Sat Sep 21 00:29:26 2024 +0200
+
+    drm/xe/vf: Defer fixups if migrated twice fast
+    
+    If another VF migration happened during post-migration recovery,
+    then the current worker should be finished to allow the next
+    one start swiftly and cleanly.
+    
+    Check for defer in two places: before fixups, and before
+    sending RESFIX_DONE.
+    
+    Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
++ /mt/dim checkpatch caa511d74cfe1960912443997a75a3e4abc67dbb drm-intel
+8e2bd615ae9e drm/xe/vf: React to MIGRATED interrupt
+-:141: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#141: 
+new file mode 100644
+
+-:196: WARNING:MEMORY_BARRIER: memory barrier without comment
+#196: FILE: drivers/gpu/drm/xe/xe_sriov_vf.c:51:
++	smp_mb();
+
+-:220: WARNING:MEMORY_BARRIER: memory barrier without comment
+#220: FILE: drivers/gpu/drm/xe/xe_sriov_vf.c:75:
++	smp_mb__after_atomic();
+
+total: 0 errors, 3 warnings, 0 checks, 181 lines checked
+2b5e1048a020 drm/xe/vf: Send RESFIX_DONE message at end of VF restore
+daf267332301 drm/xe/vf: Start post-migration fixups with GuC MMIO handshake
+0254b7b8013a drm/xe/vf: Defer fixups if migrated twice fast
 
 
