@@ -4,25 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAFF9CF9C65
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 19:01:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 507DFCF9C5F
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 19:07:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5535A10E134;
-	Fri, 20 Sep 2024 19:01:07 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50B5910E85C
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 19:01:06 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 2/2] drm/xe: Use XE_BO_FLAG_NEEDS_WC_CPU for DSB
-Date: Fri, 20 Sep 2024 21:01:07 +0200
-Message-ID: <20240920190107.156914-2-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240920190107.156914-1-maarten.lankhorst@linux.intel.com>
-References: <20240920190107.156914-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15E7910E05A;
+	Fri, 20 Sep 2024 19:07:19 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE73E10E05A;
+ Fri, 20 Sep 2024 19:07:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/2=5D_drm/xe=3A_Add_XE=5FBO=5FFLAG=5FNEEDS=5FWC=5FCPU_and_un?=
+ =?utf-8?q?ify_mapping_for_page_tables=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Sep 2024 19:07:18 -0000
+Message-ID: <172685923877.1051941.2326422992817025960@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240920190107.156914-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240920190107.156914-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,30 +37,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have an explicit flag, we can stop abusing the scanout flag
-for this.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: series starting with [1/2] drm/xe: Add XE_BO_FLAG_NEEDS_WC_CPU and unify mapping for page tables.
+URL   : https://patchwork.freedesktop.org/series/138932/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-index 9f941fc2e36b..59c5aedefc25 100644
---- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-+++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-@@ -47,7 +47,7 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
- 				   NULL, PAGE_ALIGN(size),
- 				   ttm_bo_type_kernel,
- 				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
--				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
-+				   XE_BO_FLAG_NEEDS_WC_CPU | XE_BO_FLAG_GGTT);
- 	if (IS_ERR(obj)) {
- 		kfree(vma);
- 		return false;
--- 
-2.45.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 128ccc5f71d7 drm-tip: 2024y-09m-20d-07h-32m-33s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Add XE_BO_FLAG_NEEDS_WC_CPU and unify mapping for page tables.
+Applying: drm/xe: Use XE_BO_FLAG_NEEDS_WC_CPU for DSB
+
 
