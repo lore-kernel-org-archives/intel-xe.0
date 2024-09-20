@@ -4,185 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E37D8CF9C62
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 20:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC395CF9C5F
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 20:26:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7283310E2B4;
-	Fri, 20 Sep 2024 20:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B739210E300;
+	Fri, 20 Sep 2024 20:26:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="biQojYLN";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IzqRU490";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB01C10E2B4
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 20:07:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726862841; x=1758398841;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=9ZCNyjzlrehJKOcyz96haSBN13kMFFXauA8tJO3K7wo=;
- b=biQojYLNF3yTWi32m2fPFXJaOeJsjbkOxb6URsINVCskWemEwjZQBhSo
- bWeXG5aWY2ZpgZcWs++UAVdiIaikaN1xrx4MKax6YupXt67E7er3ITCiK
- YoQWp3CJVVzD/ISqTgehq+ikqTLNcMaN8MOqUwKsQ2HknTLle25cVJUNy
- i/jY6XpS9TjT84N1OLCfHU7THNpr43tzYTdJgotHVOT2UwtWZpaLPUrGf
- Z4VYI0SHnV/w8Kc6tszgCHh+r+3ciWZQpef0QPmfh7CughFZS4Xznd1wG
- qqANrPEa1DlFp4nRn1bfBM2X4g0tOEq4tdsbBzbWdqVRc5B9m89VD3Ffq w==;
-X-CSE-ConnectionGUID: mSqE96AVR4qARo+T8ESe+A==
-X-CSE-MsgGUID: 9SSFTrsyQ9CSlpV5zThAkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11201"; a="26068914"
-X-IronPort-AV: E=Sophos;i="6.10,245,1719903600"; d="scan'208";a="26068914"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 13:06:44 -0700
-X-CSE-ConnectionGUID: m6dH65HBQWGFD5xFP5IgIw==
-X-CSE-MsgGUID: EEAXmqv/Q/SAAgcRGO7bzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,245,1719903600"; d="scan'208";a="101144695"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Sep 2024 13:06:44 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 20 Sep 2024 13:06:43 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 20 Sep 2024 13:06:43 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 20 Sep 2024 13:06:43 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 20 Sep 2024 13:06:41 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2075.outbound.protection.outlook.com [40.107.95.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1502410E2B4;
+ Fri, 20 Sep 2024 20:26:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FfOd2QP0xR+hbo5+ZKf1C+TORdesaHoHbUSQApFB6UhQkZ65wTVN6Ak3TtGyclszo7VEqDC3lyBRwGrd4RQrYx3MKDnr0o1s6D/1XTGsd7OFv7huqSGRBmANx9NmG8Sa56RHrm3TsF5lcWOfas1M7rdLmNalsKmppxk1etvz4fxRGO8xIrgAdVDFnPOosEW3I6Tf+yMC9gWeTv/C3KeY19IW4EX3v1Bw6xlgTb1hTbClic9zmyh5qODgzQfpc3pJT4Kc1fWcuo/hglXx9qgIrirhcNTqF+0fX0nzM75OL+AUd7Vp5AisyRBMKtqLvNrqejxBpTnpxd5x1dNSAIWnAg==
+ b=UXqCgdm07jiufBEfrA55ZIKNGZoNk8oEcX085c4l/LQutmjNMZNHUuodRIIZHoILs/5fA+vYtVKp0LoLl4rBYtcUaQ72gk/ia6dJU2ebs8x0dwTi8aG1Rlm1mvos03KOBOXwiFstRVd723kO8IQ58IvHjeidBMMpC2JYLloWVflj4T3p+TpfrLnerE8wrPFJ5FY6jRMHMDH1FEwt+mgq2XLSOoXog1Os3lAat8mTMkD1708QnOH2sASKp0HrXaVzSq2Sqe43oPBC7ODet5WkaluEu/kyz8zDTH1p84buyk+YJf7C0ZvR1WQheJ80VjVhTMKC5EUt+u5A7iqrrq9+rQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gozIah+tsg1IpLgWG0XhI1sQAAY0xb743MnEW7lL1aU=;
- b=S2z+AgXrd4FPAIG0GStXAShTeFmsBnHlVgg02anwmXGFj1DuRNvnegsp7nXJMXwzB7ZcPtm5CkwYhsQNoZAL5fXr1VDRpEyOfugcDzUeecYc04us6+RZFhxl+Ot1Mjo5IlUxsPG7Go6ozajGhdO/2GchmjgdN0RHWgqEcksBAWL6wMgnlzugh2ulUClGgED8itwqc5uuSkJXb374UzTiSPSYJs63FDhfdIvYihVeqxvKHfmWKm/sQq7its5HUzv2cKZsEynbln6O/dC0zFmtqmt9pmS6piB3GgTcQTmhsQ9j/S0qTYOxexCOig6znNEjjXhZmH5qxVF447mg8ZVNrA==
+ bh=IvBLUGoTv9qDcdBjMpdKjYLOu4SMXrqqieJu20MSiLI=;
+ b=Th5YM6S8tOCohhYlsK7b3pO9NJG+tV3YckaeLylA/+DofDEfDeaDrbWUTLy0ir9VHn1e058kpUwdd+P1HvO+uTvylPZleQetSXTEdUq6Vv16sgYoRqckev1DOa1eJWm/LdUExMHPWGdsPzrIOlobtLpKpD5c3fWDSfT99Rw7ohw3Sjgwz4hUOYh8yWxmPC5z1xdv+lZIPWO5nYfMw8BT3GiF/bP+2PniuqUHlTAIzLTBcwQReT2lWu0yysfmmTXb3OBhckEehajs5Q526eNUF+vSKyKd4TVpQmT8WZ7mQ18svWulL2+po2OTeViVO/+t8VEU1A3JzByXVFZHy9mmUQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IvBLUGoTv9qDcdBjMpdKjYLOu4SMXrqqieJu20MSiLI=;
+ b=IzqRU490YfFNt2xhRnm1p+11iWuDQpp2lGVzetRYY5c0Z6QA8Jgo1uptRkiMW5AB7kLEK2et8xGBbDZ4gTKdB079N4So18sNQf5QkkZto1UwI4y1OjXx/VakACTXnbpD4b5hJni57q5NANqFufiEFEAnPtjBq6iMKbDzkcwCwEc=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by MW3PR11MB4585.namprd11.prod.outlook.com (2603:10b6:303:52::17)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by SN7PR12MB8130.namprd12.prod.outlook.com (2603:10b6:806:32e::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.23; Fri, 20 Sep
- 2024 20:06:39 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.7982.016; Fri, 20 Sep 2024
- 20:06:39 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240920192644.GW5091@mdroper-desk1.amr.corp.intel.com>
-References: <20240920171223.64969-1-gustavo.sousa@intel.com>
- <20240920171223.64969-5-gustavo.sousa@intel.com>
- <20240920192644.GW5091@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [PATCH v2 4/4] drm/xe/xe2: Add performance tuning for L3 cache
- flushing
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Sai Teja Pottumuttu
- <sai.teja.pottumuttu@intel.com>, Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Date: Fri, 20 Sep 2024 17:06:33 -0300
-Message-ID: <172686279302.236428.12481256240412350726@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR04CA0255.namprd04.prod.outlook.com
- (2603:10b6:303:88::20) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.22; Fri, 20 Sep
+ 2024 20:26:54 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9269:317f:e85:cf81]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9269:317f:e85:cf81%2]) with mapi id 15.20.7982.018; Fri, 20 Sep 2024
+ 20:26:53 +0000
+Message-ID: <ece41917-2ea7-4571-83a5-a50c776c6587@amd.com>
+Date: Fri, 20 Sep 2024 16:26:50 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] mm/migrate: Trylock device page in do_swap_page
+To: Alistair Popple <apopple@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org, simona.vetter@ffwll.ch,
+ Philip.Yang@amd.com, akpm@linux-foundation.org, christian.koenig@amd.com
+References: <20240911030337.870160-1-matthew.brost@intel.com>
+ <20240911030337.870160-2-matthew.brost@intel.com>
+ <87mskehjtc.fsf@nvdebian.thelocal>
+ <ZuS/NH/P8Fl+qptx@DUT025-TGLU.fm.intel.com>
+ <87msk5our1.fsf@nvdebian.thelocal>
+Content-Language: en-US
+From: Felix Kuehling <felix.kuehling@amd.com>
+Organization: AMD Inc.
+In-Reply-To: <87msk5our1.fsf@nvdebian.thelocal>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQBP288CA0047.CANP288.PROD.OUTLOOK.COM
+ (2603:10b6:c01:9d::20) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|MW3PR11MB4585:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1216916e-c7f7-4128-299e-08dcd9afbca4
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|SN7PR12MB8130:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d216788-f434-4cd7-cc48-08dcd9b290da
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZTBNQmMrcmVxTCtKRG9tVlZ2eXhtOGp4a2RnR3VNdDB4cjMxYWtmUW4wbGNv?=
- =?utf-8?B?NHBvblZkTHp6K2ozOXQ4aGNHT0NIajlaZEFyNFdmUWMvWmk2Z1NTSjFRa2pO?=
- =?utf-8?B?ZEtmY085cUluSGJaUEJyb1hvdklGWmZMNk5jZm5QbUpHcjk2ejRuWnhBdll4?=
- =?utf-8?B?Q1F6MDJsdW5HU3B1QmNpK2kyWnh2bE04cElzYlNHUFFhSkNNaGVXTHd0QlBv?=
- =?utf-8?B?ZjdFM2VBeWRWYXppMU9MTjAvWXBxVzlOQ0FSRjBKU3dPN3Z3RzVSeTFRS1VS?=
- =?utf-8?B?enEwdHJZVjdmcUxUcUI0MW9wemxzVFFLZFFvYXlpKzNoWExjbnR1UGlFWUlE?=
- =?utf-8?B?ZXlZZWx1L3JRVVRKbUkxVGJ0OS8rV1k4aWVuaTZReWxUbGJEcUFnR0gzZ3p3?=
- =?utf-8?B?ckNHYWFaNVZ0MWdtUXhObVhTS25abTdXZ2RRL1g1ckFTTGlwK3pTdnBNQUhB?=
- =?utf-8?B?MXlzQWU1bDluT2lNVmhlcFZwcEVZeVhOWUVJU1FtN2g2RjhwWGRzdmJoQW0v?=
- =?utf-8?B?Y2E0dkYrcjdvdUtiTVNHcmlxU1JURGFwQ3ArK2h2d1BEQ0h6QlRDbE9Rbkcv?=
- =?utf-8?B?TmZTckd0NWVCRUI1VUFXTE1sRXpJSGVUTDNJbFExMCsvZFh4NGpQV1M4YWgy?=
- =?utf-8?B?VjVoc3NBYTAzZ2VTVGdTM1BMdFVwUElQdDdKSVVKcVErTVA2WUVqeWlEVnBG?=
- =?utf-8?B?K0VCb0xxV1VmeWRRYUdrSGVWQ3NWM29ZQ0JwTHhvYk9tTXgrRWZtNHRrWnVE?=
- =?utf-8?B?YXMrbTltVHQ5UmtMdUdCKzl5Wjd2U1E0cjNocDVyWnZ6dzMyTEYwUEUvZkdP?=
- =?utf-8?B?d295aXN4NmtYRWk2eHlSUmo3bnlnVGUzMTlnTkNiMmJ2L21FVjVBclliM2to?=
- =?utf-8?B?QTdTUWNjdm9GQ0Z3ZFExQzFGWUJGVWEwV3ZPUGZrR1RadUE5MFcrYVE5ZWZr?=
- =?utf-8?B?QUZxUng3TXBJUEpVRGhRUmVtVlorSkRlS2FGQ3RDR09ZejVmMjIxK3hYd2Yy?=
- =?utf-8?B?cVlJWWpWellEcSt2SnpyUkNHcU84NktnWEtSckcwMHNkUEVJZjEyMnp5VGhS?=
- =?utf-8?B?U2JHcVpZMjdvcmVoYVZpdm5rT09rMjJnWTR2TWtKL2YxbDRYSWlvWWtkZXho?=
- =?utf-8?B?Y3k5T3dwd2RJV0lFNXdXbDBkcmU2SGJzdTFWbTdNUzE1Z3llSlluNFNCZ0lL?=
- =?utf-8?B?aU1TcjBZamlFVnZnWEhjb0lTU2Z6aXVPKzBRVGdweEhJTksreVJTUVJJUUk3?=
- =?utf-8?B?ejI3WXh5WkpXVkNhMFhUaGxUYmhlMGhHa3lQRUpxa2tOR1VQVDcyRUtITlMy?=
- =?utf-8?B?a0tseU1oWG9KK05vbUxpWEg4QjMzWHpVbEtkMnUzMDJEQkk3TWxVdkZKM2dX?=
- =?utf-8?B?SUZoSU1ZRE5sZjNwYXpXQUhQT2x6elJlR2NwUksydXJrcnNjbUJ2aDRRUU5r?=
- =?utf-8?B?dDRDUk1tRkhnT01BbzJHdk13ZVh0MjdIbWd4ZmxNLzBjTldLNGlLRVVSRita?=
- =?utf-8?B?SC9yOFgwb3JUVDJXeVpIQktQMWUwNGR4RE1XN2NET1hhVHBtSlBubU9EbFY5?=
- =?utf-8?B?MTNLMjc5WjZSSjNqR0E2V01ibFNKa1lZa0RqS1Z1bm9OQm5iWTd6Rm9RVkEw?=
- =?utf-8?B?cjZpOVliWmhzUlU2OTRma21tWkYyNUNoMFNUVkM3SnduNE5mUE54b3pDdG9a?=
- =?utf-8?B?S3JRdXB0SUdaeGRUL3BvM2llQkxhQnljd1E0UWw5cWsrTCtnQkdpa3ZnPT0=?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SVBiZjB6dXNrdHhyRGQ5M0pUNHlZdlIzaEpGejd4eDRsYVVzcFh3ZHAyWks1?=
+ =?utf-8?B?UG5ISkR2OWs1RGUzM1dXYjBBcFVkbE5mbTJBamNhMXJHWnhLeVBZQXQ5Zkti?=
+ =?utf-8?B?OXNqRlN2NVRuTDltVEtRdjROMFpHMlQrT1QzenJWN050MjlCVUVuMnF0Zk44?=
+ =?utf-8?B?TzZGYmh4aUJKbzhMcmZDQTltL21rZmczYTRLRmZsZk5VdmwxYWZVNis4RG12?=
+ =?utf-8?B?UWZ5WGlEZDZra2xDOTZWM1Vhd1NseGVHR004VjY0VHF2WFFMZC93WWRyWkQ5?=
+ =?utf-8?B?K3FjcGJKODZsbjc5bndlVVVOdWk4VnhzRmtORTlSM1JJR2tPbGxpOWd3Vk1l?=
+ =?utf-8?B?djFrMk5GMkJYZGE1Z05BdzdiZ1BRcGllQ2g1UmQvUnN6U2Z5a3FDVWZNS3hZ?=
+ =?utf-8?B?eVVZUEczYUJ5alJ0WmZFWXJ6TnUxTWZhamVwK0hpd0V2NlBNejlibEp4ZXJJ?=
+ =?utf-8?B?bDI5VlNrOWtveHBWL2NmZlBGT3k5T2wvcFBCTTFDUVRjc2NOYkJ5YzNRTjZY?=
+ =?utf-8?B?bStqcTI5emRiVllSRzdMellvQm96OWhzMGJRMHdKR1V0T1A4OTUrNkVIdXYr?=
+ =?utf-8?B?UnB3SWNieCsyVlN1dHRZSWJqbUdVT3BEWTJESmVRbnVBSHhlL0RQZDdQZm5r?=
+ =?utf-8?B?eWw3SHlXVGhiVlRMN3psc1R2NGVWT0FUYi9jUGcxSGZBMzNFUVZ2MGlSWEF2?=
+ =?utf-8?B?MEZzckthVmVaV3lLdjBaVVM0MVRxT3pIWWZicG5iMzlJb3M3RjRhUlhrMU5q?=
+ =?utf-8?B?SkNaYm03Mjd1L2x1cVJQK1dvMmJFZlBqMCtDckkyOVlFOHVWSnQvUkpLYmgv?=
+ =?utf-8?B?aGRoSTZ1aHBJU2JhMmxwQTFwbDJReTRSMFVLcWFQU2JndmhBS2lpbzZXU0dI?=
+ =?utf-8?B?SCtSOWp0MTNEYzdXbHBWUWFvU1VTYytzMTZtellzNk1MSzU4TkM2dXg4Wjhx?=
+ =?utf-8?B?REx5cXRiWDMzdnh6L2lhSzlPL2N1ZTdGbFlwYnRLT3l1Z0wwenlzNTJ3RFdV?=
+ =?utf-8?B?RS95ZWpZbndMSHp0TXNpa0J2dzBsVXhJa1RtR3JGaWppZ1NoRGMxWG1BMDFQ?=
+ =?utf-8?B?WVVnV015Z1BXZ3NnRmd6dzdxY3E4Q05hVUxrQTI3NHRTcnVicXR1MFV2dzJK?=
+ =?utf-8?B?OThSVVlMK0F6blprSXRETnRNb3Z5Y1JaZHVBY29VUjZ5QjNSMHZNbkx2RFl5?=
+ =?utf-8?B?N0FnaGgybWVBcXlPbnIwSXlULy9nVXlOMlNLVDJQTFBDYkN5ZW1FUEZrWWt4?=
+ =?utf-8?B?Z0pKa2RSczcvTk9ZbmdmUnZ2ZjZ1aThHd3R1UG52UWlscTJkN0k3SThKWnJZ?=
+ =?utf-8?B?SFdBc293eG8ybFdqVXV4R0sxS2w5bjdvQUd4UFoxSXJhL3FCVjh0WGxEaStJ?=
+ =?utf-8?B?RE1FZWJJQTR6dENycGdWcHplK3dOcjVYM09YTjhaTDdIUk9PQU1sUi9QVDIv?=
+ =?utf-8?B?bmtjRlh3dm1lTUFwSWxFTGNQS0tlaVlVZGZDMFpEeUpOOFBNY3lZM1JvUS94?=
+ =?utf-8?B?QW5sY0NBVUErRGFKZzhLRlljZWpLUXZQTlY5VS9UaW5odmpPVWZwYXM5ZlJx?=
+ =?utf-8?B?Tk8rdXQyYjhKR2pKeGVzWGZXQUhUa28ya2pqaXdnc3ZDRHlOd1JxTktrQnJs?=
+ =?utf-8?B?eC9QRXlDbGNMN004YXhMa252UVhQaFYzOHNOUlNZWWVHekthUWNTdkpwZjlM?=
+ =?utf-8?B?SGtwRWJySGRGbCtES0N3SGwyY3NWNnVSdysrTmJLNlU2VkhSYjhmdUl6YVV4?=
+ =?utf-8?B?VnAxcWwzWERYenJUWGV3UDd6M2FYTWFXTHdYWFhHNSttL3RWeXYxMTYwNVIy?=
+ =?utf-8?B?T09BeEREblZqRnIwSWU2dz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWtGKzFmZUN4TGVZQTBSOVU1NFZ0L3hkQ0ZqbVlYemtWdDZtcExkV0JwTDlC?=
- =?utf-8?B?Z2E3ckFHZkVqS0lpSkN0OHpOSFBuenBxTkZsZ3BmSWtaclRzb2QrTzFHaThl?=
- =?utf-8?B?NmJkTWlIYnhrcitnNWNZWWZPV2VFZi9PcjBybnBSM0dtKzF5amFDekhvSVVk?=
- =?utf-8?B?WFhwMVdJd1UwQnFsS3BQQlNPUE4wTkdPSXNDaEgwcDB2UGxtdGpUR01pbnJV?=
- =?utf-8?B?a09KSnN5VExWWjZyK3gyaXdDYmtFV056NXVyZzRrcEphMEFBM1lMUG92VDZq?=
- =?utf-8?B?ZEU1UkZjYWJUWmZ6VU5UVXlyQ1NGT1hHd0t4M1liWFAwNlhhbEZJOFB6K01G?=
- =?utf-8?B?SGhWTDhLRVpNOXNSeEtUMVQ3VDBvSUNJREdmSUQvd0g0U245bCtRUVpzRVR0?=
- =?utf-8?B?SVpZQUNVSEs1OHJCNE9SeS9zZWRrQlVxYVhMZHJxaXJlVXJyU0VFU0VIVEdq?=
- =?utf-8?B?b2tPZEw0QUEydW84OHBKcXM3SmFRRVNWTFhYV2FXbmtKcWVHb2ZlZThnVTMy?=
- =?utf-8?B?T0R1RmdVdEp5T1FFbklrdHFjQlFZaFdlblREM3duYmx6N1ZZZFlocFhIbW9W?=
- =?utf-8?B?d3hkNHQ2Y215UVpvWWZYcGIzTm1EaEZyQzhPcXBmWWNWdlU4L3Vacis5bVJm?=
- =?utf-8?B?WVJuNCt4VkZSS1ZBdUlFUVQveWNaU28yOXJPN3pjTkY0TW0xbE5HZ0ZuV0I4?=
- =?utf-8?B?WERlS0hoMHN5aUo1TVgxTTJMM2JDUEpMV1gzajlveFd2YkFOR1JCbUV2eFVG?=
- =?utf-8?B?dy9BbTJwRGFJVWF3WFdmWUZRYyt4WTRCK3lDb3k1VHJuUE5aNGdvbHREcVo0?=
- =?utf-8?B?c29RYzhucGc1WmFSUDd2Tlh4SHVleExSbDBWYUw3MTN5VUJCK2liV1ErSXpj?=
- =?utf-8?B?MzU4cTlLS3U5WG9wdzZFaWQvemJVRW03VnNSSlk2b3JJMkNROVBTRnhGTGxB?=
- =?utf-8?B?YjgvQWZNVU91Mi83MW12Z3MxTlEzdTQ1NVBPSFk2S1NiUGJTUXA2MUQrL0xI?=
- =?utf-8?B?bzJLV3pXalNwRnNnNWlWNTFiQXZRc2dqcE9CcGFHTEpSbE1FZzZ5eERzNXlR?=
- =?utf-8?B?VEIxL1RtQ2VSSGhrNjFWQ1ZFRFU3eXdpWHhNdVk5ekNTK3NNMXh1VTBQUWxk?=
- =?utf-8?B?S2tkRFBjbjUzMk5NazhzaCt6d2p5ek9OdE85WUtHOFhOZ0thSFdZalpqa2V5?=
- =?utf-8?B?NFhCVmswdzJoZy92SERjbzJoaTg2bHdtZ3ozRElSaFk2d25OV0VmN1JmVENL?=
- =?utf-8?B?WVExd0lkdjI0ZFZER2hvVURNZUZ6aXhCaUdITXQycThOYXJKYm9GNXNuKzZk?=
- =?utf-8?B?a0tKeUtHL251NGVidGtwVTFvNmNDaTFua1NoTnowYmhtU05aczY2T2RHdGFI?=
- =?utf-8?B?eG9ha0hRQ0duMXpuVGdRR1dpRFdoeUlXOTlGc3gzdlpPdWlFZ1JsRHYzbGJF?=
- =?utf-8?B?NkJIMG01b2FCeWQ2ZHh6dy9QSWtSK3l5S2lydjJTTTRkNkE2cEYxZlRGYUJJ?=
- =?utf-8?B?NE90UjNZeEJjVzc1cEFSWFpqYnBxMzJvQlU0dHNHMncwcXdBS3NsT1graGJP?=
- =?utf-8?B?bGhPV0dGNitBSWpONEdjNGR1L2hPYkdkQk9DeklaSWpmTnczUGsza1pyaXVX?=
- =?utf-8?B?WXAwWHJmTGZmNnlFaDJQQXdxQ28rcXBOMTFCMmVVL1ZJRHd4SzFkQjNCa3F5?=
- =?utf-8?B?V1p5K0t5Z3pzQm82RXdwU09mRHk2WitGTVNzNUFEV3p6U0JhSmhwVks3WGhY?=
- =?utf-8?B?MklVdUJJcjk3QzJNNUlsNkRpV0NmK1BTMU5Kb2hoaldWbHltSWwwUktHQVRm?=
- =?utf-8?B?cUdFOUF6L2hNWlNNNmNES1Vyc0RBRzF0MXBuajRzSFRDWFl3dUpWVlN0aHB2?=
- =?utf-8?B?cXJPZEhjeUVINnFxNGR2WXA3a3FTWldjMW93eE0yTUVrZXVSMmIrWUJpUlZ3?=
- =?utf-8?B?WG9xZHdQOHdHUlF2WDJBTCtuUnVSUHJWcEp3MVhWZ2o0dXRXQllGbysyRXhZ?=
- =?utf-8?B?UVllcXllaGlmSVJoakpNVUw4aEIwOG9jSWxPcGcyd29UUU5oNWY3WkhBeVgw?=
- =?utf-8?B?VkQ2T2VFaUM2NzEyZWNpcSt5T0ZSdkYyVEJhclVwdU9uVDZuQ1VHTWNwT0J2?=
- =?utf-8?B?aVdtOEhMT3JSemMwQWFUQlJnSHYyY3ZwZTdiODhnR1puZTFqNTFNeDA2Y29o?=
- =?utf-8?B?NVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1216916e-c7f7-4128-299e-08dcd9afbca4
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dURYeG5yVnZOQkNzTzBqTXF2YUJ1SW5qckRPL0dtcWNSRUFoMldZLzRTOGVi?=
+ =?utf-8?B?V0x1bytocnB3TDFOby9pY3BvNVgvTUp6N2oycG5rYmtZbnN2VVk4R0IxcWVK?=
+ =?utf-8?B?aGRDM1RaWktvUFNXK2tPSjl4R3NHRFRmdjgrTzY3Nmc0eXlBeHgxeHVMb1B5?=
+ =?utf-8?B?RlExaU9OUkU3UEZSN3FpdEFSaDJHa0RRNDh1aVUwMkxjY25QTDFxcmpZc25P?=
+ =?utf-8?B?Z2JuOGt2RjE1ZTBWbWFPYkFMcFJKQ2dHQW45aHExdXFMTGJLR0Nka3F5TmNL?=
+ =?utf-8?B?QkVKd0FZRElMNDNQLzhqL1lUeUlubElnVzFURHBROENoOGxmYkVaYXlSYVhI?=
+ =?utf-8?B?WVBzQlYwbFlQMjRHb3Y3ZjNZV3hzUEtBZlJjTjZhT3BreUt0Z0dKWkQzTjh1?=
+ =?utf-8?B?ZGszNVZsVzQ1TUVzbXByNUV2TDNVYmozclVvV0lRU2F5NFNSd2IzbGtPYS9V?=
+ =?utf-8?B?RUs2aGJPMHZ4UU1wOWhkODgxS2NSdXcyT3krYXFOOHJmcUYyS3dIdTl0M0JN?=
+ =?utf-8?B?amFWd2RNWjVlcjRYN3ZkS0k1QXlKUG85VDU3Wjkra2F6YWZGUjlwR1B5bkRR?=
+ =?utf-8?B?Qm1QZitxTUl4WTI1b2t2T29RdU5VUmQrOENFMDR2cC9zdkQvNDFOV2psd1ZY?=
+ =?utf-8?B?OG5kMEZMWDJGVFhRdUgvTmFHTC9ENXMwajMwSVBJZEpzd2Uwc1BmZ1QwSnkr?=
+ =?utf-8?B?dnZMQ1pEMHprRnBMTm9yMnBnaThJclAxSjZZejhkSnVDVWhLYW52ZWdiTHNr?=
+ =?utf-8?B?SE5KTzQzWlFLYzBvQjFNNFR1RHpPUW9RL1p6ZHlsb21QNE5uUE1KTWN6V2JP?=
+ =?utf-8?B?ZU1PR1JrbklLUWZnL3IrUVhZOG9UMDBTSVBCNjd1eEhUbFlxYzZNVnlGL1VP?=
+ =?utf-8?B?ck9BclhocHEzQ0Nrb2Yrbms3Rk11SlBMNEU0YTBzS0hlMW9nVFNJZzFZeFFr?=
+ =?utf-8?B?Wk53MTFRS0xPV1lteU5wb29oUWV4QnBMUURZWUppTjkxNkhMWlE1c0lrZG9G?=
+ =?utf-8?B?WnpjcFVyWURzeWRZejlUaEwyb0JSU0xUZ0JBbHo3eXJXMHpXWEN1YWhLWEd2?=
+ =?utf-8?B?bEtVNEc2UVhRbktVWFNNeXNsenM2c0l2VnhINWRCa0tLdWtoUU1ib29tYkRm?=
+ =?utf-8?B?bzVHdm5RTGtPYkJ2S2RLQlJMK243SkdVbEtNRFZob1FZajUvZDlLeUEzZmFi?=
+ =?utf-8?B?R3lsV01PQnBkbHFUR0ZaRnl6ODF2aWZNcUI5U0JDb1h2YytpQ1FXOVdyTmRK?=
+ =?utf-8?B?Sk14U1dEM2hPQVJqMUVCenNONzhhTERSMXdaOUFwZGY1WjQ0eG54OUVuMUh2?=
+ =?utf-8?B?SHlVRzVRdHppVEdMZmhnZm12M002UTJkWThVVnVuMWVkTUxOWTRSd3J0Y2FT?=
+ =?utf-8?B?VFdXTnRtdEVET0UyeHp2c2F5NW5pZUV5THVjbU5rbmRQbk5JdEhaazU3cmRm?=
+ =?utf-8?B?TXZHbTAxMzYwdDZBbjdzNU8ycmgxNnNyUUc0SFdodUNEM2I4QkZnYzhYR0VP?=
+ =?utf-8?B?ODVsb0hoaTYwdEMvZEhiTUFYTUV1WjdVakw4OFA1VE1XTjJUc2czZUtCK3Fp?=
+ =?utf-8?B?QnRGRDREM3NaRTcxSkZhYUJONmdQSy9HNWd1NmdLcEZyZFA5aGdEY2JxUFdm?=
+ =?utf-8?B?NjIzWVBSdnBSY1piTVY2TmdRc0N0MWVYdkhBSW44dUJ3Z3l4cXpmMHhpbDdC?=
+ =?utf-8?B?bHhPTUVNV0JhOUFkSW00ZXAwU1M4TWdFdmtDSS9UZ1E3a3o4bC93Q1g1eTM5?=
+ =?utf-8?B?L0RxTWdIVHJhSjZ5TFZyNDVvZ1BsMFNhVFlIZ2lLQkgrNnFYQXNrOVdtOGhF?=
+ =?utf-8?B?UFdDaEFYVjVLMUQ5ejQ5VGloV3dqMm1naXVrWk9NcnFSZnJMMWxybTVMZ0hJ?=
+ =?utf-8?B?akVYV2YvWC8rUlFEOWNaZU1pK2d3MStJdTk1aXl4VjVXcDRxMXBjcTdaTlJ0?=
+ =?utf-8?B?OGZwdUxCS1FHZm0zaEdQb3ZkVkYyUzMxbC9XQ0Z0b094UmtqVE9hajV6QVIz?=
+ =?utf-8?B?SE9DcVFmVHQ5OFZZOFdTV29ZdWc3UFc3ZzNUMjV3UlNXTlNTaEdkamxkUGUw?=
+ =?utf-8?B?bjAybmdjZm53ZVFTakNuN0VzM1ZlQTJScVpLM0QzOXZHNHBlaWY0aERtNG5V?=
+ =?utf-8?Q?Cor2yDGdz+8dQQzvFsZKITA5s?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d216788-f434-4cd7-cc48-08dcd9b290da
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2024 20:06:39.0260 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2024 20:26:53.8826 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zCf+eo+wm2hd+TXxqxV+rjBrtakGhfkSHJH06u4511+iNzZGrDSmbnAIwAXESB9uI2YnfhQHOF3/MHoiEX8d2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4585
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: m2879BjB+7R3bZYRhRBAQeHiI8H2G32lB4GPGFC0RxajH7Ou+ylYSvVrdbjbbH5PMuU7oi6ao2/8ciqFATM1Rg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8130
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,102 +166,244 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2024-09-20 16:26:44-03:00)
->On Fri, Sep 20, 2024 at 02:12:11PM -0300, Gustavo Sousa wrote:
->> A recommended performance tuning for LNL related to L3 cache flushing
->> was recently introduced in Bspec. Implement it.
->>=20
->> v2:
->>   - Fix reference to Bspec. (Sai Teja, Tejas)
->>   - Use correct register name for "Tuning: L3 RW flush all Cache". (Sai
->>     Teja)
->>   - Use SCRATCH3_LBCF (with the underscore) for better readability.
->>=20
->> Bspec: 72161
->> Cc: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
->> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 5 +++++
->>  drivers/gpu/drm/xe/xe_tuning.c       | 8 ++++++++
->>  2 files changed, 13 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/r=
-egs/xe_gt_regs.h
->> index 07315eb72eff..8d8f6a113a86 100644
->> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> @@ -388,6 +388,9 @@
->>  #define L3SQCREG3                                XE_REG_MCR(0xb108)
->>  #define   COMPPWOVERFETCHEN                        REG_BIT(28)
->> =20
->> +#define SCRATCH3_LBCF                                XE_REG_MCR(0xb154)
->> +#define   RWFLUSHALLEN                                REG_BIT(17)
->> +
->>  #define XEHP_L3SQCREG5                                XE_REG_MCR(0xb158=
-)
->>  #define   L3_PWM_TIMER_INIT_VAL_MASK                REG_GENMASK(9, 0)
->> =20
->> @@ -405,6 +408,8 @@
->> =20
->>  #define XE2LPM_L3SQCREG3                        XE_REG_MCR(0xb608)
->> =20
->> +#define XE2LPM_SCRATCH3_LBCF                        XE_REG_MCR(0xb654)
->> +
->>  #define XE2LPM_L3SQCREG5                        XE_REG_MCR(0xb658)
->> =20
->>  #define XE2_TDF_CTRL                                XE_REG(0xb418)
->> diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuni=
-ng.c
->> index 230369f108ab..39f50b6f94ce 100644
->> --- a/drivers/gpu/drm/xe/xe_tuning.c
->> +++ b/drivers/gpu/drm/xe/xe_tuning.c
->> @@ -75,6 +75,14 @@ static const struct xe_rtp_entry_sr gt_tunings[] =3D =
-{
->>            XE_RTP_ACTIONS(FIELD_SET(STATELESS_COMPRESSION_CTRL, UNIFIED_=
-COMPRESSION_FORMAT,
->>                                     REG_FIELD_PREP(UNIFIED_COMPRESSION_F=
-ORMAT, 0)))
->>          },
->> +        { XE_RTP_NAME("Tuning: L3 RW flush all Cache"),
->> +          XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2004, XE_RTP_END_VERSION_=
-UNDEFINED)),
+On 2024-09-18 11:10, Alistair Popple wrote:
+> Matthew Brost <matthew.brost@intel.com> writes:
 >
->The bspec tagging on this one is a bit of a mess right now, but when I
->look at the ticket that originally added this to the bspec, there's an
->underlined comment there that says "only for LNL."  We might want to
->check with the hardware guys to clarify if that's still the case and, if
->so, make this one of the special cases where the tuning applies solely
->to this one version.
+>> On Wed, Sep 11, 2024 at 02:53:31PM +1000, Alistair Popple wrote:
+>>> Matthew Brost <matthew.brost@intel.com> writes:
+>>>
+>>> I haven't seen the same in the NVIDIA UVM driver (out-of-tree, I know)
+>> Still a driver.
+> Indeed, and I'm happy to answer any questions about our implementation.
+>
+>>> but theoretically it seems like it should be possible. However we
+>>> serialize migrations of the same virtual address range to avoid these
+>>> kind of issues as they can happen the other way too (ie. multiple
+>>> threads trying to migrate to GPU).
+>>>
+>>> So I suspect what happens in UVM is that one thread wins and installs
+>>> the migration entry while the others fail to get the driver migration
+>>> lock and bail out sufficiently early in the fault path to avoid the
+>>> live-lock.
+>>>
+>> I had to try hard to show this, doubt an actual user could trigger this.
+>>
+>> I wrote a test which kicked 8 threads, each thread did a pthread join,
+>> and then tried to read the same page. This repeats in loop for like 512
+>> pages or something. I needed an exclusive lock in migrate_to_ram vfunc
+>> for it to livelock. Without an exclusive lock I think on average I saw
+>> about 32k retries (i.e. migrate_to_ram calls on the same page) before a
+>> thread won this race.
+>>
+>>  From reading UVM, pretty sure if you tried hard enough you could trigger
+>> a livelock given it appears you take excluvise locks in migrate_to_ram.
+> Yes, I suspect you're correct here and that we just haven't tried hard
+> enough to trigger it.
+>
+>>>> Cc: Philip Yang <Philip.Yang@amd.com>
+>>>> Cc: Felix Kuehling <felix.kuehling@amd.com>
+>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>> Cc: Andrew Morton <akpm@linux-foundation.org>
+>>>> Suggessted-by: Simona Vetter <simona.vetter@ffwll.ch>
+>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>> ---
+>>>>   mm/memory.c         | 13 +++++++---
+>>>>   mm/migrate_device.c | 60 +++++++++++++++++++++++++++++++--------------
+>>>>   2 files changed, 50 insertions(+), 23 deletions(-)
+>>>>
+>>>> diff --git a/mm/memory.c b/mm/memory.c
+>>>> index 3c01d68065be..bbd97d16a96a 100644
+>>>> --- a/mm/memory.c
+>>>> +++ b/mm/memory.c
+>>>> @@ -4046,10 +4046,15 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
+>>>>   			 * Get a page reference while we know the page can't be
+>>>>   			 * freed.
+>>>>   			 */
+>>>> -			get_page(vmf->page);
+>>>> -			pte_unmap_unlock(vmf->pte, vmf->ptl);
+>>>> -			ret = vmf->page->pgmap->ops->migrate_to_ram(vmf);
+>>>> -			put_page(vmf->page);
+>>>> +			if (trylock_page(vmf->page)) {
+>>>> +				get_page(vmf->page);
+>>>> +				pte_unmap_unlock(vmf->pte, vmf->ptl);
+>>> This is all beginning to look a lot like migrate_vma_collect_pmd(). So
+>>> rather than do this and then have to pass all this context
+>>> (ie. fault_page) down to the migrate_vma_* functions could we instead
+>>> just do what migrate_vma_collect_pmd() does here? Ie. we already have
+>>> the PTL and the page lock so there's no reason we couldn't just setup
+>>> the migration entry prior to calling migrate_to_ram().
+>>>
+>>> Obviously calling migrate_vma_setup() would show the page as not
+>>> migrating, but drivers could easily just fill in the src_pfn info after
+>>> calling migrate_vma_setup().
+>>>
+>>> This would eliminate the whole fault_page ugliness.
+>>>
+>> This seems like it would work and agree it likely be cleaner. Let me
+>> play around with this and see what I come up with. Multi-tasking a bit
+>> so expect a bit of delay here.
+>>
+>> Thanks for the input,
+>> Matt
 
-Okay. I raised a question on the original ticket.
+Thanks! Sorry, I'm late catching up after a vacation. Please keep 
+Philip, Christian and myself in the loop with future patches in this area.
 
-We might as well make this LNL-specific and then come back and use an
-open range in necessary when we get more info. Thoughts?
+Regards,
+   Felix
 
---
-Gustavo Sousa
 
->
->
->Matt
->
->> +          XE_RTP_ACTIONS(SET(SCRATCH3_LBCF, RWFLUSHALLEN))
->> +        },
->> +        { XE_RTP_NAME("Tuning: L3 RW flush all cache - media"),
->> +          XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UND=
-EFINED)),
->> +          XE_RTP_ACTIONS(SET(XE2LPM_SCRATCH3_LBCF, RWFLUSHALLEN))
->> +        },
->> =20
->>          {}
->>  };
->> --=20
->> 2.46.1
->>=20
->
->--=20
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+>>
+>>>> +				ret = vmf->page->pgmap->ops->migrate_to_ram(vmf);
+>>>> +				put_page(vmf->page);
+>>>> +				unlock_page(vmf->page);
+>>>> +			} else {
+>>>> +				pte_unmap_unlock(vmf->pte, vmf->ptl);
+>>>> +			}
+>>>>   		} else if (is_hwpoison_entry(entry)) {
+>>>>   			ret = VM_FAULT_HWPOISON;
+>>>>   		} else if (is_pte_marker_entry(entry)) {
+>>>> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+>>>> index 6d66dc1c6ffa..049893a5a179 100644
+>>>> --- a/mm/migrate_device.c
+>>>> +++ b/mm/migrate_device.c
+>>>> @@ -60,6 +60,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>>>>   				   struct mm_walk *walk)
+>>>>   {
+>>>>   	struct migrate_vma *migrate = walk->private;
+>>>> +	struct folio *fault_folio = migrate->fault_page ?
+>>>> +		page_folio(migrate->fault_page) : NULL;
+>>>>   	struct vm_area_struct *vma = walk->vma;
+>>>>   	struct mm_struct *mm = vma->vm_mm;
+>>>>   	unsigned long addr = start, unmapped = 0;
+>>>> @@ -88,11 +90,13 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>>>>   
+>>>>   			folio_get(folio);
+>>>>   			spin_unlock(ptl);
+>>>> -			if (unlikely(!folio_trylock(folio)))
+>>>> +			if (unlikely(fault_folio != folio &&
+>>>> +				     !folio_trylock(folio)))
+>>>>   				return migrate_vma_collect_skip(start, end,
+>>>>   								walk);
+>>>>   			ret = split_folio(folio);
+>>>> -			folio_unlock(folio);
+>>>> +			if (fault_folio != folio)
+>>>> +				folio_unlock(folio);
+>>>>   			folio_put(folio);
+>>>>   			if (ret)
+>>>>   				return migrate_vma_collect_skip(start, end,
+>>>> @@ -192,7 +196,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>>>>   		 * optimisation to avoid walking the rmap later with
+>>>>   		 * try_to_migrate().
+>>>>   		 */
+>>>> -		if (folio_trylock(folio)) {
+>>>> +		if (fault_folio == folio || folio_trylock(folio)) {
+>>>>   			bool anon_exclusive;
+>>>>   			pte_t swp_pte;
+>>>>   
+>>>> @@ -204,7 +208,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>>>>   
+>>>>   				if (folio_try_share_anon_rmap_pte(folio, page)) {
+>>>>   					set_pte_at(mm, addr, ptep, pte);
+>>>> -					folio_unlock(folio);
+>>>> +					if (fault_folio != folio)
+>>>> +						folio_unlock(folio);
+>>>>   					folio_put(folio);
+>>>>   					mpfn = 0;
+>>>>   					goto next;
+>>>> @@ -363,6 +368,8 @@ static unsigned long migrate_device_unmap(unsigned long *src_pfns,
+>>>>   					  unsigned long npages,
+>>>>   					  struct page *fault_page)
+>>>>   {
+>>>> +	struct folio *fault_folio = fault_page ?
+>>>> +		page_folio(fault_page) : NULL;
+>>>>   	unsigned long i, restore = 0;
+>>>>   	bool allow_drain = true;
+>>>>   	unsigned long unmapped = 0;
+>>>> @@ -427,7 +434,8 @@ static unsigned long migrate_device_unmap(unsigned long *src_pfns,
+>>>>   		remove_migration_ptes(folio, folio, false);
+>>>>   
+>>>>   		src_pfns[i] = 0;
+>>>> -		folio_unlock(folio);
+>>>> +		if (fault_folio != folio)
+>>>> +			folio_unlock(folio);
+>>>>   		folio_put(folio);
+>>>>   		restore--;
+>>>>   	}
+>>>> @@ -536,6 +544,8 @@ int migrate_vma_setup(struct migrate_vma *args)
+>>>>   		return -EINVAL;
+>>>>   	if (args->fault_page && !is_device_private_page(args->fault_page))
+>>>>   		return -EINVAL;
+>>>> +	if (args->fault_page && !PageLocked(args->fault_page))
+>>>> +		return -EINVAL;
+>>>>   
+>>>>   	memset(args->src, 0, sizeof(*args->src) * nr_pages);
+>>>>   	args->cpages = 0;
+>>>> @@ -799,19 +809,13 @@ void migrate_vma_pages(struct migrate_vma *migrate)
+>>>>   }
+>>>>   EXPORT_SYMBOL(migrate_vma_pages);
+>>>>   
+>>>> -/*
+>>>> - * migrate_device_finalize() - complete page migration
+>>>> - * @src_pfns: src_pfns returned from migrate_device_range()
+>>>> - * @dst_pfns: array of pfns allocated by the driver to migrate memory to
+>>>> - * @npages: number of pages in the range
+>>>> - *
+>>>> - * Completes migration of the page by removing special migration entries.
+>>>> - * Drivers must ensure copying of page data is complete and visible to the CPU
+>>>> - * before calling this.
+>>>> - */
+>>>> -void migrate_device_finalize(unsigned long *src_pfns,
+>>>> -			unsigned long *dst_pfns, unsigned long npages)
+>>>> +static void __migrate_device_finalize(unsigned long *src_pfns,
+>>>> +				      unsigned long *dst_pfns,
+>>>> +				      unsigned long npages,
+>>>> +				      struct page *fault_page)
+>>>>   {
+>>>> +	struct folio *fault_folio = fault_page ?
+>>>> +		page_folio(fault_page) : NULL;
+>>>>   	unsigned long i;
+>>>>   
+>>>>   	for (i = 0; i < npages; i++) {
+>>>> @@ -838,7 +842,8 @@ void migrate_device_finalize(unsigned long *src_pfns,
+>>>>   		src = page_folio(page);
+>>>>   		dst = page_folio(newpage);
+>>>>   		remove_migration_ptes(src, dst, false);
+>>>> -		folio_unlock(src);
+>>>> +		if (fault_folio != src)
+>>>> +			folio_unlock(src);
+>>>>   
+>>>>   		if (is_zone_device_page(page))
+>>>>   			put_page(page);
+>>>> @@ -854,6 +859,22 @@ void migrate_device_finalize(unsigned long *src_pfns,
+>>>>   		}
+>>>>   	}
+>>>>   }
+>>>> +
+>>>> +/*
+>>>> + * migrate_device_finalize() - complete page migration
+>>>> + * @src_pfns: src_pfns returned from migrate_device_range()
+>>>> + * @dst_pfns: array of pfns allocated by the driver to migrate memory to
+>>>> + * @npages: number of pages in the range
+>>>> + *
+>>>> + * Completes migration of the page by removing special migration entries.
+>>>> + * Drivers must ensure copying of page data is complete and visible to the CPU
+>>>> + * before calling this.
+>>>> + */
+>>>> +void migrate_device_finalize(unsigned long *src_pfns,
+>>>> +			unsigned long *dst_pfns, unsigned long npages)
+>>>> +{
+>>>> +	return __migrate_device_finalize(src_pfns, dst_pfns, npages, NULL);
+>>>> +}
+>>>>   EXPORT_SYMBOL(migrate_device_finalize);
+>>>>   
+>>>>   /**
+>>>> @@ -869,7 +890,8 @@ EXPORT_SYMBOL(migrate_device_finalize);
+>>>>    */
+>>>>   void migrate_vma_finalize(struct migrate_vma *migrate)
+>>>>   {
+>>>> -	migrate_device_finalize(migrate->src, migrate->dst, migrate->npages);
+>>>> +	__migrate_device_finalize(migrate->src, migrate->dst, migrate->npages,
+>>>> +				  migrate->fault_page);
+>>>>   }
+>>>>   EXPORT_SYMBOL(migrate_vma_finalize);
