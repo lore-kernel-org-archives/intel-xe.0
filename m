@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6AA9CF9C5D
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 17:12:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B942CF9C5D
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 17:12:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78B8E10E2F6;
-	Fri, 20 Sep 2024 17:12:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07A2310E85A;
+	Fri, 20 Sep 2024 17:12:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZunN/1m+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aS3KXBzh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29DBB10E2F6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A82910E85A
  for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 17:12:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726852363; x=1758388363;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=44to50X0b4pRsDceNvTI/jGjXCALBtDeBcV3F3gH2Kc=;
- b=ZunN/1m+XaGh9VFJL/TpPgno4qzgVarUBN8dxp4MAm1CDSTTVrTjh514
- 7nbj5t2wU1wI9dzTzNHr8G7iVusdCGhsHSmE274ABa0OdqnVIvECDJ1/1
- RbnRT09iTcnPVI99Tk7dtnzNg+MpX2cCkftasZw91MVahYKnAKLrNpsb+
- EYeqm0ZpcRU9CZywQ0U+PCQgcQj7cQEVX38OuFslzj1elbvYFhfImvbuN
- 7E4rbWY9P5zv2fqowfi9YRNldIOj6YHiM1/7jifm7fsK/00aO4kYTvaak
- UYMOjoH4oHvzCWGEKKoRQJhm27FnoJxHB2zyiT9cJaQbCB16Zd2K3WJnv Q==;
-X-CSE-ConnectionGUID: PUyzDZosTb+Vu1JQ4RTTcQ==
-X-CSE-MsgGUID: e7SwvpA4RoeOPGIQuFyJ+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11201"; a="29763879"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="29763879"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mVre0nVijNp48GcwuMFYonrGlAyoabC9aHlpmrWlGo0=;
+ b=aS3KXBzhFqY9FNMZeRG9YvQF/KG0rudzFBVmGI/o14NZ38YN4XwT//43
+ 18UvjoZ0IKnBb+LCLpSmpYvqrWbsnTKp8IBrSQKOw9vdofC2XVFKXrTIT
+ qSPR4TXd6DWcrg/tQsbzOyEHcvvTO0NtOoLHE7rRbOsxbtkOBfSzcjl7p
+ UHTwnSKpzo/A/iNyb7KW9FXRcKTxGkYPA4/ekn8zWUFSsPrAdVC32GFPC
+ AkDOwCazw7S6QVqyYo3Te2undRvgsgleZk95C1owGGn5slMjNrrnvzdMR
+ VOyRU39GQ6p0zWelhUONs0ygOb5fIZzqtsWb2nOKg2nKHMsx7RfWdiCyY w==;
+X-CSE-ConnectionGUID: WTyx4+maQlCpuXIOeHGgFw==
+X-CSE-MsgGUID: hsa85JA9ROqmmxv6ItXDlg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11201"; a="29763880"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="29763880"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Sep 2024 10:12:43 -0700
-X-CSE-ConnectionGUID: ou6oWrPtRUe2v3fMZshBwg==
-X-CSE-MsgGUID: 7odvxJsETLuMmV6FLoPvTA==
+X-CSE-ConnectionGUID: Zk7Xpk+7QgOEl32Zwl673A==
+X-CSE-MsgGUID: S8GT/iFRTqKNLbUNSPWcJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="101220753"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="101220757"
 Received: from iweiny-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.125.110.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 10:12:40 -0700
+ 20 Sep 2024 10:12:41 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2 0/4] Xe2 performance tuning updates
-Date: Fri, 20 Sep 2024 14:12:07 -0300
-Message-ID: <20240920171223.64969-1-gustavo.sousa@intel.com>
+Subject: [PATCH v2 1/4] drm/xe/mcr: Use Xe2_LPM steering tables for Xe2_HPM
+Date: Fri, 20 Sep 2024 14:12:08 -0300
+Message-ID: <20240920171223.64969-2-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.46.1
+In-Reply-To: <20240920171223.64969-1-gustavo.sousa@intel.com>
+References: <20240920171223.64969-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,25 +69,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series contains updates for Xe2 recommended performance tuning
-settings.
+According to Bspec, Xe2 steering tables must be used for Xe2_HPM, just
+as it is with Xe2_LPM. Update our driver to reflect that.
 
-v2:
-  - Extra patch, #1, to fix selection of steering table for Xe2_HPM.
-  - Address review feedback. Please see changelog in individual patches for
-    details.
+Bspec: 71186
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Gustavo Sousa (4):
-  drm/xe/mcr: Use Xe2_LPM steering tables for Xe2_HPM
-  drm/xe/xe2: Extend performance tuning to media GT
-  drm/xe/xe2: Assume tuning settings also apply for future media GT
-  drm/xe/xe2: Add performance tuning for L3 cache flushing
-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 11 ++++++++++
- drivers/gpu/drm/xe/xe_gt_mcr.c       |  2 +-
- drivers/gpu/drm/xe/xe_tuning.c       | 30 +++++++++++++++++++++++++++-
- 3 files changed, 41 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 2671ce6b1a76..4c0767403881 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -441,7 +441,7 @@ void xe_gt_mcr_init(struct xe_gt *gt)
+ 	if (gt->info.type == XE_GT_TYPE_MEDIA) {
+ 		drm_WARN_ON(&xe->drm, MEDIA_VER(xe) < 13);
+ 
+-		if (MEDIA_VER(xe) >= 20) {
++		if (MEDIA_VERx100(xe) >= 1301) {
+ 			gt->steering[OADDRM].ranges = xe2lpm_gpmxmt_steering_table;
+ 			gt->steering[INSTANCE0].ranges = xe2lpm_instance0_steering_table;
+ 		} else {
 -- 
 2.46.1
 
