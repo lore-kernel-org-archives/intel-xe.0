@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82103C78849
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 13:47:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 742B5C78854
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 13:47:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AEBC10E839;
-	Fri, 20 Sep 2024 13:47:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4530710E837;
+	Fri, 20 Sep 2024 13:47:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YDudiuPS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="co1+pTQw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44A1310E83D
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 13:46:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBD6510E85C
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 13:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726840017; x=1758376017;
+ t=1726840021; x=1758376021;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=o0GbEmOkewOBTzyW2CGgMTINwYO35bJVwRPA7gIGfF8=;
- b=YDudiuPSluB+cjoTe9cuKVE5YoMGYwUvGgz2A/oSKxpWny3KFXLmHZZQ
- s3+hCK6vJfQXzIbUS4J4nttWIUX7AVI30duEc8LR5I81gjMu039v2Y5BO
- ap6cix1s/klkLL5B/LEqi3uXl4PZbqTw0jqxWUtJOkkI5/7hDLdpQpLLe
- xScASwrOZ9lgPunyeuDqw0IRuG/2IQVQtum3kK1qF1yJPtljtq3MfNn36
- RD9uw13wG+QbkBP09VvUbjGvaRgiNcebtAzZeD57SRbC/kxfOF5rYZ+W0
- c0mqSBQe2mXwAlaqo5CbfncQ9OGqftY9a+8F7owpNTbVEZtUBuG0SaOJJ A==;
-X-CSE-ConnectionGUID: B68nfgVsSqKkMY1ag+bAuw==
-X-CSE-MsgGUID: 8rjKYZ3QQM2hZdPpcTzrjQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25363744"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25363744"
+ bh=BVXqwvM1TZQaLgoA6qb22N8d8q6ePPeMeBKMKjs25Kc=;
+ b=co1+pTQwb4omFv3/ORcmScPnGJKcdqABagbu2f1zp0cXm0Zc4Ftanhv1
+ YmzNdrpCXAeM37FKod1bucoPOhibn7z9pKOEEeLC3Mow3H1aosSza2GMd
+ phVAgdPjClzr22jH9+iQPYI0cDn4fHaIu45BdqSuTSVII6qMeFGbPXoWF
+ pusKvLijgIg/QC+B16pDRQpZpYp3nCTGWXOVjSjpWB3rz0htELrXocev6
+ DJQdc9NMWB0RLp6vZdZsxehgXa5FL5QEWL9tQSP586eu2xcze0piihPU/
+ 8QmZ5/K81ZWdgIV34qDUro/EmDO2oYxZSl+dlo7qM9sBtNTEcCLwZufrV A==;
+X-CSE-ConnectionGUID: SWUiItk2RwKqOBEK0vOgvw==
+X-CSE-MsgGUID: Vsakc403SC6HTDiLSiT7CA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25363747"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25363747"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 06:46:57 -0700
-X-CSE-ConnectionGUID: RHUMkUfOSnGbVpp67hRgrA==
-X-CSE-MsgGUID: EP7JLZWaRAyyRC9M7pHc1w==
+ 20 Sep 2024 06:47:01 -0700
+X-CSE-ConnectionGUID: cdQs2Hj1Sa+9EVnSo+mylg==
+X-CSE-MsgGUID: g3ff9HTHQYmeAeAZN5c9dA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="74684464"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="74684478"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.59])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 06:46:55 -0700
+ 20 Sep 2024 06:46:58 -0700
 From: bnilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com,
 	john.c.harrison@intel.com
-Subject: [[CI] 04/12] drm/xe/devcoredump: Add ASCII85 dump helper function
-Date: Fri, 20 Sep 2024 19:36:38 +0530
-Message-Id: <20240920140646.618008-5-badal.nilawar@intel.com>
+Subject: [[CI] 06/12] drm/xe/guc: Use a two stage dump for GuC logs and add
+ more info
+Date: Fri, 20 Sep 2024 19:36:40 +0530
+Message-Id: <20240920140646.618008-7-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240920140646.618008-1-badal.nilawar@intel.com>
 References: <20240920140646.618008-1-badal.nilawar@intel.com>
@@ -69,149 +70,326 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-There is a need to include the GuC log and other large binary objects
-in core dumps and via dmesg. So add a helper for dumping to a printer
-function via conversion to ASCII85 encoding.
+Split the GuC log dump into a two stage snapshot and print mechanism.
+This allows the log to be captured at the point of an error (which may
+be in a restricted context) and then dump it out later (from a regular
+context such as a worker function or a sysfs file handler).
 
-Another issue with dumping such a large buffer is that it can be slow,
-especially if dumping to dmesg over a serial port. So add a yield to
-prevent the 'task has been stuck for 120s' kernel hang check feature
-from firing.
+Also add a bunch of other useful pieces of information that can help
+(or are fundamentally required!) to decode and parse the log.
 
-v2: Add a prefix to the output string. Fix memory allocation bug.
-v3: Correct a string size calculation and clean up a define (review
-feedback from Julia F).
+v2: Add kerneldoc and fix a couple of comment typos - review feedback
+from Michal W.
+v3: Move chunking code to this patch as it makes the deltas simpler.
+Fix a bunch of kerneldoc issues.
+v4: Move the CS frequency out of the coredump snapshot function into
+the debugfs only code (as that info is already part of the main
+devcoredump). Add a header to the debugfs log to match the one in the
+devcoredump to aid processing by a unified tool. Add forcewake to the
+GuC timestamp read so it actually works.
+v6: Add colon to GuC version string (review feedback by Julia F).
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 87 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_devcoredump.h |  6 ++
- 2 files changed, 93 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h |   1 +
+ drivers/gpu/drm/xe/xe_guc_log.c       | 178 +++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_guc_log.h       |   4 +
+ drivers/gpu/drm/xe/xe_guc_log_types.h |  27 ++++
+ 4 files changed, 195 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 2690f1d1cde4..0884c49942fe 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -6,6 +6,7 @@
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index a5fd14307f94..b27b73680c12 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -84,6 +84,7 @@
+ #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
+ #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
+ #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
++#define GUC_PMTIMESTAMP				XE_REG(0xc3e8)
+ 
+ #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
+ #define   GUC_SEND_TRIGGER			REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index be47780ec2a7..24564624e91e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -6,15 +6,23 @@
+ #include "xe_guc_log.h"
+ 
+ #include <drm/drm_managed.h>
+-#include <linux/vmalloc.h>
+ 
++#include "regs/xe_guc_regs.h"
+ #include "xe_bo.h"
  #include "xe_devcoredump.h"
- #include "xe_devcoredump_types.h"
++#include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
+ #include "xe_map.h"
++#include "xe_mmio.h"
+ #include "xe_module.h"
  
-+#include <linux/ascii85.h>
- #include <linux/devcoredump.h>
- #include <generated/utsrelease.h>
- 
-@@ -315,3 +316,89 @@ int xe_devcoredump_init(struct xe_device *xe)
++static struct xe_guc *
++log_to_guc(struct xe_guc_log *log)
++{
++	return container_of(log, struct xe_guc, log);
++}
++
+ static struct xe_gt *
+ log_to_gt(struct xe_guc_log *log)
+ {
+@@ -52,35 +60,175 @@ static size_t guc_log_size(void)
+ 		CAPTURE_BUFFER_SIZE;
  }
  
- #endif
++#define GUC_LOG_CHUNK_SIZE	SZ_2M
++
++static struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *log, bool atomic)
++{
++	struct xe_guc_log_snapshot *snapshot;
++	size_t remain;
++	int i;
++
++	snapshot = kzalloc(sizeof(*snapshot), atomic ? GFP_ATOMIC : GFP_KERNEL);
++	if (!snapshot)
++		return NULL;
++
++	/*
++	 * NB: kmalloc has a hard limit well below the maximum GuC log buffer size.
++	 * Also, can't use vmalloc as might be called from atomic context. So need
++	 * to break the buffer up into smaller chunks that can be allocated.
++	 */
++	snapshot->size = log->bo->size;
++	snapshot->num_chunks = DIV_ROUND_UP(snapshot->size, GUC_LOG_CHUNK_SIZE);
++
++	snapshot->copy = kcalloc(snapshot->num_chunks, sizeof(*snapshot->copy),
++				 atomic ? GFP_ATOMIC : GFP_KERNEL);
++	if (!snapshot->copy)
++		goto fail_snap;
++
++	remain = snapshot->size;
++	for (i = 0; i < snapshot->num_chunks; i++) {
++		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
++
++		snapshot->copy[i] = kmalloc(size, atomic ? GFP_ATOMIC : GFP_KERNEL);
++		if (!snapshot->copy[i])
++			goto fail_copy;
++		remain -= size;
++	}
++
++	return snapshot;
++
++fail_copy:
++	for (i = 0; i < snapshot->num_chunks; i++)
++		kfree(snapshot->copy[i]);
++	kfree(snapshot->copy);
++fail_snap:
++	kfree(snapshot);
++	return NULL;
++}
++
+ /**
+- * xe_guc_log_print - dump a copy of the GuC log to some useful location
++ * xe_guc_log_snapshot_free - free a previously captured GuC log snapshot
++ * @snapshot: GuC log snapshot structure
++ *
++ * Return: pointer to a newly allocated snapshot object or null if out of memory. Caller is
++ * responsible for calling xe_guc_log_snapshot_free when done with the snapshot.
++ */
++void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
++{
++	int i;
++
++	if (!snapshot)
++		return;
++
++	if (!snapshot->copy) {
++		for (i = 0; i < snapshot->num_chunks; i++)
++			kfree(snapshot->copy[i]);
++		kfree(snapshot->copy);
++	}
++
++	kfree(snapshot);
++}
 +
 +/**
-+ * xe_print_blob_ascii85 - print a BLOB to some useful location in ASCII85
++ * xe_guc_log_snapshot_capture - create a new snapshot copy the GuC log for later dumping
+  * @log: GuC log structure
+- * @p: the printer object to output to
++ * @atomic: is the call inside an atomic section of some kind?
 + *
-+ * The output is split to multiple lines because some print targets, e.g. dmesg
-+ * cannot handle arbitrarily long lines. Note also that printing to dmesg in
-+ * piece-meal fashion is not possible, each separate call to drm_puts() has a
-+ * line-feed automatically added! Therefore, the entire output line must be
-+ * constructed in a local buffer first, then printed in one atomic output call.
-+ *
-+ * There is also a scheduler yield call to prevent the 'task has been stuck for
-+ * 120s' kernel hang check feature from firing when printing to a slow target
-+ * such as dmesg over a serial port.
-+ *
-+ * TODO: Add compression prior to the ASCII85 encoding to shrink huge buffers down.
-+ *
-+ * @p: the printer object to output to
-+ * @prefix: optional prefix to add to output string
-+ * @blob: the Binary Large OBject to dump out
-+ * @offset: offset in bytes to skip from the front of the BLOB, must be a multiple of sizeof(u32)
-+ * @size: the size in bytes of the BLOB, must be a multiple of sizeof(u32)
-+ */
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+			   const void *blob, size_t offset, size_t size)
-+{
-+	const u32 *blob32 = (const u32 *)blob;
-+	char buff[ASCII85_BUFSZ], *line_buff;
-+	size_t line_pos = 0;
-+
-+#define DMESG_MAX_LINE_LEN	800
-+#define MIN_SPACE		(ASCII85_BUFSZ + 2)		/* 85 + "\n\0" */
-+
-+	if (size & 3)
-+		drm_printf(p, "Size not word aligned: %zu", size);
-+	if (offset & 3)
-+		drm_printf(p, "Offset not word aligned: %zu", size);
-+
-+	line_buff = kzalloc(DMESG_MAX_LINE_LEN, GFP_KERNEL);
-+	if (IS_ERR_OR_NULL(line_buff)) {
-+		drm_printf(p, "Failed to allocate line buffer: %pe", line_buff);
-+		return;
++ * Return: pointer to a newly allocated snapshot object or null if out of memory. Caller is
++ * responsible for calling xe_guc_log_snapshot_free when done with the snapshot.
+  */
+-void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
++struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic)
+ {
++	struct xe_guc_log_snapshot *snapshot;
+ 	struct xe_device *xe = log_to_xe(log);
+-	size_t size;
+-	void *copy;
++	struct xe_guc *guc = log_to_guc(log);
++	struct xe_gt *gt = log_to_gt(log);
++	size_t remain;
++	int i, err;
+ 
+ 	if (!log->bo) {
+-		drm_puts(p, "GuC log buffer not allocated");
+-		return;
++		xe_gt_err(gt, "GuC log buffer not allocated\n");
++		return NULL;
 +	}
 +
-+	blob32 += offset / sizeof(*blob32);
-+	size /= sizeof(*blob32);
++	snapshot = xe_guc_log_snapshot_alloc(log, atomic);
++	if (!snapshot) {
++		xe_gt_err(gt, "GuC log snapshot not allocated\n");
++		return NULL;
+ 	}
+ 
+-	size = log->bo->size;
++	remain = snapshot->size;
++	for (i = 0; i < snapshot->num_chunks; i++) {
++		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
 +
-+	if (prefix) {
-+		strscpy(line_buff, prefix, DMESG_MAX_LINE_LEN - MIN_SPACE - 2);
-+		line_pos = strlen(line_buff);
-+
-+		line_buff[line_pos++] = ':';
-+		line_buff[line_pos++] = ' ';
++		xe_map_memcpy_from(xe, snapshot->copy[i], &log->bo->vmap,
++				   i * GUC_LOG_CHUNK_SIZE, size);
++		remain -= size;
 +	}
 +
-+	while (size--) {
-+		u32 val = *(blob32++);
-+
-+		strscpy(line_buff + line_pos, ascii85_encode(val, buff),
-+			DMESG_MAX_LINE_LEN - line_pos);
-+		line_pos += strlen(line_buff + line_pos);
-+
-+		if ((line_pos + MIN_SPACE) >= DMESG_MAX_LINE_LEN) {
-+			line_buff[line_pos++] = '\n';
-+			line_buff[line_pos++] = 0;
-+
-+			drm_puts(p, line_buff);
-+
-+			line_pos = 0;
-+
-+			/* Prevent 'stuck thread' time out errors */
-+			cond_resched();
-+		}
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (err) {
++		snapshot->stamp = ~0;
++	} else {
++		snapshot->stamp = xe_mmio_read32(&gt->mmio, GUC_PMTIMESTAMP);
++		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
 +	}
++	snapshot->ktime = ktime_get_boottime_ns();
++	snapshot->level = log->level;
++	snapshot->ver_found = guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
++	snapshot->ver_want = guc->fw.versions.wanted;
++	snapshot->path = guc->fw.path;
 +
-+	if (line_pos) {
-+		line_buff[line_pos++] = '\n';
-+		line_buff[line_pos++] = 0;
-+
-+		drm_puts(p, line_buff);
-+	}
-+
-+	kfree(line_buff);
-+
-+#undef MIN_SPACE
-+#undef DMESG_MAX_LINE_LEN
++	return snapshot;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
-index e2fa65ce0932..a4eebc285fc8 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.h
-@@ -6,6 +6,9 @@
- #ifndef _XE_DEVCOREDUMP_H_
- #define _XE_DEVCOREDUMP_H_
- 
-+#include <linux/types.h>
 +
-+struct drm_printer;
- struct xe_device;
- struct xe_sched_job;
++/**
++ * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
++ * @snapshot: a snapshot of the GuC log
++ * @p: the printer object to output to
++ */
++void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
++{
++	size_t remain;
++	int i;
  
-@@ -23,4 +26,7 @@ static inline int xe_devcoredump_init(struct xe_device *xe)
+-	copy = vmalloc(size);
+-	if (!copy) {
+-		drm_printf(p, "Failed to allocate %zu", size);
++	if (!snapshot) {
++		drm_printf(p, "GuC log snapshot not allocated!\n");
+ 		return;
+ 	}
+ 
+-	xe_map_memcpy_from(xe, copy, &log->bo->vmap, 0, size);
++	drm_printf(p, "GuC firmware: %s\n", snapshot->path);
++	drm_printf(p, "GuC version: %u.%u.%u (wanted %u.%u.%u)\n",
++		   snapshot->ver_found.major, snapshot->ver_found.minor, snapshot->ver_found.patch,
++		   snapshot->ver_want.major, snapshot->ver_want.minor, snapshot->ver_want.patch);
++	drm_printf(p, "Kernel timestamp: 0x%08llX [%llu]\n", snapshot->ktime, snapshot->ktime);
++	drm_printf(p, "GuC timestamp: 0x%08X [%u]\n", snapshot->stamp, snapshot->stamp);
++	drm_printf(p, "Log level: %u\n", snapshot->level);
++
++	remain = snapshot->size;
++	for (i = 0; i < snapshot->num_chunks; i++) {
++		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
++
++		xe_print_blob_ascii85(p, i ? NULL : "Log data", snapshot->copy[i], 0, size);
++		remain -= size;
++	}
++}
++
++/**
++ * xe_guc_log_print - dump a copy of the GuC log to some useful location
++ * @log: GuC log structure
++ * @p: the printer object to output to
++ */
++void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
++{
++	struct xe_guc_log_snapshot *snapshot;
+ 
+-	xe_print_blob_ascii85(p, "Log data", copy, 0, size);
++	drm_printf(p, "**** GuC Log ****\n");
+ 
+-	vfree(copy);
++	snapshot = xe_guc_log_snapshot_capture(log, false);
++	drm_printf(p, "CS reference clock: %u\n", log_to_gt(log)->info.reference_clock);
++	xe_guc_log_snapshot_print(snapshot, p);
++	xe_guc_log_snapshot_free(snapshot);
  }
- #endif
  
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+			   const void *blob, size_t offset, size_t size);
+ int xe_guc_log_init(struct xe_guc_log *log)
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+index 2d25ab28b4b3..949d2c98343d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.h
++++ b/drivers/gpu/drm/xe/xe_guc_log.h
+@@ -9,6 +9,7 @@
+ #include "xe_guc_log_types.h"
+ 
+ struct drm_printer;
++struct xe_device;
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_LARGE_GUC_BUFFER)
+ #define CRASH_BUFFER_SIZE       SZ_1M
+@@ -38,6 +39,9 @@ struct drm_printer;
+ 
+ int xe_guc_log_init(struct xe_guc_log *log);
+ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
++struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
++void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
++void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
+ 
+ static inline u32
+ xe_guc_log_get_level(struct xe_guc_log *log)
+diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
+index 125080d138a7..962b9edbd9eb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
+@@ -8,8 +8,35 @@
+ 
+ #include <linux/types.h>
+ 
++#include "xe_uc_fw_types.h"
 +
- #endif
+ struct xe_bo;
+ 
++/**
++ * struct xe_guc_log_snapshot:
++ * Capture of the GuC log plus various state useful for decoding the log
++ */
++struct xe_guc_log_snapshot {
++	/** @size: Size in bytes of the @copy allocation */
++	size_t size;
++	/** @copy: Host memory copy of the log buffer for later dumping, split into chunks */
++	void **copy;
++	/** @num_chunks: Number of chunks within @copy */
++	int num_chunks;
++	/** @ktime: Kernel time the snapshot was taken */
++	u64 ktime;
++	/** @stamp: GuC timestamp at which the snapshot was taken */
++	u32 stamp;
++	/** @level: GuC log verbosity level */
++	u32 level;
++	/** @ver_found: GuC firmware version */
++	struct xe_uc_fw_version ver_found;
++	/** @ver_want: GuC firmware version that driver expected */
++	struct xe_uc_fw_version ver_want;
++	/** @path: Path of GuC firmware blob */
++	const char *path;
++};
++
+ /**
+  * struct xe_guc_log - GuC log
+  */
 -- 
 2.34.1
 
