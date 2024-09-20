@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3A4CCF9C68
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 22:35:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 274BACF9C68
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 22:35:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 809B310E002;
-	Fri, 20 Sep 2024 22:35:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7D1310E002;
+	Fri, 20 Sep 2024 22:35:33 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8BAF10E002;
- Fri, 20 Sep 2024 22:35:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A64DE10E002;
+ Fri, 20 Sep 2024 22:35:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/vf=3A_Post-migrati?=
- =?utf-8?q?on_recovery_worker_basis?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/vf=3A_Post-migration_re?=
+ =?utf-8?q?covery_worker_basis?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tomasz Lis" <tomasz.lis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Sep 2024 22:35:02 -0000
-Message-ID: <172687170294.1052286.7545988146252219928@2413ebb6fbb6>
+Date: Fri, 20 Sep 2024 22:35:32 -0000
+Message-ID: <172687173267.1052288.5649135796933674842@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240920222926.846985-1-tomasz.lis@intel.com>
 In-Reply-To: <20240920222926.846985-1-tomasz.lis@intel.com>
@@ -44,50 +44,63 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/vf: Post-migration recovery worker basis
 URL   : https://patchwork.freedesktop.org/series/138935/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 0254b7b8013a737605c0b11d97e60a2ca2bd2a25
-Author: Tomasz Lis <tomasz.lis@intel.com>
-Date:   Sat Sep 21 00:29:26 2024 +0200
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_sriov_vf.c: In function ‘xe_sriov_vf_start_migration_recovery’:
+../drivers/gpu/drm/xe/xe_sriov_vf.c:136:2: error: implicit declaration of function ‘XE_WARN_ON’; did you mean ‘VM_WARN_ON’? [-Werror=implicit-function-declaration]
+  136 |  XE_WARN_ON(!IS_SRIOV_VF(xe));
+      |  ^~~~~~~~~~
+      |  VM_WARN_ON
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_sriov_vf.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1926: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe/vf: Defer fixups if migrated twice fast
-    
-    If another VF migration happened during post-migration recovery,
-    then the current worker should be finished to allow the next
-    one start swiftly and cleanly.
-    
-    Check for defer in two places: before fixups, and before
-    sending RESFIX_DONE.
-    
-    Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-+ /mt/dim checkpatch caa511d74cfe1960912443997a75a3e4abc67dbb drm-intel
-8e2bd615ae9e drm/xe/vf: React to MIGRATED interrupt
--:141: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#141: 
-new file mode 100644
-
--:196: WARNING:MEMORY_BARRIER: memory barrier without comment
-#196: FILE: drivers/gpu/drm/xe/xe_sriov_vf.c:51:
-+	smp_mb();
-
--:220: WARNING:MEMORY_BARRIER: memory barrier without comment
-#220: FILE: drivers/gpu/drm/xe/xe_sriov_vf.c:75:
-+	smp_mb__after_atomic();
-
-total: 0 errors, 3 warnings, 0 checks, 181 lines checked
-2b5e1048a020 drm/xe/vf: Send RESFIX_DONE message at end of VF restore
-daf267332301 drm/xe/vf: Start post-migration fixups with GuC MMIO handshake
-0254b7b8013a drm/xe/vf: Defer fixups if migrated twice fast
+[22:35:04] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[22:35:08] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
