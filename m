@@ -4,67 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ACDBCF58E6
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 07:46:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3767ECF58F1
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 08:37:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F39310E7BC;
-	Fri, 20 Sep 2024 07:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB29B10E2E3;
+	Fri, 20 Sep 2024 08:37:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M+NudMcg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCemhpwo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C665710E0AC;
- Fri, 20 Sep 2024 07:46:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1A9F10E2E3;
+ Fri, 20 Sep 2024 08:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726818396; x=1758354396;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=sh9MfekUbazKEajbVSy1ZCdAZiqR3S/QEcTbLqenAdA=;
- b=M+NudMcgLDOEDciVa3IcRYUV57IsvMfUCOxF8uABLpLMZF7WoQ4Zyxh0
- B2YoaWtLj1CKqyp1WcBh9NcN4DlwwUbrUaP8/uVn+/5kkBsKlwprhLf44
- NK7OQ1f0CQMKzn+bIuybPNuXGlk53WQX+q2fpBwSqhrICdMZwdjgTO1Rm
- /VaWi+G0ASiBerb6RvRYGvTjAihaHYkDVXv8fyXXbo2SWCJxDY0qMV4B8
- 7iSDky/BpT9ZHPXeO4O5n7CmoRNx+A+cxxOsZHqOCmmE87Q9yAaz5UDF2
- Fr21wXvXKFlLA+oC1aRKHJgEsnCD26oxcXPoD0Rf3RA9grt3HabxlBWNd Q==;
-X-CSE-ConnectionGUID: zNVmC5iEQ3WmMk5Ml7tGYA==
-X-CSE-MsgGUID: 2VsW6Mi3QCKi+jZ9PAIhIA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25961482"
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="25961482"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 00:46:36 -0700
-X-CSE-ConnectionGUID: 3sUMhZ/vSxuQWSRbBEh1yg==
-X-CSE-MsgGUID: Ge+iiJX/ROKrhVGt+YbvZQ==
+ t=1726821458; x=1758357458;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=FjYT2BKjGT6OchrotM7LjHr6S6Ni/aoPuOPvVS5kbqU=;
+ b=eCemhpwoplWgliqNxRtvRZJWspE9EeLvYFhGczQz4dePwLsEY4NZz7jp
+ gttH714tzax2oRISeAXKFEAiFSgC8pnfdwaKaBTEjdw9E9swwYK7unfXj
+ 8kcUoP+JNbszLgXh9eofPbREYu8UyIuTpIXw/ibEyDTVGLhX+Z2U9dhfG
+ mFjm7Xg3Sjm+WxDUtMGkWycsQxcEEy8TLRtR7xQdDTorYGlMIQuybGbV/
+ wkzEtAn+zQLf6Nz+nlttOQjvf2rxeUFRmNspBdeYV4FEnPUmvVqV0DfXS
+ UtezTIS6X16SFua60w1FyB7OIKjXoJ3i6ozdEm/el/ffalg2NtWTEFUAf Q==;
+X-CSE-ConnectionGUID: 95MOZ2JdT+qdRRyb1xwl5g==
+X-CSE-MsgGUID: VMebNUVoRV+qkUPbO0gJWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="29605462"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="29605462"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2024 01:37:38 -0700
+X-CSE-ConnectionGUID: Rm93kEgkS8SLlfUah43CXQ==
+X-CSE-MsgGUID: zz7eSZuWRdKWQL8YubJJjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="70453949"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.0])
- ([10.245.245.0])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 00:46:34 -0700
-Message-ID: <3a31238d9477902b63499a5587e6c79bbfe293a0.camel@linux.intel.com>
-Subject: Re: RESEND Re: [RFC PATCH] dma-buf/dma-fence: Use a successful
- read_trylock() annotation for dma_fence_begin_signalling()
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, 
- linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Fri, 20 Sep 2024 09:46:31 +0200
-In-Reply-To: <b6808146-b798-45b6-b2b3-61d97825a85f@amd.com>
-References: <20230428125233.228353-1-thomas.hellstrom@linux.intel.com>
- <be9b192a-a125-6774-bb4f-8b9fb517ce0d@linux.intel.com>
- <ZrxYdIDdEJXRTFrn@phenom.ffwll.local>
- <0d406a89b1b63ebf53c5d0848843c72299c1ff75.camel@linux.intel.com>
- <a97c5f63053000b5fcfc14cb56c79c8ff976b4ad.camel@linux.intel.com>
- <b6808146-b798-45b6-b2b3-61d97825a85f@amd.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="93540570"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+ by fmviesa002.fm.intel.com with ESMTP; 20 Sep 2024 01:37:33 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1srZ8s-000E8n-30;
+ Fri, 20 Sep 2024 08:37:30 +0000
+Date: Fri, 20 Sep 2024 16:36:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
+ linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Bjorn Helgaas <helgaas@kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+Subject: Re: [PATCH v2 1/3] PCI: Add support for VF Resizable Bar extended cap
+Message-ID: <202409201629.QlC0MRbn-lkp@intel.com>
+References: <20240919223557.1897608-2-michal.winiarski@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240919223557.1897608-2-michal.winiarski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,168 +84,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-09-18 at 15:18 +0200, Christian K=C3=B6nig wrote:
-> Sorry, somehow completely missed that. Feel free to push it to=20
-> drm-misc-next.
->=20
-> Christian.
+Hi Michał,
 
-Pushed, thanks.
-/Thomas
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on pci/for-linus]
+[also build test WARNING on drm-xe/drm-xe-next drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.11 next-20240919]
+[cannot apply to pci/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Micha-Winiarski/PCI-Add-support-for-VF-Resizable-Bar-extended-cap/20240920-064112
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git for-linus
+patch link:    https://lore.kernel.org/r/20240919223557.1897608-2-michal.winiarski%40intel.com
+patch subject: [PATCH v2 1/3] PCI: Add support for VF Resizable Bar extended cap
+config: x86_64-kexec (https://download.01.org/0day-ci/archive/20240920/202409201629.QlC0MRbn-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240920/202409201629.QlC0MRbn-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409201629.QlC0MRbn-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/pci/pci.c:1920:20: warning: variable 'res' set but not used [-Wunused-but-set-variable]
+    1920 |                 struct resource *res;
+         |                                  ^
+   1 warning generated.
 
 
->=20
-> Am 18.09.24 um 14:34 schrieb Thomas Hellstr=C3=B6m:
-> > Christian,
-> >=20
-> > Ping?
-> >=20
-> >=20
-> > On Wed, 2024-08-14 at 10:37 +0200, Thomas Hellstr=C3=B6m wrote:
-> > > Christian,
-> > >=20
-> > > Ack to merge this through drm-misc-next, or do you want to pick
-> > > it up
-> > > for dma-buf?
-> > >=20
-> > > Thanks,
-> > > Thomas
-> > >=20
-> > >=20
-> > > On Wed, 2024-08-14 at 09:10 +0200, Daniel Vetter wrote:
-> > > > On Fri, May 26, 2023 at 01:11:28PM +0200, Thomas Hellstr=C3=B6m
-> > > > wrote:
-> > > > > Daniel,
-> > > > >=20
-> > > > > On 4/28/23 14:52, Thomas Hellstr=C3=B6m wrote:
-> > > > > > Condsider the following call sequence:
-> > > > > >=20
-> > > > > > /* Upper layer */
-> > > > > > dma_fence_begin_signalling();
-> > > > > > lock(tainted_shared_lock);
-> > > > > > /* Driver callback */
-> > > > > > dma_fence_begin_signalling();
-> > > > > > ...
-> > > > > >=20
-> > > > > > The driver might here use a utility that is annotated as
-> > > > > > intended
-> > > > > > for the
-> > > > > > dma-fence signalling critical path. Now if the upper layer
-> > > > > > isn't
-> > > > > > correctly
-> > > > > > annotated yet for whatever reason, resulting in
-> > > > > >=20
-> > > > > > /* Upper layer */
-> > > > > > lock(tainted_shared_lock);
-> > > > > > /* Driver callback */
-> > > > > > dma_fence_begin_signalling();
-> > > > > >=20
-> > > > > > We will receive a false lockdep locking order violation
-> > > > > > notification from
-> > > > > > dma_fence_begin_signalling(). However entering a dma-fence
-> > > > > > signalling
-> > > > > > critical section itself doesn't block and could not cause a
-> > > > > > deadlock.
-> > > > > >=20
-> > > > > > So use a successful read_trylock() annotation instead for
-> > > > > > dma_fence_begin_signalling(). That will make sure that the
-> > > > > > locking order
-> > > > > > is correctly registered in the first case, and doesn't
-> > > > > > register
-> > > > > > any
-> > > > > > locking order in the second case.
-> > > > > >=20
-> > > > > > The alternative is of course to make sure that the "Upper
-> > > > > > layer"
-> > > > > > is always
-> > > > > > correctly annotated. But experience shows that's not easily
-> > > > > > achievable
-> > > > > > in all cases.
-> > > > > >=20
-> > > > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > > > <thomas.hellstrom@linux.intel.com>
-> > > > > Resurrecting the discussion on this one. I can't see a
-> > > > > situation
-> > > > > where we
-> > > > > would miss *relevant* locking
-> > > > > order violation warnings with this patch. Ofc if we have a
-> > > > > scheduler
-> > > > > annotation patch that would work fine as well, but the lack
-> > > > > of
-> > > > > annotation in
-> > > > > the scheduler callbacks is really starting to hurt us.
-> > > > Yeah this is just a bit too brain-melting to review, but I
-> > > > concur
-> > > > now.
-> > > >=20
-> > > > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > >=20
-> > >=20
-> > >=20
-> > >=20
-> > >=20
-> > >=20
-> > >=20
-> > >=20
-> > >=20
-> > > > I think what would help is some lockdep selftests to check that
-> > > > we
-> > > > both
-> > > > catch the stuff we want to, and don't incur false positives.
-> > > > Maybe
-> > > > with a
-> > > > plea that lockdep should have some native form of cross-release
-> > > > annotations ...
-> > > >=20
-> > > > But definitely seperate patch set, since it might take a few
-> > > > rounds
-> > > > of
-> > > > review by lockdep folks.
-> > > > -Sima
-> > > >=20
-> > > > > Thanks,
-> > > > >=20
-> > > > > Thomas
-> > > > >=20
-> > > > >=20
-> > > > >=20
-> > > > > > ---
-> > > > > > =C2=A0=C2=A0 drivers/dma-buf/dma-fence.c | 6 +++---
-> > > > > > =C2=A0=C2=A0 1 file changed, 3 insertions(+), 3 deletions(-)
-> > > > > >=20
-> > > > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-
-> > > > > > buf/dma-
-> > > > > > fence.c
-> > > > > > index f177c56269bb..17f632768ef9 100644
-> > > > > > --- a/drivers/dma-buf/dma-fence.c
-> > > > > > +++ b/drivers/dma-buf/dma-fence.c
-> > > > > > @@ -308,8 +308,8 @@ bool dma_fence_begin_signalling(void)
-> > > > > > =C2=A0=C2=A0=C2=A0	if (in_atomic())
-> > > > > > =C2=A0=C2=A0=C2=A0		return true;
-> > > > > > -	/* ... and non-recursive readlock */
-> > > > > > -	lock_acquire(&dma_fence_lockdep_map, 0, 0, 1, 1,
-> > > > > > NULL,
-> > > > > > _RET_IP_);
-> > > > > > +	/* ... and non-recursive successful read_trylock
-> > > > > > */
-> > > > > > +	lock_acquire(&dma_fence_lockdep_map, 0, 1, 1, 1,
-> > > > > > NULL,
-> > > > > > _RET_IP_);
-> > > > > > =C2=A0=C2=A0=C2=A0	return false;
-> > > > > > =C2=A0=C2=A0 }
-> > > > > > @@ -340,7 +340,7 @@ void __dma_fence_might_wait(void)
-> > > > > > =C2=A0=C2=A0=C2=A0	lock_map_acquire(&dma_fence_lockdep_map);
-> > > > > > =C2=A0=C2=A0=C2=A0	lock_map_release(&dma_fence_lockdep_map);
-> > > > > > =C2=A0=C2=A0=C2=A0	if (tmp)
-> > > > > > -		lock_acquire(&dma_fence_lockdep_map, 0, 0,
-> > > > > > 1,
-> > > > > > 1,
-> > > > > > NULL, _THIS_IP_);
-> > > > > > +		lock_acquire(&dma_fence_lockdep_map, 0, 1,
-> > > > > > 1,
-> > > > > > 1,
-> > > > > > NULL, _THIS_IP_);
-> > > > > > =C2=A0=C2=A0 }
-> > > > > > =C2=A0=C2=A0 #endif
->=20
+vim +/res +1920 drivers/pci/pci.c
 
+  1903	
+  1904	static void pci_restore_vf_rebar_state(struct pci_dev *pdev)
+  1905	{
+  1906		unsigned int pos, nbars, i;
+  1907		u32 ctrl;
+  1908	
+  1909		if (!pdev->is_physfn)
+  1910			return;
+  1911	
+  1912		pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_VF_REBAR);
+  1913		if (!pos)
+  1914			return;
+  1915	
+  1916		pci_read_config_dword(pdev, pos + PCI_REBAR_CTRL, &ctrl);
+  1917		nbars = FIELD_GET(PCI_REBAR_CTRL_NBAR_MASK, ctrl);
+  1918	
+  1919		for (i = 0; i < nbars; i++, pos += 8) {
+> 1920			struct resource *res;
+  1921			int bar_idx, size;
+  1922	
+  1923			pci_read_config_dword(pdev, pos + PCI_REBAR_CTRL, &ctrl);
+  1924			bar_idx = ctrl & PCI_REBAR_CTRL_BAR_IDX;
+  1925			res = pdev->resource + bar_idx;
+  1926			size = pci_rebar_bytes_to_size(pdev->sriov->barsz[bar_idx]);
+  1927			ctrl &= ~PCI_REBAR_CTRL_BAR_SIZE;
+  1928			ctrl |= FIELD_PREP(PCI_REBAR_CTRL_BAR_SIZE, size);
+  1929			pci_write_config_dword(pdev, pos + PCI_REBAR_CTRL, ctrl);
+  1930		}
+  1931	}
+  1932	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
