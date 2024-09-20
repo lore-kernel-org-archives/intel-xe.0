@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F36E8C78850
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 13:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0E70C78849
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 13:48:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C249510E04D;
-	Fri, 20 Sep 2024 13:48:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D1E510E100;
+	Fri, 20 Sep 2024 13:48:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kJ4V4FMq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c5vpc3Xm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E58B710E04D
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 13:48:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FC0E10E04D
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 13:48:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726840084; x=1758376084;
+ t=1726840085; x=1758376085;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ws9YOuOPqXiGQQsP7XsCaa2oJb3Gmuoow/TR24Mdrd8=;
- b=kJ4V4FMqJzIDKNJbeDkJg0Iw8FEiJWmwxFCqUklvOIr4bbGSy1e4oAlx
- 3pX1VC52faIQNHlHap1eR6Guc5o/L1J0NmUL24taMNkXMJ58lqmcocXs6
- P01ah5nnnh7i2VJO14dT51dK/OD+8cY0Y5OwSPfbqnpYUVNkriSOQB112
- VuQ/4RcxYHFta+Ra39PPtaYyzcayVq/9Tzb2pQ9VP5UYqZ5x3/DNEgg2O
- g6kCDxptP3KFnJUvX/DYZeMi8wy6g10Rc1PDIHxdgXdAf+KVOcs6Zl9bP
- N5kO28gb47RMB17pp/FVu/NuOSgy8G3UwKU7nhf0bfMlXe8RrPmMO5SvC g==;
-X-CSE-ConnectionGUID: 1pQ1FP/xSPOkVI2bYoITbw==
-X-CSE-MsgGUID: h6Q44/MyT2m3bo81nfvFcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25363787"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25363787"
+ bh=/GjVi+Nk1vrtxehsF6ZKguClaWn0BfRdTQDoJdCYkFE=;
+ b=c5vpc3XmdS4c9e35jsdHUmDi7Up8yknkbuR2OAU8+tFFEukvQMJeRYRT
+ DC8xHpGRVmKOYNlleDRXGJoU/ane3swawLIXb/ZBa923HkA1cVWKXr2LH
+ LXwDpw7BLusceswERwA5168TFIdDHVXmScINo+MTVJumfwZqTocVO/J0G
+ c8SYC7LAPDb5Fbm1WOdVQ3NObK/DENZsNoUKmckTWeaX1yAgTw7DkLmNS
+ yJfmBaFesSEHZdWFehnJ+0tVtSUjd+NNg+Meydy6wYPNchuew5l2uwKfa
+ JrVzLWRquwtmga2ikLYbeSg+COud2zH8YPixT5r3S4X/rwU/Hzyl5ZmQi Q==;
+X-CSE-ConnectionGUID: WiSh9kibS0yMnhDarIUg1A==
+X-CSE-MsgGUID: 9ebAGrD7QHCqPCfnh6LY6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25363789"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25363789"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Sep 2024 06:48:04 -0700
-X-CSE-ConnectionGUID: AyG6RfaDR92ZMD6FkfHkgQ==
-X-CSE-MsgGUID: /SOcjG5bQryv9oehl825LA==
+X-CSE-ConnectionGUID: 0S6UpSw6RViEi0ClRqf5Ag==
+X-CSE-MsgGUID: jHBpUF2MRJucJXuCDm6w1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="74684738"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="74684640"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.59])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 06:47:10 -0700
+ 20 Sep 2024 06:47:04 -0700
 From: bnilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com,
 	john.c.harrison@intel.com
-Subject: [[CI] 12/12] [For CI] Debug prints/logs to debug G2H timeout issue
-Date: Fri, 20 Sep 2024 19:36:46 +0530
-Message-Id: <20240920140646.618008-13-badal.nilawar@intel.com>
+Subject: [[CI] 09/12] drm/xe/guc: Dump entire CTB on errors
+Date: Fri, 20 Sep 2024 19:36:43 +0530
+Message-Id: <20240920140646.618008-10-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240920140646.618008-1-badal.nilawar@intel.com>
 References: <20240920140646.618008-1-badal.nilawar@intel.com>
@@ -67,50 +67,247 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Debug print and GuC log in dmesg to debug possible G2H irq delay / miss
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+The dump of the CT buffers was only showing the unprocessed data which
+is not generally useful for saying why a hang occurred - because it
+was probably caused by the commands that were just processed. So save
+and dump the entire buffer but in a more compact dump format. Also
+zero fill it on allocation to avoid confusion over uninitialised data
+in the dump.
+
+v2: Add kerneldoc - review feedback from Michal W.
+v3: Fix kerneldoc.
+v4: Use ascii85 instead of hexdump (review feedback from Matthew B).
+v5: Dump the entire CTB object rather than separately dumping just the
+H2G and G2H sections. That way it includes the full header info.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c    | 4 +++-
- drivers/gpu/drm/xe/xe_guc_ct.c | 2 ++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c       | 94 ++++++++++------------------
+ drivers/gpu/drm/xe/xe_guc_ct.h       |  8 +--
+ drivers/gpu/drm/xe/xe_guc_ct_types.h |  6 +-
+ 3 files changed, 41 insertions(+), 67 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 41ff4fe65f8b..00c0550fb80f 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1094,8 +1094,10 @@ int xe_guc_self_cfg64(struct xe_guc *guc, u16 key, u64 val)
- 
- void xe_guc_irq_handler(struct xe_guc *guc, const u16 iir)
- {
--	if (iir & GUC_INTR_GUC2HOST)
-+	if (iir & GUC_INTR_GUC2HOST) {
-+		xe_gt_dbg(guc_to_gt(guc), "G2H IRQ GT[%d]\n", guc_to_gt(guc)->info.id);
- 		xe_guc_ct_irq_handler(&guc->ct);
-+	}
- }
- 
- void xe_guc_sanitize(struct xe_guc *guc)
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 5546d4f87ebb..8f2d046bf1b5 100644
+index 90701fd465c9..5546d4f87ebb 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1026,6 +1026,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		xe_gt_err(gt, "Timed out wait for G2H, fence %u, action %04x",
- 			  g2h_fence.seqno, action[0]);
- 		xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
-+		xe_guc_log_print_dmesg(&ct_to_guc(ct)->log);
- 		return -ETIME;
+@@ -17,6 +17,7 @@
+ #include "abi/guc_actions_sriov_abi.h"
+ #include "abi/guc_klvs_abi.h"
+ #include "xe_bo.h"
++#include "xe_devcoredump.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_gt_pagefault.h"
+@@ -435,6 +436,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 
+ 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+ 
++	xe_map_memset(xe, &ct->bo->vmap, 0, 0, ct->bo->size);
+ 	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
+ 	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
+ 
+@@ -1562,48 +1564,33 @@ static void g2h_worker_func(struct work_struct *w)
+ 	receive_g2h(ct);
+ }
+ 
+-static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
+-				     struct guc_ctb_snapshot *snapshot,
+-				     bool atomic)
++struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic)
+ {
+-	u32 head, tail;
++	struct xe_guc_ct_snapshot *snapshot;
+ 
+-	xe_map_memcpy_from(xe, &snapshot->desc, &ctb->desc, 0,
+-			   sizeof(struct guc_ct_buffer_desc));
+-	memcpy(&snapshot->info, &ctb->info, sizeof(struct guc_ctb_info));
++	snapshot = kzalloc(sizeof(*snapshot), atomic ? GFP_ATOMIC : GFP_KERNEL);
++	if (!snapshot)
++		return NULL;
+ 
+-	snapshot->cmds = kmalloc_array(ctb->info.size, sizeof(u32),
+-				       atomic ? GFP_ATOMIC : GFP_KERNEL);
+-	if (!snapshot->cmds) {
+-		drm_err(&xe->drm, "Skipping CTB commands snapshot. Only CT info will be available.\n");
+-		return;
++	if (ct->bo) {
++		snapshot->ctb_size = ct->bo->size;
++		snapshot->ctb = kmalloc(snapshot->ctb_size, atomic ? GFP_ATOMIC : GFP_KERNEL);
  	}
  
-@@ -1141,6 +1142,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		xe_gt_warn(gt, "G2H fence (%u) not found!\n", fence);
- 		CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN);
- 		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
-+		xe_guc_log_print_dmesg(&ct_to_guc(ct)->log);
- 		return -EPROTO;
+-	head = snapshot->desc.head;
+-	tail = snapshot->desc.tail;
+-
+-	if (head != tail) {
+-		struct iosys_map map =
+-			IOSYS_MAP_INIT_OFFSET(&ctb->cmds, head * sizeof(u32));
+-
+-		while (head != tail) {
+-			snapshot->cmds[head] = xe_map_rd(xe, &map, 0, u32);
+-			++head;
+-			if (head == ctb->info.size) {
+-				head = 0;
+-				map = ctb->cmds;
+-			} else {
+-				iosys_map_incr(&map, sizeof(u32));
+-			}
+-		}
+-	}
++	return snapshot;
++}
++
++static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
++				     struct guc_ctb_snapshot *snapshot)
++{
++	xe_map_memcpy_from(xe, &snapshot->desc, &ctb->desc, 0,
++			   sizeof(struct guc_ct_buffer_desc));
++	memcpy(&snapshot->info, &ctb->info, sizeof(struct guc_ctb_info));
+ }
+ 
+ static void guc_ctb_snapshot_print(struct guc_ctb_snapshot *snapshot,
+ 				   struct drm_printer *p)
+ {
+-	u32 head, tail;
+-
+ 	drm_printf(p, "\tsize: %d\n", snapshot->info.size);
+ 	drm_printf(p, "\tresv_space: %d\n", snapshot->info.resv_space);
+ 	drm_printf(p, "\thead: %d\n", snapshot->info.head);
+@@ -1613,25 +1600,6 @@ static void guc_ctb_snapshot_print(struct guc_ctb_snapshot *snapshot,
+ 	drm_printf(p, "\thead (memory): %d\n", snapshot->desc.head);
+ 	drm_printf(p, "\ttail (memory): %d\n", snapshot->desc.tail);
+ 	drm_printf(p, "\tstatus (memory): 0x%x\n", snapshot->desc.status);
+-
+-	if (!snapshot->cmds)
+-		return;
+-
+-	head = snapshot->desc.head;
+-	tail = snapshot->desc.tail;
+-
+-	while (head != tail) {
+-		drm_printf(p, "\tcmd[%d]: 0x%08x\n", head,
+-			   snapshot->cmds[head]);
+-		++head;
+-		if (head == snapshot->info.size)
+-			head = 0;
+-	}
+-}
+-
+-static void guc_ctb_snapshot_free(struct guc_ctb_snapshot *snapshot)
+-{
+-	kfree(snapshot->cmds);
+ }
+ 
+ /**
+@@ -1652,9 +1620,7 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_guc_ct_snapshot *snapshot;
+ 
+-	snapshot = kzalloc(sizeof(*snapshot),
+-			   atomic ? GFP_ATOMIC : GFP_KERNEL);
+-
++	snapshot = xe_guc_ct_snapshot_alloc(ct, atomic);
+ 	if (!snapshot) {
+ 		xe_gt_err(ct_to_gt(ct), "Skipping CTB snapshot entirely.\n");
+ 		return NULL;
+@@ -1663,12 +1629,13 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
+ 	if (xe_guc_ct_enabled(ct) || ct->state == XE_GUC_CT_STATE_STOPPED) {
+ 		snapshot->ct_enabled = true;
+ 		snapshot->g2h_outstanding = READ_ONCE(ct->g2h_outstanding);
+-		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g,
+-					 &snapshot->h2g, atomic);
+-		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h,
+-					 &snapshot->g2h, atomic);
++		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g, &snapshot->h2g);
++		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h, &snapshot->g2h);
  	}
  
++	if (ct->bo && snapshot->ctb)
++		xe_map_memcpy_from(xe, snapshot->ctb, &ct->bo->vmap, 0, snapshot->ctb_size);
++
+ 	return snapshot;
+ }
+ 
+@@ -1691,9 +1658,15 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
+ 
+ 		drm_puts(p, "G2H CTB (all sizes in DW):\n");
+ 		guc_ctb_snapshot_print(&snapshot->g2h, p);
+-
+ 		drm_printf(p, "\tg2h outstanding: %d\n",
+ 			   snapshot->g2h_outstanding);
++
++		if (snapshot->ctb) {
++			xe_print_blob_ascii85(p, "CTB data", snapshot->ctb, 0, snapshot->ctb_size);
++		} else {
++			drm_printf(p, "CTB snapshot missing!\n");
++			return;
++		}
+ 	} else {
+ 		drm_puts(p, "CT disabled\n");
+ 	}
+@@ -1711,8 +1684,7 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
+ 	if (!snapshot)
+ 		return;
+ 
+-	guc_ctb_snapshot_free(&snapshot->h2g);
+-	guc_ctb_snapshot_free(&snapshot->g2h);
++	kfree(snapshot->ctb);
+ 	kfree(snapshot);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 293041bed7ed..338f0b75d29f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -9,6 +9,7 @@
+ #include "xe_guc_ct_types.h"
+ 
+ struct drm_printer;
++struct xe_device;
+ 
+ int xe_guc_ct_init(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+@@ -16,10 +17,9 @@ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
+ void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+ 
+-struct xe_guc_ct_snapshot *
+-xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
+-void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
+-			      struct drm_printer *p);
++struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic);
++struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
++void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
+ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
+ void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index 85e127ec91d7..8e1b9d981d61 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -52,8 +52,6 @@ struct guc_ctb {
+ struct guc_ctb_snapshot {
+ 	/** @desc: snapshot of the CTB descriptor */
+ 	struct guc_ct_buffer_desc desc;
+-	/** @cmds: snapshot of the CTB commands */
+-	u32 *cmds;
+ 	/** @info: snapshot of the CTB info */
+ 	struct guc_ctb_info info;
+ };
+@@ -70,6 +68,10 @@ struct xe_guc_ct_snapshot {
+ 	struct guc_ctb_snapshot g2h;
+ 	/** @h2g: H2G CTB snapshot */
+ 	struct guc_ctb_snapshot h2g;
++	/** @ctb_size: size of the snapshot of the CTB */
++	size_t ctb_size;
++	/** @ctb: snapshot of the entire CTB */
++	u32 *ctb;
+ };
+ 
+ /**
 -- 
 2.34.1
 
