@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ED1EC78853
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 14:09:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAC44C78853
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 14:09:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9DD10E835;
-	Fri, 20 Sep 2024 14:09:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EF3A10E14D;
+	Fri, 20 Sep 2024 14:09:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTXmv/bW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A3G9ygMW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87A2C10E835
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 14:09:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21C5A10E837
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 14:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726841359; x=1758377359;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jYxIwD7KauZVmbGXyUeGJIqmXreWgRdUL2ZIDE+gQ2s=;
- b=BTXmv/bWRWSLoIRQh+r3vCvJz4w1fl/RjuFBtSHlzrWt9W9vuvTD5YoG
- T3QeGLTlLtC1+MdkUdpHK/XG8KfHgR8m7ns2MO+LUeRNZVnE1yt/vB4m5
- O8DdluhQFCLFIlT5ojAOKY9vKBGgLZvycLlAepp/8xXCQ7hV6rMgc6ro6
- VGza71c+NKnaEbtIjjCSyzi1/Qx3V5b7gKsXDPWgbKcHoZlW0WETUuRhz
- rldlMYZsRY2i5k9bi9RBufVoBd4xMTap0kkLdV++f6V4XDAYX8K7Jrlaj
- WiOKvBoA1CNhLcd+1jA7Hvt5yB9FKdBANb4npqs8YIwsH4sUJPjazdq/o Q==;
-X-CSE-ConnectionGUID: tT9JPuc+SyufjRvAeOX1TA==
-X-CSE-MsgGUID: spsoibYLRKiGMlSkwRx98g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="43368328"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="43368328"
+ t=1726841360; x=1758377360;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NgRcjsVvzNMRFQNc5dWbzis40GlsZ0VvNr/2pF/Si18=;
+ b=A3G9ygMW4bxpCsAUDByM1QdNZWOYhHo7pDBDK5A8EoldoaGA3JC5i6Mc
+ 1p0540nYGKZvKQ/eO1tbiCmEXcrsFlCt1lLnsW99V34DArAiaL4EIubKj
+ eU9Xy1icYhJ74LSV/irgKxgRIWRAXEZkpbcpsmlN7c74Pj3rHGrrtlRqA
+ r4Tr0c/WN2vHM/Ezq1mAkYwQRM5ezLQNQriFDpkqx1AlWwTqOZJ1l59mo
+ 4NzUS5HUgPXWBvNWpKd0Y3fD7QtfPvFnRRIWIsZ/lfpUzqOq69Cnjqkvt
+ xyBMwOewFNqIV7rTkw1lufKVrcKh5VZ13vP1fqovZQh/BufFXJMUV0ONC A==;
+X-CSE-ConnectionGUID: VsbcNnqRR+qYbMNBDpMlow==
+X-CSE-MsgGUID: G6QDF5AJQKmbYSabi9HFKg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="43368330"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="43368330"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 07:09:18 -0700
-X-CSE-ConnectionGUID: oEedwOPfRBqYa6oRkIB8kA==
-X-CSE-MsgGUID: PW4I3/aiRoelVDauILI+Mw==
+ 20 Sep 2024 07:09:20 -0700
+X-CSE-ConnectionGUID: 3pihki6rTUWi/0SHHdn3BA==
+X-CSE-MsgGUID: JM6EKTYkTPSYgNe443Q/SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="70182541"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="70182559"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.59])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 07:09:17 -0700
+ 20 Sep 2024 07:09:19 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com,
 	john.c.harrison@intel.com
-Subject: [CI 00/12] Debug g2h timeout issue
-Date: Fri, 20 Sep 2024 19:59:10 +0530
-Message-Id: <20240920142922.618649-1-badal.nilawar@intel.com>
+Subject: [CI 01/12] drm/xe/guc: Remove spurious line feed in debug print
+Date: Fri, 20 Sep 2024 19:59:11 +0530
+Message-Id: <20240920142922.618649-2-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240920142922.618649-1-badal.nilawar@intel.com>
+References: <20240920142922.618649-1-badal.nilawar@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,45 +67,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review
+From: John Harrison <John.C.Harrison@Intel.com>
 
-John Harrison (10):
-  drm/xe/guc: Remove spurious line feed in debug print
-  drm/xe/devcoredump: Use drm_puts and already cached local variables
-  drm/xe/devcoredump: Improve section headings and add tile info
-  drm/xe/devcoredump: Add ASCII85 dump helper function
-  drm/xe/guc: Copy GuC log prior to dumping
-  drm/xe/guc: Use a two stage dump for GuC logs and add more info
-  drm/xe/guc: Dead CT helper
-  drm/xe/guc: Dump entire CTB on errors
-  drm/xe/guc: Add GuC log to devcoredump captures
-  drm/xe/guc: Add a helper function for dumping GuC log to dmesg
+Including line feeds at the start of a debug print messes up the
+output when sent to dmesg. The break appears between all the useful
+prefix information and the actual string being printed. In this case,
+each block of data has a very clear start line and an extra delimeter
+is really not necessary. So don't do it.
 
-Michal Wajdeczko (1):
-  drm/print: Introduce drm_line_printer
+v2: Fix typo in commit message (review feedback from Michal W.)
 
-bnilawar (1):
-  [For CI] Debug prints/logs to debug G2H timeout issue
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/drm_print.c                   |  14 +
- .../drm/xe/abi/guc_communication_ctb_abi.h    |   1 +
- drivers/gpu/drm/xe/regs/xe_guc_regs.h         |   1 +
- drivers/gpu/drm/xe/xe_devcoredump.c           | 144 +++++-
- drivers/gpu/drm/xe/xe_devcoredump.h           |   6 +
- drivers/gpu/drm/xe/xe_devcoredump_types.h     |  13 +-
- drivers/gpu/drm/xe/xe_device.c                |   1 +
- drivers/gpu/drm/xe/xe_guc.c                   |   6 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                | 416 ++++++++++++++----
- drivers/gpu/drm/xe/xe_guc_ct.h                |  10 +-
- drivers/gpu/drm/xe/xe_guc_ct_types.h          |  29 +-
- drivers/gpu/drm/xe/xe_guc_log.c               | 208 ++++++++-
- drivers/gpu/drm/xe/xe_guc_log.h               |   5 +
- drivers/gpu/drm/xe/xe_guc_log_types.h         |  27 ++
- drivers/gpu/drm/xe/xe_guc_submit.c            |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c             |   1 -
- include/drm/drm_print.h                       |  64 +++
- 17 files changed, 804 insertions(+), 144 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 4b95f75b1546..a63fe0a9077a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1523,7 +1523,7 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
+ 		drm_puts(p, "H2G CTB (all sizes in DW):\n");
+ 		guc_ctb_snapshot_print(&snapshot->h2g, p);
+ 
+-		drm_puts(p, "\nG2H CTB (all sizes in DW):\n");
++		drm_puts(p, "G2H CTB (all sizes in DW):\n");
+ 		guc_ctb_snapshot_print(&snapshot->g2h, p);
+ 
+ 		drm_printf(p, "\tg2h outstanding: %d\n",
 -- 
 2.34.1
 
