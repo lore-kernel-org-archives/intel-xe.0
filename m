@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4443C78854
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 14:09:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9262C78853
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 14:09:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACAAC10E840;
-	Fri, 20 Sep 2024 14:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A91FF10E85C;
+	Fri, 20 Sep 2024 14:09:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BlXVVEDa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nx3aT5+9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E58D910E14D
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 14:09:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72A1910E83E
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Sep 2024 14:09:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726841388; x=1758377388;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uqQanBvH1DfHeOQNg08L3408+PTTZzUNeeVVE+Y7PSw=;
- b=BlXVVEDalAaxetj4mXzQUU+5X6wB6CQ1C0HE4dvzzOsJe52u4qO1oyNk
- JPfNfUe/cHEJ3CUlNlpO0SAeuim/MFN65sL0mZVrTxXkOcRnld8rz1pyf
- WOfuHwMG3I11xTr0LMzAMZsR0q0R2At38H+qHGo0FPbho8yJNkyDHnvpk
- w4gY81KvP9IQZIiDWMNjSQGTEf+98Ra80H1BYgNSrSqhXqZI5SoWAf1IK
- oVKEyoSCIY1dNUoa7dWBHj2SLgMW18fcTe2YD/lFOVyEpYDSDbX0dAMOn
- VOeAeezSSeSfUKEjMloKdPSKLr+HZ31aTKIpQcfsSVYXJr6RmXFZ5x9p/ Q==;
-X-CSE-ConnectionGUID: xRwSCNIqQ5OWLQ8hzrNuDA==
-X-CSE-MsgGUID: V28Xv5CdSmqEnESc/AtPuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="43368364"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="43368364"
+ bh=KlSwJvFUJHo1rJgTvtSjUEbCD9ExqpYa2qZIhKGveTk=;
+ b=nx3aT5+9tSKYxNk/7nec2ur/b5iFqtB/N4S/rPBo8lDod374sQhMpOLh
+ MAbJPzddluQn4unsboiOfpzBfihxgIo9/706Ujea5osFeNy6PbdoY6GBi
+ r99/JSklnwzpleFT5acIGolpSpe6Psm5gMr0L/WWA7/8So3WYqNufjc1g
+ lDiAWjU5GOdPRDCinzVs+XCCJ4CphOTR0J41yDOT/PJsQ3gxyav4djBSK
+ rJ/JKA8AYmfnuoMAXZ5tX0vtmyKnNkgsmnIAf9PczWAx7B+snC/78uEpK
+ dYTH3vorrfnc1y/dTm/Mu/VO/hz8/hPfAJBGQJjNSbBPfwp3FFmbWqwDd A==;
+X-CSE-ConnectionGUID: tV9MYQrwSnmKJ0JerFn1CQ==
+X-CSE-MsgGUID: 38r/QK7+TJqJ6Bv6d+wstg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="43368371"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="43368371"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 07:09:36 -0700
-X-CSE-ConnectionGUID: t+OxzPngSTWXA5WKhBroAQ==
-X-CSE-MsgGUID: C6cEzOaiTFycKbcFCRM5mQ==
+ 20 Sep 2024 07:09:39 -0700
+X-CSE-ConnectionGUID: euePYMaBSzeY3wfbX8RQNQ==
+X-CSE-MsgGUID: DZkwDuLDQdK1vsemy4xt0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="70182678"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="70182689"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.59])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 07:09:35 -0700
+ 20 Sep 2024 07:09:38 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com,
 	john.c.harrison@intel.com
-Subject: [CI 10/12] drm/xe/guc: Add GuC log to devcoredump captures
-Date: Fri, 20 Sep 2024 19:59:20 +0530
-Message-Id: <20240920142922.618649-11-badal.nilawar@intel.com>
+Subject: [CI 12/12] [For CI] Debug prints/logs to debug G2H timeout issue
+Date: Fri, 20 Sep 2024 19:59:22 +0530
+Message-Id: <20240920142922.618649-13-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240920142922.618649-1-badal.nilawar@intel.com>
 References: <20240920142922.618649-1-badal.nilawar@intel.com>
@@ -67,97 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: bnilawar <badal.nilawar@intel.com>
 
-Include the GuC log in devcoredump captures because they can be useful
-with debugging certain types of bug.
+Debug print and GuC log in dmesg to debug possible G2H irq delay / miss
 
-v2: Fix kerneldoc
-v3: Drop module parameter as now using more compact ascii85 encoding
-rather than hexdump (although still not compressed) (review feedback
-from Matthew B). Rebase onto recent refactoring of devcoredump code.
-v4: Don't move the submission snapshot inside the GuC internals
-structure 'cos it really doesn't belong there.
-
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c       | 16 ++++++++++++----
- drivers/gpu/drm/xe/xe_devcoredump_types.h | 10 +++++++---
- 2 files changed, 19 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c    | 4 +++-
+ drivers/gpu/drm/xe/xe_guc_ct.c | 2 ++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 0884c49942fe..a2d816713489 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -18,8 +18,10 @@
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_guc_ct.h"
-+#include "xe_guc_log.h"
- #include "xe_guc_submit.h"
- #include "xe_hw_engine.h"
-+#include "xe_module.h"
- #include "xe_sched_job.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 41ff4fe65f8b..00c0550fb80f 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1094,8 +1094,10 @@ int xe_guc_self_cfg64(struct xe_guc *guc, u16 key, u64 val)
  
-@@ -100,8 +102,10 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
- 	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
- 	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
- 
-+	drm_puts(&p, "\n**** GuC Log ****\n");
-+	xe_guc_log_snapshot_print(ss->guc.log, &p);
- 	drm_puts(&p, "\n**** GuC CT ****\n");
--	xe_guc_ct_snapshot_print(ss->ct, &p);
-+	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
- 
- 	drm_puts(&p, "\n**** Contexts ****\n");
- 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
-@@ -124,8 +128,11 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
+ void xe_guc_irq_handler(struct xe_guc *guc, const u16 iir)
  {
- 	int i;
+-	if (iir & GUC_INTR_GUC2HOST)
++	if (iir & GUC_INTR_GUC2HOST) {
++		xe_gt_dbg(guc_to_gt(guc), "G2H IRQ GT[%d]\n", guc_to_gt(guc)->info.id);
+ 		xe_guc_ct_irq_handler(&guc->ct);
++	}
+ }
  
--	xe_guc_ct_snapshot_free(ss->ct);
--	ss->ct = NULL;
-+	xe_guc_log_snapshot_free(ss->guc.log);
-+	ss->guc.log = NULL;
-+
-+	xe_guc_ct_snapshot_free(ss->guc.ct);
-+	ss->guc.ct = NULL;
+ void xe_guc_sanitize(struct xe_guc *guc)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 5546d4f87ebb..8f2d046bf1b5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1026,6 +1026,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 		xe_gt_err(gt, "Timed out wait for G2H, fence %u, action %04x",
+ 			  g2h_fence.seqno, action[0]);
+ 		xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
++		xe_guc_log_print_dmesg(&ct_to_guc(ct)->log);
+ 		return -ETIME;
+ 	}
  
- 	xe_guc_exec_queue_snapshot_free(ss->ge);
- 	ss->ge = NULL;
-@@ -253,7 +260,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
- 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+@@ -1141,6 +1142,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		xe_gt_warn(gt, "G2H fence (%u) not found!\n", fence);
+ 		CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN);
+ 		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
++		xe_guc_log_print_dmesg(&ct_to_guc(ct)->log);
+ 		return -EPROTO;
+ 	}
  
--	ss->ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
-+	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
-+	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
- 	ss->ge = xe_guc_exec_queue_snapshot_capture(q);
- 	ss->job = xe_sched_job_snapshot_capture(job);
- 	ss->vm = xe_vm_snapshot_capture(q->vm);
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 3cc2f095fdfb..06ac75ce63dd 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -34,9 +34,13 @@ struct xe_devcoredump_snapshot {
- 	/** @work: Workqueue for deferred capture outside of signaling context */
- 	struct work_struct work;
- 
--	/* GuC snapshots */
--	/** @ct: GuC CT snapshot */
--	struct xe_guc_ct_snapshot *ct;
-+	/** @guc: GuC snapshots */
-+	struct {
-+		/** @guc.ct: GuC CT snapshot */
-+		struct xe_guc_ct_snapshot *ct;
-+		/** @guc.log: GuC log snapshot */
-+		struct xe_guc_log_snapshot *log;
-+	} guc;
- 
- 	/** @ge: GuC Submission Engine snapshot */
- 	struct xe_guc_submit_exec_queue_snapshot *ge;
 -- 
 2.34.1
 
