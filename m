@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4F44CF58C4
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 03:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 195BECF58C3
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Sep 2024 03:21:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7269B10E785;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBBEA10E79A;
 	Fri, 20 Sep 2024 03:21:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GKvdW8nC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jM+OqUmn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8469610E785
- for <Intel-Xe@lists.freedesktop.org>; Fri, 20 Sep 2024 03:21:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECF7710E77A
+ for <Intel-Xe@lists.freedesktop.org>; Fri, 20 Sep 2024 03:21:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726802470; x=1758338470;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6bq7x1TR5KHZFiCZoS9iUTEeAoF/JQCRzOhFtLnmQd4=;
- b=GKvdW8nCoQvtGzPHyMBNle61Dk4j+KsmJvkN2V6p7kUuqNAcbCFTAK0t
- 1fnjISfLxkbEo4toowZF60OE9o9gjpRXSncbH9oMyKXJAYgACAyVii25/
- bKPDWu/7RwJVjBrOkjmNXi0uHmeie1PISdh10za7nDs7DG835sFoxY0jq
- cHsJN1493PAU9M0TauANrARFvDQz/LSfDwTpwNiVBXNIanD2ZKZ2uBk5T
- W19A502jyZbYZyF4Wtu1Juimgjj42wjFukb4W54I6/A7Ek96s62GqAQBE
- 1lPi6IvKUtn/lEK9PSR/KZjBp4Qh2QEu2uCnW2/w3ninERIEfjIG6EziJ w==;
-X-CSE-ConnectionGUID: qgViUZC/RZ6hmYrsHo7Yxg==
-X-CSE-MsgGUID: +ohaJLx8Rv2tsqIqFVPOzg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25983962"
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="25983962"
+ bh=d0jz/sNpxhur+Y9GdZN/bJoyTMBOCVGBWF6yDOExCi0=;
+ b=jM+OqUmnGRStBFofV9Aj1+pFnDpN3EyjBNXRL5vqfMBdbFCBY2l44ws2
+ XzSgGYpuzv0FDROwZQ1ZWij8yXJA8c7c+fe7nTGdXJ8pQiug9iL6SgnAR
+ uX9ijxfM49vIvzWOYm4qNM5dMttorByXMM9u4uBuzG91PBM634NQ5zkrl
+ Vwl+GTHsLS18YwjtwxWYtF53YlCjKM5wrNhOznKA6kABtBlESvrrnYydC
+ NUv1V28UsUOmQXWSdBY7Jd9pfaXf4mZC1enD3AgKMnJxr7wc89+OkL4YG
+ AgniPkFPGeqw5bhyZobrG6dIYuGgfCKK0JVTGvneZ0RNXitjRMASxE+q7 Q==;
+X-CSE-ConnectionGUID: /nUvUgbfSlW3dS4XF+Sjmw==
+X-CSE-MsgGUID: PQD8y925TjG73+FMQ1E4aw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25983959"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="25983959"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Sep 2024 20:21:10 -0700
-X-CSE-ConnectionGUID: hcPw7E0ZTFKCIc1chRJd7A==
-X-CSE-MsgGUID: ZtFk43AaSxekXMbJqSb7Ag==
+X-CSE-ConnectionGUID: BLgiuDoVQwKHeBP6+uWPMg==
+X-CSE-MsgGUID: 4n4++W1HSt6ekkkgm1T5Dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="74504452"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; d="scan'208";a="74504442"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa005.fm.intel.com with ESMTP; 19 Sep 2024 20:21:10 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 19 Sep 2024 20:21:09 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v8 05/11] drm/xe/guc: Copy GuC log prior to dumping
-Date: Thu, 19 Sep 2024 20:21:02 -0700
-Message-ID: <20240920032108.629796-6-John.C.Harrison@Intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v8 02/11] drm/xe/devcoredump: Use drm_puts and already cached
+ local variables
+Date: Thu, 19 Sep 2024 20:20:59 -0700
+Message-ID: <20240920032108.629796-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240920032108.629796-1-John.C.Harrison@Intel.com>
 References: <20240920032108.629796-1-John.C.Harrison@Intel.com>
@@ -70,95 +70,92 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Add an extra stage to the GuC log print to copy the log buffer into
-regular host memory first, rather than printing the live GPU buffer
-object directly. Doing so helps prevent inconsistencies due to the log
-being updated as it is being dumped. It also allows the use of the
-ASCII85 helper function for printing the log in a more compact form
-than a straight hex dump.
+There are a bunch of calls to drm_printf with static strings. Switch
+them to drm_puts instead.
 
-v2: Use %zx instead of %lx for size_t prints.
-v3: Replace hexdump code with ascii85 call (review feedback from
-Matthew B). Move chunking code into next patch as that reduces the
-deltas of both.
-v4: Add a prefix to the ASCII85 output to aid tool parsing.
+There are also a bunch of 'coredump->snapshot.XXX' references when
+'coredump->snapshot' has alread been cached locally as 'ss'. So use
+'ss->XXX' instead.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_log.c | 40 +++++++++++++++++++--------------
- 1 file changed, 23 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 40 ++++++++++++++---------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index a37ee3419428..be47780ec2a7 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -6,9 +6,12 @@
- #include "xe_guc_log.h"
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index bdb76e834e4c..d23719d5c2a3 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -85,9 +85,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
  
- #include <drm/drm_managed.h>
-+#include <linux/vmalloc.h>
+ 	p = drm_coredump_printer(&iter);
  
- #include "xe_bo.h"
-+#include "xe_devcoredump.h"
- #include "xe_gt.h"
-+#include "xe_gt_printk.h"
- #include "xe_map.h"
- #include "xe_module.h"
+-	drm_printf(&p, "**** Xe Device Coredump ****\n");
+-	drm_printf(&p, "kernel: " UTS_RELEASE "\n");
+-	drm_printf(&p, "module: " KBUILD_MODNAME "\n");
++	drm_puts(&p, "**** Xe Device Coredump ****\n");
++	drm_puts(&p, "kernel: " UTS_RELEASE "\n");
++	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
  
-@@ -49,32 +52,35 @@ static size_t guc_log_size(void)
- 		CAPTURE_BUFFER_SIZE;
+ 	ts = ktime_to_timespec64(ss->snapshot_time);
+ 	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
+@@ -96,20 +96,20 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
+ 	drm_printf(&p, "Process: %s\n", ss->process_name);
+ 	xe_device_snapshot_print(xe, &p);
+ 
+-	drm_printf(&p, "\n**** GuC CT ****\n");
+-	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
+-	xe_guc_exec_queue_snapshot_print(coredump->snapshot.ge, &p);
++	drm_puts(&p, "\n**** GuC CT ****\n");
++	xe_guc_ct_snapshot_print(ss->ct, &p);
++	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
+ 
+-	drm_printf(&p, "\n**** Job ****\n");
+-	xe_sched_job_snapshot_print(coredump->snapshot.job, &p);
++	drm_puts(&p, "\n**** Job ****\n");
++	xe_sched_job_snapshot_print(ss->job, &p);
+ 
+-	drm_printf(&p, "\n**** HW Engines ****\n");
++	drm_puts(&p, "\n**** HW Engines ****\n");
+ 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
+-		if (coredump->snapshot.hwe[i])
+-			xe_hw_engine_snapshot_print(coredump->snapshot.hwe[i],
+-						    &p);
+-	drm_printf(&p, "\n**** VM state ****\n");
+-	xe_vm_snapshot_print(coredump->snapshot.vm, &p);
++		if (ss->hwe[i])
++			xe_hw_engine_snapshot_print(ss->hwe[i], &p);
++
++	drm_puts(&p, "\n**** VM state ****\n");
++	xe_vm_snapshot_print(ss->vm, &p);
+ 
+ 	return count - iter.remain;
  }
+@@ -247,18 +247,18 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
+ 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
  
-+/**
-+ * xe_guc_log_print - dump a copy of the GuC log to some useful location
-+ * @log: GuC log structure
-+ * @p: the printer object to output to
-+ */
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- {
- 	struct xe_device *xe = log_to_xe(log);
- 	size_t size;
--	int i, j;
-+	void *copy;
+-	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+-	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(q);
+-	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
+-	coredump->snapshot.vm = xe_vm_snapshot_capture(q->vm);
++	ss->ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
++	ss->ge = xe_guc_exec_queue_snapshot_capture(q);
++	ss->job = xe_sched_job_snapshot_capture(job);
++	ss->vm = xe_vm_snapshot_capture(q->vm);
  
--	xe_assert(xe, log->bo);
-+	if (!log->bo) {
-+		drm_puts(p, "GuC log buffer not allocated");
-+		return;
-+	}
- 
- 	size = log->bo->size;
- 
--#define DW_PER_READ		128
--	xe_assert(xe, !(size % (DW_PER_READ * sizeof(u32))));
--	for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
--		u32 read[DW_PER_READ];
--
--		xe_map_memcpy_from(xe, read, &log->bo->vmap, i * sizeof(u32),
--				   DW_PER_READ * sizeof(u32));
--#define DW_PER_PRINT		4
--		for (j = 0; j < DW_PER_READ / DW_PER_PRINT; ++j) {
--			u32 *print = read + j * DW_PER_PRINT;
--
--			drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
--				   *(print + 0), *(print + 1),
--				   *(print + 2), *(print + 3));
--		}
-+	copy = vmalloc(size);
-+	if (!copy) {
-+		drm_printf(p, "Failed to allocate %zu", size);
-+		return;
+ 	for_each_hw_engine(hwe, q->gt, id) {
+ 		if (hwe->class != q->hwe->class ||
+ 		    !(BIT(hwe->logical_instance) & adj_logical_mask)) {
+-			coredump->snapshot.hwe[id] = NULL;
++			ss->hwe[id] = NULL;
+ 			continue;
+ 		}
+-		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe);
++		ss->hwe[id] = xe_hw_engine_snapshot_capture(hwe);
  	}
-+
-+	xe_map_memcpy_from(xe, copy, &log->bo->vmap, 0, size);
-+
-+	xe_print_blob_ascii85(p, "Log data", copy, 0, size);
-+
-+	vfree(copy);
- }
  
- int xe_guc_log_init(struct xe_guc_log *log)
+ 	queue_work(system_unbound_wq, &ss->work);
 -- 
 2.46.0
 
