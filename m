@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0967CF9C5C
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Sep 2024 02:02:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE89CCF9C68
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Sep 2024 02:03:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 995B210E035;
-	Sat, 21 Sep 2024 02:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83D2810E035;
+	Sat, 21 Sep 2024 02:03:03 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E978C10E035;
- Sat, 21 Sep 2024 02:02:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2B810E035;
+ Sat, 21 Sep 2024 02:03:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Take_ref_t?=
- =?utf-8?q?o_job_and_job=27s_fence_in_xe=5Fsched=5Fjob=5Farm?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Take_ref_to_job?=
+ =?utf-8?q?_and_job=27s_fence_in_xe=5Fsched=5Fjob=5Farm?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 21 Sep 2024 02:02:44 -0000
-Message-ID: <172688416494.1052506.8230788169639899256@2413ebb6fbb6>
+Date: Sat, 21 Sep 2024 02:03:02 -0000
+Message-ID: <172688418204.1052507.266095525886094368@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240921015605.2692906-1-matthew.brost@intel.com>
 In-Reply-To: <20240921015605.2692906-1-matthew.brost@intel.com>
@@ -48,9 +48,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: abfe8cf977e1 drm-tip: 2024y-09m-20d-22h-07m-36s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Take ref to job and job's fence in xe_sched_job_arm
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 50b91457193f139a30a820ef7a0c1865e68b63f1
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Sep 20 18:56:05 2024 -0700
+
+    drm/xe: Take ref to job and job's fence in xe_sched_job_arm
+    
+    Fixes two possible races:
+    
+    - Submission to hardware signals job's fence before dma_fence_get at end
+      of run_job
+    - TDR fires and signals fence + free job before run_job completes
+    
+    Taking refs in xe_sched_job_arm to job and job's fence solves these by
+    ensure all refs collected before entering the DRM scheduler. The refs
+    are dropped in run_job and DRM scheduler respectfully. Safe as once
+    xe_sched_job_arm is called execution of job through DRM sched is
+    guaranteed.
+    
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2811
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: <stable@vger.kernel.org> # v6.8+
++ /mt/dim checkpatch abfe8cf977e1abd1f414b2a90d223cd4dd2f1f47 drm-intel
+50b91457193f drm/xe: Take ref to job and job's fence in xe_sched_job_arm
 
 
