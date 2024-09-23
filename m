@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52136CF9C71
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 18:12:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99A0ACF9C71
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 18:30:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B0810E455;
-	Mon, 23 Sep 2024 18:12:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 659A010E459;
+	Mon, 23 Sep 2024 18:30:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eFLLXk/U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l6cGgMIQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C51610E450;
- Mon, 23 Sep 2024 18:12:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0F010E455;
+ Mon, 23 Sep 2024 18:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727115134; x=1758651134;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KnZKSK5V4knuVONOEVEuaTL7cpEcJbDMM29OhsypUj0=;
- b=eFLLXk/U/WHwe+6nDI9yZKPTpZd0zxXU6zLNJ8recfrPJfazKL+RnhqT
- 4K+hl4k4+s30a16hmv4HH71aYFwW2925e8l6WG5I+S4OLOnCnvrn18TmS
- 6QDt2wiYnuLwGS+BSmy5lOi5wP+mMRE+u56P5tniRS1wORZ/SG8mCX0gM
- +wvVE84XpSkzuEei+stUBaPslF5dPtX5qk1H+5mZAEZIRFs4Lty80gUTg
- y3JpcnGnPp3QxTYOZrrx0nh4ln0xZh+8EA0oiy8qoLRN6zxVM6RIXOFD8
- DaTyHQnbwh9sCLu58fwRSyZN9MFbQZPUU2kVMnfBWP5f4OLMjkKDsJoF7 w==;
-X-CSE-ConnectionGUID: A/ljvvuTSZGA1KF+PDePpw==
-X-CSE-MsgGUID: sb18tsLwRQ6b/u9yU/P53g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="29866348"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="29866348"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 11:12:12 -0700
-X-CSE-ConnectionGUID: W5croTkITb63lquRt6gcpA==
-X-CSE-MsgGUID: dIXGM1DDQuee53+f5ZtCqA==
+ t=1727116220; x=1758652220;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=znIsCdAmo+9KBBzq7RU+cc3FDPcR4jNJo0ZsE3rP+lE=;
+ b=l6cGgMIQcgcPiuqW8Rkeg3fT/XwEpPvGE9YRgLIyjOmXQmXeQKvAOHjL
+ vRHsljU5gUw7V5JbMzQaTIl6Ppg/ixOTP6vv6+opKBVS50ZQiX5BMH1Pe
+ AdA2yQTkq8bPBpGaJ1dBZOChyV3IPqGMgUfymkheO9y0tN4gw0fqW0sxE
+ itdtem4Vbu6+lKoXkfS9voL8XYM33taxfCT16ID68RnX94zGOHZYJ8QCI
+ dbihERqndHFZGvbt9VS0R07F1KnxcE3VnloW6D1KEn+q/oEMSi+N9Vr3v
+ l49vgtWzJnO+74JaWLFiE2FT0O0tHCd+wymSR7jeT0L0M2sGQ/Xl3yys1 Q==;
+X-CSE-ConnectionGUID: bNuc9UCkQcaBUOfwWif+LA==
+X-CSE-MsgGUID: B6utiB68RA2eb4yurBoYqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26035118"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="26035118"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 11:30:20 -0700
+X-CSE-ConnectionGUID: zBQQS6DvR0qjtQmzaM5QJg==
+X-CSE-MsgGUID: rhyNtlL0R8eTixb9TLHtBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="70734476"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 11:12:10 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 15/16] drm/i915/display: Consider ultrajoiner for computing
- maxdotclock
-Date: Mon, 23 Sep 2024 23:43:35 +0530
-Message-ID: <20240923181336.3303940-16-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240923181336.3303940-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71298150"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 23 Sep 2024 11:30:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 23 Sep 2024 21:30:16 +0300
+Date: Mon, 23 Sep 2024 21:30:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 01/16] drm/i915/display_device: Add Check HAS_DSC for
+ bigjoiner
+Message-ID: <ZvGzuPi9L5Kh824W@intel.com>
 References: <20240923181336.3303940-1-ankit.k.nautiyal@intel.com>
+ <20240923181336.3303940-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240923181336.3303940-2-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,32 +72,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the check for ultrajoiner while computing maxdotclock.
+On Mon, Sep 23, 2024 at 11:43:21PM +0530, Ankit Nautiyal wrote:
+> Bigjoiner needs DSC, add a check to reflect that.
 
-v2: Add Check for HAS_UNCOMPRESSED_JOINER. (Ville)
+Might want to point out here that DSC can be fused off, hence
+the platform check itself is not sufficient.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 22ff3e225140..4c31d398ca4b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8189,8 +8189,10 @@ static int max_dotclock(struct drm_i915_private *i915)
- {
- 	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
- 
--	/* icl+ might use joiner */
--	if (HAS_BIGJOINER(i915))
-+	if (HAS_ULTRAJOINER(i915))
-+		max_dotclock *= 4;
-+
-+	else if (HAS_UNCOMPRESSED_JOINER(i915) || HAS_BIGJOINER(i915))
- 		max_dotclock *= 2;
- 
- 	return max_dotclock;
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 5306bbd13e59..6a5bee59e6aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -118,7 +118,7 @@ enum intel_display_subplatform {
+>  
+>  #define HAS_4TILE(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+>  #define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
+> -#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11)
+> +#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11 && HAS_DSC(i915))
+>  #define HAS_CDCLK_CRAWL(i915)		(DISPLAY_INFO(i915)->has_cdclk_crawl)
+>  #define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
+>  #define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
+> -- 
+> 2.45.2
+
 -- 
-2.45.2
-
+Ville Syrjälä
+Intel
