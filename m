@@ -4,79 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD916CF9C5B
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Sep 2024 21:16:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3229CF9C5B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 03:59:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA9710E326;
-	Sat, 21 Sep 2024 21:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5E5610E367;
+	Mon, 23 Sep 2024 03:59:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="QJ/9q8Xu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T7pRj/fV";
 	dkim-atps=neutral
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
- [209.85.208.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4538910E326
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Sep 2024 21:16:12 +0000 (UTC)
-Received: by mail-lj1-f174.google.com with SMTP id
- 38308e7fff4ca-2f6580c2bbfso35516771fa.1
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Sep 2024 14:16:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1726953370; x=1727558170; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=wfY6hEGVgBSeeADzpkHr3ZptQ8VvnlBmZmvgQTMe9+k=;
- b=QJ/9q8XuZIDxN3tpwHSSXhjB7xbhZHaJqrIBhInwhgKFWPJ1C76lLBANXPBpraxjrl
- AVjPqVkTG8ppapeA/LAHmxQ6ODSoXyvfbId0dHeUlQ+JiaJW12abYH7Xs0GqqHTithwH
- SzNLvYPW3HjCLeUmVFBn9ML1XCJEW3voB71NGMbCTOy/2aSIvvuiBxDZrb31ITB6Xgve
- rOguSLJURq/4mtyb9k3XjPtoJiBroC6RYQbAaK9UNKaqJJVlzho/lxhnkByI7EPDpJSI
- lZiKXuHyxi1O9ryH4uvW2bWUKeuztOfpH99Q/j5vKtmB1wgpoQLxZrMs3BFnDDXzK8Fg
- vwuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726953370; x=1727558170;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=wfY6hEGVgBSeeADzpkHr3ZptQ8VvnlBmZmvgQTMe9+k=;
- b=SjypG0FE2GZOO86iifHe92NtsGRcefXH8pCs/OVjN9Szaa2gf+sE7EONYWhgyVagpV
- ijvARaPU1UWLWDH9+aPDYjblRttCOnN1sfDwgjg7EMJHGbq7+v3V93eAT+RfkxiKW8jT
- ZhMsoIGHoLK5IG4imk4tVi5kLckroApx2TCGCzc2+c2zuZMZWq++wqIJqPXnbdWb2yVR
- 3Wem6fg7y6smym5VuBIitzdn1FcqCBPze55yKpChsQ0gDujFTaYS8hPMlUji1MNmgMTA
- 9IqIfocjEXz9RYsmeyXR3gtGkRPhwvlFpfpSlcqP2mcoLp1mDS0ngBOiqhC7xGIy7/xc
- yASw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXsXxDUpN8ROeynyqHz8scpJM8g29+oh1nO1w3eVusXmOyi9ZSTGWYcb5d0XEmRROwdymq89ElBWw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx3xc3rkdfTFQ8Bec+J2EtRK6dFIaWLbKsB40IqJfN3awGsvFH3
- ybXMdd6jMpjsyMzKJtsB7nbpirbh6Sk9ukfKD9vxDKcNPpxOwhKL8tBIn9eMREI=
-X-Google-Smtp-Source: AGHT+IHgSw3RH8nc0yn45Wrv03bvJaS53+RdIUYggI8KT7gXTHwNdGyEo8a5X+dnHH8bjNw4LBjd2A==
-X-Received: by 2002:a05:6512:6c7:b0:52f:cc9e:449d with SMTP id
- 2adb3069b0e04-536a553c370mr3684742e87.3.1726953370124; 
- Sat, 21 Sep 2024 14:16:10 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-536870969e7sm2693163e87.123.2024.09.21.14.16.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 21 Sep 2024 14:16:09 -0700 (PDT)
-Date: Sun, 22 Sep 2024 00:16:08 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- Nathan Chancellor <nathan@kernel.org>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 7/8] drm/msmi: annotate pll_cmp_to_fdata() with
- __maybe_unused
-Message-ID: <n3w7pq364l5ugsnmenece73ke4f3msqmaqoxfrpnqssdo3znyc@psa4cbbmmbix>
-References: <cover.1725962479.git.jani.nikula@intel.com>
- <3553b1db35665e6ff08592e35eb438a574d1ad65.1725962479.git.jani.nikula@intel.com>
- <4ag2efwiizn5bnskauekqwfhgl4gioafcvetpvsmbdgg37bdja@3g6tt4rlfwcb>
- <19ac4e25-7609-4d92-8687-585c6ea00c79@freebox.fr>
- <878qvyjxpg.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4FE910E367;
+ Mon, 23 Sep 2024 03:59:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727063967; x=1758599967;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qZET6bH34bdgo7kUCnMJt1I/FomkDh6SVUhEX0kdyU4=;
+ b=T7pRj/fVlvvDTguDA2UcD38K0b0pBzosDuwZSm0mww7BYiwq1f2p7smm
+ FbPlmfOQ/q5t36Qy+K0Ix70YkRKKzdZ+6TOS1sYkurLVEMAiyGNtpLXSO
+ 54SIukkSKTDyhcZ1OpgcWaQHe9C/hhCksaat4mjL0qOxs3VwyDbuVNVIg
+ Qobsg4Xf8PQLcHwRpqRfaRbMaL8ZuRTGitu7a/YsHjmoiei4GahWLQeHX
+ xSYwDr/hK/qT+Q+NnpPtAy+VNsRXhdkebdU9BrTgOmz9lmzrlZZuaUQbK
+ SFQZ+OZlWovR+vEDWEDDXYQZcBq+fJnWx23RRTG6exVvr649X+7gpmMj0 g==;
+X-CSE-ConnectionGUID: I/xlFDESSaO+/NoH6Bg6+A==
+X-CSE-MsgGUID: RyhI1l5qS22pjzJAgNutGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="29718231"
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="29718231"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2024 20:59:27 -0700
+X-CSE-ConnectionGUID: sdwObKmnQF2S0A1u4jaJJg==
+X-CSE-MsgGUID: bWwODathQUWe9OV0WMjgLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="101667432"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by orviesa002.jf.intel.com with ESMTP; 22 Sep 2024 20:59:21 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v6 0/4] Introduce DRM device wedged event
+Date: Mon, 23 Sep 2024 09:28:22 +0530
+Message-Id: <20240923035826.624196-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <878qvyjxpg.fsf@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,77 +71,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 11, 2024 at 01:23:23PM GMT, Jani Nikula wrote:
-> On Tue, 10 Sep 2024, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
-> > On 10/09/2024 16:51, Dmitry Baryshkov wrote:
-> >
-> >> On Tue, Sep 10, 2024 at 01:03:43PM GMT, Jani Nikula wrote:
-> >>
-> >>> Building with clang and and W=1 leads to warning about unused
-> >>> pll_cmp_to_fdata(). Fix by annotating it with __maybe_unused.
-> >>>
-> >>> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
-> >>> inline functions for W=1 build").
-> >>>
-> >>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> 
-> >> I think this function can be dropped. Marc, your call, as an author of
-> >> the patch?
-> >
-> > ( Why is the patch prefixed "drm/msmi", is "msmi" a typo? )
-> 
-> Whoops, a typo.
-> 
-> >
-> > -> For the record, Arnaud is the driver's author.
-> >
-> > pll_cmp_to_fdata() was used in hdmi_8998_pll_recalc_rate()
-> > in a commented code block which was later removed.
-> >
-> > Thus, yes, it is safe to completely delete the unused function.
-> > I'm surprised gcc didn't catch that...
-> 
-> Thanks, I'll change this to drop the function.
+This series introduces device wedged event in DRM subsystem and uses
+it in xe and i915 drivers. Detailed description in commit message.
 
-Seeing no updated revisions here, I've posted a patch that drops the
-offending function. If I missed an update, please exuse me.
+This was earlier attempted as xe specific uevent in v1 and v2.
+https://patchwork.freedesktop.org/series/136909/
 
-> 
-> GCC doesn't catch unused static inlines, while Clang does.
-> 
-> BR,
-> Jani.
-> 
-> 
-> >
-> > Regards
-> >
-> >
-> >>> ---
-> >>>  drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c | 2 +-
-> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
-> >>> index 0e3a2b16a2ce..c0bf1f35539e 100644
-> >>> --- a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
-> >>> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
-> >>> @@ -153,7 +153,7 @@ static inline u32 pll_get_pll_cmp(u64 fdata, unsigned long ref_clk)
-> >>>  	return dividend - 1;
-> >>>  }
-> >>>  
-> >>> -static inline u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
-> >>> +static inline __maybe_unused u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
-> >>>  {
-> >>>  	u64 fdata = ((u64)pll_cmp) * ref_clk * 10;
-> >>>  
-> >>> -- 
-> >>> 2.39.2
-> >
-> >
-> 
-> -- 
-> Jani Nikula, Intel
+v2: Change authorship to Himal (Aravind)
+    Add uevent for all device wedged cases (Aravind)
+v3: Generic re-implementation in DRM subsystem (Lucas)
+v4: s/drm_dev_wedged/drm_dev_wedged_event
+    Use drm_info() (Jani)
+    Kernel doc adjustment (Aravind)
+    Change authorship to Raag (Aravind)
+v5: Send recovery method with uevent (Lina)
+    Expose supported recovery methods via sysfs (Lucas)
+v6: Access wedge_recovery_opts[] using helper function (Jani)
+    Use snprintf() (Jani)
+
+Raag Jadav (4):
+  drm: Introduce device wedged event
+  drm: Expose wedge recovery methods
+  drm/xe: Use device wedged event
+  drm/i915: Use device wedged event
+
+ drivers/gpu/drm/drm_drv.c             | 41 +++++++++++++++++++++++++++
+ drivers/gpu/drm/drm_sysfs.c           | 22 ++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c |  2 ++
+ drivers/gpu/drm/i915/i915_driver.c    | 10 +++++++
+ drivers/gpu/drm/xe/xe_device.c        | 17 +++++++++--
+ drivers/gpu/drm/xe/xe_device.h        |  1 +
+ drivers/gpu/drm/xe/xe_pci.c           |  2 ++
+ include/drm/drm_device.h              | 24 ++++++++++++++++
+ include/drm/drm_drv.h                 | 18 ++++++++++++
+ 9 files changed, 135 insertions(+), 2 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.34.1
+
