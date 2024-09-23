@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE464CF9C6F
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 09:37:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5993CF9C69
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 10:24:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA58F10E18A;
-	Mon, 23 Sep 2024 09:37:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8888010E3CF;
+	Mon, 23 Sep 2024 10:24:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kvFYUdja";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z7Y0YjqQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2302A10E18A
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 09:37:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86B6F10E3CF;
+ Mon, 23 Sep 2024 10:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727084274; x=1758620274;
+ t=1727087040; x=1758623040;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=DXUqLBEUCmWfx+vHbaMdTNZBVkkd+fPIW7Ewu9gl/0k=;
- b=kvFYUdjasNiLrnJjpUDud3J6JVJLZCEv9awCqtUihLEL6yy+eMjKzf+y
- 0IVahMdgwbTytChKQlT2skNaJsRxxHuajL4AwYt1Mjuixtzn0UMH5ghZ8
- dmj5NxbhWIlLs75rebXec9QGMcLhdWlZ9z8ZE+9a2clG/S/W3Jg4DfKrO
- bO+Y0LeEnm8LO6M8q7Yp2PoQJEIEvyPma0Z/YrxArVBJMD5PXJMkl6s3J
- J5OkH0Ow3YP+mkHnL/52IRjlR2ibxuSfwWX+CPWPIP3sBmVRfSwaq2BtG
- l6ZyPlhZB2o5XcU+8gH1DvRklJk4vMFrrWk69ds3MmL4806C4TK8Daix1 w==;
-X-CSE-ConnectionGUID: IHktgCsNTmKixW7T8s7YlQ==
-X-CSE-MsgGUID: rBTmWBJnRx+523Z7wXmdsg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="25540345"
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="25540345"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 02:37:43 -0700
-X-CSE-ConnectionGUID: m7E54/aRTrmgAqHgl5sKdg==
-X-CSE-MsgGUID: 1LQwfGb8RAm+Ry54ZUqyjQ==
+ bh=UM+eN/Ka/qtGnxQtCxNesjUO0k308HG/DsjQxvzq12o=;
+ b=Z7Y0YjqQwk/6iYhW/SMBqn57hKnzcoVMFJRIcgwlhyz07wKwVkf5ltmN
+ YfRo9YayrcUHUCY+mqIXoWHe7jaaU12bJbOqip/hs6P+GQOF5POvJNFb4
+ W5UF2of8jcqYWVW2WJqSsF0+fq5lgJ8srzNc5HMuMeUQKyaKx9azQhbeZ
+ op+f/1BkV9gxCWpUr+QPPe1UnYGanS3s7wXIfrdW6/Z46lVjsukjveBsP
+ GpwNdFp8UnN4s2YiF13b1WpVo1R/3gFRivGh/Kt2+Jq5v+quRTWT7Wezd
+ jWujXMgk7JUG6Cr/FAIV4OQ7P9owbx6KQhVAqknigex9IVg8jgKlU7ylv Q==;
+X-CSE-ConnectionGUID: 9Ku3Dn5hR/qE2dwNuvI3Kw==
+X-CSE-MsgGUID: oSN4yosgSUi0P2uhFO3vFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="37164681"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="37164681"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 03:23:47 -0700
+X-CSE-ConnectionGUID: dKtGRmo1R9WWiJ2MP5Jhcg==
+X-CSE-MsgGUID: LvnBYadgQ4qmWGYIYmbVOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="101750115"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="71165822"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 02:37:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter
- <simona.vetter@ffwll.ch>, intel-xe@lists.freedesktop.org,
- daniele.ceraolospurio@intel.com, thomas.hellstrom@linux.intel.com
-Subject: Re: [PATCH 2/3] drm/xe/pciids: Add PVC's PCI device ID macros
-In-Reply-To: <hcefkofngnohwn3qukf7xo5juwbyvakfx7hlzlkh76ciy5pxly@gt3pidublp2g>
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 03:23:44 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Srikanth V, NagaVenkata" <nagavenkata.srikanth.v@intel.com>
+Subject: RE: [PATCH 1/3] drm/i915/dp: use fsleep instead of usleep_rage for LT
+In-Reply-To: <IA0PR11MB7307879EFEDFC2C82CAD39BFBA642@IA0PR11MB7307.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1725624296.git.jani.nikula@intel.com>
- <6ac1829493a53a3fec889c746648d627a0296892.1725624296.git.jani.nikula@intel.com>
- <Ztsmyp6L4vZEtad6@intel.com> <874j6bameb.fsf@intel.com>
- <hcefkofngnohwn3qukf7xo5juwbyvakfx7hlzlkh76ciy5pxly@gt3pidublp2g>
-Date: Mon, 23 Sep 2024 12:37:37 +0300
-Message-ID: <874j667lsu.fsf@intel.com>
+References: <20240912050552.779356-1-arun.r.murthy@intel.com>
+ <20240912050552.779356-2-arun.r.murthy@intel.com>
+ <87ikv1i6tc.fsf@intel.com>
+ <IA0PR11MB7307879EFEDFC2C82CAD39BFBA642@IA0PR11MB7307.namprd11.prod.outlook.com>
+Date: Mon, 23 Sep 2024 13:23:41 +0300
+Message-ID: <87y13i653m.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -72,13 +72,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 19 Sep 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Pushed. With force.
+On Thu, 12 Sep 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Jani Nikula <jani.nikula@linux.intel.com>
+>> Sent: Thursday, September 12, 2024 2:32 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-xe@lists.freedesktop.org;
+>> intel-gfx@lists.freedesktop.org
+>> Cc: Murthy, Arun R <arun.r.murthy@intel.com>; Srikanth V, NagaVenkata
+>> <nagavenkata.srikanth.v@intel.com>
+>> Subject: Re: [PATCH 1/3] drm/i915/dp: use fsleep instead of usleep_rage for LT
+>> 
+>> On Thu, 12 Sep 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+>> > Aux RD Interval value depends on the value read from the dpcd register
+>> > which is updated from the sink device use flseep thereby we adhere to
+>> > the Documentation/timers/timers-howto.rst
+>> 
+>> Please explain why instead of just referencing a file.
+>
+> Sleeping for < 10us use udelay, for 10us to 20ms use usleep_range and for > 10ms use msleep.
+> fsleep() will call the particular api based on the above condition.
 
-:muscle:
+Oh, I'm not asking to explain this specifically to me. I'm asking it to
+be explained in the commit message, for posterity. A commit message
+should always answer the question *why*.
 
-Thanks,
+BR,
 Jani.
+
 
 -- 
 Jani Nikula, Intel
