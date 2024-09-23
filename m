@@ -4,59 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61148CF9C6E
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 03:59:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E433CF9C6E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 04:56:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23C4910E375;
-	Mon, 23 Sep 2024 03:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1074410E379;
+	Mon, 23 Sep 2024 04:56:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EKCWW4N7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rq3iWz/r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD16610E373;
- Mon, 23 Sep 2024 03:59:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B10710E377;
+ Mon, 23 Sep 2024 04:56:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727063992; x=1758599992;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hDHwYTD0WC4SEU1jX6R13ZEAdVrJxgdWKzuKbuWTqc0=;
- b=EKCWW4N7AUczPr48rB/BjvvnX60Dw1Gm+8j3qcOWBNT5vm9bZ2NZCxwO
- 3y4RpELELuUzT/6QO46ilwHjW0vCCrox+xY6YocFClN7z+dRjguBIfv2P
- yupvdAkBJ30638mLjaSOrObA8hH6u+ygJL5/aRVsLpnIfAgU/15zcjDj0
- iZdiVbKql/TOW013nXyOdIoTifHqCbQNCB6riE0PF32+OqXzGwJvzmicb
- d6FH4eo5+rRuEcisodkbrFl29QSBE+EO0wgvnrrmdULs3M2ZYwVKAP9Ol
- 92qAoixEfTzgZryDI265ntmI83ZIXvJZgmf5pU4s+Ju59S6Rg8ThJJgJU g==;
-X-CSE-ConnectionGUID: PXDz48cXSn+thel/rZ/LXg==
-X-CSE-MsgGUID: OtLg8g0/Rn6jzrj4Y+MfmQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="29718261"
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="29718261"
+ t=1727067416; x=1758603416;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sPKZy88IFltZj4sbhsNT5EWqh/xBhy1HFiYZ1K/OT8I=;
+ b=Rq3iWz/rAcdK6WTY+r0vy+x5aUB7PMVdVxkt7JvO1KQNZrRnor4P0vG2
+ gLoWPI0X34CnLtAAl6KkPK/MfkKqFX7hejvUEJqJXU/k5CD4VClT4QOic
+ fPZLrV+ZrXIpRoC7biSzF59s75YcN3WnMsYuL49kL07fLgGxULAaKm84F
+ y2yFta5TfCg9yfFbu9p+TUQsZIeVleaaGIJ9pZYKes8XLzM+CxDyqZwv/
+ /USP6rQJ/VkgyK/8QFMGldmQn9j2txKFbuTlX6/MbEX9V3EKQbanIubQv
+ h6rI+JgyNoFs+WbFKCSXOaLPqrnHQJZgEoAYpnJaZ3XPMnFlqHeJjnL1U A==;
+X-CSE-ConnectionGUID: /0LQdCoQSCqTqDHqt0r7bg==
+X-CSE-MsgGUID: Ltea39WCR1eSL0bJUYKZYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="36660398"
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208,223";a="36660398"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2024 20:59:51 -0700
-X-CSE-ConnectionGUID: uHYu+uI0Q7S0TgkSZS/yzg==
-X-CSE-MsgGUID: WdJ7SHwEQXyRoukcb5CXWA==
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2024 21:56:55 -0700
+X-CSE-ConnectionGUID: r9lDJ5HnSFakCmAUiikZDA==
+X-CSE-MsgGUID: Y4xCYvyPSS6wt9oGh0kF8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="101667489"
-Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
- by orviesa002.jf.intel.com with ESMTP; 22 Sep 2024 20:59:45 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lina@asahilina.net
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v6 4/4] drm/i915: Use device wedged event
-Date: Mon, 23 Sep 2024 09:28:26 +0530
-Message-Id: <20240923035826.624196-5-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240923035826.624196-1-raag.jadav@intel.com>
-References: <20240923035826.624196-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; 
+ d="scan'208,223";a="101678743"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa002.jf.intel.com with ESMTP; 22 Sep 2024 21:56:54 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/i915/dp: Add FEC Enable Retry mechanism
+Date: Mon, 23 Sep 2024 10:22:18 +0530
+Message-Id: <20240923045218.1813255-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -73,57 +64,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have device wedged event supported by DRM core, make use
-of it. With this in place, userspace will be notified of wedged device
-on gt reset failure.
+From PTL, FEC_DECODE_EN sequence can be sent to a DPRX independent
+of TRANS_CONF enable. This allows us to re-issue an FEC_DECODE_EN
+sequence without re-doing the whole mode set sequence. This separate
+control over FEC_ECODE_EN/DIS sequence enables us to have a retry
+mechanism in case the DPRX does not respond with an FEC_ENABLE
+within the stipulated 5ms.
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_reset.c |  2 ++
- drivers/gpu/drm/i915/i915_driver.c    | 10 ++++++++++
- 2 files changed, 12 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 61 +++++++++++++++++++++++-
+ 1 file changed, 59 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 8f1ea95471ef..02f357d4e4fb 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1418,6 +1418,8 @@ static void intel_gt_reset_global(struct intel_gt *gt,
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 85e519a21542..589acea9906a 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -78,6 +78,8 @@
+ #include "skl_scaler.h"
+ #include "skl_universal_plane.h"
  
- 	if (!test_bit(I915_WEDGED, &gt->reset.flags))
- 		kobject_uevent_env(kobj, KOBJ_CHANGE, reset_done_event);
-+	else
-+		drm_dev_wedged_event(&gt->i915->drm, DRM_WEDGE_RECOVERY_BUS_RESET);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index fe905d65ddf7..0185fb41eb95 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -711,6 +711,15 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 			 "DRM_I915_DEBUG_RUNTIME_PM enabled\n");
- }
- 
-+static void i915_setup_wedge_recovery(struct drm_i915_private *i915)
-+{
-+	struct drm_device *dev = &i915->drm;
++#define FEC_RETRY_COUNT 3
 +
-+	/* Support both driver rebind and bus reset based recovery. */
-+	set_bit(DRM_WEDGE_RECOVERY_REBIND, &dev->wedge_recovery);
-+	set_bit(DRM_WEDGE_RECOVERY_BUS_RESET, &dev->wedge_recovery);
+ static const u8 index_to_dp_signal_levels[] = {
+ 	[0] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 | DP_TRAIN_PRE_EMPH_LEVEL_0,
+ 	[1] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 | DP_TRAIN_PRE_EMPH_LEVEL_1,
+@@ -2255,6 +2257,57 @@ static int read_fec_detected_status(struct drm_dp_aux *aux)
+ 	return status;
+ }
+ 
++static void retry_fec_enable(struct intel_encoder *encoder,
++			     const struct intel_crtc_state *crtc_state,
++			     struct drm_dp_aux *aux)
++{
++	struct drm_i915_private *i915 = to_i915(aux->drm_dev);
++	int ret = 0;
++
++	/* Clear FEC enable */
++	intel_de_rmw(i915, dp_tp_ctl_reg(encoder, crtc_state),
++		     DP_TP_CTL_FEC_ENABLE, 0);
++
++	/* Set FEC enable */
++	intel_de_rmw(i915, dp_tp_ctl_reg(encoder, crtc_state),
++		     0, DP_TP_CTL_FEC_ENABLE);
++
++	ret = intel_de_wait_for_set(i915, dp_tp_status_reg(encoder, crtc_state),
++				    DP_TP_STATUS_FEC_ENABLE_LIVE, 1);
++	if (!ret)
++		drm_dbg_kms(&i915->drm,
++			    "Timeout waiting for FEC live state to get enabled");
 +}
 +
- static struct drm_i915_private *
- i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
++static void wait_for_fec_detected_with_retry(struct intel_encoder *encoder,
++					     const struct intel_crtc_state *crtc_state,
++					     struct drm_dp_aux *aux)
++{
++	struct drm_i915_private *i915 = to_i915(aux->drm_dev);
++	int status;
++	int err;
++	int retrycount = 0;
++
++	do {
++		err = readx_poll_timeout(read_fec_detected_status, aux, status,
++					 status & DP_FEC_DECODE_EN_DETECTED || status < 0,
++					 500, 5000);
++
++		if (!err && status >= 0)
++			return;
++
++		if (err == -ETIMEDOUT) {
++			drm_dbg_kms(&i915->drm,
++				    "Timeout waiting for FEC ENABLE to get detected, retrying\n");
++			retry_fec_enable(encoder, crtc_state, aux);
++		} else {
++			drm_dbg_kms(&i915->drm, "FEC detected status read error: %d\n", status);
++		}
++	} while (retrycount++ < FEC_RETRY_COUNT);
++
++	drm_err(&i915->drm, "FEC enable Failed after Retry\n");
++}
++
+ static void wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
  {
-@@ -812,6 +821,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	struct drm_i915_private *i915 = to_i915(aux->drm_dev);
+@@ -2303,8 +2356,12 @@ void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
+ 	 * At least the Synoptics MST hub doesn't set the detected flag for
+ 	 * FEC decoding disabling so skip waiting for that.
+ 	 */
+-	if (enabled)
+-		wait_for_fec_detected(&intel_dp->aux, enabled);
++	if (enabled) {
++		if (DISPLAY_VER(i915) >= 30)
++			wait_for_fec_detected_with_retry(encoder, crtc_state, &intel_dp->aux);
++		else
++			wait_for_fec_detected(&intel_dp->aux, enabled);
++	}
+ }
  
- 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
- 
-+	i915_setup_wedge_recovery(i915);
- 	i915_welcome_messages(i915);
- 
- 	i915->do_release = true;
+ static void intel_ddi_enable_fec(struct intel_encoder *encoder,
 -- 
-2.34.1
+2.25.1
 
