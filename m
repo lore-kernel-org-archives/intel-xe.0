@@ -4,185 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22B2BCF9C71
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 19:45:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01638CF9C71
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 20:52:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2F5910E480;
-	Mon, 23 Sep 2024 19:45:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2DCA10E49A;
+	Mon, 23 Sep 2024 20:52:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1HKHxOg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e8zvg7cG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6237610E480
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 19:45:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7466310E49A
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 20:52:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727120725; x=1758656725;
+ t=1727124734; x=1758660734;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=sR43V3W3dYsVO/KjRCyAL2KkCAky4aYJtkhR5nmrpvc=;
- b=b1HKHxOghWg1oh/BBGuQ+bo7ix9meo/6vj5ccallsd6HPdXTbxlcyCVz
- 6yAPfj8PsWQHMXqJaUL3EN4fucfLV0L+aA7rl02d8MnzDZJdUOCtyk8vN
- +5Qtuo4oTC1DSO585FspTZxFz3R1rODJkHpJZnxybcqlmefUoHHhs2ujd
- dK+1UzRrsdoMLgKAEl9ZM49NJZg7wMIWg5Q8VvHO4N7pKOHE8KLTKDAQz
- h+td6SuTb1eAPTQkU4avKt7IuZTOCy8e6dwnqQc3YlgHAZ93dBHvCBUBu
- DXBeBgiXNQd5qlXpAQ14twwO4pnSlAwQBr9I6VPfgzpSP5N/7rQ9VPv+l w==;
-X-CSE-ConnectionGUID: yftCfFI5Q+arFQIoo5QdPQ==
-X-CSE-MsgGUID: P/IvyZ5sSZaRa6JRq1BiIw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="48617419"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="48617419"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 12:45:25 -0700
-X-CSE-ConnectionGUID: bn2rm/hUT6OMfun2X/6neg==
-X-CSE-MsgGUID: aVNUyLyPQi6BPr0u4M/2+Q==
+ bh=i7F1fRsuKH1DtloenUDcN6bMbJtuuSOxYFq9raKz8fI=;
+ b=e8zvg7cGPFMcNF7nB7acJeZDLqlgUvSrWoINvj9x7D6lLMFzjfvDftWq
+ RxqYRxe4bq+RbNhXV7BtfFxPUHL0iAK1tWZgvgwd58a8VWjUej0GGRPSS
+ FC2rf2UMmvy9jacJbgCL9JQ8ZSmWq2GvC5rEl9m3eALMHjTReVNeb7Qkj
+ WcnX3mcAQTWlqEgq5ZPmR5xwnqF+HsvDqG9CuQbCw3OecCmINuYM6z7oo
+ TUwL3PSdxsfGa30JorygRDJGFuIKOh4Hqq2KqD2z8Kq4WFT0GwTCqDUUc
+ +Cd0KNd4b6ls/OUC/iBVRSOX7QqIUswRK+lxUGl3LPQWmNP2UWpy1KKR2 A==;
+X-CSE-ConnectionGUID: qZx4kpbhS7SeoGZZISvEMQ==
+X-CSE-MsgGUID: /4/Y5pwVQKiFu0/WqKdgzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26247411"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="26247411"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 13:52:13 -0700
+X-CSE-ConnectionGUID: N7srsOdpRy68lrf6s6oRQQ==
+X-CSE-MsgGUID: VlmvSBBdQky5eJLygtBLpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71220207"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Sep 2024 12:45:25 -0700
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="101911613"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Sep 2024 13:52:13 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 23 Sep 2024 12:45:24 -0700
+ 15.1.2507.39; Mon, 23 Sep 2024 13:52:12 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 23 Sep 2024 12:45:24 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.1.2507.39; Mon, 23 Sep 2024 13:52:12 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 23 Sep 2024 12:45:24 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 23 Sep 2024 13:52:12 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 23 Sep 2024 12:45:23 -0700
+ 15.1.2507.39; Mon, 23 Sep 2024 13:52:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OTrKE5h7eZ44+7WOUK9MKzMkl5nm7LEhoHJiP4OlZk/AAHuhJVkurmCdFDoEWM3FDe9hoU5NqReAA/wPxfUS945S4C2apgRRoiHucEmx9m1zs+yAEfmTcDAW2Tk+chW0S9TF1Qzx5VZsV/sOl7LwfBYMN5dAOFKh2raLfRETtT1VgxzRjDigBGU8nz1VTnzf2rW9E5T5tkRAEQh+9kqwfMQXtInLwpj6R5xG68dzWolmE7DZ5RXKPNteXMY8jcSPaumEZN2jXWkeq4uM2tB7ulm1UJLZm9o9Oz8r+NjzWybRmzzUgBjqIj3G1466hn8pqc34BnZRyBCGSClCf7kKrA==
+ b=ZCLVo7rLDocN3L9jS9SloHfMyR1RbijNYFVhaYTdd5WovWn4gMRPUom/kjjRxJM8yn/fOU1RMn7cXPR/XyLpm0afL+o0oHgukbnNOr3yaEopPopISZlJgH1rywjhRl8BYzgxvYcGUcDMLYuz9r9EQXDaPTJKcFM3cgI3PetcDn6u0co/hx+k6Q7xEXTLi1VYbAHJ8ndAc32c8Cka2ohX2HRjofxJqLk/vNgT2bBNXMC8rcld04bIFiAPkpwG8KhLBbgQfFlY33ah3E52HL6dVadVjhsh3JtxOWCUqrzsU6svwB2x7cAEtWhSzO5Go7nKJPkNX2xBzVOgQIVEouzhMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+hXMuLFCOp91xFmoaEUE6l42eASv/zPeJZo7Gj72pdI=;
- b=KRdytp8O9vB1UQ0zy5lgwH8yGD8Codr0B4nIODmLiV6ShOluELHN57eXRYsUH9BPUFkIPsfDE1hk57Wu1j0rsIb5Lb3LFxBq8cF38zTSSvwmRcEbfhBipRjJi5Wtn8mJ4TYfxRILyJCv6fvBDaw52D41k9LRGV5QEAGr/OMSK5dZCi57ygcNwW7GeNhMN7NHeTD/WDVA7cf4MTCjlV40IxHP6SMboCje9JFhxW4OGnfBRMeAR3OJnS+Vr0SkIuXyD2JfvYL+qikK/kxLEzCaxm+4z3DeJkUSGl71ALdoa/B4JAz9+Aq0I0NHW9u50SUiNKaX3HexC//n7dqMitWw5Q==
+ bh=ymJB9q672VJODak8Ow7YO1tfUQkUK1kPVE6PJj19QpI=;
+ b=USavPzf2OHcwPGGFSu0WQ2Q+NaQ6haFXr3cltWLKUhemrs+hl8Y7AgSy2WXsC3paI2lHs26UeJBYxTzX6n6sAsY+Lb0k4vAP1sw0StQWJO1VPe/dTAnJw28GUDlaOw/DOiwzSRrm8bKUyaE/Ewpl405GgIdJ0LoJpBuGYcsZ5ze0eHNBoOvkRwhkZAMTadBHZZT9c6S3uB8RtA1wHD97gmS23V5EmT/ZOHsKW6duwhkvwUL9FE+0vw/sQi+G/Nw6pQJNjesQkfcryDFLXWd5i7CtJVrlwZJ4aw5u/Y7lCZq9yUCVqF/VvnG0EQ3cIY9RU0dweZOq0nIzM7M+MnToCQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by MN2PR11MB4711.namprd11.prod.outlook.com (2603:10b6:208:24e::13)
+Received: from MW4PR11MB6714.namprd11.prod.outlook.com (2603:10b6:303:20f::20)
+ by SA2PR11MB5196.namprd11.prod.outlook.com (2603:10b6:806:119::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Mon, 23 Sep
- 2024 19:45:21 +0000
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::bc66:f083:da56:8550%5]) with mapi id 15.20.7982.022; Mon, 23 Sep 2024
- 19:45:21 +0000
-Message-ID: <d3db53f4-e061-4b4a-b90b-93687ad2fdfb@intel.com>
-Date: Mon, 23 Sep 2024 12:45:18 -0700
+ 2024 20:52:09 +0000
+Received: from MW4PR11MB6714.namprd11.prod.outlook.com
+ ([fe80::e8c7:f61:d9d6:32a2]) by MW4PR11MB6714.namprd11.prod.outlook.com
+ ([fe80::e8c7:f61:d9d6:32a2%7]) with mapi id 15.20.7982.022; Mon, 23 Sep 2024
+ 20:52:09 +0000
+Message-ID: <44119f29-f82f-4a4a-a1ec-e280b1292508@intel.com>
+Date: Mon, 23 Sep 2024 22:52:04 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [CI 00/12] Debug g2h timeout issue
-To: Jani Nikula <jani.nikula@linux.intel.com>, Badal Nilawar
- <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>
-References: <20240920142922.618649-1-badal.nilawar@intel.com>
- <87bk0i8jol.fsf@intel.com>
-Content-Language: en-GB
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <87bk0i8jol.fsf@intel.com>
+Subject: Re: [PATCH 2/4] drm/xe/vf: Send RESFIX_DONE message at end of VF
+ restore
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+References: <20240920222926.846985-1-tomasz.lis@intel.com>
+ <20240920222926.846985-3-tomasz.lis@intel.com>
+ <02158df1-ea94-4fb2-a649-3e3f38ff8d64@intel.com>
+Content-Language: en-US
+From: "Lis, Tomasz" <tomasz.lis@intel.com>
+In-Reply-To: <02158df1-ea94-4fb2-a649-3e3f38ff8d64@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4P221CA0004.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::9) To CH3PR11MB8441.namprd11.prod.outlook.com
- (2603:10b6:610:1bc::12)
+X-ClientProxiedBy: MI1P293CA0020.ITAP293.PROD.OUTLOOK.COM
+ (2603:10a6:290:3::18) To MW4PR11MB6714.namprd11.prod.outlook.com
+ (2603:10b6:303:20f::20)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|MN2PR11MB4711:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c26c652-3e0e-42cc-5472-08dcdc08426f
+X-MS-TrafficTypeDiagnostic: MW4PR11MB6714:EE_|SA2PR11MB5196:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b066864-1be6-4f54-0213-08dcdc11972c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bzkyOEVUOVNPaDRac0dhZmN5Uk9IRGNFNEdpNXFXamRLL3JxUGdVbWFLZEpC?=
- =?utf-8?B?bVRXeGJTcjIwRVJpODExa1RUODg2TzBWRzdhMEJtLy9QODRFUmlNcUg2VUs1?=
- =?utf-8?B?a2wwT2VxUGdFc0REcTNBSktLZnhIRVhtTkM1WmRlZVI5MWFlNGkyZWt1TTZM?=
- =?utf-8?B?NWswcTAxVU11YTFXZE1UM1F5bE9HVTNvODQ5SXFQRk9ITTAxTWJxc1Y1VkJa?=
- =?utf-8?B?azhFYktjNUczdWpiOWQrOHVMNVZMNWtyNFJ2T0RORGhLU3VkTVYxMkZWR2lF?=
- =?utf-8?B?V2xMYkxqZ1JJYzI4a25OcWRIQ0FOR3Ivc3MzckNaci9KMkJ1RFZNRkRyWjFl?=
- =?utf-8?B?OUxhNVB3Wk8zZkN3eXVSTnkrQ3RMejZwMHFrMHdWeTRhN3ptOXBZK2x1a3ZU?=
- =?utf-8?B?d044MTdPdW00RzhuNW0vNVIwWjQwV1V3aDhOM3IyNUNRSlluWG41S3RYZEJs?=
- =?utf-8?B?RmVnaGpBWWpPL1FrQWZRQVF4SWFzMnRZSWZNVkNVMVJsb2xrSHkzaGxFMHBv?=
- =?utf-8?B?V1hzQ3NnVkl2T3ZIWWVsMytRc1c3TVA2ZnBZZlV5VXhwb0RsYlJpOUdkU1E1?=
- =?utf-8?B?Y0dMaFBVQ2ZVbUd3YTEyVExMQTlrR0FLeklZeHJDSVcwenA1Mm9VOXIxRTNK?=
- =?utf-8?B?QXBLUThVMWlNMjVaS2t2L1JEOUpvY1N1T1JTdmI1UnB0MC9OTmsxaVFlS0Rm?=
- =?utf-8?B?Z0MvL01lZ3BjemNiajFCMWhnUkJJT2czVnVZNGthd2dPdGR6dWppbXIzSEZz?=
- =?utf-8?B?SlFLVW1wN2xJN2dERS8yUW1CcFM0akZnZGhjb3VxYjJ3WEFpaG5KUzdYR2FI?=
- =?utf-8?B?MlJyN3FBQkprS1dmMXJ5eVRWRVJSR29aREdIdkZsaS83NGdiZ0RSSUJPanZx?=
- =?utf-8?B?d1ViRnRCK2dENXNvUDIrVzZJTUtieVVDcUdxbW15WkZiTkc0VHE4ODRucTFM?=
- =?utf-8?B?VjlQYWxaenMrSW43eDA3QTI1bFB0QzErd1U3WEZmQUtUcnY0M1RvTHJVbVFq?=
- =?utf-8?B?UFBHM0FvUjBWUEtUd0tTSkFmNVpmRE45OXJuL0NvNVdQbS8ydWxFLzhYaGlP?=
- =?utf-8?B?Tmd0Z3hNbXViZG01NlZzMnduRjQ4RGVsRWdxbUx5NCtkTE9GL2p2cGMvdGta?=
- =?utf-8?B?Z1JhV1pQdmxHMFZvRjJKUHpUQmZuMlBCREpmczVOS0Q3NTRyNFdaMjFGd0FJ?=
- =?utf-8?B?RDF0S1VSSHRJaVh5R2ZBYnRMaVVSUm5ybkF2UmtuSXZyc2dWNFZ5aFAxTjNQ?=
- =?utf-8?B?UmV3ZnlmMUZqMS9XMG5aeXJ3N1VaL0IrTUlMUTkxcDQzdXJnQXpnMHVqT1lh?=
- =?utf-8?B?TEdtc3JYVWlKS0FkTUhZZGw1d3BhMmJydlp1RWZWa0l2dFh5NXk0S3lZQ0ta?=
- =?utf-8?B?Q1lXelRvTlpjWklvb1dhdVR5L2xDM3dsUnc2bmFhdEprMnd2WlV4bkkxeU1L?=
- =?utf-8?B?TExUNmpEV2lrTTlrQTlQTzlHSUFzQ3ZCR3hoWTFyUGgwWlorNU84Q3V3OTNX?=
- =?utf-8?B?SHd5aS9wU2RFYkNvUGdEdDYzTXdub3ZnTVppVHI1aGZCUnN1YlA1RU1Rd2tI?=
- =?utf-8?B?VUhiNm1VbTN3a2NiVnB4TXNZRFVQZE9VQmUvaFdDSDVPR1V4Z3RXb1o3Uis2?=
- =?utf-8?B?cm9rTUpwZTgzS0dwZ1NudkdZSjg4c2ljMHhYRGxkU0Vnd3llYVhsWXdkUVg1?=
- =?utf-8?B?UGtMZTU3VUhOL0RoSFYxVGttS2l3anlTbWpDRksxdm9KZEtEa3dETGczc1B0?=
- =?utf-8?B?MWpPZjZWYkphc0hxUzZjYWxvZ1hZb25nVHlPSEhaTjNQUW50aWlJOUxkanZR?=
- =?utf-8?B?c2k2VUdlczhCMXdaUVhjdz09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Z2ZEdmRWL2tZdEhDZmRGS1kyQjM3dlp4TkFlQjVMYzlFSVlPWktJTE9pUlN5?=
+ =?utf-8?B?UFdmZmI3NGJranhUSmRXaUhRSzB6RmdHY3RvVDB6UERDRzZKQW0xQlBrZTJ3?=
+ =?utf-8?B?TkYvKzRXUlBydkxMVU1RR2hBUFNkaU9kbTBxYmd0aGtxbGdoNW9Wd09wdnpa?=
+ =?utf-8?B?ZkRJMUdIeFRkbmVDRDIxc3VtcHhSd0pIY2pCZy9JeUpJZmpLd0NhTm44eVlQ?=
+ =?utf-8?B?RFp1TFlNQkZlVU95OFlzd0VOUDVWN1VjVW4ySUJYdU9QOUtxSjI2Tm5QRDcr?=
+ =?utf-8?B?NVZDUVFXWlQ0ckNqQnFwdW5YRUJ3bHdjejMzaVd0S3Y3V2FmMXc3MHlVSExP?=
+ =?utf-8?B?aDZReHA0Z2x4VnhndzA3bkRRKzZKdmU5cXpOOTN3ZXhpL1o1R2haWmNtYXlC?=
+ =?utf-8?B?VGRZT3BRTjBLL0tvTXJxekl2VTUwdUJyUjJPZm05ZVFXUi92OXhzUlZjVEto?=
+ =?utf-8?B?QU15UjN4eW84cmhPOHdrZ0lQNEhmMll1anFJaW1aT1drdmZ6bHFXRlRseVhC?=
+ =?utf-8?B?dGdXRTVZWTlTZmdqb1gzYUYzMDMrRUtYY1FsM2RVcEJhb2Rzb2ZTVisyeVg1?=
+ =?utf-8?B?emNKTjhWOGRnUENCYzZ3T1c2VU5YdGloeU9YYXNGQlQrSkM2bnZpdlp4SGVp?=
+ =?utf-8?B?L3hEM2wyS0xMZ1dBbXVIVFJ0eWNsN3lwWnZVOGorMmp0VmdPMzVRZXl2Zjdi?=
+ =?utf-8?B?dWNJR05DR0RvajQ4a1I5TkduYXNpbkJXeXVERG14VjVHalVMVCtFdVpRQm51?=
+ =?utf-8?B?bnZzNzFDcC9HTndtcyt4UEszNXVyaEg3N3owYnNXVEVwc1BDdE9wWndqUmZO?=
+ =?utf-8?B?aER1eHJFZ09DeDhvdlJJSWFmVVZZcHQ1UHdycVo0akZLS3VPclRXcWZQenRr?=
+ =?utf-8?B?WWpWdTVja0pnbTN5bXNmMC9Pbk5TRWkvVFl0UVB1SzFTTisxbTJ3MWdGUGxw?=
+ =?utf-8?B?VEQrREtkM0wycUxIMkRrc25tQ0xhS1psSUF3S3hYckp1dGJZM2tRT3BOR0pR?=
+ =?utf-8?B?QWhVM3daUnhmUXVvVmZpbUI4aS9HMXQrRzJ5dnhwV0xwSkFadSt0dVdZUXFE?=
+ =?utf-8?B?NUJ4OUthM0lybmdaM0tPZno3YTg1cHhCckpJcWVOczNCb210NUQzNlExcWY4?=
+ =?utf-8?B?T0FxUUdqQkdRckZKM3MrUTlmRVJFOVJxWU56ZHdFdzQ2M2hsOWE3U0UveFlU?=
+ =?utf-8?B?eHUyU0E2WnViVXBCckNVbzBlY1lPS0grNW05RXJNaSt4ZXhsNTVVRnNtS1k3?=
+ =?utf-8?B?OFVTa0xSNzBabEo3dSsybkhQN1VBQ0M1THZOSi9VVDdSWnI5czZiZXRsVGRI?=
+ =?utf-8?B?Zkg5em1IMW9ySnZ6WWVpYzM0RUdDbUtoRC9zNWtJd3hYdjBhRFdKdFkzMG81?=
+ =?utf-8?B?Q0RMeEN4YnBUSmdFcU5FdFNORTlnUXFWOFE4RnVOY0dCZHJXOGMyT0FCRXdi?=
+ =?utf-8?B?RTJNOWtvemNMUHE5akcxaTZBUE1LN3d3cWthL2dGdkc1dG9PVWlVODhqZVA1?=
+ =?utf-8?B?RktLWTR1bGQrVEtmc1NLMjBid1R5aHdrVXdMQVJRTWNaNUtQR1dKUWRva3ZQ?=
+ =?utf-8?B?ajVXT0hJKy9YSHgyMjUyV1NUcW1sWFdrcUpEdDVPUFVsTGNtK09wQnJxVi9Y?=
+ =?utf-8?B?NTVFYmIvSHo1dnhUeGY2T1dMaUVnN25QQVRhajVLeHJxVDB1ZGxXa09mUFhI?=
+ =?utf-8?B?Yk9nS1pENWsyN096TXFMTC9OU1hmYmdwZ2I2V0MzYU9hVTcrNEh5Vkd3PT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB6714.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dHpRZ1VuYjZwemRVVHBLTmN5YmdQRjBxUzdkeDlWOGhvSU5MWnZaeWhuTTk3?=
- =?utf-8?B?aGptWmlyWGo4SVY2WGRKV28zdURGWlBoR2RZTVQ3MkpQd1VmR1REcWNzcjJ1?=
- =?utf-8?B?bS9aVUVGYjdMOE5qNGNjOFFpc1B1ZDYxb210b0Q2RkNkOXdzSWpwSFUvanBh?=
- =?utf-8?B?VTdoNkNaQitxTmY4UHJvQU1DTzdMVjY1aFprWmoxV05maFp4TDlZM2o3Z0dR?=
- =?utf-8?B?VEZwWnhmbmNRR1IzeVRvaWkwVndEbEd6aFZhSUcrajc2WEhpd3BILzQzZ2RU?=
- =?utf-8?B?SXVEQ2t4K2QrbnUrVTV2L1huZEpRTzdtKy8zdkxxaTV0aW4wenk4STk5Y1BE?=
- =?utf-8?B?QzBxSUZMdkl2ejI2aUlIaW9mNkdQM3dwZ3lKNXAya2dnSnBycGo4dEhoSzRM?=
- =?utf-8?B?Qmp6Ym9DOHp5bGFkYkdGdXhCaEpqMnk0Y3lZeVdTcUVnZ2ZPbzE0MUdBZDVR?=
- =?utf-8?B?ckFkcTNwMDh6Y1E0VG1Zb045MHhSd1ptODkxVHFXNDhyM1MzM1BKbXpiVklT?=
- =?utf-8?B?dnN2ZTZWSnNFNkdIeURaT1hZckFhR1NHWE1VRlQxN2NIUFZnMWk5Mkl2Y01h?=
- =?utf-8?B?ejlLdzJJQUhPUVdnVk4zLzZuZG9sdWVEeGplYTRXMjJPQTMySXlFdEgySTBI?=
- =?utf-8?B?MHNpOEd1VFJBa0c4N0h4N0VzbENBVERXSExQdU5LMzZtMnNJNWxaR25lRlpB?=
- =?utf-8?B?SFlNc3ozMktEL3B3QWFhTk9USU4wYnBMejFCcGM3WFE2L3ZKaGZOSGlxQUJN?=
- =?utf-8?B?bE93U1FLWERCRG9YZHNzemRDaWgxKzZNWTZJWUN1MGxmQ0hwSEJEUWdCL21Y?=
- =?utf-8?B?N2tzU3Z6Tk9acHh0R1pxc0VSTzJZT29zdm1oVUp1Nm1TN2ZURCtKNkc4M3lF?=
- =?utf-8?B?RWh3djBHNzV3eHFTNjUraEd3amhkQmdwZUNFbUtpM1R4dTR0Y01iakdtS0Fs?=
- =?utf-8?B?R09DYTA4Tkxob3lNSis4SDlTcTQ5MlBiNGZkSlYvTTVuVDRZTU16WG94N2ty?=
- =?utf-8?B?UktsRCsrVkVnUk14WENFWWNjTGVVZitVTjJySjBpNS9qN29rcjJGTldiZTJu?=
- =?utf-8?B?c2c1MWx3Rno3L1hOdGFaa2JYOXpSYkptMSthZHh2QllLNm0wNjRqKzIvNjRD?=
- =?utf-8?B?em5lUmFYMGpOcDNCR00wMXRVYUp0RklzTWJ2UVF3alNGSWJWTElhZStjTDNv?=
- =?utf-8?B?dFNhWWZ4NzRDL0RHQ2E1YXBNQTFiOWJidkgvWjFhVWk3K2hkTnYyZUU0VUVJ?=
- =?utf-8?B?S1NpTkNwNFlnTHAvUi9HWkhQRFlGQlBTa2NoTEh3ZzZqVFBTbTltSTVnN2RC?=
- =?utf-8?B?ZTJybk1oQmF3N0tCR1pKdmdYVXpOdnJuK3hxMkU3d3NXbHdXT2JsSWhoME5H?=
- =?utf-8?B?T25BY2d2RE1GREVzVDE0dlhXTDNzLzNIU3hNK3JESk9wdDFTcXBINWpBRlpw?=
- =?utf-8?B?VHBHcWozQmVWdW55bFVPR2NoTVdYQ0pYYWh2d3RYOU5JSE5aUVJqL3dYeXZX?=
- =?utf-8?B?eVN3QzMxRS9DVC9YZmVJVlJ0aUV4S09XMzJOb1hLTS9PU0dKL0U2VVJhd1JR?=
- =?utf-8?B?TUwwd0dtWkZickYvWFlLOEJINjRVT1BTOGNUTHgyTFRrcmhENStwdHBWcHZ1?=
- =?utf-8?B?RGpvMmRyMWdtbnRpOTBtbEFKT0ZVeDMxNkU0OXFaWTBjOVhpTm4xY1FsY2oz?=
- =?utf-8?B?VTY2Uk45MlFtb2hYbytFWjlsaitETjdQQ1A0dm5rSkZudFZlekZOSEJ5d0Ro?=
- =?utf-8?B?R2ZIZXA0ZWcvdmJla1FPMnNlSUVKRG5uWXkzSS82Q3h6MjhHekFOb0N4am5m?=
- =?utf-8?B?VVNnZG5GL0FPSFNuNS9mRjhPcEVFMGRET2Z2bWV4L3RDSTdDNXYxb2s1OXMw?=
- =?utf-8?B?d1dXTENhZGZERWRBWWtyRURtWlliSHMwa1ZYSTR1QXNrOFpDbEJzSkRMRkc4?=
- =?utf-8?B?RmpTQWJwQnY1ckRiYmpDSXRRZlJCQU9YUklXQy9veUtVR2dsZGlRTm9JYjB0?=
- =?utf-8?B?dlQvem45WVdpdG1yVnpjaHlaeHdVWisrM3QxOXV5RkVPQTF0SXByK0d5QmZJ?=
- =?utf-8?B?Y2sxd2gyZ1RvL2NqNFBOUFVJbk52TlJjRDBwcEZBVzZWMzlzcmN2MzczSklK?=
- =?utf-8?B?MzRob2xCelh6NUM3eXR4cjNiRlpPUW5yNUdjbDQ3OVh5YU56aG9FNkJnTDZN?=
- =?utf-8?B?K0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c26c652-3e0e-42cc-5472-08dcdc08426f
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnBzd0hWckhnZmlwLzVnZXRsMmplQnlFTm9hNElEcStWNHMrTjkzOStlODRS?=
+ =?utf-8?B?YkFjWjZsRVRmVWplNCtoeTQ4djNuVExYMUlVVUpJMVUrV2RnclhpR1NPcUk3?=
+ =?utf-8?B?dDhlMkJ4V3lCenVhaCtVdlhobE9GS1hSR1p0WEp2Ykw4Y0R0UTRYeFp6aXlo?=
+ =?utf-8?B?MHBvdDQ1aXYvZkZ2SVcrRExjcEcvRGxSVTZOc1N3c3p2S0FndDJkSXVHZFlE?=
+ =?utf-8?B?alZOQnF4Y3Z3YkdFSnAyZGJISXpHamk4a1NtU1VQeW5vRHB5Zld4blVpRWp2?=
+ =?utf-8?B?YkY5cVBmdUhTQVRlVEo1V21lK1NEcGl6UUczWElrTkZqUHF3dGY0ZWdqaUgy?=
+ =?utf-8?B?QllvSzRoUHp4VElkUzRwNFR3c3Y3anI4RzhaaGhldU1LZll4ZzZaOGgzTlVR?=
+ =?utf-8?B?ZnZ0T1A3VndxWHdOdlBwbUQwZTYwK0pVY3JMWDByK0JrMUxJbXZuTmVmek5j?=
+ =?utf-8?B?ZzluQmIvZTJEU0ViWXlmeU1tV3pYdDlOQkJWSzE5V3MydUZ3bGVDemZhakdj?=
+ =?utf-8?B?TzJWcW5tOHIvWXdSRFhVeHlDRFhjSm1DZldyMkxTN1RCRnlITHZaeitidmlW?=
+ =?utf-8?B?V0dzaDdDMGNlWjFyYVRsczNvUUwvWlhYT1k1WWQ1M0hZL25pL3RUeFBvMXY2?=
+ =?utf-8?B?UW40QjFCd21vRUh5VUU0QVUySnJRVzZ5cVB2cVhPdllxblA3VVNkMjZqWHJL?=
+ =?utf-8?B?NmREUFJEdlhCYlRnK3R3TVRPMnhDZjlpQ3JWTmIxZzlUSVgwSmVudXBER2Jz?=
+ =?utf-8?B?QlhYemMrUGZLRU12cSs2Wk1yT0VORmVzbmN4dGFZWEtJazVHNFhIZXN1dENT?=
+ =?utf-8?B?MExWTmJzWmxvS0lUVlV4V3ZCVXIySXNHd3luSGtJM0dESVEySGd5Q1RRL2hG?=
+ =?utf-8?B?N3BLOG5aMk1iai8yb2xJUU8wc2t0K3VYNFYzbXlFVmtrSXpJUTM1bVI0TkRZ?=
+ =?utf-8?B?ZUdZR2FzcmN6S3FqYk9uOVpaYngzL1pGcEg5U1JXM3FEbHhBelhaUEkyamVX?=
+ =?utf-8?B?M1UrVnlDK3prNmU5c2szZ3JCR3JLWEpVbnZCYXFUQnozSTd4R2xQYytrVzF1?=
+ =?utf-8?B?ZURaWnVON3NoUjJIUUR5ZGwvcHpOVnZhV244RzYyeVgvbi9xYjFFR0hjTisx?=
+ =?utf-8?B?TnpOQTJQTVlxNjNiTWJXb2M2MVIwNXd6RUxHVk82cDY0dHRwdkNWNUNzVGZ6?=
+ =?utf-8?B?QUc2RFBBNkZTMnZ4NTNrTW42ODlaQU8rbGpMeEtiRysrOU9VUnBaV0VYOHVB?=
+ =?utf-8?B?UXZjaHpuM3lvd3lRM3VlZFp2SFB6c3NXa2QwbVZiR3NXVGMwYjBVOGdpSFRv?=
+ =?utf-8?B?Y3ovZkxpSjUzekUvdkhYV0szYnNFOEpPRlJrVFNLQjRIR2lzZ2dva2VIalE5?=
+ =?utf-8?B?RDlNcjBTLzd4bndEZXVJY1UrdTl1RXFnTVh4SE5keGNoVGhVVmVPekhtNEVx?=
+ =?utf-8?B?bitnamFLOG5NOGh2NzRMNUpPaWtIdVRFU0tnT1J6THpXd2hoNW9PSUJVUnpE?=
+ =?utf-8?B?ckJZbWEzMStOSUtvN29RUHdQeTJJdVM5ekprN1pTWDZWWkVTZ2lBSUErZjU4?=
+ =?utf-8?B?YmFScTJMMm9qdmg1WlJoeXFmUXo3dk9OaENVM1ZCSUNrdmpQQmZ3QjdXWmZW?=
+ =?utf-8?B?bTlGRU5Tdmo2eUM2cXlTZ2V2dlMyZDJLSDBLUEZsN2V1bDlhUnpRMVRBdzV5?=
+ =?utf-8?B?dy9BRnp3VHRRWTZETnhnSjg5RFNiOUVOeGdiUFdDUTJ4OVJWRlZHcldIU24x?=
+ =?utf-8?B?cnJ2cGgvNE9CNWdGYjIweGxmd2hSQTgzY3ZqTE5qQzZsTDU2MW5UVHd0dktP?=
+ =?utf-8?B?T1hacnVDRHplYlhtVWNEeXFuakx6d0JtOS85amNKcFdlQ2tYWUhNdmJMZ29B?=
+ =?utf-8?B?WHVaa0JUMUdqWDhZWGlkVFNFOEM2aEdTN3R1bDFqbHRvVVZHRHdxY213Qm14?=
+ =?utf-8?B?NUVOTVo3T2Jwd0dXMGZHdkFrNEhiaFl0NXcrZFFWL1c2RVlXNkF6UWVpQWp6?=
+ =?utf-8?B?elFld044L2Z1Z2QwNThTbmdhZXV0LzhvNUJucVNZWTRUV2p4ME1oNE1Ua3I4?=
+ =?utf-8?B?dTFkUzB2TTVVeWZheHR3NDFJZWN6UGd1bHl6Y0hKLzhJNzJJR1hXQXpqU3lo?=
+ =?utf-8?Q?2LUF84WBUxu2bwVflmkWOarAc?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b066864-1be6-4f54-0213-08dcdc11972c
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6714.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2024 19:45:21.3869 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2024 20:52:09.1217 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PpM/ZqzxQydl9p/MTJIu8HbVd/+bXotE3ta/GQKte9ObnuJkJw1TBThjffojU+CQUinzjPCJC2ch/u85ehQfVrNGnhKtPrc7voMOO1Je6lE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4711
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3hPLCmMWy7zkXJ3kypdE6A/5ru5/rHCmSX4ygpjcv6FpTrgsaWSJJ7FHPQvKcUjPjJXClglMY1bNrzBLMwsDEA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5196
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,67 +197,253 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 9/20/2024 07:48, Jani Nikula wrote:
-> On Fri, 20 Sep 2024, Badal Nilawar <badal.nilawar@intel.com> wrote:
->> Do not review
-> Explanation would go here.
->
-> [CI] Usually means everything's reviewed, and this is just a resend for
-> CI. And there's no need to resend multiple times for that. Patchwork has
-> a "test again" button.
->
-> Finally, the patches are missing your Signed-off-by.
->
-> BR,
-> Jani.
-I think the intention here is to just get extra CI runs with more debug 
-output to debug a failure that is only happening inside CI and cannot be 
-reproduced locally. Although it is generally simpler/clearer to just 
-squash the patches down into a single "Add extra debug for CI failures" 
-patch rather than re-submitting an entire series.
 
-Of course, the ideal would be to actually get all this extremely useful 
-stuff merged and then it wouldn't need to be reposted over and over to 
-get more CI results with it enabled.
-
-John.
-
-
+On 23.09.2024 13:55, Michal Wajdeczko wrote:
 >
->> John Harrison (10):
->>    drm/xe/guc: Remove spurious line feed in debug print
->>    drm/xe/devcoredump: Use drm_puts and already cached local variables
->>    drm/xe/devcoredump: Improve section headings and add tile info
->>    drm/xe/devcoredump: Add ASCII85 dump helper function
->>    drm/xe/guc: Copy GuC log prior to dumping
->>    drm/xe/guc: Use a two stage dump for GuC logs and add more info
->>    drm/xe/guc: Dead CT helper
->>    drm/xe/guc: Dump entire CTB on errors
->>    drm/xe/guc: Add GuC log to devcoredump captures
->>    drm/xe/guc: Add a helper function for dumping GuC log to dmesg
+> On 21.09.2024 00:29, Tomasz Lis wrote:
+>> After restore, GuC will not answer to any messages from VF KMD until
+>> fixups are applied. When that is done, VF KMD sends RESFIX_DONE
+>> message to GuC, at which point GuC resumes normal operation.
 >>
->> Michal Wajdeczko (1):
->>    drm/print: Introduce drm_line_printer
+>> This patch implements sending the RESFIX_DONE message at end of
+>> post-migration recovery.
 >>
->> bnilawar (1):
->>    [For CI] Debug prints/logs to debug G2H timeout issue
+>> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+>> ---
+>>   .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 38 +++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 33 ++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h           |  1 +
+>>   drivers/gpu/drm/xe/xe_sriov_vf.c              | 23 +++++++++++
+>>   4 files changed, 95 insertions(+)
 >>
->>   drivers/gpu/drm/drm_print.c                   |  14 +
->>   .../drm/xe/abi/guc_communication_ctb_abi.h    |   1 +
->>   drivers/gpu/drm/xe/regs/xe_guc_regs.h         |   1 +
->>   drivers/gpu/drm/xe/xe_devcoredump.c           | 144 +++++-
->>   drivers/gpu/drm/xe/xe_devcoredump.h           |   6 +
->>   drivers/gpu/drm/xe/xe_devcoredump_types.h     |  13 +-
->>   drivers/gpu/drm/xe/xe_device.c                |   1 +
->>   drivers/gpu/drm/xe/xe_guc.c                   |   6 +-
->>   drivers/gpu/drm/xe/xe_guc_ct.c                | 416 ++++++++++++++----
->>   drivers/gpu/drm/xe/xe_guc_ct.h                |  10 +-
->>   drivers/gpu/drm/xe/xe_guc_ct_types.h          |  29 +-
->>   drivers/gpu/drm/xe/xe_guc_log.c               | 208 ++++++++-
->>   drivers/gpu/drm/xe/xe_guc_log.h               |   5 +
->>   drivers/gpu/drm/xe/xe_guc_log_types.h         |  27 ++
->>   drivers/gpu/drm/xe/xe_guc_submit.c            |   2 +-
->>   drivers/gpu/drm/xe/xe_hw_engine.c             |   1 -
->>   include/drm/drm_print.h                       |  64 +++
->>   17 files changed, 804 insertions(+), 144 deletions(-)
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+>> index b6a1852749dd..74874bbba10c 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+>> @@ -501,6 +501,44 @@
+>>   #define VF2GUC_VF_RESET_RESPONSE_MSG_LEN		GUC_HXG_RESPONSE_MSG_MIN_LEN
+>>   #define VF2GUC_VF_RESET_RESPONSE_MSG_0_MBZ		GUC_HXG_RESPONSE_MSG_0_DATA0
+>>   
+>> +/**
+>> + * DOC: VF2GUC_NOTIFY_RESFIX_DONE
+>> + *
+>> + * This action is used by VF to notify the GuC that the VF KMD has completed
+>> + * post-migration recovery steps.
+>> + *
+>> + * This message must be sent as `MMIO HXG Message`_.
+>> + *
+>> + *  +---+-------+--------------------------------------------------------------+
+>> + *  |   | Bits  | Description                                                  |
+>> + *  +===+=======+==============================================================+
+>> + *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
+>> + *  |   +-------+--------------------------------------------------------------+
+>> + *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
+>> + *  |   +-------+--------------------------------------------------------------+
+>> + *  |   | 27:16 | DATA0 = MBZ                                                  |
+>> + *  |   +-------+--------------------------------------------------------------+
+>> + *  |   |  15:0 | ACTION = _`GUC_ACTION_VF2GUC_NOTIFY_RESFIX_DONE` = 0x5508    |
+>> + *  +---+-------+--------------------------------------------------------------+
+>> + *
+>> + *  +---+-------+--------------------------------------------------------------+
+>> + *  |   | Bits  | Description                                                  |
+>> + *  +===+=======+==============================================================+
+>> + *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
+>> + *  |   +-------+--------------------------------------------------------------+
+>> + *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
+>> + *  |   +-------+--------------------------------------------------------------+
+>> + *  |   |  27:0 | DATA0 = MBZ                                                  |
+>> + *  +---+-------+--------------------------------------------------------------+
+>> + */
+>> +#define GUC_ACTION_VF2GUC_NOTIFY_RESFIX_DONE		0x5508
+> please make it unsigned (like all newer definitions)	0x5508u
+ack
+>
+>> +
+>> +#define VF2GUC_NOTIFY_RESFIX_DONE_REQUEST_MSG_LEN	GUC_HXG_REQUEST_MSG_MIN_LEN
+>> +#define VF2GUC_NOTIFY_RESFIX_DONE_REQUEST_MSG_0_MBZ	GUC_HXG_REQUEST_MSG_0_DATA0
+>> +
+>> +#define VF2GUC_NOTIFY_RESFIX_DONE_RESPONSE_MSG_LEN	GUC_HXG_RESPONSE_MSG_MIN_LEN
+>> +#define VF2GUC_NOTIFY_RESFIX_DONE_RESPONSE_MSG_0_MBZ	GUC_HXG_RESPONSE_MSG_0_DATA0
+>> +
+>>   /**
+>>    * DOC: VF2GUC_QUERY_SINGLE_KLV
+>>    *
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> index d3baba50f085..08b5f6912923 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> @@ -223,6 +223,39 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt)
+>>   	return 0;
+>>   }
+>>   
+>> +static int guc_action_vf_notify_resfix_done(struct xe_guc *guc)
+>> +{
+>> +	u32 request[GUC_HXG_REQUEST_MSG_MIN_LEN] = {
+>> +		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
+>> +		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
+>> +		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_ACTION_VF2GUC_NOTIFY_RESFIX_DONE),
+>> +	};
+>> +	int ret;
+>> +
+>> +	ret = xe_guc_mmio_send(guc, request, ARRAY_SIZE(request));
+>> +
+>> +	return ret > 0 ? -EPROTO : ret;
+>> +}
+>> +
+>> +/**
+>> + * xe_gt_sriov_vf_notify_resfix_done - Notify GuC about resource fixups apply completed.
+>> + * @gt: the &xe_gt struct instance linked to target GuC
+> don't forget about "Return:"
+ok
+>
+>> + */
+>> +int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt)
+>> +{
+>> +	struct xe_guc *guc = &gt->uc.guc;
+>> +	int err;
+>> +
+>> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>> +
+>> +	err = guc_action_vf_notify_resfix_done(guc);
+>> +	if (unlikely(err))
+>> +		xe_gt_sriov_err(gt, "Failed to notify GuC about resource fixup done (%pe)\n",
+>> +				ERR_PTR(err));
+>> +
+>> +	return err;
+>> +}
+>> +
+>>   static int guc_action_query_single_klv(struct xe_guc *guc, u32 key,
+>>   				       u32 *value, u32 value_len)
+>>   {
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> index e541ce57bec2..97e8c76a641a 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> @@ -17,6 +17,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
+>>   int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>>   int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>>   int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
+>> +int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+>>   
+>>   u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+>>   u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+>> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+>> index b068c57b2bdc..459fa936aaba 100644
+>> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
+>> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+>> @@ -7,8 +7,10 @@
+>>   
+>>   #include "xe_assert.h"
+>>   #include "xe_device.h"
+>> +#include "xe_gt_sriov_vf.h"
+>>   #include "xe_guc_ct.h"
+>>   #include "xe_module.h"
+>> +#include "xe_pm.h"
+>>   #include "xe_sriov.h"
+>>   #include "xe_sriov_vf.h"
+>>   #include "xe_sriov_printk.h"
+>> @@ -20,10 +22,31 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+>>   	INIT_WORK(&xe->sriov.vf.migration_worker, migration_worker_func);
+>>   }
+>>   
+>> +/*
+>> + * vf_post_migration_notify_resfix_done - Notify all GuCs about resource fixups apply finished.
+>> + * @xe: the &xe_device struct instance
+>> + */
+>> +static void vf_post_migration_notify_resfix_done(struct xe_device *xe)
+>> +{
+>> +	struct xe_gt *gt;
+>> +	unsigned int id;
+>> +	int err, num_sent = 0;
+>> +
+>> +	xe_pm_runtime_get(xe);
+> maybe pm_get/put can done once inside the top level recovery function:
+> vf_post_migration_recovery()
 
+It would work. But I don't think there is a need for that.
+
+While applying the actual fixups, we do not require the hardware - it is 
+necessary only to query new provisioning at start, and to send 
+RESFIX_DONE at end.
+
+>
+>> +	for_each_gt(gt, xe, id) {
+>> +		err = xe_gt_sriov_vf_notify_resfix_done(gt);
+>> +		if (!err)
+>> +			num_sent++;
+>> +	}
+>> +	xe_pm_runtime_put(xe);
+>> +	drm_dbg(&xe->drm, "sent %d VF resource fixups done notifications\n", num_sent);
+> hmm, so what's the plan for handling the cases when one or all
+> notify-fixup-done fail? are we going wedge or will silently ignore like
+> here?
+
+If RESFIX_DONE gives error, then the GuC was either not in RESFIX state 
+or is not responding. If not in RESFIX state, that would mean the 
+current procedure comes from a second migration just before sending 
+RESFIX_DONE on recovery from the first, or GuC got reset by PF. So we 
+have 3 cases:
+
+* not in RESFIX state due to RESFIX_DONE from previous migration being sent:
+
+If this happened, we were applying fixups on a living GuC. While many 
+things could have gone wrong in that case, it is generally more likely 
+that we've made it through fixups and everything will work now. The job 
+which was executing without fixups might have hanged, but then all jobs 
+were fixed, so this single job will timeout, get removed, and execution 
+will continue.
+
+There is no need to wedge in this case.
+
+* not in RESFIX state due to PF reset:
+
+This case should be handled by VMM, not by the kernel running on the VF 
+- the whole VM should be marked as damaged. The VF KMD could wedge, but 
+we have no way of distinguishing this situation from the previous one.
+
+* GuC is not responding:
+
+This will lead to PF reset, so see the point above. This time we can 
+distinguish the situation as we've got ETIME from send function, but why 
+treat this case in a different manner?
+
+To conclude:
+
+I don't think the VF KMD should wedge on no response, because it is 
+possible that everything will work, and we have no way of distinguishing 
+these cases - if there will be no progress or no response from hardware, 
+we will get through standard reset and wedge procedures after the 
+recovery ends. There is no need for extraordinary speedup of the demise 
+in case of migration.
+
+>
+>> +}
+>> +
+>>   static void vf_post_migration_recovery(struct xe_device *xe)
+>>   {
+>>   	drm_dbg(&xe->drm, "migration recovery in progress\n");
+>>   	/* FIXME: add the recovery steps */
+>> +	vf_post_migration_notify_resfix_done(xe);
+> hmm, shouldn't we have some kind of guard to actually track whether we
+> succeed with the fixups and only then send notify-done?
+>
+> otherwise in addition that we're already cheating the user with below
+> message 'recovery-completed', now we cheating the GuC that 'fixup-done'
+>
+> there likely always be a cases where something went wrong, so we either
+> end up with reset or wedge, so maybe we should also start with that and
+> only send 'fixup-done' when passing all post-migration steps
+
+The fixups do not communicate with hardware, so they have no way of 
+failing. They are a CPU-only procedure of iterating through internal KMD 
+structures. Them failing would mean internal KMD structures are damaged.
+
+The series under review does include a mechanism for fail, and a 
+mechanism for defer. In both these mechanisms the RESFIX_DONE is skipped.
+
+-Tomasz
+
+>
+>>   	drm_notice(&xe->drm, "migration recovery completed\n");
+>>   }
+>>   
