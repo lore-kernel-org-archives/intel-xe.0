@@ -4,61 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81F4CCF9C69
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 14:29:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 722E0CF9C69
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 14:35:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49E6C10E26A;
-	Mon, 23 Sep 2024 14:29:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3695B10E26D;
+	Mon, 23 Sep 2024 14:35:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JK60Y4mu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TwOFHZYh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0DCD10E26A;
- Mon, 23 Sep 2024 14:29:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F6E810E26D;
+ Mon, 23 Sep 2024 14:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727101792; x=1758637792;
+ t=1727102141; x=1758638141;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ZevgJZtNtR3Jtz0Z+Et9zt7VJQgPgHY7wZqqWyX71zQ=;
- b=JK60Y4mu2OuRgpGI6pnl582JZHKAqs32Wqv8+sQeMW3F76QnEu/BfZxY
- fpTSC+QgJNUHPws+IpTJl5NH091LZehRvqYaFIDPT31Hf7oU26kkX687K
- G4c98VKDz4rxNGuScfjGgPl7rCWleFT3kV9Bq0bQZtdC8gtzP/ZmfZhxI
- W8NxjcDPQguiOfVLSOwD+jE6K/8o5nrBg6YHS6gaBwP1V/pP4cP2Q9Xwn
- 9KgegKzXU3oGB8oF1QoC+ZAIB72GyUUfW/kMXC+kzGbnOKwtWXmV0SPN4
- xe2Vn/y+KEMvpwLfz2EI2pTT5I6nZuFEX0avh2ZtOAdxoJPqlnLxT+qAF A==;
-X-CSE-ConnectionGUID: 7Ge9SSQwRw6vXZXAdJS8Ww==
-X-CSE-MsgGUID: xZbFiHg6R7qiccV7EkCfCg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26145168"
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="26145168"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 07:29:51 -0700
-X-CSE-ConnectionGUID: js/cvQmnSyK7hNHbR5oawg==
-X-CSE-MsgGUID: 4CjpA6ChRCSJyeFOi2VDTA==
+ bh=VBUgLTShHn7RoGyOzmsltQFhRb+Mo7+Qxel6tPi+m20=;
+ b=TwOFHZYhUe+N1+gcSRw/LSWNMtG7ryv8QjK/Gla7sESuFldxjaivZHBB
+ 1W478yWa+2qEHicPNNs8gl2zK7NG1NZGuGqOel69wJieM9oZyy66RQQIL
+ K2KDLum/PL6/xr5qIjtajObMndz2qybE5syWkv3yUxJXsrLRJHEyejQft
+ I5kSOjon9aZGMck3fTCH7K+JdBJ1rYkN9SZ+LPwibaGh+xkpct14wn8MO
+ Je1yReyjjsQN0KKUlnuFLUxC6/vRC/251A+umMTexMjRvyCYLEaGS/K6u
+ 8jHn+G1MNLt1l5nQVS5jy4CHTz5uazfAw8O709QXY50tSmPKYuUCwVdsu Q==;
+X-CSE-ConnectionGUID: uueNYsuORpKgCw2wAseEBQ==
+X-CSE-MsgGUID: Ikd01jQpQCuMGCb0a1aBig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="43568371"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="43568371"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 07:35:31 -0700
+X-CSE-ConnectionGUID: lBJ1BNJgRLWGlR5Pr3zNbg==
+X-CSE-MsgGUID: YwEBrzmpQr+zZ75abnQdBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="71228412"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 23 Sep 2024 07:29:49 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 23 Sep 2024 17:29:48 +0300
-Date: Mon, 23 Sep 2024 17:29:48 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] drm/i915/bios: Extract vbt_signature[]
-Message-ID: <ZvF7XOO192MJyONv@intel.com>
-References: <20240910134219.28479-1-ville.syrjala@linux.intel.com>
- <20240910134219.28479-5-ville.syrjala@linux.intel.com>
- <87y13xf4p3.fsf@intel.com> <Zu2p3dlneXYbmWEu@intel.com>
- <87frpq7myg.fsf@intel.com> <ZvF5qm-uT8yXt6p7@intel.com>
- <877cb25txt.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="108522524"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 07:35:26 -0700
+Date: Mon, 23 Sep 2024 17:35:23 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH v6 1/4] drm: Introduce device wedged event
+Message-ID: <ZvF8q7xkbEegPzc9@black.fi.intel.com>
+References: <20240923035826.624196-1-raag.jadav@intel.com>
+ <20240923035826.624196-2-raag.jadav@intel.com>
+ <ZvEpH_po4bYmEISh@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <877cb25txt.fsf@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <ZvEpH_po4bYmEISh@smile.fi.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,59 +77,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 23, 2024 at 05:24:46PM +0300, Jani Nikula wrote:
-> On Mon, 23 Sep 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Mon, Sep 23, 2024 at 12:12:39PM +0300, Jani Nikula wrote:
-> >> On Fri, 20 Sep 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> > On Thu, Sep 12, 2024 at 03:15:52PM +0300, Jani Nikula wrote:
-> >> >> On Tue, 10 Sep 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> >> >> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> >> >
-> >> >> > Replace the three hand rolled "$VBT"s with a vbt_signature[]
-> >> >> > to avoid accidents.
-> >> >> >
-> >> >> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> >> > ---
-> >> >> >  drivers/gpu/drm/i915/display/intel_bios.c | 12 +++++++++---
-> >> >> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> >> >> >
-> >> >> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> >> >> > index cbbda94c3dab..0b92b494117f 100644
-> >> >> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> >> >> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> >> >> > @@ -2964,6 +2964,8 @@ static const struct bdb_header *get_bdb_header(const struct vbt_header *vbt)
-> >> >> >  	return _vbt + vbt->bdb_offset;
-> >> >> >  }
-> >> >> >  
-> >> >> > +static const char vbt_signature[4] = "$VBT";
-> >> >> 
-> >> >> Always a bit scary to add strings without termination, but I guess it's
-> >> >> justified here.
-> >> >
-> >> > I guess we could make it look less like a string with eg.
-> >> > static const u8 vbt_signature[] = { '$', 'V', 'B', 'T' };
-> >> > ?
-> >> 
-> >> Alternatively,
-> >> 
-> >> static const char *vbt_signature = "$VBT";
-> >
-> > Or could just be something like:
-> >
-> > static const char vbt_signature[] = "$VBT";
-> > static const int vbt_signature_len = 4;
-> >
-> > BUILD_BUG_ON(vbt_signature_len != sizeof(vbt_signature) - 1);
-> > BUILD_BUG_ON(vbt_signature_len != sizeof(u32));
-> >
-> > and use vbt_signature_len instead sizeof(vbt_signature) everwhere.
+On Mon, Sep 23, 2024 at 11:38:55AM +0300, Andy Shevchenko wrote:
+> On Mon, Sep 23, 2024 at 09:28:23AM +0530, Raag Jadav wrote:
+> > Introduce device wedged event, which will notify userspace of wedged
+> > (hanged/unusable) state of the DRM device through a uevent. This is
+> > useful especially in cases where the device is no longer operating as
+> > expected and has become unrecoverable from driver context.
+> > 
+> > Purpose of this implementation is to provide drivers a way to recover
+> > through userspace intervention. Different drivers may have different
+> > ideas of a "wedged device" depending on their hardware implementation,
+> > and hence the vendor agnostic nature of the event. It is up to the drivers
+> > to decide when they see the need for recovery and how they want to recover
+> > from the available methods.
+> > 
+> > Current implementation defines three recovery methods, out of which,
+> > drivers can choose to support any one or multiple of them. Preferred
+> > recovery method will be sent in the uevent environment as WEDGED=<method>.
+> > Userspace consumers (sysadmin) can define udev rules to parse this event
+> > and take respective action to recover the device.
+> > 
+> >  Method    | Consumer expectations
+> > -----------|-----------------------------------
+> >  rebind    | unbind + rebind driver
+> >  bus-reset | unbind + reset bus device + rebind
+> >  reboot    | reboot system
 > 
-> Works for me, up to you.
+> > v4: s/drm_dev_wedged/drm_dev_wedged_event
+> >     Use drm_info() (Jani)
+> >     Kernel doc adjustment (Aravind)
+> > v5: Send recovery method with uevent (Lina)
+> > v6: Access wedge_recovery_opts[] using helper function (Jani)
+> >     Use snprintf() (Jani)
+> 
+> Hmm... Isn't changelog in the cover letter is not enough?
 
-I'll roll with that. I guess it's safer to have the '\0'
-in case someone gets the urge to do something like
-printk("Unable to find %s ...\n", vbt_signature) etc.
+Which was initial thought but I'm told otherwise Â¯\_(ãƒ„)_/Â¯
 
--- 
-Ville Syrjälä
-Intel
+> ...
+> 
+> > +extern const char *const wedge_recovery_opts[];
+> 
+> It's not NULL terminated. How users will know that they have an index valid?
+
+It's expected to be accessed using recovery_*() helpers.
+ 
+> Either you NULL-terminate that, or export the size as well (personally I would
+> go with the first approach).
+> 
+> ...
+> 
+> > +static inline bool recovery_method_is_valid(enum wedge_recovery_method method)
+> > +{
+> > +	if (method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX)
+> > +		return true;
+> > +
+> > +	return false;
+> 
+> Besides that this can be written as
+> 
+> 	return method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX;
+> 
+> > +}
+> 
+> this seems a runtime approach for what we have at compile-time, i.e. static_assert()
+
+My understanding is that we have runtime users that the compiler may not be
+able to resolve.
+
+Raag
