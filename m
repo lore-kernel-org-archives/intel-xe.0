@@ -4,67 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A01FCF9C69
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:49:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DBECCF9C69
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:58:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC00210E260;
-	Mon, 23 Sep 2024 12:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7C3010E260;
+	Mon, 23 Sep 2024 12:58:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sst8rmym";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LYvjGgQA";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E88110E260;
- Mon, 23 Sep 2024 12:49:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 53AFDA41B78;
- Mon, 23 Sep 2024 12:49:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 287D7C4CEC4;
- Mon, 23 Sep 2024 12:49:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727095774;
- bh=RN6cjzHoWo7KzeRWo61xbecp6Jcoh0ocYmVzmQxu00s=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=sst8rmym1KIpZMVpE922IY6DCc92c9SKEyh32z3FChhDrHzEjbGGx5ElG0aFTEoKO
- aWxoys4vBUlsffvSINxEFrvXvAKlReionrFgc77eCTtR5kF13ybMuo7ISnDKUblHUa
- YN8ZTvhQ+iySyZ8vd53HuK5YSKqMz/Ac2hHw1CDduijlWruv5UlEaXa1PtgQtkgnyn
- xiFwLzEUI39EZSdaCeVJzRnJ8C4UuFlDos15YCBbzHgt3u0o6S/1RsrmU9i32MrK/9
- AtT9PnO4qEhUk9K/SnB2vk0u33aX8TSv310RMdQ+IPxbjmJLQ98qDdTk0buLqGDzRp
- C9T9J3TTfcb3Q==
-Date: Mon, 23 Sep 2024 14:49:27 +0200
-From: Mark Brown <broonie@kernel.org>
-To: "Winkler, Tomas" <tomas.winkler@intel.com>
-Cc: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v6 01/12] spi: add driver for intel graphics on-die spi
- device
-Message-ID: <ZvFj1zyzSYmbNwmH@finisterre.sirena.org.uk>
-References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
- <20240916134928.3654054-2-alexander.usyskin@intel.com>
- <ZurWk_eXSQndgA4Y@finisterre.sirena.org.uk>
- <PH7PR11MB76057D2326D436CA9749A113E5632@PH7PR11MB7605.namprd11.prod.outlook.com>
- <Zuv9qsWJQhx7rbhJ@finisterre.sirena.org.uk>
- <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E08D910E155
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 12:58:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727096328; x=1758632328;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7ngXVKCh1STEoKdjuAOoCj9RlsZ6ADtQyYwb6tD4Mbc=;
+ b=LYvjGgQAG2SXOC/NAdpYWm6UXtd7UCMAoPdRVa9b8F6kbLOYyIhvjT7f
+ dRbRUOu0vGfYPl5MIb59xfcSCHZBfJ34cmVncOswXfsCjlwW7/8Eue8tw
+ Rqex0LcCs+yBDll5A227oFyK+GmbdnXGAt2zvUdksvZYCT8bZsVIu13Gc
+ PuQktVszJSxBNVrPh6AP2d54CgGVluoTIIj45wNHzhJ1u1n1rs7ONLaXf
+ O3Gqqizu0+ME7O2QbMBBDJI06QshNPjuFOZqzdhqq4sH6PUYJ4NpSE79e
+ HSJL4Vq4FF2uOw1NFyMpkWiBxLjOe1j/aFgGUwQMACDcI3v8aQYScO3hl w==;
+X-CSE-ConnectionGUID: UpQnvizBSU6UM0x44ngjsw==
+X-CSE-MsgGUID: 4QNaQ4SdTh28nG8lSzw4kg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26160078"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="26160078"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 05:58:48 -0700
+X-CSE-ConnectionGUID: sT2NRJGUQ0aUlw57rsAdgA==
+X-CSE-MsgGUID: OgUZrcsQQX2m+dweGYqBWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="101910403"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.234])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 05:58:46 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+	stable@vger.kernel.org
+Subject: [PATCH 1/2] drm/xe/vm: move xa_alloc to prevent UAF
+Date: Mon, 23 Sep 2024 13:57:34 +0100
+Message-ID: <20240923125733.62883-3-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.46.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="6k/Yl5pMjIb7rFw2"
-Content-Disposition: inline
-In-Reply-To: <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
-X-Cookie: Editing is a rewording activity.
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,75 +66,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Evil user can guess the next id of the vm before the ioctl completes and
+then call vm destroy ioctl to trigger UAF since create ioctl is still
+referencing the same vm. Move the xa_alloc all the way to the end to
+prevent this.
 
---6k/Yl5pMjIb7rFw2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
+---
+ drivers/gpu/drm/xe/xe_vm.c | 22 ++++++++++------------
+ 1 file changed, 10 insertions(+), 12 deletions(-)
 
-On Sat, Sep 21, 2024 at 01:00:52PM +0000, Winkler, Tomas wrote:
-> > On Thu, Sep 19, 2024 at 09:54:24AM +0000, Winkler, Tomas wrote:
-> > > > On Mon, Sep 16, 2024 at 04:49:17PM +0300, Alexander Usyskin wrote:
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index a3d7cb7cfd22..f7182ef3d8e6 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1765,12 +1765,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	if (IS_ERR(vm))
+ 		return PTR_ERR(vm);
+ 
+-	mutex_lock(&xef->vm.lock);
+-	err = xa_alloc(&xef->vm.xa, &id, vm, xa_limit_32b, GFP_KERNEL);
+-	mutex_unlock(&xef->vm.lock);
+-	if (err)
+-		goto err_close_and_put;
+-
+ 	if (xe->info.has_asid) {
+ 		down_write(&xe->usm.lock);
+ 		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
+@@ -1778,12 +1772,11 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 				      &xe->usm.next_asid, GFP_KERNEL);
+ 		up_write(&xe->usm.lock);
+ 		if (err < 0)
+-			goto err_free_id;
++			goto err_close_and_put;
+ 
+ 		vm->usm.asid = asid;
+ 	}
+ 
+-	args->vm_id = id;
+ 	vm->xef = xe_file_get(xef);
+ 
+ 	/* Record BO memory for VM pagetable created against client */
+@@ -1796,12 +1789,17 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
+ #endif
+ 
+-	return 0;
+-
+-err_free_id:
++	/* user id alloc must always be last in ioctl to prevent UAF */
+ 	mutex_lock(&xef->vm.lock);
+-	xa_erase(&xef->vm.xa, id);
++	err = xa_alloc(&xef->vm.xa, &id, vm, xa_limit_32b, GFP_KERNEL);
+ 	mutex_unlock(&xef->vm.lock);
++	if (err)
++		goto err_close_and_put;
++
++	args->vm_id = id;
++
++	return 0;
++
+ err_close_and_put:
+ 	xe_vm_close_and_put(vm);
+ 
+-- 
+2.46.1
 
-> > Just do normal open coded allocations, the reference counting is just
-> > obscure.
-
-> The kref here is for reason so we don't need to hunt the close open, I fr=
-ankly don't understand
-> what is wrong with it,=20
-
-It's locking/refcounting stuff that looks nothing like any other SPI
-controller driver.  Even if it works it's obviously fragile since the
-driver does surprising things which break assumptions that will be made
-by people not looking at this specific driver, and causes people to have
-to spend more effort figuring out what you're doing.  If there is any
-benefit to doing this then open coding it in one specific driver is
-clearly not the right place to do it.
-
-> > > > > +static void intel_dg_spi_remove(struct auxiliary_device *aux_dev=
-) {
-> > > > > +	struct intel_dg_spi *spi =3D dev_get_drvdata(&aux_dev->dev);
-
-> > > > > +	if (!spi)
-> > > > > +		return;
-
-> > > > > +	dev_set_drvdata(&aux_dev->dev, NULL);
-
-> > > > If the above is doing anything there's a problem...
-> > o
-> > > It makes sure the data is set to NULL.
-
-> > Which is needed because...?
-
-> This is a boilerplate part, the content is consequent patches.=20
-
-Which would come back to the issues created by the random splitting of
-the series were it not for the fact that if anything tries to look at
-the driver data of a removed device it's buggy, the reference is gone
-and the device may have been deallocated and it's certainly freed from
-the perspective of this user.  Notice how other drivers don't do this.
-The driver core will also overwrite the driver data of released
-devices...
-
-At a high level a lot of the issues with this series is that both in
-terms of how it's been sent and what it's doing there's a bunch of
-things that look nothing like how we normally handle things.  At best
-this means that problems are being solved at the wrong level, but it's
-hard to see that this is the case.
-
---6k/Yl5pMjIb7rFw2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbxY9AACgkQJNaLcl1U
-h9BFsAf/ehMj/p+H4ADxV87IKVdY07z0di6q7euT4MTbH/WOB6XOKpN1Oj1FHsSB
-v1VhH+buYMk50UT6BKOTtL3naCweQGxZPGrbmwj8ny1ge1MGVMNyZDKuAIZciO+O
-M7fqs6fzTHSsxO97j7Rtw8FponO3u3rifubo1K2+zNiPfhqdJo2B+L5AcLkFbpyn
-ysP7QDcEC1Nljp5BwYr2iVPynGEHHU8ZI2Ql+F504yOcYLOAJZAm38FJogVct1x9
-z2kTT2na9/or4xAvarDW/4OnALdrV+Zrmq4wvQ5BqimyDz3UciBgIfxzyGxj7CUy
-1c5xIQ9lVIVLndjsAzj6oKcPNTBmqA==
-=OAaN
------END PGP SIGNATURE-----
-
---6k/Yl5pMjIb7rFw2--
