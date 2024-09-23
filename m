@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EF73CF9C72
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 13:10:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBA1DCF9C70
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 13:51:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41A9110E267;
-	Mon, 23 Sep 2024 13:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9731010E188;
+	Mon, 23 Sep 2024 13:51:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kkr5aGBl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PvzBnLn/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14ED610E267
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 13:10:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5222310E188;
+ Mon, 23 Sep 2024 13:51:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727097006; x=1758633006;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=KyTCQKGnZi6M1f+wKxs17uTu139rWq17Utz08kpPPsg=;
- b=kkr5aGBlchkPqNaby22o9m/6FBf+1m850RPIS1+mCuszRogEst8TgHog
- r66Dq948x69KGO6jOg9mD/9Vl2sWChHZpFOsXkSvutBXU4Wu69ewNDckU
- 3a5N9zGCI9ry3N78biqNbxSSMahX/0tg7rK24eXX9uKaP0jcG9NyA1f0p
- 3/knK+EYOt0sW3NT4fh0muJvdhyeil34YIKHdd0gEfSqHJaH+WnF0uvDv
- jXMwIhc4RaSFwFYBDTKgpkgDIqPoboCSCY4lLAPJ1C1kM+a4C9SNt8725
- MaRZXrOAB8JAWsF2z1ByRrLnVh9syrRM3E4OnjFul4qRWdIZYvsRlMF5F Q==;
-X-CSE-ConnectionGUID: dvIAyjWVSUinHg0bz5mvmg==
-X-CSE-MsgGUID: QeKHtFXJRpqeuDhccIwDug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="25993322"
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="25993322"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 06:10:04 -0700
-X-CSE-ConnectionGUID: BnQ8FM9MRSOHhRMbFoXGIQ==
-X-CSE-MsgGUID: zRdLn94HSl2IyJqwJGpZiA==
+ t=1727099484; x=1758635484;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=V2sX8LpkiXbU/M1Crn4TyXeCk6iQt27h0pg5ljffGcY=;
+ b=PvzBnLn/f0vxX0gfswR3ZdN51HRnuYc7oOTr4MGZ/PS2zjfBdxBNKegu
+ AqX/5ywSbqKKucb/I0IMoXFAJo62mKm7jMVc9JJc8Ob30mNGMPMLlkFqu
+ MfmXsJPVHKXpAg+qIxgmKxoSEyASC5Glfss9QqreN/9h0HDy/IdZmO9OR
+ I+dNHE/9l8yh4YtGnEMeSb+jq3ZNQcGBGFsO+iernZzpOtUKGl5/4AuLG
+ e5oJ+YB5HCvK0oYdgv0EWBs5U7l8inXAldiLHTxKtQ+Q8UhxuvjkPwfvX
+ vsJT7ilSGVw53cUjEPkwCGmV596e8N6xT84hzqi9UKI1h/BZYgbwAMhkF A==;
+X-CSE-ConnectionGUID: nP2SzmnlS6mzZ2kWRAalaA==
+X-CSE-MsgGUID: wt08SGsqSfOwpcFRIW9nNQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="36618384"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="36618384"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 06:51:24 -0700
+X-CSE-ConnectionGUID: 8FCRyNvUQlO7DBl9GL1leg==
+X-CSE-MsgGUID: veMmibg0QiKKuWTQw3T3mw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="108499630"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.234])
- ([10.245.245.234])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 06:10:03 -0700
-Message-ID: <14d95781-5122-41dd-a4a4-5870012d3a0c@intel.com>
-Date: Mon, 23 Sep 2024 14:10:00 +0100
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="75834310"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 06:51:22 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Cc: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, Srikanth V NagaVenkata
+ <nagavenkata.srikanth.v@intel.com>
+Subject: Re: [PATCH 1/3] drm/i915/dp: use fsleep instead of usleep_rage for LT
+In-Reply-To: <ZvFmM3FIdY4DS3AS@fdugast-desk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240912050552.779356-1-arun.r.murthy@intel.com>
+ <20240912050552.779356-2-arun.r.murthy@intel.com>
+ <87tte6652c.fsf@intel.com> <ZvFmM3FIdY4DS3AS@fdugast-desk>
+Date: Mon, 23 Sep 2024 16:51:18 +0300
+Message-ID: <87a5fy5vhl.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Clean up VM / exec queue file lock usage.
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240921011712.2681510-1-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240921011712.2681510-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,132 +71,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21/09/2024 02:17, Matthew Brost wrote:
-> Both the VM / exec queue file lock protect the lookup and reference to
-> the object, nothing more. These locks are not intended anything else
-> underneath them. XA have their own locking too, so no need to take the
-> VM / exec queue file lock aside from when doing a lookup and reference
-> get.
-> 
-> Add some kernel doc to make this clear and cleanup a few typos too.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_device.c       |  2 --
->   drivers/gpu/drm/xe/xe_device_types.h | 14 +++++++++++---
->   drivers/gpu/drm/xe/xe_drm_client.c   |  9 ++++++++-
->   drivers/gpu/drm/xe/xe_exec_queue.c   |  2 --
->   drivers/gpu/drm/xe/xe_vm.c           |  4 ----
->   5 files changed, 19 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index cb5a9fd820cf..53dcece40fc5 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -171,10 +171,8 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
->   		xe_exec_queue_kill(q);
->   		xe_exec_queue_put(q);
->   	}
-> -	mutex_lock(&xef->vm.lock);
->   	xa_for_each(&xef->vm.xa, idx, vm)
->   		xe_vm_close_and_put(vm);
-> -	mutex_unlock(&xef->vm.lock);
->   
->   	xe_file_put(xef);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 5ad96d283a71..484fb34dde98 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -593,15 +593,23 @@ struct xe_file {
->   	struct {
->   		/** @vm.xe: xarray to store VMs */
->   		struct xarray xa;
-> -		/** @vm.lock: protects file VM state */
-> +		/**
-> +		 * @vm.lock: Protects VM lookup + reference and removal a from
-> +		 * file xarray. Not an intended to be an outer lock which does
-> +		 * thing while being held.
-> +		 */
->   		struct mutex lock;
->   	} vm;
->   
->   	/** @exec_queue: Submission exec queue state for file */
->   	struct {
-> -		/** @exec_queue.xe: xarray to store engines */
-> +		/** @exec_queue.xa: xarray to store exece queues */
->   		struct xarray xa;
-> -		/** @exec_queue.lock: protects file engine state */
-> +		/**
-> +		 * @exec_queue.lock: Protects exec queue lookup + reference and
-> +		 * removal a frommfile xarray. Not an intended to be an outer
-> +		 * lock which does thing while being held.
-> +		 */
->   		struct mutex lock;
->   	} exec_queue;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-> index c4add8b38bbd..fb52a23e28f8 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_client.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-> @@ -283,8 +283,15 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
->   
->   	/* Accumulate all the exec queues from this client */
->   	mutex_lock(&xef->exec_queue.lock);
-> -	xa_for_each(&xef->exec_queue.xa, i, q)
-> +	xa_for_each(&xef->exec_queue.xa, i, q) {
-> +		xe_exec_queue_get(q);
-> +		mutex_unlock(&xef->exec_queue.lock);
-> +
->   		xe_exec_queue_update_run_ticks(q);
-> +
-> +		mutex_lock(&xef->exec_queue.lock);
-> +		xe_exec_queue_put(q);
-> +	}
->   	mutex_unlock(&xef->exec_queue.lock);
->   
->   	/* Get the total GPU cycles */
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 7f28b7fc68d5..7743ebdcbf4b 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -635,9 +635,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->   		}
->   	}
->   
-> -	mutex_lock(&xef->exec_queue.lock);
->   	err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b, GFP_KERNEL);
-> -	mutex_unlock(&xef->exec_queue.lock);
->   	if (err)
->   		goto kill_exec_queue;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index a3d7cb7cfd22..31fe31db3fdc 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1765,9 +1765,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->   	if (IS_ERR(vm))
->   		return PTR_ERR(vm);
->   
-> -	mutex_lock(&xef->vm.lock);
->   	err = xa_alloc(&xef->vm.xa, &id, vm, xa_limit_32b, GFP_KERNEL);
-> -	mutex_unlock(&xef->vm.lock);
+On Mon, 23 Sep 2024, Francois Dugast <francois.dugast@intel.com> wrote:
+> On Mon, Sep 23, 2024 at 01:24:27PM +0300, Jani Nikula wrote:
+>> On Thu, 12 Sep 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+>> > Aux RD Interval value depends on the value read from the dpcd register
+>> > which is updated from the sink device use flseep thereby we adhere to
+>> > the Documentation/timers/timers-howto.rst
+>> >
+>> > Signed-off-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+>> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> 
+>> With the commit message updated to explain why,
+>
+> While at it, please also fix the typo s/usleep_rage/usleep_range/.
 
-While reviewing this also spotted some potential uaf here and for queue:
-https://patchwork.freedesktop.org/series/138995/
+usleep_rage does have a certain appeal to it, though... ;)
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+BR,
+Jani.
 
->   	if (err)
->   		goto err_close_and_put;
->   
-> @@ -1799,9 +1797,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->   	return 0;
->   
->   err_free_id:
-> -	mutex_lock(&xef->vm.lock);
->   	xa_erase(&xef->vm.xa, id);
-> -	mutex_unlock(&xef->vm.lock);
->   err_close_and_put:
->   	xe_vm_close_and_put(vm);
->   
+
+-- 
+Jani Nikula, Intel
