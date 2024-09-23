@@ -4,67 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80119CF9C5B
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 08:39:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E78B1CF9C5B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 08:39:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FFC710E3B5;
-	Mon, 23 Sep 2024 08:39:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD42A10E3AF;
+	Mon, 23 Sep 2024 08:39:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V9UmSb1d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="clkdPtOa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2088E10E3B0;
- Mon, 23 Sep 2024 08:39:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8AED10E3AF
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 08:39:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727080744; x=1758616744;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Pq35tBxsFJX/9dySiCqY0Lwo7MXxWgYOdqSO7+yO388=;
- b=V9UmSb1dBzZoqtq/hjEZ/jPSt5tFydiGiJ/LtDgPZV24NMHKjoMCtUWE
- CcJ3PEK30wIukCLEWtwrILquGA1GBgVUsYjDAQHaD4M5REDqdcNBxGV8l
- lvgRTO6Bn29S/OttYf8khQQmOOxD94Hj0FvtGEbF2Gs7gAOn42FDa0Q6c
- TsdaCl2GziN4RenOPG0Pasmp7IWnnhGBE7E8eo9dsWC2lQZ3XgLMkFRmo
- VGrgQHgx5ecacZxib69FcMQJkGQCBZbBDO8iZrVBVcFsGpzz5TcQSVPKR
- x/ry9b1eyzohmdLmd2kS+C4TKklDpu9dXJFNMSutsxg9ZwOSKrHj0VDws Q==;
-X-CSE-ConnectionGUID: hDYj4wc9QQm/U7uwzL5Dkg==
-X-CSE-MsgGUID: A9h2vjYHQcm+8KpB/TCuiw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="37152819"
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="37152819"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 01:39:03 -0700
-X-CSE-ConnectionGUID: m0FcGW+PQnCpOk0nm5oqYw==
-X-CSE-MsgGUID: qQtX/mbKTNqbLoI/qepi5Q==
+ t=1727080791; x=1758616791;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=jUwta4t5x9xcsfMgX+jSSCvIM8oZGYM1i7XCNiUi2wU=;
+ b=clkdPtOaxybNG+xH/BNGQDvFN2JCPZnDTZ+5FBvm5FYdHz4nt00CokkJ
+ 9Q9yGj9+SuVWIBNhj5ZGDiYpLEB1OqDhgM9dFRoeDEBPHCvcPZbX4K0Lm
+ 5kl+q1qqSb02Fgc0qNthkZdYslnBbKux9FdwolPcCEU+FvUWJSv6rtJ+E
+ qNyuwZ0MaWuAoxi4GLYmGT9/QGqP/q7JCuB03zJp1KeN0d2ZN+r4h8p60
+ xFZIbqCkKlaRTtNFz9bmEWbI40sUfUjjQAzPlftnzDnj5C67AjQki/sPw
+ MB+uH9cgfaXGSZ3Ta6L9q2bocsGvYcizQl7PmJvdbBZq6CPO8V6RnhAWK Q==;
+X-CSE-ConnectionGUID: 01kBVqzQTs6bf9ojPfSTpA==
+X-CSE-MsgGUID: aPBHesaGRSmtBW5Faw/yVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="25966813"
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="25966813"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 01:39:50 -0700
+X-CSE-ConnectionGUID: THD7xgoPQZ+FMrxdkwL7rg==
+X-CSE-MsgGUID: I6GA5ORsTDy6bN0GFcOqTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="70887702"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 01:38:58 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1sseat-0000000BtZo-2Jfi; Mon, 23 Sep 2024 11:38:55 +0300
-Date: Mon, 23 Sep 2024 11:38:55 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lina@asahilina.net,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH v6 1/4] drm: Introduce device wedged event
-Message-ID: <ZvEpH_po4bYmEISh@smile.fi.intel.com>
-References: <20240923035826.624196-1-raag.jadav@intel.com>
- <20240923035826.624196-2-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="71307953"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa006.jf.intel.com with ESMTP; 23 Sep 2024 01:39:49 -0700
+Received: from [10.245.84.117] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.84.117])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id CF07A125BD;
+ Mon, 23 Sep 2024 09:39:45 +0100 (IST)
+Message-ID: <978c5584-1be8-414b-8a37-e2e453329227@intel.com>
+Date: Mon, 23 Sep 2024 10:39:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240923035826.624196-2-raag.jadav@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] drm/xe/vf: React to MIGRATED interrupt
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+References: <20240920222926.846985-1-tomasz.lis@intel.com>
+ <20240920222926.846985-2-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240920222926.846985-2-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,126 +72,359 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 23, 2024 at 09:28:23AM +0530, Raag Jadav wrote:
-> Introduce device wedged event, which will notify userspace of wedged
-> (hanged/unusable) state of the DRM device through a uevent. This is
-> useful especially in cases where the device is no longer operating as
-> expected and has become unrecoverable from driver context.
+
+
+On 21.09.2024 00:29, Tomasz Lis wrote:
+> To properly support VF Save/Restore procedure, fixups need to be
+> applied after PF driver finishes its part of VF Restore. Those
+> fixups are applied by the VF driver within a VM.
 > 
-> Purpose of this implementation is to provide drivers a way to recover
-> through userspace intervention. Different drivers may have different
-> ideas of a "wedged device" depending on their hardware implementation,
-> and hence the vendor agnostic nature of the event. It is up to the drivers
-> to decide when they see the need for recovery and how they want to recover
-> from the available methods.
+> A VF driver gets informed that it was migrated by receiving an
+> interrupt from each GuC. That should be the trigger for fixups.
 > 
-> Current implementation defines three recovery methods, out of which,
-> drivers can choose to support any one or multiple of them. Preferred
-> recovery method will be sent in the uevent environment as WEDGED=<method>.
-> Userspace consumers (sysadmin) can define udev rules to parse this event
-> and take respective action to recover the device.
+> The VF can safely do post-migration fixups on resources associated
+> to each GuC only after that GuC issued the MIGRATED interrupt.
 > 
->  Method    | Consumer expectations
-> -----------|-----------------------------------
->  rebind    | unbind + rebind driver
->  bus-reset | unbind + reset bus device + rebind
->  reboot    | reboot system
+> This change introduces a worker to be used for post-migration fixups,
+> and a mechanism to schedule said worker when all GuCs sent the irq.
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile          |  1 +
+>  drivers/gpu/drm/xe/xe_device_types.h |  1 +
+>  drivers/gpu/drm/xe/xe_guc.c          |  3 +
+>  drivers/gpu/drm/xe/xe_memirq.c       |  3 +
+>  drivers/gpu/drm/xe/xe_sriov.c        | 15 +++++
+>  drivers/gpu/drm/xe/xe_sriov.h        |  1 +
+>  drivers/gpu/drm/xe/xe_sriov_types.h  |  6 ++
+>  drivers/gpu/drm/xe/xe_sriov_vf.c     | 82 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.h     | 17 ++++++
+>  9 files changed, 129 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index ae245fbd91ee..aa06644dffd5 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -123,6 +123,7 @@ xe-y += \
+>  	xe_gt_sriov_vf.o \
+>  	xe_guc_relay.o \
+>  	xe_memirq.o \
+> +	xe_sriov_vf.o \
+>  	xe_sriov.o
+>  
+>  xe-$(CONFIG_PCI_IOV) += \
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 5ad96d283a71..331b55b457ab 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -374,6 +374,7 @@ struct xe_device {
+>  
+>  		/** @sriov.pf: PF specific data */
+>  		struct xe_device_pf pf;
+> +		struct xe_device_vf vf;
 
-> v4: s/drm_dev_wedged/drm_dev_wedged_event
->     Use drm_info() (Jani)
->     Kernel doc adjustment (Aravind)
-> v5: Send recovery method with uevent (Lina)
-> v6: Access wedge_recovery_opts[] using helper function (Jani)
->     Use snprintf() (Jani)
+missing kernel-doc
 
-Hmm... Isn't changelog in the cover letter is not enough?
+>  
+>  		/** @sriov.wq: workqueue used by the virtualization workers */
+>  		struct workqueue_struct *wq;
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index b6cd5e941f19..65cfd6bd68f1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -1096,6 +1096,9 @@ void xe_guc_irq_handler(struct xe_guc *guc, const u16 iir)
+>  {
+>  	if (iir & GUC_INTR_GUC2HOST)
+>  		xe_guc_ct_irq_handler(&guc->ct);
+> +
+> +	if (iir & GUC_INTR_SW_INT_0)
+> +		xe_sriov_migrated_event_handler(guc);
 
-...
+this likely should be
 
-> +/*
-> + * Available recovery methods for wedged device. To be sent along with device
-> + * wedged uevent.
-> + */
-> +#define WEDGE_LEN	32	/* Need 16+ */
+	xe_gt_sriov_vf_migrated_event_handler(guc_to_gt(guc));
 
-This "Need 16+" comment seems unfinished as it doesn't tell why.
+>  }
+>  
+>  void xe_guc_sanitize(struct xe_guc *guc)
+> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+> index 3f8d4ca64302..2d2f40378942 100644
+> --- a/drivers/gpu/drm/xe/xe_memirq.c
+> +++ b/drivers/gpu/drm/xe/xe_memirq.c
+> @@ -435,6 +435,9 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+>  
+>  	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
+>  		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+> +
+> +	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
+> +		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+> index 69a066ef20c0..7447d85104e5 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov.c
+> @@ -9,9 +9,11 @@
+>  
+>  #include "xe_assert.h"
+>  #include "xe_device.h"
+> +#include "xe_guc.h"
+>  #include "xe_mmio.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_pf.h"
+> +#include "xe_sriov_vf.h"
+>  
+>  /**
+>   * xe_sriov_mode_to_string - Convert enum value to string.
+> @@ -112,6 +114,9 @@ int xe_sriov_init(struct xe_device *xe)
+>  			return err;
+>  	}
+>  
+> +	if (IS_SRIOV_VF(xe))
+> +		xe_sriov_vf_init_early(xe);
+> +
+>  	xe_assert(xe, !xe->sriov.wq);
+>  	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
+>  	if (!xe->sriov.wq)
+> @@ -150,3 +155,13 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
+>  		strscpy(buf, "PF", size);
+>  	return buf;
+>  }
+> +
+> +int xe_sriov_migrated_event_handler(struct xe_guc *guc)
 
-...
+if this function is strictly GuC related then it should have prefix
 
-> +int drm_dev_wedged_event(struct drm_device *dev, enum wedge_recovery_method method)
+	xe_guc_...
+
+and likely be placed in xe_guc.c file
+
+but if we treat this function is GT related then it should have prefix
+
+	xe_gt_sriov_...
+
+and since it's VF specific it's name should also include VF:
+
+	xe_gt_sriov_vf_...
+
+and be in VF specific file xe_gt_sriov_vf.c
+
+and maybe this function can be void
+
 > +{
-> +	char event_string[WEDGE_LEN] = {};
-> +	char *envp[] = { event_string, NULL };
+> +	struct xe_gt *gt = guc_to_gt(guc);
 > +
-> +	if (!test_bit(method, &dev->wedge_recovery)) {
-> +		drm_err(dev, "device wedged, recovery method not supported\n");
-> +		return -EOPNOTSUPP;
-> +	}
+> +	if (!IS_SRIOV_VF(gt_to_xe(gt)))
+> +		return 0;
 
-> +	snprintf(event_string, sizeof(event_string), "WEDGED=%s", recovery_method_name(method));
+either this should be xe_gt_assert() or function should be named like
 
-Is sprintf.h being included already?
+	xe_guc_sw_0_irq_handler(guc)
 
-> +	drm_info(dev, "device wedged, generating uevent\n");
-> +	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
+and then call migration stuff only if VF
+
+> +
+> +	return xe_sriov_vf_migrated_event_handler(gt);
+
+if this is GT related function then it should start with:
+
+	xe_gt_sriov_vf_...
+
 > +}
+> diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+> index 688fbabf08f1..f7575177b75a 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov.h
+> @@ -13,6 +13,7 @@
+>  struct drm_printer;
+>  
+>  const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
+> +int xe_sriov_migrated_event_handler(struct xe_guc *guc);
 
-...
+this header is not for VF (or PF) specific functions
+nor for GuC/GT oriented functions
 
-> +/**
-> + * enum wedge_recovery_method - Recovery method for wedged device in order
-> + * of severity. To be set as bit fields in drm_device.wedge_recovery variable.
-> + * Drivers can choose to support any one or multiple of them depending on their
-> + * needs.
-> + */
+>  const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
+>  
+>  void xe_sriov_probe_early(struct xe_device *xe);
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
+> index c7b7ad4af5c8..a0b590bc7ffa 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_types.h
+> @@ -56,4 +56,10 @@ struct xe_device_pf {
+>  	struct mutex master_lock;
+>  };
+>  
+> +struct xe_device_vf {
 
-> +
+missing kernel-doc for the struct
 
-Redundant blank line.
+> +	/** @migration_worker: migration recovery worker */
+> +	struct work_struct migration_worker;
+> +	unsigned long migration_gt_flags;
 
-> +enum wedge_recovery_method {
-> +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
-> +	DRM_WEDGE_RECOVERY_REBIND,
-> +
-> +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
-> +	DRM_WEDGE_RECOVERY_BUS_RESET,
-> +
-> +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
-> +	DRM_WEDGE_RECOVERY_REBOOT,
-> +
-> +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
-> +	DRM_WEDGE_RECOVERY_MAX
+missing kernel-doc for the flags
+
+btw, instead of adding 'migration' prefix better option seems to be to
+define anonymous struct named 'migration' with .flags and .worker
+
+
 > +};
-
-...
-
-> +extern const char *const wedge_recovery_opts[];
-
-It's not NULL terminated. How users will know that they have an index valid?
-
-Either you NULL-terminate that, or export the size as well (personally I would
-go with the first approach).
-
-...
-
-> +static inline bool recovery_method_is_valid(enum wedge_recovery_method method)
-> +{
-> +	if (method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX)
-> +		return true;
 > +
-> +	return false;
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> new file mode 100644
+> index 000000000000..b068c57b2bdc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> @@ -0,0 +1,82 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "xe_assert.h"
+> +#include "xe_device.h"
+> +#include "xe_guc_ct.h"
 
-Besides that this can be written as
+is this include needed ?
 
-	return method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX;
+> +#include "xe_module.h"
+
+is this include needed ?
+
+> +#include "xe_sriov.h"
+> +#include "xe_sriov_vf.h"
+> +#include "xe_sriov_printk.h"
+> +
+> +static void migration_worker_func(struct work_struct *w);
+> +
+> +void xe_sriov_vf_init_early(struct xe_device *xe)
+
+add kernel-doc
+
+> +{
+> +	INIT_WORK(&xe->sriov.vf.migration_worker, migration_worker_func);
+> +}
+> +
+> +static void vf_post_migration_recovery(struct xe_device *xe)
+> +{
+> +	drm_dbg(&xe->drm, "migration recovery in progress\n");
+> +	/* FIXME: add the recovery steps */
+> +	drm_notice(&xe->drm, "migration recovery completed\n");
+
+maybe add this message only after adding those still missing recovery
+steps, as otherwise it will be little misleading
 
 > +}
+> +
+> +static void migration_worker_func(struct work_struct *w)
+> +{
+> +	struct xe_device *xe = container_of(w, struct xe_device,
+> +						     sriov.vf.migration_worker);
 
-this seems a runtime approach for what we have at compile-time, i.e. static_assert()
-It's also possible to have as a third approach, but it's less robust.
+looks like this line unaligned to above (
 
--- 
-With Best Regards,
-Andy Shevchenko
+> +
+> +	vf_post_migration_recovery(xe);
+> +}
+> +
+> +/**
+> + * xe_sriov_vf_start_migration_recovery - Start VF migration recovery.
 
+usually we don't add full kernel-doc to static functions
+
+> + * @xe: the &xe_device to start recovery on
+> + *
+> + * This function shall be called only by VF.
+> + */
+> +static void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
+> +{
+> +	bool started;
+> +
+> +	XE_WARN_ON(!IS_SRIOV_VF(xe));
+
+use xe_assert() instead
+
+> +
+> +	WRITE_ONCE(xe->sriov.vf.migration_gt_flags, 0);
+> +	smp_mb();
+> +
+> +	started = queue_work(xe->sriov.wq, &xe->sriov.vf.migration_worker);
+> +	dev_info(xe->drm.dev, "VF migration recovery %s\n", started ?
+> +		 "scheduled" : "already in progress");
+
+in xe.ko we prefer drm_info() over dev_info()
+and xe_gt_info() if something is GT related
+
+> +}
+> +
+> +static bool vf_ready_to_recovery_on_all_tiles(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		if (!test_bit(id, &xe->sriov.vf.migration_gt_flags))
+> +			return false;
+> +	}
+> +	return true;
+> +}
+> +
+> +int xe_sriov_vf_migrated_event_handler(struct xe_gt *gt)
+
+since this is a GT-level function, it should be rather placed in the
+xe_gt_sriov_vf.c file
+
+and also please add kernel-doc as this is public function
+
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +
+> +	set_bit(gt->info.id, &xe->sriov.vf.migration_gt_flags);
+> +	smp_mb__after_atomic();
+> +	dev_info(xe->drm.dev, "VF migration recovery ready on gt%d\n",
+> +		 gt->info.id);
+
+probably it would be better to just use xe_gt_info() here
+
+> +	if (vf_ready_to_recovery_on_all_tiles(xe))
+
+maybe this could be part of the function below?
+
+> +		xe_sriov_vf_start_migration_recovery(xe);
+> +
+> +	return -EREMOTEIO;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> new file mode 100644
+> index 000000000000..d70cd84747e5
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_SRIOV_VF_H_
+> +#define _XE_SRIOV_VF_H_
+> +
+> +#include <linux/types.h>
+
+likely you don't need this yet here
+
+> +
+> +struct xe_device;
+> +struct xe_gt;
+> +
+> +void xe_sriov_vf_init_early(struct xe_device *xe);
+> +int xe_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+> +
+> +#endif
 
