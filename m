@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DBECCF9C69
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:58:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8C62CF9C6E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:58:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7C3010E260;
-	Mon, 23 Sep 2024 12:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB47710E155;
+	Mon, 23 Sep 2024 12:58:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LYvjGgQA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oGr3Mmky";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E08D910E155
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 12:58:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C41A10E155
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 12:58:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727096328; x=1758632328;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7ngXVKCh1STEoKdjuAOoCj9RlsZ6ADtQyYwb6tD4Mbc=;
- b=LYvjGgQAG2SXOC/NAdpYWm6UXtd7UCMAoPdRVa9b8F6kbLOYyIhvjT7f
- dRbRUOu0vGfYPl5MIb59xfcSCHZBfJ34cmVncOswXfsCjlwW7/8Eue8tw
- Rqex0LcCs+yBDll5A227oFyK+GmbdnXGAt2zvUdksvZYCT8bZsVIu13Gc
- PuQktVszJSxBNVrPh6AP2d54CgGVluoTIIj45wNHzhJ1u1n1rs7ONLaXf
- O3Gqqizu0+ME7O2QbMBBDJI06QshNPjuFOZqzdhqq4sH6PUYJ4NpSE79e
- HSJL4Vq4FF2uOw1NFyMpkWiBxLjOe1j/aFgGUwQMACDcI3v8aQYScO3hl w==;
-X-CSE-ConnectionGUID: UpQnvizBSU6UM0x44ngjsw==
-X-CSE-MsgGUID: 4QNaQ4SdTh28nG8lSzw4kg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26160078"
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="26160078"
+ t=1727096329; x=1758632329;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Dhota6ZRa8gSMVvg6L1pExd2OHSp/ITitwGX9WjVgdw=;
+ b=oGr3Mmky5IoIZTJQoT3+3fMgdkSp08R/t7bfVtbl/MDqsG1S2ISurIsv
+ uPuK9haUWLwnBeMxPH6cNt/nPfkwh8xSexJwFGAbyA0eteSKClQqks0wY
+ lCDuMzIFqoHHKDXlxGjqgmBENvCYjISJdqEM1XfW8bpFOi8FRL9GHfOvw
+ NHKkT7Zhy6qmyJ/YyGBlz2ur/2jn4150sc/eFuIuibFRo3ojXXbL1wJj/
+ d5cLLxjA7DicMLt8OtHnlsMlJ12KMpTc1aRsniF8kVhlMdJ2WKlhm1oGk
+ HNygaXcEPLgGxX+hkfLvNHqgIASjKuZ6m3Dgyt2wDsXZ/diKa+ZYb7527 Q==;
+X-CSE-ConnectionGUID: ai+FL+N9S7qIdLPk1wpxJA==
+X-CSE-MsgGUID: ComiZz04Sk6LIRAdN9kryQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26160081"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="26160081"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 05:58:48 -0700
-X-CSE-ConnectionGUID: sT2NRJGUQ0aUlw57rsAdgA==
-X-CSE-MsgGUID: OgUZrcsQQX2m+dweGYqBWg==
+ 23 Sep 2024 05:58:49 -0700
+X-CSE-ConnectionGUID: I3qxIMHYSmiLZzEMg4cK4w==
+X-CSE-MsgGUID: p4vE7sh7TKqsJF5rd0OnKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="101910403"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="101910412"
 Received: from johunt-mobl9.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.245.234])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 05:58:46 -0700
+ 23 Sep 2024 05:58:47 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
-	stable@vger.kernel.org
-Subject: [PATCH 1/2] drm/xe/vm: move xa_alloc to prevent UAF
-Date: Mon, 23 Sep 2024 13:57:34 +0100
-Message-ID: <20240923125733.62883-3-matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 2/2] drm/xe/queue: move xa_alloc to prevent UAF
+Date: Mon, 23 Sep 2024 13:57:35 +0100
+Message-ID: <20240923125733.62883-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.46.1
+In-Reply-To: <20240923125733.62883-3-matthew.auld@intel.com>
+References: <20240923125733.62883-3-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,71 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Evil user can guess the next id of the vm before the ioctl completes and
-then call vm destroy ioctl to trigger UAF since create ioctl is still
-referencing the same vm. Move the xa_alloc all the way to the end to
-prevent this.
+Evil user can guess the next id of the queue before the ioctl completes
+and then call queue destroy ioctl to trigger UAF since create ioctl is
+still referencing the same queue. Move the xa_alloc all the way to the end
+to prevent this.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Fixes: 2149ded63079 ("drm/xe: Fix use after free when client stats are captured")
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
 ---
- drivers/gpu/drm/xe/xe_vm.c | 22 ++++++++++------------
- 1 file changed, 10 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a3d7cb7cfd22..f7182ef3d8e6 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1765,12 +1765,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	if (IS_ERR(vm))
- 		return PTR_ERR(vm);
- 
--	mutex_lock(&xef->vm.lock);
--	err = xa_alloc(&xef->vm.xa, &id, vm, xa_limit_32b, GFP_KERNEL);
--	mutex_unlock(&xef->vm.lock);
--	if (err)
--		goto err_close_and_put;
--
- 	if (xe->info.has_asid) {
- 		down_write(&xe->usm.lock);
- 		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
-@@ -1778,12 +1772,11 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 				      &xe->usm.next_asid, GFP_KERNEL);
- 		up_write(&xe->usm.lock);
- 		if (err < 0)
--			goto err_free_id;
-+			goto err_close_and_put;
- 
- 		vm->usm.asid = asid;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 7f28b7fc68d5..a1d4b9b0726e 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -635,6 +635,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 		}
  	}
  
--	args->vm_id = id;
- 	vm->xef = xe_file_get(xef);
- 
- 	/* Record BO memory for VM pagetable created against client */
-@@ -1796,12 +1789,17 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
- #endif
- 
--	return 0;
--
--err_free_id:
++	q->xef = xe_file_get(xef);
++
 +	/* user id alloc must always be last in ioctl to prevent UAF */
- 	mutex_lock(&xef->vm.lock);
--	xa_erase(&xef->vm.xa, id);
-+	err = xa_alloc(&xef->vm.xa, &id, vm, xa_limit_32b, GFP_KERNEL);
- 	mutex_unlock(&xef->vm.lock);
-+	if (err)
-+		goto err_close_and_put;
-+
-+	args->vm_id = id;
-+
-+	return 0;
-+
- err_close_and_put:
- 	xe_vm_close_and_put(vm);
+ 	mutex_lock(&xef->exec_queue.lock);
+ 	err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b, GFP_KERNEL);
+ 	mutex_unlock(&xef->exec_queue.lock);
+@@ -642,7 +645,6 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 		goto kill_exec_queue;
+ 
+ 	args->exec_queue_id = id;
+-	q->xef = xe_file_get(xef);
+ 
+ 	return 0;
  
 -- 
 2.46.1
