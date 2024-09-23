@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 456A1CF9C72
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 18:12:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 654F7CF9C6F
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 18:12:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08BA510E465;
-	Mon, 23 Sep 2024 18:12:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32BFF10E44F;
+	Mon, 23 Sep 2024 18:12:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PiGqcje3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PH+BT1tS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3883810E458;
- Mon, 23 Sep 2024 18:12:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA66B10E461;
+ Mon, 23 Sep 2024 18:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727115130; x=1758651130;
+ t=1727115135; x=1758651135;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VCzN22J9VeeG5w1Lr/JYSKbj5GYkFxRNDVUXh7n/i2I=;
- b=PiGqcje3VUphuEhpM9+ufa+F0s6wCsiP4DX53OGLZnMV4P69RY9+hnkw
- s/CYOcjnQbeJgPdrtbDiB/HJUB7cAA0N85MJUfGbu12bdBf7katitaq5W
- B1GNu5olRy6l6q9MXi81Cnyv9Cjzc7qHn8+DN+nj+1xIRz4V1TLCxILzV
- pi2B66G36xND6i+9rXJDNRAK7zIRfxIkf0NFumHp/UHjuYebv96Ve+LHA
- Wp/Y58xKrST2fdtFwq2cVM8699ntVbYY0N/ZjzM4VvLJGMmaX8DEBCQWj
- x/q2llNIVnqUMh16whVTKcra1IQpTSZS/2n0icvT0KT7PPJXxl9G2Oj3o g==;
-X-CSE-ConnectionGUID: Fumltr92Sdq/NtlFpQJ9ig==
-X-CSE-MsgGUID: aKhhjBOETuSbiwQAFJwO+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="29866301"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="29866301"
+ bh=5pzAvT+xYaGvx9VLhAPsVJ7DmO1QegoR+fanhPKP3E0=;
+ b=PH+BT1tSzAnLK1Y/EF6hA7oo5PimoN7pKQfz9iSRDmx32bMN77QbIKK5
+ qeq1pF7gafOtckN/AYEMdInCtJ4Vpv348f92yGPO7YuBMxAofudD3YrRr
+ T/Rbr4h8zcyfscIm3rQDYjWdoT3PPdq6ihExAUifWT45lr+VnK20y5gw4
+ Vn/EtBL2gjSCxlQhw3G3DttM6aI0Vqaz4I+dqYSuNZuL6mbapSqHyr6Cl
+ QzFLST7YvnrWyNZd9/t4JJmp0F080WwyuTp3P51+CtOWcQOIFR3CtGkCa
+ i867U6Na5QgfQHqkLDLI/YObrPi29+BgkIYPIFiwduoo9frQ6bGbJncqQ g==;
+X-CSE-ConnectionGUID: 1b+UmuVORquxog29yekxdg==
+X-CSE-MsgGUID: fyIm6qUGSICiQi+qRqk0PQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="29866359"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="29866359"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 11:12:08 -0700
-X-CSE-ConnectionGUID: GgU8Qdo+Q+2QVxkIq+z7ow==
-X-CSE-MsgGUID: ctLQrRxxSyeE5sSjZyCWPQ==
+ 23 Sep 2024 11:12:13 -0700
+X-CSE-ConnectionGUID: pIyf53YETcCklNK6uEgbmg==
+X-CSE-MsgGUID: EQRYR8m3SsWrjBx58qmWRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="70734441"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="70734484"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 11:12:06 -0700
+ 23 Sep 2024 11:12:12 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 13/16] drm/i915/dp: Modify helper to get slice count for
- ultrajoiner
-Date: Mon, 23 Sep 2024 23:43:33 +0530
-Message-ID: <20240923181336.3303940-14-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 16/16] drm/i915/intel_dp: Add support for forcing ultrajoiner
+Date: Mon, 23 Sep 2024 23:43:36 +0530
+Message-ID: <20240923181336.3303940-17-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240923181336.3303940-1-ankit.k.nautiyal@intel.com>
 References: <20240923181336.3303940-1-ankit.k.nautiyal@intel.com>
@@ -68,35 +67,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Allow forcing ultrajoiner through debugfs.
 
-ultrajoiner needs 2 bigjoiners to be enabled, so modify the helper
-intel_dp_dsc_get_slice_count for ultrajoiner.
+v2: Minor refactoring of switch case logic. (Ville)
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a853f975bda1..115d8468bb91 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -996,8 +996,11 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
- 			break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index af164e340cb3..01ddebc61944 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1331,6 +1331,7 @@ static ssize_t i915_joiner_write(struct file *file,
+ {
+ 	struct seq_file *m = file->private_data;
+ 	struct intel_connector *connector = m->private;
++	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	int force_joined_pipes = 0;
+ 	int ret;
  
--		/* big joiner needs small joiner to be enabled */
--		if (num_joined_pipes == 2 && test_slice_count < 4)
-+		/*
-+		 * big joiner needs small joiner to be enabled,
-+		 * and ultrajoiner needs 2 bigjoiners to be enabled
-+		 */
-+		if (num_joined_pipes > 1 && test_slice_count < num_joined_pipes * 2)
- 			continue;
- 
- 		if (min_slice_count <= test_slice_count)
+@@ -1349,6 +1350,13 @@ static ssize_t i915_joiner_write(struct file *file,
+ 	case 2:
+ 		connector->force_joined_pipes = force_joined_pipes;
+ 		break;
++	case 4:
++		if (HAS_ULTRAJOINER(i915)) {
++			connector->force_joined_pipes = force_joined_pipes;
++			break;
++		}
++
++		fallthrough;
+ 	default:
+ 		return -EINVAL;
+ 	}
 -- 
 2.45.2
 
