@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78AE0CF9C6E
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 11:57:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E71B0CF9C69
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 12:00:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B43810E1D0;
-	Mon, 23 Sep 2024 11:57:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B026310E148;
+	Mon, 23 Sep 2024 12:00:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D+yNIlUo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCC9NLCz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8366E10E1D0
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 11:57:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 233B310E148
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Sep 2024 12:00:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727092638; x=1758628638;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=X5bZxsnJuXjuL079HbDiRN4SoJPqxA1dSQ5F3GPziOQ=;
- b=D+yNIlUo7Rk7Va2VZrUrDSs9EhHvnewklgs03fnwCwr4AlnhdS2uCkbU
- Q1ubGrMuXvH76gxYy2/ogn7lSA9ogv6lV0RqTf7X6PygMKxqjiMtjLFS0
- sifuVXZb67VPQB5j/9xEZoWcyNx/G7n8NUGunjSyBbY415bzgNMSJ/lb+
- 5irZac2VoAYfVDlzv18DOaL/SYO1pQVZGJZgVcJzZk5KlRF15pi9ui4pN
- dvtAT0hLpCgWJaMxkopqKUYPyZU9V6ZFMsPRdfLLOzLrfNE0CpcCLAWmX
- hfufgvLF4/FvmYbFQ8LZWhGlojjQv5Me2AkDt0X2E3G32shV7On/iLYQr Q==;
-X-CSE-ConnectionGUID: IZCV480+Szm7QWcKoSnWzA==
-X-CSE-MsgGUID: yf3ioBTZRVOLH15mIvogWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26190231"
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="26190231"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 04:57:17 -0700
-X-CSE-ConnectionGUID: surcUbvwRxqetMXdmNrEGg==
-X-CSE-MsgGUID: 9/CNBshhRk+c5fkwD0HcEg==
+ t=1727092821; x=1758628821;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=harODilHU9Bk0BkQDi2czCNEzYYmzUA5ixtHDzQySKA=;
+ b=BCC9NLCzwVg7++AoBPBBqNhFm5mDDV++kEBhxEA40WrxZF8nEvNZ9b67
+ dYx0uEGTeQmLJEX9qwQRUxjGorIF+sgrxpbiRK5zhEAzgIztZREncWvfO
+ OHBIKieMuoe9tZYZmswhi0xzGFSvrLztta5w/GnpfAinSu++YS9OYIBuO
+ pBjqt4h3qZOoiHjbE5h2elJ6pEFPW0S5jPwHGxBorAHI6QJ4PPWdSxi1M
+ zo3UzksqZ0oD1yfxzQpUaRHKsjJvzPVF1gCBhmv49NjCZRzhB4rQG7oBX
+ bcDwkY4YuchXRA5wMrB9+zgr6hNoTRHAxrC9RdunUVtWj8lginFUGi+hX A==;
+X-CSE-ConnectionGUID: UFo1CFT3TXGacpkoXafDrA==
+X-CSE-MsgGUID: Iud6m+mjSF+1qQhYf0gudA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="25553242"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="25553242"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 05:00:20 -0700
+X-CSE-ConnectionGUID: lXkV3MnlS7i5rUIMwoq2wA==
+X-CSE-MsgGUID: fV53wJP4QbCJFvGlKGC3lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="70636409"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="101787150"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 04:57:14 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 05:00:18 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: apoorva.singh@intel.com, intel-xe@lists.freedesktop.org, Lucas De Marchi
- <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas
- =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: himal.prasad.ghimiray@intel.com, Apoorva Singh <apoorva.singh@intel.com>
-Subject: Re: [PATCH] drm/xe: Check return values of functions in
- xe_gt_shutdown()
-In-Reply-To: <20240923110633.19545-1-apoorva.singh@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
+Subject: Re: =?utf-8?Q?=E2=9C=97?= CI.KUnit: failure for drm/xe: Use fault
+ injection infrastructure to find issues at probe time (rev2)
+In-Reply-To: <ZvFESJTCV91MrTfg@fdugast-desk>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240923110633.19545-1-apoorva.singh@intel.com>
-Date: Mon, 23 Sep 2024 14:57:11 +0300
-Message-ID: <87ikum60rs.fsf@intel.com>
+References: <20240920131834.3368299-1-francois.dugast@intel.com>
+ <172684033706.1051009.16907296846862410987@2413ebb6fbb6>
+ <ZvFESJTCV91MrTfg@fdugast-desk>
+Date: Mon, 23 Sep 2024 15:00:14 +0300
+Message-ID: <87frpq60mp.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,58 +70,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 23 Sep 2024, apoorva.singh@intel.com wrote:
-> From: Apoorva Singh <apoorva.singh@intel.com>
+On Mon, 23 Sep 2024, Francois Dugast <francois.dugast@intel.com> wrote:
+> On Fri, Sep 20, 2024 at 01:52:17PM +0000, Patchwork wrote:
+>> =3D=3D Series Details =3D=3D
+>>=20
+>> Series: drm/xe: Use fault injection infrastructure to find issues at pro=
+be time (rev2)
+>> URL   : https://patchwork.freedesktop.org/series/138654/
+>> State : failure
+>>=20
+>> =3D=3D Summary =3D=3D
+>>=20
+>> + trap cleanup EXIT
+>> + /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers=
+/gpu/drm/xe/.kunitconfig
+>> ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_guc_ads.c:8:
+>> ../include/linux/fault-inject.h:97:15: error: unknown type name =E2=80=
+=98bool=E2=80=99
+>>    97 | static inline bool should_fail_alloc_page(gfp_t gfp_mask, unsign=
+ed int order)
+>>       |               ^~~~
+>> ../include/linux/fault-inject.h:97:43: error: unknown type name =E2=80=
+=98gfp_t=E2=80=99
+>>    97 | static inline bool should_fail_alloc_page(gfp_t gfp_mask, unsign=
+ed int order)
+>>       |                                           ^~~~~
+>> ../include/linux/fault-inject.h:106:57: error: unknown type name =E2=80=
+=98gfp_t=E2=80=99
+>>   106 | static inline int should_failslab(struct kmem_cache *s, gfp_t gf=
+pflags)
+>>       |                                                         ^~~~~
+>> make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_guc_a=
+ds.o] Error 1
 >
-> Check the return values of the functions xe_force_wake_get()
-> and xe_force_wake_put() to prevent mistakenly treating them as
-> void returns.
+> This build error occurs when CONFIG_FAULT_INJECTION=3Dn due to missing in=
+clusion
+> of linux/types.h in linux/fault-inject.h. It is solved with Jani's series:
 >
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 274737417b0f..eaeaae1df198 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -890,9 +890,9 @@ int xe_gt_suspend(struct xe_gt *gt)
->  
->  void xe_gt_shutdown(struct xe_gt *gt)
->  {
-> -	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +	XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
->  	do_gt_reset(gt);
-> -	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+> https://lore.kernel.org/intel-xe/20240813121237.2382534-1-jani.nikula@int=
+el.com/
 
-Up to the xe maintainers, but personally I very much dislike "hiding"
-functional stuff inside *WARN_ON(). It's harder to read. IMO it should
-be only for checks, and functions without side effects.
+These two are in Linus' master now, we'll get them after -rc1 and some
+backmerges:
 
-And while we're at it, unrelated to this patch, what's the point of
-XE_WARN_ON?
-
-It's defined to be just WARN_ON. But for multi-GPU systems you'd benefit
-from using drm_WARN_ON() with device info. But for that you'd need to
-pass drm device, and a simple redefinition doesn't even work.
-
-There are a little over 100 uses, but more seem to crop up all the time,
-and people love to cargo cult this kind of stuff. It's not too late to
-change course now, but it's a royal PITA to change this when you have 1k
-of them.
-
+6ce2082fd3a2 ("fault-inject: improve build for CONFIG_FAULT_INJECTION=3Dn")
+ccbfd2df3018 ("drm/xe: clean up fault injection usage")
 
 BR,
 Jani.
 
 
->  }
->  
->  /**
-
--- 
+--=20
 Jani Nikula, Intel
