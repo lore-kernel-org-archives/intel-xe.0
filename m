@@ -4,67 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C8E0CF9C6F
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 22:02:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50359CF9C5B
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Sep 2024 23:41:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEBB210E4A6;
-	Mon, 23 Sep 2024 22:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1578110E4B7;
+	Mon, 23 Sep 2024 23:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eew3I3sG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZrltTDfM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A76A898F0;
- Mon, 23 Sep 2024 22:01:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727128919; x=1758664919;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jzjx/LT74DT5bwVFGjZkIuVYgVUY5JBAmgIOCgW1jkc=;
- b=Eew3I3sGEJ4nVUiX751210W0LdBMRfIe+u/CVMPBEpL/f1BkeV649xqz
- 9DDeow8u222KTtQfLxJXHrqvqmNwWCHBX/S4SxTmLQ8JDwFarvL1Q4F00
- 5PvdsQZlMxubZFRmhMl0Di6XZc8wN1b9i9EvphyYwE/wLNt0c7RpcVfl4
- B7pACjxMSbVOMhwojaiQYurAM7Egsrx6+Qg1c3UDc/0jZSZ1GnN5rg5Aw
- 5i5AbPnFsPeaoZ7Ag4S01q3mqC82RElH2tl/neryGBEoIr74oSTk8wpDE
- +Foowo28sOnbcxzmX6j1ZFKNuGtVpTto3VFItCt6NkZ/BXISrTv3o4ZVq w==;
-X-CSE-ConnectionGUID: fm3dALW1QJKR777eO73eTw==
-X-CSE-MsgGUID: pWbAGXNiRHmL0npkCCi/DA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="29816911"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="29816911"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 15:01:59 -0700
-X-CSE-ConnectionGUID: GqNDcfhmQaqUbYKXZlqbpQ==
-X-CSE-MsgGUID: Q/I7vIAaRf6MhR2wPMN5pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="75732875"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 15:01:51 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Raag Jadav
- <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, lina@asahilina.net,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH v6 1/4] drm: Introduce device wedged event
-In-Reply-To: <ZvGB9P_JdXcnTfW2@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240923035826.624196-1-raag.jadav@intel.com>
- <20240923035826.624196-2-raag.jadav@intel.com>
- <ZvEpH_po4bYmEISh@smile.fi.intel.com>
- <ZvF8q7xkbEegPzc9@black.fi.intel.com>
- <ZvGB9P_JdXcnTfW2@smile.fi.intel.com>
-Date: Tue, 24 Sep 2024 01:01:48 +0300
-Message-ID: <874j6658s3.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1DA210E4B6;
+ Mon, 23 Sep 2024 23:41:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 617895C4CCC;
+ Mon, 23 Sep 2024 23:41:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF6BFC4CEC4;
+ Mon, 23 Sep 2024 23:41:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1727134895;
+ bh=UM2NgGDwtcdfCAtmpbmXSRYydqO0kQ6t2IqeO1HMfTQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ZrltTDfMIdK9chV+a27Kc6oD1k2oNPFhUR51eP9J/aLO15BZa/+funfnAGsO+FYHA
+ wUepj8z0fmISzl8G9gB2RBUIYCHAO1UTWDxtVEmuuGk5ujv2cWFhcEtJ0RrWB6FE1t
+ Gtoh8mA3fgl6bqKJ1vRBPjXKGJka/4NJ6GOFbyoRQmEgiqJhPxyjBtjsU+U6vDZcUY
+ xYRIv5FyQ/dw/BmiLv7zXhqM6NcDEootXF8Ytp5rDsq1X2mJUSkZtXDE0vPRtel1Z/
+ QOIp+kOM4gfwCN828sYwuEL0D2zNrPY223IY1FfKidPKOGhw2t/yn2Ldt4tEePtvUD
+ WoD4PHn6ve/Yg==
+Date: Tue, 24 Sep 2024 01:41:31 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: "Zeng, Oak" <oak.zeng@intel.com>
+Cc: "Brost, Matthew" <matthew.brost@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] drm/gpuvm: merge adjacent gpuva range during a map
+ operation
+Message-ID: <ZvH8qyiMe9CzqkLm@pollux.localdomain>
+References: <20240918164740.3955915-1-oak.zeng@intel.com>
+ <ZuseA6s2nip+PbTC@DUT025-TGLU.fm.intel.com>
+ <BYAPR11MB315944FFB3DE254952FE298592632@BYAPR11MB3159.namprd11.prod.outlook.com>
+ <cbf61ca5-870f-4617-839f-3e7a66fe7f1a@kernel.org>
+ <BYAPR11MB3159CA7CBC2C4F53EFA8C046926F2@BYAPR11MB3159.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BYAPR11MB3159CA7CBC2C4F53EFA8C046926F2@BYAPR11MB3159.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,30 +62,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 23 Sep 2024, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> On Mon, Sep 23, 2024 at 05:35:23PM +0300, Raag Jadav wrote:
->> On Mon, Sep 23, 2024 at 11:38:55AM +0300, Andy Shevchenko wrote:
->> > On Mon, Sep 23, 2024 at 09:28:23AM +0530, Raag Jadav wrote:
->
-> ...
->
->> > > +extern const char *const wedge_recovery_opts[];
->> > 
->> > It's not NULL terminated. How users will know that they have an index valid?
->> 
->> It's expected to be accessed using recovery_*() helpers.
->
-> If so, this has to be static then.
+(adding dri-devel)
 
-Yeah, please make the helpers regular functions. Static inlines are just
-harmful here.
+On Mon, Sep 23, 2024 at 02:24:02PM +0000, Zeng, Oak wrote:
+> > > This patch is an old one in my back log. I roughly remember I ran into
+> > a situation where there were two duplicated VMAs covering
+> > > Same virtual address range are kept in gpuvm's RB-tree. One VMA
+> > was actually already destroyed. This further caused issues as
+> > > The destroyed VMA was found during a GPUVM RB-tree walk. This
+> > triggered me to look into the gpuvm merge split logic and end
+> > > Up with this patch. This patch did fix that issue.
+> > 
+> > That would indeed be a big issue. As Matt suggests, is there a
+> > reproducer?
+> > 
+> > Either way, adding merge support can't be the fix for this, we need a
+> > separate
+> > one, that's back-portable.
+> > 
+> 
+> The discussion went on when you were away. See https://patchwork.freedesktop.org/patch/614941/?series=138835&rev=1
 
-BR,
-Jani.
+Yes, I'm aware. But I don't see how this is related to what I said above?
 
->
->> > Either you NULL-terminate that, or export the size as well (personally I would
->> > go with the first approach).
+> 
+> Matt and me agreed to implement a merge logic in gpuvm, but gpuvm need to check a driver cookie/callback to decide merge or not.
+> We reached this conclusion based on some requirement from system allocator design. See more details in above link.
+> 
+> Can you take a look and let us know whether you agree?
 
--- 
-Jani Nikula, Intel
+Generally, I'm fine with that, one of my early versions of GPUVM had this. But I
+dropped it because I don't saw an immediate benefit.
+
+From my old change log:
+
+    "Remove merging of GPUVAs; the kernel has limited to none knowlege about
+    the semantics of mapping sequences. Hence, merging is purely speculative.
+    It seems that gaining a significant (or at least a measurable) performance
+    increase through merging is way more likely to happen when userspace is
+    responsible for merging mappings up to the next larger page size if
+    possible."
+
+If the pure number of GPUVA structures is a concern though, I think it's fair to
+add it. So, feel to send a patch.
+
+It's probably also a good idea to double check with my old merge implementation
+[1]. It's pretty easy to get this wrong. I'm not saying I got it right, but if
+we both ended up with the same logic, it's a good indicator. :)
+
+However, this should *not* be a solution for an existing bug. Above you mention
+a bug related to "duplicated VMAs covering the same virtual address range". This
+is unrelated and must be fixed separately. Do you have a way to reproduce this?
+
+[1] https://lore.kernel.org/dri-devel/20230217134422.14116-6-dakr@redhat.com/
+
+> 
+> > Also, can we move this on DRI-devel please?
+> 
+> Yes will do.
+> 
+> Oak
