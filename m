@@ -4,152 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12EC1CF9C71
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 08:51:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF476CF9C74
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 09:16:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5EFB10E24A;
-	Tue, 24 Sep 2024 08:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED8010E671;
+	Tue, 24 Sep 2024 09:16:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="FTyRjvbe";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="DEl6dtrr";
 	dkim-atps=neutral
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com
- [210.118.77.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1135B10E24A;
- Tue, 24 Sep 2024 08:51:50 +0000 (UTC)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20240924085148euoutp014d81d8b6306e607e4bf3f5cba5893293~4Ig-EUA_-1855518555euoutp013;
- Tue, 24 Sep 2024 08:51:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20240924085148euoutp014d81d8b6306e607e4bf3f5cba5893293~4Ig-EUA_-1855518555euoutp013
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1727167908;
- bh=+OENs58HAqzqyrRb3PODk/cmg326VKfftT83cloY8MU=;
- h=Date:Subject:To:CC:From:In-Reply-To:References:From;
- b=FTyRjvbeE8EmsNK62SMrSA+7VgKYquSRnqZ8sf0a/9Musfv8e59SiytOejz1XTuAF
- ZpB/Gv7ZqjLHR2EMfyY6JnPfWgaV4W8+nzvH7mc2A1VNNathWqbn/2Ho5N4Q/wVepu
- 7ptaX/HQSCvyxEcLlm+wPp3PsblRfCKylcQi6+gI=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTP id
- 20240924085147eucas1p14ec5d74b01509ae2d000edd5e6bfff9c~4Ig_1XQHX0782607826eucas1p1R;
- Tue, 24 Sep 2024 08:51:47 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
- eusmges3new.samsung.com (EUCPMTA) with SMTP id D3.BE.09620.3AD72F66; Tue, 24
- Sep 2024 09:51:47 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20240924085147eucas1p166c893c894c86bb9c9f1a4a588f00c0f~4Ig_M8NsH1841818418eucas1p1T;
- Tue, 24 Sep 2024 08:51:47 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20240924085147eusmtrp15fcc19f3a3d28b3166e599dba1351bbd~4Ig_KNUiJ2571425714eusmtrp1h;
- Tue, 24 Sep 2024 08:51:47 +0000 (GMT)
-X-AuditID: cbfec7f5-d1bff70000002594-30-66f27da3d6f1
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id 7B.88.19096.3AD72F66; Tue, 24
- Sep 2024 09:51:47 +0100 (BST)
-Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
- eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20240924085146eusmtip2621f4dfeadc8cf4bdb0ef250758c5e04~4Ig92tMVK1318013180eusmtip28;
- Tue, 24 Sep 2024 08:51:46 +0000 (GMT)
-Received: from [106.110.32.87] (106.110.32.87) by CAMSVWEXC02.scsc.local
- (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
- Tue, 24 Sep 2024 09:51:44 +0100
-Message-ID: <33953236-138f-4141-a5af-9ea60d148ed3@samsung.com>
-Date: Tue, 24 Sep 2024 10:51:43 +0200
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
+ [209.85.218.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC9710E671
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 09:16:06 +0000 (UTC)
+Received: by mail-ej1-f44.google.com with SMTP id
+ a640c23a62f3a-a8a7596b7dfso195612166b.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 02:16:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1727169365; x=1727774165; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=ziiscuLnBJDlShXEqi/2Y4xbwZJv/fiR4RqFRue3iYQ=;
+ b=DEl6dtrrHsd+cNEWuQ50q7LS4ug7oKVJuR6M7yD/XPtgbaE9TAWXqp0E2qsm5+C2Qd
+ af1ksxUkszzOXbezOoS9R4+vct+d/3kqhGQ6SVaBEbV7YJSGvo5KcUJ6M7GW12yPyeCF
+ ZStxNVIMbQsp9aNGZiEb1A7weimS9BACq0rbs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727169365; x=1727774165;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ziiscuLnBJDlShXEqi/2Y4xbwZJv/fiR4RqFRue3iYQ=;
+ b=DKgPXewuswUgs5KM8E696wfIJgvF0m3UIjDSTClXmua7eL0hBRHXYAA5kUY68dUCgl
+ H/afYXx8HpJyWdV/RgbrIalLE2hs9i8nMmfFhzzM6MP8FsTFY9e4w+S5rzSbwEqk1Ai3
+ jegcQPsRGLe12R2Q+STXq0tMF2JBCjwJ0CtSJRBEN3GXk3j6cM4n2XnrhF8kuRV7lkUC
+ +BiGQes5+d13L3RyU+W4aNO2KUjOktqt8sYLFH1ziQoLVncUVifk2yLsgtf4VlzswUZd
+ WJS8Www6laEUqgV7MkuRN29v9zt44GY7Q+BPcRPCCXtNx9OYFPr/M1FuRkteJPIVi79m
+ 34PA==
+X-Gm-Message-State: AOJu0YySVueHZGwQm1pe0XlqzamSTEAkpl8TzJH8AFSOAQv7GYlx3ja5
+ fM+9PxiXe4vAO474fidUHzCVS3pM/JqfREdyGPFr83lsl5j8fCErb10YSUbZxnH4c0ryNZasmWH
+ 2
+X-Google-Smtp-Source: AGHT+IEjRUluK8lpjJJlh5ipszKnNKU9ZhIYMJ/9+5DC9LjHJfrqoHh+5gsqeNXob8fSu2hNOo/diw==
+X-Received: by 2002:a17:906:dac3:b0:a8d:505a:5458 with SMTP id
+ a640c23a62f3a-a92c482b07cmr288633866b.10.1727169364496; 
+ Tue, 24 Sep 2024 02:16:04 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a93930c8a8bsm60499066b.131.2024.09.24.02.16.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 24 Sep 2024 02:16:03 -0700 (PDT)
+Date: Tue, 24 Sep 2024 11:16:01 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, matthew.auld@intel.com, daniel@ffwll.ch
+Subject: Re: [RFC PATCH 00/28] Introduce GPU SVM and Xe SVM implementation
+Message-ID: <ZvKDUR3mSMEnQYeM@phenom.ffwll.local>
+References: <20240828024901.2582335-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/8] Documentation: add howto build in macos
-Content-Language: en-GB
-To: Marc Zyngier <maz@kernel.org>
-CC: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor
- <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Lucas De Marchi
- <lucas.demarchi@intel.com>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon
- <chris@the-brannons.com>, Kirk Reiser <kirk@reisers.ca>, Samuel Thibault
- <samuel.thibault@ens-lyon.org>, Paul Moore <paul@paul-moore.com>, "Stephen
- Smalley" <stephen.smalley.work@gmail.com>, Ondrej Mosnacek
- <omosnace@redhat.com>, Catalin Marinas <catalin.marinas@arm.com>, Will
- Deacon <will@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, James Morse
- <james.morse@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu
- <yuzenghui@huawei.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Jiri Slaby" <jirislaby@kernel.org>, Nick Desaulniers
- <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt
- <justinstitt@google.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "speakup@linux-speakup.org" <speakup@linux-speakup.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
- <kvmarm@lists.linux.dev>, "linux-serial@vger.kernel.org"
- <linux-serial@vger.kernel.org>, "llvm@lists.linux.dev"
- <llvm@lists.linux.dev>, Finn Behrens <me@kloenk.dev>, "gost.dev@samsung.com"
- <gost.dev@samsung.com>, "Daniel Gomez (Samsung)" <d+samsung@kruces.com>
-From: Daniel Gomez <da.gomez@samsung.com>
-In-Reply-To: <86cylev7o7.wl-maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format="flowed"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [106.110.32.87]
-X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
- CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
-X-Brightmail-Tracker: H4sIAAAAAAAAA01TbUxTVxjOuW1vC1vxiiycIAFhkAXYmIqMEzDOyTDX/XGLGUY3szVwi4TP
- tCC6AKmATEAmoPJRBaGVTxmwAl1BSmPFQoEKBMMKHVBTQGBFRGTAxuygFyP/nvd5n+d53/ck
- h8Owf4M7cSJjEyhBLC/aHbdlyjXrTz6Rprzi75d3+aGePyQYWqy6BpCmbpaBHljGGejpyiKO
- 0qWNOFprnsXQZGc1hl6UOqPC+1IclQ1pmWi+5RETyUwjLLTRrsDQcPsdHPVLc9lo6qYKR9Om
- KhxVLLUy0TOjnoXa7mhZSNk4jCPZ8DILZWZVsdDPtdM4eplnwdCMsoeFbq2bcbSQ95iNDAVF
- TKQSj7BRzVoRQAPdGjayqFyQXKED6PnADYBKDAaA/lJsBreY81lIkhmAMv70R6OVTeyj3mR9
- WT0gOzQ6nFT+Xc4k29XNONkmHmeT5bJEMqNrgUVKO+YwUlaXhZNlWWUYack1ssgui4RNVohu
- Mcgy7TekqrSeTU7mdGNfw7O2h8Op6MgLlODTIz/anu9/RMXr912cmTPgIjDmlA1sOJA4BCfV
- KyAb2HLsiRoAh7t/Y9LFawB7V6+w6GIZQJ3kKfOt5d8cNU43qgHMKb75TmVSmrbD2gA0DCyB
- LQuXOAKNjWLGFmYSnnC8IYdF87uhtmTKGvsB4Qonx4rZW3gPEQwVfb9b9QzCEaa9rrXqHQg3
- +GpQax3AIDp2waapPusAnPCCnVqZ1WxD+EDtpHST52yKAmFRzwk6xxWmt95m0Ce4weL82u1z
- UmBvyxhG4wfvQfmcLY2/hPLh0W1+D5zvbmHT2Bn23bi27Y2A9xrE2zgedhjErK2xkAiCv/RH
- 0/QX0NCwzqZpO6hf2E1vYwcL5EWMPOAp3vEQ4h0Hi9/tL96xfzlg1gFHKlEYE0EJ/WKpJF8h
- L0aYGBvhGxYXIwObX6TvTfeKAtTML/mqAcYBagA5DHcHbsHoEt+eG8679BMliPtBkBhNCdVg
- L4fp7sj1DHel7IkIXgIVRVHxlOBtF+PYOIkw6X/P0tIveR2fWLUb4pf7mPcfL4lZ4B/tvdBX
- qLlbKgnWzlBhj59/VpLAnTW62PgcG1WFVn77UibS6Zr8e8OI7z9Ub5xM9FIpyYD3q5pXI8+G
- 3tWHSo0O5wb511f+cU1ejovXBdpcHgG3Y4MmuCHOSQkeAQczr6tChqKGhAc0+uj706dOv3ji
- LOIHJacVHLxX8bndsdTKPAV4WH1a4dg+uBEcJTmXupDyVWay6DuzQ3mLW0i+weLXcWafrtCs
- 73QzJjp4pH5UetXOqcrsfdUL9A4euuKRffKhMmkkeeLXw12hucLMy4H+GWcG+S5rxMh4yIpJ
- FuV3cXH5VKur0669H5vcmcLzvAPeDIGQ9z9+jZ1mkQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Ta1BTRxiGu+fknBNoMz0glzW1KulVWwIJt4Uqvc20x1pnan/YInUwowdQ
- gTi5OK0jHTSUQpQRgqikkAECCJQpEoEE5FITCwRhqA1ELkVALoKFKqitFGoKiZ3h37P7ve/7
- fbuzy8U9jSSfeyhJwcqSJAkC0p1z42n7bX998kJsYMnPJOq4VYyh+2VnAGqrnMbRVccwjnof
- 3yeRSl9NoidXpjE00nIJQ38WbEDnf9STSHfTykH3ai0cZBi3E2i50YQhW2M+ibr0mRSaONdK
- osnxMhIVzddx0NhoP4Ea8q0Eaq62kchge0igtIwyAn1fMUmiB1kODE01dxAod3GWRHNZv1Bo
- SHOBg1q1dgqVP7kAUE97G4UcrRtRvakboLs9OQDlDQ0B9IdpJbh2NptAxWlhKPX3EDRQepl6
- bytTpasCTFNbN8k0/1XIYRrNV0imQTtMMYUGJZN6fY5g9E0zGGOozCAZXYYOYxyZowRz3VFM
- MUUpuTijs+5mWguqKGbkdDv2Gdwr3CaTKhXs5nipXLFdEC1CYqEoHAnFweFCUVDYvghxiCAg
- cttBNuHQMVYWELlfGN9lYY/2b/56amaITAGDfDVw40I6GC6dNpNq4M71pEsBtJTV4a7CBljz
- qI9w8Tq4bFc/E80DuHhZg7sWDQDeXurnrKp4dCQcrdY63Rz6NTj802nCte8BrXkTTo03vQmO
- DF6kVnkd/SE03TA69TjtC089qnDqvWg/uPCrFaw2wOmmF+H4bA3h6qbGYfbJTqebpLfAFqvB
- yW70W9A6ogeuJAT1s9coF2+Cqrofnp3HD17MruC4OBk+/HcKZAFv7ZoBtWsG0a6J0q6JKgSc
- SuDFKuWJcYlysVAuSZQrk+KEB6SJBrDyguvbFmtNoOLevNAMMC4wA8jFBV48zcB8rCfvoOSb
- 46xMGiNTJrByMwhZuaVsnO99QLryBZIUMaLQwBBRcGh4YEh4aJDAl0f29sR60nESBXuEZY+y
- sv99GNeNn4Ltjce6f7Otr/1qqEAq1u4BldEdph0lZOwXhuSxSPuJXRpjSYOqUxpcn+5j1+Z8
- nOufPve37fVvd9DmVj61K/eF59YnqV8ZOxbZeesjxkf3NG1qd579Zl/L2LlhVR1yV76/MSe/
- r/TUdO/oJftjSbmC3B4xMRzA8KI+5apHwvLufODn/nJTm0XGvup2bVT8/CQ3Jn9f8uEH/Uci
- cN+oN2qM3prjhp3kO5+8G9V5xsw97PhHlf6l5eyy154ZXHWVr/DQfNf9UnLH0n57UaZSd/LO
- 2wM7PWhvS7PRNrElp8V9wL+jPCuPN2P7PPG8JsanYCG0882uQTwnOpU4YQwS1t01ewg48niJ
- aCsuk0v+A+CoJCNKBAAA
-X-CMS-MailID: 20240924085147eucas1p166c893c894c86bb9c9f1a4a588f00c0f
-X-Msg-Generator: CA
-X-RootMTR: 20240908090349eucas1p2a9561859c83a19a8bad4ea2eef184e35
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240908090349eucas1p2a9561859c83a19a8bad4ea2eef184e35
-References: <20240906-macos-build-support-v2-0-06beff418848@samsung.com>
- <20240906-macos-build-support-v2-8-06beff418848@samsung.com>
- <CAK7LNASpWSXbjF_7n0MhosNism=BpvHOnKsa344RPM_wmC9dGA@mail.gmail.com>
- <CABj0suBQCc8=0tLng=OWW=K1hjFuLFZWhbjsqHtz2FzZt4i0sw@mail.gmail.com>
- <CGME20240908090349eucas1p2a9561859c83a19a8bad4ea2eef184e35@eucas1p2.samsung.com>
- <86cylev7o7.wl-maz@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240828024901.2582335-1-matthew.brost@intel.com>
+X-Operating-System: Linux phenom 6.10.6-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,104 +79,287 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 9/8/2024 11:03 AM, Marc Zyngier wrote:
-> On Sat, 07 Sep 2024 10:32:20 +0100,
-> "Daniel Gomez (Samsung)" <d+samsung@kruces.com> wrote:
->>
->> On Sat, Sep 7, 2024 at 10:33 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
->>>
->>> On Fri, Sep 6, 2024 at 8:01 PM Daniel Gomez via B4 Relay
->>> <devnull+da.gomez.samsung.com@kernel.org> wrote:
->>>>
->>>> From: Daniel Gomez <da.gomez@samsung.com>
->>>>
->>>> Add documentation under kbuild/llvm to inform about the experimental
->>>> support for building the Linux kernel in macOS hosts environments.
->>>>
->>>> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
->>>
->>>
->>> Instead, you can add this instruction to:
->>>
->>> https://protect2.fireeye.com/v1/url?k=f33af8a2-92b1ed94-f33b73ed-74fe485cbff1-7d382b34bfd617fc&q=1&e=c7a3e869-d48e-4168-88a9-03cd717797f0&u=https%3A%2F%2Fgithub.com%2Fbee-headers%2Fhomebrew-bee-headers%2Fblob%2Fmain%2FREADME.md
->>
->> Sure, that can be done as well. But the effort here is to have this
->> integrated. So, I think documentation should be in-tree.
+On Tue, Aug 27, 2024 at 07:48:33PM -0700, Matthew Brost wrote:
+> Continuation of SVM work by Oak Zeng [1][2] based on community feedback.
+> Introduces GPU SVM layer and new Xe uAPI. Supports GPU page faults for
+> system allocations (e.g., malloc), runtime allocations (e.g., binding a
+> BO), migration to and from VRAM, and unified eviction (BO and SVM VRAM
+> allocations can evict each other). Fully tested; more on this below.
 > 
-> I think this ship sailed the moment you ended-up with an external
-> dependency.
-
-The external dependency is not different in Linux hosts. We depend on 
-byteswap.h, elf.h and endian.h headers. However, these are provided by 
-glibc and musl, and macOS (at least in arm64/Homebrew) does not provide 
-any of these.
-
-To fix the dependency with these missing headers, it was suggested in v1 
-[1][2] to create a "development kit" for this hosts. And that is what 
-Bee Headers [3][4] aims to provide.
-
-[1]https://lore.kernel.org/all/20240807-mottled-stoic-degu-d1e4cb@lindesnes/
-[2]https://lore.kernel.org/all/ZrSoOM9z4VnqhOf2@fjasle.eu/
-
-[3] https://github.com/bee-headers/headers
-[4] https://github.com/bee-headers/homebrew-bee-headers
-
-I don't see any other alternative to provide the missing headers other 
-than the suggested. Please let me know if you think other paths can be 
-explored and tested.
-
+> The patch breakdown is as follows:
 > 
-> Having looked at this series (and in particular patch #4 which falls
-> under my remit), I can't help but think that the whole thing should
-> simply live as a wrapper around the pristine build system instead of
-> hacking things inside of it. You already pull external dependencies
-> (the include files). Just add a script that sets things up
-> (environment variables that already exist) and calls 'make' in the
-> kernel tree.
-
-Agree. This aligns very well with other feedback.
-
-I've added a script to the Bee Headers [5] to help users init their 
-shell/Makefile environment.
-
-[5] 
-https://github.com/bee-headers/homebrew-bee-headers/blob/main/bee-headers.rb#L28
-
+> 1. Preparation patches already on the list [3].
+> 	- Patches 1-3.
+> 	- Please refrain from reviewing these here.	
+> 2. New migrate layer functionality
+> 	- Patch 4.
+> 	- Required for eviction to avoid locking inversion between
+> 	  dma-resv and mmap lock.
+> 3. GPU SVM.
+> 	- Patch 5.
+> 	- This is what needs community review.
+> 	- Inspired by GPUVM.
+> 	- Kernel doc should explain design principles.
+> 	- There is certainly room for optimization of the implementation
+> 	  and improvements with existing core MM interaction. Pulling in
+> 	  pending DMA mapping work [4] and additional core MM support
+> 	  for SVM is also likely desired. However, this serves as a good
+> 	  starting point for any SVM discussions and could be used as a
+> 	  stepping stone to future core MM work.
+> 3. Basic SVM support in Xe (i.e., SRAM backing only).
+> 	- Patches 6-15.
+> 	- The uAPI in the patch could benefit from community input.
+> 4. SVM VRAM migration support in Xe.
+> 	- Patches 16-23.
+> 	- Using TMM BOs for SVM VRAM allocations could use community
+> 	  input. Patch 23 has a detailed explaination of this design
+> 	  choice in the commit message.
+> 5. SVM eviction support in Xe.
+> 	- Patch 24.
+> 	- Should work with exhaustive eviction [5] when it merges.
+> 6. Xe SVM debug / tuning.
+> 	- Patch 25-28.
 > 
-> I also dislike that this is forcing "native" developers to cater for
-> an operating system they are unlikely to have access to. If I break
-> this hack tomorrow by adding a new dependency that MacOS doesn't
-> provide, how do I fix it? Should I drop my changes on the floor?
+> Kernel documentation and commit messages are relatively light, aside
+> from GPU SVM and uAPI patches as this is an RFC.
 > 
-> As an alternative, and since you already have to create a special
-> file-system to contain your kernel tree, you may as well run Linux in
-> a VM, which I am told works pretty well (QEMU supports HVF, and there
-> are plenty of corporate-friendly alternatives). This would solve your
-> problem once and for all.
-
-This is a use case I'm trying to avoid with this series. QEMU HVF works 
-very well indeed but extracting the built objects/vmlinux/*.ko etc is 
-tedious and slow. Building natively allows users to boot a VM with QEMU 
-and -kernel argument directly. This is way faster than the suggested 
-alternative. In addition, lldb can be used to debug the kernel from the 
-host.
-
+> Testing has been conducted quite thoroughly with new IGT [6]. Various
+> system allocation types (malloc, mmap, mmap flags, huge pages, different
+> sizes, different alignments), mixing runtime allocations, unmapping
+> corners, invalid faults, and eviction have been tested. Testing scales
+> from single thread to multiple threads and multiple processes. Tests
+> pass on LNL, BMG, PVC 1 tile, and PVC 2 tile.
 > 
-> Please don't take the above the wrong way. I'm sympathetic to what you
-> are trying to do. But this is IMO going in the wrong direction.
-
-First patch has been merged already and after some fixes in the build 
-system from Masahiro, this series only requires a small change in 
-xe_gen_wa_oob to make this work if users of this provide the missing 
-headers and set up the build environment properly.
-
-I will send a v3 later today with the remaining patch.
-
-Thanks Marc for sharing your views!
-
+> 1. Multiple GPU support.
+> 	- This is likely to follow or occur in parallel to this work.
+> 2. Userptr unification with GPU SVM.
+> 	- This is essentially designed in my head (likely involving a
+> 	  few new GPU SVM layer functions) but would require some fairly
+> 	  invasive changes to Xe KMD to test out. Therefore, I would
+> 	  like GPU SVM to be reviewed first before proceeding with these
+> 	  changes.
+> 3. Madvise and prefetch IOCTLs
+> 	- This is likely to follow or occur in parallel to this work.
 > 
-> Thanks,
+> Given the size of the series, I have pushed a GitLab branch for
+> reference [7].
 > 
-> 	M.
+> Matt
+> 
+> [1] https://patchwork.freedesktop.org/series/128910/
+> [2] https://patchwork.freedesktop.org/series/132229/
+> [3] https://patchwork.freedesktop.org/series/137805/
+> [4] https://lore.kernel.org/linux-rdma/cover.1709635535.git.leon@kernel.org/
+> [5] https://patchwork.freedesktop.org/series/133643/
+> [6] https://patchwork.freedesktop.org/patch/610942/?series=137545&rev=2
+> [7] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-svm-post-8-27-24/-/tree/post?ref_type=heads
+
+Ok rather late, I wanted to type this up 2 weeks ago or so, but alas here
+it is finally. I think with all the experiments and discussions I have
+fairly clear understanding of the really tricky parts of svm (thanks a lot
+to Matt for all the work done). From my side the key points, sorted
+roughly in how important I think they are:
+
+1. migrate_to_ram path
+
+I think this is the absolute center piece of making sure we're aligned
+with core mm and don't suffer from deadlocks or livelocks fundamental to
+the gpusvm library design. So this part imo needs to be solid for the
+first version we merge. But of course any core mm changes Matt prototyped
+shouldn't gate merging the drm side since they're nicely decoupled, we
+only need those to validate the design in testing.
+
+I think the key points are:
+
+- we rely on the migration pte, temporary page references and page lock
+  only, which with the core mm changes Matt worked on gives us guaranteed
+  reliable migration back to system memory. And we need that, or svm
+  essentially becomes unusable as a concept.
+
+- we need to support partial migration, including the worst case fallback
+  of only migrating that single page core mm managed to trylock for us
+  while holding the pagetable lock.
+
+  Since we have guaranteed migration back to system memory we can make the
+  assumption on the gpu fault handling side that we will only ever handle
+  ranges that are entirely in vram (by throwing any partial migrations
+  out). Needs a retry loop for that in the gpu fault side, but I no logner
+  see an issue with that assumption on the gpu fault side otherwise, so
+  not needed for merging or even later until we have a driver that
+  requires partial vram support.
+
+- no other driver locks related to that memory range in any way are
+  allowed, and ideally we also test with the forced fallback to mmap_read
+  lock in do_swap_page removed, i.e. calling migrate_to_ram with only
+  holding the read vma lock. Of course driver locks for blitting are
+  allowed, it's only locks related to managing physical memory which are
+  problematic and could result in deadlocks.
+
+- the drm side must uphold the guarantee of not having elevated page
+  references whithout holding the page lock. Otherwise there's a race and
+  we cannot guarantee migratione to sram.
+
+- also through the try_to_migrate maze we'll hit our own gpu pte
+  invalidate paths, so there's some requirements there too. But I've put
+  the discussion for that at the very bottom, since most of the gpu pte
+  locking questions are imo not that important, and definitely not
+  important for the first version we merge.
+
+Everything else below I think we can sort out post merge and just need
+rough alignment on the design.
+
+2. eviction
+
+Requirements much like migrate_to_ram, because otherwise we break the
+migration gurantee:
+
+- Only looking at physical memory datastructures and locks, no looking at
+  mm/vma structs or relying on those being locked. We rely entirely on
+  reverse maps from try_to_migrate to find all the mappings on both cpu
+  and gpu side (cpu only zone device swap or migration pte entries ofc).
+
+- Partial migration needs to work to make sure we can get out of any
+  low memory bind.
+
+3. gpu fault side
+
+- We can only rely on mmap_read for hmm_range_fault. And ideally should
+  assume that's not held anywhere else since with per-vma locking I'd
+  expect the mm/vma locking will move into hmm_range_fault. This also
+  means no looking at vma beyond just passing it around as currently
+  needed by core mm functions.
+
+- Big retry loop to handle all races with the mmu notifier under the gpu
+  pagetable locks/mmu notifier range lock/whatever we end up calling
+  those. Races (especially against concurrent eviction/migrate_to_ram)
+  should _not_ be handled on the fault side by trying to hold locks
+  instead.
+
+- Long term I think we need to be able to handle concurrent faults, even
+  on hw where there's only one gpu fault handling queue. For performance
+  we absolutely want to prefault aggressively, and that likely happens
+  through cpu ioctls that are entirely independent from the gpu fault
+  handling.
+
+  Short term enough (driver-side) locking to make sure this doesn't go
+  boom is enough, I think just some design goal documentation here on how
+  to achieve that is all we need.
+
+4. physical memory to virtual backpointer
+
+No. Doesn't work :-) Also it's only used in in the eviction/migrate_to_ram
+path and I think Matt already fixed this all anyway.
+
+5. gpu pagetable locking
+
+Or mmu notifier range locking or whatever you want to call it. Like on the
+cpu side this should _only_ protect the pagetable entries and additional
+for us mmu notifier seqno tracking, nothing else.
+
+Any races due to concurrent eviction/migrate_to_ram/gpu fault/prefault
+need to be handled by retrying outside of holding the pagetable locks. If
+we try to impose additional consistency guarantees we'll fall over and
+have a livelock/deadlock fight with core mm in migrate_to_ram. This part
+is required I think for the first version, but we already need that anyway
+to make migrate_to_ram work properly.
+
+For the actual data structure/locking design I think anything on the
+design line between a single global lock and the radix tree over-the-top
+scalable per-pagetable (spin)lock design of the core mm is fine.
+
+The design here with 3 levels (mmu notifer, range, struct page) wouldn't
+be my first choice, but clearly fits on that line so imo is fine for
+initial merging. We might want to make sure that the range locking (I
+guess mostly relevant for the invalidate side, drivers don't see much
+else) is somewhat abstracted so we can easily change that post-merge, but
+not required imo at all.
+
+For consensus documentation I'd recommend a todo or design documentation
+patch, where we put down both the current design and why it's like that,
+and some of the longer term goals. Then get that acked (imo needs at least
+one other driver that's seriously interested in this, plus I think an ack
+from Danilo for gpuvm interactions), then merge that. SVM is tricky enough
+that I think this would be really useful to make sure we're not
+unecessarily stuck in limbo.
+
+From my side again I think the only part we really have to get right from
+the start is migrate_to_ram. And I'm confident we've got that now really
+solid.
+
+Oh also you need userspace ofc :-)
+
+Cheers, Sima
+
+> Matthew Brost (28):
+>   dma-buf: Split out dma fence array create into alloc and arm functions
+>   drm/xe: Invalidate media_gt TLBs in PT code
+>   drm/xe: Retry BO allocation
+>   mm/migrate: Add migrate_device_vma_range
+>   drm/gpusvm: Add support for GPU Shared Virtual Memory
+>   drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATON flag
+>   drm/xe: Add SVM init / fini to faulting VMs
+>   drm/xe: Add dma_addr res cursor
+>   drm/xe: Add SVM range invalidation
+>   drm/gpuvm: Add DRM_GPUVA_OP_USER
+>   drm/xe: Add (re)bind to SVM page fault handler
+>   drm/xe: Add SVM garbage collector
+>   drm/xe: Add unbind to SVM garbage collector
+>   drm/xe: Do not allow system allocator VMA unbind if the GPU has
+>     bindings
+>   drm/xe: Enable system allocator uAPI
+>   drm/xe: Add migrate layer functions for SVM support
+>   drm/xe: Add SVM device memory mirroring
+>   drm/xe: Add GPUSVM copy SRAM / VRAM vfunc functions
+>   drm/xe: Update PT layer to understand ranges in VRAM
+>   drm/xe: Add Xe SVM populate_vram_pfn vfunc
+>   drm/xe: Add Xe SVM vram_release vfunc
+>   drm/xe: Add BO flags required for SVM
+>   drm/xe: Add SVM VRAM migration
+>   drm/xe: Basic SVM BO eviction
+>   drm/xe: Add SVM debug
+>   drm/xe: Add modparam for SVM notifier size
+>   drm/xe: Add modparam for SVM prefault
+>   drm/gpusvm: Ensure all pages migrated upon eviction
+> 
+>  drivers/dma-buf/dma-fence-array.c    |   78 +-
+>  drivers/gpu/drm/xe/Makefile          |    4 +-
+>  drivers/gpu/drm/xe/drm_gpusvm.c      | 2213 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/drm_gpusvm.h      |  415 +++++
+>  drivers/gpu/drm/xe/xe_bo.c           |   54 +-
+>  drivers/gpu/drm/xe/xe_bo.h           |    2 +
+>  drivers/gpu/drm/xe/xe_bo_types.h     |    3 +
+>  drivers/gpu/drm/xe/xe_device_types.h |    8 +
+>  drivers/gpu/drm/xe/xe_gt_pagefault.c |   17 +-
+>  drivers/gpu/drm/xe/xe_migrate.c      |  150 ++
+>  drivers/gpu/drm/xe/xe_migrate.h      |   10 +
+>  drivers/gpu/drm/xe/xe_module.c       |    7 +
+>  drivers/gpu/drm/xe/xe_module.h       |    2 +
+>  drivers/gpu/drm/xe/xe_pt.c           |  456 +++++-
+>  drivers/gpu/drm/xe/xe_pt.h           |    3 +
+>  drivers/gpu/drm/xe/xe_pt_types.h     |    2 +
+>  drivers/gpu/drm/xe/xe_res_cursor.h   |   50 +-
+>  drivers/gpu/drm/xe/xe_svm.c          |  775 +++++++++
+>  drivers/gpu/drm/xe/xe_svm.h          |   70 +
+>  drivers/gpu/drm/xe/xe_tile.c         |    5 +
+>  drivers/gpu/drm/xe/xe_vm.c           |  286 +++-
+>  drivers/gpu/drm/xe/xe_vm.h           |   15 +-
+>  drivers/gpu/drm/xe/xe_vm_types.h     |   44 +
+>  include/drm/drm_gpuvm.h              |    5 +
+>  include/linux/dma-fence-array.h      |    6 +
+>  include/linux/migrate.h              |    3 +
+>  include/uapi/drm/xe_drm.h            |   19 +-
+>  mm/migrate_device.c                  |   53 +
+>  28 files changed, 4615 insertions(+), 140 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/drm_gpusvm.c
+>  create mode 100644 drivers/gpu/drm/xe/drm_gpusvm.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_svm.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+> 
+> -- 
+> 2.34.1
 > 
 
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
