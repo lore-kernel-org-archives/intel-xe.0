@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA618CCF9EB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE9CCCF9E7
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 18:22:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7879110E2F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9939610E84B;
 	Wed, 25 Sep 2024 18:22:01 +0000 (UTC)
 Received: from MSK-MAILEDGE.securitycode.ru (msk-mailedge.securitycode.ru
  [195.133.217.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 799C510E6A7;
- Tue, 24 Sep 2024 11:40:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 031B410E6BE;
+ Tue, 24 Sep 2024 11:20:53 +0000 (UTC)
 From: George Rurikov <g.ryurikov@securitycode.ru>
 To: Jani Nikula <jani.nikula@linux.intel.com>
 CC: George Rurikov <g.ryurikov@securitycode.ru>, Rodrigo Vivi
  <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.og>,
  <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
 Subject: [PATCH] drm: Add check for encoder in intel_get_crtc_new_encoder()
-Date: Tue, 24 Sep 2024 14:40:04 +0300
-Message-ID: <20240924114004.1084283-1-g.ryurikov@securitycode.ru>
+Date: Tue, 24 Sep 2024 14:20:23 +0300
+Message-ID: <20240924112023.1071395-1-g.ryurikov@securitycode.ru>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
