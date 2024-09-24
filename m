@@ -4,63 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83C1ECF9C6B
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 12:11:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9247BCF9C6B
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 12:44:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CEED10E8A3;
-	Tue, 24 Sep 2024 12:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5062C10E2B1;
+	Tue, 24 Sep 2024 12:44:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aGbd0FLy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fCtUN035";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72B2510E8A1;
- Tue, 24 Sep 2024 12:11:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 255C510E2B1
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 12:44:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727179877; x=1758715877;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=dTad2rqpcko2TGpyvtRSd9oTstyIASGq7zS6vS0Dg9U=;
- b=aGbd0FLytC5WcM9SqO3ccj7M+6q1um/CHrhIMG0YlLXyjgFPMhW6AkIQ
- wGmt6aD1j2WtrsezoMuedBHAmT/2CWB48mUaWG8ckNc2vt4vdA87jPVqR
- fkTdAZariqXuty9xQPhg5D4oE9m6/3jqshqm6XgoFHj4Mn1TqYXfctrdY
- CFKa5bcNSl61GyVuJj7sIhvVQrICVWn0uSbLJh8bH6V5NPqd6qL6Dyt71
- yguKarOfuP3dtnU/Yze+tmhUk+6VCPQlJuO2lKE+dXElTw3IV9iXyqOkj
- EcCT5a2Icp9N9rW22FlQURIlbL8tSjqVdvR7SF0tCpIpn1LmkoETtRS5R w==;
-X-CSE-ConnectionGUID: 0GZurNZJR6SVz3vM3uXfBw==
-X-CSE-MsgGUID: oCkS9kDuTpCVLVUx9F0aNA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26265036"
-X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="26265036"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2024 05:11:17 -0700
-X-CSE-ConnectionGUID: H3KdpKbwRua8SWIdpicqLQ==
-X-CSE-MsgGUID: M3YEhQRFSpKiwBoJ2gYEMg==
+ t=1727181859; x=1758717859;
+ h=date:from:to:cc:subject:message-id;
+ bh=WGcMczXTQFShw26DYQLgc98vlDMCuG+BF2rdyrxQP44=;
+ b=fCtUN0352PAqeQpG8RNuXAgnPR2VeWLkFJEE9vNUgvQmnOau6W+g8+38
+ XRPTNxw6QWto5fzGIuU5+zPTuZjHHvN8PrpIicr9ANy96l0JRa9xIh6gW
+ V9RSpT/Cil5OSisK/xRCYGeFMcg5HqBoqUuMfyU+mGIyPcHQ/qxzOgjWw
+ jVW2LiHF39i8MuLcUesVkvzHNTKwVs3sOIKQALNzSIPrIkCBsKYRmCHk7
+ 2WFTgkyLxAojqMsxEHekfMDda65IwEI0aMj0MI2/RVOOJ0moo1hsFKIC4
+ MH8tdBUMifD8X7T2xjcizZGYhPNbjnmG25QrQZe9E7bzHjbOEHsCMVeHk Q==;
+X-CSE-ConnectionGUID: LRzTFuCjTK6p3xitVF8vuw==
+X-CSE-MsgGUID: pLDYlrbXS9y/YmM0uKRLDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26318201"
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="26318201"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 05:44:18 -0700
+X-CSE-ConnectionGUID: z6KIKlXCRxipNiT6EjDHeg==
+X-CSE-MsgGUID: UgVLpHYbQHqTpkUyigWzqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="75790881"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.183])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2024 05:11:12 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: George Rurikov <g.ryurikov@securitycode.ru>
-Cc: George Rurikov <g.ryurikov@securitycode.ru>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm: Add check for encoder in intel_get_crtc_new_encoder()
-In-Reply-To: <87tte545pc.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240924114004.1084283-1-g.ryurikov@securitycode.ru>
- <87tte545pc.fsf@intel.com>
-Date: Tue, 24 Sep 2024 15:11:08 +0300
-Message-ID: <87o74d45gj.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="102223752"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+ by fmviesa001.fm.intel.com with ESMTP; 24 Sep 2024 05:44:18 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1st4tr-000INI-2E;
+ Tue, 24 Sep 2024 12:44:15 +0000
+Date: Tue, 24 Sep 2024 20:44:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 876253165f3eaaacacb8c8bed16a9df4b6081479
+Message-ID: <202409242003.xzknvori-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,95 +64,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 24 Sep 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Tue, 24 Sep 2024, George Rurikov <g.ryurikov@securitycode.ru> wrote:
->> If the video card driver could not find the connector assigned to the
->> current video controller, or if the hardware status has changed so that
->> a pre-existing connector is no longer active, none of the state
->> connectors will meet the assignment criteria for the current crtc video
->> controller.
->>
->> In the drm_WARN function, encoder->base.dev is called, so
->> '&encoder->base.dev' will be dereferenced since encoder will still be
->> initialized NULL.
->
-> encoder is not dereferenced there.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 876253165f3eaaacacb8c8bed16a9df4b6081479  drm/xe/xe2: Add performance tuning for L3 cache flushing
 
-Looks like the issue was there ages ago, and was fixed in v6.5 by commit
-3b6692357f70 ("drm/i915: Make intel_get_crtc_new_encoder() less oopsy").
+elapsed time: 1080m
 
-Please run your analysis on recent kernels.
+configs tested: 124
+configs skipped: 5
 
-BR,
-Jani.
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
+tested configs:
+alpha                             allnoconfig    gcc-13.3.0
+alpha                            allyesconfig    gcc-13.3.0
+arc                              allmodconfig    gcc-13.2.0
+arc                               allnoconfig    gcc-13.2.0
+arc                              allyesconfig    gcc-13.2.0
+arc                          axs101_defconfig    gcc-13.2.0
+arc                   randconfig-001-20240924    gcc-13.2.0
+arc                   randconfig-002-20240924    gcc-13.2.0
+arm                              allmodconfig    gcc-14.1.0
+arm                               allnoconfig    clang-20
+arm                              allyesconfig    gcc-14.1.0
+arm                       aspeed_g4_defconfig    clang-20
+arm                       imx_v6_v7_defconfig    clang-20
+arm                          ixp4xx_defconfig    gcc-14.1.0
+arm                        keystone_defconfig    gcc-14.1.0
+arm                          pxa168_defconfig    clang-20
+arm                   randconfig-001-20240924    clang-20
+arm                   randconfig-002-20240924    gcc-14.1.0
+arm                   randconfig-003-20240924    gcc-14.1.0
+arm                   randconfig-004-20240924    gcc-14.1.0
+arm64                            allmodconfig    clang-20
+arm64                             allnoconfig    gcc-14.1.0
+arm64                 randconfig-001-20240924    gcc-14.1.0
+arm64                 randconfig-002-20240924    gcc-14.1.0
+arm64                 randconfig-003-20240924    gcc-14.1.0
+arm64                 randconfig-004-20240924    clang-14
+csky                              allnoconfig    gcc-14.1.0
+csky                  randconfig-001-20240924    gcc-14.1.0
+csky                  randconfig-002-20240924    gcc-14.1.0
+hexagon                          allmodconfig    clang-20
+hexagon                           allnoconfig    clang-20
+hexagon                          allyesconfig    clang-20
+hexagon               randconfig-001-20240924    clang-20
+hexagon               randconfig-002-20240924    clang-20
+i386                             allmodconfig    gcc-12
+i386                              allnoconfig    gcc-12
+i386                             allyesconfig    gcc-12
+i386        buildonly-randconfig-001-20240924    clang-18
+i386        buildonly-randconfig-002-20240924    gcc-12
+i386        buildonly-randconfig-003-20240924    clang-18
+i386        buildonly-randconfig-004-20240924    gcc-12
+i386        buildonly-randconfig-005-20240924    gcc-12
+i386        buildonly-randconfig-006-20240924    clang-18
+i386                                defconfig    clang-18
+i386                  randconfig-001-20240924    gcc-12
+i386                  randconfig-002-20240924    gcc-12
+i386                  randconfig-003-20240924    clang-18
+i386                  randconfig-004-20240924    gcc-12
+i386                  randconfig-005-20240924    gcc-12
+i386                  randconfig-006-20240924    clang-18
+i386                  randconfig-011-20240924    clang-18
+i386                  randconfig-012-20240924    clang-18
+i386                  randconfig-013-20240924    clang-18
+i386                  randconfig-014-20240924    clang-18
+i386                  randconfig-015-20240924    clang-18
+i386                  randconfig-016-20240924    clang-18
+loongarch                        allmodconfig    gcc-14.1.0
+loongarch                         allnoconfig    gcc-14.1.0
+loongarch             randconfig-001-20240924    gcc-14.1.0
+loongarch             randconfig-002-20240924    gcc-14.1.0
+m68k                             allmodconfig    gcc-14.1.0
+m68k                              allnoconfig    gcc-14.1.0
+m68k                             allyesconfig    gcc-14.1.0
+microblaze                       allmodconfig    gcc-14.1.0
+microblaze                        allnoconfig    gcc-14.1.0
+microblaze                       allyesconfig    gcc-14.1.0
+mips                              allnoconfig    gcc-14.1.0
+nios2                             allnoconfig    gcc-14.1.0
+nios2                 randconfig-001-20240924    gcc-14.1.0
+nios2                 randconfig-002-20240924    gcc-14.1.0
+openrisc                          allnoconfig    gcc-14.1.0
+openrisc                         allyesconfig    gcc-14.1.0
+openrisc                            defconfig    gcc-14.1.0
+parisc                           allmodconfig    gcc-14.1.0
+parisc                            allnoconfig    gcc-14.1.0
+parisc                           allyesconfig    gcc-14.1.0
+parisc                              defconfig    gcc-14.1.0
+parisc                randconfig-001-20240924    gcc-14.1.0
+parisc                randconfig-002-20240924    gcc-14.1.0
+powerpc                          allmodconfig    gcc-14.1.0
+powerpc                           allnoconfig    gcc-14.1.0
+powerpc                          allyesconfig    clang-20
+powerpc64             randconfig-001-20240924    gcc-14.1.0
+powerpc64             randconfig-002-20240924    gcc-14.1.0
+powerpc64             randconfig-003-20240924    gcc-14.1.0
+riscv                            allmodconfig    clang-20
+riscv                             allnoconfig    gcc-14.1.0
+riscv                            allyesconfig    clang-20
+riscv                               defconfig    clang-20
+riscv                 randconfig-001-20240924    gcc-14.1.0
+riscv                 randconfig-002-20240924    gcc-14.1.0
+s390                             allmodconfig    clang-20
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.1.0
+s390                                defconfig    clang-20
+s390                  randconfig-001-20240924    clang-20
+s390                  randconfig-002-20240924    clang-20
+sh                               allmodconfig    gcc-14.1.0
+sh                                allnoconfig    gcc-14.1.0
+sh                               allyesconfig    gcc-14.1.0
+sh                                  defconfig    gcc-14.1.0
+sh                    randconfig-001-20240924    gcc-14.1.0
+sh                    randconfig-002-20240924    gcc-14.1.0
+sparc                            allmodconfig    gcc-14.1.0
+sparc64                             defconfig    gcc-14.1.0
+sparc64               randconfig-001-20240924    gcc-14.1.0
+sparc64               randconfig-002-20240924    gcc-14.1.0
+um                               allmodconfig    clang-20
+um                                allnoconfig    clang-17
+um                               allyesconfig    gcc-12
+um                                  defconfig    clang-20
+um                             i386_defconfig    gcc-12
+um                    randconfig-001-20240924    gcc-12
+um                    randconfig-002-20240924    gcc-12
+um                           x86_64_defconfig    clang-15
+x86_64                            allnoconfig    clang-18
+x86_64                           allyesconfig    clang-18
+x86_64                              defconfig    gcc-11
+x86_64                                  kexec    clang-18
+x86_64                               rhel-8.3    gcc-12
+x86_64                          rhel-8.3-rust    clang-18
+xtensa                            allnoconfig    gcc-14.1.0
+xtensa                randconfig-001-20240924    gcc-14.1.0
+xtensa                randconfig-002-20240924    gcc-14.1.0
 
->
->> Found by Linux Verification Center (linuxtesting.org) with SVACE.
->>
->> Fixes: e12d6218fda2 ("drm/i915: Reduce bigjoiner special casing")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: George Rurikov <g.ryurikov@securitycode.ru>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
-drm/i915/display/intel_display.c
->> index b4ef4d59da1a..1f25b12e5f67 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -819,9 +819,11 @@ intel_get_crtc_new_encoder(const struct intel_atomi=
-c_state *state,
->>                 num_encoders++;
->>         }
->>
->> -       drm_WARN(state->base.dev, num_encoders !=3D 1,
->> +       if (encoder) {
->> +               drm_WARN(state->base.dev, num_encoders !=3D 1,
->>                  "%d encoders for pipe %c\n",
->>                  num_encoders, pipe_name(primary_crtc->pipe));
->> +       }
->>
->>         return encoder;
->>  }
->> --
->> 2.34.1
->>
->> =D0=97=D0=B0=D1=8F=D0=B2=D0=BB=D0=B5=D0=BD=D0=B8=D0=B5 =D0=BE =D0=BA=D0=
-=BE=D0=BD=D1=84=D0=B8=D0=B4=D0=B5=D0=BD=D1=86=D0=B8=D0=B0=D0=BB=D1=8C=D0=BD=
-=D0=BE=D1=81=D1=82=D0=B8
->>
->> =D0=94=D0=B0=D0=BD=D0=BD=D0=BE=D0=B5 =D1=8D=D0=BB=D0=B5=D0=BA=D1=82=D1=
-=80=D0=BE=D0=BD=D0=BD=D0=BE=D0=B5 =D0=BF=D0=B8=D1=81=D1=8C=D0=BC=D0=BE =D0=
-=B8 =D0=BB=D1=8E=D0=B1=D1=8B=D0=B5 =D0=BF=D1=80=D0=B8=D0=BB=D0=BE=D0=B6=D0=
-=B5=D0=BD=D0=B8=D1=8F =D0=BA =D0=BD=D0=B5=D0=BC=D1=83 =D1=8F=D0=B2=D0=BB=D1=
-=8F=D1=8E=D1=82=D1=81=D1=8F =D0=BA=D0=BE=D0=BD=D1=84=D0=B8=D0=B4=D0=B5=D0=
-=BD=D1=86=D0=B8=D0=B0=D0=BB=D1=8C=D0=BD=D1=8B=D0=BC=D0=B8 =D0=B8 =D0=BF=D1=
-=80=D0=B5=D0=B4=D0=BD=D0=B0=D0=B7=D0=BD=D0=B0=D1=87=D0=B5=D0=BD=D1=8B =D0=
-=B8=D1=81=D0=BA=D0=BB=D1=8E=D1=87=D0=B8=D1=82=D0=B5=D0=BB=D1=8C=D0=BD=D0=BE=
- =D0=B4=D0=BB=D1=8F =D0=B0=D0=B4=D1=80=D0=B5=D1=81=D0=B0=D1=82=D0=B0. =D0=
-=95=D1=81=D0=BB=D0=B8 =D0=92=D1=8B =D0=BD=D0=B5 =D1=8F=D0=B2=D0=BB=D1=8F=D0=
-=B5=D1=82=D0=B5=D1=81=D1=8C =D0=B0=D0=B4=D1=80=D0=B5=D1=81=D0=B0=D1=82=D0=
-=BE=D0=BC =D0=B4=D0=B0=D0=BD=D0=BD=D0=BE=D0=B3=D0=BE =D0=BF=D0=B8=D1=81=D1=
-=8C=D0=BC=D0=B0, =D0=BF=D0=BE=D0=B6=D0=B0=D0=BB=D1=83=D0=B9=D1=81=D1=82=D0=
-=B0, =D1=83=D0=B2=D0=B5=D0=B4=D0=BE=D0=BC=D0=B8=D1=82=D0=B5 =D0=BD=D0=B5=D0=
-=BC=D0=B5=D0=B4=D0=BB=D0=B5=D0=BD=D0=BD=D0=BE =D0=BE=D1=82=D0=BF=D1=80=D0=
-=B0=D0=B2=D0=B8=D1=82=D0=B5=D0=BB=D1=8F, =D0=BD=D0=B5 =D1=80=D0=B0=D1=81=D0=
-=BA=D1=80=D1=8B=D0=B2=D0=B0=D0=B9=D1=82=D0=B5 =D1=81=D0=BE=D0=B4=D0=B5=D1=
-=80=D0=B6=D0=B0=D0=BD=D0=B8=D0=B5 =D0=B4=D1=80=D1=83=D0=B3=D0=B8=D0=BC =D0=
-=BB=D0=B8=D1=86=D0=B0=D0=BC, =D0=BD=D0=B5 =D0=B8=D1=81=D0=BF=D0=BE=D0=BB=D1=
-=8C=D0=B7=D1=83=D0=B9=D1=82=D0=B5 =D0=B5=D0=B3=D0=BE =D0=B2 =D0=BA=D0=B0=D0=
-=BA=D0=B8=D1=85-=D0=BB=D0=B8=D0=B1=D0=BE =D1=86=D0=B5=D0=BB=D1=8F=D1=85, =
-=D0=BD=D0=B5 =D1=85=D1=80=D0=B0=D0=BD=D0=B8=D1=82=D0=B5 =D0=B8 =D0=BD=D0=B5=
- =D0=BA=D0=BE=D0=BF=D0=B8=D1=80=D1=83=D0=B9=D1=82=D0=B5 =D0=B8=D0=BD=D1=84=
-=D0=BE=D1=80=D0=BC=D0=B0=D1=86=D0=B8=D1=8E =D0=BB=D1=8E=D0=B1=D1=8B=D0=BC =
-=D1=81=D0=BF=D0=BE=D1=81=D0=BE=D0=B1=D0=BE=D0=BC.
->
-> Sorry, we can't accept patches with that boilerplate anyway.
->
-> BR,
-> Jani.
-
---=20
-Jani Nikula, Intel
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
