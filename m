@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C32D2CF9C6B
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 03:52:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 986C0CF9C72
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 03:52:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44F5E10E246;
-	Tue, 24 Sep 2024 03:52:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9E710E4C6;
+	Tue, 24 Sep 2024 03:52:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NCds9eHc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nkncUhip";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B79C110E246
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 03:52:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B198E10E4C6
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 03:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727149937; x=1758685937;
+ t=1727149966; x=1758685966;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=Jz6WDbbibbI+X7vKxeVDOs+s37ySEFfng48sSTc5aik=;
- b=NCds9eHck1JWCp1vjrY/ysIDOMnb6qPvWk00SiRGS/dK+xLcRsenK47T
- Su7TStCO4Bn4kAXL+aJPopiB6Ydz0THprMGqticZMJ56SeRo1pglQGFdw
- TKtKIMnFL0PLGc+10uuQYiG5QGS8g7wydOokUsu37/w7DhhlNj1MmAQsK
- baw2FmmW5wmpSaQKQDqHS9UJotV2QpHdDaw+7PnFrBHAEAsasLeRimIZT
- w+rb2cVswAs6fFIvOCGGFZm8V4zSHmvOdyKfTRpQKkJ9L3a5XgX7RO8Kh
- vois8vKQmF1/ZKArQRdvI+VZMED6z7ACwaRXmF6bKDr0f5CnkdswQoxDE A==;
-X-CSE-ConnectionGUID: dRB9w2VQT+Oa5o0jtJihMA==
-X-CSE-MsgGUID: QmOYWC4yQQSgbb0xeWwp6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="36794548"
-X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="36794548"
+ bh=5QGALkxWkll/It2jDRnKb3zr0XE8NrvK9eKdYXCg5ZY=;
+ b=nkncUhipcmDr7P/lZYRAi3yCk9eJBpfndpsjUUjNioaFjxGrFbwFKSG3
+ C0oMM4bRdiFw1FZu3ZjfpvaWdU645SSociHtHqJ2cNC6usD7WMk5Z1B9u
+ EhZyc2h6GgPWftxtU+FsK8C0X4OK7MwozzKljzLbAv9WAv4MKFRpS6mKh
+ i4XGl2szFmJsFBPm/E0JURimnD90RukAkPNwyKtPSh2DfpgRWELaxiKAd
+ Dnf2fpqtB8uUvdrlS6+ttkcwxW/c/7n74MW0v9F80lGF9b0yP50dLkshr
+ QrTFhxo0hLLwAjzqCXFneIB0BE0nvftQonii4PamZ4vaBletgBqmh8U1U Q==;
+X-CSE-ConnectionGUID: 2ulNaZK6SPKTeWVtNXebZw==
+X-CSE-MsgGUID: ZiMjqoJNSg+VPZBZ6V89Fg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="36794578"
+X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="36794578"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 20:52:17 -0700
-X-CSE-ConnectionGUID: C3p41ULvQLqWcvuRZ0xZqQ==
-X-CSE-MsgGUID: hVrgXFpLRhSiOMA4IVZ6UQ==
+ 23 Sep 2024 20:52:46 -0700
+X-CSE-ConnectionGUID: V4/oGGj1QgCxFI5hw1C0Ag==
+X-CSE-MsgGUID: rapMwMonTSa6BFv/peU4Pg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="71331488"
+X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="71331564"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.138])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 20:52:17 -0700
-Date: Mon, 23 Sep 2024 20:52:16 -0700
-Message-ID: <85ldzhg13j.wl-ashutosh.dixit@intel.com>
+ 23 Sep 2024 20:52:46 -0700
+Date: Mon, 23 Sep 2024 20:52:46 -0700
+Message-ID: <85jzf1g12p.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/2] drm/xe: Add XE_BO_FLAG_NEEDS_WC_CPU and unify mapping
- for page tables.
-In-Reply-To: <20240920190107.156914-1-maarten.lankhorst@linux.intel.com>
-References: <20240920190107.156914-1-maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 2/2] drm/xe: Use XE_BO_FLAG_NEEDS_WC_CPU for DSB
+In-Reply-To: <20240920190107.156914-2-maarten.lankhorst@linux.intel.com>
+References: <20240920190107.156914-1-maarten.lankhorst@linux.intel.com>	<20240920190107.156914-2-maarten.lankhorst@linux.intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -70,56 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 20 Sep 2024 12:01:06 -0700, Maarten Lankhorst wrote:
+On Fri, 20 Sep 2024 12:01:07 -0700, Maarten Lankhorst wrote:
 >
-
-Hey Maarten,
-
-I will try to review as well as I can, but I am not very familiar with this
-stuff, so ideally someone else should also review this. I also later
-realized that this patch is not useful to the use case I had in mind.
-
-Any case, going on.
-
-> There are various places where we map buffers WC_CPU and uncached on the
-> GPU. Unify all of those users to a single flag.
-
-To me, this patch doesn't seem to "Unify all of those users to a single
-flag" at all. The patch only adds XE_BO_FLAG_NEEDS_WC_CPU to
-XE_BO_FLAG_PAGETABLE, not to XE_BO_FLAG_SCANOUT and
-DRM_XE_GEM_CPU_CACHING_WC. So finally the only unifying thing seems to be
-"ttm_write_combined".
-
-The other issue maybe is that caching is specified through both
-bo->cpu_caching as well as bo->flags. Also, 'bo->cpu_caching == 0' seems to
-mean the same thing as '!(bo->flags & XE_BO_FLAG_USER)'. But maybe ok.
-
-So maybe the commit message should just say we are exposing a new
-XE_BO_FLAG_NEEDS_WC_CPU flag for internally created BO's to use which will
-give "WC from CPU, UC from GPU" mapping. And using this new flag for
-XE_BO_FLAG_PAGETABLE.
-
+> Now that we have an explicit flag, we can stop abusing the scanout flag
+> for this.
 >
-> In particular our usage of page table flags has been incoherent,
-> and we should use uncached where applicable.
-
-"uncached" meaning XE_BO_FLAG_NEEDS_WC_CPU?
-
 > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-
-With the commit message change, the patch itself seems ok to me, except for
-one question below.
-
-> @@ -568,6 +577,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
->			xe_child->is_compact = true;
->		}
+> ---
+>  drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> +		pat_index = xe_pt_pat_index_from_bo(xe_child->bo);
+> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> index 9f941fc2e36b..59c5aedefc25 100644
+> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> @@ -47,7 +47,7 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
+>				   NULL, PAGE_ALIGN(size),
+>				   ttm_bo_type_kernel,
+>				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+> -				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
+> +				   XE_BO_FLAG_NEEDS_WC_CPU | XE_BO_FLAG_GGTT);
 
-This wasn't needed earlier? Didn't know what to make out of this new line
-which appeared out of the blue.
+Also delete the comment just above the function call above: "Set scanout
+flag for WC mapping".
 
-Thanks.
---
-Ashutosh
+>	if (IS_ERR(obj)) {
+>		kfree(vma);
+>		return false;
+> --
+> 2.45.2
+>
