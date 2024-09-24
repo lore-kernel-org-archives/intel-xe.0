@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71C18CF9C72
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 06:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88058CF9C71
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 07:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 370C710E4DE;
-	Tue, 24 Sep 2024 06:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56F4210E52D;
+	Tue, 24 Sep 2024 07:48:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YeYy+IIJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F+W3z9mm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A97B10E1BE;
- Tue, 24 Sep 2024 06:46:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDA1810E52D;
+ Tue, 24 Sep 2024 07:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727160392; x=1758696392;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZjTrM7atK559NeNWom3xCSv0LB4ProkECmvc+HX/JIw=;
- b=YeYy+IIJGUb1BPKZoZb6ftE8zEF7JZujyN31isE9OJXea7CgPUVcObrc
- wmfW5JfbNheJaLqn2rBd3q1Q5mmaerIC1Zx+f2PHB+jui01uUt3VKlK5R
- zaPVrCPnuTFrscBqIXNnmuRMtj/o7y9qTW1I14HWJjX4t2CSet3aoD9HI
- PJZXXT8MIpsKdPd6XKw4ncf4ByoIjgFiBmY+ZmObqr3uN+Z0DzhyfiGbt
- 7WPSSvR8/03V77f5KUeQsx0QWWm3sagKq7HRBs7S0W4LEgG8pkwhsf8u4
- XNdo5+Dehy+pBgmonj/fb8n0WS248zrII+M+qHfK25V8MSTWlIFJwF1Ir w==;
-X-CSE-ConnectionGUID: nJodRWWwS2+YOF/Xsegr7g==
-X-CSE-MsgGUID: k7P/BGkCRoGTnAc21nfnKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="25610982"
-X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="25610982"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 23:46:05 -0700
-X-CSE-ConnectionGUID: GjPf2atOQrOhDV7naalP4Q==
-X-CSE-MsgGUID: edowLvR+TxeoezBUWnYKRA==
+ t=1727164098; x=1758700098;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Pizc7GZYuS//JYHRXP2qoWh5Thf+FrG45vt9phS/Ajw=;
+ b=F+W3z9mmF5PWVQa97D+fIYxa8afPEpuJq9lu8FFgBqFIHYu1yxUdcT90
+ QH9PtsJQIuDF3KPsC4pRvYELmQEk3scvaRmMdrHLF68fHB1TQlsCVjuvf
+ IFEQFlCx5tFwFxRXF8RwTbJ/m6g3ebgIS5vAuENesGpKpku8K8nFCAFf6
+ PJ3b7mj0m9UCITyVOcBEJgq7KO1V+kqcR6Q01/98aYdGftPQtVXPxoloD
+ 3JXRIZ7pxfPF8dD0FDHi4xMKCo89cURzuyC0y8k6Lu6cHcnE6BCEG5gbH
+ SrsvJxrWFcnv0JF4gNyMZVF0tG9FEhD/3My9yoOU7R+tyCqpt/zr80bKH g==;
+X-CSE-ConnectionGUID: bcwGHvHYRR6VUGbcHzDlyw==
+X-CSE-MsgGUID: 8vUMFW2nQOi6p5NPVzumfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="43660843"
+X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="43660843"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 00:48:17 -0700
+X-CSE-ConnectionGUID: 0PYedfNLQuKQPawNWxfa/Q==
+X-CSE-MsgGUID: 2SGkKpM4QOST3RGuerhwXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="102058168"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa002.jf.intel.com with ESMTP; 23 Sep 2024 23:46:04 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>,
- Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCHv2 3/3] drm/i915/dp: Include the time taken by AUX Tx for
- timeout
-Date: Tue, 24 Sep 2024 12:06:16 +0530
-Message-Id: <20240924063616.1726369-4-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240924063616.1726369-1-arun.r.murthy@intel.com>
-References: <20240924063616.1726369-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="75855430"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.183])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 00:48:15 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>, Srikanth V NagaVenkata
+ <nagavenkata.srikanth.v@intel.com>
+Subject: Re: [PATCHv2 2/3] drm/i915/dp: read Aux RD interval just before
+ reading the FFE preset
+In-Reply-To: <20240924061358.1725306-3-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240924061358.1725306-1-arun.r.murthy@intel.com>
+ <20240924061358.1725306-3-arun.r.murthy@intel.com>
+Date: Tue, 24 Sep 2024 10:48:12 +0300
+Message-ID: <871q195w77.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,34 +71,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As per DP spec the timeout for LANE_CHANNEL_EQ_DONE is 400ms. But this
-timeout value is exclusively for the Aux RD Interval and excludes the
-time consumed for the AUX Tx (i.e reading/writing FFE presets). Add
-another 50ms for these AUX Tx to the 400ms timeout.
-Ref: "Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence" of
-DP2.1a spec.
+On Tue, 24 Sep 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence of
+> DP2.1a spec.
+> During LT, the transmitter shall read DPCD 02216h before DPCD
+> 00202h through 00207h, and 0200Ch through 0200Fh
+>
+> Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_dp_link_training.c    | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index f41b69840ad9..460426a3b506 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1419,12 +1419,6 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+>  	for (try = 0; try < max_tries; try++) {
+>  		fsleep(delay_us);
+>  
+> -		/*
+> -		 * The delay may get updated. The transmitter shall read the
+> -		 * delay before link status during link training.
+> -		 */
+> -		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
+> -
+>  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
+>  			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
+>  			return false;
+> @@ -1451,6 +1445,12 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+>  		if (time_after(jiffies, deadline))
+>  			timeout = true; /* try one last time after deadline */
+>  
+> +		/*
+> +		 * During LT, Tx shall read DPCD 02216h before DPCD 00202h to 00207h and
+> +		 * 0200Ch through 0200Fh.
+> +		 */
 
-Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I really like comments that are actual helpful sentences. Why do I I
+need to look up what 02216h and 00202h-00207h are? What's wrong with the
+original comment?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index ec6c323a49c0..ddf91b3533a4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1414,7 +1414,7 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
- 	}
- 
- 	/* Time budget for the LANEx_EQ_DONE Sequence */
--	deadline = jiffies + msecs_to_jiffies_timeout(400);
-+	deadline = jiffies + msecs_to_jiffies_timeout(450);
- 
- 	for (try = 0; try < max_tries; try++) {
- 		fsleep(delay_us);
+BR,
+Jani.
+
+
+> +		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
+> +
+>  		/* Update signal levels and training set as requested. */
+>  		intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
+>  		if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
