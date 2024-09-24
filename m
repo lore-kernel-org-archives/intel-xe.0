@@ -4,89 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A6EECF9C6F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 11:48:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92250CF9C6B
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 11:58:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D941B10E88F;
-	Tue, 24 Sep 2024 11:48:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB1610E0B9;
+	Tue, 24 Sep 2024 11:58:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="c0g4jSu3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iGDdvhLJ";
 	dkim-atps=neutral
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5DE10E892
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 11:48:33 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-5c40942358eso9005936a12.1
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 04:48:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1727178512; x=1727783312; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=7NA1cOy3s5M4fPObLCnZIz0I0QLAAAgSsc4ZRVyCK6w=;
- b=c0g4jSu3w+Q+cxU7p32EINy8BcYqiWsaFFX0hf7+fJ4HlHFsB0hYAPnpeOjXj8o2Rk
- e4QFZhEKJ/L9fholxbWKErYz3Fv6Wfze0Ztxcp39RJFtajZK6SFWWdigkd7j0SzAW2Um
- oJD/XJq6TDL/JosCl7ySot4Cm8zxKsq+rDJRA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727178512; x=1727783312;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=7NA1cOy3s5M4fPObLCnZIz0I0QLAAAgSsc4ZRVyCK6w=;
- b=k/bg+//SEC6vx5MaGCrZANk83hPS+5WIPSY0xvLj+ingtccHiZUT7sTQ+cO4SnPoES
- yhmpkrqfr3mpkuQLn2whH51e04oHiNcOYJdj+K+mLMR+r8qhQgQ6N4RiR0eCAxRGZRMG
- 70cBOrT4In6Y97aUT3J9cvLmKjaVccuDZQj3cqyTcNAIwlPc9MQx94npga/EEjefJyuB
- BMI1m2KKYmquv4sSyys/T6nsxCNW+hFjrEv/4v9Kjd0vVXJ8DqeahEGeD3tW/7FEWg3L
- YzPFIC6EeCDMU174IhIXnL60qwECegqGpVUgYvyoTi8z6S/BLS373jGPxL2jfwwi962O
- 6DdA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWOzZFYSEANYJRlLPaXEOCE53TSkaqkcTYTN/wUasG6DF7KiLszdTE1hrMdpMxZiBM97MuvTQxTfQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwMTwB27+YpKUey+fdy96G0vPLoGpsvb94KBzqqrpd7zt6ImeLC
- g+yTkvvrsbA6pCO5CH4F23edzT8c1+jOK9HxVwh/OYEwckD7oaNjOcqbdWV7DfE=
-X-Google-Smtp-Source: AGHT+IEtY+2akFbz9L/tnJdGfU1HSwIRb4KroTRejDA1/9mt4PKUIssetTAtLja+hILcTVO21z6Vkg==
-X-Received: by 2002:a05:6402:34c9:b0:5c5:cda5:9328 with SMTP id
- 4fb4d7f45d1cf-5c5cdfa04e3mr3354726a12.4.1727178511755; 
- Tue, 24 Sep 2024 04:48:31 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5c5cf4c5270sm682197a12.77.2024.09.24.04.48.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Sep 2024 04:48:31 -0700 (PDT)
-Date: Tue, 24 Sep 2024 13:48:29 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>,
- Alistair Popple <apopple@nvidia.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- simona.vetter@ffwll.ch, Philip.Yang@amd.com,
- akpm@linux-foundation.org, christian.koenig@amd.com
-Subject: Re: [PATCH 1/1] mm/migrate: Trylock device page in do_swap_page
-Message-ID: <ZvKnDT_bdx_PhAcG@phenom.ffwll.local>
-Mail-Followup-To: Matthew Brost <matthew.brost@intel.com>,
- Felix Kuehling <felix.kuehling@amd.com>,
- Alistair Popple <apopple@nvidia.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- Philip.Yang@amd.com, akpm@linux-foundation.org,
- christian.koenig@amd.com
-References: <20240911030337.870160-1-matthew.brost@intel.com>
- <20240911030337.870160-2-matthew.brost@intel.com>
- <87mskehjtc.fsf@nvdebian.thelocal>
- <ZuS/NH/P8Fl+qptx@DUT025-TGLU.fm.intel.com>
- <87msk5our1.fsf@nvdebian.thelocal>
- <ece41917-2ea7-4571-83a5-a50c776c6587@amd.com>
- <Zu3n3MmtdlEDaXnF@DUT025-TGLU.fm.intel.com>
- <9a3e62e0-cb62-4d73-9694-7be8893f7206@amd.com>
- <Zu3wV9FJSTs1E5Vx@DUT025-TGLU.fm.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0126A10E0B9
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 11:58:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727179106; x=1758715106;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=No3ebR6HR11yo1fB/fSY2fqBgzAYolo85yALXAP1ygE=;
+ b=iGDdvhLJ4QHP3j1VmYll5HNePEjo1P7LV2pzf4VGGk+564Zq1YJPElIo
+ SuJrYxTiz7CLHVcyIqxsyveNxSBDJFNiljagFvNQeidChgAVC9b22dSll
+ AT9Drfw6XXU+7j3Vg/mpOy6D37zEGeF36KrtzEkvMa7amqiiEY4Afyusl
+ 5Uzgw6hPynvBLg9fpBAzCe7jbGGTZCWuymzOohMemyu7bDBcizMXiPwj0
+ UNJFCVasbJTSxH/cjaPsy6OnFqtGCD91dkShGopQ166KOZmxp/YJ5ytPC
+ CRQsQUZeZEbBnjJSakcDuJy+hD0YWzIYj8Q8SvxC5Yi8IwicKAI7idEhW A==;
+X-CSE-ConnectionGUID: +4dfrMF7RnKOFO2bTHoB/A==
+X-CSE-MsgGUID: 1c4jyvtgSlGxxdRgPiro6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="29957004"
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="29957004"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 04:58:25 -0700
+X-CSE-ConnectionGUID: nziT0MbeQTGpi8LO52n8FA==
+X-CSE-MsgGUID: 1rmeqXiySAi8MrjHlYgbTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="76319063"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orviesa004.jf.intel.com with ESMTP; 24 Sep 2024 04:58:22 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+Subject: [PATCH v5 00/23] Fix xe_force_wake_get() failure handling
+Date: Tue, 24 Sep 2024 17:46:18 +0530
+Message-Id: <20240924121641.1045763-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zu3wV9FJSTs1E5Vx@DUT025-TGLU.fm.intel.com>
-X-Operating-System: Linux phenom 6.10.6-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,294 +70,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 20, 2024 at 09:59:51PM +0000, Matthew Brost wrote:
-> On Fri, Sep 20, 2024 at 05:50:10PM -0400, Felix Kuehling wrote:
-> > 
-> > On 2024-09-20 17:23, Matthew Brost wrote:
-> > > On Fri, Sep 20, 2024 at 04:26:50PM -0400, Felix Kuehling wrote:
-> > > > On 2024-09-18 11:10, Alistair Popple wrote:
-> > > > > Matthew Brost <matthew.brost@intel.com> writes:
-> > > > > 
-> > > > > > On Wed, Sep 11, 2024 at 02:53:31PM +1000, Alistair Popple wrote:
-> > > > > > > Matthew Brost <matthew.brost@intel.com> writes:
-> > > > > > > 
-> > > > > > > I haven't seen the same in the NVIDIA UVM driver (out-of-tree, I know)
-> > > > > > Still a driver.
-> > > > > Indeed, and I'm happy to answer any questions about our implementation.
-> > > > > 
-> > > > > > > but theoretically it seems like it should be possible. However we
-> > > > > > > serialize migrations of the same virtual address range to avoid these
-> > > > > > > kind of issues as they can happen the other way too (ie. multiple
-> > > > > > > threads trying to migrate to GPU).
-> > > > > > > 
-> > > > > > > So I suspect what happens in UVM is that one thread wins and installs
-> > > > > > > the migration entry while the others fail to get the driver migration
-> > > > > > > lock and bail out sufficiently early in the fault path to avoid the
-> > > > > > > live-lock.
-> > > > > > > 
-> > > > > > I had to try hard to show this, doubt an actual user could trigger this.
-> > > > > > 
-> > > > > > I wrote a test which kicked 8 threads, each thread did a pthread join,
-> > > > > > and then tried to read the same page. This repeats in loop for like 512
-> > > > > > pages or something. I needed an exclusive lock in migrate_to_ram vfunc
-> > > > > > for it to livelock. Without an exclusive lock I think on average I saw
-> > > > > > about 32k retries (i.e. migrate_to_ram calls on the same page) before a
-> > > > > > thread won this race.
-> > > > > > 
-> > > > > >   From reading UVM, pretty sure if you tried hard enough you could trigger
-> > > > > > a livelock given it appears you take excluvise locks in migrate_to_ram.
-> > > > > Yes, I suspect you're correct here and that we just haven't tried hard
-> > > > > enough to trigger it.
-> > > > > 
-> > > > > > > > Cc: Philip Yang <Philip.Yang@amd.com>
-> > > > > > > > Cc: Felix Kuehling <felix.kuehling@amd.com>
-> > > > > > > > Cc: Christian König <christian.koenig@amd.com>
-> > > > > > > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > > > > > > Suggessted-by: Simona Vetter <simona.vetter@ffwll.ch>
-> > > > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > > > > ---
-> > > > > > > >    mm/memory.c         | 13 +++++++---
-> > > > > > > >    mm/migrate_device.c | 60 +++++++++++++++++++++++++++++++--------------
-> > > > > > > >    2 files changed, 50 insertions(+), 23 deletions(-)
-> > > > > > > > 
-> > > > > > > > diff --git a/mm/memory.c b/mm/memory.c
-> > > > > > > > index 3c01d68065be..bbd97d16a96a 100644
-> > > > > > > > --- a/mm/memory.c
-> > > > > > > > +++ b/mm/memory.c
-> > > > > > > > @@ -4046,10 +4046,15 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
-> > > > > > > >    			 * Get a page reference while we know the page can't be
-> > > > > > > >    			 * freed.
-> > > > > > > >    			 */
-> > > > > > > > -			get_page(vmf->page);
-> > > > > > > > -			pte_unmap_unlock(vmf->pte, vmf->ptl);
-> > > > > > > > -			ret = vmf->page->pgmap->ops->migrate_to_ram(vmf);
-> > > > > > > > -			put_page(vmf->page);
-> > > > > > > > +			if (trylock_page(vmf->page)) {
-> > > > > > > > +				get_page(vmf->page);
-> > > > > > > > +				pte_unmap_unlock(vmf->pte, vmf->ptl);
-> > > > > > > This is all beginning to look a lot like migrate_vma_collect_pmd(). So
-> > > > > > > rather than do this and then have to pass all this context
-> > > > > > > (ie. fault_page) down to the migrate_vma_* functions could we instead
-> > > > > > > just do what migrate_vma_collect_pmd() does here? Ie. we already have
-> > > > > > > the PTL and the page lock so there's no reason we couldn't just setup
-> > > > > > > the migration entry prior to calling migrate_to_ram().
-> > > > > > > 
-> > > > > > > Obviously calling migrate_vma_setup() would show the page as not
-> > > > > > > migrating, but drivers could easily just fill in the src_pfn info after
-> > > > > > > calling migrate_vma_setup().
-> > > > > > > 
-> > > > > > > This would eliminate the whole fault_page ugliness.
-> > > > > > > 
-> > > > > > This seems like it would work and agree it likely be cleaner. Let me
-> > > > > > play around with this and see what I come up with. Multi-tasking a bit
-> > > > > > so expect a bit of delay here.
-> > > > > > 
-> > > > > > Thanks for the input,
-> > > > > > Matt
-> > > > Thanks! Sorry, I'm late catching up after a vacation. Please keep Philip,
-> > > > Christian and myself in the loop with future patches in this area.
-> > > > 
-> > > Will do. Already have another local patch set which helps drivers dma
-> > > map 2M pages for migrations if SRAM is physically contiguous. Seems
-> > > helpful for performance on Intel hardware. Probably post that soon for
-> > > early feedack.
-> > 
-> > OK.
-> > 
-> > 
-> > > 
-> > > Longer term I thinking 2M migration entries, 2M device pages, and being
-> > > able to install 2M THP on VRAM -> SRAM could be really helpful. I'm
-> > > finding migrate_vma_* functions take up like 80-90% of the time in the
-> > > CPU / GPU fault handlers on a fault (or prefetch) which doesn't seem
-> > > ideal. Seems like 2M entries for everything would really help here. No
-> > > idea how feasible this is as the core MM stuff gets confusing fast. Any
-> > > input on this idea?
-> > 
-> > I agree with your observations. We found that the migrate_vma_* code was the
-> > bottle neck for migration performance as well, and not breaking 2M pages
-> > could reduce that overhead a lot. I don't have any specific ideas. I'm not
-> > familiar with the details of that code myself. Philip has looked at this
-> > (and some old NVidia patches from a few years ago) in the past but never had
-> > enough uninterrupted time to make it past prototyping.
-> > 
-> 
-> Cool good to know this isn't some crazy idea. Doubt it happen anytime
-> soon as I need to get a working baseline in before anything then start
-> applying optimizations and help in get other features to get the design
-> complete. But eventually will probably try to look at this. May ping
-> Philip and Nvidia when I have time to dig in here.
+In case of xe_force_wake_get() call the refcount for domains
+are incremented irrespective of failure or success, which can lead to
+undefined behaviour: 
+[1] subsequent forcewake call by callee function assumes domains are 
+already awake, which might not be true. This shows perfectly balanced 
+xe_force_wake_get/_put can also cause problem.
 
-I think the big step will be moving hmm.c and migrate.c apis over from
-struct page to folios. That should also give us some nice benefits on the
-gpu side, since instead of 4k pages to track we could allocate 2m gpu
-pages.
+[2] The functions are using xe_force_wake_get() and return on failures.
+In this scenario only the first caller returns and other functions will
+always assume domains to be awake.
 
-Once we have folios at the driver/core mm api level doing all the fancy
-thp stuff should be at least a well-contained problem. But I might be
-dellusionally optimistic here :-)
--Sima
+[1] func_a() {
+	XE_WARN(xe_force_wake_get()) <---> fails but increments refcount
 
-> 
-> Matt
-> 
-> > Regards,
-> >   Felix
-> > 
-> > 
-> > > 
-> > > Matt
-> > > 
-> > > > Regards,
-> > > >    Felix
-> > > > 
-> > > > 
-> > > > > > > > +				ret = vmf->page->pgmap->ops->migrate_to_ram(vmf);
-> > > > > > > > +				put_page(vmf->page);
-> > > > > > > > +				unlock_page(vmf->page);
-> > > > > > > > +			} else {
-> > > > > > > > +				pte_unmap_unlock(vmf->pte, vmf->ptl);
-> > > > > > > > +			}
-> > > > > > > >    		} else if (is_hwpoison_entry(entry)) {
-> > > > > > > >    			ret = VM_FAULT_HWPOISON;
-> > > > > > > >    		} else if (is_pte_marker_entry(entry)) {
-> > > > > > > > diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-> > > > > > > > index 6d66dc1c6ffa..049893a5a179 100644
-> > > > > > > > --- a/mm/migrate_device.c
-> > > > > > > > +++ b/mm/migrate_device.c
-> > > > > > > > @@ -60,6 +60,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> > > > > > > >    				   struct mm_walk *walk)
-> > > > > > > >    {
-> > > > > > > >    	struct migrate_vma *migrate = walk->private;
-> > > > > > > > +	struct folio *fault_folio = migrate->fault_page ?
-> > > > > > > > +		page_folio(migrate->fault_page) : NULL;
-> > > > > > > >    	struct vm_area_struct *vma = walk->vma;
-> > > > > > > >    	struct mm_struct *mm = vma->vm_mm;
-> > > > > > > >    	unsigned long addr = start, unmapped = 0;
-> > > > > > > > @@ -88,11 +90,13 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> > > > > > > >    			folio_get(folio);
-> > > > > > > >    			spin_unlock(ptl);
-> > > > > > > > -			if (unlikely(!folio_trylock(folio)))
-> > > > > > > > +			if (unlikely(fault_folio != folio &&
-> > > > > > > > +				     !folio_trylock(folio)))
-> > > > > > > >    				return migrate_vma_collect_skip(start, end,
-> > > > > > > >    								walk);
-> > > > > > > >    			ret = split_folio(folio);
-> > > > > > > > -			folio_unlock(folio);
-> > > > > > > > +			if (fault_folio != folio)
-> > > > > > > > +				folio_unlock(folio);
-> > > > > > > >    			folio_put(folio);
-> > > > > > > >    			if (ret)
-> > > > > > > >    				return migrate_vma_collect_skip(start, end,
-> > > > > > > > @@ -192,7 +196,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> > > > > > > >    		 * optimisation to avoid walking the rmap later with
-> > > > > > > >    		 * try_to_migrate().
-> > > > > > > >    		 */
-> > > > > > > > -		if (folio_trylock(folio)) {
-> > > > > > > > +		if (fault_folio == folio || folio_trylock(folio)) {
-> > > > > > > >    			bool anon_exclusive;
-> > > > > > > >    			pte_t swp_pte;
-> > > > > > > > @@ -204,7 +208,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> > > > > > > >    				if (folio_try_share_anon_rmap_pte(folio, page)) {
-> > > > > > > >    					set_pte_at(mm, addr, ptep, pte);
-> > > > > > > > -					folio_unlock(folio);
-> > > > > > > > +					if (fault_folio != folio)
-> > > > > > > > +						folio_unlock(folio);
-> > > > > > > >    					folio_put(folio);
-> > > > > > > >    					mpfn = 0;
-> > > > > > > >    					goto next;
-> > > > > > > > @@ -363,6 +368,8 @@ static unsigned long migrate_device_unmap(unsigned long *src_pfns,
-> > > > > > > >    					  unsigned long npages,
-> > > > > > > >    					  struct page *fault_page)
-> > > > > > > >    {
-> > > > > > > > +	struct folio *fault_folio = fault_page ?
-> > > > > > > > +		page_folio(fault_page) : NULL;
-> > > > > > > >    	unsigned long i, restore = 0;
-> > > > > > > >    	bool allow_drain = true;
-> > > > > > > >    	unsigned long unmapped = 0;
-> > > > > > > > @@ -427,7 +434,8 @@ static unsigned long migrate_device_unmap(unsigned long *src_pfns,
-> > > > > > > >    		remove_migration_ptes(folio, folio, false);
-> > > > > > > >    		src_pfns[i] = 0;
-> > > > > > > > -		folio_unlock(folio);
-> > > > > > > > +		if (fault_folio != folio)
-> > > > > > > > +			folio_unlock(folio);
-> > > > > > > >    		folio_put(folio);
-> > > > > > > >    		restore--;
-> > > > > > > >    	}
-> > > > > > > > @@ -536,6 +544,8 @@ int migrate_vma_setup(struct migrate_vma *args)
-> > > > > > > >    		return -EINVAL;
-> > > > > > > >    	if (args->fault_page && !is_device_private_page(args->fault_page))
-> > > > > > > >    		return -EINVAL;
-> > > > > > > > +	if (args->fault_page && !PageLocked(args->fault_page))
-> > > > > > > > +		return -EINVAL;
-> > > > > > > >    	memset(args->src, 0, sizeof(*args->src) * nr_pages);
-> > > > > > > >    	args->cpages = 0;
-> > > > > > > > @@ -799,19 +809,13 @@ void migrate_vma_pages(struct migrate_vma *migrate)
-> > > > > > > >    }
-> > > > > > > >    EXPORT_SYMBOL(migrate_vma_pages);
-> > > > > > > > -/*
-> > > > > > > > - * migrate_device_finalize() - complete page migration
-> > > > > > > > - * @src_pfns: src_pfns returned from migrate_device_range()
-> > > > > > > > - * @dst_pfns: array of pfns allocated by the driver to migrate memory to
-> > > > > > > > - * @npages: number of pages in the range
-> > > > > > > > - *
-> > > > > > > > - * Completes migration of the page by removing special migration entries.
-> > > > > > > > - * Drivers must ensure copying of page data is complete and visible to the CPU
-> > > > > > > > - * before calling this.
-> > > > > > > > - */
-> > > > > > > > -void migrate_device_finalize(unsigned long *src_pfns,
-> > > > > > > > -			unsigned long *dst_pfns, unsigned long npages)
-> > > > > > > > +static void __migrate_device_finalize(unsigned long *src_pfns,
-> > > > > > > > +				      unsigned long *dst_pfns,
-> > > > > > > > +				      unsigned long npages,
-> > > > > > > > +				      struct page *fault_page)
-> > > > > > > >    {
-> > > > > > > > +	struct folio *fault_folio = fault_page ?
-> > > > > > > > +		page_folio(fault_page) : NULL;
-> > > > > > > >    	unsigned long i;
-> > > > > > > >    	for (i = 0; i < npages; i++) {
-> > > > > > > > @@ -838,7 +842,8 @@ void migrate_device_finalize(unsigned long *src_pfns,
-> > > > > > > >    		src = page_folio(page);
-> > > > > > > >    		dst = page_folio(newpage);
-> > > > > > > >    		remove_migration_ptes(src, dst, false);
-> > > > > > > > -		folio_unlock(src);
-> > > > > > > > +		if (fault_folio != src)
-> > > > > > > > +			folio_unlock(src);
-> > > > > > > >    		if (is_zone_device_page(page))
-> > > > > > > >    			put_page(page);
-> > > > > > > > @@ -854,6 +859,22 @@ void migrate_device_finalize(unsigned long *src_pfns,
-> > > > > > > >    		}
-> > > > > > > >    	}
-> > > > > > > >    }
-> > > > > > > > +
-> > > > > > > > +/*
-> > > > > > > > + * migrate_device_finalize() - complete page migration
-> > > > > > > > + * @src_pfns: src_pfns returned from migrate_device_range()
-> > > > > > > > + * @dst_pfns: array of pfns allocated by the driver to migrate memory to
-> > > > > > > > + * @npages: number of pages in the range
-> > > > > > > > + *
-> > > > > > > > + * Completes migration of the page by removing special migration entries.
-> > > > > > > > + * Drivers must ensure copying of page data is complete and visible to the CPU
-> > > > > > > > + * before calling this.
-> > > > > > > > + */
-> > > > > > > > +void migrate_device_finalize(unsigned long *src_pfns,
-> > > > > > > > +			unsigned long *dst_pfns, unsigned long npages)
-> > > > > > > > +{
-> > > > > > > > +	return __migrate_device_finalize(src_pfns, dst_pfns, npages, NULL);
-> > > > > > > > +}
-> > > > > > > >    EXPORT_SYMBOL(migrate_device_finalize);
-> > > > > > > >    /**
-> > > > > > > > @@ -869,7 +890,8 @@ EXPORT_SYMBOL(migrate_device_finalize);
-> > > > > > > >     */
-> > > > > > > >    void migrate_vma_finalize(struct migrate_vma *migrate)
-> > > > > > > >    {
-> > > > > > > > -	migrate_device_finalize(migrate->src, migrate->dst, migrate->npages);
-> > > > > > > > +	__migrate_device_finalize(migrate->src, migrate->dst, migrate->npages,
-> > > > > > > > +				  migrate->fault_page);
-> > > > > > > >    }
-> > > > > > > >    EXPORT_SYMBOL(migrate_vma_finalize);
+	func_b();
+
+	XE_WARN(xe_force_wake_put());<---> decrements refcounts 
+ }
+
+    func_b() {
+	if(xe_force_wake_get()) <---> succeeds due to refcount of caller
+		return;
+
+	does mmio_operations(); <---> Domain might not be awake
+
+	xe_force_wake_put(); <---> decrement refcount
+ }
+  	
+[2] func_a() {
+	int err = xe_force_wake_get(); <---> returns if fails, inc refcount
+	if (err)
+		return;
+
+	mmio_operations();
+
+	xe_force_wake_put(); 
+ }
+
+    func_b() {
+        if (xe_force_wake_get()) <---> succeeds due to refcnt of func_a()
+              return;
+
+        mmio_operations(); <---> Invalid accesses
+
+        xe_force_wake_put(); <---> decrements refcount for func_b
+ }
+
+This series ensures refcount is not incremented in case of
+xe_force_wake_get() failure and return mask of successfully refcount 
+incremented domains.
+
+For single domains (except XE_FORCEWAKE_ALL), the return value will be
+0 on failure and doesn't need call to xe_force_wake_put()(if called,
+call will return with check since input mask will be 0).
+For XE_FORCEWAKE_ALL caller need to compare the returned mask with
+XE_FORCEWAKE_ALL to confirm the success of call and need to explicitly
+call xe_force_wake_put() with returned mask to put awaken domains to
+sleep.
+ 
+
+-v2 (Rodrigo, Badal)
+- Dont put successfully awaken domains to sleep. Instead rely on _put to
+  do that.
+- Modified xe_force_wake_get() to return the refcount-incremented domain
+  mask and xe_force_wake_put() uses this returned mask.
+
+-v3 (Michal, Badal)
+- Use explicit type for domain masks.
+- Dont use xe_assert in _get/_put error reporting.
+- Restructure patches, so Patch 23 has only kernel-doc and return
+  change.
+- use xe_gt_WARN_ON instead of XE_WARN in _put error. 
+- Improve kernel-doc for _get.
+
+-v4
+- Rebase fixes
+
+-v5 (MattB, Rodrigo, Badal)
+- Avoid explicit type unsigned int
+- Use unsigned int as return for xe_force_wake_get()
+- Add xe_gt_WARN_ON inside xe_force_wake_get() for ack failures
+
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Himal Prasad Ghimiray (23):
+  drm/xe: Error handling in xe_force_wake_get()
+  drm/xe: Modify xe_force_wake_put to handle _get returned mask
+  drm/xe/device: Update handling of xe_force_wake_get return
+  drm/xe/hdcp: Update handling of xe_force_wake_get return
+  drm/xe/gsc: Update handling of xe_force_wake_get return
+  drm/xe/gt: Update handling of xe_force_wake_get return
+  drm/xe/xe_gt_idle: Update handling of xe_force_wake_get return
+  drm/xe/devcoredump: Update handling of xe_force_wake_get return
+  drm/xe/tests/mocs: Update xe_force_wake_get() return handling
+  drm/xe/mocs: Update handling of xe_force_wake_get return
+  drm/xe/xe_drm_client: Update handling of xe_force_wake_get return
+  drm/xe/xe_gt_debugfs: Update handling of xe_force_wake_get return
+  drm/xe/guc: Update handling of xe_force_wake_get return
+  drm/xe/huc: Update handling of xe_force_wake_get return
+  drm/xe/oa: Handle force_wake_get failure in xe_oa_stream_init()
+  drm/xe/pat: Update handling of xe_force_wake_get return
+  drm/xe/gt_tlb_invalidation_ggtt: Update handling of xe_force_wake_get
+    return
+  drm/xe/xe_reg_sr: Update handling of xe_force_wake_get return
+  drm/xe/query: Update handling of xe_force_wake_get return
+  drm/xe/vram: Update handling of xe_force_wake_get return
+  drm/xe: forcewake debugfs open fails on xe_forcewake_get failure
+  drm/xe: Ensure __must_check for xe_force_wake_get() return
+  drm/xe: Change return type to void for xe_force_wake_put
+
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c    |   6 +-
+ drivers/gpu/drm/xe/tests/xe_mocs.c          |  18 ++--
+ drivers/gpu/drm/xe/xe_debugfs.c             |  27 ++++-
+ drivers/gpu/drm/xe/xe_devcoredump.c         |  14 ++-
+ drivers/gpu/drm/xe/xe_device.c              |  25 +++--
+ drivers/gpu/drm/xe/xe_drm_client.c          |   8 +-
+ drivers/gpu/drm/xe/xe_force_wake.c          |  74 +++++++++++---
+ drivers/gpu/drm/xe/xe_force_wake.h          |   8 +-
+ drivers/gpu/drm/xe/xe_gsc.c                 |  23 ++---
+ drivers/gpu/drm/xe/xe_gsc_proxy.c           |   9 +-
+ drivers/gpu/drm/xe/xe_gt.c                  | 105 +++++++++++---------
+ drivers/gpu/drm/xe/xe_gt_debugfs.c          |  13 ++-
+ drivers/gpu/drm/xe/xe_gt_idle.c             |  26 +++--
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   5 +-
+ drivers/gpu/drm/xe/xe_guc.c                 |  13 +--
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  50 ++++++----
+ drivers/gpu/drm/xe/xe_huc.c                 |   8 +-
+ drivers/gpu/drm/xe/xe_mocs.c                |  14 +--
+ drivers/gpu/drm/xe/xe_oa.c                  |  11 +-
+ drivers/gpu/drm/xe/xe_pat.c                 |  66 ++++++------
+ drivers/gpu/drm/xe/xe_query.c               |   8 +-
+ drivers/gpu/drm/xe/xe_reg_sr.c              |  24 ++---
+ drivers/gpu/drm/xe/xe_vram.c                |  12 ++-
+ 23 files changed, 335 insertions(+), 232 deletions(-)
 
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.34.1
+
