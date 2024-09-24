@@ -4,73 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34A3ACF9C6B
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 09:38:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AED1CF9C6B
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Sep 2024 09:49:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2DB110E1C6;
-	Tue, 24 Sep 2024 09:38:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D819D10E6A4;
+	Tue, 24 Sep 2024 09:49:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="c0Zepdzg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LFu9KuVE";
 	dkim-atps=neutral
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29B6E10E695
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 09:38:03 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-a7aa086b077so693918366b.0
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Sep 2024 02:38:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1727170681; x=1727775481; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=pA/jBwAO5XXfuYXOO0xB58A0oVBWtnFMR/8BfOS2NXA=;
- b=c0ZepdzgH5OSey+otzCb589GXUsviU8woK9z+HFgkG1QwI9K1pXZYmUd4DflPjdTfe
- eXR7GdF2CEMPm2OKX6SeyhayIezggOb9O1p5/gQO9TadUpfMBhkdbiSxcZElBJw97ilH
- xpQmzGLPiWOpBjbR88ahaRGK1z5zREfD0ooEU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727170681; x=1727775481;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=pA/jBwAO5XXfuYXOO0xB58A0oVBWtnFMR/8BfOS2NXA=;
- b=KCkyXpQf5VxFaKOflIDG/yhSzSUyrFmJkgxqZp88U8qrFf9dGzct2oUngc8s0DNgmQ
- rJyd/RYoOnipLiNvANG0gPCQTmNPlZcBjaEc1hX+6LhkqYhrl/nDkNAHCmRtJ39X/v3y
- zs4xThihBwmQSbsC0TpC8m0PL6JeSSnnFbg9bHAgbeyGghE7YCI67o6Hj6/nfzIDHR6Q
- NwLJHYsZAttCk5C6i5FydFHCFYPXFkRnUKZy1pVb42VZckTLuya32uYHdXonA+9BwKh+
- Yyl0ivugwZozYNl6Nl0iVv129ZFnj4SJpvIiur3MuCHl1mQLiqZMoN/7FdlueyddYTNx
- Jjqg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXfHKhvAWhuQNDIHwWdCi5UZpGTdHg43wIR7smLIZD85/v+MZ2rc4N0Mk9GldrVMp6V3ugkRRPo9g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwywqrFj0FhpGSPCvBf4vlhlFR00031oXODdL9doUH8PHpqeMU9
- 8VbBcupMvS628GSOmrOLZS3HlyxR/HmsF+aDyb+NmpUldlPlQysRd1h7ljDpF1I=
-X-Google-Smtp-Source: AGHT+IFB+hBloJRj69I6H+/qBWvK2CLUjJ9ANVe9W838Pqm/Q5PF/DYz9NFMty68lYFF3U6E4XpF3g==
-X-Received: by 2002:a17:907:a088:b0:a8d:2faf:d337 with SMTP id
- a640c23a62f3a-a90d4fdec72mr1574167266b.7.1727170681494; 
- Tue, 24 Sep 2024 02:38:01 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a9392f355bbsm63471766b.1.2024.09.24.02.38.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Sep 2024 02:38:01 -0700 (PDT)
-Date: Tue, 24 Sep 2024 11:37:59 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, francois.dugast@intel.com,
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com
-Subject: Re: [PATCH v4 1/3] drm: Introduce device wedged event
-Message-ID: <ZvKId2EDVXiwrRJT@phenom.ffwll.local>
-References: <20240906094225.3082162-1-raag.jadav@intel.com>
- <20240906094225.3082162-2-raag.jadav@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52AC410E6A2;
+ Tue, 24 Sep 2024 09:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727171371; x=1758707371;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=LJ8RNq+CLAtdQwJ++qHkszvnF+GnOy64HBmVoy1UqS4=;
+ b=LFu9KuVE1oKTb+EoENUu/0sEpoKI6wNlSHXKqXtfaot3gQgcJUUlicfe
+ 5V0rw6H2VWcKbWMvrkVmCyqburCSIiA4L9bOlNQ11dUuBqSwl4kTZrfr+
+ LfIvvF10XQ5SL5Nkivksab8wv52Oh1LbCNu8amNwZNRsYlFq+Si1qDrhd
+ xI/ABWwEupbCM+GSv5VnGSF+5E4Jt4m+Niu1PdmziITN0IqrTLKG3ttPF
+ z4omR3mfShf2kIOcCGx8nOl3aeH2unmJfyixw8AbLNkMcaAAOEUiExXEe
+ Nq7ui41d7QSGBcYvN4hJ58bCPEcTnP2nzk9y2MyiDxKQBkt8Ua1v4SCT0 Q==;
+X-CSE-ConnectionGUID: M05HZBpvQ0+8urkTU70QWw==
+X-CSE-MsgGUID: c3G7dZJnS6+R83QGc0zNow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="43623650"
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="43623650"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 02:49:31 -0700
+X-CSE-ConnectionGUID: p8292GPXRzWS185VfFs0Nw==
+X-CSE-MsgGUID: NLmh/fFKQUy+kBrc4lMzMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="102187220"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.183])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 02:49:29 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ lucas.demarchi@intel.com
+Subject: Re: [PATCH v2 0/9] drm/i915/display: platform identification with
+ display->is.<PLATFORM>
+In-Reply-To: <ZtCb5yc6KCy1S6bo@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1724092799.git.jani.nikula@intel.com>
+ <Zs-LdJYx_lVDt9PC@intel.com> <ZtCb5yc6KCy1S6bo@intel.com>
+Date: Tue, 24 Sep 2024 12:49:25 +0300
+Message-ID: <87wmj14c0q.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240906094225.3082162-2-raag.jadav@intel.com>
-X-Operating-System: Linux phenom 6.10.6-amd64 
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,87 +72,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 06, 2024 at 03:12:23PM +0530, Raag Jadav wrote:
-> Introduce device wedged event, which will notify userspace of wedged
-> (hanged/unusable) state of the DRM device through a uevent. This is
-> useful especially in cases where the device is in unrecoverable state
-> and requires userspace intervention for recovery.
-> 
-> Purpose of this implementation is to be vendor agnostic. Userspace
-> consumers (sysadmin) can define udev rules to parse this event and
-> take respective action to recover the device.
-> 
-> Consumer expectations:
-> ----------------------
-> 1) Unbind driver
-> 2) Reset bus device
-> 3) Re-bind driver
-> 
-> v4: s/drm_dev_wedged/drm_dev_wedged_event
->     Use drm_info() (Jani)
->     Kernel doc adjustment (Aravind)
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+On Thu, 29 Aug 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Aug 28, 2024 at 04:41:24PM -0400, Rodrigo Vivi wrote:
+>> On Mon, Aug 19, 2024 at 09:44:27PM +0300, Jani Nikula wrote:
+>> > v2 of [1]. Please read the cover letter there.
+>> >=20
+>> > This addresses review comments and adds a few more commits on top, in =
+particular
+>> > the last one showcasing the approach.
+>> >=20
+>> > The main question remains, is this what we want?
+>>=20
+>> I don't know why, but the 'is' thing is still strange.
+>>=20
+>> I know I know... I'm bad with naming myself.
+>>=20
+>> I think about 'platform' but that get too big
+>>=20
+>> if (display->platform.BROADWELL)
+>>=20
+>> I think about 'gen' but then it is overloaded....
+>>=20
+>> then I think about 'ip' is worse...
+>>=20
+>> 'version'?
+>>=20
+>> 'name'?
+>>=20
+>> if (display->name.HASWELL)...
+>>=20
+>> ....
+>>=20
+>> But well, I like the overall simplification here in general.
+>> Without a better name to suggest, I guess let's just move ahead...
+>
+> One slight concern with the is.foo is whether it complicates finding
+> things with eg. cscope. But I suppose for platforms that doesn't matter
+> all that much. For the has_foo stuff it'd be much more relevant.
 
-I think explicit documentation in the drm-uapi.rst file that links to this
-function and explains a bit what's going on would be really good here.
+It does make finding things harder with cscope and gnu global, but git
+grep for is.FOO is pretty accurate.
 
-At least judging by the discussion thread here ...
--Sima
+> Anyways, can't think of anything particularly elegant myself either,
+> so go ahead I guess.
 
-> ---
->  drivers/gpu/drm/drm_drv.c | 20 ++++++++++++++++++++
->  include/drm/drm_drv.h     |  1 +
->  2 files changed, 21 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 93543071a500..cca5d8295eb7 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -499,6 +499,26 @@ void drm_dev_unplug(struct drm_device *dev)
->  }
->  EXPORT_SYMBOL(drm_dev_unplug);
->  
-> +/**
-> + * drm_dev_wedged_event - generate a device wedged uevent
-> + * @dev: DRM device
-> + *
-> + * This generates a device wedged uevent for the DRM device specified by @dev,
-> + * on the basis of which, userspace may take respective action to recover the
-> + * device. Currently we only set WEDGED=1 in the uevent environment, but this
-> + * can be expanded in the future.
-> + */
-> +void drm_dev_wedged_event(struct drm_device *dev)
-> +{
-> +	char *event_string = "WEDGED=1";
-> +	char *envp[] = { event_string, NULL };
-> +
-> +	drm_info(dev, "device wedged, generating uevent\n");
-> +
-> +	kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-> +}
-> +EXPORT_SYMBOL(drm_dev_wedged_event);
-> +
->  /*
->   * DRM internal mount
->   * We want to be able to allocate our own "struct address_space" to control
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index cd37936c3926..eed5e54c74fd 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -489,6 +489,7 @@ void drm_put_dev(struct drm_device *dev);
->  bool drm_dev_enter(struct drm_device *dev, int *idx);
->  void drm_dev_exit(int idx);
->  void drm_dev_unplug(struct drm_device *dev);
-> +void drm_dev_wedged_event(struct drm_device *dev);
->  
->  /**
->   * drm_dev_is_unplugged - is a DRM device unplugged
-> -- 
-> 2.34.1
-> 
+So I haven't yet. I just still have that slightly uneasy feeling about
+whether this is a good thing or not. That doesn't usually make me shy
+away from things, because you can fix stuff later, but getting this
+wrong causes so much churn everywhere.
 
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+The fact that it's not a macro makes it less flexible for future
+changes. The display->is.FOO is somewhat legible, but could be
+better. Would all lowercase make it better? I don't know.
+
+More alternatives? Not elegant for sure, but just alternatives:
+
+- Lowercase names:
+
+	if (display->is.rocketlake)
+
+  Does not help with flexibility or cscope.
+
+- Lowercase macros for display, e.g. is_rocketlake().
+
+	if (is_rocketlake(display))
+
+- Macros based on just the platform name, e.g. ROCKETLAKE().
+
+	if (ROCKETLAKE(display))
+
+  or change IS_ to something else e.g. PLATFORM_ROCKETLAKE().
+
+	if (PLATFORM_ROCKETLAKE(display))
+
+  But that can get a bit long in some if ladders etc.
+
+- Go through the trouble of making the existing IS_FOO() macros _Generic
+  and accept either i915 or display pointer. This does postpone making
+  any further changes, but fairly soon there will need to be two sets of
+  macros, separate for i915 and display, even though named the same.
+
+  Also, the _Generic thing would look up the platform definitions from
+  different places, which could be error prone.
+
+
+Yeah, procrastination...
+
+
+BR,
+Jani.
+
+
+
+
+--=20
+Jani Nikula, Intel
