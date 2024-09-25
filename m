@@ -4,53 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 492A6C369D5
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 11:52:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B987AC369D4
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 11:53:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE1210E98B;
-	Wed, 25 Sep 2024 11:52:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6A410E993;
+	Wed, 25 Sep 2024 11:53:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PnzxXBtx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bK8d2iFO";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A712710E989;
- Wed, 25 Sep 2024 11:52:29 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id D3FD3A43FEE;
- Wed, 25 Sep 2024 11:52:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B535AC4CECF;
- Wed, 25 Sep 2024 11:52:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727265148;
- bh=1wf2WDGiH5QE7gMwpHD8l7o5wijPCUgUy0SkWKGpZUo=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=PnzxXBtxEloEzA5BkisMpj39YMkfZK1fZYArWCfaOPzgWhoRSdj4/ZLF9k1ot+04B
- r/OY15YhUwulpqtb3OxQBx8w33K4YnKPhbZKE0JYj9bP8I3cJKRO2qtKwCk3TLP32o
- Qp2wCPidorGSLhvldRef8ZLCH4qhYrhDYvNfNkVLbJY1BtAG52pio2PpfIoozDc4mb
- ZYHdukWEZsZ8MSShClGxwoe581OFilvD39VIaF+mPPu/07CRZv7YRsFWuwVBpueUA0
- C6IgjgmAK0d3RualMUJekY8gGwKNsIVH7PoRU8xq87N2xGQzqRrCiXpVCEI+WsHPEK
- 8hD5zMCUVx3DA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Jagmeet Randhawa <jagmeet.randhawa@intel.com>,
- Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.11 218/244] drm/xe: Drop warn on
- xe_guc_pc_gucrc_disable in guc pc fini
-Date: Wed, 25 Sep 2024 07:27:19 -0400
-Message-ID: <20240925113641.1297102-218-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240925113641.1297102-1-sashal@kernel.org>
-References: <20240925113641.1297102-1-sashal@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 954FE10E993
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 11:53:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727265210; x=1758801210;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ZKzdCzZnf7+RZkSzzbFSoqptLrFofrpJFHshQ2Ixo8E=;
+ b=bK8d2iFOwcmupaQSGCzVQnc4AxuzlGJUk0xwWFrzUHm1iNwyUK+6XqJE
+ 9RXlSiR/8C8Yym2aMw18OaqzHBONWPUegyLIaK5HQBPFLBCkVId3mjAjk
+ Eizsigb6VVRpNswgnmwTjt21Rdqt5fYLN7TW7AGfw57Ol5tn34j8P9CRN
+ H+JjmNHUlHh9smU2vS/xac1O8s2R/dzD7C7jkAM83CjspSaVwEdCjHgQy
+ Nfdez4CTqhTIZ5rtThdrNqpXG4LqaxITVr+rSAHVCFbUhIRnmC6ZrTRji
+ UdiAUML3NJgMCy94tW0TT8Z/0ptaGODTA6O+VjuAbPpcGw/RCKHYNI54k w==;
+X-CSE-ConnectionGUID: Gb/q93XQSeS+KvNaUN7zQg==
+X-CSE-MsgGUID: jSFpa7NFSVKwDmE31eYFRQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="51721662"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="51721662"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 04:53:30 -0700
+X-CSE-ConnectionGUID: 9MB9/q7kTROLaHxwA3NYWA==
+X-CSE-MsgGUID: pKEDclTiT+m0+bHux7ygxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="72053366"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.178.53])
+ ([10.245.178.53])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 04:50:06 -0700
+Message-ID: <33ac357b-4ac9-4d2f-937c-0f136dc7b0a8@linux.intel.com>
+Date: Wed, 25 Sep 2024 13:50:02 +0200
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.11
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/xe/queue: move xa_alloc to prevent UAF
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
+References: <20240925071426.144015-3-matthew.auld@intel.com>
+ <20240925071426.144015-4-matthew.auld@intel.com>
+ <598b2e8c-a50f-42ec-a6c0-749b0ae507b6@linux.intel.com>
+ <8f3dda30-b6ea-4800-b357-4332bd8c5be4@intel.com>
+ <d74a5462-7fd4-4911-b62c-178f4292f90d@linux.intel.com>
+ <8d83962f-abff-455e-a14e-d3bf7c5a9cbf@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <8d83962f-abff-455e-a14e-d3bf7c5a9cbf@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,33 +74,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
 
-[ Upstream commit a323782567812ee925e9b7926445532c7afe331b ]
+On 9/25/2024 1:24 PM, Matthew Auld wrote:
+> On 25/09/2024 11:44, Nirmoy Das wrote:
+>>
+>> On 9/25/2024 11:51 AM, Matthew Auld wrote:
+>>> On 25/09/2024 10:33, Nirmoy Das wrote:
+>>>>
+>>>> On 9/25/2024 9:14 AM, Matthew Auld wrote:
+>>>>> Evil user can guess the next id of the queue before the ioctl completes
+>>>>> and then call queue destroy ioctl to trigger UAF since create ioctl is
+>>>>> still referencing the same queue. Move the xa_alloc all the way to the end
+>>>>> to prevent this.
+>>>>
+>>>> The commit message doesn't match the diff, xa_alloc already happening at the end here.
+>>>
+>>> It's not at the end. It is dereferencing the q to set xef after the xa_alloc, but that needs to happen before it is visible to userspace.
+>>
+>>
+>> Ah I see, that make sense.
+>>
+>> I think now  we have to undo xe_file_get() if xe_alloc fails.
+>
+> That is already handled by the queue put().
 
-Not a big deal if CT is down as driver is unloading, no need to warn.
+Ok,  that took some digging. Thanks for clearing my doubts.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240820172958.1095143-4-matthew.brost@intel.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/xe/xe_guc_pc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index ccd574e948aa3..034b29984d5ed 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -1042,7 +1042,7 @@ static void xe_guc_pc_fini_hw(void *arg)
- 		return;
- 
- 	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
--	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
-+	xe_guc_pc_gucrc_disable(pc);
- 	XE_WARN_ON(xe_guc_pc_stop(pc));
- 
- 	/* Bind requested freq to mert_freq_cap before unload */
--- 
-2.43.0
-
+>
+>>
+>>
+>> Regards,
+>>
+>> Nirmoy
+>>
+>>>
+>>>>
+>>>>> v2:
+>>>>>    - Rebase
+>>>>>
+>>>>> Fixes: 2149ded63079 ("drm/xe: Fix use after free when client stats are captured")
+>>>>> Signed-off-by: Matthew Auld<matthew.auld@intel.com>
+>>>>> Cc: Matthew Brost<matthew.brost@intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/xe/xe_exec_queue.c | 4 +++-
+>>>>>    1 file changed, 3 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>>>>> index 7743ebdcbf4b..d098d2dd1b2d 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>>>>> @@ -635,12 +635,14 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>>>>>            }
+>>>>>        }
+>>>>>    +    q->xef = xe_file_get(xef);
+>>>>> +
+>>>>> +    /* user id alloc must always be last in ioctl to prevent UAF */
+>>>>>        err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b, GFP_KERNEL);
+>>>>>        if (err)
+>>>>>            goto kill_exec_queue;
+>>>>>          args->exec_queue_id = id;
+>>>>> -    q->xef = xe_file_get(xef);
+>>>>>          return 0;
+>>>>>    
