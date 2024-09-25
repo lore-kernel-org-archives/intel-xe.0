@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0C07CCF9E6
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 16:01:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8E7FCCF9E4
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 16:04:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 720DF10EA59;
-	Wed, 25 Sep 2024 16:01:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90DA110E850;
+	Wed, 25 Sep 2024 16:04:13 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6262A10EA59;
- Wed, 25 Sep 2024 16:01:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AB5110E2F2;
+ Wed, 25 Sep 2024 16:04:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introduce_DRM_device?=
- =?utf-8?q?_wedged_event_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_DRM_device_wedg?=
+ =?utf-8?q?ed_event_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Sep 2024 16:01:48 -0000
-Message-ID: <172728010839.1101893.13361115858442121935@2413ebb6fbb6>
+Date: Wed, 25 Sep 2024 16:04:12 -0000
+Message-ID: <172728025210.1101847.14467515831959722422@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240923035826.624196-1-raag.jadav@intel.com>
 In-Reply-To: <20240923035826.624196-1-raag.jadav@intel.com>
@@ -44,16 +44,13 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Introduce DRM device wedged event (rev4)
 URL   : https://patchwork.freedesktop.org/series/138070/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d5334f14ce6c drm-tip: 2024y-09m-25d-14h-45m-08s UTC integration manifest
-=== git am output follows ===
-Applying: drm: Introduce device wedged event
-Applying: drm: Expose wedge recovery methods
-Applying: drm/xe: Use device wedged event
-Applying: drm/i915: Use device wedged event
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+fatal: unable to access 'https://gitlab.freedesktop.org/drm/maintainer-tools/': Failed to connect to gitlab.freedesktop.org port 443 after 138172 ms: Couldn't connect to server
 
 
