@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B832CCF9E4
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 15:44:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A5ACCF9E6
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 15:50:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABC110EA53;
-	Wed, 25 Sep 2024 15:44:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EEA10E840;
+	Wed, 25 Sep 2024 15:50:20 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FDA410EA3F;
- Wed, 25 Sep 2024 15:44:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36B9610E840;
+ Wed, 25 Sep 2024 15:50:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Introduce_DRM_device?=
- =?utf-8?q?_wedged_event_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_Add_F?=
+ =?utf-8?q?EC_Enable_Retry_mechanism?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Sep 2024 15:44:15 -0000
-Message-ID: <172727905505.1101738.2901076030890232462@2413ebb6fbb6>
+Date: Wed, 25 Sep 2024 15:50:20 -0000
+Message-ID: <172727942022.1101712.15732424700262098150@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240923035826.624196-1-raag.jadav@intel.com>
-In-Reply-To: <20240923035826.624196-1-raag.jadav@intel.com>
+References: <20240923045218.1813255-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20240923045218.1813255-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,18 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Introduce DRM device wedged event (rev4)
-URL   : https://patchwork.freedesktop.org/series/138070/
-State : failure
+Series: drm/i915/dp: Add FEC Enable Retry mechanism
+URL   : https://patchwork.freedesktop.org/series/138964/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: d5334f14ce6c drm-tip: 2024y-09m-25d-14h-45m-08s UTC integration manifest
 === git am output follows ===
-Applying: drm: Introduce device wedged event
-Applying: drm: Expose wedge recovery methods
-Applying: drm/xe: Use device wedged event
-Applying: drm/i915: Use device wedged event
+Applying: drm/i915/dp: Add FEC Enable Retry mechanism
 
 
