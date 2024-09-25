@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87698CCF9E7
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 19:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E0F9CCF9ED
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 19:28:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50A0110E84E;
-	Wed, 25 Sep 2024 19:28:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278AD10E852;
+	Wed, 25 Sep 2024 19:28:57 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A254610E2F7;
- Wed, 25 Sep 2024 19:28:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E2C210E84E;
+ Wed, 25 Sep 2024 19:28:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/query=3A_Refa?=
- =?utf-8?q?ctor_copy=5Fto=5Fuser=28=29_usage_in_four_functions?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/query=3A_Refactor_?=
+ =?utf-8?q?copy=5Fto=5Fuser=28=29_usage_in_four_functions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Markus Elfring" <Markus.Elfring@web.de>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Sep 2024 19:28:41 -0000
-Message-ID: <172729252166.1102629.3122326601219546614@2413ebb6fbb6>
+Date: Wed, 25 Sep 2024 19:28:55 -0000
+Message-ID: <172729253564.1102636.668291779360531574@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <d1f1eb7f-1de7-4d73-a7d0-00cc1eac3d5d@web.de>
 In-Reply-To: <d1f1eb7f-1de7-4d73-a7d0-00cc1eac3d5d@web.de>
@@ -44,13 +44,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/query: Refactor copy_to_user() usage in four functions
 URL   : https://patchwork.freedesktop.org/series/138994/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 88d592f72f7b drm-tip: 2024y-09m-25d-19h-23m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/query: Refactor copy_to_user() usage in four functions
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 26ef5c27ca83e3ed4ffdd2e1980455a3b158bfab
+Author: Markus Elfring <elfring@users.sourceforge.net>
+Date:   Wed Sep 18 09:43:07 2024 +0200
+
+    drm/xe/query: Refactor copy_to_user() usage in four functions
+    
+    Assign return values from copy_to_user() calls to additional local variables
+    so that four kfree() calls and return statements can be omitted accordingly.
+    
+    This issue was transformed by using the Coccinelle software.
+    
+    Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
++ /mt/dim checkpatch 88d592f72f7bc508d6a027b1f96aa2e53f803e1b drm-intel
+26ef5c27ca83 drm/xe/query: Refactor copy_to_user() usage in four functions
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Assign return values from copy_to_user() calls to additional local variables
+
+total: 0 errors, 1 warnings, 0 checks, 64 lines checked
 
 
