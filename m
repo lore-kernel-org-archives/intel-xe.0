@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A25CCC369AA
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 08:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1380FC369AA
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 08:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA7910E2DB;
-	Wed, 25 Sep 2024 08:45:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D675D10E7D0;
+	Wed, 25 Sep 2024 08:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m9d/Jdgd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZ/1p5/i";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F44710E2DB
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 08:45:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF0B10E7CC;
+ Wed, 25 Sep 2024 08:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727253914; x=1758789914;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Av2iHiNo7CVeznootP0tn6Oe/So+3Y+fCNE+xjO/1MU=;
- b=m9d/JdgdRYkxXEM3KzhaAgNxVIGmLQrKe2nv5kss+GBPIN+WaglKoS4H
- Ws3EQ5KSzvZnL7rRLUkXUj4G0gPKaT0XjHQ5OoOFDflLDe77lxLePmdVx
- 4EF8TFGFmYmZheTun7T8f3+bWpsUqaRnk4szieCAXLYtbb6I2GrNVQXDc
- 0yZt9U9lRYMTodWp25VraGquE+0YSLtNlWJUEq0bHgc7P2+yZJPTI9V7/
- 7wKzrl+6lMabub+5nzHDa1oU3rP5l6dH/plbu1vcpfXlkeGd09cAlVYSA
- /kAo7FtDE/MF9PBq/DRBN/pUSBSrjXPiGpGoSqkJ/hwmoY8NL9oD+wQZR g==;
-X-CSE-ConnectionGUID: lOuA6w+LRRCrjEq5XlJG5g==
-X-CSE-MsgGUID: ZjQAjJd9SGaSgGu+iPp3Mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="48820114"
-X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="48820114"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 01:45:14 -0700
-X-CSE-ConnectionGUID: sqDrK4HBRlia8B7Kht1tNg==
-X-CSE-MsgGUID: Nl83xmiyROerO5/YK4MSJQ==
+ t=1727254098; x=1758790098;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=FAcNzIrdLOsfUhH4+Fk6qzG2qe0hhL14R7S4IrWd6m0=;
+ b=kZ/1p5/it6fjp2THGbOh3gco+JKhKMN6YQbTtp0mLQMmK5TLG2md0d8I
+ L9V7YANoRg0dqZr1Jx+GhGPIBPT13aDGUJuYVTiugdCRgdaSMc8V8/Wf5
+ bWL9HBZf2mGWrrgXCiGKAjjBNIBHsSGEpLIRrGLqVPEAC4/DlZRQInyhE
+ lVplBIqIh5rlJEdO0qjqlQs7cgnm5joFV/zZj4Ibv2FfcNlqtwxn5dZ3C
+ PAafZkwjD8XnP3fIIbyz9DbBz3UUmQDjIqyHHIv8Agz1w+bchOKNx58Xi
+ 2NrkDapsnRYLgfihdcN5ZGuNvro5cUt7SXORRN6ytw4NdwWMkEbFZ4VkK A==;
+X-CSE-ConnectionGUID: wCaqDDlATsy4SNtkk5Tt2g==
+X-CSE-MsgGUID: 6VpGV5fWT3iNcCLgLXE/dA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="30079339"
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="30079339"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 01:48:18 -0700
+X-CSE-ConnectionGUID: pbcZfBfdT3+bF9cT4IVESg==
+X-CSE-MsgGUID: qykcfqIESgCopI5kXrVroA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="72019407"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 01:45:12 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Ilia Levi <ilia.levi@intel.com>
-Subject: [PATCH] drm/xe: Add memirq report page address helpers
-Date: Wed, 25 Sep 2024 10:44:45 +0200
-Message-Id: <20240925084445.1495-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="71787939"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.16])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 01:48:14 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>, Srikanth V NagaVenkata
+ <nagavenkata.srikanth.v@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCHv3 2/3] drm/i915/dp: read Aux RD interval just before
+ setting the FFE preset
+In-Reply-To: <20240925034432.1777029-3-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240925034432.1777029-1-arun.r.murthy@intel.com>
+ <20240925034432.1777029-3-arun.r.murthy@intel.com>
+Date: Wed, 25 Sep 2024 11:48:11 +0300
+Message-ID: <874j643yr8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,98 +71,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Both xe_memirq_{source,status}_ptr functions are now strictly for
-obtaining an address of the memory based interrupt report pages
-used by the HW engines. When initializing the GuC that does not
-require special per instance page preparation, we don't need to
-abuse these public functions and pass a NULL instead of valid hwe
-pointer. Also, without further fixes, this actually may lead to
-NPD crash once the hw_reports_to_instance_zero() will be true.
+On Wed, 25 Sep 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence of
+> DP2.1a spec.
+> After reading LANEx_CHANNEL_EQ_DONE, read the FFE presets.
+> AUX_RD_INTERVAL and then write the new FFE presets.
 
-Add internal helpers that will provide report page addresses based
-solely on the instance number, which will be always 0 for both GuCs.
+Nope. That's just not what the figure has.
 
-Fixes: ef6103d20f97 ("drm/xe: memirq infra changes for MSI-X")
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Cc: Ilia Levi <ilia.levi@intel.com>
----
- drivers/gpu/drm/xe/xe_memirq.c | 35 ++++++++++++++++++++--------------
- 1 file changed, 21 insertions(+), 14 deletions(-)
+> Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index f41b69840ad9..1bac00e46533 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1419,12 +1419,6 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+>  	for (try = 0; try < max_tries; try++) {
+>  		fsleep(delay_us);
+>  
+> -		/*
+> -		 * The delay may get updated. The transmitter shall read the
+> -		 * delay before link status during link training.
+> -		 */
+> -		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
+> -
+>  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
+>  			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
+>  			return false;
+> @@ -1451,8 +1445,14 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+>  		if (time_after(jiffies, deadline))
+>  			timeout = true; /* try one last time after deadline */
+>  
+> -		/* Update signal levels and training set as requested. */
+>  		intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
+> +		/*
+> +		 * During LT, Tx shall read AUX_RD_INTERVAL just before writing the new FFE
+> +		 * presets.
+> +		 */
+> +		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
 
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 3f8d4ca64302..715dc5903787 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -261,6 +261,15 @@ int xe_memirq_init(struct xe_memirq *memirq)
- 	return 0;
- }
- 
-+static u32 __memirq_source_page(struct xe_memirq *memirq, u16 instance)
-+{
-+	memirq_assert(memirq, instance <= XE_HW_ENGINE_MAX_INSTANCE);
-+	memirq_assert(memirq, memirq->bo);
-+
-+	instance = hw_reports_to_instance_zero(memirq) ? instance : 0;
-+	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET(instance);
-+}
-+
- /**
-  * xe_memirq_source_ptr - Get GGTT's offset of the `Interrupt Source Report Page`_.
-  * @memirq: the &xe_memirq to query
-@@ -273,14 +282,18 @@ int xe_memirq_init(struct xe_memirq *memirq)
-  */
- u32 xe_memirq_source_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
- {
--	u16 instance;
--
- 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
-+
-+	return __memirq_source_page(memirq, hwe->instance);
-+}
-+
-+static u32 __memirq_status_page(struct xe_memirq *memirq, u16 instance)
-+{
-+	memirq_assert(memirq, instance <= XE_HW_ENGINE_MAX_INSTANCE);
- 	memirq_assert(memirq, memirq->bo);
- 
--	instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
--
--	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET(instance);
-+	instance = hw_reports_to_instance_zero(memirq) ? instance : 0;
-+	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET(instance);
- }
- 
- /**
-@@ -295,14 +308,9 @@ u32 xe_memirq_source_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
-  */
- u32 xe_memirq_status_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
- {
--	u16 instance;
--
- 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
--	memirq_assert(memirq, memirq->bo);
- 
--	instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
--
--	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET(instance);
-+	return __memirq_status_page(memirq, hwe->instance);
- }
- 
- /**
-@@ -343,10 +351,9 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
- 	int err;
- 
- 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
--	memirq_assert(memirq, memirq->bo);
- 
--	source = xe_memirq_source_ptr(memirq, NULL) + offset;
--	status = xe_memirq_status_ptr(memirq, NULL) + offset * SZ_16;
-+	source = __memirq_source_page(memirq, 0) + offset;
-+	status = __memirq_status_page(memirq, 0) + offset * SZ_16;
- 
- 	err = xe_guc_self_cfg64(guc, GUC_KLV_SELF_CFG_MEMIRQ_SOURCE_ADDR_KEY,
- 				source);
+I said this should be put *above* intel_dp_get_adjust_train(), and you
+agreed. There was even a patch to that effect, and that's what I thought
+we were going by.
+
+It's both logical and per spec to keep the TX FFE PRESET read and write
+together, and AUX RD INTERVAL read *before* them.
+
+Where does the spec say, "read AUX_RD_INTERVAL just before writing the
+new FFE presets"? I don't think it does.
+
+The box in figure 3-52 has:
+
+- Read AUX_RD_INTERVAL value
+
+- Adjust the TX_FFE_PRESET_VALUE setting as requested by a
+  DPRX/LTTPR_UFP
+
+The "as requested by" part involves reading TX FFE PRESET to know what
+the DPRX requested.
+
+I don't see anything wrong in the original comment, just the placement
+of the read.
+
+There have been a multitude of different patches with random version
+numbers with no changelog and I don't even know what I'm supposed to be
+reviewing anymore.
+
+BR,
+Jani.
+
+
+> +
+> +		/* Update signal levels and training set as requested. */
+>  		if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
+>  			lt_err(intel_dp, DP_PHY_DPRX, "Failed to update TX FFE settings\n");
+>  			return false;
+
 -- 
-2.43.0
-
+Jani Nikula, Intel
