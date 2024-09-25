@@ -4,63 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C638CF9C71
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 14:07:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08465CF9C6B
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 14:29:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EFB310E833;
-	Wed, 25 Sep 2024 14:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6B7210E836;
+	Wed, 25 Sep 2024 14:29:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P72TpPqP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NbgzwPyi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98B9910E833
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 14:07:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0E9F10E836
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 14:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727273273; x=1758809273;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+zo7ld7Wwg6FJ+/pJsIAnlcXnkIYcbTE0Jhe/YFGtnU=;
- b=P72TpPqPCaS0D33oq7OI206nx+0yYVjkFOoKFGykMm7ZtFZDiVqMDxLh
- 8CN1QOKptOdxqm613JP0/vml7P4ZiiPFEsuQWYridRBz5Rr2HIn49i7Oz
- pH1XVA1QmBp2fPTl7n0Mrn8z5rSnFDX97TxLoQmdHiLhS1R6NHEan5JLm
- OJzOZ6aXgY/usLTEqmBTsf43wapmiighVcvaOUq9EP+lj3/9qZKZvoXBc
- 7vk9cCokE+8/gTJt1Gzr3mNo/7IV+ThApz8F7oEqoUDIvU00sm9qh7F8h
- Rx7MbAeG45n/TnGIrzQ7vwYTrQhNFJjjOEKM8n2VwbeMzKaRlzyWrJ9Qn A==;
-X-CSE-ConnectionGUID: 6RNejVmCRDSoayMSzy8vrA==
-X-CSE-MsgGUID: PSXoABSSSteyltigUcH+lA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="48855800"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="48855800"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 07:07:44 -0700
-X-CSE-ConnectionGUID: YeedXW9oQBWxlzlAbOKucQ==
-X-CSE-MsgGUID: AI8egGcDRwGUcErosNixfA==
+ t=1727274573; x=1758810573;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=+8A8VM+p41FY4vQC1848ybWZziJjyrnjaS+NkPOsBlE=;
+ b=NbgzwPyi6hN2aT3DEyT5LomNNXpEmf+0R2nJLqL8RLxODxs37DbeExAE
+ EreGsir6ec16KyRm0D434kfjslfIzio93A9U/+ZIc/RY6Svq5ZikRAXgl
+ T3i/09moWbBb6fU3pgVeutlmhHeNa5PEZ62qU7LMbuYW7rwdkvgvkHg3W
+ jqWn56D6qVWFDt4vqI0ykHFu6FoCm2wOLFBbz1+sd2Qd5QJfMRomRFIMl
+ BbXBcosVu/Eoo9jX19zdUTKGDn+kTapOzUxrS6cumBj7lDNkxZGxM/kcQ
+ k+vYLe9rjfy/8wypb0nrG2yw6yBp6QtAWWnlpjxYOVarOXqhQeahQdXIE A==;
+X-CSE-ConnectionGUID: YwMXKT9vSTich2UgcnvnDg==
+X-CSE-MsgGUID: aiQ/+YEeQACs2agJCEfBdA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="37683168"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="37683168"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 07:29:23 -0700
+X-CSE-ConnectionGUID: pYwNmG2QRNuBI9P9XkqjoA==
+X-CSE-MsgGUID: Aibjc9aqTReQKKsjz3cIzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="102555529"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa002.jf.intel.com with ESMTP; 25 Sep 2024 07:07:43 -0700
-Received: from [10.246.19.248] (mwajdecz-MOBL.ger.corp.intel.com
- [10.246.19.248])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 96D32284FE;
- Wed, 25 Sep 2024 15:07:40 +0100 (IST)
-Message-ID: <c63e6af4-1e71-43dc-b0c3-9179da40a657@intel.com>
-Date: Wed, 25 Sep 2024 16:07:39 +0200
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="102622174"
+Received: from mlehtone-mobl.ger.corp.intel.com (HELO [10.245.244.236])
+ ([10.245.244.236])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 07:29:22 -0700
+Message-ID: <0a1bbe76-c0ba-4d6e-aae7-0ff723bc334f@intel.com>
+Date: Wed, 25 Sep 2024 15:29:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 23/23] drm/xe: Change return type to void for
- xe_force_wake_put
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-References: <20240924121641.1045763-1-himal.prasad.ghimiray@intel.com>
- <20240924121641.1045763-24-himal.prasad.ghimiray@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240924121641.1045763-24-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2] drm/xe: Take ref to job and job's fence in
+ xe_sched_job_arm
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240924184541.2992459-1-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240924184541.2992459-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,103 +69,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 24/09/2024 19:45, Matthew Brost wrote:
+> Fixes two possible races:
+> 
+> - Submission to hardware signals job's fence before dma_fence_get at end
+>    of run_job
+> - TDR fires and signals fence + free job before run_job completes
+> 
+> Taking refs in xe_sched_job_arm to job and job's fence solves these by
+> ensure all refs collected before entering the DRM scheduler. The refs
+> are dropped in run_job and DRM scheduler respectfully. Safe as once
+> xe_sched_job_arm is called execution of job through DRM sched is
+> guaranteed.
+> 
+> v2:
+>   - Take job ref on resubmit (Matt Auld)
+> 
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2811
 
+Maybe also:
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2843
 
-On 24.09.2024 14:16, Himal Prasad Ghimiray wrote:
-> There is no need to return an error from xe_force_wake_put(), as a
-> failure implicitly indicates that the domain failed to sleep.
-> 
-> v3
-> - Move kernel-doc to this patch (Badal)
-> 
-> v5
-> - change parameter to unsigned int in xe_force_wake_put()
-> 
-> Cc: Badal Nilawar <badal.nilawar@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+?
+
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.8+
 > ---
->  drivers/gpu/drm/xe/xe_force_wake.c | 20 ++++++++++++++++----
->  drivers/gpu/drm/xe/xe_force_wake.h |  4 ++--
->  2 files changed, 18 insertions(+), 6 deletions(-)
+>   drivers/gpu/drm/xe/xe_execlist.c        |  4 +++-
+>   drivers/gpu/drm/xe/xe_gpu_scheduler.c   | 17 +++++++++++++++++
+>   drivers/gpu/drm/xe/xe_gpu_scheduler.h   |  6 +-----
+>   drivers/gpu/drm/xe/xe_guc_submit.c      | 11 +++++++----
+>   drivers/gpu/drm/xe/xe_sched_job.c       |  5 ++---
+>   drivers/gpu/drm/xe/xe_sched_job_types.h |  1 -
+>   6 files changed, 30 insertions(+), 14 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-> index d2eb367da7c1..c2c55d3de36f 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.c
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
-> @@ -11,6 +11,7 @@
->  #include "regs/xe_reg_defs.h"
->  #include "xe_gt.h"
->  #include "xe_gt_printk.h"
-> +#include "xe_macros.h"
-
-this include is likely not needed
-
->  #include "xe_mmio.h"
->  #include "xe_sriov.h"
->  
-> @@ -196,8 +197,20 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
->  	return ret;
->  }
->  
-> -int xe_force_wake_put(struct xe_force_wake *fw,
-> -		      unsigned int domains_mask)
+> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+> index f3b71fe7a96d..b70706c9caf2 100644
+> --- a/drivers/gpu/drm/xe/xe_execlist.c
+> +++ b/drivers/gpu/drm/xe/xe_execlist.c
+> @@ -309,11 +309,13 @@ execlist_run_job(struct drm_sched_job *drm_job)
+>   	struct xe_sched_job *job = to_xe_sched_job(drm_job);
+>   	struct xe_exec_queue *q = job->q;
+>   	struct xe_execlist_exec_queue *exl = job->q->execlist;
+> +	struct dma_fence *fence = job->fence;
+>   
+>   	q->ring_ops->emit_job(job);
+>   	xe_execlist_make_active(exl);
+> +	xe_sched_job_put(job);
+>   
+> -	return dma_fence_get(job->fence);
+> +	return fence;
+>   }
+>   
+>   static void execlist_job_free(struct drm_sched_job *drm_job)
+> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> index c518d1d16d82..7ea0c8e9e7a9 100644
+> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> @@ -4,6 +4,7 @@
+>    */
+>   
+>   #include "xe_gpu_scheduler.h"
+> +#include "xe_sched_job.h"
+>   
+>   static void xe_sched_process_msg_queue(struct xe_gpu_scheduler *sched)
+>   {
+> @@ -106,3 +107,19 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+>   	list_add_tail(&msg->link, &sched->msgs);
+>   	xe_sched_process_msg_queue(sched);
+>   }
+> +
 > +/**
-> + * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
-> + * @fw: Pointer to the force wake structure
-> + * @domains_mask: forcewake domain mask to put reference
+> + * xe_sched_resubmit_jobs() - Resubmit scheduler jobs
+> + * @sched: Xe GPU scheduler
 > + *
-> + * This function reduces the reference counts for specified domain mask. If
-> + * refcount for any of the specified domain reaches 0, it puts the domain to sleep
-> + * and waits for acknowledgment for domain to sleep within specified timeout.
-
-nit: if this timeout is hardcoded maybe mention or refer it?
-
-> + * Ensure this function is always called with return of xe_force_wake_get() as
-> + * @domains_mask.
-> + * Warns in case of timeout of ack from domain.
+> + * Take a ref all jobs on scheduler and resubmit.
 > + */
-> +void xe_force_wake_put(struct xe_force_wake *fw,
-> +		       unsigned int domains_mask)
+> +void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
+> +{
+> +	struct drm_sched_job *s_job;
+> +
+> +	list_for_each_entry(s_job, &sched->base.pending_list, list)
+> +		xe_sched_job_get(to_xe_sched_job(s_job));	/* Paired with put in run_job */
+> +
+> +	drm_sched_resubmit_jobs(&sched->base);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> index cee9c6809fc0..ecbe5dd6664e 100644
+> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> @@ -26,6 +26,7 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
+>   		      struct xe_sched_msg *msg);
+>   void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+>   			     struct xe_sched_msg *msg);
+> +void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched);
+>   
+>   static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
+>   {
+> @@ -47,11 +48,6 @@ static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
+>   	drm_sched_tdr_queue_imm(&sched->base);
+>   }
+>   
+> -static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
+> -{
+> -	drm_sched_resubmit_jobs(&sched->base);
+> -}
+> -
+>   static inline bool
+>   xe_sched_invalidate_job(struct xe_sched_job *job, int threshold)
+>   {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index fbbe6a487bbb..689279fdef80 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -766,6 +766,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+>   	struct xe_guc *guc = exec_queue_to_guc(q);
+>   	struct xe_device *xe = guc_to_xe(guc);
+>   	bool lr = xe_exec_queue_is_lr(q);
+> +	struct dma_fence *fence = NULL;
+>   
+>   	xe_assert(xe, !(exec_queue_destroyed(q) || exec_queue_pending_disable(q)) ||
+>   		  exec_queue_banned(q) || exec_queue_suspended(q));
+> @@ -782,12 +783,14 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+>   
+>   	if (lr) {
+>   		xe_sched_job_set_error(job, -EOPNOTSUPP);
+> -		return NULL;
+> -	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
+> -		return job->fence;
+> +		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
+>   	} else {
+> -		return dma_fence_get(job->fence);
+> +		fence = job->fence;
+>   	}
+> +
+> +	xe_sched_job_put(job);	/* Pairs with get from xe_sched_job_arm */
 
-nit: no need to wrap, your kernel-doc is much wider
+Only doubt is job being destroyed here. I think you were saying that 
+guc_exec_queue_free_job(drm_job) can potentially happen before run_job() 
+completes. But if that's the case can't the refcount reach zero here, 
+and then caller of run_job() goes down in flames, since the drm_job is 
+no longer a valid pointer, assuming the put() here frees the memory for it?
 
->  {
->  	struct xe_gt *gt = fw->gt;
->  	struct xe_force_wake_domain *domain;
-> @@ -210,7 +223,7 @@ int xe_force_wake_put(struct xe_force_wake *fw,
->  	 * in error path of individual domains.
->  	 */
->  	if (!domains_mask)
-> -		return 0;
-> +		return;
->  
->  	spin_lock_irqsave(&fw->lock, flags);
->  	for_each_fw_domain_masked(domain, domains_mask, fw, tmp) {
-> @@ -229,5 +242,4 @@ int xe_force_wake_put(struct xe_force_wake *fw,
->  
->  	xe_gt_WARN(gt, ret, "domain%s %#x failed to acknowledgment sleep\n",
->  		   str_plural(hweight_long(ret)), ret);
-> -	return ret;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
-> index 0b676462c97b..a79c98ed6d2f 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.h
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.h
-> @@ -17,8 +17,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt,
->  				struct xe_force_wake *fw);
->  unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
->  					    enum xe_force_wake_domains domains);
-> -int xe_force_wake_put(struct xe_force_wake *fw,
-> -		      unsigned int domains_mask);
-> +void xe_force_wake_put(struct xe_force_wake *fw,
-> +		       unsigned int domains_mask);
-
-no need to wrap the line
-
->  
->  static inline int
->  xe_force_wake_ref(struct xe_force_wake *fw,
-
+> +
+> +	return fence;
+>   }
+>   
+>   static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+> index eeccc1c318ae..d0f4b908411f 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> @@ -280,16 +280,15 @@ void xe_sched_job_arm(struct xe_sched_job *job)
+>   		fence = &chain->base;
+>   	}
+>   
+> -	job->fence = fence;
+> +	xe_sched_job_get(job);			/* Pairs with put in run_job */
+> +	job->fence = dma_fence_get(fence);	/* Pairs with put in scheduler */
+>   	drm_sched_job_arm(&job->drm);
+>   }
+>   
+>   void xe_sched_job_push(struct xe_sched_job *job)
+>   {
+> -	xe_sched_job_get(job);
+>   	trace_xe_sched_job_exec(job);
+>   	drm_sched_entity_push_job(&job->drm);
+> -	xe_sched_job_put(job);
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> index 0d3f76fb05ce..8ed95e1a378f 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> @@ -40,7 +40,6 @@ struct xe_sched_job {
+>   	 * @fence: dma fence to indicate completion. 1 way relationship - job
+>   	 * can safely reference fence, fence cannot safely reference job.
+>   	 */
+> -#define JOB_FLAG_SUBMIT		DMA_FENCE_FLAG_USER_BITS
+>   	struct dma_fence *fence;
+>   	/** @user_fence: write back value when BB is complete */
+>   	struct {
