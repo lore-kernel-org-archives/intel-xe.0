@@ -4,69 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 178E7CD4F52
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 13:13:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21AF2CF58ED
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 13:57:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBAF310E0CD;
-	Wed, 25 Sep 2024 13:12:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C539010E0E3;
+	Wed, 25 Sep 2024 13:57:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Rpai7kFb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NFXcMSac";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D0F10E0CD;
- Wed, 25 Sep 2024 13:12:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id EBFD65C5D54;
- Wed, 25 Sep 2024 13:12:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0B5AC4CEC3;
- Wed, 25 Sep 2024 13:12:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727269977;
- bh=OIMDdFTlJsnASVoAp+EsACgQsHVl7LYIUb3s9QES22A=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Rpai7kFbFqJK/A+vqcqiNbzZxs0SldalIRrJJmUA9Yrc9qDKst6yf4d6o2YvgNZ2J
- f2E46JrVHU2bKSaHqSOMWNrmar8Jlloba+dyEEoEslAuxAdqL8rjSe2S8ELqQuz2Ar
- 8uHw1dg9ET4dgRa92IbAhmZ6cxtwsHNFQ6qSBtmmP+idnXaWsP0S9y19RH2/IfvMNs
- Sv0KQJV7tUKvwzaoqkEAI0WJDcNKxGR8OwDkH2tkneJozns29Rbtwbg16mGzzpjtII
- XCINibq//ur9JlBWBMYb+q1CJsBnv2eUkU3NgSD1Z/NplIN6nVfjX+xNTEcgJPmFzg
- wKYQ6D1lLkOug==
-Date: Wed, 25 Sep 2024 15:12:53 +0200
-From: Mark Brown <broonie@kernel.org>
-To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-Cc: "Winkler, Tomas" <tomas.winkler@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v6 01/12] spi: add driver for intel graphics on-die spi
- device
-Message-ID: <ZvQMVeO4ACk5BNT1@finisterre.sirena.org.uk>
-References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
- <20240916134928.3654054-2-alexander.usyskin@intel.com>
- <ZurWk_eXSQndgA4Y@finisterre.sirena.org.uk>
- <PH7PR11MB76057D2326D436CA9749A113E5632@PH7PR11MB7605.namprd11.prod.outlook.com>
- <Zuv9qsWJQhx7rbhJ@finisterre.sirena.org.uk>
- <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
- <ZvFj1zyzSYmbNwmH@finisterre.sirena.org.uk>
- <CY5PR11MB6366C8C6AB07CFEAC20323F1ED692@CY5PR11MB6366.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C95D10E0E3
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 13:57:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727272637; x=1758808637;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=lw9w+dotPh9E+HTWf6itHK3AEzWASLT/LBjz2MjlTjk=;
+ b=NFXcMSacmGAxooXpUnf1qlKJoEmoQXikAAiXiiv4QL/b8iMc4ut7RWFG
+ /trqCm3I7352+TMiBoLcFEl/K+j3ybNn6bKnr0XpW3TmWehjgoOjvZXzr
+ ZVIlCjGnO7FMPXzCRXuh8wAiQhq/4qQC24Hagx3c0RjpnRDi4ToVClpMY
+ TGYSE6qBrooIwc67IGuROeChGaPc1zJVQk7gfI4YXtvOlfKEYCmnk2n1K
+ 643a0kU0TLVd1FZMNUpGL03rmV/mASpzZW9odcG3gS4PnPPrOfEnm3vij
+ t/ssCPtIodqeRQK95fiNxsJ2DxWRpJEeQQihY4fZNOjYwWN8jvr7VmvPW g==;
+X-CSE-ConnectionGUID: TAKOxBNFQTiBrM5tljj4iA==
+X-CSE-MsgGUID: fopbRHcyRFaIreHLyiSHag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="29207195"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="29207195"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 06:57:16 -0700
+X-CSE-ConnectionGUID: hbay8qJITiqIyOJLqlacpw==
+X-CSE-MsgGUID: cWLQdSFwTcOBXEV21hnRqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="71784743"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Sep 2024 06:57:16 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 25 Sep 2024 06:57:15 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 25 Sep 2024 06:57:15 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 25 Sep 2024 06:57:15 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 25 Sep 2024 06:57:15 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n+COXCtsvkSsC/XMnaJk9HPDE/81ZwYkadZETAHxJ+UY/uCrBqMo4bM3zl2y2RbZv2b/X1URjF6SLuu+olA98tD5LgKphxkYUeghMwMcINiSQC5Uj+L9oM2h4Q3f64ZmhONOKmDw4r8URJMV11S0jUpp+1R3sdxTD9ufOkzZp84omMytm/CTHr9R82zfB/hqzRmdaqAuvn11WE6vHzsH8NrDsM49v97NBjDXSh/ugj1ddwrOVoUzENq9VFncx7QKWEMHasRqW/XFwGQLDiCUWCwAkJQ5hfD80uh0Iv+yFyAC4p/Czz5b/VekxSS/0nymUw9G84crYngxXsfj/NBUMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dRnxE3HIs1LgTGY7OB+EjVnm5klvf+Iyjo+VYTLW/dw=;
+ b=UgsvobU/HghSSFeKiOClCn0JyzAVmazZp8/lPqgVt0YbyeM+b3bGKEk4xokB79KGGx5Ai5Hd9NLLnsiFUZjND2APTFf69jisyVjM2WGxQnjtrSUAKn1ZTu8SUmRMM+O2Yxt2h4KnSvK5I5u+qM/oUCJQmff8ehxoqWP4k1D+Xyr3J69Kl0flt39LPzh4NjWXmiT9Px+qJaZitY7g6DyR70nzjhI+95stJvn3I3f/VaSK7BtEjCfV941x0drpfQKWIxn1oYEpIX6lBQMHmInVCm1XO9mfZrSDul9ewGimPhCctasfqQVEEWJqgW984Mxp9+pKzs745VUFd/vM3ayBHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB3238.namprd11.prod.outlook.com (2603:10b6:a03:7e::30)
+ by SA2PR11MB5193.namprd11.prod.outlook.com (2603:10b6:806:fa::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.26; Wed, 25 Sep
+ 2024 13:57:13 +0000
+Received: from BYAPR11MB3238.namprd11.prod.outlook.com
+ ([fe80::ba3:e9e3:27c2:bd03]) by BYAPR11MB3238.namprd11.prod.outlook.com
+ ([fe80::ba3:e9e3:27c2:bd03%7]) with mapi id 15.20.7982.022; Wed, 25 Sep 2024
+ 13:57:13 +0000
+Message-ID: <51f865d0-7a06-4078-836b-2d3df40a2b6a@intel.com>
+Date: Wed, 25 Sep 2024 19:27:07 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display: Workaround for odd panning for planar
+ yuv
+To: Nemesa Garg <nemesa.garg@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20240925122513.2455181-1-nemesa.garg@intel.com>
+Content-Language: en-US
+From: "Pottumuttu, Sai Teja" <sai.teja.pottumuttu@intel.com>
+In-Reply-To: <20240925122513.2455181-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0040.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:81::9) To BYAPR11MB3238.namprd11.prod.outlook.com
+ (2603:10b6:a03:7e::30)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="IxLYBwv9klWVSM8K"
-Content-Disposition: inline
-In-Reply-To: <CY5PR11MB6366C8C6AB07CFEAC20323F1ED692@CY5PR11MB6366.namprd11.prod.outlook.com>
-X-Cookie: Editing is a rewording activity.
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB3238:EE_|SA2PR11MB5193:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ff0bf58-606b-41ba-ac49-08dcdd69f4ec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QlBZY09BcWZOZGpmNGJhdjlqNGMzWGFENC9tZzBhMXhzVExXc3lCRkZvT3I2?=
+ =?utf-8?B?cjBabGluODM1eEtwWGdjY1J6dXFNZm9Tek4wYzYwZzZxL0hhRUZUZGR3UDdD?=
+ =?utf-8?B?MDhxUkJFbU02T05oT25ndGVlT2RoT1FwWTgxQ3hKOHlRcnNKam5vK0R4enht?=
+ =?utf-8?B?OXh1T3Y2UW9XaXRjcTFpcDhqZU1OVXpZb3RTU01BVklXbkxFbGgrVzdFZ2s2?=
+ =?utf-8?B?Ykd4MGplMlprTDRDS1AycUk0UDMzc3k3MzlyTHRpazZjZWU1RnlUekRHdjFG?=
+ =?utf-8?B?blNiM0hLL0tHdEo1eDJ6ZWpEWUtTbmk5aVR6a1FTdVdvRU4xZUEzNC9Ya3lQ?=
+ =?utf-8?B?ZDAzSjBxbkYvU0twdWxqYk9JQVpBQ25zZnBqWnBlNmY2cHhWOE9kY2o1TTJX?=
+ =?utf-8?B?WnNYejlXYmF3NWsrVi9pK2M5SzRlYmhNdGZpaHhVTGc3SlVOUno2MC9FOEhL?=
+ =?utf-8?B?dmpXUGNTZGpjay81NXJ5elowd3NXYWVkdlBUZ2QvaU5zc3RpOXduMVBpK296?=
+ =?utf-8?B?ckp4eVhzSFVzYlVzUFJJVzE0RkdPSmhTR3ZSa1ZubGppaWxCeEdkRHJla3kv?=
+ =?utf-8?B?aUgwUjRFUmhBS0R1bU5Eemt2L3RKU2hiVFpBc3VMcmdYL1JueGRmc3MvYTNt?=
+ =?utf-8?B?UU04M3IzcytzODRGenBPaUhKQitoVFBBRlZGZ1dlNG1nbDVMUHNLd3djcUp2?=
+ =?utf-8?B?dWhSZDd2d09Iekxza045ZVh0bnFYcm1wOFJFejZ4K0piNlVHbUcxakloMHM0?=
+ =?utf-8?B?dGQ0c0JQZUtNMUFSenBxMC9ud1BJa3RMT2hZbDNINHBQc3ZEQ0tLVlZDTzBt?=
+ =?utf-8?B?WlFoMGZsdkxKWG5EMmRHV2wweG9BVU5KREdkZEdHY05ZcnUybFVsLzh5OWNw?=
+ =?utf-8?B?TG5tVjRNWWg5QkhRUjM4TDhUMkJLNG1wWVYrMjJKaERvWis1VVJuRnJNV0R4?=
+ =?utf-8?B?NTU2RVpmRkZQeUxTa0NQTGUzQ1phSHd5WXJBandKZmJqU0ROb2RTUlVZVTVI?=
+ =?utf-8?B?VEQweVY5N2drSFk4ZTVjWkdYK0xyalJ5Umlsejh6bEViU3p1RWs2UjlIQTdC?=
+ =?utf-8?B?amdQckRxR0tVWGk0aVl5MHpzdVIwc05SS1ZCb0U0OUZMWm94aWVGdUpIU0NL?=
+ =?utf-8?B?c25RcDVoSmJEcDlBQ2xSQzRJUEdWZkJ0c0VvbVFHVWZ3RndpNW9OdFZRLzNV?=
+ =?utf-8?B?ZXVZeEZJcXhWWFFKQWE3eFZVYjNNQ3MyV3ZZWTJSMWRNVnNaMXZvb0FwOXdq?=
+ =?utf-8?B?eSs3UGxXQjlvZDlaQzJYbTN4QjNsdXVCZUpGQXUwbXJZanZSVWtjOHNFd1U2?=
+ =?utf-8?B?V1BWU1ppKzlYQThUZllCTW1zcEFvbjlNdnRockdXN0tLMWFjUDkvM212bllh?=
+ =?utf-8?B?b0JwUXlvdnI5NVhoVkdrNHVQRTZyUlNGN2I3amYzSjRGc1AwYVFnVVFRMHIv?=
+ =?utf-8?B?T1NtbEdvdmFsbTJtRmZNMklTMVAwWGZUSWU0OHRNaE5UTlFITFBiU1F3TERT?=
+ =?utf-8?B?K0c1d3Z6WG1ta1M2bit6RHkzazZPNGN2UnlYVmJ1eEdxYyt1SGxwUEhCNG9R?=
+ =?utf-8?B?SVhlR3dmTG9SVEhHMVR6Z05wWjB1Vmg3YmFqYWVIOVh3eUl6dE94SWtJWmli?=
+ =?utf-8?B?clJvR1lQd1NaWk9FQzEvZU9VNE1DWXZwNVZoSHRIYmJnbTlFMVh4SnlmSHpW?=
+ =?utf-8?B?a0VIRjhNOTJudktNVW03UzU4d2VPSlNlWkUvc1YrS3lOeGxXZDk1VkhrMElr?=
+ =?utf-8?B?TUlQRzd0eXFjcGVnSUphOStFdHpQNGtyZXFzR2d5UElLWS9KOU5hRTlxbXFa?=
+ =?utf-8?B?OUFVcVZmQ01RWGlWOEZaUT09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3238.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U2EzNXBpV3ZJYmROTW1OdDFtMlhNUit1ZW84TDBNSU1PdlBQODhrZ0d4WkJR?=
+ =?utf-8?B?U2FIRHlROWMyY0d6V1ZGdndDTnhIdStodUFrRE5FOG81b2N4Vkx5WlVlanVs?=
+ =?utf-8?B?L3NmS09DckJlL2ZhNXAwUTQyZzZsd2tTQzNtUFVGZGtzZXp2Z1ZBNko0S3BL?=
+ =?utf-8?B?K0U2ZU5zaEtxTDNlcEgyUEN4cE9uZU42eC84ZHlvaWI1Uk54dWdyQkJRU2xN?=
+ =?utf-8?B?MUtoSHpmUW5xOTZxRjhoNU5NTjVZaVZBMjUrWG8xd3c4aEpzRzF5cFZMMUNH?=
+ =?utf-8?B?Szk1UDdvL0xmbzhBN05WUXk0cDZvM2pTTWNVeURoOG1QNGV6T1k4YmZCK2Ja?=
+ =?utf-8?B?d3JzWnhENXRMOEJIZDhQTFpkYVpYTkhsTjk3a3l3SXBYTC9WMkdzcHhpSVh6?=
+ =?utf-8?B?RjVKRlZPMlhqUGE5MkExd2d2ME9IanI2ZFdJRWIrK1RScVh4VmU3dEVXckhs?=
+ =?utf-8?B?cjRUZndMM0htdVIrVDFmZzRKaHV1VXhIdGgyV3RUbzZCV29BdXdBTWptb2J4?=
+ =?utf-8?B?M1hCMzN4dXlxQ0gwaFoycGtzWkJjN0VramZxZnUwN1psTEQwbXpML2d1b1V3?=
+ =?utf-8?B?R3dTWEk4bjN5OTNSNjNkSUViMGtZNzJ4K2FXdERRbnBNTUNrK1NFTW1MOTZN?=
+ =?utf-8?B?clI2VkNCMGNTVUNJM3FZd2hidmd1VHI4c21DTVVkRnNhMGVRWEJtU1BaVW9s?=
+ =?utf-8?B?RlErSlBOUlZ5QzhlQ09ZTEowdytDRkQzT0NCZS8vbGlrWjRhWFBhS1Jac1JU?=
+ =?utf-8?B?RUUrQWx3cXM2RVRsTktkQlZxMDJLWkFxVWdtREV0cEcrYkRpeWxCejBTdmZs?=
+ =?utf-8?B?U0pJR2haa3BtQThET2d3V1FnNEtyVzNrV1BKK2tvcVVhb2VkTmM2NjF6ZXRK?=
+ =?utf-8?B?SEZLdUM1K3VmMzZXTE5yRlNBc1hSeWVudzNuRnMwMFlGYUxGL0Eza3RROXdj?=
+ =?utf-8?B?Z2lldUhvenp6NFdhYXVMVVpCNEJVMHc1V09SVkU3OUQyU3liOHVwempNcGhI?=
+ =?utf-8?B?QVAyenk3S25wQTJSdTdCbHVZNURoOXR6NW0xQmJ6SS8wMmJsQnNiOWlXSmxT?=
+ =?utf-8?B?YkhHOVJFSFJKM3ZvV1lDci9ZY3B4N1h2VDRyeHIwSVNiNVNTSkNoMWJJY01V?=
+ =?utf-8?B?VWFKUUtBZmdsSVFreEFteDlzck1GeXFLeVdRYlpFRmFCRGNDOVNKcHN4bito?=
+ =?utf-8?B?V09hejlpSzFMc3dpbUdnTHVOQjRseXlRaUVYOTc2SXRRdFkvdTE0dEZveXhS?=
+ =?utf-8?B?VnhTbnhORzRPRUl6c05CbkNtUXVHOFgxYWw0MjltejROcUg4dnRlaG1uVVlm?=
+ =?utf-8?B?eDN5bzdzblZzZDFJOGdkSzF3WTRWS3VuR0NIcEs1dEdkdnlTbjNxaUxHUGpI?=
+ =?utf-8?B?c3JPSDNvdlNldENDWS81VjYrRk9NcXBnRXZXL1IyanV5NEttMkdIc2xoWXhG?=
+ =?utf-8?B?Njl6eVR5MGVGZXVFRThIdkdPWHNYNjM0SXdxaUR3REFSUTdMNzFvQUlwNTkz?=
+ =?utf-8?B?QmFRWGs4M21WU1V4TTJtK1F5ZUoza3IxZEFzZWNzQWdFLzh2WTR6aEYrM1Qy?=
+ =?utf-8?B?cHJYWjdHM1lCbFYwNXl1by9GRFM4MllOdWQwUHFSeFBPWUY2RlAyUERtOXM2?=
+ =?utf-8?B?L3IwdWJoL3p6cFBrREE4QWdxS05scENOZVdqczROMzYxMDlldFRrL05GVWlz?=
+ =?utf-8?B?WUJuYXZmK3hRQ1FYOURVaXhwbGViMW9PZlhXWGUwQkFUeElEcld5R2F2cGJ3?=
+ =?utf-8?B?bzJ4bFBpRXdXV3ZpaDUwTlR3RGU5cXlmYjNkaVBoTExVWjB0bm5mbHBwNHFv?=
+ =?utf-8?B?eDNXUDBpT2o3ZVk2aTM4R1pCQjlzWmgxNDByU2xEZ2I4di9TM2tUdHhlNGlZ?=
+ =?utf-8?B?NVQxdE5MeldBb1d1MDV3TUFlZ2tiRkNkcENUQmRXZVpNUndKU1VYSUZUazV2?=
+ =?utf-8?B?VSt0VitoWElmRFhTcE1DKy9VRVNvdGlCT0hrNmgrcVpjYjk4WFZkbURFREhP?=
+ =?utf-8?B?bUJOQjJXenNVVWhYNXdDbkRMSjNnSjdRLzNWdEVISDJneTR4Wlg0SjR6MzZ0?=
+ =?utf-8?B?cy8xUnpBK0Q1STdWTjF4MFozK0tOOFdET0tqcEFUa0RrVVllQ1lLemRUWDhJ?=
+ =?utf-8?B?b05yd1BPbWtxcThRNWlkSGFqQ0MxRTBGTWp3Q1dPSnpVRkJCUUNoUlpkRS83?=
+ =?utf-8?B?WFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ff0bf58-606b-41ba-ac49-08dcdd69f4ec
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3238.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2024 13:57:13.3053 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9ka7dTXsUcsVIgLzNrXma9XmB7HmCP1fg0zGPY3jYk97CRGAkT58qdhIXXS/y6w+Plxh6s7T2XNW4Ds/BLGtepuvOhUsAX5XFr0TuuKyjHQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5193
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,47 +197,54 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
---IxLYBwv9klWVSM8K
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 25-09-2024 17:55, Nemesa Garg wrote:
+> Disable the support for odd x pan for NV12 format as underrun
+> issue is seen.
+>
+> WA: 16024459452
 
-On Wed, Sep 25, 2024 at 12:31:34PM +0000, Usyskin, Alexander wrote:
+Just some additional nitpicks,
 
-> > It's locking/refcounting stuff that looks nothing like any other SPI
-> > controller driver.  Even if it works it's obviously fragile since the
-> > driver does surprising things which break assumptions that will be made
-> > by people not looking at this specific driver, and causes people to have
-> > to spend more effort figuring out what you're doing.  If there is any
-> > benefit to doing this then open coding it in one specific driver is
-> > clearly not the right place to do it.
+- We should mention about the even xsize in commit message as well I guess.
 
-> The reason for all this refcounting that the device itself is discrete card and
-> the SPI memory backend can disappear at any moment leaving open connections dangling.
-> Refcount ensures that object behind the MTD device will be freed only
-> when the last user-space is disconnected.
+- We usually refer to the WA lineage. In the comment below, you have 
+added the correct lineage "16023981245", let us add the same here in 
+commit message as well.
 
-> Is there any other model that can keep the object alive in this situation?
-
-If devices connected to the SPI controller can be hotplugged then those
-devices should be registered and unregistered like any other spi_device
-would be, the driver core and relevant subsystems will deal with the
-lifetime issues.  This is all invisible to the SPI controllers, the fact
-that things are being open coded in the driver should be a big warning
-sign.
-
---IxLYBwv9klWVSM8K
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmb0DFQACgkQJNaLcl1U
-h9DEjAf/SC1Qnce4ii9z5NTgI51Ab3JxA+Hpd+Z77geEqUhtXlgSSAuXqgD/LKV1
-iUxsI88Kuio6T0Lz/aQggw7O013vRdDteKwc24O1QN4EZU7XUEpDxZould5tZNT1
-2QU4ALZjCmukRxO9f9Kztzrnqwc6q198uTpZ8OImX88+AaJLnJYiYlOmWE5mIquV
-b6vo5T3SCpZ1w2SSoTRD15pgmKsNfkeErx1XKaRLILFW54Nixc62t5yY+vy9l+9N
-p3jlZlQB3w/iHKMmsQCq5EEoFoO73AClsyRadGK25wbAVRDpCxzAWEvVHR0OSJbn
-fHRwpLhklHU+xwrEBTkBbLhdlUl5Og==
-=U0pV
------END PGP SIGNATURE-----
-
---IxLYBwv9klWVSM8K--
+>
+> v2: Replace HSD with WA in commit message [Suraj]
+>      Modified the condition for handling odd panning
+>
+> v3: Simplified the condition for checking hsub
+>      Using older framework for wa as rev1[Jani]
+>
+> v4: Modify the condition for hsub [Sai Teja]
+>      Initialize hsub in else path [Dan]
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_atomic_plane.c | 10 +++++++++-
+>   1 file changed, 9 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index e979786aa5cf..dfe795b8e917 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -1029,8 +1029,16 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+>   		 * This allows NV12 and P0xx formats to have odd size and/or odd
+>   		 * source coordinates on DISPLAY_VER(i915) >= 20
+>   		 */
+> -		hsub = 1;
+>   		vsub = 1;
+> +		/*
+> +		 * Wa_16023981245 for display version 20.
+> +		 * Do not support odd x-panning for even xsize for NV12.
+> +		 */
+> +		if (IS_LUNARLAKE(i915) && fb->format->format == DRM_FORMAT_NV12
+> +		    && src_w % 2 == 0)
+> +			return -EINVAL;
+> +
+> +		hsub = 1;
+>   	} else {
+>   		hsub = fb->format->hsub;
+>   		vsub = fb->format->vsub;
