@@ -4,57 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08465CF9C6B
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 14:29:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCD91CCF9E5
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 15:18:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B7210E836;
-	Wed, 25 Sep 2024 14:29:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 450B010E14D;
+	Wed, 25 Sep 2024 15:18:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NbgzwPyi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGTALtUZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0E9F10E836
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 14:29:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A467910E14D;
+ Wed, 25 Sep 2024 15:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727274573; x=1758810573;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=+8A8VM+p41FY4vQC1848ybWZziJjyrnjaS+NkPOsBlE=;
- b=NbgzwPyi6hN2aT3DEyT5LomNNXpEmf+0R2nJLqL8RLxODxs37DbeExAE
- EreGsir6ec16KyRm0D434kfjslfIzio93A9U/+ZIc/RY6Svq5ZikRAXgl
- T3i/09moWbBb6fU3pgVeutlmhHeNa5PEZ62qU7LMbuYW7rwdkvgvkHg3W
- jqWn56D6qVWFDt4vqI0ykHFu6FoCm2wOLFBbz1+sd2Qd5QJfMRomRFIMl
- BbXBcosVu/Eoo9jX19zdUTKGDn+kTapOzUxrS6cumBj7lDNkxZGxM/kcQ
- k+vYLe9rjfy/8wypb0nrG2yw6yBp6QtAWWnlpjxYOVarOXqhQeahQdXIE A==;
-X-CSE-ConnectionGUID: YwMXKT9vSTich2UgcnvnDg==
-X-CSE-MsgGUID: aiQ/+YEeQACs2agJCEfBdA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="37683168"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="37683168"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 07:29:23 -0700
-X-CSE-ConnectionGUID: pYwNmG2QRNuBI9P9XkqjoA==
-X-CSE-MsgGUID: Aibjc9aqTReQKKsjz3cIzA==
+ t=1727277485; x=1758813485;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I0suoG7GHmfD73CrkUDPKjvZhFICcm/G9SkkiX/7+F0=;
+ b=HGTALtUZ7WB7B+76WMXvx5W3yTTFR4q6fqBHeiEC4pWBmjUZM33vsPm8
+ Djtix+v3fYr151JeQ95ISNTJGTl4NF/sfoVolV/SJbCWqg4VAGCTL/047
+ Rm98WDahgmi5pE8XOkEVTJLha1g/DvbsFwWmoFwzt1mJinis9w7WeLnPK
+ txiduiGb5DbWfgXBcSCGMRSc0Z0cFsBWCR7teNK10ylkj4QFLohR55MPu
+ Wl8GjG0AKVHBvhEtipHRlEXYSiGG1p8XAA9ZoqsRIAVOPsa4g3dCTUYtF
+ zM1zPrC05cRuojnj+zGMLFk5+jKiQMfyIhFo9Gu70Oykagl6G+J1iIJsh Q==;
+X-CSE-ConnectionGUID: LxVd0eLBR46Pm+lcMMlPrw==
+X-CSE-MsgGUID: X1+2vKUzSg+bmsKJgD+dKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="48866834"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="48866834"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 08:17:47 -0700
+X-CSE-ConnectionGUID: qMS2JHUfSuGtYHRf6gc3bw==
+X-CSE-MsgGUID: ZeNS2yKoTBeMD+USkhYlNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="102622174"
-Received: from mlehtone-mobl.ger.corp.intel.com (HELO [10.245.244.236])
- ([10.245.244.236])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 07:29:22 -0700
-Message-ID: <0a1bbe76-c0ba-4d6e-aae7-0ff723bc334f@intel.com>
-Date: Wed, 25 Sep 2024 15:29:20 +0100
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="76612928"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa003.jf.intel.com with ESMTP; 25 Sep 2024 08:17:45 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv4 0/7] Display Global Histogram
+Date: Wed, 25 Sep 2024 20:37:47 +0530
+Message-Id: <20240925150754.1876893-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe: Take ref to job and job's fence in
- xe_sched_job_arm
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240924184541.2992459-1-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240924184541.2992459-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,187 +64,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 24/09/2024 19:45, Matthew Brost wrote:
-> Fixes two possible races:
-> 
-> - Submission to hardware signals job's fence before dma_fence_get at end
->    of run_job
-> - TDR fires and signals fence + free job before run_job completes
-> 
-> Taking refs in xe_sched_job_arm to job and job's fence solves these by
-> ensure all refs collected before entering the DRM scheduler. The refs
-> are dropped in run_job and DRM scheduler respectfully. Safe as once
-> xe_sched_job_arm is called execution of job through DRM sched is
-> guaranteed.
-> 
-> v2:
->   - Take job ref on resubmit (Matt Auld)
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2811
+Display histogram is a hardware functionality where a statistics for 'x'
+number of frames is generated to form a histogram data. This is notified
+to the user via histogram event. Compositor will then upon sensing the
+histogram event will read the histogram data from KMD via crtc property.
+A library can be developed to take this generated histogram as an
+input and apply some algorithm to generate an Image EnhancemenT(IET).
+This is further fed back to the KMD via crtc property. KMD will use this
+IET as a multiplicand factor to multiply with the incoming pixels at the
+end of the pipe which is then pushed onto the display.
 
-Maybe also:
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2843
+One such library Global Histogram Enhancement(GHE) will take the histogram
+as input and applied the algorithm to enhance the density and then
+return the enhanced factor. This library can be located @
+https://github.com/intel/ghe
 
-?
+The corresponding mutter changes to enable/disable histogram, read the
+histogram data, communicate with the library and write the enhanced data
+back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
+The IGT changes for validating the histogram event and reading the
+histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.8+
-> ---
->   drivers/gpu/drm/xe/xe_execlist.c        |  4 +++-
->   drivers/gpu/drm/xe/xe_gpu_scheduler.c   | 17 +++++++++++++++++
->   drivers/gpu/drm/xe/xe_gpu_scheduler.h   |  6 +-----
->   drivers/gpu/drm/xe/xe_guc_submit.c      | 11 +++++++----
->   drivers/gpu/drm/xe/xe_sched_job.c       |  5 ++---
->   drivers/gpu/drm/xe/xe_sched_job_types.h |  1 -
->   6 files changed, 30 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-> index f3b71fe7a96d..b70706c9caf2 100644
-> --- a/drivers/gpu/drm/xe/xe_execlist.c
-> +++ b/drivers/gpu/drm/xe/xe_execlist.c
-> @@ -309,11 +309,13 @@ execlist_run_job(struct drm_sched_job *drm_job)
->   	struct xe_sched_job *job = to_xe_sched_job(drm_job);
->   	struct xe_exec_queue *q = job->q;
->   	struct xe_execlist_exec_queue *exl = job->q->execlist;
-> +	struct dma_fence *fence = job->fence;
->   
->   	q->ring_ops->emit_job(job);
->   	xe_execlist_make_active(exl);
-> +	xe_sched_job_put(job);
->   
-> -	return dma_fence_get(job->fence);
-> +	return fence;
->   }
->   
->   static void execlist_job_free(struct drm_sched_job *drm_job)
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> index c518d1d16d82..7ea0c8e9e7a9 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> @@ -4,6 +4,7 @@
->    */
->   
->   #include "xe_gpu_scheduler.h"
-> +#include "xe_sched_job.h"
->   
->   static void xe_sched_process_msg_queue(struct xe_gpu_scheduler *sched)
->   {
-> @@ -106,3 +107,19 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
->   	list_add_tail(&msg->link, &sched->msgs);
->   	xe_sched_process_msg_queue(sched);
->   }
-> +
-> +/**
-> + * xe_sched_resubmit_jobs() - Resubmit scheduler jobs
-> + * @sched: Xe GPU scheduler
-> + *
-> + * Take a ref all jobs on scheduler and resubmit.
-> + */
-> +void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
-> +{
-> +	struct drm_sched_job *s_job;
-> +
-> +	list_for_each_entry(s_job, &sched->base.pending_list, list)
-> +		xe_sched_job_get(to_xe_sched_job(s_job));	/* Paired with put in run_job */
-> +
-> +	drm_sched_resubmit_jobs(&sched->base);
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> index cee9c6809fc0..ecbe5dd6664e 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> @@ -26,6 +26,7 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
->   		      struct xe_sched_msg *msg);
->   void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
->   			     struct xe_sched_msg *msg);
-> +void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched);
->   
->   static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
->   {
-> @@ -47,11 +48,6 @@ static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
->   	drm_sched_tdr_queue_imm(&sched->base);
->   }
->   
-> -static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
-> -{
-> -	drm_sched_resubmit_jobs(&sched->base);
-> -}
-> -
->   static inline bool
->   xe_sched_invalidate_job(struct xe_sched_job *job, int threshold)
->   {
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index fbbe6a487bbb..689279fdef80 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -766,6 +766,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
->   	struct xe_guc *guc = exec_queue_to_guc(q);
->   	struct xe_device *xe = guc_to_xe(guc);
->   	bool lr = xe_exec_queue_is_lr(q);
-> +	struct dma_fence *fence = NULL;
->   
->   	xe_assert(xe, !(exec_queue_destroyed(q) || exec_queue_pending_disable(q)) ||
->   		  exec_queue_banned(q) || exec_queue_suspended(q));
-> @@ -782,12 +783,14 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
->   
->   	if (lr) {
->   		xe_sched_job_set_error(job, -EOPNOTSUPP);
-> -		return NULL;
-> -	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
-> -		return job->fence;
-> +		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
->   	} else {
-> -		return dma_fence_get(job->fence);
-> +		fence = job->fence;
->   	}
-> +
-> +	xe_sched_job_put(job);	/* Pairs with get from xe_sched_job_arm */
+Test-with: 20240705091333.328322-1-mohammed.thasleem@intel.com
 
-Only doubt is job being destroyed here. I think you were saying that 
-guc_exec_queue_free_job(drm_job) can potentially happen before run_job() 
-completes. But if that's the case can't the refcount reach zero here, 
-and then caller of run_job() goes down in flames, since the drm_job is 
-no longer a valid pointer, assuming the put() here frees the memory for it?
+Arun R Murthy (7):
+  drm/i915/histogram: Define registers for histogram
+  drm/i915/histogram: Add support for histogram
+  drm/xe: Add histogram support to Xe builds
+  drm/i915/histogram: histogram interrupt handling
+  drm/i915/histogram: Add crtc properties for global histogram
+  drm/i915/histogram: histogram delay counter doesnt reset
+  drm/i915/histogram: Histogram changes for Display 20+
 
-> +
-> +	return fence;
->   }
->   
->   static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-> index eeccc1c318ae..d0f4b908411f 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> @@ -280,16 +280,15 @@ void xe_sched_job_arm(struct xe_sched_job *job)
->   		fence = &chain->base;
->   	}
->   
-> -	job->fence = fence;
-> +	xe_sched_job_get(job);			/* Pairs with put in run_job */
-> +	job->fence = dma_fence_get(fence);	/* Pairs with put in scheduler */
->   	drm_sched_job_arm(&job->drm);
->   }
->   
->   void xe_sched_job_push(struct xe_sched_job *job)
->   {
-> -	xe_sched_job_get(job);
->   	trace_xe_sched_job_exec(job);
->   	drm_sched_entity_push_job(&job->drm);
-> -	xe_sched_job_put(job);
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> index 0d3f76fb05ce..8ed95e1a378f 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> @@ -40,7 +40,6 @@ struct xe_sched_job {
->   	 * @fence: dma fence to indicate completion. 1 way relationship - job
->   	 * can safely reference fence, fence cannot safely reference job.
->   	 */
-> -#define JOB_FLAG_SUBMIT		DMA_FENCE_FLAG_USER_BITS
->   	struct dma_fence *fence;
->   	/** @user_fence: write back value when BB is complete */
->   	struct {
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 169 ++++++++-
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  13 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |  15 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 352 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    |  38 ++
+ .../drm/i915/display/intel_histogram_reg.h    |  80 ++++
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 12 files changed, 686 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram_reg.h
+
+-- 
+2.25.1
+
