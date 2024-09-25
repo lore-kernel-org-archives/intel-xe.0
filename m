@@ -4,56 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32EDACCFA07
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 23:24:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4FC0CCFA07
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 23:24:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE8F210E86B;
-	Wed, 25 Sep 2024 23:24:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C39910E86E;
+	Wed, 25 Sep 2024 23:24:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fTkQvqVg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkeGEzPT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09CBD10E86B
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 23:24:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1736910E86E
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 23:24:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727306683; x=1758842683;
+ t=1727306684; x=1758842684;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=c63qsnZN5s8NDe/+DsONn4Co1Z2MdYudtuOjmbGGFXg=;
- b=fTkQvqVgd3qvVMuE/vyJZIXcL9UJnSy64a5y+QyKs183hpyDfOWN23k3
- mAGdNS0rgiBHkpf5RedcbF8oIpBxescIW5WjSjsMYXYwD3YJRfoMylxf+
- p5UEoRxXpbnBwtngW91B6/RYKwOK8Q8Xu2/sPsmae66GvIv5+lqWCPfh3
- LkBnIqQX8lDFxLEZRLgCyBZO+gq6UW2c1Tk+QEN+tbVLlUR1WlIpzWGX8
- wQwVyz8nfWPRwZ5kSIHLcHSGWY9f9e3o6d5WPEm4X8Lvjhy0Hye5k+9Z+
- 2uwso5nlXHH1Vms+qNCsTRpu5fmUyZC7y2LfN4bxfE+5+pN0FLVGXCIV3 Q==;
-X-CSE-ConnectionGUID: ZfZVnZxFTo2cEnZorY/1BA==
-X-CSE-MsgGUID: Ejd5YXZkSx2hd2y7k8uIjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="30176182"
-X-IronPort-AV: E=Sophos;i="6.10,258,1719903600"; d="scan'208";a="30176182"
+ bh=1lK9zz+IftiVMJPED+qlJy3XoUhUKZtoU2q5kUk4n5U=;
+ b=bkeGEzPTHVvm8m2vTw7+36NRTJ3WYGYyBrfgTRRzfoyoaOZpmu0H5AjZ
+ wqJftNXFsG4RQUAddyW1YZpqlmdnJi8T5wUE9N1ja9giurDl99stmDocp
+ KrR7KKbxrXt5AFZvQac4VOZpipaWoA2ewrBCr8mc5c+R1va/9oKLnV/vs
+ +PHUtvs4NI751nZ5gORDO7hrgh8MOO7e/IHso7I/oivGvEnp0YSTp8WBP
+ cC2HloG5pRjo/d765jy1zIs2biTewU7kDype/r63K9uZl5oXVXiDVmgrS
+ 8BBdJMnJ3xW0jWaqHqMXqvSbBkSFbJ1cEU/GFbQ1NEXdpxDzfDnAQ9fwM Q==;
+X-CSE-ConnectionGUID: 7U+iQMuzSt6gLJfHEvIKbQ==
+X-CSE-MsgGUID: dmGVLR38RuWXVBZcrPUpiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="30176184"
+X-IronPort-AV: E=Sophos;i="6.10,258,1719903600"; d="scan'208";a="30176184"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 16:24:43 -0700
-X-CSE-ConnectionGUID: CW5WUhP7RuefEqis2PmzpA==
-X-CSE-MsgGUID: QQ24pXhoR06vSWc+geOiEg==
+ 25 Sep 2024 16:24:44 -0700
+X-CSE-ConnectionGUID: C3sIvomlSTSRb5YRqNjgEg==
+X-CSE-MsgGUID: A/LNaaG+S521dACusNCp6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,258,1719903600"; d="scan'208";a="76320911"
+X-IronPort-AV: E=Sophos;i="6.10,258,1719903600"; d="scan'208";a="76320921"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by fmviesa005.fm.intel.com with ESMTP; 25 Sep 2024 16:24:43 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 25 Sep 2024 16:24:44 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH 1/3] drm/xe/pmu: Enable PMU interface
-Date: Wed, 25 Sep 2024 16:21:57 -0700
-Message-Id: <20240925232159.2057581-2-vinay.belgaumkar@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 2/3] drm/xe/pmu: Add GT C6 events
+Date: Wed, 25 Sep 2024 16:21:58 -0700
+Message-Id: <20240925232159.2057581-3-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20240925232159.2057581-1-vinay.belgaumkar@intel.com>
 References: <20240925232159.2057581-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,817 +66,463 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Provide a PMU interface for GT C6 residency counters. The implementation
+is ported over from the i915 PMU code. Residency is provided in units of
+ms(similar to sysfs entry - /sys/class/drm/card0/device/tile0/gt0/gtidle).
 
-Basic PMU enabling patch. Setup the basic framework
-for adding events/timers. This patch was previously
-reviewed here -
-https://patchwork.freedesktop.org/series/119504/
+Following PMU events are being added-
 
-The pmu base implementation is still from the
-i915 driver.
+>> perf list | grep rc6
 
-v2: Review comments(Rodrigo) and do not init pmu for VFs
-as they don't have access to freq and c6 residency anyways.
+  xe_0000_00_02.0/rc6-residency-gt0/                 [Kernel PMU event]
+  xe_0000_00_02.0/rc6-residency-gt1/                 [Kernel PMU event]
 
-Co-developed-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+v2: Checkpatch fix, move timer code to next patch
+
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile          |   2 +
- drivers/gpu/drm/xe/xe_device.c       |   6 +
- drivers/gpu/drm/xe/xe_device_types.h |   4 +
- drivers/gpu/drm/xe/xe_module.c       |   5 +
- drivers/gpu/drm/xe/xe_pmu.c          | 570 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pmu.h          |  26 ++
- drivers/gpu/drm/xe/xe_pmu_types.h    |  63 +++
- include/uapi/drm/xe_drm.h            |   8 +
- 8 files changed, 684 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_pmu.c
- create mode 100644 drivers/gpu/drm/xe/xe_pmu.h
- create mode 100644 drivers/gpu/drm/xe/xe_pmu_types.h
+ drivers/gpu/drm/xe/xe_gt.c        |   2 +
+ drivers/gpu/drm/xe/xe_gt_idle.c   |  20 ++--
+ drivers/gpu/drm/xe/xe_gt_idle.h   |   1 +
+ drivers/gpu/drm/xe/xe_pmu.c       | 172 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pmu.h       |   2 +
+ drivers/gpu/drm/xe/xe_pmu_types.h |  58 ++++++++++
+ include/uapi/drm/xe_drm.h         |   4 +
+ 7 files changed, 253 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index ae245fbd91ee..bddb93e8b949 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -266,6 +266,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/skl_universal_plane.o \
- 	i915-display/skl_watermark.o
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 9b0218109647..7a190c49c573 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -872,6 +872,8 @@ int xe_gt_suspend(struct xe_gt *gt)
  
-+xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+ 	xe_gt_idle_disable_pg(gt);
+ 
++	xe_pmu_suspend(gt);
 +
- ifeq ($(CONFIG_ACPI),y)
- 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 		i915-display/intel_acpi.o \
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index cb5a9fd820cf..027a796d7431 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -762,6 +762,9 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
+ 	xe_gt_disable_host_l2_vram(gt);
  
-+	if (!IS_SRIOV_VF(xe))
-+		xe_pmu_register(&xe->pmu);
-+
- 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 
- err_fini_display:
-@@ -806,6 +809,9 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	xe_heci_gsc_fini(xe);
- 
-+	if (!IS_SRIOV_VF(xe))
-+		xe_pmu_unregister(&xe->pmu);
-+
- 	for_each_gt(gt, xe, id)
- 		xe_gt_remove(gt);
+ 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index 531924b6c0a1..e0a12ac7387c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -277,18 +277,26 @@ static ssize_t idle_status_show(struct device *dev,
  }
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 5ad96d283a71..51485d2eadcf 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -18,6 +18,7 @@
- #include "xe_memirq_types.h"
- #include "xe_oa.h"
- #include "xe_platform_types.h"
-+#include "xe_pmu.h"
- #include "xe_pt_types.h"
- #include "xe_sriov_types.h"
- #include "xe_step_types.h"
-@@ -513,6 +514,9 @@ struct xe_device {
- 		int mode;
- 	} wedged;
+ static DEVICE_ATTR_RO(idle_status);
  
-+	/** @pmu: performance monitoring unit */
-+	struct xe_pmu pmu;
+-static ssize_t idle_residency_ms_show(struct device *dev,
+-				      struct device_attribute *attr, char *buff)
++u64 xe_gt_idle_residency(struct xe_gt *gt)
+ {
+-	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_gt_idle *gtidle = &gt->gtidle;
+ 	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+ 	u64 residency;
+ 
+-	xe_pm_runtime_get(pc_to_xe(pc));
++	xe_pm_runtime_get(xe);
+ 	residency = gtidle->idle_residency(pc);
+-	xe_pm_runtime_put(pc_to_xe(pc));
++	xe_pm_runtime_put(xe);
 +
- #ifdef TEST_VM_OPS_ERROR
- 	/**
- 	 * @vm_inject_error_position: inject errors at different places in VM
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 77ce9f9ca7a5..1bf2bf8447c0 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -14,6 +14,7 @@
- #include "xe_hw_fence.h"
- #include "xe_pci.h"
- #include "xe_pm.h"
-+#include "xe_pmu.h"
- #include "xe_observation.h"
- #include "xe_sched_job.h"
++	return get_residency_ms(gtidle, residency);
++}
++
++static ssize_t idle_residency_ms_show(struct device *dev,
++				      struct device_attribute *attr, char *buff)
++{
++	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
  
-@@ -96,6 +97,10 @@ static const struct init_funcs init_funcs[] = {
- 		.init = xe_sched_job_module_init,
- 		.exit = xe_sched_job_module_exit,
- 	},
-+	{
-+		.init = xe_pmu_init,
-+		.exit = xe_pmu_exit,
-+	},
- 	{
- 		.init = xe_register_pci_driver,
- 		.exit = xe_unregister_pci_driver,
+-	return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle, residency));
++	return sysfs_emit(buff, "%llu\n", xe_gt_idle_residency(gtidle_to_gt(gtidle)));
+ }
+ static DEVICE_ATTR_RO(idle_residency_ms);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+index 4455a6501cb0..887791f653ac 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.h
++++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+@@ -17,5 +17,6 @@ void xe_gt_idle_disable_c6(struct xe_gt *gt);
+ void xe_gt_idle_enable_pg(struct xe_gt *gt);
+ void xe_gt_idle_disable_pg(struct xe_gt *gt);
+ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
++u64 xe_gt_idle_residency(struct xe_gt *gt);
+ 
+ #endif /* _XE_GT_IDLE_H_ */
 diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-new file mode 100644
-index 000000000000..bdaea9ca1065
---- /dev/null
+index bdaea9ca1065..b1b38d245e00 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
 +++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -0,0 +1,570 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
+@@ -11,10 +11,15 @@
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_clock.h"
++#include "xe_gt_idle.h"
++#include "xe_guc_pc.h"
+ #include "xe_mmio.h"
+ #include "xe_macros.h"
++#include "xe_module.h"
+ #include "xe_pm.h"
+ 
++#define FREQUENCY 200
 +
-+#include <drm/drm_drv.h>
-+#include <drm/drm_managed.h>
-+#include <drm/xe_drm.h>
-+
-+#include "regs/xe_gt_regs.h"
-+#include "xe_device.h"
-+#include "xe_force_wake.h"
-+#include "xe_gt_clock.h"
-+#include "xe_mmio.h"
-+#include "xe_macros.h"
-+#include "xe_pm.h"
-+
-+static cpumask_t xe_pmu_cpumask;
-+static unsigned int xe_pmu_target_cpu = -1;
-+
-+/**
-+ * DOC: Xe PMU (Performance Monitoring Unit)
-+ *
-+ * Expose events/counters like C6 residency and GT frequency to user land.
-+ * Perf tool can be used to list and record these counters from the command
-+ * line.
-+ *
-+ * Example commands to list/record supported perf events-
-+ *
-+ * >> perf list
-+ * >> ls /sys/bus/event_source/devices/xe_0000_00_02.0/events/
-+ *
-+ * To record events-
-+ * >> perf stat -e <event_name> -I <interval>
-+ *
-+ */
-+
-+static unsigned int config_gt_id(const u64 config)
+ static cpumask_t xe_pmu_cpumask;
+ static unsigned int xe_pmu_target_cpu = -1;
+ 
+@@ -35,6 +40,11 @@ static unsigned int xe_pmu_target_cpu = -1;
+  *
+  */
+ 
++static struct xe_pmu *event_to_pmu(struct perf_event *event)
 +{
-+	return config >> __XE_PMU_GT_SHIFT;
++	return container_of(event->pmu, struct xe_pmu, base);
 +}
 +
-+static u64 config_counter(const u64 config)
+ static unsigned int config_gt_id(const u64 config)
+ {
+ 	return config >> __XE_PMU_GT_SHIFT;
+@@ -45,6 +55,35 @@ static u64 config_counter(const u64 config)
+ 	return config & ~(~0ULL << __XE_PMU_GT_SHIFT);
+ }
+ 
++static unsigned int other_bit(const u64 config)
 +{
-+	return config & ~(~0ULL << __XE_PMU_GT_SHIFT);
-+}
-+
-+static void xe_pmu_event_destroy(struct perf_event *event)
-+{
-+	struct xe_device *xe =
-+		container_of(event->pmu, typeof(*xe), pmu.base);
-+
-+	drm_WARN_ON(&xe->drm, event->parent);
-+
-+	drm_dev_put(&xe->drm);
-+}
-+
-+static int
-+config_status(struct xe_device *xe, u64 config)
-+{
-+	unsigned int gt_id = config_gt_id(config);
-+
-+	if (gt_id >= XE_PMU_MAX_GT)
-+		return -ENOENT;
++	unsigned int val;
 +
 +	switch (config_counter(config)) {
++	case XE_PMU_RC6_RESIDENCY:
++		val = __XE_PMU_RC6_RESIDENCY_ENABLED;
++		break;
 +	default:
-+		return -ENOENT;
++		/*
++		 * Events that do not require sampling, or tracking state
++		 * transitions between enabled and disabled can be ignored.
++		 */
++		return -1;
 +	}
 +
-+	return 0;
++	return config_gt_id(config) * __XE_PMU_TRACKED_EVENT_COUNT + val;
 +}
 +
-+static int xe_pmu_event_init(struct perf_event *event)
++static unsigned int config_bit(const u64 config)
 +{
-+	struct xe_device *xe =
-+		container_of(event->pmu, typeof(*xe), pmu.base);
++	return other_bit(config);
++}
++
++static unsigned int event_bit(struct perf_event *event)
++{
++	return config_bit(event->attr.config);
++}
++
+ static void xe_pmu_event_destroy(struct perf_event *event)
+ {
+ 	struct xe_device *xe =
+@@ -64,6 +103,10 @@ config_status(struct xe_device *xe, u64 config)
+ 		return -ENOENT;
+ 
+ 	switch (config_counter(config)) {
++	case XE_PMU_RC6_RESIDENCY:
++		if (xe->info.skip_guc_pc)
++			return -ENODEV;
++		break;
+ 	default:
+ 		return -ENOENT;
+ 	}
+@@ -110,6 +153,63 @@ static int xe_pmu_event_init(struct perf_event *event)
+ 	return 0;
+ }
+ 
++static inline s64 ktime_since_raw(const ktime_t kt)
++{
++	return ktime_to_ns(ktime_sub(ktime_get_raw(), kt));
++}
++
++static u64 read_sample(struct xe_pmu *pmu, unsigned int gt_id, int sample)
++{
++	return pmu->event_sample[gt_id][sample].cur;
++}
++
++static void
++store_sample(struct xe_pmu *pmu, unsigned int gt_id, int sample, u64 val)
++{
++	pmu->event_sample[gt_id][sample].cur = val;
++}
++
++static u64 get_rc6(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	const unsigned int gt_id = gt->info.id;
 +	struct xe_pmu *pmu = &xe->pmu;
-+	int ret;
++	bool device_awake;
++	unsigned long flags;
++	u64 val;
 +
-+	if (pmu->closed)
-+		return -ENODEV;
-+
-+	if (event->attr.type != event->pmu->type)
-+		return -ENOENT;
-+
-+	/* unsupported modes and filters */
-+	if (event->attr.sample_period) /* no sampling */
-+		return -EINVAL;
-+
-+	if (has_branch_stack(event))
-+		return -EOPNOTSUPP;
-+
-+	if (event->cpu < 0)
-+		return -EINVAL;
-+
-+	/* only allow running on one cpu at a time */
-+	if (!cpumask_test_cpu(event->cpu, &xe_pmu_cpumask))
-+		return -EINVAL;
-+
-+	ret = config_status(xe, event->attr.config);
-+	if (ret)
-+		return ret;
-+
-+	if (!event->parent) {
-+		drm_dev_get(&xe->drm);
-+		event->destroy = xe_pmu_event_destroy;
++	device_awake = xe_pm_runtime_get_if_active(xe);
++	if (device_awake) {
++		val = xe_gt_idle_residency(gt);
++		xe_pm_runtime_put(xe);
 +	}
 +
-+	return 0;
-+}
++	spin_lock_irqsave(&pmu->lock, flags);
 +
-+static u64 __xe_pmu_event_read(struct perf_event *event)
-+{
-+	struct xe_device *xe =
-+		container_of(event->pmu, typeof(*xe), pmu.base);
-+	const unsigned int gt_id = config_gt_id(event->attr.config);
-+	const u64 config = event->attr.config;
-+	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
-+	u64 val = 0;
-+
-+	switch (config_counter(config)) {
-+	default:
-+		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
++	if (device_awake) {
++		store_sample(pmu, gt_id, __XE_SAMPLE_RC6, val);
++	} else {
++		/*
++		 * We think we are runtime suspended.
++		 *
++		 * Report the delta from when the device was suspended to now,
++		 * on top of the last known real value, as the approximated RC6
++		 * counter value.
++		 */
++		val = ktime_since_raw(pmu->sleep_last[gt_id]);
++		val += read_sample(pmu, gt_id, __XE_SAMPLE_RC6);
 +	}
++
++	if (val < read_sample(pmu, gt_id, __XE_SAMPLE_RC6_LAST_REPORTED))
++		val = read_sample(pmu, gt_id, __XE_SAMPLE_RC6_LAST_REPORTED);
++	else
++		store_sample(pmu, gt_id, __XE_SAMPLE_RC6_LAST_REPORTED, val);
++
++	spin_unlock_irqrestore(&pmu->lock, flags);
 +
 +	return val;
 +}
 +
-+static void xe_pmu_event_read(struct perf_event *event)
-+{
-+	struct xe_device *xe =
-+		container_of(event->pmu, typeof(*xe), pmu.base);
-+	struct hw_perf_event *hwc = &event->hw;
-+	struct xe_pmu *pmu = &xe->pmu;
-+	u64 prev, new;
+ static u64 __xe_pmu_event_read(struct perf_event *event)
+ {
+ 	struct xe_device *xe =
+@@ -120,6 +220,9 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
+ 	u64 val = 0;
+ 
+ 	switch (config_counter(config)) {
++	case XE_PMU_RC6_RESIDENCY:
++		val = get_rc6(gt);
++		break;
+ 	default:
+ 		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+ 	}
+@@ -151,6 +254,28 @@ static void xe_pmu_event_read(struct perf_event *event)
+ 
+ static void xe_pmu_enable(struct perf_event *event)
+ {
++	struct xe_pmu *pmu = event_to_pmu(event);
++	const unsigned int bit = event_bit(event);
++	unsigned long flags;
 +
-+	if (pmu->closed) {
-+		event->hw.state = PERF_HES_STOPPED;
-+		return;
-+	}
-+again:
-+	prev = local64_read(&hwc->prev_count);
-+	new = __xe_pmu_event_read(event);
++	if (bit == -1)
++		goto update;
 +
-+	if (local64_cmpxchg(&hwc->prev_count, prev, new) != prev)
-+		goto again;
-+
-+	local64_add(new - prev, &event->count);
-+}
-+
-+static void xe_pmu_enable(struct perf_event *event)
-+{
-+	/*
-+	 * Store the current counter value so we can report the correct delta
-+	 * for all listeners. Even when the event was already enabled and has
-+	 * an existing non-zero value.
-+	 */
-+	local64_set(&event->hw.prev_count, __xe_pmu_event_read(event));
-+}
-+
-+static void xe_pmu_event_start(struct perf_event *event, int flags)
-+{
-+	struct xe_device *xe =
-+		container_of(event->pmu, typeof(*xe), pmu.base);
-+	struct xe_pmu *pmu = &xe->pmu;
-+
-+	if (pmu->closed)
-+		return;
-+
-+	xe_pmu_enable(event);
-+	event->hw.state = 0;
-+}
-+
-+static void xe_pmu_event_stop(struct perf_event *event, int flags)
-+{
-+	if (flags & PERF_EF_UPDATE)
-+		xe_pmu_event_read(event);
-+
-+	event->hw.state = PERF_HES_STOPPED;
-+}
-+
-+static int xe_pmu_event_add(struct perf_event *event, int flags)
-+{
-+	struct xe_device *xe =
-+		container_of(event->pmu, typeof(*xe), pmu.base);
-+	struct xe_pmu *pmu = &xe->pmu;
-+
-+	if (pmu->closed)
-+		return -ENODEV;
-+
-+	if (flags & PERF_EF_START)
-+		xe_pmu_event_start(event, flags);
-+
-+	return 0;
-+}
-+
-+static void xe_pmu_event_del(struct perf_event *event, int flags)
-+{
-+	xe_pmu_event_stop(event, PERF_EF_UPDATE);
-+}
-+
-+static int xe_pmu_event_event_idx(struct perf_event *event)
-+{
-+	return 0;
-+}
-+
-+struct xe_ext_attribute {
-+	struct device_attribute attr;
-+	unsigned long val;
-+};
-+
-+static ssize_t xe_pmu_event_show(struct device *dev,
-+				 struct device_attribute *attr, char *buf)
-+{
-+	struct xe_ext_attribute *eattr;
-+
-+	eattr = container_of(attr, struct xe_ext_attribute, attr);
-+	return sprintf(buf, "config=0x%lx\n", eattr->val);
-+}
-+
-+static ssize_t cpumask_show(struct device *dev,
-+			    struct device_attribute *attr, char *buf)
-+{
-+	return cpumap_print_to_pagebuf(true, buf, &xe_pmu_cpumask);
-+}
-+
-+static DEVICE_ATTR_RO(cpumask);
-+
-+static struct attribute *xe_cpumask_attrs[] = {
-+	&dev_attr_cpumask.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group xe_pmu_cpumask_attr_group = {
-+	.attrs = xe_cpumask_attrs,
-+};
-+
-+#define __event(__counter, __name, __unit) \
-+{ \
-+	.counter = (__counter), \
-+	.name = (__name), \
-+	.unit = (__unit), \
-+}
-+
-+static struct xe_ext_attribute *
-+add_xe_attr(struct xe_ext_attribute *attr, const char *name, u64 config)
-+{
-+	sysfs_attr_init(&attr->attr.attr);
-+	attr->attr.attr.name = name;
-+	attr->attr.attr.mode = 0444;
-+	attr->attr.show = xe_pmu_event_show;
-+	attr->val = config;
-+
-+	return ++attr;
-+}
-+
-+static struct perf_pmu_events_attr *
-+add_pmu_attr(struct perf_pmu_events_attr *attr, const char *name,
-+	     const char *str)
-+{
-+	sysfs_attr_init(&attr->attr.attr);
-+	attr->attr.attr.name = name;
-+	attr->attr.attr.mode = 0444;
-+	attr->attr.show = perf_event_sysfs_show;
-+	attr->event_str = str;
-+
-+	return ++attr;
-+}
-+
-+static struct attribute **
-+create_event_attributes(struct xe_pmu *pmu)
-+{
-+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
-+	static const struct {
-+		unsigned int counter;
-+		const char *name;
-+		const char *unit;
-+	} events[] = {
-+	};
-+
-+	struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
-+	struct xe_ext_attribute *xe_attr = NULL, *xe_iter;
-+	struct attribute **attr = NULL, **attr_iter;
-+	unsigned int count = 0;
-+	unsigned int i, j;
-+	struct xe_gt *gt;
-+
-+	/* Count how many counters we will be exposing. */
-+	for_each_gt(gt, xe, j) {
-+		for (i = 0; i < ARRAY_SIZE(events); i++) {
-+			u64 config = ___XE_PMU_OTHER(j, events[i].counter);
-+
-+			if (!config_status(xe, config))
-+				count++;
-+		}
-+	}
-+
-+	/* Allocate attribute objects and table. */
-+	xe_attr = kcalloc(count, sizeof(*xe_attr), GFP_KERNEL);
-+	if (!xe_attr)
-+		goto err_alloc;
-+
-+	pmu_attr = kcalloc(count, sizeof(*pmu_attr), GFP_KERNEL);
-+	if (!pmu_attr)
-+		goto err_alloc;
-+
-+	/* Max one pointer of each attribute type plus a termination entry. */
-+	attr = kcalloc(count * 2 + 1, sizeof(*attr), GFP_KERNEL);
-+	if (!attr)
-+		goto err_alloc;
-+
-+	xe_iter = xe_attr;
-+	pmu_iter = pmu_attr;
-+	attr_iter = attr;
-+
-+	for_each_gt(gt, xe, j) {
-+		for (i = 0; i < ARRAY_SIZE(events); i++) {
-+			u64 config = ___XE_PMU_OTHER(j, events[i].counter);
-+			char *str;
-+
-+			if (config_status(xe, config))
-+				continue;
-+
-+			str = kasprintf(GFP_KERNEL, "%s-gt%u",
-+					events[i].name, j);
-+			if (!str)
-+				goto err;
-+
-+			*attr_iter++ = &xe_iter->attr.attr;
-+			xe_iter = add_xe_attr(xe_iter, str, config);
-+
-+			if (events[i].unit) {
-+				str = kasprintf(GFP_KERNEL, "%s-gt%u.unit",
-+						events[i].name, j);
-+				if (!str)
-+					goto err;
-+
-+				*attr_iter++ = &pmu_iter->attr.attr;
-+				pmu_iter = add_pmu_attr(pmu_iter, str,
-+							events[i].unit);
-+			}
-+		}
-+	}
-+
-+	pmu->xe_attr = xe_attr;
-+	pmu->pmu_attr = pmu_attr;
-+
-+	return attr;
-+
-+err:
-+	for (attr_iter = attr; *attr_iter; attr_iter++)
-+		kfree((*attr_iter)->name);
-+
-+err_alloc:
-+	kfree(attr);
-+	kfree(xe_attr);
-+	kfree(pmu_attr);
-+
-+	return NULL;
-+}
-+
-+static void free_event_attributes(struct xe_pmu *pmu)
-+{
-+	struct attribute **attr_iter = pmu->events_attr_group.attrs;
-+
-+	for (; *attr_iter; attr_iter++)
-+		kfree((*attr_iter)->name);
-+
-+	kfree(pmu->events_attr_group.attrs);
-+	kfree(pmu->xe_attr);
-+	kfree(pmu->pmu_attr);
-+
-+	pmu->events_attr_group.attrs = NULL;
-+	pmu->xe_attr = NULL;
-+	pmu->pmu_attr = NULL;
-+}
-+
-+static int xe_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
-+{
-+	struct xe_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
-+
-+	XE_WARN_ON(!pmu->base.event_init);
-+
-+	/* Select the first online CPU as a designated reader. */
-+	if (cpumask_empty(&xe_pmu_cpumask))
-+		cpumask_set_cpu(cpu, &xe_pmu_cpumask);
-+
-+	return 0;
-+}
-+
-+static int xe_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
-+{
-+	struct xe_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
-+	unsigned int target = xe_pmu_target_cpu;
++	spin_lock_irqsave(&pmu->lock, flags);
 +
 +	/*
-+	 * Unregistering an instance generates a CPU offline event which we must
-+	 * ignore to avoid incorrectly modifying the shared xe_pmu_cpumask.
++	 * Update the bitmask of enabled events and increment
++	 * the event reference counter.
 +	 */
-+	if (pmu->closed)
-+		return 0;
++	BUILD_BUG_ON(ARRAY_SIZE(pmu->enable_count) != XE_PMU_MASK_BITS);
++	XE_WARN_ON(bit >= ARRAY_SIZE(pmu->enable_count));
++	XE_WARN_ON(pmu->enable_count[bit] == ~0);
 +
-+	if (cpumask_test_and_clear_cpu(cpu, &xe_pmu_cpumask)) {
-+		target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
++	pmu->enable |= BIT(bit);
++	pmu->enable_count[bit]++;
 +
-+		/* Migrate events if there is a valid target */
-+		if (target < nr_cpu_ids) {
-+			cpumask_set_cpu(target, &xe_pmu_cpumask);
-+			xe_pmu_target_cpu = target;
-+		}
-+	}
-+
-+	if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
-+		perf_pmu_migrate_context(&pmu->base, cpu, target);
-+		pmu->cpuhp.cpu = target;
-+	}
-+
-+	return 0;
-+}
-+
-+static enum cpuhp_state cpuhp_slot = CPUHP_INVALID;
-+
-+/**
-+ * xe_pmu_init() - Setup CPU hotplug state/callbacks for Xe PMU
-+ *
-+ * Returns: 0 if successful, else error code
-+ */
-+int xe_pmu_init(void)
++	spin_unlock_irqrestore(&pmu->lock, flags);
++update:
+ 	/*
+ 	 * Store the current counter value so we can report the correct delta
+ 	 * for all listeners. Even when the event was already enabled and has
+@@ -277,6 +402,7 @@ create_event_attributes(struct xe_pmu *pmu)
+ 		const char *name;
+ 		const char *unit;
+ 	} events[] = {
++		__event(0, "rc6-residency", "ms"),
+ 	};
+ 
+ 	struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
+@@ -465,6 +591,32 @@ static void xe_pmu_unregister_cpuhp_state(struct xe_pmu *pmu)
+ 	cpuhp_state_remove_instance(cpuhp_slot, &pmu->cpuhp.node);
+ }
+ 
++static void store_rc6_residency(struct xe_gt *gt)
 +{
-+	int ret;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_pmu *pmu = &xe->pmu;
 +
-+	ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
-+				      "perf/x86/intel/xe:online",
-+				      xe_pmu_cpu_online,
-+				      xe_pmu_cpu_offline);
-+	if (ret < 0)
-+		pr_notice("Failed to setup cpuhp state for xe PMU! (%d)\n",
-+			  ret);
-+	else
-+		cpuhp_slot = ret;
-+
-+	return 0;
++	store_sample(pmu, gt->info.id, __XE_SAMPLE_RC6,
++		     xe_gt_idle_residency(gt));
++	pmu->sleep_last[gt->info.id] = ktime_get_raw();
 +}
 +
 +/**
-+ * xe_pmu_exit() - Remove CPU hotplug state/callbacks for Xe PMU
++ * xe_pmu_suspend() - Save residency count before suspend
 + */
-+void xe_pmu_exit(void)
++void xe_pmu_suspend(struct xe_gt *gt)
 +{
-+	if (cpuhp_slot != CPUHP_INVALID)
-+		cpuhp_remove_multi_state(cpuhp_slot);
-+}
-+
-+static int xe_pmu_register_cpuhp_state(struct xe_pmu *pmu)
-+{
-+	if (cpuhp_slot == CPUHP_INVALID)
-+		return -EINVAL;
-+
-+	return cpuhp_state_add_instance(cpuhp_slot, &pmu->cpuhp.node);
-+}
-+
-+static void xe_pmu_unregister_cpuhp_state(struct xe_pmu *pmu)
-+{
-+	cpuhp_state_remove_instance(cpuhp_slot, &pmu->cpuhp.node);
-+}
-+
-+/**
-+ * xe_pmu_unregister() - Remove/cleanup PMU registration
-+ */
-+void xe_pmu_unregister(void *arg)
-+{
-+	struct xe_pmu *pmu = arg;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_pmu *pmu = &xe->pmu;
 +
 +	if (!pmu->base.event_init)
 +		return;
 +
-+	/*
-+	 * "Disconnect" the PMU callbacks - since all are atomic synchronize_rcu
-+	 * ensures all currently executing ones will have exited before we
-+	 * proceed with unregistration.
-+	 */
-+	pmu->closed = true;
-+	synchronize_rcu();
-+
-+	xe_pmu_unregister_cpuhp_state(pmu);
-+
-+	perf_pmu_unregister(&pmu->base);
-+	pmu->base.event_init = NULL;
-+	kfree(pmu->base.attr_groups);
-+	kfree(pmu->name);
-+	free_event_attributes(pmu);
++	spin_lock_irq(&pmu->lock);
++	store_rc6_residency(gt);
++	spin_unlock_irq(&pmu->lock);
 +}
-+
-+/**
-+ * xe_pmu_register() - Define basic PMU properties for Xe and add event callbacks.
-+ *
-+ */
-+void xe_pmu_register(struct xe_pmu *pmu)
-+{
-+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
-+	const struct attribute_group *attr_groups[] = {
-+		&pmu->events_attr_group,
-+		&xe_pmu_cpumask_attr_group,
-+		NULL
-+	};
-+
-+	int ret = -ENOMEM;
-+
-+	spin_lock_init(&pmu->lock);
-+	pmu->cpuhp.cpu = -1;
-+
-+	pmu->name = kasprintf(GFP_KERNEL,
-+			      "xe_%s",
-+			      dev_name(xe->drm.dev));
-+	if (pmu->name)
-+		/* tools/perf reserves colons as special. */
-+		strreplace((char *)pmu->name, ':', '_');
-+
-+	if (!pmu->name)
-+		goto err;
-+
-+	pmu->events_attr_group.name = "events";
-+	pmu->events_attr_group.attrs = create_event_attributes(pmu);
-+	if (!pmu->events_attr_group.attrs)
-+		goto err_name;
-+
-+	pmu->base.attr_groups = kmemdup(attr_groups, sizeof(attr_groups),
-+					GFP_KERNEL);
-+	if (!pmu->base.attr_groups)
-+		goto err_attr;
-+
-+	pmu->base.module	= THIS_MODULE;
-+	pmu->base.task_ctx_nr	= perf_invalid_context;
-+	pmu->base.event_init	= xe_pmu_event_init;
-+	pmu->base.add		= xe_pmu_event_add;
-+	pmu->base.del		= xe_pmu_event_del;
-+	pmu->base.start		= xe_pmu_event_start;
-+	pmu->base.stop		= xe_pmu_event_stop;
-+	pmu->base.read		= xe_pmu_event_read;
-+	pmu->base.event_idx	= xe_pmu_event_event_idx;
-+
-+	ret = perf_pmu_register(&pmu->base, pmu->name, -1);
-+	if (ret)
-+		goto err_groups;
-+
-+	ret = xe_pmu_register_cpuhp_state(pmu);
-+	if (ret)
-+		goto err_unreg;
-+
-+	ret = devm_add_action_or_reset(xe->drm.dev, xe_pmu_unregister, pmu);
-+	if (ret)
-+		goto err_cpuhp;
-+
-+	return;
-+
-+err_cpuhp:
-+	xe_pmu_unregister_cpuhp_state(pmu);
-+err_unreg:
-+	perf_pmu_unregister(&pmu->base);
-+err_groups:
-+	kfree(pmu->base.attr_groups);
-+err_attr:
-+	pmu->base.event_init = NULL;
-+	free_event_attributes(pmu);
-+err_name:
-+	kfree(pmu->name);
-+err:
-+	drm_notice(&xe->drm, "Failed to register PMU!\n");
-+}
-diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
-new file mode 100644
-index 000000000000..af8108ebef87
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pmu.h
-@@ -0,0 +1,26 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_PMU_H_
-+#define _XE_PMU_H_
-+
-+#include "xe_pmu_types.h"
-+
-+struct xe_gt;
-+
-+#if IS_ENABLED(CONFIG_PERF_EVENTS)
-+int xe_pmu_init(void);
-+void xe_pmu_exit(void);
-+void xe_pmu_register(struct xe_pmu *pmu);
-+void xe_pmu_unregister(void *arg);
-+#else
-+static inline int xe_pmu_init(void) { return 0; }
-+static inline void xe_pmu_exit(void) {}
-+static inline void xe_pmu_register(struct xe_pmu *pmu) {}
-+static void xe_pmu_unregister(void *arg) {}
-+#endif
-+
-+#endif
-+
-diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
-new file mode 100644
-index 000000000000..ca0e7cbe2081
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pmu_types.h
-@@ -0,0 +1,63 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_PMU_TYPES_H_
-+#define _XE_PMU_TYPES_H_
-+
-+#include <linux/perf_event.h>
-+#include <linux/spinlock_types.h>
-+#include <uapi/drm/xe_drm.h>
-+
-+enum {
-+	__XE_NUM_PMU_SAMPLERS
-+};
-+
-+#define XE_PMU_MAX_GT 2
-+
-+struct xe_pmu {
-+	/**
-+	 * @cpuhp: Struct used for CPU hotplug handling.
-+	 */
-+	struct {
-+		struct hlist_node node;
-+		unsigned int cpu;
-+	} cpuhp;
-+	/**
-+	 * @base: PMU base.
-+	 */
-+	struct pmu base;
-+	/**
-+	 * @closed: xe is unregistering.
-+	 */
-+	bool closed;
-+	/**
-+	 * @name: Name as registered with perf core.
-+	 */
-+	const char *name;
-+	/**
-+	 * @lock: Lock protecting enable mask and ref count handling.
-+	 */
-+	spinlock_t lock;
-+	/**
-+	 * @sample: Current and previous (raw) counters.
-+	 *
-+	 * These counters are updated when the device is awake.
-+	 */
-+	u64 sample[XE_PMU_MAX_GT][__XE_NUM_PMU_SAMPLERS];
-+	/**
-+	 * @events_attr_group: Device events attribute group.
-+	 */
-+	struct attribute_group events_attr_group;
-+	/**
-+	 * @xe_attr: Memory block holding device attributes.
-+	 */
-+	void *xe_attr;
-+	/**
-+	 * @pmu_attr: Memory block holding device attributes.
-+	 */
-+	void *pmu_attr;
-+};
-+
-+#endif
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index b6fbe4988f2e..2c5f258eee3a 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1389,6 +1389,14 @@ struct drm_xe_wait_user_fence {
- 	__u64 reserved[2];
- };
- 
-+/*
-+ * Top bits of every counter are GT id.
-+ */
-+#define __XE_PMU_GT_SHIFT (56)
-+
-+#define ___XE_PMU_OTHER(gt, x) \
-+	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
 +
  /**
-  * enum drm_xe_observation_type - Observation stream types
+  * xe_pmu_unregister() - Remove/cleanup PMU registration
   */
+@@ -492,6 +644,24 @@ void xe_pmu_unregister(void *arg)
+ 	free_event_attributes(pmu);
+ }
+ 
++static void init_rc6(struct xe_pmu *pmu)
++{
++	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
++	struct xe_gt *gt;
++	unsigned int j;
++
++	for_each_gt(gt, xe, j) {
++		xe_pm_runtime_get(xe);
++		u64 val = xe_gt_idle_residency(gt);
++
++		store_sample(pmu, j, __XE_SAMPLE_RC6, val);
++		store_sample(pmu, j, __XE_SAMPLE_RC6_LAST_REPORTED,
++			     val);
++		pmu->sleep_last[j] = ktime_get_raw();
++		xe_pm_runtime_put(xe);
++	}
++}
++
+ /**
+  * xe_pmu_register() - Define basic PMU properties for Xe and add event callbacks.
+  *
+@@ -525,6 +695,8 @@ void xe_pmu_register(struct xe_pmu *pmu)
+ 	if (!pmu->events_attr_group.attrs)
+ 		goto err_name;
+ 
++	init_rc6(pmu);
++
+ 	pmu->base.attr_groups = kmemdup(attr_groups, sizeof(attr_groups),
+ 					GFP_KERNEL);
+ 	if (!pmu->base.attr_groups)
+diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
+index af8108ebef87..733f2c33039c 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.h
++++ b/drivers/gpu/drm/xe/xe_pmu.h
+@@ -15,11 +15,13 @@ int xe_pmu_init(void);
+ void xe_pmu_exit(void);
+ void xe_pmu_register(struct xe_pmu *pmu);
+ void xe_pmu_unregister(void *arg);
++void xe_pmu_suspend(struct xe_gt *gt);
+ #else
+ static inline int xe_pmu_init(void) { return 0; }
+ static inline void xe_pmu_exit(void) {}
+ static inline void xe_pmu_register(struct xe_pmu *pmu) {}
+ static void xe_pmu_unregister(void *arg) {}
++void xe_pmu_suspend(struct xe_gt *gt) {}
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
+index ca0e7cbe2081..1213d2a73492 100644
+--- a/drivers/gpu/drm/xe/xe_pmu_types.h
++++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+@@ -11,11 +11,34 @@
+ #include <uapi/drm/xe_drm.h>
+ 
+ enum {
++	__XE_SAMPLE_RC6,
++	__XE_SAMPLE_RC6_LAST_REPORTED,
+ 	__XE_NUM_PMU_SAMPLERS
+ };
+ 
+ #define XE_PMU_MAX_GT 2
+ 
++/*
++ * Non-engine events that we need to track enabled-disabled transition and
++ * current state.
++ */
++enum xe_pmu_tracked_events {
++	__XE_PMU_RC6_RESIDENCY_ENABLED,
++	__XE_PMU_TRACKED_EVENT_COUNT, /* count marker */
++};
++
++/*
++ * How many different events we track in the global PMU mask.
++ *
++ * It is also used to know to needed number of event reference counters.
++ */
++#define XE_PMU_MASK_BITS \
++	(XE_PMU_MAX_GT * __XE_PMU_TRACKED_EVENT_COUNT)
++
++struct xe_pmu_sample {
++	u64 cur;
++};
++
+ struct xe_pmu {
+ 	/**
+ 	 * @cpuhp: Struct used for CPU hotplug handling.
+@@ -58,6 +81,41 @@ struct xe_pmu {
+ 	 * @pmu_attr: Memory block holding device attributes.
+ 	 */
+ 	void *pmu_attr;
++
++	/**
++	 * @enable: Bitmask of specific enabled events.
++	 *
++	 * For some events we need to track their state and do some internal
++	 * house keeping.
++	 *
++	 * Each engine event sampler type and event listed in enum
++	 * i915_pmu_tracked_events gets a bit in this field.
++	 *
++	 * Low bits are engine samplers and other events continue from there.
++	 */
++	u32 enable;
++
++	/**
++	 * @enable_count: Reference counts for the enabled events.
++	 *
++	 * Array indices are mapped in the same way as bits in the @enable field
++	 * and they are used to control sampling on/off when multiple clients
++	 * are using the PMU API.
++	 */
++	unsigned int enable_count[XE_PMU_MASK_BITS];
++	/**
++	 * @sample: Current and previous (raw) counters for sampling events.
++	 *
++	 * These counters are updated from the i915 PMU sampling timer.
++	 *
++	 * Only global counters are held here, while the per-engine ones are in
++	 * struct intel_engine_cs.
++	 */
++	struct xe_pmu_sample event_sample[XE_PMU_MAX_GT][__XE_NUM_PMU_SAMPLERS];
++	/**
++	 * @sleep_last: Last time GT parked for RC6 estimation.
++	 */
++	ktime_t sleep_last[XE_PMU_MAX_GT];
+ };
+ 
+ #endif
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 2c5f258eee3a..3ef3926551dd 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1396,6 +1396,10 @@ struct drm_xe_wait_user_fence {
+ 
+ #define ___XE_PMU_OTHER(gt, x) \
+ 	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
++#define __XE_PMU_OTHER(x) ___XE_PMU_OTHER(0, x)
++
++#define XE_PMU_RC6_RESIDENCY                    __XE_PMU_OTHER(0)
++#define __XE_PMU_RC6_RESIDENCY(gt)              ___XE_PMU_OTHER(gt, 0)
+ 
+ /**
+  * enum drm_xe_observation_type - Observation stream types
 -- 
 2.38.1
 
