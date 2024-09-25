@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A5ACCF9E6
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 15:50:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69A62CCF9E6
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 15:52:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9EEA10E840;
-	Wed, 25 Sep 2024 15:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34EA310E840;
+	Wed, 25 Sep 2024 15:52:45 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36B9610E840;
- Wed, 25 Sep 2024 15:50:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBC8910E840;
+ Wed, 25 Sep 2024 15:52:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_Add_F?=
- =?utf-8?q?EC_Enable_Retry_mechanism?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dp=3A_Add_FEC_En?=
+ =?utf-8?q?able_Retry_mechanism?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Sep 2024 15:50:20 -0000
-Message-ID: <172727942022.1101712.15732424700262098150@2413ebb6fbb6>
+Date: Wed, 25 Sep 2024 15:52:43 -0000
+Message-ID: <172727956395.1101712.17786701751369536192@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240923045218.1813255-1-chaitanya.kumar.borah@intel.com>
 In-Reply-To: <20240923045218.1813255-1-chaitanya.kumar.borah@intel.com>
@@ -44,13 +44,13 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/dp: Add FEC Enable Retry mechanism
 URL   : https://patchwork.freedesktop.org/series/138964/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d5334f14ce6c drm-tip: 2024y-09m-25d-14h-45m-08s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp: Add FEC Enable Retry mechanism
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+fatal: unable to access 'https://gitlab.freedesktop.org/drm/maintainer-tools/': Failed to connect to gitlab.freedesktop.org port 443 after 138243 ms: Couldn't connect to server
 
 
