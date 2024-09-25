@@ -4,62 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B987AC369D4
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 11:53:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DA7AC369D4
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 11:53:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6A410E993;
-	Wed, 25 Sep 2024 11:53:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F23310E81D;
+	Wed, 25 Sep 2024 11:53:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bK8d2iFO";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="ZaJnV8sL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 954FE10E993
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 11:53:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727265210; x=1758801210;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ZKzdCzZnf7+RZkSzzbFSoqptLrFofrpJFHshQ2Ixo8E=;
- b=bK8d2iFOwcmupaQSGCzVQnc4AxuzlGJUk0xwWFrzUHm1iNwyUK+6XqJE
- 9RXlSiR/8C8Yym2aMw18OaqzHBONWPUegyLIaK5HQBPFLBCkVId3mjAjk
- Eizsigb6VVRpNswgnmwTjt21Rdqt5fYLN7TW7AGfw57Ol5tn34j8P9CRN
- H+JjmNHUlHh9smU2vS/xac1O8s2R/dzD7C7jkAM83CjspSaVwEdCjHgQy
- Nfdez4CTqhTIZ5rtThdrNqpXG4LqaxITVr+rSAHVCFbUhIRnmC6ZrTRji
- UdiAUML3NJgMCy94tW0TT8Z/0ptaGODTA6O+VjuAbPpcGw/RCKHYNI54k w==;
-X-CSE-ConnectionGUID: Gb/q93XQSeS+KvNaUN7zQg==
-X-CSE-MsgGUID: jSFpa7NFSVKwDmE31eYFRQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="51721662"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="51721662"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 04:53:30 -0700
-X-CSE-ConnectionGUID: 9MB9/q7kTROLaHxwA3NYWA==
-X-CSE-MsgGUID: pKEDclTiT+m0+bHux7ygxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="72053366"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.178.53])
- ([10.245.178.53])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 04:50:06 -0700
-Message-ID: <33ac357b-4ac9-4d2f-937c-0f136dc7b0a8@linux.intel.com>
-Date: Wed, 25 Sep 2024 13:50:02 +0200
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+ [209.85.167.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2320A10E996
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 11:53:37 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id
+ 2adb3069b0e04-536584f6c84so8206028e87.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 04:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1727265215; x=1727870015; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=o0d3c8Z9r2ZAGxuFjvCvLBTiAAYmewJnB9aenLoqHvo=;
+ b=ZaJnV8sL22hEGoaJRRo3gdgoul5MnM/2fgdy7DO5B8cjpgHmTjjvvIh9bbMYlcZQZX
+ dDoXtw2SSB4hOjY9ZasLjnbG5Fdwjmma9lHE34RPG/53BBradQMwYAzO3i3qWke1YTMM
+ FccDkyqRvmK0ldwmAZEtsCs552G1/7fxHP/R8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727265215; x=1727870015;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=o0d3c8Z9r2ZAGxuFjvCvLBTiAAYmewJnB9aenLoqHvo=;
+ b=gF54NEmpZluqRnNgtHSC/33F6UiMaSi1sf2+gNu1pzWqeHl9Jn0QIDLfdr7nZVgdEK
+ OsjDZL6GWmXGJlTwyM90fNbsZLmBr/keFGLbjaQQDkNWX9iIEVCGZNdonf+JTeGJCoHD
+ Z2FBhWDiols5Qs3SFg4riDDXFTreGJ1MjL0XovM2PYB29UAUX9pbCZXedFNsP1Yb65ZO
+ 4U1i6t7HzEBMA8bNJ7dXEEOCRtjSrsixcNWgA4FEM3uWCaP0cvIl9VMKkz+bsjCDb8pn
+ 7MwakZQfWefMLGI5xe4h9pRdd6m2OJToGQEdLV6ORSiR93KtbgmJBjdci9QA830vXgjT
+ KCgg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVBTr7wXKFRE8savK6xe8H1ni7TEethSKoxGbOCQ11YJXQ3OFBci5lEgEMVHbwYxaUboeVcNpMOzw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yybm8jcMTadHU/MOH461hpxefDT6blHVIR8mQwR6JmRQQDynoLb
+ w3df6/DnHjEX/Y97XTjnRntEzqfVL2yI8MkP1MkoW1UjIRiQAOZv2VwM8fuLdi8=
+X-Google-Smtp-Source: AGHT+IE0Khbx5ubXQZXgepY2DULlIwccn07EkXR+5s84p5vSsBP6AN2P3I4pP1Qg24LWmH7MsF1SMA==
+X-Received: by 2002:a05:6512:10c1:b0:535:6778:952b with SMTP id
+ 2adb3069b0e04-5387755b89dmr1579834e87.44.1727265215049; 
+ Wed, 25 Sep 2024 04:53:35 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a9393138b18sm199347066b.215.2024.09.25.04.53.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 Sep 2024 04:53:34 -0700 (PDT)
+Date: Wed, 25 Sep 2024 13:53:32 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>, airlied@gmail.com,
+ simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH v6 1/4] drm: Introduce device wedged event
+Message-ID: <ZvP5vPnoI-MS8Qar@phenom.ffwll.local>
+References: <20240923035826.624196-1-raag.jadav@intel.com>
+ <20240923035826.624196-2-raag.jadav@intel.com>
+ <ZvKhIQGnGrcPURhD@phenom.ffwll.local>
+ <ZvN9yw5AYtxudNne@black.fi.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/xe/queue: move xa_alloc to prevent UAF
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-References: <20240925071426.144015-3-matthew.auld@intel.com>
- <20240925071426.144015-4-matthew.auld@intel.com>
- <598b2e8c-a50f-42ec-a6c0-749b0ae507b6@linux.intel.com>
- <8f3dda30-b6ea-4800-b357-4332bd8c5be4@intel.com>
- <d74a5462-7fd4-4911-b62c-178f4292f90d@linux.intel.com>
- <8d83962f-abff-455e-a14e-d3bf7c5a9cbf@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <8d83962f-abff-455e-a14e-d3bf7c5a9cbf@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZvN9yw5AYtxudNne@black.fi.intel.com>
+X-Operating-System: Linux phenom 6.10.6-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,67 +90,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Sep 25, 2024 at 06:04:43AM +0300, Raag Jadav wrote:
+> On Tue, Sep 24, 2024 at 01:23:13PM +0200, Simona Vetter wrote:
+> > On Mon, Sep 23, 2024 at 09:28:23AM +0530, Raag Jadav wrote:
+> > > Introduce device wedged event, which will notify userspace of wedged
+> > > (hanged/unusable) state of the DRM device through a uevent. This is
+> > > useful especially in cases where the device is no longer operating as
+> > > expected and has become unrecoverable from driver context.
+> > > 
+> > > Purpose of this implementation is to provide drivers a way to recover
+> > > through userspace intervention. Different drivers may have different
+> > > ideas of a "wedged device" depending on their hardware implementation,
+> > > and hence the vendor agnostic nature of the event. It is up to the drivers
+> > > to decide when they see the need for recovery and how they want to recover
+> > > from the available methods.
+> > > 
+> > > Current implementation defines three recovery methods, out of which,
+> > > drivers can choose to support any one or multiple of them. Preferred
+> > > recovery method will be sent in the uevent environment as WEDGED=<method>.
+> > > Userspace consumers (sysadmin) can define udev rules to parse this event
+> > > and take respective action to recover the device.
+> > > 
+> > >  Method    | Consumer expectations
+> > > -----------|-----------------------------------
+> > >  rebind    | unbind + rebind driver
+> > >  bus-reset | unbind + reset bus device + rebind
+> > >  reboot    | reboot system
+> > > 
+> > > v4: s/drm_dev_wedged/drm_dev_wedged_event
+> > >     Use drm_info() (Jani)
+> > >     Kernel doc adjustment (Aravind)
+> > > v5: Send recovery method with uevent (Lina)
+> > > v6: Access wedge_recovery_opts[] using helper function (Jani)
+> > >     Use snprintf() (Jani)
+> > > 
+> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > 
+> > Finally caught up on mail, so dropping this here again: Please also add a
+> > small section to drm-uapi.rst, pointing at these functions. Just the
+> > kerneldoc for developers is kinda not enough I think.
+> 
+> Would you prefer a new section or have the existing one (Device reset which
+> looks somewhat similar but not entirely) modified?
 
-On 9/25/2024 1:24 PM, Matthew Auld wrote:
-> On 25/09/2024 11:44, Nirmoy Das wrote:
->>
->> On 9/25/2024 11:51 AM, Matthew Auld wrote:
->>> On 25/09/2024 10:33, Nirmoy Das wrote:
->>>>
->>>> On 9/25/2024 9:14 AM, Matthew Auld wrote:
->>>>> Evil user can guess the next id of the queue before the ioctl completes
->>>>> and then call queue destroy ioctl to trigger UAF since create ioctl is
->>>>> still referencing the same queue. Move the xa_alloc all the way to the end
->>>>> to prevent this.
->>>>
->>>> The commit message doesn't match the diff, xa_alloc already happening at the end here.
->>>
->>> It's not at the end. It is dereferencing the q to set xef after the xa_alloc, but that needs to happen before it is visible to userspace.
->>
->>
->> Ah I see, that make sense.
->>
->> I think now  we have to undo xe_file_get() if xe_alloc fails.
->
-> That is already handled by the queue put().
-
-Ok,  that took some digging. Thanks for clearing my doubts.
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
->
->>
->>
->> Regards,
->>
->> Nirmoy
->>
->>>
->>>>
->>>>> v2:
->>>>>    - Rebase
->>>>>
->>>>> Fixes: 2149ded63079 ("drm/xe: Fix use after free when client stats are captured")
->>>>> Signed-off-by: Matthew Auld<matthew.auld@intel.com>
->>>>> Cc: Matthew Brost<matthew.brost@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/xe/xe_exec_queue.c | 4 +++-
->>>>>    1 file changed, 3 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->>>>> index 7743ebdcbf4b..d098d2dd1b2d 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->>>>> @@ -635,12 +635,14 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->>>>>            }
->>>>>        }
->>>>>    +    q->xef = xe_file_get(xef);
->>>>> +
->>>>> +    /* user id alloc must always be last in ioctl to prevent UAF */
->>>>>        err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b, GFP_KERNEL);
->>>>>        if (err)
->>>>>            goto kill_exec_queue;
->>>>>          args->exec_queue_id = id;
->>>>> -    q->xef = xe_file_get(xef);
->>>>>          return 0;
->>>>>    
+Great point, I think just adding a paragraph and maybe the table/list you
+have to the device reset section is perfect.
+-Sima
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
