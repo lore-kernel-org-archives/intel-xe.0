@@ -4,78 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DA7AC369D4
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 11:53:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9659CC369D6
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 12:01:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F23310E81D;
-	Wed, 25 Sep 2024 11:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 500BF10E814;
+	Wed, 25 Sep 2024 12:01:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="ZaJnV8sL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M71gPzaa";
 	dkim-atps=neutral
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
- [209.85.167.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2320A10E996
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 11:53:37 +0000 (UTC)
-Received: by mail-lf1-f49.google.com with SMTP id
- 2adb3069b0e04-536584f6c84so8206028e87.0
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 04:53:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1727265215; x=1727870015; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=o0d3c8Z9r2ZAGxuFjvCvLBTiAAYmewJnB9aenLoqHvo=;
- b=ZaJnV8sL22hEGoaJRRo3gdgoul5MnM/2fgdy7DO5B8cjpgHmTjjvvIh9bbMYlcZQZX
- dDoXtw2SSB4hOjY9ZasLjnbG5Fdwjmma9lHE34RPG/53BBradQMwYAzO3i3qWke1YTMM
- FccDkyqRvmK0ldwmAZEtsCs552G1/7fxHP/R8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727265215; x=1727870015;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=o0d3c8Z9r2ZAGxuFjvCvLBTiAAYmewJnB9aenLoqHvo=;
- b=gF54NEmpZluqRnNgtHSC/33F6UiMaSi1sf2+gNu1pzWqeHl9Jn0QIDLfdr7nZVgdEK
- OsjDZL6GWmXGJlTwyM90fNbsZLmBr/keFGLbjaQQDkNWX9iIEVCGZNdonf+JTeGJCoHD
- Z2FBhWDiols5Qs3SFg4riDDXFTreGJ1MjL0XovM2PYB29UAUX9pbCZXedFNsP1Yb65ZO
- 4U1i6t7HzEBMA8bNJ7dXEEOCRtjSrsixcNWgA4FEM3uWCaP0cvIl9VMKkz+bsjCDb8pn
- 7MwakZQfWefMLGI5xe4h9pRdd6m2OJToGQEdLV6ORSiR93KtbgmJBjdci9QA830vXgjT
- KCgg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVBTr7wXKFRE8savK6xe8H1ni7TEethSKoxGbOCQ11YJXQ3OFBci5lEgEMVHbwYxaUboeVcNpMOzw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yybm8jcMTadHU/MOH461hpxefDT6blHVIR8mQwR6JmRQQDynoLb
- w3df6/DnHjEX/Y97XTjnRntEzqfVL2yI8MkP1MkoW1UjIRiQAOZv2VwM8fuLdi8=
-X-Google-Smtp-Source: AGHT+IE0Khbx5ubXQZXgepY2DULlIwccn07EkXR+5s84p5vSsBP6AN2P3I4pP1Qg24LWmH7MsF1SMA==
-X-Received: by 2002:a05:6512:10c1:b0:535:6778:952b with SMTP id
- 2adb3069b0e04-5387755b89dmr1579834e87.44.1727265215049; 
- Wed, 25 Sep 2024 04:53:35 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a9393138b18sm199347066b.215.2024.09.25.04.53.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Sep 2024 04:53:34 -0700 (PDT)
-Date: Wed, 25 Sep 2024 13:53:32 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>, airlied@gmail.com,
- simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lina@asahilina.net,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com
-Subject: Re: [PATCH v6 1/4] drm: Introduce device wedged event
-Message-ID: <ZvP5vPnoI-MS8Qar@phenom.ffwll.local>
-References: <20240923035826.624196-1-raag.jadav@intel.com>
- <20240923035826.624196-2-raag.jadav@intel.com>
- <ZvKhIQGnGrcPURhD@phenom.ffwll.local>
- <ZvN9yw5AYtxudNne@black.fi.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFAF310E814
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 12:01:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727265693; x=1758801693;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=IDLEByzOqG5v1O84Il+KZI6lpuuO7DfCjY2hhE+cTgs=;
+ b=M71gPzaacygdEmarWY8W5VEpxZAxGddKyTElOxkXGJC5Ekde70Uzz8KX
+ z5XjoE08gQJvpin8wBWOibtHTFtzQeIHHLnOzCwprFYT+pp85sYo55u9u
+ RD9O+G5+hICc7Dp3HEsH9u3xQagtYBQDlv1gDUlvM0nkgZyYAwuLs0hED
+ khO2Exq2sBTfAZoW0IHgrrT/+jEvGTqFDo5n/aoFs7By55OEUo2eCXvdA
+ KckUnvWoC2q6b+JPOcIfPnyCt/HuVuCN3jbEKWA7IkuWothDrifa20U5u
+ +MZlmwT0CkOT1rHsZz+ScHNtlWAmOrWukhHGD2eTjFWEwFeSvT2fedNxD w==;
+X-CSE-ConnectionGUID: ljRs4cIYQ7m27zKqRo/sEg==
+X-CSE-MsgGUID: xeFcgABuSQ+xKOYSYQpAgQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="37448910"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="37448910"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 05:01:32 -0700
+X-CSE-ConnectionGUID: VgCeYkl+Sc2fPyrh99q3dA==
+X-CSE-MsgGUID: 1CwLhKCqSIyP8OBu17jCoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="76678890"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa004.jf.intel.com with ESMTP; 25 Sep 2024 05:01:31 -0700
+Received: from [10.246.19.248] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.246.19.248])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 2BB9A28197;
+ Wed, 25 Sep 2024 13:01:28 +0100 (IST)
+Message-ID: <f10c3f76-aac8-441f-80c1-c7e2632136f6@intel.com>
+Date: Wed, 25 Sep 2024 14:01:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZvN9yw5AYtxudNne@black.fi.intel.com>
-X-Operating-System: Linux phenom 6.10.6-amd64 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/23] drm/xe: Error handling in xe_force_wake_get()
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Badal Nilawar <badal.nilawar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+References: <20240924121641.1045763-1-himal.prasad.ghimiray@intel.com>
+ <20240924121641.1045763-2-himal.prasad.ghimiray@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240924121641.1045763-2-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,53 +75,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 25, 2024 at 06:04:43AM +0300, Raag Jadav wrote:
-> On Tue, Sep 24, 2024 at 01:23:13PM +0200, Simona Vetter wrote:
-> > On Mon, Sep 23, 2024 at 09:28:23AM +0530, Raag Jadav wrote:
-> > > Introduce device wedged event, which will notify userspace of wedged
-> > > (hanged/unusable) state of the DRM device through a uevent. This is
-> > > useful especially in cases where the device is no longer operating as
-> > > expected and has become unrecoverable from driver context.
-> > > 
-> > > Purpose of this implementation is to provide drivers a way to recover
-> > > through userspace intervention. Different drivers may have different
-> > > ideas of a "wedged device" depending on their hardware implementation,
-> > > and hence the vendor agnostic nature of the event. It is up to the drivers
-> > > to decide when they see the need for recovery and how they want to recover
-> > > from the available methods.
-> > > 
-> > > Current implementation defines three recovery methods, out of which,
-> > > drivers can choose to support any one or multiple of them. Preferred
-> > > recovery method will be sent in the uevent environment as WEDGED=<method>.
-> > > Userspace consumers (sysadmin) can define udev rules to parse this event
-> > > and take respective action to recover the device.
-> > > 
-> > >  Method    | Consumer expectations
-> > > -----------|-----------------------------------
-> > >  rebind    | unbind + rebind driver
-> > >  bus-reset | unbind + reset bus device + rebind
-> > >  reboot    | reboot system
-> > > 
-> > > v4: s/drm_dev_wedged/drm_dev_wedged_event
-> > >     Use drm_info() (Jani)
-> > >     Kernel doc adjustment (Aravind)
-> > > v5: Send recovery method with uevent (Lina)
-> > > v6: Access wedge_recovery_opts[] using helper function (Jani)
-> > >     Use snprintf() (Jani)
-> > > 
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > 
-> > Finally caught up on mail, so dropping this here again: Please also add a
-> > small section to drm-uapi.rst, pointing at these functions. Just the
-> > kerneldoc for developers is kinda not enough I think.
-> 
-> Would you prefer a new section or have the existing one (Device reset which
-> looks somewhat similar but not entirely) modified?
 
-Great point, I think just adding a paragraph and maybe the table/list you
-have to the device reset section is perfect.
--Sima
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+
+On 24.09.2024 14:16, Himal Prasad Ghimiray wrote:
+> If an acknowledgment timeout occurs for a domain awake request, do not
+> increment the reference count for the domain. This ensures that
+> subsequent _get calls do not incorrectly assume the domain is awake. The
+> return value is a mask of domains whose reference counts were
+> incremented, and these domains need to be released using
+> xe_force_wake_put.
+> 
+> The caller needs to compare the return value with the input domains to
+> determine the success or failure of the operation and decide whether to
+> continue or return accordingly.
+> 
+> While at it, add simple kernel-doc for xe_force_wake_get()
+> 
+> v3
+> - Use explicit type for mask (Michal/Badal)
+> - Improve kernel-doc (Michal)
+> - Use unsigned int instead of abusing enum (Michal)
+> 
+> v5
+> - Use unsigned int for return (MattB/Badal/Rodrigo)
+> - use xe_gt_WARN for domain awake ack failure (Badal/Rodrigo)
+> 
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_force_wake.c | 37 +++++++++++++++++++++++-------
+>  drivers/gpu/drm/xe/xe_force_wake.h |  4 ++--
+>  2 files changed, 31 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+> index a64c14757c84..d190aa93be90 100644
+> --- a/drivers/gpu/drm/xe/xe_force_wake.c
+> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
+> @@ -150,28 +150,49 @@ static int domain_sleep_wait(struct xe_gt *gt,
+>  					 (ffs(tmp__) - 1))) && \
+>  					 domain__->reg_ctl.addr)
+>  
+> -int xe_force_wake_get(struct xe_force_wake *fw,
+> -		      enum xe_force_wake_domains domains)
+> +/**
+> + * xe_force_wake_get() : Increase the domain refcount
+> + * @fw: struct xe_force_wake
+> + * @domains: forcewake domains to get refcount on
+> + *
+> + * This function takes references for the input @domains and wakes them if
+> + * they are asleep.
+
+nit: likely we should also add the note that one shall call the
+xe_force_wake_put() function to decrease refcounts
+
+> + *
+> + * Return: mask of refcount increased domains. 
+
+do we really need to expose implementation detail to the caller?
+
+can't we just treat the returned value as opaque data that just needs to
+be passed to the matching xe_force_wake_put(fw, ref) call ?
+
+> If the return value is
+> + * equal to the input parameter @domains, the operation is considered
+> + * successful. 
+
+sorry, but I'm still little uncomfortable with such approach, due to a
+mismatch between input parameter type that is enum xe_force_wake_domains
+and return type which is unsigned int, as IMO forcing the user to
+compare two different types seems wrong
+
+can't we just say that if returned value is zero then no domains were
+waken (which would provide definite answer if single domain was requested) ?
+
+and for the xe_force_wake_get(fw, ALL_DOMAINS) case, we can provide
+helper function that will check if specified domain is really awake:
+
+	ref = xe_force_wake_put(fw, ALL_DOMAIN)
+
+	if (ref) {
+		xe_force_wake_is_awake(fw, SINGLE_DOMAIN)
+
+		xe_force_wake_put(fw, ref)
+	}
+
+> Otherwise, the operation is considered a failure, and
+> + * the caller should handle the failure case, potentially returning
+> + * -ETIMEDOUT.
+> + */
+> +unsigned int xe_force_wake_get(struct xe_force_wake *fw,
+> +			       enum xe_force_wake_domains domains)
+>  {
+>  	struct xe_gt *gt = fw->gt;
+>  	struct xe_force_wake_domain *domain;
+> -	enum xe_force_wake_domains tmp, woken = 0;
+> +	unsigned int tmp, ret, awake_rqst = 0, awake_failed = 0;
+>  	unsigned long flags;
+> -	int ret = 0;
+>  
+>  	spin_lock_irqsave(&fw->lock, flags);
+>  	for_each_fw_domain_masked(domain, domains, fw, tmp) {
+>  		if (!domain->ref++) {
+> -			woken |= BIT(domain->id);
+> +			awake_rqst |= BIT(domain->id);
+>  			domain_wake(gt, domain);
+>  		}
+>  	}
+> -	for_each_fw_domain_masked(domain, woken, fw, tmp) {
+> -		ret |= domain_wake_wait(gt, domain);
+> +	for_each_fw_domain_masked(domain, awake_rqst, fw, tmp) {
+> +		if (domain_wake_wait(gt, domain) == 0) {
+> +			fw->awake_domains |= BIT(domain->id);
+> +		} else {
+> +			awake_failed |= BIT(domain->id);
+> +			--domain->ref;
+> +		}
+>  	}
+> -	fw->awake_domains |= woken;
+> +	ret = (domains & ~awake_failed);
+>  	spin_unlock_irqrestore(&fw->lock, flags);
+>  
+> +	xe_gt_WARN(gt, awake_failed, "domain%s %#x failed to acknowledgment awake\n",
+> +		   str_plural(hweight_long(awake_failed)), awake_failed);
+> +
+>  	return ret;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+> index a2577672f4e3..6c1ade39139b 100644
+> --- a/drivers/gpu/drm/xe/xe_force_wake.h
+> +++ b/drivers/gpu/drm/xe/xe_force_wake.h
+> @@ -15,8 +15,8 @@ void xe_force_wake_init_gt(struct xe_gt *gt,
+>  			   struct xe_force_wake *fw);
+>  void xe_force_wake_init_engines(struct xe_gt *gt,
+>  				struct xe_force_wake *fw);
+> -int xe_force_wake_get(struct xe_force_wake *fw,
+> -		      enum xe_force_wake_domains domains);
+> +unsigned int xe_force_wake_get(struct xe_force_wake *fw,
+> +			       enum xe_force_wake_domains domains);
+>  int xe_force_wake_put(struct xe_force_wake *fw,
+>  		      enum xe_force_wake_domains domains);
+>  
+
