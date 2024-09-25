@@ -4,60 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFB1C369CA
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 10:44:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB08DC369C7
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 10:49:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19F0F10E034;
-	Wed, 25 Sep 2024 10:44:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83D6510E7E4;
+	Wed, 25 Sep 2024 10:49:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HnlJxBnd";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jOiEQSi2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95A0110E034
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Sep 2024 10:44:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727261077; x=1758797077;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2eaMdDGMJ87AGL1y3VwcyVzqQyoVIPuMhcPGhwvFgaQ=;
- b=HnlJxBndxgMVYyCAWzy7ooSICKFicUB/yP1rScf+bWfjIVtWfRT2yGUv
- 5/8KDQeeRN/JhWf3yk0SfN7kofbuDc/Vhh3bi0SXBFNr3Xqr+NLo74+iO
- dvNxnLCmS8k10x0MnILNZU6pvz6k7LBHPubqij4pb/swNAYscESrfRvX3
- 9pXjkchzp78EcY4IgdbZYB5zY/ZG5p9JLfxwQjxgwPjxG72LIf9Hbx41P
- J8okgu0F1I4f48xnM2CpA84xC2TWNlzM0fbvncRb6ijqOezwQ9AOx0mOk
- ZnRu3N7+cTlbEcwbhKFelmcwiJXTQk1Wh43zRjq3QvXYWxcFBFegp/r5e A==;
-X-CSE-ConnectionGUID: yIeh4DDQROK07V8NkEzqOg==
-X-CSE-MsgGUID: f/cpfs8ZR/uOTRO+LiCiqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="37677939"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="37677939"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 03:44:37 -0700
-X-CSE-ConnectionGUID: 4erpIbzjQcmrwP3glawdOg==
-X-CSE-MsgGUID: vW63z/dgRMqy319beG+k7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="71617135"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.178.53])
- ([10.245.178.53])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 03:44:35 -0700
-Message-ID: <d74a5462-7fd4-4911-b62c-178f4292f90d@linux.intel.com>
-Date: Wed, 25 Sep 2024 12:44:31 +0200
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BD1810E034;
+ Wed, 25 Sep 2024 10:49:17 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 8FC1EA43EB7;
+ Wed, 25 Sep 2024 10:49:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 46791C4CEC3;
+ Wed, 25 Sep 2024 10:49:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1727261355;
+ bh=mOXXN4nugLNVdxFs6HhctyrPesuIbe74k5zt1Zd71jA=;
+ h=From:Date:Subject:To:Cc:Reply-To:From;
+ b=jOiEQSi2MLB3MILqtRoU6w9cmVJBjvPHa59d1+jhOdllVFtqNdQVOwmpRKbh9hKeD
+ IsVP5FrwbAsm/AcqFcgIaOXcyMwvNfyfk+ssBXRYnQVq8Kl1L+kMM9W6wIhWQns0+B
+ e4450JCwqo15q8I7Swu6GUyau2DoHV3IsXr1EY0XgCknsdsAbXJqNos3waIrys4zb8
+ eT6Gq2FvZ+v46a/j36snIOW3U1eobMfjezQsePj0TmNbUtMgAXLZBbZ0g0mRTUCLPz
+ PtMjgW6835HMjETcdNu/H4wclb6lUta3fOGbw/MCejEiL2L0PNITDokd7LfNiDAfzH
+ Y56f+sjo6CMog==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by smtp.lore.kernel.org (Postfix) with ESMTP id 2AE28C369C7;
+ Wed, 25 Sep 2024 10:49:15 +0000 (UTC)
+From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
+Date: Wed, 25 Sep 2024 12:49:00 +0200
+Subject: [PATCH v3] drm/xe: xe_gen_wa_oob: replace
+ program_invocation_short_name
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/xe/queue: move xa_alloc to prevent UAF
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-References: <20240925071426.144015-3-matthew.auld@intel.com>
- <20240925071426.144015-4-matthew.auld@intel.com>
- <598b2e8c-a50f-42ec-a6c0-749b0ae507b6@linux.intel.com>
- <8f3dda30-b6ea-4800-b357-4332bd8c5be4@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <8f3dda30-b6ea-4800-b357-4332bd8c5be4@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20240925-macos-build-support-v3-1-233dda880e60@samsung.com>
+X-B4-Tracking: v=1; b=H4sIAJzq82YC/33PwWrEIBQF0F8JrmvQaKIJpcx/lC6e+pKRTmKqS
+ egwzL/XZCilULq8gufdeyMJo8dEuuJGIm4++TDlIJ4KYs8wDUi9y5lUrJJMM0VHsCFRs/qLo2m
+ d5xAX2lpgTilwhiuSf84Re/95qK9vOZ99WkK8Hkc2vr/+722cMiqt4w6drptWnhKMaZ2G0oaR7
+ OJW/Sgta/5WqqywxmDfS6611L+V+6NoxI81r14ebcmIKcGxuiuev3muqlbIkguutGCU53MJzj6
+ G6+kd44SXMsThZV9uICHN/OiXrsC+lrWxTEBTS6EtGNTKoOGmBV4b1vfWNGAxd7l/AQmlimyJA
+ QAA
+X-Change-ID: 20240807-macos-build-support-9ca0d77adb17
+To: Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Nathan Chancellor <nathan@kernel.org>, 
+ Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ llvm@lists.linux.dev, Finn Behrens <me@kloenk.dev>, 
+ "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com, 
+ Nick Desaulniers <nick.desaulniers@gmail.com>, 
+ Klaus Jensen <k.jensen@samsung.com>, Jeff Xie <xiehuan09@gmail.com>, 
+ Barry Song <baohua@kernel.org>, Daniel Gomez <da.gomez@samsung.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727261354; l=7033;
+ i=da.gomez@samsung.com; s=20240621; h=from:subject:message-id;
+ bh=4fIjzJpNMXdpRQVn4dyBriGnGibGkiKPfvdpbwf8+L8=;
+ b=3lmM0CgemUBgtj+LNeOe3nV81XNjUyBIQ6h7vFtjr0IPrI7x/+3gaFSs6GoihsRKy+t7hZW9N
+ Dl38e5SAEMfDkw70yOQ4cVUtZkVU6Imx/J9waPje2zLFewIi7Iw1usZ
+X-Developer-Key: i=da.gomez@samsung.com; a=ed25519;
+ pk=BqYk31UHkmv0WZShES6pIZcdmPPGay5LbzifAdZ2Ia4=
+X-Endpoint-Received: by B4 Relay for da.gomez@samsung.com/20240621 with
+ auth_id=175
+X-Original-From: Daniel Gomez <da.gomez@samsung.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,59 +87,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: da.gomez@samsung.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Daniel Gomez <da.gomez@samsung.com>
 
-On 9/25/2024 11:51 AM, Matthew Auld wrote:
-> On 25/09/2024 10:33, Nirmoy Das wrote:
->>
->> On 9/25/2024 9:14 AM, Matthew Auld wrote:
->>> Evil user can guess the next id of the queue before the ioctl completes
->>> and then call queue destroy ioctl to trigger UAF since create ioctl is
->>> still referencing the same queue. Move the xa_alloc all the way to the end
->>> to prevent this.
->>
->> The commit message doesn't match the diff, xa_alloc already happening at the end here.
->
-> It's not at the end. It is dereferencing the q to set xef after the xa_alloc, but that needs to happen before it is visible to userspace.
+program_invocation_short_name() may not be available in other systems.
+Instead, replace it with the argv[0] to pass the executable name and
+make it portable.
+
+Fixes build error when program_invocation_short_name is not available:
+
+drivers/gpu/drm/xe/xe_gen_wa_oob.c:34:3: error: use of
+undeclared identifier 'program_invocation_short_name'    34 |
+program_invocation_short_name);       |                 ^ 1 error
+generated.
+
+Suggested-by: Masahiro Yamada <masahiroy@kernel.org>
+Tested-by: Jeff Xie <xiehuan09@gmail.com>
+Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+---
+This patch allows for building the Linux kernel for arm64 in macOS with
+LLVM.
+
+macOS does not provide certain headers that are available in a GNU/Linux
+distribution with development headers installed, usually provided by
+the GNU C Library (glibc) and/or other projects. These missing headers
+are needed as build dependencies. To address this, users need to provide
+these headers manually.
+
+To assist with provisioning and setting up the environment, the Bee
+Headers Project [1][2][3] provides the necessary headers, along with a
+pkg-config file to locate the include directory and an initialization
+script to configure the environment. However, this is optional and users
+can choose to set up their own environments and manually provide the
+required headers. In that case, the project can be used as a reference.
+
+Here’s a quick overview of the setup process using Bee Headers:
+
+Set up a case sensitive volume to fetch Linux and build:
+
+	diskutil apfs addVolume /dev/disk<N> "Case-sensitive APFS" linux
+	
+Install dependencies:
+
+	brew install coreutils findutils gnu-sed gnu-tar grep llvm make pkg-config
+	brew tap bee-headers/bee-headers
+	brew install bee-headers/bee-headers/bee-headers
+
+Initialize the environment with `bee-init` and run it in each new shell:
+
+	source bee-init
+	
+Start build:
+	make LLVM=1 defconfig
+	make LLVM=1 -j$(nproc)
+
+For more details and manual steps, refer to the README [4] of the Bee
+Headers project.
+
+[1] Project: https://github.com/bee-headers
+
+[2] Headers repository: https://github.com/bee-headers/headers.git
+
+[3] Homebrew Tap formula: https://github.com/bee-headers/homebrew-bee-headers.git
+
+[4] https://github.com/bee-headers/homebrew-bee-headers/blob/main/README.md
+---
+Changes in v3:
+- Update drm/xe patch to replace program_invocation_short_name with
+argv[0] instead of using getprogname + ifdef as suggested by Masahiro.
+- Patch merged: "[PATCH v2 1/8] scripts: subarch.include: fix SUBARCH on
+macOS hosts".
+- "file2alias: fix uuid_t definitions for macos" patch is dropped. User
+requires to set up this in the build environment with something like:
+export HOSTCFLAGS="-D_UUID_T -D__GETHOSTUUID_H"
+- Drop documentation patch. Environment setup and headers should now be
+provided by the user. The project Bee Headers can be used to help with
+the steps and documentation.
+	- HOSTCFLAGS should be used to provide the missing headers as well as the
+above defines. Example using Bee Headers:
+export HOSTCFLAGS="$(pkg-config --cflags bee-headers) -D_UUID_T
+-D__GETHOSTUUID_H"
+	- PATH needs to have all tools the kernel build system depends on.
+Something like this:
+	PATH="#{HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
+	PATH="#{HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin:$PATH"
+	PATH="#{HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
+	PATH="#{HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:$PATH"
+	PATH="#{HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin:$PATH"
+	PATH="#{HOMEBREW_PREFIX}/opt/grep/libexec/gnubin:$PATH"
+	PATH="#{HOMEBREW_PREFIX}/opt/make/libexec/gnubin:$PATH"
+	PATH="#{HOMEBREW_PREFIX}/opt/llvm/bin:$PATH"
+- Drop patches below as they've been replaced by a new 2nd version [8]:
+	selinux: move genheaders to security/selinux/
+	selinux: do not include <linux/*.h> headers from host programs
+[8] Subject: [PATCH v2 1/2] selinux: do not include <linux/*.h> headers from host programs
+https://lore.kernel.org/all/20240906172934.1317830-1-masahiroy@kernel.org/#t
+Note: This has been specified as dependency with b4 and message-id in
+the cover letter.
+- Link to v2: https://lore.kernel.org/r/20240906-macos-build-support-v2-0-06beff418848@samsung.com
+
+Changes in v2:
+- Add documentation and set this 'feature' as experimental.
+- Update cover letter.
+- Drop unnecessary changes. Patches removed:
+	- kbuild: add header_install dependency to scripts
+	- include: add endian.h support
+	- include: add elf.h support
+- Update Makefiles to find Bee Headers with pkg-config.
+- Update file2alias to solve uuid_t conflicts inside Makefile as
+suggested by Nicolas Schier.
+- Adapt xe_gen_wa_oob to solve getprogname()/
+program_invocation_short_name in runtime. as suggested by Lucas De
+Marchi.
+- Remove linux/version.h in accessibility/speakup as suggested by
+Masahiro Yamada.
+- Replace selinux patches with new Masahiro Yamada's patches:
+	Message-id: 20240809122007.1220219-1-masahiroy@kernel.org
+	Link: https://lore.kernel.org/all/20240809122007.1220219-1-masahiroy@kernel.org/
+- Replace tty/vt with new Masahiro Yamada's patch:
+	Message-id: 20240809160853.1269466-1-masahiroy@kernel.org
+	Link: https://lore.kernel.org/all/20240809160853.1269466-1-masahiroy@kernel.org/
+	(Already merged in the linux-next tag used)
+- Replace scripts/kallsyms patch with Masahiro Yamada's patch:
+	Message-id: 20240807181148.660157-1-masahiroy@kernel.org
+	Link: https://lore.kernel.org/all/20240807181148.660157-1-masahiroy@kernel.org/
+	(Already merged in the linux-next tag used)
+- Link to v1: https://lore.kernel.org/r/20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com
+---
+ drivers/gpu/drm/xe/xe_gen_wa_oob.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+index 904cf47925aa1d5bc37983af83232d5e4697c49e..ed9183599e31cc9d76da3f22c9fb3884384a49bc 100644
+--- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
++++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+@@ -28,10 +28,10 @@
+ 	"\n" \
+ 	"#endif\n"
+ 
+-static void print_usage(FILE *f)
++static void print_usage(FILE *f, const char *progname)
+ {
+ 	fprintf(f, "usage: %s <input-rule-file> <generated-c-source-file> <generated-c-header-file>\n",
+-		program_invocation_short_name);
++		progname);
+ }
+ 
+ static void print_parse_error(const char *err_msg, const char *line,
+@@ -144,7 +144,7 @@ int main(int argc, const char *argv[])
+ 
+ 	if (argc < 3) {
+ 		fprintf(stderr, "ERROR: wrong arguments\n");
+-		print_usage(stderr);
++		print_usage(stderr, argv[0]);
+ 		return 1;
+ 	}
+ 
+
+---
+base-commit: ef545bc03a65438cabe87beb1b9a15b0ffcb6ace
+change-id: 20240807-macos-build-support-9ca0d77adb17
+prerequisite-message-id: <20240906172934.1317830-1-masahiroy@kernel.org>
+prerequisite-patch-id: 5d49a803cc75a57174d16745222d1602809aeb96
+prerequisite-patch-id: b2da334443fa81626d742053ca5005074e9e1355
+
+Best regards,
+-- 
+Daniel Gomez <da.gomez@samsung.com>
 
 
-Ah I see, that make sense.
-
-I think now  we have to undo xe_file_get() if xe_alloc fails.
-
-
-Regards,
-
-Nirmoy
-
->
->>
->>> v2:
->>>   - Rebase
->>>
->>> Fixes: 2149ded63079 ("drm/xe: Fix use after free when client stats are captured")
->>> Signed-off-by: Matthew Auld<matthew.auld@intel.com>
->>> Cc: Matthew Brost<matthew.brost@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_exec_queue.c | 4 +++-
->>>   1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> index 7743ebdcbf4b..d098d2dd1b2d 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> @@ -635,12 +635,14 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->>>           }
->>>       }
->>>   +    q->xef = xe_file_get(xef);
->>> +
->>> +    /* user id alloc must always be last in ioctl to prevent UAF */
->>>       err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b, GFP_KERNEL);
->>>       if (err)
->>>           goto kill_exec_queue;
->>>         args->exec_queue_id = id;
->>> -    q->xef = xe_file_get(xef);
->>>         return 0;
->>>   
