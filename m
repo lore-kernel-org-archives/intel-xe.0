@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1EFDC369D6
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 11:48:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA1C6C369D5
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Sep 2024 11:52:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 820A210E947;
-	Wed, 25 Sep 2024 11:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77EEB10E984;
+	Wed, 25 Sep 2024 11:52:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rwerk5/6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CXE1dH2y";
 	dkim-atps=neutral
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1830B10E947;
- Wed, 25 Sep 2024 11:48:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19EA110E982;
+ Wed, 25 Sep 2024 11:52:21 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 807B55C5B57;
- Wed, 25 Sep 2024 11:48:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B1B1C4CEC3;
- Wed, 25 Sep 2024 11:48:16 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 8E5975C54D8;
+ Wed, 25 Sep 2024 11:52:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1236CC4CEC7;
+ Wed, 25 Sep 2024 11:52:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727264898;
- bh=n90fJc+OXdT4oVyDP1R+/rKw9pp9dmoKGuJpxpmeC4k=;
+ s=k20201202; t=1727265140;
+ bh=2i84zffPb+p0b6Mdl6LvoIFewfHJEgaeBlkkPEmjCfI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=rwerk5/643WdtttLWJYNQl3od1D8KyZOIu4L83to9YUz0WjUXSdcpeIwYnuUPJr4T
- nkl160njbTsM8OS9BJEIPlp1QfypBOTERKr8GwlYOJs6vwcFS54rhQBDw/HRxstEQy
- aJHuNW1znsbTw0EtiF6wZQHdRrV5dE2rjarLoLjqAu3PJYdmCpOzTERaNcoy4PJQ3Y
- Y23ZIME82mnkk2ntfzFVOexQipI6gtjxc2BQJjWkhRQ1dTiLnV/jzZdFJWs/VKnWdq
- 6ZcM++R4lCq39sGwqr6+QOQXyKr2sVKlwNEq5Jsq+pJyG/jGRphvr0Xs1Pyd8LWa9B
- rDqL9Euu5kCtw==
+ b=CXE1dH2yrceiw0eNCn73s822vQAW0LS+CFdtPP7S2HgZb95YjFWSKIEe2H0IMowFx
+ Kykc9SUiD13GSzgF/rRuW96TQ5l2M473GBjGpkN70QTVK95IqTekBZ33HMz6Pbcj94
+ lCLm7SuqS4qvaHGU9pKmFnJLPcjlJMaK4jhlZnEw0QndippAWiam1Gt34vOtglh0Va
+ jjZEAw70qWkBck3+f4VrwbsXs/tFUw21qOHYK1QrLGQydVre/0iOU1bAqFoKhEu281
+ hY1tN4yTA5frnP0DyXKFd6TwtmubOiVjvcAA8TDht7FdtBQ3P/MuG/YU2BEQwY+pgq
+ RoTRiRMgwUhEQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Sasha Levin <sashal@kernel.org>, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.11 177/244] drm/xe/fbdev: Limit the usage of stolen
- for LNL+
-Date: Wed, 25 Sep 2024 07:26:38 -0400
-Message-ID: <20240925113641.1297102-177-sashal@kernel.org>
+Cc: Stuart Summers <stuart.summers@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.11 215/244] drm/xe: Use topology to determine page
+ fault queue size
+Date: Wed, 25 Sep 2024 07:27:16 -0400
+Message-ID: <20240925113641.1297102-215-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240925113641.1297102-1-sashal@kernel.org>
 References: <20240925113641.1297102-1-sashal@kernel.org>
@@ -66,104 +66,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Uma Shankar <uma.shankar@intel.com>
+From: Stuart Summers <stuart.summers@intel.com>
 
-[ Upstream commit 775d0adc01a55fe0458139330415d86bb3533efe ]
+[ Upstream commit 3338e4f90c143cf32f77d64f464cb7f2c2d24700 ]
 
-As per recommendation in the workarounds:
-WA_22019338487
+Currently the page fault queue size is hard coded. However
+the hardware supports faulting for each EU and each CS.
+For some applications running on hardware with a large
+number of EUs and CSs, this can result in an overflow of
+the page fault queue.
 
-There is an issue with accessing Stolen memory pages due a
-hardware limitation. Limit the usage of stolen memory for
-fbdev for LNL+. Don't use BIOS FB from stolen on LNL+ and
-assign the same from system memory.
+Add a small calculation to determine the page fault queue
+size based on the number of EUs and CSs in the platform as
+detmined by fuses.
 
-v2: Corrected the WA Number, limited WA to LNL and
-    Adopted XE_WA framework as suggested by Lucas and Matt.
-
-v3: Introduced the waxxx_display to implement display side
-    of WA changes on Lunarlake. Used xe_root_mmio_gt and
-    avoid the for loop (Suggested by Lucas)
-
-v4: Fixed some nits (Luca)
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240717082252.3875909-1-uma.shankar@intel.com
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/24d582a3b48c97793b8b6a402f34b4b469471636.1723862633.git.stuart.summers@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 6 +++++-
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 6 ++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules            | 1 +
- 3 files changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 54 +++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt_types.h     |  9 +++--
+ 2 files changed, 49 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-index 816ad13821a83..cd8948c08661b 100644
---- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-@@ -10,6 +10,9 @@
- #include "xe_bo.h"
- #include "xe_gt.h"
- #include "xe_ttm_stolen_mgr.h"
-+#include "xe_wa.h"
-+
-+#include <generated/xe_wa_oob.h>
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index b2a7fa55bd181..401c0527d9140 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -287,7 +287,7 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+ 			PFD_VIRTUAL_ADDR_LO_SHIFT;
  
- struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 					       struct drm_fb_helper_surface_size *sizes)
-@@ -37,7 +40,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 	size = PAGE_ALIGN(size);
- 	obj = ERR_PTR(-ENODEV);
- 
--	if (!IS_DGFX(xe)) {
-+	if (!IS_DGFX(xe) && !XE_WA(xe_root_mmio_gt(xe), 22019338487_display)) {
- 		obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
- 					   NULL, size,
- 					   ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
-@@ -48,6 +51,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 		else
- 			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
+ 		pf_queue->tail = (pf_queue->tail + PF_MSG_LEN_DW) %
+-			PF_QUEUE_NUM_DW;
++			pf_queue->num_dw;
+ 		ret = true;
  	}
-+
- 	if (IS_ERR(obj)) {
- 		obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe), NULL, size,
- 					   ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 5eccd6abb3ef5..a50ab9eae40ae 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -18,6 +18,9 @@
- #include "intel_frontbuffer.h"
- #include "intel_plane_initial.h"
- #include "xe_bo.h"
-+#include "xe_wa.h"
-+
-+#include <generated/xe_wa_oob.h>
+ 	spin_unlock_irq(&pf_queue->lock);
+@@ -299,7 +299,8 @@ static bool pf_queue_full(struct pf_queue *pf_queue)
+ {
+ 	lockdep_assert_held(&pf_queue->lock);
  
- static bool
- intel_reuse_initial_plane_obj(struct intel_crtc *this,
-@@ -104,6 +107,9 @@ initial_plane_bo(struct xe_device *xe,
- 		phys_base = base;
- 		flags |= XE_BO_FLAG_STOLEN;
+-	return CIRC_SPACE(pf_queue->head, pf_queue->tail, PF_QUEUE_NUM_DW) <=
++	return CIRC_SPACE(pf_queue->head, pf_queue->tail,
++			  pf_queue->num_dw) <=
+ 		PF_MSG_LEN_DW;
+ }
  
-+		if (XE_WA(xe_root_mmio_gt(xe), 22019338487_display))
-+			return NULL;
+@@ -312,22 +313,23 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	u32 asid;
+ 	bool full;
+ 
+-	/*
+-	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
+-	 */
+-	BUILD_BUG_ON(PF_QUEUE_NUM_DW % PF_MSG_LEN_DW);
+-
+ 	if (unlikely(len != PF_MSG_LEN_DW))
+ 		return -EPROTO;
+ 
+ 	asid = FIELD_GET(PFD_ASID, msg[1]);
+ 	pf_queue = gt->usm.pf_queue + (asid % NUM_PF_QUEUE);
+ 
++	/*
++	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
++	 */
++	xe_gt_assert(gt, !(pf_queue->num_dw % PF_MSG_LEN_DW));
 +
- 		/*
- 		 * If the FB is too big, just don't use it since fbdev is not very
- 		 * important and we should probably use that space with FBC or other
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index d4c33dbc14c7a..24a5b7d7cdcc1 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -29,6 +29,7 @@
- 13011645652	GRAPHICS_VERSION(2004)
- 22019338487	MEDIA_VERSION(2000)
- 		GRAPHICS_VERSION(2001)
-+22019338487_display	PLATFORM(LUNARLAKE)
- 16023588340	GRAPHICS_VERSION(2001)
- 14019789679	GRAPHICS_VERSION(1255)
- 		GRAPHICS_VERSION_RANGE(1270, 2004)
+ 	spin_lock_irqsave(&pf_queue->lock, flags);
+ 	full = pf_queue_full(pf_queue);
+ 	if (!full) {
+ 		memcpy(pf_queue->data + pf_queue->head, msg, len * sizeof(u32));
+-		pf_queue->head = (pf_queue->head + len) % PF_QUEUE_NUM_DW;
++		pf_queue->head = (pf_queue->head + len) %
++			pf_queue->num_dw;
+ 		queue_work(gt->usm.pf_wq, &pf_queue->worker);
+ 	} else {
+ 		drm_warn(&xe->drm, "PF Queue full, shouldn't be possible");
+@@ -386,26 +388,54 @@ static void pagefault_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
+ 	struct xe_device *xe = gt_to_xe(gt);
++	int i;
+ 
+ 	if (!xe->info.has_usm)
+ 		return;
+ 
+ 	destroy_workqueue(gt->usm.acc_wq);
+ 	destroy_workqueue(gt->usm.pf_wq);
++
++	for (i = 0; i < NUM_PF_QUEUE; ++i)
++		kfree(gt->usm.pf_queue[i].data);
++}
++
++static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
++{
++	xe_dss_mask_t all_dss;
++	int num_dss, num_eus;
++
++	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
++		  XE_MAX_DSS_FUSE_BITS);
++
++	num_dss = bitmap_weight(all_dss, XE_MAX_DSS_FUSE_BITS);
++	num_eus = bitmap_weight(gt->fuse_topo.eu_mask_per_dss,
++				XE_MAX_EU_FUSE_BITS) * num_dss;
++
++	/* user can issue separate page faults per EU and per CS */
++	pf_queue->num_dw =
++		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW;
++
++	pf_queue->gt = gt;
++	pf_queue->data = kzalloc(pf_queue->num_dw, GFP_KERNEL);
++	spin_lock_init(&pf_queue->lock);
++	INIT_WORK(&pf_queue->worker, pf_queue_work_func);
++
++	return 0;
+ }
+ 
+ int xe_gt_pagefault_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	int i;
++	int i, ret = 0;
+ 
+ 	if (!xe->info.has_usm)
+ 		return 0;
+ 
+ 	for (i = 0; i < NUM_PF_QUEUE; ++i) {
+-		gt->usm.pf_queue[i].gt = gt;
+-		spin_lock_init(&gt->usm.pf_queue[i].lock);
+-		INIT_WORK(&gt->usm.pf_queue[i].worker, pf_queue_work_func);
++		ret = xe_alloc_pf_queue(gt, &gt->usm.pf_queue[i]);
++		if (ret)
++			return ret;
+ 	}
+ 	for (i = 0; i < NUM_ACC_QUEUE; ++i) {
+ 		gt->usm.acc_queue[i].gt = gt;
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index c582541970dff..ba6662c9863b5 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -233,9 +233,14 @@ struct xe_gt {
+ 		struct pf_queue {
+ 			/** @usm.pf_queue.gt: back pointer to GT */
+ 			struct xe_gt *gt;
+-#define PF_QUEUE_NUM_DW	128
+ 			/** @usm.pf_queue.data: data in the page fault queue */
+-			u32 data[PF_QUEUE_NUM_DW];
++			u32 *data;
++			/**
++			 * @usm.pf_queue.num_dw: number of DWORDS in the page
++			 * fault queue. Dynamically calculated based on the number
++			 * of compute resources available.
++			 */
++			u32 num_dw;
+ 			/**
+ 			 * @usm.pf_queue.tail: tail pointer in DWs for page fault queue,
+ 			 * moved by worker which processes faults (consumer).
 -- 
 2.43.0
 
