@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63FEECCFA10
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 01:47:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 958FBCCFA10
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 01:48:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3044210E0C4;
-	Thu, 26 Sep 2024 01:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54F5310E87B;
+	Thu, 26 Sep 2024 01:48:00 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB85810E0C4;
- Thu, 26 Sep 2024 01:47:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA2610E0C4;
+ Thu, 26 Sep 2024 01:48:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=5Fsubmit?=
- =?utf-8?q?=3A_add_missing_locking_in_wedged=5Ffini?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=5Fsubmit=3A_ad?=
+ =?utf-8?q?d_missing_locking_in_wedged=5Ffini?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 01:47:45 -0000
-Message-ID: <172731526576.1103645.7721872584787160982@2413ebb6fbb6>
+Date: Thu, 26 Sep 2024 01:48:00 -0000
+Message-ID: <172731528004.1103645.11093476749660436209@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240924150947.118433-2-matthew.auld@intel.com>
 In-Reply-To: <20240924150947.118433-2-matthew.auld@intel.com>
@@ -48,9 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 88d592f72f7b drm-tip: 2024y-09m-25d-19h-23m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc_submit: add missing locking in wedged_fini
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1a3349abc863d50aad3f21c4df576cc2c365a6a4
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Tue Sep 24 16:09:48 2024 +0100
+
+    drm/xe/guc_submit: add missing locking in wedged_fini
+    
+    Any non-wedged queue can have a zero refcount here and can be running
+    concurrently with an async queue destroy, therefore dereferencing the
+    queue ptr to check wedge status after the lookup can trigger UAF if
+    queue is not wedged.  Fix this by keeping the submission_state lock held
+    around the check to postpone the free and make the check safe, before
+    dropping again around the put() to avoid the deadlock.
+    
+    Fixes: 8ed9aaae39f3 ("drm/xe: Force wedged state and block GT reset upon any GPU hang")
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 88d592f72f7bc508d6a027b1f96aa2e53f803e1b drm-intel
+1a3349abc863 drm/xe/guc_submit: add missing locking in wedged_fini
 
 
