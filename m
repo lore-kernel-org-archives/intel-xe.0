@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CB1ACDE01B
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 15:55:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98FAECDE017
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 15:55:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B53B10EB78;
-	Thu, 26 Sep 2024 15:55:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66BC110EB78;
+	Thu, 26 Sep 2024 15:55:41 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A22F10EB81;
- Thu, 26 Sep 2024 15:55:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3738110EB78;
+ Thu, 26 Sep 2024 15:55:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Use_fault_injec?=
- =?utf-8?q?tion_infrastructure_to_find_issues_at_probe_time_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Use_fault_injection_?=
+ =?utf-8?q?infrastructure_to_find_issues_at_probe_time_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 15:55:06 -0000
-Message-ID: <172736610616.1107975.12452874714760369331@2413ebb6fbb6>
+Date: Thu, 26 Sep 2024 15:55:40 -0000
+Message-ID: <172736614022.1107975.12046890996299591127@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240925155546.76630-1-francois.dugast@intel.com>
 In-Reply-To: <20240925155546.76630-1-francois.dugast@intel.com>
@@ -44,70 +44,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Use fault injection infrastructure to find issues at probe time (rev3)
 URL   : https://patchwork.freedesktop.org/series/138654/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 343acd7e568e0fb62ddee9eb1e74e745376b4309
-Author: Francois Dugast <francois.dugast@intel.com>
-Date:   Wed Sep 25 17:55:46 2024 +0200
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_guc_ads.c:8:
+../include/linux/fault-inject.h:97:15: error: unknown type name ‘bool’
+   97 | static inline bool should_fail_alloc_page(gfp_t gfp_mask, unsigned int order)
+      |               ^~~~
+../include/linux/fault-inject.h:97:43: error: unknown type name ‘gfp_t’
+   97 | static inline bool should_fail_alloc_page(gfp_t gfp_mask, unsigned int order)
+      |                                           ^~~~~
+../include/linux/fault-inject.h:106:57: error: unknown type name ‘gfp_t’
+  106 | static inline int should_failslab(struct kmem_cache *s, gfp_t gfpflags)
+      |                                                         ^~~~~
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_guc_ads.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:1926: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe: Use fault injection infrastructure to find issues at probe time
-    
-    The kernel fault injection infrastructure is used to test proper error
-    handling during probe. The return code of the functions using
-    ALLOW_ERROR_INJECTION() can be conditionnally modified at runtime by
-    tuning some debugfs entries. This requires CONFIG_FUNCTION_ERROR_INJECTION
-    (among others).
-    
-    One way to use fault injection at probe time by making each of those
-    functions fail one at a time is:
-    
-        FAILTYPE=fail_function
-        DEVICE="0000:00:08.0" # depends on the system
-        ERRNO=-12 # -ENOMEM, can depend on the function
-    
-        echo N > /sys/kernel/debug/$FAILTYPE/task-filter
-        echo 100 > /sys/kernel/debug/$FAILTYPE/probability
-        echo 0 > /sys/kernel/debug/$FAILTYPE/interval
-        echo -1 > /sys/kernel/debug/$FAILTYPE/times
-        echo 0 > /sys/kernel/debug/$FAILTYPE/space
-        echo 1 > /sys/kernel/debug/$FAILTYPE/verbose
-    
-        modprobe xe
-        echo $DEVICE > /sys/bus/pci/drivers/xe/unbind
-    
-        grep -oP "^.* \[xe\]" /sys/kernel/debug/$FAILTYPE/injectable | \
-        cut -d ' ' -f 1 | while read -r FUNCTION ; do
-            echo "Injecting fault in $FUNCTION"
-            echo "" > /sys/kernel/debug/$FAILTYPE/inject
-            echo $FUNCTION > /sys/kernel/debug/$FAILTYPE/inject
-            printf %#x $ERRNO > /sys/kernel/debug/$FAILTYPE/$FUNCTION/retval
-            echo $DEVICE > /sys/bus/pci/drivers/xe/bind
-        done
-    
-        rmmod xe
-    
-    It will also be integrated into IGT for systematic execution by CI.
-    
-    v2: Wrappers are not needed in the cases covered by this patch, so
-        remove them and use ALLOW_ERROR_INJECTION() directly.
-    
-    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-+ /mt/dim checkpatch ec87b409d3a9358c9a079186d528fad3f7d64334 drm-intel
-343acd7e568e drm/xe: Use fault injection infrastructure to find issues at probe time
+[15:55:07] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[15:55:11] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
