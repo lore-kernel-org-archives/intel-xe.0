@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 511E5CDE003
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 13:27:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14D7ACDE005
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 13:28:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D60710EB43;
-	Thu, 26 Sep 2024 13:27:55 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9006010EB42;
- Thu, 26 Sep 2024 13:27:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6150430664295877366=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB0BD10EB43;
+	Thu, 26 Sep 2024 13:28:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CNBR8RQk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACEA910EB43;
+ Thu, 26 Sep 2024 13:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727357302; x=1758893302;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=XAJWBEYV0Eil8JoEAvVBW8adVKjVUk9n6eKGovO695M=;
+ b=CNBR8RQkoD5H7PgoHsHVn9Xb/EsIUROIBKwKe8MbcyF6FuAhl4xDdyQT
+ PaSPceAI6S8qFVZ5iDja4mB5R8QF+f2XOgu9kSuUYWf+6s8N1ml2tfMCX
+ +UXxvt+Bn/raA2Vxhj6wSuf7xEOyRgKkAR+hCWQYDQt1+SFu2LqQa8a6G
+ 0arBypm66iPr8pwUBCwrmRnturaCsruyOR3nfzylb3WSEgik8ywIOMX/H
+ 0wPVKxxEsPQyE/u99Kq6ziTjQrglKLu753XVKleEJAuDhtFJebh+Wo2kk
+ /bLKSDirbISrGVyQ8ldoSI7JaNTxsLYXF8w9ag57zIbdrUKHTLtb0tPtK g==;
+X-CSE-ConnectionGUID: s2MLZ/r5SzGAL5lEK0UseA==
+X-CSE-MsgGUID: 8bZewIwJS5mXELJsoYO+eg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="37032642"
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="37032642"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 06:28:21 -0700
+X-CSE-ConnectionGUID: lWNNxS1ASNKvgZbI1beNIA==
+X-CSE-MsgGUID: /six6z5hQXiSYIh6CykNow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="72295040"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 26 Sep 2024 06:28:19 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 26 Sep 2024 16:28:18 +0300
+Date: Thu, 26 Sep 2024 16:28:18 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 08/15] drm/i915/display: Refactor enable_joiner_pipes
+Message-ID: <ZvVhcj9t7rPguWUo@intel.com>
+References: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
+ <20240926072638.3689367-9-ankit.k.nautiyal@intel.com>
+ <ZvVDVboKQrQwgeyc@intel.com>
+ <cb3cbd18-ada2-4f86-8bf5-3e6b95010246@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_xe=5Fgen=5Fwa=5Foob=3A?=
- =?utf-8?q?_replace_program=5Finvocation=5Fshort=5Fname?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Gomez via B4 Relay" <devnull+da.gomez.samsung.com@kernel.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 13:27:54 -0000
-Message-ID: <172735727458.1107233.1757281470637305143@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240925-macos-build-support-v3-1-233dda880e60@samsung.com>
-In-Reply-To: <20240925-macos-build-support-v3-1-233dda880e60@samsung.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cb3cbd18-ada2-4f86-8bf5-3e6b95010246@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,248 +70,152 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6150430664295877366==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 26, 2024 at 06:45:14PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 9/26/2024 4:49 PM, Ville Syrjälä wrote:
+> > On Thu, Sep 26, 2024 at 12:56:31PM +0530, Ankit Nautiyal wrote:
+> >> Pass the current pipe into enabled_joiner_pipes(), and let it figure out
+> >> the proper bitmasks for us. Since the enabled_joiner_pipes now gets the
+> >> primary and secondary pipe wrt a given pipe, the helpers
+> >> to get primary pipe and secondary pipes are no longer required.
+> >>
+> >> v2:
+> >> -Simplify helper get_joiner_primary_pipes. (Ville)
+> >> -Nuke get_joiner_secondary_pipes. (Ville)
+> >> -Add more drm_WARNs final primary/secondary pipes. (Ville)
+> >> v3:
+> >> -Drop ultrajoiner stuff and add it in subsequent patches. (Ville)
+> >>
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_display.c | 89 ++++++++++----------
+> >>   1 file changed, 44 insertions(+), 45 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> >> index 2d6260c3bca5..ea259b142786 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >> @@ -3663,7 +3663,15 @@ static u8 expected_bigjoiner_secondary_pipes(u8 bigjoiner_primary_pipes)
+> >>   	return expected_secondary_pipes(bigjoiner_primary_pipes, 2);
+> >>   }
+> >>   
+> >> +static u8 get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipes)
+> >> +{
+> >> +	primary_pipes &= GENMASK(pipe, 0);
+> >> +
+> >> +	return primary_pipes ? BIT(fls(primary_pipes) - 1) : 0;
+> >> +}
+> >> +
+> >>   static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+> >> +				 enum pipe pipe,
+> >>   				 u8 *primary_pipes, u8 *secondary_pipes)
+> >>   {
+> >>   	struct intel_display *display = to_intel_display(&dev_priv->drm);
+> >> @@ -3703,45 +3711,38 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+> >>   		 expected_uncompressed_joiner_secondary_pipes(primary_uncompressed_joiner_pipes),
+> >>   		 secondary_uncompressed_joiner_pipes);
+> >>   
+> >> -	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes;
+> >> -
+> >> -	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes;
+> >> -
+> >> -	/* Joiner pipes should always be consecutive primary and secondary */
+> >> -	drm_WARN(display->drm, *secondary_pipes != *primary_pipes << 1,
+> >> -		 "Joiner misconfigured (primary pipes %#x, secondary pipes %#x)\n",
+> >> -		 *primary_pipes, *secondary_pipes);
+> >> -}
+> >> -
+> >> -static enum pipe get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
+> >> -{
+> >> -	if ((secondary_pipes & BIT(pipe)) == 0)
+> >> -		return pipe;
+> >> -
+> >> -	/* ignore everything above our pipe */
+> >> -	primary_pipes &= ~GENMASK(7, pipe);
+> >> -
+> >> -	/* highest remaining bit should be our primary pipe */
+> >> -	return fls(primary_pipes) - 1;
+> >> -}
+> >> -
+> >> -static u8 get_joiner_secondary_pipes(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
+> >> -{
+> >> -	enum pipe primary_pipe, next_primary_pipe;
+> >> -
+> >> -	primary_pipe = get_joiner_primary_pipe(pipe, primary_pipes, secondary_pipes);
+> >> -
+> >> -	if ((primary_pipes & BIT(primary_pipe)) == 0)
+> >> -		return 0;
+> >> -
+> >> -	/* ignore our primary pipe and everything below it */
+> >> -	primary_pipes &= ~GENMASK(primary_pipe, 0);
+> >> -	/* make sure a high bit is set for the ffs() */
+> >> -	primary_pipes |= BIT(7);
+> >> -	/* lowest remaining bit should be the next primary pipe */
+> >> -	next_primary_pipe = ffs(primary_pipes) - 1;
+> >> -
+> >> -	return secondary_pipes & GENMASK(next_primary_pipe - 1, primary_pipe);
+> >> +	*primary_pipes = 0;
+> >> +	*secondary_pipes = 0;
+> >> +
+> >> +	if (uncompressed_joiner_pipes & BIT(pipe)) {
+> >> +		*primary_pipes = get_joiner_primary_pipe(pipe, primary_uncompressed_joiner_pipes);
+> >> +		*secondary_pipes = secondary_uncompressed_joiner_pipes &
+> >> +				   expected_uncompressed_joiner_secondary_pipes(*primary_pipes);
+> >> +
+> >> +		drm_WARN(display->drm,
+> >> +			 expected_uncompressed_joiner_secondary_pipes(*primary_pipes) !=
+> >> +			 *secondary_pipes,
+> >> +			 "Wrong uncompressed joiner secondary pipes for primary_pipes %#x (expected %#x, current %#x)\n",
+> >> +			 *primary_pipes,
+> >> +			 expected_uncompressed_joiner_secondary_pipes(*primary_pipes),
+> >> +			 *secondary_pipes);
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	if (bigjoiner_pipes & BIT(pipe)) {
+> >> +		*primary_pipes = get_joiner_primary_pipe(pipe, primary_bigjoiner_pipes);
+> >> +		*secondary_pipes = secondary_bigjoiner_pipes &
+> >> +				   expected_bigjoiner_secondary_pipes(*primary_pipes);
+> >> +
+> >> +		drm_WARN(display->drm,
+> >> +			 expected_bigjoiner_secondary_pipes(*primary_pipes) !=
+> >> +			 *secondary_pipes,
+> >> +			 "Wrong bigjoiner secondary pipes for primary_pipes %#x (expected %#x, current %#x)\n",
+> >> +			 *primary_pipes,
+> >> +			 expected_bigjoiner_secondary_pipes(*primary_pipes),
+> >> +			 *secondary_pipes);
+> >> +		return;
+> >> +	}
+> >>   }
+> >>   
+> >>   static u8 hsw_panel_transcoders(struct drm_i915_private *i915)
+> >> @@ -3813,10 +3814,10 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
+> >>   		enabled_transcoders |= BIT(cpu_transcoder);
+> >>   
+> >>   	/* joiner secondary -> consider the primary pipe's transcoder as well */
+> >> -	enabled_joiner_pipes(dev_priv, &primary_pipes, &secondary_pipes);
+> >> +	enabled_joiner_pipes(dev_priv, crtc->pipe, &primary_pipes, &secondary_pipes);
+> >>   	if (secondary_pipes & BIT(crtc->pipe)) {
+> >>   		cpu_transcoder = (enum transcoder)
+> >> -			get_joiner_primary_pipe(crtc->pipe, primary_pipes, secondary_pipes);
+> >> +			ffs(get_joiner_primary_pipe(crtc->pipe, primary_pipes)) - 1;
+> > The get_joiner_primary_pipe() shouldn't be needed here since
+> > enabled_joiner_pipes() guarantees that only one bit is set.
+> 
+> 
+> I agree. Additionally, I was considering changing the input variable 
+> name from `primary_pipes` to `primary_pipe` in enabled_joiner_pipes for 
+> clarity. Does that make sense?
 
-== Series Details ==
+Probably a good idea. It'll be a bit weird to have it as a bitmask,
+but feels like returning just a single enum pipe could make
+things more complicated. So yeah, 'u8 *primary_pipe' seems perhaps the
+best compromise.
 
-Series: drm/xe: xe_gen_wa_oob: replace program_invocation_short_name
-URL   : https://patchwork.freedesktop.org/series/139088/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da_BAT -> xe-pw-139088v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-139088v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-139088v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-139088v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139088v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4] ([Intel XE#877]) +2 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#288]) +32 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#2229])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_basic@no-exec-userptr-invalidate:
-    - bat-bmg-1:          [DMESG-WARN][8] ([Intel XE#877]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [INCOMPLETE][10] ([Intel XE#2874]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-#### Warnings ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - bat-adlp-vf:        [SKIP][12] ([Intel XE#2849]) -> [SKIP][13] ([Intel XE#2460] / [Intel XE#2849]) +1 other test skip
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2460]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2460
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da -> xe-pw-139088v1
-
-  IGT_8032: 8032
-  xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da: 6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da
-  xe-pw-139088v1: 139088v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/index.html
-
---===============6150430664295877366==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: xe_gen_wa_oob: replace program_invocation_short_name</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139088/">https://patchwork.freedesktop.org/series/139088/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da_BAT -&gt; xe-pw-139088v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-139088v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-139088v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-139088v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139088v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) +2 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_exec_basic@no-exec-userptr-invalidate:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@sriov_basic@enable-vfs-autoprobe-off:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2460">Intel XE#2460</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da -&gt; xe-pw-139088v1</li>
-</ul>
-<p>IGT_8032: 8032<br />
-  xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da: 6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da<br />
-  xe-pw-139088v1: 139088v1</p>
-
-</body>
-</html>
-
---===============6150430664295877366==--
+-- 
+Ville Syrjälä
+Intel
