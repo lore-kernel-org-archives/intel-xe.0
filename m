@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5128CDE00D
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 14:35:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B71ADCDE00D
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 14:38:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59A7310E05F;
-	Thu, 26 Sep 2024 14:35:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gC3LGR5L";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C241F10E05F
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Sep 2024 14:35:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727361323; x=1758897323;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yefF+Be7nIVltj6HmOr+cqWe5DiPpmIKBzdaXM4szfU=;
- b=gC3LGR5LrCO3KPQET6yQ7gqDpibgszNVDgUmnp9iwV0RZL6ACFLp2gNx
- dtH9yShTYnPMAWEc3t1a771DW/wgIS0MxOzuWQbRWqmyENtZrZFr1RsHj
- nO5vQsfYFGG/V56NZcUxh/te+TKdtC7rJwKWhmWtsvOBUh0nGZoodB0eC
- 0wxpmrUTfOKpP3rnp6++8gQq6po9VwF8Xq4xXfYI6iVzJXMLcDjGy/pKj
- lCKJsdU+A67CTMhC5K2MPCxCyWWuq1bSbJX9LSyrpYcTFDd8ySPkT7HIt
- 7TAdChQ4qC/sKBe9e8q115qVuda/PY2u0fbGSe3/v+WS7hbYb307DkABy w==;
-X-CSE-ConnectionGUID: lw9eITjoTiqEJPXqkMmuuA==
-X-CSE-MsgGUID: lcZ5rwwwTkyo/NhvrDdLbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="51876893"
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="51876893"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 07:35:14 -0700
-X-CSE-ConnectionGUID: 9PXf9EqSQNi8ROF+bEy76A==
-X-CSE-MsgGUID: GwkjSTKYQeawRsJTXwpWkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="71782045"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa006.fm.intel.com with ESMTP; 26 Sep 2024 07:35:12 -0700
-Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 6B6772876E;
- Thu, 26 Sep 2024 15:35:11 +0100 (IST)
-Message-ID: <7c70dbc5-889c-4571-92c9-b8ac3ea0c9f9@intel.com>
-Date: Thu, 26 Sep 2024 16:35:10 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 726A510EB68;
+	Thu, 26 Sep 2024 14:38:09 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3162210EB6A;
+ Thu, 26 Sep 2024 14:38:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2137132861873272701=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] drm/xe/vf: Defer fixups if migrated twice fast
-To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-References: <20240924202553.1541574-1-tomasz.lis@intel.com>
- <20240924202553.1541574-5-tomasz.lis@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240924202553.1541574-5-tomasz.lis@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/i915/display=3A_Workaround_f?=
+ =?utf-8?q?or_odd_panning_for_planar_yuv_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Garg, Nemesa" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Sep 2024 14:38:08 -0000
+Message-ID: <172736148819.1107741.5003437516064719771@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240925122513.2455181-1-nemesa.garg@intel.com>
+In-Reply-To: <20240925122513.2455181-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,92 +36,183 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2137132861873272701==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: Workaround for odd panning for planar yuv (rev4)
+URL   : https://patchwork.freedesktop.org/series/136422/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da_BAT -> xe-pw-136422v4_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-136422v4_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-136422v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-136422v4_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] +3 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136422v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@no-exec-userptr-invalidate:
+    - bat-bmg-1:          [DMESG-WARN][3] ([Intel XE#877]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
+
+  
+#### Warnings ####
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2849]) -> [SKIP][6] ([Intel XE#2460] / [Intel XE#2849]) +1 other test skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2460]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2460
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
 
 
-On 24.09.2024 22:25, Tomasz Lis wrote:
-> If another VF migration happened during post-migration recovery,
-> then the current worker should be finished to allow the next
-> one start swiftly and cleanly.
-> 
-> Check for defer in two places: before fixups, and before
-> sending RESFIX_DONE.
-> 
-> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_sriov_vf.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> index fe5eefa736c8..f326e507d73e 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> @@ -52,6 +52,19 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
->  	return err;
->  }
->  
-> +/*
-> + * vf_post_migration_imminent - Check if post-restore recovery is coming.
-> + * @xe: the &xe_device struct instance
-> + *
-> + * Return: True if migration recovery worker will soon be running. Any worker currently
-> + * executing does not affect the result.
-> + */
-> +static bool vf_post_migration_imminent(struct xe_device *xe)
-> +{
-> +	return xe->sriov.vf.migration.gt_flags != 0 ||
-> +	work_pending(&xe->sriov.vf.migration.worker);
+Build changes
+-------------
 
-make sure scripts/checkpatch.pl --strict is not complaining
+  * Linux: xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da -> xe-pw-136422v4
 
-> +}
-> +
->  /*
->   * vf_post_migration_notify_resfix_done - Notify all GuCs about resource fixups apply finished.
->   * @xe: the &xe_device struct instance
-> @@ -63,11 +76,17 @@ static void vf_post_migration_notify_resfix_done(struct xe_device *xe)
->  	int err, num_sent = 0;
->  
->  	for_each_gt(gt, xe, id) {
-> +		if (vf_post_migration_imminent(xe))
-> +			goto skip;
+  IGT_8032: 8032
+  xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da: 6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da
+  xe-pw-136422v4: 136422v4
 
-hmm, what if new migration happen right here? this is still racy and
-likely needs to be solved at GUC-VF protocol level, not by adding more
-check points in the driver
+== Logs ==
 
->  		err = xe_gt_sriov_vf_notify_resfix_done(gt);
->  		if (!err)
->  			num_sent++;
->  	}
->  	drm_dbg(&xe->drm, "sent %d VF resource fixups done notifications\n", num_sent);
-> +	return;
-> +
-> +skip:
-> +	drm_dbg(&xe->drm, "another recovery imminent, skipping notifications\n");
->  }
->  
->  static void vf_post_migration_recovery(struct xe_device *xe)
-> @@ -77,6 +96,8 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->  	drm_dbg(&xe->drm, "migration recovery in progress\n");
->  	xe_pm_runtime_get(xe);
->  	err = vf_post_migration_requery_guc(xe);
-> +	if (vf_post_migration_imminent(xe))
-> +		goto defer;
->  	if (unlikely(err))
->  		goto fail;
->  
-> @@ -85,6 +106,10 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->  	xe_pm_runtime_put(xe);
->  	drm_notice(&xe->drm, "migration recovery ended\n");
->  	return;
-> +defer:
-> +	xe_pm_runtime_put(xe);
-> +	drm_dbg(&xe->drm, "migration recovery deferred\n");
-> +	return;
->  fail:
->  	xe_pm_runtime_put(xe);
->  	drm_err(&xe->drm, "migration recovery failed (%pe)\n", ERR_PTR(err));
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/index.html
 
+--===============2137132861873272701==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Workaround for odd panning for planar yuv (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136422/">https://patchwork.freedesktop.org/series/136422/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da_BAT -&gt; xe-pw-136422v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-136422v4_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-136422v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-136422v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1.html">FAIL</a> +3 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136422v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_basic@no-exec-userptr-invalidate:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@sriov_basic@enable-vfs-autoprobe-off:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136422v4/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2460">Intel XE#2460</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da -&gt; xe-pw-136422v4</li>
+</ul>
+<p>IGT_8032: 8032<br />
+  xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da: 6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da<br />
+  xe-pw-136422v4: 136422v4</p>
+
+</body>
+</html>
+
+--===============2137132861873272701==--
