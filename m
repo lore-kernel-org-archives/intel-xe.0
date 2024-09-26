@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A41FCCCFA10
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 00:57:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A95C0CCFA10
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 01:04:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6604110E04A;
-	Thu, 26 Sep 2024 00:57:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FEDB10E04A;
+	Thu, 26 Sep 2024 01:04:02 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2BE10E04A;
- Thu, 26 Sep 2024 00:57:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4813482646469406068=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7C6110E04A;
+ Thu, 26 Sep 2024 01:04:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Move_IRQ-related_regis?=
- =?utf-8?q?ters_to_dedicated_header?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Fix_xe=5Fforce=5Fwak?=
+ =?utf-8?q?e=5Fget=28=29_failure_handling_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 00:57:46 -0000
-Message-ID: <172731226631.1103568.1736737287669902941@2413ebb6fbb6>
+Date: Thu, 26 Sep 2024 01:04:00 -0000
+Message-ID: <172731264087.1103576.16938281952067535085@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240923214514.2031410-2-matthew.d.roper@intel.com>
-In-Reply-To: <20240923214514.2031410-2-matthew.d.roper@intel.com>
+References: <20240924121641.1045763-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240924121641.1045763-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,196 +40,39 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4813482646469406068==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Move IRQ-related registers to dedicated header
-URL   : https://patchwork.freedesktop.org/series/139013/
+Series: Fix xe_force_wake_get() failure handling (rev5)
+URL   : https://patchwork.freedesktop.org/series/137982/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b_BAT -> xe-pw-139013v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139013v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#2229])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [DMESG-WARN][4] -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [SKIP][6] ([Intel XE#455]) -> [PASS][7] +3 other tests pass
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@kms_psr@psr-primary-page-flip@edp-1:
-    - bat-adlp-7:         [DMESG-FAIL][8] -> [PASS][9] +1 other test pass
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [INCOMPLETE][10] -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 88d592f72f7b drm-tip: 2024y-09m-25d-19h-23m-21s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Error handling in xe_force_wake_get()
+Applying: drm/xe: Modify xe_force_wake_put to handle _get returned mask
+Applying: drm/xe/device: Update handling of xe_force_wake_get return
+Applying: drm/xe/hdcp: Update handling of xe_force_wake_get return
+Applying: drm/xe/gsc: Update handling of xe_force_wake_get return
+Applying: drm/xe/gt: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_gt_idle: Update handling of xe_force_wake_get return
+Applying: drm/xe/devcoredump: Update handling of xe_force_wake_get return
+Applying: drm/xe/tests/mocs: Update xe_force_wake_get() return handling
+Applying: drm/xe/mocs: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_drm_client: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_gt_debugfs: Update handling of xe_force_wake_get return
+Applying: drm/xe/guc: Update handling of xe_force_wake_get return
+Applying: drm/xe/huc: Update handling of xe_force_wake_get return
+Applying: drm/xe/oa: Handle force_wake_get failure in xe_oa_stream_init()
+Applying: drm/xe/pat: Update handling of xe_force_wake_get return
+Applying: drm/xe/gt_tlb_invalidation_ggtt: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_reg_sr: Update handling of xe_force_wake_get return
+Applying: drm/xe/query: Update handling of xe_force_wake_get return
+Applying: drm/xe/vram: Update handling of xe_force_wake_get return
+Applying: drm/xe: forcewake debugfs open fails on xe_forcewake_get failure
+Applying: drm/xe: Ensure __must_check for xe_force_wake_get() return
+Applying: drm/xe: Change return type to void for xe_force_wake_put
 
 
-Build changes
--------------
-
-  * Linux: xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b -> xe-pw-139013v1
-
-  IGT_8032: 8032
-  xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b: 88d592f72f7bc508d6a027b1f96aa2e53f803e1b
-  xe-pw-139013v1: 139013v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/index.html
-
---===============4813482646469406068==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Move IRQ-related registers to dedicated header</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139013/">https://patchwork.freedesktop.org/series/139013/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b_BAT -&gt; xe-pw-139013v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139013v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139013v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b -&gt; xe-pw-139013v1</li>
-</ul>
-<p>IGT_8032: 8032<br />
-  xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b: 88d592f72f7bc508d6a027b1f96aa2e53f803e1b<br />
-  xe-pw-139013v1: 139013v1</p>
-
-</body>
-</html>
-
---===============4813482646469406068==--
