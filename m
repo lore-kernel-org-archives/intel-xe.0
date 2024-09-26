@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47B99CCF9EB
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 02:59:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21E5FCCFA10
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 02:59:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1EB110E035;
-	Thu, 26 Sep 2024 02:59:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E472310E124;
+	Thu, 26 Sep 2024 02:59:38 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF73010E035;
- Thu, 26 Sep 2024 02:59:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED0C610E124;
+ Thu, 26 Sep 2024 02:59:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/hdcp=3A_fix?=
- =?utf-8?q?_connector_refcounting?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/hdcp=3A_fix_conn?=
+ =?utf-8?q?ector_refcounting?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 02:59:23 -0000
-Message-ID: <172731956390.1103855.9614767764624890205@2413ebb6fbb6>
+Date: Thu, 26 Sep 2024 02:59:37 -0000
+Message-ID: <172731957796.1103855.12837444714221682715@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240924153022.2255299-1-jani.nikula@intel.com>
 In-Reply-To: <20240924153022.2255299-1-jani.nikula@intel.com>
@@ -48,9 +48,37 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 88d592f72f7b drm-tip: 2024y-09m-25d-19h-23m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/hdcp: fix connector refcounting
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2493d8d85c5f50e6771e295f35a9c4134000a490
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Sep 24 18:30:22 2024 +0300
+
+    drm/i915/hdcp: fix connector refcounting
+    
+    We acquire a connector reference before scheduling an HDCP prop work,
+    and expect the work function to release the reference.
+    
+    However, if the work was already queued, it won't be queued multiple
+    times, and the reference is not dropped.
+    
+    Release the reference immediately if the work was already queued.
+    
+    Fixes: a6597faa2d59 ("drm/i915: Protect workers against disappearing connectors")
+    Cc: Sean Paul <seanpaul@chromium.org>
+    Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Cc: <stable@vger.kernel.org> # v5.10+
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 88d592f72f7bc508d6a027b1f96aa2e53f803e1b drm-intel
+2493d8d85c5f drm/i915/hdcp: fix connector refcounting
 
 
