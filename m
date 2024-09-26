@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60867CCFA15
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 04:56:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4837DCCFA15
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 05:17:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1F410E118;
-	Thu, 26 Sep 2024 04:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 834CE10E124;
+	Thu, 26 Sep 2024 05:17:09 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 670D810E118;
- Thu, 26 Sep 2024 04:53:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3469840139882245932=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5755410EA8A;
+ Thu, 26 Sep 2024 05:16:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Take_ref_to_job_and_jo?=
- =?utf-8?q?b=27s_fence_in_xe=5Fsched=5Fjob=5Farm_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Post-mi?=
+ =?utf-8?q?gration_recovery_worker_basis_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Tomasz Lis" <tomasz.lis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 04:53:59 -0000
-Message-ID: <172732643941.1104265.2051842186889950258@2413ebb6fbb6>
+Date: Thu, 26 Sep 2024 05:16:16 -0000
+Message-ID: <172732777635.1104326.15429937464977716897@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240924184541.2992459-1-matthew.brost@intel.com>
-In-Reply-To: <20240924184541.2992459-1-matthew.brost@intel.com>
+References: <20240924202553.1541574-1-tomasz.lis@intel.com>
+In-Reply-To: <20240924202553.1541574-1-tomasz.lis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,145 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3469840139882245932==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Take ref to job and job's fence in xe_sched_job_arm (rev2)
-URL   : https://patchwork.freedesktop.org/series/138939/
+Series: drm/xe/vf: Post-migration recovery worker basis (rev2)
+URL   : https://patchwork.freedesktop.org/series/138935/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b_BAT -> xe-pw-138939v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-138939v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [DMESG-WARN][1] -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [SKIP][3] ([Intel XE#455]) -> [PASS][4] +3 other tests pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@kms_psr@psr-primary-page-flip@edp-1:
-    - bat-adlp-7:         [DMESG-FAIL][5] -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-
-  
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 88d592f72f7b drm-tip: 2024y-09m-25d-19h-23m-21s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vf: React to MIGRATED interrupt
+Applying: drm/xe/vf: Send RESFIX_DONE message at end of VF restore
+Applying: drm/xe/vf: Start post-migration fixups with provisinoning query
+Applying: drm/xe/vf: Defer fixups if migrated twice fast
 
 
-Build changes
--------------
-
-  * Linux: xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b -> xe-pw-138939v2
-
-  IGT_8032: 8032
-  xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b: 88d592f72f7bc508d6a027b1f96aa2e53f803e1b
-  xe-pw-138939v2: 138939v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/index.html
-
---===============3469840139882245932==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Take ref to job and job&#x27;s fence in xe_sched_job_arm (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138939/">https://patchwork.freedesktop.org/series/138939/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b_BAT -&gt; xe-pw-138939v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-138939v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138939v2/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b -&gt; xe-pw-138939v2</li>
-</ul>
-<p>IGT_8032: 8032<br />
-  xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b: 88d592f72f7bc508d6a027b1f96aa2e53f803e1b<br />
-  xe-pw-138939v2: 138939v2</p>
-
-</body>
-</html>
-
---===============3469840139882245932==--
