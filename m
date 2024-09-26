@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3703CDE024
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 16:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39A0CDE025
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 16:57:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 918DE10EBAC;
-	Thu, 26 Sep 2024 16:57:34 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2AD810E037;
- Thu, 26 Sep 2024 16:57:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF42110E037;
+	Thu, 26 Sep 2024 16:57:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HM7rJrEz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A04110EBB0;
+ Thu, 26 Sep 2024 16:57:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727369875; x=1758905875;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Rwlir2Ekco1GUYaay2Eilaif2d8TZLV9sjAJ0hPrTc0=;
+ b=HM7rJrEzM23I7tfBkbSgDj3K6E5/5Zr+cXi+NNkedBWEP3Dt+yP/4w13
+ GHu1jyl1ofvmR+dUjgUXhX6P4HrhIbQ7e24lElV/ntu+BJGqq2EyAGVR6
+ +9lz5qk8n3ZV0B+iKnWNNBqEgzX/DP03bYYMgIINtNuL+wMWQAO6T3RiJ
+ OBPjVOuRpTAet4FCMiZOLu8xOqLKicGlKdm0WRd2iiykLrkMhNgGJCb97
+ 74Cs0lNmM1L172NAysTEvvOExg8f187aK0nceAplKPDphRABMkskXh71g
+ XjFL+JpMq+5OuuXJQ6ytc/n9NdAheTv7RbDQBLl49QHd9KKI7uVF1BWJC w==;
+X-CSE-ConnectionGUID: Z8jNiuhLSlqGF/EE6BL2pQ==
+X-CSE-MsgGUID: e8qenlKgRnqIcwniu+5PdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26353664"
+X-IronPort-AV: E=Sophos;i="6.11,156,1725346800"; d="scan'208";a="26353664"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 09:57:54 -0700
+X-CSE-ConnectionGUID: lxoe20loRia7P5oYCidLlw==
+X-CSE-MsgGUID: foawyDHKQ76SAiQoK5FVeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,156,1725346800"; d="scan'208";a="72543421"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 09:57:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/3] drm/i915/irq: clean up irq reset/init macro hacks
+Date: Thu, 26 Sep 2024 19:57:45 +0300
+Message-Id: <cover.1727369787.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pmu=3A_PMU_interfa?=
- =?utf-8?q?ce_for_Xe?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 16:57:33 -0000
-Message-ID: <172736985398.1108182.3089282458685243828@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240925232159.2057581-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20240925232159.2057581-1-vinay.belgaumkar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +63,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add a struct to hold IMR/IER/IIR registers, and pass them together
+instead of the ugly macro hacks with macro name concatenation etc.
 
-Series: drm/xe/pmu: PMU interface for Xe
-URL   : https://patchwork.freedesktop.org/series/139121/
-State : warning
+BR,
+Jani.
 
-== Summary ==
+Jani Nikula (3):
+  drm/i915/irq: add struct i915_irq_regs triplet
+  drm/i915/irq: remove GEN3_IRQ_RESET() and GEN3_IRQ_INIT() macros
+  drm/i915/irq: remove GEN8_IRQ_RESET_NDX() and GEN8_IRQ_INIT_NDX()
+    macros
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 46e86fb616b4ed19df1aa1fca442e4efe8e13fdf
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Date:   Wed Sep 25 16:21:59 2024 -0700
+ .../gpu/drm/i915/display/intel_display_irq.c  | 52 ++++++++--------
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        | 24 ++++----
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  4 ++
+ drivers/gpu/drm/i915/i915_irq.c               | 59 +++++++++----------
+ drivers/gpu/drm/i915/i915_irq.h               | 34 +----------
+ drivers/gpu/drm/i915/i915_reg.h               | 53 +++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg_defs.h          | 10 ++++
+ drivers/gpu/drm/xe/display/ext/i915_irq.c     | 31 +++++-----
+ 8 files changed, 150 insertions(+), 117 deletions(-)
 
-    drm/xe/pmu: Add GT frequency events
-    
-    Define PMU events for GT frequency (actual and requested). This is
-    a port from the i915 driver implementation.
-    
-    Following PMU events are being added-
-    
-      xe_0000_00_02.0/actual-frequency-gt0/              [Kernel PMU event]
-      xe_0000_00_02.0/actual-frequency-gt1/              [Kernel PMU event]
-      xe_0000_00_02.0/requested-frequency-gt0/           [Kernel PMU event]
-      xe_0000_00_02.0/requested-frequency-gt1/           [Kernel PMU event]
-    
-    v2: Checkpatch fix, moved timer code to this patch
-    
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-+ /mt/dim checkpatch ec87b409d3a9358c9a079186d528fad3f7d64334 drm-intel
-f7ad341df96e drm/xe/pmu: Enable PMU interface
--:107: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#107: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 732 lines checked
-e389fe0f889d drm/xe/pmu: Add GT C6 events
-46e86fb616b4 drm/xe/pmu: Add GT frequency events
--:62: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#62: FILE: drivers/gpu/drm/xe/xe_pmu.c:95:
-+			     BITS_PER_TYPE(typeof_member(struct xe_pmu,
-+					   enable)) - 1);
-
-total: 0 errors, 0 warnings, 1 checks, 364 lines checked
-
+-- 
+2.39.2
 
