@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E960ACDE025
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 16:58:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A4E6CDE025
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 16:58:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B807D10EBB1;
-	Thu, 26 Sep 2024 16:58:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NuugID6g";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E0AC10EBB1;
- Thu, 26 Sep 2024 16:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727369883; x=1758905883;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=I1NXCTm1LVaC8nBcOU+eNloAwMayjviu9CzusRZd1Is=;
- b=NuugID6g1jKVM/3H8r3oBQwK9RaFODS1IJnO3K4FjqX50y+gDssX04di
- OxFB0OtsFlugtGrRwmPbP1dL5olNn8he5n/+H2HpFXhIMbRPzjKtaDrXn
- 4af2rP5mEeohT/NYYItHMg0hA8WkTGdT6MOo/um9xcBfe6E8Uq2cLw3iI
- EMKCF2aGsl+h8oSYN9T/cVpbp0muENnh2NsthJ6WqMvKZdaVrZ3pocf2O
- jreDGGjqo5zpcueS4jFh9F+h6+SO4gcrra1bul7m7qwd0RjvlYw/hj4o6
- JTpHFucAQCxyiWV/7PlN154mdOQ9pWJ4QuGZAqChf+Z7EmLKepJrUGQ2m A==;
-X-CSE-ConnectionGUID: lPuGbHsUQlqnx22GUcZSrg==
-X-CSE-MsgGUID: P3jjPPeZRrKi1qFy2roz5g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="37050020"
-X-IronPort-AV: E=Sophos;i="6.11,156,1725346800"; d="scan'208";a="37050020"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 09:58:03 -0700
-X-CSE-ConnectionGUID: w3Cedo7QQe+QYXQjyncKVQ==
-X-CSE-MsgGUID: kBeKZKS7RVy+sRGriOwqbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,156,1725346800"; d="scan'208";a="77020863"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 09:58:01 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/3] drm/i915/irq: remove GEN3_IRQ_RESET() and GEN3_IRQ_INIT()
- macros
-Date: Thu, 26 Sep 2024 19:57:47 +0300
-Message-Id: <9e231087a6eabfcb1b018b3d3fd7b9f016df6f4e.1727369787.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1727369787.git.jani.nikula@intel.com>
-References: <cover.1727369787.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD60110EBB6;
+	Thu, 26 Sep 2024 16:58:09 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6788810E037;
+ Thu, 26 Sep 2024 16:58:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/pmu=3A_PMU_interface_fo?=
+ =?utf-8?q?r_Xe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Sep 2024 16:58:08 -0000
+Message-ID: <172736988841.1107989.14264951520385129422@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240925232159.2057581-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20240925232159.2057581-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,446 +36,1895 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define register offset triplets for all registers used with
-GEN3_IRQ_RESET() and GEN3_IRQ_INIT() macros, and call the underlying
-gen3_irq_reset() and gen3_irq_init() functions directly. Remove the
-macros, along with the macro name concatenation hackery.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_irq.c  | 34 +++++++-------
- drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  8 ++--
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  4 ++
- drivers/gpu/drm/i915/i915_irq.c               | 28 ++++++------
- drivers/gpu/drm/i915/i915_irq.h               |  7 ---
- drivers/gpu/drm/i915/i915_reg.h               | 45 +++++++++++++++++++
- 6 files changed, 84 insertions(+), 42 deletions(-)
+Series: drm/xe/pmu: PMU interface for Xe
+URL   : https://patchwork.freedesktop.org/series/139121/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 6878dde85031..5c6b9918ed3a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1486,7 +1486,7 @@ void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
- 
- 	i9xx_pipestat_irq_reset(dev_priv);
- 
--	GEN3_IRQ_RESET(uncore, VLV_);
-+	gen3_irq_reset(uncore, VLV_IRQ_REGS);
- 	dev_priv->irq_mask = ~0u;
- }
- 
-@@ -1529,7 +1529,7 @@ void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
- 
- 	dev_priv->irq_mask = ~enable_mask;
- 
--	GEN3_IRQ_INIT(uncore, VLV_, dev_priv->irq_mask, enable_mask);
-+	gen3_irq_init(uncore, VLV_IRQ_REGS, dev_priv->irq_mask, enable_mask);
- }
- 
- void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
-@@ -1548,8 +1548,8 @@ void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
- 						   POWER_DOMAIN_PIPE(pipe)))
- 			GEN8_IRQ_RESET_NDX(uncore, DE_PIPE, pipe);
- 
--	GEN3_IRQ_RESET(uncore, GEN8_DE_PORT_);
--	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
-+	gen3_irq_reset(uncore, GEN8_DE_PORT_IRQ_REGS);
-+	gen3_irq_reset(uncore, GEN8_DE_MISC_IRQ_REGS);
- }
- 
- void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
-@@ -1591,16 +1591,16 @@ void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
- 						   POWER_DOMAIN_PIPE(pipe)))
- 			GEN8_IRQ_RESET_NDX(uncore, DE_PIPE, pipe);
- 
--	GEN3_IRQ_RESET(uncore, GEN8_DE_PORT_);
--	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
-+	gen3_irq_reset(uncore, GEN8_DE_PORT_IRQ_REGS);
-+	gen3_irq_reset(uncore, GEN8_DE_MISC_IRQ_REGS);
- 
- 	if (DISPLAY_VER(dev_priv) >= 14)
--		GEN3_IRQ_RESET(uncore, PICAINTERRUPT_);
-+		gen3_irq_reset(uncore, PICAINTERRUPT_IRQ_REGS);
- 	else
--		GEN3_IRQ_RESET(uncore, GEN11_DE_HPD_);
-+		gen3_irq_reset(uncore, GEN11_DE_HPD_IRQ_REGS);
- 
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
--		GEN3_IRQ_RESET(uncore, SDE);
-+		gen3_irq_reset(uncore, SDE_IRQ_REGS);
- }
- 
- void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
-@@ -1675,7 +1675,7 @@ static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
- 	else
- 		mask = SDE_GMBUS_CPT;
- 
--	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
-+	gen3_irq_init(uncore, SDE_IRQ_REGS, ~mask, 0xffffffff);
- }
- 
- void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv)
-@@ -1743,7 +1743,7 @@ void ilk_de_irq_postinstall(struct drm_i915_private *i915)
- 
- 	ibx_irq_postinstall(i915);
- 
--	GEN3_IRQ_INIT(uncore, DE, i915->irq_mask,
-+	gen3_irq_init(uncore, DE_IRQ_REGS, i915->irq_mask,
- 		      display_mask | extra_mask);
- }
- 
-@@ -1834,15 +1834,15 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 					  de_pipe_enables);
- 	}
- 
--	GEN3_IRQ_INIT(uncore, GEN8_DE_PORT_, ~de_port_masked, de_port_enables);
--	GEN3_IRQ_INIT(uncore, GEN8_DE_MISC_, ~de_misc_masked, de_misc_masked);
-+	gen3_irq_init(uncore, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked, de_port_enables);
-+	gen3_irq_init(uncore, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked, de_misc_masked);
- 
- 	if (IS_DISPLAY_VER(dev_priv, 11, 13)) {
- 		u32 de_hpd_masked = 0;
- 		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK |
- 				     GEN11_DE_TBT_HOTPLUG_MASK;
- 
--		GEN3_IRQ_INIT(uncore, GEN11_DE_HPD_, ~de_hpd_masked,
-+		gen3_irq_init(uncore, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked,
- 			      de_hpd_enables);
- 	}
- }
-@@ -1855,10 +1855,10 @@ static void mtp_irq_postinstall(struct drm_i915_private *i915)
- 	u32 de_hpd_enables = de_hpd_mask | XELPDP_DP_ALT_HOTPLUG_MASK |
- 			     XELPDP_TBT_HOTPLUG_MASK;
- 
--	GEN3_IRQ_INIT(uncore, PICAINTERRUPT_, ~de_hpd_mask,
-+	gen3_irq_init(uncore, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask,
- 		      de_hpd_enables);
- 
--	GEN3_IRQ_INIT(uncore, SDE, ~sde_mask, 0xffffffff);
-+	gen3_irq_init(uncore, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
- }
- 
- static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
-@@ -1866,7 +1866,7 @@ static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
- 	struct intel_uncore *uncore = &dev_priv->uncore;
- 	u32 mask = SDE_GMBUS_ICP;
- 
--	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
-+	gen3_irq_init(uncore, SDE_IRQ_REGS, ~mask, 0xffffffff);
- }
- 
- void gen11_de_irq_postinstall(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index ad4c51f18d3a..fbb3117e324a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -514,9 +514,9 @@ void gen5_gt_irq_reset(struct intel_gt *gt)
- {
- 	struct intel_uncore *uncore = gt->uncore;
- 
--	GEN3_IRQ_RESET(uncore, GT);
-+	gen3_irq_reset(uncore, GT_IRQ_REGS);
- 	if (GRAPHICS_VER(gt->i915) >= 6)
--		GEN3_IRQ_RESET(uncore, GEN6_PM);
-+		gen3_irq_reset(uncore, GEN6_PM_IRQ_REGS);
- }
- 
- void gen5_gt_irq_postinstall(struct intel_gt *gt)
-@@ -538,7 +538,7 @@ void gen5_gt_irq_postinstall(struct intel_gt *gt)
- 	else
- 		gt_irqs |= GT_BLT_USER_INTERRUPT | GT_BSD_USER_INTERRUPT;
- 
--	GEN3_IRQ_INIT(uncore, GT, gt->gt_imr, gt_irqs);
-+	gen3_irq_init(uncore, GT_IRQ_REGS, gt->gt_imr, gt_irqs);
- 
- 	if (GRAPHICS_VER(gt->i915) >= 6) {
- 		/*
-@@ -551,6 +551,6 @@ void gen5_gt_irq_postinstall(struct intel_gt *gt)
- 		}
- 
- 		gt->pm_imr = 0xffffffff;
--		GEN3_IRQ_INIT(uncore, GEN6_PM, gt->pm_imr, pm_irqs);
-+		gen3_irq_init(uncore, GEN6_PM_IRQ_REGS, gt->pm_imr, pm_irqs);
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 57a3c83d3655..04577658695e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1472,6 +1472,10 @@
- 						 GEN6_PM_RP_DOWN_THRESHOLD  | \
- 						 GEN6_PM_RP_DOWN_TIMEOUT)
- 
-+#define GEN6_PM_IRQ_REGS			I915_IRQ_REGS(GEN6_PMIMR, \
-+							      GEN6_PMIER, \
-+							      GEN6_PMIIR)
-+
- #define GEN7_GT_SCRATCH(i)			_MMIO(0x4f100 + (i) * 4)
- #define   GEN7_GT_SCRATCH_REG_NUM		8
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 7938a44b5681..f0d69bd432f5 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -662,7 +662,7 @@ static void ibx_irq_reset(struct drm_i915_private *dev_priv)
- 	if (HAS_PCH_NOP(dev_priv))
- 		return;
- 
--	GEN3_IRQ_RESET(uncore, SDE);
-+	gen3_irq_reset(uncore, SDE_IRQ_REGS);
- 
- 	if (HAS_PCH_CPT(dev_priv) || HAS_PCH_LPT(dev_priv))
- 		intel_uncore_write(&dev_priv->uncore, SERR_INT, 0xffffffff);
-@@ -674,7 +674,7 @@ static void ilk_irq_reset(struct drm_i915_private *dev_priv)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
- 
--	GEN3_IRQ_RESET(uncore, DE);
-+	gen3_irq_reset(uncore, DE_IRQ_REGS);
- 	dev_priv->irq_mask = ~0u;
- 
- 	if (GRAPHICS_VER(dev_priv) == 7)
-@@ -711,7 +711,7 @@ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
- 
- 	gen8_gt_irq_reset(to_gt(dev_priv));
- 	gen8_display_irq_reset(dev_priv);
--	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
-+	gen3_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
- 
- 	if (HAS_PCH_SPLIT(dev_priv))
- 		ibx_irq_reset(dev_priv);
-@@ -728,8 +728,8 @@ static void gen11_irq_reset(struct drm_i915_private *dev_priv)
- 	gen11_gt_irq_reset(gt);
- 	gen11_display_irq_reset(dev_priv);
- 
--	GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
--	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
-+	gen3_irq_reset(uncore, GEN11_GU_MISC_IRQ_REGS);
-+	gen3_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
- }
- 
- static void dg1_irq_reset(struct drm_i915_private *dev_priv)
-@@ -745,8 +745,8 @@ static void dg1_irq_reset(struct drm_i915_private *dev_priv)
- 
- 	gen11_display_irq_reset(dev_priv);
- 
--	GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
--	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
-+	gen3_irq_reset(uncore, GEN11_GU_MISC_IRQ_REGS);
-+	gen3_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
- 
- 	intel_uncore_write(uncore, GEN11_GFX_MSTR_IRQ, ~0);
- }
-@@ -760,7 +760,7 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
- 
- 	gen8_gt_irq_reset(to_gt(dev_priv));
- 
--	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
-+	gen3_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
- 	if (dev_priv->display.irq.display_irqs_enabled)
-@@ -805,7 +805,7 @@ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
- 	gen11_gt_irq_postinstall(gt);
- 	gen11_de_irq_postinstall(dev_priv);
- 
--	GEN3_IRQ_INIT(uncore, GEN11_GU_MISC_, ~gu_misc_masked, gu_misc_masked);
-+	gen3_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
- 
- 	gen11_master_intr_enable(intel_uncore_regs(uncore));
- 	intel_uncore_posting_read(&dev_priv->uncore, GEN11_GFX_MSTR_IRQ);
-@@ -821,7 +821,7 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
- 	for_each_gt(gt, dev_priv, i)
- 		gen11_gt_irq_postinstall(gt);
- 
--	GEN3_IRQ_INIT(uncore, GEN11_GU_MISC_, ~gu_misc_masked, gu_misc_masked);
-+	gen3_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
- 
- 	dg1_de_irq_postinstall(dev_priv);
- 
-@@ -1036,7 +1036,7 @@ static void i915_irq_reset(struct drm_i915_private *dev_priv)
- 
- 	i9xx_display_irq_reset(dev_priv);
- 
--	GEN3_IRQ_RESET(uncore, GEN2_);
-+	gen3_irq_reset(uncore, GEN2_IRQ_REGS);
- 	dev_priv->irq_mask = ~0u;
- }
- 
-@@ -1068,7 +1068,7 @@ static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
- 		dev_priv->irq_mask &= ~I915_DISPLAY_PORT_INTERRUPT;
- 	}
- 
--	GEN3_IRQ_INIT(uncore, GEN2_, dev_priv->irq_mask, enable_mask);
-+	gen3_irq_init(uncore, GEN2_IRQ_REGS, dev_priv->irq_mask, enable_mask);
- 
- 	/* Interrupt setup is already guaranteed to be single-threaded, this is
- 	 * just to make the assert_spin_locked check happy. */
-@@ -1141,7 +1141,7 @@ static void i965_irq_reset(struct drm_i915_private *dev_priv)
- 
- 	i9xx_display_irq_reset(dev_priv);
- 
--	GEN3_IRQ_RESET(uncore, GEN2_);
-+	gen3_irq_reset(uncore, GEN2_IRQ_REGS);
- 	dev_priv->irq_mask = ~0u;
- }
- 
-@@ -1190,7 +1190,7 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
- 	if (IS_G4X(dev_priv))
- 		enable_mask |= I915_BSD_USER_INTERRUPT;
- 
--	GEN3_IRQ_INIT(uncore, GEN2_, dev_priv->irq_mask, enable_mask);
-+	gen3_irq_init(uncore, GEN2_IRQ_REGS, dev_priv->irq_mask, enable_mask);
- 
- 	/* Interrupt setup is already guaranteed to be single-threaded, this is
- 	 * just to make the assert_spin_locked check happy. */
-diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
-index 361ba46eed76..06a38671b32b 100644
---- a/drivers/gpu/drm/i915/i915_irq.h
-+++ b/drivers/gpu/drm/i915/i915_irq.h
-@@ -55,9 +55,6 @@ void gen3_irq_init(struct intel_uncore *uncore, struct i915_irq_regs regs,
- 					       GEN8_##type##_IIR(which_))); \
- })
- 
--#define GEN3_IRQ_RESET(uncore, type) \
--	gen3_irq_reset((uncore), I915_IRQ_REGS(type##IMR, type##IER, type##IIR))
--
- #define GEN8_IRQ_INIT_NDX(uncore, type, which, imr_val, ier_val) \
- ({ \
- 	unsigned int which_ = which; \
-@@ -67,8 +64,4 @@ void gen3_irq_init(struct intel_uncore *uncore, struct i915_irq_regs regs,
- 		      imr_val, ier_val); \
- })
- 
--#define GEN3_IRQ_INIT(uncore, type, imr_val, ier_val) \
--	gen3_irq_init((uncore), I915_IRQ_REGS(type##IMR, type##IER, type##IIR), \
--		      imr_val, ier_val)
--
- #endif /* __I915_IRQ_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 7396fc630e29..818fb71f7efc 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -422,6 +422,11 @@
- #define GEN2_IIR	_MMIO(0x20a4)
- #define GEN2_IMR	_MMIO(0x20a8)
- #define GEN2_ISR	_MMIO(0x20ac)
-+
-+#define GEN2_IRQ_REGS		I915_IRQ_REGS(GEN2_IMR, \
-+					      GEN2_IER, \
-+					      GEN2_IIR)
-+
- #define VLV_GUNIT_CLOCK_GATE	_MMIO(VLV_DISPLAY_BASE + 0x2060)
- #define   GINT_DIS		(1 << 22)
- #define   GCFG_DIS		(1 << 8)
-@@ -434,6 +439,10 @@
- #define VLV_PCBR	_MMIO(VLV_DISPLAY_BASE + 0x2120)
- #define VLV_PCBR_ADDR_SHIFT	12
- 
-+#define VLV_IRQ_REGS		I915_IRQ_REGS(VLV_IMR, \
-+					      VLV_IER, \
-+					      VLV_IIR)
-+
- #define   DISPLAY_PLANE_FLIP_PENDING(plane) (1 << (11 - (plane))) /* A and B only */
- #define EIR		_MMIO(0x20b0)
- #define EMR		_MMIO(0x20b4)
-@@ -2444,11 +2453,19 @@
- #define DEIIR   _MMIO(0x44008)
- #define DEIER   _MMIO(0x4400c)
- 
-+#define DE_IRQ_REGS		I915_IRQ_REGS(DEIMR, \
-+					      DEIER, \
-+					      DEIIR)
-+
- #define GTISR   _MMIO(0x44010)
- #define GTIMR   _MMIO(0x44014)
- #define GTIIR   _MMIO(0x44018)
- #define GTIER   _MMIO(0x4401c)
- 
-+#define GT_IRQ_REGS		I915_IRQ_REGS(GTIMR, \
-+					      GTIER, \
-+					      GTIIR)
-+
- #define GEN8_MASTER_IRQ			_MMIO(0x44200)
- #define  GEN8_MASTER_IRQ_CONTROL	(1 << 31)
- #define  GEN8_PCU_IRQ			(1 << 30)
-@@ -2560,6 +2577,10 @@
- #define  TGL_DE_PORT_AUX_DDIB		REG_BIT(1)
- #define  TGL_DE_PORT_AUX_DDIA		REG_BIT(0)
- 
-+#define GEN8_DE_PORT_IRQ_REGS		I915_IRQ_REGS(GEN8_DE_PORT_IMR, \
-+						      GEN8_DE_PORT_IER, \
-+						      GEN8_DE_PORT_IIR)
-+
- #define GEN8_DE_MISC_ISR _MMIO(0x44460)
- #define GEN8_DE_MISC_IMR _MMIO(0x44464)
- #define GEN8_DE_MISC_IIR _MMIO(0x44468)
-@@ -2570,17 +2591,29 @@
- #define  GEN8_DE_EDP_PSR		REG_BIT(19)
- #define  XELPDP_PMDEMAND_RSP		REG_BIT(3)
- 
-+#define GEN8_DE_MISC_IRQ_REGS		I915_IRQ_REGS(GEN8_DE_MISC_IMR, \
-+						      GEN8_DE_MISC_IER, \
-+						      GEN8_DE_MISC_IIR)
-+
- #define GEN8_PCU_ISR _MMIO(0x444e0)
- #define GEN8_PCU_IMR _MMIO(0x444e4)
- #define GEN8_PCU_IIR _MMIO(0x444e8)
- #define GEN8_PCU_IER _MMIO(0x444ec)
- 
-+#define GEN8_PCU_IRQ_REGS		I915_IRQ_REGS(GEN8_PCU_IMR, \
-+						      GEN8_PCU_IER, \
-+						      GEN8_PCU_IIR)
-+
- #define GEN11_GU_MISC_ISR	_MMIO(0x444f0)
- #define GEN11_GU_MISC_IMR	_MMIO(0x444f4)
- #define GEN11_GU_MISC_IIR	_MMIO(0x444f8)
- #define GEN11_GU_MISC_IER	_MMIO(0x444fc)
- #define  GEN11_GU_MISC_GSE	(1 << 27)
- 
-+#define GEN11_GU_MISC_IRQ_REGS		I915_IRQ_REGS(GEN11_GU_MISC_IMR, \
-+						      GEN11_GU_MISC_IER, \
-+						      GEN11_GU_MISC_IIR)
-+
- #define GEN11_GFX_MSTR_IRQ		_MMIO(0x190010)
- #define  GEN11_MASTER_IRQ		(1 << 31)
- #define  GEN11_PCU_IRQ			(1 << 30)
-@@ -2624,6 +2657,10 @@
- 						 GEN11_TBT_HOTPLUG(HPD_PORT_TC2) | \
- 						 GEN11_TBT_HOTPLUG(HPD_PORT_TC1))
- 
-+#define GEN11_DE_HPD_IRQ_REGS		I915_IRQ_REGS(GEN11_DE_HPD_IMR, \
-+						      GEN11_DE_HPD_IER, \
-+						      GEN11_DE_HPD_IIR)
-+
- #define GEN11_TBT_HOTPLUG_CTL				_MMIO(0x44030)
- #define GEN11_TC_HOTPLUG_CTL				_MMIO(0x44038)
- #define  GEN11_HOTPLUG_CTL_ENABLE(hpd_pin)		(8 << (_HPD_PIN_TC(hpd_pin) * 4))
-@@ -2644,6 +2681,10 @@
- #define  XELPDP_TBT_HOTPLUG(hpd_pin)		REG_BIT(_HPD_PIN_TC(hpd_pin))
- #define  XELPDP_TBT_HOTPLUG_MASK		REG_GENMASK(3, 0)
- 
-+#define PICAINTERRUPT_IRQ_REGS			I915_IRQ_REGS(PICAINTERRUPT_IMR, \
-+							      PICAINTERRUPT_IER, \
-+							      PICAINTERRUPT_IIR)
-+
- #define XELPDP_PORT_HOTPLUG_CTL(hpd_pin)	_MMIO(0x16F270 + (_HPD_PIN_TC(hpd_pin) * 0x200))
- #define  XELPDP_TBT_HOTPLUG_ENABLE		REG_BIT(6)
- #define  XELPDP_TBT_HPD_LONG_DETECT		REG_BIT(5)
-@@ -3000,6 +3041,10 @@
- #define SDEIIR  _MMIO(0xc4008)
- #define SDEIER  _MMIO(0xc400c)
- 
-+#define SDE_IRQ_REGS			I915_IRQ_REGS(SDEIMR, \
-+						      SDEIER, \
-+						      SDEIIR)
-+
- #define SERR_INT			_MMIO(0xc4040)
- #define  SERR_INT_POISON		(1 << 31)
- #define  SERR_INT_TRANS_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
--- 
-2.39.2
+== Summary ==
+
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[16:57:34] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:57:38] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/tests/xe_pci_test.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_bb.c:9:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/tests/xe_rtp_test.c:16:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/tests/xe_wa_test.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_bo.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_bo_evict.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_devcoredump.c:14:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_device.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_device_sysfs.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_dma_buf.c:17:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_drm_client.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_exec.c:14:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_execlist.c:14:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_exec_queue.h:10,
+                 from ../drivers/gpu/drm/xe/xe_exec_queue.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
+                 from ../drivers/gpu/drm/xe/xe_force_wake.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_ggtt.c:19:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gsc.c:17:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gsc_debugfs.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gsc_proxy.c:17:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gsc_submit.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_ccs_mode.c:9:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_clock.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_freq.c:16:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_idle.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_topology.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_mcr.h:10,
+                 from ../drivers/gpu/drm/xe/xe_gt_mcr.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_pagefault.c:16:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_sysfs.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_throttle.c:9:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_topology.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_topology.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc.h:9,
+                 from ../drivers/gpu/drm/xe/xe_guc.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_ads.c:16:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_db_mgr.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_ct.c:19:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_hwconfig.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_id_mgr.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_log.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_pc.c:16:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_submit.c:20:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_heci_gsc.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_hw_engine.c:15:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_hw_engine_group.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_hw_fence.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_huc.c:15:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/display/xe_display.h:9,
+                 from ../drivers/gpu/drm/xe/xe_irq.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_lrc.c:18:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_mmio.h:9,
+                 from ../drivers/gpu/drm/xe/xe_mmio.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:21:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_module.c:17:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_oa.c:21:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_mocs.c:9:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_pat.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/display/xe_display.h:9,
+                 from ../drivers/gpu/drm/xe/xe_pci.c:18:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_pcode.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/display/xe_display.h:9,
+                 from ../drivers/gpu/drm/xe/xe_pm.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_exec_queue.h:10,
+                 from ../drivers/gpu/drm/xe/xe_preempt_fence.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_pt.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_query.c:16:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_reg_sr.c:18:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_reg_whitelist.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_rtp.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_ring_ops.c:16:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_sa.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_sched_job.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_step.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_sync.c:17:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_tile.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_tile.h:9,
+                 from ../drivers/gpu/drm/xe/xe_tile_sysfs.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_trace.h:18,
+                 from ../drivers/gpu/drm/xe/xe_trace.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_trace_guc.h:15,
+                 from ../drivers/gpu/drm/xe/xe_trace_guc.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_trace_bo.h:15,
+                 from ../drivers/gpu/drm/xe/xe_trace_bo.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_ttm_sys_mgr.c:15:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c:18:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_tuning.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_uc.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_vm.h:9,
+                 from ../drivers/gpu/drm/xe/xe_vm.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_vram.c:14:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_uc_fw.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_vram_freq.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_wa.h:9,
+                 from ../drivers/gpu/drm/xe/xe_wa.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_wait_user_fence.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_wopcm.c:9:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_hwmon.c:14:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_vm.h:9,
+                 from ../drivers/gpu/drm/xe/xe_hmm.c:14:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_vf.c:19:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_relay.c:18:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_memirq.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_sriov.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:9:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_mmio.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c:15:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:14:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_pci_sriov.c:6:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_lmtt.c:12:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_sriov_pf.c:8:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_debugfs.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_huc_debugfs.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/tests/xe_kunit_helpers.c:15:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_debugfs.c:13:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_stats.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc_debugfs.c:11:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:21,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_uc_debugfs.c:10:
+../drivers/gpu/drm/xe/xe_pmu.h:25:6: warning: no previous prototype for ‘xe_pmu_suspend’ [-Wmissing-prototypes]
+   25 | void xe_pmu_suspend(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:26:6: warning: no previous prototype for ‘xe_pmu_resume’ [-Wmissing-prototypes]
+   26 | void xe_pmu_resume(struct xe_gt *gt) {}
+      |      ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pmu.h:24:13: warning: ‘xe_pmu_unregister’ defined but not used [-Wunused-function]
+   24 | static void xe_pmu_unregister(void *arg) {}
+      |             ^~~~~~~~~~~~~~~~~
+ld: drivers/gpu/drm/xe/xe_bo.o: in function `xe_pmu_suspend':
+xe_bo.c:(.text+0x1320): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_bo.o: in function `xe_pmu_resume':
+xe_bo.c:(.text+0x1330): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_bo_evict.o: in function `xe_pmu_suspend':
+xe_bo_evict.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_bo_evict.o: in function `xe_pmu_resume':
+xe_bo_evict.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_devcoredump.o: in function `xe_pmu_suspend':
+xe_devcoredump.c:(.text+0x4e0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_devcoredump.o: in function `xe_pmu_resume':
+xe_devcoredump.c:(.text+0x4f0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_device.o: in function `xe_pmu_suspend':
+xe_device.c:(.text+0xe40): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_device.o: in function `xe_pmu_resume':
+xe_device.c:(.text+0xe50): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_device_sysfs.o: in function `xe_pmu_suspend':
+xe_device_sysfs.c:(.text+0x160): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_device_sysfs.o: in function `xe_pmu_resume':
+xe_device_sysfs.c:(.text+0x170): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_dma_buf.o: in function `xe_pmu_suspend':
+xe_dma_buf.c:(.text+0x490): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_dma_buf.o: in function `xe_pmu_resume':
+xe_dma_buf.c:(.text+0x4a0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_drm_client.o: in function `xe_pmu_suspend':
+xe_drm_client.c:(.text+0x7c0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_drm_client.o: in function `xe_pmu_resume':
+xe_drm_client.c:(.text+0x7d0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_exec.o: in function `xe_pmu_suspend':
+xe_exec.c:(.text+0x20): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_exec.o: in function `xe_pmu_resume':
+xe_exec.c:(.text+0x30): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_execlist.o: in function `xe_pmu_suspend':
+xe_execlist.c:(.text+0xc10): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_execlist.o: in function `xe_pmu_resume':
+xe_execlist.c:(.text+0xc20): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_exec_queue.o: in function `xe_pmu_suspend':
+xe_exec_queue.c:(.text+0x6a0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_exec_queue.o: in function `xe_pmu_resume':
+xe_exec_queue.c:(.text+0x6b0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_force_wake.o: in function `xe_pmu_suspend':
+xe_force_wake.c:(.text+0xb0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_force_wake.o: in function `xe_pmu_resume':
+xe_force_wake.c:(.text+0xc0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_ggtt.o: in function `xe_pmu_suspend':
+xe_ggtt.c:(.text+0x4f0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_ggtt.o: in function `xe_pmu_resume':
+xe_ggtt.c:(.text+0x500): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc.o: in function `xe_pmu_suspend':
+xe_gsc.c:(.text+0xc40): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc.o: in function `xe_pmu_resume':
+xe_gsc.c:(.text+0xc50): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc_debugfs.o: in function `xe_pmu_suspend':
+xe_gsc_debugfs.c:(.text+0xb0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc_debugfs.o: in function `xe_pmu_resume':
+xe_gsc_debugfs.c:(.text+0xc0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc_proxy.o: in function `xe_pmu_suspend':
+xe_gsc_proxy.c:(.text+0x7e0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc_proxy.o: in function `xe_pmu_resume':
+xe_gsc_proxy.c:(.text+0x7f0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc_submit.o: in function `xe_pmu_suspend':
+xe_gsc_submit.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gsc_submit.o: in function `xe_pmu_resume':
+xe_gsc_submit.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt.o: in function `xe_pmu_suspend':
+xe_gt.c:(.text+0x450): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt.o: in function `xe_pmu_resume':
+xe_gt.c:(.text+0x460): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_ccs_mode.o: in function `xe_pmu_suspend':
+xe_gt_ccs_mode.c:(.text+0x270): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_ccs_mode.o: in function `xe_pmu_resume':
+xe_gt_ccs_mode.c:(.text+0x280): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_clock.o: in function `xe_pmu_suspend':
+xe_gt_clock.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_clock.o: in function `xe_pmu_resume':
+xe_gt_clock.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_freq.o: in function `xe_pmu_suspend':
+xe_gt_freq.c:(.text+0x540): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_freq.o: in function `xe_pmu_resume':
+xe_gt_freq.c:(.text+0x550): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_idle.o: in function `xe_pmu_suspend':
+xe_gt_idle.c:(.text+0x110): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_idle.o: in function `xe_pmu_resume':
+xe_gt_idle.c:(.text+0x120): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_mcr.o: in function `xe_pmu_suspend':
+xe_gt_mcr.c:(.text+0x520): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_mcr.o: in function `xe_pmu_resume':
+xe_gt_mcr.c:(.text+0x530): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_pagefault.o: in function `xe_pmu_suspend':
+xe_gt_pagefault.c:(.text+0xe00): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_pagefault.o: in function `xe_pmu_resume':
+xe_gt_pagefault.c:(.text+0xe10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sysfs.o: in function `xe_pmu_suspend':
+xe_gt_sysfs.c:(.text+0x30): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sysfs.o: in function `xe_pmu_resume':
+xe_gt_sysfs.c:(.text+0x40): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_throttle.o: in function `xe_pmu_suspend':
+xe_gt_throttle.c:(.text+0x30): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_throttle.o: in function `xe_pmu_resume':
+xe_gt_throttle.c:(.text+0x40): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o: in function `xe_pmu_suspend':
+xe_gt_tlb_invalidation.c:(.text+0x540): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o: in function `xe_pmu_resume':
+xe_gt_tlb_invalidation.c:(.text+0x550): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_topology.o: in function `xe_pmu_suspend':
+xe_gt_topology.c:(.text+0x460): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_topology.o: in function `xe_pmu_resume':
+xe_gt_topology.c:(.text+0x470): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc.o: in function `xe_pmu_suspend':
+xe_guc.c:(.text+0x7d0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc.o: in function `xe_pmu_resume':
+xe_guc.c:(.text+0x7e0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_ads.o: in function `xe_pmu_suspend':
+xe_guc_ads.c:(.text+0x7b0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_ads.o: in function `xe_pmu_resume':
+xe_guc_ads.c:(.text+0x7c0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_ct.o: in function `xe_pmu_suspend':
+xe_guc_ct.c:(.text+0x11e0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_ct.o: in function `xe_pmu_resume':
+xe_guc_ct.c:(.text+0x11f0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_db_mgr.o: in function `xe_pmu_suspend':
+xe_guc_db_mgr.c:(.text+0x590): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_db_mgr.o: in function `xe_pmu_resume':
+xe_guc_db_mgr.c:(.text+0x5a0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_hwconfig.o: in function `xe_pmu_suspend':
+xe_guc_hwconfig.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_hwconfig.o: in function `xe_pmu_resume':
+xe_guc_hwconfig.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_id_mgr.o: in function `xe_pmu_suspend':
+xe_guc_id_mgr.c:(.text+0x5a0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_id_mgr.o: in function `xe_pmu_resume':
+xe_guc_id_mgr.c:(.text+0x5b0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_log.o: in function `xe_pmu_suspend':
+xe_guc_log.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_log.o: in function `xe_pmu_resume':
+xe_guc_log.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_pc.o: in function `xe_pmu_suspend':
+xe_guc_pc.c:(.text+0x590): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_pc.o: in function `xe_pmu_resume':
+xe_guc_pc.c:(.text+0x5a0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_submit.o: in function `xe_pmu_suspend':
+xe_guc_submit.c:(.text+0x3430): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_submit.o: in function `xe_pmu_resume':
+xe_guc_submit.c:(.text+0x3440): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_heci_gsc.o: in function `xe_pmu_suspend':
+xe_heci_gsc.c:(.text+0x30): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_heci_gsc.o: in function `xe_pmu_resume':
+xe_heci_gsc.c:(.text+0x40): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_engine.o: in function `xe_pmu_suspend':
+xe_hw_engine.c:(.text+0x3f0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_engine.o: in function `xe_pmu_resume':
+xe_hw_engine.c:(.text+0x400): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o: in function `xe_pmu_suspend':
+xe_hw_engine_class_sysfs.c:(.text+0xa70): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o: in function `xe_pmu_resume':
+xe_hw_engine_class_sysfs.c:(.text+0xa80): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_engine_group.o: in function `xe_pmu_suspend':
+xe_hw_engine_group.c:(.text+0x170): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_engine_group.o: in function `xe_pmu_resume':
+xe_hw_engine_group.c:(.text+0x180): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_fence.o: in function `xe_pmu_suspend':
+xe_hw_fence.c:(.text+0x5c0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_hw_fence.o: in function `xe_pmu_resume':
+xe_hw_fence.c:(.text+0x5d0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_huc.o: in function `xe_pmu_suspend':
+xe_huc.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_huc.o: in function `xe_pmu_resume':
+xe_huc.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_irq.o: in function `xe_pmu_suspend':
+xe_irq.c:(.text+0x1290): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_irq.o: in function `xe_pmu_resume':
+xe_irq.c:(.text+0x12a0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_lrc.o: in function `xe_pmu_suspend':
+xe_lrc.c:(.text+0x230): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_lrc.o: in function `xe_pmu_resume':
+xe_lrc.c:(.text+0x240): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_migrate.o: in function `xe_pmu_suspend':
+xe_migrate.c:(.text+0x22f0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_migrate.o: in function `xe_pmu_resume':
+xe_migrate.c:(.text+0x2300): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_mmio.o: in function `xe_pmu_suspend':
+xe_mmio.c:(.text+0x80): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_mmio.o: in function `xe_pmu_resume':
+xe_mmio.c:(.text+0x90): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_mocs.o: in function `xe_pmu_suspend':
+xe_mocs.c:(.text+0x1aa0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_mocs.o: in function `xe_pmu_resume':
+xe_mocs.c:(.text+0x1ab0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_module.o: in function `xe_pmu_suspend':
+xe_module.c:(.text+0x50): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_module.o: in function `xe_pmu_resume':
+xe_module.c:(.text+0x60): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_oa.o: in function `xe_pmu_suspend':
+xe_oa.c:(.text+0x3430): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_oa.o: in function `xe_pmu_resume':
+xe_oa.c:(.text+0x3440): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_pat.o: in function `xe_pmu_suspend':
+xe_pat.c:(.text+0xa10): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_pat.o: in function `xe_pmu_resume':
+xe_pat.c:(.text+0xa20): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_pci.o: in function `xe_pmu_suspend':
+xe_pci.c:(.text+0x1820): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_pci.o: in function `xe_pmu_resume':
+xe_pci.c:(.text+0x1830): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_pcode.o: in function `xe_pmu_suspend':
+xe_pcode.c:(.text+0x3a0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_pcode.o: in function `xe_pmu_resume':
+xe_pcode.c:(.text+0x3b0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_pm.o: in function `xe_pmu_suspend':
+xe_pm.c:(.text+0x280): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_pm.o: in function `xe_pmu_resume':
+xe_pm.c:(.text+0x290): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_preempt_fence.o: in function `xe_pmu_suspend':
+xe_preempt_fence.c:(.text+0x250): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_preempt_fence.o: in function `xe_pmu_resume':
+xe_preempt_fence.c:(.text+0x260): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_pt.o: in function `xe_pmu_suspend':
+xe_pt.c:(.text+0x2d90): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_pt.o: in function `xe_pmu_resume':
+xe_pt.c:(.text+0x2da0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_query.o: in function `xe_pmu_suspend':
+xe_query.c:(.text+0x1d40): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_query.o: in function `xe_pmu_resume':
+xe_query.c:(.text+0x1d50): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_reg_sr.o: in function `xe_pmu_suspend':
+xe_reg_sr.c:(.text+0xd0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_reg_sr.o: in function `xe_pmu_resume':
+xe_reg_sr.c:(.text+0xe0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_reg_whitelist.o: in function `xe_pmu_suspend':
+xe_reg_whitelist.c:(.text+0x10): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_reg_whitelist.o: in function `xe_pmu_resume':
+xe_reg_whitelist.c:(.text+0x20): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_rtp.o: in function `xe_pmu_suspend':
+xe_rtp.c:(.text+0x880): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_rtp.o: in function `xe_pmu_resume':
+xe_rtp.c:(.text+0x890): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_ring_ops.o: in function `xe_pmu_suspend':
+xe_ring_ops.c:(.text+0xd90): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_ring_ops.o: in function `xe_pmu_resume':
+xe_ring_ops.c:(.text+0xda0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_sa.o: in function `xe_pmu_suspend':
+xe_sa.c:(.text+0x60): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_sa.o: in function `xe_pmu_resume':
+xe_sa.c:(.text+0x70): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_sched_job.o: in function `xe_pmu_suspend':
+xe_sched_job.c:(.text+0x130): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_sched_job.o: in function `xe_pmu_resume':
+xe_sched_job.c:(.text+0x140): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_step.o: in function `xe_pmu_suspend':
+xe_step.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_step.o: in function `xe_pmu_resume':
+xe_step.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_sync.o: in function `xe_pmu_suspend':
+xe_sync.c:(.text+0x450): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_sync.o: in function `xe_pmu_resume':
+xe_sync.c:(.text+0x460): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_tile.o: in function `xe_pmu_suspend':
+xe_tile.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_tile.o: in function `xe_pmu_resume':
+xe_tile.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_tile_sysfs.o: in function `xe_pmu_suspend':
+xe_tile_sysfs.c:(.text+0x30): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_tile_sysfs.o: in function `xe_pmu_resume':
+xe_tile_sysfs.c:(.text+0x40): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_trace.o: in function `xe_pmu_suspend':
+xe_trace.c:(.text+0x1eb0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_trace.o: in function `xe_pmu_resume':
+xe_trace.c:(.text+0x1ec0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_trace_bo.o: in function `xe_pmu_suspend':
+xe_trace_bo.c:(.text+0x10d0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_trace_bo.o: in function `xe_pmu_resume':
+xe_trace_bo.c:(.text+0x10e0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_trace_guc.o: in function `xe_pmu_suspend':
+xe_trace_guc.c:(.text+0x8f0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_trace_guc.o: in function `xe_pmu_resume':
+xe_trace_guc.c:(.text+0x900): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_ttm_sys_mgr.o: in function `xe_pmu_suspend':
+xe_ttm_sys_mgr.c:(.text+0x270): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_ttm_sys_mgr.o: in function `xe_pmu_resume':
+xe_ttm_sys_mgr.c:(.text+0x280): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o: in function `xe_pmu_suspend':
+xe_ttm_stolen_mgr.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o: in function `xe_pmu_resume':
+xe_ttm_stolen_mgr.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_ttm_vram_mgr.o: in function `xe_pmu_suspend':
+xe_ttm_vram_mgr.c:(.text+0xa20): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_ttm_vram_mgr.o: in function `xe_pmu_resume':
+xe_ttm_vram_mgr.c:(.text+0xa30): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_tuning.o: in function `xe_pmu_suspend':
+xe_tuning.c:(.text+0xa0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_tuning.o: in function `xe_pmu_resume':
+xe_tuning.c:(.text+0xb0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_uc.o: in function `xe_pmu_suspend':
+xe_uc.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_uc.o: in function `xe_pmu_resume':
+xe_uc.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_uc_fw.o: in function `xe_pmu_suspend':
+xe_uc_fw.c:(.text+0x3f0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_uc_fw.o: in function `xe_pmu_resume':
+xe_uc_fw.c:(.text+0x400): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_vm.o: in function `xe_pmu_suspend':
+xe_vm.c:(.text+0x1d10): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_vm.o: in function `xe_pmu_resume':
+xe_vm.c:(.text+0x1d20): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_vram.o: in function `xe_pmu_suspend':
+xe_vram.c:(.text+0x2f0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_vram.o: in function `xe_pmu_resume':
+xe_vram.c:(.text+0x300): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_vram_freq.o: in function `xe_pmu_suspend':
+xe_vram_freq.c:(.text+0x110): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_vram_freq.o: in function `xe_pmu_resume':
+xe_vram_freq.c:(.text+0x120): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_wait_user_fence.o: in function `xe_pmu_suspend':
+xe_wait_user_fence.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_wait_user_fence.o: in function `xe_pmu_resume':
+xe_wait_user_fence.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_wa.o: in function `xe_pmu_suspend':
+xe_wa.c:(.text+0x70): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_wa.o: in function `xe_pmu_resume':
+xe_wa.c:(.text+0x80): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_wopcm.o: in function `xe_pmu_suspend':
+xe_wopcm.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_wopcm.o: in function `xe_pmu_resume':
+xe_wopcm.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_hmm.o: in function `xe_pmu_suspend':
+xe_hmm.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_hmm.o: in function `xe_pmu_resume':
+xe_hmm.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_hwmon.o: in function `xe_pmu_suspend':
+xe_hwmon.c:(.text+0xec0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_hwmon.o: in function `xe_pmu_resume':
+xe_hwmon.c:(.text+0xed0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_vf.o: in function `xe_pmu_suspend':
+xe_gt_sriov_vf.c:(.text+0x350): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_vf.o: in function `xe_pmu_resume':
+xe_gt_sriov_vf.c:(.text+0x360): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_relay.o: in function `xe_pmu_suspend':
+xe_guc_relay.c:(.text+0x2a10): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_relay.o: in function `xe_pmu_resume':
+xe_guc_relay.c:(.text+0x2a20): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_memirq.o: in function `xe_pmu_suspend':
+xe_memirq.c:(.text+0x130): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_memirq.o: in function `xe_pmu_resume':
+xe_memirq.c:(.text+0x140): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_sriov.o: in function `xe_pmu_suspend':
+xe_sriov.c:(.text+0x30): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_sriov.o: in function `xe_pmu_resume':
+xe_sriov.c:(.text+0x40): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf_config.c:(.text+0x1a80): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf_config.c:(.text+0x1a90): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_control.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf_control.c:(.text+0xeb0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_control.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf_control.c:(.text+0xec0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf_migration.c:(.text+0x130): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf_migration.c:(.text+0x140): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf_monitor.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf_monitor.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf_policy.c:(.text+0x7d0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf_policy.c:(.text+0x7e0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_service.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf_service.c:(.text+0x1790): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_service.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf_service.c:(.text+0x17a0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_lmtt.o: in function `xe_pmu_suspend':
+xe_lmtt.c:(.text+0xd10): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_lmtt.o: in function `xe_pmu_resume':
+xe_lmtt.c:(.text+0xd20): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_pci_sriov.o: in function `xe_pmu_suspend':
+xe_pci_sriov.c:(.text+0x280): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_pci_sriov.o: in function `xe_pmu_resume':
+xe_pci_sriov.c:(.text+0x290): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_sriov_pf.o: in function `xe_pmu_suspend':
+xe_sriov_pf.c:(.text+0x40): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_sriov_pf.o: in function `xe_pmu_resume':
+xe_sriov_pf.c:(.text+0x50): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_kunit_helpers.o: in function `xe_pmu_suspend':
+xe_kunit_helpers.c:(.text+0x430): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_kunit_helpers.o: in function `xe_pmu_resume':
+xe_kunit_helpers.c:(.text+0x440): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_debugfs.o: in function `xe_pmu_suspend':
+xe_debugfs.c:(.text+0xd90): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_debugfs.o: in function `xe_pmu_resume':
+xe_debugfs.c:(.text+0xda0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_debugfs.o: in function `xe_pmu_suspend':
+xe_gt_debugfs.c:(.text+0x8a0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_debugfs.o: in function `xe_pmu_resume':
+xe_gt_debugfs.c:(.text+0x8b0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.o: in function `xe_pmu_suspend':
+xe_gt_sriov_vf_debugfs.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.o: in function `xe_pmu_resume':
+xe_gt_sriov_vf_debugfs.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_stats.o: in function `xe_pmu_suspend':
+xe_gt_stats.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_stats.o: in function `xe_pmu_resume':
+xe_gt_stats.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_debugfs.o: in function `xe_pmu_suspend':
+xe_guc_debugfs.c:(.text+0x160): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_guc_debugfs.o: in function `xe_pmu_resume':
+xe_guc_debugfs.c:(.text+0x170): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_huc_debugfs.o: in function `xe_pmu_suspend':
+xe_huc_debugfs.c:(.text+0xb0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_huc_debugfs.o: in function `xe_pmu_resume':
+xe_huc_debugfs.c:(.text+0xc0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_uc_debugfs.o: in function `xe_pmu_suspend':
+xe_uc_debugfs.c:(.text+0x0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_uc_debugfs.o: in function `xe_pmu_resume':
+xe_uc_debugfs.c:(.text+0x10): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.o: in function `xe_pmu_suspend':
+xe_gt_sriov_pf_debugfs.c:(.text+0x1320): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.o: in function `xe_pmu_resume':
+xe_gt_sriov_pf_debugfs.c:(.text+0x1330): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_pci_test.o: in function `xe_pmu_suspend':
+xe_pci_test.c:(.text+0x1c0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_pci_test.o: in function `xe_pmu_resume':
+xe_pci_test.c:(.text+0x1d0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_rtp_test.o: in function `xe_pmu_suspend':
+xe_rtp_test.c:(.text+0x8c0): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_rtp_test.o: in function `xe_pmu_resume':
+xe_rtp_test.c:(.text+0x8d0): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_wa_test.o: in function `xe_pmu_suspend':
+xe_wa_test.c:(.text+0x640): multiple definition of `xe_pmu_suspend'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x60): first defined here
+ld: drivers/gpu/drm/xe/tests/xe_wa_test.o: in function `xe_pmu_resume':
+xe_wa_test.c:(.text+0x650): multiple definition of `xe_pmu_resume'; drivers/gpu/drm/xe/xe_bb.o:xe_bb.c:(.text+0x70): first defined here
+make[3]: *** [../scripts/Makefile.vmlinux_o:62: vmlinux.o] Error 1
+make[2]: *** [/kernel/Makefile:1138: vmlinux_o] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
