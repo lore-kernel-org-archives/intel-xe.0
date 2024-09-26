@@ -4,58 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67899CCF9E9
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 11:11:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61490CCFA13
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 11:15:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EE8510E2E2;
-	Thu, 26 Sep 2024 11:11:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17C6710E2E8;
+	Thu, 26 Sep 2024 11:15:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KE/F0gzz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gcjan0Xi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 362A910E2E2
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Sep 2024 11:11:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF8310E2E8;
+ Thu, 26 Sep 2024 11:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727349082; x=1758885082;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nQVuTkbPivbevpW2c+ir47EOsFWUycSzcW2dy4FBGkY=;
- b=KE/F0gzz57NosNHc4iliq2jGpX6+/3CSAVu56Va2cPFZKCnOp+Gh5K70
- BTGh1L05PXfzXU4psjPCv5wPvv9NyI11YwqW3k2M2BGsUbZqU1j8OnaqJ
- RoSG5wl21ITuE+rW0GNCnBjmQU7Zghj+XuAVTnjF+pom8GgjkwdjKwGNn
- b2YW7byVrqvNjreHonYYCzQyA+jwa/yOOfDShDL2PwufYmpGfQlIyrXXA
- B8yprzgAkiDURDZdlUfDM7DvsYoLH/4BfX7/3OR5okSyh3Tm0Cbl0R+ua
- EVpOVhDWOrkl7TubTQV01E45Mexh1JlFRrtlL21pabYMsakNFwoueFjQa w==;
-X-CSE-ConnectionGUID: dEsEKbIPQROrhPcZlNjZnw==
-X-CSE-MsgGUID: aPNPziIRQB+bL25dmDA3ZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="43951253"
-X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="43951253"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 04:11:21 -0700
-X-CSE-ConnectionGUID: j4obuYwJRVWBzf2W5UQNhg==
-X-CSE-MsgGUID: KkOj954MR6GW1mpflO+gxQ==
+ t=1727349301; x=1758885301;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=9vEToxEylJXejWdzuuLn0L50u3A95d7dPhJSY4m75OY=;
+ b=gcjan0XiAb0AnaC+nTZsDM1QgSfVKAuUxx10m3mB3RUtIKN2UNqstsNV
+ FULiBP+sxLi3XBi6JKouepJx6hvp/DLBdyW75uTJRuf6x1/5O0RGfbKO0
+ gZz7x418E0Ayt5tyw3hzYYd7UF/WFV10Eq3Z5dSy2yLrIl5s45+FcyyJU
+ ygX1j52U+tO7/tLHgc95wMV4E8j+/YgKcwQpSkoUgXqU2Y3O64KFR9oFN
+ H7Q0ECxi15nULVimd1cFskahcZ03o7YHGoWWnXO9oqQrZag4jyW+l+Qf/
+ r3C7zxLFE/74LSawu28+kEnm4w7hE8EqQnAaToHJFfgZmupIxJehwsEig g==;
+X-CSE-ConnectionGUID: O247uaXlQtGFi3vnyhKeyw==
+X-CSE-MsgGUID: khafDHH1TRmY8nziGI0wVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="51852096"
+X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="51852096"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 04:15:00 -0700
+X-CSE-ConnectionGUID: xVuN0XCXSGy9rm3PiMif8g==
+X-CSE-MsgGUID: qn9YF5wTQDufxlUNzPZncw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="77032543"
-Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO [10.245.245.207])
- ([10.245.245.207])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 04:11:20 -0700
-Message-ID: <51d67f36-5acd-493f-b81e-5381af3884a5@linux.intel.com>
-Date: Thu, 26 Sep 2024 13:11:22 +0200
+X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="72255291"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 26 Sep 2024 04:14:57 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 26 Sep 2024 14:14:56 +0300
+Date: Thu, 26 Sep 2024 14:14:56 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 02/15] drm/i915/display_debugfs: Allow force joiner only
+ if supported
+Message-ID: <ZvVCMMoVowdWfrAz@intel.com>
+References: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
+ <20240926072638.3689367-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Check return values of functions in
- xe_gt_shutdown()
-To: apoorva.singh@intel.com, intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com
-References: <20240926110026.407383-1-apoorva.singh@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240926110026.407383-1-apoorva.singh@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240926072638.3689367-3-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,50 +72,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-Den 2024-09-26 kl. 13:00, skrev apoorva.singh@intel.com:
-> From: Apoorva Singh <apoorva.singh@intel.com>
+On Thu, Sep 26, 2024 at 12:56:25PM +0530, Ankit Nautiyal wrote:
+> Currently we support joiner only for DP encoder.
+> Do not create the debugfs for joiner if DP does not support the joiner.
+> This will also help avoiding cases where config has eDP MSO, with which
+> we do not support joiner.
 > 
-> Check the return values of the functions xe_force_wake_get()
-> and xe_force_wake_put() to prevent mistakenly treating them as
-> void returns.
+> v2: Check for intel_dp_has_joiner and avoid creating debugfs if not
+> supported. (Ville)
+> v3: Remove HAS_BIGJOINER check. (Ville)
+> v4: Reverse checks for connector type and intel_dp_has_joiner(). (Ville)
 > 
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 274737417b0f..317640554310 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -890,9 +890,12 @@ int xe_gt_suspend(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 890ef7067b77..08adeaa2e87f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1328,6 +1328,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>  	struct dentry *root = connector->base.debugfs_entry;
+>  	int connector_type = connector->base.connector_type;
+> +	struct intel_dp *intel_dp = intel_attached_dp(connector);
+
+I'd probably drop the local variable entirely since it
+can give us garbage for non-dp stuff.
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
 >  
->  void xe_gt_shutdown(struct xe_gt *gt)
->  {
-> -	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +	int err;
-> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +	xe_gt_WARN(gt, err, "Acknowledgment for domain awake timedout");
->  	do_gt_reset(gt);
-> -	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +	xe_gt_WARN(gt, err, "Acknowledgment for domain sleep timedout");
->  }
+>  	/* The connector must have been registered beforehands. */
+>  	if (!root)
+> @@ -1362,9 +1363,9 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  				    connector, &i915_dsc_fractional_bpp_fops);
+>  	}
+>  
+> -	if (HAS_BIGJOINER(i915) &&
+> -	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+> -	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
+> +	if ((connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+> +	     connector_type == DRM_MODE_CONNECTOR_eDP) &&
+> +	    intel_dp_has_joiner(intel_dp)) {
+>  		debugfs_create_bool("i915_bigjoiner_force_enable", 0644, root,
+>  				    &connector->force_bigjoiner_enable);
+>  	}
+> -- 
+> 2.45.2
 
-There's absolutely nothing we can do with xe_force_wake_put, the only thing you can do here is:
-
-int ret = xe_force_wake_get(..);
-do_gt_reset;
-if (!ret)
-xe_force_wake_put
-
-Also no point in complaining, the hardware may already be hosed. :)
-
-I believe that xe_force_wake_put should return void, there's nothing we can do except log the error here.
-
-Cheers,
-Maarten
+-- 
+Ville Syrjälä
+Intel
