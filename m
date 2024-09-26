@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6268BCDE03D
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 22:20:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CFEDCDE03E
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 22:26:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1C310E32E;
-	Thu, 26 Sep 2024 22:20:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bNgcZ4c/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73D8310E322
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Sep 2024 22:20:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727389207; x=1758925207;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OkXK0QvJwhhqxu2DatQgZf7O3WieSfSIzKDLoTG3Qcs=;
- b=bNgcZ4c/ArbCq0+UE3XVOBFNz3bCQkRMsrR0T+qo2Evi+GS1c26fyMT1
- qi5n1b/ve3Z3VT4g1xC/VKcgq+wGQahU43UpF+/uSXH1HbXhEdbYezEzP
- SmB6Q0Caw7YDHuFE0P+M6GkHEcdVgD+fWl8KdSYk3l+22fXzPpRcS5Pek
- 0mUu+cCBCic59Y4PCJpJ8RaXNYrj4cekHicEYH6AOr4s5gBL5fVNp9BRq
- vcf0zxhOOWDpdRgaN6H4eVc/AIBvoXD/X5vk6mocE00qYqUgYiiF2sXeO
- h7VzN1ZWMEadAtZLRKV3LDpAWE+0Tss5mkPlQ4HImL+MRj/jJErpPXp1t w==;
-X-CSE-ConnectionGUID: vSk8ZcPtTceiogi/tJOS/w==
-X-CSE-MsgGUID: 2ozUA1yoT2Kuw2WHBlio2Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26617034"
-X-IronPort-AV: E=Sophos;i="6.11,156,1725346800"; d="scan'208";a="26617034"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 15:20:07 -0700
-X-CSE-ConnectionGUID: NwX+t+qUSpylSYmshAJ/rw==
-X-CSE-MsgGUID: WPKrEBpLSP6BdHdfAObnOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,156,1725346800"; d="scan'208";a="72636200"
-Received: from gkczarna.igk.intel.com ([10.102.139.130])
- by fmviesa010.fm.intel.com with ESMTP; 26 Sep 2024 15:20:06 -0700
-From: Tomasz Lis <tomasz.lis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>
-Subject: [PATCH v3 1/4] drm/xe/vf: React to MIGRATED interrupt
-Date: Fri, 27 Sep 2024 00:20:01 +0200
-Message-Id: <20240926222004.2462345-2-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240926222004.2462345-1-tomasz.lis@intel.com>
-References: <20240926222004.2462345-1-tomasz.lis@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A28E10E326;
+	Thu, 26 Sep 2024 22:26:26 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F59E10E323;
+ Thu, 26 Sep 2024 22:26:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Post-mi?=
+ =?utf-8?q?gration_recovery_worker_basis_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tomasz Lis" <tomasz.lis@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Sep 2024 22:26:25 -0000
+Message-ID: <172738958512.1109168.12171471621555414485@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240926222004.2462345-1-tomasz.lis@intel.com>
+In-Reply-To: <20240926222004.2462345-1-tomasz.lis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,309 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To properly support VF Save/Restore procedure, fixups need to be
-applied after PF driver finishes its part of VF Restore. Those
-fixups are applied by the VF driver within a VM.
+== Series Details ==
 
-A VF driver gets informed that it was migrated by receiving an
-interrupt from each GuC. That should be the trigger for fixups.
+Series: drm/xe/vf: Post-migration recovery worker basis (rev3)
+URL   : https://patchwork.freedesktop.org/series/138935/
+State : success
 
-The VF can safely do post-migration fixups on resources associated
-to each GuC only after that GuC issued the MIGRATED interrupt.
+== Summary ==
 
-This change introduces a worker to be used for post-migration fixups,
-and a mechanism to schedule said worker when all GuCs sent the irq.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6bd25f521573 drm-tip: 2024y-09m-26d-20h-45m-03s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vf: React to MIGRATED interrupt
+Applying: drm/xe/vf: Send RESFIX_DONE message at end of VF restore
+Applying: drm/xe/vf: Start post-migration fixups with provisinoning query
+Applying: drm/xe/vf: Defer fixups if migrated twice fast
 
-v2: renamed and moved functions, updated logged messages, removed
-  unused includes, used anon struct (Michal)
-v3: ordering, kerneldoc, asserts, debug messages,
-  on_all_tiles -> on_all_gts (Michal)
-
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
----
- drivers/gpu/drm/xe/Makefile          |  3 +-
- drivers/gpu/drm/xe/xe_device_types.h |  2 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c  | 20 ++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h  |  1 +
- drivers/gpu/drm/xe/xe_guc.c          | 11 ++++
- drivers/gpu/drm/xe/xe_memirq.c       |  3 ++
- drivers/gpu/drm/xe/xe_sriov.c        |  4 ++
- drivers/gpu/drm/xe/xe_sriov_types.h  | 16 ++++++
- drivers/gpu/drm/xe/xe_sriov_vf.c     | 76 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf.h     | 14 +++++
- 10 files changed, 149 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.h
-
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 1122765c711d..36890222dd59 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -123,7 +123,8 @@ xe-y += \
- 	xe_gt_sriov_vf.o \
- 	xe_guc_relay.o \
- 	xe_memirq.o \
--	xe_sriov.o
-+	xe_sriov.o \
-+	xe_sriov_vf.o
- 
- xe-$(CONFIG_PCI_IOV) += \
- 	xe_gt_sriov_pf.o \
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 85bede4dd646..e86b5ca047c8 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -374,6 +374,8 @@ struct xe_device {
- 
- 		/** @sriov.pf: PF specific data */
- 		struct xe_device_pf pf;
-+		/** @sriov.vf: VF specific data */
-+		struct xe_device_vf vf;
- 
- 		/** @sriov.wq: workqueue used by the virtualization workers */
- 		struct workqueue_struct *wq;
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index d3baba50f085..8b8074e8e949 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -27,6 +27,7 @@
- #include "xe_guc_relay.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
-+#include "xe_sriov_vf.h"
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
- 
-@@ -692,6 +693,25 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
- 	return err;
- }
- 
-+/**
-+ * xe_gt_sriov_vf_migrated_event_handler - Start a VF migration recovery,
-+ *   or just mark that a GuC is ready for it.
-+ * @gt: the &xe_gt struct instance linked to target GuC
-+ *
-+ * This function shall be called only by VF.
-+ */
-+void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(xe));
-+
-+	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
-+	smp_mb__after_atomic();
-+	xe_gt_sriov_info(gt, "ready for recovery after migration\n");
-+	xe_sriov_vf_start_migration_recovery(xe);
-+}
-+
- static bool vf_is_negotiated(struct xe_gt *gt, u16 major, u16 minor)
- {
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index e541ce57bec2..9959a296b221 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -17,6 +17,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
- int xe_gt_sriov_vf_connect(struct xe_gt *gt);
- int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
- int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
-+void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
- 
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index c2ddf883702b..fb5704526954 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1093,10 +1093,21 @@ int xe_guc_self_cfg64(struct xe_guc *guc, u16 key, u64 val)
- 	return guc_self_cfg(guc, key, 2, val);
- }
- 
-+static void xe_guc_sw_0_irq_handler(struct xe_guc *guc)
-+{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+
-+	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+		xe_gt_sriov_vf_migrated_event_handler(gt);
-+}
-+
- void xe_guc_irq_handler(struct xe_guc *guc, const u16 iir)
- {
- 	if (iir & GUC_INTR_GUC2HOST)
- 		xe_guc_ct_irq_handler(&guc->ct);
-+
-+	if (iir & GUC_INTR_SW_INT_0)
-+		xe_guc_sw_0_irq_handler(guc);
- }
- 
- void xe_guc_sanitize(struct xe_guc *guc)
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index e3610cb90bb9..8dcb2f5558f6 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -435,6 +435,9 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
- 
- 	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
- 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
-+
-+	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
-+		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 69a066ef20c0..2f4c3ae24f6e 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -12,6 +12,7 @@
- #include "xe_mmio.h"
- #include "xe_sriov.h"
- #include "xe_sriov_pf.h"
-+#include "xe_sriov_vf.h"
- 
- /**
-  * xe_sriov_mode_to_string - Convert enum value to string.
-@@ -112,6 +113,9 @@ int xe_sriov_init(struct xe_device *xe)
- 			return err;
- 	}
- 
-+	if (IS_SRIOV_VF(xe))
-+		xe_sriov_vf_init_early(xe);
-+
- 	xe_assert(xe, !xe->sriov.wq);
- 	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
- 	if (!xe->sriov.wq)
-diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
-index c7b7ad4af5c8..23d1edecb8e5 100644
---- a/drivers/gpu/drm/xe/xe_sriov_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_types.h
-@@ -56,4 +56,20 @@ struct xe_device_pf {
- 	struct mutex master_lock;
- };
- 
-+/**
-+ * struct xe_device_pv - Xe Virtual Function related data
-+ *
-+ * The data in this structure is valid only if driver is running in the
-+ * @XE_SRIOV_MODE_VF mode.
-+ */
-+struct xe_device_vf {
-+	/** @migration: VF Migration state data */
-+	struct {
-+		/** @migration.worker: VF migration recovery worker */
-+		struct work_struct worker;
-+		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
-+		unsigned long gt_flags;
-+	} migration;
-+};
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-new file mode 100644
-index 000000000000..0192b9a0ef7a
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+
-+#include "xe_assert.h"
-+#include "xe_device.h"
-+#include "xe_gt_sriov_printk.h"
-+#include "xe_sriov.h"
-+#include "xe_sriov_vf.h"
-+#include "xe_sriov_printk.h"
-+
-+static void migration_worker_func(struct work_struct *w);
-+
-+/**
-+ * xe_sriov_vf_init_early - Initialize SR-IOV VF specific data.
-+ * @xe: the &xe_device to initialize
-+ */
-+void xe_sriov_vf_init_early(struct xe_device *xe)
-+{
-+	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
-+}
-+
-+static void vf_post_migration_recovery(struct xe_device *xe)
-+{
-+	drm_dbg(&xe->drm, "migration recovery in progress\n");
-+	/* FIXME: add the recovery steps */
-+	drm_notice(&xe->drm, "migration recovery ended\n");
-+}
-+
-+static void migration_worker_func(struct work_struct *w)
-+{
-+	struct xe_device *xe = container_of(w, struct xe_device,
-+					    sriov.vf.migration.worker);
-+
-+	vf_post_migration_recovery(xe);
-+}
-+
-+static bool vf_ready_to_recovery_on_all_gts(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+
-+	for_each_gt(gt, xe, id) {
-+		if (!test_bit(id, &xe->sriov.vf.migration.gt_flags)) {
-+			xe_gt_sriov_dbg_verbose(gt, "still not ready to recover\n");
-+			return false;
-+		}
-+	}
-+	return true;
-+}
-+
-+/**
-+ * xe_sriov_vf_start_migration_recovery - Start VF migration recovery.
-+ * @xe: the &xe_device to start recovery on
-+ *
-+ * This function shall be called only by VF.
-+ */
-+void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
-+{
-+	bool started;
-+
-+	xe_assert(xe, IS_SRIOV_VF(xe));
-+
-+	if (!vf_ready_to_recovery_on_all_gts(xe))
-+		return;
-+
-+	WRITE_ONCE(xe->sriov.vf.migration.gt_flags, 0);
-+	smp_mb();
-+
-+	started = queue_work(xe->sriov.wq, &xe->sriov.vf.migration.worker);
-+	drm_info(&xe->drm, "VF migration recovery %s\n", started ?
-+		 "scheduled" : "already in progress");
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
-new file mode 100644
-index 000000000000..7b8622cff2b7
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_SRIOV_VF_H_
-+#define _XE_SRIOV_VF_H_
-+
-+struct xe_device;
-+
-+void xe_sriov_vf_init_early(struct xe_device *xe);
-+void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
-+
-+#endif
--- 
-2.25.1
 
