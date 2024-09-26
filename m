@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75707CCFA13
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 09:44:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4276ECCF9E9
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 10:00:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E1BD10EB80;
-	Thu, 26 Sep 2024 09:44:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eNUnWsjt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 661CE10EB80
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Sep 2024 09:44:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727343846; x=1758879846;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=N7Ffiw27F8OtZZGQQnYIpLMTYKCFpaxZegQCHTo+8pw=;
- b=eNUnWsjt99gO2i7uO3DEbeNQXUva6UV7Jg4MJHFxw6YydJ99Iw6BeRYS
- MS9WKot04iFxp6SYiLRf/SIWD8I8V7sZHKGobjRWlP0SxIAGL/y2QyLGI
- WP02rql4IW5Y/9+7SgsyBEf0lIThIzG9M1IQY2JRzHf7x/2wNQC1yJB57
- CmN+r+jnLmjF2MN7ABCW4ayB1Tjmr2/hCm+IeyjyAMwj7WW/Q2zEL1zEC
- nNFv06Ty2aa8THg9teYFBrrS0a4npLnBnsh+zdLNVfdl9qMhF8dtKk7TS
- 35tdm5UYa3rFgLhKjh0xiD4neJ9MdMwG167x0WIZlXoTDK1WM3rA3Gjdx w==;
-X-CSE-ConnectionGUID: h4+OOH3nRfmh93/06KiOCQ==
-X-CSE-MsgGUID: rY14FG7RTMC35GkrOLHV0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="30221367"
-X-IronPort-AV: E=Sophos;i="6.10,260,1719903600"; d="scan'208";a="30221367"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 02:44:05 -0700
-X-CSE-ConnectionGUID: CwR7GM1yTJW7RosdOo3BWA==
-X-CSE-MsgGUID: Mz8PlwYyQzu+Ey4jLhyk/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,260,1719903600"; d="scan'208";a="76583461"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.124])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 02:44:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH v3] drm/xe: Use fault injection infrastructure to find
- issues at probe time
-In-Reply-To: <20240925155546.76630-1-francois.dugast@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240925155546.76630-1-francois.dugast@intel.com>
-Date: Thu, 26 Sep 2024 12:43:59 +0300
-Message-ID: <87jzey21i8.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1489A10EB90;
+	Thu, 26 Sep 2024 10:00:55 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72A5410EB90;
+ Thu, 26 Sep 2024 10:00:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3772359629779363077=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv2=2C1/2?=
+ =?utf-8?q?=5D_drm/xe/vm=3A_move_xa=5Falloc_to_prevent_UAF?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Sep 2024 10:00:53 -0000
+Message-ID: <172734485346.1106239.8516384715840964621@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240925071426.144015-3-matthew.auld@intel.com>
+In-Reply-To: <20240925071426.144015-3-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,26 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 25 Sep 2024, Francois Dugast <francois.dugast@intel.com> wrote:
-> +/*
-> + * The ALLOW_ERROR_INJECTION() macro is added to conditionally skip execution at
-> + * runtime and use a provided return value, in order to test errors paths in the
-> + * callers. The requirements for the error injectable functions are not strictly
-> + * fullfilled but this is acceptable because the caller only propagates the error
-> + * up the stack without cleanup of resources potentially allocated here.
-> + */
+--===============3772359629779363077==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'm curious on the details of "The requirements for the error injectable
-functions are not strictly fullfilled". It's repeated many times, but
-not explained. Maybe I'd like the info spoon fed to me instead of having
-to figure it out for myself. ;)
+== Series Details ==
 
-BR,
-Jani.
+Series: series starting with [v2,1/2] drm/xe/vm: move xa_alloc to prevent UAF
+URL   : https://patchwork.freedesktop.org/series/139079/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da_BAT -> xe-pw-139079v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139079v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][1] ([Intel XE#1861]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139079v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_exec_basic@no-exec-userptr-invalidate:
+    - bat-bmg-1:          [DMESG-WARN][3] ([Intel XE#877]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139079v1/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
 
 
--- 
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * Linux: xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da -> xe-pw-139079v1
+
+  IGT_8032: 8032
+  xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da: 6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da
+  xe-pw-139079v1: 139079v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139079v1/index.html
+
+--===============3772359629779363077==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/xe/vm: move xa_alloc to prevent UAF</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139079/">https://patchwork.freedesktop.org/series/139079/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139079v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139079v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da_BAT -&gt; xe-pw-139079v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139079v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139079v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@no-exec-userptr-invalidate:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139079v1/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da -&gt; xe-pw-139079v1</li>
+</ul>
+<p>IGT_8032: 8032<br />
+  xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da: 6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da<br />
+  xe-pw-139079v1: 139079v1</p>
+
+</body>
+</html>
+
+--===============3772359629779363077==--
