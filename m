@@ -4,177 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2F8BCDE009
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 13:59:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E9C6CDE009
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 14:05:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 800BF10E309;
-	Thu, 26 Sep 2024 13:59:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2CA010E17C;
+	Thu, 26 Sep 2024 14:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ReijNKF9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mj+Fn5e/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F3FC10E309
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Sep 2024 13:59:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8313410E17C
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Sep 2024 14:05:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727359156; x=1758895156;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=E7S5Prt1xeFLsfpcfvW/Zoh/vk+1zvWiUqfhUsYmyzM=;
- b=ReijNKF9baO9PGd8l9/MTo/Q9uv+MtoxasGZ7j1bCHafYRz6bpqxe/bh
- QcRdSm+Ud4jOiNhQ0vgp46iWdmX2Qub7zWQgPKs//3o6J6XuvOrv6zBij
- IEs6k4sNXl1oG37lWWBd52qflw7ZhXUvPlF899+gS9OAAVTBCmjUPZfht
- gmuHGNH0zy48ZZ/3pqb40RPsqImjpq3ByCoFk7gk8SZSuvbaoPdyUUmCJ
- 5F2kpwtFigPC+b84hTTMndEC01rK1wd14IhfJDIaIl9oHQI9ZqGTuuKzV
- DSb2arJllW2oCt4pCePI9gGkD5mYpN8tYvSgpDS+VJ7Z5Jwg48uwQAGMp A==;
-X-CSE-ConnectionGUID: F2rpWCiyQzCE9cpKcJESew==
-X-CSE-MsgGUID: uaVlTltmQJyd+7/8MfcKwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26576298"
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="26576298"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 06:59:07 -0700
-X-CSE-ConnectionGUID: IukVkg2PT1GbmR3BKFwnig==
-X-CSE-MsgGUID: AoE9TCyKRMCCEvxWA18hlg==
+ t=1727359532; x=1758895532;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=GNkL70lULBUF17EFkP+h8rlj70BQ+m4cogF8UhgGfE4=;
+ b=Mj+Fn5e/Cc09uksp797jcU1qb5I0+fmdtbh+UiRpUqfe0xXXiGtg7QYd
+ TqRET/E1CH9uP+B/qewD+LJmYoD0QNIQutWcIisEC+J/7Pl187V7l3CDh
+ cylz6sZyz8HuHVmz1jZSVO3IkBW8SoPw4kw0Gw+F3oF86RHha4hjFqHCF
+ La/XLgoS57pk4ibfLDfZcINZ6qA7j49xawSXApOS/8kuF7KRNjjmXAgqD
+ Ys2d35NJOCUSZsYatJZbdRrJEpkxjySnJqOwqAb/KjYlmMRqCdlKHAjUU
+ 2P04HT5AeXH2618d3J6FsPTOERH3/3HEcA4uiaAR3eDdTtVIjQVGFvTIB A==;
+X-CSE-ConnectionGUID: 3xO+mnHVQE6+NUl8lZA3LQ==
+X-CSE-MsgGUID: QHx4ZLk6TkObeUP8kRPTjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26322373"
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="26322373"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 07:05:32 -0700
+X-CSE-ConnectionGUID: MM5+VnfPRwCMAw0Jq5dvqg==
+X-CSE-MsgGUID: koxPuwnwQw2iGD83zIV7Ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="76981355"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Sep 2024 06:59:06 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 26 Sep 2024 06:59:05 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 26 Sep 2024 06:59:05 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 26 Sep 2024 06:59:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Wr/qJvQ+/3NA+hNjtsAMmO1tkA+ueDJHUIeBphCR/F/4Aa73RqvyjE0cwFeKdekP2pnN6/O/LcHJkrYde4i1yxM8Onf5XUt5IeOjWBnzPVlKNm2eHsnqljdgNg+e3pMRzK8Myxzarh0luzWvWsfoDL+evDiaSjaSl3HLgPNCbXt3Zmlb33rS19OnLiO9p0oDSM33gTMOVxIaQGteP2ZlywQJIvQuNn1zCWCR05cgSckk5UeEhG0ZSnylZoUd8Jz7/x2320JJWJ/GKuaKsXszACKde9taK5CvQyTrpRtnypdXvumBD38qOEGFh/pyDQXq7K6JQZWoGYryJa+zPmngzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iTZhEmfGpOy0+qocMFKdu6jkzUUYqXzhy9Dz98A2r+w=;
- b=J4j3XP0jYix8/eiSXWx6a/iBVcmbmWjaCEigRlqXAqv3spVZDMaOrLqY2VdRb7l95178q1DGZgBzgqxM1gIRrZB3PXOqkvS8fsSZulo+2j9yUN5W/elu2AOdWnbYvJ/7kvzxYj7LkuuDKnLHb/e0btKtgFaY2RToASkjUOVZgj+cbyjadRSSbuHsLLjmwKk6E2vOV0G55orrMsoVMnzU7nDNwopMPs70uU09OJm9fIl3XbCH11ER1DkVDuepB5N8U2SDsfgwu4wLV9AgqJK6eNrcihXW3ZbP21DOXPsJVhsoQK4y9I3r6qHHlHZblBZrnTCLLcE4jUzjhFJC3QyXdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
- by MN0PR11MB6184.namprd11.prod.outlook.com (2603:10b6:208:3c4::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Thu, 26 Sep
- 2024 13:59:02 +0000
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::b6d:5228:91bf:469e]) by IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::b6d:5228:91bf:469e%4]) with mapi id 15.20.8005.021; Thu, 26 Sep 2024
- 13:59:02 +0000
-Message-ID: <caf78e62-4e45-43a0-a8fd-6f8164fd5e84@intel.com>
-Date: Thu, 26 Sep 2024 09:58:58 -0400
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Add?=
- =?UTF-8?Q?_GuC_based_register_capture_for_error_capture_=28rev22=29?=
-To: <intel-xe@lists.freedesktop.org>
-References: <20240925012835.493842-1-zhanjun.dong@intel.com>
- <172733528493.1104749.12633883409297671318@2413ebb6fbb6>
-Content-Language: en-US
-From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
-In-Reply-To: <172733528493.1104749.12633883409297671318@2413ebb6fbb6>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0046.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::21) To IA1PR11MB8200.namprd11.prod.outlook.com
- (2603:10b6:208:454::6)
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="72243152"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa009.jf.intel.com with ESMTP; 26 Sep 2024 07:05:29 -0700
+Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 8310F284ED;
+ Thu, 26 Sep 2024 15:05:28 +0100 (IST)
+Message-ID: <959687eb-92f9-4bfe-9065-577b467c2b2d@intel.com>
+Date: Thu, 26 Sep 2024 16:05:27 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|MN0PR11MB6184:EE_
-X-MS-Office365-Filtering-Correlation-Id: d70964c9-5b47-4a94-acbf-08dcde336055
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Nk05SCtJQkd2cHBKa0pOUVNyeGIvMjNTYTloU1NvWUVlMjZuK2Rya00rQzhU?=
- =?utf-8?B?OEUyUm41TG16bXFTU1lZbnFMMjViNnhYR0E0V1VRMTFvMEhuWVYwcmo2WjRF?=
- =?utf-8?B?eVMyVkZmM21jMlpaYlNzSngzMCtHT0tIL3A1MmRHREFnN1dKdzdFOUdkSWt0?=
- =?utf-8?B?NG96WjJBVWJINXVDa3VVK1EwRnRCVE1NVVdpTVpSQlpUQjFVc0JsTm14SXZq?=
- =?utf-8?B?VDFRTVZzc0xQTUI1TURvS1Y5UFhUU2Vwd25Cc0VXTE81bVBTV0t6UHN1K0JT?=
- =?utf-8?B?M1k5dGxybENrNm04eTkwMHFzOW4zcHNzdG9YMXphL2VUVnZTd2FJc0ZrSUpU?=
- =?utf-8?B?RldaTFRnTTdZNUtxZlcvekxCYWhKOSt5RVVLWWs3NkYrQ3hwTWNhUjN4N2RY?=
- =?utf-8?B?M2Nid0Z5YXBPczhMWDFFK0xLT2QxOE0wWW1aSWx2eWZCQVIyM05VWTVXSldY?=
- =?utf-8?B?ZjhHQ3NpanZwWnZIZ3VKcUJUT0hqdXhSZk5MT2RmWEVwN3NhZ2pEdUgyUGs0?=
- =?utf-8?B?SXlKKzV6ek43Qlowby9WajNJeHFSVmpsWUx2SndrNUh2cmkwSTZKZUJvOWN3?=
- =?utf-8?B?SEFIVnlDR3UrRjFxTHFXRmdObXhZZDFnZlFCak90dEVVZEFaaXFzeHBldVJ3?=
- =?utf-8?B?REhSTmRBeVl0S242QkpNcTBIZXd4QTBXSUxCKzZHSzJpRHhrL3BTN0xZUjYw?=
- =?utf-8?B?a1QvUlk2UDNodWtmZVNIdG9tbnl2WXAydjZBeVBnTm1sSmQ0eHhZc1JBM01B?=
- =?utf-8?B?U1FhdmM5MkF0akpZbVc5NWxBUDVjWG1aSDZrZVBnSC95b0kxVmJ4SjBGaGxr?=
- =?utf-8?B?S0dYV3JXa3RRMTZwSFRkaXVDd25NSmhiK0FScjFxWHVKWGpNR0FRa1IzTDNk?=
- =?utf-8?B?MTNNeU14REJrSWRidnpUOG9zVWpRSmRyTnFRZDFobnplSHZUa2JjQzVDVmEr?=
- =?utf-8?B?UmIrOE1Qd2NQMGhlaW5RMzgvVGhEYlkzRXpZOWc5MWRDbEE5blJuQ0FvcjBx?=
- =?utf-8?B?UVFmR1BxaWkyaUVjR3dveEYyeGtrVWV5UGU3cThYZGNpUWhpMGhPMzFXL0V4?=
- =?utf-8?B?WkdmcW1QYWJRSkNuOWxOUnRJVmhQZThDZTZIMk1aWTZUT08rWTNYeFgrNmJt?=
- =?utf-8?B?MWpvUjh3eW4yTUJkZWNsRy9vRFpUbmVOWDZFMlFnMHoySSsxUDJxUCt6NGNh?=
- =?utf-8?B?ZEFCN2dJZEtIV1ZlVEQ2SkJJcnZyc2RJZnNYZ2FvQ3dOVENtM3Myd0g1RW5s?=
- =?utf-8?B?bk5hVHptWHpRNzlPRHVOWDR4Yy9FQ3NpTEMxOU51dkd2d0VISnhSNnpUOE5p?=
- =?utf-8?B?V1FGZ3N0eWZjdlVnOE1HL3dKeVk1N2p3TTg5NEkwdjF4bEZ0Qmtlb2dPNENO?=
- =?utf-8?B?a1lqL00reVo1N2RYTlZ3NUpITUUwNHZiSFdtWG9VZ3gyZzBDeWdhTXF6N25V?=
- =?utf-8?B?S084WXlETXRmUnFwTG83Z0hxd3ROVDM4VlpmdnQ2YWpjbGdxcXFGRExFQ2NT?=
- =?utf-8?B?Ky9iRkVyUGhwL3htSDd5TXhIczRMSVdFZXRKT0NzTFBlUVV6Umhhb05BaTVR?=
- =?utf-8?B?dEwxRFhxM2JzUkFHVVV0ZXFaMXJXTDRrcUpZQ2VpR0ZTRWY5NS8xY0xKVlVo?=
- =?utf-8?Q?oZp0LYuIT5iwzSvc+aCQ4pWrM47hlLZFr1zUILUs+eek=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cityVUJNV0xHWTlTNDJ4dFlKV2pLNWEySmxBR3dzVTc3NVVsKzh3WUwwcktD?=
- =?utf-8?B?OWpMVVBqUVBPMno1Q1ZSYVc4eHcya0FoQ3RyY0NEcGpoK1Ewb01XKzFpNlRo?=
- =?utf-8?B?cEIyVHdTMmNqMFF3TlhFZm1weW9haTlxZStZSjIrQjh2NHRQRXczS0pLUlNF?=
- =?utf-8?B?K1gzZUJidUQrbUdFYUlkWjdORUxBYTRnaVJ4MXgvVWNSRTVIV3pra1Y0S05L?=
- =?utf-8?B?cHByZFlKdk1idi8vaFpTcC93MjBMeGdaT0d4aUQ3ZlVqRU9XdVhjVFFEV0R0?=
- =?utf-8?B?aEN0d1NlK1h5WUtmWWNUcW1UL1Zna0owdkxrZ1NoVDV2VjdNU093WC8rUDl2?=
- =?utf-8?B?SUVxaXpKcW1OaEUxL2JQN1lBSDFYcHk1c2lwd0htUjdPV2pwNXJKTGdLL3cx?=
- =?utf-8?B?RUIyNHVVdmdmRnJMUjIrUWxPd1FpTGlCNStXV1ExdlBMYnRRektzaUVNTGhI?=
- =?utf-8?B?YWI3U256bStzMDZTOHFTa05VUWxFMHBocURyQTNqS1U0ek1OdUswK1FKdzlQ?=
- =?utf-8?B?ZTV4d3ArdFZRUmxEMFlNMzZ1TDF3anErRXl0cnJiZVNsMThubVg1MmNITUdp?=
- =?utf-8?B?czYwcWFVVERNZDFMTm9yNmlXMVJhdnZxcDgrUDk2SCtXcktwanVPbFF6Vm5E?=
- =?utf-8?B?VXVRaHZ4dmc0U0VCM0tvcVM2T0dhbWVEYjMrRG9acjJqSUxObE81QVN0dTgv?=
- =?utf-8?B?WEYrTXA0SGFUd1dGUFhkeGpLZEI0eitRcys0d1U3V240cW1ST2d6SzF0Zm83?=
- =?utf-8?B?Yi9tYlVtVzhtbnRWY2phVUFOTXNjM0x4eXl6Um85TkFQS3R6V2I5KzkyTDN2?=
- =?utf-8?B?YVFjWWg3SThOTDJEbnZsa0RLZEd5SWVGSC84OVBST0ZjVGdpR2s4NW9qY1V6?=
- =?utf-8?B?U21xNWNzUmp3RXJEczlUUityTnpWeFZvTkFRbHNlTnMrL20rUlBydkZQMnRy?=
- =?utf-8?B?czE2Tk9DVkIrUTJEakdpczB0NkU0UHFHRnFmMFN4THBaandQemRNRkVXSEtZ?=
- =?utf-8?B?OTNrbFoxWjNFM25paTQ0SnRVVklNeUNJK0tNNmtiYm1WeENnZGNOSEcxaDk0?=
- =?utf-8?B?T005RVBZNmFhbklxVWdpQm5MZU1zZmVsbnIvZWVTR3B2R0VVUElURGFOZ1lW?=
- =?utf-8?B?b2E4UzBSUlZ5SzVrUU1mRVMrcTA1YXZXcWZxMVd5RTlKbEovU1hscVE2c1JD?=
- =?utf-8?B?OUJuQmpJUndYL1RBaDM2MkxzOE9heVZDbGdtOVBUKzNGd3F2MzFlV1ZueWdN?=
- =?utf-8?B?bTdSdXBiU281NmovQ0FwQlZ0dXdjMUIzZjU5SHFWS3JzM3ZUampzS1I3QnNS?=
- =?utf-8?B?ZStDVkptTTRUOFZ0cHZISU9aeHhUN3o3dGsvQllucGNQZTVaMUJiMkRLSHpJ?=
- =?utf-8?B?UXVvNklGL2dkdmp3R3dlZnhiWnhWWjRGYU42NG81d1JhRm44aDR5MWw0N1pK?=
- =?utf-8?B?dWk3MEYxeUltSmdwVVVVQmtEeHlPVWloOTJCZDVKenpHcXNNSHlod3BJSWtK?=
- =?utf-8?B?RzcrcVQybGUrUVlmdTZ6Y3dhRHY2d29JQi9VNXRMOS9jNm1NOHErYUxUbUFk?=
- =?utf-8?B?cGVTQk94WWdCbVdOUTBUNm95b09qakhVWXl5ZlJ2Rkd0OU5vOWNnVVBLZ1k1?=
- =?utf-8?B?bTh4QUMyQyswZlBEVDlmL3JHdWphNk9sYmNNYUJpWjhYcHhpUWR3eHMzQVh5?=
- =?utf-8?B?MmhuK090ZmN3NTBld3ViVUVycDhxdHdoQ1dlenFxS0xtSFUxRzR2SlV1SC9u?=
- =?utf-8?B?T2NPVXZJVzZlTFRpK3hzMnlXOUh2NjltL2UvZDBTODRQdlJFNkNOYzQ3TU5X?=
- =?utf-8?B?ckgvcThOQitXaHJ1WlltZ1MrUTZQaURiWFI2eks0MFA2OEtvR1huTWhYekxy?=
- =?utf-8?B?K2hGK1NhNzNXUGJMY2dybmo3SmhnTHRVNmNrbjlYQWtabkZrTjFTdHRNTDYw?=
- =?utf-8?B?TWkzZnFnTE05cUlzRTBwb0hQTkpBTVFpQUF6aWFoNXVVSXRwbGJ4ejZLczV5?=
- =?utf-8?B?b3Z3Mk1MTGdKK0t5NC91K1UrY0lVc2JjYlFrcUZmTCs2bEJReEphdjJyYkty?=
- =?utf-8?B?M25WSDFLVUd1TndsYnBzV2QrN3hZV1lWRXplWTZrd1dSVk9rV0pBaHJuYkxs?=
- =?utf-8?Q?LQB0gCvQiEQfaZl2DQxcZAw8i?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d70964c9-5b47-4a94-acbf-08dcde336055
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2024 13:59:02.2051 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HcoP5uRBD7cS412R6aYnul+5Tm3xUL1U8NPNJgMWV1vu4cxYSGyS0Ydd9zkgoPCTCS0tGGpuPUxo3C+TF4ROkQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6184
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] drm/xe/vf: React to MIGRATED interrupt
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+References: <20240924202553.1541574-1-tomasz.lis@intel.com>
+ <20240924202553.1541574-2-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240924202553.1541574-2-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -189,171 +71,331 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The failed igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit test on bat-lnl-2 
-is an known issue and to be fixed by:
-https://patchwork.freedesktop.org/series/138889/
 
-All other failures is not related to this patch.
 
-Regards,
-Zhanjun
+On 24.09.2024 22:25, Tomasz Lis wrote:
+> To properly support VF Save/Restore procedure, fixups need to be
+> applied after PF driver finishes its part of VF Restore. Those
+> fixups are applied by the VF driver within a VM.
+> 
+> A VF driver gets informed that it was migrated by receiving an
+> interrupt from each GuC. That should be the trigger for fixups.
+> 
+> The VF can safely do post-migration fixups on resources associated
+> to each GuC only after that GuC issued the MIGRATED interrupt.
+> 
+> This change introduces a worker to be used for post-migration fixups,
+> and a mechanism to schedule said worker when all GuCs sent the irq.
+> 
+> v2: renamed and moved functions, updated logged messages, removed
+>   unused includes, used anon struct (mwajdeczko)
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile          |  1 +
+>  drivers/gpu/drm/xe/xe_device_types.h |  2 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c  | 11 +++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.h  |  2 +
+>  drivers/gpu/drm/xe/xe_guc.c          | 11 +++++
+>  drivers/gpu/drm/xe/xe_memirq.c       |  3 ++
+>  drivers/gpu/drm/xe/xe_sriov.c        |  4 ++
+>  drivers/gpu/drm/xe/xe_sriov_types.h  | 10 ++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.c     | 73 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.h     | 14 ++++++
+>  10 files changed, 131 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 8f1c5c329f79..1f07983bb865 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -123,6 +123,7 @@ xe-y += \
+>  	xe_gt_sriov_vf.o \
+>  	xe_guc_relay.o \
+>  	xe_memirq.o \
+> +	xe_sriov_vf.o \
 
-On 2024-09-26 3:21 a.m., Patchwork wrote:
-> *Patch Details*
-> *Series:*	drm/xe/guc: Add GuC based register capture for error capture 
-> (rev22)
-> *URL:*	https://patchwork.freedesktop.org/series/128077/ 
-> <https://patchwork.freedesktop.org/series/128077/>
-> *State:*	failure
-> *Details:* 
-> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/index.html 
-> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/index.html>
-> 
-> 
->   CI Bug Log - changes from
->   xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b_BAT ->
->   xe-pw-128077v22_BAT
-> 
-> 
->     Summary
-> 
-> *FAILURE*
-> 
-> Serious unknown changes coming with xe-pw-128077v22_BAT absolutely need 
-> to be
-> verified manually.
-> 
-> If you think the reported changes have nothing to do with the changes
-> introduced in xe-pw-128077v22_BAT, please notify your bug team 
-> (I915-ci-infra@lists.freedesktop.org) to allow them
-> to document this new failure mode, which will reduce false positives in CI.
-> 
-> 
->     Participating hosts (9 -> 9)
-> 
-> No changes in participating hosts
-> 
-> 
->     Possible new issues
-> 
-> Here are the unknown changes that may have been introduced in 
-> xe-pw-128077v22_BAT:
-> 
-> 
->       IGT changes
-> 
-> 
->         Possible regressions
-> 
->   * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
->       o bat-lnl-2: PASS
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html> -> ABORT <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html> +1 other test abort
->       o bat-dg2-oem2: PASS
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html> +1 other test incomplete
-> 
-> 
->         Warnings
-> 
->   *
-> 
->     igt@xe_pat@pat-index-xelpg:
-> 
->       o bat-bmg-1: SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html> (Intel XE#2236 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236>) -> SKIP <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html>
->   *
-> 
->     igt@xe_pm_residency@gt-c6-on-idle:
-> 
->       o bat-adlp-vf: SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html> (Intel XE#2468 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468>) -> SKIP <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html>
-> 
-> 
->         Suppressed
-> 
-> The following results come from untrusted machines, tests, or statuses.
-> They do not affect the overall result.
-> 
->   * igt@xe_pat@pat-index-xelpg:
->       o {bat-bmg-2}: SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html> (Intel XE#2236 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236>) -> SKIP <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html>
-> 
-> 
->     Known issues
-> 
-> Here are the changes found in xe-pw-128077v22_BAT that come from known 
-> issues:
-> 
-> 
->       IGT changes
-> 
-> 
->         Issues hit
-> 
->   *
-> 
->     igt@xe_evict@evict-beng-small:
-> 
->       o bat-adlp-7: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-7/igt@xe_evict@evict-beng-small.html> (Intel XE#261 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/261> / Intel XE#688 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/688>) +15 other tests skip
->   *
-> 
->     igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-> 
->       o bat-adlp-7: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html> (Intel XE#288 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/288>) +32 other tests skip
->   *
-> 
->     igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-> 
->       o bat-adlp-7: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html> (Intel XE#2229 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229>)
-> 
-> 
->         Possible fixes
-> 
->   *
-> 
->     igt@core_hotunplug@unbind-rebind:
-> 
->       o bat-adlp-7: DMESG-WARN
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html> (Intel XE#2871 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871>) -> PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html>
->   *
-> 
->     igt@kms_psr@psr-cursor-plane-move:
-> 
->       o bat-adlp-7: SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html> (Intel XE#455 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/455>) -> PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html> +3 other tests pass
->   *
-> 
->     igt@kms_psr@psr-primary-page-flip@edp-1:
-> 
->       o bat-adlp-7: DMESG-FAIL
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html> (Intel XE#2871 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871>) -> PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html> +1 other test pass
->   *
-> 
->     igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-> 
->       o bat-adlp-7: INCOMPLETE
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html> -> PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html> +1 other test pass
-> 
-> 
->         Warnings
-> 
->   * igt@kms_frontbuffer_tracking@basic:
->       o bat-lnl-2: SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html> (Intel XE#2235 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235>) -> SKIP <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v22/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html> (Intel XE#2235 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235> / Intel XE#2548 <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548>)
-> 
-> {name}: This element is suppressed. This means it is ignored when computing
-> the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
-> 
->     Build changes
-> 
->   * Linux: xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b ->
->     xe-pw-128077v22
-> 
-> IGT_8032: 8032
-> xe-1976-88d592f72f7bc508d6a027b1f96aa2e53f803e1b: 
-> 88d592f72f7bc508d6a027b1f96aa2e53f803e1b
-> xe-pw-128077v22: 128077v22
-> 
+wrong order
+
+>  	xe_sriov.o
+>  
+>  xe-$(CONFIG_PCI_IOV) += \
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 484fb34dde98..07ff7554fc3e 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -374,6 +374,8 @@ struct xe_device {
+>  
+>  		/** @sriov.pf: PF specific data */
+>  		struct xe_device_pf pf;
+> +		/** @sriov.vf: VF specific data */
+> +		struct xe_device_vf vf;
+>  
+>  		/** @sriov.wq: workqueue used by the virtualization workers */
+>  		struct workqueue_struct *wq;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index d3baba50f085..489ace57c2a1 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -27,6 +27,7 @@
+>  #include "xe_guc_relay.h"
+>  #include "xe_mmio.h"
+>  #include "xe_sriov.h"
+> +#include "xe_sriov_vf.h"
+>  #include "xe_uc_fw.h"
+>  #include "xe_wopcm.h"
+>  
+> @@ -692,6 +693,16 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
+>  	return err;
+>  }
+>  
+> +void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
+
+this is public function, so you should add kernel-doc for it
+
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +
+
+since below you are accessing VF specific fields, you may want to add:
+
+	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+
+> +	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
+> +	smp_mb__after_atomic();
+> +	xe_gt_sriov_info(gt, "VF migration recovery ready\n");
+
+the xe_gt_sriov_info() will already add "VF:" prefix for you:
+
+	xe_gt_sriov_info(gt, "ready for recovery after migration\n");
+
+[ ] xe 0000:00:02.0: [drm] GT0: VF: ready for recovery after migration
+
+> +	xe_sriov_vf_start_migration_recovery(xe);
+> +}
+> +
+>  static bool vf_is_negotiated(struct xe_gt *gt, u16 major, u16 minor)
+>  {
+>  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> index e541ce57bec2..544e913b8465 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> @@ -18,6 +18,8 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
+>  
+> +void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+> +
+>  u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+>  u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+>  u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index b6cd5e941f19..05aa93070e5a 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -1092,10 +1092,21 @@ int xe_guc_self_cfg64(struct xe_guc *guc, u16 key, u64 val)
+>  	return guc_self_cfg(guc, key, 2, val);
+>  }
+>  
+> +static void xe_guc_sw_0_irq_handler(struct xe_guc *guc)
+> +{
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +
+> +	if (IS_SRIOV_VF(gt_to_xe(gt)))
+> +		xe_gt_sriov_vf_migrated_event_handler(gt);
+> +}
+> +
+>  void xe_guc_irq_handler(struct xe_guc *guc, const u16 iir)
+>  {
+>  	if (iir & GUC_INTR_GUC2HOST)
+>  		xe_guc_ct_irq_handler(&guc->ct);
+> +
+> +	if (iir & GUC_INTR_SW_INT_0)
+> +		xe_guc_sw_0_irq_handler(guc);
+>  }
+>  
+>  void xe_guc_sanitize(struct xe_guc *guc)
+> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+> index 3f8d4ca64302..2d2f40378942 100644
+> --- a/drivers/gpu/drm/xe/xe_memirq.c
+> +++ b/drivers/gpu/drm/xe/xe_memirq.c
+> @@ -435,6 +435,9 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+>  
+>  	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
+>  		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+> +
+> +	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
+> +		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+> index 69a066ef20c0..2f4c3ae24f6e 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov.c
+> @@ -12,6 +12,7 @@
+>  #include "xe_mmio.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_pf.h"
+> +#include "xe_sriov_vf.h"
+>  
+>  /**
+>   * xe_sriov_mode_to_string - Convert enum value to string.
+> @@ -112,6 +113,9 @@ int xe_sriov_init(struct xe_device *xe)
+>  			return err;
+>  	}
+>  
+> +	if (IS_SRIOV_VF(xe))
+> +		xe_sriov_vf_init_early(xe);
+> +
+>  	xe_assert(xe, !xe->sriov.wq);
+>  	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
+>  	if (!xe->sriov.wq)
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
+> index c7b7ad4af5c8..8c518e68d33a 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_types.h
+> @@ -56,4 +56,14 @@ struct xe_device_pf {
+>  	struct mutex master_lock;
+>  };
+>  
+> +struct xe_device_vf {
+
+you need to add kernel-doc for the struct, otherwise below doc will be
+ignored (now) or wrongly interpreted (in near future)
+
+> +	/** @migration: VF Migration state data */
+> +	struct {
+> +		/** @migration.worker: VF migration recovery worker */
+> +		struct work_struct worker;
+> +		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
+
+hmm, if something is per-GT then maybe it should be defined under struct
+xe_gt in the xe_gt_sriov_vf_types.h as
+
+	struct xe_gt_sriov_vf {
+
+	/** @migration.ready: ready for VF migration recovery */
+	bool ready;
+
+> +		unsigned long gt_flags;
+> +	} migration;
+> +};
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> new file mode 100644
+> index 000000000000..0e332bb215fd
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> @@ -0,0 +1,73 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "xe_assert.h"
+> +#include "xe_device.h"
+> +#include "xe_sriov.h"
+> +#include "xe_sriov_vf.h"
+> +#include "xe_sriov_printk.h"
+> +
+> +static void migration_worker_func(struct work_struct *w);
+> +
+> +/**
+> + * xe_sriov_vf_init_early - Initialize SR-IOV VF specific data.
+> + * @xe: the &xe_device to initialize
+> + */
+> +void xe_sriov_vf_init_early(struct xe_device *xe)
+> +{
+> +	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
+> +}
+> +
+> +static void vf_post_migration_recovery(struct xe_device *xe)
+> +{
+> +	drm_dbg(&xe->drm, "migration recovery in progress\n");
+> +	/* FIXME: add the recovery steps */
+> +	drm_notice(&xe->drm, "migration recovery ended\n");
+> +}
+> +
+> +static void migration_worker_func(struct work_struct *w)
+> +{
+> +	struct xe_device *xe = container_of(w, struct xe_device,
+> +					    sriov.vf.migration.worker);
+> +
+> +	vf_post_migration_recovery(xe);
+> +}
+> +
+> +static bool vf_ready_to_recovery_on_all_tiles(struct xe_device *xe)
+
+you likely want to mean "on all GTs", right?
+
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		if (!test_bit(id, &xe->sriov.vf.migration.gt_flags))
+
+		if (!gt->sriov.vf.migration.ready) ?
+
+> +			return false;
+
+as you're testing each GT separately, then maybe it's worth to add
+
+	xe_gt_sriov_dbg_verbose(gt, "still not ready to recover\n");
+
+> +	}
+> +	return true;
+> +}
+> +
+> +/**
+> + * xe_sriov_vf_start_migration_recovery - Start VF migration recovery.
+> + * @xe: the &xe_device to start recovery on
+> + *
+> + * This function shall be called only by VF.
+> + */
+> +void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
+> +{
+> +	bool started;
+> +
+> +	xe_assert(xe, IS_SRIOV_VF(xe));
+> +
+> +	if (!vf_ready_to_recovery_on_all_tiles(xe))
+> +		return;
+> +
+> +	WRITE_ONCE(xe->sriov.vf.migration.gt_flags, 0);
+> +	smp_mb();
+
+IIRC each use of mb requires documentation of "why"
+
+> +
+> +	started = queue_work(xe->sriov.wq, &xe->sriov.vf.migration.worker);
+> +	drm_info(&xe->drm, "VF migration recovery %s\n", started ?
+> +		 "scheduled" : "already in progress");
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> new file mode 100644
+> index 000000000000..7b8622cff2b7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_SRIOV_VF_H_
+> +#define _XE_SRIOV_VF_H_
+> +
+> +struct xe_device;
+> +
+> +void xe_sriov_vf_init_early(struct xe_device *xe);
+> +void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
+> +
+> +#endif
+
