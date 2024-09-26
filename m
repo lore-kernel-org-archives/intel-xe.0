@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46797CCFA0B
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 00:06:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 067F9CCFA0A
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 00:06:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E66810E04C;
-	Thu, 26 Sep 2024 00:06:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F9810E04C;
+	Thu, 26 Sep 2024 00:06:53 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 585EC10E04C;
- Thu, 26 Sep 2024 00:06:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16B510E04C;
+ Thu, 26 Sep 2024 00:06:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Move_IRQ-r?=
- =?utf-8?q?elated_registers_to_dedicated_header?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Move_IRQ-relate?=
+ =?utf-8?q?d_registers_to_dedicated_header?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 00:06:38 -0000
-Message-ID: <172730919835.1103488.8219421653486996257@2413ebb6fbb6>
+Date: Thu, 26 Sep 2024 00:06:52 -0000
+Message-ID: <172730921278.1103488.6096780120641434448@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240923214514.2031410-2-matthew.d.roper@intel.com>
 In-Reply-To: <20240923214514.2031410-2-matthew.d.roper@intel.com>
@@ -44,13 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Move IRQ-related registers to dedicated header
 URL   : https://patchwork.freedesktop.org/series/139013/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 88d592f72f7b drm-tip: 2024y-09m-25d-19h-23m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Move IRQ-related registers to dedicated header
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4ed8dd8d5572b1ffe9cb3a6d9b638be949f2e322
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Mon Sep 23 14:45:11 2024 -0700
+
+    drm/xe: Move IRQ-related registers to dedicated header
+    
+    IRQ registers have a well-defined scope and make sense to collect in a
+    dedicated header file.  This also reduces confusion about the GT IRQ
+    registers --- even though those registers relate to the GTs, they
+    actually live outside the GT (in the sgunit) and thus do not need to
+    worry about GT-specific register concepts like forcewake, steering, etc.
+    
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 88d592f72f7bc508d6a027b1f96aa2e53f803e1b drm-intel
+4ed8dd8d5572 drm/xe: Move IRQ-related registers to dedicated header
+-:96: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#96: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 217 lines checked
 
 
