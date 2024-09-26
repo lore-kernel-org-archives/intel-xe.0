@@ -4,55 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14D70CCFA07
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 07:25:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B4D7CCFA15
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 07:45:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9EA510EAC1;
-	Thu, 26 Sep 2024 07:25:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFE0C10EAD4;
+	Thu, 26 Sep 2024 07:45:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="maF9zTdn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WJMg9bzX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAC210EABF;
- Thu, 26 Sep 2024 07:25:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D88D310E0A3;
+ Thu, 26 Sep 2024 07:45:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727335503; x=1758871503;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cHGmA6EjUc1ABhCzar8KjAaRdUaygmdzjfTN9AmsKDM=;
- b=maF9zTdnyDeTldn+L4ZU/WwSzigC8x6GgRGCtKqe8psay2ITELL5+gAT
- baZ8dFAFBzNQsi4NnmuQCvdBUQ+dv/N6p7LsLpiJCHPRnvYJr0ikxwUYf
- fzp0+nH83TAS6xgWVwhQWawpBEAOsr9pGwVbssOpGD0gY0dkjLPNemM5r
- WTkVtJf7u7jQU/ShAeS3PbF48GkNu/6RB0oXRQBXz2enwCP6F0b8BER/i
- eHUCTupGrnkIEyzhLadGBqVr6Gifr72LgYoMX+T6totsPtuy1hasbaw5w
- 5PmnOUu0zpDjaHbtQHLQUlq6BPtfzBQu93S5eq9DqYRaO1u2XwcD+i/6P g==;
-X-CSE-ConnectionGUID: VxUQf1d8Qwy2S3Eea4s6FQ==
-X-CSE-MsgGUID: thO02amsTwyi3EC+/cZBVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="51829458"
-X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="51829458"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 00:25:03 -0700
-X-CSE-ConnectionGUID: LH6UmPl6Tx2rY5QjjboJGg==
-X-CSE-MsgGUID: YEqb7Sb4S9i2gq3lnI9s6A==
+ t=1727336749; x=1758872749;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gTVkOpoGqWyu8FIyK3go/K4ZeY5u/y4JMRNx8+D2Ot8=;
+ b=WJMg9bzXKE+OM6y4CAcceKmF/dQ/ttgHSMtE8EBT7qSXaDBEkxcozIX4
+ 7WgPK8SnLGINhmnSsGHIinYXIsba0qc1X+6QCTF/EIOAkf2AJIdzdTf8b
+ UvQHH9pOWFBwy1cxeMr0Et2QGaxmJcPdpB7bDyLLo0RYPH0kMEa1FRL7o
+ fo8YUIXOREkxDNO2NgKJAylcqEiGh0zuNMjav17uOBsNWG8kHsVktb7ny
+ rvkBQQCgzXdtfx82ueaNqjpn3GqHL/7Rs/jQCt7NtfZs6C0Be8aoMjTk9
+ Z3hfLxbV/F4D9jbxIVvQHnmXDUaQc7aDNLEbS9uJoyG0jwoOQOpAQUVqk A==;
+X-CSE-ConnectionGUID: 7BAyOU2hRxS2/ie46m2SqQ==
+X-CSE-MsgGUID: RGzqotVvT+KGoVQHd1XBZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="36981347"
+X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="36981347"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 00:45:48 -0700
+X-CSE-ConnectionGUID: sy6OxKxDTLuKP86vjVy8xw==
+X-CSE-MsgGUID: eflbc7DsSp+RAZUIJOQ1Nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="72334459"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 00:25:01 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 10/15] drm/i915/display/vdsc: Add ultrajoiner support with DSC
-Date: Thu, 26 Sep 2024 12:56:33 +0530
-Message-ID: <20240926072638.3689367-11-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
-References: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="76141438"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.143])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 00:45:44 -0700
+Date: Thu, 26 Sep 2024 10:45:41 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next-fixes
+Message-ID: <ZvURJYm5lo-XIzbY@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,126 +77,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Hi Dave & Sima,
 
-Add changes to DSC which are required for Ultrajoiner.
+Here goes final drm-intel-next-fixes towards v6.12.
 
-v2:
--Use correct helper for setting bits for bigjoiner secondary. (Ankit)
--Use primary/secondary instead of master/slave. (Suraj)
-v3: Add the ultrajoiner helpers and use it for setting ultrajoiner
-bits (Ankit)
-v4: Use num_vdsc_instances *= num_joined_pipes (Ville)
-v5: Align the helper to get ultrajoiner enabled pipes with other helpers
-(Ville)
+Just one fix for DP colorimetry detection.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 42 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.h |  3 ++
- drivers/gpu/drm/i915/display/intel_vdsc.c    | 11 ++++-
- 3 files changed, 54 insertions(+), 2 deletions(-)
+Regards, Joonas
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6d8143f62110..4f969e526bdd 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -312,6 +312,48 @@ u8 _intel_modeset_secondary_pipes(const struct intel_crtc_state *crtc_state)
- 	return bigjoiner_secondary_pipes(crtc_state);
- }
- 
-+bool intel_crtc_is_ultrajoiner(const struct intel_crtc_state *crtc_state)
-+{
-+	return intel_crtc_num_joined_pipes(crtc_state) >= 4;
-+}
-+
-+static u8 ultrajoiner_primary_pipes(const struct intel_crtc_state *crtc_state)
-+{
-+	if (!intel_crtc_is_ultrajoiner(crtc_state))
-+		return 0;
-+
-+	return crtc_state->joiner_pipes & (0b00010001 << joiner_primary_pipe(crtc_state));
-+}
-+
-+bool intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	return intel_crtc_is_ultrajoiner(crtc_state) &&
-+	       BIT(crtc->pipe) & ultrajoiner_primary_pipes(crtc_state);
-+}
-+
-+/*
-+ * The ultrajoiner enable bit doesn't seem to follow primary/secondary logic or
-+ * any other logic, so lets just add helper function to
-+ * at least hide this hassle..
-+ */
-+static u8 ultrajoiner_enable_pipes(const struct intel_crtc_state *crtc_state)
-+{
-+	if (!intel_crtc_is_ultrajoiner(crtc_state))
-+		return 0;
-+
-+	return crtc_state->joiner_pipes & (0b01110111 << joiner_primary_pipe(crtc_state));
-+}
-+
-+bool intel_crtc_ultrajoiner_enable_needed(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	return intel_crtc_is_ultrajoiner(crtc_state) &&
-+	       BIT(crtc->pipe) & ultrajoiner_enable_pipes(crtc_state);
-+}
-+
- u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
- {
- 	if (crtc_state->joiner_pipes)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 1f0fed5ea7bc..61e1df878de9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -441,6 +441,9 @@ bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
- bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
- bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state);
- bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state);
-+bool intel_crtc_is_ultrajoiner(const struct intel_crtc_state *crtc_state);
-+bool intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state *crtc_state);
-+bool intel_crtc_ultrajoiner_enable_needed(const struct intel_crtc_state *crtc_state);
- u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
- u8 _intel_modeset_primary_pipes(const struct intel_crtc_state *crtc_state);
- u8 _intel_modeset_secondary_pipes(const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 8158e3702ed5..c3405234dc51 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -379,9 +379,9 @@ static int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state
- int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
- {
- 	int num_vdsc_instances = intel_dsc_get_vdsc_per_pipe(crtc_state);
-+	int num_joined_pipes = intel_crtc_num_joined_pipes(crtc_state);
- 
--	if (crtc_state->joiner_pipes)
--		num_vdsc_instances *= 2;
-+	num_vdsc_instances *= num_joined_pipes;
- 
- 	return num_vdsc_instances;
- }
-@@ -770,7 +770,14 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- 		dss_ctl1_val |= JOINER_ENABLE;
- 	}
- 	if (crtc_state->joiner_pipes) {
-+		if (intel_crtc_ultrajoiner_enable_needed(crtc_state))
-+			dss_ctl1_val |= ULTRA_JOINER_ENABLE;
-+
-+		if (intel_crtc_is_ultrajoiner_primary(crtc_state))
-+			dss_ctl1_val |= PRIMARY_ULTRA_JOINER_ENABLE;
-+
- 		dss_ctl1_val |= BIG_JOINER_ENABLE;
-+
- 		if (intel_crtc_is_bigjoiner_primary(crtc_state))
- 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
- 	}
--- 
-2.45.2
+***
 
+drm-intel-next-fixes-2024-09-26:
+
+- Fix colorimetry detection for DP
+
+The following changes since commit d7126c0cfc137a580eba92bd82b6d288bd43961d:
+
+  Merge tag 'drm-xe-next-fixes-2024-09-19' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2024-09-25 12:11:10 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2024-09-26
+
+for you to fetch changes up to e860513f56d8428fcb2bd0282ac8ab691a53fc6c:
+
+  drm/i915/dp: Fix colorimetry detection (2024-09-25 11:56:23 +0300)
+
+----------------------------------------------------------------
+- Fix colorimetry detection for DP
+
+----------------------------------------------------------------
+Ville Syrj‰l‰ (1):
+      drm/i915/dp: Fix colorimetry detection
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
