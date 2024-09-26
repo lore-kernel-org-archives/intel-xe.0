@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91E4BCCFA15
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 08:38:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3990DCCFA13
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Sep 2024 09:14:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB1710EB11;
-	Thu, 26 Sep 2024 08:38:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7CF310E00C;
+	Thu, 26 Sep 2024 09:14:20 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C4C410EB11;
- Thu, 26 Sep 2024 08:38:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1339295191547617228=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44AD910E00C;
+ Thu, 26 Sep 2024 09:14:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Some_correction_in_the_DP_Link_T?=
- =?utf-8?q?raining_sequence_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Bv2=2C1/2=5D_drm/xe/vm=3A_move_xa=5Falloc_to_prevent_UAF?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Sep 2024 08:38:41 -0000
-Message-ID: <172733992117.1105428.7482232562591230853@2413ebb6fbb6>
+Date: Thu, 26 Sep 2024 09:14:20 -0000
+Message-ID: <172734206027.1105563.10712628133289199926@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240925034432.1777029-1-arun.r.murthy@intel.com>
-In-Reply-To: <20240925034432.1777029-1-arun.r.murthy@intel.com>
+References: <20240925071426.144015-3-matthew.auld@intel.com>
+In-Reply-To: <20240925071426.144015-3-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,129 +40,18 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1339295191547617228==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Some correction in the DP Link Training sequence (rev3)
-URL   : https://patchwork.freedesktop.org/series/139026/
-State : failure
+Series: series starting with [v2,1/2] drm/xe/vm: move xa_alloc to prevent UAF
+URL   : https://patchwork.freedesktop.org/series/139079/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e_BAT -> xe-pw-139026v3_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-139026v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-139026v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-139026v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139026v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6b498b1015e3 drm-tip: 2024y-09m-26d-07h-31m-35s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vm: move xa_alloc to prevent UAF
+Applying: drm/xe/queue: move xa_alloc to prevent UAF
 
 
-Build changes
--------------
-
-  * Linux: xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e -> xe-pw-139026v3
-
-  IGT_8032: 8032
-  xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e: 0c981c182e22df4e1a25cd80f756b5824586e51e
-  xe-pw-139026v3: 139026v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139026v3/index.html
-
---===============1339295191547617228==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Some correction in the DP Link Training sequence (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139026/">https://patchwork.freedesktop.org/series/139026/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139026v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139026v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e_BAT -&gt; xe-pw-139026v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-139026v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-139026v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-139026v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139026v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e -&gt; xe-pw-139026v3</li>
-</ul>
-<p>IGT_8032: 8032<br />
-  xe-1977-0c981c182e22df4e1a25cd80f756b5824586e51e: 0c981c182e22df4e1a25cd80f756b5824586e51e<br />
-  xe-pw-139026v3: 139026v3</p>
-
-</body>
-</html>
-
---===============1339295191547617228==--
