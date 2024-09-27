@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B49FCDD1BB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1953CDD1BA
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 15:21:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C15A10ECDB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A53B910ECE4;
 	Fri, 27 Sep 2024 15:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XZIzpSzb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SwxCfFzp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8AC710ECE5;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD5910ECDB;
  Fri, 27 Sep 2024 15:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1727450476; x=1758986476;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rUQVqVvTExMb1/whoLhjFBo21UZDEUsyMqdB7KVtst8=;
- b=XZIzpSzbMjoNtd7HQbhhZBauq7jqU4K05n69LaG4wulk1m44L6wBddFK
- l0JyxV5ukYKzxcuuE/dXvKAn7ZPSGZCeG+2GQ3JRB6PEHdu7Vga+uktmP
- NFoP0YhcFHexl6CHx3Or6CtDYvygCsw9eMDgYnUBO0kaiIi50bYl0icxW
- nrDjDHOoIOfwlO0saLxUC1pWmz1+MAM0F/NvqunMZXyCr13Eu9SitjmvD
- tgzkp2MrIOFj3b7gLeQzQjOXGdU8pw25NPSPyw++2pDM08O2MiaS2ZrF+
- d14cvxSiNeAp74LTiJZDa7mjWa4DWWmCLLKrbJhpeNyJ90KiNiCrS1Bu5 A==;
-X-CSE-ConnectionGUID: VFchiVL/SFqHmFIDwOchKw==
-X-CSE-MsgGUID: slfHJreHRQGMlMtdxmxSrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179774"
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179774"
+ bh=tth4izH3MHWutaguWpqsR7YMksNTpyX7/oU888tWvWc=;
+ b=SwxCfFzpP3JlcbuQljFqJlEKF/I6g/WSc8YEBRKESzeLJsawpHUdW1Rc
+ Klw/pYj6CcCEoWHyFymFfm8vtV5L7ra3tBR0sli9SAmxav3o5vtFhI8rP
+ Yu6q4QQ+XcjaEUTd2sjQE0hKJHOYAHdRxDZ5hPy+mez5gqI6wusBH9vbN
+ P7h1yolGj/UrtMDUz03H4jOjZKtYi1F2a2mtRkzJy7mMH/XZa+8o65U/j
+ 4Qq76L3bNY4Muu8odGjr395/6QhN3OOVVQbvq86cyn7Jv8PL9GSFJmqvf
+ MAI2tV9snOFF5+Dwq4HV+2YGvhThxAj39TX6B5vx/Q6k2SjZGa0UvT3gu A==;
+X-CSE-ConnectionGUID: /3fBBzHwR5KBIV8UF0ptQQ==
+X-CSE-MsgGUID: U2ljde+wRfe7AB0ROk4fzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179773"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179773"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Sep 2024 08:21:15 -0700
-X-CSE-ConnectionGUID: l9X9/PigQ3+7PUg1w8RSHg==
-X-CSE-MsgGUID: nQpl0Y5sRdetVLGb8uUn7g==
+X-CSE-ConnectionGUID: Jgw0MNTeT6WHzwGwcN2eaw==
+X-CSE-MsgGUID: sorD2JxOQvKSdNQAReSXjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95897060"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95897046"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:21:13 -0700
+ 27 Sep 2024 08:21:11 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 16/17] drm/i915/display: Consider ultrajoiner for computing
- maxdotclock
-Date: Fri, 27 Sep 2024 20:52:40 +0530
-Message-ID: <20240927152241.4014909-17-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 15/17] drm/i915: Compute config and mode valid changes for
+ ultrajoiner
+Date: Fri, 27 Sep 2024 20:52:39 +0530
+Message-ID: <20240927152241.4014909-16-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
 References: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
@@ -69,33 +69,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the check for ultrajoiner while computing maxdotclock.
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-v2: Add Check for HAS_UNCOMPRESSED_JOINER. (Ville)
-v3: Remove extraneous newline. (Ville)
+Implement required changes for mode validation and compute config,
+to support Ultrajoiner.
 
+v2:
+-Drop changes for HDMI.
+-Separate out DSC changes into another patch.
+v3: Fix check in can_ultrajoiner. (Ankit)
+v4:
+-Unify helper to check joiner requirement. (Ville)
+-Split patches for ultrajoiner changes for max dsc slices and compressed
+bpp.(Ankit)
+v5: Fix check for joiner. (Ville)
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 26 +++++++++++++++++++------
+ 1 file changed, 20 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 40ad3fdaab10..74311bb9d290 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8186,8 +8186,9 @@ static int max_dotclock(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index afc35a83eee2..d31bf66a669f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1318,26 +1318,38 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ }
+ 
+ static
+-bool intel_dp_needs_bigjoiner(struct intel_dp *intel_dp,
+-			      struct intel_connector *connector,
+-			      int hdisplay, int clock)
++bool intel_dp_needs_joiner(struct intel_dp *intel_dp,
++			   struct intel_connector *connector,
++			   int hdisplay, int clock,
++			   int num_joined_pipes)
  {
- 	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
  
--	/* icl+ might use joiner */
--	if (HAS_BIGJOINER(i915))
-+	if (HAS_ULTRAJOINER(i915))
-+		max_dotclock *= 4;
-+	else if (HAS_UNCOMPRESSED_JOINER(i915) || HAS_BIGJOINER(i915))
- 		max_dotclock *= 2;
+ 	if (!intel_dp_has_joiner(intel_dp))
+ 		return false;
  
- 	return max_dotclock;
+-	return clock > i915->display.cdclk.max_dotclk_freq || hdisplay > 5120;
++	num_joined_pipes /= 2;
++
++	return clock > num_joined_pipes * i915->display.cdclk.max_dotclk_freq ||
++	       hdisplay > num_joined_pipes * 5120;
+ }
+ 
+ int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
+ 			      struct intel_connector *connector,
+ 			      int hdisplay, int clock)
+ {
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct drm_i915_private *i915 = to_i915(display->drm);
++
+ 	if (connector->force_joined_pipes)
+ 		return connector->force_joined_pipes;
+ 
+-	if (intel_dp_needs_bigjoiner(intel_dp, connector, hdisplay, clock))
++	if (HAS_ULTRAJOINER(i915) &&
++	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 4))
++		return 4;
++
++	if ((HAS_BIGJOINER(i915) || HAS_UNCOMPRESSED_JOINER(i915)) &&
++	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 2))
+ 		return 2;
+ 
+ 	return 1;
+@@ -2543,8 +2555,10 @@ bool intel_dp_joiner_needs_dsc(struct drm_i915_private *i915,
+ 	 * Pipe joiner needs compression up to display 12 due to bandwidth
+ 	 * limitation. DG2 onwards pipe joiner can be enabled without
+ 	 * compression.
++	 * Ultrajoiner always needs compression.
+ 	 */
+-	return !HAS_UNCOMPRESSED_JOINER(i915) && num_joined_pipes == 2;
++	return (!HAS_UNCOMPRESSED_JOINER(i915) && num_joined_pipes == 2) ||
++		num_joined_pipes == 4;
+ }
+ 
+ static int
 -- 
 2.45.2
 
