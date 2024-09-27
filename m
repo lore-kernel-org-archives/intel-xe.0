@@ -4,55 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBFC5CDD1CE
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 16:13:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00A78CDD1CE
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 16:13:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE35210E214;
-	Fri, 27 Sep 2024 16:13:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C118710E214;
+	Fri, 27 Sep 2024 16:13:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsCpz/J4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YhReeVnH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3D6A10E214
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 16:13:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC3E810E211;
+ Fri, 27 Sep 2024 16:13:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727453591; x=1758989591;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YKLSjDOdJk2ll530VEccYDIrZSHW56Tmq2M/m6rZvvY=;
- b=gsCpz/J46/WnkOPCaKjYB+db4X1CwkxRoys6NDDX7dmmbPHTKdsgF0A2
- KacOyzQnC4CTYFrplvU8NZYAOrNeSrquAUMUZhxrY9TsI1gDVlzB7a6p5
- o2V351/GV+QYxYIffH9UB5XZ8QvxVELDm9MAZl50jYYj6zkYUqkdZit0K
- wgeVLgURG+aBku9svtMYsV8W06a3WRFqUTog06BtEIzb5NcJJzJYHdk+K
- 6rvO+fNpPncpsWFUEn1Wh88q1lMKFmHmj3pFb5zSiMNOO9dOE6dgkqPBD
- JVB8hNSD31KVfU4VektGMsIx4ql12MERN9lEa31ghKjASqjZLB3D8aan2 g==;
-X-CSE-ConnectionGUID: vh0khjRLQeyL/Jf+/xlFkw==
-X-CSE-MsgGUID: PwAocx17Sle6fm+4Sd21Bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26736448"
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="26736448"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 09:13:11 -0700
-X-CSE-ConnectionGUID: m9G/MjuyRnSkC+zTkIWvDg==
-X-CSE-MsgGUID: zENX5SI7QpO62Uy1QqcyQg==
+ t=1727453610; x=1758989610;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=+MJg3WOQtYVSnc3+jGpL6wyZZGOL0rV+GUCx5tbXBCk=;
+ b=YhReeVnH46upTD0/Q581m4CKK/lmgaeEttuNpRMwfm9zRVauC3Kh1ZKL
+ pY8SHJJgdDBsnqh/u+9+arAkUeamTchJp6T0hnH26DmpmoRe4gnzB27Zv
+ q8nwLxsNIFC9Cf+tbcqOjJNMtmjqFFO8n5oXQonBKCIzrOHnGJG9c0LYl
+ 1ZsLbU3ILgmyEUAQLOuOIHReKo/Rn3dlqlevbsIhP1ebWRWvQkvyuXkh1
+ /uggxtI9fTG3luQCtcb/NvyvOcjv7MWPUsa4MgzZvGzA7DUn+GRP8K035
+ VrNcU9mINCL8LS1J9pGDVtmxCVpCKHvEFDJ3u3SLneDWEtmpZ25kvnQAZ Q==;
+X-CSE-ConnectionGUID: 129HPSxjR6uQ8s32vYUzzw==
+X-CSE-MsgGUID: F3hCehg4RkW98AkTZKpEQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="14226015"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="14226015"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 09:13:29 -0700
+X-CSE-ConnectionGUID: 6mEsMcCjQwSZWQFG5gxBFQ==
+X-CSE-MsgGUID: 49+a7J5FSQi+qTm1mfKF7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="72740166"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by fmviesa008.fm.intel.com with ESMTP; 27 Sep 2024 09:13:11 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v4 1/1] drm/xe: Prevent null pointer access in xe_migrate_copy
-Date: Fri, 27 Sep 2024 09:13:08 -0700
-Message-Id: <20240927161308.862323-2-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240927161308.862323-1-zhanjun.dong@intel.com>
-References: <20240927161308.862323-1-zhanjun.dong@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="72157628"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Sep 2024 09:13:29 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 27 Sep 2024 09:13:28 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 27 Sep 2024 09:13:28 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 27 Sep 2024 09:13:28 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.46) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 27 Sep 2024 09:13:28 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GwkB3AqZK6CpjEQgkLPtb1AN8shURZ3jFKE61jjkUrprYsv5MA+y+QWLF5M+EJsjGxOEb0IS/u4mRdHSPZQDXXJ3hxVwejafqnsOSp/byjxVtjAtqHO0jPTPZMaQBYCxGLfsHk2GUWET+CtKejbTyHl8v2KeijEfitTC3GsWex/epAfJhKFLe++smD7pRELjcgdscUUurohDyvXyKyw5i/YabJCSTvChUM2O1ig1c+KsotuFnuk1A92KAGe3n9rw06OYG/mo6xp2YkPlPkH1pm+TEmObHjU0MBS7KfDX5nFw4BX+s+q6wtPNUuyGppNPLqHZABJhzSvuBVp+W7st+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AJXWG3AHp9dGgagivHsw1YBOyxmig6muce7eWlTwtIs=;
+ b=nIFppsHvTA9WqbONcqZEE63so3YiCVCCqq4/LyG2gxUJyYRUHbS2rks1JpjxqgQz7cX4JK9FdW8SW0Ec41TWmU4DXzhRDSHNCmAlg481OlWIxIZd3KErZf8PgXChp+TyKaAagS8SiElPt9/qUtvVhlB7U1FR/e+5sAP7l6jtgcrtB7VD6EKcoVRrWMAjwWS15gglswTIpiXfgjzKkjEbcGqFnVPPc+WgxdFUvmUYl+Zhz1zUaduT2X4iza7P9cb1JMAnZicBZPaBdkype8h6KBJ9ERMeveX85/T56zzlSKRNg4vwr68WVnTrPHt+pul7m1V9PrNpWfDZZocbZ3yjKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SN6PR11MB2864.namprd11.prod.outlook.com (2603:10b6:805:63::26)
+ by DS7PR11MB7808.namprd11.prod.outlook.com (2603:10b6:8:ee::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7982.28; Fri, 27 Sep 2024 16:13:25 +0000
+Received: from SN6PR11MB2864.namprd11.prod.outlook.com
+ ([fe80::c58f:66d9:46c0:d83d]) by SN6PR11MB2864.namprd11.prod.outlook.com
+ ([fe80::c58f:66d9:46c0:d83d%6]) with mapi id 15.20.7982.016; Fri, 27 Sep 2024
+ 16:13:25 +0000
+Date: Fri, 27 Sep 2024 12:13:20 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: Lucas De Marchi <lucas.demarchi@intel.com>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 0/9] drm/i915/display: platform identification with
+ display->is.<PLATFORM>
+Message-ID: <ZvbZoIyzcg-EZ9ic@intel.com>
+References: <cover.1724092799.git.jani.nikula@intel.com>
+ <Zs-LdJYx_lVDt9PC@intel.com> <ZtCb5yc6KCy1S6bo@intel.com>
+ <87wmj14c0q.fsf@intel.com>
+ <m4uj2hvgkcuingb6rqqth7jc3qpa4g77xebi2wtyyt3a6hadqg@fufb76wcea6j>
+ <87ldzh41hb.fsf@intel.com> <ZvV2ssfgHA8jvTro@intel.com>
+ <87zfntxpew.fsf@intel.com> <ZvbGARm3OSe38HUV@intel.com>
+ <87bk09xhqx.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <87bk09xhqx.fsf@intel.com>
+X-ClientProxiedBy: MW4PR03CA0230.namprd03.prod.outlook.com
+ (2603:10b6:303:b9::25) To SN6PR11MB2864.namprd11.prod.outlook.com
+ (2603:10b6:805:63::26)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR11MB2864:EE_|DS7PR11MB7808:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2583d8a0-58b9-4819-8e90-08dcdf0f5054
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?dj9xW5doR+dYksCAQysVxEPoWef4jW+x4aIs0lPeQOFRdWbxM9ZlfLPA1R1g?=
+ =?us-ascii?Q?D4E0jCttie29K9bzhBZiHDxEShEfeS+9OS3GA/NiAqulZZOH0ryqvk/TR7ai?=
+ =?us-ascii?Q?2VZOj8vv/endw09Ud4VjFcWj8iUa03fh1bCzyRwsLv2gtHffXlbiNfTI4VLM?=
+ =?us-ascii?Q?iTdQ+jFjTALnIgbvLLRC4JGwUr5i5UtOOkuGsC6Ty11kD/WOcSucQe57c5PG?=
+ =?us-ascii?Q?fw2HBmlnqZ0UhG272qFLeofup/R94rgy0MvixAHmRECa/tnawhJMZVqKvMzN?=
+ =?us-ascii?Q?6gtYuBJ2kOhfynylJku/ZmHKOr9q4nXvVtutMzIFsohIQj5Z2LqFcDXNcOKK?=
+ =?us-ascii?Q?9sqccBt8WEICw5u8Zrm1jWggYRxe/mu3Ys8V4WwMALjMwsrYZKXVa1oriKkG?=
+ =?us-ascii?Q?kabzaxWYxSl6T0XUjMB1qoD0VOM2K4UEsvAOQ0QUHpM6l5TGxaAC2/x4J/5e?=
+ =?us-ascii?Q?l7ikdcBJ0DEbEzDbO60iZ5lxI7V4zE4QojFDcp1pyKoFjGk/sxQqYfJrm8W3?=
+ =?us-ascii?Q?8sLJNbkkZpKlmyusoF3a6380y3Am+qf2XcQ+f6Lt61XthFKolK0QarCaGYID?=
+ =?us-ascii?Q?sRdU8MCNne9/cqjrh5nMTGXx+zYyLjv5k2+tWaU4tc4zNHBqhWf0bwyh/C8d?=
+ =?us-ascii?Q?eDTAFMCWjRHIX1Qw0buOsR60cQo/wlY9SMN34T9OFRnHS4jJXVbi6pWtsBuP?=
+ =?us-ascii?Q?C2gUYLKa+ClyPyAGUzvg3EUVgKgLdLpRZuDlPmzBF6zundHm0VAPd8wkoZUi?=
+ =?us-ascii?Q?lpgDKIZvb+JyANvErPXLujjEnsuA4scUeD5hffLRoh31D+NaDbcgktppM3Mv?=
+ =?us-ascii?Q?JwMwN2uRadGT1GHd1sKYks7sTM0hS+x3CV3XhQ2tL1CbfAeVJZ1qgzgowJj7?=
+ =?us-ascii?Q?1XCtkZMG+X/KxhBVaTWpvJ2dgU9iJsgWJkPprHc0UM3dqxu6ZlK7IdmbqiHA?=
+ =?us-ascii?Q?U0rsqY1y01R5NoNCpa6UHiX8QySXo74IbIpj5MwU4boILLLaCQB+syPZSpCN?=
+ =?us-ascii?Q?J+xlNMc0JF+IVGXL59Q6csU7pFlMsRydmX7faU6oBVuHyt8/HhfFa7Ig63nD?=
+ =?us-ascii?Q?QpVAYPs/gGsTb6sQQEx7J2EQkxLFMmsrCEMVvY5WYVL7xozAOq0rye9aDEk5?=
+ =?us-ascii?Q?tPPGsNbw7glTK7tHiMLH5To2kSSdmaKHZECXf9gXItoiQzwUOaNuweUeqyjs?=
+ =?us-ascii?Q?TFrTcz18ukoA9PpP1eSOhCx6+MJqoXRZifj+RKkIday5hCRoZKqaWXmjq4q1?=
+ =?us-ascii?Q?Bk0vtnWpbp3BhboOL2WDH3t2v76vpepD8fQY87yDz8wCPwNFK6z8RzgHXhKz?=
+ =?us-ascii?Q?faBkEE8qAD9aEet0ALFz8zGv4VYXzouahjUDUc7qHpEO3w=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR11MB2864.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Sxe3ws9kTGUewSgMp/f1mUYsjmSLNH0+iuYbpYjc9YSnUq3OGnZyeRNW7EZu?=
+ =?us-ascii?Q?Pu/P2uCrl1oIlhzTMWUX4lkR7nb5nmd++d1S6y8HEMzgOGhnPO10+XZ7N4mG?=
+ =?us-ascii?Q?sDeczdYjXoziHHvZSgmjy8HeYndko05vvVPWtqa5a5+AmMTuD/kV9zT5PQll?=
+ =?us-ascii?Q?Ln4smZTouiWZE7Ts5qGb6C8ng6ni90HUaqu/cOm3n6FW5RzOQwpANW5fwvYG?=
+ =?us-ascii?Q?24sC5C/CTZ0HTwGx7NK5RLrK1vJSA8VQbWbphA1YobEDvgCzJfdO/jJWK+7S?=
+ =?us-ascii?Q?ZYoddKj66PKHc37Ho9E3ev2DsXuaYPeC4Nq/mRBE5G8z3bEHKlk2LEHsaZ9L?=
+ =?us-ascii?Q?kYZJ8wYMKeyFzka8JfkSGOVTnxmZqHdOV0jT5j7mzGt1yd6S1WpYku9Ma5Ok?=
+ =?us-ascii?Q?0krAmIcrGK836D2mIDaTDFVb7fbrLIdnHueU6kVin5hRwIKxTtYFcHoKtHAn?=
+ =?us-ascii?Q?EAiHdnnBITyOpUDHTeCQIViZfBy91uZD2NLF2AMNUC4jQhaRSwR4Hp2p1ElA?=
+ =?us-ascii?Q?aFCKVv3+GdilFixA4B4h3/PkdkQIaYsE+Y538o4Y7nA+rFyc52Ja8gtmc1gY?=
+ =?us-ascii?Q?qrP9jRkI/WoZ4lGeNtTCIk85RHfcKQpykHKm/hC7jA3kagila0hQO/FK8B8i?=
+ =?us-ascii?Q?EUVWLNfX4zQvWs7wjeGOeWAiD8n+DP94rKY5XHK+hxOPQeX+tp1qlOR52GrZ?=
+ =?us-ascii?Q?9LH7Xawno2w7DrnRVovdynwMPbfKg5dZl+7b5T+v4cE+NyNiS+VXEyD0ECVU?=
+ =?us-ascii?Q?gVuSB+8ibIlO+1Q4oiFulS4kJ3hIrWj5Yn0ib+r2tGAf4Q70Ufrgr+/ljKN4?=
+ =?us-ascii?Q?wUrCY/VJprAPHgZ1AmUfSmyfJNT/HHW8SwOI474sxt6v5P6ivGCUz0CC86kA?=
+ =?us-ascii?Q?xrHhjRyzXzL++wzLlWuDSOBisOKARZiwpxCFeJ+kiNdSNDkw9zjT121FBVHg?=
+ =?us-ascii?Q?fPSdbevrbv6aeRbRmdvo3TD6I742gDJQ43iv2d9nRDgT3Bgo2lvTmK9SUQM5?=
+ =?us-ascii?Q?ZV/8a1e3Ax46nRyn+uM4h1yW1hrDBdNys+O8BzwuhXZOKsS+Mx6qUd7Ssete?=
+ =?us-ascii?Q?Ir0WVUSGrvGera0IUBEK/3T74oHnEVhdIxr8Whxas0m94SJ9FeDlADEOinQe?=
+ =?us-ascii?Q?FdQrTpZFCRxYxrXLppFCNNUU2l5axb34l2wmpb7uwowamWMnmEl1hBHOuVrF?=
+ =?us-ascii?Q?xCXTg21thVta6URZG0Za3uEq6bZyhXZVhna1TqsSHkwB9uLLE3OkCN3iQhEE?=
+ =?us-ascii?Q?DEIfdAP1UZNB7v0btZ8yXDvM6CLdfjzE9mErLCNcJ3bfui0XYRsGYbHvDrcu?=
+ =?us-ascii?Q?IbW9hRiQ2S+tuGfqhTXE9HfF0N4/Dj0m6aVx6P0FdZjPhhkuOh11G6PiUJqi?=
+ =?us-ascii?Q?34VkbCVlfdQvQkldKJhbJbysn4LxsJkXnWdaepWB/Pw1q5O4sGThVDd/rar6?=
+ =?us-ascii?Q?u9740vaZgQ/snsxFNlrMdHQM5l2kH9IvctqBkhNzArT+pTlFZRbrHSubl2hw?=
+ =?us-ascii?Q?UByCpZGTXUfWB1TXT09JnKJtoP1Dd+3r4FGVOCItRmILEenHLh/H6gud2H08?=
+ =?us-ascii?Q?FmBUZ4lqka5agnvoh079eD8V5XRFoLzgGZ9kthuh90hDWc7u0G7Wo9MXqVsV?=
+ =?us-ascii?Q?/w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2583d8a0-58b9-4819-8e90-08dcdf0f5054
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2864.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2024 16:13:24.8467 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4htKtDjp5S1G9WYqGKy21/JIxU648TOP3yVUrWDHZnJGlLkVIJYra1hEeNSGrzJUDwCRlyZ6XfDE48cl99gYQQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7808
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,115 +187,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_migrate_copy designed to copy content of TTM resources. When source
-resource is null, it will trigger a NULL pointer dereference in
-xe_migrate_copy. To avoid this situation, update lacks source flag to
-true for this case, the flag will trigger xe_migrate_clear rather than
-xe_migrate_copy.
+On Fri, Sep 27, 2024 at 06:01:58PM +0300, Jani Nikula wrote:
+> On Fri, 27 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> > On Fri, Sep 27, 2024 at 03:16:23PM +0300, Jani Nikula wrote:
+> >> For example, RPL-S:
+> >> 
+> >> 
+> >> 	if (display->platform.alderlake_s_raptorlake_s)
+> >> 
+> >> But the main platform also matches its subplatforms:
+> >> 
+> >> 	if (display->platform.alderlake_s)
+> >> 
+> >> This is the same as with the patches at hand. Except for the
+> >> uppercase/lowercase difference, and s/is/platform/.
+> >
+> > Yeap, let's go with that then!
+> 
+> Double-checking: do you want both s/is/platform *and* lowercase?
+> 
+> 	if (display->platform.alderlake_s_raptorlake_s)
+> 
+> Mulling over this I've ended up preferring lowercase. (Maybe need to do
+> something to pretty print them to logs.)
 
-Issue trace:
-<7> [317.089847] xe 0000:00:02.0: [drm:xe_migrate_copy [xe]] Pass 14,
- sizes: 4194304 & 4194304
-<7> [317.089945] xe 0000:00:02.0: [drm:xe_migrate_copy [xe]] Pass 15,
- sizes: 4194304 & 4194304
-<1> [317.128055] BUG: kernel NULL pointer dereference, address:
- 0000000000000010
-<1> [317.128064] #PF: supervisor read access in kernel mode
-<1> [317.128066] #PF: error_code(0x0000) - not-present page
-<6> [317.128069] PGD 0 P4D 0
-<4> [317.128071] Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
-<4> [317.128074] CPU: 1 UID: 0 PID: 1440 Comm: kunit_try_catch Tainted:
- G     U           N 6.11.0-rc7-xe #1
-<4> [317.128078] Tainted: [U]=USER, [N]=TEST
-<4> [317.128080] Hardware name: Intel Corporation Lunar Lake Client
- Platform/LNL-M LP5 RVP1, BIOS LNLMFWI1.R00.3221.D80.2407291239 07/29/2024
-<4> [317.128082] RIP: 0010:xe_migrate_copy+0x66/0x13e0 [xe]
-<4> [317.128158] Code: 00 00 48 89 8d e0 fe ff ff 48 8b 40 10 4c 89 85 c8
- fe ff ff 44 88 8d bd fe ff ff 65 48 8b 3c 25 28 00 00 00 48 89 7d d0 31
- ff <8b> 79 10 48 89 85 a0 fe ff ff 48 8b 00 48 89 b5 d8 fe ff ff 83 ff
-<4> [317.128162] RSP: 0018:ffffc9000167f9f0 EFLAGS: 00010246
-<4> [317.128164] RAX: ffff8881120d8028 RBX: ffff88814d070428 RCX:
- 0000000000000000
-<4> [317.128166] RDX: ffff88813cb99c00 RSI: 0000000004000000 RDI:
- 0000000000000000
-<4> [317.128168] RBP: ffffc9000167fbb8 R08: ffff88814e7b1f08 R09:
- 0000000000000001
-<4> [317.128170] R10: 0000000000000001 R11: 0000000000000001 R12:
- ffff88814e7b1f08
-<4> [317.128172] R13: ffff88814e7b1f08 R14: ffff88813cb99c00 R15:
- 0000000000000001
-<4> [317.128174] FS:  0000000000000000(0000) GS:ffff88846f280000(0000)
- knlGS:0000000000000000
-<4> [317.128176] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [317.128178] CR2: 0000000000000010 CR3: 000000011f676004 CR4:
- 0000000000770ef0
-<4> [317.128180] DR0: 0000000000000000 DR1: 0000000000000000 DR2:
- 0000000000000000
-<4> [317.128182] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7:
- 0000000000000400
-<4> [317.128184] PKRU: 55555554
-<4> [317.128185] Call Trace:
-<4> [317.128187]  <TASK>
-<4> [317.128189]  ? show_regs+0x67/0x70
-<4> [317.128194]  ? __die_body+0x20/0x70
-<4> [317.128196]  ? __die+0x2b/0x40
-<4> [317.128198]  ? page_fault_oops+0x15f/0x4e0
-<4> [317.128203]  ? do_user_addr_fault+0x3fb/0x970
-<4> [317.128205]  ? lock_acquire+0xc7/0x2e0
-<4> [317.128209]  ? exc_page_fault+0x87/0x2b0
-<4> [317.128212]  ? asm_exc_page_fault+0x27/0x30
-<4> [317.128216]  ? xe_migrate_copy+0x66/0x13e0 [xe]
-<4> [317.128263]  ? __lock_acquire+0xb9d/0x26f0
-<4> [317.128265]  ? __lock_acquire+0xb9d/0x26f0
-<4> [317.128267]  ? sg_free_append_table+0x20/0x80
-<4> [317.128271]  ? lock_acquire+0xc7/0x2e0
-<4> [317.128273]  ? mark_held_locks+0x4d/0x80
-<4> [317.128275]  ? trace_hardirqs_on+0x1e/0xd0
-<4> [317.128278]  ? _raw_spin_unlock_irqrestore+0x31/0x60
-<4> [317.128281]  ? __pm_runtime_resume+0x60/0xa0
-<4> [317.128284]  xe_bo_move+0x682/0xc50 [xe]
-<4> [317.128315]  ? lock_is_held_type+0xaa/0x120
-<4> [317.128318]  ttm_bo_handle_move_mem+0xe5/0x1a0 [ttm]
-<4> [317.128324]  ttm_bo_validate+0xd1/0x1a0 [ttm]
-<4> [317.128328]  shrink_test_run_device+0x721/0xc10 [xe]
-<4> [317.128360]  ? find_held_lock+0x31/0x90
-<4> [317.128363]  ? lock_release+0xd1/0x2a0
-<4> [317.128365]  ? __pfx_kunit_generic_run_threadfn_adapter+0x10/0x10
- [kunit]
-<4> [317.128370]  xe_bo_shrink_kunit+0x11/0x20 [xe]
-<4> [317.128397]  kunit_try_run_case+0x6e/0x150 [kunit]
-<4> [317.128400]  ? trace_hardirqs_on+0x1e/0xd0
-<4> [317.128402]  ? _raw_spin_unlock_irqrestore+0x31/0x60
-<4> [317.128404]  kunit_generic_run_threadfn_adapter+0x1e/0x40 [kunit]
-<4> [317.128407]  kthread+0xf5/0x130
-<4> [317.128410]  ? __pfx_kthread+0x10/0x10
-<4> [317.128412]  ret_from_fork+0x39/0x60
-<4> [317.128415]  ? __pfx_kthread+0x10/0x10
-<4> [317.128416]  ret_from_fork_asm+0x1a/0x30
-<4> [317.128420]  </TASK>
+I believe that I like the lowercase more too.
+We could have a map for the debug prints, but I would delay this, because
+that could end up in discussions with marketing brand strings... :/
 
-Fixes: 266c85885263 ("drm/xe/xe2: Handle flat ccs move for igfx.")
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> And just the platform without "is_" prefix, i.e. *not*:
+> 
+> 	if (display->platform.is_alderlake_s_raptorlake_s)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5f2f1ec46b57..5e8f60a8d431 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -682,8 +682,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	tt_has_data = ttm && (ttm_tt_is_populated(ttm) ||
- 			      (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
- 
--	move_lacks_source = handle_system_ccs ? (!bo->ccs_cleared)  :
--						(!mem_type_is_vram(old_mem_type) && !tt_has_data);
-+	move_lacks_source = !old_mem || (handle_system_ccs ? (!bo->ccs_cleared) :
-+					 (!mem_type_is_vram(old_mem_type) && !tt_has_data));
- 
- 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
- 		(!ttm && ttm_bo->type == ttm_bo_type_device);
--- 
-2.34.1
+I like the version without 'is' better...
 
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> -- 
+> Jani Nikula, Intel
