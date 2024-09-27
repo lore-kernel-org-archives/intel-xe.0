@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1F20CDD1B3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2331CDD1B5
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 14:14:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE62D10E1B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75FD910EC74;
 	Fri, 27 Sep 2024 14:14:12 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D9C110EC67
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 14:14:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E68410EC67
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 14:14:07 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 14/14] drm/xe: Initialise GGTT later
-Date: Fri, 27 Sep 2024 16:14:04 +0200
-Message-ID: <20240927141404.163317-15-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 11/14] drm/xe: Move struct xe_ggtt to xe_ggtt.c
+Date: Fri, 27 Sep 2024 16:14:01 +0200
+Message-ID: <20240927141404.163317-12-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
 References: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
@@ -37,42 +37,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we know that nobody is using GGTT any more, postpone
-initialisation to prevent any new allocations.
+No users left outside of xe_ggtt.c, so we can make the struct private.
 
-This prevents any new users from popping up.
+This prevents us from accidentally touching it before init.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c       | 37 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt_types.h | 39 +-----------------------------
+ 2 files changed, 38 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index eda34e284b16..330358ecb9c4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -675,9 +675,6 @@ int xe_device_probe(struct xe_device *xe)
- 			if (err)
- 				return err;
- 		}
--		err = xe_ggtt_init_early(tile->mem.ggtt);
--		if (err)
--			return err;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index a2be883c67e8..ae091d3ca94d 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -74,6 +74,43 @@ struct xe_ggtt_pt_ops {
+ 	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+ };
  
- 	for_each_gt(gt, xe, id) {
-@@ -709,6 +706,11 @@ int xe_device_probe(struct xe_device *xe)
- 		err = xe_tile_init_noalloc(tile);
- 		if (err)
- 			goto err;
++/**
++ * struct xe_ggtt - Main GGTT struct
++ *
++ * In general, each tile can contains its own Global Graphics Translation Table
++ * (GGTT) instance.
++ */
++struct xe_ggtt {
++	/** @tile: Back pointer to tile where this GGTT belongs */
++	struct xe_tile *tile;
++	/** @size: Total size of this GGTT */
++	u64 size;
 +
-+		/* Initialise GGTT, before this point no allocations are allowed */
-+		err = xe_ggtt_init_early(tile->mem.ggtt);
-+		if (err)
-+			return err;
- 	}
++#define XE_GGTT_FLAGS_64K BIT(0)
++	/**
++	 * @flags: Flags for this GGTT
++	 * Acceptable flags:
++	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
++	 */
++	unsigned int flags;
++	/** @scratch: Internal object allocation used as a scratch page */
++	struct xe_bo *scratch;
++	/** @lock: Mutex lock to protect GGTT data */
++	struct mutex lock;
++	/**
++	 *  @gsm: The iomem pointer to the actual location of the translation
++	 * table located in the GSM for easy PTE manipulation
++	 */
++	u64 __iomem *gsm;
++	/** @pt_ops: Page Table operations per platform */
++	const struct xe_ggtt_pt_ops *pt_ops;
++	/** @mm: The memory manager used to manage individual GGTT allocations */
++	struct drm_mm mm;
++	/** @access_count: counts GGTT writes */
++	unsigned int access_count;
++	/** @wq: Dedicated unordered work queue to process node removals */
++	struct workqueue_struct *wq;
++};
  
- 	/* Allocate and map stolen after potential VRAM resize */
+ static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
+ 				   u16 pat_index)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index c142ff59c450..8b0fd528569d 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -12,47 +12,10 @@
+ 
+ struct xe_bo;
+ struct xe_gt;
++struct xe_ggtt;
+ 
+ typedef u64 (*xe_ggtt_pte_encode_bo_fn)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
+ 
+-/**
+- * struct xe_ggtt - Main GGTT struct
+- *
+- * In general, each tile can contains its own Global Graphics Translation Table
+- * (GGTT) instance.
+- */
+-struct xe_ggtt {
+-	/** @tile: Back pointer to tile where this GGTT belongs */
+-	struct xe_tile *tile;
+-	/** @size: Total size of this GGTT */
+-	u64 size;
+-
+-#define XE_GGTT_FLAGS_64K BIT(0)
+-	/**
+-	 * @flags: Flags for this GGTT
+-	 * Acceptable flags:
+-	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
+-	 */
+-	unsigned int flags;
+-	/** @scratch: Internal object allocation used as a scratch page */
+-	struct xe_bo *scratch;
+-	/** @lock: Mutex lock to protect GGTT data */
+-	struct mutex lock;
+-	/**
+-	 *  @gsm: The iomem pointer to the actual location of the translation
+-	 * table located in the GSM for easy PTE manipulation
+-	 */
+-	u64 __iomem *gsm;
+-	/** @pt_ops: Page Table operations per platform */
+-	const struct xe_ggtt_pt_ops *pt_ops;
+-	/** @mm: The memory manager used to manage individual GGTT allocations */
+-	struct drm_mm mm;
+-	/** @access_count: counts GGTT writes */
+-	unsigned int access_count;
+-	/** @wq: Dedicated unordered work queue to process node removals */
+-	struct workqueue_struct *wq;
+-};
+-
+ /**
+  * struct xe_ggtt_node - A node in GGTT.
+  *
 -- 
 2.45.2
 
