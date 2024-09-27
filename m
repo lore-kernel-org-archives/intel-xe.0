@@ -4,63 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0026CCEBF9C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 12:16:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C6D9CEBF9C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 12:28:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B892810E150;
-	Fri, 27 Sep 2024 12:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E182A10E357;
+	Fri, 27 Sep 2024 12:28:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mao6Bi5x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TK8vppN6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F08810E066;
- Fri, 27 Sep 2024 12:16:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0EA10E357;
+ Fri, 27 Sep 2024 12:28:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727439403; x=1758975403;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=w3A1BjWhcSfirgEzQiAdug/W08sfPw9gZE3Lpnawva8=;
- b=Mao6Bi5xKEWLZpGkeSN+kmChHX1LbE0qO3X+Z+bRB5HdV8R28tkXgB+c
- NuJUBVyk2BE6dNSW7v5n+63Ob5T6ZQafy7JoqJn2kMn1MJYcwIT5IoWVB
- Fe9F9sDK+VxFlodHeMdz+P1FTPc0QLNPqLtrGDgKMM3KWRBkoeTewkf9m
- o6KPhQDZv0/8dV2ijQ6F7f3J6uYii8o7EovCtkNBt8g9q50RIteqbycEY
- L7N3Vjq4TuTqCr5NvNtecIvukroPqzEdkRGUPcZp9D6axbFMC2/5Y4bQp
- Zu598UQMn9SwDmdeb9FCglE89UILSvAHPtdFSgp80siEexdKhDJKqmNko w==;
-X-CSE-ConnectionGUID: +ExTj6e4RACvvV/u2gZwIw==
-X-CSE-MsgGUID: 3nli4du+Rm6pzJVccMp87Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26090137"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26090137"
+ t=1727440083; x=1758976083;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hW6GLe4YnjveRJZc7v9lfnPRqgZEY7lf5pK2rSJ0fPM=;
+ b=TK8vppN6Grgk9CN5rbgv9+g74c9mwvU1a9xOs+V1IWB6SUsBNIK3Efpy
+ 3APLgQ+mqKC4OTyk9peISPZuJWT0yDxbDTvdaZ6N9KSKxugRzvdZc6OUh
+ LwaVf0oT7b5Ow46EYHmogKK9W4Bf4JjhDyim/jyuuDCtDXyf51vbDCNUB
+ +6yJ1cmdx5QQyby0c29r2X64FS1qFPdIBZTXFxD2RRZL/FeGDEBVTeeXo
+ 7eCBM/BcEfy504frQvGRR5Wx1EWJvvv/JJp4YjU9ULvg2XSS5jzmEbNDE
+ Kynal46258BqXVzwXS8Bp8C7DC8M+O1kOBSsauf8kUk5/miSh62CPTIAX g==;
+X-CSE-ConnectionGUID: 28/DFxRSSUGi24Z1fT+imA==
+X-CSE-MsgGUID: FMCUjCAxSUqHMR+WwwXvpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26091085"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26091085"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 05:16:32 -0700
-X-CSE-ConnectionGUID: Y/3u0UFxQUygtsQKWF7wTA==
-X-CSE-MsgGUID: c5UPGoKsQ+CalMbh3mx8ZQ==
+ 27 Sep 2024 05:28:03 -0700
+X-CSE-ConnectionGUID: RjteMfyHRkGEegORf0NHAQ==
+X-CSE-MsgGUID: jJo1O4IBTG+LP8sM76tzFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72690451"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.211])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 05:16:29 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Ville
- =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/9] drm/i915/display: platform identification with
- display->is.<PLATFORM>
-In-Reply-To: <ZvV2ssfgHA8jvTro@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1724092799.git.jani.nikula@intel.com>
- <Zs-LdJYx_lVDt9PC@intel.com> <ZtCb5yc6KCy1S6bo@intel.com>
- <87wmj14c0q.fsf@intel.com>
- <m4uj2hvgkcuingb6rqqth7jc3qpa4g77xebi2wtyyt3a6hadqg@fufb76wcea6j>
- <87ldzh41hb.fsf@intel.com> <ZvV2ssfgHA8jvTro@intel.com>
-Date: Fri, 27 Sep 2024 15:16:23 +0300
-Message-ID: <87zfntxpew.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72692011"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 05:28:00 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 27 Sep 2024 15:27:59 +0300
+Date: Fri, 27 Sep 2024 15:27:59 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 11/17] drm/i915/dp: Refactor joiner max_bpp calculations
+ into separate functions
+Message-ID: <Zvakz94IAlOyLQM0@intel.com>
+References: <20240927083831.3913645-1-ankit.k.nautiyal@intel.com>
+ <20240927083831.3913645-12-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240927083831.3913645-12-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,222 +72,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 26 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Sep 24, 2024 at 04:37:04PM +0300, Jani Nikula wrote:
->> On Tue, 24 Sep 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> > On Tue, Sep 24, 2024 at 12:49:25PM GMT, Jani Nikula wrote:
->> >>On Thu, 29 Aug 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.inte=
-l.com> wrote:
->> >>> On Wed, Aug 28, 2024 at 04:41:24PM -0400, Rodrigo Vivi wrote:
->> >>>> On Mon, Aug 19, 2024 at 09:44:27PM +0300, Jani Nikula wrote:
->> >>>> > v2 of [1]. Please read the cover letter there.
->> >>>> >
->> >>>> > This addresses review comments and adds a few more commits on top=
-, in particular
->> >>>> > the last one showcasing the approach.
->> >>>> >
->> >>>> > The main question remains, is this what we want?
->> >>>>
->> >>>> I don't know why, but the 'is' thing is still strange.
->> >>>>
->> >>>> I know I know... I'm bad with naming myself.
->> >>>>
->> >>>> I think about 'platform' but that get too big
->> >>>>
->> >>>> if (display->platform.BROADWELL)
->> >>>>
->> >>>> I think about 'gen' but then it is overloaded....
->> >>>>
->> >>>> then I think about 'ip' is worse...
->> >>>>
->> >>>> 'version'?
->> >>>>
->> >>>> 'name'?
->> >>>>
->> >>>> if (display->name.HASWELL)...
->> >>>>
->> >>>> ....
->> >>>>
->> >>>> But well, I like the overall simplification here in general.
->> >>>> Without a better name to suggest, I guess let's just move ahead...
->> >>>
->> >>> One slight concern with the is.foo is whether it complicates finding
->> >>> things with eg. cscope. But I suppose for platforms that doesn't mat=
-ter
->> >>> all that much. For the has_foo stuff it'd be much more relevant.
->> >>
->> >>It does make finding things harder with cscope and gnu global, but git
->> >>grep for is.FOO is pretty accurate.
->> >>
->> >>> Anyways, can't think of anything particularly elegant myself either,
->> >>> so go ahead I guess.
->> >>
->> >>So I haven't yet. I just still have that slightly uneasy feeling about
->> >>whether this is a good thing or not. That doesn't usually make me shy
->> >>away from things, because you can fix stuff later, but getting this
->> >>wrong causes so much churn everywhere.
->> >>
->> >>The fact that it's not a macro makes it less flexible for future
->> >>changes. The display->is.FOO is somewhat legible, but could be
->> >>better. Would all lowercase make it better? I don't know.
->> >>
->> >>More alternatives? Not elegant for sure, but just alternatives:
->> >>
->> >>- Lowercase names:
->> >>
->> >>	if (display->is.rocketlake)
->> >
->> > what I really dislike is a struct named "is". Going full mesa-way would
->> > be slightly better IMO:
->> >
->> > 	if (display->is_rockelake)
->> >
->> > or
->> >
->> > 	if (display->platform_rocketlake)
->> >
->> > or
->> >
->> > 	if (display->platform.rocketlake)
->>=20
->> Fair enough.
->>=20
->> >From implementation POV having a sub-struct is easier than not.
->
-> how the subplatform would appear in this case?
+On Fri, Sep 27, 2024 at 02:08:25PM +0530, Ankit Nautiyal wrote:
+> Currently compressed max_bpp limitations for small joiner ram, big joiner
+> and others are intermingled. Separate them into distinct functions to
+> enhance clarity and maintainability.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 45 ++++++++++++++++++++-----
+>  1 file changed, 37 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f2a2541c1091..7db037f631f7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -859,23 +859,52 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
+>  	return bits_per_pixel;
+>  }
+>  
+> +static int get_bigjoiner_interface_bits(struct intel_display *display)
 
-For example, RPL-S:
+I would s/get_// in the name.
 
+> +{
+> +	return DISPLAY_VER(display) >= 14 ? 36 : 24;
+> +}
+> +
+> +static u32 bigjoiner_bw_max_bpp(struct intel_display *display, u32 mode_clock,
+> +				int num_joined_pipes)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	int bigjoiner_interface_bits = get_bigjoiner_interface_bits(display);
 
-	if (display->platform.alderlake_s_raptorlake_s)
+You don't really need the local variable for this.
 
-But the main platform also matches its subplatforms:
+> +	int num_bigjoiners = num_joined_pipes / 2;
+> +	u32 max_bpp;
+> +	/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
+> +	int ppc = 2;
+> +
+> +	max_bpp = i915->display.cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits /
 
-	if (display->platform.alderlake_s)
+s/i915->display./display->/
 
-This is the same as with the patches at hand. Except for the
-uppercase/lowercase difference, and s/is/platform/.
+> +		  intel_dp_mode_to_fec_clock(mode_clock);
+> +
+> +	max_bpp *= num_bigjoiners;
 
->> >>  Does not help with flexibility or cscope.
->> >>
->> >>- Lowercase macros for display, e.g. is_rocketlake().
->> >>
->> >>	if (is_rocketlake(display))
->> >>
->> >>- Macros based on just the platform name, e.g. ROCKETLAKE().
->> >>
->> >>	if (ROCKETLAKE(display))
->> >>
->> >>  or change IS_ to something else e.g. PLATFORM_ROCKETLAKE().
->> >>
->> >>	if (PLATFORM_ROCKETLAKE(display))
->> >>
->> >>  But that can get a bit long in some if ladders etc.
->> >
->> > Does it matter much? I think those would be the exception, particularly
->> > because platform checks are kind of rare these days.
->>=20
->> Well, they're maybe the exception for new platforms, but i915 display
->> does have to deal with a lot of legacy with a lot of platform checks.
->>=20
->> > grepping for LUNARLAKE in xe reveals only 2 users (+ few workarounds),
->> > because wherever we can we check by graphics/display version rather th=
-an
->> > platform.
->>=20
->> i915 display has only one use of IS_LUNARLAKE(), but there are 1k+ other
->> uses of IS_<PLATFORM>.
->>=20
->> Incidentally, this is the reason I'm procrastinating about the change at
->> all.
->>=20
->> > Then simply using something similar to what we already have in xe, wou=
-ld
->> > be great IMO:
->> >
->> > 	if (display->platform =3D=3D PLATFORM_LUNARLAKE)
->> >
->> > it may be verbose, but shouldn't be much used to matter in the end.
->>=20
->> The downside with that is that you can't deal with subplatforms as
->> easily. It becomes
->>=20
->> 	if (display->platform =3D=3D PLATFORM_LUNARLAKE ||
->> 	    (display->platform =3D=3D PLATFORM_ALDERLAKE_P &&
->> 	     display->subplatform =3D=3D SUBPLATFORM_ALDERLAKE_P_ALDERLAKE_N))
->>=20
->> or similar. Definitely not a fan.
->
-> unless the subplatform already includes the platform?
+This thing wasn't in the original code, so should be added separately
+IMO.
 
-Oh, yeah, it would.
+> +
+> +	return max_bpp;
+> +}
+> +
+> +static u32 small_joiner_ram_max_bpp(struct intel_display *display, u32 mode_hdisplay)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	u32 max_bpp;
+> +
+> +	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+> +	max_bpp = small_joiner_ram_size_bits(i915) / mode_hdisplay;
+> +
+> +	return max_bpp;
+> +}
+> +
+>  static
+>  u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
+>  				       u32 mode_clock, u32 mode_hdisplay,
+>  				       int num_joined_pipes)
+>  {
+> +	struct intel_display *display = to_intel_display(&i915->drm);
+>  	u32 max_bpp_small_joiner_ram;
+>  
+> -	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+> -	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) / mode_hdisplay;
+> +	max_bpp_small_joiner_ram = small_joiner_ram_max_bpp(display, mode_hdisplay);
+>  
+>  	if (num_joined_pipes == 2) {
+> -		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
+> -		/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
+> -		int ppc = 2;
+> -		u32 max_bpp_bigjoiner =
+> -			i915->display.cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits /
+> -			intel_dp_mode_to_fec_clock(mode_clock);
+> +		u32 max_bpp_bigjoiner = bigjoiner_bw_max_bpp(display, mode_clock, num_joined_pipes);
+>  
+>  		max_bpp_small_joiner_ram *= 2;
 
-> But well, I also don't have a good suggestion here.
-> The '.is' struct is strange indeed, but at least covers all the past
-> and future strange cases.
->
-> But I also wouldn't mind if we decide to get the verbose path,
-> but try to at least making the subplatform already infering the
-> platform in a way that this case could only be:
->
->        if (display->platform =3D=3D PLATFORM_LUNARLAKE ||
->             display->subplatform =3D=3D SUBPLATFORM_ALDERLAKE_P_ALDERLAKE=
-_N)
->
->
-> or perhaps do in a way that we don't even need the subplatform struct?
->
->        if (display->platform =3D=3D PLATFORM_LUNARLAKE ||
->             display->platform =3D=3D SUBPLATFORM_ALDERLAKE_P_ALDERLAKE_N)
+That multiplication should be inside small_joiner_ram_max_bpp().
 
-How would that even be possible? display->platform can't be multiple
-things at the same time, unless it's a bitmask. If it's a bitmask, you
-need a way to nicely check for it instead of having it everywhere.
+>  
+> -- 
+> 2.45.2
 
-The alternatives are using a macro, or using bitfields - which is
-exactly what the patch at hand does. We've come full circle.
-
-
-BR,
-Jani.
-
-
->
->>=20
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> > Lucas De Marchi
->> >
->> >>
->> >>- Go through the trouble of making the existing IS_FOO() macros _Gener=
-ic
->> >>  and accept either i915 or display pointer. This does postpone making
->> >>  any further changes, but fairly soon there will need to be two sets =
-of
->> >>  macros, separate for i915 and display, even though named the same.
->> >>
->> >>  Also, the _Generic thing would look up the platform definitions from
->> >>  different places, which could be error prone.
->> >>
->> >>
->> >>Yeah, procrastination...
->> >>
->> >>
->> >>BR,
->> >>Jani.
->> >>
->> >>
->> >>
->> >>
->> >>--=20
->> >>Jani Nikula, Intel
->>=20
->> --=20
->> Jani Nikula, Intel
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
