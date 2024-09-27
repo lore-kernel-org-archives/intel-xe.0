@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CB0ECDD1AE
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 13:41:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59B59CDD1B2
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 13:42:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03EAF10E0CC;
-	Fri, 27 Sep 2024 13:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F0B210E0CC;
+	Fri, 27 Sep 2024 13:42:08 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FFD110E0CC;
- Fri, 27 Sep 2024 13:41:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCDFF10E0D0;
+ Fri, 27 Sep 2024 13:42:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=5Fsubmit?=
- =?utf-8?q?=3A_improve_schedule_disable_error_logging?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=5Fsubmit=3A_im?=
+ =?utf-8?q?prove_schedule_disable_error_logging?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Sep 2024 13:41:55 -0000
-Message-ID: <172744451531.1111055.8131975909023292815@2413ebb6fbb6>
+Date: Fri, 27 Sep 2024 13:42:06 -0000
+Message-ID: <172744452683.1111055.6840576649037352009@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240927133535.548793-2-matthew.auld@intel.com>
 In-Reply-To: <20240927133535.548793-2-matthew.auld@intel.com>
@@ -44,13 +44,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc_submit: improve schedule disable error logging
 URL   : https://patchwork.freedesktop.org/series/139211/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4d4fdd11d1cc drm-tip: 2024y-09m-27d-08h-48m-12s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc_submit: improve schedule disable error logging
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fe7ba626324ce3b55c1bb9c08ff31965330b6681
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Fri Sep 27 14:35:36 2024 +0100
+
+    drm/xe/guc_submit: improve schedule disable error logging
+    
+    A few things here. Make the two prints consistent (and distinct), print
+    the guc_id, and finally dump the CT queues. It should be possible to
+    spot the guc_id in the CT queue dump, and for example see that host side
+    has yet to process the response for the schedule disable, or see that
+    GuC is yet to send it, to help narrow things down if we trigger the
+    timeout.
+    
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1638
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch 4d4fdd11d1cc941f2f7c1653fc07519851d9052b drm-intel
+fe7ba626324c drm/xe/guc_submit: improve schedule disable error logging
+-:13: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
+#13: 
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1638
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
 
 
