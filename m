@@ -4,24 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D195CCDD1B6
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 14:14:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C959CDD1B8
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 14:14:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F65110EC7D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B68E310EC7F;
 	Fri, 27 Sep 2024 14:14:22 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F9A10EC67
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 14:14:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B764A10E1B0
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 14:14:00 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 10/14] drm/xe/display: Stop dereferencing ggtt in xe_fb_pin
-Date: Fri, 27 Sep 2024 16:14:00 +0200
-Message-ID: <20240927141404.163317-11-maarten.lankhorst@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH 02/14] drm/xe: Remove double pageflip
+Date: Fri, 27 Sep 2024 16:13:52 +0200
+Message-ID: <20240927141404.163317-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
 References: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -37,113 +39,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is the only user of the ggtt struct still there, add
-some calls to lock/unlock ggtt and remove other dereferencing.
+This is already handled below by fixup_initial_plane_config.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Fixes: a8153627520a ("drm/i915: Try to relocate the BIOS fb to the start of ggtt")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++-----
- drivers/gpu/drm/xe/xe_ggtt.c           | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ggtt.h           | 10 ++++++----
- 3 files changed, 35 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 9 ---------
+ 1 file changed, 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 0ae5d917f20f..fcd9a519183b 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -198,13 +198,13 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	/* TODO: Consider sharing framebuffer mapping?
- 	 * embed i915_vma inside intel_framebuffer
- 	 */
--	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
--	ret = mutex_lock_interruptible(&ggtt->lock);
-+	xe_pm_runtime_get_noresume(xe);
-+	ret = xe_ggtt_lock_interruptible(ggtt);
- 	if (ret)
- 		goto out;
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index cf139921e781..1f5128927c07 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -197,8 +197,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 		to_intel_plane(crtc->base.primary);
+ 	struct intel_plane_state *plane_state =
+ 		to_intel_plane_state(plane->base.state);
+-	struct intel_crtc_state *crtc_state =
+-		to_intel_crtc_state(crtc->base.state);
+ 	struct drm_framebuffer *fb;
+ 	struct i915_vma *vma;
  
- 	align = XE_PAGE_SIZE;
--	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
-+	if (xe_bo_is_vram(bo) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
- 		align = max_t(u32, align, SZ_64K);
+@@ -245,13 +243,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
  
- 	if (bo->ggtt_node && view->type == I915_GTT_VIEW_NORMAL) {
-@@ -261,9 +261,9 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	}
+ 	plane_config->vma = vma;
  
- out_unlock:
--	mutex_unlock(&ggtt->lock);
-+	xe_ggtt_unlock(ggtt);
- out:
--	xe_pm_runtime_put(tile_to_xe(ggtt->tile));
-+	xe_pm_runtime_put(xe);
- 	return ret;
- }
+-	/*
+-	 * Flip to the newly created mapping ASAP, so we can re-use the
+-	 * first part of GGTT for WOPCM, prevent flickering, and prevent
+-	 * the lookup of sysmem scratch pages.
+-	 */
+-	plane->check_plane(crtc_state, plane_state);
+-	plane->async_flip(plane, crtc_state, plane_state, true);
+ 	return;
  
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index d259b44dc0fc..a2be883c67e8 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -868,6 +868,30 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
- 	return total;
- }
- 
-+/**
-+ * xe_ggtt_lock_interruptible - Lock GGTT for display updates
-+ * @ggtt: &xe_ggtt
-+ *
-+ * There's no reason to want this outside of display, and that is only
-+ * there because moving to here would be a layering violation.
-+ */
-+int xe_ggtt_lock_interruptible(struct xe_ggtt *ggtt)
-+{
-+	return mutex_lock_interruptible(&ggtt->lock);
-+}
-+
-+/**
-+ * xe_ggtt_unlock - Unlock GGTT after display updates
-+ * @ggtt: &xe_ggtt
-+ *
-+ * There's no reason to want this outside of display, and that is only
-+ * there because moving to here would be a layering violation.
-+ */
-+void xe_ggtt_unlock(struct xe_ggtt *ggtt)
-+{
-+	mutex_unlock(&ggtt->lock);
-+}
-+
- /**
-  * xe_ggtt_read_pte - Read a PTE from the GGTT
-  * @ggtt: &xe_ggtt
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 0c63cfa083c0..09bb1c9c0a74 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -22,8 +22,6 @@ int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
- void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node);
- 
- int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
--int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
--			       u32 size, u32 align, u32 mm_flags);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
- bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
-@@ -47,9 +45,13 @@ static inline void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
- void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
- #endif
- 
--u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
--
-+/* Display specific function calls, don't use outside of xe/display */
-+int xe_ggtt_lock_interruptible(struct xe_ggtt *ggtt);
-+void xe_ggtt_unlock(struct xe_ggtt *ggtt);
-+int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
-+			       u32 size, u32 align, u32 mm_flags);
- xe_ggtt_pte_encode_bo_fn xe_ggtt_get_encode_pte_bo_fn(struct xe_ggtt *ggtt);
-+u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
- void xe_ggtt_write_pte(struct xe_ggtt *ggtt, u64 offset, u64 pte);
- 
- #endif
+ nofb:
 -- 
 2.45.2
 
