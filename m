@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC704CDD1B2
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 14:14:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0ADFCDD1B5
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 14:14:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9A0110EC5F;
-	Fri, 27 Sep 2024 14:14:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7130010EC61;
+	Fri, 27 Sep 2024 14:14:22 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7927410EC67
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 14:14:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB1910EC72
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 14:14:07 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 07/14] drm/xe: Add xe_ggtt_alloc
-Date: Fri, 27 Sep 2024 16:13:57 +0200
-Message-ID: <20240927141404.163317-8-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 12/14] drm/xe/display: Use async flip for flipping initial fb.
+Date: Fri, 27 Sep 2024 16:14:02 +0200
+Message-ID: <20240927141404.163317-13-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
 References: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
@@ -37,66 +37,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of allocating inside xe_tile, create a new function that returns
-an allocated struct xe_ggtt from xe_ggtt.c
+Since memirq requires a ggtt allocation, irqs will be initialised
+later. This means we cannot rely on drm_wait_for_vblank any more as
+it requires interrupts.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_ggtt.c | 8 ++++++++
- drivers/gpu/drm/xe/xe_ggtt.h | 2 ++
- drivers/gpu/drm/xe/xe_tile.c | 4 +---
- 3 files changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7e5a79365158..4866e9b252ad 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -159,6 +159,14 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+TODO: Check for flip completion?
+---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 4660db0aecb6..bad074540b55 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -17,6 +17,8 @@
+ #include "intel_fb_pin.h"
+ #include "intel_frontbuffer.h"
+ #include "intel_plane_initial.h"
++#include "intel_uncore.h"
++#include "skl_universal_plane_regs.h"
+ #include "xe_bo.h"
+ #include "xe_wa.h"
+ 
+@@ -187,6 +189,7 @@ static void
+ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 			     struct intel_initial_plane_config plane_configs[])
+ {
++	struct xe_device *xe = to_xe_device(crtc->base.dev);
+ 	struct intel_initial_plane_config *plane_config =
+ 		&plane_configs[crtc->pipe];
+ 	struct intel_plane *plane =
+@@ -235,6 +238,10 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 	plane_state->uapi.crtc = &crtc->base;
+ 	intel_plane_copy_uapi_to_hw_state(plane_state, plane_state, crtc);
+ 
++	/* Flip async, we don't have interrupts yet */
++	plane_state->ctl = intel_uncore_read(&xe->uncore, PLANE_CTL(plane->pipe, PLANE_1));
++	plane->async_flip(plane, to_intel_crtc_state(crtc->base.state), plane_state, true);
++
+ 	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
+ 
+ 	plane_config->vma = vma;
+@@ -292,9 +299,6 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
+ 		 */
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
+ 
+-		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_crtc_wait_for_next_vblank(crtc);
+-
+ 		plane_config_fini(plane_config);
  	}
  }
- 
-+struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile)
-+{
-+	struct xe_ggtt *ggtt = drmm_kzalloc(&tile_to_xe(tile)->drm, sizeof(*ggtt), GFP_KERNEL);
-+	if (ggtt)
-+		ggtt->tile = tile;
-+	return ggtt;
-+}
-+
- static void ggtt_fini_early(struct drm_device *drm, void *arg)
- {
- 	struct xe_ggtt *ggtt = arg;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 62c8ce636939..0bab1fd7cc81 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -9,7 +9,9 @@
- #include "xe_ggtt_types.h"
- 
- struct drm_printer;
-+struct xe_tile;
- 
-+struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile);
- int xe_ggtt_init_early(struct xe_ggtt *ggtt);
- int xe_ggtt_init(struct xe_ggtt *ggtt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 164751bd9af2..1cd4450305a6 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -86,11 +86,9 @@ static int xe_tile_alloc(struct xe_tile *tile)
- {
- 	struct drm_device *drm = &tile_to_xe(tile)->drm;
- 
--	tile->mem.ggtt = drmm_kzalloc(drm, sizeof(*tile->mem.ggtt),
--				      GFP_KERNEL);
-+	tile->mem.ggtt = xe_ggtt_alloc(tile);
- 	if (!tile->mem.ggtt)
- 		return -ENOMEM;
--	tile->mem.ggtt->tile = tile;
- 
- 	tile->mem.vram_mgr = drmm_kzalloc(drm, sizeof(*tile->mem.vram_mgr), GFP_KERNEL);
- 	if (!tile->mem.vram_mgr)
 -- 
 2.45.2
 
