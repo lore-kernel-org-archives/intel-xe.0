@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4B2CDD1BA
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 15:14:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08267CDD1BA
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 15:20:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 681A010E03C;
-	Fri, 27 Sep 2024 15:14:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C584E10ECCA;
+	Fri, 27 Sep 2024 15:20:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lFoeIe43";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PYYJO87I";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B07A10E03C
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Sep 2024 15:14:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB2A10E20E;
+ Fri, 27 Sep 2024 15:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727450068; x=1758986068;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=OZhZFl879kY/GvxUswMMvB0y0sAN+mrdMc0EzeiGVQw=;
- b=lFoeIe430leG1u7hMy3yqpm+Wfj/ZsBuBN8wrZtGv9Drj1X6CdARlYq+
- IdiyvXitcQsjTaEYwz6ltPqRKwqBpK5qgpr5zHM92RBeKv9ZdmT3awU4C
- vMAmfidvSmf+I2fJR8yYgiwUtXX4O1/A2gTo3dHOyMFjzzrV9d7AbIXmx
- LdlUk5JW92zM4gADbsh5SZrUR1eENxHiM3K9rGSjH+mWQ77I76boBQlK1
- OzEdNdsgpb41caYi1m96JAtpWXOkVD7slc1VRfrEPEOwggoYlHbNUSpse
- iNlF1wLJvL+4P3l9vRo1O6rRd6+wjJZdRXSjrJs8aOYbG0BcGDmKpGM8t g==;
-X-CSE-ConnectionGUID: SOYrwF/gSDWF2cVbQ6f9uw==
-X-CSE-MsgGUID: PgW5wbQ+SA6PN9BoZwjPVQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26399986"
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="26399986"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:14:27 -0700
-X-CSE-ConnectionGUID: uvUeCBvAQ2OkJe4BLUyLuA==
-X-CSE-MsgGUID: 6XgUa03BTguCG1vKG0QRhg==
+ t=1727450446; x=1758986446;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ly6G3g+VCVBqpkoxxBUZMMMam5Kf3y1swR6hjkZpCyc=;
+ b=PYYJO87IoPiRq3312RwlJfkFQfi9Y+tLOLEi2Ei+kztHiXkHrn9IJdI6
+ JJBGfNSGSTELCHSvVPhgOAfk7Ua1Ku0Ua4B4UN3QIJ2SSkceYIUjriwMK
+ rfvRBIEygHsT7NBIegqXb0g3bbgUV4Mhj2KS4POQpstjFYypDl/qcj4mD
+ T3gzFiHL2vvLd2a4aR1UALeneBKy+RYtLqSOr1+k6/SSGZrXiHMTjJ/5D
+ YzUPjiy6tPyzk2u8A6p3GzxBRavv6/g8r9hr8cBicF2GDDnHkJS5LfWwl
+ nqHVFC6wdLslYQ2g4XrQbiTuqDu2TVUbnDKXNEw3PmOr2ENabDAOd/g9O g==;
+X-CSE-ConnectionGUID: MRHA3/2ZR3qYIpyP3qZaDA==
+X-CSE-MsgGUID: 7gvmVPMvTwa6tpJVsH0jwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179711"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179711"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 08:20:46 -0700
+X-CSE-ConnectionGUID: zu9YiFvhRxCmf9EU9tkKUQ==
+X-CSE-MsgGUID: KLfz941CRYO32ap5iuehuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="72720641"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 08:14:25 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Sep 2024 18:14:24 +0300
-Date: Fri, 27 Sep 2024 18:14:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 12/14] drm/xe/display: Use async flip for flipping
- initial fb.
-Message-ID: <ZvbL0GUZ3c5-07qJ@intel.com>
-References: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
- <20240927141404.163317-13-maarten.lankhorst@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95896867"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 08:20:44 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 00/17] Ultrajoiner basic functionality series 
+Date: Fri, 27 Sep 2024 20:52:24 +0530
+Message-ID: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240927141404.163317-13-maarten.lankhorst@linux.intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,79 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 27, 2024 at 04:14:02PM +0200, Maarten Lankhorst wrote:
-> Since memirq requires a ggtt allocation, irqs will be initialised
-> later. This means we cannot rely on drm_wait_for_vblank any more as
-> it requires interrupts.
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> 
-> TODO: Check for flip completion?
-> ---
->  drivers/gpu/drm/xe/display/xe_plane_initial.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> index 4660db0aecb6..bad074540b55 100644
-> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> @@ -17,6 +17,8 @@
->  #include "intel_fb_pin.h"
->  #include "intel_frontbuffer.h"
->  #include "intel_plane_initial.h"
-> +#include "intel_uncore.h"
-> +#include "skl_universal_plane_regs.h"
->  #include "xe_bo.h"
->  #include "xe_wa.h"
->  
-> @@ -187,6 +189,7 @@ static void
->  intel_find_initial_plane_obj(struct intel_crtc *crtc,
->  			     struct intel_initial_plane_config plane_configs[])
->  {
-> +	struct xe_device *xe = to_xe_device(crtc->base.dev);
->  	struct intel_initial_plane_config *plane_config =
->  		&plane_configs[crtc->pipe];
->  	struct intel_plane *plane =
-> @@ -235,6 +238,10 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
->  	plane_state->uapi.crtc = &crtc->base;
->  	intel_plane_copy_uapi_to_hw_state(plane_state, plane_state, crtc);
->  
-> +	/* Flip async, we don't have interrupts yet */
-> +	plane_state->ctl = intel_uncore_read(&xe->uncore, PLANE_CTL(plane->pipe, PLANE_1));
-> +	plane->async_flip(plane, to_intel_crtc_state(crtc->base.state), plane_state, true);
-> +
->  	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
->  
->  	plane_config->vma = vma;
-> @@ -292,9 +299,6 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
->  		 */
->  		intel_find_initial_plane_obj(crtc, plane_configs);
->  
-> -		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
-> -			intel_crtc_wait_for_next_vblank(crtc);
+This patch series attempts to implement basic support
+for Ultrajoiner functionality.
 
-Argh. I think the best solution would probably be to provide
-an intel_crtc_wait_for_next_vblank_early()/etc. that just
-falls back to polling the status bit if interrupts aren't
-available.
+Rev6:
+-Upgrade the debugfs functionality to enable the joining of a
+specified number of pipes.
+-Modify the display helpers reliant on the pipe joiner mechanism
+to use number of pipes joined, instead of joiner flag.
+-Checkpatch fixes.
 
-Or we could also just poll the live surface register
-instead (though that is not available on ancient hardware
-so would have to assert that it's not used there).
+Rev7:
+-Use struct intel_display, minor refactoring, and rebase.
 
-I suppose another option might be to just usleep() in
-the fallback. This would have the benefit of not needing
-any hardware specific implementations. This doesn't really
-need to be that accurate as long it guarantees that we
-wait for at least one frame duration.
+Rev8:
+-Address comments from Ville.
+-Simplified debugfs for forcing joiner, and added option to disable
+joiner.
+-Modified the ultra/bigjoiner helpers as suggested by Ville. 
+-Split few of the bigger patches as suggested.
 
-> -
->  		plane_config_fini(plane_config);
->  	}
->  }
-> -- 
-> 2.45.2
+Rev9:
+Rebase
+
+Rev10:
+-Rebase
+-Fix enable_joined_pipes as suggested by Ville, to avoid propagate
+is_ultrajoiner.
+-Enhance the mask to iterate over joiner pipes, as suggested by Ville.
+
+Rev11:
+-Address review comments from Ville
+-Split changes to dsc helpers to separate patches
+
+Rev12:
+-Move 'Refactor enable_joiner_pipes' earlier than 'Implement hw state
+readout and checks for ultrajoiner'.
+-Few improvements as suggested in review comments.
+-Use --patience for Patch #8 "drm/i915/display: Refactor
+enable_joiner_pipes"
+
+Rev13:
+-Refactor get_max_compressed_bpp_with_joiner and split changes into 3
+patches.
+
+Rev14:
+-Fix issues in patches#11~13 for num_joined_pipes = 1.
+
+Ankit Nautiyal (12):
+  drm/i915/display_device: Add Check HAS_DSC for bigjoiner
+  drm/i915/display_debugfs: Allow force joiner only if supported
+  drm/i915/display: Modify debugfs for joiner to force n pipes
+  drm/i915/dp: Add helper to compute num pipes required
+  drm/i915: Split current joiner hw state readout
+  drm/i915/display: Add macro HAS_ULTRAJOINER()
+  drm/i915/display: Refactor enable_joiner_pipes
+  drm/i915/dp: Refactor joiner max_bpp calculations into separate
+    functions
+  drm/i915/dp: Use num_joined_pipes in bigjoiner_bw_max_bpp
+  drm/i915/dp: Modify compressed bpp limitations for ultrajoiner
+  drm/i915/display: Consider ultrajoiner for computing maxdotclock
+  drm/i915/intel_dp: Add support for forcing ultrajoiner
+
+Stanislav Lisovskiy (5):
+  drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity
+    checks
+  drm/i915: Implement hw state readout and checks for ultrajoiner
+  drm/i915/display/vdsc: Add ultrajoiner support with DSC
+  drm/i915/dp: Simplify helper to get slice count with joiner
+  drm/i915: Compute config and mode valid changes for ultrajoiner
+
+ drivers/gpu/drm/i915/display/intel_display.c  | 320 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_display.h  |   3 +
+ .../drm/i915/display/intel_display_debugfs.c  |  72 +++-
+ .../drm/i915/display/intel_display_device.h   |   5 +-
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 141 ++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h       |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  23 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  11 +-
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |   2 +
+ 10 files changed, 472 insertions(+), 113 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.45.2
+
