@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42606CDD1B2
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 13:45:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E262CCDD1AE
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 13:54:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A88D10EC61;
-	Fri, 27 Sep 2024 13:45:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c6dDBzC+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 119C610EC72;
- Fri, 27 Sep 2024 13:45:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727444750; x=1758980750;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=D7T8gbwDTyhSckUhWVxsxYFg+JjlnB5hGJ96ASmPuIY=;
- b=c6dDBzC+SqWt3TzP+jsOWKhvhOTha+LjQOGq9exPOnmyDo1/u1niPurZ
- /b7uSvfEcjfB99nqTLuY4TqAOISJFFtaDUoaFI/mR874XbeyyVGpBAGk7
- Ct4fVN1ezxpeJpIRewx1vu8U3qSLbyNoC0X9+OPTkNkV+uUWx1djIFFiJ
- pO0GfXcVlL3CsTKV5pX4ptjek4IlQHg3zLW05+zg23oZ1w/CemsR3UinC
- 7oIYjP0WSDDna4Bgg6YE3/9Mrmh8P2PJ1qRvkvNpUd8xQPllUFbm0smj8
- 6AyMXnDGb48nZV/DhxAWmGoaDvwKSdRGHKFkO+ZPv8IsrvwpDR2fAveNF Q==;
-X-CSE-ConnectionGUID: z7Bt9w+DQfCjLkE6tl8N6w==
-X-CSE-MsgGUID: fgXrgvGJR+m9I6sNAENphQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="37259940"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="37259940"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 06:45:49 -0700
-X-CSE-ConnectionGUID: bJTNzlkkQ5qxtlEQtlGC9g==
-X-CSE-MsgGUID: rfHMWwBER5WhHcbLuCQNpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72703408"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 06:45:45 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Sep 2024 16:45:44 +0300
-Date: Fri, 27 Sep 2024 16:45:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Alessandro Zanni <alessandro.zanni87@gmail.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- airlied@gmail.com, simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- anupnewsmail@gmail.com
-Subject: Re: [PATCH] gpu: drm: i915: display: Avoid null values
- intel_plane_atomic_check_with_state
-Message-ID: <Zva3CAewBl8NBL91@intel.com>
-References: <20240927000146.50830-1-alessandro.zanni87@gmail.com>
- <87tte1zewf.fsf@intel.com> <ZvaduhDERL-zvED3@intel.com>
- <87tte1xmqe.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E8C510EC59;
+	Fri, 27 Sep 2024 13:54:43 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1C110EC49;
+ Fri, 27 Sep 2024 13:54:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87tte1xmqe.fsf@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/guc=5Fsubmit=3A_improve?=
+ =?utf-8?q?_schedule_disable_error_logging?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 27 Sep 2024 13:54:42 -0000
+Message-ID: <172744528256.1111055.12868946947963977541@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240927133535.548793-2-matthew.auld@intel.com>
+In-Reply-To: <20240927133535.548793-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,93 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 27, 2024 at 04:14:17PM +0300, Jani Nikula wrote:
-> On Fri, 27 Sep 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Fri, Sep 27, 2024 at 11:20:32AM +0300, Jani Nikula wrote:
-> >> On Fri, 27 Sep 2024, Alessandro Zanni <alessandro.zanni87@gmail.com> wrote:
-> >> > This fix solves multiple Smatch errors:
-> >> >
-> >> > drivers/gpu/drm/i915/display/intel_atomic_plane.c:660
-> >> > intel_plane_atomic_check_with_state() error:
-> >> > we previously assumed 'fb' could be null (see line 648)
-> >> >
-> >> > drivers/gpu/drm/i915/display/intel_atomic_plane.c:664
-> >> > intel_plane_atomic_check_with_state()
-> >> > error: we previously assumed 'fb' could be null (see line 659)
-> >> >
-> >> > drivers/gpu/drm/i915/display/intel_atomic_plane.c:671
-> >> > intel_plane_atomic_check_with_state()
-> >> > error: we previously assumed 'fb' could be null (see line 663)
-> >> >
-> >> > We should check first if fb is not null before to access its properties.
-> >> 
-> >> new_plane_state->uapi.visible && !fb should not be possible, but it's
-> >> probably too hard for smatch to figure out. It's not exactly trivial for
-> >> humans to figure out either.
-> >> 
-> >> I'm thinking something like below to help both.
-> >> 
-> >> Ville, thoughts?
-> >> 
-> >> 
-> >> BR,
-> >> Jani.
-> >> 
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> >> index 3505a5b52eb9..d9da47aed55d 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> >> @@ -629,6 +629,9 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
-> >>  	if (ret)
-> >>  		return ret;
-> >>  
-> >> +	if (drm_WARN_ON(display->drm, new_plane_state->uapi.visible && !fb))
-> >> +		return -EINVAL;
-> >> +
-> >
-> > We have probably 100 places that would need this. So it's going
-> > to be extremely ugly.
-> >
-> > One approach I could maybe tolerate is something like
-> > intel_plane_is_visible(plane_state) 
-> > {
-> > 	if (drm_WARN_ON(visible && !fb))
-> > 		return false;
-> >
-> > 	return plane_state->visible;
-> > }
-> >
-> > + s/plane_state->visible/intel_plane_is_visible(plane_state)/
-> >
-> > But is that going to help these obtuse tools?
-> 
-> That does help people, which is more important. :)
-> 
-> I think the problem is first checking if fb is NULL, and then
-> dereferencing it anyway.
-> 
-> visible always means fb != NULL, but I forget, is the reverse true? Can
-> we have fb != NULL and !visible? I mean could we change the fb check to
-> visible check?
+== Series Details ==
 
-No, the reverse does not hold. A plane can be invisible
-while still having a valid fb. Eg. the plane could be
-positioned completely offscreen, or the entire crtc may
-be inactive (DPMS off).
+Series: drm/xe/guc_submit: improve schedule disable error logging
+URL   : https://patchwork.freedesktop.org/series/139211/
+State : success
 
-And whenever we have an fb we want to do all the check to make sure
-it satisfies all the requirements, whether the plane is visible or
-not. Otherwise we could end up confusing userspace with something
-like this:
+== Summary ==
 
-1. Usespace assigns some unsupported fb to the plane
-   but positions the plane offscreen -> success
-2. Userspace moves the plane to somewhere onscreen -> fail
+lib/modules/6.11.0-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-xe/kernel/arch/
+lib/modules/6.11.0-xe/kernel/arch/x86/
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-xe/kernel/crypto/
+lib/modules/6.11.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-xe/build
+lib/modules/6.11.0-xe/modules.alias.bin
+lib/modules/6.11.0-xe/modules.builtin
+lib/modules/6.11.0-xe/modules.softdep
+lib/modules/6.11.0-xe/modules.alias
+lib/modules/6.11.0-xe/modules.order
+lib/modules/6.11.0-xe/modules.symbols
+lib/modules/6.11.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1727445275:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1727445275:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
--- 
-Ville Syrjälä
-Intel
+
