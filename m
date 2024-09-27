@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEA09CEBF86
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 08:38:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4D79CEBF85
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 08:43:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 934B710EC77;
-	Fri, 27 Sep 2024 08:38:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a+fflCU2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4F210EC76;
- Fri, 27 Sep 2024 08:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727426318; x=1758962318;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=1me+ShLNnot4eBJYuxAtKeswmVdRy1w6WPYAdQlYdvw=;
- b=a+fflCU22gR6CsSkfIah8yjtjVyHChgzhacpYSuMYhsg1K5/J46PmH6f
- M3Lqfx3SCBFgPhkp0OWlAclCakdbO041MoVpbf/EcCR+ymg3xcpyHiJlu
- YfSriko5FCtM88mmuroXT8JdFeSCPuCGYXzchA2Sm+wUPv8f3ZdAiS6FF
- +7/jz22jARrwBmYLJCjxdqifyUQQyIo9TWOtjrY5W0H42KMBDANT0Os9L
- S1xBF0iP0/e78PgiGy8XAziRMQOEFhFLQ5zZQKEEg04D7M6wNKd0q8NTC
- kpfL3jKX6iIVjPKJjGqjhtUSFAD88JBbCi6spOMrBrEvU0xNWRL8u7Lrp A==;
-X-CSE-ConnectionGUID: urO419hqR5mOIAPRqk85Mw==
-X-CSE-MsgGUID: xKMtrxDJQH+FFOP+7mtbVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="51977724"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="51977724"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 01:38:38 -0700
-X-CSE-ConnectionGUID: 2OMKsGp8TuegWuQRugSBbA==
-X-CSE-MsgGUID: NOmt5vyNQRCN1UMHWDNTGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="77409637"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.211])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 01:38:35 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Matthew
- Auld <matthew.auld@intel.com>, Anshuman Gupta <anshuman.gupta@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Nathan
- Chancellor <nathan@kernel.org>, stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] drm/i915/gem: fix bitwise and logical AND mixup
-In-Reply-To: <ZvXGwFBbOa7-035L@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1726680898.git.jani.nikula@intel.com>
- <643cc0a4d12f47fd8403d42581e83b1e9c4543c7.1726680898.git.jani.nikula@intel.com>
- <ZvXGwFBbOa7-035L@intel.com>
-Date: Fri, 27 Sep 2024 11:38:29 +0300
-Message-ID: <87r095ze2i.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7028510EC80;
+	Fri, 27 Sep 2024 08:43:34 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7071210EC7D;
+ Fri, 27 Sep 2024 08:43:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Ultrajoiner_basic_fu?=
+ =?utf-8?q?nctionality_series_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 27 Sep 2024 08:43:33 -0000
+Message-ID: <172742661345.1110150.1204780562403531896@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240927083831.3913645-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240927083831.3913645-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,69 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 26 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Sep 18, 2024 at 08:35:43PM +0300, Jani Nikula wrote:
->> CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND is an int, defaulting to 250. When
->> the wakeref is non-zero, it's either -1 or a dynamically allocated
->> pointer, depending on CONFIG_DRM_I915_DEBUG_RUNTIME_PM. It's likely that
->> the code works by coincidence with the bitwise AND, but with
->> CONFIG_DRM_I915_DEBUG_RUNTIME_PM=y, there's the off chance that the
->> condition evaluates to false, and intel_wakeref_auto() doesn't get
->> called. Switch to the intended logical AND.
->> 
->> v2: Use != to avoid clang -Wconstant-logical-operand (Nathan)
->
-> oh, this is ugly!
->
-> Wouldn't it be better then to use IS_ENABLED() macro?
+== Series Details ==
 
-It's an int config option, not a bool. (Yes, the name is misleading.)
+Series: Ultrajoiner basic functionality series (rev5)
+URL   : https://patchwork.freedesktop.org/series/138827/
+State : success
 
-IS_ENABLED(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND) would be the same as
-CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND == 1.
+== Summary ==
 
-We're actually checking if the int value != 0, so IMO the patch at hand
-is fine.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c114fec0af7e drm-tip: 2024y-09m-27d-07h-08m-52s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display_device: Add Check HAS_DSC for bigjoiner
+Applying: drm/i915/display_debugfs: Allow force joiner only if supported
+Applying: drm/i915/display: Modify debugfs for joiner to force n pipes
+Applying: drm/i915/dp: Add helper to compute num pipes required
+Applying: drm/i915: Split current joiner hw state readout
+Applying: drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity checks
+Applying: drm/i915/display: Add macro HAS_ULTRAJOINER()
+Applying: drm/i915/display: Refactor enable_joiner_pipes
+Applying: drm/i915: Implement hw state readout and checks for ultrajoiner
+Applying: drm/i915/display/vdsc: Add ultrajoiner support with DSC
+Applying: drm/i915/dp: Refactor joiner max_bpp calculations into separate functions
+Applying: drm/i915/dp: Simplify the helper get_max_compressed_bpp_with_joiner
+Applying: drm/i915/dp: Modify compressed bpp limitations for ultrajoiner
+Applying: drm/i915/dp: Simplify helper to get slice count with joiner
+Applying: drm/i915: Compute config and mode valid changes for ultrajoiner
+Applying: drm/i915/display: Consider ultrajoiner for computing maxdotclock
+Applying: drm/i915/intel_dp: Add support for forcing ultrajoiner
 
-BR,
-Jani.
 
-
->
->> 
->> Fixes: ad74457a6b5a ("drm/i915/dgfx: Release mmap on rpm suspend")
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
->> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->> Cc: Nathan Chancellor <nathan@kernel.org>
->> Cc: <stable@vger.kernel.org> # v6.1+
->> Reviewed-by: Matthew Auld <matthew.auld@intel.com> # v1
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> # v1
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index 5c72462d1f57..b22e2019768f 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -1131,7 +1131,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->>  		GEM_WARN_ON(!i915_ttm_cpu_maps_iomem(bo->resource));
->>  	}
->>  
->> -	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
->> +	if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND != 0)
->>  		intel_wakeref_auto(&to_i915(obj->base.dev)->runtime_pm.userfault_wakeref,
->>  				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
->>  
->> -- 
->> 2.39.2
->> 
-
--- 
-Jani Nikula, Intel
