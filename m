@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F90BCDD1B8
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 14:59:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BCE8CDD1B8
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 15:03:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 088B910ECBC;
-	Fri, 27 Sep 2024 14:59:29 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD9E810ECBD;
- Fri, 27 Sep 2024 14:59:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D730010ECCA;
+	Fri, 27 Sep 2024 15:02:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="itNzG4i+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABED910EC93;
+ Fri, 27 Sep 2024 15:02:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727449379; x=1758985379;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=yu8Hdnz0Vi7//oUKKd0RKVY9nZDZyd8yAtuG6E6lHMk=;
+ b=itNzG4i+IUp1WDfEzxNCxCw77FcritvOaKuMD/uj60jq37k9/bHDt8WT
+ BbH0T7Vqts1Zij2XPAqBxxXb76McI2tEqeZmZbhlqoh5odfrpUVT8S7Im
+ M6Hol4WCKlg5tpCLhhPOR5v3GqcCCzLAcKaKXtviOXDWE19AntKjRbMq2
+ EgnwiUxgOZG4HGlMlDJqps2xgaH34lOwM8ZanMm8cTO/VWltWFmBB1fhM
+ jiX/hk6e6jDtzTdDxSkEhJnT6bmLHV2xKPfmPCKolAcvrYP8l1nKh+Plz
+ ZTH68zDQU4xrKzHSNTf+Kqu77NL6khMxBISl42unsKrgY5MY4dQMyz6BS Q==;
+X-CSE-ConnectionGUID: uvN8a5UZTDSB5VGSybbFmw==
+X-CSE-MsgGUID: 7PREetReRdeVjtfTsfWqsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26469450"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26469450"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 08:02:28 -0700
+X-CSE-ConnectionGUID: 4PkTeg3fQMWMDYmsC/vzGg==
+X-CSE-MsgGUID: tFBnKWJxRB+mKwJN3MHvIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="72137967"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.211])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 08:02:04 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Ville
+ =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 0/9] drm/i915/display: platform identification with
+ display->is.<PLATFORM>
+In-Reply-To: <ZvbGARm3OSe38HUV@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1724092799.git.jani.nikula@intel.com>
+ <Zs-LdJYx_lVDt9PC@intel.com> <ZtCb5yc6KCy1S6bo@intel.com>
+ <87wmj14c0q.fsf@intel.com>
+ <m4uj2hvgkcuingb6rqqth7jc3qpa4g77xebi2wtyyt3a6hadqg@fufb76wcea6j>
+ <87ldzh41hb.fsf@intel.com> <ZvV2ssfgHA8jvTro@intel.com>
+ <87zfntxpew.fsf@intel.com> <ZvbGARm3OSe38HUV@intel.com>
+Date: Fri, 27 Sep 2024 18:01:58 +0300
+Message-ID: <87bk09xhqx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Fix_flickering?=
- =?utf-8?q?_when_inheriting_BIOS_fb=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Sep 2024 14:59:27 -0000
-Message-ID: <172744916770.1111712.16945396193353807060@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240927141404.163317-1-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +72,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 27 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Fri, Sep 27, 2024 at 03:16:23PM +0300, Jani Nikula wrote:
+>> For example, RPL-S:
+>> 
+>> 
+>> 	if (display->platform.alderlake_s_raptorlake_s)
+>> 
+>> But the main platform also matches its subplatforms:
+>> 
+>> 	if (display->platform.alderlake_s)
+>> 
+>> This is the same as with the patches at hand. Except for the
+>> uppercase/lowercase difference, and s/is/platform/.
+>
+> Yeap, let's go with that then!
 
-Series: drm/xe: Fix flickering when inheriting BIOS fb.
-URL   : https://patchwork.freedesktop.org/series/139215/
-State : success
+Double-checking: do you want both s/is/platform *and* lowercase?
 
-== Summary ==
+	if (display->platform.alderlake_s_raptorlake_s)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4d4fdd11d1cc941f2f7c1653fc07519851d9052b
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+Mulling over this I've ended up preferring lowercase. (Maybe need to do
+something to pretty print them to logs.)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+And just the platform without "is_" prefix, i.e. *not*:
+
+	if (display->platform.is_alderlake_s_raptorlake_s)
 
 
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
