@@ -4,28 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFC41CEBF81
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 08:32:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75C4FCEBF81
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 08:36:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67F0210EC4C;
-	Fri, 27 Sep 2024 08:32:51 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2382910EC4C;
- Fri, 27 Sep 2024 08:32:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40B4F10EC50;
+	Fri, 27 Sep 2024 08:36:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXEGLKU8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06FDA10EC55;
+ Fri, 27 Sep 2024 08:36:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727426197; x=1758962197;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ypEH4bPV+TUC2FbnZ/1vJ9xbJegufxO//3OCQuo0pF0=;
+ b=EXEGLKU8k9OjUsKhj6k3Hy1/OWic/Bc3Hur4KTWcWfFNuJgm4vcEPru3
+ V9fY5p8OK77MRiEMG+uipNaI6O7Rli07jmTThL90EsCrMz6HyiOO7dmqV
+ RxzlFKISqNpcT8impbIkdozn8m9XX9lStpkW7+Iop7zX/nM5IjYWHy9yG
+ qEppNUe5VWMb36b7T4Hn16DuAS4KQ0jiOaw9IGHIwxWtHV3RC5I0Rn0qq
+ MHbJYjLEFAo5eU7ai7nLAGNu8pekRCpMfdgHlWRcUlPnpJY8l2KVcc+yX
+ ADWUqpAjpvXjPJMEE7T34drpGz3rkAcP+LoHQhRtYvsZ2/i9MYgVbreGL Q==;
+X-CSE-ConnectionGUID: Yl7rzzssRACwE5Nwb1EZkw==
+X-CSE-MsgGUID: t58akDhbTx63DakmFqdX4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="51977611"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="51977611"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 01:36:36 -0700
+X-CSE-ConnectionGUID: STKx3ddTQgWsRnYbJsuwJw==
+X-CSE-MsgGUID: AaGqfet2SL6qHr40jOHmpw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="77409356"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 01:36:34 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 00/17] Ultrajoiner basic functionality series
+Date: Fri, 27 Sep 2024 14:08:14 +0530
+Message-ID: <20240927083831.3913645-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_gpu=3A_drm=3A_i915=3A_display?=
- =?utf-8?q?=3A_Avoid_null_values_intel=5Fplane=5Fatomic=5Fcheck=5Fwith=5Fsta?=
- =?utf-8?q?te?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Sep 2024 08:32:50 -0000
-Message-ID: <172742597013.1110150.11255204135960363089@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240927000146.50830-1-alessandro.zanni87@gmail.com>
-In-Reply-To: <20240927000146.50830-1-alessandro.zanni87@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,117 +63,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This patch series attempts to implement basic support
+for Ultrajoiner functionality.
 
-Series: gpu: drm: i915: display: Avoid null values intel_plane_atomic_check_with_state
-URL   : https://patchwork.freedesktop.org/series/139198/
-State : failure
+Rev6:
+-Upgrade the debugfs functionality to enable the joining of a
+specified number of pipes.
+-Modify the display helpers reliant on the pipe joiner mechanism
+to use number of pipes joined, instead of joiner flag.
+-Checkpatch fixes.
 
-== Summary ==
+Rev7:
+-Use struct intel_display, minor refactoring, and rebase.
 
-CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_dc_resource_mgmt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml_display_rq_dlg_calc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml_top.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml_top_mcache.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml2_top_optimization.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/inc/dml2_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_standalone_libraries/lib_float_math.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_translation_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_wrapper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_utils.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_regamma_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_csc_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_mem_input_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_transform_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_scl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_scl_easf_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_isharp_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/spl_fixpt31_32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/spl_custom_float.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_sink.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_surface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_enc_cfg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_exports.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_state.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_vm_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_edid_parser.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_spl_translate.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_gamma.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_table.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/info_packet/info_packet.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/power/power_helpers.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_reg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn20.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn21.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn30.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn301.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn302.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn303.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn31.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn314.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn315.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn316.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn35.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn351.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn401.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_ddc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_log.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_psp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_transition.o
-  LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
-make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1926: .] Error 2
-make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make: *** [Makefile:224: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Rev8:
+-Address comments from Ville.
+-Simplified debugfs for forcing joiner, and added option to disable
+joiner.
+-Modified the ultra/bigjoiner helpers as suggested by Ville. 
+-Split few of the bigger patches as suggested.
 
+Rev9:
+Rebase
+
+Rev10:
+-Rebase
+-Fix enable_joined_pipes as suggested by Ville, to avoid propagate
+is_ultrajoiner.
+-Enhance the mask to iterate over joiner pipes, as suggested by Ville.
+
+Rev11:
+-Address review comments from Ville
+-Split changes to dsc helpers to separate patches
+
+Rev12:
+-Move 'Refactor enable_joiner_pipes' earlier than 'Implement hw state
+readout and checks for ultrajoiner'.
+-Few improvements as suggested in review comments.
+-Use --patience for Patch #8 "drm/i915/display: Refactor
+enable_joiner_pipes"
+
+Rev13:
+-Refactor get_max_compressed_bpp_with_joiner and split changes into 3
+patches.
+
+Ankit Nautiyal (12):
+  drm/i915/display_device: Add Check HAS_DSC for bigjoiner
+  drm/i915/display_debugfs: Allow force joiner only if supported
+  drm/i915/display: Modify debugfs for joiner to force n pipes
+  drm/i915/dp: Add helper to compute num pipes required
+  drm/i915: Split current joiner hw state readout
+  drm/i915/display: Add macro HAS_ULTRAJOINER()
+  drm/i915/display: Refactor enable_joiner_pipes
+  drm/i915/dp: Refactor joiner max_bpp calculations into separate
+    functions
+  drm/i915/dp: Simplify the helper get_max_compressed_bpp_with_joiner
+  drm/i915/dp: Modify compressed bpp limitations for ultrajoiner
+  drm/i915/display: Consider ultrajoiner for computing maxdotclock
+  drm/i915/intel_dp: Add support for forcing ultrajoiner
+
+Stanislav Lisovskiy (5):
+  drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity
+    checks
+  drm/i915: Implement hw state readout and checks for ultrajoiner
+  drm/i915/display/vdsc: Add ultrajoiner support with DSC
+  drm/i915/dp: Simplify helper to get slice count with joiner
+  drm/i915: Compute config and mode valid changes for ultrajoiner
+
+ drivers/gpu/drm/i915/display/intel_display.c  | 320 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_display.h  |   3 +
+ .../drm/i915/display/intel_display_debugfs.c  |  72 +++-
+ .../drm/i915/display/intel_display_device.h   |   5 +-
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 135 +++++---
+ drivers/gpu/drm/i915/display/intel_dp.h       |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  23 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  11 +-
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |   2 +
+ 10 files changed, 461 insertions(+), 118 deletions(-)
+
+-- 
+2.45.2
 
