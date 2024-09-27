@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37ACECDD1B8
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 15:21:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B49FCDD1BB
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Sep 2024 15:21:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3C9D10ECE6;
-	Fri, 27 Sep 2024 15:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C15A10ECDB;
+	Fri, 27 Sep 2024 15:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3fboUb3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XZIzpSzb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BAD010ECD8;
- Fri, 27 Sep 2024 15:21:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8AC710ECE5;
+ Fri, 27 Sep 2024 15:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727450471; x=1758986471;
+ t=1727450476; x=1758986476;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Mub7U7QjP1b5PlDRwkU36VZBuG6jNO39szMeB6EIPFA=;
- b=l3fboUb3xjJNKVr8MCsap3KsUEQ/Pw3lQKRjSTuPHxZ6GnmKFGk37txh
- IACT2CkMjglBDj5rH7zyz1QU+QHkOSZAYQ55uQFjDyMI1rIxb6rrde345
- JDVQ7gzMpcHGFqgLsUIyTFPnrXGPIbAmVwXvpBYBYH/1y0uzBQART0fd0
- Ikrakw9z+BEZsUkXyVGvCGGl0jcXpe5AbESp7YIwHC1ws9rCdgPnjJzCo
- GdRoyJrDpWnuP2qJ21XSAJaih0bVoLpNguXqcPE32KcilNhsi4Swb28sk
- FrmWZ65i7+r05xnMcrEv241DyZe6HBN1MNesbGRwEW1e+GnylrcxLHzhP A==;
-X-CSE-ConnectionGUID: uVxKDWxeQ8qoHeXBiS3nxQ==
-X-CSE-MsgGUID: 4UgPMREeTvqstXF4laKzWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179766"
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179766"
+ bh=rUQVqVvTExMb1/whoLhjFBo21UZDEUsyMqdB7KVtst8=;
+ b=XZIzpSzbMjoNtd7HQbhhZBauq7jqU4K05n69LaG4wulk1m44L6wBddFK
+ l0JyxV5ukYKzxcuuE/dXvKAn7ZPSGZCeG+2GQ3JRB6PEHdu7Vga+uktmP
+ NFoP0YhcFHexl6CHx3Or6CtDYvygCsw9eMDgYnUBO0kaiIi50bYl0icxW
+ nrDjDHOoIOfwlO0saLxUC1pWmz1+MAM0F/NvqunMZXyCr13Eu9SitjmvD
+ tgzkp2MrIOFj3b7gLeQzQjOXGdU8pw25NPSPyw++2pDM08O2MiaS2ZrF+
+ d14cvxSiNeAp74LTiJZDa7mjWa4DWWmCLLKrbJhpeNyJ90KiNiCrS1Bu5 A==;
+X-CSE-ConnectionGUID: VFchiVL/SFqHmFIDwOchKw==
+X-CSE-MsgGUID: slfHJreHRQGMlMtdxmxSrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179774"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179774"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:21:11 -0700
-X-CSE-ConnectionGUID: qjIKtnr9RumegQR8rDIbmw==
-X-CSE-MsgGUID: 8HworZTVSzWeJ/q0OoPg8A==
+ 27 Sep 2024 08:21:15 -0700
+X-CSE-ConnectionGUID: l9X9/PigQ3+7PUg1w8RSHg==
+X-CSE-MsgGUID: nQpl0Y5sRdetVLGb8uUn7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95897031"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95897060"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:21:09 -0700
+ 27 Sep 2024 08:21:13 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 14/17] drm/i915/dp: Simplify helper to get slice count with
- joiner
-Date: Fri, 27 Sep 2024 20:52:38 +0530
-Message-ID: <20240927152241.4014909-15-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 16/17] drm/i915/display: Consider ultrajoiner for computing
+ maxdotclock
+Date: Fri, 27 Sep 2024 20:52:40 +0530
+Message-ID: <20240927152241.4014909-17-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
 References: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
@@ -69,38 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Use the check for ultrajoiner while computing maxdotclock.
 
-When bigjoiner is used, we need at least 2 dsc slices per pipe.
-Modify the condition in intel_dp_dsc_get_slice_count() to reflect the
-same.
+v2: Add Check for HAS_UNCOMPRESSED_JOINER. (Ville)
+v3: Remove extraneous newline. (Ville)
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 8a32d38d21bf..afc35a83eee2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1033,8 +1033,12 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
- 			break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 40ad3fdaab10..74311bb9d290 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8186,8 +8186,9 @@ static int max_dotclock(struct drm_i915_private *i915)
+ {
+ 	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
  
--		/* big joiner needs small joiner to be enabled */
--		if (num_joined_pipes == 2 && test_slice_count < 4)
-+		 /*
-+		  * Bigjoiner needs small joiner to be enabled.
-+		  * So there should be at least 2 dsc slices per pipe,
-+		  * whenever bigjoiner is enabled.
-+		  */
-+		if (num_joined_pipes > 1 && valid_dsc_slicecount[i] < 2)
- 			continue;
+-	/* icl+ might use joiner */
+-	if (HAS_BIGJOINER(i915))
++	if (HAS_ULTRAJOINER(i915))
++		max_dotclock *= 4;
++	else if (HAS_UNCOMPRESSED_JOINER(i915) || HAS_BIGJOINER(i915))
+ 		max_dotclock *= 2;
  
- 		if (min_slice_count <= test_slice_count)
+ 	return max_dotclock;
 -- 
 2.45.2
 
