@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81D9ECCFA16
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:02:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78775CDD1D5
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:22:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 365AF10E131;
-	Mon, 30 Sep 2024 19:02:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45CFF10E2F3;
+	Mon, 30 Sep 2024 19:22:32 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B8B210E131;
- Mon, 30 Sep 2024 19:02:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1576581177054111205=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA0910E149;
+ Mon, 30 Sep 2024 19:22:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/i915/irq=3A_clean_up_irq_res?=
- =?utf-8?q?et/init_macro_hacks_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_Remove_DRM_ap?=
+ =?utf-8?q?erture_helpers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Sep 2024 19:02:20 -0000
-Message-ID: <172772294003.1138358.7110602604042342734@2413ebb6fbb6>
+Date: Mon, 30 Sep 2024 19:22:31 -0000
+Message-ID: <172772415104.1138378.4269265731834262065@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <cover.1727369787.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1727369787.git.jani.nikula@intel.com>
+References: <20240930130921.689876-1-tzimmermann@suse.de>
+In-Reply-To: <20240930130921.689876-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,155 +40,44 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1576581177054111205==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/irq: clean up irq reset/init macro hacks (rev2)
-URL   : https://patchwork.freedesktop.org/series/139167/
-State : failure
+Series: drm: Remove DRM aperture helpers
+URL   : https://patchwork.freedesktop.org/series/139309/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1_BAT -> xe-pw-139167v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-139167v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-139167v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-139167v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-lnl-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139167v2/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139167v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [PASS][3] -> [INCOMPLETE][4] ([Intel XE#2874]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139167v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 4e4d7873ac76 drm-tip: 2024y-09m-30d-16h-43m-25s UTC integration manifest
+=== git am output follows ===
+Applying: drm/amdgpu: Use video aperture helpers
+Applying: drm/arm/hdlcd: Use video aperture helpers
+Applying: drm/armada: Use video aperture helpers
+Applying: drm/ast: Use video aperture helpers
+Applying: drm/hisilicon/hibmc: Use video aperture helpers
+Applying: drm/hyperv-drm: Use video aperture helpers
+Applying: drm/i915: Use video aperture helpers
+Applying: drm/loongson: Use video aperture helpers
+Applying: drm/meson: Use video aperture helpers
+Applying: drm/mgag200: Use video aperture helpers
+Applying: drm/msm: Use video aperture helpers
+Applying: drm/nouveau: Use video aperture helpers
+Applying: drm/ofdrm: Use video aperture helpers
+Applying: drm/qxl: Use video aperture helpers
+Applying: drm/radeon: Use video aperture helpers
+Applying: drm/rockchip: Use video aperture helpers
+Applying: drm/simpledrm: Use video aperture helpers
+Applying: drm/stm: Use video aperture helpers
+Applying: drm/sun4i: Use video aperture helpers
+Applying: drm/tegra: Use video aperture helpers
+Applying: drm/bochs: Use video aperture helpers
+Applying: drm/cirrus: Use video aperture helpers
+Applying: drm/vboxvideo: Use video aperture helpers
+Applying: drm/vc4: Use video aperture helpers
+Applying: drm/virtgpu: Use video aperture helpers
+Applying: drm/vmwgfx: Use video aperture helpers
+Applying: drm/xe: Use video aperture helpers
+Applying: drm: Remove DRM aperture helpers
 
 
-Build changes
--------------
-
-  * Linux: xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1 -> xe-pw-139167v2
-
-  IGT_8043: 8043
-  xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1: 4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1
-  xe-pw-139167v2: 139167v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139167v2/index.html
-
---===============1576581177054111205==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/irq: clean up irq reset/init macro hacks (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139167/">https://patchwork.freedesktop.org/series/139167/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139167v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139167v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1_BAT -&gt; xe-pw-139167v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-139167v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-139167v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-139167v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_compute_mode@twice-userptr-invalidate:<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139167v2/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139167v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139167v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1 -&gt; xe-pw-139167v2</li>
-</ul>
-<p>IGT_8043: 8043<br />
-  xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1: 4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1<br />
-  xe-pw-139167v2: 139167v2</p>
-
-</body>
-</html>
-
---===============1576581177054111205==--
