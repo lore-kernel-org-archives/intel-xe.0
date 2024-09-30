@@ -4,103 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 153ECCE8347
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 14:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F55CE834C
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 14:33:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D156E10E515;
-	Mon, 30 Sep 2024 14:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB6A810E51B;
+	Mon, 30 Sep 2024 14:33:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="EkIiN5K8";
+	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="skBZhbY2";
 	dkim-atps=neutral
 Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
  [210.118.77.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 302B010E515
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 14:28:16 +0000 (UTC)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E462D10E51B
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 14:33:13 +0000 (UTC)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
  by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20240930142815euoutp02d238e40303710d4001b7aab5c9075412~6C_dljeNa2140221402euoutp02o
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 14:28:15 +0000 (GMT)
+ 20240930143312euoutp02103adc63115706f12061190b0acc7792~6DCyZQBLk2712727127euoutp02w
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 14:33:12 +0000 (GMT)
 DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20240930142815euoutp02d238e40303710d4001b7aab5c9075412~6C_dljeNa2140221402euoutp02o
+ 20240930143312euoutp02103adc63115706f12061190b0acc7792~6DCyZQBLk2712727127euoutp02w
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1727706495;
- bh=kcTh8rMgfoSAiaCc93sDBpmXCoV+x2qosK0tnJrX1sI=;
+ s=mail20170921; t=1727706792;
+ bh=b68Yzn5xYI+K25lFs+1oNgdEF26q/XXmNb2+aQsuXjQ=;
  h=Date:From:To:CC:Subject:In-Reply-To:References:From;
- b=EkIiN5K8pvlwxaqa715UvTZBIPIAydI30P4moyB6+J90hWhigM4p9lvpFamU2nJsf
- sw7vR2xeBjvZ3JK3RxM9eJNdRlR4hIB5uDZm/rLky21WW7mdGYZ4jl3ick1T3LhHPM
- mDUKbSZjorNWBPIKRftXDesuGupEocXHXGgsbObE=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20240930142815eucas1p26c20fc4dc58aab5d2b95a70a5a9e9b63~6C_dXYGam2184121841eucas1p2O;
- Mon, 30 Sep 2024 14:28:15 +0000 (GMT)
+ b=skBZhbY2EbmauiNfiTxuR+BbjrAS++TYpf5Rtr6Uzl5XpXkzITwbw01oN5wklYuXl
+ kqzpCLkK8KWoAA2xXtsD+tvvGUH+bIQUFkG6QImygd9aotip5Z+ugSv/2HDK63GFfp
+ 0+9ByZhNp/c4Q5SGzRCu07mG/MQ6mNApFC0RoV5Y=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930143312eucas1p1c155662ced94ec15e07ef785fcb3af4d~6DCyRiNrm1703917039eucas1p13;
+ Mon, 30 Sep 2024 14:33:12 +0000 (GMT)
 Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges1new.samsung.com (EUCPMTA) with SMTP id 73.4A.09624.F75BAF66; Mon, 30
- Sep 2024 15:28:15 +0100 (BST)
+ eusmges2new.samsung.com (EUCPMTA) with SMTP id FC.8B.09875.8A6BAF66; Mon, 30
+ Sep 2024 15:33:12 +0100 (BST)
 Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20240930142814eucas1p150dfa5283fb811ef11c50f3e7c86b024~6C_c-ybV12686326863eucas1p1U;
- Mon, 30 Sep 2024 14:28:14 +0000 (GMT)
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20240930143312eucas1p23aac553e778c1b552af57ed25cdae0fe~6DCxutfxp1970819708eucas1p2h;
+ Mon, 30 Sep 2024 14:33:12 +0000 (GMT)
 Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
  eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20240930142814eusmtrp136fcdcde6bafa18b4d047840ef298a42~6C_c-CsW-2923929239eusmtrp1Y;
- Mon, 30 Sep 2024 14:28:14 +0000 (GMT)
-X-AuditID: cbfec7f2-c11ff70000002598-f9-66fab57f79fe
+ 20240930143312eusmtrp1ded1c79f659d001c98c8a2b53f484a19~6DCxt-RdX0040900409eusmtrp1S;
+ Mon, 30 Sep 2024 14:33:12 +0000 (GMT)
+X-AuditID: cbfec7f4-11bff70000002693-72-66fab6a86cbc
 Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms1.samsung.com (EUCPMTA) with SMTP id 88.EC.14621.E75BAF66; Mon, 30
- Sep 2024 15:28:14 +0100 (BST)
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id 1D.DD.14621.7A6BAF66; Mon, 30
+ Sep 2024 15:33:11 +0100 (BST)
 Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
  eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20240930142814eusmtip27074ddbc9d2ff497fe076e7bde1a0807~6C_cxveUj1467114671eusmtip2k;
- Mon, 30 Sep 2024 14:28:14 +0000 (GMT)
+ 20240930143311eusmtip2e17a29b0d4e3055fb5dccb32be24395a~6DCxWkgc81238512385eusmtip2L;
+ Mon, 30 Sep 2024 14:33:11 +0000 (GMT)
 Received: from localhost (106.110.32.87) by CAMSVWEXC02.scsc.local
  (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
- Mon, 30 Sep 2024 15:28:13 +0100
-Date: Mon, 30 Sep 2024 16:28:13 +0200
+ Mon, 30 Sep 2024 15:33:10 +0100
+Date: Mon, 30 Sep 2024 16:33:09 +0200
 From: Daniel Gomez <da.gomez@samsung.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
 CC: <I915-ci-infra@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <patchwork@emeril.freedesktop.org>, <tools@kernel.org>
+ <patchwork@emeril.freedesktop.org>, <tools@kernel.org>,
+ <d+samsung@kruces.com>
 Subject: Re: Incorrect response address when using B4
-Message-ID: <20240930142813.qmri7u27lxqlxwvu@AALNPWDAGOMEZ1.aal.scsc.local>
+Message-ID: <20240930143309.pwl7dzv537b2q3wk@AALNPWDAGOMEZ1.aal.scsc.local>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <87msjpw7v1.fsf@intel.com>
+In-Reply-To: <20240930-rustling-auburn-jaguar-23d200@lemur>
 X-Originating-IP: [106.110.32.87]
 X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
  CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpileLIzCtJLcpLzFFi42LZduzned36rb/SDE4u4bN4dLqP2eLH5hdM
- Fssvr2e0ePl3DbPFuY0PmR1YPc5MWcXksWlVJ5vHvJOBHve7jzMFsERx2aSk5mSWpRbp2yVw
- ZSw/1c1Y0MZd8WDpRvYGxj8cXYycHBICJhIT5/SzdjFycQgJrGCUeLloIxOE84VR4vnf0ywQ
- zmdGiYYb+9lgWlpWd0K1LAdq2bSKGa7qW88uqJbNjBIPvrQxg7SwCKhKrF1xhhXEZhPQlNh3
- chM7iC0ioCux9sYTsFHMAq2MEp+ermYCSQgLmErca1vMAmLzCnhL3HqwhAnCFpQ4OfMJWJxZ
- QEdiwe5PQDdxANnSEsv/gX3EKaAu8fXJJWaIUxUlZkxcyQJh10qc2nKLCcK+wCFxpM8YwnaR
- +HXkBTuELSzx6vgWKFtG4vTkHqjedIkl62ZB2QUSe27PYgVZKyFgLdF3Jgci7Cgx+9EtFogw
- n8SNt4IQR/JJTNo2nRkizCvR0SYEUa0msfreG5YJjMqzkLw1C8lbsxDeWsDIvIpRPLW0ODc9
- tdgwL7Vcrzgxt7g0L10vOT93EyMwmZz+d/zTDsa5rz7qHWJk4mA8xCjBwawkwnvv0M80Id6U
- xMqq1KL8+KLSnNTiQ4zSHCxK4ryqKfKpQgLpiSWp2ampBalFMFkmDk6pBiadJ6fvX1wpmHu6
- +tlxk69z1t9IsronGTb57PzN20+tsZA3O3/bm0lf8e2Hg+5cR2/Nm7b2y23v7kARvZ05C93T
- RbTq3/N8eNMfHVol5jJh3/Il9ZOWJD9WOPEprlegb3aBTdOBu/bpb3te5K5U5Xj/yHZl7IxO
- 7lfFNyv6TnFpHu8QvWBTK39ASOvpvGWlE6NcZfr+V2l+VAy/xPAv/GTThYVKN6LWRvu/aus1
- EHc95xP59vYjm7liPp3/YjcpSwS9L+nM4zc2vPk7y7evY81Co5f/noc9V/u3bOH733flF7J/
- ZzOYmHbbt/nvv2PP73cdMbVL+uCx7vTFVWIq1cHdT21N7kwtMVRc2FUjemqlEktxRqKhFnNR
- cSIAed8mAJUDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrIIsWRmVeSWpSXmKPExsVy+t/xe7p1W3+lGWzao2fx6HQfs8WPzS+Y
- LJZfXs9o8fLvGmaLcxsfMjuwepyZsorJY9OqTjaPeScDPe53H2cKYInSsynKLy1JVcjILy6x
- VYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy1h+qpuxoI274sHSjewNjH84
- uhg5OSQETCRaVneydjFycQgJLGWUmLb2LSNEQkZi45errBC2sMSfa11sEEUfGSXW/PkGlhAS
- 2MwocfRcGIjNIqAqsXbFGbA4m4CmxL6Tm9hBbBEBXYm1N56AbWAWaGWU+PR0NRNIQljAVOJe
- 22IWEJtXwFvi1oMlTBAb9jBKLPrylxEiIShxcuYTsCJmAR2JBbs/AZ3BAWRLSyz/B/YCp4C6
- xNcnl5ghLlWUmDFxJQuEXSvx+e8zxgmMwrOQTJqFZNIshEkLGJlXMYqklhbnpucWG+oVJ+YW
- l+al6yXn525iBMbVtmM/N+9gnPfqo94hRiYOxkOMEhzMSiK89w79TBPiTUmsrEotyo8vKs1J
- LT7EaAoMi4nMUqLJ+cDIziuJNzQzMDU0MbM0MLU0M1YS53W7fD5NSCA9sSQ1OzW1ILUIpo+J
- g1Oqgal/YaTZCwnND++ucb/5zbDD4aFyw+tYT3cRgeTdqnN/yj1wTDoac8V8/tut2qtnXGQL
- 2L1qmkNY58nfB8La8oUZ3pcnVT1nsi+60iptvHyuZfam60/Wpc34z3jN3+zf/ZL+Yu+O+vmz
- Z4bpiRxl6rf1Ueeun+/9dGKAd6da1TauEKYy3srD3Xx9TjuYXgRN1LPYsnP/9GbdyJR5qQz6
- p7/23PzVu24F69SyCxmPzqr2+59lSLFqyjCwfu7hmpuXMzFobaGpn7ve6Y69xy/cX9u+5mPg
- yZBTP85zbm7f/6To14kP086s/pPromuiVX3uf2CRteGa8qrIB9abd4hPdpp/TPC/ltTa/Wz3
- K3wyWZVYijMSDbWYi4oTAZE+F8c0AwAA
-X-CMS-MailID: 20240930142814eucas1p150dfa5283fb811ef11c50f3e7c86b024
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUyMcRzf73m5e2o7nq4b3zlvHWWh0JhrmZTYrYwaZjOmU7+ul+vFnVRe
+ jxGVmlJLJy4L5VTmLq23HZ2X6IXZvJxSIib0IhouFE9PXv77fD8v2+fz248hxRn0FCYqbifW
+ xCnVMoEjVXXH/sCjtGo4YuFw4Qx53WgHKX/VnEXKv5l7CHnN5yEkf/ezjJTfv/qSXCFQtOQa
+ CYXJmCZQjGZ20YrrZ8qEihcZjUQwvdlxWThWR+3CmgXLQx0j62znqIR3TLLuMatDh4XpiGGA
+ XQwtDf7pyJERs6UITt1qp/hjCMHXBzUEf3z+rZgKUDpyGEt0FFlJXihB0FveTP91pVq6xxUz
+ goHHtTQXoVhXONLUT3BYwLqD5Z5JyGEJ6w2W2o9jAZI1IGjKzyU5wZldAp2pxRTXUMQGwfOG
+ AxwtYp3gXsFrisMkOx+K6j4JOAvJSqFkhOFoB9YHerJv0HxTFziVfYni8T5oqmwbmwNsFwOj
+ rd/HTQFw/VE9wWNneN9YKeTxVGg+eXw8rILzFfpxnAD17XqafzwfyGpR87QfnH7VRvH0BLD1
+ OfEtJ0BOVT7J0yI4lirm3W5wubOXOoFm6f/bpf9vl/7friJEGtFknKiNVWGtVxxO8tQqY7WJ
+ cSrPsPhYE/r9X5pHGoeqUcn7QU8rIhhkRcCQMomo02qPEIvClSm7sSZ+myZRjbVWJGUo2WSR
+ a/gMLGZVyp04BuMErPmjEozDFB0hbzibotMln22CSPylvHBEvX7N7K1bPDOFg8O+EU+Hks79
+ qArcvs/fsGGp2xyypyK6aP1+yw7skvstemBd2+2gcl/R4ZisZNs0rxDVSkm9ft70Z2euulti
+ frzZdHDifZejW9j+mTgnY69p9RO6oMt9Q9uTqcHddDwls/cJjVFiXbtUojJ8MDADa/O8wxoM
+ 3yXbKlxOD3r57ukbGLmhjvXI7+2+sKqxRLC2cOO8NaFZdmNeR7Hw6SNpa7LtYrRzqdQcDd79
+ hxQeV2zXkjSJzyYprKKH01Fxa1l1+sHB+lz7R/PbkG7sV5v24Wagx+jrnAIc4JpQ433XnNE7
+ 83KwkLojo7SRykVzSY1W+Qt81W91ngMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNIsWRmVeSWpSXmKPExsVy+t/xe7rLt/1KM7iy2sxi9/+7zBaPTvcx
+ W/zY/ILJYufnL4wWL/+uYbY4t/EhswObx5kpq5g8Nq3qZPP43/uA1WP/3DXsHve7jzMFsEbp
+ 2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSWpRbp2yXoZey+sZCl
+ 4CVHRcNVgQbGFvYuRk4OCQETibsLDjF3MXJxCAksZZRY+3gaC0RCRmLjl6usELawxJ9rXWwQ
+ RR+BimaeZIdwNjNKNK46DtbBIqAq0XrqHROIzSagKbHv5CawFSIClhL7dn0AW8EsMJ9R4tT0
+ KcwgCWEBU4l7bYuBmjk4eAW8Je4crIcYeoJJ4t7ylWA1vAKCEidnPgFbwCygI7Fg9yc2kHpm
+ AWmJ5f84QMKcAtYSLyYegLpUUWLGxJVQH9RKfP77jHECo/AsJJNmIZk0C2HSAkbmVYwiqaXF
+ uem5xYZ6xYm5xaV56XrJ+bmbGIGxtu3Yz807GOe9+qh3iJGJg/EQowQHs5II771DP9OEeFMS
+ K6tSi/Lji0pzUosPMZoCg2Iis5Rocj4w2vNK4g3NDEwNTcwsDUwtzYyVxHndLp9PExJITyxJ
+ zU5NLUgtgulj4uCUamAS6Zxu5Od4bpPg4t5C8UvMP1omFJX1qLh86b33L7r01nGf79fZBPUN
+ gwwrDe6zrd6Ztft6qk9O88I61osae9S/fXMzPdBgvtJbw2Orzt2j7gt+qj8yffUljTWlI2Rb
+ e9jyRoVNWjIrhAUOub7Tvzjpxo5olglR1SYzN3mufHsiapPTjc08bB5TRVafn6TELXOZ88km
+ WzPb1Tm5KosOHlq8bPaBjde1SmR2rL6QrM6RqWqU7PA+7fe2yz/nahmdPNq77aJ9ZqnY4t8C
+ H1e1+F5b9YT7o2VZ7mlVhklV51zXli2R57WfLZio9HLHAt7+VZbTraZ9mXL3p8k9ReHfJo77
+ T3evO3/+o0Aro3LGvf5JSizFGYmGWsxFxYkAJTpLUj4DAAA=
+X-CMS-MailID: 20240930143312eucas1p23aac553e778c1b552af57ed25cdae0fe
 X-Msg-Generator: CA
 X-RootMTR: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
 X-EPHeader: CA
@@ -108,7 +109,9 @@ CMS-TYPE: 201P
 X-CMS-RootMailID: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
 References: <CGME20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb@eucas1p1.samsung.com>
  <20240930133007.u4vm5qj5urikpmvc@AALNPWDAGOMEZ1.aal.scsc.local>
- <87msjpw7v1.fsf@intel.com>
+ <20240930-sapphire-swift-of-reverence-168e2b@lemur>
+ <20240930141839.3rjfom4c2tca655n@AALNPWDAGOMEZ1.aal.scsc.local>
+ <20240930-rustling-auburn-jaguar-23d200@lemur>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,46 +126,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 05:09:54PM +0300, Jani Nikula wrote:
-> On Mon, 30 Sep 2024, Daniel Gomez <da.gomez@samsung.com> wrote:
-> > Hi,
-> >
-> > I sent this patch [1] using B4 web endpoint and then I received a
-> > response email to the wrong address: To: "Daniel Gomez via B4 Relay"
-> > <devnull+da.gomez.samsung.com@kernel.org> instead of To: "Daniel Gomez"
-> > <da.gomez@samsung.com>.
-> >
-> > [1] https://lore.kernel.org/all/20240925-macos-build-support-v3-1-233dda880e60@samsung.com/
+On Mon, Sep 30, 2024 at 10:20:57AM -0400, Konstantin Ryabitsev wrote:
+> On Mon, Sep 30, 2024 at 04:18:39PM GMT, Daniel Gomez wrote:
+> > > Was it an automated tool that sent you that message? Normally, email clients
+> > > would honour the "Reply-To" field and not use the From: address put in by the
+> > > relay.
+> > 
+> > It was a CI Patchwork tool. Response [1] to my patch was sent from "From:
+> > Patchwork <patchwork@emeril.freedesktop.org>".
+> > 
+> > [1] https://lore.kernel.org/all/172735727458.1107233.1757281470637305143@2413ebb6fbb6/
+> > 
+> > I think that tool is ignoring the "Reply-To" field [2] from the B4 message and
+> > using the From field.
+> > 
+> > 	From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
+> > 	Reply-To: da.gomez@samsung.com
 > 
-> I guess you're saying the replies should be using the Reply-To: header.
+> It's no big deal as long as you got the email response in the end. We expect
+> this to happen with a lot of automation, which is why any replies to the relay
+> address are auto-discarded.
 
-Exactly. Do you know if this can be fixed on the ci/patchwork bot?
-
-> 
-> Oddly enough, even my MUA doesn't respect the Reply-To: header when the
-> same address is already in To:/Cc:, as a way to handle mailing list
-> Reply-To "munging" [1].
-
-My address was in Cc. B4 adds you in the To/Cc automatically unless you specify
-no with '--not-me-too'.
-
-Do you know if removing yourself from To/Cc makes ci/patchwork use the Reply-To
-header?
+To clarify, the email response didn't land into my inbox. I realized a response
+was sent after checking at lore.kernel.org.
 
 > 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://protect2.fireeye.com/v1/url?k=ce24ae2c-aec63371-ce252563-000babd9f1ba-20c0723eefd97920&q=1&e=ad8d684b-6634-4f39-87c0-216f0a44334f&u=http%3A%2F%2Fmarc.merlins.org%2Fnetrants%2Freply-to-harmful.html
-> 
-> 
-> 
-> >
-> > Is this something that can be fixed on the CI, patchwork side?
-> >
-> > Thanks,
-> > Daniel
-> 
-> -- 
-> Jani Nikula, Intel
+> -K
