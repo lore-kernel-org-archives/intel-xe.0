@@ -4,21 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9635CEBF72
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:57:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68C19CEBF74
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:57:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B960F10E59D;
-	Mon, 30 Sep 2024 19:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DFE710E5A0;
+	Mon, 30 Sep 2024 19:57:55 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDC9C10E59B
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1D210E59B
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:52 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 08/15] drm/xe/display: Abstract read/write functions for
- GGTT PTEs
-Date: Mon, 30 Sep 2024 21:57:42 +0200
-Message-ID: <20240930195749.318998-9-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 15/15] drm/xe: Initialise GGTT later
+Date: Mon, 30 Sep 2024 21:57:49 +0200
+Message-ID: <20240930195749.318998-16-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
 References: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
@@ -38,101 +37,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of writing directly, use GGTT functions. This allows us to
-hide away more GGTT details.
+Now that we know that nobody is using GGTT any more, postpone
+initialisation to prevent any new allocations.
+
+This prevents any new users from popping up.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  4 ++--
- drivers/gpu/drm/xe/display/xe_plane_initial.c |  6 +----
- drivers/gpu/drm/xe/xe_ggtt.c                  | 24 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_ggtt.h                  |  3 +++
- 4 files changed, 30 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 79dbbbe03c7f6..bddd526b33297 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -172,7 +172,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- 			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
- 							      xe->pat.idx[XE_CACHE_NONE]);
- 
--			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte);
-+			xe_ggtt_write_pte(ggtt, *ggtt_ofs, pte);
- 			*ggtt_ofs += XE_PAGE_SIZE;
- 			src_idx -= src_stride;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 31d668ab60f04..5919da7b23361 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -676,9 +676,6 @@ int xe_device_probe(struct xe_device *xe)
+ 			if (err)
+ 				return err;
  		}
-@@ -226,7 +226,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
- 							      xe->pat.idx[XE_CACHE_NONE]);
+-		err = xe_ggtt_init_early(tile->mem.ggtt);
+-		if (err)
+-			return err;
+ 	}
  
--			ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node->base.start + x, pte);
-+			xe_ggtt_write_pte(ggtt, vma->node->base.start + x, pte);
- 		}
- 	} else {
- 		u32 i, ggtt_ofs;
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 1f5128927c07c..4660db0aecb68 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -70,12 +70,8 @@ initial_plane_bo(struct xe_device *xe,
- 
- 	base = round_down(plane_config->base, page_size);
- 	if (IS_DGFX(xe) || GRAPHICS_VERx100(xe) >= 1270) {
--		u64 __iomem *gte = tile0->mem.ggtt->gsm;
--		u64 pte;
-+		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
- 
--		gte += base / XE_PAGE_SIZE;
--
--		pte = ioread64(gte);
- 		if (!(pte & XE_GGTT_PTE_DM)) {
- 			drm_err(&xe->drm,
- 				"Initial plane programming missing DM bit\n");
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 4866e9b252ad9..6595170637769 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -855,3 +855,27 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
- 
- 	return total;
- }
+ 	for_each_gt(gt, xe, id) {
+@@ -710,6 +707,11 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_tile_init_noalloc(tile);
+ 		if (err)
+ 			goto err;
 +
-+/**
-+ * xe_ggtt_read_pte - Read a PTE from the GGTT
-+ * @ggtt: &xe_ggtt
-+ * @offset: the offset for which the mapping should be read.
-+ *
-+ * Used by display for inheriting a bios set FB.
-+ */
-+u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
-+{
-+	return ioread64(ggtt->gsm + (offset / XE_PAGE_SIZE));
-+}
-+
-+/**
-+ * xe_ggtt_write_pte - Write a PTE to the GGTT
-+ * @ggtt: &xe_ggtt
-+ * @offset: the offset for which the mapping should be written.
-+ *
-+ * Used by display for writing normal and rotated GGTT entries for temporary pinned FB's.
-+ */
-+void xe_ggtt_write_pte(struct xe_ggtt *ggtt, u64 offset, u64 pte)
-+{
-+	return ggtt->pt_ops->ggtt_set_pte(ggtt, offset, pte);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 0bab1fd7cc817..f83e5af0400e9 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -47,4 +47,7 @@ static inline void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
- void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
- #endif
++		/* Initialise GGTT, before this point no allocations are allowed */
++		err = xe_ggtt_init_early(tile->mem.ggtt);
++		if (err)
++			return err;
+ 	}
  
-+u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
-+void xe_ggtt_write_pte(struct xe_ggtt *ggtt, u64 offset, u64 pte);
-+
- #endif
+ 	/* Allocate and map stolen after potential VRAM resize */
 -- 
 2.45.2
 
