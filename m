@@ -4,21 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A37FCDD1D6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 928E5CEBF73
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:57:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED0F410E59A;
-	Mon, 30 Sep 2024 19:57:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 630A410E599;
+	Mon, 30 Sep 2024 19:57:44 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82D1110E599
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24D7B10E597
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:43 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 01/15] drm/xe/display: Handle stolen bar readout in the
- same way as lmem
-Date: Mon, 30 Sep 2024 21:57:35 +0200
-Message-ID: <20240930195749.318998-2-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 03/15] drm/xe: Move suballocator init to after display init
+Date: Mon, 30 Sep 2024 21:57:37 +0200
+Message-ID: <20240930195749.318998-4-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
 References: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
@@ -38,54 +37,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915 already does this, we should do the same for Xe.
+No allocations should be done before we have had a chance to preserve
+the display fb.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
+ drivers/gpu/drm/xe/xe_tile.h   |  1 +
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 1b10ea499d8c8..cf139921e7817 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -69,7 +69,7 @@ initial_plane_bo(struct xe_device *xe,
- 	flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 09a7ad830e695..e9e2946b0b53c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -732,6 +732,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
  
- 	base = round_down(plane_config->base, page_size);
--	if (IS_DGFX(xe)) {
-+	if (IS_DGFX(xe) || GRAPHICS_VERx100(xe) >= 1270) {
- 		u64 __iomem *gte = tile0->mem.ggtt->gsm;
- 		u64 pte;
- 
-@@ -83,7 +83,6 @@ initial_plane_bo(struct xe_device *xe,
- 		}
- 
- 		phys_base = pte & ~(page_size - 1);
--		flags |= XE_BO_FLAG_VRAM0;
- 
- 		/*
- 		 * We don't currently expect this to ever be placed in the
-@@ -105,7 +104,6 @@ initial_plane_bo(struct xe_device *xe,
- 		if (!stolen)
- 			return NULL;
- 		phys_base = base;
--		flags |= XE_BO_FLAG_STOLEN;
- 
- 		if (XE_WA(xe_root_mmio_gt(xe), 22019338487_display))
- 			return NULL;
-@@ -120,6 +118,11 @@ initial_plane_bo(struct xe_device *xe,
- 			return NULL;
- 	}
- 
-+	if (IS_DGFX(xe))
-+		flags |= XE_BO_FLAG_VRAM0;
-+	else
-+		flags |= XE_BO_FLAG_STOLEN;
++	for_each_tile(tile, xe, id) {
++		err = xe_tile_init(tile);
++		if (err)
++			goto err;
++	}
 +
- 	size = round_up(plane_config->base + plane_config->size,
- 			page_size);
- 	size -= base;
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index dda5268507d8e..164751bd9af22 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -167,10 +167,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	if (err)
+ 		return err;
+ 
+-	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+-	if (IS_ERR(tile->mem.kernel_bb_pool))
+-		return PTR_ERR(tile->mem.kernel_bb_pool);
+-
+ 	xe_wa_apply_tile_workarounds(tile);
+ 
+ 	err = xe_tile_sysfs_init(tile);
+@@ -178,6 +174,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	return 0;
+ }
+ 
++int xe_tile_init(struct xe_tile *tile)
++{
++	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
++	if (IS_ERR(tile->mem.kernel_bb_pool))
++		return PTR_ERR(tile->mem.kernel_bb_pool);
++
++	return 0;
++}
+ void xe_tile_migrate_wait(struct xe_tile *tile)
+ {
+ 	xe_migrate_wait(tile->migrate);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 1c9e42ade6b05..eb939316d55b0 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -12,6 +12,7 @@ struct xe_tile;
+ 
+ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
+ int xe_tile_init_noalloc(struct xe_tile *tile);
++int xe_tile_init(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
 -- 
 2.45.2
 
