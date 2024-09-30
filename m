@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D77E2CF6497
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 12:33:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70F25CF6497
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 12:41:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA96010E42F;
-	Mon, 30 Sep 2024 12:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A8CB10E443;
+	Mon, 30 Sep 2024 12:41:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+tVFPov";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i0O+6JCq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C927310E42D;
- Mon, 30 Sep 2024 12:33:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE1910E440;
+ Mon, 30 Sep 2024 12:41:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727699587; x=1759235587;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DgkRJFm1b1Gj2GS06H4jwjLWnHy/a1qfSwmA/EkYXIY=;
- b=h+tVFPovU0agvRiufpMmB+/fUzLLkfCb6m9WHamx/fvTmrdGu9Ch2MEl
- QL5K+8+BrA++R8hBpZe8F2mhYw3fh/qGYRoPUY5s8UjJLvT4XeJx4+zPu
- 8ku8xJHmMt9dzEoLVtTK3oOTHahBCjtrIWsSkpt6yQjKKxzHK9UQvsTAn
- 0ihN6jsKogSkP8D0h2LyXReU6K6tXPXyfPwtOk+GjKH/u6wMIrTm+My7T
- p59IGDve20M23sC5t1RbTJQZVGTxGGV9pOpje9NENUn0mIAkECwrjAXWq
- dzfJePSv3hv5ACu2bHJY0Q6O9pF2IBRBC5KeLsBRzsc8jwogAGP1awK7j Q==;
-X-CSE-ConnectionGUID: FiKsxO8eTliXKXnqfOPDzg==
-X-CSE-MsgGUID: MobjBIsJTfGrvQkIilx2PQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="37346585"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="37346585"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 05:33:07 -0700
-X-CSE-ConnectionGUID: ISNn/5pqTIGpyGuLKSrXJQ==
-X-CSE-MsgGUID: LyBBGKrLQhSE0fEzHLpeJg==
+ t=1727700073; x=1759236073;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mBmP2RssXPtJc/5kD1UudL4vsxscCw0EDsaiu1bJzjM=;
+ b=i0O+6JCq/CQm1JzTSPPgkdCVqG66kd5OENDDksIvKSpZ51A9feYRqf1K
+ KvXLj+EsIoTQ4LvMaGqMd3w1QqNFC1DaL0ImzVfUyU245llwJ6jK6SMSa
+ /uLqN+XQx9G40zRUy5OPajt2lqeL7o0g17duzR+JMBA66GgaKs/sqDNxs
+ Ts9SSOIni1WLV+sUlrTfYWJqxztaN90PfmfOJ5214nrzRF67zbruk/5Fk
+ TyGbODQQ5V9pYVK0OGjDJsaOykG7pKbT83jyFO+SmvOxsIZ2+4YkPHJvR
+ uQws0La0srx4gkuW7af5ZB93J7yDkAn4QS1SBDkKfWB6FYrHJ2NVN+Blz g==;
+X-CSE-ConnectionGUID: zPZqAnrqTfiNWpNazU3Oyw==
+X-CSE-MsgGUID: qeNh/bb+TvaOrvZUKOVEtA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26292917"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26292917"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 05:41:12 -0700
+X-CSE-ConnectionGUID: t4hAFFyBS8O9+byjZfXc+Q==
+X-CSE-MsgGUID: zhlJDJo0RMCOH0w791/L8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="77672988"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73568029"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.93])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 05:33:03 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 05:41:10 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH v3 15/15] drm/i915/vblank: use display->platform.<platform>
- instead of IS_<PLATFORM>()
-Date: Mon, 30 Sep 2024 15:31:16 +0300
-Message-Id: <b80bd9f5403cc6290544dbd71caf5f6ec85e33e3.1727699233.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [CI 1/2] drm/i915: remove IS_LP()
+Date: Mon, 30 Sep 2024 15:40:55 +0300
+Message-Id: <20240930124056.3541988-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1727699233.git.jani.nikula@intel.com>
-References: <cover.1727699233.git.jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,69 +69,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Switch to using the new display->platform.<platform> members for
-platform identification in display code.
+The .is_lp member of struct intel_device_info and its wrapper IS_LP()
+are used to identify just four platforms, VLV/CHV/BXT/GLK. It didn't
+become as important as it was perhaps originally planned. Just remove
+it, and replace with exact platform identification. In a few places this
+becomes slightly verbose, but in many places it improves clarity to
+immediately see the exact platforms.
 
+Additionally, this lets us remove the xe compat macro.
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c           | 7 +++++--
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c          | 2 +-
+ drivers/gpu/drm/i915/i915_drv.h                     | 5 ++---
+ drivers/gpu/drm/i915/i915_pci.c                     | 3 ---
+ drivers/gpu/drm/i915/intel_device_info.h            | 1 -
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 1 -
+ 7 files changed, 9 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index d18b8292be49..a95fb3349eba 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -195,7 +195,6 @@ static u32 __intel_get_crtc_scanline_from_timestamp(struct intel_crtc *crtc)
- int intel_crtc_scanline_offset(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 5306bbd13e59..54dc95f7535b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -150,7 +150,7 @@ enum intel_display_subplatform {
+ #define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
+ #define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+ #define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
+-#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
++#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_BROXTON(i915) && !IS_GEMINILAKE(i915))
+ #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
+ 					  BIT(trans)) != 0)
+ #define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >= 13)
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 38e34b72bc4e..b679c5391fe6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -589,11 +589,14 @@ static bool intel_pll_is_valid(struct drm_i915_private *dev_priv,
+ 	if (clock->m1 < limit->m1.min || limit->m1.max < clock->m1)
+ 		return false;
  
- 	/*
- 	 * The scanline counter increments at the leading edge of hsync.
-@@ -225,7 +224,7 @@ int intel_crtc_scanline_offset(const struct intel_crtc_state *crtc_state)
- 	 */
- 	if (DISPLAY_VER(display) == 2)
- 		return -1;
--	else if (HAS_DDI(i915) && intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-+	else if (HAS_DDI(display) && intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
- 		return 2;
- 	else
- 		return 1;
-@@ -327,14 +326,13 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 				     const struct drm_display_mode *mode)
- {
- 	struct intel_display *display = to_intel_display(_crtc->dev);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 	enum pipe pipe = crtc->pipe;
- 	int position;
- 	int vbl_start, vbl_end, hsync_start, htotal, vtotal;
- 	unsigned long irqflags;
- 	bool use_scanline_counter = DISPLAY_VER(display) >= 5 ||
--		IS_G4X(dev_priv) || DISPLAY_VER(display) == 2 ||
-+		display->platform.g4x || DISPLAY_VER(display) == 2 ||
- 		crtc->mode_flags & I915_MODE_FLAG_USE_SCANLINE_COUNTER;
+-	if (!IS_PINEVIEW(dev_priv) && !IS_LP(dev_priv))
++	if (!IS_PINEVIEW(dev_priv) &&
++	    !IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv) &&
++	    !IS_BROXTON(dev_priv) && !IS_GEMINILAKE(dev_priv))
+ 		if (clock->m1 <= clock->m2)
+ 			return false;
  
- 	if (drm_WARN_ON(display->drm, !mode->crtc_clock)) {
-@@ -603,14 +601,15 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
- 			     const struct intel_crtc_state *new_crtc_state,
- 			     struct intel_vblank_evade_ctx *evade)
- {
-+	struct intel_display *display = to_intel_display(new_crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	const struct intel_crtc_state *crtc_state;
- 	const struct drm_display_mode *adjusted_mode;
+-	if (!IS_LP(dev_priv)) {
++	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv) &&
++	    !IS_BROXTON(dev_priv) && !IS_GEMINILAKE(dev_priv)) {
+ 		if (clock->p < limit->p.min || limit->p.max < clock->p)
+ 			return false;
+ 		if (clock->m < limit->m.min || limit->m.max < clock->m)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index d29005980806..9d958a6f377e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -457,7 +457,7 @@ static int init_reserved_stolen(struct drm_i915_private *i915)
+ 		icl_get_stolen_reserved(i915, uncore,
+ 					&reserved_base, &reserved_size);
+ 	} else if (GRAPHICS_VER(i915) >= 8) {
+-		if (IS_LP(i915))
++		if (IS_CHERRYVIEW(i915) || IS_BROXTON(i915) || IS_GEMINILAKE(i915))
+ 			chv_get_stolen_reserved(i915, uncore,
+ 						&reserved_base, &reserved_size);
+ 		else
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index def3ca135406..3c4b106cc7a0 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -612,9 +612,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_TIGERLAKE_UY(i915) \
+ 	IS_SUBPLATFORM(i915, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_UY)
  
- 	evade->crtc = crtc;
+-#define IS_LP(i915)		(INTEL_INFO(i915)->is_lp)
+-#define IS_GEN9_LP(i915)	(GRAPHICS_VER(i915) == 9 && IS_LP(i915))
+-#define IS_GEN9_BC(i915)	(GRAPHICS_VER(i915) == 9 && !IS_LP(i915))
++#define IS_GEN9_LP(i915)	(IS_BROXTON(i915) || IS_GEMINILAKE(i915))
++#define IS_GEN9_BC(i915)	(GRAPHICS_VER(i915) == 9 && !IS_GEN9_LP(i915))
  
--	evade->need_vlv_dsi_wa = (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) &&
-+	evade->need_vlv_dsi_wa = (display->platform.valleyview ||
-+				  display->platform.cherryview) &&
- 		intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI);
+ #define __HAS_ENGINE(engine_mask, id) ((engine_mask) & BIT(id))
+ #define HAS_ENGINE(gt, id) __HAS_ENGINE((gt)->info.engine_mask, id)
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 617f411feb8c..eaf8a098e1c5 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -367,7 +367,6 @@ static const struct intel_device_info ivb_q_info = {
+ static const struct intel_device_info vlv_info = {
+ 	PLATFORM(INTEL_VALLEYVIEW),
+ 	GEN(7),
+-	.is_lp = 1,
+ 	.has_runtime_pm = 1,
+ 	.has_rc6 = 1,
+ 	.has_reset_engine = true,
+@@ -451,7 +450,6 @@ static const struct intel_device_info bdw_gt3_info = {
+ static const struct intel_device_info chv_info = {
+ 	PLATFORM(INTEL_CHERRYVIEW),
+ 	GEN(8),
+-	.is_lp = 1,
+ 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
+ 	.has_64bit_reloc = 1,
+ 	.has_runtime_pm = 1,
+@@ -512,7 +510,6 @@ static const struct intel_device_info skl_gt4_info = {
  
- 	/*
+ #define GEN9_LP_FEATURES \
+ 	GEN(9), \
+-	.is_lp = 1, \
+ 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_64bit_reloc = 1, \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 643ff1bf74ee..4f4aa4ff9963 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -138,7 +138,6 @@ enum intel_ppgtt_type {
+ 
+ #define DEV_INFO_FOR_EACH_FLAG(func) \
+ 	func(is_mobile); \
+-	func(is_lp); \
+ 	func(require_force_probe); \
+ 	func(is_dgfx); \
+ 	/* Keep has_* in alphabetical order */ \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 00d492f907d8..900003d855a6 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -76,7 +76,6 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+ 
+ #define IS_MOBILE(xe) (xe && 0)
+ 
+-#define IS_LP(xe) ((xe) && 0)
+ #define IS_GEN9_LP(xe) ((xe) && 0)
+ #define IS_GEN9_BC(xe) ((xe) && 0)
+ 
 -- 
 2.39.5
 
