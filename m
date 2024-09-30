@@ -4,115 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23979CE8348
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:09:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9F14CE8346
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:09:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7412210E4A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6130410E4C5;
 	Mon, 30 Sep 2024 13:09:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="GoeNHWdv";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="eTzChGey";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="WqCCyp4K";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QLn+UEdg";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="a3xKeUsm";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="AYhX+9Yu";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="k9IwZsQB";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="g/Po6yVG";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBCAC10E4AA;
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF3A610E4B9;
  Mon, 30 Sep 2024 13:09:36 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 339A21FBA5;
+ by smtp-out1.suse.de (Postfix) with ESMTPS id EE70121A55;
  Mon, 30 Sep 2024 13:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
  t=1727701775; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Dy58Sn3RQNMhKk8awOVt2TDJWVptRVW7Mo0towpFIBk=;
- b=GoeNHWdvKFr9d/ByOpZVnv/EqCS0FX7mfn1yYyZUCEATdslGvY+7XYDWGDSOKUAawCNriZ
- 92ZTEtRsthrewHXLzMRJc4N6BvW0Wr9MHnWY/DXmp9C/oUDQ7bvt3U617vtWHHr2fa8CUA
- myazuNtw3Qan9fYlKxAyn2SvtfaJD6U=
+ bh=NK97qS+C5esqOi+w4ad0OepqyE7Gl6fdZHrNzZST+Io=;
+ b=a3xKeUsmZ7DmTs0iR0Dbdb7KIVtsJS13ch9HoXZHnPyo+lK+rcQQ5eUW+Ma/8oDRbqez8n
+ 3hD8VC42d3rLHwL+NfY5YM6NvqrNXfhGM8bpnup6m64OdsOh6Y7Vfbx26WzRMaBSkKgRK9
+ 3K9dXNVk5vA4cDT7sYWXS6zhbatopnk=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_ed25519; t=1727701775;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Dy58Sn3RQNMhKk8awOVt2TDJWVptRVW7Mo0towpFIBk=;
- b=eTzChGeyOVuowR+fhT7yA6rAu/C/Sh3LHLlv4RXiXCoX//PcUbJwa5OGqYskJ6+GKmyMFw
- RpXRcWwJQl9uXcBQ==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=WqCCyp4K;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=QLn+UEdg
+ bh=NK97qS+C5esqOi+w4ad0OepqyE7Gl6fdZHrNzZST+Io=;
+ b=AYhX+9YuhUZusSvn2s2xDl1V91lweZjiamoBM355TG0GGUg7D+PU810jTufw2sqNZPgEw3
+ JkOTvH3vlcOYhXAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
  t=1727701773; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Dy58Sn3RQNMhKk8awOVt2TDJWVptRVW7Mo0towpFIBk=;
- b=WqCCyp4KqtRqkqdK7zDWNYfOmn/Ow5sD1rQbPoUuyHSkJiNhDtYar+1KklFUuL0ex6uK00
- 2S/4yhkm86YRZeoqrjtSeI0tR4NSYicxfptIkQxcC73OCejvTBle3FmQ5C08SCVW3GglI6
- Ref29LmuHXoBBizilFYadBaZme1QJ98=
+ bh=NK97qS+C5esqOi+w4ad0OepqyE7Gl6fdZHrNzZST+Io=;
+ b=k9IwZsQBpDhbJN36CYaza+4sxCG64BJK8dtRQ6KrmUVoJZsjCsUa9dtTi7IyLvqVuDwE+j
+ GxUJbiGhuVB6dR6aN454Kywip/u1f4A9wbf1My12qRBbvbulR7LGeOwNG0ge25ocynCjuB
+ kZcdi/2Wqyka1jY66mYZ7A5Uf9oprWU=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_ed25519; t=1727701773;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Dy58Sn3RQNMhKk8awOVt2TDJWVptRVW7Mo0towpFIBk=;
- b=QLn+UEdguW3HjNlRc5yN6k7YntYJ5SdUKSdK0F3as8FV5dUmSTCylDg+yGgrRbiUiDKMB2
- 70N0IHhNu6zQBmDg==
+ bh=NK97qS+C5esqOi+w4ad0OepqyE7Gl6fdZHrNzZST+Io=;
+ b=g/Po6yVGCstkqwNoqQo8r4oUx46mFrerp0PDyU2EfY8K8LyOkN/ytWlNXDkuuDiSHo2oYk
+ pwVIKlblIJ4MAZDA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D97C913A97;
- Mon, 30 Sep 2024 13:09:32 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9A76C136CB;
+ Mon, 30 Sep 2024 13:09:33 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id aC/aMwyj+mb2dQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 13:09:32 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id aEp0JA2j+mb2dQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 13:09:33 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Thomas Zimmermann <tzimmermann@suse.de>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Subject: [PATCH 24/28] drm/vc4: Use video aperture helpers
-Date: Mon, 30 Sep 2024 15:03:22 +0200
-Message-ID: <20240930130921.689876-25-tzimmermann@suse.de>
+ Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Subject: [PATCH 26/28] drm/vmwgfx: Use video aperture helpers
+Date: Mon, 30 Sep 2024 15:03:24 +0200
+Message-ID: <20240930130921.689876-27-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240930130921.689876-1-tzimmermann@suse.de>
 References: <20240930130921.689876-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 339A21FBA5
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
+ R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
+ MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FROM_HAS_DN(0.00)[]; RCPT_COUNT_TWELVE(0.00)[12];
+ MIME_TRACE(0.00)[0:+];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[broadcom.com:email,imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid];
  FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
- FUZZY_BLOCKED(0.00)[rspamd.com];
+ RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FROM_EQ_ENVFROM(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ TO_DN_SOME(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- RCPT_COUNT_TWELVE(0.00)[12]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FROM_HAS_DN(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,raspberrypi.com:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
- FROM_EQ_ENVFROM(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLqtkr6cif1ebgurukgmwdm7xc)];
- RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,41 +120,41 @@ under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
 calling the video functions directly.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+Cc: Zack Rusin <zack.rusin@broadcom.com>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
 ---
- drivers/gpu/drm/vc4/vc4_drv.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-index 13a1ecddbca3..9fe7cc7b9ccd 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.c
-+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-@@ -20,6 +20,7 @@
-  * driver.
-  */
- 
-+#include <linux/aperture.h>
- #include <linux/clk.h>
- #include <linux/component.h>
- #include <linux/device.h>
-@@ -30,7 +31,6 @@
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+index cf7a89d002e4..36f6ce022a73 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+@@ -35,7 +35,6 @@
+ #include "vmwgfx_vkms.h"
+ #include "ttm_object.h"
  
 -#include <drm/drm_aperture.h>
- #include <drm/drm_atomic_helper.h>
  #include <drm/drm_client_setup.h>
  #include <drm/drm_drv.h>
-@@ -359,7 +359,7 @@ static int vc4_drm_bind(struct device *dev)
- 		}
- 	}
+ #include <drm/drm_fbdev_ttm.h>
+@@ -50,6 +49,8 @@
+ #ifdef CONFIG_X86
+ #include <asm/hypervisor.h>
+ #endif
++
++#include <linux/aperture.h>
+ #include <linux/cc_platform.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/module.h>
+@@ -1656,7 +1657,7 @@ static int vmw_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	struct vmw_private *vmw;
+ 	int ret;
  
--	ret = drm_aperture_remove_framebuffers(driver);
-+	ret = aperture_remove_all_conflicting_devices(driver->name);
+-	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &driver);
++	ret = aperture_remove_conflicting_pci_devices(pdev, driver.name);
  	if (ret)
- 		goto err;
+ 		goto out_error;
  
 -- 
 2.46.0
