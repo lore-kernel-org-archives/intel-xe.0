@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89369CE8372
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 16:34:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48016CE8373
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 16:41:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A90A10E554;
-	Mon, 30 Sep 2024 16:34:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1420710E552;
+	Mon, 30 Sep 2024 16:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mBnaxVg+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WidZt6/y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3794E10E562;
- Mon, 30 Sep 2024 16:34:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D91110E552
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 16:41:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727714056; x=1759250056;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=M5ZBjptxzjMVNIeISweshh8wpmjz6tDfEkhllClmHww=;
- b=mBnaxVg+6Eg8uBp7vm/OK6qHvgDxt9elKtMUHII3hTdJAQ/yFEkwNAhq
- 5prYY/3x5rOA1YYAEe3ubcanKegN/95gCM/rvUuUHclUABuqcaPvDW6SP
- ctViTYYb9PNpVVknB6FnNUpQCWIpd2CnWapXjoOtltR7od9FLpEId99Cu
- 2SMEpuKlZQ7aNsuOVebNve3hRqaCbhvYMaMDMk7dCC7aD/wAE3Yp4R4cv
- D6RvZAD3/WiTeybUpFlkSTHFIQyYfiAi5zNvR1rFme5Ew8CdHm8aIaAi+
- GzFoW+e25Zpq/oMhQ9Upgn2jCoTmjGG507HIVIFhU0DbiEf14p7yloeFH Q==;
-X-CSE-ConnectionGUID: xD+uMEtZQ2y3bS0wJtcY5Q==
-X-CSE-MsgGUID: l3PimGj9Suqs77F/tY6c4A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30700559"
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30700559"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:16 -0700
-X-CSE-ConnectionGUID: D3qpWr8PQtmWAIuRbUJhdw==
-X-CSE-MsgGUID: IS3mm+qsRiG2BrP2cGdkqQ==
+ t=1727714469; x=1759250469;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zrA+rGGdrCGznhVGqvWvu3Epp/dXHbeE6+cHzpN4RqY=;
+ b=WidZt6/ypapWMB3Cix9G3IRfnQmjRmrdnge75uIF9mqgpZS/6q1QnHLK
+ u6+DvVCIUuQD9Ox14oLabgTFXQn3EmitxAXYKc71qOhvQRRjcEQ8hYaro
+ 363i62cN2jihVjJQch1+701ExhtIsx11ilGk6EOZ+LWVpPpn3p1VnOpZt
+ 9b8EWTysKkOrhV3A/jNhk6kVDQzHSNJvdCHQMjVU09j44bwy0DvdEoOJ0
+ 3I3GfReovTxFC5TNoo5UecnEQC+Tu7GbWy9ezUzfBGcWSduTsLREAKcPs
+ n/fhn8o9iIcI6a7p7c/VfXb5U014sNXvNKBjV3qoxBM7ExFVag0qNf5CE g==;
+X-CSE-ConnectionGUID: iu8ssxU5TXSetiIQ3tKvfA==
+X-CSE-MsgGUID: b2fPLVUOQsSPxSIP2kAKRw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30519901"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30519901"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 09:41:09 -0700
+X-CSE-ConnectionGUID: i0F5YgJrTt20uA89iFDQYw==
+X-CSE-MsgGUID: 3QxmcGZ7TVOum49N8Dkppg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="110839276"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:14 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 13/13] drm/i915/intel_dp: Add support for forcing ultrajoiner
-Date: Mon, 30 Sep 2024 22:05:49 +0530
-Message-ID: <20240930163549.416410-14-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
-References: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="74152415"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.136])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 09:41:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/xe/compat: remove unused i915_gpu_error.h
+Date: Mon, 30 Sep 2024 19:40:52 +0300
+Message-Id: <20240930164052.3862911-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,43 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow forcing ultrajoiner through debugfs.
+The last user of the compat header was removed in commit d6b933912df0
+("drm/i915/dmc: convert intel_dmc_print_error_state() to drm_printer").
 
-v2: Minor refactoring of switch case logic. (Ville)
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../drm/xe/compat-i915-headers/i915_gpu_error.h | 17 -----------------
+ 1 file changed, 17 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 5923bbc232be..11aff485d8fa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1331,6 +1331,7 @@ static ssize_t i915_joiner_write(struct file *file,
- {
- 	struct seq_file *m = file->private_data;
- 	struct intel_connector *connector = m->private;
-+	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	int force_joined_pipes = 0;
- 	int ret;
- 
-@@ -1347,6 +1348,13 @@ static ssize_t i915_joiner_write(struct file *file,
- 	case 2:
- 		connector->force_joined_pipes = force_joined_pipes;
- 		break;
-+	case 4:
-+		if (HAS_ULTRAJOINER(i915)) {
-+			connector->force_joined_pipes = force_joined_pipes;
-+			break;
-+		}
-+
-+		fallthrough;
- 	default:
- 		return -EINVAL;
- 	}
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
+deleted file mode 100644
+index 98e9dd78f670..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
++++ /dev/null
+@@ -1,17 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
+-
+-#ifndef _I915_GPU_ERROR_H_
+-#define _I915_GPU_ERROR_H_
+-
+-struct drm_i915_error_state_buf;
+-
+-__printf(2, 3)
+-static inline void
+-i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
+-{
+-}
+-
+-#endif
 -- 
-2.45.2
+2.39.5
 
