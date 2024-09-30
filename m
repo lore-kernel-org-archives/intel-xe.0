@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD232CEB2C2
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 21:39:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6DE6CEB2C2
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 21:45:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50BCB10E134;
-	Mon, 30 Sep 2024 21:39:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7216810E0DF;
+	Mon, 30 Sep 2024 21:45:41 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F011210E0DF;
- Mon, 30 Sep 2024 21:39:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0715266922104401578=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4200110E0DF;
+ Mon, 30 Sep 2024 21:45:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Fix_xe=5Fforce=5Fwake=5Fget=28?=
- =?utf-8?q?=29_failure_handling_=28rev7=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Ultrajoiner_basic_fu?=
+ =?utf-8?q?nctionality_series_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Sep 2024 21:39:39 -0000
-Message-ID: <172773237997.1139131.3506763804558394551@2413ebb6fbb6>
+Date: Mon, 30 Sep 2024 21:45:40 -0000
+Message-ID: <172773274026.1139131.10774431786307855930@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240930053149.1246339-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240930053149.1246339-1-himal.prasad.ghimiray@intel.com>
+References: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,133 +40,29 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0715266922104401578==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix xe_force_wake_get() failure handling (rev7)
-URL   : https://patchwork.freedesktop.org/series/137982/
-State : failure
+Series: Ultrajoiner basic functionality series (rev8)
+URL   : https://patchwork.freedesktop.org/series/138827/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1_BAT -> xe-pw-137982v7_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-137982v7_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-137982v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vf 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-137982v7_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-atsm-2:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-atsm-2/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v7/bat-atsm-2/igt@xe_module_load@load.html
-    - bat-adlp-7:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-adlp-7/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v7/bat-adlp-7/igt@xe_module_load@load.html
-
-  
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 4e4d7873ac76 drm-tip: 2024y-09m-30d-16h-43m-25s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: Split current joiner hw state readout
+Applying: drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity checks
+Applying: drm/i915/display: Add macro HAS_ULTRAJOINER()
+Applying: drm/i915/display: Refactor enable_joiner_pipes
+Applying: drm/i915: Implement hw state readout and checks for ultrajoiner
+Applying: drm/i915/display/vdsc: Add ultrajoiner support with DSC
+Applying: drm/i915/dp: Refactor joiner max_bpp calculations into separate functions
+Applying: drm/i915/dp: Use num_joined_pipes in bigjoiner_bw_max_bpp
+Applying: drm/i915/dp: Modify compressed bpp limitations for ultrajoiner
+Applying: drm/i915/dp: Simplify helper to get slice count with joiner
+Applying: drm/i915: Compute config and mode valid changes for ultrajoiner
+Applying: drm/i915/display: Consider ultrajoiner for computing maxdotclock
+Applying: drm/i915/intel_dp: Add support for forcing ultrajoiner
 
 
-Build changes
--------------
-
-  * Linux: xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1 -> xe-pw-137982v7
-
-  IGT_8043: 8043
-  xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1: 4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1
-  xe-pw-137982v7: 137982v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v7/index.html
-
---===============0715266922104401578==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix xe_force_wake_get() failure handling (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137982/">https://patchwork.freedesktop.org/series/137982/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1_BAT -&gt; xe-pw-137982v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-137982v7_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-137982v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vf </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-137982v7_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v7/bat-atsm-2/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137982v7/bat-adlp-7/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1 -&gt; xe-pw-137982v7</li>
-</ul>
-<p>IGT_8043: 8043<br />
-  xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1: 4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1<br />
-  xe-pw-137982v7: 137982v7</p>
-
-</body>
-</html>
-
---===============0715266922104401578==--
