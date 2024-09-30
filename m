@@ -4,21 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 482E4CEBF78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16EFECEBF73
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:57:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1529E10E59F;
-	Mon, 30 Sep 2024 19:57:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5B1A10E59E;
+	Mon, 30 Sep 2024 19:57:54 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F3410E59B
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C09D610E59B
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:49 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 13/15] drm/xe/display: Use async flip for flipping initial
- fb.
-Date: Mon, 30 Sep 2024 21:57:47 +0200
-Message-ID: <20240930195749.318998-14-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 11/15] drm/xe/display: Stop dereferencing ggtt in xe_fb_pin
+Date: Mon, 30 Sep 2024 21:57:45 +0200
+Message-ID: <20240930195749.318998-12-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
 References: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
@@ -38,63 +37,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since memirq requires a ggtt allocation, irqs will be initialised
-later. This means we cannot rely on drm_wait_for_vblank any more as
-it requires interrupts.
-
-Fortunately there's still SURFLIVE
+This is the only user of the ggtt struct still there, add
+some calls to lock/unlock ggtt and remove other dereferencing.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 4660db0aecb68..3fd0fe2dbc27a 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -17,6 +17,8 @@
- #include "intel_fb_pin.h"
- #include "intel_frontbuffer.h"
- #include "intel_plane_initial.h"
-+#include "intel_uncore.h"
-+#include "skl_universal_plane_regs.h"
- #include "xe_bo.h"
- #include "xe_wa.h"
- 
-@@ -187,6 +189,7 @@ static void
- intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 			     struct intel_initial_plane_config plane_configs[])
- {
-+	struct xe_device *xe = to_xe_device(crtc->base.dev);
- 	struct intel_initial_plane_config *plane_config =
- 		&plane_configs[crtc->pipe];
- 	struct intel_plane *plane =
-@@ -235,6 +238,14 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 	plane_state->uapi.crtc = &crtc->base;
- 	intel_plane_copy_uapi_to_hw_state(plane_state, plane_state, crtc);
- 
-+	/* Flip async, we don't have interrupts yet */
-+	plane_state->ctl = intel_uncore_read(&xe->uncore, PLANE_CTL(plane->pipe, PLANE_1));
-+	plane->async_flip(plane, to_intel_crtc_state(crtc->base.state), plane_state, true);
-+
-+	/* Wait 40 ms (1 frame at 25 fps) for async flip to complete */
-+	if (intel_wait_for_register_fw(&xe->uncore, PLANE_SURFLIVE(plane->pipe, PLANE_1), XE_PAGE_SIZE - 1, vma->node->base.start, 40) < 0)
-+		drm_warn(&xe->drm, "async flip timed out\n");
-+
- 	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
- 
- 	plane_config->vma = vma;
-@@ -292,9 +303,6 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
- 		 */
- 		intel_find_initial_plane_obj(crtc, plane_configs);
- 
--		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
--			intel_crtc_wait_for_next_vblank(crtc);
--
- 		plane_config_fini(plane_config);
- 	}
- }
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index a2be883c67e88..9c4baa22ebe49 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -908,6 +908,7 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
+  * xe_ggtt_write_pte - Write a PTE to the GGTT
+  * @ggtt: &xe_ggtt
+  * @offset: the offset for which the mapping should be written.
++ * @pte: The page table entry to write
+  *
+  * Used by display for writing normal and rotated GGTT entries for temporary pinned FB's.
+  */
 -- 
 2.45.2
 
