@@ -4,115 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55E0CCE8345
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:10:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5642DCE8344
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:16:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A957B10E4CD;
-	Mon, 30 Sep 2024 13:09:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 267B010E0CA;
+	Mon, 30 Sep 2024 13:16:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="tN8aw2yE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4N7ZOquI";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="qihWeIAg";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="HSZw3XuC";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Ty+e3lrn";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAA0310E48A;
- Mon, 30 Sep 2024 13:09:32 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 6292421A4A;
- Mon, 30 Sep 2024 13:09:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727701771; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wTfCIXHhC8OrDV1LQwPI7DRaBMbqmHbKXI5sxds51vI=;
- b=tN8aw2yE1Bw7SRftuaCmQxzNk+Y16EK5a52oPWKpED+dh6+Gf4OUlSbO28HR/czaT0rVIa
- CxMBsnhJsuHl/TY8KvYXv8f+L2M3NGaIh8wvBtlUZZXoWUSgA9dLBRMN3QJSCnR6vKp47X
- 4pZ/RhBmX9sNCfJ/Wtj+nO5vzOCELD8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727701771;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wTfCIXHhC8OrDV1LQwPI7DRaBMbqmHbKXI5sxds51vI=;
- b=4N7ZOquI3ifyNRhQcPxBNNGbx9W5ENzDppTF5y6+F3i5sxmeG884AwYoh5Hj8Vv3qsZC70
- QWJtq+N3vzbnW5DA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=qihWeIAg;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=HSZw3XuC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727701770; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wTfCIXHhC8OrDV1LQwPI7DRaBMbqmHbKXI5sxds51vI=;
- b=qihWeIAg8dNJ1LagNgpKOAqKeBMTs3ODFXuxRcbp0B2p7YVf54zRj2LIo4Hjb6xuPZ4kW9
- ZDp8cs5w/QT4Zn+sCzim+t9dxQQRCQrz9eimgSp0L2gpjOU8KdS81hTbRn2LIQKYzecgHl
- qrpAlnpURP4VnK7gLXR2GhuYbiDON3o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727701770;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wTfCIXHhC8OrDV1LQwPI7DRaBMbqmHbKXI5sxds51vI=;
- b=HSZw3XuC9y97N2gkEI3mj2GCoGMEDe3XLR4LmbZiwo9TJOXKTDGPH4vO1DyxkWvh/E/Zfk
- C2Vt8UNCUNlmtlAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0DFAB136CB;
- Mon, 30 Sep 2024 13:09:30 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id WFsTAgqj+mb2dQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 13:09:30 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3867B10E493
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 13:16:16 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-42cb9a0c300so33782805e9.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 06:16:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1727702174; x=1728306974; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:organization:autocrypt
+ :content-language:references:cc:to:subject:reply-to:from:user-agent
+ :mime-version:date:message-id:from:to:cc:subject:date:message-id
+ :reply-to; bh=sVfSIT/8ooOprlYR8cHno/DAiWe/2kUoTL6uKWKkjmo=;
+ b=Ty+e3lrnYFAiq+Q//BiILYIRb6BCnFzfJO2jzG3CraawgcUup9p4osOv6R15LkHI1v
+ tX/91nZU+A6lZn7g9mz8g24pXRz5xH+RikGtc3v6ubKCLLS5JcTf7YrmLf4U/b8yk1QA
+ ICNYZpan9ZQp+aBK8gpI4X7NP//mKmH/6ZtKiHqkKRYh1TkqMxo1Ui83ynnJ9WXhHDEH
+ d7qJIkyxmU41q8qHQvwyusOm4tkZlsc1DNT7vidZEj0rutMIfLcCtZ4oSbNyFOcHddkR
+ m7N7nQDrehJJz42UrMtWywURZpyefBxePLDQ9deyJy+y2oSjXgEXdABZTVSRoAkQQk0/
+ brzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727702174; x=1728306974;
+ h=content-transfer-encoding:in-reply-to:organization:autocrypt
+ :content-language:references:cc:to:subject:reply-to:from:user-agent
+ :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=sVfSIT/8ooOprlYR8cHno/DAiWe/2kUoTL6uKWKkjmo=;
+ b=L1LBg2i7wrfXDFN5wBlBmRgHSUr3ie7CcBbZ1iyO+1MgELHAC4v5VSZL4tuLBM1oQ/
+ IF2TPCUczy1YEG4tLf7gDgmS4oZoNRjRfMs8uLeNu4eGeQVLQsZ8j8ml3mminOQs37v1
+ ucVpyaK44kuJjwHbY3xYXUCN/Z0JYNRBpYhqaL7DvAlGjZgsRSQ0nixm+gpPKKT9/Syd
+ 6QI18hbAGijXfqds0eY+HbFWNFvviH/NunyZZCKYlrl5KNLHcYXRnqL1smswDsUsQONI
+ pim3RThjI+ZfXaPvSmvNsRUS3gxEIEfGHNxOOa/2QqWHKLToPpn9f+Cob/X2ldAzpB7S
+ 1q4w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXS8iiBhNWSmNS+ZapCudQ2vTFG+6KOG+Q11ZLjP0wxQEmCKv4lch6MFBrCaAuLmMcYZIcjZWSEOQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxPsSR8NklcUI3y1Tc39OkhOIygGV0sZEdPjewa9QungiedEqvy
+ C1e7mA/CdC40e70BXOV9Mjhw12q4JOFKXS97CFmn/q6KIPY5a9NL0brABZrumL0=
+X-Google-Smtp-Source: AGHT+IGtgFljgj+ltfg7mE2WvtjLgVEvxrW1v1W4eYUy6IftVa1GnIweAH9gAQaQ0Iwbky7w+/KOPA==
+X-Received: by 2002:a05:600c:1d20:b0:42c:bfd6:9d4d with SMTP id
+ 5b1f17b1804b1-42f58409e43mr89140055e9.2.1727702174506; 
+ Mon, 30 Sep 2024 06:16:14 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:bdc6:abc9:5047:7828?
+ ([2a01:e0a:982:cbb0:bdc6:abc9:5047:7828])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42f57e30621sm104429375e9.47.2024.09.30.06.16.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 30 Sep 2024 06:16:14 -0700 (PDT)
+Message-ID: <277ab2af-aac0-4e3a-9df4-ba554494c122@linaro.org>
+Date: Mon, 30 Sep 2024 15:16:13 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 09/28] drm/meson: Use video aperture helpers
+To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH 16/28] drm/rockchip: Use video aperture helpers
-Date: Mon, 30 Sep 2024 15:03:14 +0200
-Message-ID: <20240930130921.689876-17-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240930130921.689876-1-tzimmermann@suse.de>
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20240930130921.689876-1-tzimmermann@suse.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6292421A4A
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCPT_COUNT_TWELVE(0.00)[13]; ARC_NA(0.00)[];
- FUZZY_BLOCKED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; TO_DN_SOME(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- R_RATELIMIT(0.00)[to_ip_from(RLqtkr6cif1ebgurukgmwdm7xc)];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,
- imap1.dmz-prg2.suse.org:helo, suse.de:dkim, suse.de:mid, suse.de:email]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+ <20240930130921.689876-10-tzimmermann@suse.de>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240930130921.689876-10-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,50 +113,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: neil.armstrong@linaro.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DRM's aperture functions have long been implemented as helpers
-under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
-calling the video functions directly.
+On 30/09/2024 15:03, Thomas Zimmermann wrote:
+> DRM's aperture functions have long been implemented as helpers
+> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
+> calling the video functions directly.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>   drivers/gpu/drm/meson/meson_drv.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 2f76f48da38d..bbb662d2f184 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -8,6 +8,7 @@
+>    *     Jasper St. Pierre <jstpierre@mecheye.net>
+>    */
+>   
+> +#include <linux/aperture.h>
+>   #include <linux/component.h>
+>   #include <linux/module.h>
+>   #include <linux/of_graph.h>
+> @@ -15,7 +16,6 @@
+>   #include <linux/platform_device.h>
+>   #include <linux/soc/amlogic/meson-canvas.h>
+>   
+> -#include <drm/drm_aperture.h>
+>   #include <drm/drm_atomic_helper.h>
+>   #include <drm/drm_client_setup.h>
+>   #include <drm/drm_drv.h>
+> @@ -279,7 +279,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   	 * Remove early framebuffers (ie. simplefb). The framebuffer can be
+>   	 * located anywhere in RAM
+>   	 */
+> -	ret = drm_aperture_remove_framebuffers(&meson_driver);
+> +	ret = aperture_remove_all_conflicting_devices(meson_driver.name);
+>   	if (ret)
+>   		goto free_canvas_vd1_2;
+>   
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Sandy Huang <hjc@rock-chips.com>
-Cc: "Heiko Stübner" <heiko@sntech.de>
-Cc: Andy Yan <andy.yan@rock-chips.com>
----
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-index 4e080040ba01..2560b0eec9db 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-@@ -6,6 +6,7 @@
-  * based on exynos_drm_drv.c
-  */
- 
-+#include <linux/aperture.h>
- #include <linux/dma-mapping.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-@@ -16,7 +17,6 @@
- #include <linux/console.h>
- #include <linux/iommu.h>
- 
--#include <drm/drm_aperture.h>
- #include <drm/drm_client_setup.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_fbdev_dma.h>
-@@ -146,7 +146,7 @@ static int rockchip_drm_bind(struct device *dev)
- 	int ret;
- 
- 	/* Remove existing drivers that may own the framebuffer memory. */
--	ret = drm_aperture_remove_framebuffers(&rockchip_drm_driver);
-+	ret = aperture_remove_all_conflicting_devices(rockchip_drm_driver.name);
- 	if (ret) {
- 		DRM_DEV_ERROR(dev,
- 			      "Failed to remove existing framebuffers - %d.\n",
--- 
-2.46.0
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
