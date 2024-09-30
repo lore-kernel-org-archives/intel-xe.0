@@ -4,50 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04D45CF6498
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 00:06:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91FE5CF6491
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 05:13:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9057D10E0FC;
-	Mon, 30 Sep 2024 00:06:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3785110E05C;
+	Mon, 30 Sep 2024 05:13:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y5Y8hDV5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bD5R6uPo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3B810E0FC
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 00:06:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3846810E05C
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 05:13:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727654774; x=1759190774;
+ t=1727673205; x=1759209205;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=nVqHD/XeSqjlEYRaCNv1yfRePfjw40To43EoKgabqIs=;
- b=Y5Y8hDV5Qaj0Lc21duF0X/rnDlvNfWx9nsDi6f8yQtwyivf1msbGjtQ9
- K1ZY7VXddfhr+JrTaOz7J/MgSV1aa/CghZ2CfkEAFfedKFg5P/TCqW5w2
- Tqurdd/wmDbeQCdmQQV2EJi/3ZmSDHzvHBhsJz7aG01MnTcSmQeCWjT8R
- 4HaONPg9T1eI8i2zkKwTc2tZAd5rVixGz2v/7xY5L+eZz/DpHeCXcd1vu
- qQCvluRMhsX2ypahb/2gQFOPsjB9iJYYL2FfPm2JbTxbA4nn9O4Dib6aY
- md7zLDGQX3CTI00gGX/6/HXig71G1IBw3HU3GqoFH07l0YmdFaZtkBjY5 w==;
-X-CSE-ConnectionGUID: bo2AjS6MTPicjo98hxQpeA==
-X-CSE-MsgGUID: lDC5YkRgQcy4JVPdsfQICw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26676920"
-X-IronPort-AV: E=Sophos;i="6.11,164,1725346800"; d="scan'208";a="26676920"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2024 17:06:13 -0700
-X-CSE-ConnectionGUID: KsmTUV3OSzGyNWbuVchBYQ==
-X-CSE-MsgGUID: shXERP5wRWu7zAafVWfSRg==
+ bh=Ua5OQTXd4M84lqOxIlUkvTUa0UQPwzuAtfE9IKt9LLM=;
+ b=bD5R6uPopuYjxpyhXAehldCEb+fRqR2AOuu3ua5PE7Mfvy2M01YRtg2A
+ l36E9Bhz8P1qzhV5EKvQCyq3/Ril853lHx7AJ8aV2vPIDETg0yfa3AW+H
+ l3H4EDzJUk5wxTj1ICQKkAqsbLLS/FxkoYcFaANENpZDwlinq2TNedf4M
+ YJQ+dQuYPYL8Y4zOPjMT/EMCnOaRocE8fT7DWEKRtHT79x/R8byMgRSlc
+ RTruMjFNgJ/Vcoy10alGxA8m2FCwj8GJdCUUas3+j+0RGk9NNE+h0+I83
+ gkIfdu2oyn+HcgVTMwm49/O9qfOny4md5BQRd3I3uIekT6Jrsdk/ePwLI A==;
+X-CSE-ConnectionGUID: Jvk+1efAQXmpxcEx5B8fXQ==
+X-CSE-MsgGUID: otSqAs2ySyqV2gE5zB4aSQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="14367949"
+X-IronPort-AV: E=Sophos;i="6.11,164,1725346800"; d="scan'208";a="14367949"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2024 22:13:25 -0700
+X-CSE-ConnectionGUID: 6fFm95wPSaW7sfXKtt+dLg==
+X-CSE-MsgGUID: JOh02N1MTDqQUhgAeJXKDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,164,1725346800"; d="scan'208";a="77628137"
-Received: from pallavim-desk.iind.intel.com ([10.145.162.180])
- by fmviesa004.fm.intel.com with ESMTP; 29 Sep 2024 17:06:10 -0700
-From: Pallavi Mishra <pallavi.mishra@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,164,1725346800"; d="scan'208";a="72752085"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by fmviesa006.fm.intel.com with ESMTP; 29 Sep 2024 22:13:21 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: thomas.hellstrom@linux.intel.com, alex.zuo@intel.com,
- Pallavi Mishra <pallavi.mishra@intel.com>
-Subject: [PATCH] drm/xe: Add support for object purgeability
-Date: Mon, 30 Sep 2024 05:44:13 +0530
-Message-Id: <20240930001413.3378863-1-pallavi.mishra@intel.com>
-X-Mailer: git-send-email 2.25.1
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+Subject: [PATCH v6 00/25] Fix xe_force_wake_get() failure handling
+Date: Mon, 30 Sep 2024 11:01:24 +0530
+Message-Id: <20240930053149.1246339-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,219 +70,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce madvise ioctl in KMD for object level advice.
-Userspace applications can utilize this feature to inform
-KMD whether an object will be needed in near future or can
-be safely discarded under memory pressure.
+In case of xe_force_wake_get() call the refcount for domains
+are incremented irrespective of failure or success, which can lead to
+undefined behaviour: 
+[1] subsequent forcewake call by callee function assumes domains are 
+already awake, which might not be true. This shows perfectly balanced 
+xe_force_wake_get/_put can also cause problem.
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c       | 71 ++++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_bo.h       |  7 ++++
- drivers/gpu/drm/xe/xe_bo_types.h |  3 ++
- drivers/gpu/drm/xe/xe_device.c   |  1 +
- include/uapi/drm/xe_drm.h        | 20 +++++++++
- 5 files changed, 90 insertions(+), 12 deletions(-)
+[2] The functions are using xe_force_wake_get() and return on failures.
+In this scenario only the first caller returns and other functions will
+always assume domains to be awake.
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5f2f1ec46b57..0e7e7a624676 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -644,6 +644,22 @@ static int xe_bo_move_notify(struct xe_bo *bo,
- 	return 0;
+[1] func_a() {
+	XE_WARN(xe_force_wake_get()) <---> fails but increments refcount
+
+	func_b();
+
+	XE_WARN(xe_force_wake_put());<---> decrements refcounts 
  }
- 
-+static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
-+{
-+	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
-+	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
-+
-+	if (ttm_bo->ttm) {
-+		struct ttm_placement place = {};
-+		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
-+
-+		drm_WARN_ON(&xe->drm, ret);
-+
-+		if (bo && !ret)
-+			bo->madv = XE_MADV_PURGED;
-+	}
-+}
-+
- static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		      struct ttm_operation_ctx *ctx,
- 		      struct ttm_resource *new_mem,
-@@ -663,6 +679,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 				  ttm && ttm_tt_is_populated(ttm)) ? true : false;
- 	int ret = 0;
- 
-+	if (bo->madv == XE_MADV_DONTNEED) {
-+		xe_ttm_bo_purge(ttm_bo, ctx);
-+		return ret;
-+	}
-+
- 	/* Bo creation path, moving to system or TT. */
- 	if ((!old_mem && ttm) && !handle_system_ccs) {
- 		if (new_mem->mem_type == XE_PL_TT)
-@@ -1084,18 +1105,6 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
- 	}
+
+    func_b() {
+	if(xe_force_wake_get()) <---> succeeds due to refcount of caller
+		return;
+
+	does mmio_operations(); <---> Domain might not be awake
+
+	xe_force_wake_put(); <---> decrement refcount
  }
- 
--static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
--{
--	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
--
--	if (ttm_bo->ttm) {
--		struct ttm_placement place = {};
--		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
--
--		drm_WARN_ON(&xe->drm, ret);
--	}
--}
--
- static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
- {
- 	struct ttm_operation_ctx ctx = {
-@@ -2416,6 +2425,44 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
- 	list_del_init(&bo->vram_userfault_link);
+  	
+[2] func_a() {
+	int err = xe_force_wake_get(); <---> returns if fails, inc refcount
+	if (err)
+		return;
+
+	mmio_operations();
+
+	xe_force_wake_put(); 
  }
- 
-+int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
-+			struct drm_file *file_priv)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct drm_xe_vm_madvise *args = data;
-+	struct drm_gem_object *gem_obj = drm_gem_object_lookup(file_priv, args->handle);
-+	struct xe_bo *bo;
-+	int err;
-+
-+	if (XE_IOCTL_DBG(xe, (!(args->madv & DRM_XE_MADV_DONTNEED) &&
-+			!(args->madv & DRM_XE_MADV_WILLNEED))))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !gem_obj))
-+		return -EINVAL;
-+
-+	bo = gem_to_xe_bo(gem_obj);
-+	if (!bo)
-+		return -ENOENT;
-+
-+	err = xe_bo_lock(bo, true);
-+	if (err)
-+		return err;
-+
-+	if (XE_IOCTL_DBG(xe, ((bo->madv == XE_MADV_PURGED) && (args->madv == DRM_XE_MADV_WILLNEED)))) {
-+		xe_bo_unlock(bo);
-+		return -EINVAL;
-+	}
-+
-+	args->retained = (bo->madv != XE_MADV_PURGED) ? 1 : 0;
-+
-+	bo->madv = (args->madv == DRM_XE_MADV_WILLNEED) ? XE_MADV_WILLNEED : XE_MADV_DONTNEED;
-+
-+	xe_bo_unlock(bo);
-+
-+	return 0;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_bo.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6e4be52306df..515dea54a8e8 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -63,6 +63,10 @@
- 
- #define XE_BO_PROPS_INVALID	(-1)
- 
-+#define XE_MADV_WILLNEED               0
-+#define XE_MADV_DONTNEED               1
-+#define XE_MADV_PURGED                 2
-+
- struct sg_table;
- 
- struct xe_bo *xe_bo_alloc(void);
-@@ -223,6 +227,9 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 			     struct drm_file *file);
-+int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
-+			struct drm_file *file_priv);
-+
- void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
- 
- int xe_bo_dumb_create(struct drm_file *file_priv,
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 2ed558ac2264..00b4de912dcf 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -76,6 +76,9 @@ struct xe_bo {
- 
- 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
- 		struct list_head vram_userfault_link;
-+
-+	/** @madv: user space advise on obj purgeability */
-+	u16 madv;
- };
- 
- #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8e9b551c7033..efeb0bf08b1b 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -197,6 +197,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
- };
- 
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index b6fbe4988f2e..e32ba5598a8b 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -102,6 +102,7 @@ extern "C" {
- #define DRM_XE_EXEC			0x09
- #define DRM_XE_WAIT_USER_FENCE		0x0a
- #define DRM_XE_OBSERVATION		0x0b
-+#define DRM_XE_VM_MADVISE		0x0c
- 
- /* Must be kept compact -- no holes */
- 
-@@ -117,6 +118,7 @@ extern "C" {
- #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
-+#define DRM_IOCTL_XE_VM_MADVISE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -1694,6 +1696,24 @@ struct drm_xe_oa_stream_info {
- 	__u64 reserved[3];
- };
- 
-+/**
-+ * struct drm_xe_vm_madvise - Input of &DRM_IOCTL_XE_VM_MADVISE
-+ */
-+struct drm_xe_vm_madvise {
-+	/** Handle of the buffer to change the backing store advice */
-+	__u32 handle;
-+	/* Advice: either the buffer will be needed again in the near future,
-+	 *         or won't be and could be discarded under memory pressure.
-+	 */
-+#define DRM_XE_MADV_WILLNEED 0
-+#define DRM_XE_MADV_DONTNEED 1
-+
-+	__u32 madv;
-+
-+	/** Whether the backing store still exists. */
-+	__u32 retained;
-+};
-+
- #if defined(__cplusplus)
+
+    func_b() {
+        if (xe_force_wake_get()) <---> succeeds due to refcnt of func_a()
+              return;
+
+        mmio_operations(); <---> Invalid accesses
+
+        xe_force_wake_put(); <---> decrements refcount for func_b
  }
- #endif
+
+This series ensures refcount is not incremented in case of
+xe_force_wake_get() failure and return mask of successfully refcount 
+incremented domains.
+
+For single domains (except XE_FORCEWAKE_ALL), the return value will be
+0 on failure and doesn't need call to xe_force_wake_put()(if called,
+call will return with check since input mask will be 0).
+For XE_FORCEWAKE_ALL caller need to compare the returned mask with
+XE_FORCEWAKE_ALL to confirm the success of call and need to explicitly
+call xe_force_wake_put() with returned mask to put awaken domains to
+sleep.
+ 
+
+-v2 (Rodrigo, Badal)
+- Dont put successfully awaken domains to sleep. Instead rely on _put to
+  do that.
+- Modified xe_force_wake_get() to return the refcount-incremented domain
+  mask and xe_force_wake_put() uses this returned mask.
+
+-v3 (Michal, Badal)
+- Use explicit type for domain masks.
+- Dont use xe_assert in _get/_put error reporting.
+- Restructure patches, so Patch 23 has only kernel-doc and return
+  change.
+- use xe_gt_WARN_ON instead of XE_WARN in _put error. 
+- Improve kernel-doc for _get.
+
+-v4
+- Rebase fixes
+
+-v5 (MattB, Rodrigo, Badal)
+- Avoid explicit type unsigned int
+- Use unsigned int as return for xe_force_wake_get()
+- Add xe_gt_WARN_ON inside xe_force_wake_get() for ack failures
+
+-v6 (Michal, Badal)
+- Return actually refcounted domains by xe_force_wake_get(), to
+  accommodate change XE_FORCEWAKE_ALL to single bit.
+- Define a helper to check domain is in fw_ref or not.
+
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Himal Prasad Ghimiray (25):
+  drm/xe: Add member initialized_domains to xe_force_wake()
+  drm/xe/forcewake: Add a helper xe_force_wake_ref_has_domain()
+  drm/xe: Error handling in xe_force_wake_get()
+  drm/xe: Modify xe_force_wake_put to handle _get returned mask
+  drm/xe/device: Update handling of xe_force_wake_get return
+  drm/xe/hdcp: Update handling of xe_force_wake_get return
+  drm/xe/gsc: Update handling of xe_force_wake_get return
+  drm/xe/gt: Update handling of xe_force_wake_get return
+  drm/xe/xe_gt_idle: Update handling of xe_force_wake_get return
+  drm/xe/devcoredump: Update handling of xe_force_wake_get return
+  drm/xe/tests/mocs: Update xe_force_wake_get() return handling
+  drm/xe/mocs: Update handling of xe_force_wake_get return
+  drm/xe/xe_drm_client: Update handling of xe_force_wake_get return
+  drm/xe/xe_gt_debugfs: Update handling of xe_force_wake_get return
+  drm/xe/guc: Update handling of xe_force_wake_get return
+  drm/xe/huc: Update handling of xe_force_wake_get return
+  drm/xe/oa: Handle force_wake_get failure in xe_oa_stream_init()
+  drm/xe/pat: Update handling of xe_force_wake_get return
+  drm/xe/gt_tlb_invalidation_ggtt: Update handling of xe_force_wake_get
+    return
+  drm/xe/xe_reg_sr: Update handling of xe_force_wake_get return
+  drm/xe/query: Update handling of xe_force_wake_get return
+  drm/xe/vram: Update handling of xe_force_wake_get return
+  drm/xe: forcewake debugfs open fails on xe_forcewake_get failure
+  drm/xe: Ensure __must_check for xe_force_wake_get() return
+  drm/xe: Change return type to void for xe_force_wake_put
+
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c    |   6 +-
+ drivers/gpu/drm/xe/tests/xe_mocs.c          |  18 ++--
+ drivers/gpu/drm/xe/xe_debugfs.c             |  27 ++++-
+ drivers/gpu/drm/xe/xe_devcoredump.c         |  14 +--
+ drivers/gpu/drm/xe/xe_device.c              |  25 +++--
+ drivers/gpu/drm/xe/xe_drm_client.c          |   8 +-
+ drivers/gpu/drm/xe/xe_force_wake.c          | 109 +++++++++++++++-----
+ drivers/gpu/drm/xe/xe_force_wake.h          |  26 ++++-
+ drivers/gpu/drm/xe/xe_force_wake_types.h    |   6 +-
+ drivers/gpu/drm/xe/xe_gsc.c                 |  23 ++---
+ drivers/gpu/drm/xe/xe_gsc_proxy.c           |   9 +-
+ drivers/gpu/drm/xe/xe_gt.c                  | 105 ++++++++++---------
+ drivers/gpu/drm/xe/xe_gt_debugfs.c          |  13 ++-
+ drivers/gpu/drm/xe/xe_gt_idle.c             |  26 +++--
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   5 +-
+ drivers/gpu/drm/xe/xe_guc.c                 |  13 +--
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  50 +++++----
+ drivers/gpu/drm/xe/xe_huc.c                 |   8 +-
+ drivers/gpu/drm/xe/xe_mocs.c                |  14 +--
+ drivers/gpu/drm/xe/xe_oa.c                  |  11 +-
+ drivers/gpu/drm/xe/xe_pat.c                 |  66 ++++++------
+ drivers/gpu/drm/xe/xe_query.c               |   8 +-
+ drivers/gpu/drm/xe/xe_reg_sr.c              |  24 ++---
+ drivers/gpu/drm/xe/xe_vram.c                |  12 ++-
+ 24 files changed, 381 insertions(+), 245 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
