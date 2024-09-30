@@ -4,100 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71B6FCF64B9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3219CF64BC
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:09:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECAAF10E46E;
-	Mon, 30 Sep 2024 13:09:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16B7A10E473;
+	Mon, 30 Sep 2024 13:09:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Zd/RA0gE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gZ53i4u2";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Zd/RA0gE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gZ53i4u2";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Bo3j8HHs";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fIU83mO/";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Bo3j8HHs";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fIU83mO/";
 	dkim-atps=neutral
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C686B10E46C;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35ACF10E464;
  Mon, 30 Sep 2024 13:09:28 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 6F4A41FBA5;
- Mon, 30 Sep 2024 13:09:27 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id B3C091FBA3;
+ Mon, 30 Sep 2024 13:09:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727701767; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1727701766; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rUGiKKxtMpe2g+gVA+7eG6W9lFm6HfN7U9jZmGh9NCo=;
- b=Zd/RA0gE+o7MOTN60n13BgSiBChV+kTgSSHaPb4MxIVERJMU49DkpuIBevQHFVC5aAlmPf
- iGEzXMJmll+qTqErfL3WMbK+0wDAnhQhqznhBndr5bpsIQkJ7EUH4E0wz+Vq2iY4z+K30C
- viWPeM8LBDkCzMJG0kuPpXWVQlqqzlI=
+ bh=/C+qcFu8iSIpqIrSYsNQ9RmjgJydb3N6Q8+szHAr7zs=;
+ b=Bo3j8HHsvB5UtG4Mes17awRO5+DhCrhY51Uu9U1um0S67bPuFzrBM62xYBHTnzds4EOkrB
+ WqKqz11fVPFM4YWS6/zoeyjpGENWcUCmqLkMsEgG3prUnn8rcf1mQn+K+y72jL10HxrbIf
+ B/j6bQ9dSvf/KEIG89gzND9OQ1IDm8Q=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727701767;
+ s=susede2_ed25519; t=1727701766;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rUGiKKxtMpe2g+gVA+7eG6W9lFm6HfN7U9jZmGh9NCo=;
- b=gZ53i4u2S7mfGuQWcFB9mqOtK3b2JAVfzNSdV5ZZ+TFQvdFv9KlbbG6+YvV5NH53hzKsM7
- A51e1+5K8XrPXHCA==
+ bh=/C+qcFu8iSIpqIrSYsNQ9RmjgJydb3N6Q8+szHAr7zs=;
+ b=fIU83mO/idwg0KV8TVN0kefecjUhuSSwo4BO4rxI7T1/aTM+xvWsUmL17ToP3d3gJLhr8Y
+ fQPvCH5Ses/ENPCQ==
 Authentication-Results: smtp-out2.suse.de;
 	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727701767; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1727701766; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rUGiKKxtMpe2g+gVA+7eG6W9lFm6HfN7U9jZmGh9NCo=;
- b=Zd/RA0gE+o7MOTN60n13BgSiBChV+kTgSSHaPb4MxIVERJMU49DkpuIBevQHFVC5aAlmPf
- iGEzXMJmll+qTqErfL3WMbK+0wDAnhQhqznhBndr5bpsIQkJ7EUH4E0wz+Vq2iY4z+K30C
- viWPeM8LBDkCzMJG0kuPpXWVQlqqzlI=
+ bh=/C+qcFu8iSIpqIrSYsNQ9RmjgJydb3N6Q8+szHAr7zs=;
+ b=Bo3j8HHsvB5UtG4Mes17awRO5+DhCrhY51Uu9U1um0S67bPuFzrBM62xYBHTnzds4EOkrB
+ WqKqz11fVPFM4YWS6/zoeyjpGENWcUCmqLkMsEgG3prUnn8rcf1mQn+K+y72jL10HxrbIf
+ B/j6bQ9dSvf/KEIG89gzND9OQ1IDm8Q=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727701767;
+ s=susede2_ed25519; t=1727701766;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rUGiKKxtMpe2g+gVA+7eG6W9lFm6HfN7U9jZmGh9NCo=;
- b=gZ53i4u2S7mfGuQWcFB9mqOtK3b2JAVfzNSdV5ZZ+TFQvdFv9KlbbG6+YvV5NH53hzKsM7
- A51e1+5K8XrPXHCA==
+ bh=/C+qcFu8iSIpqIrSYsNQ9RmjgJydb3N6Q8+szHAr7zs=;
+ b=fIU83mO/idwg0KV8TVN0kefecjUhuSSwo4BO4rxI7T1/aTM+xvWsUmL17ToP3d3gJLhr8Y
+ fQPvCH5Ses/ENPCQ==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 269CC136CB;
- Mon, 30 Sep 2024 13:09:27 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 66412136CB;
+ Mon, 30 Sep 2024 13:09:26 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id oMfbBwej+mb2dQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 13:09:27 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id AOuxFwaj+mb2dQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 13:09:26 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Thomas Zimmermann <tzimmermann@suse.de>,
- Sui Jingfeng <suijingfeng@loongson.cn>
-Subject: [PATCH 08/28] drm/loongson: Use video aperture helpers
-Date: Mon, 30 Sep 2024 15:03:06 +0200
-Message-ID: <20240930130921.689876-9-tzimmermann@suse.de>
+ Deepak Rawat <drawat.floss@gmail.com>
+Subject: [PATCH 06/28] drm/hyperv-drm: Use video aperture helpers
+Date: Mon, 30 Sep 2024 15:03:04 +0200
+Message-ID: <20240930130921.689876-7-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240930130921.689876-1-tzimmermann@suse.de>
 References: <20240930130921.689876-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
+X-Spamd-Result: default: False [-1.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
  DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid];
+ RCVD_TLS_ALL(0.00)[];
+ FREEMAIL_CC(0.00)[lists.freedesktop.org,suse.de,gmail.com];
+ ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; TO_DN_SOME(0.00)[];
+ TAGGED_RCPT(0.00)[]; FROM_HAS_DN(0.00)[];
  FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- RCPT_COUNT_SEVEN(0.00)[11]; FUZZY_BLOCKED(0.00)[rspamd.com];
- R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ RCPT_COUNT_SEVEN(0.00)[11];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
  FREEMAIL_ENVRCPT(0.00)[gmail.com]
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -119,40 +121,38 @@ under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
 calling the video functions directly.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Sui Jingfeng <suijingfeng@loongson.cn>
+Cc: Deepak Rawat <drawat.floss@gmail.com>
 ---
- drivers/gpu/drm/loongson/lsdc_drv.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/loongson/lsdc_drv.c b/drivers/gpu/drm/loongson/lsdc_drv.c
-index a19dce35c839..b350bdcf1645 100644
---- a/drivers/gpu/drm/loongson/lsdc_drv.c
-+++ b/drivers/gpu/drm/loongson/lsdc_drv.c
-@@ -3,10 +3,10 @@
-  * Copyright (C) 2023 Loongson Technology Corporation Limited
+diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+index 3077ce5470f6..e0953777a206 100644
+--- a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
++++ b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+@@ -3,12 +3,12 @@
+  * Copyright 2021 Microsoft
   */
  
 +#include <linux/aperture.h>
+ #include <linux/efi.h>
+ #include <linux/hyperv.h>
+ #include <linux/module.h>
  #include <linux/pci.h>
- #include <linux/vgaarb.h>
  
 -#include <drm/drm_aperture.h>
- #include <drm/drm_atomic.h>
  #include <drm/drm_atomic_helper.h>
  #include <drm/drm_client_setup.h>
-@@ -215,9 +215,9 @@ lsdc_create_device(struct pci_dev *pdev,
- 		return ERR_PTR(ret);
+ #include <drm/drm_drv.h>
+@@ -126,7 +126,7 @@ static int hyperv_vmbus_probe(struct hv_device *hdev,
+ 		goto err_hv_set_drv_data;
  	}
  
--	ret = drm_aperture_remove_conflicting_framebuffers(ldev->vram_base,
--							   ldev->vram_size,
--							   driver);
-+	ret = aperture_remove_conflicting_devices(ldev->vram_base,
-+						  ldev->vram_size,
-+						  driver->name);
- 	if (ret) {
- 		drm_err(ddev, "Remove firmware framebuffers failed: %d\n", ret);
- 		return ERR_PTR(ret);
+-	drm_aperture_remove_framebuffers(&hyperv_driver);
++	aperture_remove_all_conflicting_devices(hyperv_driver.name);
+ 
+ 	ret = hyperv_setup_vram(hv, hdev);
+ 	if (ret)
 -- 
 2.46.0
 
