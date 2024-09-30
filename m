@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14432CE8375
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 17:04:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 559EDCE835D
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 17:05:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D37B810E568;
-	Mon, 30 Sep 2024 17:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2358510E56D;
+	Mon, 30 Sep 2024 17:05:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BwY7YYc9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cuA6J5+T";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76E5410E567;
- Mon, 30 Sep 2024 17:04:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08E0610E564;
+ Mon, 30 Sep 2024 17:04:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727715885; x=1759251885;
+ t=1727715896; x=1759251896;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UCBfoeq8ymqbRjELYRMNnEcj2ULKbYmJfXmD3vz0d4U=;
- b=BwY7YYc9GY4Bqlg/11MdbEE8zU2ARvUm4gyLGFKEDRwY5rEfJ7gZLdRI
- deYwgLW06oGxLRx8eXvRlialVy2YEgIgrbjIHhf6Ovf3zw2mqLq0eg8j/
- dN78IuTJTG2ofaQGPCNo4DDjYD/AwaWvYQw9uv3gwm2OmVzTOURSyiUF8
- kPL6lA7fQvktYPw6FNFhmiKiegbHqr7xtnP3a3R8tOlJHImwTtetBT3Jz
- Rn2J+G/upjIOvf3xozjUMJxbqL2ywLSgVl/wCZjeV3ejbjzuISsP0l+5b
- o9mi0WuwJ+GNk+vrvxZT7yWGcBnZ84+p+GDe6J7E7rpHO0FNKAXEzBGTk w==;
-X-CSE-ConnectionGUID: L6EleVTiSGmzIjahYrkt3Q==
-X-CSE-MsgGUID: pCUcCHeFRTO9zOuIfnG0MA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="44276984"
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="44276984"
+ bh=E+8Pr/JOIVAh74JA1dVaxTWv80H8zTTH6lAEoHzallo=;
+ b=cuA6J5+TfCcx2JOskwROjakAOAc0InLhDHMGjRXfaFGzZP9x50EyVh5o
+ +Lkkp+poRqgUYU96zkvEef7VwMev4sq/QH6iWOoKogl5jvXBIYsqM3tkt
+ xmlWov4cTbrcbTMsd09bxtuEry2wVxULyoNukJ134mN3WNpWap4A/XkXn
+ b23HogU+L/SPjNV5Af2eVzQYPIyjTTgrM4vfs6DWOxd82ARY0O3fqP03B
+ TXTJT7FANcBFDvFDDHV7cY1fapmypJcP7s0i32YsrxjYgpZSkSai0XxPi
+ PPkMuc9V2O204btDeRix5zJoeqpVickDnQUTiftDDETKmbuGw92eXtoal A==;
+X-CSE-ConnectionGUID: JBx3tC0STTG6CEYM9r3KSg==
+X-CSE-MsgGUID: ht3s3oZxTlWhb/RqYbml+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="44277032"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="44277032"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 10:04:45 -0700
-X-CSE-ConnectionGUID: RQXEoB8bRdC6pKStpRK4Gg==
-X-CSE-MsgGUID: 87hNQjVtTX6t8p/5ebU5IQ==
+ 30 Sep 2024 10:04:55 -0700
+X-CSE-ConnectionGUID: zFXr/qAoRV6aUi+XjfgOOA==
+X-CSE-MsgGUID: VVAovsTPScSvZvQMZV75Ww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="73490969"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="73490991"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 30 Sep 2024 10:04:41 -0700
+ by fmviesa008.fm.intel.com with SMTP; 30 Sep 2024 10:04:48 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 30 Sep 2024 20:04:40 +0300
+ Mon, 30 Sep 2024 20:04:47 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v2 08/13] drm/i915: Introduce intel_scanlines_to_usecs()
-Date: Mon, 30 Sep 2024 20:04:10 +0300
-Message-ID: <20240930170415.23841-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 10/13] drm/i915: Extract intel_crtc_prepare_vblank_event()
+Date: Mon, 30 Sep 2024 20:04:12 +0300
+Message-ID: <20240930170415.23841-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930170415.23841-1-ville.syrjala@linux.intel.com>
 References: <20240930170415.23841-1-ville.syrjala@linux.intel.com>
@@ -71,58 +71,77 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Introduce intel_scanlines_to_usecs() as a counterpart to
-intel_usecs_to_scanlines().
-
-We'll have some use for this in DSB code as we want to do
-relative scanline waits to evade the delayed vblank, but
-unfortunately DSB can't do relative scanline waits (only
-absolute). So we'll instead convert the relative scanline
-count to usec and do a relative usec wait instead (which the
-DSB knows how to do).
+Extract the code for staging the vblank event for the
+flip done interrupt handler. We'll reuse this for DSB
+stuff later.
 
 Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_crtc.h |  2 ++
- 2 files changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 21 +++++++++++++++------
+ drivers/gpu/drm/i915/display/intel_crtc.h |  3 +++
+ 2 files changed, 18 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 3a28d8450a38..8ed8dd5fe458 100644
+index 8ed8dd5fe458..4c653e9076d5 100644
 --- a/drivers/gpu/drm/i915/display/intel_crtc.c
 +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -483,6 +483,17 @@ int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
- 				1000 * adjusted_mode->crtc_htotal);
+@@ -521,12 +521,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 	intel_psr_lock(new_crtc_state);
+ 
+ 	if (new_crtc_state->do_async_flip) {
+-		spin_lock_irq(&crtc->base.dev->event_lock);
+-		/* arm the event for the flip done irq handler */
+-		crtc->flip_done_event = new_crtc_state->uapi.event;
+-		spin_unlock_irq(&crtc->base.dev->event_lock);
+-
+-		new_crtc_state->uapi.event = NULL;
++		intel_crtc_prepare_vblank_event(new_crtc_state,
++						&crtc->flip_done_event);
+ 		return;
+ 	}
+ 
+@@ -626,6 +622,19 @@ void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state)
+ 	crtc_state->uapi.event = NULL;
  }
  
-+int intel_scanlines_to_usecs(const struct drm_display_mode *adjusted_mode,
-+			     int scanlines)
++void intel_crtc_prepare_vblank_event(struct intel_crtc_state *crtc_state,
++				     struct drm_pending_vblank_event **event)
 +{
-+	/* paranoia */
-+	if (!adjusted_mode->crtc_clock)
-+		return 1;
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned long irqflags;
 +
-+	return DIV_ROUND_UP_ULL(mul_u32_u32(scanlines, adjusted_mode->crtc_htotal * 1000),
-+				adjusted_mode->crtc_clock);
++	spin_lock_irqsave(&crtc->base.dev->event_lock, irqflags);
++	*event = crtc_state->uapi.event;
++	spin_unlock_irqrestore(&crtc->base.dev->event_lock, irqflags);
++
++	crtc_state->uapi.event = NULL;
 +}
 +
  /**
-  * intel_pipe_update_start() - start update of a set of display registers
+  * intel_pipe_update_end() - end update of a set of display registers
   * @state: the atomic state
 diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-index a58ecd11bba2..34ffbd2ee1b7 100644
+index 34ffbd2ee1b7..de54ae1deedf 100644
 --- a/drivers/gpu/drm/i915/display/intel_crtc.h
 +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-@@ -31,6 +31,8 @@ struct intel_display;
- 
- int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
- 			     int usecs);
-+int intel_scanlines_to_usecs(const struct drm_display_mode *adjusted_mode,
-+			     int scanlines);
+@@ -14,6 +14,7 @@ struct drm_device;
+ struct drm_display_mode;
+ struct drm_file;
+ struct drm_i915_private;
++struct drm_pending_vblank_event;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+@@ -34,6 +35,8 @@ int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
+ int intel_scanlines_to_usecs(const struct drm_display_mode *adjusted_mode,
+ 			     int scanlines);
  void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state);
++void intel_crtc_prepare_vblank_event(struct intel_crtc_state *crtc_state,
++				     struct drm_pending_vblank_event **event);
  u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state);
  int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe);
+ int intel_crtc_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
 -- 
 2.45.2
 
