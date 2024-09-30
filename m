@@ -4,83 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6BFCCF6499
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 11:46:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28BF5CF6497
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 11:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D6810E3FE;
-	Mon, 30 Sep 2024 11:46:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="avGeiXpT";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A360E10E3F9
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 11:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1727696791;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=9dflzTnD9vkyLsgpnVQZfCLOfINJ0d45UnhsxkoL0jE=;
- b=avGeiXpTxx6M0JoRRHbw86JWx8t0Hq5yL0YLoOzgqh/YvTdNhXzAJSUtof3mj0i2xexdx2
- WKzvLi80y0KD21iQKXwALd52Nny+nzcedLQ41mc97S3E9QykfQv4dDfzksiGw1r+8IaRlu
- t0X5l76wBqMtlcICAMwcu/lCvWsCx7U=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-344-fSSsJX5DOGGEMKlGwjq5lw-1; Mon, 30 Sep 2024 07:46:30 -0400
-X-MC-Unique: fSSsJX5DOGGEMKlGwjq5lw-1
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-37cdbe8a6e8so1049288f8f.0
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 04:46:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727696789; x=1728301589;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=9dflzTnD9vkyLsgpnVQZfCLOfINJ0d45UnhsxkoL0jE=;
- b=t/+4bZqCsAQu8PVc77hzFivcc5LkPKlbr7iBN7vJxPyF+MLghJiCwcDcyTpPsX9pe1
- b50R8V6Ue5mv0M68AlvUw0THk4ibzECzY7vUPF+T2cCX/svq9CWI1xnvJJL843/51dba
- TXHloUZkLT/8jF+4uFRkJR+AWh8CKmjU3Xg/qgjCC+MxpV8s3PlwCQiniFIklg/c9upG
- 8VTWTc9CJsmQK3jgQn7I2K6Papy2V7vdRWOYFITMvCeqZ2F+JjGBxsm6AngGLEAUeEVy
- xu3gBXi35hSdW/MbXV5CSlq6qpUcV0uruf5yEaqckSekqC1EKN1qTGQFpiBx3YO+z4mO
- rk1g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVLQCCLzh4gbMO4NXslRMhUUQ0jQViRT24dcfSMl4uX2nBFRVSLkE2DKX8ceZFYpJYebqspRaDShg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyxrjovxC9F7no7lim+kPONDz+w09xUYefbWDL3gWa2yQXcSEPE
- eS3tQo1tZr0/UwCJHXtLLCjtHhqL7QEzj0WnwK0KZrFRYZ9L/NPE+Ay0/48k7Y/TsHOU6XwebeE
- ThKx1z44nrjVrN4jLJLZFOq4cWQWOnYlCLKlYo3PxlvgRxHRd7XEgAzC+huUbxROW
-X-Received: by 2002:a5d:4449:0:b0:37c:cbca:fd82 with SMTP id
- ffacd0b85a97d-37cd5a6bf37mr8142565f8f.1.1727696789125; 
- Mon, 30 Sep 2024 04:46:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGCLLMP4eWziJje4qLxBniM/1l717DjN4rYkRrUfLNGvZq4irAlFPPhs47tndfAyLGLqSxLgA==
-X-Received: by 2002:a5d:4449:0:b0:37c:cbca:fd82 with SMTP id
- ffacd0b85a97d-37cd5a6bf37mr8142547f8f.1.1727696788699; 
- Mon, 30 Sep 2024 04:46:28 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
- ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-37cd565e767sm8897572f8f.38.2024.09.30.04.46.27
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 30 Sep 2024 04:46:28 -0700 (PDT)
-Message-ID: <9c025c92-36f2-4358-af24-b699bfa84b43@redhat.com>
-Date: Mon, 30 Sep 2024 13:46:27 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id E650D10E09E;
+	Mon, 30 Sep 2024 11:47:37 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06BF810E09E;
+ Mon, 30 Sep 2024 11:47:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] drm: Introduce DRM client library
-To: Thomas Zimmermann <tzimmermann@suse.de>, simona@ffwll.ch,
- airlied@gmail.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20240927144252.31813-1-tzimmermann@suse.de>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <20240927144252.31813-1-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, fr
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_Workaround?=
+ =?utf-8?q?_for_odd_panning_for_planar_yuv_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 30 Sep 2024 11:47:37 -0000
+Message-ID: <172769685701.1134480.12356060782563543869@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240930112146.2673086-1-nemesa.garg@intel.com>
+In-Reply-To: <20240930112146.2673086-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,54 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 27/09/2024 16:37, Thomas Zimmermann wrote:
-> With the next DRM client coming soon (drm_log) and most of DRM's
-> fbdev emulation consolidated in a few places, it's time to provide
-> a single place for the clients.
-> 
-> The new module drm_client_lib.ko stores most of the common client
-> code. It's designed such that drivers can opt into client support,
-> but the presence of the client module depends on the user's kernel
-> configuration. Without selected clients, no client module will be
-> build.
+== Series Details ==
 
-Thanks for this work, I've rebased drm_log on top of this, and it works 
-great.
+Series: drm/i915/display: Workaround for odd panning for planar yuv (rev5)
+URL   : https://patchwork.freedesktop.org/series/136422/
+State : success
 
-My only nitpick is I would prefer it to be called drm_client.ko, to be a 
-little shorter. So that the kernel parameter to change the default 
-client can be "drm_client.default=fbdev".
+== Summary ==
 
-Best regards,
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/
+lib/modules/6.12.0-rc1-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc1-xe/build
+lib/modules/6.12.0-rc1-xe/modules.alias.bin
+lib/modules/6.12.0-rc1-xe/modules.builtin
+lib/modules/6.12.0-rc1-xe/modules.softdep
+lib/modules/6.12.0-rc1-xe/modules.alias
+lib/modules/6.12.0-rc1-xe/modules.order
+lib/modules/6.12.0-rc1-xe/modules.symbols
+lib/modules/6.12.0-rc1-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1727696849:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1727696849:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
--- 
-
-Jocelyn
-
-> 
-> Thomas Zimmermann (5):
->    drm/i915: Select DRM_CLIENT_SELECTION
->    drm/xe: Select DRM_CLIENT_SELECTION
->    drm: Move client-device functions in to drm_client_dev.c
->    drm: Select fbdev helpers for modules that require them
->    drm: Add client-lib module
-> 
->   Documentation/gpu/drm-client.rst   |   3 +
->   drivers/gpu/drm/Kconfig            |  34 +++++--
->   drivers/gpu/drm/Makefile           |  20 +++--
->   drivers/gpu/drm/amd/amdgpu/Kconfig |   1 +
->   drivers/gpu/drm/drm_client.c       | 122 +------------------------
->   drivers/gpu/drm/drm_client_dev.c   | 138 +++++++++++++++++++++++++++++
->   drivers/gpu/drm/drm_dumb_buffers.c |   2 +
->   drivers/gpu/drm/drm_file.c         |   2 +
->   drivers/gpu/drm/drm_framebuffer.c  |   2 +
->   drivers/gpu/drm/drm_gem.c          |   2 +
->   drivers/gpu/drm/i915/Kconfig       |   1 +
->   drivers/gpu/drm/xe/Kconfig         |   1 +
->   12 files changed, 196 insertions(+), 132 deletions(-)
->   create mode 100644 drivers/gpu/drm/drm_client_dev.c
-> 
 
