@@ -4,104 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5642DCE8344
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:16:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98277CE8340
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:16:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 267B010E0CA;
-	Mon, 30 Sep 2024 13:16:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Ty+e3lrn";
-	dkim-atps=neutral
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3867B10E493
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 13:16:16 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-42cb9a0c300so33782805e9.0
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 06:16:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1727702174; x=1728306974; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:organization:autocrypt
- :content-language:references:cc:to:subject:reply-to:from:user-agent
- :mime-version:date:message-id:from:to:cc:subject:date:message-id
- :reply-to; bh=sVfSIT/8ooOprlYR8cHno/DAiWe/2kUoTL6uKWKkjmo=;
- b=Ty+e3lrnYFAiq+Q//BiILYIRb6BCnFzfJO2jzG3CraawgcUup9p4osOv6R15LkHI1v
- tX/91nZU+A6lZn7g9mz8g24pXRz5xH+RikGtc3v6ubKCLLS5JcTf7YrmLf4U/b8yk1QA
- ICNYZpan9ZQp+aBK8gpI4X7NP//mKmH/6ZtKiHqkKRYh1TkqMxo1Ui83ynnJ9WXhHDEH
- d7qJIkyxmU41q8qHQvwyusOm4tkZlsc1DNT7vidZEj0rutMIfLcCtZ4oSbNyFOcHddkR
- m7N7nQDrehJJz42UrMtWywURZpyefBxePLDQ9deyJy+y2oSjXgEXdABZTVSRoAkQQk0/
- brzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727702174; x=1728306974;
- h=content-transfer-encoding:in-reply-to:organization:autocrypt
- :content-language:references:cc:to:subject:reply-to:from:user-agent
- :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=sVfSIT/8ooOprlYR8cHno/DAiWe/2kUoTL6uKWKkjmo=;
- b=L1LBg2i7wrfXDFN5wBlBmRgHSUr3ie7CcBbZ1iyO+1MgELHAC4v5VSZL4tuLBM1oQ/
- IF2TPCUczy1YEG4tLf7gDgmS4oZoNRjRfMs8uLeNu4eGeQVLQsZ8j8ml3mminOQs37v1
- ucVpyaK44kuJjwHbY3xYXUCN/Z0JYNRBpYhqaL7DvAlGjZgsRSQ0nixm+gpPKKT9/Syd
- 6QI18hbAGijXfqds0eY+HbFWNFvviH/NunyZZCKYlrl5KNLHcYXRnqL1smswDsUsQONI
- pim3RThjI+ZfXaPvSmvNsRUS3gxEIEfGHNxOOa/2QqWHKLToPpn9f+Cob/X2ldAzpB7S
- 1q4w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXS8iiBhNWSmNS+ZapCudQ2vTFG+6KOG+Q11ZLjP0wxQEmCKv4lch6MFBrCaAuLmMcYZIcjZWSEOQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxPsSR8NklcUI3y1Tc39OkhOIygGV0sZEdPjewa9QungiedEqvy
- C1e7mA/CdC40e70BXOV9Mjhw12q4JOFKXS97CFmn/q6KIPY5a9NL0brABZrumL0=
-X-Google-Smtp-Source: AGHT+IGtgFljgj+ltfg7mE2WvtjLgVEvxrW1v1W4eYUy6IftVa1GnIweAH9gAQaQ0Iwbky7w+/KOPA==
-X-Received: by 2002:a05:600c:1d20:b0:42c:bfd6:9d4d with SMTP id
- 5b1f17b1804b1-42f58409e43mr89140055e9.2.1727702174506; 
- Mon, 30 Sep 2024 06:16:14 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bdc6:abc9:5047:7828?
- ([2a01:e0a:982:cbb0:bdc6:abc9:5047:7828])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42f57e30621sm104429375e9.47.2024.09.30.06.16.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 30 Sep 2024 06:16:14 -0700 (PDT)
-Message-ID: <277ab2af-aac0-4e3a-9df4-ba554494c122@linaro.org>
-Date: Mon, 30 Sep 2024 15:16:13 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3C310E496;
+	Mon, 30 Sep 2024 13:16:52 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B95AF10E493;
+ Mon, 30 Sep 2024 13:16:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 09/28] drm/meson: Use video aperture helpers
-To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20240930130921.689876-1-tzimmermann@suse.de>
- <20240930130921.689876-10-tzimmermann@suse.de>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240930130921.689876-10-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915=3A_Allow_fastset_for_?=
+ =?utf-8?q?change_in_HDR_infoframe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 30 Sep 2024 13:16:50 -0000
+Message-ID: <172770221075.1136042.15039563037150655237@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240930113806.2297402-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20240930113806.2297402-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,52 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 30/09/2024 15:03, Thomas Zimmermann wrote:
-> DRM's aperture functions have long been implemented as helpers
-> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
-> calling the video functions directly.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->   drivers/gpu/drm/meson/meson_drv.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 2f76f48da38d..bbb662d2f184 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -8,6 +8,7 @@
->    *     Jasper St. Pierre <jstpierre@mecheye.net>
->    */
->   
-> +#include <linux/aperture.h>
->   #include <linux/component.h>
->   #include <linux/module.h>
->   #include <linux/of_graph.h>
-> @@ -15,7 +16,6 @@
->   #include <linux/platform_device.h>
->   #include <linux/soc/amlogic/meson-canvas.h>
->   
-> -#include <drm/drm_aperture.h>
->   #include <drm/drm_atomic_helper.h>
->   #include <drm/drm_client_setup.h>
->   #include <drm/drm_drv.h>
-> @@ -279,7 +279,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->   	 * Remove early framebuffers (ie. simplefb). The framebuffer can be
->   	 * located anywhere in RAM
->   	 */
-> -	ret = drm_aperture_remove_framebuffers(&meson_driver);
-> +	ret = aperture_remove_all_conflicting_devices(meson_driver.name);
->   	if (ret)
->   		goto free_canvas_vd1_2;
->   
+== Series Details ==
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Series: drm/i915: Allow fastset for change in HDR infoframe
+URL   : https://patchwork.freedesktop.org/series/139292/
+State : success
+
+== Summary ==
+
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc1-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/
+lib/modules/6.12.0-rc1-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc1-xe/build
+lib/modules/6.12.0-rc1-xe/modules.alias.bin
+lib/modules/6.12.0-rc1-xe/modules.builtin
+lib/modules/6.12.0-rc1-xe/modules.softdep
+lib/modules/6.12.0-rc1-xe/modules.alias
+lib/modules/6.12.0-rc1-xe/modules.order
+lib/modules/6.12.0-rc1-xe/modules.symbols
+lib/modules/6.12.0-rc1-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1727702203:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1727702203:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
