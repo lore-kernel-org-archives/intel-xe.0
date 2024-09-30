@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFAEBCF6491
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Sep 2024 18:12:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04D45CF6498
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 00:06:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69E2D10E0EA;
-	Sat, 28 Sep 2024 18:12:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9057D10E0FC;
+	Mon, 30 Sep 2024 00:06:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bjqHiF++";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y5Y8hDV5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE8D710E241
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Sep 2024 18:12:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3B810E0FC
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 00:06:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727547148; x=1759083148;
- h=date:from:to:cc:subject:message-id;
- bh=4Eo+DvOYBWuzwY7BEjDFCmEvwKyg5FNeUwbsB2T/p7w=;
- b=bjqHiF++HjdNygPU6MXdXq853w/vJ4yndrRQg5dC1n5YOpQe4U6pMRrF
- DE6Pp5R+9e0iuqmsMDKY6i2Ai4BMEQlCjQMRx9dlY9nzH1hqTSeXar02t
- WTP5HxkG1R2HOE0cFMG0UH2/a6cl1abRsUw4dLd+I3FXkzrg5GR9tR5g+
- nv1oeq/Yk1Vggdzufq+2qX6JhEa7t/9NrgD3U2X+GrIwiYE/uRg5JYrVI
- NPlhuVpUxdtLDHkO4ONS3Ca2agA6QR2xZdYxbmy9bncH+1J8/tJuKInVs
- Tu3iMTuGRcLSkJUrDfHo0d3XU6OdIcnNDFNFbNRdRM7hwaQiF07pyHWVY g==;
-X-CSE-ConnectionGUID: jjMl7sB/Q5OBCCgZZRf9QA==
-X-CSE-MsgGUID: ux854qzNRpeKEir4cuGkaA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11209"; a="26802091"
-X-IronPort-AV: E=Sophos;i="6.11,162,1725346800"; d="scan'208";a="26802091"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2024 11:12:28 -0700
-X-CSE-ConnectionGUID: JaLYYTNsSXG1KCodxJo8pw==
-X-CSE-MsgGUID: oaLeOb49Sg+NL8ZR32lMKA==
+ t=1727654774; x=1759190774;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nVqHD/XeSqjlEYRaCNv1yfRePfjw40To43EoKgabqIs=;
+ b=Y5Y8hDV5Qaj0Lc21duF0X/rnDlvNfWx9nsDi6f8yQtwyivf1msbGjtQ9
+ K1ZY7VXddfhr+JrTaOz7J/MgSV1aa/CghZ2CfkEAFfedKFg5P/TCqW5w2
+ Tqurdd/wmDbeQCdmQQV2EJi/3ZmSDHzvHBhsJz7aG01MnTcSmQeCWjT8R
+ 4HaONPg9T1eI8i2zkKwTc2tZAd5rVixGz2v/7xY5L+eZz/DpHeCXcd1vu
+ qQCvluRMhsX2ypahb/2gQFOPsjB9iJYYL2FfPm2JbTxbA4nn9O4Dib6aY
+ md7zLDGQX3CTI00gGX/6/HXig71G1IBw3HU3GqoFH07l0YmdFaZtkBjY5 w==;
+X-CSE-ConnectionGUID: bo2AjS6MTPicjo98hxQpeA==
+X-CSE-MsgGUID: lDC5YkRgQcy4JVPdsfQICw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26676920"
+X-IronPort-AV: E=Sophos;i="6.11,164,1725346800"; d="scan'208";a="26676920"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2024 17:06:13 -0700
+X-CSE-ConnectionGUID: KsmTUV3OSzGyNWbuVchBYQ==
+X-CSE-MsgGUID: shXERP5wRWu7zAafVWfSRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,162,1725346800"; d="scan'208";a="96187013"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 28 Sep 2024 11:12:27 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1subvc-000NVz-0L;
- Sat, 28 Sep 2024 18:12:24 +0000
-Date: Sun, 29 Sep 2024 02:11:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 0c8650b09a365f4a31fca1d1d1e9d99c56071128
-Message-ID: <202409290220.wX3nhdQh-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.11,164,1725346800"; d="scan'208";a="77628137"
+Received: from pallavim-desk.iind.intel.com ([10.145.162.180])
+ by fmviesa004.fm.intel.com with ESMTP; 29 Sep 2024 17:06:10 -0700
+From: Pallavi Mishra <pallavi.mishra@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, alex.zuo@intel.com,
+ Pallavi Mishra <pallavi.mishra@intel.com>
+Subject: [PATCH] drm/xe: Add support for object purgeability
+Date: Mon, 30 Sep 2024 05:44:13 +0530
+Message-Id: <20240930001413.3378863-1-pallavi.mishra@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,154 +64,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 0c8650b09a365f4a31fca1d1d1e9d99c56071128  drm/xe/oa: Don't reset OAC_CONTEXT_ENABLE on OA stream close
+Introduce madvise ioctl in KMD for object level advice.
+Userspace applications can utilize this feature to inform
+KMD whether an object will be needed in near future or can
+be safely discarded under memory pressure.
 
-elapsed time: 1448m
+Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 71 ++++++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_bo.h       |  7 ++++
+ drivers/gpu/drm/xe/xe_bo_types.h |  3 ++
+ drivers/gpu/drm/xe/xe_device.c   |  1 +
+ include/uapi/drm/xe_drm.h        | 20 +++++++++
+ 5 files changed, 90 insertions(+), 12 deletions(-)
 
-configs tested: 135
-configs skipped: 2
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 5f2f1ec46b57..0e7e7a624676 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -644,6 +644,22 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+ 	return 0;
+ }
+ 
++static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
++{
++	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
++	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
++
++	if (ttm_bo->ttm) {
++		struct ttm_placement place = {};
++		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
++
++		drm_WARN_ON(&xe->drm, ret);
++
++		if (bo && !ret)
++			bo->madv = XE_MADV_PURGED;
++	}
++}
++
+ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		      struct ttm_operation_ctx *ctx,
+ 		      struct ttm_resource *new_mem,
+@@ -663,6 +679,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 				  ttm && ttm_tt_is_populated(ttm)) ? true : false;
+ 	int ret = 0;
+ 
++	if (bo->madv == XE_MADV_DONTNEED) {
++		xe_ttm_bo_purge(ttm_bo, ctx);
++		return ret;
++	}
++
+ 	/* Bo creation path, moving to system or TT. */
+ 	if ((!old_mem && ttm) && !handle_system_ccs) {
+ 		if (new_mem->mem_type == XE_PL_TT)
+@@ -1084,18 +1105,6 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
+ 	}
+ }
+ 
+-static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
+-{
+-	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+-
+-	if (ttm_bo->ttm) {
+-		struct ttm_placement place = {};
+-		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
+-
+-		drm_WARN_ON(&xe->drm, ret);
+-	}
+-}
+-
+ static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
+ {
+ 	struct ttm_operation_ctx ctx = {
+@@ -2416,6 +2425,44 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
+ 	list_del_init(&bo->vram_userfault_link);
+ }
+ 
++int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
++			struct drm_file *file_priv)
++{
++	struct xe_device *xe = to_xe_device(dev);
++	struct drm_xe_vm_madvise *args = data;
++	struct drm_gem_object *gem_obj = drm_gem_object_lookup(file_priv, args->handle);
++	struct xe_bo *bo;
++	int err;
++
++	if (XE_IOCTL_DBG(xe, (!(args->madv & DRM_XE_MADV_DONTNEED) &&
++			!(args->madv & DRM_XE_MADV_WILLNEED))))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, !gem_obj))
++		return -EINVAL;
++
++	bo = gem_to_xe_bo(gem_obj);
++	if (!bo)
++		return -ENOENT;
++
++	err = xe_bo_lock(bo, true);
++	if (err)
++		return err;
++
++	if (XE_IOCTL_DBG(xe, ((bo->madv == XE_MADV_PURGED) && (args->madv == DRM_XE_MADV_WILLNEED)))) {
++		xe_bo_unlock(bo);
++		return -EINVAL;
++	}
++
++	args->retained = (bo->madv != XE_MADV_PURGED) ? 1 : 0;
++
++	bo->madv = (args->madv == DRM_XE_MADV_WILLNEED) ? XE_MADV_WILLNEED : XE_MADV_DONTNEED;
++
++	xe_bo_unlock(bo);
++
++	return 0;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_bo.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 6e4be52306df..515dea54a8e8 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -63,6 +63,10 @@
+ 
+ #define XE_BO_PROPS_INVALID	(-1)
+ 
++#define XE_MADV_WILLNEED               0
++#define XE_MADV_DONTNEED               1
++#define XE_MADV_PURGED                 2
++
+ struct sg_table;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+@@ -223,6 +227,9 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+ 			     struct drm_file *file);
++int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
++			struct drm_file *file_priv);
++
+ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
+ 
+ int xe_bo_dumb_create(struct drm_file *file_priv,
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 2ed558ac2264..00b4de912dcf 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -76,6 +76,9 @@ struct xe_bo {
+ 
+ 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+ 		struct list_head vram_userfault_link;
++
++	/** @madv: user space advise on obj purgeability */
++	u16 madv;
+ };
+ 
+ #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 8e9b551c7033..efeb0bf08b1b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -197,6 +197,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
+ };
+ 
+ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index b6fbe4988f2e..e32ba5598a8b 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -102,6 +102,7 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_VM_MADVISE		0x0c
+ 
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +118,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_VM_MADVISE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1694,6 +1696,24 @@ struct drm_xe_oa_stream_info {
+ 	__u64 reserved[3];
+ };
+ 
++/**
++ * struct drm_xe_vm_madvise - Input of &DRM_IOCTL_XE_VM_MADVISE
++ */
++struct drm_xe_vm_madvise {
++	/** Handle of the buffer to change the backing store advice */
++	__u32 handle;
++	/* Advice: either the buffer will be needed again in the near future,
++	 *         or won't be and could be discarded under memory pressure.
++	 */
++#define DRM_XE_MADV_WILLNEED 0
++#define DRM_XE_MADV_DONTNEED 1
++
++	__u32 madv;
++
++	/** Whether the backing store still exists. */
++	__u32 retained;
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
+-- 
+2.25.1
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig    gcc-13.3.0
-alpha                            allyesconfig    gcc-13.3.0
-arc                              allmodconfig    gcc-13.2.0
-arc                               allnoconfig    gcc-13.2.0
-arc                              allyesconfig    gcc-13.2.0
-arc                          axs103_defconfig    gcc-13.2.0
-arc                 nsimosci_hs_smp_defconfig    gcc-13.2.0
-arc                   randconfig-001-20240928    gcc-13.2.0
-arc                   randconfig-002-20240928    gcc-13.2.0
-arm                              allmodconfig    gcc-14.1.0
-arm                               allnoconfig    clang-20
-arm                              allyesconfig    gcc-14.1.0
-arm                            hisi_defconfig    gcc-14.1.0
-arm                          moxart_defconfig    gcc-14.1.0
-arm                   randconfig-001-20240928    gcc-14.1.0
-arm                   randconfig-002-20240928    gcc-14.1.0
-arm                   randconfig-003-20240928    clang-20
-arm                   randconfig-004-20240928    clang-20
-arm                         vf610m4_defconfig    gcc-14.1.0
-arm64                            allmodconfig    clang-20
-arm64                             allnoconfig    gcc-14.1.0
-arm64                 randconfig-001-20240928    gcc-14.1.0
-arm64                 randconfig-002-20240928    gcc-14.1.0
-arm64                 randconfig-003-20240928    clang-20
-arm64                 randconfig-004-20240928    gcc-14.1.0
-csky                              allnoconfig    gcc-14.1.0
-csky                  randconfig-001-20240928    gcc-14.1.0
-csky                  randconfig-002-20240928    gcc-14.1.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    clang-20
-hexagon                          allyesconfig    clang-20
-hexagon               randconfig-001-20240928    clang-20
-hexagon               randconfig-002-20240928    clang-20
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386        buildonly-randconfig-001-20240928    clang-18
-i386        buildonly-randconfig-002-20240928    gcc-12
-i386        buildonly-randconfig-003-20240928    clang-18
-i386        buildonly-randconfig-004-20240928    gcc-12
-i386        buildonly-randconfig-005-20240928    gcc-12
-i386        buildonly-randconfig-006-20240928    gcc-12
-i386                                defconfig    clang-18
-i386                  randconfig-001-20240928    clang-18
-i386                  randconfig-002-20240928    gcc-12
-i386                  randconfig-003-20240928    clang-18
-i386                  randconfig-004-20240928    clang-18
-i386                  randconfig-005-20240928    clang-18
-i386                  randconfig-006-20240928    gcc-12
-i386                  randconfig-011-20240928    clang-18
-i386                  randconfig-012-20240928    gcc-12
-i386                  randconfig-013-20240928    clang-18
-i386                  randconfig-014-20240928    clang-18
-i386                  randconfig-015-20240928    clang-18
-i386                  randconfig-016-20240928    clang-18
-loongarch                        allmodconfig    gcc-14.1.0
-loongarch                         allnoconfig    gcc-14.1.0
-loongarch             randconfig-001-20240928    gcc-14.1.0
-loongarch             randconfig-002-20240928    gcc-14.1.0
-m68k                             allmodconfig    gcc-14.1.0
-m68k                              allnoconfig    gcc-14.1.0
-m68k                             allyesconfig    gcc-14.1.0
-microblaze                       allmodconfig    gcc-14.1.0
-microblaze                        allnoconfig    gcc-14.1.0
-microblaze                       allyesconfig    gcc-14.1.0
-mips                              allnoconfig    gcc-14.1.0
-mips                          ath79_defconfig    gcc-14.1.0
-mips                           ip28_defconfig    gcc-14.1.0
-mips                        maltaup_defconfig    clang-20
-mips                        qi_lb60_defconfig    clang-20
-nios2                             allnoconfig    gcc-14.1.0
-nios2                 randconfig-001-20240928    gcc-14.1.0
-nios2                 randconfig-002-20240928    gcc-14.1.0
-openrisc                         alldefconfig    gcc-14.1.0
-openrisc                          allnoconfig    clang-20
-openrisc                          allnoconfig    gcc-14.1.0
-openrisc                         allyesconfig    gcc-14.1.0
-openrisc                            defconfig    gcc-14.1.0
-parisc                           allmodconfig    gcc-14.1.0
-parisc                            allnoconfig    clang-20
-parisc                            allnoconfig    gcc-14.1.0
-parisc                           allyesconfig    gcc-14.1.0
-parisc                              defconfig    gcc-14.1.0
-parisc                randconfig-001-20240928    gcc-14.1.0
-parisc                randconfig-002-20240928    gcc-14.1.0
-powerpc                           allnoconfig    clang-20
-powerpc                           allnoconfig    gcc-14.1.0
-powerpc                      cm5200_defconfig    clang-20
-powerpc                        fsp2_defconfig    gcc-14.1.0
-powerpc               randconfig-001-20240928    gcc-14.1.0
-powerpc               randconfig-002-20240928    gcc-14.1.0
-powerpc               randconfig-003-20240928    clang-20
-powerpc64             randconfig-001-20240928    clang-20
-powerpc64             randconfig-002-20240928    clang-20
-powerpc64             randconfig-003-20240928    clang-20
-riscv                             allnoconfig    clang-20
-riscv                             allnoconfig    gcc-14.1.0
-riscv                               defconfig    clang-20
-riscv                 randconfig-001-20240928    gcc-14.1.0
-riscv                 randconfig-002-20240928    gcc-14.1.0
-s390                             allmodconfig    clang-20
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.1.0
-s390                                defconfig    clang-20
-s390                  randconfig-001-20240928    clang-15
-s390                  randconfig-002-20240928    clang-20
-sh                               allmodconfig    gcc-14.1.0
-sh                                allnoconfig    gcc-14.1.0
-sh                               allyesconfig    gcc-14.1.0
-sh                                  defconfig    gcc-14.1.0
-sh                    randconfig-001-20240928    gcc-14.1.0
-sh                    randconfig-002-20240928    gcc-14.1.0
-sh                          rsk7201_defconfig    gcc-14.1.0
-sh                           se7343_defconfig    gcc-14.1.0
-sparc                            allmodconfig    gcc-14.1.0
-sparc64                             defconfig    gcc-14.1.0
-sparc64               randconfig-001-20240928    gcc-14.1.0
-sparc64               randconfig-002-20240928    gcc-14.1.0
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-17
-um                                allnoconfig    clang-20
-um                               allyesconfig    gcc-12
-um                                  defconfig    clang-20
-um                             i386_defconfig    gcc-12
-um                    randconfig-001-20240928    clang-16
-um                    randconfig-002-20240928    gcc-12
-um                           x86_64_defconfig    clang-15
-x86_64                            allnoconfig    clang-18
-x86_64                           allyesconfig    clang-18
-x86_64                              defconfig    gcc-11
-x86_64                                  kexec    clang-18
-x86_64                               rhel-8.3    gcc-12
-x86_64                          rhel-8.3-rust    clang-18
-xtensa                            allnoconfig    gcc-14.1.0
-xtensa                randconfig-001-20240928    gcc-14.1.0
-xtensa                randconfig-002-20240928    gcc-14.1.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
