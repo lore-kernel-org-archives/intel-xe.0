@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 953EBCF6497
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 05:56:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5019CF6497
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 06:02:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F05C10E2CD;
-	Mon, 30 Sep 2024 05:56:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8558210E2CD;
+	Mon, 30 Sep 2024 06:02:52 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B630110E2CD;
- Mon, 30 Sep 2024 05:56:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CBB710E2CD;
+ Mon, 30 Sep 2024 06:02:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Add_suppor?=
- =?utf-8?q?t_for_object_purgeability?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Fix_xe=5Fforce=5Fwak?=
+ =?utf-8?q?e=5Fget=28=29_failure_handling_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pallavi Mishra" <pallavi.mishra@intel.com>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Sep 2024 05:56:30 -0000
-Message-ID: <172767579073.1133354.4709810579610939238@2413ebb6fbb6>
+Date: Mon, 30 Sep 2024 06:02:51 -0000
+Message-ID: <172767617137.1133377.8365125589446300117@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240930001413.3378863-1-pallavi.mishra@intel.com>
-In-Reply-To: <20240930001413.3378863-1-pallavi.mishra@intel.com>
+References: <20240930053149.1246339-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240930053149.1246339-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,22 +42,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Add support for object purgeability
-URL   : https://patchwork.freedesktop.org/series/139264/
-State : failure
+Series: Fix xe_force_wake_get() failure handling (rev6)
+URL   : https://patchwork.freedesktop.org/series/137982/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 1accf1380ac2 drm-tip: 2024y-09m-30d-04h-27m-01s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_bo_types.h:76
-error: drivers/gpu/drm/xe/xe_bo_types.h: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Add support for object purgeability
-Patch failed at 0001 drm/xe: Add support for object purgeability
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe: Add member initialized_domains to xe_force_wake()
+Applying: drm/xe/forcewake: Add a helper xe_force_wake_ref_has_domain()
+Applying: drm/xe: Error handling in xe_force_wake_get()
+Applying: drm/xe: Modify xe_force_wake_put to handle _get returned mask
+Applying: drm/xe/device: Update handling of xe_force_wake_get return
+Applying: drm/xe/hdcp: Update handling of xe_force_wake_get return
+Applying: drm/xe/gsc: Update handling of xe_force_wake_get return
+Applying: drm/xe/gt: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_gt_idle: Update handling of xe_force_wake_get return
+Applying: drm/xe/devcoredump: Update handling of xe_force_wake_get return
+Applying: drm/xe/tests/mocs: Update xe_force_wake_get() return handling
+Applying: drm/xe/mocs: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_drm_client: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_gt_debugfs: Update handling of xe_force_wake_get return
+Applying: drm/xe/guc: Update handling of xe_force_wake_get return
+Applying: drm/xe/huc: Update handling of xe_force_wake_get return
+Applying: drm/xe/oa: Handle force_wake_get failure in xe_oa_stream_init()
+Applying: drm/xe/pat: Update handling of xe_force_wake_get return
+Applying: drm/xe/gt_tlb_invalidation_ggtt: Update handling of xe_force_wake_get return
+Applying: drm/xe/xe_reg_sr: Update handling of xe_force_wake_get return
+Applying: drm/xe/query: Update handling of xe_force_wake_get return
+Applying: drm/xe/vram: Update handling of xe_force_wake_get return
+Applying: drm/xe: forcewake debugfs open fails on xe_forcewake_get failure
+Applying: drm/xe: Ensure __must_check for xe_force_wake_get() return
+Applying: drm/xe: Change return type to void for xe_force_wake_put
 
 
