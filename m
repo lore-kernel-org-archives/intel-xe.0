@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEE9ACF6499
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 12:41:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A357CF64A3
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 12:52:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8167110E440;
-	Mon, 30 Sep 2024 12:41:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20B3F10E443;
+	Mon, 30 Sep 2024 12:52:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K3wGofYL";
+	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="kHSYaaeu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4563110E440;
- Mon, 30 Sep 2024 12:41:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727700078; x=1759236078;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TnHv2+F7Ri9zpRP/WjklUNBa/WxG57Ll8I/Y+qCRluE=;
- b=K3wGofYLX5Bi6PzLM1kl4NnN4M0Y8w/SOPW1DCDjeQU63T2y0AZXWvVF
- hAT9MkttBIkOh2UbdHuXDRHvkdLdXZcQGsbAB7ZDQK387YOvKQ0orKR/O
- qK6hAx9eU4Tngwu/LPtwIXXI/abFIzshpbYjdKLZH4NiEfxzjxiPkrUnp
- rlqqIzp1b+J6xzKmpBQWN1MlEqco2id7nxhrz2Ttga1xrIGNRXrYSWrjA
- YF8CVFRSDcWDFJh+S8sN/Jv+oh+rvrqR8CD+zbF5FLnHKSqeK+iFcyDt9
- JHeKnXWjQ+RTfodEu15H0RxQM2raKhoeJ6/ZFyOg12LeozxgTNbkguErr g==;
-X-CSE-ConnectionGUID: QWAX+VE3TIeqNsV3+/xrUw==
-X-CSE-MsgGUID: Ghs0v/4SRJC8TPjT3tNVOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26292921"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26292921"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 05:41:18 -0700
-X-CSE-ConnectionGUID: eyJ7qEYaT2KX0NxtKYJCzA==
-X-CSE-MsgGUID: 40h5ie3ESv2Yj9ynLYqSJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73568063"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.93])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 05:41:16 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [CI 2/2] drm/i915/soc: stop using IS_GEN9_LP() and IS_GEN9_BC()
-Date: Mon, 30 Sep 2024 15:40:56 +0300
-Message-Id: <20240930124056.3541988-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20240930124056.3541988-1-jani.nikula@intel.com>
-References: <20240930124056.3541988-1-jani.nikula@intel.com>
+X-Greylist: delayed 1165 seconds by postgrey-1.36 at gabe;
+ Mon, 30 Sep 2024 12:52:47 UTC
+Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98BF310E443
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 12:52:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
+ ; s=bytemarkmx;
+ h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
+ :Subject; bh=bsjyQJc6rlUDtp6Ad1gt+O9AIpQT/zdHP7sLmtwCgpU=; b=kHSYaaeuva5nyyvn
+ +yCz0THwMO7NK/fB7hVCdEe3bgxrKKLYQ9lEAfve2q2AHPhPqR4UizKaMQlqy9Q8A1Y5YtOlrc0i0
+ Xp6+2m4FzoQ+Ljktg22Dif53UwoUHV/QCXhIuNmkO73X92kyYhxQkzZgDdEbB08VneHyXahe2WqzZ
+ JvOgM9M9e1Twxioe/v77e8LDKfLmlj4hb2Ga0sJBBCI/wHj2U0xucDRvRUkSHnt6mDQccajXmyzPl
+ 1e0tR5G64wp8OongOAW+zSiZflKfWhWQ6Nsxa9FCdfQ10Pz1ICARHKO9LBF8XxQMZBlMD8pYWOBek
+ MepbaiAZVIa14yHBSg==;
+Received: from dg by mx.treblig.org with local (Exim 4.96)
+ (envelope-from <dg@treblig.org>) id 1svFaX-007xkK-23;
+ Mon, 30 Sep 2024 12:33:17 +0000
+Date: Mon, 30 Sep 2024 12:33:17 +0000
+From: "Dr. David Alan Gilbert" <linux@treblig.org>
+To: Aradhya Bhatia <aradhya.bhatia@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Intel XE List <intel-xe@lists.freedesktop.org>,
+ DRI Devel List <dri-devel@lists.freedesktop.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH] drm/xe/xe2lpg: Add WA 15016589081
+Message-ID: <ZvqajY_bLH_eULv5@gallifrey>
+References: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+In-Reply-To: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
+X-Chocolate: 70 percent or better cocoa solids preferably
+X-Operating-System: Linux/6.1.0-21-amd64 (x86_64)
+X-Uptime: 12:31:20 up 144 days, 23:45,  1 user,  load average: 0.01, 0.04, 0.00
+User-Agent: Mutt/2.2.12 (2023-09-09)
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,72 +70,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace IS_GEN9_LP() and IS_GEN9_BC() with direct platform checks. This
-lets us remove their compat counterparts, as neither soc/ nor /display
-now no longer needs them.
+* Aradhya Bhatia (aradhya.bhatia@intel.com) wrote:
+> Add workaround (wa) 15016589081 which applies to Xe2_v3_LPG_MD.
 
-v2: Use !A && !B instead of !(A || B) (Ville)
+It would be great in this type of patch if you could
+briefly say what symptom it fixes;  Some people might not know what
+WA 15016589081  does.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v1
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/soc/intel_dram.c             | 4 ++--
- drivers/gpu/drm/i915/soc/intel_pch.c              | 5 ++++-
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 3 ---
- 3 files changed, 6 insertions(+), 6 deletions(-)
+Dave
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 4aba47bccc63..9e310f4099f4 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -714,7 +714,7 @@ void intel_dram_detect(struct drm_i915_private *i915)
- 	 * Assume level 0 watermark latency adjustment is needed until proven
- 	 * otherwise, this w/a is not needed by bxt/glk.
- 	 */
--	dram_info->wm_lv_0_adjust_needed = !IS_GEN9_LP(i915);
-+	dram_info->wm_lv_0_adjust_needed = !IS_BROXTON(i915) && !IS_GEMINILAKE(i915);
- 
- 	if (DISPLAY_VER(i915) >= 14)
- 		ret = xelpdp_get_dram_info(i915);
-@@ -722,7 +722,7 @@ void intel_dram_detect(struct drm_i915_private *i915)
- 		ret = gen12_get_dram_info(i915);
- 	else if (GRAPHICS_VER(i915) >= 11)
- 		ret = gen11_get_dram_info(i915);
--	else if (IS_GEN9_LP(i915))
-+	else if (IS_BROXTON(i915) || IS_GEMINILAKE(i915))
- 		ret = bxt_get_dram_info(i915);
- 	else
- 		ret = skl_get_dram_info(i915);
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index 542eea50093c..842db43e46c0 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -124,7 +124,10 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
- 		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv) &&
- 			    !IS_ROCKETLAKE(dev_priv) &&
--			    !IS_GEN9_BC(dev_priv));
-+			    !IS_SKYLAKE(dev_priv) &&
-+			    !IS_KABYLAKE(dev_priv) &&
-+			    !IS_COFFEELAKE(dev_priv) &&
-+			    !IS_COMETLAKE(dev_priv));
- 		return PCH_TGP;
- 	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found Jasper Lake PCH\n");
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 900003d855a6..b7041b578e5e 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -76,9 +76,6 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- 
- #define IS_MOBILE(xe) (xe && 0)
- 
--#define IS_GEN9_LP(xe) ((xe) && 0)
--#define IS_GEN9_BC(xe) ((xe) && 0)
--
- #define IS_TIGERLAKE_UY(xe) (xe && 0)
- #define IS_COMETLAKE_ULX(xe) (xe && 0)
- #define IS_COFFEELAKE_ULX(xe) (xe && 0)
+> Xe2_v3_LPG_MD is a Lunar Lake platform with GFX version: 20.04.
+> This wa is type: permanent, and hence is applicable on all steppings.
+> 
+> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_wa.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 22c148b1e996..2f9cde4b7d45 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -710,6 +710,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+>  			     DIS_PARTIAL_AUTOSTRIP |
+>  			     DIS_AUTOSTRIP))
+>  	},
+> +	{ XE_RTP_NAME("15016589081"),
+> +	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
+> +	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_CLIP_NEGATIVE_BOUNDING_BOX))
+> +	},
+>  
+>  	/* Xe2_HPG */
+>  	{ XE_RTP_NAME("15010599737"),
+> 
+> base-commit: 0c8650b09a365f4a31fca1d1d1e9d99c56071128
+> -- 
+> 2.34.1
+> 
+> 
 -- 
-2.39.5
-
+ -----Open up your eyes, open up your mind, open up your code -------   
+/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
+\        dave @ treblig.org |                               | In Hex /
+ \ _________________________|_____ http://www.treblig.org   |_______/
