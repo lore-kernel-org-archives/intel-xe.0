@@ -4,58 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A357CF64A3
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 12:52:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E51CF64B3
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 12:59:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20B3F10E443;
-	Mon, 30 Sep 2024 12:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1513A10E0A4;
+	Mon, 30 Sep 2024 12:59:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="kHSYaaeu";
+	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="oMQygBC3";
 	dkim-atps=neutral
-X-Greylist: delayed 1165 seconds by postgrey-1.36 at gabe;
- Mon, 30 Sep 2024 12:52:47 UTC
-Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98BF310E443
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 12:52:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
- ; s=bytemarkmx;
- h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
- :Subject; bh=bsjyQJc6rlUDtp6Ad1gt+O9AIpQT/zdHP7sLmtwCgpU=; b=kHSYaaeuva5nyyvn
- +yCz0THwMO7NK/fB7hVCdEe3bgxrKKLYQ9lEAfve2q2AHPhPqR4UizKaMQlqy9Q8A1Y5YtOlrc0i0
- Xp6+2m4FzoQ+Ljktg22Dif53UwoUHV/QCXhIuNmkO73X92kyYhxQkzZgDdEbB08VneHyXahe2WqzZ
- JvOgM9M9e1Twxioe/v77e8LDKfLmlj4hb2Ga0sJBBCI/wHj2U0xucDRvRUkSHnt6mDQccajXmyzPl
- 1e0tR5G64wp8OongOAW+zSiZflKfWhWQ6Nsxa9FCdfQ10Pz1ICARHKO9LBF8XxQMZBlMD8pYWOBek
- MepbaiAZVIa14yHBSg==;
-Received: from dg by mx.treblig.org with local (Exim 4.96)
- (envelope-from <dg@treblig.org>) id 1svFaX-007xkK-23;
- Mon, 30 Sep 2024 12:33:17 +0000
-Date: Mon, 30 Sep 2024 12:33:17 +0000
-From: "Dr. David Alan Gilbert" <linux@treblig.org>
-To: Aradhya Bhatia <aradhya.bhatia@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Intel XE List <intel-xe@lists.freedesktop.org>,
- DRI Devel List <dri-devel@lists.freedesktop.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: Re: [PATCH] drm/xe/xe2lpg: Add WA 15016589081
-Message-ID: <ZvqajY_bLH_eULv5@gallifrey>
-References: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
+ [210.118.77.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA03410E0A4
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 12:59:36 +0000 (UTC)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930125934euoutp02950ae7470e5d2e47a659e9be1f357ec1~6BxCUhA611368013680euoutp025
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 12:59:34 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20240930125934euoutp02950ae7470e5d2e47a659e9be1f357ec1~6BxCUhA611368013680euoutp025
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1727701174;
+ bh=f1TrYNJ14lIj5b+07e4BNmin29yaHxeVaGoE3NAH3gI=;
+ h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+ b=oMQygBC3CXfXxiP3E82l1tgHWzzIk+H/3gBo6lLrktHXysQ8X+fgG/ECJmiu0Wf8p
+ p1R6rPs8HHAopkVtNqnebYwDf6m8/Uu85d0GhM1YquXdWFvppJxsTX0QkWuHlhcTbH
+ 2Yv2uUt8IFs6y+3G1FpeV7q8zpG3+mAmbXPk/8nk=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930125934eucas1p12294a0358e03b93bd1d619132c3ed355~6BxCKem7y1347213472eucas1p1C;
+ Mon, 30 Sep 2024 12:59:34 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges2new.samsung.com (EUCPMTA) with SMTP id A5.32.09875.6B0AAF66; Mon, 30
+ Sep 2024 13:59:34 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20240930125934eucas1p26bec1c6bb6b272f991acde569ef29cfd~6BxBsDDtJ3215432154eucas1p26;
+ Mon, 30 Sep 2024 12:59:34 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20240930125934eusmtrp2d396f22be0316c9e47e20bfd9bdb6280~6BxBrhtBE2410524105eusmtrp2X;
+ Mon, 30 Sep 2024 12:59:34 +0000 (GMT)
+X-AuditID: cbfec7f4-11bff70000002693-f0-66faa0b6833b
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id A8.3A.14621.5B0AAF66; Mon, 30
+ Sep 2024 13:59:34 +0100 (BST)
+Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
+ eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+ 20240930125933eusmtip2e094a8dbf2a511d3f699ae16d4dd0edd~6BxBdaQoW2232522325eusmtip2L;
+ Mon, 30 Sep 2024 12:59:33 +0000 (GMT)
+Received: from localhost (106.110.32.87) by CAMSVWEXC02.scsc.local
+ (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
+ Mon, 30 Sep 2024 13:59:33 +0100
+Date: Mon, 30 Sep 2024 14:59:32 +0200
+From: Daniel Gomez <da.gomez@samsung.com>
+To: <I915-ci-infra@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Daniel Gomez via B4 Relay
+ <devnull+da.gomez.samsung.com@kernel.org>, Daniel Gomez
+ <d+samsung@kruces.com>
+Subject: Re: =?utf-8?Q?=E2=9C=97_CI=2EBAT=3A_failure_fo?= =?utf-8?Q?r?=
+ drm/xe: xe_gen_wa_oob: replace program_invocation_short_name
+Message-ID: <20240930125932.pidefagpiyubpmsw@AALNPWDAGOMEZ1.aal.scsc.local>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
-X-Chocolate: 70 percent or better cocoa solids preferably
-X-Operating-System: Linux/6.1.0-21-amd64 (x86_64)
-X-Uptime: 12:31:20 up 144 days, 23:45,  1 user,  load average: 0.01, 0.04, 0.00
-User-Agent: Mutt/2.2.12 (2023-09-09)
+In-Reply-To: <172735727458.1107233.1757281470637305143@2413ebb6fbb6>
+X-Originating-IP: [106.110.32.87]
+X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
+ CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTcRTH+917vbsOZtcpejTJWmgPbD2x9bJ3Cv5Rhr1EyqF3avniTjOD
+ alSKGc2SorVMFxWmltG0WVlmK5pL8YGtTGtqZeUqInXVTF2bV6v/Pud7vt/DOXAoXGgjfKnE
+ lHSGTZEmiUg+oXtqa56r0wzJ5tfa/CU19je4pKmwGJe8bVDikl+Vn7DVRJi27DgZZj/Z7RLW
+ dcKAbcaj+CvimKTEfQw7LySGnzDy4wwv7bl4v8KqxxTIODMPuVJAL4Zvp28ReYhPCelrCF6e
+ uYu4YhBBX8d7kisGELxSGtBEJP9qiwvXKEFQoOwn/rq+5howp0tIVyIobJ3lZIIOgJ4C01ia
+ pGdDrVHLc7Kng3/WfuM5wzhdgOC3cQBzFh50DgKb/sWYS0CHg+ajbpzdwXj+PeFknA4CTU2/
+ Y0HKwVOgZJRyyq70eujTDZPcqtNBdbqU4PggPKvqGJsPdD0Fo5cVPGcWHAFz91rO4wEWQxWP
+ Yz+w3y3GOI6HKxXq8TlpcL9T7cJFl4OyMYmT10DpcDnOyW7Q/tWdW9INCnTnxmUB5OYIOXcg
+ lJu/EKfQDPV/Z6n/O0v97ywNwsuQN5MhT45n5AtTmEyxXJosz0iJF8emJmuR4zsaRg2Dd1CJ
+ 5btYjzAK6RFQuMhTYNbbZEJBnDTrAMOm7mYzkhi5Hk2hCJG3ICDOnxHS8dJ0Zi/DpDHsRBej
+ XH0V2Fxr8KeeWS1dsYXRF0IjFKHNH7K216dDzGpZTNWKlrP24VxTUJBFsocfFy0WZm3FtyvV
+ HnnV/ddFRX1nLcpjhzvS73i/C5z5cIdR5eV5b9Vg6svN+0m2skTbWLzB5PFZPO0QrTvyIMJU
+ uqutP9ot6mhN2altrbJFITt7N9ks4ZqNKhIYaaZrds4yowA9nJTdXZHfrWeGyq3CJWRERKQt
+ 2zg4oAvtvPljKLRuFWuOrG+P+V2kMHkFV/rQ1Y+fW95WWCffPmCZerittdPvlyrI69Ekpvi4
+ WWRXsfOayHWvTSM9N8yX6to75bnazHyfJ7fsfiutF5dGJvTKbMFbop+ICHmCdMEcnJVL/wAe
+ VMY8jAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJIsWRmVeSWpSXmKPExsVy+t/xe7rbFvxKM9g5hcli9/+7zBbn5sxn
+ tnh0uo/Z4sfmF0wOLB6bVnWyefzvfcDqcb/7OFMAc5SeTVF+aUmqQkZ+cYmtUrShhZGeoaWF
+ npGJpZ6hsXmslZGpkr6dTUpqTmZZapG+XYJext9vU9gLruhVNHw9xNTAeFK9i5GTQ0LARKJ/
+ 6QVWEFtIYCmjxNNbhhBxGYmNX66yQtjCEn+udbF1MXIB1XxklJiydiIjhLOZUaK/4SALSBWL
+ gKrEw0lXGUFsNgFNiX0nN7GD2CJA9vd979lBGpgFJjFK/D75mQnEERZoY5T4eegaWBWvgLfE
+ gufb2CHGNjFKzPi8nhEiIShxcuYTsBXMAjoSC3Z/AjqEA8iWllj+jwMkzCngIvFy2x82iFsV
+ JWZMXMkCYddKfP77jHECo/AsJJNmIZk0C2HSAkbmVYwiqaXFuem5xYZ6xYm5xaV56XrJ+bmb
+ GIFxtO3Yz807GOe9+qh3iJGJg/EQowQHs5II771DP9OEeFMSK6tSi/Lji0pzUosPMZoCA2Mi
+ s5Rocj4wkvNK4g3NDEwNTcwsDUwtzYyVxHndLp9PExJITyxJzU5NLUgtgulj4uCUamAStPr6
+ d4vwMYmvevYKLHZTrxm8iy3b7pljvr5vtW3Wlg1iZjaBFkdWflouqX31hmTOjjX1GfveR/YW
+ asTqFV69KSmvmMc7lWdPjfg8zketp1MncCwsPhbS/Ofyod/NTUG8xz+k6prxnpKzYNdKvcSw
+ 7vO3XwGeUV87XbatnHrr2ESTD7uFM/nYN9pxc/xk1q3uvHVf5KzapJ9yjGLMdiGL5FXKDr+f
+ ke0QczHA7FyVT9dBkfZWqyAXYb0Vm6/f2JvDy/jsiPXRM351XYw2oasPJW3nqPJPvrLj75Lj
+ 865HGae9aS5fcFfoI+dZkV8dh7fcqPVWvyC+aNHvtbHs95+/vpfu/KCgaN3b5z9abixQYinO
+ SDTUYi4qTgQAl8CcFSwDAAA=
+X-CMS-MailID: 20240930125934eucas1p26bec1c6bb6b272f991acde569ef29cfd
+X-Msg-Generator: CA
+X-RootMTR: 20240930125934eucas1p26bec1c6bb6b272f991acde569ef29cfd
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240930125934eucas1p26bec1c6bb6b272f991acde569ef29cfd
+References: <20240925-macos-build-support-v3-1-233dda880e60@samsung.com>
+ <172735727458.1107233.1757281470637305143@2413ebb6fbb6>
+ <CGME20240930125934eucas1p26bec1c6bb6b272f991acde569ef29cfd@eucas1p2.samsung.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,46 +125,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-* Aradhya Bhatia (aradhya.bhatia@intel.com) wrote:
-> Add workaround (wa) 15016589081 which applies to Xe2_v3_LPG_MD.
+Hi,
 
-It would be great in this type of patch if you could
-briefly say what symptom it fixes;  Some people might not know what
-WA 15016589081  does.
+On Thu, Sep 26, 2024 at 01:27:54PM -0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/xe: xe_gen_wa_oob: replace program_invocation_short_name
+> URL   : https://patchwork.freedesktop.org/series/139088/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da_BAT -> xe-pw-139088v1_BAT
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-139088v1_BAT absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-139088v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
 
-Dave
+I think the errors below are not related to the patch. Actually, the changes
+should not introduce functional changes.
 
-> Xe2_v3_LPG_MD is a Lunar Lake platform with GFX version: 20.04.
-> This wa is type: permanent, and hence is applicable on all steppings.
+May I ask someone to look at this?
+
+Thanks,
+Daniel
+
 > 
-> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_wa.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>   
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> index 22c148b1e996..2f9cde4b7d45 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.c
-> +++ b/drivers/gpu/drm/xe/xe_wa.c
-> @@ -710,6 +710,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
->  			     DIS_PARTIAL_AUTOSTRIP |
->  			     DIS_AUTOSTRIP))
->  	},
-> +	{ XE_RTP_NAME("15016589081"),
-> +	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
-> +	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_CLIP_NEGATIVE_BOUNDING_BOX))
-> +	},
->  
->  	/* Xe2_HPG */
->  	{ XE_RTP_NAME("15010599737"),
+> Participating hosts (9 -> 9)
+> ------------------------------
 > 
-> base-commit: 0c8650b09a365f4a31fca1d1d1e9d99c56071128
-> -- 
-> 2.34.1
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-139088v1_BAT:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+>     - bat-dg2-oem2:       [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in xe-pw-139088v1_BAT that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@core_hotunplug@unbind-rebind:
+>     - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4] ([Intel XE#877]) +2 other tests dmesg-warn
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+> 
+>   * igt@xe_evict@evict-beng-small:
+>     - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
+> 
+>   * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+>     - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#288]) +32 other tests skip
+>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+> 
+>   * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+>     - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#2229])
+>    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@xe_exec_basic@no-exec-userptr-invalidate:
+>     - bat-bmg-1:          [DMESG-WARN][8] ([Intel XE#877]) -> [PASS][9]
+>    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
+>    [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-bmg-1/igt@xe_exec_basic@no-exec-userptr-invalidate.html
+> 
+>   * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+>     - bat-adlp-7:         [INCOMPLETE][10] ([Intel XE#2874]) -> [PASS][11] +1 other test pass
+>    [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+>    [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@sriov_basic@enable-vfs-autoprobe-off:
+>     - bat-adlp-vf:        [SKIP][12] ([Intel XE#2849]) -> [SKIP][13] ([Intel XE#2460] / [Intel XE#2849]) +1 other test skip
+>    [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html
+>    [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/bat-adlp-vf/igt@sriov_basic@enable-vfs-autoprobe-off.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+>   [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+>   [Intel XE#2460]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2460
+>   [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+>   [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+>   [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+>   [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+>   [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+>   [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+>   [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
 > 
 > 
--- 
- -----Open up your eyes, open up your mind, open up your code -------   
-/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
-\        dave @ treblig.org |                               | In Hex /
- \ _________________________|_____ http://www.treblig.org   |_______/
+> Build changes
+> -------------
+> 
+>   * Linux: xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da -> xe-pw-139088v1
+> 
+>   IGT_8032: 8032
+>   xe-1978-6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da: 6b498b1015e38b1b7dbd1c7e3ab0a9be5d48f4da
+>   xe-pw-139088v1: 139088v1
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139088v1/index.html
