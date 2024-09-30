@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E477CF6491
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 08:02:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68DD5CF6497
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 09:14:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7B410E3C1;
-	Mon, 30 Sep 2024 08:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080B410E0AC;
+	Mon, 30 Sep 2024 09:14:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E/uMA1VV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ahN6eMxP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E6910E3C0;
- Mon, 30 Sep 2024 08:02:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C06D910E0AC
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 09:14:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727683346; x=1759219346;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=F+wvVLejjLbClhrDWaZbyontWZRu9R2jSyAC1divVsU=;
- b=E/uMA1VVfwG5F9Rpxq211ZQNi/4sVJ2CuvtTv6k8G0vGAsoHombBuwxF
- yagHgKM4PnrWCbVf8+IPbP3l44I2zsHtTD0VbkYBerOfwLatjYvTwZaa7
- 1254LFNDfoqbQjv4FXbGlKSv4TMtZE3lUJwpHVwn/7dDISjobLQx3WRtg
- Yjk7UDNboLvE/Lx6aLLdQT4CLzkKnodrF/vSTqxNHnqGL9mPxHMRIQv0y
- QxRbcjGGRzQxLO5zArIuEYNZbfa6xsizDXJ+wc+5CP+fjfKLwd/oBRWZu
- mrWzBkskBawluk6zDqbopeuuLT6QzHw21g5FLd0sziaKFue6TxMJ+48y4 Q==;
-X-CSE-ConnectionGUID: tz4i5RPxS0CER2QRbPt6ww==
-X-CSE-MsgGUID: zxNtdu1ASSGR5ZydfspVzQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="37318150"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="37318150"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 01:01:31 -0700
-X-CSE-ConnectionGUID: B+wkQQ3WTxOdr5WC8DIb9g==
-X-CSE-MsgGUID: HY5Q1k5nTL2hPKQ4+bKXZw==
+ t=1727687692; x=1759223692;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=t9JXy+9LJJ+OX98TW0kD3ALqUx5loKVfK+JV7Ou5l6E=;
+ b=ahN6eMxPvazgKX0yq223YByu/ENVCfzJUMwUpcYkDHgMtPZT34CvP7I9
+ 5n/svNsLOpDxGTPbwuF0I50U4qMjDFrlob6fN8VR0JeVlUsGN919CBcVO
+ JuSIFG/R7iAEFEx0VNZsFLuHTNTKO/9Zp/bYBGHzZ4FDcifSr6JCvlo5o
+ VCwNEOkICReMSPPt1mnWGwRlq+NFbDsXavcW9WgOzk7wX7wxin5xxbKPV
+ Lva6onOGxezfDMZMJOkb9ysrgRZLk+SCXLQ3Jd/OUm4v9nNPR655zx6V8
+ b1YwCdFQ5U/iGIHaK49+CUTMqxgFgQE9swYU/jZwRgXISYas/3s6FbD7+ A==;
+X-CSE-ConnectionGUID: uuEXhEjNSrid3yctajYliw==
+X-CSE-MsgGUID: HQajGEjIRMyRiUYNqsTnKQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26232987"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26232987"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 02:14:51 -0700
+X-CSE-ConnectionGUID: YKsQM1UzQfK4ZC9JC7vFeQ==
+X-CSE-MsgGUID: vY0E2ZBmRLCSlioC+Gtuxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73619565"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.93])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 01:01:29 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH] drm/i915/dp: Guarantee a minimum HBlank time
-In-Reply-To: <20240930055416.2112473-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240930055416.2112473-1-arun.r.murthy@intel.com>
-Date: Mon, 30 Sep 2024 11:01:16 +0300
-Message-ID: <8734lhy3hv.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73105015"
+Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO [10.245.244.244])
+ ([10.245.244.244])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 02:14:50 -0700
+Message-ID: <3b8a9c0b-15cc-4bce-b053-cfa396177b35@intel.com>
+Date: Mon, 30 Sep 2024 10:14:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Add support for object purgeability
+To: Pallavi Mishra <pallavi.mishra@intel.com>, intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, alex.zuo@intel.com
+References: <20240930001413.3378863-1-pallavi.mishra@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240930001413.3378863-1-pallavi.mishra@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,130 +69,274 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 30 Sep 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> Mandate a minimum Hblank symbol cycle count between BS and BE in 8b/10b
-> MST and 12b/132b mode.
-> Spec: DP2.1a
+On 30/09/2024 01:14, Pallavi Mishra wrote:
+> Introduce madvise ioctl in KMD for object level advice.
+> Userspace applications can utilize this feature to inform
+> KMD whether an object will be needed in near future or can
+> be safely discarded under memory pressure.
 
-Why send patches on top of a baseline that's 20 days old? Please rebase
-and build before sending. Always.
+So this allows re-using the object after being purged? If so needs to be 
+mindful of bo->ccs_cleared [1] AFAICT. Also would need to reset bo->madv 
+somewhere? I guess this is sightly different from i915 where the object 
+becomes dead once PURGED. Not sure if we also want that or not.
 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+[1] https://patchwork.freedesktop.org/series/138889/
+
+> 
+> Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+
+Needs some UMD Cc.
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c       | 6 ++++++
->  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
->  drivers/gpu/drm/i915/display/intel_dp_mst.c        | 9 +++++++++
->  drivers/gpu/drm/i915/i915_reg.h                    | 3 +++
->  4 files changed, 19 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 78ce402a5cd0..027ab45d4d38 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2095,6 +2095,7 @@ void intel_modeset_put_crtc_power_domains(struct intel_crtc *crtc,
->  static void i9xx_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-
-struct intel_display.
-
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  
->  	if (intel_crtc_has_dp_encoder(crtc_state)) {
-> @@ -2102,6 +2103,11 @@ static void i9xx_configure_cpu_transcoder(const struct intel_crtc_state *crtc_st
->  					       &crtc_state->dp_m_n);
->  		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder,
->  					       &crtc_state->dp_m2_n2);
+>   drivers/gpu/drm/xe/xe_bo.c       | 71 ++++++++++++++++++++++++++------
+>   drivers/gpu/drm/xe/xe_bo.h       |  7 ++++
+>   drivers/gpu/drm/xe/xe_bo_types.h |  3 ++
+>   drivers/gpu/drm/xe/xe_device.c   |  1 +
+>   include/uapi/drm/xe_drm.h        | 20 +++++++++
+>   5 files changed, 90 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 5f2f1ec46b57..0e7e7a624676 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -644,6 +644,22 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+>   	return 0;
+>   }
+>   
+> +static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
+> +{
+> +	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+> +	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
 > +
-> +		if (DISPLAY_VER(i915) >= 20 && crtc_state->dp_m_n.min_hblank)
-> +			intel_de_write(i915,
-> +				       DP_MIN_HBLANK_CTL(i915, cpu_transcoder),
-> +				       crtc_state->dp_m_n.min_hblank);
-
-Doesn't feel right programming this here. Doesn't feel right having DP
-checks here.
-
-Where is this cleared?
-
-The state readout and verification is missing.
-
->  	}
->  
->  	intel_set_transcoder_timings(crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index fa03157554b2..8d18545a369f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1028,6 +1028,7 @@ struct intel_link_m_n {
->  	u32 data_n;
->  	u32 link_m;
->  	u32 link_n;
-> +	u32 min_hblank;
-
-Doesn't feel right adding this here, not much to do with M/N.
-
->  };
->  
->  struct intel_csc_matrix {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 15541932b809..c8f045142881 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -130,6 +130,8 @@ static void intel_dp_mst_compute_m_n(const struct intel_crtc_state *crtc_state,
->  {
->  	const struct drm_display_mode *adjusted_mode =
->  		&crtc_state->hw.adjusted_mode;
-> +	u8 symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
-
-Just use int.
-
-> +	u32 hblank;
->  
->  	/* TODO: Check WA 14013163432 to set data M/N for full BW utilization. */
->  	intel_link_compute_m_n(bpp_x16, crtc_state->lane_count,
-> @@ -139,6 +141,13 @@ static void intel_dp_mst_compute_m_n(const struct intel_crtc_state *crtc_state,
->  			       m_n);
->  
->  	m_n->tu = DIV_ROUND_UP_ULL(mul_u32_u32(m_n->data_m, 64), m_n->data_n);
+> +	if (ttm_bo->ttm) {
+> +		struct ttm_placement place = {};
+> +		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
 > +
-> +	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
-> +	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
-> +	if (intel_dp_is_uhbr(crtc_state))
-> +		m_n->min_hblank = hblank > 5 ? hblank : 5;
-> +	else
-> +		m_n->min_hblank = hblank > 3 ? hblank : 3;
->  }
->  
->  static int intel_dp_mst_calc_pbn(int pixel_clock, int bpp_x16, int bw_overhead)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 41f4350a7c6c..65133efe728c 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1109,6 +1109,7 @@
->  #define _BCLRPAT_A		0x60020
->  #define _TRANS_VSYNCSHIFT_A	0x60028
->  #define _TRANS_MULT_A		0x6002c
-> +#define _DP_MIN_HBLANK_CTL_A	0x600ac
->  
->  /* Pipe/transcoder B timing regs */
->  #define _TRANS_HTOTAL_B		0x61000
-> @@ -1121,6 +1122,7 @@
->  #define _BCLRPAT_B		0x61020
->  #define _TRANS_VSYNCSHIFT_B	0x61028
->  #define _TRANS_MULT_B		0x6102c
-> +#define _DP_MIN_HBLANK_CTL_B	0x610ac
->  
->  /* DSI 0 timing regs */
->  #define _TRANS_HTOTAL_DSI0	0x6b000
-> @@ -1146,6 +1148,7 @@
->  #define TRANS_VSYNCSHIFT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VSYNCSHIFT_A)
->  #define PIPESRC(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, (pipe), _PIPEASRC)
->  #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
-> +#define DP_MIN_HBLANK_CTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _DP_MIN_HBLANK_CTL_A)
->  
->  /* VGA port control */
->  #define ADPA			_MMIO(0x61100)
+> +		drm_WARN_ON(&xe->drm, ret);
+> +
+> +		if (bo && !ret)
+> +			bo->madv = XE_MADV_PURGED;
+> +	}
+> +}
+> +
+>   static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>   		      struct ttm_operation_ctx *ctx,
+>   		      struct ttm_resource *new_mem,
+> @@ -663,6 +679,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>   				  ttm && ttm_tt_is_populated(ttm)) ? true : false;
+>   	int ret = 0;
+>   
+> +	if (bo->madv == XE_MADV_DONTNEED) {
+> +		xe_ttm_bo_purge(ttm_bo, ctx);
+> +		return ret;
 
--- 
-Jani Nikula, Intel
+So say user does DONTNEED on some non-populated bo and then tries to use 
+that object in something like vm_bind, this here purges it instead of 
+populating it which gives NULL bo->resource and returns success. But 
+that would mean we have NULL bo->resource after calling bo_validate 
+which I think will crash with NPD at some later point, since that 
+shouldn't ever happen.
+
+It looks like we can potentially set empty placement in evict_flags() 
+depending on the madv and then ttm will do the purge for us (see 
+ttm_bo_evict()) which should then handle the eviction case.. And then 
+for swap case we already call this in swap_notify(). I think normally we 
+only need to purge stuff when low on memory, like with eviction/swap. 
+Not sure what to do here if not WILLNEED, do we just return an error or 
+are we meant to continue on, or perhaps something else?
+
+> +	}
+> +
+>   	/* Bo creation path, moving to system or TT. */
+>   	if ((!old_mem && ttm) && !handle_system_ccs) {
+>   		if (new_mem->mem_type == XE_PL_TT)
+> @@ -1084,18 +1105,6 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
+>   	}
+>   }
+>   
+> -static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
+> -{
+> -	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+> -
+> -	if (ttm_bo->ttm) {
+> -		struct ttm_placement place = {};
+> -		int ret = ttm_bo_validate(ttm_bo, &place, ctx);
+> -
+> -		drm_WARN_ON(&xe->drm, ret);
+> -	}
+> -}
+> -
+>   static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
+>   {
+>   	struct ttm_operation_ctx ctx = {
+> @@ -2416,6 +2425,44 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
+>   	list_del_init(&bo->vram_userfault_link);
+>   }
+>   
+> +int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+> +			struct drm_file *file_priv)
+> +{
+> +	struct xe_device *xe = to_xe_device(dev);
+> +	struct drm_xe_vm_madvise *args = data;
+> +	struct drm_gem_object *gem_obj = drm_gem_object_lookup(file_priv, args->handle);
+
+This is also grabbing a bo ref underneath, which needs to be dropped 
+otherwise the bo is leaked.
+
+> +	struct xe_bo *bo;
+> +	int err;
+> +
+> +	if (XE_IOCTL_DBG(xe, (!(args->madv & DRM_XE_MADV_DONTNEED) &&
+> +			!(args->madv & DRM_XE_MADV_WILLNEED))))
+
+madv doesn't seem to be flags, but rather a single value? Also user can 
+do stuff like WILLNEED | DONTNEED and we don't reject it.
+
+> +		return -EINVAL;
+> +
+> +	if (XE_IOCTL_DBG(xe, !gem_obj))
+> +		return -EINVAL;
+> +
+> +	bo = gem_to_xe_bo(gem_obj);
+> +	if (!bo)
+
+I don't think bo can be NULL here. I think this is only possible with 
+ghost objects, but those are internal to kmd.
+
+> +		return -ENOENT;
+> +
+> +	err = xe_bo_lock(bo, true);
+> +	if (err)
+> +		return err;
+> +
+> +	if (XE_IOCTL_DBG(xe, ((bo->madv == XE_MADV_PURGED) && (args->madv == DRM_XE_MADV_WILLNEED)))) {
+
+Probably don't want to spam dmesg with this, since this is normal and 
+expected if something got evicted?
+
+Also should we validate that args->retained is zero above or set it here?
+
+> +		xe_bo_unlock(bo);
+> +		return -EINVAL;
+> +	}
+> +
+> +	args->retained = (bo->madv != XE_MADV_PURGED) ? 1 : 0;
+> +
+> +	bo->madv = (args->madv == DRM_XE_MADV_WILLNEED) ? XE_MADV_WILLNEED : XE_MADV_DONTNEED;
+
+Is there a way to influence the LRU stuff here? It might make sense to 
+bump DONTNEED so that stuff like eviction will victimize the stuff that 
+can be freely discarded first.
+
+
+> +
+> +	xe_bo_unlock(bo);
+> +
+> +	return 0;
+> +}
+> +
+>   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+>   #include "tests/xe_bo.c"
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 6e4be52306df..515dea54a8e8 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -63,6 +63,10 @@
+>   
+>   #define XE_BO_PROPS_INVALID	(-1)
+>   
+> +#define XE_MADV_WILLNEED               0
+> +#define XE_MADV_DONTNEED               1
+> +#define XE_MADV_PURGED                 2
+> +
+>   struct sg_table;
+>   
+>   struct xe_bo *xe_bo_alloc(void);
+> @@ -223,6 +227,9 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   			struct drm_file *file);
+>   int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>   			     struct drm_file *file);
+> +int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+> +			struct drm_file *file_priv);
+> +
+>   void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
+>   
+>   int xe_bo_dumb_create(struct drm_file *file_priv,
+> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+> index 2ed558ac2264..00b4de912dcf 100644
+> --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> @@ -76,6 +76,9 @@ struct xe_bo {
+>   
+>   	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+>   		struct list_head vram_userfault_link;
+> +
+> +	/** @madv: user space advise on obj purgeability */
+> +	u16 madv;
+>   };
+>   
+>   #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 8e9b551c7033..efeb0bf08b1b 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -197,6 +197,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+>   	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+>   			  DRM_RENDER_ALLOW),
+>   	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
+> +	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
+>   };
+>   
+>   static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index b6fbe4988f2e..e32ba5598a8b 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -102,6 +102,7 @@ extern "C" {
+>   #define DRM_XE_EXEC			0x09
+>   #define DRM_XE_WAIT_USER_FENCE		0x0a
+>   #define DRM_XE_OBSERVATION		0x0b
+> +#define DRM_XE_VM_MADVISE		0x0c
+>   
+>   /* Must be kept compact -- no holes */
+>   
+> @@ -117,6 +118,7 @@ extern "C" {
+>   #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+>   #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+>   #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
+> +#define DRM_IOCTL_XE_VM_MADVISE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+>   
+>   /**
+>    * DOC: Xe IOCTL Extensions
+> @@ -1694,6 +1696,24 @@ struct drm_xe_oa_stream_info {
+>   	__u64 reserved[3];
+>   };
+>   
+> +/**
+> + * struct drm_xe_vm_madvise - Input of &DRM_IOCTL_XE_VM_MADVISE
+> + */
+> +struct drm_xe_vm_madvise {
+
+What is the relation to 'vm' here?
+
+> +	/** Handle of the buffer to change the backing store advice */
+> +	__u32 handle;
+> +	/* Advice: either the buffer will be needed again in the near future,
+> +	 *         or won't be and could be discarded under memory pressure.
+> +	 */
+
+I think needs properly formatted kernel-doc. Below also.
+
+> +#define DRM_XE_MADV_WILLNEED 0
+> +#define DRM_XE_MADV_DONTNEED 1
+> +
+> +	__u32 madv;
+> +
+> +	/** Whether the backing store still exists. */
+> +	__u32 retained;
+> +};
+> +
+>   #if defined(__cplusplus)
+>   }
+>   #endif
