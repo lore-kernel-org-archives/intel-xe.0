@@ -4,27 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F129CE8347
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 14:18:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C572CE8349
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 14:18:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F195710E4FB;
-	Mon, 30 Sep 2024 14:18:22 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2FF210E508;
- Mon, 30 Sep 2024 14:18:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28EBC10E4FB;
+	Mon, 30 Sep 2024 14:18:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="gGXaZwOt";
+	dkim-atps=neutral
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com
+ [210.118.77.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C372710E508
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 14:18:42 +0000 (UTC)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930141841euoutp012dd227fc86a29759f4ff10f00cae6e4d~6C2G44A9s3068230682euoutp01Q
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 14:18:41 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20240930141841euoutp012dd227fc86a29759f4ff10f00cae6e4d~6C2G44A9s3068230682euoutp01Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1727705921;
+ bh=0zW1T73UN7m8ZhvSAcxVG2wVNFe39+kk6JCHg00v4mo=;
+ h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+ b=gGXaZwOtV063oITm0CYpuDGgvem/YArrluXIHsDIb2bjOc711cFsa3euCe+wX+C8n
+ 6EYjsrNPVPS056O14flzXJv9bVAvOvNPcn6Yu49sl/W0lSU8759Vn3KFQoScNH6ThO
+ 6hyj0cGlmbqbmx5KHCIODYOl7a5CThdwcQBs4wu4=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930141841eucas1p154674071049432d9b07bab9df9f77123~6C2GrLMvR3258932589eucas1p1C;
+ Mon, 30 Sep 2024 14:18:41 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+ eusmges2new.samsung.com (EUCPMTA) with SMTP id D7.F7.09875.143BAF66; Mon, 30
+ Sep 2024 15:18:41 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+ 20240930141840eucas1p18fe670f36c278080c1d549855fd9c372~6C2GPa7F-0316603166eucas1p1B;
+ Mon, 30 Sep 2024 14:18:40 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930141840eusmtrp12987f2f5dbae11cf4eb5f3713ee37281~6C2GOwLAP2387523875eusmtrp1K;
+ Mon, 30 Sep 2024 14:18:40 +0000 (GMT)
+X-AuditID: cbfec7f4-11bff70000002693-2b-66fab3415f05
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id 8F.FA.14621.043BAF66; Mon, 30
+ Sep 2024 15:18:40 +0100 (BST)
+Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20240930141840eusmtip137ec5691723f6e934c491bcf0f6fa4d5~6C2GCJnEK0495904959eusmtip1R;
+ Mon, 30 Sep 2024 14:18:40 +0000 (GMT)
+Received: from localhost (106.110.32.87) by CAMSVWEXC02.scsc.local
+ (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
+ Mon, 30 Sep 2024 15:18:39 +0100
+Date: Mon, 30 Sep 2024 16:18:39 +0200
+From: Daniel Gomez <da.gomez@samsung.com>
+To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+CC: <I915-ci-infra@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <patchwork@emeril.freedesktop.org>, <tools@kernel.org>,
+ <d+samsung@kruces.com>
+Subject: Re: Incorrect response address when using B4
+Message-ID: <20240930141839.3rjfom4c2tca655n@AALNPWDAGOMEZ1.aal.scsc.local>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/xe2lpg=3A_Add_WA_150165?=
- =?utf-8?q?89081?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Sep 2024 14:18:21 -0000
-Message-ID: <172770590185.1136814.14951596928680085236@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
-In-Reply-To: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240930-sapphire-swift-of-reverence-168e2b@lemur>
+X-Originating-IP: [106.110.32.87]
+X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
+ CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuplleLIzCtJLcpLzFFi42LZduznOV3Hzb/SDGY8ZLbY/f8us8Wj033M
+ Fj82v2Cy2Pn5C6PFy79rmC3ObXzI7MDmcWbKKiaPTas62Tz+9z5g9dg/dw27x/3u40wBrFFc
+ NimpOZllqUX6dglcGTNWbmUquMNR8efqPvYGxtnsXYycHBICJhK/H/WwdTFycQgJrGCUuPP2
+ EwtIQkjgC6PEj13FEInPjBIPDzxkhOnYNO08O0RiOaPEy5erWOCqjr99ywjhbGaUuHr9KRtI
+ C4uAqkTHvEmsIDabgKbEvpObwJaLCFhK7Nv1gRmkgVlgPqPEqelTmEESwgKmEvfaFoMdwivg
+ LfF54iE2CFtQ4uTMJ2BxZgEdiQW7PwHFOYBsaYnl/zhAwpwCDhIH7/+Hek5RYsbElSwQdq3E
+ qS23mEB2SQg84JBomPcWqshF4uNfkASILSzx6vgWqLiMxOnJPVDN6RJL1s2Csgsk9tyexQqy
+ V0LAWqLvTA5E2FFi9qNbLBBhPokbbwUhruSTmLRtOjNEmFeio00IolpNYvW9NywTGJVnIflr
+ FpK/ZiH8tYCReRWjeGppcW56arFRXmq5XnFibnFpXrpecn7uJkZgijn97/iXHYzLX33UO8TI
+ xMF4iFGCg1lJhPfeoZ9pQrwpiZVVqUX58UWlOanFhxilOViUxHlVU+RThQTSE0tSs1NTC1KL
+ YLJMHJxSDUzi+66yzYqfoWTyguexQdTTk4cnRzb7t7cn9oktfLhF6IQcd2RECs+vFTKJ3LOY
+ ZpczzPNcf4/f0npp5NTwufZyfh//3V3n4zPhh4Dyj7ofZ5Xc53Kvz1pUVLBppvSXhXWPZTjD
+ V5w6+70t+bXl63XN665OYv8pdWtfewGDDreU+e6rR2pvb5syS/XBRL+9K7h2nd7Wc75Uhm2v
+ 6QILRibDO0+O/lJY3n3m+rwdxvt97ZQ+T6tsPOFtmbAuLi6VI7+Q/0l41Z5/SwL3bMxcq2Xs
+ U5a8QjJh4cdD54sne3BtuzSbb2rD8ZbI6xNywlqy9I2zGz7X84pPZ2GMdHhU+qj75FGR7Zta
+ Y9rcv3mv+l6sxFKckWioxVxUnAgA7V1VhaADAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDIsWRmVeSWpSXmKPExsVy+t/xu7oOm3+lGaybpGKx+/9dZotHp/uY
+ LX5sfsFksfPzF0aLl3/XMFuc2/iQ2YHN48yUVUwem1Z1snn8733A6rF/7hp2j/vdx5kCWKP0
+ bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLLUov07RL0Mmas3MpU
+ cIej4s/VfewNjLPZuxg5OSQETCQ2TTsPZHNxCAksZZTYfOU1K0RCRmLjl6tQtrDEn2tdbBBF
+ Hxkl3i44wwiSEBLYzCix/CkfiM0ioCrRMW8SWAObgKbEvpObwDaICFhK7Nv1gRmkmVlgPqPE
+ qelTmEESwgKmEvfaFrOA2LwC3hKfJx6C2nCVUWLyzEZWiISgxMmZT8CKmAV0JBbs/gRUxAFk
+ S0ss/8cBEuYUcJA4eP8/1DuKEjMmrmSBsGslPv99xjiBUXgWkkmzkEyahTBpASPzKkaR1NLi
+ 3PTcYkO94sTc4tK8dL3k/NxNjMBo23bs5+YdjPNefdQ7xMjEwXiIUYKDWUmE996hn2lCvCmJ
+ lVWpRfnxRaU5qcWHGE2BYTGRWUo0OR8Y73kl8YZmBqaGJmaWBqaWZsZK4rxul8+nCQmkJ5ak
+ ZqemFqQWwfQxcXBKNTCJ+vQuO/59Rai81g3/zV5TVjA9nPhq21cjzvkH/nvNtpU3WmYp/y72
+ wLH86gv2LE+0pPvy+bpjFnCYZFY9PcHCZ2/Y9XjXFq5TPHuqVPsEDhxf9Lzj9zwG7znTlObb
+ Cm9WePhSfuY8RtWkgN0feNOsPbulU71n7eptlvkg+3G5r/rKiEt80bbmEwN3T1j+NGzP2vKd
+ Nhlb2X14f/XVz/3O46L1QEhqRyHD7bO+RYJX4t+vPc5onp+8Uu7ey2fRtd3zWqYZVey7dkRi
+ vZnN+2nrbfN1Np93OLQ8dcvOK/NehK/kCj0o2rrMj7loW7Rzr9Cbj8lhwXKaKuvfpn/n2Xjy
+ 3IuTs+NNP0p4i/ma6qorsRRnJBpqMRcVJwIAV9A4QD8DAAA=
+X-CMS-MailID: 20240930141840eucas1p18fe670f36c278080c1d549855fd9c372
+X-Msg-Generator: CA
+X-RootMTR: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
+References: <CGME20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb@eucas1p1.samsung.com>
+ <20240930133007.u4vm5qj5urikpmvc@AALNPWDAGOMEZ1.aal.scsc.local>
+ <20240930-sapphire-swift-of-reverence-168e2b@lemur>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +121,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Sep 30, 2024 at 10:07:30AM -0400, Konstantin Ryabitsev wrote:
+> On Mon, Sep 30, 2024 at 03:30:07PM GMT, Daniel Gomez wrote:
+> > Hi,
+> > 
+> > I sent this patch [1] using B4 web endpoint and then I received a
+> > response email to the wrong address: To: "Daniel Gomez via B4 Relay"
+> > <devnull+da.gomez.samsung.com@kernel.org> instead of To: "Daniel Gomez"
+> > <da.gomez@samsung.com>.
+> 
+> Was it an automated tool that sent you that message? Normally, email clients
+> would honour the "Reply-To" field and not use the From: address put in by the
+> relay.
 
-Series: drm/xe/xe2lpg: Add WA 15016589081
-URL   : https://patchwork.freedesktop.org/series/139297/
-State : success
+It was a CI Patchwork tool. Response [1] to my patch was sent from "From:
+Patchwork <patchwork@emeril.freedesktop.org>".
 
-== Summary ==
+[1] https://lore.kernel.org/all/172735727458.1107233.1757281470637305143@2413ebb6fbb6/
 
-lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soundcore.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/common/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/acp/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/codecs/
-lib/modules/6.12.0-rc1-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/hda/
-lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/hda/ext/
-lib/modules/6.12.0-rc1-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.12.0-rc1-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/intel/
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.12.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/
-lib/modules/6.12.0-rc1-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/cmac.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/ccm.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/cryptd.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/
-lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.12.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.12.0-rc1-xe/build
-lib/modules/6.12.0-rc1-xe/modules.alias.bin
-lib/modules/6.12.0-rc1-xe/modules.builtin
-lib/modules/6.12.0-rc1-xe/modules.softdep
-lib/modules/6.12.0-rc1-xe/modules.alias
-lib/modules/6.12.0-rc1-xe/modules.order
-lib/modules/6.12.0-rc1-xe/modules.symbols
-lib/modules/6.12.0-rc1-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1727705894:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1727705894:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I think that tool is ignoring the "Reply-To" field [2] from the B4 message and
+using the From field.
 
+	From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
+	Reply-To: da.gomez@samsung.com
 
+[2] https://lore.kernel.org/all/20240925-macos-build-support-v3-1-233dda880e60@samsung.com/raw
+
+> 
+> -K
