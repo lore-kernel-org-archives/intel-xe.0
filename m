@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B720ACE8349
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:10:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C508ECE834C
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:10:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA0110E4AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A29810E4B5;
 	Mon, 30 Sep 2024 13:09:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="P3b65f2j";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4gB/0lqs";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="P3b65f2j";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4gB/0lqs";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="NTU1J9QQ";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="d7jOj3K4";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NTU1J9QQ";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="d7jOj3K4";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84CA410E46E;
- Mon, 30 Sep 2024 13:09:29 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F05FF10E474;
+ Mon, 30 Sep 2024 13:09:30 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 3065821A41;
- Mon, 30 Sep 2024 13:09:28 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 9E4B71FBA8;
+ Mon, 30 Sep 2024 13:09:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727701768; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1727701769; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rtOtN173kPNnChyHPY159TDGAsdUEFXyh+vJP16yPZ4=;
- b=P3b65f2jo1P9eHbKPVgoj7G3H8XPV+QONgYeu7NAGoHBzLY+WV/b+Rbsss+UunpDfw5lY1
- adyfKt78XiWaPeL8tgzJECUy8f3kXdRjzE0nINWt8EHwsLJhwN4U3PfiSLStJ/DcNh8j5h
- 0GXYd45+WfC+Hj6LFiEWDz7LuGqN/QU=
+ bh=B+5DD8nScAoUArLnOY0Oh7JPy3rOEhjDtvPR2Jz9tCs=;
+ b=NTU1J9QQQy1jFoJRZrJ6vliYEEx36+LSREwhXsErkY6rg48I6yoOHlUISEN8AfMiFMo1WP
+ /le/kDzhCwzaXYUdr8Xvwuz5JpuHxCzWt3vdQG56ROpwqoGdJ1/uCZ9dkHUbHxkuAUT+df
+ Q2zJ8wFGR70CVLFZJHrRMmN/UIn6KsM=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727701768;
+ s=susede2_ed25519; t=1727701769;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rtOtN173kPNnChyHPY159TDGAsdUEFXyh+vJP16yPZ4=;
- b=4gB/0lqsDeDflVr38ppL1dnf3bFvjit5icyn0elRyDf2WGgoMjeUW4t6UOx6EROt4kAA5g
- kCXixtkbnzdFVmBg==
-Authentication-Results: smtp-out1.suse.de;
+ bh=B+5DD8nScAoUArLnOY0Oh7JPy3rOEhjDtvPR2Jz9tCs=;
+ b=d7jOj3K4P2jBkvFoNzCnDVy+lrvwrbOXaaUoQJWeLdmpIQlAhC5p4dabuNMwIAHZRPnxm6
+ g4crcVAQUb3evsCA==
+Authentication-Results: smtp-out2.suse.de;
 	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727701768; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1727701769; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rtOtN173kPNnChyHPY159TDGAsdUEFXyh+vJP16yPZ4=;
- b=P3b65f2jo1P9eHbKPVgoj7G3H8XPV+QONgYeu7NAGoHBzLY+WV/b+Rbsss+UunpDfw5lY1
- adyfKt78XiWaPeL8tgzJECUy8f3kXdRjzE0nINWt8EHwsLJhwN4U3PfiSLStJ/DcNh8j5h
- 0GXYd45+WfC+Hj6LFiEWDz7LuGqN/QU=
+ bh=B+5DD8nScAoUArLnOY0Oh7JPy3rOEhjDtvPR2Jz9tCs=;
+ b=NTU1J9QQQy1jFoJRZrJ6vliYEEx36+LSREwhXsErkY6rg48I6yoOHlUISEN8AfMiFMo1WP
+ /le/kDzhCwzaXYUdr8Xvwuz5JpuHxCzWt3vdQG56ROpwqoGdJ1/uCZ9dkHUbHxkuAUT+df
+ Q2zJ8wFGR70CVLFZJHrRMmN/UIn6KsM=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727701768;
+ s=susede2_ed25519; t=1727701769;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rtOtN173kPNnChyHPY159TDGAsdUEFXyh+vJP16yPZ4=;
- b=4gB/0lqsDeDflVr38ppL1dnf3bFvjit5icyn0elRyDf2WGgoMjeUW4t6UOx6EROt4kAA5g
- kCXixtkbnzdFVmBg==
+ bh=B+5DD8nScAoUArLnOY0Oh7JPy3rOEhjDtvPR2Jz9tCs=;
+ b=d7jOj3K4P2jBkvFoNzCnDVy+lrvwrbOXaaUoQJWeLdmpIQlAhC5p4dabuNMwIAHZRPnxm6
+ g4crcVAQUb3evsCA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D5BDF136CB;
- Mon, 30 Sep 2024 13:09:27 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4F0C7136CB;
+ Mon, 30 Sep 2024 13:09:29 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id WCXwMgej+mb2dQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 13:09:27 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id UND6EQmj+mb2dQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 13:09:29 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH 10/28] drm/mgag200: Use video aperture helpers
-Date: Mon, 30 Sep 2024 15:03:08 +0200
-Message-ID: <20240930130921.689876-11-tzimmermann@suse.de>
+ Gerd Hoffmann <kraxel@redhat.com>
+Subject: [PATCH 14/28] drm/qxl: Use video aperture helpers
+Date: Mon, 30 Sep 2024 15:03:12 +0200
+Message-ID: <20240930130921.689876-15-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240930130921.689876-1-tzimmermann@suse.de>
 References: <20240930130921.689876-1-tzimmermann@suse.de>
@@ -93,7 +93,7 @@ X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[];
  RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
  TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[12];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid,suse.de:email];
  FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
  RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
  FROM_EQ_ENVFROM(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
@@ -120,35 +120,37 @@ calling the video functions directly.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: Dave Airlie <airlied@redhat.com>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
 ---
- drivers/gpu/drm/mgag200/mgag200_drv.c | 4 ++--
+ drivers/gpu/drm/qxl/qxl_drv.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.c b/drivers/gpu/drm/mgag200/mgag200_drv.c
-index 29087e2398df..42fabe817e21 100644
---- a/drivers/gpu/drm/mgag200/mgag200_drv.c
-+++ b/drivers/gpu/drm/mgag200/mgag200_drv.c
-@@ -6,10 +6,10 @@
-  *          Dave Airlie
-  */
+diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
+index 4ef1c134d6dd..21f752644242 100644
+--- a/drivers/gpu/drm/qxl/qxl_drv.c
++++ b/drivers/gpu/drm/qxl/qxl_drv.c
+@@ -29,12 +29,12 @@
+ 
+ #include "qxl_drv.h"
  
 +#include <linux/aperture.h>
  #include <linux/module.h>
  #include <linux/pci.h>
+ #include <linux/vgaarb.h>
  
+ #include <drm/drm.h>
 -#include <drm/drm_aperture.h>
  #include <drm/drm_atomic_helper.h>
  #include <drm/drm_client_setup.h>
  #include <drm/drm_drv.h>
-@@ -266,7 +266,7 @@ mgag200_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	struct drm_device *dev;
- 	int ret;
- 
--	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &mgag200_driver);
-+	ret = aperture_remove_conflicting_pci_devices(pdev, mgag200_driver.name);
+@@ -92,7 +92,7 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
  	if (ret)
  		return ret;
+ 
+-	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &qxl_driver);
++	ret = aperture_remove_conflicting_pci_devices(pdev, qxl_driver.name);
+ 	if (ret)
+ 		goto disable_pci;
  
 -- 
 2.46.0
