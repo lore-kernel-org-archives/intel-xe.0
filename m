@@ -4,78 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F4CDCE8343
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:26:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADB6FCE8345
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 13:30:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C37610E4AD;
-	Mon, 30 Sep 2024 13:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FA0B10E477;
+	Mon, 30 Sep 2024 13:30:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UMKb9bj0";
+	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="EuIU+GeP";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD85A10E4AB
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 13:26:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1727702771;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=iU6oHSTtkrHoG6AEjnDSNeGcEonnUQr+lho5LZwZCqk=;
- b=UMKb9bj0nG6LoZuxMPNa9E13DkZFo01rWYxB8kWGqTJxeNpXbmfLG8AusASUzz1u/EHx7w
- Kcv1JDOFlqf7199QAiDVfeSXUhGsRZdUIT6blhTRwAWP+8JQymWW6RxnqsrkC1P7oRB9El
- qtn0YmLs4ywgsM9E3WYJit5KrubXdsQ=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-222-c3MnOK-8NLm86C09pdFLYA-1; Mon, 30 Sep 2024 09:26:09 -0400
-X-MC-Unique: c3MnOK-8NLm86C09pdFLYA-1
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-37cdb0e9eb7so823204f8f.2
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 06:26:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727702767; x=1728307567;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=iU6oHSTtkrHoG6AEjnDSNeGcEonnUQr+lho5LZwZCqk=;
- b=RNNh8Gl73UoRXPBxmcabXTsuPsPkCDE3/GlYXVhoOQhnwduyb0w1Ill0ND/N1binoP
- o8DTOTVSc2Q2JZBBVBeoSLyGRrYALJbckdTGe8ycibllGOKwo34AhWiWKEp7M3U88lUq
- 6xvs+Wq8utsZ77Kqezk+yySMGpxcjTJvGSJAbiN8hltsc+MF8gmJ72vqHhY/uoa8tmEE
- JGSqyGjDNwVR8k1H0AsAEwaYv8wqq+RLDwUDDCzP89HAD4SgQAtwSn8+49vC5++tt5YN
- ipfLTfQ16yXaxajlm7mtrVxwxxLHw5XhadvRePFV2ACKe/2xpIM4ybLBKzxckGII07F+
- wUxA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUhggKaVPkPbhZdnlnjQ1uJvOE5tzl1+N2caSZA2Oh+Ish2liKNUTxd4rp/mF02oWMprsuWRIX/Cw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwtZ08oYsoEFuNDRWt/edUBQuPYxfGmLv6dkHNhWoUWMcUkiW3W
- g2Hnr6vmmmX2pOu9If8feZocCWlw8lXbQBWIp+WgOEUzKQkUjMVHaGZxVjq+r9Utdy7XBncCHJa
- ps5stIt6XrJ1Gdj4mt7FuvqukKwpzpHupfsMtgdgzhM/RVORkgvI4qUJAzhgEw1DB
-X-Received: by 2002:a5d:5548:0:b0:37c:cfbb:d356 with SMTP id
- ffacd0b85a97d-37cd5aebe7bmr5906735f8f.28.1727702767550; 
- Mon, 30 Sep 2024 06:26:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGC2V0F7vlRZz80HkueMTZBFg2rvllHK+Q0YOx0BGeDwQemdMjl0P56KLvckcpsgdHBb03bCA==
-X-Received: by 2002:a5d:5548:0:b0:37c:cfbb:d356 with SMTP id
- ffacd0b85a97d-37cd5aebe7bmr5906722f8f.28.1727702767137; 
- Mon, 30 Sep 2024 06:26:07 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42f57dec19bsm104420285e9.26.2024.09.30.06.26.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Sep 2024 06:26:06 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@gmail.com,
- simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Thomas
- Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH 00/28] drm: Remove DRM aperture helpers
-In-Reply-To: <20240930130921.689876-1-tzimmermann@suse.de>
-References: <20240930130921.689876-1-tzimmermann@suse.de>
-Date: Mon, 30 Sep 2024 15:26:05 +0200
-Message-ID: <87ed518e8i.fsf@minerva.mail-host-address-is-not-set>
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
+ [210.118.77.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B153110E4DD
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 13:30:11 +0000 (UTC)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930133010euoutp0207addc7514999728127beb2fb50a7c8a~6CLv7RmDL1830518305euoutp028
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 13:30:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20240930133010euoutp0207addc7514999728127beb2fb50a7c8a~6CLv7RmDL1830518305euoutp028
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1727703010;
+ bh=3e66arz+ZRH0X8MACmZSooV7TnZnFpkTzdpQpXw10jI=;
+ h=Date:From:To:CC:Subject:References:From;
+ b=EuIU+GePFtwC3NezaBAbnYQGWLafq2DyoMM+88J2X2i3fsRh7hsDtp6b1Obqtf+rX
+ LhNuXSJv1ShVeUh09YmymkzSgBq5BszDYVQ9oMavDSVp95q05F9d6C7UA/uKoKAp6Z
+ IKffOxFUlRdxolNYQqbq/YS/xj7Zo+3faEfGyYQw=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20240930133009eucas1p1f476f390428d91d1e4c9cc3af8cb0dc1~6CLvT_nk32271722717eucas1p18;
+ Mon, 30 Sep 2024 13:30:09 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id A5.BE.09620.1E7AAF66; Mon, 30
+ Sep 2024 14:30:09 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+ 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb~6CLuigJhw2119721197eucas1p1E;
+ Mon, 30 Sep 2024 13:30:09 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20240930133009eusmtrp2b0189fc96ba467619be9a2409870faf6~6CLuhyaIP0934509345eusmtrp2j;
+ Mon, 30 Sep 2024 13:30:09 +0000 (GMT)
+X-AuditID: cbfec7f5-d1bff70000002594-31-66faa7e1a729
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id 6E.01.14621.0E7AAF66; Mon, 30
+ Sep 2024 14:30:08 +0100 (BST)
+Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20240930133008eusmtip1ab1aa65231cd2493fabe616bb8f6bbfb~6CLuUn2DZ1536815368eusmtip1p;
+ Mon, 30 Sep 2024 13:30:08 +0000 (GMT)
+Received: from localhost (106.110.32.87) by CAMSVWEXC02.scsc.local
+ (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
+ Mon, 30 Sep 2024 14:30:07 +0100
+Date: Mon, 30 Sep 2024 15:30:07 +0200
+From: Daniel Gomez <da.gomez@samsung.com>
+To: <I915-ci-infra@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, <patchwork@emeril.freedesktop.org>,
+ <tools@kernel.org>, <d+samsung@kruces.com>
+Subject: Incorrect response address when using B4
+Message-ID: <20240930133007.u4vm5qj5urikpmvc@AALNPWDAGOMEZ1.aal.scsc.local>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+X-Originating-IP: [106.110.32.87]
+X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
+ CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42LZduzned2Hy3+lGZxer2ux+/9dZotHp/uY
+ LX5sfsFk8fLvGmaLcxsfMjuwepyZsorJY9OqTjaP/70PWD3udx9nCmCJ4rJJSc3JLEst0rdL
+ 4MqYePYnc8Ey5op1M1cwNTA+Zupi5OCQEDCR2Hw1r4uRi0NIYAWjxOWdi5khnC+MEtefHIdy
+ PjNKLJt4kL2LkROs4/y2XywQieWMErN2zmOBq5p9dQWUs5lRorNzDVgLi4CqxKorW8BsNgFN
+ iX0nN4HZIkD2933vwWxmgTKJ3iutLCBHCQsYSrxYlwUS5hXwlngybwUjhC0ocXLmExaIch2J
+ Bbs/sYGUMwtISyz/xwFxnKLEjIkrWSDsWolTW24xgZwjIbCFQ+LUmk1MEAkXidv/uhghbGGJ
+ V8e3QH0mI/F/53yomnSJJetmQQ0qkNhzexYrJLysJfrO5ECEHSVmP7rFAhHmk7jxVhDiMj6J
+ SdumM0OEeSU62oQgqtUkVt97A1UtI3HuE98ERqVZSN6aheStWQhvLWBkXsUonlpanJueWmyc
+ l1quV5yYW1yal66XnJ+7iRGYSE7/O/51B+OKVx/1DjEycTAeYpTgYFYS4b136GeaEG9KYmVV
+ alF+fFFpTmrxIUZpDhYlcV7VFPlUIYH0xJLU7NTUgtQimCwTB6dUA5NO4u6oyeGfajQ3BzDX
+ HfvD3fzW6MhM4wdzSqWMP/mbrJtw+5/RGqnpU3y8Q1wq+d13JSwM+7Ttr8OUyUGhtUe2Jp+M
+ 3Lcr9EPVfFW+h1WxIonPS8ynBJj8zA1y+pUle37X5AMmYZp7Qi+3qR5Lee+w49aS6dqV0bm3
+ TgZM2LOa64oNU0GwgejMnzvVJS5qmp/I4F6T5T61d3HKWc4kBm2BLs59P2p2+ec9OT2pLWjb
+ i+QbEWor/8t8K71tKOq+sdNOROd8g/P1xwd4P3Aksgu7XClYIlaaUHaZW2OzvPy/D2evWp9J
+ f/DlwNysTr/Pmnw+SzzWL3999WXsxUXXbr9NKpnBZXDI/My8k+2bf8gqsRRnJBpqMRcVJwIA
+ AEFJd5MDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpjkeLIzCtJLcpLzFFi42I5/e/4Xd0Hy3+lGfz/Ym6x+/9dZotHp/uY
+ LX5sfsFk8fLvGmaLcxsfMjuwepyZsorJY9OqTjaP/70PWD3udx9nCmCJ0rMpyi8tSVXIyC8u
+ sVWKNrQw0jO0tNAzMrHUMzQ2j7UyMlXSt7NJSc3JLEst0rdL0MuYePYnc8Ey5op1M1cwNTA+
+ Zupi5OSQEDCROL/tF0sXIxeHkMBSRomVmxeyQSRkJDZ+ucoKYQtL/LnWBRYXEvjIKPGwORzC
+ 3swo8fVRNIjNIqAqserKFnYQm01AU2LfyU1gtgiQ/X3fezCbWaBMovdKK9AyDg5hAUOJF+uy
+ QMK8At4ST+atYISwBSVOznzCAlGuI7Fg9yc2kHJmAWmJ5f84IK5RlJgxcSULhF0r8fnvM8YJ
+ jIKzkHTPQtI9C6F7ASPzKkaR1NLi3PTcYkO94sTc4tK8dL3k/NxNjMAI2Xbs5+YdjPNefdQ7
+ xMjEwXiIUYKDWUmE996hn2lCvCmJlVWpRfnxRaU5qcWHGE2BHp7ILCWanA+M0bySeEMzA1ND
+ EzNLA1NLM2MlcV63y+fThATSE0tSs1NTC1KLYPqYODilGpiyCyxjdkwsKDmuV95e8V3r2KSs
+ hfu7/MN1lTKSr/iXqPvN23j5ECP37Hk6MdqXJy6u2PRih0z1955Pmzj1NX+lPyj5eT37fIxd
+ 2ZQPqR2yR5pj/QUyWyWuVQrGlIo0GV2abLTrayXLl4nsGyYzGK5QXPJf2uypSk7K+9/m1T3e
+ xxP+uzk79IpWvV0e12/feiDsy7EMx481aWervYvqFPOc/4ibBkm/ZO78NJkr7uriQwpPKnY8
+ feHcECjp/bhz62JrW7bDLQv4Aiwtff8qvw7Zp9toXPtgZtSKaR7ZExmLOn9qvJHvmbtbWenB
+ RNebkzSMCx8d2fTlw6TjrT5PDt54YXJ3f3j3hucZZueuayqxFGckGmoxFxUnAgCZsb91GQMA
+ AA==
+X-CMS-MailID: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
+X-Msg-Generator: CA
+X-RootMTR: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
+References: <CGME20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb@eucas1p1.samsung.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,31 +120,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
+Hi,
 
-Hello Thomas,
+I sent this patch [1] using B4 web endpoint and then I received a
+response email to the wrong address: To: "Daniel Gomez via B4 Relay"
+<devnull+da.gomez.samsung.com@kernel.org> instead of To: "Daniel Gomez"
+<da.gomez@samsung.com>.
 
-> DRM's aperture helpers are merely wrappers around the respective
-> helpers in drivers/video/. The DRM interface existed first, but was
-> later generalized for use with fbdev and a few other graphics-related
-> places in the kernel. It is time to remove the DRM wrappers and call
-> the video helpers directly.
->
-> No functional changes intended. This series should replace one interface
-> with another. Individual patches could go into the various trees and the
-> DRM wrappers can be removed when all driver changes have been merged.
->
+[1] https://lore.kernel.org/all/20240925-macos-build-support-v3-1-233dda880e60@samsung.com/
 
-Thanks for doing this cleanup. Makes a lot of sense for me to drop it.
+Is this something that can be fixed on the CI, patchwork side?
 
-For the whole series:
-
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Thanks,
+Daniel
