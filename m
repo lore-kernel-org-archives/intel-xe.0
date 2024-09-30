@@ -4,116 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4971DCEB2C9
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 21:15:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F16C2CEB2C2
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 21:26:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1184210E14B;
-	Mon, 30 Sep 2024 21:15:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB5510E134;
+	Mon, 30 Sep 2024 21:26:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="WYeR+imm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ctUbQHfp";
 	dkim-atps=neutral
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
- [210.118.77.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B773810E151
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 21:15:24 +0000 (UTC)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20240930211523euoutp024950f7a56edfd6ae02ba9cf4fd411420~6Ih7g1uzo2206722067euoutp02S
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 21:15:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20240930211523euoutp024950f7a56edfd6ae02ba9cf4fd411420~6Ih7g1uzo2206722067euoutp02S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1727730923;
- bh=Yyj/RSLnldl9QNqHMpOgqi6U6Aw3KrB01BwRZgDQmy0=;
- h=Date:From:To:CC:Subject:In-Reply-To:References:From;
- b=WYeR+immD90VOrOWxyHdLs8z2CqBHRxRbp6Ak9JkpCl3aWJNfFg6gHqIOw2UNgITG
- y3NYOkQRhD3noWLlne7LviJ/w6vIgahfmapbbHFxu/74M+/Ugm0dnZHm1xRUhDVVNw
- n7A49Z0+jC0QA+SIJEvfu6/b78trw5WC9ckNP/5o=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTP id
- 20240930211522eucas1p122fb428c608bdc132714125ec9b2bfd1~6Ih6qUZE70405804058eucas1p1M;
- Mon, 30 Sep 2024 21:15:22 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges1new.samsung.com (EUCPMTA) with SMTP id 2E.7F.09624.AE41BF66; Mon, 30
- Sep 2024 22:15:22 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
- 20240930211520eucas1p2f0e55e480d043bfc3934a6d676e9876c~6Ih5jJAVT0061000610eucas1p2m;
- Mon, 30 Sep 2024 21:15:20 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20240930211520eusmtrp1ee3e365e36eb759fac22338b0d3154f6~6Ih5imwsN2244022440eusmtrp1P;
- Mon, 30 Sep 2024 21:15:20 +0000 (GMT)
-X-AuditID: cbfec7f2-c11ff70000002598-74-66fb14ea03e7
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id 2C.C7.19096.8E41BF66; Mon, 30
- Sep 2024 22:15:20 +0100 (BST)
-Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
- eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20240930211520eusmtip2fa6a2426c0b1c4bb80907f93930f76b0~6Ih5VShMO0812608126eusmtip2d;
- Mon, 30 Sep 2024 21:15:20 +0000 (GMT)
-Received: from localhost (106.110.32.87) by CAMSVWEXC02.scsc.local
- (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
- Mon, 30 Sep 2024 22:15:20 +0100
-Date: Mon, 30 Sep 2024 23:15:19 +0200
-From: Daniel Gomez <da.gomez@samsung.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Konstantin Ryabitsev
- <konstantin@linuxfoundation.org>
-CC: <I915-ci-infra@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <tools@kernel.org>, <d+samsung@kruces.com>
-Subject: Re: Incorrect response address when using B4
-Message-ID: <20240930211519.tquvjw7davr7zlfz@AALNPWDAGOMEZ1.aal.scsc.local>
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 875D010E134
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 21:26:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727731599; x=1759267599;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=kLzJ6oavFeECudD2ra3fGoAsWRouNC9sCXwXW7i44/k=;
+ b=ctUbQHfpCZRotvzFde/xSrQa/eh+u0mZfzGG2KOeZ4o5toRsv8FfwuMK
+ lECEBvxziXiJpe+5dZQnDkrBg7CYR4JVib6NPNlSLJxhTIO4Sa9LWCpd7
+ xkmeK42NKbTIz3OuAad1oLpu6KoEx+KHzhp489XOIAGQjyG0s4QT5JlNG
+ Sv5fYEozelTfDny3sDmKalTXvX4NzwqnQA06SUtiLPKLovcJMMq1cX5DP
+ a1MeBvtf/uF9Goy40edz6SahktZzou+iw7pQSWWBYo/D370MvlTjyz0TN
+ PajgXUVBrV6H8H0AVAv92pL43CLxc/E/1jZcZeSuIIUT1kTitjsclFTcv Q==;
+X-CSE-ConnectionGUID: N8Eh2Y0HSfeStbQreWB+4Q==
+X-CSE-MsgGUID: BUWg+rgRR5KLI7PP8RKV1g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="26969644"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="26969644"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 14:26:39 -0700
+X-CSE-ConnectionGUID: puQqQEqdS5e6vT0EKWvvEA==
+X-CSE-MsgGUID: /WdTWnNsQE+yDzfKOdRNjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="78404777"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Sep 2024 14:26:36 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 30 Sep 2024 14:26:35 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 30 Sep 2024 14:26:34 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 30 Sep 2024 14:26:34 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.176)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 30 Sep 2024 14:26:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=d/SM0jviN4U5dOXgqTH/HoRK8QN6dQCW5WFWwjTmybE0jIC/9WXe5EwmettdqL8nZgmbjuy3jFjTJfBmgaBq0iIyFzAGKyNFg+5fhvvxmoh+E6Q+zUIcb8nmg76hwuP4sCjpjFiQwFh2Whg0svUA4oUBUOMAaG70XtDSETt+NUoFI1NDYO8QQ38obj7z3dnPyxT/qpztcUdA0+QpjgMOuVrFfpp5+leblnL9Tjskc2ZG+Dz9UKKDhAkecxEmhPZ8c8dIfWtCxqjsqZLDlpeQ2LLOPOg4NyQiO2PHI4EawxwarlQSPDDl5Sj8nMFVniZEZ2i9cnpFbYXpSXVEkuMjcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P2L8KSvh1i8neSyYuupheAbcLUMpir96zL8COAzz1XI=;
+ b=mbVsFDoZje3m0mbPGPn+seD3sjRSkC2i8lkdFamzhDB910JCEZe0dTsDet44SvLo6L0qpMQ5OP5WwPe2kIfhU/bFBoNaE16ANN8XKh2hNhThw+7ySgM+4iM72ymh9MQh1Ue1jzt6s1UPL3urzgpzg9MIPixNDf/x6bh/3lPEty5QWYsN8xDyN4cl41G/d8z64zwlgyVUNj27rAguAo16CNfnDvlNzb9QudA2nwrOTe4jOEoKnZgTgBUnJlPJT2c4EBg+CAXR9pp1qgYf7nO/yr3orckxC+Z71/MNNkmpSRaUgQC1K1D6asiX3g3WDvrVADk38aH9ZaWkU4P/+5u2Ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by PH8PR11MB6928.namprd11.prod.outlook.com (2603:10b6:510:224::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Mon, 30 Sep
+ 2024 21:26:32 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.8005.024; Mon, 30 Sep 2024
+ 21:26:31 +0000
+Date: Mon, 30 Sep 2024 14:26:29 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: <apoorva.singh@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH] drm/xe: Check return values of functions in
+ xe_gt_shutdown()
+Message-ID: <20240930212629.GB4891@mdroper-desk1.amr.corp.intel.com>
+References: <20240926110026.407383-1-apoorva.singh@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <87h69xw68b.fsf@intel.com>
-X-Originating-IP: [106.110.32.87]
-X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
- CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnleLIzCtJLcpLzFFi42LZduzned1XIr/TDF5/Y7HY/f8us8Wj033M
- Fj82v2CyWH55PaPFzs9fGC3ObXzI7MDmsWlVJ5vH/94HrB7zTgZ67J+7ht3jfvdxpgDWKC6b
- lNSczLLUIn27BK6MOUs/Mhf8Eaho3rieuYHxGm8XIyeHhICJRO/Jd8xdjFwcQgIrGCXaZq5k
- h3C+MEoc2/2UBcL5zChxZOcxoAwHWMvbt/IQ8eWMEkfXv0IourtmNtSszYwSG3ZMYwJZwiKg
- KtG/5SIbiM0moCmx7+QmdhBbRCBN4vmSfhYQm1mgUmLy3mawuLCAqcS9tsUsINt4BbwlNndF
- goR5BQQlTs58AlWuI7Fg9yc2kBJmAWmJ5f84QMKcAuoSR782sUK8pigxY+JKFgi7VuLUlltM
- EPc/4JD4qwhhukgs6rCHqBCWeHV8CzuELSNxenIPVGe6xJJ1s6DsAok9t2exQrRaS/SdyYEI
- O0rMfnSLBSLMJ3HjrSDEiXwSk7ZNZ4YI80p0tAlBVKtJrL73hmUCo/IsJE/NQvLULISnFjAy
- r2IUTy0tzk1PLTbMSy3XK07MLS7NS9dLzs/dxAhMK6f/Hf+0g3Huq496hxiZOBgPMUpwMCuJ
- 8N479DNNiDclsbIqtSg/vqg0J7X4EKM0B4uSOK9qinyqkEB6YklqdmpqQWoRTJaJg1OqgYnt
- 8N9NWeaRrulJNw0UzP1+R37K2/qP1UfEUqDA+AxHgavJOefo4pcMP3kXB8jtl3DO+B1a2VEj
- e0Ts5zXNKt76fx46yQsn8Vuvi5jL/bEnUf/4nvYr9XlORSVdkTd+anS0MRwVbXv1ok6QbZvM
- 0ST58CWPbscfPSIpyLoqs7rsvaP0QQ+R95q2GUl70r1MKtqlz9ebPUxlXSTtxFup2+shHfex
- LWLZ9kWRz5eeeJj3br7cEbu3xi2X7x9i/XRdPmey4LaqDo3XvD2NMbf7JJc5Z+dzBT/bMXf6
- anYr84hlPj8TRZ4rZeh+erXHUiLorKOql91ert9CGql1VcbOkg6Ris9bTh70aAx5uViJpTgj
- 0VCLuag4EQCtoJGqmgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJIsWRmVeSWpSXmKPExsVy+t/xe7ovRH6nGdy/YGyx+/9dZotHp/uY
- LX5sfsFksfzyekaLnZ+/MFqc2/iQ2YHNY9OqTjaP/70PWD3mnQz02D93DbvH/e7jTAGsUXo2
- RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2CXoZc5Z+ZC74
- I1DRvHE9cwPjNd4uRg4OCQETibdv5bsYuTiEBJYySly7voqxi5ETKC4jsfHLVVYIW1jiz7Uu
- Noiij4wSPxc/ZYFwNjNKrHiwiRmkikVAVaJ/y0U2EJtNQFNi38lN7CC2iECaxPMl/SwgNrNA
- pcTkvc1gcWEBU4l7bYtZQK7gFfCW2NwVCTFzObNE65FtYFfwCghKnJz5BKpXR2LB7k9sIPXM
- AtISy/9xgIQ5BdQljn5tgjpUUWLGxJUsEHatxOe/zxgnMArPQjJpFpJJsxAmLWBkXsUoklpa
- nJueW2ykV5yYW1yal66XnJ+7iREYZ9uO/dyyg3Hlq496hxiZOBgPMUpwMCuJ8N479DNNiDcl
- sbIqtSg/vqg0J7X4EKMpMCQmMkuJJucDIz2vJN7QzMDU0MTM0sDU0sxYSZyX7cr5NCGB9MSS
- 1OzU1ILUIpg+Jg5OqQYm9nJ1u02ybtxebS8f87Un7mRqu/hxIfvh7uii7Qw7I5hLVgTPKfwQ
- O0fh8cIZXKHbzmW/jHR8HbVX6F/cFz3VWsezE27Xacy1OJDmZiyne5JV86D68rjP5SdMLEQu
- WflxBy2Y5NouzlY6r8sifdLluFSHpIhtfxpfXjz++9LGnIzT/9KE10z//jq9xcfW5vbyJS9X
- 2yjo/QwIrua+3b/TTtLvxyzJ9NZrdh4X+pZdLKm3mss6y+Gu5d7QVj/ZRy8utl5ym9yfLST/
- 6G/0Hv3eVVFbj3erfpNV1dv5YaZnuBbrNr+Na6eJ7vU6ePCWgTzbJUn9Vd5Z2o2HTd/8iz6h
- 4LMlaBqzd/zbpEcHdk1SYinOSDTUYi4qTgQA8cx0IDwDAAA=
-X-CMS-MailID: 20240930211520eucas1p2f0e55e480d043bfc3934a6d676e9876c
-X-Msg-Generator: CA
-X-RootMTR: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb
-References: <CGME20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb@eucas1p1.samsung.com>
- <20240930133007.u4vm5qj5urikpmvc@AALNPWDAGOMEZ1.aal.scsc.local>
- <20240930-sapphire-swift-of-reverence-168e2b@lemur>
- <20240930141839.3rjfom4c2tca655n@AALNPWDAGOMEZ1.aal.scsc.local>
- <20240930-rustling-auburn-jaguar-23d200@lemur>
- <20240930143309.pwl7dzv537b2q3wk@AALNPWDAGOMEZ1.aal.scsc.local>
- <87h69xw68b.fsf@intel.com>
+In-Reply-To: <20240926110026.407383-1-apoorva.singh@intel.com>
+X-ClientProxiedBy: SJ0P220CA0011.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::31) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH8PR11MB6928:EE_
+X-MS-Office365-Filtering-Correlation-Id: 97968a1c-a052-4733-0ad4-08dce1968d99
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Hjfi8+eoEZzR/PwNZHZ7Blfts8Jd3mEtWvXRJFtOFkYyFnfKRmYg2M722Gjw?=
+ =?us-ascii?Q?1Xpvc7WB9KPMluzhV8Vl67rqP//EYdQYg2AsIqNpjMUEFCPM3fYGtCVKSO4N?=
+ =?us-ascii?Q?xuNx8Fi4YbQm2zSBEztZAJ9YqOBGh0G9kqrA2YkictKEoIw6r9vaU9JFN0i3?=
+ =?us-ascii?Q?7J0jq0Cw6L4i69v6K7DfCRd5OQwjv5EhgZnR3GCNv2FoTykZ8sZLY5leKxjt?=
+ =?us-ascii?Q?R3xEB2EzQHOLzgv298BmqCIw/msSpNQMMJAEgMthv4uD0avbGv46V7cVImeY?=
+ =?us-ascii?Q?yimQ2qH+urkhQkMlW5dWjh/TO0x026454u/4bRURDgynsFgWNS2x+lk4rWWT?=
+ =?us-ascii?Q?HiskQrXlzttIo6i2UBmKl6J9hGITaf2HVM341odzLrN8jLlSOMdgR4VBqzVi?=
+ =?us-ascii?Q?BCSS2utJ2W5GPPuvGZt3lzv4cv6N99sXb/xkvyTPetvy7YzqI1PFzoSXIVmk?=
+ =?us-ascii?Q?HS8oU6ZbaAxBWPKJjUvEBmsl7ORlCy3RcYqk2/yvU+jq4MA5vA9bWh8MuhTK?=
+ =?us-ascii?Q?hPLQ03g/C+QWBbMbG+ZV7AOkdfAO+J6pIdWxnZPcbNGJ8hmTU19wTCPZUX7A?=
+ =?us-ascii?Q?8Furb48x3lbAatUlm3xVZcGDuuHr34LU0Sf2Hu/D4xyqppMcjqHqOJkOuaoO?=
+ =?us-ascii?Q?LHngMRe6rKMnCXfBHN7JY/c++Xb6d+MVneIOZbrhf7JQSlITPPay1gMqEgn8?=
+ =?us-ascii?Q?Xn4G/qtdO1StNCPKQ/c9fFN/2C9DY9cDoO1TGb9REXqBgMLmqQntueVfk/10?=
+ =?us-ascii?Q?eW3iojDobpv0qI6LsrmStP9g/X9GTuTcTrLwUhpCWnd4nKfRPEzxG0ZlY+OW?=
+ =?us-ascii?Q?Q4c8IOq/oIZippHFnM13Hg/idcwy2EBFMc/4tWnEOSzObcifC6cTgC5e07jK?=
+ =?us-ascii?Q?XUIg5aRjwEUAC3ADVrNaRRIi4if2DF4yq8zjBMagRXgcSQeEBxkhzT87UxYh?=
+ =?us-ascii?Q?+kwIClEGZYMMm0ce2ofMCwG0XzmW9DbulfVBxAZbf286fzPXa0S3k0928bLv?=
+ =?us-ascii?Q?15uKyZx/Z5n81q1k57HkIAbN3OH/drI3zubuWIiwRE96xkitQrpO1vxZLowv?=
+ =?us-ascii?Q?TJ1NK4h56StGEB4a/JCIQIHwCFewX1/g+bnJuLmfV2xv/tCHyqSDIuLS7aQo?=
+ =?us-ascii?Q?fkTcK4bmQyPXIIQ8CHlh8pizhqXhHOzqLxWP6AMh+X5PSPaPhFY6PtVogL9e?=
+ =?us-ascii?Q?MOG2yvThoIHfOItWm2U6gZU98hU0k6O1TeE5RqYbWY2yw6YJ/zlZZsbi+oqa?=
+ =?us-ascii?Q?RnnamZ2dEp+mtmGtSf54rKlRCBFpbprLJkwXCnxUlb1Gvjde+obPG32KyxE0?=
+ =?us-ascii?Q?2vB3xXTr2fDoqt6Dds9ebo1OPKS8iks0rlDUgXjuvJUyVQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JqZzLXlng/S8+x/TClgKbo44emy9OsCLDo7QscIi8sCr/rSlYzMdRIiQhgia?=
+ =?us-ascii?Q?rvWsrK4uuIlEIlRrFBHO6W/5nNowlCiWhCghXDEel7zNV7Cm35g1fULWCElS?=
+ =?us-ascii?Q?slg/Qmgz0++arkEM7/S1McUFbiGwoV6lcPQHDbIwyPxy5MUluQpABi6kFvve?=
+ =?us-ascii?Q?Ezn6DZBLN5EelsudX/nwk/VP5LaR1mtyA+QzURe9+snQwljjzlPz1zpoHREH?=
+ =?us-ascii?Q?wQ8Rq4jCURb+5FW+9lj9dYpzlMxt1TwVtHQ9vMOFvgxBITfTDaJACyfHTjU3?=
+ =?us-ascii?Q?I6tJBdGDIcOV4QSSaB5G/KqIs1jQ3b2CwIsUh7xXOxrBlxSdOZFCqkVfWs6P?=
+ =?us-ascii?Q?qJbUAOERlLnsX6zrK8aGb3WOQWI7q9KDxg2vhyvUFrOe3095CEN1jKv9//g8?=
+ =?us-ascii?Q?kZ+cA5Pq7Rz52HxIid1eCKFXuLyWit+L7wfZESqgMxXkaGIabznMJiXwFiA+?=
+ =?us-ascii?Q?jE5xnD5syuBvFVANZ7EjE8Vf2vOJFI99R+6Peo5HErqTFpnmTiPwvRyhSNW5?=
+ =?us-ascii?Q?kPudnMvzUZUV3KQma4QwhGuoIzv6UlVX6ZtLYSyyAcnPwEnsSaCTLqMeb1PA?=
+ =?us-ascii?Q?vkb9lSYXTPQO+vyqWWEfns3Df7rcgRZztNo+WW3FVJ30FWTid9auHzz2sgFp?=
+ =?us-ascii?Q?ffK1EWLJRcgb2mz4WI1bmQ2E4igBra0C4XgJLRtqUxHybT/j8iuLfQOMsgW+?=
+ =?us-ascii?Q?ppeg3ejqy6pKjGJ5CKizPjfvMcL/6zgOE9MmpO4QXtBiYXwT+FwFiZhmHefL?=
+ =?us-ascii?Q?PoSS2/q4+ufZy9C+IWyNnuVWYf1OrqdWF6l5+KEJxhKBO+f4LaEmbGGxNbq4?=
+ =?us-ascii?Q?tlHqCQL2lcIJbE2S1C0MdHBfQvXx1fbvlRm8Sp0aVdhgxhLOgKifm9l8yTjU?=
+ =?us-ascii?Q?TOs6hKq62t9lGfdkFx9qwUU2iodP88V7rN6dnbRafo+usIfRfWTYdmXnGA5B?=
+ =?us-ascii?Q?6xaCn/2mxPQ1VyM7Oyi5DvtELTVb1cTToz5yeD383X1GFYTn0Y55dPgg1NAW?=
+ =?us-ascii?Q?1gptkw76ojJBepBnsfmi84xdhxRrymfI/2hF9VQIGrt1TriQpG0Ila51Uemc?=
+ =?us-ascii?Q?q1ziJ2Wk2KJdW3h3EobhBXnEYOXEz2XP4c5Hsxoeuoohr7G0ebdj42FPX9bR?=
+ =?us-ascii?Q?xqGeleOVRy3/xfDvtXv0KuJgD1B8A9Rib+u4qwRryiC45K9e9nbEL1am/PKl?=
+ =?us-ascii?Q?Ykjb3wLGKm3shwfKfZWg+P3bs1JPMd2vkfLg34HTW3YDAWo1lfA7W/2VezkG?=
+ =?us-ascii?Q?/8bcO9Xd+LO12TZ+WjpmEmJNKxrYEtuv++Zmt9ehtfEJHT3LrWPpaJzS5dQl?=
+ =?us-ascii?Q?3Rzy4HmJe7MdqzoZPSxlxO7eScgHV941vmBgBigt/w5ZVOeOACaOI1MfpIv0?=
+ =?us-ascii?Q?aqD+e0Dj2I+Cc22iEmpQob8/xQ+dypeOVaajzm0Tu7P62HkCoCN0+aMHu6Vl?=
+ =?us-ascii?Q?1FryeN3GrwE2e25wF2ynzOVJzh2v3uwTJQOxMJVaXyEnvB00g8sA3ygoQK+5?=
+ =?us-ascii?Q?lEYjnkJLVw32yqsQG97PUcU1U1o0Cpf9XhkbCPX2mnWSIkoZ9zCVz/ULpfy+?=
+ =?us-ascii?Q?RrdKrBKz8jYq6/RBzKIyw7vERpnI/DTiHWHqvTHw52QhcTszJUHwMLU7/GGg?=
+ =?us-ascii?Q?MA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97968a1c-a052-4733-0ad4-08dce1968d99
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 21:26:31.8256 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sT3KwJJuXTuiw8ZWlsra7Xvip8UdgnS2gDvqNuTxEi8HBwAT/DS6hT9erMMJxW7v4M9mjRxky5bo+owOK4QpYaYs92Pwqtk7eDWTuXrfKpw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6928
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,56 +178,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 05:45:08PM +0300, Jani Nikula wrote:
-> On Mon, 30 Sep 2024, Daniel Gomez <da.gomez@samsung.com> wrote:
-> > On Mon, Sep 30, 2024 at 10:20:57AM -0400, Konstantin Ryabitsev wrote:
-> >> On Mon, Sep 30, 2024 at 04:18:39PM GMT, Daniel Gomez wrote:
-> >> > > Was it an automated tool that sent you that message? Normally, email clients
-> >> > > would honour the "Reply-To" field and not use the From: address put in by the
-> >> > > relay.
-> >> > 
-> >> > It was a CI Patchwork tool. Response [1] to my patch was sent from "From:
-> >> > Patchwork <patchwork@emeril.freedesktop.org>".
-> >> > 
-> >> > [1] https://lore.kernel.org/all/172735727458.1107233.1757281470637305143@2413ebb6fbb6/
-> >> > 
-> >> > I think that tool is ignoring the "Reply-To" field [2] from the B4 message and
-> >> > using the From field.
-> >> > 
-> >> > 	From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
-> >> > 	Reply-To: da.gomez@samsung.com
-> >> 
-> >> It's no big deal as long as you got the email response in the end. We expect
-> >> this to happen with a lot of automation, which is why any replies to the relay
-> >> address are auto-discarded.
-> >
-> > To clarify, the email response didn't land into my inbox. I realized a response
-> > was sent after checking at lore.kernel.org.
+On Thu, Sep 26, 2024 at 04:30:26PM +0530, apoorva.singh@intel.com wrote:
+> From: Apoorva Singh <apoorva.singh@intel.com>
 > 
-> Yeah, our patchwork instance tries not to spam everyone, and limits the
-> replies to the submitter + intel-gfx/intel-xe mailing lists, but
-> apparently uses From instead of Reply-To.
+> Check the return values of the functions xe_force_wake_get()
+> and xe_force_wake_put() to prevent mistakenly treating them as
+> void returns.
 
-I've just realized that it also happened with 0-day here:
-https://lore.kernel.org/all/20240917-blktrace-algn-v1-1-9fb54b7b1dfa@samsung.com/#t
+But the patch below isn't actually checking them in any meaningful way.
+It's just printing a (redundant) message in dmesg and then blindly
+moving forward without actually acting upon the failure in a sensible
+way.  We already printed a message in __domain_wait() (at notice level;
+you could potentially boost the severity of those messages if you want).
 
-The answer from 0-day went to the same wrong devnull B4 Relay address.
+If we truly failed to grab forcewake for the GT domain, then our attempt
+to trigger a reset via the GDRST register is also going to fail.  If
+we're going to check the return value here, then the expectation is that
+we'd actually take a meaningful action (e.g., wedging the GT since in
+this case we appear to have lost our ability to talk to the hardware).
+Some heavier action like a user-initiated FLR is probably going to be
+necessary to get things working again, and just adding a xe_gt_WARN
+doesn't really do anything meaningful.
 
-And lore's git-send-email + mailto: Reply instruction section is using the wrong
-address as well. I'm not sure why is the Reply instructions [1] section using
-From instead of Reply-To?
+Just adding extra WARN messages doesn't seem to help anything here.
 
-[1] Reply instructions:
-git send-email \
-	--in-reply-to=20240917-blktrace-algn-v1-1-9fb54b7b1dfa@samsung.com \
-	--to=devnull+da.gomez.samsung.com@kernel.org \
-	...
-	/path/to/YOUR_REPLY
+
+Matt
 
 > 
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
+> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 > 
-> BR,
-> Jani.
-> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 274737417b0f..317640554310 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -890,9 +890,12 @@ int xe_gt_suspend(struct xe_gt *gt)
+>  
+>  void xe_gt_shutdown(struct xe_gt *gt)
+>  {
+> -	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +	int err;
+> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +	xe_gt_WARN(gt, err, "Acknowledgment for domain awake timedout");
+>  	do_gt_reset(gt);
+> -	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +	xe_gt_WARN(gt, err, "Acknowledgment for domain sleep timedout");
+>  }
+>  
+>  /**
 > -- 
-> Jani Nikula, Intel
+> 2.34.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
