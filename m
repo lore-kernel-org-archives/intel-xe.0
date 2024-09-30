@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5442CF6495
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:57:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8C01CDD1D6
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 19:58:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90FBD10E59A;
-	Mon, 30 Sep 2024 19:57:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A900D10E598;
+	Mon, 30 Sep 2024 19:58:17 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC30B10E599
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5A4E10E59B
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 19:57:45 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 04/15] drm/xe: Initialize UC after xe_display_init_noaccel.
-Date: Mon, 30 Sep 2024 21:57:38 +0200
-Message-ID: <20240930195749.318998-5-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 06/15] drm/xe: Add xe_ggtt_might_lock
+Date: Mon, 30 Sep 2024 21:57:40 +0200
+Message-ID: <20240930195749.318998-7-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
 References: <20240930195749.318998-1-maarten.lankhorst@linux.intel.com>
@@ -37,99 +37,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There shouldn't be any allocation to GGTT before display readout,
-and the ucode allocations count.
+Another requirement of hiding more of struct xe_ggtt.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  2 +-
- drivers/gpu/drm/xe/xe_gt.c     | 27 +++++++++++++--------------
- drivers/gpu/drm/xe/xe_gt.h     |  2 +-
- 3 files changed, 15 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c   | 2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c | 7 +++++++
+ drivers/gpu/drm/xe/xe_ggtt.h | 7 +++++++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index e9e2946b0b53c..d7c2b7a013bfc 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -685,7 +685,7 @@ int xe_device_probe(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 5f2f1ec46b57a..f85c389e9a1f8 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2359,7 +2359,7 @@ void xe_bo_put(struct xe_bo *bo)
+ 			might_lock(&bo->client->bos_lock);
+ #endif
+ 		if (bo->ggtt_node && bo->ggtt_node->ggtt)
+-			might_lock(&bo->ggtt_node->ggtt->lock);
++			xe_ggtt_might_lock(bo->ggtt_node->ggtt);
+ 		drm_gem_object_put(&bo->ttm.base);
  	}
- 
- 	for_each_gt(gt, xe, id) {
--		err = xe_gt_init_hwconfig(gt);
-+		err = xe_gt_init_early_tile(gt);
- 		if (err)
- 			return err;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 75adde50c5da8..92ebe77a0bbdb 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -409,6 +409,18 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	if (err)
- 		goto err_hw_fence_irq;
- 
-+	/*
-+	 * Initialize GuC in order to obtain hwconfig and
-+	 * enable CTB communication.
-+	 */
-+	err = xe_uc_init(&gt->uc);
-+	if (err)
-+		goto err_force_wake;
-+
-+	err = xe_uc_init_hwconfig(&gt->uc);
-+	if (err)
-+		goto err_force_wake;
-+
- 	if (!xe_gt_is_media_type(gt)) {
- 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
- 		if (err)
-@@ -541,11 +553,7 @@ static int all_fw_domain_init(struct xe_gt *gt)
- 	return err;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 1ffc0917e28fe..7e5a793651583 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -175,6 +175,13 @@ static void ggtt_fini(void *arg)
+ 	ggtt->scratch = NULL;
  }
  
--/*
-- * Initialize enough GT to be able to load GuC in order to obtain hwconfig and
-- * enable CTB communication.
-- */
--int xe_gt_init_hwconfig(struct xe_gt *gt)
-+int xe_gt_init_early_tile(struct xe_gt *gt)
++#ifdef CONFIG_LOCKDEP
++void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
++{
++	might_lock(&ggtt->lock);
++}
++#endif
++
+ static void primelockdep(struct xe_ggtt *ggtt)
  {
- 	int err;
+ 	if (!IS_ENABLED(CONFIG_LOCKDEP))
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index bdf6d0733e2ca..62c8ce636939a 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -38,4 +38,11 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
+ void xe_ggtt_assign(const struct xe_ggtt_node *node, u16 vfid);
+ #endif
  
-@@ -556,19 +564,10 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
- 	xe_gt_mcr_init_early(gt);
- 	xe_pat_init(gt);
- 
--	err = xe_uc_init(&gt->uc);
--	if (err)
--		goto out_fw;
--
--	err = xe_uc_init_hwconfig(&gt->uc);
--	if (err)
--		goto out_fw;
--
- 	xe_gt_topology_init(gt);
- 	xe_gt_mcr_init(gt);
- 	xe_gt_enable_host_l2_vram(gt);
- 
--out_fw:
- 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- out:
- 	return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 82b9b7f82fcab..064d786d0d4d7 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -28,8 +28,8 @@ static inline bool xe_fault_inject_gt_reset(void)
- }
- 
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
--int xe_gt_init_hwconfig(struct xe_gt *gt);
- int xe_gt_init_early(struct xe_gt *gt);
-+int xe_gt_init_early_tile(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
- void xe_gt_mmio_init(struct xe_gt *gt);
- void xe_gt_declare_wedged(struct xe_gt *gt);
++#ifndef CONFIG_LOCKDEP
++static inline void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
++{ }
++#else
++void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
++#endif
++
+ #endif
 -- 
 2.45.2
 
