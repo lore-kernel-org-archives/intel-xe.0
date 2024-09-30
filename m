@@ -4,52 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBB01CF6497
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 11:42:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6BFCCF6499
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Sep 2024 11:46:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93B3F10E3F4;
-	Mon, 30 Sep 2024 11:42:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6D6810E3FE;
+	Mon, 30 Sep 2024 11:46:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qny11TGJ";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="avGeiXpT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2F010E06C;
- Mon, 30 Sep 2024 11:42:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727696559; x=1759232559;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3TlCjGfplNNyrMvR3E5XI9xKmrca8nM3q+V2WMfp/dg=;
- b=Qny11TGJOQ6UdmGKO2NPR4IHQmzZtACUjAkF0BRVKc+b8bvmc8qpS+ag
- VQIkZ1mGUy02Nwvq0zWKewl5J41eHYSIxvgCXHk3uaxoYbCTWda41dblP
- lzlA+FNBpPXJzL067Ep4KZNJfEda0dfIV1ovC68DeS9QvTCKd3YgmPVP5
- yr3BLcWkTVfPKniuH+fnHGWS9LaIxenC7Tj6JLfKGRIhY64mx25N1rcbA
- i1Jc0+Fx2I3UfMb4ro/v8UGF7rNJVBgWwUy3B7FGRjgLT+XA/F70HXmzL
- GJGOGUTUQrfAbV+vSaWS6wBb0WI2isOfuVv6SUbJ8a7ZJhnourrhsVd0A w==;
-X-CSE-ConnectionGUID: +Cyp7t4wQx6ElDF3wG39DQ==
-X-CSE-MsgGUID: Fir6RL2oSaCvZ/RwfZmmpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26733109"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26733109"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 04:42:39 -0700
-X-CSE-ConnectionGUID: jIYe8D13T56WysCW9mloBQ==
-X-CSE-MsgGUID: etjcQE7ARXCkMqs6OO+YTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73396361"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa008.fm.intel.com with ESMTP; 30 Sep 2024 04:42:38 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com
-Subject: [PATCH] drm/i915: Allow fastset for change in HDR infoframe
-Date: Mon, 30 Sep 2024 17:08:06 +0530
-Message-Id: <20240930113806.2297402-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A360E10E3F9
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 11:46:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1727696791;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=9dflzTnD9vkyLsgpnVQZfCLOfINJ0d45UnhsxkoL0jE=;
+ b=avGeiXpTxx6M0JoRRHbw86JWx8t0Hq5yL0YLoOzgqh/YvTdNhXzAJSUtof3mj0i2xexdx2
+ WKzvLi80y0KD21iQKXwALd52Nny+nzcedLQ41mc97S3E9QykfQv4dDfzksiGw1r+8IaRlu
+ t0X5l76wBqMtlcICAMwcu/lCvWsCx7U=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-344-fSSsJX5DOGGEMKlGwjq5lw-1; Mon, 30 Sep 2024 07:46:30 -0400
+X-MC-Unique: fSSsJX5DOGGEMKlGwjq5lw-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-37cdbe8a6e8so1049288f8f.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Sep 2024 04:46:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727696789; x=1728301589;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=9dflzTnD9vkyLsgpnVQZfCLOfINJ0d45UnhsxkoL0jE=;
+ b=t/+4bZqCsAQu8PVc77hzFivcc5LkPKlbr7iBN7vJxPyF+MLghJiCwcDcyTpPsX9pe1
+ b50R8V6Ue5mv0M68AlvUw0THk4ibzECzY7vUPF+T2cCX/svq9CWI1xnvJJL843/51dba
+ TXHloUZkLT/8jF+4uFRkJR+AWh8CKmjU3Xg/qgjCC+MxpV8s3PlwCQiniFIklg/c9upG
+ 8VTWTc9CJsmQK3jgQn7I2K6Papy2V7vdRWOYFITMvCeqZ2F+JjGBxsm6AngGLEAUeEVy
+ xu3gBXi35hSdW/MbXV5CSlq6qpUcV0uruf5yEaqckSekqC1EKN1qTGQFpiBx3YO+z4mO
+ rk1g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVLQCCLzh4gbMO4NXslRMhUUQ0jQViRT24dcfSMl4uX2nBFRVSLkE2DKX8ceZFYpJYebqspRaDShg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyxrjovxC9F7no7lim+kPONDz+w09xUYefbWDL3gWa2yQXcSEPE
+ eS3tQo1tZr0/UwCJHXtLLCjtHhqL7QEzj0WnwK0KZrFRYZ9L/NPE+Ay0/48k7Y/TsHOU6XwebeE
+ ThKx1z44nrjVrN4jLJLZFOq4cWQWOnYlCLKlYo3PxlvgRxHRd7XEgAzC+huUbxROW
+X-Received: by 2002:a5d:4449:0:b0:37c:cbca:fd82 with SMTP id
+ ffacd0b85a97d-37cd5a6bf37mr8142565f8f.1.1727696789125; 
+ Mon, 30 Sep 2024 04:46:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGCLLMP4eWziJje4qLxBniM/1l717DjN4rYkRrUfLNGvZq4irAlFPPhs47tndfAyLGLqSxLgA==
+X-Received: by 2002:a5d:4449:0:b0:37c:cbca:fd82 with SMTP id
+ ffacd0b85a97d-37cd5a6bf37mr8142547f8f.1.1727696788699; 
+ Mon, 30 Sep 2024 04:46:28 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-37cd565e767sm8897572f8f.38.2024.09.30.04.46.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 30 Sep 2024 04:46:28 -0700 (PDT)
+Message-ID: <9c025c92-36f2-4358-af24-b699bfa84b43@redhat.com>
+Date: Mon, 30 Sep 2024 13:46:27 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] drm: Introduce DRM client library
+To: Thomas Zimmermann <tzimmermann@suse.de>, simona@ffwll.ch,
+ airlied@gmail.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20240927144252.31813-1-tzimmermann@suse.de>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <20240927144252.31813-1-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,29 +95,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Changes in Dynamic Range and Mastering infoframe
-should not trigger a full modeset. Therefore, allow
-fastset.
+On 27/09/2024 16:37, Thomas Zimmermann wrote:
+> With the next DRM client coming soon (drm_log) and most of DRM's
+> fbdev emulation consolidated in a few places, it's time to provide
+> a single place for the clients.
+> 
+> The new module drm_client_lib.ko stores most of the common client
+> code. It's designed such that drivers can opt into client support,
+> but the presence of the client module depends on the user's kernel
+> configuration. Without selected clients, no client module will be
+> build.
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Thanks for this work, I've rebased drm_log on top of this, and it works 
+great.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f7667931f9d9..67021f53dae8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5469,7 +5469,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_INFOFRAME(avi);
- 	PIPE_CONF_CHECK_INFOFRAME(spd);
- 	PIPE_CONF_CHECK_INFOFRAME(hdmi);
--	PIPE_CONF_CHECK_INFOFRAME(drm);
-+	if (!fastset)
-+		PIPE_CONF_CHECK_INFOFRAME(drm);
- 	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
- 	PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
- 
+My only nitpick is I would prefer it to be called drm_client.ko, to be a 
+little shorter. So that the kernel parameter to change the default 
+client can be "drm_client.default=fbdev".
+
+Best regards,
+
 -- 
-2.25.1
+
+Jocelyn
+
+> 
+> Thomas Zimmermann (5):
+>    drm/i915: Select DRM_CLIENT_SELECTION
+>    drm/xe: Select DRM_CLIENT_SELECTION
+>    drm: Move client-device functions in to drm_client_dev.c
+>    drm: Select fbdev helpers for modules that require them
+>    drm: Add client-lib module
+> 
+>   Documentation/gpu/drm-client.rst   |   3 +
+>   drivers/gpu/drm/Kconfig            |  34 +++++--
+>   drivers/gpu/drm/Makefile           |  20 +++--
+>   drivers/gpu/drm/amd/amdgpu/Kconfig |   1 +
+>   drivers/gpu/drm/drm_client.c       | 122 +------------------------
+>   drivers/gpu/drm/drm_client_dev.c   | 138 +++++++++++++++++++++++++++++
+>   drivers/gpu/drm/drm_dumb_buffers.c |   2 +
+>   drivers/gpu/drm/drm_file.c         |   2 +
+>   drivers/gpu/drm/drm_framebuffer.c  |   2 +
+>   drivers/gpu/drm/drm_gem.c          |   2 +
+>   drivers/gpu/drm/i915/Kconfig       |   1 +
+>   drivers/gpu/drm/xe/Kconfig         |   1 +
+>   12 files changed, 196 insertions(+), 132 deletions(-)
+>   create mode 100644 drivers/gpu/drm/drm_client_dev.c
+> 
 
