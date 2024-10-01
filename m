@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52DB2CEB2E3
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 03:51:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A4AACEB2E4
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 03:51:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15B5E10E5CB;
-	Tue,  1 Oct 2024 03:51:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2202110E5C7;
+	Tue,  1 Oct 2024 03:51:56 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 574BD10E5C9;
- Tue,  1 Oct 2024 03:51:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 076E510E5C9;
+ Tue,  1 Oct 2024 03:51:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_linux-next=3A_build_?=
- =?utf-8?q?failure_after_merge_of_the_random_tree?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_linux-next=3A_build_failu?=
+ =?utf-8?q?re_after_merge_of_the_random_tree?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stephen Rothwell" <sfr@canb.auug.org.au>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Oct 2024 03:51:43 -0000
-Message-ID: <172775470335.1140158.9056726323445352265@2413ebb6fbb6>
+Date: Tue, 01 Oct 2024 03:51:55 -0000
+Message-ID: <172775471502.1140158.3601799122138296878@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241001134423.62b12a80@canb.auug.org.au>
 In-Reply-To: <20241001134423.62b12a80@canb.auug.org.au>
@@ -44,13 +44,67 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: linux-next: build failure after merge of the random tree
 URL   : https://patchwork.freedesktop.org/series/139356/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c41c6b36db6d drm-tip: 2024y-10m-01d-03h-24m-27s UTC integration manifest
-=== git am output follows ===
-Applying: linux-next: build failure after merge of the random tree
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 89a80adb90cfb62b42e4867bf2e8319ab9c9a9fe
+Author: Stephen Rothwell <sfr@canb.auug.org.au>
+Date:   Tue Oct 1 13:44:23 2024 +1000
+
+    linux-next: build failure after merge of the random tree
+    
+    Hi all,
+    
+    After merging the random tree, today's linux-next build (x86_64
+    allmodconfig) failed like this:
+    
+    Caused by commit
+    
+      38d1a9d296c8 ("random: Do not include <linux/prandom.h> in <linux/random.h>")
+    
+    interacting with commit
+    
+      5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
+    
+    from the drm-xe tree.
+    
+    I have applied the following merge fix patch for today.
+    
+    From: Stephen Rothwell <sfr@canb.auug.org.au>
+    Date: Tue, 1 Oct 2024 13:33:48 +1000
+    Subject: [PATCH] fix up for "random: Do not include <linux/prandom.h> in <linux/random.h>"
+    
+    interacting with commit
+    
+      5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
+    
+    from the drm-xe tree.
+    
+    Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
++ /mt/dim checkpatch c41c6b36db6d8675dfb21e7ab8570a3932608654 drm-intel
+89a80adb90cf linux-next: build failure after merge of the random tree
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+  38d1a9d296c8 ("random: Do not include <linux/prandom.h> in <linux/random.h>")
+
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")'
+#17: 
+  5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
+
+-:29: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")'
+#29: 
+  5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
+
+total: 2 errors, 1 warnings, 0 checks, 8 lines checked
 
 
