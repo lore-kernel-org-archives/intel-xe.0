@@ -4,42 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 043B5CEACDE
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 15:32:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E175FCEACDD
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 15:32:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3DAC10E640;
-	Tue,  1 Oct 2024 15:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0A5110E0B7;
+	Tue,  1 Oct 2024 15:32:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="rVlMUl92";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="R37E5Pyn";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1833A10E508;
- Mon, 30 Sep 2024 14:07:35 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5FF910E32A;
+ Tue,  1 Oct 2024 13:26:18 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 170CD5C0715;
- Mon, 30 Sep 2024 14:07:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFA62C4CEC7;
- Mon, 30 Sep 2024 14:07:34 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 519D0A43662;
+ Tue,  1 Oct 2024 13:26:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AFB5C4CEC6;
+ Tue,  1 Oct 2024 13:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1727705254;
- bh=45WJzA0P/g2EdVJ2lnXjZDehqloa9YYnfFhlgML4fYc=;
+ s=korg; t=1727789177;
+ bh=MgusM4RYsFRdrt0s31zuvz4JXR4CcVxc5ztsAPE1+Fs=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=rVlMUl92cKgL/A5KRJNQWMJfzuT0V8dEFGNpvqtK9rsRU3+NWDuNBMP/s0neWbREW
- gkwkvVIKVcIRQYGdNPfo1vqcegdGNnO6KQBQMS1dGo5pDc5ZjLIAMxAJxG1TcA391o
- NXLTSa41bL67YhStjFRIflOR4n+Euy86RX+GFGTU=
-Date: Mon, 30 Sep 2024 10:07:30 -0400
+ b=R37E5Pynm/m8Fbxe5013oDsTiMaIH7ZoMDGM8ILDAkdASqwpXpPyjQX2+ZSnuaBK1
+ +mkzQbRa3G0XORcYS9NCvevXt6dnUvtH5FfovLpahMILiw3nbPCmxNkXBAmWhijKoU
+ dpGdB2wXsK0Jxxkt1G3NRKD+TP0iB3RK5Z4SYd9c=
+Date: Tue, 1 Oct 2024 09:26:16 -0400
 From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-To: Daniel Gomez <da.gomez@samsung.com>
-Cc: I915-ci-infra@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- patchwork@emeril.freedesktop.org, tools@kernel.org, d+samsung@kruces.com
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Daniel Gomez <da.gomez@samsung.com>, 
+ I915-ci-infra@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ tools@kernel.org, d+samsung@kruces.com
 Subject: Re: Incorrect response address when using B4
-Message-ID: <20240930-sapphire-swift-of-reverence-168e2b@lemur>
+Message-ID: <20241001-stalwart-mackerel-of-atheism-5eeef2@lemur>
 References: <CGME20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb@eucas1p1.samsung.com>
  <20240930133007.u4vm5qj5urikpmvc@AALNPWDAGOMEZ1.aal.scsc.local>
+ <20240930-sapphire-swift-of-reverence-168e2b@lemur>
+ <20240930141839.3rjfom4c2tca655n@AALNPWDAGOMEZ1.aal.scsc.local>
+ <20240930-rustling-auburn-jaguar-23d200@lemur>
+ <20240930143309.pwl7dzv537b2q3wk@AALNPWDAGOMEZ1.aal.scsc.local>
+ <87h69xw68b.fsf@intel.com>
+ <20240930211519.tquvjw7davr7zlfz@AALNPWDAGOMEZ1.aal.scsc.local>
+ <875xqcw7ob.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240930133007.u4vm5qj5urikpmvc@AALNPWDAGOMEZ1.aal.scsc.local>
+In-Reply-To: <875xqcw7ob.fsf@intel.com>
 X-Mailman-Approved-At: Tue, 01 Oct 2024 15:32:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,16 +63,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 03:30:07PM GMT, Daniel Gomez wrote:
-> Hi,
-> 
-> I sent this patch [1] using B4 web endpoint and then I received a
-> response email to the wrong address: To: "Daniel Gomez via B4 Relay"
-> <devnull+da.gomez.samsung.com@kernel.org> instead of To: "Daniel Gomez"
-> <da.gomez@samsung.com>.
+On Tue, Oct 01, 2024 at 11:26:12AM GMT, Jani Nikula wrote:
+> - In all cases, the "From:" field SHOULD NOT contain any mailbox that
+>   does not belong to the author(s) of the message. [1]
 
-Was it an automated tool that sent you that message? Normally, email clients
-would honour the "Reply-To" field and not use the From: address put in by the
-relay.
+Well, the author of the message is not the original sender, but the relay
+service -- so this is still true.
+
+> I assume b4 is not using your address in From: because it's very likely
+> to get the email classified as spam due to From: spoofing. Worse, it
+> might get kernel.org on spam sender lists.
+
+It's not just spam classification -- this is literally the only way to make
+DMARC work. We can only send messages from domains we control, so to relay
+patches coming from origins that we don't control we necessarily rewrite the
+From: address (and put it into the body of the message, as git expects).
 
 -K
