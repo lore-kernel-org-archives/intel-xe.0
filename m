@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 250B4CE7CE5
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 08:26:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F664CE7CE7
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 08:41:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAFC710E5F8;
-	Tue,  1 Oct 2024 08:26:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lX0pF4Vf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBBDC10E0F4;
- Tue,  1 Oct 2024 08:26:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727771216; x=1759307216;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=dZKqsnE8SeYG46zmreOGdU5TQ/EYytPZ+qm6/RDU/Gg=;
- b=lX0pF4VfhH1rZ0uvax5mXAVfY9QDg8w42nD9YJcgIUm0Yf3zo/k8DRF4
- EcXbY8ts9tHpSBMJSAqbB2nId/+Vwq5blmnAsuTp+ynIFi/KF/wkF2vmf
- XaUv9l9MFaLtVvv23MEwi3QXjrclFQqEnEZxfZInc5/7MZJ4KmLwTIrmK
- q2/0hsXhLdTlAXEjedjvLh0SYo/+S4RYRfFWlylAdrIirSocFtuvcs2Fp
- QZeurYlw73+d6Kd0StP4fkzCm5/4sJELWZe4Lixj2Waw9G5Wp2wAoyT1o
- QsaKzX+Qy4UycJzTFt2QUE5Yg4jFPjn2KUno/XHzFVrxFBCQabYB/3G92 A==;
-X-CSE-ConnectionGUID: Qpl6Io5lTWCGj4iz9FwcOg==
-X-CSE-MsgGUID: aSoQgdxUSnSjbfnHw4J2pw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30774121"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30774121"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 01:26:29 -0700
-X-CSE-ConnectionGUID: MF5jHQMPQaaCkQfVUVK51w==
-X-CSE-MsgGUID: A3GpwWyZRb6tFaIh5ku0sQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="78118083"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.188])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 01:26:26 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniel Gomez <da.gomez@samsung.com>, Konstantin Ryabitsev
- <konstantin@linuxfoundation.org>
-Cc: I915-ci-infra@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- tools@kernel.org, d+samsung@kruces.com
-Subject: Re: Incorrect response address when using B4
-In-Reply-To: <20240930211519.tquvjw7davr7zlfz@AALNPWDAGOMEZ1.aal.scsc.local>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <CGME20240930133009eucas1p14b11ee712ae3ab1ca3aafc2833103bcb@eucas1p1.samsung.com>
- <20240930133007.u4vm5qj5urikpmvc@AALNPWDAGOMEZ1.aal.scsc.local>
- <20240930-sapphire-swift-of-reverence-168e2b@lemur>
- <20240930141839.3rjfom4c2tca655n@AALNPWDAGOMEZ1.aal.scsc.local>
- <20240930-rustling-auburn-jaguar-23d200@lemur>
- <20240930143309.pwl7dzv537b2q3wk@AALNPWDAGOMEZ1.aal.scsc.local>
- <87h69xw68b.fsf@intel.com>
- <20240930211519.tquvjw7davr7zlfz@AALNPWDAGOMEZ1.aal.scsc.local>
-Date: Tue, 01 Oct 2024 11:26:12 +0300
-Message-ID: <875xqcw7ob.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C98310E18E;
+	Tue,  1 Oct 2024 08:41:06 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D3B910E18E;
+ Tue,  1 Oct 2024 08:41:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9119576412385320019=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/dp=3A_Guarantee_a_minim?=
+ =?utf-8?q?um_HBlank_time_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 01 Oct 2024 08:41:05 -0000
+Message-ID: <172777206511.1141037.11702168470660002830@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241001074348.2193502-1-arun.r.murthy@intel.com>
+In-Reply-To: <20241001074348.2193502-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,84 +36,230 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 30 Sep 2024, Daniel Gomez <da.gomez@samsung.com> wrote:
-> On Mon, Sep 30, 2024 at 05:45:08PM +0300, Jani Nikula wrote:
->> On Mon, 30 Sep 2024, Daniel Gomez <da.gomez@samsung.com> wrote:
->> > On Mon, Sep 30, 2024 at 10:20:57AM -0400, Konstantin Ryabitsev wrote:
->> >> On Mon, Sep 30, 2024 at 04:18:39PM GMT, Daniel Gomez wrote:
->> >> > > Was it an automated tool that sent you that message? Normally, email clients
->> >> > > would honour the "Reply-To" field and not use the From: address put in by the
->> >> > > relay.
->> >> > 
->> >> > It was a CI Patchwork tool. Response [1] to my patch was sent from "From:
->> >> > Patchwork <patchwork@emeril.freedesktop.org>".
->> >> > 
->> >> > [1] https://lore.kernel.org/all/172735727458.1107233.1757281470637305143@2413ebb6fbb6/
->> >> > 
->> >> > I think that tool is ignoring the "Reply-To" field [2] from the B4 message and
->> >> > using the From field.
->> >> > 
->> >> > 	From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
->> >> > 	Reply-To: da.gomez@samsung.com
->> >> 
->> >> It's no big deal as long as you got the email response in the end. We expect
->> >> this to happen with a lot of automation, which is why any replies to the relay
->> >> address are auto-discarded.
->> >
->> > To clarify, the email response didn't land into my inbox. I realized a response
->> > was sent after checking at lore.kernel.org.
->> 
->> Yeah, our patchwork instance tries not to spam everyone, and limits the
->> replies to the submitter + intel-gfx/intel-xe mailing lists, but
->> apparently uses From instead of Reply-To.
->
-> I've just realized that it also happened with 0-day here:
-> https://lore.kernel.org/all/20240917-blktrace-algn-v1-1-9fb54b7b1dfa@samsung.com/#t
->
-> The answer from 0-day went to the same wrong devnull B4 Relay address.
->
-> And lore's git-send-email + mailto: Reply instruction section is using the wrong
-> address as well. I'm not sure why is the Reply instructions [1] section using
-> From instead of Reply-To?
+--===============9119576412385320019==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It's just that email is hard. It seems to be surprisingly difficult to
-follow the requirements of the relevant email RFCs to the letter, but
-also just by following the requirements or even recommendations of the
-RFCs won't give you the kind of interoperability you might expect.
+== Series Details ==
 
-For example:
+Series: drm/i915/dp: Guarantee a minimum HBlank time (rev2)
+URL   : https://patchwork.freedesktop.org/series/139268/
+State : success
 
-- In all cases, the "From:" field SHOULD NOT contain any mailbox that
-  does not belong to the author(s) of the message. [1]
+== Summary ==
 
-- When a message is a reply to another message, the mailboxes of the
-  authors of the original message (the mailboxes in the "From:" field)
-  or mailboxes specified in the "Reply-To:" field (if it exists) MAY
-  appear in the "To:" field of the reply since these would normally be
-  the primary recipients of the reply. [2]
+CI Bug Log - changes from xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654_BAT -> xe-pw-139268v2_BAT
+====================================================
 
-I assume b4 is not using your address in From: because it's very likely
-to get the email classified as spam due to From: spoofing. Worse, it
-might get kernel.org on spam sender lists.
+Summary
+-------
 
-Yet using Reply-To: in replies is completely optional. It's not required
-or even recommended, it's optional.
+  **SUCCESS**
 
-I realize this does not really help you with the issue, but might help
-you adjust your expectations...
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139268v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#2229])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [DMESG-WARN][4] ([Intel XE#2871]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - bat-adlp-7:         [DMESG-WARN][6] ([Intel XE#2496]) -> [PASS][7] +31 other tests pass
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
+    - bat-bmg-1:          [DMESG-WARN][8] ([Intel XE#877]) -> [PASS][9] +2 other tests pass
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [SKIP][10] ([Intel XE#455]) -> [PASS][11] +3 other tests pass
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@kms_psr@psr-primary-page-flip@edp-1:
+    - bat-adlp-7:         [DMESG-FAIL][12] ([Intel XE#2871]) -> [PASS][13] +1 other test pass
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [INCOMPLETE][14] ([Intel XE#2874]) -> [PASS][15] +1 other test pass
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2871]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
 
 
-BR,
-Jani.
+Build changes
+-------------
+
+  * IGT: IGT_8043 -> IGT_8046
+  * Linux: xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654 -> xe-pw-139268v2
+
+  IGT_8043: 8043
+  IGT_8046: 8046
+  xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654: c41c6b36db6d8675dfb21e7ab8570a3932608654
+  xe-pw-139268v2: 139268v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/index.html
+
+--===============9119576412385320019==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-[1] https://datatracker.ietf.org/doc/html/rfc5322#section-3.6.2
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-[2] https://datatracker.ietf.org/doc/html/rfc5322#section-3.6.3
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Guarantee a minimum HBlank time (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139268/">https://patchwork.freedesktop.org/series/139268/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/index.html</a></td></tr>
+
+</table>
 
 
--- 
-Jani Nikula, Intel
+    <h1>CI Bug Log - changes from xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654_BAT -&gt; xe-pw-139268v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139268v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-0:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> +31 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139268v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8043 -&gt; IGT_8046</li>
+<li>Linux: xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654 -&gt; xe-pw-139268v2</li>
+</ul>
+<p>IGT_8043: 8043<br />
+  IGT_8046: 8046<br />
+  xe-1994-c41c6b36db6d8675dfb21e7ab8570a3932608654: c41c6b36db6d8675dfb21e7ab8570a3932608654<br />
+  xe-pw-139268v2: 139268v2</p>
+
+</body>
+</html>
+
+--===============9119576412385320019==--
