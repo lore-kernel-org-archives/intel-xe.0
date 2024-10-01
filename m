@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49465CE7CF8
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 09:14:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 487CBCE7CF8
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 09:16:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15C3B10E00E;
-	Tue,  1 Oct 2024 09:14:50 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D90E010E00E;
- Tue,  1 Oct 2024 09:14:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBF710E00E;
+	Tue,  1 Oct 2024 09:16:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BNzPz0ud";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B384810E10B
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 09:16:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727774200; x=1759310200;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=+A5Aix1KbuRMEpDVO+Eaf/LjoD+U1Rsghy9GA9FIb0w=;
+ b=BNzPz0ud1CBGk6/hvxU/mQySndXcR47j4M1ULp/CKzOtW5Sstl4PZQUi
+ 36T+lgtb1LqTXaSSwlEHIEEedwcJPaebZdV53SvBTR+zuAKFkwQ3sh17o
+ uxD3P8h/ZMbD3L187EwSuHrXGl3WSlMWXH4KYc4PHJRcBmbrCabKA+XbM
+ vXekxouLvGOG4Yvgmn4J4P+UwqrdqJuI4wza1TwJGV2EorbrVc401Akof
+ Fdq+1aLz0tfHj3n/AKnjqV/ObuatnEJrItT2hmpjZFjdQ6eCCwJKThViX
+ gTZU7jUxk/rSSgwX/kbvwNC7rc2aYOAhOkBgSyN8eEqo8e2xUjhiUj6sK A==;
+X-CSE-ConnectionGUID: clz68968TlyqDdNXisd+2Q==
+X-CSE-MsgGUID: 0GdJggjzTG+hSejcpIjSxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30691388"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30691388"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 02:16:39 -0700
+X-CSE-ConnectionGUID: YuEoU7dGRk+NS7KlV7v0WQ==
+X-CSE-MsgGUID: vgVSgM9aTXKu05SLbsKHdQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="78569165"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.194.118])
+ ([10.245.194.118])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 02:16:39 -0700
+Message-ID: <6b737bba-619c-4e5e-a245-94571defa95e@linux.intel.com>
+Date: Tue, 1 Oct 2024 11:16:35 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?v2=2C1/4=5D_drm/xe/ct=3A_prevent_UAF_in_send=5Frecv=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Oct 2024 09:14:48 -0000
-Message-ID: <172777408887.1141176.10398823899780129241@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241001084346.98516-5-matthew.auld@intel.com>
-In-Reply-To: <20241001084346.98516-5-matthew.auld@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/compat: remove unused i915_gpu_error.h
+To: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240930164052.3862911-1-jani.nikula@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240930164052.3862911-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +65,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [v2,1/4] drm/xe/ct: prevent UAF in send_recv()
-URL   : https://patchwork.freedesktop.org/series/139375/
-State : success
+On 9/30/2024 6:40 PM, Jani Nikula wrote:
+> The last user of the compat header was removed in commit d6b933912df0
+> ("drm/i915/dmc: convert intel_dmc_print_error_state() to drm_printer").
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 126b085652ff525948f88b62128ec9d95e00e281
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
 
+> ---
+>  .../drm/xe/compat-i915-headers/i915_gpu_error.h | 17 -----------------
+>  1 file changed, 17 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
+>
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
+> deleted file mode 100644
+> index 98e9dd78f670..000000000000
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
+> +++ /dev/null
+> @@ -1,17 +0,0 @@
+> -/* SPDX-License-Identifier: MIT */
+> -/*
+> - * Copyright © 2023 Intel Corporation
+> - */
+> -
+> -#ifndef _I915_GPU_ERROR_H_
+> -#define _I915_GPU_ERROR_H_
+> -
+> -struct drm_i915_error_state_buf;
+> -
+> -__printf(2, 3)
+> -static inline void
+> -i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
+> -{
+> -}
+> -
+> -#endif
