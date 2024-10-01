@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17DE9CEACD5
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 14:53:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16BADCEACDD
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 14:53:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4B9610E645;
-	Tue,  1 Oct 2024 14:53:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4E2010E643;
+	Tue,  1 Oct 2024 14:53:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q6UmMny9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="no/CzWnH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FED410E645
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 14:53:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3694610E645
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 14:53:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727794418; x=1759330418;
+ t=1727794419; x=1759330419;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=suVz6QbuiwVWKSzpBgSbsXSxnui6Jn6dg2FwAGDznAY=;
- b=Q6UmMny9zkFERJopAcs70IBCBRuFWU/USBJ/UuLMDcSCATMTasRBpf2H
- qSQ2n3XXxOCNW7xWCJ+AuauNCMzvhbrfGtjNlNmKVfmB70nyokwhV/fjf
- l9/ibrcw4zHD0/QmnXmkQqcTrX4PP/vJOYv/tJC8+ocoeZVBYMId2fXJ6
- 5Ykw0M9+BPd50w2VwRiZGxN6QjG4CXhUS9ALuX1DJpFpURg4TdjjkFLkQ
- AOxOqDGhMYu1vqrYq6F0argNe6bpEy0/0NQev7LgIbHePYSjirApImSfa
- I6ml1UVzqTvrN9CV7adkQPJg7frEE+dXnOlxjmzEcAYnnT1V4sATtKihk g==;
-X-CSE-ConnectionGUID: PX0B6D/KQUWVkBbzqIzyzw==
-X-CSE-MsgGUID: WvrBHl5ZR+a3nCpm0iexag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="27091384"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27091384"
+ bh=UZcpXpFF3ced4lPaxcizJ06rtwGWF8bizoG73T6aVv8=;
+ b=no/CzWnH7xWSzL2hymcxOQWqLBXz9S+F+y8pLmyO5mfAhxkw4NOCaGg1
+ FSANRXULkxuBkTefWRuayELxlndyzMph/GQGpJ16VjTNzpiY3rXU26sm8
+ ie6hAO+EDO0SV9gKoDy+OznMZ1jVbwsNyoZeuCD8kNLb3FMDlJnaQ2CIi
+ xHCoKdC9zvKiaJPjaePg1Xdqpqb+1UQ9vt5kNrIvwsg5Le6AI296nUf15
+ ll/Mfcvx8OHDmRyo5OoaFZD+kNPbEeAK4t73xV9pNORHm7Jdq1XU4CHCp
+ CLZpWSj8aWmMtTxcN2LLEixX7rXpkEzHQuqktc2A4Ft4sSCThK6z1IsoJ Q==;
+X-CSE-ConnectionGUID: 3xjMBU9iQ9uXsL8Y+CakDg==
+X-CSE-MsgGUID: 5uxcu+ppRJ6eKhUKLnpc9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="27091387"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27091387"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 07:53:38 -0700
-X-CSE-ConnectionGUID: P+J3ExOBQTuhmT3q0k4RUA==
-X-CSE-MsgGUID: 0zrBl2DJR5q9YAnnytWf9A==
+ 01 Oct 2024 07:53:39 -0700
+X-CSE-ConnectionGUID: viAwoGRtSj61CK28BvCbBQ==
+X-CSE-MsgGUID: sAhZw44qSQCf4lspJ1n71g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="97048644"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="97048649"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 07:53:36 -0700
+ 01 Oct 2024 07:53:38 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 04/18] drm/xe/eudebug: Introduce exec_queue events
-Date: Tue,  1 Oct 2024 17:42:52 +0300
-Message-Id: <20241001144306.1991001-5-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 05/18] drm/xe/eudebug: hw enablement for eudebug
+Date: Tue,  1 Oct 2024 17:42:53 +0300
+Message-Id: <20241001144306.1991001-6-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
 References: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
@@ -70,388 +69,226 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 
-Inform debugger about creation and destruction of exec_queues.
+In order to turn on debug capabilities, (i.e. breakpoints), TD_CTL
+and some other registers needs to be programmed. Implement eudebug
+mode enabling including eudebug related workarounds.
 
-1) Use user engine class types instead of internal xe_engine_class enum
-   in exec_queue event.
-
-2) During discovery do not advertise every execqueue created, only ones
-   with class render or compute.
-
-v2: - Only track long running queues
-    - Checkpatch (Tilak)
+v2: Move workarounds to xe_wa_oob. Use reg_sr directly instead of
+xe_rtp as it suits better for dynamic manipulation of those register we
+do later in the series.
 
 Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_eudebug.c       | 187 +++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_eudebug.h       |   7 +
- drivers/gpu/drm/xe/xe_eudebug_types.h |  31 ++++-
- drivers/gpu/drm/xe/xe_exec_queue.c    |   5 +
- include/uapi/drm/xe_drm_eudebug.h     |  12 ++
- 5 files changed, 240 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 ++
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     | 10 ++++
+ drivers/gpu/drm/xe/xe_eudebug.c          | 70 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h          |  3 +
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  2 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  2 +
+ 6 files changed, 91 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 81b71903675e..e004423a66bf 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -115,6 +115,10 @@
+ 
+ #define INDIRECT_RING_STATE(base)		XE_REG((base) + 0x108)
+ 
++#define CS_DEBUG_MODE2(base)			XE_REG((base) + 0xd8, XE_REG_OPTION_MASKED)
++#define   INST_STATE_CACHE_INVALIDATE		REG_BIT(6)
++#define   GLOBAL_DEBUG_ENABLE			REG_BIT(5)
++
+ #define RING_BBADDR(base)			XE_REG((base) + 0x140)
+ #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
+ 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index fb80042cbe0d..2780541feb67 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -453,6 +453,14 @@
+ #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
+ #define   CLEAR_OPTIMIZATION_DISABLE			REG_BIT(6)
+ 
++#define TD_CTL					XE_REG_MCR(0xe400)
++#define   TD_CTL_FEH_AND_FEE_ENABLE		REG_BIT(7) /* forced halt and exception */
++#define   TD_CTL_FORCE_EXTERNAL_HALT		REG_BIT(6)
++#define   TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE	REG_BIT(4)
++#define   TD_CTL_FORCE_EXCEPTION		REG_BIT(3)
++#define   TD_CTL_BREAKPOINT_ENABLE		REG_BIT(2)
++#define   TD_CTL_GLOBAL_DEBUG_ENABLE		REG_BIT(0) /* XeHP */
++
+ #define CACHE_MODE_SS				XE_REG_MCR(0xe420, XE_REG_OPTION_MASKED)
+ #define   DISABLE_ECC				REG_BIT(5)
+ #define   ENABLE_PREFETCH_INTO_IC		REG_BIT(3)
+@@ -479,11 +487,13 @@
+ #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
+ #define   STALL_DOP_GATING_DISABLE		REG_BIT(5)
+ #define   EARLY_EOT_DIS				REG_BIT(1)
++#define   STALL_DOP_GATING_DISABLE		REG_BIT(5)
+ 
+ #define ROW_CHICKEN2				XE_REG_MCR(0xe4f4, XE_REG_OPTION_MASKED)
+ #define   DISABLE_READ_SUPPRESSION		REG_BIT(15)
+ #define   DISABLE_EARLY_READ			REG_BIT(14)
+ #define   ENABLE_LARGE_GRF_MODE			REG_BIT(12)
++#define   XEHPC_DISABLE_BTB			REG_BIT(11)
+ #define   PUSH_CONST_DEREF_HOLD_DIS		REG_BIT(8)
+ #define   DISABLE_TDL_SVHS_GATING		REG_BIT(1)
+ #define   DISABLE_DOP_GATING			REG_BIT(0)
 diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index c294e2c6152b..4706320b39b6 100644
+index 4706320b39b6..f90b15fc4964 100644
 --- a/drivers/gpu/drm/xe/xe_eudebug.c
 +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -14,6 +14,7 @@
+@@ -10,13 +10,21 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include <generated/xe_wa_oob.h>
++
++#include "regs/xe_gt_regs.h"
++#include "regs/xe_engine_regs.h"
++
+ #include "xe_assert.h"
  #include "xe_device.h"
  #include "xe_eudebug.h"
  #include "xe_eudebug_types.h"
-+#include "xe_exec_queue.h"
+ #include "xe_exec_queue.h"
  #include "xe_macros.h"
++#include "xe_reg_sr.h"
++#include "xe_rtp.h"
  #include "xe_vm.h"
++#include "xe_wa.h"
  
-@@ -748,7 +749,7 @@ static long xe_eudebug_read_event(struct xe_eudebug *d,
- 		u64_to_user_ptr(arg);
- 	struct drm_xe_eudebug_event user_event;
- 	struct xe_eudebug_event *event;
--	const unsigned int max_event = DRM_XE_EUDEBUG_EVENT_VM;
-+	const unsigned int max_event = DRM_XE_EUDEBUG_EVENT_EXEC_QUEUE;
- 	long ret = 0;
- 
- 	if (XE_IOCTL_DBG(xe, copy_from_user(&user_event, user_orig, sizeof(user_event))))
-@@ -1155,8 +1156,183 @@ void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm)
- 	xe_eudebug_event_put(d, vm_destroy_event(d, xef, vm));
+ /*
+  * If there is no detected event read by userspace, during this period, assume
+@@ -945,6 +953,68 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
+ 	return ret;
  }
  
-+static bool exec_queue_class_is_tracked(enum xe_engine_class class)
++#undef XE_REG_MCR
++#define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
++
++void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
 +{
-+	return class == XE_ENGINE_CLASS_COMPUTE ||
-+		class == XE_ENGINE_CLASS_RENDER;
-+}
++	struct xe_gt *gt = hwe->gt;
++	struct xe_device *xe = gt_to_xe(gt);
 +
-+static const u16 xe_to_user_engine_class[] = {
-+	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
-+	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
-+	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
-+	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
-+	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
-+};
++	if (!xe->eudebug.available)
++		return;
 +
-+static int send_exec_queue_event(struct xe_eudebug *d, u32 flags,
-+				 u64 client_handle, u64 vm_handle,
-+				 u64 exec_queue_handle, enum xe_engine_class class,
-+				 u32 width, u64 *lrc_handles, u64 seqno)
-+{
-+	struct xe_eudebug_event *event;
-+	struct xe_eudebug_event_exec_queue *e;
-+	const u32 sz = struct_size(e, lrc_handle, width);
-+	const u32 xe_engine_class = xe_to_user_engine_class[class];
++	if (!xe_rtp_match_first_render_or_compute(gt, hwe))
++		return;
 +
-+	if (!exec_queue_class_is_tracked(class))
-+		return -EINVAL;
++	if (XE_WA(gt, 18022722726)) {
++		struct xe_reg_sr_entry sr_entry = {
++			.reg = ROW_CHICKEN,
++			.clr_bits = STALL_DOP_GATING_DISABLE,
++			.set_bits = STALL_DOP_GATING_DISABLE,
++			.read_mask = STALL_DOP_GATING_DISABLE,
++		};
 +
-+	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_EXEC_QUEUE,
-+					seqno, flags, sz, GFP_KERNEL);
-+	if (!event)
-+		return -ENOMEM;
-+
-+	e = cast_event(e, event);
-+
-+	write_member(struct drm_xe_eudebug_event_exec_queue, e, client_handle, client_handle);
-+	write_member(struct drm_xe_eudebug_event_exec_queue, e, vm_handle, vm_handle);
-+	write_member(struct drm_xe_eudebug_event_exec_queue, e, exec_queue_handle,
-+		     exec_queue_handle);
-+	write_member(struct drm_xe_eudebug_event_exec_queue, e, engine_class, xe_engine_class);
-+	write_member(struct drm_xe_eudebug_event_exec_queue, e, width, width);
-+
-+	memcpy(e->lrc_handle, lrc_handles, width);
-+
-+	return xe_eudebug_queue_event(d, event);
-+}
-+
-+static int exec_queue_create_event(struct xe_eudebug *d,
-+				   struct xe_file *xef, struct xe_exec_queue *q)
-+{
-+	int h_c, h_vm, h_queue;
-+	u64 h_lrc[XE_HW_ENGINE_MAX_INSTANCE], seqno;
-+	int i;
-+
-+	if (!xe_exec_queue_is_lr(q))
-+		return 0;
-+
-+	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
-+	if (h_c < 0)
-+		return h_c;
-+
-+	h_vm = find_handle(d->res, XE_EUDEBUG_RES_TYPE_VM, q->vm);
-+	if (h_vm < 0)
-+		return h_vm;
-+
-+	if (XE_WARN_ON(q->width >= XE_HW_ENGINE_MAX_INSTANCE))
-+		return -EINVAL;
-+
-+	for (i = 0; i < q->width; i++) {
-+		int h, ret;
-+
-+		ret = _xe_eudebug_add_handle(d,
-+					     XE_EUDEBUG_RES_TYPE_LRC,
-+					     q->lrc[i],
-+					     NULL,
-+					     &h);
-+
-+		if (ret < 0 && ret != -EEXIST)
-+			return ret;
-+
-+		XE_WARN_ON(!h);
-+
-+		h_lrc[i] = h;
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
 +	}
 +
-+	h_queue = xe_eudebug_add_handle(d, XE_EUDEBUG_RES_TYPE_EXEC_QUEUE, q, &seqno);
-+	if (h_queue <= 0)
-+		return h_queue;
++	if (XE_WA(gt, 14015474168)) {
++		struct xe_reg_sr_entry sr_entry = {
++			.reg = ROW_CHICKEN2,
++			.clr_bits = XEHPC_DISABLE_BTB,
++			.set_bits = XEHPC_DISABLE_BTB,
++			.read_mask = XEHPC_DISABLE_BTB,
++		};
 +
-+	/* No need to cleanup for added handles on error as if we fail
-+	 * we disconnect
-+	 */
-+
-+	return send_exec_queue_event(d, DRM_XE_EUDEBUG_EVENT_CREATE,
-+				     h_c, h_vm, h_queue, q->class,
-+				     q->width, h_lrc, seqno);
-+}
-+
-+static int exec_queue_destroy_event(struct xe_eudebug *d,
-+				    struct xe_file *xef,
-+				    struct xe_exec_queue *q)
-+{
-+	int h_c, h_vm, h_queue;
-+	u64 h_lrc[XE_HW_ENGINE_MAX_INSTANCE], seqno;
-+	int i;
-+
-+	if (!xe_exec_queue_is_lr(q))
-+		return 0;
-+
-+	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
-+	if (h_c < 0)
-+		return h_c;
-+
-+	h_vm = find_handle(d->res, XE_EUDEBUG_RES_TYPE_VM, q->vm);
-+	if (h_vm < 0)
-+		return h_vm;
-+
-+	if (XE_WARN_ON(q->width >= XE_HW_ENGINE_MAX_INSTANCE))
-+		return -EINVAL;
-+
-+	h_queue = xe_eudebug_remove_handle(d,
-+					   XE_EUDEBUG_RES_TYPE_EXEC_QUEUE,
-+					   q,
-+					   &seqno);
-+	if (h_queue <= 0)
-+		return h_queue;
-+
-+	for (i = 0; i < q->width; i++) {
-+		int ret;
-+
-+		ret = _xe_eudebug_remove_handle(d,
-+						XE_EUDEBUG_RES_TYPE_LRC,
-+						q->lrc[i],
-+						NULL);
-+		if (ret < 0 && ret != -ENOENT)
-+			return ret;
-+
-+		XE_WARN_ON(!ret);
-+
-+		h_lrc[i] = ret;
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
 +	}
 +
-+	return send_exec_queue_event(d, DRM_XE_EUDEBUG_EVENT_DESTROY,
-+				     h_c, h_vm, h_queue, q->class,
-+				     q->width, h_lrc, seqno);
++	if (xe->info.graphics_verx100 >= 1200) {
++		u32 mask = TD_CTL_BREAKPOINT_ENABLE |
++			   TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
++			   TD_CTL_FEH_AND_FEE_ENABLE;
++		struct xe_reg_sr_entry sr_entry = {
++			.reg = TD_CTL,
++			.clr_bits = mask,
++			.set_bits = mask,
++			.read_mask = mask,
++		};
++
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
++	}
++
++	if (xe->info.graphics_verx100 >= 1250) {
++		struct xe_reg_sr_entry sr_entry = {
++			.reg = TD_CTL,
++			.clr_bits = TD_CTL_GLOBAL_DEBUG_ENABLE,
++			.set_bits = TD_CTL_GLOBAL_DEBUG_ENABLE,
++			.read_mask = TD_CTL_GLOBAL_DEBUG_ENABLE,
++		};
++
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
++	}
 +}
 +
-+void xe_eudebug_exec_queue_create(struct xe_file *xef, struct xe_exec_queue *q)
-+{
-+	struct xe_eudebug *d;
-+
-+	if (!exec_queue_class_is_tracked(q->class))
-+		return;
-+
-+	d = xe_eudebug_get(xef);
-+	if (!d)
-+		return;
-+
-+	xe_eudebug_event_put(d, exec_queue_create_event(d, xef, q));
-+}
-+
-+void xe_eudebug_exec_queue_destroy(struct xe_file *xef, struct xe_exec_queue *q)
-+{
-+	struct xe_eudebug *d;
-+
-+	if (!exec_queue_class_is_tracked(q->class))
-+		return;
-+
-+	d = xe_eudebug_get(xef);
-+	if (!d)
-+		return;
-+
-+	xe_eudebug_event_put(d, exec_queue_destroy_event(d, xef, q));
-+}
-+
- static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
+ void xe_eudebug_init(struct xe_device *xe)
  {
-+	struct xe_exec_queue *q;
- 	struct xe_vm *vm;
- 	unsigned long i;
- 	int err;
-@@ -1171,6 +1347,15 @@ static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
- 			break;
- 	}
- 
-+	xa_for_each(&xef->exec_queue.xa, i, q) {
-+		if (!exec_queue_class_is_tracked(q->class))
-+			continue;
-+
-+		err = exec_queue_create_event(d, xef, q);
-+		if (err)
-+			break;
-+	}
-+
- 	return err;
- }
- 
+ 	spin_lock_init(&xe->eudebug.lock);
 diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
-index e3247365f72f..326ddbd50651 100644
+index 326ddbd50651..3cd6bc7bb682 100644
 --- a/drivers/gpu/drm/xe/xe_eudebug.h
 +++ b/drivers/gpu/drm/xe/xe_eudebug.h
-@@ -10,6 +10,7 @@ struct drm_file;
- struct xe_device;
+@@ -11,6 +11,7 @@ struct xe_device;
  struct xe_file;
  struct xe_vm;
-+struct xe_exec_queue;
+ struct xe_exec_queue;
++struct xe_hw_engine;
  
  #if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
  
-@@ -26,6 +27,9 @@ void xe_eudebug_file_close(struct xe_file *xef);
- void xe_eudebug_vm_create(struct xe_file *xef, struct xe_vm *vm);
- void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm);
+@@ -20,6 +21,7 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
  
-+void xe_eudebug_exec_queue_create(struct xe_file *xef, struct xe_exec_queue *q);
-+void xe_eudebug_exec_queue_destroy(struct xe_file *xef, struct xe_exec_queue *q);
-+
- #else
+ void xe_eudebug_init(struct xe_device *xe);
+ void xe_eudebug_fini(struct xe_device *xe);
++void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe);
  
- static inline int xe_eudebug_connect_ioctl(struct drm_device *dev,
-@@ -41,6 +45,9 @@ static inline void xe_eudebug_file_close(struct xe_file *xef) { }
- static inline void xe_eudebug_vm_create(struct xe_file *xef, struct xe_vm *vm) { }
- static inline void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm) { }
+ void xe_eudebug_file_open(struct xe_file *xef);
+ void xe_eudebug_file_close(struct xe_file *xef);
+@@ -38,6 +40,7 @@ static inline int xe_eudebug_connect_ioctl(struct drm_device *dev,
  
-+static inline void xe_eudebug_exec_queue_create(struct xe_file *xef, struct xe_exec_queue *q) { }
-+static inline void xe_eudebug_exec_queue_destroy(struct xe_file *xef, struct xe_exec_queue *q) { }
-+
- #endif /* CONFIG_DRM_XE_EUDEBUG */
+ static inline void xe_eudebug_init(struct xe_device *xe) { }
+ static inline void xe_eudebug_fini(struct xe_device *xe) { }
++static inline void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe) { }
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
-index 080a821db3e4..6428905a0557 100644
---- a/drivers/gpu/drm/xe/xe_eudebug_types.h
-+++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
-@@ -50,7 +50,9 @@ struct xe_eudebug_resource {
- 
- #define XE_EUDEBUG_RES_TYPE_CLIENT	0
- #define XE_EUDEBUG_RES_TYPE_VM		1
--#define XE_EUDEBUG_RES_TYPE_COUNT	(XE_EUDEBUG_RES_TYPE_VM + 1)
-+#define XE_EUDEBUG_RES_TYPE_EXEC_QUEUE	2
-+#define XE_EUDEBUG_RES_TYPE_LRC		3
-+#define XE_EUDEBUG_RES_TYPE_COUNT	(XE_EUDEBUG_RES_TYPE_LRC + 1)
- 
- /**
-  * struct xe_eudebug_resources - eudebug resources for all types
-@@ -173,4 +175,31 @@ struct xe_eudebug_event_vm {
- 	u64 vm_handle;
- };
- 
-+/**
-+ * struct xe_eudebug_event_exec_queue - Internal event for
-+ * exec_queue create/destroy
-+ */
-+struct xe_eudebug_event_exec_queue {
-+	/** @base: base event */
-+	struct xe_eudebug_event base;
-+
-+	/** @client_handle: client for the engine create/destroy */
-+	u64 client_handle;
-+
-+	/** @vm_handle: vm handle for the engine create/destroy */
-+	u64 vm_handle;
-+
-+	/** @exec_queue_handle: engine handle */
-+	u64 exec_queue_handle;
-+
-+	/** @engine_handle: engine class */
-+	u32 engine_class;
-+
-+	/** @width: submission width (number BB per exec) for this exec queue */
-+	u32 width;
-+
-+	/** @lrc_handles: handles for each logical ring context created with this exec queue */
-+	u64 lrc_handle[];
-+};
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d098d2dd1b2d..e6b2487de48e 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -23,6 +23,7 @@
- #include "xe_ring_ops_types.h"
- #include "xe_trace.h"
- #include "xe_vm.h"
+ static inline void xe_eudebug_file_open(struct xe_file *xef) { }
+ static inline void xe_eudebug_file_close(struct xe_file *xef) { }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index ea6d9ef7fab6..8e9a08395042 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -16,6 +16,7 @@
+ #include "xe_assert.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
 +#include "xe_eudebug.h"
+ #include "xe_execlist.h"
+ #include "xe_force_wake.h"
+ #include "xe_gsc.h"
+@@ -557,6 +558,7 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	xe_tuning_process_engine(hwe);
+ 	xe_wa_process_engine(hwe);
+ 	hw_engine_setup_default_state(hwe);
++	xe_eudebug_init_hw_engine(hwe);
  
- enum xe_exec_queue_sched_prop {
- 	XE_EXEC_QUEUE_JOB_TIMEOUT = 0,
-@@ -644,6 +645,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 
- 	args->exec_queue_id = id;
- 
-+	xe_eudebug_exec_queue_create(xef, q);
-+
- 	return 0;
- 
- kill_exec_queue:
-@@ -827,6 +830,8 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
- 	if (q->vm && q->hwe->hw_engine_group)
- 		xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
- 
-+	xe_eudebug_exec_queue_destroy(xef, q);
-+
- 	xe_exec_queue_kill(q);
- 
- 	trace_xe_exec_queue_close(q);
-diff --git a/include/uapi/drm/xe_drm_eudebug.h b/include/uapi/drm/xe_drm_eudebug.h
-index acf6071c82bf..ac44e890152a 100644
---- a/include/uapi/drm/xe_drm_eudebug.h
-+++ b/include/uapi/drm/xe_drm_eudebug.h
-@@ -26,6 +26,7 @@ struct drm_xe_eudebug_event {
- #define DRM_XE_EUDEBUG_EVENT_READ		1
- #define DRM_XE_EUDEBUG_EVENT_OPEN		2
- #define DRM_XE_EUDEBUG_EVENT_VM			3
-+#define DRM_XE_EUDEBUG_EVENT_EXEC_QUEUE		4
- 
- 	__u16 flags;
- #define DRM_XE_EUDEBUG_EVENT_CREATE		(1 << 0)
-@@ -49,6 +50,17 @@ struct drm_xe_eudebug_event_vm {
- 	__u64 vm_handle;
- };
- 
-+struct drm_xe_eudebug_event_exec_queue {
-+	struct drm_xe_eudebug_event base;
-+
-+	__u64 client_handle;
-+	__u64 vm_handle;
-+	__u64 exec_queue_handle;
-+	__u32 engine_class;
-+	__u32 width;
-+	__u64 lrc_handle[];
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
+ 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
+ 	xe_reg_whitelist_process_engine(hwe);
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 920ca5060146..da7d2c84298c 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -37,3 +37,5 @@
+ 16023588340	GRAPHICS_VERSION(2001)
+ 14019789679	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION_RANGE(1270, 2004)
++18022722726	GRAPHICS_VERSION_RANGE(1250, 1274)
++14015474168	PLATFORM(PVC)
 -- 
 2.34.1
 
