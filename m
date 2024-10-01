@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7160ECEB2D2
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 01:31:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8241BCEB2D2
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 01:38:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33B7A10E5B2;
-	Tue,  1 Oct 2024 01:31:01 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77B4D10E5B2;
- Tue,  1 Oct 2024 01:31:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5617700290732850422=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23E6F10E5B2;
+	Tue,  1 Oct 2024 01:38:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="S6gJRfsV";
+	dkim-atps=neutral
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB09010E5B2;
+ Tue,  1 Oct 2024 01:38:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1727746712;
+ bh=7AJU3cM5clBinSxqOdEFLA7CLsu9mIr7mYElmD4jpFM=;
+ h=Date:From:To:Cc:Subject:From;
+ b=S6gJRfsVMBjeXX39wf0sFrYNyNM8bkz9tQ73G9D9Ecc0PcFIfrYyXBljNBKn/+ADJ
+ 5M8qRvYV0+KPFuMWhf+YHkurv7geHvCWiEHJidTZklxepWDwsY3Xx/aXCX7ChG2C6B
+ gI5W1+0/w+0isKWOnFqIa9flPLmnBDbDHNjf/0m8xZqpIkPvJ/13Tcweuj5A2IO63N
+ Y2mP2JEyoX7KCc4iJvWur2c1grfS92POS6xyuVkvwG3xniRmJUXoKf/e13dFocR0bX
+ JjwGPoJT/sqFm96gvNfk8o5rWETEUORYNfIUGDs/oxzCd+2JjUWOYLcj1bnqg8fnpa
+ Hzq64DEAQ2Amg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4XHgZG5llRz4wd6;
+ Tue,  1 Oct 2024 11:38:30 +1000 (AEST)
+Date: Tue, 1 Oct 2024 11:38:30 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Cc: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ DRM XE List <intel-xe@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Subject: linux-next: build failure after merge of the drm-xe tree
+Message-ID: <20241001113830.4ff4d3e5@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Improve_GuC_log_du?=
- =?utf-8?q?mping_and_add_to_devcoredump_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Oct 2024 01:31:00 -0000
-Message-ID: <172774626048.1139947.15429387770106299488@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240920032108.629796-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20240920032108.629796-1-John.C.Harrison@Intel.com>
+Content-Type: multipart/signed; boundary="Sig_/9mfbDZ=TY.A9jZJ4sWb9Wd/";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +60,93 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5617700290732850422==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/9mfbDZ=TY.A9jZJ4sWb9Wd/
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/xe/guc: Improve GuC log dumping and add to devcoredump (rev4)
-URL   : https://patchwork.freedesktop.org/series/137985/
-State : success
+After merging the drm-xe tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-== Summary ==
+drivers/gpu/drm/xe/display/xe_display.c: In function 'xe_display_pm_shutdow=
+n':
+drivers/gpu/drm/xe/display/xe_display.c:382:27: error: passing argument 1 o=
+f 'intel_dmc_suspend' from incompatible pointer type [-Wincompatible-pointe=
+r-types]
+  382 |         intel_dmc_suspend(xe);
+      |                           ^~
+      |                           |
+      |                           struct xe_device *
+In file included from drivers/gpu/drm/xe/display/xe_display.c:24:
+drivers/gpu/drm/i915/display/intel_dmc.h:22:46: note: expected 'struct inte=
+l_display *' but argument is of type 'struct xe_device *'
+   22 | void intel_dmc_suspend(struct intel_display *display);
+      |                        ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
 
-CI Bug Log - changes from xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1_BAT -> xe-pw-137985v4_BAT
-====================================================
+Caused by commit
 
-Summary
--------
+  501d799a47e2 ("drm/xe: Wire up device shutdown handler")
 
-  **SUCCESS**
+interacting with commit
 
-  No regressions found.
+  5c30cfa295cc ("drm/i915/dmc: Convert DMC code to intel_display")
 
-  
+from the drm-intel tree.
 
-Participating hosts (9 -> 9)
-------------------------------
+I have applied the following merge fix patch for today.
 
-  No changes in participating hosts
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Tue, 1 Oct 2024 11:30:00 +1000
+Subject: [PATCH] fix up for "drm/xe: Wire up device shutdown handler"
 
-Known issues
-------------
+interacting with commit
 
-  Here are the changes found in xe-pw-137985v4_BAT that come from known issues:
+  5c30cfa295cc ("drm/i915/dmc: Convert DMC code to intel_display")
 
-### IGT changes ###
+from the drm-intel tree.
+---
+ drivers/gpu/drm/xe/display/xe_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-#### Issues hit ####
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/d=
+isplay/xe_display.c
+index 957ae763531d..ca00a365080f 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -379,7 +379,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+=20
+ 	intel_opregion_suspend(display, PCI_D3cold);
+=20
+-	intel_dmc_suspend(xe);
++	intel_dmc_suspend(display);
+ }
+=20
+ void xe_display_pm_runtime_suspend(struct xe_device *xe)
+--=20
+2.45.2
 
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-bmg-1:          [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137985v4/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+--=20
+Cheers,
+Stephen Rothwell
 
-  
-#### Possible fixes ####
+--Sig_/9mfbDZ=TY.A9jZJ4sWb9Wd/
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137985v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+-----BEGIN PGP SIGNATURE-----
 
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmb7UpYACgkQAVBC80lX
+0Gxe8Af9GC2HLN+iD7eWl5fVq5mGoFpjRcByK7GJ24ry3qKhxOjQCuwSm8fBWi9s
+QrZOFShUXufLUJmUO4tCrjI7C+qFKbegIyLMHYDR2kVXqus3asFkt0sVgoR769zm
+6N2QNrra2p8AP8HE6tZ1TmunD6XiOspHItiyudb/+WFVJEiwlA+opFEuBQpmWx+n
+AJ243TnFoc+7Ht/Gn6UI3uz49hwuhIE7sDvUjtp6GdIPsofNX0BIt3qP8tcz6DZX
+yttEXSGnLWw7Loe6fcMjeVYx6SGplO54owBbq4WINrhmwU4FCPjeXtOFOf7E2VZ0
+RiO2fgr7o1zKnLPUKr5SJB8FJ7FM8A==
+=bMbn
+-----END PGP SIGNATURE-----
 
-
-Build changes
--------------
-
-  * Linux: xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1 -> xe-pw-137985v4
-
-  IGT_8043: 8043
-  xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1: 4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1
-  xe-pw-137985v4: 137985v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137985v4/index.html
-
---===============5617700290732850422==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Improve GuC log dumping and add to devcoredump (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137985/">https://patchwork.freedesktop.org/series/137985/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137985v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137985v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1_BAT -&gt; xe-pw-137985v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-137985v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137985v4/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137985v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1 -&gt; xe-pw-137985v4</li>
-</ul>
-<p>IGT_8043: 8043<br />
-  xe-1993-4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1: 4e4d7873ac763aa0bd9207ea9ec2b89bb52a6fe1<br />
-  xe-pw-137985v4: 137985v4</p>
-
-</body>
-</html>
-
---===============5617700290732850422==--
+--Sig_/9mfbDZ=TY.A9jZJ4sWb9Wd/--
