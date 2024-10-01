@@ -4,27 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 419BDCEACD5
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 15:03:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE4B6CEACD5
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 15:32:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13A3110E640;
-	Tue,  1 Oct 2024 15:03:55 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CB4210E640;
- Tue,  1 Oct 2024 15:03:53 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A992610E312;
+	Tue,  1 Oct 2024 15:32:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Gex1sPnX";
+	dkim-atps=neutral
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
+ [209.85.208.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC7810E08F
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 08:07:12 +0000 (UTC)
+Received: by mail-lj1-f179.google.com with SMTP id
+ 38308e7fff4ca-2fac3f20f1dso21792841fa.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 01 Oct 2024 01:07:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1727770030; x=1728374830; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LDGdkPHx0D1j5vHF/c6NOku8EQtRl7HCdp9J72B4+OI=;
+ b=Gex1sPnX/P3aJwflqQAdXj5UkdB16MlIehWX+hBTS8jmhyfin+zSsW9gKat9KI05Ph
+ BOv7jvDyEr+Yw9Dd5W15gEj+IOUIl1cYN/5AA91FM0y5V0RZDN54Oe/EUppSTJILrMb8
+ Mj0/YZCtXo2TTV8eNTVZutTfg9MadFoEBUAjRr48RqgLVmeYlpLSKQ9waKu0bHJaFmKd
+ CSod9gB/ULDU7Mumk6RTylymxmqxShrrVmwFpKj8FjyFvoULb7DvgVD+o0UzB3W74guc
+ TL0C+sbkK3A3XHXX98GR4cDSrS1IbKffKV4jCH0qqHkJfXqR6b4FxUHa4RoThFXF1Uq5
+ PzOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727770030; x=1728374830;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=LDGdkPHx0D1j5vHF/c6NOku8EQtRl7HCdp9J72B4+OI=;
+ b=WGMsGmITPZAzbR6ojde2hFJx3vPlrk6QoHwrl7HUZWn7EEfNP+zasqrj5ZnCssGvWM
+ D1oMjzClnv3feg1UQLTDiKvHbC003RpRPXzEBX2nUJSeJ/SWlplpUDajOl9R/UF6hWPQ
+ 8EZ8jW+PwSaWffxzG+iPHiC9H8DSLWmcyvfikA2CVmblMYBmKvhBQvpFG3Mx3KAc83RP
+ I54k/WlIbXUBlsuQSVWy8Dm8HQJfowiqKFZtJJPjc0muuziRxySm65LwH47mQseY01QW
+ WOfzW+R1kchnP/smEgGQROAkW3gLd3ubegrP6iHZZ3l7sPG7lysLf+IdkN6gc7XwoEAY
+ Je5A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUcWYAa6QKlUENV2dWuXUHnNQPs2JX+lsaq7uOPCEdBRf/5Kn+RE2lq1d8dGFu+DM0WAjkQZSaT4w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywe8UrVH8LN2v/I5V/x32NBAaUsldeSgev79RFU/tlPSpaWdp/K
+ I+Slc1pa2SEn8Vu9oPHU9k9LU5KXZr2upnN3KlFDwaMyK5//Di41f5fNI9EOh35shcN+oZOmX0v
+ SFs5XZgR39eDZwvWwhsRcF119d/k=
+X-Google-Smtp-Source: AGHT+IHvOBYxOwUNOdUDNsDNEt0IUTQzFgiYQcsCEoRnAjcabGr8fw/ZklnSkzujELmuW9wahcWEGEQFJ63COsA2Nq0=
+X-Received: by 2002:a2e:b889:0:b0:2fa:d6cf:28f6 with SMTP id
+ 38308e7fff4ca-2fad6cf2c81mr19409351fa.3.1727770029640; Tue, 01 Oct 2024
+ 01:07:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_GPU_debug_support_=28eudebug?=
- =?utf-8?q?=29_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Oct 2024 15:03:53 -0000
-Message-ID: <172779503330.1142575.16336633354583581551@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
+References: <20241001134423.62b12a80@canb.auug.org.au>
+In-Reply-To: <20241001134423.62b12a80@canb.auug.org.au>
+From: Uros Bizjak <ubizjak@gmail.com>
+Date: Tue, 1 Oct 2024 10:06:58 +0200
+Message-ID: <CAFULd4Yg=VmL5rCdxqbh68TSR04zFHPjxUYN0fqNBBfmdQXkmA@mail.gmail.com>
+Subject: Re: linux-next: build failure after merge of the random tree
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: "Theodore Ts'o" <tytso@mit.edu>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ DRM XE List <intel-xe@lists.freedesktop.org>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 01 Oct 2024 15:32:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,69 +80,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Oct 1, 2024 at 5:44=E2=80=AFAM Stephen Rothwell <sfr@canb.auug.org.=
+au> wrote:
+>
+> Hi all,
+>
+> After merging the random tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
+>
+>
+> Caused by commit
+>
+>   38d1a9d296c8 ("random: Do not include <linux/prandom.h> in <linux/rando=
+m.h>")
+>
+> interacting with commit
+>
+>   5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
+>
+> from the drm-xe tree.
 
-Series: GPU debug support (eudebug) (rev2)
-URL   : https://patchwork.freedesktop.org/series/136572/
-State : failure
+This was kind of expected when two commits are in flight in the same
+area. IMO, the best way to solve this collision is to change the new
+include in the DRM tree from <linux/random.h> to <linux/prandom.h>, as
+is shown in the proposed patch.
 
-== Summary ==
+> I have applied the following merge fix patch for today.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_eudebug.c:1357:27: error: ‘no_llseek’ undeclared here (not in a function); did you mean ‘noop_llseek’?
- 1357 |         .llseek         = no_llseek,
-      |                           ^~~~~~~~~
-      |                           noop_llseek
-make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_eudebug.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1936: .] Error 2
-make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
+Thanks,
+Uros.
 
-[15:03:19] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[15:03:24] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+> From: Stephen Rothwell <sfr@canb.auug.org.au>
+> Date: Tue, 1 Oct 2024 13:33:48 +1000
+> Subject: [PATCH] fix up for "random: Do not include <linux/prandom.h> in =
+<linux/random.h>"
+>
+> interacting with commit
+>
+>   5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
+>
+> from the drm-xe tree.
+>
+> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> ---
+>  drivers/gpu/drm/xe/tests/xe_bo.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/=
+xe_bo.c
+> index 7d3fd720478b..3a14b70f12b8 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> @@ -7,7 +7,7 @@
+>  #include <kunit/visibility.h>
+>
+>  #include <linux/iosys-map.h>
+> -#include <linux/random.h>
+> +#include <linux/prandom.h>
+>  #include <linux/swap.h>
+>
+>  #include <uapi/linux/sysinfo.h>
+> --
+> 2.45.2
+>
+> --
+> Cheers,
+> Stephen Rothwell
