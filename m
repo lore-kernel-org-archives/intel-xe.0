@@ -4,48 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 607E3CEACF1
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 18:16:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 652D3CEACF1
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 18:34:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2715110E09A;
-	Tue,  1 Oct 2024 18:16:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26DBE10E65A;
+	Tue,  1 Oct 2024 18:34:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iyK0qFoi";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="K+K67RpW";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 699C610E09A
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 18:16:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 4879C5C54CD;
- Tue,  1 Oct 2024 18:16:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4D2CC4CEC6;
- Tue,  1 Oct 2024 18:16:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727806608;
- bh=583aKZ9l0xQjgk1LBumhwVy9engtD/OQ9RYSzWJPy9g=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=iyK0qFoif3xuIDhjbLiQaq2/stp0xjr4dDcw2q02MjoYYkvVzL5F0Try1G5+KKVE+
- w9pItcquVjOG+ZJAjGN6eBOGcnN7Mp9gMpKpFzakAE7eETvawZwdhHX2Vi33HhKRZF
- MSo822ZEYcE2GE44cspKghsi1FlU1AHw3vxiNNpZ3K6htGWB/S4xcBSNMVq6SJj9cP
- ZptcC1qxwLMwnGdvfIFAO7pYmAx2HViPVNi4KWz9rDCGRk98OwxMcF14dEylqErMrB
- M/3zUxtqVQN1n2RIJ8HecgTw5ZzVFVqWrDCdrM/al/U/FOft00ylVRSHcoLMILEpwi
- uQjxwNIE8WIcA==
-Date: Tue, 1 Oct 2024 11:16:46 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, llvm@lists.linux.dev
-Subject: Re: [PATCH v3] drm/xe: Add a xe_bo subtest for shrinking / swapping
-Message-ID: <20241001181646.GA25328@thelio-3990X>
-References: <20240909085654.5064-1-thomas.hellstrom@linux.intel.com>
- <20240913195649.GA61514@thelio-3990X>
+Received: from smtp.smtpout.orange.fr (smtp-16.smtpout.orange.fr
+ [80.12.242.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE76810E64E;
+ Tue,  1 Oct 2024 18:34:27 +0000 (UTC)
+Received: from [192.168.1.37] ([90.11.132.44]) by smtp.orange.fr with ESMTPA
+ id vhhWsArpWmg82vhhXsn5vg; Tue, 01 Oct 2024 20:34:25 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1727807665;
+ bh=UBzLZKmUY5K/4GpZqq6iV1mDM5MbfDMRwF2KXqeGStg=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From;
+ b=K+K67RpWv0Sldneorbl/Yihg5oAysH/+1k5bBDYIa+LXaEerq9d5n+DCNruFs8A7j
+ Vq/FUMrWU+/EZ73PoLCH1sj+PnzSxCkAU2VfAGj88DAqLgFIp+kEEcZHhpteIBFVtm
+ 5f2SbzSj3HFFvft4s4v887k0svZ1o1RrcQ7xu4rGglDSuswYwBG3Hjb5hDf/vlgVoh
+ kL3Jb7+/Vul7XEzC3jrB9qW5I3vBiokr5Ek3vtVDY4eVLqUtNIDcz+9WflEhFDWjqJ
+ fH3cPzsI0bs4dELybx9/3e/ztfFYCGAjxtW1G1IMwu+70BN9Hkt+i/VyV11SR1etrm
+ xHTy2HPBaJx0Q==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Tue, 01 Oct 2024 20:34:25 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <3c793f42-6cd1-40e7-a3f2-556b6e5b4094@wanadoo.fr>
+Date: Tue, 1 Oct 2024 20:34:22 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/backlight: Remove a useless kstrdup_const()
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr>
+ <875xqdy42v.fsf@intel.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <875xqdy42v.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240913195649.GA61514@thelio-3990X>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,258 +66,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ping? In particular, the instance of -Wsometimes-uninitialized breaks
-our CI for several configurations that enable -Werror (we don't have any
-32-bit architectures with -Werror, so the other ones do not matter as
-much, but should still be fixed) and that one does not show up with GCC
-(even though I think it should). Should purgeable just be zero
-initialized? I am happy to send a patch but I need some input on what
-the correct solution is since I am unfamiliar with this code.
+Le 30/09/2024 Ã  09:48, Jani Nikula a Ã©critÂ :
+> On Sat, 28 Sep 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+>> "name" is allocated and freed in intel_backlight_device_register().
+>> The initial allocation just duplicates "intel_backlight".
+>>
+>> Later, if a device with this name has already been registered, another
+>> dynamically generated one is allocated using kasprintf().
+>>
+>> So at the end of the function, when "name" is freed, it can point either to
+>> the initial static literal "intel_backlight" or to the kasprintf()'ed one.
+>>
+>> So kfree_const() is used.
+>>
+>> However, when built as a module, kstrdup_const() and kfree_const() don't
+>> work as one would expect and are just plain kstrdup() and kfree().
+>>
+>>
+>> Slightly change the logic and introduce a new variable to hold the
+>> address returned by kasprintf() should it be used.
+>>
+>> This saves a memory allocation/free and avoids these _const functions,
+>> which names can be confusing when used with code built as module.
+> 
+> Okay, I'd rather revert your earlier commit 379b63e7e682
+> ("drm/i915/display: Save a few bytes of memory in
+> intel_backlight_device_register()") than add this.
 
-This is one of only two issues preventing our CI from being green on
--next, which we would usually expect after -rc1.
+Hi,
 
-Cheers,
-Nathan
+that works for me. Thanks and sorry for the noise.
 
-On Fri, Sep 13, 2024 at 12:56:49PM -0700, Nathan Chancellor wrote:
-> On Mon, Sep 09, 2024 at 10:56:54AM +0200, Thomas Hellström wrote:
-> > Add a subtest that tries to allocate twice the amount of
-> > buffer object memory available, write data to it and then read
-> > all the data back verifying data integrity.
-> > In order to be able to do this on systems that
-> > have no or not enough swap-space available, allocate some memory
-> > as purgeable, and introduce a function to purge such memory from
-> > the TTM swap_notify path.
-> > 
-> > this test is intended to add test coverage to the current
-> > bo swap path and upcoming shrinking path.
-> > 
-> > The test has previously been part of the xe bo shrinker series.
-> > 
-> > v2:
-> > - Skip test if the execution time is expected to be too long.
-> > - Minor code cleanups.
-> > 
-> > v3:
-> > - Print random seed. (Matthew Auld)
-> > 
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> ...
-> > diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> > index 8dac069483e8..7d3fd720478b 100644
-> > --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> ...
-> > +/*
-> > + * Try to create system bos corresponding to twice the amount
-> > + * of available system memory to test shrinker functionality.
-> > + * If no swap space is available to accommodate the
-> > + * memory overcommit, mark bos purgeable.
-> > + */
-> > +static int shrink_test_run_device(struct xe_device *xe)
-> > +{
-> > +	struct kunit *test = kunit_get_current_test();
-> > +	LIST_HEAD(bos);
-> > +	struct xe_bo_link *link, *next;
-> > +	struct sysinfo si;
-> > +	size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
-> > +	unsigned int interrupted = 0, successful = 0, count = 0;
-> > +	struct rnd_state prng;
-> > +	u64 rand_seed;
-> > +	bool failed = false;
-> > +
-> > +	rand_seed = get_random_u64();
-> > +	prandom_seed_state(&prng, rand_seed);
-> > +	kunit_info(test, "Random seed is 0x%016llx.\n",
-> > +		   (unsigned long long)rand_seed);
-> > +
-> > +	/* Skip if execution time is expected to be too long. */
-> > +
-> > +	limit = SZ_32G;
-> > +	/* IGFX with flat CCS needs to copy when swapping / shrinking */
-> > +	if (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe))
-> > +		limit = SZ_16G;
-> > +
-> > +	si_meminfo(&si);
-> > +	ram = (size_t)si.freeram * si.mem_unit;
-> > +	if (ram > limit) {
-> > +		kunit_skip(test, "Too long expected execution time.\n");
-> > +		return 0;
-> > +	}
-> > +	to_alloc = ram * 2;
-> > +
-> > +	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
-> > +	if (to_alloc > ram_and_swap)
-> > +		purgeable = to_alloc - ram_and_swap;
-> > +	purgeable += purgeable / 5;
-> > +
-> > +	kunit_info(test, "Free ram is %lu bytes. Will allocate twice of that.\n",
-> > +		   (unsigned long)ram);
-> > +	for (alloced = 0; alloced < to_alloc; alloced += XE_BO_SHRINK_SIZE) {
-> > +		struct xe_bo *bo;
-> > +		unsigned int mem_type;
-> > +		struct xe_ttm_tt *xe_tt;
-> > +
-> > +		link = kzalloc(sizeof(*link), GFP_KERNEL);
-> > +		if (!link) {
-> > +			KUNIT_FAIL(test, "Unexpected link allocation failure\n");
-> > +			failed = true;
-> > +			break;
-> > +		}
-> > +
-> > +		INIT_LIST_HEAD(&link->link);
-> > +
-> > +		/* We can create bos using WC caching here. But it is slower. */
-> > +		bo = xe_bo_create_user(xe, NULL, NULL, XE_BO_SHRINK_SIZE,
-> > +				       DRM_XE_GEM_CPU_CACHING_WB,
-> > +				       XE_BO_FLAG_SYSTEM);
-> > +		if (IS_ERR(bo)) {
-> > +			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
-> > +			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
-> > +				KUNIT_FAIL(test, "Error creating bo: %pe\n", bo);
-> > +			kfree(link);
-> > +			failed = true;
-> > +			break;
-> > +		}
-> > +		xe_bo_lock(bo, false);
-> > +		xe_tt = container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
-> > +
-> > +		/*
-> > +		 * Allocate purgeable bos first, because if we do it the
-> > +		 * other way around, they may not be subject to swapping...
-> > +		 */
-> > +		if (alloced < purgeable) {
-> > +			xe_tt->purgeable = true;
-> > +			bo->ttm.priority = 0;
-> > +		} else {
-> > +			int ret = shrink_test_fill_random(bo, &prng, link);
-> > +
-> > +			if (ret) {
-> > +				xe_bo_unlock(bo);
-> > +				xe_bo_put(bo);
-> > +				KUNIT_FAIL(test, "Error filling bo with random data: %pe\n",
-> > +					   ERR_PTR(ret));
-> > +				kfree(link);
-> > +				failed = true;
-> > +				break;
-> > +			}
-> > +		}
-> > +
-> > +		mem_type = bo->ttm.resource->mem_type;
-> > +		xe_bo_unlock(bo);
-> > +		link->bo = bo;
-> > +		list_add_tail(&link->link, &bos);
-> > +
-> > +		if (mem_type != XE_PL_TT) {
-> > +			KUNIT_FAIL(test, "Bo in incorrect memory type: %u\n",
-> > +				   bo->ttm.resource->mem_type);
-> > +			failed = true;
-> > +		}
-> > +		cond_resched();
-> > +		if (signal_pending(current))
-> > +			break;
-> > +	}
+CJ
+
 > 
-> This function introduces three warnings with clang:
+> The code simplicity is much more important than saving a few bytes.
 > 
->   $ make -skj"$(nproc)" ARCH=i386 LLVM=1 allmodconfig drivers/gpu/drm/xe/xe_bo.o
->   ...
->   In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
->   drivers/gpu/drm/xe/tests/xe_bo.c:456:10: error: implicit conversion from 'unsigned long long' to 'size_t' (aka 'unsigned int') changes value from 34359738368 to 0 [-Werror,-Wconstant-conversion]
->     456 |         limit = SZ_32G;
->         |               ~ ^~~~~~
->   include/linux/sizes.h:49:19: note: expanded from macro 'SZ_32G'
->      49 | #define SZ_32G                          _AC(0x800000000, ULL)
->         |                                         ^~~~~~~~~~~~~~~~~~~~~
->   include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
->      21 | #define _AC(X,Y)        __AC(X,Y)
->         |                         ^~~~~~~~~
->   include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
->      20 | #define __AC(X,Y)       (X##Y)
->         |                          ^~~~
->   <scratch space>:31:1: note: expanded from here
->      31 | 0x800000000ULL
->         | ^~~~~~~~~~~~~~
->   In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
->   drivers/gpu/drm/xe/tests/xe_bo.c:459:11: error: implicit conversion from 'unsigned long long' to 'size_t' (aka 'unsigned int') changes value from 17179869184 to 0 [-Werror,-Wconstant-conversion]
->     459 |                 limit = SZ_16G;
->         |                       ~ ^~~~~~
->   include/linux/sizes.h:48:19: note: expanded from macro 'SZ_16G'
->      48 | #define SZ_16G                          _AC(0x400000000, ULL)
->         |                                         ^~~~~~~~~~~~~~~~~~~~~
->   include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
->      21 | #define _AC(X,Y)        __AC(X,Y)
->         |                         ^~~~~~~~~
->   include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
->      20 | #define __AC(X,Y)       (X##Y)
->         |                          ^~~~
->   <scratch space>:32:1: note: expanded from here
->      32 | 0x400000000ULL
->         | ^~~~~~~~~~~~~~
->   In file included from drivers/gpu/drm/xe/xe_bo.c:2406:
->   drivers/gpu/drm/xe/tests/xe_bo.c:470:6: error: variable 'purgeable' is used uninitialized whenever 'if' condition is false [-Werror,-Wsometimes-uninitialized]
->     470 |         if (to_alloc > ram_and_swap)
->         |             ^~~~~~~~~~~~~~~~~~~~~~~
->   drivers/gpu/drm/xe/tests/xe_bo.c:472:2: note: uninitialized use occurs here
->     472 |         purgeable += purgeable / 5;
->         |         ^~~~~~~~~
->   drivers/gpu/drm/xe/tests/xe_bo.c:470:2: note: remove the 'if' if its condition is always true
->     470 |         if (to_alloc > ram_and_swap)
->         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
->     471 |                 purgeable = to_alloc - ram_and_swap;
->   drivers/gpu/drm/xe/tests/xe_bo.c:443:37: note: initialize the variable 'purgeable' to silence this warning
->     443 |         size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
->         |                                            ^
->         |                                             = 0
->   3 errors generated.
+> BR,
+> Jani.
 > 
-> I tried to make GCC show the same warnings with an explicit
-> -Wmaybe-uninitialized but only the overflow warnings show up (is
-> purgeable always set because of the if condition?):
 > 
->   $ make -skj"$(nproc)" ARCH=i386 CROSS_COMPILE=i386-linux- KCFLAGS=-Wmaybe-uninitialized allmodconfig drivers/gpu/drm/xe/xe_bo.o
->   In file included from include/vdso/const.h:5,
->                    from include/linux/const.h:4,
->                    from include/linux/bits.h:5,
->                    from include/linux/ratelimit_types.h:5,
->                    from include/linux/printk.h:9,
->                    from include/asm-generic/bug.h:22,
->                    from arch/x86/include/asm/bug.h:99,
->                    from include/linux/bug.h:5,
->                    from include/linux/mmdebug.h:5,
->                    from include/linux/mm.h:6,
->                    from include/linux/pagemap.h:8,
->                    from include/drm/ttm/ttm_tt.h:30,
->                    from drivers/gpu/drm/xe/xe_bo.h:9,
->                    from drivers/gpu/drm/xe/xe_bo.c:6:
->   drivers/gpu/drm/xe/tests/xe_bo.c: In function 'shrink_test_run_device':
->   include/uapi/linux/const.h:20:25: error: conversion from 'long long unsigned int' to 'size_t' {aka 'unsigned int'} changes value from '34359738368' to '0' [-Werror=overflow]
->      20 | #define __AC(X,Y)       (X##Y)
->         |                         ^
->   include/uapi/linux/const.h:21:25: note: in expansion of macro '__AC'
->      21 | #define _AC(X,Y)        __AC(X,Y)
->         |                         ^~~~
->   include/linux/sizes.h:49:41: note: in expansion of macro '_AC'
->      49 | #define SZ_32G                          _AC(0x800000000, ULL)
->         |                                         ^~~
->   drivers/gpu/drm/xe/tests/xe_bo.c:456:17: note: in expansion of macro 'SZ_32G'
->     456 |         limit = SZ_32G;
->         |                 ^~~~~~
->   include/uapi/linux/const.h:20:25: error: conversion from 'long long unsigned int' to 'size_t' {aka 'unsigned int'} changes value from '17179869184' to '0' [-Werror=overflow]
->      20 | #define __AC(X,Y)       (X##Y)
->         |                         ^
->   include/uapi/linux/const.h:21:25: note: in expansion of macro '__AC'
->      21 | #define _AC(X,Y)        __AC(X,Y)
->         |                         ^~~~
->   include/linux/sizes.h:48:41: note: in expansion of macro '_AC'
->      48 | #define SZ_16G                          _AC(0x400000000, ULL)
->         |                                         ^~~
->   drivers/gpu/drm/xe/tests/xe_bo.c:459:25: note: in expansion of macro 'SZ_16G'
->     459 |                 limit = SZ_16G;
->         |                         ^~~~~~
->   cc1: all warnings being treated as errors
+> 
+>>
+>> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+>> ---
+>> Compile tested only.
+>>
+>> For the records, this patch is a clean-up effort related to discussions at:
+>>    - https://lore.kernel.org/all/ZvHurCYlCoi1ZTCX@skv.local/
+>>    - https://lore.kernel.org/all/20240924050937.697118-1-senozhatsky@chromium.org/
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_backlight.c | 17 +++++++----------
+>>   1 file changed, 7 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+>> index 9e05745d797d..bf7686aa044f 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+>> @@ -914,9 +914,9 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>>   {
+>>   	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>>   	struct intel_panel *panel = &connector->panel;
+>> +	const char *name, *new_name = NULL;
+>>   	struct backlight_properties props;
+>>   	struct backlight_device *bd;
+>> -	const char *name;
+>>   	int ret = 0;
+>>   
+>>   	if (WARN_ON(panel->backlight.device))
+>> @@ -949,10 +949,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>>   	else
+>>   		props.power = BACKLIGHT_POWER_OFF;
+>>   
+>> -	name = kstrdup_const("intel_backlight", GFP_KERNEL);
+>> -	if (!name)
+>> -		return -ENOMEM;
+>> -
+>> +	name = "intel_backlight";
+>>   	bd = backlight_device_get_by_name(name);
+>>   	if (bd) {
+>>   		put_device(&bd->dev);
+>> @@ -963,11 +960,11 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>>   		 * compatibility. Use unique names for subsequent backlight devices as a
+>>   		 * fallback when the default name already exists.
+>>   		 */
+>> -		kfree_const(name);
+>> -		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
+>> -				 i915->drm.primary->index, connector->base.name);
+>> -		if (!name)
+>> +		new_name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
+>> +				     i915->drm.primary->index, connector->base.name);
+>> +		if (!new_name)
+>>   			return -ENOMEM;
+>> +		name = new_name;
+>>   	}
+>>   	bd = backlight_device_register(name, connector->base.kdev, connector,
+>>   				       &intel_backlight_device_ops, &props);
+>> @@ -987,7 +984,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>>   		    connector->base.base.id, connector->base.name, name);
+>>   
+>>   out:
+>> -	kfree_const(name);
+>> +	kfree(new_name);
+>>   
+>>   	return ret;
+>>   }
+> 
+
