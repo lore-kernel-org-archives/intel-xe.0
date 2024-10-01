@@ -4,55 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B85F5CEACC3
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 13:43:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F4DACEACC1
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 13:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81E5910E622;
-	Tue,  1 Oct 2024 13:43:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8DF110E622;
+	Tue,  1 Oct 2024 13:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROd8YJMa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YaKIA89y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8E4910E622
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 13:43:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECF7710E31E
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 13:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727790213; x=1759326213;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pnV59Sm64DUtx3n8UN1Zigeko9s1qqJbuHICky2ewEM=;
- b=ROd8YJMawZheX2RYpAA6o3t8SxBkV1x/61eVQGb/qfo1T0nMjJN7fMxU
- viurPR5uXxI6K+P/EnvNY4UfjMDtA8R3hiDL2lJIzDCmXoYwTiZM7roIP
- VQmujDtCkUgQDXHi7rGOp7v0S/WrLtZqhlPW7gZdrrQd6Q3dUUtJmBVyo
- 8WnGjU01rqgYS9q+ZimRWKGmsPnwVrVSpyYl3E9ZB0LafI7TjsU2867ys
- dHaXonmtOib8Eq6I/tN82mym1gMHL8Vawx/yDI+KBK2vUtKPFFZC1DkFy
- ncp0Q6MD7IAtR4i6fS5M2Q1YRMCj+lyWj1+D3RcQ/aQMeEtPcAGD2U+gW g==;
-X-CSE-ConnectionGUID: FT+/V8RZSnCZ0g6lqvJw6g==
-X-CSE-MsgGUID: 3ATD4QSMTISJgbcus3HGRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="49446851"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="49446851"
+ t=1727790497; x=1759326497;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=FDyI1bIkAQ51VP16LqIQloyRMDdiFVaeJbiPibt2cIg=;
+ b=YaKIA89ydpW9jRzjA+h7/vThi3IoyYeupjBnuYqeHuAPc1RyMj0bZRiF
+ la8ck2Q37BCCzrA6+nCBBkIDXdmnpKFzvnRWoRncJnm+e+RFGwypC7Tlq
+ I7mac33dnlv/P4cSHBA05kZM0DlPmGG/QKWnp0BddjwVrbBg8KRimyryO
+ 4bFttgNUqDBVN0aN49UE3u0lfwTpudkj/1/pi6oJzYrNnPK/paUFzkq7T
+ TGHLS/h+CYBr9B3cmJ3VFd0MGKQC1TcB1+sv1S9LHnVXjM27a/VB3xI6o
+ jw7QdeNwYT0G4Q1DrkA2SKgkyPRNQT5BqHUEB8QR2CUHxC/T4zioq960K w==;
+X-CSE-ConnectionGUID: sRXGfqBpTlGUTPh/qLRmrw==
+X-CSE-MsgGUID: A0Q9MMP7RK2gsAi0AGOazQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="49447304"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="49447304"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 06:43:33 -0700
-X-CSE-ConnectionGUID: IKlCgi20RCiN75Fka1PqNg==
-X-CSE-MsgGUID: NXOyYhLrS8eMjNzlLez0Gw==
+ 01 Oct 2024 06:48:16 -0700
+X-CSE-ConnectionGUID: XE/TBQoaSSuNbqRiHO3snQ==
+X-CSE-MsgGUID: nZVAyE2NTxuw2YGbFfbvJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73791115"
-Received: from suttanur-desk.iind.intel.com (HELO
- singhapo-Super-Server.iind.intel.com) ([10.145.169.90])
- by fmviesa008.fm.intel.com with ESMTP; 01 Oct 2024 06:43:31 -0700
-From: apoorva.singh@intel.com
-To: intel-xe@lists.freedesktop.org
-Cc: oak.zeng@intel.com, Brian Welty <brian.welty@intel.com>,
- Apoorva Singh <apoorva.singh@intel.com>
-Subject: [PATCH 2/2] drm/xe/uapi: Restore uapi for access counting
-Date: Tue,  1 Oct 2024 19:24:32 +0530
-Message-Id: <20241001135432.447074-3-apoorva.singh@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241001135432.447074-1-apoorva.singh@intel.com>
-References: <20241001135432.447074-1-apoorva.singh@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73792506"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 01 Oct 2024 06:48:15 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 1 Oct 2024 06:48:13 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 1 Oct 2024 06:48:13 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 1 Oct 2024 06:48:13 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 1 Oct 2024 06:48:13 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tQAMOKo1DS6AzCyqEQnuoM9KRVoXDcKjRNoz8OBjp41DB3ArBa/nvlIEF5xYHTKU3unKUDprtDikJZgMRg1HFuYPn6QJcIAqzhT9bAzZ2THF++SeB9J+o0yvXgC9rb2HMB4k+euG6DWOhK3DIJDfj9wjq41PTBR4T80IZK9A4yAUJeVYi7yqUGz4OrC57+KUa3M75TWq7CbPyllWU5k+lyiSJqwZgIQekq4YKntl9RYC6Uy41D2fyGql58FGwTIDlT3mb6PDqaVXzf0gY6QrG4+AYax4a/bBAhWLrpRU/DD6ZvsjY4q68aSY7iUl55C1moof+JOCiyanGqEBfBMaNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/01m6olUXT49zvj2DLvnZprYbfF30oh3W6bGZc9Ms2I=;
+ b=lgAdby/AwEmAgO57MfrfkAeUPhO14RFsuP+NQX1YkwQtIBcMZ2mbSaqrs4wA+UsJ/lljKFNlG1tH8GSMGqs4H8Dv+c4yjkNuJeorhi+JnUCbzrDK8X/Z8sd9/jO+PVu4KOZO36+dtMzCck7gUCgzUdkFCLaLSuWh6Z1MNA6JoGlInlsdwJSI8/8zTcmf8hhZE+3vJFxmT/AKPoIeZ26ZV7SRaatmDuuAQ59cJsC0EXZGmbdVqWRDDYFP5Y34mFx6bS23AgSqFd5iVUsH5c92CXKEDHZqb47SAuugLIGYkuJ+bbGPCvQ6aoHXzgIcQqc0S1rviEeJzX9Kdjwao0Z4GA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by MN0PR11MB6183.namprd11.prod.outlook.com (2603:10b6:208:3c5::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27; Tue, 1 Oct
+ 2024 13:48:10 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9%5]) with mapi id 15.20.8005.026; Tue, 1 Oct 2024
+ 13:48:10 +0000
+Message-ID: <f761b5e4-68fe-4620-b55e-e05d7f2dae5b@intel.com>
+Date: Tue, 1 Oct 2024 19:18:03 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] drm/xe/ct: fix xa_store() error checking
+To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Matthew Brost <matthew.brost@intel.com>, <stable@vger.kernel.org>
+References: <20241001084346.98516-5-matthew.auld@intel.com>
+ <20241001084346.98516-6-matthew.auld@intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20241001084346.98516-6-matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0122.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::16) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|MN0PR11MB6183:EE_
+X-MS-Office365-Filtering-Correlation-Id: a030a8c3-bf7e-46d8-0e02-08dce21fafce
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ekNzLzh1U0U1cFYwZ3Y2MWxQdGoxRXFnWXgzSkl2Qk4yM1YrTDJzSXRFYzFk?=
+ =?utf-8?B?aitEdmVrNmxMY3c5d28rWjNDK2s0MDdOVUhENXM3aXduYS92UVVhVXNmR1gx?=
+ =?utf-8?B?RTIwTnF2Q0ttZnliTUY3cWxTeG1GWkl4SnBUbzhsUG00OTc4OUF5dVVacWNZ?=
+ =?utf-8?B?c0pzbnZ1Y09QRzY1Qys3N05SL2toQ2tDUVVFQWN4VUp6NmFjNmE4TktyN3Bz?=
+ =?utf-8?B?NitSK1BjSmtiaDcvS1BuVktHRks4cVZjZjJjTVNuVkxReWFyUllpUXR5SGpN?=
+ =?utf-8?B?SnRvOUhVSGJRdlN5ZUdsaFE3MWt4YVRJbEVOQkdRejF1Lzg0bjlQK3Y2V3o0?=
+ =?utf-8?B?dmpiUVZhVzdPbmtCS1BGdHJpTHNoUWlHTXJxaE5tZEtaV2tCVkJBMkhOS3Br?=
+ =?utf-8?B?M1M4elgrZ09MZU5ZS3k1cWZYZWFqQWVxUGZFVSt4M0FkTm5neGplNC9XYW1m?=
+ =?utf-8?B?RktZS3hzVW9hZzJEeWRRRFFjTkxyODZxQnpoQ1ZxQXpjb3BiWUZydWE0U2N2?=
+ =?utf-8?B?MUQ0SW81cVZHSWJRdG4yaWZhOWt0YlJtOGY1NTY0S2lDZ0E2eWxMZldGa3hu?=
+ =?utf-8?B?cG10WDFCWm4rMmRvd1BtbVFuT3NXdEZtaW1zTWtoRlMvU3FaN3ROSVlkZTlT?=
+ =?utf-8?B?YmN3bUFzcG5aRkRDWElHNTA3Q1YwQnRNTUtyY2lreURRa29YQVN3ajRXOHln?=
+ =?utf-8?B?TjVNVkJvYkZtOVQvdXZTV3pnYnJvdHkrc0o4K2oyNzZma3pVWm5VOHIyTUtz?=
+ =?utf-8?B?NHQ2bzFteG9ISzNkMlZMaFJyR2o2RUlielV6RFdsNGZ1VWMxVlZuT2ZrYkJB?=
+ =?utf-8?B?SUtpWlY4OFB3a3U4aGpFdE9YbHhma1J4WTBNRGdWcS9pWEhYUkpINzNHWWJn?=
+ =?utf-8?B?M3ZFRDZ2MFpJR21PT3NHS29aRzBLYkN4UVltZlBpbUZUMVB0SURSaWpjUzBS?=
+ =?utf-8?B?NkFhNUxsZHRTU0pNcTFzdDRxSmpQOHBhUENGb2J0c0hGcHd1T3JVSGRvUFBU?=
+ =?utf-8?B?Q2MwZ1B5RlZ2ZUxRSnlOYWx4cmRwdFI2SSs1T2pnUVU4NUZGK0JHUk5YWmdp?=
+ =?utf-8?B?eG13MitCbGFnQVorT0xjeDBRc1YwNXAwSXFFaC9tUkp2SENVcWplVFFNaDNx?=
+ =?utf-8?B?N2Y3Z0t2aUtSKy80anRMb3UvQ3RPV2F0Z2l0dUZCbXoyMjZvU3lBa1dNRHpS?=
+ =?utf-8?B?dkt4eEVxakZxUUhETmNBMngxWW83OTU5R0VReFVWZzBDMVRobnFsWlpOdlFK?=
+ =?utf-8?B?MWdDb0lGODZzZEJ1U3pTV2lPZ2tGMnJBWmJNZUpENXM5SXRzOVJRbEJ3bTR4?=
+ =?utf-8?B?UVdOMVFoZlQ2c2RYeEZ5anBnNi81NGlHOHR0SkNaUy8zVGVCZ2pCTzkvZ1JZ?=
+ =?utf-8?B?VURLVUdhV1diWDcxSzdUUnBDT0s1QWpzYXNVVWQ3REVnckk4dEVuM2l2aVZr?=
+ =?utf-8?B?UkRXT1RyRlI2NGtQSyszblVMOVJlbllSYjczLzhWNU1meXNwcy9TT2UwVzZQ?=
+ =?utf-8?B?OUh4aTgrZkFjZDdXNWJzZVg1TklLYmIwUkthNElJQWxWaitVMm4xUDlSeEZX?=
+ =?utf-8?B?SDhObGYzL1YrQ3JReENBa1pHalc2WG1vRUlmTUNwT0NzNnFPVWYvU29ab1Ji?=
+ =?utf-8?B?QTAzOFZvaitmVGFCaXgra1pVcnZXZVdpUER2bWFXd0gxWVNkaGhlMGh4bUlI?=
+ =?utf-8?B?MjhSYTN4TlVXK3JuL3FRaC9jMnV4eWRidTZlOE5PMEZOU0I2TzhNeWdnPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZDBjNC8ydDZCUy80RUlqTXc4VkNDMStRSVZtWG5SZHdwR3VFNFNMVWhPRGg1?=
+ =?utf-8?B?Wi9LalM0NHBNM3ZWQlZtWGNJQWRzaWpIeFpyV3lyUFRCV0ZFK2ptMTJwTlhL?=
+ =?utf-8?B?aFBmQ2NRTGlieldrcWFWSlB4ejVxUGVoNzFOTFROZzV0VDFNZU5HYzNQT01n?=
+ =?utf-8?B?VW1tcWxwei84S2FyWmVEWXBKNEo4bE90VTY3cUlXcjI2djByVFV5K0dPNlls?=
+ =?utf-8?B?OG1wMEU3Q0dzcmxTTDM1VHNDTFI4WWdBbFJxcnh4WEJmV2hWbWYvTXJRcTVy?=
+ =?utf-8?B?bnA5YnFNbGloYWZPLzRVSWJOQkVyalVIQzVYVVNkTzZzc0J4djRuOHBpTkdq?=
+ =?utf-8?B?cnFYOGlmd010SXNWNUEvN3JydEpyUG5lVFpjL1NwQW43bUloM1VOM25RT3Rn?=
+ =?utf-8?B?T3pwSGgwZlM5Q1R2L3h0czRQZHlDMXQ4eVhHdGxVNVY5NXZlUTBQdUowNUZx?=
+ =?utf-8?B?YTJvWW96STlKa0VZeXZvc2ZWS2Ivclp1amx0ZjU3SjRFVDl0enNKeXJ4UUE5?=
+ =?utf-8?B?ZGVwWW1LRm0xU050RGZ5eEgxNWpxdVVhS1NaVHRRcG9tT0JkeENpQ0E3dDE3?=
+ =?utf-8?B?b2lEM05POWNEaVlnd3VNWjROYVcvdHNsZXlLZTB3VzV2OVZGUjMyQ0VJUkZw?=
+ =?utf-8?B?aklSN0xWb2tZQjZSdnFXbkVsUmRLR0VhUE1CSHpXakx1bjM0V0h0TFJpZ2pL?=
+ =?utf-8?B?Uk1vYmcrUndqaFZWYVJnQTVLTmo0TFV0NUlKVGdUUTBMVVRkWjdyd2NISHVS?=
+ =?utf-8?B?S1c3M2REU1hicS9VNFBkMkVOMllETFBiQlZwK1V6LzZpdS9EcWRJc2lCWnhv?=
+ =?utf-8?B?cDYvNXVrTXpXcmh3STA4MWUybDFoZ1ZmcHdqTnQ2ZTVCUnZwWmFqWUlNeW51?=
+ =?utf-8?B?R1ZsMWQ0NGhjYzRJS2Q2UXBHSGlJbklnL05mQTJtc1N5d2xKZkxUR1o3OWk0?=
+ =?utf-8?B?V24zcEtCRDkvcGJvcnByRWVWbDlaajQxdnUwU3A0ak0rYVBpZnpmdTViRS9t?=
+ =?utf-8?B?a1A2c3FraHE5WTBGNkNlbEswR2xRTnV5REdEOHpoNUc2MjZOZTdGVERCd2lU?=
+ =?utf-8?B?K2hVS0owSGxnZkR2SFU5OStoQlBTcFY3a0p3cFVMRUlJbEh6dkRQTlc5MEJr?=
+ =?utf-8?B?UGthUHlPNkpaZFpYa0ozT0JHSEthK2Fnd3VxMHFmd1pmZGRsZVA3UDJvdWpW?=
+ =?utf-8?B?dDIxTEFSREY3WUNQa1dHVGFhWHF2NVJUeWpNMHEyaHFmUjdRbTkySFdPbkxu?=
+ =?utf-8?B?bXlLWGhHZUtDSDN3RWphOE5LNFFzamdQVmxIaWgzZUJnVnU3dHBjWDFIaFky?=
+ =?utf-8?B?QTB3NmlPbTVkTDJhZVZvQkxYbWsrMVhYaU56ejArdDAvTExNM3ZLeTRVVTlk?=
+ =?utf-8?B?bDRtaXQ4U21oRC9MOVREcUJKSms3ZFd5dFp4Mjl3d0JCYVBLeEtEN0V6cVdJ?=
+ =?utf-8?B?M2lPYk8rdWtUU0FKR01zVHFkREdabHdQek1Nekt0SWlNN0FOaExramExd2tz?=
+ =?utf-8?B?d1NRb0FWbHN6R2tYc0JqRUZybTZyem1IMEZCU09HQXpDenh6aG0xN0pmVEIy?=
+ =?utf-8?B?cGdzcHVpSG1kRitpSUJYczdpaFNTYTV6RDN0SDJTK0JDc253U0Z4SEZvZlVn?=
+ =?utf-8?B?VFg5NnBRY2ZnVWplQk92dHJBL3E4WkNCS2lQbkZveUkxVVRUdk9EdWMvQ3lt?=
+ =?utf-8?B?SzhUd2luYXIvWWhxd2I2QzBqbmRsME1sMFN5d2tCZmlTbGZlOW04cmpxWVVq?=
+ =?utf-8?B?MHErang5ZFpPYW1SUHVaUnVrTUkzQzRSZFNzWkVOcVZzU0VyTEkwVXZ3dDlC?=
+ =?utf-8?B?U1B4RGpWc3ZuZ21rVExFTVBsVi96Qm9FSnZ5L1ltaHFtZ1EwVmdsNTRLaDBD?=
+ =?utf-8?B?ZnR6VHk5TVNzNGlLcnpBVWJleU82YTZaVTJJY0tycWZkOXFRdXJiVTNLc1g0?=
+ =?utf-8?B?ckpQSXpUS1J3TGpQKzhuSWtVanNoemVEblNSMjEza0V2ZFVoSmlweXRIY0hQ?=
+ =?utf-8?B?YTdVVThhYnlVVkd0TXRIRFErZEx3YzU5S1pQYkorcEJtTXhUbGJDMytHNXha?=
+ =?utf-8?B?bUpuOU0rVHA4aVB1MmJCTndOL3JrcE9aWGFoUFM1MGtqcDc4YmVqbWFuTy9v?=
+ =?utf-8?B?YzFXYWR4d2srRmJuclFSdUwveE9FVVZFZmVtZi9hRWMwb1ZnWW9TZEJFYTE2?=
+ =?utf-8?B?bHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a030a8c3-bf7e-46d8-0e02-08dce21fafce
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2024 13:48:10.4635 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /Is95mxQdLZSPXE5DOa4KFOHYr67hepSWbKK5Eq8LOKExAmyG8TbhYZp54hEhoRMIckmPWchMPtd1xq1kFEJJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6183
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,224 +195,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Brian Welty <brian.welty@intel.com>
 
-In order to enable access counters, this must be enabled in LRC for
-the exec_queue. Add basic uAPI to set configuration of access counter
-trigger threshold and granularity.
 
-When access counters are enabled and threshold is hit, the access
-counter handler in xe_gt_pagefault.c will migrate the buffer to that
-to that GT's local VRAM.
+On 01-10-2024 14:13, Matthew Auld wrote:
+> Looks like we are meant to use xa_err() to extract the error encoded in
+> the ptr.
+> 
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.8+
+> ---
+>   drivers/gpu/drm/xe/xe_guc_ct.c | 23 ++++++++---------------
+>   1 file changed, 8 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 44263b3cd8c7..d3de2e6d690f 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -667,16 +667,12 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+>   		num_g2h = 1;
+>   
+>   		if (g2h_fence_needs_alloc(g2h_fence)) {
+> -			void *ptr;
+> -
+>   			g2h_fence->seqno = next_ct_seqno(ct, true);
+> -			ptr = xa_store(&ct->fence_lookup,
+> -				       g2h_fence->seqno,
+> -				       g2h_fence, GFP_ATOMIC);
+> -			if (IS_ERR(ptr)) {
+> -				ret = PTR_ERR(ptr);
+> +			ret = xa_err(xa_store(&ct->fence_lookup,
+> +					      g2h_fence->seqno, g2h_fence,
+> +					      GFP_ATOMIC));
+> +			if (ret)
+>   				goto out;
+> -			}
+>   		}
+>   
+>   		seqno = g2h_fence->seqno;
+> @@ -879,14 +875,11 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>   retry_same_fence:
+>   	ret = guc_ct_send(ct, action, len, 0, 0, &g2h_fence);
+>   	if (unlikely(ret == -ENOMEM)) {
+> -		void *ptr;
+> -
+>   		/* Retry allocation /w GFP_KERNEL */
+> -		ptr = xa_store(&ct->fence_lookup,
+> -			       g2h_fence.seqno,
+> -			       &g2h_fence, GFP_KERNEL);
+> -		if (IS_ERR(ptr))
+> -			return PTR_ERR(ptr);
+> +		ret = xa_err(xa_store(&ct->fence_lookup, g2h_fence.seqno,
+> +				      &g2h_fence, GFP_KERNEL));
+> +		if (ret)
+> +			return ret;
 
-Signed-off-by: Brian Welty <brian.welty@intel.com>
-Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c       | 46 ++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 10 ++++++
- drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
- drivers/gpu/drm/xe/xe_lrc.c              | 16 ++++++---
- drivers/gpu/drm/xe/xe_lrc.h              |  2 +-
- include/uapi/drm/xe_drm.h                | 11 ++++++
- 6 files changed, 79 insertions(+), 8 deletions(-)
+Looks good to me.
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d098d2dd1b2d..4114a5ca04cc 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -117,7 +117,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
- 	}
- 
- 	for (i = 0; i < q->width; ++i) {
--		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K);
-+		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, q, SZ_16K);
- 		if (IS_ERR(q->lrc[i])) {
- 			err = PTR_ERR(q->lrc[i]);
- 			goto err_unlock;
-@@ -392,6 +392,42 @@ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *
- 	return 0;
- }
- 
-+static int exec_queue_set_acc_trigger(struct xe_device *xe, struct xe_exec_queue *q,
-+				      u64 value)
-+{
-+	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
-+		return -EINVAL;
-+
-+	q->usm.acc_trigger = value;
-+
-+	return 0;
-+}
-+
-+static int exec_queue_set_acc_notify(struct xe_device *xe, struct xe_exec_queue *q,
-+				     u64 value)
-+{
-+	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
-+		return -EINVAL;
-+
-+	q->usm.acc_notify = value;
-+
-+	return 0;
-+}
-+
-+static int exec_queue_set_acc_granularity(struct xe_device *xe, struct xe_exec_queue *q,
-+					  u64 value)
-+{
-+	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
-+		return -EINVAL;
-+
-+	if (value > DRM_XE_ACC_GRANULARITY_64M)
-+		return -EINVAL;
-+
-+	q->usm.acc_granularity = value;
-+
-+	return 0;
-+}
-+
- typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
- 					     struct xe_exec_queue *q,
- 					     u64 value);
-@@ -399,6 +435,9 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
- static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
- 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
-+	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
-+	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
-+	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY] = exec_queue_set_acc_granularity,
- };
- 
- static int exec_queue_user_ext_set_property(struct xe_device *xe,
-@@ -418,7 +457,10 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
- 			 ARRAY_SIZE(exec_queue_set_property_funcs)) ||
- 	    XE_IOCTL_DBG(xe, ext.pad) ||
- 	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY &&
--			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE))
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE &&
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER &&
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY &&
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY))
- 		return -EINVAL;
- 
- 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 7deb480e26af..cf4ec4bfdbfd 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -128,6 +128,16 @@ struct xe_exec_queue {
- 		struct list_head link;
- 	} lr;
- 
-+	/** @usm: unified shared memory state */
-+	struct {
-+		/** @usm.acc_trigger: access counter trigger */
-+		u32 acc_trigger;
-+		/** @usm.acc_notify: access counter notify */
-+		u32 acc_notify;
-+		/** @usm.acc_granularity: access counter granularity */
-+		u32 acc_granularity;
-+	} usm;
-+
- 	/** @ops: submission backend exec queue operations */
- 	const struct xe_exec_queue_ops *ops;
- 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index f3b71fe7a96d..33f5b31ea0cb 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -265,7 +265,7 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
- 
- 	port->hwe = hwe;
- 
--	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K);
-+	port->lrc = xe_lrc_create(hwe, NULL, NULL, SZ_16K);
- 	if (IS_ERR(port->lrc)) {
- 		err = PTR_ERR(port->lrc);
- 		goto err;
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index f0976230012a..3be668caf700 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -891,9 +891,11 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
- 
- #define PVC_CTX_ASID		(0x2e + 1)
- #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
-+#define ACC_GRANULARITY_S	20
-+#define ACC_NOTIFY_S		16
- 
- static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
--		       struct xe_vm *vm, u32 ring_size)
-+		       struct xe_exec_queue *q, struct xe_vm *vm, u32 ring_size)
- {
- 	struct xe_gt *gt = hwe->gt;
- 	struct xe_tile *tile = gt_to_tile(gt);
-@@ -984,7 +986,13 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	xe_lrc_write_ctx_reg(lrc, CTX_TIMESTAMP, 0);
- 
- 	if (xe->info.has_asid && vm)
--		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID, vm->usm.asid);
-+		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID,
-+				     (q->usm.acc_granularity <<
-+				      ACC_GRANULARITY_S) | vm->usm.asid);
-+	if (xe->info.has_usm && vm)
-+		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ACC_CTR_THOLD,
-+				     (q->usm.acc_notify <<
-+				      ACC_NOTIFY_S) | q->usm.acc_trigger);
- 
- 	lrc->desc = LRC_VALID;
- 	lrc->desc |= FIELD_PREP(LRC_ADDRESSING_MODE, LRC_LEGACY_64B_CONTEXT);
-@@ -1029,7 +1037,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-  * upon failure.
-  */
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
--			     u32 ring_size)
-+			     struct xe_exec_queue *q, u32 ring_size)
- {
- 	struct xe_lrc *lrc;
- 	int err;
-@@ -1038,7 +1046,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
- 	if (!lrc)
- 		return ERR_PTR(-ENOMEM);
- 
--	err = xe_lrc_init(lrc, hwe, vm, ring_size);
-+	err = xe_lrc_init(lrc, hwe, q, vm, ring_size);
- 	if (err) {
- 		kfree(lrc);
- 		return ERR_PTR(err);
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index c24542e89318..3806f977cad0 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -23,7 +23,7 @@ struct xe_vm;
- #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
- 
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
--			     u32 ring_size);
-+			     struct xe_exec_queue *q, u32 ring_size);
- void xe_lrc_destroy(struct kref *ref);
- 
- /**
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index b6fbe4988f2e..e2326bbedc81 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1108,6 +1108,17 @@ struct drm_xe_exec_queue_create {
- #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
-+#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		2
-+#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		3
-+#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	4
-+/* Monitor 128KB contiguous region with 4K sub-granularity */
-+#define     DRM_XE_ACC_GRANULARITY_128K			0
-+/* Monitor 2MB contiguous region with 64KB sub-granularity */
-+#define     DRM_XE_ACC_GRANULARITY_2M				1
-+/* Monitor 16MB contiguous region with 512KB sub-granularity */
-+#define     DRM_XE_ACC_GRANULARITY_16M				2
-+/* Monitor 64MB contiguous region with 2M sub-granularity */
-+#define     DRM_XE_ACC_GRANULARITY_64M				3
- 
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
--- 
-2.34.1
+Regards,
+Badal
+
+>   
+>   		goto retry_same_fence;
+>   	} else if (unlikely(ret)) {
 
