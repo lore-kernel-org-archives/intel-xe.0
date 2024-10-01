@@ -4,56 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53499CEACDD
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 14:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAC88CEACD5
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 14:55:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21CE510E640;
-	Tue,  1 Oct 2024 14:54:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB9FD10E640;
+	Tue,  1 Oct 2024 14:55:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IXUwExE2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gVdG44w/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7417C10E64D
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 14:53:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A92810E2C0;
+ Tue,  1 Oct 2024 14:54:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727794438; x=1759330438;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UrFhlPq9yhV/Uv85WRcBmalpAQYhEM+T7/NLaTV7mSg=;
- b=IXUwExE21IikldMiwr3t6OWpRqkdfEV9mh6alh9N4AWHeajpcnhxoYq5
- yuYY9tLe7HKWcF+Te4Oa9lMWARP4xwZHM3NEFxpf6RIP54BBh2S/HId7t
- biwR/qmzj+upOUccpgjjxhmV54W2BaodT3IyLYjgSLrWwvcJ5ImH37Jb5
- GK5OdfcrrM+tHFgSbS0RUSTjtRdyjNPtagLz5wYM8xJGCwls2EK0cwtbV
- J3kFJocfoh+46Jg1aL803EONhZsY/aKf3Apxl0JApEIOz8qGCMDLlEQRK
- dPSDPVzkAX/jI9e0JY9cHaLLhX1o9eYd1bp71LZNeUqhBzKWohFzJDk3y g==;
-X-CSE-ConnectionGUID: xvd9OCrSSEmGoKzGm1wsMw==
-X-CSE-MsgGUID: U4DwHaI5QbaaPndfiu+CZw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="27091440"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27091440"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 07:53:58 -0700
-X-CSE-ConnectionGUID: YOzbXxbTTrevQC1BIQQrHQ==
-X-CSE-MsgGUID: H2yo+NSUTduEs9vyZLbKNg==
+ t=1727794499; x=1759330499;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ecwBI6yVzkZLIXGC3sGQbIbn+aqLSYy+OdwyEgxXCgo=;
+ b=gVdG44w/S0/NZj7iZYj/s+BNZKOAszm6IXYYl+FGfYS7cdAXFWmIarRm
+ QkncxrrSTuaaYQdjMg6lhLXdVLaiIPSmic0rniPufowvN7eF+TM/3B54f
+ HtBXD6vrkpyj8MOP/hEhd+RyqOWm7MMjDxeuQKgCm9ILzvvZKAap9DGRi
+ QgOzz+pkfLr3x2djIh0yiyEiJ0YdIKWxX4tW+YrjB4BMdmhrPRLLiS3zw
+ nxYYaZWZT0wiwf88XS5b7SvZm/n+KPu7xhE//81gfp8qudsscgjacBurF
+ VK5DLfIHx0sko2rFV63OffpClgHB0k+6/7EiZ3FXcc965bxj6/DYGA738 w==;
+X-CSE-ConnectionGUID: gen9IMooTh+rF4ii3eeM1w==
+X-CSE-MsgGUID: Dkh2EoSRQtmnmRJ6hfVH9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="49455917"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="49455917"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 07:54:55 -0700
+X-CSE-ConnectionGUID: Q3vajoooSKqRZ8KFv059Fw==
+X-CSE-MsgGUID: 6Audy8LHRhqenlYEHO3U5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="97048795"
-Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 07:53:57 -0700
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Christoph Manszewski <christoph.manszewski@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 18/18] drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
-Date: Tue,  1 Oct 2024 17:43:06 +0300
-Message-Id: <20241001144306.1991001-19-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
-References: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73658322"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 07:54:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1sveH1-0000000FEdp-077P; Tue, 01 Oct 2024 17:54:47 +0300
+Date: Tue, 1 Oct 2024 17:54:46 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
+Message-ID: <ZvwNNsZ85oEAEJvh@smile.fi.intel.com>
+References: <20240930073845.347326-1-raag.jadav@intel.com>
+ <20240930073845.347326-2-raag.jadav@intel.com>
+ <Zvqgz3Vpz2IS1Cua@smile.fi.intel.com>
+ <ZvuDwvtyJ4djuIQ7@black.fi.intel.com>
+ <ZvvmH0n_y_vVSpvR@smile.fi.intel.com>
+ <ZvwEubI8ldUT6TsK@black.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZvwEubI8ldUT6TsK@black.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,231 +83,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christoph Manszewski <christoph.manszewski@intel.com>
+On Tue, Oct 01, 2024 at 05:18:33PM +0300, Raag Jadav wrote:
+> On Tue, Oct 01, 2024 at 03:07:59PM +0300, Andy Shevchenko wrote:
+> > On Tue, Oct 01, 2024 at 08:08:18AM +0300, Raag Jadav wrote:
+> > > On Mon, Sep 30, 2024 at 03:59:59PM +0300, Andy Shevchenko wrote:
+> > > > On Mon, Sep 30, 2024 at 01:08:41PM +0530, Raag Jadav wrote:
 
-Introduce kunit test for eudebug. For now it checks the dynamic
-application of WAs.
+...
 
-v2: adapt to removal of call_for_each_device (Mika)
+> > > > > +static const char *const drm_wedge_recovery_opts[] = {
+> > > > > +	[DRM_WEDGE_RECOVERY_REBIND] = "rebind",
+> > > > > +	[DRM_WEDGE_RECOVERY_BUS_RESET] = "bus-reset",
+> > > > > +	[DRM_WEDGE_RECOVERY_REBOOT] = "reboot",
+> > > > > +};
+> > > > 
+> > > > Place for static_assert() is here, as it closer to the actual data we test...
+> > > 
+> > > Shouldn't it be at the point of access?
+> > 
+> > No, the idea of static_assert() is in word 'static', meaning it's allowed to be
+> > used in the global space.
+> > 
+> > > If no, why do we care about the data when it's not being used?
+> > 
+> > What does this suppose to mean? The assertion is for enforcing the boundaries
+> > that are defined by different means (constant of the size and real size of
+> > an array).
+> 
+> The point was to simply not assert without an active user of the array, which is
+> not the case now but may be possible with growing functionality in the future.
 
-Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/xe/tests/xe_eudebug.c       | 175 ++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   5 +
- drivers/gpu/drm/xe/xe_eudebug.c             |   4 +
- 3 files changed, 184 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
+static_assert() is a compile-time check. How is it even related to this?
+So, i.o.w., you are contradicting yourself in this code: on one hand you want
+compile-time static checker, on the other you do not want it and rely on the
+usage of the function.
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_eudebug.c b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-new file mode 100644
-index 000000000000..3e78b6a9d056
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-@@ -0,0 +1,175 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <kunit/visibility.h>
-+
-+#include "tests/xe_kunit_helpers.h"
-+#include "tests/xe_pci_test.h"
-+#include "tests/xe_test.h"
-+
-+#undef XE_REG_MCR
-+#define XE_REG_MCR(r_, ...)	((const struct xe_reg_mcr){					\
-+				 .__reg = XE_REG_INITIALIZER(r_,  ##__VA_ARGS__, .mcr = 1)	\
-+				 })
-+
-+static const char *reg_to_str(struct xe_reg reg)
-+{
-+	if (reg.raw == TD_CTL.__reg.raw)
-+		return "TD_CTL";
-+	else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw)
-+		return "CS_DEBUG_MODE2";
-+	else if (reg.raw == ROW_CHICKEN.__reg.raw)
-+		return "ROW_CHICKEN";
-+	else if (reg.raw == ROW_CHICKEN2.__reg.raw)
-+		return "ROW_CHICKEN2";
-+	else if (reg.raw == ROW_CHICKEN3.__reg.raw)
-+		return "ROW_CHICKEN3";
-+	else
-+		return "UNKNOWN REG";
-+}
-+
-+static u32 get_reg_mask(struct xe_device *xe, struct xe_reg reg)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	u32 val = 0;
-+
-+	if (reg.raw == TD_CTL.__reg.raw) {
-+		val = TD_CTL_BREAKPOINT_ENABLE |
-+		      TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
-+		      TD_CTL_FEH_AND_FEE_ENABLE;
-+
-+		if (GRAPHICS_VERx100(xe) >= 1250)
-+			val |= TD_CTL_GLOBAL_DEBUG_ENABLE;
-+
-+	} else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw) {
-+		val = GLOBAL_DEBUG_ENABLE;
-+	} else if (reg.raw == ROW_CHICKEN.__reg.raw) {
-+		val = STALL_DOP_GATING_DISABLE;
-+	} else if (reg.raw == ROW_CHICKEN2.__reg.raw) {
-+		val = XEHPC_DISABLE_BTB;
-+	} else if (reg.raw == ROW_CHICKEN3.__reg.raw) {
-+		val = XE2_EUPEND_CHK_FLUSH_DIS;
-+	} else {
-+		kunit_warn(test, "Invalid register selection: %u\n", reg.raw);
-+	}
-+
-+	return val;
-+}
-+
-+static u32 get_reg_expected(struct xe_device *xe, struct xe_reg reg, bool enable_eudebug)
-+{
-+	u32 reg_mask = get_reg_mask(xe, reg);
-+	u32 reg_bits = 0;
-+
-+	if (enable_eudebug || reg.raw == ROW_CHICKEN3.__reg.raw)
-+		reg_bits = reg_mask;
-+	else
-+		reg_bits = 0;
-+
-+	return reg_bits;
-+}
-+
-+static void check_reg(struct xe_gt *gt, bool enable_eudebug, struct xe_reg reg)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 reg_bits_expected = get_reg_expected(xe, reg, enable_eudebug);
-+	u32 reg_mask = get_reg_mask(xe, reg);
-+	u32 reg_bits = 0;
-+
-+	if (reg.mcr)
-+		reg_bits = xe_gt_mcr_unicast_read_any(gt, (struct xe_reg_mcr){.__reg = reg});
-+	else
-+		reg_bits = xe_mmio_read32(&gt->mmio, reg);
-+
-+	reg_bits &= reg_mask;
-+
-+	kunit_printk(KERN_DEBUG, test, "%s bits: expected == 0x%x; actual == 0x%x\n",
-+		     reg_to_str(reg), reg_bits_expected, reg_bits);
-+	KUNIT_EXPECT_EQ_MSG(test, reg_bits_expected, reg_bits,
-+			    "Invalid bits set for %s\n", reg_to_str(reg));
-+}
-+
-+static void __check_regs(struct xe_gt *gt, bool enable_eudebug)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (GRAPHICS_VERx100(xe) >= 1200)
-+		check_reg(gt, enable_eudebug, TD_CTL.__reg);
-+
-+	if (GRAPHICS_VERx100(xe) >= 1250 && GRAPHICS_VERx100(xe) <= 1274)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN.__reg);
-+
-+	if (xe->info.platform == XE_PVC)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN2.__reg);
-+
-+	if (GRAPHICS_VERx100(xe) >= 2000 && GRAPHICS_VERx100(xe) <= 2004)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN3.__reg);
-+}
-+
-+static void check_regs(struct xe_device *xe, bool enable_eudebug)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	struct xe_gt *gt;
-+	u8 id;
-+	int ret = 0;
-+
-+	kunit_printk(KERN_DEBUG, test, "Check regs for eudebug %s\n",
-+		     enable_eudebug ? "enabled" : "disabled");
-+
-+	xe_pm_runtime_get(xe);
-+	for_each_gt(gt, xe, id) {
-+		if (xe_gt_is_media_type(gt))
-+			continue;
-+
-+		ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_RENDER);
-+		KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake failed.\n");
-+
-+		__check_regs(gt, enable_eudebug);
-+
-+		xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
-+	}
-+	xe_pm_runtime_put(xe);
-+}
-+
-+static int toggle_reg_value(struct xe_device *xe)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	bool enable_eudebug = xe->eudebug.enable;
-+
-+	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
-+		     GRAPHICS_VERx100(xe));
-+
-+	check_regs(xe, enable_eudebug);
-+
-+	xe_eudebug_enable(xe, !enable_eudebug);
-+	check_regs(xe, !enable_eudebug);
-+
-+	xe_eudebug_enable(xe, enable_eudebug);
-+	check_regs(xe, enable_eudebug);
-+
-+	return 0;
-+}
-+
-+static void xe_eudebug_toggle_reg_kunit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+
-+	toggle_reg_value(xe);
-+}
-+
-+static struct kunit_case xe_eudebug_tests[] = {
-+	KUNIT_CASE_PARAM(xe_eudebug_toggle_reg_kunit,
-+			 xe_pci_live_device_gen_param),
-+	{}
-+};
-+
-+VISIBLE_IF_KUNIT
-+struct kunit_suite xe_eudebug_test_suite = {
-+	.name = "xe_eudebug",
-+	.test_cases = xe_eudebug_tests,
-+	.init = xe_kunit_helper_xe_device_live_test_init,
-+};
-+EXPORT_SYMBOL_IF_KUNIT(xe_eudebug_test_suite);
-diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-index 5f14737c8210..7dd8a0a4bdfd 100644
---- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-+++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-@@ -15,6 +15,11 @@ kunit_test_suite(xe_dma_buf_test_suite);
- kunit_test_suite(xe_migrate_test_suite);
- kunit_test_suite(xe_mocs_test_suite);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-+extern struct kunit_suite xe_eudebug_test_suite;
-+kunit_test_suite(xe_eudebug_test_suite);
-+#endif
-+
- MODULE_AUTHOR("Intel Corporation");
- MODULE_LICENSE("GPL");
- MODULE_DESCRIPTION("xe live kunit tests");
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index 6e26245556d4..4d81955d0169 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -3885,3 +3885,7 @@ xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg)
- 
- 	return ret;
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_eudebug.c"
-+#endif
+Possible solutions:
+1) remove static_assert() completely;
+2) move it as I said.
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
