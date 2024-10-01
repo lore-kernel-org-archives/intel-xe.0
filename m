@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4F15CEACD5
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 14:53:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53499CEACDD
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 14:54:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7390210E646;
-	Tue,  1 Oct 2024 14:53:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21CE510E640;
+	Tue,  1 Oct 2024 14:54:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VuVfIynI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IXUwExE2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30B7510E655
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 14:53:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7417C10E64D
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 14:53:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727794437; x=1759330437;
+ t=1727794438; x=1759330438;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Jx9oTbb5qXd0RnUO+hrWeqkZS7FL3mIAdIkYeZA/MN8=;
- b=VuVfIynIM0zWGnnR//L/6195/LWLGGjfxDkDpTVIi0BjgwA4tNMb63FV
- NdMQOzc5zrJGlbZIXXuVGA2iYR5uPUosjphAD0Bf71bdoIxvA64rUbowi
- eLZmr//P7BY7fAGqvmzGYX992NAuLsyR9b7AvIv7/egTT82gf8wURzH6V
- GfVdHUObRVCIGqEC/gh1GWjRHNkcBLCoXbJpE0D0PQV4570/7uoXhdxOA
- J15H0DLlIgzVy9uSjX1eIgxXMhJkxgg8hDKxwlXs/VnYYo2pQPjgxrmvj
- hS24cRVfZ7/2oTW8PSctYOAj1I4PwMyl5W8t5dWPqGTkkGEu8SFV6EhBt g==;
-X-CSE-ConnectionGUID: /9GV3iReT/2ydKnwHdixnQ==
-X-CSE-MsgGUID: VAXR9Y+kSu+S5G5qNIPpDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="27091431"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27091431"
+ bh=UrFhlPq9yhV/Uv85WRcBmalpAQYhEM+T7/NLaTV7mSg=;
+ b=IXUwExE21IikldMiwr3t6OWpRqkdfEV9mh6alh9N4AWHeajpcnhxoYq5
+ yuYY9tLe7HKWcF+Te4Oa9lMWARP4xwZHM3NEFxpf6RIP54BBh2S/HId7t
+ biwR/qmzj+upOUccpgjjxhmV54W2BaodT3IyLYjgSLrWwvcJ5ImH37Jb5
+ GK5OdfcrrM+tHFgSbS0RUSTjtRdyjNPtagLz5wYM8xJGCwls2EK0cwtbV
+ J3kFJocfoh+46Jg1aL803EONhZsY/aKf3Apxl0JApEIOz8qGCMDLlEQRK
+ dPSDPVzkAX/jI9e0JY9cHaLLhX1o9eYd1bp71LZNeUqhBzKWohFzJDk3y g==;
+X-CSE-ConnectionGUID: xvd9OCrSSEmGoKzGm1wsMw==
+X-CSE-MsgGUID: U4DwHaI5QbaaPndfiu+CZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="27091440"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27091440"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 07:53:57 -0700
-X-CSE-ConnectionGUID: XDHU0wJyR9aVCUuRCYyQHQ==
-X-CSE-MsgGUID: v94bIXMmRs+bi8BkXcEhEQ==
+ 01 Oct 2024 07:53:58 -0700
+X-CSE-ConnectionGUID: YOzbXxbTTrevQC1BIQQrHQ==
+X-CSE-MsgGUID: H2yo+NSUTduEs9vyZLbKNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="97048783"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="97048795"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 07:53:55 -0700
+ 01 Oct 2024 07:53:57 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Christoph Manszewski <christoph.manszewski@intel.com>,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 17/18] drm/xe/eudebug: Dynamically toggle debugger
- functionality
-Date: Tue,  1 Oct 2024 17:43:05 +0300
-Message-Id: <20241001144306.1991001-18-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 18/18] drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+Date: Tue,  1 Oct 2024 17:43:06 +0300
+Message-Id: <20241001144306.1991001-19-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
 References: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,381 +70,229 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-Make it possible to dynamically enable/disable debugger funtionality,
-including the setting and unsetting of required hw register values via a
-sysfs entry located at '/sys/class/drm/card<X>/device/enable_eudebug'.
+Introduce kunit test for eudebug. For now it checks the dynamic
+application of WAs.
 
-This entry uses 'kstrtobool' and as such it accepts inputs as documented
-by this function, in particular '0' and '1'.
-
-v2: use new discovery_lock to gain exclusivity (Mika)
+v2: adapt to removal of call_for_each_device (Mika)
 
 Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       |   2 -
- drivers/gpu/drm/xe/xe_device_types.h |   3 +
- drivers/gpu/drm/xe/xe_eudebug.c      | 125 +++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_eudebug.h      |   2 -
- drivers/gpu/drm/xe/xe_exec_queue.c   |   5 ++
- drivers/gpu/drm/xe/xe_hw_engine.c    |   1 -
- drivers/gpu/drm/xe/xe_reg_sr.c       |  21 +++--
- drivers/gpu/drm/xe/xe_reg_sr.h       |   4 +-
- drivers/gpu/drm/xe/xe_rtp.c          |   2 +-
- 9 files changed, 133 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_eudebug.c       | 175 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   5 +
+ drivers/gpu/drm/xe/xe_eudebug.c             |   4 +
+ 3 files changed, 184 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index e0d55e11ace6..0647c17a79dd 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -781,8 +781,6 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_debugfs_register(xe);
- 
--	xe_eudebug_init_late(xe);
--
- 	xe_hwmon_register(xe);
- 
- 	for_each_gt(gt, xe, id)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 40b0f61b64b8..fc448d44752e 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -549,6 +549,9 @@ struct xe_device {
- 		/** discovery_lock: used for discovery to block xe ioctls */
- 		struct rw_semaphore discovery_lock;
- 
-+		/** @enable: is the debugging functionality enabled */
-+		bool enable;
+diff --git a/drivers/gpu/drm/xe/tests/xe_eudebug.c b/drivers/gpu/drm/xe/tests/xe_eudebug.c
+new file mode 100644
+index 000000000000..3e78b6a9d056
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_eudebug.c
+@@ -0,0 +1,175 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
- 		/** @attention_scan: attention scan worker */
- 		struct delayed_work attention_scan;
- 	} eudebug;
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index faa49ba55b78..6e26245556d4 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -2000,9 +2000,6 @@ xe_eudebug_connect(struct xe_device *xe,
- 
- 	param->version = DRM_XE_EUDEBUG_VERSION;
- 
--	if (!xe->eudebug.available)
--		return -EOPNOTSUPP;
--
- 	d = kzalloc(sizeof(*d), GFP_KERNEL);
- 	if (!d)
- 		return -ENOMEM;
-@@ -2062,17 +2059,19 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
- {
- 	struct xe_device *xe = to_xe_device(dev);
- 	struct drm_xe_eudebug_connect * const param = data;
--	int ret = 0;
- 
--	ret = xe_eudebug_connect(xe, param);
-+	lockdep_assert_held(&xe->eudebug.discovery_lock);
- 
--	return ret;
-+	if (!xe->eudebug.enable)
-+		return -ENODEV;
++#include <kunit/visibility.h>
 +
-+	return xe_eudebug_connect(xe, param);
- }
- 
- #undef XE_REG_MCR
- #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
- 
--void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
-+static void xe_eudebug_reinit_hw_engine(struct xe_hw_engine *hwe, bool enable)
- {
- 	struct xe_gt *gt = hwe->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -2087,22 +2086,22 @@ void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
- 		struct xe_reg_sr_entry sr_entry = {
- 			.reg = ROW_CHICKEN,
- 			.clr_bits = STALL_DOP_GATING_DISABLE,
--			.set_bits = STALL_DOP_GATING_DISABLE,
-+			.set_bits = enable ? STALL_DOP_GATING_DISABLE : 0,
- 			.read_mask = STALL_DOP_GATING_DISABLE,
- 		};
- 
--		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
-+		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
- 	}
- 
- 	if (XE_WA(gt, 14015474168)) {
- 		struct xe_reg_sr_entry sr_entry = {
- 			.reg = ROW_CHICKEN2,
- 			.clr_bits = XEHPC_DISABLE_BTB,
--			.set_bits = XEHPC_DISABLE_BTB,
-+			.set_bits = enable ? XEHPC_DISABLE_BTB : 0,
- 			.read_mask = XEHPC_DISABLE_BTB,
- 		};
- 
--		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
-+		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
- 	}
- 
- 	if (xe->info.graphics_verx100 >= 1200) {
-@@ -2112,27 +2111,112 @@ void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
- 		struct xe_reg_sr_entry sr_entry = {
- 			.reg = TD_CTL,
- 			.clr_bits = mask,
--			.set_bits = mask,
-+			.set_bits = enable ? mask : 0,
- 			.read_mask = mask,
- 		};
- 
--		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
-+		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
- 	}
- 
- 	if (xe->info.graphics_verx100 >= 1250) {
- 		struct xe_reg_sr_entry sr_entry = {
- 			.reg = TD_CTL,
- 			.clr_bits = TD_CTL_GLOBAL_DEBUG_ENABLE,
--			.set_bits = TD_CTL_GLOBAL_DEBUG_ENABLE,
-+			.set_bits = enable ? TD_CTL_GLOBAL_DEBUG_ENABLE : 0,
- 			.read_mask = TD_CTL_GLOBAL_DEBUG_ENABLE,
- 		};
- 
--		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
-+		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
-+	}
++#include "tests/xe_kunit_helpers.h"
++#include "tests/xe_pci_test.h"
++#include "tests/xe_test.h"
++
++#undef XE_REG_MCR
++#define XE_REG_MCR(r_, ...)	((const struct xe_reg_mcr){					\
++				 .__reg = XE_REG_INITIALIZER(r_,  ##__VA_ARGS__, .mcr = 1)	\
++				 })
++
++static const char *reg_to_str(struct xe_reg reg)
++{
++	if (reg.raw == TD_CTL.__reg.raw)
++		return "TD_CTL";
++	else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw)
++		return "CS_DEBUG_MODE2";
++	else if (reg.raw == ROW_CHICKEN.__reg.raw)
++		return "ROW_CHICKEN";
++	else if (reg.raw == ROW_CHICKEN2.__reg.raw)
++		return "ROW_CHICKEN2";
++	else if (reg.raw == ROW_CHICKEN3.__reg.raw)
++		return "ROW_CHICKEN3";
++	else
++		return "UNKNOWN REG";
 +}
 +
-+static int xe_eudebug_enable(struct xe_device *xe, bool enable)
++static u32 get_reg_mask(struct xe_device *xe, struct xe_reg reg)
 +{
-+	struct xe_gt *gt;
-+	int i;
-+	u8 id;
++	struct kunit *test = kunit_get_current_test();
++	u32 val = 0;
 +
-+	if (!xe->eudebug.available)
-+		return -EOPNOTSUPP;
++	if (reg.raw == TD_CTL.__reg.raw) {
++		val = TD_CTL_BREAKPOINT_ENABLE |
++		      TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
++		      TD_CTL_FEH_AND_FEE_ENABLE;
 +
-+	/*
-+	 * The connect ioctl has read lock so we can
-+	 * serialize with taking write
-+	 */
-+	down_write(&xe->eudebug.discovery_lock);
++		if (GRAPHICS_VERx100(xe) >= 1250)
++			val |= TD_CTL_GLOBAL_DEBUG_ENABLE;
 +
-+	if (!enable && !list_empty(&xe->eudebug.list)) {
-+		up_write(&xe->eudebug.discovery_lock);
-+		return -EBUSY;
++	} else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw) {
++		val = GLOBAL_DEBUG_ENABLE;
++	} else if (reg.raw == ROW_CHICKEN.__reg.raw) {
++		val = STALL_DOP_GATING_DISABLE;
++	} else if (reg.raw == ROW_CHICKEN2.__reg.raw) {
++		val = XEHPC_DISABLE_BTB;
++	} else if (reg.raw == ROW_CHICKEN3.__reg.raw) {
++		val = XE2_EUPEND_CHK_FLUSH_DIS;
++	} else {
++		kunit_warn(test, "Invalid register selection: %u\n", reg.raw);
 +	}
 +
-+	if (enable == xe->eudebug.enable) {
-+		up_write(&xe->eudebug.discovery_lock);
-+		return 0;
- 	}
++	return val;
++}
 +
-+	for_each_gt(gt, xe, id) {
-+		for (i = 0; i < ARRAY_SIZE(gt->hw_engines); i++) {
-+			if (!(gt->info.engine_mask & BIT(i)))
-+				continue;
++static u32 get_reg_expected(struct xe_device *xe, struct xe_reg reg, bool enable_eudebug)
++{
++	u32 reg_mask = get_reg_mask(xe, reg);
++	u32 reg_bits = 0;
 +
-+			xe_eudebug_reinit_hw_engine(&gt->hw_engines[i], enable);
-+		}
-+
-+		xe_gt_reset_async(gt);
-+		flush_work(&gt->reset.worker);
-+	}
-+
-+	xe->eudebug.enable = enable;
-+	up_write(&xe->eudebug.discovery_lock);
-+
-+	if (enable)
-+		attention_scan_flush(xe);
++	if (enable_eudebug || reg.raw == ROW_CHICKEN3.__reg.raw)
++		reg_bits = reg_mask;
 +	else
-+		attention_scan_cancel(xe);
++		reg_bits = 0;
++
++	return reg_bits;
++}
++
++static void check_reg(struct xe_gt *gt, bool enable_eudebug, struct xe_reg reg)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 reg_bits_expected = get_reg_expected(xe, reg, enable_eudebug);
++	u32 reg_mask = get_reg_mask(xe, reg);
++	u32 reg_bits = 0;
++
++	if (reg.mcr)
++		reg_bits = xe_gt_mcr_unicast_read_any(gt, (struct xe_reg_mcr){.__reg = reg});
++	else
++		reg_bits = xe_mmio_read32(&gt->mmio, reg);
++
++	reg_bits &= reg_mask;
++
++	kunit_printk(KERN_DEBUG, test, "%s bits: expected == 0x%x; actual == 0x%x\n",
++		     reg_to_str(reg), reg_bits_expected, reg_bits);
++	KUNIT_EXPECT_EQ_MSG(test, reg_bits_expected, reg_bits,
++			    "Invalid bits set for %s\n", reg_to_str(reg));
++}
++
++static void __check_regs(struct xe_gt *gt, bool enable_eudebug)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (GRAPHICS_VERx100(xe) >= 1200)
++		check_reg(gt, enable_eudebug, TD_CTL.__reg);
++
++	if (GRAPHICS_VERx100(xe) >= 1250 && GRAPHICS_VERx100(xe) <= 1274)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN.__reg);
++
++	if (xe->info.platform == XE_PVC)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN2.__reg);
++
++	if (GRAPHICS_VERx100(xe) >= 2000 && GRAPHICS_VERx100(xe) <= 2004)
++		check_reg(gt, enable_eudebug, ROW_CHICKEN3.__reg);
++}
++
++static void check_regs(struct xe_device *xe, bool enable_eudebug)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_gt *gt;
++	u8 id;
++	int ret = 0;
++
++	kunit_printk(KERN_DEBUG, test, "Check regs for eudebug %s\n",
++		     enable_eudebug ? "enabled" : "disabled");
++
++	xe_pm_runtime_get(xe);
++	for_each_gt(gt, xe, id) {
++		if (xe_gt_is_media_type(gt))
++			continue;
++
++		ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_RENDER);
++		KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake failed.\n");
++
++		__check_regs(gt, enable_eudebug);
++
++		xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
++	}
++	xe_pm_runtime_put(xe);
++}
++
++static int toggle_reg_value(struct xe_device *xe)
++{
++	struct kunit *test = kunit_get_current_test();
++	bool enable_eudebug = xe->eudebug.enable;
++
++	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
++		     GRAPHICS_VERx100(xe));
++
++	check_regs(xe, enable_eudebug);
++
++	xe_eudebug_enable(xe, !enable_eudebug);
++	check_regs(xe, !enable_eudebug);
++
++	xe_eudebug_enable(xe, enable_eudebug);
++	check_regs(xe, enable_eudebug);
 +
 +	return 0;
 +}
 +
-+static ssize_t enable_eudebug_show(struct device *dev, struct device_attribute *attr, char *buf)
++static void xe_eudebug_toggle_reg_kunit(struct kunit *test)
 +{
-+	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	struct xe_device *xe = test->priv;
 +
-+	return sysfs_emit(buf, "%u\n", xe->eudebug.enable);
++	toggle_reg_value(xe);
 +}
 +
-+static ssize_t enable_eudebug_store(struct device *dev, struct device_attribute *attr,
-+				    const char *buf, size_t count)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
-+	bool enable;
-+	int ret;
++static struct kunit_case xe_eudebug_tests[] = {
++	KUNIT_CASE_PARAM(xe_eudebug_toggle_reg_kunit,
++			 xe_pci_live_device_gen_param),
++	{}
++};
 +
-+	ret = kstrtobool(buf, &enable);
-+	if (ret)
-+		return ret;
-+
-+	ret = xe_eudebug_enable(xe, enable);
-+	if (ret)
-+		return ret;
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR_RW(enable_eudebug);
-+
-+static void xe_eudebug_sysfs_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_enable_eudebug.attr);
- }
- 
- void xe_eudebug_init(struct xe_device *xe)
- {
-+	struct device *dev = xe->drm.dev;
-+	int ret;
-+
- 	spin_lock_init(&xe->eudebug.lock);
- 	INIT_LIST_HEAD(&xe->eudebug.list);
- 	INIT_LIST_HEAD(&xe->clients.list);
-@@ -2141,14 +2225,17 @@ void xe_eudebug_init(struct xe_device *xe)
- 
- 	xe->eudebug.ordered_wq = alloc_ordered_workqueue("xe-eudebug-ordered-wq", 0);
- 	xe->eudebug.available = !!xe->eudebug.ordered_wq;
--}
- 
--void xe_eudebug_init_late(struct xe_device *xe)
--{
- 	if (!xe->eudebug.available)
- 		return;
- 
--	attention_scan_flush(xe);
-+	ret = sysfs_create_file(&xe->drm.dev->kobj, &dev_attr_enable_eudebug.attr);
-+	if (ret)
-+		drm_warn(&xe->drm, "eudebug sysfs init failed: %d, debugger unavailable\n", ret);
-+	else
-+		devm_add_action_or_reset(dev, xe_eudebug_sysfs_fini, xe);
-+
-+	xe->eudebug.available = ret == 0;
- }
- 
- void xe_eudebug_fini(struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
-index 766d0a94d200..403f52148da3 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.h
-+++ b/drivers/gpu/drm/xe/xe_eudebug.h
-@@ -26,9 +26,7 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
- 			     struct drm_file *file);
- 
- void xe_eudebug_init(struct xe_device *xe);
--void xe_eudebug_init_late(struct xe_device *xe);
- void xe_eudebug_fini(struct xe_device *xe);
--void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe);
- 
- void xe_eudebug_file_open(struct xe_file *xef);
- void xe_eudebug_file_close(struct xe_file *xef);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index c2d6993ac103..011d8bb477d4 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -422,6 +422,11 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
- 			 !(value & DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)))
- 		return -EINVAL;
++VISIBLE_IF_KUNIT
++struct kunit_suite xe_eudebug_test_suite = {
++	.name = "xe_eudebug",
++	.test_cases = xe_eudebug_tests,
++	.init = xe_kunit_helper_xe_device_live_test_init,
++};
++EXPORT_SYMBOL_IF_KUNIT(xe_eudebug_test_suite);
+diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+index 5f14737c8210..7dd8a0a4bdfd 100644
+--- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
++++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+@@ -15,6 +15,11 @@ kunit_test_suite(xe_dma_buf_test_suite);
+ kunit_test_suite(xe_migrate_test_suite);
+ kunit_test_suite(xe_mocs_test_suite);
  
 +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-+	if (XE_IOCTL_DBG(xe, !xe->eudebug.enable))
-+		return -EPERM;
++extern struct kunit_suite xe_eudebug_test_suite;
++kunit_test_suite(xe_eudebug_test_suite);
 +#endif
 +
- 	q->eudebug_flags = EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
- 	q->sched_props.preempt_timeout_us = 0;
+ MODULE_AUTHOR("Intel Corporation");
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("xe live kunit tests");
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+index 6e26245556d4..4d81955d0169 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.c
++++ b/drivers/gpu/drm/xe/xe_eudebug.c
+@@ -3885,3 +3885,7 @@ xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg)
  
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 8e9a08395042..28c8cabf508c 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -558,7 +558,6 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	xe_tuning_process_engine(hwe);
- 	xe_wa_process_engine(hwe);
- 	hw_engine_setup_default_state(hwe);
--	xe_eudebug_init_hw_engine(hwe);
- 
- 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
- 	xe_reg_whitelist_process_engine(hwe);
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 191cb4121acd..023989adbe05 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -93,22 +93,31 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
- 
- int xe_reg_sr_add(struct xe_reg_sr *sr,
- 		  const struct xe_reg_sr_entry *e,
--		  struct xe_gt *gt)
-+		  struct xe_gt *gt,
-+		  bool overwrite)
- {
- 	unsigned long idx = e->reg.addr;
- 	struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
- 	int ret;
- 
- 	if (pentry) {
--		if (!compatible_entries(pentry, e)) {
-+		if (overwrite && e->set_bits) {
-+			pentry->clr_bits |= e->clr_bits;
-+			pentry->set_bits |= e->set_bits;
-+			pentry->read_mask |= e->read_mask;
-+		} else if (overwrite && !e->set_bits) {
-+			pentry->clr_bits |= e->clr_bits;
-+			pentry->set_bits &= ~e->clr_bits;
-+			pentry->read_mask |= e->read_mask;
-+		} else if (!compatible_entries(pentry, e)) {
- 			ret = -EINVAL;
- 			goto fail;
-+		} else {
-+			pentry->clr_bits |= e->clr_bits;
-+			pentry->set_bits |= e->set_bits;
-+			pentry->read_mask |= e->read_mask;
- 		}
- 
--		pentry->clr_bits |= e->clr_bits;
--		pentry->set_bits |= e->set_bits;
--		pentry->read_mask |= e->read_mask;
--
- 		return 0;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
-index 51fbba423e27..d67fafdcd847 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_REG_SR_
- #define _XE_REG_SR_
- 
-+#include <linux/types.h>
-+
- /*
-  * Reg save/restore bookkeeping
-  */
-@@ -21,7 +23,7 @@ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe)
- void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
- 
- int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e,
--		  struct xe_gt *gt);
-+		  struct xe_gt *gt, bool overwrite);
- void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt);
- void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe);
- 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index b13d4d62f0b1..6006f7c90cac 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -153,7 +153,7 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
- 	};
- 
- 	sr_entry.reg.addr += mmio_base;
--	xe_reg_sr_add(sr, &sr_entry, gt);
-+	xe_reg_sr_add(sr, &sr_entry, gt, false);
+ 	return ret;
  }
- 
- static bool rtp_process_one_sr(const struct xe_rtp_entry_sr *entry,
++
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_eudebug.c"
++#endif
 -- 
 2.34.1
 
