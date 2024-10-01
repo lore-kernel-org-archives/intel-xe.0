@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFBF2CEB2E8
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 06:48:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257E3CE7CE5
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 07:53:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A41AF10E187;
-	Tue,  1 Oct 2024 06:48:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BD7589F41;
+	Tue,  1 Oct 2024 07:53:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VJQ+sr2s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YeSs/gGm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13D7E10E187
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 06:48:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6429D10E5F2;
+ Tue,  1 Oct 2024 07:53:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727765324; x=1759301324;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=WpB72R7bSIuMu6Q8D92YAOzBZZMpmgmvBb5bbD9gR20=;
- b=VJQ+sr2s5klPC4/gXz+/p6xT1r/nrAisb/L+6X5KRTBTSW/IjhUlASVZ
- lJFyxAcIDZ542pI95CTU1mgB5BRADb7Z2qW8qpLddMQ9gsQIBg3TcA6Y+
- FR7q6XgEtOCG/ENyaUi4OWW21dnVQ6h1UdINXvFWKUD0+NIzp+Cyx1NCE
- htDxiHcspr1tqvuTPWgotEj+3oLpZqaz0LDKHyUdqfEN0UmhTDztB51WT
- 2zkbOk4nsd0OoJCoawInCUEPe/aLEUIaWexC7LLMfmJBsklMgdlqx8A7z
- Pq/CJMAGjdBKsprFGLO8k9UI07HyAxzlvyAyZvltuKDDHLnHrzRKoTVR6 w==;
-X-CSE-ConnectionGUID: 8pPYLx6RQQeQ7RJmSzeiUg==
-X-CSE-MsgGUID: oq6cnd7wR+WB3SOnN/joXQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="49404346"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="49404346"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 23:48:44 -0700
-X-CSE-ConnectionGUID: 1LuXbCxxTReXFhi6gF8ENg==
-X-CSE-MsgGUID: YUF/vYy7To6Agrl/lUystA==
+ t=1727769218; x=1759305218;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UnBApAP5YrRFQ2dH0ilfdeVDpb7XYWgceY5CHpg8rvs=;
+ b=YeSs/gGmkQWZBZSyCHjWrIYnDgCACGm+2OU+Nnhee9aysSbxp4eSQFfP
+ AX2vTX5lCV1UFgeFtBmVUrU1Lmwhl8vBcCLCOqSnCUNM/qvqxGgs2FpaF
+ Gph/2aaDhHvFIiTa+NhwSVV2yCu27XR0LtdMi0jvAtQsBt5QGtjdkz+U6
+ cq3U1LkSDi1kKu5dvVi0ur5dSJTXS3GW6licXBkDstxkOLsnOSOsVgrx2
+ YmDIpHYZEav0HZXiJgVbkTwyqK3vxMlOZnWoRkfLAxGOBsKHyTxDv4qqZ
+ mU2c03oYuiAl7QfZqdzsuBAIED7PYM61sCiDxGpwAssQaoahwT5dN4ewP Q==;
+X-CSE-ConnectionGUID: XePs4DpRRqC4FR8k+eyeKw==
+X-CSE-MsgGUID: TM7ohks7RzS6lnAwrlHrAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="44414538"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="44414538"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 00:53:37 -0700
+X-CSE-ConnectionGUID: gfXLW3/ITQ2jbk50ChrNCA==
+X-CSE-MsgGUID: Er5O4+wqTTyipNMPRlBbQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="111033084"
-Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO [10.245.245.112])
- ([10.245.245.112])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 23:48:43 -0700
-Message-ID: <9b74d6f8-8da4-446b-9008-c9c14ff1dd9d@intel.com>
-Date: Tue, 1 Oct 2024 07:48:40 +0100
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="78426852"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa003.jf.intel.com with ESMTP; 01 Oct 2024 00:53:36 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv2] drm/i915/dp: Guarantee a minimum HBlank time
+Date: Tue,  1 Oct 2024 13:13:48 +0530
+Message-Id: <20241001074348.2193502-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe/ct: prevent UAF in send_recv()
-To: "Nilawar, Badal" <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-References: <20240930122940.65850-3-matthew.auld@intel.com>
- <7759ab78-f9e3-4781-a1e1-adebaad57192@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <7759ab78-f9e3-4781-a1e1-adebaad57192@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,83 +64,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 01/10/2024 06:22, Nilawar, Badal wrote:
-> Hi Matthew,
-> 
-> On 30-09-2024 17:59, Matthew Auld wrote:
->> Ensure we serialize with completion side to prevent UAF with fence going
->> out of scope on the stack, since we have no clue if it will fire after
->> the timeout before we can erase from the xa. Also we have some dependent
->> loads and stores for which we need the correct ordering, and we lack the
->> needed barriers. Fix this by grabbing the ct->lock after the wait, which
->> is also held by the completion side.
->>
->> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Badal Nilawar <badal.nilawar@intel.com>
->> Cc: <stable@vger.kernel.org> # v6.8+
->> ---
->>   drivers/gpu/drm/xe/xe_guc_ct.c | 17 ++++++++++++++++-
->>   1 file changed, 16 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c 
->> b/drivers/gpu/drm/xe/xe_guc_ct.c
->> index 4b95f75b1546..232eb69bd8e4 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->> @@ -903,16 +903,26 @@ static int guc_ct_send_recv(struct xe_guc_ct 
->> *ct, const u32 *action, u32 len,
->>       }
->>       ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
->> +
->> +    /*
->> +     * Ensure we serialize with completion side to prevent UAF with 
->> fence going out of scope on
->> +     * the stack, since we have no clue if it will fire after the 
->> timeout before we can erase
->> +     * from the xa. Also we have some dependent loads and stores 
->> below for which we need the
->> +     * correct ordering, and we lack the needed barriers.
->> +     */
-> 
-> Before acquiring lock it is still possible that fence will be fired. To 
-> know it it would be good to print g2h_fence.done in error message below.
+Mandate a minimum Hblank symbol cycle count between BS and BE in 8b/10b
+MST and 12b/132b mode.
+Spec: DP2.1a
 
-Ok, will add.
+v2: Affine calculation/updation of min HBlank to dp_mst (Jani)
 
-> 
-> Regards,
-> Badal
-> 
->> +    mutex_lock(&ct->lock);
->>       if (!ret) {
->>           xe_gt_err(gt, "Timed out wait for G2H, fence %u, action %04x",
->>                 g2h_fence.seqno, action[0]);
->>           xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
->> +        mutex_unlock(&ct->lock);
->>           return -ETIME;
->>       }
->>       if (g2h_fence.retry) {
->>           xe_gt_dbg(gt, "H2G action %#x retrying: reason %#x\n",
->>                 action[0], g2h_fence.reason);
->> +        mutex_unlock(&ct->lock);
->>           goto retry;
->>       }
->>       if (g2h_fence.fail) {
->> @@ -921,7 +931,12 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, 
->> const u32 *action, u32 len,
->>           ret = -EIO;
->>       }
->> -    return ret > 0 ? response_buffer ? g2h_fence.response_len : 
->> g2h_fence.response_data : ret;
->> +    if (ret > 0)
->> +        ret = response_buffer ? g2h_fence.response_len : 
->> g2h_fence.response_data;
->> +
->> +    mutex_unlock(&ct->lock);
->> +
->> +    return ret;
->>   }
->>   /**
-> 
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 30 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h               |  4 +++
+ 3 files changed, 36 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 17fc21f6ae36..5f151ad9b878 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1770,6 +1770,8 @@ struct intel_dp {
+ 
+ 	u8 alpm_dpcd;
+ 
++	u32 min_hblank;
++
+ 	struct {
+ 		unsigned long mask;
+ 	} quirks;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 4765bda154c1..45c8be7cd7b3 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -156,6 +156,30 @@ static int intel_dp_mst_calc_pbn(int pixel_clock, int bpp_x16, int bw_overhead)
+ 	return DIV_ROUND_UP(effective_data_rate * 64, 54 * 1000);
+ }
+ 
++static void intel_dp_mst_compute_min_hblank(struct intel_crtc_state *crtc_state,
++					    struct intel_connector *intel_connector,
++					    int bpp_x16)
++{
++	struct intel_encoder *intel_encoder = intel_connector->encoder;
++	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(intel_encoder);
++	struct intel_dp *intel_dp = &intel_mst->primary->dp;
++	struct intel_display *intel_display = to_intel_display(intel_encoder);
++	const struct drm_display_mode *adjusted_mode =
++					&crtc_state->hw.adjusted_mode;
++	u32 symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
++	u32 hblank;
++
++	if (DISPLAY_VER(intel_display) < 20)
++		return;
++
++	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
++	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
++	if (intel_dp_is_uhbr(crtc_state))
++		intel_dp->min_hblank = hblank > 5 ? hblank : 5;
++	else
++		intel_dp->min_hblank = hblank > 3 ? hblank : 3;
++}
++
+ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+ 						struct intel_crtc_state *crtc_state,
+ 						int max_bpp,
+@@ -228,6 +252,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+ 					 link_bpp_x16,
+ 					 &crtc_state->dp_m_n);
+ 
++		intel_dp_mst_compute_min_hblank(crtc_state, connector, link_bpp_x16);
++
+ 		/*
+ 		 * The TU size programmed to the HW determines which slots in
+ 		 * an MTP frame are used for this stream, which needs to match
+@@ -1274,6 +1300,10 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+ 			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
+ 	}
+ 
++	if (DISPLAY_VER(dev_priv) >= 20)
++		intel_de_write(dev_priv, DP_MIN_HBLANK_CTL(dev_priv, trans),
++			       intel_dp->min_hblank);
++
+ 	enable_bs_jitter_was(pipe_config);
+ 
+ 	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 7396fc630e29..b321d136e1b0 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1138,6 +1138,10 @@
+ #define _TRANS_MULT_B		0x6102c
+ #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
+ 
++#define _DP_MIN_HBLANK_CTL_A	0x600ac
++#define _DP_MIN_HBLANK_CTL_B	0x610ac
++#define DP_MIN_HBLANK_CTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _DP_MIN_HBLANK_CTL_A)
++
+ /* VGA port control */
+ #define ADPA			_MMIO(0x61100)
+ #define PCH_ADPA                _MMIO(0xe1100)
+-- 
+2.25.1
+
