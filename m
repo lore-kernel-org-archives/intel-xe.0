@@ -4,67 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 376A6CE7D12
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 12:20:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 223EFCEB2FD
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 13:21:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDDA510E2F4;
-	Tue,  1 Oct 2024 12:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E081310E61B;
+	Tue,  1 Oct 2024 13:21:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eH2yHksn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mrb0n0Eu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 406E110E2E6;
- Tue,  1 Oct 2024 12:20:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F44410E614;
+ Tue,  1 Oct 2024 13:21:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727785238; x=1759321238;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=u39Vf2xW3Sn8VrNdFBSdQK13CKiFImEoX4u5aUweK2Y=;
- b=eH2yHksnqllNvfHnPWPo3v6XeEVpFJZnkbqg/RcTKICnGg2pKGIc947t
- nqzXwn7KB3Tjiy3reYp6uIXEGGIcsubSdStWkLWOny6pgTHqY75r1+v9G
- IMgrsCCkMXxfWkui7chyEXF4r9MoCsQA3DR5eFMa9pD5uqo355ULcLQsv
- 25/whk7pR6e+3rpSqWUop2XyyZhtrGXQW0E6vGplXSa5WUpB73M5YHC2d
- 52wt4m3f9Ftd4FpJ8CfVfKMWRrF6moOGvZRTHA+R9eqwOzoi7ugaRjiEF
- lsDdpHihrPNBGMmcaqtO7dA/nMNpl+51uHuAzfL7zMZFFkaSF/a1XuvQh Q==;
-X-CSE-ConnectionGUID: IJ208xPZQH+OqiKwCGvmOA==
-X-CSE-MsgGUID: +pXcIgvmTauk0Berpj0noA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="30802721"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30802721"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 05:20:37 -0700
-X-CSE-ConnectionGUID: yXddqDHvTZmRjam5sZMp1A==
-X-CSE-MsgGUID: uJfiyOVfQrGhUizPn6b8qA==
+ t=1727788897; x=1759324897;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=W2BhaIAzu92+mvnt2Zr4JT0pqqNewhoEnx6qRmGtcss=;
+ b=mrb0n0Eu8X6xF1qiH8DlA02RBtzdopmp0KCHHfot9CW1RyZYNP+Hz3Kj
+ LFIqoZs6q47Xvi+lTOOyl5X5iz9G//xDxPGANOXnnOb/KuOyklBIPa+7S
+ 9U66PE1/AIOwCAYWtkQlAA8d/fToITQg63Z9Wip0Q3wjD+iIIJBNlqyZr
+ G8MLq/1UhWEtmibaDptv8t5DIKmbPJWvBBAN1VuaTnqJGYXdfR5KAH6pP
+ Vl53jqjFUxa9FF/SPk8RVpRfNigVfZMsomV1+b28ydmtU6dwSWrknr5V3
+ 1rEA4krFcVcFIDGkbIZhEA99PQ0wXKi4xzpBwUzaGcSMoKx4rlp0Tw1kU g==;
+X-CSE-ConnectionGUID: OLxBRvo2S3uVU60Y+HJzXw==
+X-CSE-MsgGUID: wcdf9GEbQFmlWalPyX7ZDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="38311856"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="38311856"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 06:21:36 -0700
+X-CSE-ConnectionGUID: SBu+nd1dQxGG0AMhoaLcCg==
+X-CSE-MsgGUID: 3S673DxbRJ2lAkNS4EjVLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73966697"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa010.fm.intel.com with ESMTP; 01 Oct 2024 05:20:33 -0700
-Received: from [10.246.27.12] (mwajdecz-MOBL.ger.corp.intel.com [10.246.27.12])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 5D6A627BD2;
- Tue,  1 Oct 2024 13:20:30 +0100 (IST)
-Message-ID: <26f90d12-6a04-445e-96ff-aafbe3dc8132@intel.com>
-Date: Tue, 1 Oct 2024 14:20:29 +0200
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73915187"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.188])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 06:21:34 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>, Jesse Barnes
+ <jbarnes@virtuousgeek.org>
+Subject: Re: [PATCH 02/31] drm/i915/display: Convert i915_suspend into
+ i9xx_display_sr
+In-Reply-To: <20240924204222.246862-3-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240924204222.246862-1-rodrigo.vivi@intel.com>
+ <20240924204222.246862-3-rodrigo.vivi@intel.com>
+Date: Tue, 01 Oct 2024 16:21:18 +0300
+Message-ID: <87ed50ufg1.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
-To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lina@asahilina.net
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-2-raag.jadav@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240930073845.347326-2-raag.jadav@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,269 +72,405 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Tue, 24 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> These save & restore functions inside i915_suspend are old display
+> functions to save and restore a bunch of display related registers.
+>
+> Move it under display and rename accordantly. Just don't move it
+> entirely towards intel_display struct yet because it depends
+> on drm_i915_private for the IS_MOBILE.
 
-sorry for late comments,
+'git show --color-moved' has made me a huge proponent of completely
+separating code movement from any cleanups.
 
-On 30.09.2024 09:38, Raag Jadav wrote:
-> Introduce device wedged event, which will notify userspace of wedged
-> (hanged/unusable) state of the DRM device through a uevent. This is
-> useful especially in cases where the device is no longer operating as
-> expected even after a hardware reset and has become unrecoverable from
-> driver context.
-> 
-> Purpose of this implementation is to provide drivers a generic way to
-> recover with the help of userspace intervention. Different drivers may
-> have different ideas of a "wedged device" depending on their hardware
-> implementation, and hence the vendor agnostic nature of the event.
-> It is up to the drivers to decide when they see the need for recovery
-> and how they want to recover from the available methods.
+With that, reviewing the movement part takes mere seconds rather than
+minutes. And the next patch doing independent cleanups on top is easy to
+review as well. Especially the s/dev_priv/i915/ change is easy with 'git
+show --color-words' (my MUA does something like that automagically).
 
-what about when driver just wants to tell that it is in unusable state,
-but recovery method is unknown or not possible?
+Regardless, this is
 
-> 
-> Current implementation defines three recovery methods, out of which,
-> drivers can choose to support any one or multiple of them. Preferred
-> recovery method will be sent in the uevent environment as WEDGED=<method>.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-could this be something like below instead:
 
-	WEDGED=<reason>
-	RECOVERY=<method>[,<method>]
+BR,
+Jani.
 
-then driver will have a chance to tell what happen _and_ additionally
-provide a hint(s) how to recover from that situation
 
-> Userspace consumers (sysadmin) can define udev rules to parse this event
-> and take respective action to recover the device.
-> 
->     =============== ==================================
->     Recovery method Consumer expectations
->     =============== ==================================
->     rebind          unbind + rebind driver
->     bus-reset       unbind + reset bus device + rebind
->     reboot          reboot system
-
-btw, what if driver detects a really broken HW, or has no clue what will
-help here, shouldn't we have a "none" method?
-
->     =============== ==================================
-> 
-> v4: s/drm_dev_wedged/drm_dev_wedged_event
->     Use drm_info() (Jani)
->     Kernel doc adjustment (Aravind)
-> v5: Send recovery method with uevent (Lina)
-> v6: Access wedge_recovery_opts[] using helper function (Jani)
->     Use snprintf() (Jani)
-> v7: Convert recovery helpers into regular functions (Andy, Jani)
->     Aesthetic adjustments (Andy)
->     Handle invalid method cases
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+>
+> While doing this conversion also update the MIT header using
+> the new SPDX ones.
+>
+> v2: Fix Makefile and include (Jani)
+>     Removed vga and gmbus (Jani, Ville)
+>
+> Cc: Jesse Barnes <jbarnes@virtuousgeek.org>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  drivers/gpu/drm/drm_drv.c | 77 +++++++++++++++++++++++++++++++++++++++
->  include/drm/drm_device.h  | 23 ++++++++++++
->  include/drm/drm_drv.h     |  3 ++
->  3 files changed, 103 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index ac30b0ec9d93..cfe9600da2ee 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -26,6 +26,8 @@
->   * DEALINGS IN THE SOFTWARE.
->   */
->  
-> +#include <linux/array_size.h>
-> +#include <linux/build_bug.h>
->  #include <linux/debugfs.h>
->  #include <linux/fs.h>
->  #include <linux/module.h>
-> @@ -33,6 +35,7 @@
->  #include <linux/mount.h>
->  #include <linux/pseudo_fs.h>
->  #include <linux/slab.h>
-> +#include <linux/sprintf.h>
->  #include <linux/srcu.h>
->  #include <linux/xarray.h>
->  
-> @@ -70,6 +73,42 @@ static struct dentry *drm_debugfs_root;
->  
->  DEFINE_STATIC_SRCU(drm_unplug_srcu);
->  
+>  drivers/gpu/drm/i915/Makefile                 |   2 +-
+>  .../gpu/drm/i915/display/i9xx_display_sr.c    |  95 ++++++++++++
+>  .../gpu/drm/i915/display/i9xx_display_sr.h    |  14 ++
+>  drivers/gpu/drm/i915/i915_driver.c            |   6 +-
+>  drivers/gpu/drm/i915/i915_suspend.c           | 135 ------------------
+>  drivers/gpu/drm/i915/i915_suspend.h           |  14 --
+>  6 files changed, 113 insertions(+), 153 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/i9xx_display_sr.c
+>  create mode 100644 drivers/gpu/drm/i915/display/i9xx_display_sr.h
+>  delete mode 100644 drivers/gpu/drm/i915/i915_suspend.c
+>  delete mode 100644 drivers/gpu/drm/i915/i915_suspend.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 70771e521b1c..f21c28d471e7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -30,7 +30,6 @@ i915-y +=3D \
+>  	i915_params.o \
+>  	i915_pci.o \
+>  	i915_scatterlist.o \
+> -	i915_suspend.o \
+>  	i915_switcheroo.o \
+>  	i915_sysfs.o \
+>  	i915_utils.o \
+> @@ -219,6 +218,7 @@ i915-$(CONFIG_HWMON) +=3D \
+>  i915-y +=3D \
+>  	display/hsw_ips.o \
+>  	display/i9xx_plane.o \
+> +	display/i9xx_display_sr.o \
+>  	display/i9xx_wm.o \
+>  	display/intel_alpm.o \
+>  	display/intel_atomic.o \
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_display_sr.c b/drivers/gpu=
+/drm/i915/display/i9xx_display_sr.c
+> new file mode 100644
+> index 000000000000..4dd0ce267994
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
+> @@ -0,0 +1,95 @@
+> +// SPDX-License-Identifier: MIT
 > +/*
-> + * Available recovery methods for wedged device. To be sent along with device
-> + * wedged uevent.
+> + * Copyright =C2=A9 2024 Intel Corporation
 > + */
-> +static const char *const drm_wedge_recovery_opts[] = {
-> +	[DRM_WEDGE_RECOVERY_REBIND] = "rebind",
-> +	[DRM_WEDGE_RECOVERY_BUS_RESET] = "bus-reset",
-> +	[DRM_WEDGE_RECOVERY_REBOOT] = "reboot",
-> +};
 > +
-> +static bool drm_wedge_recovery_is_valid(enum drm_wedge_recovery method)
+> +#include "i915_drv.h"
+> +#include "i915_reg.h"
+> +#include "i9xx_display_sr.h"
+> +#include "intel_de.h"
+> +#include "intel_gmbus.h"
+> +#include "intel_pci_config.h"
+> +
+> +static void i9xx_display_save_swf(struct drm_i915_private *i915)
 > +{
-> +	static_assert(ARRAY_SIZE(drm_wedge_recovery_opts) == DRM_WEDGE_RECOVERY_MAX);
+> +	int i;
 > +
-> +	return method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX;
-> +}
-> +
-> +/**
-> + * drm_wedge_recovery_name - provide wedge recovery name
-> + * @method: method to be used for recovery
-> + *
-> + * This validates wedge recovery @method against the available ones in
-
-do we really need to validate an enum? maybe the problem is that there
-is MAX enumerator that just shouldn't be there?
-
-> + * drm_wedge_recovery_opts[] and provides respective recovery name in string
-> + * format if found valid.
-> + *
-> + * Returns: pointer to const recovery string on success, NULL otherwise.
-> + */
-> +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method)
-> +{
-> +	if (drm_wedge_recovery_is_valid(method))
-> +		return drm_wedge_recovery_opts[method];
-
-as we only have 3 methods, maybe simple switch() will do the work?
-
-> +
-> +	return NULL;
-> +}
-> +EXPORT_SYMBOL(drm_wedge_recovery_name);
-> +
->  /*
->   * DRM Minors
->   * A DRM device can provide several char-dev interfaces on the DRM-Major. Each
-> @@ -497,6 +536,44 @@ void drm_dev_unplug(struct drm_device *dev)
->  }
->  EXPORT_SYMBOL(drm_dev_unplug);
->  
-> +/**
-> + * drm_dev_wedged_event - generate a device wedged uevent
-> + * @dev: DRM device
-> + * @method: method to be used for recovery
-> + *
-> + * This generates a device wedged uevent for the DRM device specified by @dev.
-> + * Recovery @method from drm_wedge_recovery_opts[] (if supprted by the device)
-
-typo
-
-> + * is sent in the uevent environment as WEDGED=<method>, on the basis of which,
-> + * userspace may take respective action to recover the device.
-> + *
-> + * Returns: 0 on success, or negative error code otherwise.
-> + */
-> +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method)
-> +{
-> +	/* Event string length up to 16+ characters with available methods */
-> +	char event_string[32] = {};
-
-magic 32 here and likely don't need to be initialized with { }
-
-> +	char *envp[] = { event_string, NULL };
-> +	const char *recovery;
-> +
-> +	recovery = drm_wedge_recovery_name(method);
-> +	if (!recovery) {
-> +		drm_err(dev, "device wedged, invalid recovery method %d\n", method);
-
-maybe use drm_WARN() to see who is abusing the API ?
-
-> +		return -EINVAL;
-
-but shouldn't we still trigger an event with "none" recovery?
-
+> +	/* Scratch space */
+> +	if (GRAPHICS_VER(i915) =3D=3D 2 && IS_MOBILE(i915)) {
+> +		for (i =3D 0; i < 7; i++) {
+> +			i915->regfile.saveSWF0[i] =3D intel_de_read(i915, SWF0(i915, i));
+> +			i915->regfile.saveSWF1[i] =3D intel_de_read(i915, SWF1(i915, i));
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			i915->regfile.saveSWF3[i] =3D intel_de_read(i915, SWF3(i915, i));
+> +	} else if (GRAPHICS_VER(i915) =3D=3D 2) {
+> +		for (i =3D 0; i < 7; i++)
+> +			i915->regfile.saveSWF1[i] =3D intel_de_read(i915, SWF1(i915, i));
+> +	} else if (HAS_GMCH(i915)) {
+> +		for (i =3D 0; i < 16; i++) {
+> +			i915->regfile.saveSWF0[i] =3D intel_de_read(i915, SWF0(i915, i));
+> +			i915->regfile.saveSWF1[i] =3D intel_de_read(i915, SWF1(i915, i));
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			i915->regfile.saveSWF3[i] =3D intel_de_read(i915, SWF3(i915, i));
 > +	}
-> +
-> +	if (!test_bit(method, &dev->wedge_recovery)) {
-> +		drm_err(dev, "device wedged, %s based recovery not supported\n",
-> +			drm_wedge_recovery_name(method));
-
-do we really need this kind of guard? it will be a driver code that will
-call this function, so likely it knows better what will work to recover
-
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	snprintf(event_string, sizeof(event_string), "WEDGED=%s", recovery);
-> +
-> +	drm_info(dev, "device wedged, generating uevent for %s based recovery\n", recovery);
-
-nit:
-	drm_info(dev, "device wedged, needs %s to recover\n", recovery);
-
-> +	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
 > +}
-> +EXPORT_SYMBOL(drm_dev_wedged_event);
 > +
->  /*
->   * DRM internal mount
->   * We want to be able to allocate our own "struct address_space" to control
-> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> index c91f87b5242d..fed6f20e52fb 100644
-> --- a/include/drm/drm_device.h
-> +++ b/include/drm/drm_device.h
-> @@ -40,6 +40,26 @@ enum switch_power_state {
->  	DRM_SWITCH_POWER_DYNAMIC_OFF = 3,
->  };
->  
-> +/**
-> + * enum drm_wedge_recovery - Recovery method for wedged device in order of
-> + * severity. To be set as bit fields in drm_device.wedge_recovery variable.
-> + * Drivers can choose to support any one or multiple of them depending on
-> + * their needs.
+> +static void i9xx_display_restore_swf(struct drm_i915_private *i915)
+> +{
+> +	int i;
+> +
+> +	/* Scratch space */
+> +	if (GRAPHICS_VER(i915) =3D=3D 2 && IS_MOBILE(i915)) {
+> +		for (i =3D 0; i < 7; i++) {
+> +			intel_de_write(i915, SWF0(i915, i), i915->regfile.saveSWF0[i]);
+> +			intel_de_write(i915, SWF1(i915, i), i915->regfile.saveSWF1[i]);
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			intel_de_write(i915, SWF3(i915, i), i915->regfile.saveSWF3[i]);
+> +	} else if (GRAPHICS_VER(i915) =3D=3D 2) {
+> +		for (i =3D 0; i < 7; i++)
+> +			intel_de_write(i915, SWF1(i915, i), i915->regfile.saveSWF1[i]);
+> +	} else if (HAS_GMCH(i915)) {
+> +		for (i =3D 0; i < 16; i++) {
+> +			intel_de_write(i915, SWF0(i915, i), i915->regfile.saveSWF0[i]);
+> +			intel_de_write(i915, SWF1(i915, i), i915->regfile.saveSWF1[i]);
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			intel_de_write(i915, SWF3(i915, i), i915->regfile.saveSWF3[i]);
+> +	}
+> +}
+> +
+> +void i9xx_display_sr_save(struct drm_i915_private *i915)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+> +	/* Display arbitration control */
+> +	if (GRAPHICS_VER(i915) <=3D 4)
+> +		i915->regfile.saveDSPARB =3D intel_de_read(i915, DSPARB(i915));
+> +
+> +	if (GRAPHICS_VER(i915) =3D=3D 4)
+> +		pci_read_config_word(pdev, GCDGMBUS, &i915->regfile.saveGCDGMBUS);
+> +
+> +	i9xx_display_save_swf(i915);
+> +}
+> +
+> +void i9xx_display_sr_restore(struct drm_i915_private *i915)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+> +	i9xx_display_restore_swf(i915);
+> +
+> +	if (GRAPHICS_VER(i915) =3D=3D 4)
+> +		pci_write_config_word(pdev, GCDGMBUS, i915->regfile.saveGCDGMBUS);
+> +
+> +	/* Display arbitration */
+> +	if (GRAPHICS_VER(i915) <=3D 4)
+> +		intel_de_write(i915, DSPARB(i915), i915->regfile.saveDSPARB);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_display_sr.h b/drivers/gpu=
+/drm/i915/display/i9xx_display_sr.h
+> new file mode 100644
+> index 000000000000..30383758f97e
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/i9xx_display_sr.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2024 Intel Corporation
 > + */
-> +enum drm_wedge_recovery {
-> +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
-> +	DRM_WEDGE_RECOVERY_REBIND,
 > +
-> +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
-> +	DRM_WEDGE_RECOVERY_BUS_RESET,
+> +#ifndef __I9XX_DISPLAY_SR_H__
+> +#define __I9XX_DISPLAY_SR_H__
 > +
-> +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
-> +	DRM_WEDGE_RECOVERY_REBOOT,
+> +struct drm_i915_private;
 > +
-> +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
-> +	DRM_WEDGE_RECOVERY_MAX
-> +};
+> +void i9xx_display_sr_save(struct drm_i915_private *i915);
+> +void i9xx_display_sr_restore(struct drm_i915_private *i915);
 > +
->  /**
->   * struct drm_device - DRM device structure
->   *
-> @@ -317,6 +337,9 @@ struct drm_device {
->  	 * Root directory for debugfs files.
->  	 */
->  	struct dentry *debugfs_root;
-> +
-> +	/** @wedge_recovery: Supported recovery methods for wedged device */
-> +	unsigned long wedge_recovery;
+> +#endif
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index c5ffcf229f42..ae5906885359 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -45,6 +45,7 @@
+>  #include <drm/drm_managed.h>
+>  #include <drm/drm_probe_helper.h>
+>=20=20
+> +#include "display/i9xx_display_sr.h"
+>  #include "display/intel_acpi.h"
+>  #include "display/intel_bw.h"
+>  #include "display/intel_cdclk.h"
+> @@ -94,7 +95,6 @@
+>  #include "i915_memcpy.h"
+>  #include "i915_perf.h"
+>  #include "i915_query.h"
+> -#include "i915_suspend.h"
+>  #include "i915_switcheroo.h"
+>  #include "i915_sysfs.h"
+>  #include "i915_utils.h"
+> @@ -1048,7 +1048,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+>  	intel_dpt_suspend(dev_priv);
+>  	i915_ggtt_suspend(to_gt(dev_priv)->ggtt);
+>=20=20
+> -	i915_save_display(dev_priv);
+> +	i9xx_display_sr_save(dev_priv);
+>=20=20
+>  	opregion_target_state =3D suspend_to_idle(dev_priv) ? PCI_D1 : PCI_D3co=
+ld;
+>  	intel_opregion_suspend(display, opregion_target_state);
+> @@ -1167,7 +1167,7 @@ static int i915_drm_resume(struct drm_device *dev)
+>=20=20
+>  	intel_dmc_resume(display);
+>=20=20
+> -	i915_restore_display(dev_priv);
+> +	i9xx_display_sr_restore(dev_priv);
+>=20=20
+>  	intel_vga_redisable(display);
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i=
+915_suspend.c
+> deleted file mode 100644
+> index fb67b05cd864..000000000000
+> --- a/drivers/gpu/drm/i915/i915_suspend.c
+> +++ /dev/null
+> @@ -1,135 +0,0 @@
+> -/*
+> - *
+> - * Copyright 2008 (c) Intel Corporation
+> - *   Jesse Barnes <jbarnes@virtuousgeek.org>
+> - *
+> - * Permission is hereby granted, free of charge, to any person obtaining=
+ a
+> - * copy of this software and associated documentation files (the
+> - * "Software"), to deal in the Software without restriction, including
+> - * without limitation the rights to use, copy, modify, merge, publish,
+> - * distribute, sub license, and/or sell copies of the Software, and to
+> - * permit persons to whom the Software is furnished to do so, subject to
+> - * the following conditions:
+> - *
+> - * The above copyright notice and this permission notice (including the
+> - * next paragraph) shall be included in all copies or substantial portio=
+ns
+> - * of the Software.
+> - *
+> - * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
+SS
+> - * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+> - * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMEN=
+T.
+> - * IN NO EVENT SHALL TUNGSTEN GRAPHICS AND/OR ITS SUPPLIERS BE LIABLE FOR
+> - * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRA=
+CT,
+> - * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+> - * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+> - */
+> -
+> -#include "display/intel_de.h"
+> -#include "display/intel_gmbus.h"
+> -
+> -#include "i915_drv.h"
+> -#include "i915_reg.h"
+> -#include "i915_suspend.h"
+> -#include "intel_pci_config.h"
+> -
+> -static void intel_save_swf(struct drm_i915_private *dev_priv)
+> -{
+> -	int i;
+> -
+> -	/* Scratch space */
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 2 && IS_MOBILE(dev_priv)) {
+> -		for (i =3D 0; i < 7; i++) {
+> -			dev_priv->regfile.saveSWF0[i] =3D intel_de_read(dev_priv,
+> -								      SWF0(dev_priv, i));
+> -			dev_priv->regfile.saveSWF1[i] =3D intel_de_read(dev_priv,
+> -								      SWF1(dev_priv, i));
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			dev_priv->regfile.saveSWF3[i] =3D intel_de_read(dev_priv,
+> -								      SWF3(dev_priv, i));
+> -	} else if (GRAPHICS_VER(dev_priv) =3D=3D 2) {
+> -		for (i =3D 0; i < 7; i++)
+> -			dev_priv->regfile.saveSWF1[i] =3D intel_de_read(dev_priv,
+> -								      SWF1(dev_priv, i));
+> -	} else if (HAS_GMCH(dev_priv)) {
+> -		for (i =3D 0; i < 16; i++) {
+> -			dev_priv->regfile.saveSWF0[i] =3D intel_de_read(dev_priv,
+> -								      SWF0(dev_priv, i));
+> -			dev_priv->regfile.saveSWF1[i] =3D intel_de_read(dev_priv,
+> -								      SWF1(dev_priv, i));
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			dev_priv->regfile.saveSWF3[i] =3D intel_de_read(dev_priv,
+> -								      SWF3(dev_priv, i));
+> -	}
+> -}
+> -
+> -static void intel_restore_swf(struct drm_i915_private *dev_priv)
+> -{
+> -	int i;
+> -
+> -	/* Scratch space */
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 2 && IS_MOBILE(dev_priv)) {
+> -		for (i =3D 0; i < 7; i++) {
+> -			intel_de_write(dev_priv, SWF0(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF0[i]);
+> -			intel_de_write(dev_priv, SWF1(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF1[i]);
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			intel_de_write(dev_priv, SWF3(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF3[i]);
+> -	} else if (GRAPHICS_VER(dev_priv) =3D=3D 2) {
+> -		for (i =3D 0; i < 7; i++)
+> -			intel_de_write(dev_priv, SWF1(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF1[i]);
+> -	} else if (HAS_GMCH(dev_priv)) {
+> -		for (i =3D 0; i < 16; i++) {
+> -			intel_de_write(dev_priv, SWF0(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF0[i]);
+> -			intel_de_write(dev_priv, SWF1(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF1[i]);
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			intel_de_write(dev_priv, SWF3(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF3[i]);
+> -	}
+> -}
+> -
+> -void i915_save_display(struct drm_i915_private *dev_priv)
+> -{
+> -	struct pci_dev *pdev =3D to_pci_dev(dev_priv->drm.dev);
+> -
+> -	if (!HAS_DISPLAY(dev_priv))
+> -		return;
+> -
+> -	/* Display arbitration control */
+> -	if (GRAPHICS_VER(dev_priv) <=3D 4)
+> -		dev_priv->regfile.saveDSPARB =3D intel_de_read(dev_priv,
+> -							     DSPARB(dev_priv));
+> -
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 4)
+> -		pci_read_config_word(pdev, GCDGMBUS,
+> -				     &dev_priv->regfile.saveGCDGMBUS);
+> -
+> -	intel_save_swf(dev_priv);
+> -}
+> -
+> -void i915_restore_display(struct drm_i915_private *dev_priv)
+> -{
+> -	struct pci_dev *pdev =3D to_pci_dev(dev_priv->drm.dev);
+> -
+> -	if (!HAS_DISPLAY(dev_priv))
+> -		return;
+> -
+> -	intel_restore_swf(dev_priv);
+> -
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 4)
+> -		pci_write_config_word(pdev, GCDGMBUS,
+> -				      dev_priv->regfile.saveGCDGMBUS);
+> -
+> -	/* Display arbitration */
+> -	if (GRAPHICS_VER(dev_priv) <=3D 4)
+> -		intel_de_write(dev_priv, DSPARB(dev_priv),
+> -			       dev_priv->regfile.saveDSPARB);
+> -}
+> diff --git a/drivers/gpu/drm/i915/i915_suspend.h b/drivers/gpu/drm/i915/i=
+915_suspend.h
+> deleted file mode 100644
+> index e5a611ee3d15..000000000000
+> --- a/drivers/gpu/drm/i915/i915_suspend.h
+> +++ /dev/null
+> @@ -1,14 +0,0 @@
+> -/* SPDX-License-Identifier: MIT */
+> -/*
+> - * Copyright =C2=A9 2019 Intel Corporation
+> - */
+> -
+> -#ifndef __I915_SUSPEND_H__
+> -#define __I915_SUSPEND_H__
+> -
+> -struct drm_i915_private;
+> -
+> -void i915_save_display(struct drm_i915_private *i915);
+> -void i915_restore_display(struct drm_i915_private *i915);
+> -
+> -#endif /* __I915_SUSPEND_H__ */
 
-hmm, so before the driver can ask for a reboot as a recovery method from
-wedge it has to somehow add 'reboot' as available method? why it that?
-
-and if you insist that this is useful then at least document how this
-should be initialized (to not forcing developers to look at
-drm_dev_wedged_event code where it's used)
-
->  };
->  
->  #endif
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index 02ea4e3248fd..d8dbc77010b0 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -462,6 +462,9 @@ bool drm_dev_enter(struct drm_device *dev, int *idx);
->  void drm_dev_exit(int idx);
->  void drm_dev_unplug(struct drm_device *dev);
->  
-> +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method);
-> +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method);
-> +
->  /**
->   * drm_dev_is_unplugged - is a DRM device unplugged
->   * @dev: DRM device
-
+--=20
+Jani Nikula, Intel
