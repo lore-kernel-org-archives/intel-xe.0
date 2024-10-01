@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED3A7CE7CF5
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 08:44:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA6D9CE7CE7
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 08:44:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA66710E18E;
-	Tue,  1 Oct 2024 08:44:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5F8610E5FB;
+	Tue,  1 Oct 2024 08:44:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X+1IqR6u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dsC5tzMb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A63E910E18E
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 08:44:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E79B910E18E
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 08:44:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727772254; x=1759308254;
+ t=1727772255; x=1759308255;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=db3UHJh35L4cGJx/Hqhgo2aQFFxUN/bvEq43r+t7vBs=;
- b=X+1IqR6u+U5ujBchlKpLG+o6koD7mlgsTc7AFq7rV4wk1x5rp836pKsq
- /YzsdVL8B1w6MDvRqiI48hJUIBpismd9wzWuqOGxQMQ+MJxuza5NT+APM
- 5Ri+zzZVsmUPpv9B55GueEUVA5UYS5QVy+Fc+UwCXkIOJV1GgFvLLIChq
- 7XjF7Z6RJLW04r3mPZf5YQQOPejoPyt20rJC4Mqvhq3eIZ4WVOYqeKAun
- 96LZMktUJWekuEAiGNG5e3RpQXakFsW7bqWiN6qdR0u1UNG4Ubp9rCfEm
- 0OiSmOktW6Xhv/gUy9C9V+pAeb1uv4LBD99GKsSBGfjc4WhPVJP9BWEoO A==;
-X-CSE-ConnectionGUID: tXtNefzdQAK3MPXrmNxdfQ==
-X-CSE-MsgGUID: 0OGsCwIAQDqNfpbPnPkcFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="27020721"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27020721"
+ bh=tLs81DM20eCFAJrh47MdALFlOXQ2cSc4tsHP2vPnu0s=;
+ b=dsC5tzMbT/ICaNFw7X03gYrQxuNr1kgG1scftx5aX44q1S5cRijKfzaj
+ On8bw5hSPa9hp6as+OOxzL2V4cPUm+ZrZDqdvhfyDJgNMEhSZGTD5ji9T
+ rZl2d+mw/gnKgGCsuBOwSSBUt8yHXhjO9gg8uycc0O4HywEv6vrbmNdYv
+ ZYQNLik4OkS7XjD2CK2TWaO8DxAMQHwgfqcylLeAouZYma3o4KP/EpHoD
+ ZiV5aryWAJc4ltlZJiwgcPKYC7WOdtGa2u1UpvNucet0UsIcdnfa6PMZu
+ CHEeqIpULtli8bFpQhcM5576S+47ov5YSsMux3/D7tP+2rRRVGfsc2riQ w==;
+X-CSE-ConnectionGUID: AVRuH8BKRuyaEv1g9rNKRg==
+X-CSE-MsgGUID: OVSYSN5tQkSNf6T+0zpg8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="27020730"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27020730"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 01:44:14 -0700
-X-CSE-ConnectionGUID: Ogcyf97HQdOlcyHn+TliRQ==
-X-CSE-MsgGUID: GqqBy7ZvSiWq7pinIBnF6A==
+ 01 Oct 2024 01:44:15 -0700
+X-CSE-ConnectionGUID: k3nce6W1Soa6ufTRvjT+DA==
+X-CSE-MsgGUID: p97zAiWrQJWvSPpsAXIjqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="104413738"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="104413742"
 Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO mwauld-desk.intel.com)
  ([10.245.245.112])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 01:44:12 -0700
+ 01 Oct 2024 01:44:14 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v2 3/4] drm/xe/guc_submit: fix xa_store() error checking
-Date: Tue,  1 Oct 2024 09:43:49 +0100
-Message-ID: <20241001084346.98516-7-matthew.auld@intel.com>
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH v2 4/4] drm/xe/ct: drop irq usage of xa_erase()
+Date: Tue,  1 Oct 2024 09:43:50 +0100
+Message-ID: <20241001084346.98516-8-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.46.2
 In-Reply-To: <20241001084346.98516-5-matthew.auld@intel.com>
 References: <20241001084346.98516-5-matthew.auld@intel.com>
@@ -68,46 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Looks like we are meant to use xa_err() to extract the error encoded in
-the ptr.
+Unclear why disabling interrupts is needed here. Nothing seems to be
+touching fence_lookup and its corresponding lock from an irq so there
+should be no risk of deadlock.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 80062e1d3f66..8a5c21a87977 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -393,7 +393,6 @@ static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q, u32 xa
- static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
- {
- 	int ret;
--	void *ptr;
- 	int i;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index d3de2e6d690f..3fd1d4e97528 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -890,7 +890,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 			goto retry_same_fence;
  
- 	/*
-@@ -413,12 +412,10 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
- 	q->guc->id = ret;
+ 		if (!g2h_fence_needs_alloc(&g2h_fence))
+-			xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
++			xa_erase(&ct->fence_lookup, g2h_fence.seqno);
  
- 	for (i = 0; i < q->width; ++i) {
--		ptr = xa_store(&guc->submission_state.exec_queue_lookup,
--			       q->guc->id + i, q, GFP_NOWAIT);
--		if (IS_ERR(ptr)) {
--			ret = PTR_ERR(ptr);
-+		ret = xa_err(xa_store(&guc->submission_state.exec_queue_lookup,
-+				      q->guc->id + i, q, GFP_NOWAIT));
-+		if (ret)
- 			goto err_release;
--		}
+ 		return ret;
  	}
- 
- 	return 0;
+@@ -907,7 +907,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	if (!ret) {
+ 		xe_gt_err(gt, "Timed out wait for G2H, fence %u, action %04x, done %s",
+ 			  g2h_fence.seqno, action[0], str_yes_no(g2h_fence.done));
+-		xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
++		xa_erase(&ct->fence_lookup, g2h_fence.seqno);
+ 		mutex_unlock(&ct->lock);
+ 		return -ETIME;
+ 	}
 -- 
 2.46.2
 
