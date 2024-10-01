@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D01EACE7D18
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 12:01:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31223CE7D12
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 12:02:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7000810E02D;
-	Tue,  1 Oct 2024 12:01:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F162710E154;
+	Tue,  1 Oct 2024 12:02:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EpyOVZS5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLILkEDN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4062810E02D
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 12:00:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1773C10E154;
+ Tue,  1 Oct 2024 12:02:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727784059; x=1759320059;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=s3q77XJUMAwQLHyP6TAARYc5GVSFMv/qPM/gfOjjVH0=;
- b=EpyOVZS5WlP/Mjj64lBD1tooHmYH99DiCFyliGHqa4UgrV8ZgdkEEIn3
- ukG1J+yWQwotWMp3J3/Tz4I7PdMBQFXOjie8nlxJ/eYX5oe3XH9U6tqfd
- jNqOR6MpP54pw7e4zhU9eZadS4adtiCP/jxpIfHIlj/+d/ClKUw/rBpMC
- p6rwCXK9dgMahRVZV8OxuiEq15VMltZKrS+BKxB3KLkfLIezGAIvY/rBa
- XGIlhWRJzovMaAB+CMA4RuQc7Z/l/NlXZOIFM6erOvrOnlT+YF72WMMrI
- gSDgCbOAni7mtOBQSchIOF8NZeZMGZcPlbLyr+8qHMJHQ/L3i8eY7hqva A==;
-X-CSE-ConnectionGUID: CG7GDw4bTHyV0PGJtxgjGQ==
-X-CSE-MsgGUID: 1649aKkQRmKqzVr/xCRvcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="26374343"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="26374343"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 05:00:58 -0700
-X-CSE-ConnectionGUID: t+wpZ8lXTZGkoAscm/e+OA==
-X-CSE-MsgGUID: 5m9DAVTfS+2N/yvprCUnWg==
+ t=1727784149; x=1759320149;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=AoI1sQiTjWPVNmtPceslM3JGwi73Y0gaDb15s17KLcU=;
+ b=FLILkEDNzHQ7Tz0iHUhCQUCA6MgkviDCTK1UEWLd3YAXfHyw2dzmLxJl
+ 4aMjHVYd6uPUQVRhA5olqwNaC3N1Qq/Qu7XpKmq4/DRMcUOXhEdGpLEwL
+ C44wpk5P+kFCwnG/GjRoe/n+e0QnDvdJzY2BzCYoFNjknw+qG/m0mJ+Hh
+ sId18OvZqzvwSjsXuHE2YG3VyCdNdTC8bFKcFwKGTSyQK+olDtFxUmmQW
+ n7AcKyU1jpC2wWcsM0Fg35lhaA1ZowEaRjIggmAfl6YTC3MagCrDlcsiP
+ hdqUCzFc2CN3dsOOtshc+0GKOzNLnokdVdtj9+2VJh9dOoMFE6y9GpNss g==;
+X-CSE-ConnectionGUID: 3VUKvjoHS8ehppCeegLZng==
+X-CSE-MsgGUID: RgwhZ2FvRjGj3lFgVZPyvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="37589966"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="37589966"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 05:02:28 -0700
+X-CSE-ConnectionGUID: ERScgVU4Rqukp+Dk7Xt7Wg==
+X-CSE-MsgGUID: 2LCCtC/LTTCuyLACzkUgKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73961731"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73302136"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.188])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 05:00:13 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Nirmoy Das <nirmoy.das@linux.intel.com>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe/compat: remove unused i915_gpu_error.h
-In-Reply-To: <6b737bba-619c-4e5e-a245-94571defa95e@linux.intel.com>
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 05:02:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 03/13] drm/i915/display: Add macro HAS_ULTRAJOINER()
+In-Reply-To: <20240930163549.416410-4-ankit.k.nautiyal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240930164052.3862911-1-jani.nikula@intel.com>
- <6b737bba-619c-4e5e-a245-94571defa95e@linux.intel.com>
-Date: Tue, 01 Oct 2024 14:59:59 +0300
-Message-ID: <87o744uj7k.fsf@intel.com>
+References: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
+ <20240930163549.416410-4-ankit.k.nautiyal@intel.com>
+Date: Tue, 01 Oct 2024 15:02:12 +0300
+Message-ID: <87ldz8uj3v.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -68,53 +71,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 01 Oct 2024, Nirmoy Das <nirmoy.das@linux.intel.com> wrote:
-> On 9/30/2024 6:40 PM, Jani Nikula wrote:
->> The last user of the compat header was removed in commit d6b933912df0
->> ("drm/i915/dmc: convert intel_dmc_print_error_state() to drm_printer").
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Mon, 30 Sep 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Add macro to check if platform supports Ultrajoiner.
 >
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+> v2:
+> -Use check for DISPLAY_VER >=3D 20, and add bmg as a special case. (Ville)
+> -Add check for HAS_DSC. (Ville)
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/driver=
+s/gpu/drm/i915/display/intel_display_device.h
+> index 6a5bee59e6aa..220cca6333ee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -154,6 +154,9 @@ enum intel_display_subplatform {
+>  #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_tr=
+anscoder_mask & \
+>  					  BIT(trans)) !=3D 0)
+>  #define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >=3D 13)
+> +#define HAS_ULTRAJOINER(i915)		((DISPLAY_VER(i915) >=3D 20 || \
+> +					  (IS_DGFX(i915) && DISPLAY_VER(i915) =3D=3D 14)) && \
 
-Thanks, pushed to drm-xe-next.
+Do we need to depend on IS_DGFX() here?
 
 BR,
 Jani.
 
->
->
->> ---
->>  .../drm/xe/compat-i915-headers/i915_gpu_error.h | 17 -----------------
->>  1 file changed, 17 deletions(-)
->>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_erro=
-r.h
->>
->> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h b/d=
-rivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
->> deleted file mode 100644
->> index 98e9dd78f670..000000000000
->> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
->> +++ /dev/null
->> @@ -1,17 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright =C2=A9 2023 Intel Corporation
->> - */
->> -
->> -#ifndef _I915_GPU_ERROR_H_
->> -#define _I915_GPU_ERROR_H_
->> -
->> -struct drm_i915_error_state_buf;
->> -
->> -__printf(2, 3)
->> -static inline void
->> -i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ..=
-.)
->> -{
->> -}
->> -
->> -#endif
+> +					 HAS_DSC(i915))
+>  #define HAS_VRR(i915)			(DISPLAY_VER(i915) >=3D 11)
+>  #define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >=3D 13)
+>  #define HAS_CMRR(i915)			(DISPLAY_VER(i915) >=3D 20)
 
 --=20
 Jani Nikula, Intel
