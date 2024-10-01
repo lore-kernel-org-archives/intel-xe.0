@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2B18CEB2E4
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 03:44:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52DB2CEB2E3
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Oct 2024 03:51:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CAFB10E5C7;
-	Tue,  1 Oct 2024 03:44:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="JMijx/5w";
-	dkim-atps=neutral
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDDCA10E5C7
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Oct 2024 03:44:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1727754264;
- bh=o85ZSs1JxUk96tNL/VHXsBO5EZCr2Gnnq3HJjjUVRdA=;
- h=Date:From:To:Cc:Subject:From;
- b=JMijx/5wxRwSrT421Tw5tNeulrD3za+UJiHd9CtfiFVgNUjLs8+zczj+i100/8VNJ
- QI6/fcFQnxK7ASJSOu72wofh3+CbWmeCXo/h6hdcZ3SEmgp4IeAJ2O0K9n1/3vFuyD
- DIdI6ssCSsvyy2cLJSBIy+kdyJSyGY/BZDE+Azor+JQdQhhgUmrBS8zs1dmKlPEQhe
- wYrzAGQHSHxmd9aydioJ89FJHn2+WU8NV/7CVARGzIPiwReScbxybAjXDUksky7gsU
- y8fpAaTwj7Tp3gy0I6yRpInafu0SckPUzQ8eEawQL+nJDTG+OWcn+a8eNLfPsCJvc0
- 14EOF8tin1wXA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4XHkMW4nnmz4wbv;
- Tue,  1 Oct 2024 13:44:23 +1000 (AEST)
-Date: Tue, 1 Oct 2024 13:44:23 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Theodore Ts'o <tytso@mit.edu>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2?=
- =?UTF-8?B?bQ==?= <thomas.hellstrom@linux.intel.com>
-Cc: Uros Bizjak <ubizjak@gmail.com>, DRM XE List
- <intel-xe@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build failure after merge of the random tree
-Message-ID: <20241001134423.62b12a80@canb.auug.org.au>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15B5E10E5CB;
+	Tue,  1 Oct 2024 03:51:45 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 574BD10E5C9;
+ Tue,  1 Oct 2024 03:51:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/yF4rS.XBUsBuJe2NcK6fZ.T";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_linux-next=3A_build_?=
+ =?utf-8?q?failure_after_merge_of_the_random_tree?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stephen Rothwell" <sfr@canb.auug.org.au>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 01 Oct 2024 03:51:43 -0000
+Message-ID: <172775470335.1140158.9056726323445352265@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241001134423.62b12a80@canb.auug.org.au>
+In-Reply-To: <20241001134423.62b12a80@canb.auug.org.au>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,83 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/yF4rS.XBUsBuJe2NcK6fZ.T
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: linux-next: build failure after merge of the random tree
+URL   : https://patchwork.freedesktop.org/series/139356/
+State : success
 
-After merging the random tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c41c6b36db6d drm-tip: 2024y-10m-01d-03h-24m-27s UTC integration manifest
+=== git am output follows ===
+Applying: linux-next: build failure after merge of the random tree
 
 
-Caused by commit
-
-  38d1a9d296c8 ("random: Do not include <linux/prandom.h> in <linux/random.=
-h>")
-
-interacting with commit
-
-  5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
-
-from the drm-xe tree.
-
-I have applied the following merge fix patch for today.
-
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-Date: Tue, 1 Oct 2024 13:33:48 +1000
-Subject: [PATCH] fix up for "random: Do not include <linux/prandom.h> in <l=
-inux/random.h>"
-
-interacting with commit
-
-  5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
-
-from the drm-xe tree.
-
-Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
----
- drivers/gpu/drm/xe/tests/xe_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe=
-_bo.c
-index 7d3fd720478b..3a14b70f12b8 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -7,7 +7,7 @@
- #include <kunit/visibility.h>
-=20
- #include <linux/iosys-map.h>
--#include <linux/random.h>
-+#include <linux/prandom.h>
- #include <linux/swap.h>
-=20
- #include <uapi/linux/sysinfo.h>
---=20
-2.45.2
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/yF4rS.XBUsBuJe2NcK6fZ.T
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmb7cBcACgkQAVBC80lX
-0GwZkQf9GrlJRrEbN5cxj6KZdJuGDY2LO/AIDgRnXHOEvLKWbquTn1whaoc1GnHy
-zRPwOjleLZfjmRndaAOXoxS0Zr+GqsOR1pyd8q5ARfUH9bUUq2thMepLvFppUhLc
-dIiklmvyQfappQt0nEW5w6CQl0Yn/qoiK8yztg+c64Vb9rkImTfmjbxB9ZP6bPiS
-LM+guIuYFKM4jiHmwLS3lWJrm7h5oKtB76pl/0ZFW9A48pNCS3d+ugf7PF/J0uJN
-mxj1ksCBAXraxHmd8R+KYwOzaDNrrX0Ymg26p6kLjwtPxKlCVpeRIMwkYyOgSBlP
-lj7N7FcWWc614kazFcEosbCU1Bkc9w==
-=8+0c
------END PGP SIGNATURE-----
-
---Sig_/yF4rS.XBUsBuJe2NcK6fZ.T--
