@@ -4,77 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 696DACF3199
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 07:49:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF8CBCF3199
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 07:56:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30AB910E6B0;
-	Wed,  2 Oct 2024 07:49:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UqFRuBvr";
-	dkim-atps=neutral
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
- [209.85.218.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2884410E1D6;
- Wed,  2 Oct 2024 07:49:07 +0000 (UTC)
-Received: by mail-ej1-f46.google.com with SMTP id
- a640c23a62f3a-a90188ae58eso814117066b.1; 
- Wed, 02 Oct 2024 00:49:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1727855345; x=1728460145; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=1sE33RK9i6Dr1qCPzfRCLBr1LX2ZDnRlOdHfUf2FKHc=;
- b=UqFRuBvrpWiIWTDejeK+EUoDDTk7Zs3/6V2M9kcVbRotuLPRGXpRsgbyL8GQd8i/gP
- VdTXU+Szw5ev7PbVH+jQ+uOksvem42QVC9vQH0F1VT0tvPJBE5Oumu5WTgqKyP62T/3b
- imtfSfdSC6J0jomNX2VvINyNNtFtfNdnHlaDn3CGK2NmVQsfQTg9OQBmn3zb5OLnXHuX
- gkAJBDmW2gs/owksjQ5N3cQcFqNA537hBfBp3SP/U5dC7ki/KJg8Ui7wLLhtmDlzwxq6
- 9uRM3lkcXNPEjjOlwUCPYLiK/wWYuIre72cCPxKQUS/HVdvgjsCvFIr7ZkbCclm8yzoO
- BPFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727855345; x=1728460145;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=1sE33RK9i6Dr1qCPzfRCLBr1LX2ZDnRlOdHfUf2FKHc=;
- b=i4og+1DFmKj/BwBTIRklnaFy4HfT2Wa4rDJShFpTWzlTElXOkds+UKhb2ipi2uhnCD
- PlZ4e3Hi2UlzWkSfXUVH4U3PN6BkZMHRBeXNjiXEREHrCAEkzLTQW9ePN3kcb8lKO5nf
- 5zv5bSzgIxjb9Pq0adfIo0bMRe4ELR9z1cbfyyVOQkwAmfJ3GDrkySZaizKpMOmuW/RF
- cIMhhB1PDzCf5A3jGTJqIvttPJsFdhbhKJkKDo1w3+T9HmNYWa9bL1qTUvA09N1jjJI7
- sjhv2HPgcOXH2FX2/MSBJmatCxjVJduI+odthqHU1BuPcWuTLNmFjRouD6blac0WOsDM
- YyPA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUxPrqFnwuKIRsv0inaW26Kl1V3efeoxPjeUjGpVoRa9f37qUYwyJYvVd+8FULs24eaRjSOvFREUOo=@lists.freedesktop.org,
- AJvYcCVqy37eVXUZSgqi6CC3YR3DYiHdzG8GazuS917+7/Sh2iuikOUcNcnEzlIWZkN/CCZN2VgOMm7DJrE=@lists.freedesktop.org,
- AJvYcCVukBv9+oSt0Sc+QgacfXSwK3QTqOH/jHY7RYBcGCYfoMKwJAqPvDFYfNw0g34oRLivFrVrDjMT561J@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxSqFHxOyohTraYb2w3PcwALctdrMqaWmk60SS+KyKfQY5EnWw1
- p/mYaPRKCZgoRP04Po1xSlVb9rG2joy06bWX5iJ7/lWqpNm0ebQ5
-X-Google-Smtp-Source: AGHT+IF1OGVlHVCOZY7ncJbcAHiJ3yHF47hZOCjc40mcpPrCwCrw9KqUsqhkQw283ZrsikK00WvzJg==
-X-Received: by 2002:a17:907:705:b0:a86:ac91:a571 with SMTP id
- a640c23a62f3a-a98f83875afmr216654066b.56.1727855344841; 
- Wed, 02 Oct 2024 00:49:04 -0700 (PDT)
-Received: from localhost
- (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a93c2999076sm824885166b.218.2024.10.02.00.49.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Oct 2024 00:49:04 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/i915/display: Fix spelling mistake "Uncomressed" ->
- "Uncompressed"
-Date: Wed,  2 Oct 2024 08:49:03 +0100
-Message-Id: <20241002074903.833232-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.39.5
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80ED010E5D5;
+	Wed,  2 Oct 2024 07:56:03 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A02FA10E5D5;
+ Wed,  2 Oct 2024 07:56:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Fix_spelling_mistake_=22Uncomressed=22_-=3E_=22Uncompressed=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Colin Ian King" <colin.i.king@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Oct 2024 07:56:02 -0000
+Message-ID: <172785576265.1161626.11099177457688828890@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241002074903.833232-1-colin.i.king@gmail.com>
+In-Reply-To: <20241002074903.833232-1-colin.i.king@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,29 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a spelling mistake in a drm_WARN message. Fix it.
+== Series Details ==
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915/display: Fix spelling mistake "Uncomressed" -> "Uncompressed"
+URL   : https://patchwork.freedesktop.org/series/139406/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 74311bb9d290..a5057ee4cbe5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3811,7 +3811,7 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
- 		 secondary_ultrajoiner_pipes);
- 
- 	drm_WARN(display->drm, (uncompressed_joiner_pipes & bigjoiner_pipes) != 0,
--		 "Uncomressed joiner pipes(%#x) and bigjoiner pipes(%#x) can't intersect\n",
-+		 "Uncompressed joiner pipes(%#x) and bigjoiner pipes(%#x) can't intersect\n",
- 		 uncompressed_joiner_pipes, bigjoiner_pipes);
- 
- 	drm_WARN(display->drm, secondary_bigjoiner_pipes !=
--- 
-2.39.5
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: fcdbbdcd11d4 drm-tip: 2024y-10m-01d-21h-29m-52s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Fix spelling mistake "Uncomressed" -> "Uncompressed"
+
 
