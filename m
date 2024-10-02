@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6BA0CF6D2C
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 14:08:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02FFCCF6D28
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 14:14:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 868D610E753;
-	Wed,  2 Oct 2024 14:08:20 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F97210E752;
- Wed,  2 Oct 2024 14:08:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A538710E75B;
+	Wed,  2 Oct 2024 14:14:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jfuSmOwo";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 024A310E752;
+ Wed,  2 Oct 2024 14:14:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727878478; x=1759414478;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=b8WXPRl/CwxlN6LZ24RGu4sVpu8fZwzAX+ZR5CNk+m0=;
+ b=jfuSmOwo3BuD0JkrBH08new+wPB0OhajgU3BtnCGdftDaXqatHwHAan1
+ fO4+8ZbcWrIpTNwMUbj625WLXGhtyO48Ceslsx5yXgFcxIMSGLQzhf8Xy
+ 2QgVe6vYgqXQiCBIJWO1tKMkfwbCfSDwWMrW9tHclTRmeQlUqzianotU6
+ EteudFXACnsQrNM8n8ho7ry1eWY946UbcRfdSYqXWgHyLv6I8UkdDNHdD
+ 26wEiYi6fdfPh9D2Aggx5MvIfkRY860DQzaltEtlr3NV6zCRqNY5Q97cy
+ 6Ew/Y+82R5tmODQqyVjwgiw1Z0u2JS1oe5MsMruc/PmtQtwoCqKWcbhV+ A==;
+X-CSE-ConnectionGUID: rpl/X37GTWSmmD5b7MN3ug==
+X-CSE-MsgGUID: 3tXYslArSbqmQN/TUepzgQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="27174511"
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="27174511"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2024 07:14:37 -0700
+X-CSE-ConnectionGUID: 6r1sqIRVRPewhkhXWFcErg==
+X-CSE-MsgGUID: kAiyTGJkS+ySJN4oMmXjCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="74825441"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.192.230])
+ ([10.245.192.230])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2024 07:14:36 -0700
+Message-ID: <fc505ca3-23bb-4f7f-b8bc-796dc1b1fb9f@linux.intel.com>
+Date: Wed, 2 Oct 2024 16:14:32 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm=3A_Introduce_DRM_cli?=
- =?utf-8?q?ent_library_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Oct 2024 14:08:20 -0000
-Message-ID: <172787810019.1163651.3692082408407359000@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241002131306.288618-1-tzimmermann@suse.de>
-In-Reply-To: <20241002131306.288618-1-tzimmermann@suse.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] drm/sched: Use drm sched lockdep map for submit_wq
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: dakr@kernel.org, pstanner@redhat.com, ltuikov89@gmail.com
+References: <20241002131639.3425022-1-matthew.brost@intel.com>
+ <20241002131639.3425022-2-matthew.brost@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20241002131639.3425022-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +68,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm: Introduce DRM client library (rev2)
-URL   : https://patchwork.freedesktop.org/series/139220/
-State : warning
+On 10/2/2024 3:16 PM, Matthew Brost wrote:
+> Avoid leaking a lockdep map on each drm sched creation and destruction
+> by using a single lockdep map for all drm sched allocated submit_wq.
+>
+> v2:
+>  - Use alloc_ordered_workqueue_lockdep_map (Tejun)
+>
+> Cc: Luben Tuikov <ltuikov89@gmail.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-== Summary ==
+LGTM
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 55a90a928d9752b8a21298cb525b95de4b78f4ed
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-
+> ---
+>  drivers/gpu/drm/scheduler/sched_main.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index 36db5c7736fc..e32b0f7d7e94 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -87,6 +87,12 @@
+>  #define CREATE_TRACE_POINTS
+>  #include "gpu_scheduler_trace.h"
+>  
+> +#ifdef CONFIG_LOCKDEP
+> +static struct lockdep_map drm_sched_lockdep_map = {
+> +	.name = "drm_sched_lockdep_map"
+> +};
+> +#endif
+> +
+>  #define to_drm_sched_job(sched_job)		\
+>  		container_of((sched_job), struct drm_sched_job, queue_node)
+>  
+> @@ -1270,7 +1276,12 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>  		sched->submit_wq = submit_wq;
+>  		sched->own_submit_wq = false;
+>  	} else {
+> +#ifdef CONFIG_LOCKDEP
+> +		sched->submit_wq = alloc_ordered_workqueue_lockdep_map(name, 0,
+> +								       &drm_sched_lockdep_map);
+> +#else
+>  		sched->submit_wq = alloc_ordered_workqueue(name, 0);
+> +#endif
+>  		if (!sched->submit_wq)
+>  			return -ENOMEM;
+>  
