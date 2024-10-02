@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 389E0CF8548
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B04CF854A
 	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 21:14:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F019710E77E;
-	Wed,  2 Oct 2024 21:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3419910E782;
+	Wed,  2 Oct 2024 21:14:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZuBgg3o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oi9rEsnt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39ED810E279
- for <Intel-Xe@lists.freedesktop.org>; Wed,  2 Oct 2024 21:14:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7C8510E009
+ for <Intel-Xe@lists.freedesktop.org>; Wed,  2 Oct 2024 21:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1727903665; x=1759439665;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nlztf2mmhTVxK+Aw5Y4iGmigxJZ61hMq6SAuEMUbvs4=;
- b=KZuBgg3ogNiNWWWW7lJevQe7Gt3heYmp1H4fJdLPa7Jxm39Ylzz5X/mE
- xcNVkzt7hDMN4ixFMS+rVBVODpdP5B6lCyOi7Ek8/TmmOlk/NCB0I2Qxs
- MnAOmCLCvxjwpVFaF0IsKK7EyKEx3POmhY+BC2JxNf04TFlfdt6XyNRF7
- r5E0YQ9ZJxRxWrK/32jNmtn8E9xq9oXJdH8Df/L9i2L2jhP2MP2XstZp/
- SJSXaDXw357xC8QoQoBTJIj3j3Meqli4jKaj8XQyeIBbNComsZfeFQ0V3
- IBV7tFM7WXXlkRxM+b/jGzPJ3iC4N7ur+wwdCAFoNMS9LW7pkTk62Ee28 A==;
-X-CSE-ConnectionGUID: 2nmlOkHBReOP++F+2+eyaw==
-X-CSE-MsgGUID: tt39CE0pQ/KCy9HJz2LXsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="30879603"
-X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="30879603"
+ bh=AuO3pfeTjx+88vof+stJChDzV0/S1Mz4R4jkE7bP+To=;
+ b=Oi9rEsntG5+4rWomF4nTGfKqP4kGdFs3mAxyZX3/ZwC8NZ5xtXX4opHQ
+ WIPNR4Do3BhbOeBbDDCm/sM5Vb0tIR7MhuwlIqQUGXMNMkQCdNfBjvTzv
+ 0Z5sFWlowTSpp/GbVwq5+WUYdGH9xgMMCKsii1E9SRX8rHozJpHTPD0Gf
+ g83dCf+UNCwkx+suqx5d9IFvG092jEfGKpYPejg/TYvp1nEs7xjGqhbH8
+ HkkvgYh8D+bdvGWfI34VkSJsbsOspgvKpLg8kGAnp8+lobw9SmMj3M48P
+ u7v1IUw067zkLmBjzKl3YzqkphLQyyI7VxnehL8SBq3G5zWue8qcMMk+f A==;
+X-CSE-ConnectionGUID: 8KJnUH6PR5i44jH0MkwW6w==
+X-CSE-MsgGUID: fghm6Yq2QN+bQ6dk14lOmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="30879599"
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="30879599"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Oct 2024 14:14:25 -0700
-X-CSE-ConnectionGUID: ZUXsaDXMRBCYCgFksWFbqg==
-X-CSE-MsgGUID: RkS0cP2iRLuI/BJZn+qL8w==
+X-CSE-ConnectionGUID: Watz9hRbSty5rv1M7bG6Qg==
+X-CSE-MsgGUID: nnNxuvYnT9ig67CEypz7dQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="111584940"
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="111584928"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by orviesa001.jf.intel.com with ESMTP; 02 Oct 2024 14:14:23 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v9 09/11] drm/xe/guc: Dump entire CTB on errors
-Date: Wed,  2 Oct 2024 14:14:20 -0700
-Message-ID: <20241002211422.2135130-10-John.C.Harrison@Intel.com>
+Subject: [PATCH v9 06/11] drm/xe/guc: Use a two stage dump for GuC logs and
+ add more info
+Date: Wed,  2 Oct 2024 14:14:17 -0700
+Message-ID: <20241002211422.2135130-7-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241002211422.2135130-1-John.C.Harrison@Intel.com>
 References: <20241002211422.2135130-1-John.C.Harrison@Intel.com>
@@ -70,245 +71,327 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-The dump of the CT buffers was only showing the unprocessed data which
-is not generally useful for saying why a hang occurred - because it
-was probably caused by the commands that were just processed. So save
-and dump the entire buffer but in a more compact dump format. Also
-zero fill it on allocation to avoid confusion over uninitialised data
-in the dump.
+Split the GuC log dump into a two stage snapshot and print mechanism.
+This allows the log to be captured at the point of an error (which may
+be in a restricted context) and then dump it out later (from a regular
+context such as a worker function or a sysfs file handler).
 
-v2: Add kerneldoc - review feedback from Michal W.
-v3: Fix kerneldoc.
-v4: Use ascii85 instead of hexdump (review feedback from Matthew B).
-v5: Dump the entire CTB object rather than separately dumping just the
-H2G and G2H sections. That way it includes the full header info.
+Also add a bunch of other useful pieces of information that can help
+(or are fundamentally required!) to decode and parse the log.
+
+v2: Add kerneldoc and fix a couple of comment typos - review feedback
+from Michal W.
+v3: Move chunking code to this patch as it makes the deltas simpler.
+Fix a bunch of kerneldoc issues.
+v4: Move the CS frequency out of the coredump snapshot function into
+the debugfs only code (as that info is already part of the main
+devcoredump). Add a header to the debugfs log to match the one in the
+devcoredump to aid processing by a unified tool. Add forcewake to the
+GuC timestamp read so it actually works.
+v6: Add colon to GuC version string (review feedback by Julia F).
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c       | 94 ++++++++++------------------
- drivers/gpu/drm/xe/xe_guc_ct.h       |  8 +--
- drivers/gpu/drm/xe/xe_guc_ct_types.h |  6 +-
- 3 files changed, 41 insertions(+), 67 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h |   1 +
+ drivers/gpu/drm/xe/xe_guc_log.c       | 178 +++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_guc_log.h       |   4 +
+ drivers/gpu/drm/xe/xe_guc_log_types.h |  27 ++++
+ 4 files changed, 195 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 46320b94bceb..39abf3b3a043 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -17,6 +17,7 @@
- #include "abi/guc_actions_sriov_abi.h"
- #include "abi/guc_klvs_abi.h"
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index a5fd14307f94..b27b73680c12 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -84,6 +84,7 @@
+ #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
+ #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
+ #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
++#define GUC_PMTIMESTAMP				XE_REG(0xc3e8)
+ 
+ #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
+ #define   GUC_SEND_TRIGGER			REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index be47780ec2a7..24564624e91e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -6,15 +6,23 @@
+ #include "xe_guc_log.h"
+ 
+ #include <drm/drm_managed.h>
+-#include <linux/vmalloc.h>
+ 
++#include "regs/xe_guc_regs.h"
  #include "xe_bo.h"
-+#include "xe_devcoredump.h"
- #include "xe_device.h"
+ #include "xe_devcoredump.h"
++#include "xe_force_wake.h"
  #include "xe_gt.h"
- #include "xe_gt_pagefault.h"
-@@ -435,6 +436,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ #include "xe_gt_printk.h"
+ #include "xe_map.h"
++#include "xe_mmio.h"
+ #include "xe_module.h"
  
- 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
- 
-+	xe_map_memset(xe, &ct->bo->vmap, 0, 0, ct->bo->size);
- 	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
- 	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
- 
-@@ -1575,48 +1577,33 @@ static void g2h_worker_func(struct work_struct *w)
- 	receive_g2h(ct);
++static struct xe_guc *
++log_to_guc(struct xe_guc_log *log)
++{
++	return container_of(log, struct xe_guc, log);
++}
++
+ static struct xe_gt *
+ log_to_gt(struct xe_guc_log *log)
+ {
+@@ -52,35 +60,175 @@ static size_t guc_log_size(void)
+ 		CAPTURE_BUFFER_SIZE;
  }
  
--static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
--				     struct guc_ctb_snapshot *snapshot,
--				     bool atomic)
-+struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic)
- {
--	u32 head, tail;
-+	struct xe_guc_ct_snapshot *snapshot;
- 
--	xe_map_memcpy_from(xe, &snapshot->desc, &ctb->desc, 0,
--			   sizeof(struct guc_ct_buffer_desc));
--	memcpy(&snapshot->info, &ctb->info, sizeof(struct guc_ctb_info));
++#define GUC_LOG_CHUNK_SIZE	SZ_2M
++
++static struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *log, bool atomic)
++{
++	struct xe_guc_log_snapshot *snapshot;
++	size_t remain;
++	int i;
++
 +	snapshot = kzalloc(sizeof(*snapshot), atomic ? GFP_ATOMIC : GFP_KERNEL);
 +	if (!snapshot)
 +		return NULL;
++
++	/*
++	 * NB: kmalloc has a hard limit well below the maximum GuC log buffer size.
++	 * Also, can't use vmalloc as might be called from atomic context. So need
++	 * to break the buffer up into smaller chunks that can be allocated.
++	 */
++	snapshot->size = log->bo->size;
++	snapshot->num_chunks = DIV_ROUND_UP(snapshot->size, GUC_LOG_CHUNK_SIZE);
++
++	snapshot->copy = kcalloc(snapshot->num_chunks, sizeof(*snapshot->copy),
++				 atomic ? GFP_ATOMIC : GFP_KERNEL);
++	if (!snapshot->copy)
++		goto fail_snap;
++
++	remain = snapshot->size;
++	for (i = 0; i < snapshot->num_chunks; i++) {
++		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
++
++		snapshot->copy[i] = kmalloc(size, atomic ? GFP_ATOMIC : GFP_KERNEL);
++		if (!snapshot->copy[i])
++			goto fail_copy;
++		remain -= size;
++	}
++
++	return snapshot;
++
++fail_copy:
++	for (i = 0; i < snapshot->num_chunks; i++)
++		kfree(snapshot->copy[i]);
++	kfree(snapshot->copy);
++fail_snap:
++	kfree(snapshot);
++	return NULL;
++}
++
+ /**
+- * xe_guc_log_print - dump a copy of the GuC log to some useful location
++ * xe_guc_log_snapshot_free - free a previously captured GuC log snapshot
++ * @snapshot: GuC log snapshot structure
++ *
++ * Return: pointer to a newly allocated snapshot object or null if out of memory. Caller is
++ * responsible for calling xe_guc_log_snapshot_free when done with the snapshot.
++ */
++void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
++{
++	int i;
++
++	if (!snapshot)
++		return;
++
++	if (!snapshot->copy) {
++		for (i = 0; i < snapshot->num_chunks; i++)
++			kfree(snapshot->copy[i]);
++		kfree(snapshot->copy);
++	}
++
++	kfree(snapshot);
++}
++
++/**
++ * xe_guc_log_snapshot_capture - create a new snapshot copy the GuC log for later dumping
+  * @log: GuC log structure
+- * @p: the printer object to output to
++ * @atomic: is the call inside an atomic section of some kind?
++ *
++ * Return: pointer to a newly allocated snapshot object or null if out of memory. Caller is
++ * responsible for calling xe_guc_log_snapshot_free when done with the snapshot.
+  */
+-void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
++struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic)
+ {
++	struct xe_guc_log_snapshot *snapshot;
+ 	struct xe_device *xe = log_to_xe(log);
+-	size_t size;
+-	void *copy;
++	struct xe_guc *guc = log_to_guc(log);
++	struct xe_gt *gt = log_to_gt(log);
++	size_t remain;
++	int i, err;
  
--	snapshot->cmds = kmalloc_array(ctb->info.size, sizeof(u32),
--				       atomic ? GFP_ATOMIC : GFP_KERNEL);
--	if (!snapshot->cmds) {
--		drm_err(&xe->drm, "Skipping CTB commands snapshot. Only CT info will be available.\n");
+ 	if (!log->bo) {
+-		drm_puts(p, "GuC log buffer not allocated");
 -		return;
-+	if (ct->bo) {
-+		snapshot->ctb_size = ct->bo->size;
-+		snapshot->ctb = kmalloc(snapshot->ctb_size, atomic ? GFP_ATOMIC : GFP_KERNEL);
++		xe_gt_err(gt, "GuC log buffer not allocated\n");
++		return NULL;
++	}
++
++	snapshot = xe_guc_log_snapshot_alloc(log, atomic);
++	if (!snapshot) {
++		xe_gt_err(gt, "GuC log snapshot not allocated\n");
++		return NULL;
  	}
  
--	head = snapshot->desc.head;
--	tail = snapshot->desc.tail;
--
--	if (head != tail) {
--		struct iosys_map map =
--			IOSYS_MAP_INIT_OFFSET(&ctb->cmds, head * sizeof(u32));
--
--		while (head != tail) {
--			snapshot->cmds[head] = xe_map_rd(xe, &map, 0, u32);
--			++head;
--			if (head == ctb->info.size) {
--				head = 0;
--				map = ctb->cmds;
--			} else {
--				iosys_map_incr(&map, sizeof(u32));
--			}
--		}
--	}
+-	size = log->bo->size;
++	remain = snapshot->size;
++	for (i = 0; i < snapshot->num_chunks; i++) {
++		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
++
++		xe_map_memcpy_from(xe, snapshot->copy[i], &log->bo->vmap,
++				   i * GUC_LOG_CHUNK_SIZE, size);
++		remain -= size;
++	}
++
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (err) {
++		snapshot->stamp = ~0;
++	} else {
++		snapshot->stamp = xe_mmio_read32(&gt->mmio, GUC_PMTIMESTAMP);
++		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++	}
++	snapshot->ktime = ktime_get_boottime_ns();
++	snapshot->level = log->level;
++	snapshot->ver_found = guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
++	snapshot->ver_want = guc->fw.versions.wanted;
++	snapshot->path = guc->fw.path;
++
 +	return snapshot;
 +}
 +
-+static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
-+				     struct guc_ctb_snapshot *snapshot)
++/**
++ * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
++ * @snapshot: a snapshot of the GuC log
++ * @p: the printer object to output to
++ */
++void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
 +{
-+	xe_map_memcpy_from(xe, &snapshot->desc, &ctb->desc, 0,
-+			   sizeof(struct guc_ct_buffer_desc));
-+	memcpy(&snapshot->info, &ctb->info, sizeof(struct guc_ctb_info));
- }
++	size_t remain;
++	int i;
  
- static void guc_ctb_snapshot_print(struct guc_ctb_snapshot *snapshot,
- 				   struct drm_printer *p)
- {
--	u32 head, tail;
--
- 	drm_printf(p, "\tsize: %d\n", snapshot->info.size);
- 	drm_printf(p, "\tresv_space: %d\n", snapshot->info.resv_space);
- 	drm_printf(p, "\thead: %d\n", snapshot->info.head);
-@@ -1626,25 +1613,6 @@ static void guc_ctb_snapshot_print(struct guc_ctb_snapshot *snapshot,
- 	drm_printf(p, "\thead (memory): %d\n", snapshot->desc.head);
- 	drm_printf(p, "\ttail (memory): %d\n", snapshot->desc.tail);
- 	drm_printf(p, "\tstatus (memory): 0x%x\n", snapshot->desc.status);
--
--	if (!snapshot->cmds)
--		return;
--
--	head = snapshot->desc.head;
--	tail = snapshot->desc.tail;
--
--	while (head != tail) {
--		drm_printf(p, "\tcmd[%d]: 0x%08x\n", head,
--			   snapshot->cmds[head]);
--		++head;
--		if (head == snapshot->info.size)
--			head = 0;
--	}
--}
--
--static void guc_ctb_snapshot_free(struct guc_ctb_snapshot *snapshot)
--{
--	kfree(snapshot->cmds);
- }
- 
- /**
-@@ -1665,9 +1633,7 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_guc_ct_snapshot *snapshot;
- 
--	snapshot = kzalloc(sizeof(*snapshot),
--			   atomic ? GFP_ATOMIC : GFP_KERNEL);
--
-+	snapshot = xe_guc_ct_snapshot_alloc(ct, atomic);
- 	if (!snapshot) {
- 		xe_gt_err(ct_to_gt(ct), "Skipping CTB snapshot entirely.\n");
- 		return NULL;
-@@ -1676,12 +1642,13 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
- 	if (xe_guc_ct_enabled(ct) || ct->state == XE_GUC_CT_STATE_STOPPED) {
- 		snapshot->ct_enabled = true;
- 		snapshot->g2h_outstanding = READ_ONCE(ct->g2h_outstanding);
--		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g,
--					 &snapshot->h2g, atomic);
--		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h,
--					 &snapshot->g2h, atomic);
-+		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g, &snapshot->h2g);
-+		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h, &snapshot->g2h);
- 	}
- 
-+	if (ct->bo && snapshot->ctb)
-+		xe_map_memcpy_from(xe, snapshot->ctb, &ct->bo->vmap, 0, snapshot->ctb_size);
-+
- 	return snapshot;
- }
- 
-@@ -1704,9 +1671,15 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
- 
- 		drm_puts(p, "G2H CTB (all sizes in DW):\n");
- 		guc_ctb_snapshot_print(&snapshot->g2h, p);
--
- 		drm_printf(p, "\tg2h outstanding: %d\n",
- 			   snapshot->g2h_outstanding);
-+
-+		if (snapshot->ctb) {
-+			xe_print_blob_ascii85(p, "CTB data", snapshot->ctb, 0, snapshot->ctb_size);
-+		} else {
-+			drm_printf(p, "CTB snapshot missing!\n");
-+			return;
-+		}
- 	} else {
- 		drm_puts(p, "CT disabled\n");
- 	}
-@@ -1724,8 +1697,7 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
- 	if (!snapshot)
+-	copy = vmalloc(size);
+-	if (!copy) {
+-		drm_printf(p, "Failed to allocate %zu", size);
++	if (!snapshot) {
++		drm_printf(p, "GuC log snapshot not allocated!\n");
  		return;
+ 	}
  
--	guc_ctb_snapshot_free(&snapshot->h2g);
--	guc_ctb_snapshot_free(&snapshot->g2h);
-+	kfree(snapshot->ctb);
- 	kfree(snapshot);
+-	xe_map_memcpy_from(xe, copy, &log->bo->vmap, 0, size);
++	drm_printf(p, "GuC firmware: %s\n", snapshot->path);
++	drm_printf(p, "GuC version: %u.%u.%u (wanted %u.%u.%u)\n",
++		   snapshot->ver_found.major, snapshot->ver_found.minor, snapshot->ver_found.patch,
++		   snapshot->ver_want.major, snapshot->ver_want.minor, snapshot->ver_want.patch);
++	drm_printf(p, "Kernel timestamp: 0x%08llX [%llu]\n", snapshot->ktime, snapshot->ktime);
++	drm_printf(p, "GuC timestamp: 0x%08X [%u]\n", snapshot->stamp, snapshot->stamp);
++	drm_printf(p, "Log level: %u\n", snapshot->level);
++
++	remain = snapshot->size;
++	for (i = 0; i < snapshot->num_chunks; i++) {
++		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
++
++		xe_print_blob_ascii85(p, i ? NULL : "Log data", snapshot->copy[i], 0, size);
++		remain -= size;
++	}
++}
++
++/**
++ * xe_guc_log_print - dump a copy of the GuC log to some useful location
++ * @log: GuC log structure
++ * @p: the printer object to output to
++ */
++void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
++{
++	struct xe_guc_log_snapshot *snapshot;
+ 
+-	xe_print_blob_ascii85(p, "Log data", copy, 0, size);
++	drm_printf(p, "**** GuC Log ****\n");
+ 
+-	vfree(copy);
++	snapshot = xe_guc_log_snapshot_capture(log, false);
++	drm_printf(p, "CS reference clock: %u\n", log_to_gt(log)->info.reference_clock);
++	xe_guc_log_snapshot_print(snapshot, p);
++	xe_guc_log_snapshot_free(snapshot);
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 293041bed7ed..338f0b75d29f 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+ int xe_guc_log_init(struct xe_guc_log *log)
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+index 2d25ab28b4b3..949d2c98343d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.h
++++ b/drivers/gpu/drm/xe/xe_guc_log.h
 @@ -9,6 +9,7 @@
- #include "xe_guc_ct_types.h"
+ #include "xe_guc_log_types.h"
  
  struct drm_printer;
 +struct xe_device;
  
- int xe_guc_ct_init(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
-@@ -16,10 +17,9 @@ void xe_guc_ct_disable(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+ #if IS_ENABLED(CONFIG_DRM_XE_LARGE_GUC_BUFFER)
+ #define CRASH_BUFFER_SIZE       SZ_1M
+@@ -38,6 +39,9 @@ struct drm_printer;
  
--struct xe_guc_ct_snapshot *
--xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
--void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
--			      struct drm_printer *p);
-+struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic);
-+struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
-+void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
- void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p);
+ int xe_guc_log_init(struct xe_guc_log *log);
+ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
++struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
++void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
++void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-index 85e127ec91d7..8e1b9d981d61 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-@@ -52,8 +52,6 @@ struct guc_ctb {
- struct guc_ctb_snapshot {
- 	/** @desc: snapshot of the CTB descriptor */
- 	struct guc_ct_buffer_desc desc;
--	/** @cmds: snapshot of the CTB commands */
--	u32 *cmds;
- 	/** @info: snapshot of the CTB info */
- 	struct guc_ctb_info info;
- };
-@@ -70,6 +68,10 @@ struct xe_guc_ct_snapshot {
- 	struct guc_ctb_snapshot g2h;
- 	/** @h2g: H2G CTB snapshot */
- 	struct guc_ctb_snapshot h2g;
-+	/** @ctb_size: size of the snapshot of the CTB */
-+	size_t ctb_size;
-+	/** @ctb: snapshot of the entire CTB */
-+	u32 *ctb;
- };
+ static inline u32
+ xe_guc_log_get_level(struct xe_guc_log *log)
+diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
+index 125080d138a7..962b9edbd9eb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
+@@ -8,8 +8,35 @@
  
+ #include <linux/types.h>
+ 
++#include "xe_uc_fw_types.h"
++
+ struct xe_bo;
+ 
++/**
++ * struct xe_guc_log_snapshot:
++ * Capture of the GuC log plus various state useful for decoding the log
++ */
++struct xe_guc_log_snapshot {
++	/** @size: Size in bytes of the @copy allocation */
++	size_t size;
++	/** @copy: Host memory copy of the log buffer for later dumping, split into chunks */
++	void **copy;
++	/** @num_chunks: Number of chunks within @copy */
++	int num_chunks;
++	/** @ktime: Kernel time the snapshot was taken */
++	u64 ktime;
++	/** @stamp: GuC timestamp at which the snapshot was taken */
++	u32 stamp;
++	/** @level: GuC log verbosity level */
++	u32 level;
++	/** @ver_found: GuC firmware version */
++	struct xe_uc_fw_version ver_found;
++	/** @ver_want: GuC firmware version that driver expected */
++	struct xe_uc_fw_version ver_want;
++	/** @path: Path of GuC firmware blob */
++	const char *path;
++};
++
  /**
+  * struct xe_guc_log - GuC log
+  */
 -- 
 2.46.0
 
