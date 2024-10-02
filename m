@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36E1ACF319E
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 19:11:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 672FCCEACF3
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 19:11:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0423810E796;
-	Wed,  2 Oct 2024 19:11:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 244D010E436;
+	Wed,  2 Oct 2024 19:11:20 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0438910E436;
- Wed,  2 Oct 2024 19:11:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C0CB10E436;
+ Wed,  2 Oct 2024 19:11:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Use_fault_?=
- =?utf-8?q?injection_infrastructure_to_find_issues_at_probe_time_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Use_fault_injec?=
+ =?utf-8?q?tion_infrastructure_to_find_issues_at_probe_time_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Oct 2024 19:11:04 -0000
-Message-ID: <172789626401.1165068.3658648500879715081@2413ebb6fbb6>
+Date: Wed, 02 Oct 2024 19:11:19 -0000
+Message-ID: <172789627924.1165068.4057769595715037825@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240927151207.399354-1-francois.dugast@intel.com>
 In-Reply-To: <20240927151207.399354-1-francois.dugast@intel.com>
@@ -48,9 +48,70 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 789d5631453c drm-tip: 2024y-10m-02d-15h-36m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Use fault injection infrastructure to find issues at probe time
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 389c1c6f0ee06751741df6bf744704ed3da2bc89
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Fri Sep 27 17:12:06 2024 +0200
+
+    drm/xe: Use fault injection infrastructure to find issues at probe time
+    
+    The kernel fault injection infrastructure is used to test proper error
+    handling during probe. The return code of the functions using
+    ALLOW_ERROR_INJECTION() can be conditionnally modified at runtime by
+    tuning some debugfs entries. This requires CONFIG_FUNCTION_ERROR_INJECTION
+    (among others).
+    
+    One way to use fault injection at probe time by making each of those
+    functions fail one at a time is:
+    
+        FAILTYPE=fail_function
+        DEVICE="0000:00:08.0" # depends on the system
+        ERRNO=-12 # -ENOMEM, can depend on the function
+    
+        echo N > /sys/kernel/debug/$FAILTYPE/task-filter
+        echo 100 > /sys/kernel/debug/$FAILTYPE/probability
+        echo 0 > /sys/kernel/debug/$FAILTYPE/interval
+        echo -1 > /sys/kernel/debug/$FAILTYPE/times
+        echo 0 > /sys/kernel/debug/$FAILTYPE/space
+        echo 1 > /sys/kernel/debug/$FAILTYPE/verbose
+    
+        modprobe xe
+        echo $DEVICE > /sys/bus/pci/drivers/xe/unbind
+    
+        grep -oP "^.* \[xe\]" /sys/kernel/debug/$FAILTYPE/injectable | \
+        cut -d ' ' -f 1 | while read -r FUNCTION ; do
+            echo "Injecting fault in $FUNCTION"
+            echo "" > /sys/kernel/debug/$FAILTYPE/inject
+            echo $FUNCTION > /sys/kernel/debug/$FAILTYPE/inject
+            printf %#x $ERRNO > /sys/kernel/debug/$FAILTYPE/$FUNCTION/retval
+            echo $DEVICE > /sys/bus/pci/drivers/xe/bind
+        done
+    
+        rmmod xe
+    
+    It will also be integrated into IGT for systematic execution by CI.
+    
+    v2: Wrappers are not needed in the cases covered by this patch, so
+        remove them and use ALLOW_ERROR_INJECTION() directly.
+    
+    v3: Document the use of fault injection at probe time in xe_pci_probe
+        and refer to it where ALLOW_ERROR_INJECTION() is used.
+    
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 789d5631453c3edad1988cd47db1643555e52ac9 drm-intel
+389c1c6f0ee0 drm/xe: Use fault injection infrastructure to find issues at probe time
 
 
