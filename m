@@ -4,54 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37E53CF6D3B
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 16:43:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DD9ACF6D3E
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 16:58:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF7EA10E664;
-	Wed,  2 Oct 2024 16:43:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E534910E223;
+	Wed,  2 Oct 2024 16:58:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Nk1uVEjx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J9HQR38S";
 	dkim-atps=neutral
-Received: from msa.smtpout.orange.fr (smtp-81.smtpout.orange.fr [80.12.242.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7BC010E639;
- Wed,  2 Oct 2024 16:43:36 +0000 (UTC)
-Received: from [192.168.1.37] ([90.11.132.44]) by smtp.orange.fr with ESMTPA
- id w2RossPGwzmbmw2RosTOhn; Wed, 02 Oct 2024 18:43:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1727887415;
- bh=WiQ9rEm/MZNLKkSTulKn+at0cQ54EY5swCihzKM4b7w=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=Nk1uVEjxNTz97srXuWkEodHCeQDwJawSXbdJvq5E/vPJTLAYPRquOSfnBP7DgGfKu
- Q+bNgdy0tcgJ4C691IEakEnP/Y0h2zGS967JAbTHRgaVjqH5YkvughNSgJwDs6Prpg
- xe+h5LhyU2SFgv/thSpC3VTQhGlbKPkrq2wvM/GhGlIS4f7qJwhgb1aRBPDDeQGCwu
- jBFZsUmP8sbCggKvqXDRa4POJt5uEZqUzzrjwtPJfoWtqrNUxRu7zf7sOKFM8A5/vc
- lWokM0gjw65+gRqxNHZNh6uq3ybg2nGvgzwos/Xg9RdZqhr3TCt1mU/XEg15vC8mZe
- JDVFKeqRkXQmg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Wed, 02 Oct 2024 18:43:35 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <86f6269f-e367-4192-ab71-5d82b1c88309@wanadoo.fr>
-Date: Wed, 2 Oct 2024 18:43:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/backlight: Remove a useless kstrdup_const()
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C091910E172;
+ Wed,  2 Oct 2024 16:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727888293; x=1759424293;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dYIcv8D0ViAouND/v5b9Q3mTlvcQGTDBp2TYzg02xao=;
+ b=J9HQR38Spw7ainDhh/WBP3fTfH5iJW4WbPxPZjr7TvnN5wZN6pEjJZ6B
+ 16VxRQQW2oQmIn+FLU22bRfG9o9BVmngmylcBWkBRjY+GsrkAq0RKaFBZ
+ M4YN+yFTPOXB+KgNDmyfzujpHAv9Ec2OBntLbfifm9QFD2GcUFDh+WYGp
+ Q7RoL6JDHwP7feQ9EW117/meW2hKWdIU17dGIjHrmxWb9VI+YSMx+mtI/
+ gvA7Zax/F1HqyMhhEg/y0xb27jOYbeb9jE3/aRUZGRzJzAjI2qHkxWREz
+ Vhgaaec1Pja4zQmBgWiXjIXVhl7bTnW4TP1S2zm9243MdPGlYJ0jFfA71 A==;
+X-CSE-ConnectionGUID: U1/vqqbTTBiA4NFpOu+6eQ==
+X-CSE-MsgGUID: vzUWXQQtQCWLDt7pCWEJXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="27155352"
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="27155352"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2024 09:58:13 -0700
+X-CSE-ConnectionGUID: n6DqjQbRQrCJkifr7Fu0xA==
+X-CSE-MsgGUID: xzgoS74dTfakdJJOpmrWAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="74181561"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 02 Oct 2024 09:58:08 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Oct 2024 19:58:08 +0300
+Date: Wed, 2 Oct 2024 19:58:08 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr>
- <875xqdy42v.fsf@intel.com> <3c793f42-6cd1-40e7-a3f2-556b6e5b4094@wanadoo.fr>
- <87cykiu3hk.fsf@intel.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <87cykiu3hk.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH v3 0/8] drm/i915: PREEMPT_RT related fixups.
+Message-ID: <Zv17oKlIImyfg_KI@intel.com>
+References: <20240628130601.1772849-1-bigeasy@linutronix.de>
+ <20241002162543.TKbd-8g0@linutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241002162543.TKbd-8g0@linutronix.de>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,46 +74,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Le 02/10/2024 à 13:51, Jani Nikula a écrit :
-> On Tue, 01 Oct 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
->> Le 30/09/2024 à 09:48, Jani Nikula a écrit :
->>> On Sat, 28 Sep 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
->>>> "name" is allocated and freed in intel_backlight_device_register().
->>>> The initial allocation just duplicates "intel_backlight".
->>>>
->>>> Later, if a device with this name has already been registered, another
->>>> dynamically generated one is allocated using kasprintf().
->>>>
->>>> So at the end of the function, when "name" is freed, it can point either to
->>>> the initial static literal "intel_backlight" or to the kasprintf()'ed one.
->>>>
->>>> So kfree_const() is used.
->>>>
->>>> However, when built as a module, kstrdup_const() and kfree_const() don't
->>>> work as one would expect and are just plain kstrdup() and kfree().
->>>>
->>>>
->>>> Slightly change the logic and introduce a new variable to hold the
->>>> address returned by kasprintf() should it be used.
->>>>
->>>> This saves a memory allocation/free and avoids these _const functions,
->>>> which names can be confusing when used with code built as module.
->>>
->>> Okay, I'd rather revert your earlier commit 379b63e7e682
->>> ("drm/i915/display: Save a few bytes of memory in
->>> intel_backlight_device_register()") than add this.
->>
->> Hi,
->>
->> that works for me. Thanks and sorry for the noise.
+On Wed, Oct 02, 2024 at 06:25:43PM +0200, Sebastian Andrzej Siewior wrote:
+> On 2024-06-28 14:57:59 [+0200], To intel-gfx@lists.freedesktop.org wrote:
+> Hi,
 > 
-> Will you send the revert?
+> > The following patches are from the PREEMPT_RT queue.  It is mostly about
+> > disabling interrupts/preemption which leads to problems. Unfortunately
+> > DRM_I915_LOW_LEVEL_TRACEPOINTS had to be disabled because it acquires locks
+> > from within trace points. Making the lock a raw_spinlock_t led to higher
+> > latencies during video playback
+> >   https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutronix.de/
+> > 
+> > and I'm not sure if I hit the worse case here.
+> > I tested it on a SandyBridge with built-in i915 by using X, OpenGL and
+> > playing videos without noticing any warnings. However, some code paths
+> > were not entered.
+> > I carry them for some time now and most issues were reported by other
+> > people and they reported that things work for them since.
 > 
-> BR,
-> Jani.
-> 
-> 
+> These patches were not picked. Did I forget something or was this just
+> overseen?
 
-Will do.
+This looks quite poorly justified. Eg. you seem to be now
+leaving interrupts enabled (and even preemption enabled I
+guess) when we're racing against the raster beam. On first
+blush that seems like a recipe for failure.
 
-CJ
+First step would be to set CONFIG_DRM_I915_DEBUG_VBLANK_EVADE=y,
+run a bunch of tests that stress the display stuff (eg.
+kms_atomic_transitions and other stuff from igt, and also
+some real workloads) and probably throw in a bunch of
+other load/perturbance at the system to make life hard.
+After the system has been sufficiently hammered one can
+compare sys/kernel/debug/dri/0/crtc-*/i915_update_info
+against a baseline. Bonus points for doing it on a potato.
+
+-- 
+Ville Syrj�l�
+Intel
