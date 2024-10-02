@@ -4,66 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F79ACF31B9
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 12:56:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D24A5CF31B7
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 13:05:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F022B10E716;
-	Wed,  2 Oct 2024 12:56:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0D710E168;
+	Wed,  2 Oct 2024 13:05:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MXszBatN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OyZsPIod";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E509B10E716;
- Wed,  2 Oct 2024 12:56:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D20B10E344
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Oct 2024 13:05:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727873813; x=1759409813;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=0I11X9emZQo37lnyzQ+iCYA4tB6yNL654d8yshltWLs=;
- b=MXszBatNN/RZA9YJrx9N7D2GxQfXRe0LKrGb2nYTAz1qea1a1t6iFbw8
- 4jclByk1P/Ahjry2OtsGVgVu7pc0abrWJ2UTH/+U8gDuBa0PeZOn9FK4V
- q/Sw48Q4ZJFI7ulFOZkW1c7dGzk79HZ9KcCZAU7tPmdo/SzmGvBwtzNh3
- jkjq1P/p8LVEnLXNBa9hhiFIPYwi9hVzCkPyG2Sufn6plZS9oaS1455eU
- dN+cEJVLYB6QAAs9bmrYWIjU41BwZ+YpLkeXHZcJI+4FcYV4iVtbGpyDa
- OZ0aQC8j9zJcNZgnK3GvSSb683g2D8Zx+Yg5BO9INKV/O4443hD38XPax Q==;
-X-CSE-ConnectionGUID: qyk2mmAARyyl4Ys4pPI+wg==
-X-CSE-MsgGUID: xaMugOUiSoWQNs3quLVD8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="44557640"
-X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="44557640"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 05:56:52 -0700
-X-CSE-ConnectionGUID: XaPsADQJS7iYyeYRwrqKSw==
-X-CSE-MsgGUID: qNqMKC0TRrC47yVzKYUmiA==
+ t=1727874303; x=1759410303;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=EVq6WpdaT3EK9c3W4HFMhFIfxpMQ55ijuqCvAI4tKhg=;
+ b=OyZsPIodoQZaZiX0qLP1QiH6bRVnNhzzo/QkWlrDTt+k1Tm+yHSsqWdj
+ eNaJfnuv3eMG687qgGNIdugBy+ovmrb3IgVqnviPsS6JQWjNRMXxbgE+l
+ oS+2klULHQthEsHjx6j3HwDwwODFQElt+sxxjDlLSxAXkiwgZnoMHLXAt
+ G8+hsMzUNaFUXHGjlNaDmZZp4wFEuo2fdG/CZ+LxmW9K/qeJETB/CQJGb
+ NMcjRuY+pz0XJD5CzGqmyd7vpHVfg24SqKursTn3zHhIWb6BSVPcNp/zX
+ YNaA8KIp3MVSpSox0f+vsretQotfJtS+0yoTjPn8Y8VgLpHNeqvvc7RUB Q==;
+X-CSE-ConnectionGUID: xZZ5ujfBQ0Sqv1aeGlpyeg==
+X-CSE-MsgGUID: KeAHIz6IQiO2DWron1YlSQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38396115"
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="38396115"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2024 06:05:02 -0700
+X-CSE-ConnectionGUID: lEqjUkoXQj2x67wvnxR0NA==
+X-CSE-MsgGUID: GfRSoaVTT66C+QU3SqRMdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="74228247"
-Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.49])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 05:56:48 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Christian =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Zack
- Rusin <zack.rusin@broadcom.com>, bcm-kernel-feedback-list@broadcom.com,
- Sui Jingfeng <suijingfeng@loongson.cn>, Matthew Brost
- <matthew.brost@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v2 1/2] drm/ttm: Change ttm_device_init to use a struct
- instead of multiple bools
-In-Reply-To: <20241002122422.287276-2-thomas.hellstrom@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241002122422.287276-1-thomas.hellstrom@linux.intel.com>
- <20241002122422.287276-2-thomas.hellstrom@linux.intel.com>
-Date: Wed, 02 Oct 2024 15:56:44 +0300
-Message-ID: <874j5uu0hf.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="74115532"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 02 Oct 2024 06:05:00 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Oct 2024 16:04:59 +0300
+Date: Wed, 2 Oct 2024 16:04:59 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe: Mark dpt requiring 8K alignment
+Message-ID: <Zv1E-wPvG43xsfHj@intel.com>
+References: <20241002114815.1970048-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241002114815.1970048-1-juhapekka.heikkila@gmail.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,26 +69,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 02 Oct 2024, Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.co=
-m> wrote:
-> The ttm_device_init funcition uses multiple bool arguments. That means
-> readability in the caller becomes poor, and all callers need to change if
-> yet another bool is added.
->
-> Instead use a struct with multiple single-bit flags. This addresses both
-> problems. Prefer it over using defines or enums with explicit bit shifts,
-> since converting to and from these bit values uses logical operations or
-> tests which are implicit with the struct usage, and ofc type-checking.
->
-> This is in preparation of adding yet another bool flag parameter to the
-> function.
+On Wed, Oct 02, 2024 at 02:47:55PM +0300, Juha-Pekka Heikkila wrote:
+> Due to hw requirements relating to long strides let's align display
+> page table to 8k.
 
-Funny, the other day Ville and I were throwing ideas around, and we
-talked about something like this to implement keyword arguments in C. :)
+This stuff belongs in plane->min_alignment(), and then the xe
+ggtt/dpt code needs to be fixed to do what its told.
 
-Cheers,
-Jani.
+> 
+> BSpec: 50417
+> 
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 9 ++++++---
+>  drivers/gpu/drm/xe/xe_bo.h             | 1 +
+>  drivers/gpu/drm/xe/xe_ggtt.c           | 2 ++
+>  3 files changed, 9 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 79dbbbe03c7f..976f4d1a03cd 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -103,19 +103,22 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+>  					   ttm_bo_type_kernel,
+>  					   XE_BO_FLAG_VRAM0 |
+>  					   XE_BO_FLAG_GGTT |
+> -					   XE_BO_FLAG_PAGETABLE);
+> +					   XE_BO_FLAG_PAGETABLE |
+> +					   XE_BO_FLAG_NEED_8K_ALIGN);
+>  	else
+>  		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+>  					   ttm_bo_type_kernel,
+>  					   XE_BO_FLAG_STOLEN |
+>  					   XE_BO_FLAG_GGTT |
+> -					   XE_BO_FLAG_PAGETABLE);
+> +					   XE_BO_FLAG_PAGETABLE |
+> +					   XE_BO_FLAG_NEED_8K_ALIGN);
+>  	if (IS_ERR(dpt))
+>  		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+>  					   ttm_bo_type_kernel,
+>  					   XE_BO_FLAG_SYSTEM |
+>  					   XE_BO_FLAG_GGTT |
+> -					   XE_BO_FLAG_PAGETABLE);
+> +					   XE_BO_FLAG_PAGETABLE |
+> +					   XE_BO_FLAG_NEED_8K_ALIGN);
+>  	if (IS_ERR(dpt))
+>  		return PTR_ERR(dpt);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 31f4ba3bd8c1..154d6fe4c823 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -39,6 +39,7 @@
+>  #define XE_BO_FLAG_NEEDS_64K		BIT(15)
+>  #define XE_BO_FLAG_NEEDS_2M		BIT(16)
+>  #define XE_BO_FLAG_GGTT_INVALIDATE	BIT(17)
+> +#define XE_BO_FLAG_NEED_8K_ALIGN	BIT(18)
+>  /* this one is trigger internally only */
+>  #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+>  #define XE_BO_FLAG_INTERNAL_64K		BIT(31)
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index f68af56c3f86..0b17c0afcd95 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -605,6 +605,8 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>  
+>  	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+>  		alignment = SZ_64K;
+> +	else if (bo->flags & XE_BO_FLAG_NEED_8K_ALIGN)
+> +		alignment = SZ_8K;
+>  
+>  	if (XE_WARN_ON(bo->ggtt_node)) {
+>  		/* Someone's already inserted this BO in the GGTT */
+> -- 
+> 2.45.2
 
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
