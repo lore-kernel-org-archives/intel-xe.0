@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 389A2CF8542
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5566FCF8543
 	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 21:14:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F40A310E780;
-	Wed,  2 Oct 2024 21:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0DC10E781;
+	Wed,  2 Oct 2024 21:14:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eN+bd9E4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQRhFcy9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54A6F10E1D1
- for <Intel-Xe@lists.freedesktop.org>; Wed,  2 Oct 2024 21:14:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1276C10E0D6
+ for <Intel-Xe@lists.freedesktop.org>; Wed,  2 Oct 2024 21:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727903665; x=1759439665;
+ t=1727903664; x=1759439664;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=svjqtNycWUjcFbHa53MfFoJaAUhKPxpQkMolZrtJ/WM=;
- b=eN+bd9E4aD6YJOKHfkDVrY3pwG9w+9O/8osK+hZE1+0YN5aPoRPL1FCt
- LQDJSEMHZvWy+B6pY7Oz/roTmFJpAJBasFFrlia1EricW2kRKHQQdfAed
- OZtEdJH66F+qdsRdJPQ8DxJeiVUH1Es9LyFk7Lji4khWesccZUyKarH3f
- 5koG+K/SBVfllO1vfvEyTPgCqgNxoC9B0WecyXNkCGsy3xkcdJ52355//
- 1z7WvLAlr8ncLrVMGSU2czLSZ3B35OON35YU4M8ATnRfAwiWarc1/1CHq
- eXelNZM3Qk4d7jeAmPZZG2A2AgQWulVvbNu10MiXFnSQVUBXcDXUP5FAV w==;
-X-CSE-ConnectionGUID: rqTdJqMFR0+VJJZTDcUP9g==
-X-CSE-MsgGUID: z8TUE6HyTY6Dd1h9rhpXrw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="30879605"
-X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="30879605"
+ bh=HZeQs53wm6ed54JkpA6N1W85jW5iKCuP6XPXOUbb8nw=;
+ b=kQRhFcy955Of/7WNfpcHjTi3SIvmcOpOQMgDYo/mjk/X9SPgxPwuR8PA
+ P+tkVg6dqpZKoURuAx+v8csB7zHczJ/wnTy9EmEbL7LntAYK3VTP68/Zf
+ WUcAKaAuXSJUfU2uswdhDdNTMcOKRpYlkMILk27tnErTdj4BSj4CmVg5q
+ MAD1SI+BCTL/sBcKxl1KdAZ47zzgf1bUfWWI9GthW0qzy3m13CHQkBtJP
+ jMMi88vYZ74JZCy+ntm7qitvXxMdMvMjlGknoUz9Hd3bfLqCqpxO40vgX
+ raNTB4XEl/o84gfkxTH1jjwNur6zH6/u4qmLIf27PZLQGHvlYZ/F4X1LD w==;
+X-CSE-ConnectionGUID: 8MVRvWrnTYaJzXXvfnoPTQ==
+X-CSE-MsgGUID: oVpfh9RRRFSKHdtAE5nJYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="30879589"
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="30879589"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 14:14:25 -0700
-X-CSE-ConnectionGUID: tso2k+54SiClyT474h3jLA==
-X-CSE-MsgGUID: C2NgRJJ7Q1m6Z9jXDvCheg==
+ 02 Oct 2024 14:14:23 -0700
+X-CSE-ConnectionGUID: XNaDNsd5QPuF+dIzoPxR1w==
+X-CSE-MsgGUID: 14gDUUtfQxy4/JxGOHEkOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="111584948"
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="111584912"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa001.jf.intel.com with ESMTP; 02 Oct 2024 14:14:23 -0700
+ by orviesa001.jf.intel.com with ESMTP; 02 Oct 2024 14:14:22 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v9 11/11] drm/xe/guc: Add a helper function for dumping GuC
- log to dmesg
-Date: Wed,  2 Oct 2024 14:14:22 -0700
-Message-ID: <20241002211422.2135130-12-John.C.Harrison@Intel.com>
+Subject: [PATCH v9 01/11] drm/xe/guc: Remove spurious line feed in debug print
+Date: Wed,  2 Oct 2024 14:14:12 -0700
+Message-ID: <20241002211422.2135130-2-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241002211422.2135130-1-John.C.Harrison@Intel.com>
 References: <20241002211422.2135130-1-John.C.Harrison@Intel.com>
@@ -71,69 +71,34 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Create a helper function that can be used to dump the GuC log to dmesg
-in a manner that is reliable for extraction and decode. The intention
-is that calls to this can be added by developers when debugging
-specific issues that require a GuC log but do not allow easy capture
-of the log - e.g. failures in selftests and failues that lead to
-kernel hangs.
+Including line feeds at the start of a debug print messes up the
+output when sent to dmesg. The break appears between all the useful
+prefix information and the actual string being printed. In this case,
+each block of data has a very clear start line and an extra delimeter
+is really not necessary. So don't do it.
 
-Also note that this is really a temporary stop-gap. The aim is to
-allow on demand creation and dumping of devcoredump captures (which
-includes the GuC log and much more). Currently this is not possible as
-much of the devcoredump code requires a 'struct xe_sched_job' and
-those are not available at many places that might want to do the dump.
-
-v2: Add kerneldoc - review feedback from Michal W.
+v2: Fix typo in commit message (review feedback from Michal W.)
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_log.c | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_log.h |  1 +
- 2 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 24564624e91e..d7be69f20af4 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -214,6 +214,24 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
- 	}
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 4b95f75b1546..a63fe0a9077a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1523,7 +1523,7 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
+ 		drm_puts(p, "H2G CTB (all sizes in DW):\n");
+ 		guc_ctb_snapshot_print(&snapshot->h2g, p);
  
-+/**
-+ * xe_guc_log_print_dmesg - dump a copy of the GuC log to dmesg
-+ * @log: GuC log structure
-+ */
-+void xe_guc_log_print_dmesg(struct xe_guc_log *log)
-+{
-+	struct xe_gt *gt = log_to_gt(log);
-+	static int g_count;
-+	struct drm_printer ip = xe_gt_info_printer(gt);
-+	struct drm_printer lp = drm_line_printer(&ip, "Capture", ++g_count);
-+
-+	drm_printf(&lp, "Dumping GuC log for %ps...\n", __builtin_return_address(0));
-+
-+	xe_guc_log_print(log, &lp);
-+
-+	drm_printf(&lp, "Done.\n");
-+}
-+
- /**
-  * xe_guc_log_print - dump a copy of the GuC log to some useful location
-  * @log: GuC log structure
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-index 949d2c98343d..1fb2fae1f4e1 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.h
-+++ b/drivers/gpu/drm/xe/xe_guc_log.h
-@@ -39,6 +39,7 @@ struct xe_device;
+-		drm_puts(p, "\nG2H CTB (all sizes in DW):\n");
++		drm_puts(p, "G2H CTB (all sizes in DW):\n");
+ 		guc_ctb_snapshot_print(&snapshot->g2h, p);
  
- int xe_guc_log_init(struct xe_guc_log *log);
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
-+void xe_guc_log_print_dmesg(struct xe_guc_log *log);
- struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
- void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
- void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
+ 		drm_printf(p, "\tg2h outstanding: %d\n",
 -- 
 2.46.0
 
