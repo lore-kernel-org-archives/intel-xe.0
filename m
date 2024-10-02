@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCC3CCEB2E2
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 18:22:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF290CEB2E2
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 18:23:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 848EA10E78D;
-	Wed,  2 Oct 2024 18:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6FA310E78D;
+	Wed,  2 Oct 2024 18:23:16 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E96BF10E78D;
- Wed,  2 Oct 2024 18:22:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C4A710E78D;
+ Wed,  2 Oct 2024 18:23:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_use_NULL?=
- =?utf-8?q?_for_zero_wakeref=5Ft_instead_of_plain_integer_0?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_use_NULL_for_?=
+ =?utf-8?q?zero_wakeref=5Ft_instead_of_plain_integer_0?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Oct 2024 18:22:53 -0000
-Message-ID: <172789337395.1164454.16646273442695774791@2413ebb6fbb6>
+Date: Wed, 02 Oct 2024 18:23:15 -0000
+Message-ID: <172789339563.1164796.14694575917692307650@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241002181655.582597-1-jani.nikula@intel.com>
 In-Reply-To: <20241002181655.582597-1-jani.nikula@intel.com>
@@ -44,13 +44,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: use NULL for zero wakeref_t instead of plain integer 0
 URL   : https://patchwork.freedesktop.org/series/139438/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 789d5631453c drm-tip: 2024y-10m-02d-15h-36m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915: use NULL for zero wakeref_t instead of plain integer 0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 16b10cb49588c59eec8d7b6475c745a39bba804c
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Oct 2 21:16:55 2024 +0300
+
+    drm/i915: use NULL for zero wakeref_t instead of plain integer 0
+    
+    As of commit 2edc6a75f26c ("drm/i915: switch intel_wakeref_t underlying
+    type to struct ref_tracker *") we gained quite a few sparse warnings
+    about "Using plain integer as NULL pointer" for using 0 to initialize
+    wakeref_t. Switch to NULL everywhere.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 789d5631453c3edad1988cd47db1643555e52ac9 drm-intel
+16b10cb49588 drm/i915: use NULL for zero wakeref_t instead of plain integer 0
+-:163: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#163: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:87:
++	for ((wf) = intel_gt_pm_get_if_awake(gt); (wf); intel_gt_pm_put_async((gt), (wf)), (wf) = NULL)
+
+total: 0 errors, 1 warnings, 0 checks, 242 lines checked
 
 
