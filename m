@@ -4,37 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C49F4CF6D2D
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 13:48:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C947CF6D28
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Oct 2024 13:51:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F75E10E735;
-	Wed,  2 Oct 2024 13:48:46 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B53810E735
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Oct 2024 13:48:45 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BA2B4339
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Oct 2024 06:49:14 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 093BE3F64C
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Oct 2024 06:48:44 -0700 (PDT)
-Date: Wed, 2 Oct 2024 14:48:34 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 02/28] drm/arm/hdlcd: Use video aperture helpers
-Message-ID: <Zv1PMoDuDCfUp9vy@e110455-lin.cambridge.arm.com>
-References: <20240930130921.689876-1-tzimmermann@suse.de>
- <20240930130921.689876-3-tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1598810E176;
+	Wed,  2 Oct 2024 13:51:24 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B3BD10E735;
+ Wed,  2 Oct 2024 13:51:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240930130921.689876-3-tzimmermann@suse.de>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_Introduce_DRM?=
+ =?utf-8?q?_client_library_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Oct 2024 13:51:23 -0000
+Message-ID: <172787708330.1163589.16189377820664029743@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241002131306.288618-1-tzimmermann@suse.de>
+In-Reply-To: <20241002131306.288618-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,65 +36,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 03:03:00PM +0200, Thomas Zimmermann wrote:
-> DRM's aperture functions have long been implemented as helpers
-> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
-> calling the video functions directly.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
+== Series Details ==
 
-Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+Series: drm: Introduce DRM client library (rev2)
+URL   : https://patchwork.freedesktop.org/series/139220/
+State : success
 
-Best regards,
-Liviu
+== Summary ==
 
-> ---
->  drivers/gpu/drm/arm/hdlcd_drv.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
-> index f5d358f3893b..cd4389809d42 100644
-> --- a/drivers/gpu/drm/arm/hdlcd_drv.c
-> +++ b/drivers/gpu/drm/arm/hdlcd_drv.c
-> @@ -9,6 +9,7 @@
->   *  ARM HDLCD Driver
->   */
->  
-> +#include <linux/aperture.h>
->  #include <linux/module.h>
->  #include <linux/spinlock.h>
->  #include <linux/clk.h>
-> @@ -21,7 +22,6 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->  
-> -#include <drm/drm_aperture.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_client_setup.h>
->  #include <drm/drm_crtc.h>
-> @@ -287,7 +287,7 @@ static int hdlcd_drm_bind(struct device *dev)
->  	 */
->  	if (hdlcd_read(hdlcd, HDLCD_REG_COMMAND)) {
->  		hdlcd_write(hdlcd, HDLCD_REG_COMMAND, 0);
-> -		drm_aperture_remove_framebuffers(&hdlcd_driver);
-> +		aperture_remove_all_conflicting_devices(hdlcd_driver.name);
->  	}
->  
->  	drm_mode_config_reset(drm);
-> -- 
-> 2.46.0
-> 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 55a90a928d97 drm-tip: 2024y-10m-02d-13h-33m-04s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: Select DRM_CLIENT_SELECTION
+Applying: drm/xe: Select DRM_CLIENT_SELECTION
+Applying: drm/fbdev: Select fbdev I/O helpers from modules that require them
+Applying: drm/fbdev: Store fbdev module parameters in separate file
+Applying: drm/client: Move client event handlers to drm_client_event.c
+Applying: drm/client: Move suspend/resume into DRM client callbacks
+Applying: drm/amdgpu: Suspend and resume internal clients with client helpers
+Applying: drm/nouveau: Suspend and resume clients with client helpers
+Applying: drm/radeon: Suspend and resume clients with client helpers
+Applying: drm/client: Make client support optional
+Applying: drm/client: Add client-lib module
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+
