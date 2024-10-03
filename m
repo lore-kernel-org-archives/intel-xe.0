@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15ACECF34B0
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 15:43:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62F83CF34B0
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 15:44:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B4F10E885;
-	Thu,  3 Oct 2024 15:43:37 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5E2510E885;
- Thu,  3 Oct 2024 15:43:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29AD810E888;
+	Thu,  3 Oct 2024 15:44:17 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 263EE10E885;
+ Thu,  3 Oct 2024 15:44:15 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 01/12] drm/xe/display: Handle stolen bar readout in the
+ same way as lmem
+Date: Thu,  3 Oct 2024 17:44:10 +0200
+Message-ID: <20241003154421.33805-2-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
+References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/psr=3A_Implemen?=
- =?utf-8?q?t_WA_to_help_reach_PC10?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Oct 2024 15:43:36 -0000
-Message-ID: <172797021680.1169003.15262388940379608963@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241003145337.1673715-2-suraj.kandpal@intel.com>
-In-Reply-To: <20241003145337.1673715-2-suraj.kandpal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +36,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+i915 already does this, we should do the same for Xe.
 
-Series: drm/i915/psr: Implement WA to help reach PC10
-URL   : https://patchwork.freedesktop.org/series/139512/
-State : warning
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 17c0158bdb239d8b6d23834db5595ea422b69915
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 1b10ea499d8c8..cf139921e7817 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -69,7 +69,7 @@ initial_plane_bo(struct xe_device *xe,
+ 	flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT;
+ 
+ 	base = round_down(plane_config->base, page_size);
+-	if (IS_DGFX(xe)) {
++	if (IS_DGFX(xe) || GRAPHICS_VERx100(xe) >= 1270) {
+ 		u64 __iomem *gte = tile0->mem.ggtt->gsm;
+ 		u64 pte;
+ 
+@@ -83,7 +83,6 @@ initial_plane_bo(struct xe_device *xe,
+ 		}
+ 
+ 		phys_base = pte & ~(page_size - 1);
+-		flags |= XE_BO_FLAG_VRAM0;
+ 
+ 		/*
+ 		 * We don't currently expect this to ever be placed in the
+@@ -105,7 +104,6 @@ initial_plane_bo(struct xe_device *xe,
+ 		if (!stolen)
+ 			return NULL;
+ 		phys_base = base;
+-		flags |= XE_BO_FLAG_STOLEN;
+ 
+ 		if (XE_WA(xe_root_mmio_gt(xe), 22019338487_display))
+ 			return NULL;
+@@ -120,6 +118,11 @@ initial_plane_bo(struct xe_device *xe,
+ 			return NULL;
+ 	}
+ 
++	if (IS_DGFX(xe))
++		flags |= XE_BO_FLAG_VRAM0;
++	else
++		flags |= XE_BO_FLAG_STOLEN;
++
+ 	size = round_up(plane_config->base + plane_config->size,
+ 			page_size);
+ 	size -= base;
+-- 
+2.45.2
 
