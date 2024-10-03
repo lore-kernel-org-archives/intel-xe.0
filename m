@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17414CF854F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 059F0CF854C
 	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 00:46:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D706C10E7A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C123D10E79F;
 	Thu,  3 Oct 2024 00:46:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JCWzGF8L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fCFcmaDI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AFA010E347
- for <Intel-Xe@lists.freedesktop.org>; Thu,  3 Oct 2024 00:46:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9A2810E07D
+ for <Intel-Xe@lists.freedesktop.org>; Thu,  3 Oct 2024 00:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1727916373; x=1759452373;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZX08GJ+B7S70HH6Udtlg1KJsdNtorenXuuQa0d4IjK4=;
- b=JCWzGF8LFdIJ/qkv8xZJHY1bgQWuFOP0UQZG36zoNAx6UFN4jEs1G791
- M0yX2b0rE/H41pwTcULG2Z9KDentL2YZdBpmoFCw1nqTRu4Y9+7fNP6tP
- D2ybIS3eGp/F1WavqIkMezXwcrTZ4AyvnMw2YH38syzuoOztcLYRYycD6
- Vk4nnfUzr0YcgpqEI5B1psnW46RSM6ypAGbMKSsh1qMR/VXRsSLUPLsAF
- FlYUTSACiOl2dn+0BmVn8uw6eBy/thfvlWNKX+GAaiDHwo5Lsa/npK2Gy
- ztYZfoo33pfvPbSL704oMsOOkGTUdi1lu2o15lsoAmdtK4q/nIaUu11h7 w==;
-X-CSE-ConnectionGUID: qEUk9ZzkTgClM4kLLfy69A==
-X-CSE-MsgGUID: pV7nNKD5TtamKhcxPcRJ+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38460031"
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="38460031"
+ bh=2SdSVNSQfKK53W0QGpaAEYbV9ISepnM6Gb1C0AkbPTQ=;
+ b=fCFcmaDIQgBFDkIYWactFmXDLzdkCzzY6NTszzNV05EFI7gvifQdx6JH
+ YwtKl4CTdfxJpNPQMxIZXvq9WB4X+JdrAfugq2azoqnisuoJ5XFMI+2BF
+ 0ZnMskg9NFNzdRllAaGmywvfx44RNEF0CBDcTuAIPlEDOnGgkh/R9dwGT
+ 40TlcpLmYdlMauhAnlLsYfVsvNQKnACBYICDyQiUhf+gAtsGnZJteXpyT
+ zpnIRHSYdITQyLZEK6Ub67EZ3em+GgD/agfWRH+jqgk5CxHx0eRY+JyAl
+ x3ZxKFN8O2pVbJvySuyaIDzMJaPaV8M8JZi2crKfUx79bn8wPdlkdodCI A==;
+X-CSE-ConnectionGUID: JBtYyv7HQdOEzCQD/3ZHpQ==
+X-CSE-MsgGUID: ElY06IbKSiC2AsRILjDRow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38460022"
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="38460022"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 17:46:13 -0700
-X-CSE-ConnectionGUID: 8C9NR82VQjGlVubuLoCRow==
-X-CSE-MsgGUID: kgIEBgejQoeS2idA2MkzGQ==
+ 02 Oct 2024 17:46:12 -0700
+X-CSE-ConnectionGUID: pvFWscYTR5SjhKiZAGYdcg==
+X-CSE-MsgGUID: Uj/0U9fSRr+0LTzcfNTBKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="97514760"
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="97514737"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa002.fm.intel.com with ESMTP; 02 Oct 2024 17:46:13 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 02 Oct 2024 17:46:12 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v9 10/11] drm/xe/guc: Add GuC log to devcoredump captures
-Date: Wed,  2 Oct 2024 17:46:10 -0700
-Message-ID: <20241003004611.2323493-11-John.C.Harrison@Intel.com>
+Subject: [PATCH v9 03/11] drm/xe/devcoredump: Improve section headings and add
+ tile info
+Date: Wed,  2 Oct 2024 17:46:03 -0700
+Message-ID: <20241003004611.2323493-4-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
 References: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
@@ -70,95 +71,102 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Include the GuC log in devcoredump captures because they can be useful
-with debugging certain types of bug.
+The xe_guc_exec_queue_snapshot is not really a GuC internal thing and
+is definitely not a GuC CT thing. So give it its own section heading.
+The snapshot itself is really a capture of the submission backend's
+internal state. Although all it currently prints out is the submission
+contexts. So label it as 'Contexts'. If more general state is added
+later then it could be change to 'Submission backend' or some such.
 
-v2: Fix kerneldoc
-v3: Drop module parameter as now using more compact ascii85 encoding
-rather than hexdump (although still not compressed) (review feedback
-from Matthew B). Rebase onto recent refactoring of devcoredump code.
-v4: Don't move the submission snapshot inside the GuC internals
-structure 'cos it really doesn't belong there.
+Further, everything from the GuC CT section onwards is GT specific but
+there was no indication of which GT it was related to (and that is
+impossible to work out from the other fields that are given). So add a
+GT section heading. Also include the tile id of the GT, because again
+significant information.
+
+Lastly, drop a couple of unnecessary line feeds within sections.
+
+v2: Add GT section heading, add tile id to device section.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c       | 16 ++++++++++++----
- drivers/gpu/drm/xe/xe_devcoredump_types.h | 10 +++++++---
- 2 files changed, 19 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c       | 5 +++++
+ drivers/gpu/drm/xe/xe_devcoredump_types.h | 3 ++-
+ drivers/gpu/drm/xe/xe_device.c            | 1 +
+ drivers/gpu/drm/xe/xe_guc_submit.c        | 2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c         | 1 -
+ 5 files changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 0884c49942fe..a2d816713489 100644
+index d23719d5c2a3..2690f1d1cde4 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump.c
 +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -18,8 +18,10 @@
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_guc_ct.h"
-+#include "xe_guc_log.h"
- #include "xe_guc_submit.h"
- #include "xe_hw_engine.h"
-+#include "xe_module.h"
- #include "xe_sched_job.h"
- #include "xe_vm.h"
+@@ -96,8 +96,13 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
+ 	drm_printf(&p, "Process: %s\n", ss->process_name);
+ 	xe_device_snapshot_print(xe, &p);
  
-@@ -100,8 +102,10 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
- 	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
- 	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
- 
-+	drm_puts(&p, "\n**** GuC Log ****\n");
-+	xe_guc_log_snapshot_print(ss->guc.log, &p);
- 	drm_puts(&p, "\n**** GuC CT ****\n");
--	xe_guc_ct_snapshot_print(ss->ct, &p);
-+	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
- 
- 	drm_puts(&p, "\n**** Contexts ****\n");
- 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
-@@ -124,8 +128,11 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
- {
- 	int i;
- 
--	xe_guc_ct_snapshot_free(ss->ct);
--	ss->ct = NULL;
-+	xe_guc_log_snapshot_free(ss->guc.log);
-+	ss->guc.log = NULL;
++	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
++	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
 +
-+	xe_guc_ct_snapshot_free(ss->guc.ct);
-+	ss->guc.ct = NULL;
+ 	drm_puts(&p, "\n**** GuC CT ****\n");
+ 	xe_guc_ct_snapshot_print(ss->ct, &p);
++
++	drm_puts(&p, "\n**** Contexts ****\n");
+ 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
  
- 	xe_guc_exec_queue_snapshot_free(ss->ge);
- 	ss->ge = NULL;
-@@ -253,7 +260,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
- 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
- 
--	ss->ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
-+	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
-+	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
- 	ss->ge = xe_guc_exec_queue_snapshot_capture(q);
- 	ss->job = xe_sched_job_snapshot_capture(job);
- 	ss->vm = xe_vm_snapshot_capture(q->vm);
+ 	drm_puts(&p, "\n**** Job ****\n");
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 3cc2f095fdfb..06ac75ce63dd 100644
+index 440d05d77a5a..3cc2f095fdfb 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
 +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -34,9 +34,13 @@ struct xe_devcoredump_snapshot {
- 	/** @work: Workqueue for deferred capture outside of signaling context */
- 	struct work_struct work;
- 
--	/* GuC snapshots */
--	/** @ct: GuC CT snapshot */
--	struct xe_guc_ct_snapshot *ct;
-+	/** @guc: GuC snapshots */
-+	struct {
-+		/** @guc.ct: GuC CT snapshot */
-+		struct xe_guc_ct_snapshot *ct;
-+		/** @guc.log: GuC log snapshot */
-+		struct xe_guc_log_snapshot *log;
-+	} guc;
- 
- 	/** @ge: GuC Submission Engine snapshot */
+@@ -37,7 +37,8 @@ struct xe_devcoredump_snapshot {
+ 	/* GuC snapshots */
+ 	/** @ct: GuC CT snapshot */
+ 	struct xe_guc_ct_snapshot *ct;
+-	/** @ge: Guc Engine snapshot */
++
++	/** @ge: GuC Submission Engine snapshot */
  	struct xe_guc_submit_exec_queue_snapshot *ge;
+ 
+ 	/** @hwe: HW Engine snapshot array */
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 09a7ad830e69..030cf703e970 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -961,6 +961,7 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p)
+ 
+ 	for_each_gt(gt, xe, id) {
+ 		drm_printf(p, "GT id: %u\n", id);
++		drm_printf(p, "\tTile: %u\n", gt->tile->id);
+ 		drm_printf(p, "\tType: %s\n",
+ 			   gt->info.type == XE_GT_TYPE_MAIN ? "main" : "media");
+ 		drm_printf(p, "\tIP ver: %u.%u.%u\n",
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 0ac4a19ec9cc..8690df699170 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2240,7 +2240,7 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 	if (!snapshot)
+ 		return;
+ 
+-	drm_printf(p, "\nGuC ID: %d\n", snapshot->guc.id);
++	drm_printf(p, "GuC ID: %d\n", snapshot->guc.id);
+ 	drm_printf(p, "\tName: %s\n", snapshot->name);
+ 	drm_printf(p, "\tClass: %d\n", snapshot->class);
+ 	drm_printf(p, "\tLogical mask: 0x%x\n", snapshot->logical_mask);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index ea6d9ef7fab6..6c9c27304cdc 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -1084,7 +1084,6 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+ 	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+ 		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
+ 			   snapshot->reg.rcu_mode);
+-	drm_puts(p, "\n");
+ }
+ 
+ /**
 -- 
 2.46.0
 
