@@ -4,62 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07C38CF34A9
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 15:10:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D743CF34B7
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 15:16:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C286710E87A;
-	Thu,  3 Oct 2024 15:10:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E154610E87C;
+	Thu,  3 Oct 2024 15:16:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="crvCVqy9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ehD1/1tv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD3C910E87A
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Oct 2024 15:10:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4902A10E20B
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Oct 2024 15:16:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727968209; x=1759504209;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=UU7LUfdOLd3/W+I0WCBJGiPrOYek/nwCsLWBetr+zvw=;
- b=crvCVqy9Bfte/rbsJntMXlI6/DntebrIqYvZFrpmSwv993hNc8EuSBnG
- 57/XacZ3OSKjOpM0Pz3oFx0voSWxfG++Wqt8ot0kPKSb3WP45JQ3Gd1ih
- TjZnn7A3IogHKIyp9hH+hhtujJVu4tCAr+HVuIPS8fc43I0puEilaKGIf
- WsKUFqEhpOSlcN+g2Fwym4nDaSkpnJnsu8yr/QiB/ag/qzd2rCo+xN12Z
- jqxmAYevHvp4L4kJMjJDpw7pEwF8zCGhk9oEfu9b72vrAQY3ggZzcs9/b
- ptYe3NLdlGh4H5gyLMghhpm6yJLqWujl9GJSrR3rLuWKPPYPbkGGcorWy Q==;
-X-CSE-ConnectionGUID: ZInLH3oLRZq3ITE3V4Mplg==
-X-CSE-MsgGUID: Btq0rAqETRS431/5G4ZzMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="30043640"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="30043640"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 08:10:09 -0700
-X-CSE-ConnectionGUID: E8Nfb1sZSeCkKrcnuVA96A==
-X-CSE-MsgGUID: K1chnbvHTWio1LITFSIaKQ==
+ t=1727968596; x=1759504596;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=EVUc0ngOr3tois/yXJ7nhKQWzG54szmZKmFIR+/468I=;
+ b=ehD1/1tv3aww455SoS+Hu8fPEx8bLajPZRDPR4X/Z3eNsEqw2EuTPrI8
+ tPVNfmvXaKgF1v1L2/fwVnSEhyFq1UIufFqoXDXtrrme5Put1FMNFRQDq
+ DtRuWWBVo2CUElxRDqKla0322T9dXqZMUhYP/fqoyUpRRBTZPYZLwGVLl
+ AoB0NLpBhZoFgLSv4jJnK2dZXc8/32SaQDmbtELoMjvteOJY+jZswtPqj
+ eq9ZeG4OgTqQh63+9xJ2HFFB+S5bnmKm9Ysom+yGADrztBenAlVjT+j+r
+ BeW/0VMGr6AXaTaqFlDdIv0aAHOJREkGHmgtdBv89lHj2EhA57Nzq2YxC g==;
+X-CSE-ConnectionGUID: l1NuzOgzQ9ePG68blNYk+g==
+X-CSE-MsgGUID: 6fPcKg5ESDmKomKsSkf3Tg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27047182"
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="27047182"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2024 08:16:28 -0700
+X-CSE-ConnectionGUID: +pffdNrqShatK7yXGPuvdg==
+X-CSE-MsgGUID: sfMORo8mQICkiaqGpYuP+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="78792307"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.147])
- ([10.245.244.147])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 08:10:07 -0700
-Message-ID: <6ce0a268-db69-4f40-9477-cc5b781c119b@intel.com>
-Date: Thu, 3 Oct 2024 16:10:05 +0100
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="78382930"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by fmviesa003.fm.intel.com with ESMTP; 03 Oct 2024 08:16:27 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v26 3/6] drm/xe/guc: Add capture size check in GuC log buffer
+Date: Thu,  3 Oct 2024 08:16:23 -0700
+Message-Id: <20241003151626.2901703-4-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241003151626.2901703-1-zhanjun.dong@intel.com>
+References: <20241003151626.2901703-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Don't free job in TDR
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, paulo.r.zanoni@intel.com
-References: <20241003001657.3517883-1-matthew.brost@intel.com>
- <20241003001657.3517883-3-matthew.brost@intel.com>
- <45633fc3-b1d8-4a64-b8db-0fda93ca79a5@intel.com>
- <Zv6ksODQwzVvfOw3@DUT025-TGLU.fm.intel.com>
- <abf18240-7105-491a-962b-3db2d84dc897@intel.com>
- <Zv6sE5PJYwkB8k+A@DUT025-TGLU.fm.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <Zv6sE5PJYwkB8k+A@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,85 +67,261 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 03/10/2024 15:37, Matthew Brost wrote:
-> On Thu, Oct 03, 2024 at 03:15:02PM +0100, Matthew Auld wrote:
->> On 03/10/2024 15:05, Matthew Brost wrote:
->>> On Thu, Oct 03, 2024 at 08:06:24AM +0100, Matthew Auld wrote:
->>>> On 03/10/2024 01:16, Matthew Brost wrote:
->>>>> Freeing job in TDR is not safe as TDR can pass the run_job thread
->>>>> resulting in UAF. It is only safe for free job to naturally be called by
->>>>> the scheduler. Rather free job in TDR, add to pending list.
->>>>
->>>> s/Rather free/Rather than free/
->>>> ?
->>>>
->>>
->>> Yes, will fix.
->>>
->>>>>
->>>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2811
->>>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>>> Fixes: e275d61c5f3f ("drm/xe/guc: Handle timing out of signaled jobs gracefully")
->>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>
->>>> I think we still have the other issue with fence signalling in run_job.
->>>>
->>>
->>> I think this actually ok given free_job as owns a ref to job->fence and
->>> free_job now must run after run_job - that is why I didn't include this
->>> change in this patch. But I also agree a better design would be move the
->>> dma_fence_get from run_job to arm - I will do that in a follow up.
->>
->> Here I mean the race in run_job() itself, before we hand over the fence to
->> the scheduler. i.e do the dma_fence_get() before the submission part like
->> in: https://patchwork.freedesktop.org/patch/615249/?series=138921&rev=1.
->>
-> 
-> Yes, we ae talking about the same thing. I think this as is safe because
-> in run_job we know at least 1 ref is still held by free_job which cannot
-> be run until after run_job completes.
+Capture-nodes generated by GuC are placed in the GuC capture ring
+buffer which is a sub-region of the larger Guc-Log-buffer.
+Add capture output size check before allocating the shared buffer.
 
-I don't see who else is holding a fence ref when we reach 
-queue_run_job() for the first time other than dma_fence_init() and that 
-pairs with the signaller side AFAICT, but maybe I'm blind.
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/abi/guc_log_abi.h | 20 +++++++
+ drivers/gpu/drm/xe/xe_guc_capture.c  | 83 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_log.c      | 66 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_log.h      |  7 ++-
+ 4 files changed, 174 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/abi/guc_log_abi.h
 
-Anyway, I agree we don't need to fix in this patch since it looks like a 
-different issue.
+diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+new file mode 100644
+index 000000000000..10db4ffaa17f
+--- /dev/null
++++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef _ABI_GUC_LOG_ABI_H
++#define _ABI_GUC_LOG_ABI_H
++
++#include <linux/types.h>
++
++/* GuC logging buffer types */
++enum guc_log_buffer_type {
++	GUC_LOG_BUFFER_CRASH_DUMP,
++	GUC_LOG_BUFFER_DEBUG,
++	GUC_LOG_BUFFER_CAPTURE,
++};
++
++#define GUC_LOG_BUFFER_TYPE_MAX		3
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 4256051a04b6..f1b9ddcb2d89 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -22,6 +22,7 @@
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_printk.h"
+ #include "xe_guc.h"
++#include "xe_guc_ads.h"
+ #include "xe_guc_capture.h"
+ #include "xe_guc_capture_types.h"
+ #include "xe_guc_ct.h"
+@@ -669,6 +670,85 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc)
+ 	return PAGE_ALIGN(total_size);
+ }
+ 
++static int guc_capture_output_size_est(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++
++	int capture_size = 0;
++	size_t tmp = 0;
++
++	if (!guc->capture)
++		return -ENODEV;
++
++	/*
++	 * If every single engine-instance suffered a failure in quick succession but
++	 * were all unrelated, then a burst of multiple error-capture events would dump
++	 * registers for every one engine instance, one at a time. In this case, GuC
++	 * would even dump the global-registers repeatedly.
++	 *
++	 * For each engine instance, there would be 1 x guc_state_capture_group_t output
++	 * followed by 3 x guc_state_capture_t lists. The latter is how the register
++	 * dumps are split across different register types (where the '3' are global vs class
++	 * vs instance).
++	 */
++	for_each_hw_engine(hwe, gt, id) {
++		enum guc_capture_list_class_type capture_class;
++
++		capture_class = xe_engine_class_to_guc_capture_class(hwe->class);
++		capture_size += sizeof(struct guc_state_capture_group_header_t) +
++					 (3 * sizeof(struct guc_state_capture_header_t));
++
++		if (!guc_capture_getlistsize(guc, 0, GUC_STATE_CAPTURE_TYPE_GLOBAL,
++					     0, &tmp, true))
++			capture_size += tmp;
++		if (!guc_capture_getlistsize(guc, 0, GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
++					     capture_class, &tmp, true))
++			capture_size += tmp;
++		if (!guc_capture_getlistsize(guc, 0, GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE,
++					     capture_class, &tmp, true))
++			capture_size += tmp;
++	}
++
++	return capture_size;
++}
++
++/*
++ * Add on a 3x multiplier to allow for multiple back-to-back captures occurring
++ * before the Xe can read the data out and process it
++ */
++#define GUC_CAPTURE_OVERBUFFER_MULTIPLIER 3
++
++static void check_guc_capture_size(struct xe_guc *guc)
++{
++	int capture_size = guc_capture_output_size_est(guc);
++	int spare_size = capture_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
++	u32 buffer_size = xe_guc_log_section_size_capture(&guc->log);
++
++	/*
++	 * NOTE: capture_size is much smaller than the capture region
++	 * allocation (DG2: <80K vs 1MB).
++	 * Additionally, its based on space needed to fit all engines getting
++	 * reset at once within the same G2H handler task slot. This is very
++	 * unlikely. However, if GuC really does run out of space for whatever
++	 * reason, we will see an separate warning message when processing the
++	 * G2H event capture-notification, search for:
++	 * xe_guc_STATE_CAPTURE_EVENT_STATUS_NOSPACE.
++	 */
++	if (capture_size < 0)
++		xe_gt_dbg(guc_to_gt(guc),
++			  "Failed to calculate error state capture buffer minimum size: %d!\n",
++			  capture_size);
++	if (capture_size > buffer_size)
++		xe_gt_dbg(guc_to_gt(guc), "Error state capture buffer maybe small: %d < %d\n",
++			  buffer_size, capture_size);
++	else if (spare_size > buffer_size)
++		xe_gt_dbg(guc_to_gt(guc),
++			  "Error state capture buffer lacks spare size: %d < %d (min = %d)\n",
++			  buffer_size, spare_size, capture_size);
++}
++
+ /*
+  * xe_guc_capture_steered_list_init - Init steering register list
+  * @guc: The GuC object
+@@ -684,9 +764,10 @@ void xe_guc_capture_steered_list_init(struct xe_guc *guc)
+ 	 * the end of the pre-populated render list.
+ 	 */
+ 	guc_capture_alloc_steered_lists(guc);
++	check_guc_capture_size(guc);
+ }
+ 
+-/**
++/*
+  * xe_guc_capture_init - Init for GuC register capture
+  * @guc: The GuC object
+  *
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 651543721ce5..077f53167847 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -98,4 +98,70 @@ int xe_guc_log_init(struct xe_guc_log *log)
+ 
+ 	return 0;
+ }
++
+ ALLOW_ERROR_INJECTION(xe_guc_log_init, ERRNO); /* See xe_pci_probe() */
++
++static u32 xe_guc_log_section_size_crash(struct xe_guc_log *log)
++{
++	return CRASH_BUFFER_SIZE;
++}
++
++static u32 xe_guc_log_section_size_debug(struct xe_guc_log *log)
++{
++	return DEBUG_BUFFER_SIZE;
++}
++
++/**
++ * xe_guc_log_section_size_capture - Get capture buffer size within log sections.
++ * @log: The log object.
++ *
++ * This function will return the capture buffer size within log sections.
++ *
++ * Return: capture buffer size.
++ */
++u32 xe_guc_log_section_size_capture(struct xe_guc_log *log)
++{
++	return CAPTURE_BUFFER_SIZE;
++}
++
++/**
++ * xe_guc_get_log_buffer_size - Get log buffer size for a type.
++ * @log: The log object.
++ * @type: The log buffer type
++ *
++ * Return: buffer size.
++ */
++u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type)
++{
++	switch (type) {
++	case GUC_LOG_BUFFER_CRASH_DUMP:
++		return xe_guc_log_section_size_crash(log);
++	case GUC_LOG_BUFFER_DEBUG:
++		return xe_guc_log_section_size_debug(log);
++	case GUC_LOG_BUFFER_CAPTURE:
++		return xe_guc_log_section_size_capture(log);
++	}
++	return 0;
++}
++
++/**
++ * xe_guc_get_log_buffer_offset - Get offset in log buffer for a type.
++ * @log: The log object.
++ * @type: The log buffer type
++ *
++ * This function will return the offset in the log buffer for a type.
++ * Return: buffer offset.
++ */
++u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type)
++{
++	enum guc_log_buffer_type i;
++	u32 offset = PAGE_SIZE;/* for the log_buffer_states */
++
++	for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < GUC_LOG_BUFFER_TYPE_MAX; ++i) {
++		if (i == type)
++			break;
++		offset += xe_guc_get_log_buffer_size(log, i);
++	}
++
++	return offset;
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+index 2d25ab28b4b3..87ecd1814854 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.h
++++ b/drivers/gpu/drm/xe/xe_guc_log.h
+@@ -7,6 +7,7 @@
+ #define _XE_GUC_LOG_H_
+ 
+ #include "xe_guc_log_types.h"
++#include "abi/guc_log_abi.h"
+ 
+ struct drm_printer;
+ 
+@@ -17,7 +18,7 @@ struct drm_printer;
+ #else
+ #define CRASH_BUFFER_SIZE	SZ_8K
+ #define DEBUG_BUFFER_SIZE	SZ_64K
+-#define CAPTURE_BUFFER_SIZE	SZ_16K
++#define CAPTURE_BUFFER_SIZE	SZ_1M
+ #endif
+ /*
+  * While we're using plain log level in i915, GuC controls are much more...
+@@ -45,4 +46,8 @@ xe_guc_log_get_level(struct xe_guc_log *log)
+ 	return log->level;
+ }
+ 
++u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
++u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type);
++u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type);
++
+ #endif
+-- 
+2.34.1
 
-> 
-> Your patch is similar to what I suggest, but I think the cleanest
-> implementation of this is move the dma_fence_get from run_job to
-> xe_sched_job_arm which I'd like to do in a follow up.
-
-Yup agree, that looked cleaner.
-
-> 
-> Matt
-> 
->>>
->>> Matt
->>>
->>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->>>>
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_guc_submit.c | 7 +++++--
->>>>>     1 file changed, 5 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->>>>> index 80062e1d3f66..9ecd1661c1b5 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->>>>> @@ -1106,10 +1106,13 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->>>>>     	/*
->>>>>     	 * TDR has fired before free job worker. Common if exec queue
->>>>> -	 * immediately closed after last fence signaled.
->>>>> +	 * immediately closed after last fence signaled. Add back to pending
->>>>> +	 * list so job can be freed and kick scheduler ensuring free job is not
->>>>> +	 * lost.
->>>>>     	 */
->>>>>     	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags)) {
->>>>> -		guc_exec_queue_free_job(drm_job);
->>>>> +		xe_sched_add_pending_job(sched, job);
->>>>> +		xe_sched_submission_start(sched);
->>>>>     		return DRM_GPU_SCHED_STAT_NOMINAL;
->>>>>     	}
