@@ -4,22 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 692FCCF34B7
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 15:44:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA1A8CF34BA
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 15:44:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3009F10E88C;
-	Thu,  3 Oct 2024 15:44:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF1910E88E;
+	Thu,  3 Oct 2024 15:44:18 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 260D810E170;
- Thu,  3 Oct 2024 15:44:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E3C10E170;
+ Thu,  3 Oct 2024 15:44:16 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 00/12] drm/xe: Reduce flickering when inheriting BIOS fb.
-Date: Thu,  3 Oct 2024 17:44:09 +0200
-Message-ID: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 02/12] drm/xe: Remove double pageflip
+Date: Thu,  3 Oct 2024 17:44:11 +0200
+Message-ID: <20241003154421.33805-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
+References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -37,43 +40,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It turns out that xe is performing all kinds of allocations before
-inheriting the BIOS fb. This is problematic as it completely overwrites
-the initial FB on discrete, and on integrated causes flickering until
-the original FB is restored (preserved in stolen memory).
+This is already handled below by fixup_initial_plane_config.
 
-The complete fix requires reshuffling the entire init sequence. I want to
-do that, but first add some preparations. This way I don't need to resubmit
-all these patches that are ready to commit each time.
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Fixes: a8153627520a ("drm/i915: Try to relocate the BIOS fb to the start of ggtt")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 9 ---------
+ 1 file changed, 9 deletions(-)
 
-Maarten Lankhorst (12):
-  drm/xe/display: Handle stolen bar readout in the same way as lmem
-  drm/xe: Remove double pageflip
-  drm/i915/display: Use async flip when available for initial plane
-    config
-  drm/xe/display: Remove single wait for vblank
-  drm/xe: Move suballocator init to after display init
-  drm/xe: Use xe_ggtt_map_bo_unlocked for resume
-  drm/xe: Add xe_ggtt_might_lock
-  drm/xe: Add xe_ggtt_alloc
-  drm/xe: Abstract read/write functions for GGTT PTEs
-  drm/xe: Make xe_ggtt_pt_ops private
-  drm/xe/display: Stop dereferencing ggtt in xe_fb_pin
-  drm/xe: Move struct xe_ggtt to xe_ggtt.c
-
- .../drm/i915/display/skl_universal_plane.c    |  13 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  36 ++---
- drivers/gpu/drm/xe/display/xe_plane_initial.c |  27 +---
- drivers/gpu/drm/xe/xe_bo.c                    |   2 +-
- drivers/gpu/drm/xe/xe_bo_evict.c              |   9 +-
- drivers/gpu/drm/xe/xe_device.c                |   6 +
- drivers/gpu/drm/xe/xe_ggtt.c                  | 141 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_ggtt.h                  |  22 ++-
- drivers/gpu/drm/xe/xe_ggtt_types.h            |  50 +------
- drivers/gpu/drm/xe/xe_tile.c                  |  16 +-
- drivers/gpu/drm/xe/xe_tile.h                  |   1 +
- 11 files changed, 218 insertions(+), 105 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index cf139921e7817..1f5128927c07c 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -197,8 +197,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 		to_intel_plane(crtc->base.primary);
+ 	struct intel_plane_state *plane_state =
+ 		to_intel_plane_state(plane->base.state);
+-	struct intel_crtc_state *crtc_state =
+-		to_intel_crtc_state(crtc->base.state);
+ 	struct drm_framebuffer *fb;
+ 	struct i915_vma *vma;
+ 
+@@ -245,13 +243,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 
+ 	plane_config->vma = vma;
+ 
+-	/*
+-	 * Flip to the newly created mapping ASAP, so we can re-use the
+-	 * first part of GGTT for WOPCM, prevent flickering, and prevent
+-	 * the lookup of sysmem scratch pages.
+-	 */
+-	plane->check_plane(crtc_state, plane_state);
+-	plane->async_flip(plane, crtc_state, plane_state, true);
+ 	return;
+ 
+ nofb:
 -- 
 2.45.2
 
