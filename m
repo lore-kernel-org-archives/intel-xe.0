@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F27C7CF854A
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 00:46:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 680E4CF854E
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 00:46:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A698C10E0D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C19E510E352;
 	Thu,  3 Oct 2024 00:46:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IbyJ99wu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQO12/oP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66CFF10E0D8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 844D910E07D
  for <Intel-Xe@lists.freedesktop.org>; Thu,  3 Oct 2024 00:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727916372; x=1759452372;
+ t=1727916373; x=1759452373;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HZeQs53wm6ed54JkpA6N1W85jW5iKCuP6XPXOUbb8nw=;
- b=IbyJ99wu2gzqAZGAe11HUEdGf7ECX2NRZNNCwMp1cqB+34FaxmFEyXOh
- ZqIrqioFVJhNT4ZeOeDhLmY/eUuUs/7WYZD6bPgWA6JeMvXJe9EbwTF9g
- 0PtyTUDVpsnfTw6kjJVY/DK5legH96BO5+L5Ew0Q8t3k1QH1BsBvHzUta
- yjY0cpXNNB61ra4pFxrH/ayyheNUXYPTNPTFNDJbfQEuPWhRDCL8hVwKL
- 26dNaeJ4qBnnxPX9hUJQA/1b3dVG+rREgKsyi91QlyACK2ZEDnM/rh3qt
- AER7Gl1KTWjA/+lQgi9RMX3dSZssFkFS/hsIHHXI+yHl+XzhbQP+R6Ywz g==;
-X-CSE-ConnectionGUID: 65nlFkNqRvmEnMRBcxJSlQ==
-X-CSE-MsgGUID: N06dgdTRRLG8q3bY6fdylQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38460020"
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="38460020"
+ bh=xD4DyeIo5PRgEvCLOrYhagEDuHgfBg/nhDKXwYzusYs=;
+ b=EQO12/oPoubRC/r/u/80t0pR17fDKqlMLPHmCXImMdzF/O4Xapy+Hvsj
+ 1rMg858Lbmc7DaeMCfUbNd5FUHUI6TSoL7lVBWo72/JfEmIo4aDJ+KuT0
+ k8SCIYSBVTL4QWexDzx1Q4GJgNmuo6KeV7o5fS/5X4PogtvHh7HV2R0NU
+ chIUCB4bq4Lb8T3aHsV0dbpfhFZJqWjiR6m6atl9ZcX4bxj7k+3ILibVv
+ Gx7b9RNaAsBqFOgqqsJSs09Lb/K64vacTQ/Araf9+IeUXYkhoWxj4DT0v
+ tk+nISEdHVtKTmfOO/kBX/wuRVyvkVwTeIsU+D++AL9HO6cTkGpn03eo7 Q==;
+X-CSE-ConnectionGUID: vTJM6++yTjOdd24TYFHfAw==
+X-CSE-MsgGUID: rf26fHiQQGWfCBLvh0UW2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38460021"
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="38460021"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Oct 2024 17:46:12 -0700
-X-CSE-ConnectionGUID: Y4NzD3DdSmW0cxSus1VsRg==
-X-CSE-MsgGUID: 3Ljo8lflQG+jnSrCJu8ipQ==
+X-CSE-ConnectionGUID: +eRmnOAHRC+PzP5TXFz0fA==
+X-CSE-MsgGUID: SGr1sZvbTjGKCBCadA1Oew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="97514731"
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="97514734"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa002.fm.intel.com with ESMTP; 02 Oct 2024 17:46:11 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 02 Oct 2024 17:46:12 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v9 01/11] drm/xe/guc: Remove spurious line feed in debug print
-Date: Wed,  2 Oct 2024 17:46:01 -0700
-Message-ID: <20241003004611.2323493-2-John.C.Harrison@Intel.com>
+Subject: [PATCH v9 02/11] drm/xe/devcoredump: Use drm_puts and already cached
+ local variables
+Date: Wed,  2 Oct 2024 17:46:02 -0700
+Message-ID: <20241003004611.2323493-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
 References: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
@@ -71,34 +71,93 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Including line feeds at the start of a debug print messes up the
-output when sent to dmesg. The break appears between all the useful
-prefix information and the actual string being printed. In this case,
-each block of data has a very clear start line and an extra delimeter
-is really not necessary. So don't do it.
+There are a bunch of calls to drm_printf with static strings. Switch
+them to drm_puts instead.
 
-v2: Fix typo in commit message (review feedback from Michal W.)
+There are also a bunch of 'coredump->snapshot.XXX' references when
+'coredump->snapshot' has alread been cached locally as 'ss'. So use
+'ss->XXX' instead.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 40 ++++++++++++++---------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 4b95f75b1546..a63fe0a9077a 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1523,7 +1523,7 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
- 		drm_puts(p, "H2G CTB (all sizes in DW):\n");
- 		guc_ctb_snapshot_print(&snapshot->h2g, p);
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index bdb76e834e4c..d23719d5c2a3 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -85,9 +85,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
  
--		drm_puts(p, "\nG2H CTB (all sizes in DW):\n");
-+		drm_puts(p, "G2H CTB (all sizes in DW):\n");
- 		guc_ctb_snapshot_print(&snapshot->g2h, p);
+ 	p = drm_coredump_printer(&iter);
  
- 		drm_printf(p, "\tg2h outstanding: %d\n",
+-	drm_printf(&p, "**** Xe Device Coredump ****\n");
+-	drm_printf(&p, "kernel: " UTS_RELEASE "\n");
+-	drm_printf(&p, "module: " KBUILD_MODNAME "\n");
++	drm_puts(&p, "**** Xe Device Coredump ****\n");
++	drm_puts(&p, "kernel: " UTS_RELEASE "\n");
++	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
+ 
+ 	ts = ktime_to_timespec64(ss->snapshot_time);
+ 	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
+@@ -96,20 +96,20 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
+ 	drm_printf(&p, "Process: %s\n", ss->process_name);
+ 	xe_device_snapshot_print(xe, &p);
+ 
+-	drm_printf(&p, "\n**** GuC CT ****\n");
+-	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
+-	xe_guc_exec_queue_snapshot_print(coredump->snapshot.ge, &p);
++	drm_puts(&p, "\n**** GuC CT ****\n");
++	xe_guc_ct_snapshot_print(ss->ct, &p);
++	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
+ 
+-	drm_printf(&p, "\n**** Job ****\n");
+-	xe_sched_job_snapshot_print(coredump->snapshot.job, &p);
++	drm_puts(&p, "\n**** Job ****\n");
++	xe_sched_job_snapshot_print(ss->job, &p);
+ 
+-	drm_printf(&p, "\n**** HW Engines ****\n");
++	drm_puts(&p, "\n**** HW Engines ****\n");
+ 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
+-		if (coredump->snapshot.hwe[i])
+-			xe_hw_engine_snapshot_print(coredump->snapshot.hwe[i],
+-						    &p);
+-	drm_printf(&p, "\n**** VM state ****\n");
+-	xe_vm_snapshot_print(coredump->snapshot.vm, &p);
++		if (ss->hwe[i])
++			xe_hw_engine_snapshot_print(ss->hwe[i], &p);
++
++	drm_puts(&p, "\n**** VM state ****\n");
++	xe_vm_snapshot_print(ss->vm, &p);
+ 
+ 	return count - iter.remain;
+ }
+@@ -247,18 +247,18 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
+ 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+ 
+-	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+-	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(q);
+-	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
+-	coredump->snapshot.vm = xe_vm_snapshot_capture(q->vm);
++	ss->ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
++	ss->ge = xe_guc_exec_queue_snapshot_capture(q);
++	ss->job = xe_sched_job_snapshot_capture(job);
++	ss->vm = xe_vm_snapshot_capture(q->vm);
+ 
+ 	for_each_hw_engine(hwe, q->gt, id) {
+ 		if (hwe->class != q->hwe->class ||
+ 		    !(BIT(hwe->logical_instance) & adj_logical_mask)) {
+-			coredump->snapshot.hwe[id] = NULL;
++			ss->hwe[id] = NULL;
+ 			continue;
+ 		}
+-		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe);
++		ss->hwe[id] = xe_hw_engine_snapshot_capture(hwe);
+ 	}
+ 
+ 	queue_work(system_unbound_wq, &ss->work);
 -- 
 2.46.0
 
