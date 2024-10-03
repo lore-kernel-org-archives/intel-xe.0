@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FC69CF34B9
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 15:58:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 585FECF34B0
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 16:02:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE86C10E8A1;
-	Thu,  3 Oct 2024 15:58:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y/GM2KSZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C444010E89F;
- Thu,  3 Oct 2024 15:58:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727971101; x=1759507101;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=51U0uize0zCeaJAFYofxwA/PElJiZ538xtwXh3swY0M=;
- b=Y/GM2KSZ2GM6/mBfL8gQXc5Lkq9E8ebKow7rh7y9tgGcYuzAlOchAP4h
- +sQrYeKShJZnb6DDU1qGg96vfA2qBjx0XnKVUicwzgTmsbCMa0uIYzZTK
- J0QNk2RACYg1AQfmzY7EKecxnSm3/EqlGKXD5009yWx14Icuua6YOOreh
- aSPf7OLUxEtaFX3kuqiVumyM8LVP6TnmF7/bSWqmOmetJiBXsRyXH1EKL
- 3T9RrGRkuMMUsF7cZ2GDDj5Lm+aGB0Za9tMN7yHkGh9R0iFsnTUlXYu+Y
- jqM8SDzRi4YHbcnx34rnhGUCzxDRCZ7pBlVrYuq3uxbY7C1DrTQM7ys/u g==;
-X-CSE-ConnectionGUID: IRzMqRajSgyWN5JFeJ6PhA==
-X-CSE-MsgGUID: Tuw2aoGvR4SSO+2t6DIx+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27324892"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="27324892"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 08:58:18 -0700
-X-CSE-ConnectionGUID: qP4fsvmySO+UKHuQSCeOOg==
-X-CSE-MsgGUID: 51JR8i93Sy+GwR2EAzNMaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="73982134"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.186])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 08:58:15 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v3 03/12] drm/i915/display: Use async flip when
- available for initial plane config
-In-Reply-To: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
- <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
-Date: Thu, 03 Oct 2024 18:58:12 +0300
-Message-ID: <87plohrxez.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080A210E8A4;
+	Thu,  3 Oct 2024 16:02:56 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1428310E8A4;
+ Thu,  3 Oct 2024 16:02:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1057774373363944962=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/psr=3A_Implement_WA_to_?=
+ =?utf-8?q?help_reach_PC10?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Oct 2024 16:02:55 -0000
+Message-ID: <172797137507.1169278.862449484506169956@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241003145337.1673715-2-suraj.kandpal@intel.com>
+In-Reply-To: <20241003145337.1673715-2-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,58 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 03 Oct 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
-> I'm planning to reorder readout in the Xe sequence in such a way that
-> interrupts will not be available, so just use an async flip.
->
-> Since the new FB points to the same pages, it will not tear. It also
-> has the benefit of perhaps being slightly faster.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index fdb141cfa4274..73a3624e34098 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -2800,7 +2800,7 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
->  		to_intel_plane_state(plane->base.state);
->  	enum plane_id plane_id = plane->id;
->  	enum pipe pipe = crtc->pipe;
-> -	u32 base;
-> +	u32 base, plane_ctl;
->  
->  	if (!plane_state->uapi.visible)
->  		return false;
-> @@ -2814,7 +2814,16 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
->  	if (plane_config->base == base)
->  		return false;
->  
-> +	/* Perform an async flip to the new surface. */
-> +	plane_ctl = intel_read(i915, PLANE_CTL(pipe, plane_id));
-> +	plane_ctl |= PLANE_CTL_ASYNC_FLIP;
-> +
-> +	intel_de_write(i915, PLANE_CTL(pipe, plane_id), plane_ctl);
->  	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
->  
-> -	return true;
-> +	if (intel_de_wait_custom(i915, PLANE_SURFLIVE(pipe, plane_id), ~0U, base, 0, 40, NULL) < 0)
+--===============1057774373363944962==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Why not just intel_de_wait()?
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/psr: Implement WA to help reach PC10
+URL   : https://patchwork.freedesktop.org/series/139512/
+State : success
 
-> +		drm_warn(&i915->drm, "async flip timed out\n");
-> +
-> +	/* No need to vblank wait either */
-> +	return false;
->  }
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-2013-17c0158bdb239d8b6d23834db5595ea422b69915_BAT -> xe-pw-139512v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2013-17c0158bdb239d8b6d23834db5595ea422b69915 -> xe-pw-139512v1
+
+  IGT_8051: c2efcb5f207eebb0c19106f27b310f61ded6f11d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2013-17c0158bdb239d8b6d23834db5595ea422b69915: 17c0158bdb239d8b6d23834db5595ea422b69915
+  xe-pw-139512v1: 139512v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139512v1/index.html
+
+--===============1057774373363944962==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Implement WA to help reach PC10</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139512/">https://patchwork.freedesktop.org/series/139512/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139512v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139512v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2013-17c0158bdb239d8b6d23834db5595ea422b69915_BAT -&gt; xe-pw-139512v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2013-17c0158bdb239d8b6d23834db5595ea422b69915 -&gt; xe-pw-139512v1</li>
+</ul>
+<p>IGT_8051: c2efcb5f207eebb0c19106f27b310f61ded6f11d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2013-17c0158bdb239d8b6d23834db5595ea422b69915: 17c0158bdb239d8b6d23834db5595ea422b69915<br />
+  xe-pw-139512v1: 139512v1</p>
+
+</body>
+</html>
+
+--===============1057774373363944962==--
