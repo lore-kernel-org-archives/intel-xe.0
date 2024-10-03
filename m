@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C798FCF854A
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 00:16:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D17DECF8547
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 00:27:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9488710E07D;
-	Thu,  3 Oct 2024 00:16:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mKlXltpx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8A4A10E05D
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Oct 2024 00:16:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727914567; x=1759450567;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7sxgME89h1HJBcR8UWqaazWW1ResAM6RjdAXefV/n+o=;
- b=mKlXltpxl4Lw1ZoGBOE5vTTUmybuI45WDLa4swzn4+uUnO5N2CvXOxK0
- OXPlL7Ofh8zxGnqyhkr93rXZc0U0hbrMZBLN3tRRbVLYW/jNm3vxmZx65
- 35bcKJFOjbF/G+qfk4VuEPjV3Z7Kvb/yatByQhxWLn746BL90PuJgR2mj
- edeGRomdAmNls4kUsm68ayth4cpeUpWdh9PqNew4t8H7lkkPDUf4J8Sl7
- jAK+r/6pw67zAOL06kE/e8MXAqjpiTZI7T6JkDk1JPN++rzbAZCDtmo/E
- qPEXptdunBlqjs+PakV29bbSP7TWGJjlEzfOMX5WN/DC0zi4yMOtlqKON Q==;
-X-CSE-ConnectionGUID: F9BqxN4bSTywiqVlDteLXg==
-X-CSE-MsgGUID: djGjZ0ifTuaqKkOd4k9CCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="30983003"
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="30983003"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 17:16:07 -0700
-X-CSE-ConnectionGUID: oKNprvmXS9iCzldB//K5oQ==
-X-CSE-MsgGUID: ty87s726TNuvxlERMbOYnQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="78195123"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 17:15:55 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: paulo.r.zanoni@intel.com,
-	matthew.auld@intel.com
-Subject: [PATCH 1/2] drm/xe: Take job list lock in xe_sched_add_pending_job
-Date: Wed,  2 Oct 2024 17:16:56 -0700
-Message-Id: <20241003001657.3517883-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241003001657.3517883-1-matthew.brost@intel.com>
-References: <20241003001657.3517883-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7079A10E07D;
+	Thu,  3 Oct 2024 00:27:40 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B41D810E07D;
+ Thu,  3 Oct 2024 00:27:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5926188721759120878=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_GuC_based_regi?=
+ =?utf-8?q?ster_capture_for_error_capture_=28rev23=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Oct 2024 00:27:38 -0000
+Message-ID: <172791525872.1165817.6913546248590472490@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241002234438.2631813-1-zhanjun.dong@intel.com>
+In-Reply-To: <20241002234438.2631813-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,37 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A fragile micro optimization in xe_sched_add_pending_job relied on both
-the GPU scheduler being stopped and fence signaling stopped to safely
-add a job to the pending list without the job list lock in
-xe_sched_add_pending_job. Remove this optimization and just take the job
-list lock.
+--===============5926188721759120878==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reported-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2822
-Fixes: 7ddb9403dd74 ("drm/xe: Sample ctx timestamp to determine if jobs have timed out")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gpu_scheduler.h | 2 ++
- 1 file changed, 2 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index 5ad5629a6c60..64b2ae6839db 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -63,7 +63,9 @@ xe_sched_invalidate_job(struct xe_sched_job *job, int threshold)
- static inline void xe_sched_add_pending_job(struct xe_gpu_scheduler *sched,
- 					    struct xe_sched_job *job)
- {
-+	spin_lock(&sched->base.job_list_lock);
- 	list_add(&job->drm.list, &sched->base.pending_list);
-+	spin_unlock(&sched->base.job_list_lock);
- }
- 
- static inline
--- 
-2.34.1
+Series: drm/xe/guc: Add GuC based register capture for error capture (rev23)
+URL   : https://patchwork.freedesktop.org/series/128077/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2007-789d5631453c3edad1988cd47db1643555e52ac9_BAT -> xe-pw-128077v23_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8049 -> IGT_8050
+  * Linux: xe-2007-789d5631453c3edad1988cd47db1643555e52ac9 -> xe-pw-128077v23
+
+  IGT_8049: 909157f3cc3c0676a4f896752276d438c3ec3959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8050: 0000bc070385689633718cbab01ab02a524f2c61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2007-789d5631453c3edad1988cd47db1643555e52ac9: 789d5631453c3edad1988cd47db1643555e52ac9
+  xe-pw-128077v23: 128077v23
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v23/index.html
+
+--===============5926188721759120878==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Add GuC based register capture for error capture (rev23)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128077/">https://patchwork.freedesktop.org/series/128077/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v23/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v23/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2007-789d5631453c3edad1988cd47db1643555e52ac9_BAT -&gt; xe-pw-128077v23_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8049 -&gt; IGT_8050</li>
+<li>Linux: xe-2007-789d5631453c3edad1988cd47db1643555e52ac9 -&gt; xe-pw-128077v23</li>
+</ul>
+<p>IGT_8049: 909157f3cc3c0676a4f896752276d438c3ec3959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8050: 0000bc070385689633718cbab01ab02a524f2c61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2007-789d5631453c3edad1988cd47db1643555e52ac9: 789d5631453c3edad1988cd47db1643555e52ac9<br />
+  xe-pw-128077v23: 128077v23</p>
+
+</body>
+</html>
+
+--===============5926188721759120878==--
