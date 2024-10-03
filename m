@@ -4,57 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F1ECF855E
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 07:38:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3886CF8572
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 09:43:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 805A210E7C6;
-	Thu,  3 Oct 2024 07:38:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFDEE10E7EF;
+	Thu,  3 Oct 2024 09:43:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mAhKTS5v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0KWgltE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1CC510E7BF
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Oct 2024 07:38:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC5510E7DE
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Oct 2024 09:43:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727941090; x=1759477090;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=GUgMgKojgYKUX8uEEpP91IGlT7XCgDX63bpbVAMEaA4=;
- b=mAhKTS5vbYfdF3DCXX7Ftq4Aeii9Z59gjX3WW7IsIVaPwBheOrsYGJDy
- QfiFoPTyt+D4W9lukZQJy40/FfqIdl23Q2EPueC+3Y590QQ/3yqClwIF+
- akfjwoAIu27Bns9dbK4nYxIyG/AbIJ7SgPxY7yFdNLhC76NZ7ivJgpuHd
- aU2zoc4fqrbhck7vuqaLlJrvdzcE72PF/JH1XXQgMtSs/3cbnbI8niG3x
- iDSHqSZWmg2zZn8dcqUHo29t9BiLy27Fbp1BD3ObsFF3zHO2nspu7ehu7
- /uP7GkvmgDHBIJHCLj3GuiAvropjBHKS/OtS09CvGVT/NtYCagpAusd0S A==;
-X-CSE-ConnectionGUID: KeHxnhRrSjqLzMZCclZFSA==
-X-CSE-MsgGUID: jnm0Wh9kREy3OXqDU6Xzkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="26596666"
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="26596666"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 00:38:09 -0700
-X-CSE-ConnectionGUID: 5/i+XNlPSXOnpzoOUSUIWw==
-X-CSE-MsgGUID: LdbFbKwrQkumOo0kpLWg4Q==
+ t=1727948604; x=1759484604;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nlW0WrWQZwrdsKL0pT++G51oMPfxt6WftoiNRaoBFq8=;
+ b=B0KWgltEJ2sbPM2vH32aMu6Fb/2J5R6CcpUUZ4iM2o9Y0aQOVVOAJOFs
+ F1V4T4H5AAlswryqt0gTqxIo+RNMJAI0DKhJkxeuXbC7Gpon3ETGcPYsj
+ ofSyDWHNmuwHxNubUVXARjgVVKuckZrqL07V/pnMHVQdI8DBxAO/oHU5I
+ iN7eO1jeGaiLVcTxx/BBu0qNU2+iDdqYxUa0/yG9ESj9vsialLjDfthHv
+ jGkyl6tbBwBvYpL23+CdJpiYdiKDLu10XfZtE+ln9q4zGuRvW6AOlhGFf
+ feZyFg6PoZO0L16MXQE94z9+YOT4UZtYvEYM/NY2d7j5Nvltbc9cDH8OY w==;
+X-CSE-ConnectionGUID: 1uZlMj+HSBq2ZqFzAn4qRQ==
+X-CSE-MsgGUID: yGAZq/0tRoq3pDBaoB2/7g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38518483"
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="38518483"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2024 02:43:23 -0700
+X-CSE-ConnectionGUID: 50Of3vdPQqq9s3EZdBvKFg==
+X-CSE-MsgGUID: bmrnnpJxQ4C9ZA371PVcYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="111729824"
-Received: from mkuoppal-desk.fi.intel.com (HELO localhost) ([10.237.72.193])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 00:38:08 -0700
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Dominik Grzegorzek
- <dominik.grzegorzek@intel.com>, Maciej Patelczyk
- <maciej.patelczyk@intel.com>
-Subject: Re: [PATCH 03/18] drm/xe/eudebug: Introduce discovery for resources
-In-Reply-To: <Zv3oMj4rkhZHw5JZ@DUT025-TGLU.fm.intel.com>
-References: <20241001144306.1991001-1-mika.kuoppala@linux.intel.com>
- <20241001144306.1991001-4-mika.kuoppala@linux.intel.com>
- <Zv3oMj4rkhZHw5JZ@DUT025-TGLU.fm.intel.com>
-Date: Thu, 03 Oct 2024 10:27:52 +0300
-Message-ID: <87wmiphchz.fsf@mkuoppal-desk>
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="73972814"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2024 02:43:21 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com
+Subject: [CI] [PATCH v8] drm/xe: remove GuC reload in D3Hot path
+Date: Thu,  3 Oct 2024 15:27:55 +0530
+Message-Id: <20241003095755.2811795-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,417 +64,378 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Matthew Brost <matthew.brost@intel.com> writes:
+Sending this patch to get CI results.
 
-> On Tue, Oct 01, 2024 at 05:42:51PM +0300, Mika Kuoppala wrote:
->> Debugger connection can happen way after the client has
->> created and destroyed arbitrary number of resources.
->> 
->> We need to playback all currently existing resources for the
->> debugger. The client is held until this so called discovery
->> process, executed by workqueue, is complete.
->> 
->> This patch is based on discovery work by Maciej Patelczyk
->> for i915 driver.
->> 
->> v2: - use rw_semaphore to block drm_ioctls during discovery (Matthew)
->>     - only lock according to ioctl at play (Dominik)
->> 
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
->> Co-developed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
->> Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
->> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_device.c        |  10 +-
->>  drivers/gpu/drm/xe/xe_device.h        |  34 +++++++
->>  drivers/gpu/drm/xe/xe_device_types.h  |   6 ++
->>  drivers/gpu/drm/xe/xe_eudebug.c       | 135 +++++++++++++++++++++++++-
->>  drivers/gpu/drm/xe/xe_eudebug_types.h |   7 ++
->>  5 files changed, 185 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index 5615e2c23bf6..ec5eedbbf320 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -215,8 +215,11 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
->>  		return -ECANCELED;
->>  
->>  	ret = xe_pm_runtime_get_ioctl(xe);
->> -	if (ret >= 0)
->> +	if (ret >= 0) {
->> +		xe_eudebug_discovery_lock(xe, cmd);
->>  		ret = drm_ioctl(file, cmd, arg);
->> +		xe_eudebug_discovery_unlock(xe, cmd);
->> +	}
->>  	xe_pm_runtime_put(xe);
->>  
->>  	return ret;
->> @@ -233,8 +236,11 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
->>  		return -ECANCELED;
->>  
->>  	ret = xe_pm_runtime_get_ioctl(xe);
->> -	if (ret >= 0)
->> +	if (ret >= 0) {
->> +		xe_eudebug_discovery_lock(xe, cmd);
->>  		ret = drm_compat_ioctl(file, cmd, arg);
->> +		xe_eudebug_discovery_unlock(xe, cmd);
->> +	}
->>  	xe_pm_runtime_put(xe);
->>  
->>  	return ret;
->> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
->> index 4c3f0ebe78a9..b2fc85b1d26e 100644
->> --- a/drivers/gpu/drm/xe/xe_device.h
->> +++ b/drivers/gpu/drm/xe/xe_device.h
->> @@ -7,6 +7,7 @@
->>  #define _XE_DEVICE_H_
->>  
->>  #include <drm/drm_util.h>
->> +#include <drm/drm_ioctl.h>
->>  
->>  #include "xe_device_types.h"
->>  #include "xe_gt_types.h"
->> @@ -191,4 +192,37 @@ void xe_device_declare_wedged(struct xe_device *xe);
->>  struct xe_file *xe_file_get(struct xe_file *xef);
->>  void xe_file_put(struct xe_file *xef);
->>  
->> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
->> +static inline int xe_eudebug_needs_lock(const unsigned int cmd)
->> +{
->> +	const unsigned int xe_cmd = DRM_IOCTL_NR(cmd) - DRM_COMMAND_BASE;
->> +
->> +	switch (xe_cmd) {
->> +	case DRM_XE_VM_CREATE:
->> +	case DRM_XE_VM_DESTROY:
->> +	case DRM_XE_VM_BIND:
->> +	case DRM_XE_EXEC_QUEUE_CREATE:
->> +	case DRM_XE_EXEC_QUEUE_DESTROY:
->> +	case DRM_XE_EUDEBUG_CONNECT:
->> +		return 1;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static inline void xe_eudebug_discovery_lock(struct xe_device *xe, unsigned int cmd)
->> +{
->> +	if (xe_eudebug_needs_lock(cmd))
->> +		down_read(&xe->eudebug.discovery_lock);
->> +}
->> +static inline void xe_eudebug_discovery_unlock(struct xe_device *xe, unsigned int cmd)
->> +{
->> +	if (xe_eudebug_needs_lock(cmd))
->> +		up_read(&xe->eudebug.discovery_lock);
->> +}
->> +#else
->> +static inline void xe_eudebug_discovery_lock(struct xe_device *xe, unsigned int cmd) { }
->> +static inline void xe_eudebug_discovery_unlock(struct xe_device *xe, unsigned int cmd) { }
->> +#endif /* CONFIG_DRM_XE_EUDEBUG */
->> +
->>  #endif
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index cb4b52888a4b..54ceeee7cf75 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -542,6 +542,12 @@ struct xe_device {
->>  
->>  		/** @available: is the debugging functionality available */
->>  		bool available;
->> +
->> +		/** @ordered_wq: used to discovery */
->> +		struct workqueue_struct *ordered_wq;
->> +
->> +		/** discovery_lock: used for discovery to block xe ioctls */
->> +		struct rw_semaphore discovery_lock;
->>  	} eudebug;
->>  #endif
->>  
->> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
->> index ea0cfd7697aa..c294e2c6152b 100644
->> --- a/drivers/gpu/drm/xe/xe_eudebug.c
->> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
->> @@ -299,6 +299,8 @@ static bool xe_eudebug_detach(struct xe_device *xe,
->>  	}
->>  	spin_unlock(&d->connection.lock);
->>  
->> +	flush_work(&d->discovery_work);
->> +
->>  	if (!detached)
->>  		return false;
->>  
->> @@ -409,7 +411,7 @@ static struct task_struct *find_task_get(struct xe_file *xef)
->>  }
->>  
->>  static struct xe_eudebug *
->> -xe_eudebug_get(struct xe_file *xef)
->> +_xe_eudebug_get(struct xe_file *xef)
->>  {
->>  	struct task_struct *task;
->>  	struct xe_eudebug *d;
->> @@ -433,6 +435,24 @@ xe_eudebug_get(struct xe_file *xef)
->>  	return d;
->>  }
->>  
->> +static struct xe_eudebug *
->> +xe_eudebug_get(struct xe_file *xef)
->> +{
->> +	struct xe_eudebug *d;
->> +
->> +	lockdep_assert_held(&xef->xe->eudebug.discovery_lock);
->> +
->> +	d = _xe_eudebug_get(xef);
->> +	if (d) {
->> +		if (!completion_done(&d->discovery)) {
->> +			xe_eudebug_put(d);
->> +			d = NULL;
->> +		}
->> +	}
->> +
->> +	return d;
->> +}
->> +
->>  static int xe_eudebug_queue_event(struct xe_eudebug *d,
->>  				  struct xe_eudebug_event *event)
->>  {
->> @@ -810,6 +830,10 @@ static long xe_eudebug_ioctl(struct file *file,
->>  	struct xe_eudebug * const d = file->private_data;
->>  	long ret;
->>  
->> +	if (cmd != DRM_XE_EUDEBUG_IOCTL_READ_EVENT &&
->> +	    !completion_done(&d->discovery))
->> +		return -EBUSY;
->> +
->>  	switch (cmd) {
->>  	case DRM_XE_EUDEBUG_IOCTL_READ_EVENT:
->>  		ret = xe_eudebug_read_event(d, arg,
->> @@ -832,6 +856,8 @@ static const struct file_operations fops = {
->>  	.unlocked_ioctl	= xe_eudebug_ioctl,
->>  };
->>  
->> +static void discovery_work_fn(struct work_struct *work);
->> +
->>  static int
->>  xe_eudebug_connect(struct xe_device *xe,
->>  		   struct drm_xe_eudebug_connect *param)
->> @@ -866,9 +892,11 @@ xe_eudebug_connect(struct xe_device *xe,
->>  	spin_lock_init(&d->connection.lock);
->>  	init_waitqueue_head(&d->events.write_done);
->>  	init_waitqueue_head(&d->events.read_done);
->> +	init_completion(&d->discovery);
->>  
->>  	spin_lock_init(&d->events.lock);
->>  	INIT_KFIFO(d->events.fifo);
->> +	INIT_WORK(&d->discovery_work, discovery_work_fn);
->>  
->>  	d->res = xe_eudebug_resources_alloc();
->>  	if (IS_ERR(d->res)) {
->> @@ -886,6 +914,9 @@ xe_eudebug_connect(struct xe_device *xe,
->>  		goto err_detach;
->>  	}
->>  
->> +	kref_get(&d->ref);
->> +	queue_work(xe->eudebug.ordered_wq, &d->discovery_work);
->> +
->>  	eu_dbg(d, "connected session %lld", d->session);
->>  
->>  	return fd;
->> @@ -918,13 +949,18 @@ void xe_eudebug_init(struct xe_device *xe)
->>  	spin_lock_init(&xe->eudebug.lock);
->>  	INIT_LIST_HEAD(&xe->eudebug.list);
->>  	INIT_LIST_HEAD(&xe->clients.list);
->> +	init_rwsem(&xe->eudebug.discovery_lock);
->>  
->> -	xe->eudebug.available = true;
->> +	xe->eudebug.ordered_wq = alloc_ordered_workqueue("xe-eudebug-ordered-wq", 0);
->> +	xe->eudebug.available = !!xe->eudebug.ordered_wq;
->>  }
->>  
->>  void xe_eudebug_fini(struct xe_device *xe)
->>  {
->>  	xe_assert(xe, list_empty_careful(&xe->eudebug.list));
->> +
->> +	if (xe->eudebug.ordered_wq)
->> +		destroy_workqueue(xe->eudebug.ordered_wq);
->>  }
->>  
->>  static int send_open_event(struct xe_eudebug *d, u32 flags, const u64 handle,
->> @@ -990,21 +1026,25 @@ void xe_eudebug_file_open(struct xe_file *xef)
->>  	struct xe_eudebug *d;
->>  
->>  	INIT_LIST_HEAD(&xef->eudebug.client_link);
->> +
->> +	down_read(&xef->xe->eudebug.discovery_lock);
->> +
->>  	spin_lock(&xef->xe->clients.lock);
->>  	list_add_tail(&xef->eudebug.client_link, &xef->xe->clients.list);
->>  	spin_unlock(&xef->xe->clients.lock);
->>  
->>  	d = xe_eudebug_get(xef);
->
-> This looks like this could deadlock.
->
-> - discovery_work_fn is queued with &d->discovery not complete
-> - This function runs and grabs &xef->xe->eudebug.discovery_lock in read
->   mode
-> - completion_done(&d->discovery) is waited on xe_eudebug_get
+Currently GuC is reloaded for both runtime resume and system resume.
+For D3hot <-> D0 transitions no power is lost during suspend so GuC reload
+is not necessary.
 
-If the completion is not done we just return NULL immediately.
+Remove GuC reload from D3Hot path and only enable/disable CTB
+communication.
 
-Yes, previously when we actually used wait_for_completion() here
-it was a problem. But in this version completion_done() does
-not wait. Looking at completion_done(), the not done path is just
-!READ_ONCE(x->done). Did you mean the taking the spinlock to
-sync against the complete()?
+v2: rebase
 
--Mika
+v3: fix commit message
+    add kernel-doc for gt suspend and resume methods
+    fix comment
+    do not split register and enable calls of CT (Michal)
 
-> - discovery_work_fn can't complete d->discovery) on
->   &xef->xe->eudebug.discovery_lock in write mode
->
-> The summary is - it not safe to wait on '&d->discovery' while holding
-> &xef->xe->eudebug.discovery_lock.
->
-> Matt
->
->> -	if (!d)
->> -		return;
->> +	if (d)
->> +		xe_eudebug_event_put(d, client_create_event(d, xef));
->>  
->> -	xe_eudebug_event_put(d, client_create_event(d, xef));
->> +	up_read(&xef->xe->eudebug.discovery_lock);
->>  }
->>  
->>  void xe_eudebug_file_close(struct xe_file *xef)
->>  {
->>  	struct xe_eudebug *d;
->>  
->> +	down_read(&xef->xe->eudebug.discovery_lock);
->>  	d = xe_eudebug_get(xef);
->>  	if (d)
->>  		xe_eudebug_event_put(d, client_destroy_event(d, xef));
->> @@ -1012,6 +1052,8 @@ void xe_eudebug_file_close(struct xe_file *xef)
->>  	spin_lock(&xef->xe->clients.lock);
->>  	list_del_init(&xef->eudebug.client_link);
->>  	spin_unlock(&xef->xe->clients.lock);
->> +
->> +	up_read(&xef->xe->eudebug.discovery_lock);
->>  }
->>  
->>  static int send_vm_event(struct xe_eudebug *d, u32 flags,
->> @@ -1112,3 +1154,86 @@ void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm)
->>  
->>  	xe_eudebug_event_put(d, vm_destroy_event(d, xef, vm));
->>  }
->> +
->> +static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
->> +{
->> +	struct xe_vm *vm;
->> +	unsigned long i;
->> +	int err;
->> +
->> +	err = client_create_event(d, xef);
->> +	if (err)
->> +		return err;
->> +
->> +	xa_for_each(&xef->vm.xa, i, vm) {
->> +		err = vm_create_event(d, xef, vm);
->> +		if (err)
->> +			break;
->> +	}
->> +
->> +	return err;
->> +}
->> +
->> +static bool xe_eudebug_task_match(struct xe_eudebug *d, struct xe_file *xef)
->> +{
->> +	struct task_struct *task;
->> +	bool match;
->> +
->> +	task = find_task_get(xef);
->> +	if (!task)
->> +		return false;
->> +
->> +	match = same_thread_group(d->target_task, task);
->> +
->> +	put_task_struct(task);
->> +
->> +	return match;
->> +}
->> +
->> +static void discover_clients(struct xe_device *xe, struct xe_eudebug *d)
->> +{
->> +	struct xe_file *xef;
->> +	int err;
->> +
->> +	list_for_each_entry(xef, &xe->clients.list, eudebug.client_link) {
->> +		if (xe_eudebug_detached(d))
->> +			break;
->> +
->> +		if (xe_eudebug_task_match(d, xef))
->> +			err = discover_client(d, xef);
->> +		else
->> +			err = 0;
->> +
->> +		if (err) {
->> +			eu_dbg(d, "discover client %p: %d\n", xef, err);
->> +			break;
->> +		}
->> +	}
->> +}
->> +
->> +static void discovery_work_fn(struct work_struct *work)
->> +{
->> +	struct xe_eudebug *d = container_of(work, typeof(*d),
->> +					    discovery_work);
->> +	struct xe_device *xe = d->xe;
->> +
->> +	if (xe_eudebug_detached(d)) {
->> +		complete_all(&d->discovery);
->> +		xe_eudebug_put(d);
->> +		return;
->> +	}
->> +
->> +	down_write(&xe->eudebug.discovery_lock);
->> +
->> +	eu_dbg(d, "Discovery start for %lld\n", d->session);
->> +
->> +	discover_clients(xe, d);
->> +
->> +	eu_dbg(d, "Discovery end for %lld\n", d->session);
->> +
->> +	complete_all(&d->discovery);
->> +
->> +	up_write(&xe->eudebug.discovery_lock);
->> +
->> +	xe_eudebug_put(d);
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
->> index a5185f18f640..080a821db3e4 100644
->> --- a/drivers/gpu/drm/xe/xe_eudebug_types.h
->> +++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
->> @@ -19,6 +19,7 @@
->>  struct xe_device;
->>  struct task_struct;
->>  struct xe_eudebug_event;
->> +struct workqueue_struct;
->>  
->>  #define CONFIG_DRM_XE_DEBUGGER_EVENT_QUEUE_SIZE 64
->>  
->> @@ -96,6 +97,12 @@ struct xe_eudebug {
->>  	/** @session: session number for this connection (for logs) */
->>  	u64 session;
->>  
->> +	/** @discovery: completion to wait for discovery */
->> +	struct completion discovery;
->> +
->> +	/** @discovery_work: worker to discover resources for target_task */
->> +	struct work_struct discovery_work;
->> +
->>  	/** @events: kfifo queue of to-be-delivered events */
->>  	struct {
->>  		/** @lock: guards access to fifo */
->> -- 
->> 2.34.1
->> 
+v4: fix commit message
+    fix comment (Karthik)
+    split patches
+    correct kernel-doc (Rodrigo)
+
+v5: do not expose internal function of CT layer (Michal)
+    remove wait for outstanding g2h as it will be always zero,
+    use assert instead (Matthew Brost)
+    use runtime suspend and runtime resume pair for CT layer
+    (Michal / Matthew Brost)
+
+v6: use xe_gt_WARN_ON instead of xe_gt_assert (Michal)
+    assert and queue handler if g2h head and tail are
+    not equal (Matthew Brost)
+
+v7: split functions into runtime suspend and resume (Lucas, Rodrigo)
+    move enable irq code to ct runtime resume (Michal)
+
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt.c     | 76 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h     |  2 +
+ drivers/gpu/drm/xe/xe_guc.c    | 45 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc.h    |  2 +
+ drivers/gpu/drm/xe/xe_guc_ct.c | 36 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h |  3 ++
+ drivers/gpu/drm/xe/xe_pm.c     |  9 ++--
+ drivers/gpu/drm/xe/xe_uc.c     | 30 ++++++++++++++
+ drivers/gpu/drm/xe/xe_uc.h     |  2 +
+ 9 files changed, 202 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 75adde50c5da..32bb31a29f1f 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -854,6 +854,12 @@ void xe_gt_suspend_prepare(struct xe_gt *gt)
+ 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+ }
+ 
++/**
++ * xe_gt_suspend - GT suspend helper
++ * @gt: GT object
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
+ int xe_gt_suspend(struct xe_gt *gt)
+ {
+ 	int err;
+@@ -911,6 +917,12 @@ int xe_gt_sanitize_freq(struct xe_gt *gt)
+ 	return ret;
+ }
+ 
++/**
++ * xe_gt_resume - GT resume helper
++ * @gt: GT object
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
+ int xe_gt_resume(struct xe_gt *gt)
+ {
+ 	int err;
+@@ -939,6 +951,70 @@ int xe_gt_resume(struct xe_gt *gt)
+ 	return err;
+ }
+ 
++/**
++ * xe_gt_runtime_suspend - GT runtime suspend helper
++ * @gt: GT object
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_gt_runtime_suspend(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	int ret = 0;
++
++	if (xe->d3cold.allowed)
++		return xe_gt_suspend(gt);
++
++	xe_gt_dbg(gt, "suspending\n");
++	xe_gt_sanitize(gt);
++
++	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (ret)
++		goto err_force_wake;
++
++	ret = xe_uc_runtime_suspend(&gt->uc);
++
++err_force_wake:
++	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++	if (ret)
++		xe_gt_err(gt, "runtime suspend failed (%pe)\n", ERR_PTR(ret));
++	else
++		xe_gt_dbg(gt, "suspended\n");
++
++	return ret;
++}
++
++/**
++ * xe_gt_runtime_resume - GT runtime resume helper
++ * @gt: GT object
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_gt_runtime_resume(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	int ret = 0;
++
++	if (xe->d3cold.allowed)
++		return xe_gt_resume(gt);
++
++	xe_gt_dbg(gt, "resuming\n");
++	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (ret)
++		goto err_force_wake;
++
++	ret = xe_uc_runtime_resume(&gt->uc);
++
++err_force_wake:
++	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++	if (ret)
++		xe_gt_err(gt, "runtime resume failed (%pe)\n", ERR_PTR(ret));
++	else
++		xe_gt_dbg(gt, "resumed\n");
++
++	return ret;
++}
++
+ struct xe_hw_engine *xe_gt_hw_engine(struct xe_gt *gt,
+ 				     enum xe_engine_class class,
+ 				     u16 instance, bool logical)
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 82b9b7f82fca..4b18587b0ffb 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -51,6 +51,8 @@ void xe_gt_suspend_prepare(struct xe_gt *gt);
+ int xe_gt_suspend(struct xe_gt *gt);
+ void xe_gt_shutdown(struct xe_gt *gt);
+ int xe_gt_resume(struct xe_gt *gt);
++int xe_gt_runtime_suspend(struct xe_gt *gt);
++int xe_gt_runtime_resume(struct xe_gt *gt);
+ void xe_gt_reset_async(struct xe_gt *gt);
+ void xe_gt_sanitize(struct xe_gt *gt);
+ int xe_gt_sanitize_freq(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c2ddf883702b..0aaadd19fb82 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1106,6 +1106,51 @@ void xe_guc_sanitize(struct xe_guc *guc)
+ 	guc->submission_state.enabled = false;
+ }
+ 
++/**
++ * xe_guc_runtime_suspend - GuC runtime suspend
++ * @guc: GuC object
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_guc_runtime_suspend(struct xe_guc *guc)
++{
++	return xe_guc_ct_runtime_suspend(&guc->ct);
++}
++
++/**
++ * xe_guc_runtime_resume - GuC runtime resume
++ * @guc: GuC object
++ *
++ * This function enables interrupts and CTB communication
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_guc_runtime_resume(struct xe_guc *guc)
++{
++	struct xe_device *xe = guc_to_xe(guc);
++	int err;
++
++	/*
++	 * Power is not lost when in D3Hot state, hence it is not necessary
++	 * to reload GuC everytime. Only enable interrupts and
++	 * CTB communication during resume
++	 */
++	if (IS_SRIOV_VF(xe) && xe_device_has_memirq(xe)) {
++		struct xe_gt *gt = guc_to_gt(guc);
++		struct xe_tile *tile = gt_to_tile(gt);
++
++		err = xe_memirq_init_guc(&tile->memirq, guc);
++		if (err)
++			return err;
++	} else {
++		guc_enable_irq(guc);
++	}
++
++	xe_guc_ct_runtime_resume(&guc->ct);
++
++	return 0;
++}
++
+ int xe_guc_reset_prepare(struct xe_guc *guc)
+ {
+ 	return xe_guc_submit_reset_prepare(guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 42116b167c98..a212382ff86a 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -34,6 +34,8 @@ int xe_guc_upload(struct xe_guc *guc);
+ int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
+ int xe_guc_enable_communication(struct xe_guc *guc);
+ int xe_guc_suspend(struct xe_guc *guc);
++int xe_guc_runtime_suspend(struct xe_guc *guc);
++int xe_guc_runtime_resume(struct xe_guc *guc);
+ void xe_guc_notify(struct xe_guc *guc);
+ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr);
+ int xe_guc_mmio_send(struct xe_guc *guc, const u32 *request, u32 len);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 4b95f75b1546..77c5fc93635d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -427,6 +427,42 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 	return err;
+ }
+ 
++/**
++ * xe_guc_ct_runtime_resume- GuC CT runtime resume
++ * @ct: the &xe_guc_ct
++ *
++ * Mark GuC CT as enabled on runtime resume
++ */
++void xe_guc_ct_runtime_resume(struct xe_guc_ct *ct)
++{
++	struct guc_ctb *g2h = &ct->ctbs.g2h;
++
++	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_ENABLED);
++
++	/* Assert if g2h head and tail are unequal and queue g2h handler */
++	if (xe_gt_WARN_ON(ct_to_gt(ct), desc_read(ct_to_xe(ct), g2h, tail) != g2h->info.head))
++		queue_work(ct->g2h_wq, &ct->g2h_worker);
++}
++
++/**
++ * xe_guc_ct_runtime_suspend- GuC CT runtime suspend
++ * @ct: the &xe_guc_ct
++ *
++ * Mark GuC CT as disabled on runtime suspend
++ *
++ * Return: 0 on success, negative error code otherwise
++ */
++int xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct)
++{
++	/* Assert if there are any outstanding g2h and abort suspend */
++	if (xe_gt_WARN_ON(ct_to_gt(ct), ct->g2h_outstanding))
++		return -EBUSY;
++
++	xe_guc_ct_disable(ct);
++
++	return 0;
++}
++
+ static void stop_g2h_handler(struct xe_guc_ct *ct)
+ {
+ 	cancel_work_sync(&ct->g2h_worker);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 190202fce2d0..0cf9d77feb35 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -16,6 +16,9 @@ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
+ void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+ 
++void xe_guc_ct_runtime_resume(struct xe_guc_ct *ct);
++int xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct);
++
+ struct xe_guc_ct_snapshot *
+ xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct, bool atomic);
+ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 33eb039053e4..179f73012c78 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -405,7 +405,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 	}
+ 
+ 	for_each_gt(gt, xe, id) {
+-		err = xe_gt_suspend(gt);
++		err = xe_gt_runtime_suspend(gt);
+ 		if (err)
+ 			goto out;
+ 	}
+@@ -458,8 +458,11 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 
+ 	xe_irq_resume(xe);
+ 
+-	for_each_gt(gt, xe, id)
+-		xe_gt_resume(gt);
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_runtime_resume(gt);
++		if (err)
++			goto out;
++	}
+ 
+ 	xe_display_pm_runtime_resume(xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 0d073a9987c2..7bbc8b3c556f 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -288,6 +288,36 @@ int xe_uc_suspend(struct xe_uc *uc)
+ 	return xe_guc_suspend(&uc->guc);
+ }
+ 
++/**
++ * xe_uc_runtime_suspend - uC runtime suspend
++ * @uc: uC object
++ *
++ * Return: 0 on success, negative error code otherwise
++ */
++int xe_uc_runtime_suspend(struct xe_uc *uc)
++{
++	if (!xe_device_uc_enabled(uc_to_xe(uc)))
++		return 0;
++
++	return xe_guc_runtime_suspend(&uc->guc);
++}
++
++/**
++ * xe_uc_runtime_resume - uC runtime resume
++ * @uc: uC object
++ *
++ * Called while resuming from D3Hot
++ *
++ * Return: 0 on success, negative error code otherwise
++ */
++int xe_uc_runtime_resume(struct xe_uc *uc)
++{
++	if (!xe_device_uc_enabled(uc_to_xe(uc)))
++		return 0;
++
++	return xe_guc_runtime_resume(&uc->guc);
++}
++
+ /**
+  * xe_uc_remove() - Clean up the UC structures before driver removal
+  * @uc: the UC object
+diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+index 506517c11333..0beec5efde6b 100644
+--- a/drivers/gpu/drm/xe/xe_uc.h
++++ b/drivers/gpu/drm/xe/xe_uc.h
+@@ -15,6 +15,8 @@ int xe_uc_init_hw(struct xe_uc *uc);
+ int xe_uc_fini_hw(struct xe_uc *uc);
+ void xe_uc_gucrc_disable(struct xe_uc *uc);
+ int xe_uc_reset_prepare(struct xe_uc *uc);
++int xe_uc_runtime_suspend(struct xe_uc *uc);
++int xe_uc_runtime_resume(struct xe_uc *uc);
+ void xe_uc_stop_prepare(struct xe_uc *uc);
+ void xe_uc_stop(struct xe_uc *uc);
+ int xe_uc_start(struct xe_uc *uc);
+-- 
+2.40.0
+
