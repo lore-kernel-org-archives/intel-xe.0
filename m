@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2EFCF8550
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D6ACF854D
 	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 00:46:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0B4410E07D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3D2710E347;
 	Thu,  3 Oct 2024 00:46:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MDNjQdOm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ej0UsNpa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2EB310E0D8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F57E10E07D
  for <Intel-Xe@lists.freedesktop.org>; Thu,  3 Oct 2024 00:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727916373; x=1759452373;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kwwb2qOc/FIlioI/EHwcm+F6cvBBRZ9K2YnXm3piTqE=;
- b=MDNjQdOm8Fzj74ul8zhY4F19bnUQfvtydDcfHIRvlgOT65LlkmgiG+Jy
- SXjnYsobXLEG3P+glXf6ks+u3ZYDYMAjwb3DqlihN3AMLsl1Crz9u0hgo
- 3uj/CFk7uhfbto8ubZD4zD9b4WUVf9vWG3yvhmVgcjh5nGf4YXtpgaVO5
- yWm48yK6hwyB/+gmhpeEgemmkbzGvxNNIW2xqhJrF6wSPYuyvrhp2gn/F
- llvq5BpSsNDwsA5vCRUEN1/Htib2DQM7b+TCE8eXWmV1Raae+nec+Of1x
- viwoIMepV0ficwN4LEXm8AkBpYhSCaE+F0dwKN23mQ4pJd+wm5/5cBAk8 w==;
-X-CSE-ConnectionGUID: 3d7hsrzJSuqm+970+1LZ+A==
-X-CSE-MsgGUID: QzGXdixKQyGYEN16IKyd8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38460023"
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="38460023"
+ t=1727916372; x=1759452372;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eoz/Cow07MKInVsIwDFRpFmEdRC92EsiNX8fFLC7MHo=;
+ b=Ej0UsNpaIvuvwWKYKaOBJPPwVG9dCvdfiG98NgLY8DcEP1C7cmWsl2g3
+ w4vkyCFkMJUFo6qZqHFY+k3QaeFDjO327kp6sh75rnc/HX9quKl9l57sZ
+ rCO5WLGTJQ0X3MToDAmh0dexWkcJn8xf1ZQ5VyOJsitfu4r12Nj4Zmfrc
+ 0Ultpw97W9P1V7g0WdEZ39yyA2lwDL8gG0QB12pPGWQGoiDkiVvh1yeWN
+ J76tmvy4IJ/sfXKT6jczRIyrZvjJ1spetqBmmMxgs3ahwByKx9YMwtcmz
+ TKOqMggk+K/vq/r0fKPDVlYEjUxZHPYxTR2jspcZQSEv62EEw+Nzw4Wdr Q==;
+X-CSE-ConnectionGUID: X66dY/8WRzebcb8+i2wsrA==
+X-CSE-MsgGUID: QQHMQAodQvyOTEoGMx1p0g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38460019"
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="38460019"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Oct 2024 17:46:12 -0700
-X-CSE-ConnectionGUID: zASfU6FtR5GbT2/xwp8qrg==
-X-CSE-MsgGUID: xIBuL4rzSBKroD64OVZuUg==
+X-CSE-ConnectionGUID: +popZx/UTQeffHfPfflgGQ==
+X-CSE-MsgGUID: YQ+qbjtBQb2DjSgYf+f0/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="97514740"
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; d="scan'208";a="97514728"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa002.fm.intel.com with ESMTP; 02 Oct 2024 17:46:12 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 02 Oct 2024 17:46:11 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v9 04/11] drm/xe/devcoredump: Add ASCII85 dump helper function
-Date: Wed,  2 Oct 2024 17:46:04 -0700
-Message-ID: <20241003004611.2323493-5-John.C.Harrison@Intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v9 00/11] drm/xe/guc: Improve GuC log dumping and add to
+ devcoredump
+Date: Wed,  2 Oct 2024 17:46:00 -0700
+Message-ID: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
-References: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
@@ -70,150 +68,93 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-There is a need to include the GuC log and other large binary objects
-in core dumps and via dmesg. So add a helper for dumping to a printer
-function via conversion to ASCII85 encoding.
+There is a debug mechanism for dumping the GuC log as an ASCII hex
+stream via dmesg. This is extremely useful for situations where it is
+not possibe to query the log from debugfs (self tests, bugs that cause
+the driver to fail to load, system hangs, etc.). However, dumping via
+dmesg is not the most reliable. The dmesg buffer is limited in size,
+can be rate limited and a simple hex stream is hard to parse by tools.
 
-Another issue with dumping such a large buffer is that it can be slow,
-especially if dumping to dmesg over a serial port. So add a yield to
-prevent the 'task has been stuck for 120s' kernel hang check feature
-from firing.
+So add extra information to the dump to make it more robust and
+parsable. This includes adding start and end tags to delimit the dump,
+using longer lines to reduce the per line overhead, adding a rolling
+count to check for missing lines and interleaved concurrent dumps and
+adding other important information such as the GuC version number and
+timestamp offset. Also, switch to using the much more compact ASCII85
+encoding rather than 0x%08X hexdumping.
 
-v2: Add a prefix to the output string. Fix memory allocation bug.
-v3: Correct a string size calculation and clean up a define (review
-feedback from Julia F).
+There are various internal error states that the CTB code can check
+for. These should never happen but when they do (driver bug, firmware
+bug or even hardware bug), they can be a nightmare to debug. So add in
+a capture of the GuC log and CT state at the point of error and
+subsequent dump from a worker thread.
+
+Finally, include the GuC log and full CTBs in a devcoredump capture.
+
+Note that the ultimate aim is to then provide a mechanism for
+generating a devcoredump at an arbitrary point (such as dead CTB or
+failed selftest) and dumping that to dmesg. There are still a few
+issues with doing that, but this is all good steps along the way.
+
+v2: Remove pm get/put as unnecessary (review feedback from Matthew B).
+v3: Add firmware filename and 'wanted' version number.
+v4: Use DRM level line printer wrapper from Michal W. Add 'dead CTB'
+dump support. Lots of restructuring of capture vs dump for both GuC
+log and CTB capture for both the dead CTB dump and for future
+inclusion in devcoredump.
+v5: Add missing kerneldocs and other review feedback from Michal W.
+Fix printf of size_t, clean up re-arming of dead CTBs, add GuC log to
+devcoredump captures.
+v6: Replace hexdumps with much more compact ascii85 encoding, drop
+module parameter (review feedback from Matthew B). Fix potential
+use-after-free bug.
+v7: Couple of bug fixes and a bunch of changes to improve
+readability/parsablility of the core dump file, debugfs file and dead
+CTB dmesg dump.
+v8: Fix string size calculation, clean up a macro, fix some
+formatting, re-work CT_DEAD capture to prevent potential leak (review
+feedback by Julia F). Add more section headers, use drm_puts, use
+cached variables.
+v9: Disable a couple of CT_DEAD checks that are being hit by CI until
+the underlying issues can be debugged and fixed.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
- drivers/gpu/drm/xe/xe_devcoredump.c | 87 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_devcoredump.h |  6 ++
- 2 files changed, 93 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 2690f1d1cde4..0884c49942fe 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -6,6 +6,7 @@
- #include "xe_devcoredump.h"
- #include "xe_devcoredump_types.h"
- 
-+#include <linux/ascii85.h>
- #include <linux/devcoredump.h>
- #include <generated/utsrelease.h>
- 
-@@ -315,3 +316,89 @@ int xe_devcoredump_init(struct xe_device *xe)
- }
- 
- #endif
-+
-+/**
-+ * xe_print_blob_ascii85 - print a BLOB to some useful location in ASCII85
-+ *
-+ * The output is split to multiple lines because some print targets, e.g. dmesg
-+ * cannot handle arbitrarily long lines. Note also that printing to dmesg in
-+ * piece-meal fashion is not possible, each separate call to drm_puts() has a
-+ * line-feed automatically added! Therefore, the entire output line must be
-+ * constructed in a local buffer first, then printed in one atomic output call.
-+ *
-+ * There is also a scheduler yield call to prevent the 'task has been stuck for
-+ * 120s' kernel hang check feature from firing when printing to a slow target
-+ * such as dmesg over a serial port.
-+ *
-+ * TODO: Add compression prior to the ASCII85 encoding to shrink huge buffers down.
-+ *
-+ * @p: the printer object to output to
-+ * @prefix: optional prefix to add to output string
-+ * @blob: the Binary Large OBject to dump out
-+ * @offset: offset in bytes to skip from the front of the BLOB, must be a multiple of sizeof(u32)
-+ * @size: the size in bytes of the BLOB, must be a multiple of sizeof(u32)
-+ */
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+			   const void *blob, size_t offset, size_t size)
-+{
-+	const u32 *blob32 = (const u32 *)blob;
-+	char buff[ASCII85_BUFSZ], *line_buff;
-+	size_t line_pos = 0;
-+
-+#define DMESG_MAX_LINE_LEN	800
-+#define MIN_SPACE		(ASCII85_BUFSZ + 2)		/* 85 + "\n\0" */
-+
-+	if (size & 3)
-+		drm_printf(p, "Size not word aligned: %zu", size);
-+	if (offset & 3)
-+		drm_printf(p, "Offset not word aligned: %zu", size);
-+
-+	line_buff = kzalloc(DMESG_MAX_LINE_LEN, GFP_KERNEL);
-+	if (IS_ERR_OR_NULL(line_buff)) {
-+		drm_printf(p, "Failed to allocate line buffer: %pe", line_buff);
-+		return;
-+	}
-+
-+	blob32 += offset / sizeof(*blob32);
-+	size /= sizeof(*blob32);
-+
-+	if (prefix) {
-+		strscpy(line_buff, prefix, DMESG_MAX_LINE_LEN - MIN_SPACE - 2);
-+		line_pos = strlen(line_buff);
-+
-+		line_buff[line_pos++] = ':';
-+		line_buff[line_pos++] = ' ';
-+	}
-+
-+	while (size--) {
-+		u32 val = *(blob32++);
-+
-+		strscpy(line_buff + line_pos, ascii85_encode(val, buff),
-+			DMESG_MAX_LINE_LEN - line_pos);
-+		line_pos += strlen(line_buff + line_pos);
-+
-+		if ((line_pos + MIN_SPACE) >= DMESG_MAX_LINE_LEN) {
-+			line_buff[line_pos++] = '\n';
-+			line_buff[line_pos++] = 0;
-+
-+			drm_puts(p, line_buff);
-+
-+			line_pos = 0;
-+
-+			/* Prevent 'stuck thread' time out errors */
-+			cond_resched();
-+		}
-+	}
-+
-+	if (line_pos) {
-+		line_buff[line_pos++] = '\n';
-+		line_buff[line_pos++] = 0;
-+
-+		drm_puts(p, line_buff);
-+	}
-+
-+	kfree(line_buff);
-+
-+#undef MIN_SPACE
-+#undef DMESG_MAX_LINE_LEN
-+}
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
-index e2fa65ce0932..a4eebc285fc8 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.h
-@@ -6,6 +6,9 @@
- #ifndef _XE_DEVCOREDUMP_H_
- #define _XE_DEVCOREDUMP_H_
- 
-+#include <linux/types.h>
-+
-+struct drm_printer;
- struct xe_device;
- struct xe_sched_job;
- 
-@@ -23,4 +26,7 @@ static inline int xe_devcoredump_init(struct xe_device *xe)
- }
- #endif
- 
-+void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix,
-+			   const void *blob, size_t offset, size_t size);
-+
- #endif
+
+John Harrison (10):
+  drm/xe/guc: Remove spurious line feed in debug print
+  drm/xe/devcoredump: Use drm_puts and already cached local variables
+  drm/xe/devcoredump: Improve section headings and add tile info
+  drm/xe/devcoredump: Add ASCII85 dump helper function
+  drm/xe/guc: Copy GuC log prior to dumping
+  drm/xe/guc: Use a two stage dump for GuC logs and add more info
+  drm/xe/guc: Dead CT helper
+  drm/xe/guc: Dump entire CTB on errors
+  drm/xe/guc: Add GuC log to devcoredump captures
+  drm/xe/guc: Add a helper function for dumping GuC log to dmesg
+
+Michal Wajdeczko (1):
+  drm/print: Introduce drm_line_printer
+
+ drivers/gpu/drm/drm_print.c                   |  14 +
+ .../drm/xe/abi/guc_communication_ctb_abi.h    |   1 +
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h         |   1 +
+ drivers/gpu/drm/xe/xe_devcoredump.c           | 144 +++++-
+ drivers/gpu/drm/xe/xe_devcoredump.h           |   6 +
+ drivers/gpu/drm/xe/xe_devcoredump_types.h     |  13 +-
+ drivers/gpu/drm/xe/xe_device.c                |   1 +
+ drivers/gpu/drm/xe/xe_guc.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                | 430 ++++++++++++++----
+ drivers/gpu/drm/xe/xe_guc_ct.h                |  10 +-
+ drivers/gpu/drm/xe/xe_guc_ct_types.h          |  29 +-
+ drivers/gpu/drm/xe/xe_guc_log.c               | 208 ++++++++-
+ drivers/gpu/drm/xe/xe_guc_log.h               |   5 +
+ drivers/gpu/drm/xe/xe_guc_log_types.h         |  27 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             |   1 -
+ include/drm/drm_print.h                       |  64 +++
+ 17 files changed, 816 insertions(+), 142 deletions(-)
+
 -- 
 2.46.0
 
