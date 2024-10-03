@@ -4,27 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 887E3CF34B0
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 17:02:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD1C0CF34BD
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Oct 2024 17:10:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5341010E23C;
-	Thu,  3 Oct 2024 17:02:34 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0B9510E23C;
- Thu,  3 Oct 2024 17:02:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5016710E23C;
+	Thu,  3 Oct 2024 17:10:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="XV418eGy";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4081710E219
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Oct 2024 17:10:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1727975439;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3TUpUWDff61umzzNctkBT/nE/LxkaiRdHSEY2M1EV1U=;
+ b=XV418eGywk46rG5ojOPI8dTJU9o76tWFtbCN9tXeVMWLz8fFF4tpH6wNJmnZHB80zRtd47
+ d/0EFEbljhbgCt3/1nVInhWCj763SPYfc1VAgt6Om7IMTsQnXxR4fbLaK+Zztq9gJq1ylh
+ tLspDodFluApbtSj0G8fmPpqfeMGIU4=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-616-UEU7e5muM0S7hOut-NLMxg-1; Thu, 03 Oct 2024 13:10:37 -0400
+X-MC-Unique: UEU7e5muM0S7hOut-NLMxg-1
+Received: by mail-wr1-f69.google.com with SMTP id
+ ffacd0b85a97d-37cd8452103so584222f8f.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 03 Oct 2024 10:10:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727975436; x=1728580236;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3TUpUWDff61umzzNctkBT/nE/LxkaiRdHSEY2M1EV1U=;
+ b=VrKUZyrrdi7OmZWz3yubqfgdo5k+uKkk0cxT4GbuVBogqDwZEYIy0J1rwrG0JPexCm
+ 9UQI9wpaly97Gn5HKpibi2j2MsYf+8dpVaMihcuDDNu7Y7snbamJb7ZSQ8IyHgtVjJ9L
+ zjI3iRVCiQGrlrJHkavalduwUzJIS6g3WghGI6YT8tZQnzw/c5wUv8sgTG4edR476djG
+ M1nB2yjkHHICZd9BrPqESfrKKUBcH1tjtRuCrMYCIUEjUXRbfR1D8ZtMv9JxAb+4l2rV
+ el+aNiLdJalpsjGJrFENTDT0BRv85H5UFAM1XGonFgEr84d6o6uhYyMlKinXUMEJKcqs
+ w1tQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXtniX5P7cGPW4ARPwu8gAejDLGFmCGI1598PsB/rP/EfMPVRWuGYC9/ZG4zoP8oY+u4hkc3HxUeg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz+PGbUw0MRk6tfq4obpsOSF/KPdcKcDo2GTEReCUfJ1kcNaVav
+ VdHscAU+DwgZI3XO9fy8g3IvyYeju3bs8TyzGY1rIibnC/BKO70rFMFyvL2F0t4Zv0keN8VIDAh
+ 3UKV77KIr8yPCfeyxYkuvkmAgOAjzMNhjLw7zNY8yUNxNUHcZMnwmFQR86cVuVGii
+X-Received: by 2002:a05:6000:1243:b0:374:c64e:3fe7 with SMTP id
+ ffacd0b85a97d-37d0eaf2263mr54293f8f.59.1727975436116; 
+ Thu, 03 Oct 2024 10:10:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHfzUmJePTytDjbiR5l9ifWG/PuzBprmfDmMU4fpbK/E1FnN9Y2LUkOOPCbAXDDAsKb7+JrkA==
+X-Received: by 2002:a05:6000:1243:b0:374:c64e:3fe7 with SMTP id
+ ffacd0b85a97d-37d0eaf2263mr54279f8f.59.1727975435696; 
+ Thu, 03 Oct 2024 10:10:35 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-37d082d230dsm1674791f8f.94.2024.10.03.10.10.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 03 Oct 2024 10:10:34 -0700 (PDT)
+Message-ID: <f78895ac-3d64-4ef9-bd85-c5f94e24cbac@redhat.com>
+Date: Thu, 3 Oct 2024 19:10:33 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/11] drm: Introduce DRM client library
+To: Thomas Zimmermann <tzimmermann@suse.de>, simona@ffwll.ch,
+ airlied@gmail.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20241002131306.288618-1-tzimmermann@suse.de>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <20241002131306.288618-1-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe=3A_Reduce_flickering_wh?=
- =?utf-8?q?en_inheriting_BIOS_fb=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Oct 2024 17:02:32 -0000
-Message-ID: <172797495291.1169711.5945566217693539182@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +92,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 02/10/2024 15:04, Thomas Zimmermann wrote:
+> With the next DRM client coming soon (drm_log) and most of DRM's
+> fbdev emulation consolidated in a few places, it's time to provide
+> a single place for the clients.
+> 
+> The new module drm_client_lib.ko stores most of the in-kernel client
+> code. It is designed such that drivers can opt into client support,
+> but the presence of the client module depends on the user's kernel
+> configuration. Without selected clients, no client module will be
+> build.
 
-Series: drm/xe: Reduce flickering when inheriting BIOS fb.
-URL   : https://patchwork.freedesktop.org/series/139516/
-State : failure
+I think I would rather rename drm_client.c to drm_client_lib.c, and have 
+a drm_client.ko. Users may need to interact with module name more than 
+with C file.
 
-== Summary ==
+> 
+> Version 2 of this patchset is a significant rework of the patches,
+> so there are no R-bs kept. The base client code and client event
+> handling remains in the DRM core. This simplifies module dependencies.
+> But suspend and resume are now handled in client helpers instead of
+> direct calls to fbdev emulation. This breaks a cyclic dependency
+> among the involved modules. It also allows any client to process
+> suspend and resume events.
 
-CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_dc_resource_mgmt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml_display_rq_dlg_calc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml_top.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml_top_mcache.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml2_top_optimization.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/inc/dml2_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_standalone_libraries/lib_float_math.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_translation_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_wrapper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_utils.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_regamma_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_csc_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_mem_input_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_transform_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_scl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_scl_easf_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_isharp_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/spl_fixpt31_32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/spl_custom_float.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_sink.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_surface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_enc_cfg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_exports.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_state.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_vm_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_edid_parser.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_spl_translate.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_gamma.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_table.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/info_packet/info_packet.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/power/power_helpers.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_reg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn20.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn21.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn30.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn301.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn302.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn303.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn31.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn314.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn315.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn316.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn35.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn351.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn401.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_ddc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_log.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_psp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_transition.o
-  LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
-make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1936: .] Error 2
-make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make: *** [Makefile:224: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Thanks a lot for this work. I rebased my drm_log proof of concept on top 
+on this v2, and it works great.
+I think I can add a suspend/resume callback to drm_log, just marking the 
+console as CON_SUSPENDED should work, I will test that shortly.
 
+
+Best regards,
+
+-- 
+
+Jocelyn
+
+> 
+> v2:
+> - rework of the overall design
+> - keep base client code in DRM core.
+> 
+> Thomas Zimmermann (11):
+>    drm/i915: Select DRM_CLIENT_SELECTION
+>    drm/xe: Select DRM_CLIENT_SELECTION
+>    drm/fbdev: Select fbdev I/O helpers from modules that require them
+>    drm/fbdev: Store fbdev module parameters in separate file
+>    drm/client: Move client event handlers to drm_client_event.c
+>    drm/client: Move suspend/resume into DRM client callbacks
+>    drm/amdgpu: Suspend and resume internal clients with client helpers
+>    drm/nouveau: Suspend and resume clients with client helpers
+>    drm/radeon: Suspend and resume clients with client helpers
+>    drm/client: Make client support optional
+>    drm/client: Add client-lib module
+> 
+>   Documentation/gpu/drm-client.rst              |   3 +
+>   drivers/gpu/drm/Kconfig                       |  39 +++-
+>   drivers/gpu/drm/Makefile                      |  20 +-
+>   drivers/gpu/drm/amd/amdgpu/Kconfig            |   1 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  22 +-
+>   drivers/gpu/drm/drm_client.c                  | 121 -----------
+>   drivers/gpu/drm/drm_client_event.c            | 195 ++++++++++++++++++
+>   drivers/gpu/drm/drm_client_setup.c            |   3 +
+>   drivers/gpu/drm/drm_drv.c                     |   2 +-
+>   drivers/gpu/drm/drm_fb_helper.c               |  31 ---
+>   drivers/gpu/drm/drm_fbdev_client.c            |  30 ++-
+>   drivers/gpu/drm/drm_file.c                    |   2 +-
+>   drivers/gpu/drm/drm_internal.h                |   7 +
+>   drivers/gpu/drm/drm_kms_helper_common.c       |  38 ++++
+>   drivers/gpu/drm/drm_modeset_helper.c          |  14 +-
+>   drivers/gpu/drm/drm_probe_helper.c            |   2 +-
+>   drivers/gpu/drm/i915/Kconfig                  |   1 +
+>   .../drm/i915/display/intel_display_driver.c   |   2 +-
+>   drivers/gpu/drm/nouveau/nouveau_display.c     |   8 +-
+>   drivers/gpu/drm/nouveau/nouveau_vga.c         |   2 +-
+>   drivers/gpu/drm/radeon/radeon_device.c        |  19 +-
+>   drivers/gpu/drm/radeon/radeon_fbdev.c         |   6 -
+>   drivers/gpu/drm/radeon/radeon_mode.h          |   3 -
+>   drivers/gpu/drm/xe/Kconfig                    |   1 +
+>   include/drm/drm_client.h                      |  39 +++-
+>   include/drm/drm_client_event.h                |  27 +++
+>   26 files changed, 423 insertions(+), 215 deletions(-)
+>   create mode 100644 drivers/gpu/drm/drm_client_event.c
+>   create mode 100644 include/drm/drm_client_event.h
+> 
 
