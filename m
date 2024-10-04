@@ -4,50 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06993CFA77E
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F7DCF34C5
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:49:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAC7F10E171;
-	Fri,  4 Oct 2024 13:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D952010E171;
+	Fri,  4 Oct 2024 13:49:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="YFV4lxKL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FE1+tpJT";
 	dkim-atps=neutral
-X-Greylist: delayed 337 seconds by postgrey-1.36 at gabe;
- Fri, 04 Oct 2024 09:07:46 UTC
-Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com
- [95.215.58.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A62110E22B
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 09:07:46 +0000 (UTC)
-Message-ID: <41c46ac0-23e5-4566-8808-f0ad84a58ca0@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1728032527;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/q7TCKWkBRa2jleMeAwpZZBWHheD5FpO/n7jqw+l1m0=;
- b=YFV4lxKLCDKae389/8VdPDsh8vRn+pLK9YtOk17Z2dP5w1db+xISdDxHgXFQkfpjM17hVs
- hQqv9zsx6atEPCZJDZuavDaQUhsvZ1h5oLKEJyzKQkQxuTU+ARCdX39GXq1fy2BmznpBb8
- qQkaXngwVnTofn1S0sSBOXvuSssONo8=
-Date: Fri, 4 Oct 2024 17:01:55 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE2AE10E171
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 13:49:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728049749; x=1759585749;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=9sn/27MNVaINhW7vZNDcrurym+g+zyVFHXsrlXfcWYQ=;
+ b=FE1+tpJTovJMODMKo2upBKCGVG7W35kwsK3ZnyUCRgZ720oXZ612m5ij
+ 8kuBtcLPLvzeMICanHwcUvZQN/SK5NyGJI+Oixj1atXWbOBLJYhoJSxpn
+ 0C9JXG0a/lJicZhnNWDkDzQkpYJjiJ/ZZ7YGUK6unD+8mbCdKX12RtdKV
+ GJJ8tAQC3iAb2eJKh0shYtFkSnLE/QYvIt1dBpFbuyq9alWArLhN8+lkU
+ 3TdEEv222Xxx2mMAPAz9Co1v7AuOpHl8XZ7PAZLkTVjVXiNqEXGppAXBB
+ u578jOkdqSMmMzdRHqXLtx4AkfSRyojBJZ+V7phm7dlXRkjuEYhXjfQuz w==;
+X-CSE-ConnectionGUID: FzMj5/CyRAO8OLSF2Ep+xA==
+X-CSE-MsgGUID: HR5Umh5oTDSwbW228eeaZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="49802987"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="49802987"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:49:08 -0700
+X-CSE-ConnectionGUID: GBRFY7EvSPan9PgwaDLLpA==
+X-CSE-MsgGUID: 4qs9Z2D9RRS4gOOZzWGehA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="75139556"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.128])
+ ([10.245.245.128])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:49:07 -0700
+Message-ID: <eb1f2f71dfa249ec34e9e0a8878266770c235618.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe/tests: Fix the shrinker test compiler warnings.
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Nathan Chancellor <nathan@kernel.org>
+Date: Fri, 04 Oct 2024 15:49:04 +0200
+In-Reply-To: <3e661da9-126f-429f-bcbc-897e481470da@intel.com>
+References: <20241004123922.38904-1-thomas.hellstrom@linux.intel.com>
+ <3e661da9-126f-429f-bcbc-897e481470da@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Subject: Re: [PATCH 08/28] drm/loongson: Use video aperture helpers
-To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20240930130921.689876-1-tzimmermann@suse.de>
- <20240930130921.689876-9-tzimmermann@suse.de>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <20240930130921.689876-9-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Fri, 04 Oct 2024 13:46:42 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,65 +72,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, 2024-10-04 at 14:10 +0100, Matthew Auld wrote:
+> On 04/10/2024 13:39, Thomas Hellstr=C3=B6m wrote:
+> > The xe_bo_shrink_kunit test has an uninitialized value and illegal
+> > integer size conversions on 32-bit. Fix.
+> >=20
+> > Reported-by: Nathan Chancellor <nathan@kernel.org>
+> > Closes:
+> > https://lore.kernel.org/20240913195649.GA61514@thelio-3990X/
+> > Fixes: 5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking /
+> > swapping")
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0 drivers/gpu/drm/xe/tests/xe_bo.c | 2 +-
+> > =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c
+> > b/drivers/gpu/drm/xe/tests/xe_bo.c
+> > index 7d3fd720478b..1562c08aaf34 100644
+> > --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> > @@ -440,7 +440,7 @@ static int shrink_test_run_device(struct
+> > xe_device *xe)
+> > =C2=A0=C2=A0	LIST_HEAD(bos);
+> > =C2=A0=C2=A0	struct xe_bo_link *link, *next;
+> > =C2=A0=C2=A0	struct sysinfo si;
+> > -	size_t ram, ram_and_swap, purgeable, alloced, to_alloc,
+> > limit;
+> > +	u64 ram, ram_and_swap, purgeable =3D 0, alloced, to_alloc,
+> > limit;
+>=20
+> Maybe just double check that this doesn't now introduce 64b division=20
+> errors on 32b arch.
+>=20
+> Assuming it doesn't,
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-On 2024/9/30 21:03, Thomas Zimmermann wrote:
-> DRM's aperture functions have long been implemented as helpers
-> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
-> calling the video functions directly.
+Good point. While it compiles without missing symbol on gcc ARCH=3Di386
+it may well complain on other compilers / archs. I'll respin to use
+div64_u64
+
+/Thomas
 
 
-Okay!
-
-Sometimes the aperture_remove_conflicting_devices() is more easier
-to use, as it doesn't need direct reference to the struct drm_driver.
-
-The third argument of aperture_remove_conflicting_devices() does not
-get used, so we can actually pass a casual string.
-
-
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Sui Jingfeng <suijingfeng@loongson.cn>
-
-
-Acked-by: Sui Jingfeng <sui.jingfeng@linux.dev>
-
-
-> ---
->   drivers/gpu/drm/loongson/lsdc_drv.c | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/loongson/lsdc_drv.c b/drivers/gpu/drm/loongson/lsdc_drv.c
-> index a19dce35c839..b350bdcf1645 100644
-> --- a/drivers/gpu/drm/loongson/lsdc_drv.c
-> +++ b/drivers/gpu/drm/loongson/lsdc_drv.c
-> @@ -3,10 +3,10 @@
->    * Copyright (C) 2023 Loongson Technology Corporation Limited
->    */
->   
-> +#include <linux/aperture.h>
->   #include <linux/pci.h>
->   #include <linux/vgaarb.h>
->   
-> -#include <drm/drm_aperture.h>
->   #include <drm/drm_atomic.h>
->   #include <drm/drm_atomic_helper.h>
->   #include <drm/drm_client_setup.h>
-> @@ -215,9 +215,9 @@ lsdc_create_device(struct pci_dev *pdev,
->   		return ERR_PTR(ret);
->   	}
->   
-> -	ret = drm_aperture_remove_conflicting_framebuffers(ldev->vram_base,
-> -							   ldev->vram_size,
-> -							   driver);
-> +	ret = aperture_remove_conflicting_devices(ldev->vram_base,
-> +						  ldev->vram_size,
-> +						  driver->name);
->   	if (ret) {
->   		drm_err(ddev, "Remove firmware framebuffers failed: %d\n", ret);
->   		return ERR_PTR(ret);
-
--- 
-Best regards,
-Sui
+>=20
+> > =C2=A0=C2=A0	unsigned int interrupted =3D 0, successful =3D 0, count =
+=3D 0;
+> > =C2=A0=C2=A0	struct rnd_state prng;
+> > =C2=A0=C2=A0	u64 rand_seed;
 
