@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F7DCF34C5
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:49:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 307C2CF34C5
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:57:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D952010E171;
-	Fri,  4 Oct 2024 13:49:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3D4910EA0F;
+	Fri,  4 Oct 2024 13:57:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FE1+tpJT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UEOyKr7+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE2AE10E171
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 13:49:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE53C10EA0F;
+ Fri,  4 Oct 2024 13:57:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728049749; x=1759585749;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=9sn/27MNVaINhW7vZNDcrurym+g+zyVFHXsrlXfcWYQ=;
- b=FE1+tpJTovJMODMKo2upBKCGVG7W35kwsK3ZnyUCRgZ720oXZ612m5ij
- 8kuBtcLPLvzeMICanHwcUvZQN/SK5NyGJI+Oixj1atXWbOBLJYhoJSxpn
- 0C9JXG0a/lJicZhnNWDkDzQkpYJjiJ/ZZ7YGUK6unD+8mbCdKX12RtdKV
- GJJ8tAQC3iAb2eJKh0shYtFkSnLE/QYvIt1dBpFbuyq9alWArLhN8+lkU
- 3TdEEv222Xxx2mMAPAz9Co1v7AuOpHl8XZ7PAZLkTVjVXiNqEXGppAXBB
- u578jOkdqSMmMzdRHqXLtx4AkfSRyojBJZ+V7phm7dlXRkjuEYhXjfQuz w==;
-X-CSE-ConnectionGUID: FzMj5/CyRAO8OLSF2Ep+xA==
-X-CSE-MsgGUID: HR5Umh5oTDSwbW228eeaZQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="49802987"
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="49802987"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 06:49:08 -0700
-X-CSE-ConnectionGUID: GBRFY7EvSPan9PgwaDLLpA==
-X-CSE-MsgGUID: 4qs9Z2D9RRS4gOOZzWGehA==
+ t=1728050230; x=1759586230;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=M49PjplVFWzMiaDf5oBTP4OcF6VyilnGxocPYLYyQzg=;
+ b=UEOyKr7+H5E8Z0uRWpMjluJk7aA8e6LIHcViVaMYv+iYUy7T0Uv6mFf7
+ JeqP8lhUnvYmG6XUNdgTd7sq1izuXCENh7nLWkw1pXH5Nnq433OpL/2jF
+ enIOBXeDU5NHxISOMBBE7zXhKhouRRKGnzyKGfEbLUtRGdtR2UP2B5rlV
+ bgGNZNGxFFDDyhtsyqFwlZ++W9pG9NJ3CGCKFIIgR5sD5A5iIZ5kLDxya
+ qdHWfelk9vNJVowPJy/AUWmC2hhpPzhHWVUPOLYiiByILTh4KqapBjHcB
+ yy5jL204d9RWL+WflYHo08SAXxj2T9z4ait1EE/R5OMJPJ75fYgybBpDj A==;
+X-CSE-ConnectionGUID: EJk255wVRFOv93RuSyzyOg==
+X-CSE-MsgGUID: tMdVulkQTZ2gsv+7nGzbKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="37840997"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="37840997"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:57:10 -0700
+X-CSE-ConnectionGUID: zw7rS/EKT3OAhNDR44zmZQ==
+X-CSE-MsgGUID: xvWoLuf4Ql63MaAL18WgJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="75139556"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.128])
- ([10.245.245.128])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 06:49:07 -0700
-Message-ID: <eb1f2f71dfa249ec34e9e0a8878266770c235618.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/tests: Fix the shrinker test compiler warnings.
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Nathan Chancellor <nathan@kernel.org>
-Date: Fri, 04 Oct 2024 15:49:04 +0200
-In-Reply-To: <3e661da9-126f-429f-bcbc-897e481470da@intel.com>
-References: <20241004123922.38904-1-thomas.hellstrom@linux.intel.com>
- <3e661da9-126f-429f-bcbc-897e481470da@intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="74821614"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.245.204])
+ ([10.245.245.204])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:57:09 -0700
+Message-ID: <35fb9448-4742-4d2b-8eca-1654dd8e235c@linux.intel.com>
+Date: Fri, 4 Oct 2024 15:57:06 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 07/11] drm/print: Introduce drm_line_printer
+To: John.C.Harrison@Intel.com, Intel-Xe@Lists.FreeDesktop.Org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+References: <20241003004611.2323493-1-John.C.Harrison@Intel.com>
+ <20241003004611.2323493-8-John.C.Harrison@Intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20241003004611.2323493-8-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,53 +71,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2024-10-04 at 14:10 +0100, Matthew Auld wrote:
-> On 04/10/2024 13:39, Thomas Hellstr=C3=B6m wrote:
-> > The xe_bo_shrink_kunit test has an uninitialized value and illegal
-> > integer size conversions on 32-bit. Fix.
-> >=20
-> > Reported-by: Nathan Chancellor <nathan@kernel.org>
-> > Closes:
-> > https://lore.kernel.org/20240913195649.GA61514@thelio-3990X/
-> > Fixes: 5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking /
-> > swapping")
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0 drivers/gpu/drm/xe/tests/xe_bo.c | 2 +-
-> > =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c
-> > b/drivers/gpu/drm/xe/tests/xe_bo.c
-> > index 7d3fd720478b..1562c08aaf34 100644
-> > --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> > @@ -440,7 +440,7 @@ static int shrink_test_run_device(struct
-> > xe_device *xe)
-> > =C2=A0=C2=A0	LIST_HEAD(bos);
-> > =C2=A0=C2=A0	struct xe_bo_link *link, *next;
-> > =C2=A0=C2=A0	struct sysinfo si;
-> > -	size_t ram, ram_and_swap, purgeable, alloced, to_alloc,
-> > limit;
-> > +	u64 ram, ram_and_swap, purgeable =3D 0, alloced, to_alloc,
-> > limit;
->=20
-> Maybe just double check that this doesn't now introduce 64b division=20
-> errors on 32b arch.
->=20
-> Assuming it doesn't,
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+I don't think there's an immediate use for this in drm-misc, so its 
+easier to merge through xe. :-)
+Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Good point. While it compiles without missing symbol on gcc ARCH=3Di386
-it may well complain on other compilers / archs. I'll respin to use
-div64_u64
-
-/Thomas
-
-
->=20
-> > =C2=A0=C2=A0	unsigned int interrupted =3D 0, successful =3D 0, count =
-=3D 0;
-> > =C2=A0=C2=A0	struct rnd_state prng;
-> > =C2=A0=C2=A0	u64 rand_seed;
+Den 2024-10-03 kl. 02:46, skrev John.C.Harrison@Intel.com:
+> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> 
+> This drm printer wrapper can be used to increase the robustness of
+> the captured output generated by any other drm_printer to make sure
+> we didn't lost any intermediate lines of the output by adding line
+> numbers to each output line. Helpful for capturing some crash data.
+> 
+> v2: Extended short int counters to full int (JohnH)
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/drm_print.c | 14 ++++++++
+>   include/drm/drm_print.h     | 64 +++++++++++++++++++++++++++++++++++++
+>   2 files changed, 78 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+> index 0081190201a7..08cfea04e22b 100644
+> --- a/drivers/gpu/drm/drm_print.c
+> +++ b/drivers/gpu/drm/drm_print.c
+> @@ -235,6 +235,20 @@ void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf)
+>   }
+>   EXPORT_SYMBOL(__drm_printfn_err);
+>   
+> +void __drm_printfn_line(struct drm_printer *p, struct va_format *vaf)
+> +{
+> +	unsigned int counter = ++p->line.counter;
+> +	const char *prefix = p->prefix ?: "";
+> +	const char *pad = p->prefix ? " " : "";
+> +
+> +	if (p->line.series)
+> +		drm_printf(p->arg, "%s%s%u.%u: %pV",
+> +			   prefix, pad, p->line.series, counter, vaf);
+> +	else
+> +		drm_printf(p->arg, "%s%s%u: %pV", prefix, pad, counter, vaf);
+> +}
+> +EXPORT_SYMBOL(__drm_printfn_line);
+> +
+>   /**
+>    * drm_puts - print a const string to a &drm_printer stream
+>    * @p: the &drm printer
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index d2676831d765..b3906dc04388 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -177,6 +177,10 @@ struct drm_printer {
+>   	void *arg;
+>   	const void *origin;
+>   	const char *prefix;
+> +	struct {
+> +		unsigned int series;
+> +		unsigned int counter;
+> +	} line;
+>   	enum drm_debug_category category;
+>   };
+>   
+> @@ -187,6 +191,7 @@ void __drm_puts_seq_file(struct drm_printer *p, const char *str);
+>   void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf);
+>   void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf);
+>   void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf);
+> +void __drm_printfn_line(struct drm_printer *p, struct va_format *vaf);
+>   
+>   __printf(2, 3)
+>   void drm_printf(struct drm_printer *p, const char *f, ...);
+> @@ -411,6 +416,65 @@ static inline struct drm_printer drm_err_printer(struct drm_device *drm,
+>   	return p;
+>   }
+>   
+> +/**
+> + * drm_line_printer - construct a &drm_printer that prefixes outputs with line numbers
+> + * @p: the &struct drm_printer which actually generates the output
+> + * @prefix: optional output prefix, or NULL for no prefix
+> + * @series: optional unique series identifier, or 0 to omit identifier in the output
+> + *
+> + * This printer can be used to increase the robustness of the captured output
+> + * to make sure we didn't lost any intermediate lines of the output. Helpful
+> + * while capturing some crash data.
+> + *
+> + * Example 1::
+> + *
+> + *	void crash_dump(struct drm_device *drm)
+> + *	{
+> + *		static unsigned int id;
+> + *		struct drm_printer p = drm_err_printer(drm, "crash");
+> + *		struct drm_printer lp = drm_line_printer(&p, "dump", ++id);
+> + *
+> + *		drm_printf(&lp, "foo");
+> + *		drm_printf(&lp, "bar");
+> + *	}
+> + *
+> + * Above code will print into the dmesg something like::
+> + *
+> + *	[ ] 0000:00:00.0: [drm] *ERROR* crash dump 1.1: foo
+> + *	[ ] 0000:00:00.0: [drm] *ERROR* crash dump 1.2: bar
+> + *
+> + * Example 2::
+> + *
+> + *	void line_dump(struct device *dev)
+> + *	{
+> + *		struct drm_printer p = drm_info_printer(dev);
+> + *		struct drm_printer lp = drm_line_printer(&p, NULL, 0);
+> + *
+> + *		drm_printf(&lp, "foo");
+> + *		drm_printf(&lp, "bar");
+> + *	}
+> + *
+> + * Above code will print::
+> + *
+> + *	[ ] 0000:00:00.0: [drm] 1: foo
+> + *	[ ] 0000:00:00.0: [drm] 2: bar
+> + *
+> + * RETURNS:
+> + * The &drm_printer object
+> + */
+> +static inline struct drm_printer drm_line_printer(struct drm_printer *p,
+> +						  const char *prefix,
+> +						  unsigned int series)
+> +{
+> +	struct drm_printer lp = {
+> +		.printfn = __drm_printfn_line,
+> +		.arg = p,
+> +		.prefix = prefix,
+> +		.line = { .series = series, },
+> +	};
+> +	return lp;
+> +}
+> +
+>   /*
+>    * struct device based logging
+>    *
 
