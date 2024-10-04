@@ -4,59 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D9B7CFA779
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:31:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47574CFA779
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 326C910EA00;
-	Fri,  4 Oct 2024 13:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 100F010EA09;
+	Fri,  4 Oct 2024 13:45:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cv+AueeE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="guCYABlT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1569F10E9FA;
- Fri,  4 Oct 2024 13:31:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70EEF10E171
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 13:45:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728048716; x=1759584716;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=LipIKJHXywUFaT6Rr6fuW2hVVH4tKy/aeS0F5KcrTXg=;
- b=Cv+AueeEuKnFZh5G8sJybzceq+BljgOtbtPX66dQRIbwnxEo1ezZBDah
- WXA/Iz+FUsZMh8FtwoC+MAq/+9nmGC+bCKvP+zo9DTmjVl9ta+dGYqcbz
- G4KC9tGxYK1vdDCH4ExDM/fvoYureCs4Hq5hCbAxZcDF/+t/PSFg5cGor
- TkY0c8RteZ8ntsWbdOea9e36m9GEHJZfX+j9QObQ59W1s/iPCrYwCIWcJ
- EGafFnvrK4SR6wqQgiwTILA/nORejkDSmDZ9tzMQu+dkZsfSxAVn6+UhF
- sjnfrUiRaRD/NIDKieP2hL5Xj+lOdd1o12X2kQcgRw87ofjvb/CTuNqGh g==;
-X-CSE-ConnectionGUID: o2TV9mpFSqyaPyrUWdgGTA==
-X-CSE-MsgGUID: La+dVsqXQxKBnDndsZjAJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27150468"
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="27150468"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 06:30:21 -0700
-X-CSE-ConnectionGUID: IcluhS3fSAu9RiPnoDcCzg==
-X-CSE-MsgGUID: Ij+kEMolRPubbR9Jtmn+6w==
+ t=1728049523; x=1759585523;
+ h=date:from:to:cc:subject:message-id;
+ bh=tOhMkZsLggA/wY4kEn7bPdaVt2zC5zTfcbh8rj0HApE=;
+ b=guCYABlTPcBo567+ArxQMYHws2Amf9+YK66nHdMF2JFsgg9djFsMiSuB
+ WFR9qRcJiZd1Msm7U/2xOdc6kx35lxlE8BqKq8Zg2houUZBPByLBz0p6a
+ jxYMNqwso19d5ZdKI7TY0tIG3i8R2giHRFNzebpFtQAuYzm7FOv829V3X
+ J40OWjUZeK7VxsUg4Ye61dXRqcPJiZIuA3B9R3pXCn8LvSYy81wpvz8Co
+ QYXDoDynqqaUGoFy/WtSBLMIvsLGCblrH24Id2AaD/ZGEj1aX1ATpg8Ub
+ IjZF++Zj21iBzC7FPezimKN/49KYH+s/jM6ySbXW6BvbkbjiJCTU2cwN4 Q==;
+X-CSE-ConnectionGUID: yW8mF78eSd+bq1EpnFOqwg==
+X-CSE-MsgGUID: fDflLLmJSva1lPwQLKoC1g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27215217"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="27215217"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:45:23 -0700
+X-CSE-ConnectionGUID: qStHp4q4QGuoYAaUd4j0Bg==
+X-CSE-MsgGUID: eF1RLcjATPi88ZXxQ+lY7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="74697089"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="98034719"
 Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by orviesa009.jf.intel.com with ESMTP; 04 Oct 2024 06:30:20 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 04 Oct 2024 06:45:20 -0700
 Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1swiNt-0001fo-1R;
- Fri, 04 Oct 2024 13:30:17 +0000
-Date: Fri, 4 Oct 2024 21:30:05 +0800
+ (envelope-from <lkp@intel.com>) id 1swicQ-0001iO-1Z;
+ Fri, 04 Oct 2024 13:45:18 +0000
+Date: Fri, 04 Oct 2024 21:44:50 +0800
 From: kernel test robot <lkp@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v3 10/12] drm/xe: Make xe_ggtt_pt_ops private
-Message-ID: <202410042102.EdHRO7JI-lkp@intel.com>
-References: <20241003154421.33805-11-maarten.lankhorst@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241003154421.33805-11-maarten.lankhorst@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ a6f3b2527375c786f2eff77d3ee8b805bcfe026d
+Message-ID: <202410042135.8YaG8LA9-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,48 +64,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Maarten,
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: a6f3b2527375c786f2eff77d3ee8b805bcfe026d  drm/xe: Fix memory leak when aborting binds
 
-kernel test robot noticed the following build warnings:
+elapsed time: 1377m
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on linus/master v6.12-rc1]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip next-20241004]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+configs tested: 141
+configs skipped: 3
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-xe-display-Handle-stolen-bar-readout-in-the-same-way-as-lmem/20241004-000534
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241003154421.33805-11-maarten.lankhorst%40linux.intel.com
-patch subject: [PATCH v3 10/12] drm/xe: Make xe_ggtt_pt_ops private
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241004/202410042102.EdHRO7JI-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241004/202410042102.EdHRO7JI-lkp@intel.com/reproduce)
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410042102.EdHRO7JI-lkp@intel.com/
+tested configs:
+alpha                             allnoconfig    gcc-13.3.0
+alpha                             allnoconfig    gcc-14.1.0
+alpha                            allyesconfig    clang-20
+alpha                               defconfig    gcc-14.1.0
+arc                              allmodconfig    clang-20
+arc                               allnoconfig    gcc-13.2.0
+arc                               allnoconfig    gcc-14.1.0
+arc                              allyesconfig    clang-20
+arc                                 defconfig    gcc-14.1.0
+arm                              allmodconfig    clang-20
+arm                               allnoconfig    clang-20
+arm                               allnoconfig    gcc-14.1.0
+arm                              allyesconfig    clang-20
+arm                                 defconfig    gcc-14.1.0
+arm64                            allmodconfig    clang-20
+arm64                             allnoconfig    gcc-14.1.0
+arm64                               defconfig    gcc-14.1.0
+csky                              allnoconfig    gcc-14.1.0
+csky                                defconfig    gcc-14.1.0
+hexagon                          allmodconfig    clang-20
+hexagon                           allnoconfig    clang-20
+hexagon                           allnoconfig    gcc-14.1.0
+hexagon                          allyesconfig    clang-20
+hexagon                             defconfig    gcc-14.1.0
+i386                             allmodconfig    clang-18
+i386                             allmodconfig    gcc-12
+i386                              allnoconfig    clang-18
+i386                              allnoconfig    gcc-12
+i386                             allyesconfig    clang-18
+i386                             allyesconfig    gcc-12
+i386        buildonly-randconfig-001-20241004    clang-18
+i386        buildonly-randconfig-002-20241004    clang-18
+i386        buildonly-randconfig-002-20241004    gcc-12
+i386        buildonly-randconfig-003-20241004    clang-18
+i386        buildonly-randconfig-003-20241004    gcc-12
+i386        buildonly-randconfig-004-20241004    clang-18
+i386        buildonly-randconfig-004-20241004    gcc-12
+i386        buildonly-randconfig-005-20241004    clang-18
+i386        buildonly-randconfig-006-20241004    clang-18
+i386                                defconfig    clang-18
+i386                  randconfig-001-20241004    clang-18
+i386                  randconfig-001-20241004    gcc-12
+i386                  randconfig-002-20241004    clang-18
+i386                  randconfig-003-20241004    clang-18
+i386                  randconfig-003-20241004    gcc-12
+i386                  randconfig-004-20241004    clang-18
+i386                  randconfig-004-20241004    gcc-12
+i386                  randconfig-005-20241004    clang-18
+i386                  randconfig-005-20241004    gcc-12
+i386                  randconfig-006-20241004    clang-18
+i386                  randconfig-006-20241004    gcc-12
+i386                  randconfig-011-20241004    clang-18
+i386                  randconfig-012-20241004    clang-18
+i386                  randconfig-013-20241004    clang-18
+i386                  randconfig-014-20241004    clang-18
+i386                  randconfig-014-20241004    gcc-12
+i386                  randconfig-015-20241004    clang-18
+i386                  randconfig-016-20241004    clang-18
+loongarch                        allmodconfig    gcc-14.1.0
+loongarch                         allnoconfig    gcc-14.1.0
+loongarch                           defconfig    gcc-14.1.0
+m68k                             allmodconfig    gcc-14.1.0
+m68k                              allnoconfig    gcc-14.1.0
+m68k                             allyesconfig    gcc-14.1.0
+m68k                                defconfig    gcc-14.1.0
+microblaze                       allmodconfig    gcc-14.1.0
+microblaze                        allnoconfig    gcc-14.1.0
+microblaze                       allyesconfig    gcc-14.1.0
+microblaze                          defconfig    gcc-14.1.0
+mips                              allnoconfig    gcc-14.1.0
+nios2                             allnoconfig    gcc-14.1.0
+nios2                               defconfig    gcc-14.1.0
+openrisc                          allnoconfig    clang-20
+openrisc                          allnoconfig    gcc-14.1.0
+openrisc                         allyesconfig    gcc-14.1.0
+openrisc                            defconfig    gcc-12
+parisc                           allmodconfig    gcc-14.1.0
+parisc                            allnoconfig    clang-20
+parisc                            allnoconfig    gcc-14.1.0
+parisc                           allyesconfig    gcc-14.1.0
+parisc                              defconfig    gcc-12
+parisc64                            defconfig    gcc-14.1.0
+powerpc                          allmodconfig    gcc-14.1.0
+powerpc                           allnoconfig    clang-20
+powerpc                           allnoconfig    gcc-14.1.0
+powerpc                          allyesconfig    gcc-14.1.0
+riscv                            allmodconfig    gcc-14.1.0
+riscv                             allnoconfig    clang-20
+riscv                             allnoconfig    gcc-14.1.0
+riscv                            allyesconfig    gcc-14.1.0
+riscv                               defconfig    gcc-12
+s390                             allmodconfig    gcc-14.1.0
+s390                              allnoconfig    clang-20
+s390                             allyesconfig    gcc-14.1.0
+s390                                defconfig    gcc-12
+sh                               allmodconfig    gcc-14.1.0
+sh                                allnoconfig    gcc-14.1.0
+sh                               allyesconfig    gcc-14.1.0
+sh                                  defconfig    gcc-12
+sparc                            allmodconfig    gcc-14.1.0
+sparc64                             defconfig    gcc-12
+um                               allmodconfig    clang-20
+um                                allnoconfig    clang-17
+um                                allnoconfig    clang-20
+um                               allyesconfig    clang-20
+um                                  defconfig    gcc-12
+um                             i386_defconfig    gcc-12
+um                           x86_64_defconfig    gcc-12
+x86_64                            allnoconfig    clang-18
+x86_64                           allyesconfig    clang-18
+x86_64      buildonly-randconfig-001-20241004    clang-18
+x86_64      buildonly-randconfig-002-20241004    clang-18
+x86_64      buildonly-randconfig-003-20241004    clang-18
+x86_64      buildonly-randconfig-004-20241004    clang-18
+x86_64      buildonly-randconfig-005-20241004    clang-18
+x86_64      buildonly-randconfig-006-20241004    clang-18
+x86_64                              defconfig    clang-18
+x86_64                              defconfig    gcc-11
+x86_64                                  kexec    clang-18
+x86_64                                  kexec    gcc-12
+x86_64                randconfig-001-20241004    clang-18
+x86_64                randconfig-002-20241004    clang-18
+x86_64                randconfig-003-20241004    clang-18
+x86_64                randconfig-004-20241004    clang-18
+x86_64                randconfig-005-20241004    clang-18
+x86_64                randconfig-006-20241004    clang-18
+x86_64                randconfig-011-20241004    clang-18
+x86_64                randconfig-012-20241004    clang-18
+x86_64                randconfig-013-20241004    clang-18
+x86_64                randconfig-014-20241004    clang-18
+x86_64                randconfig-015-20241004    clang-18
+x86_64                randconfig-016-20241004    clang-18
+x86_64                randconfig-071-20241004    clang-18
+x86_64                randconfig-072-20241004    clang-18
+x86_64                randconfig-073-20241004    clang-18
+x86_64                randconfig-074-20241004    clang-18
+x86_64                randconfig-075-20241004    clang-18
+x86_64                randconfig-076-20241004    clang-18
+x86_64                               rhel-8.3    gcc-12
+x86_64                          rhel-8.3-rust    clang-18
+xtensa                            allnoconfig    gcc-14.1.0
 
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/xe/xe_ggtt.c:906: warning: expecting prototype for xe_ggtt_write_pte(). Prototype was for xe_ggtt_get_encode_pte_bo_fn() instead
-
-
-vim +906 drivers/gpu/drm/xe/xe_ggtt.c
-
-   897	
-   898	/**
-   899	 * xe_ggtt_write_pte - Write a PTE to the GGTT
-   900	 * @ggtt: &xe_ggtt
-   901	 * @offset: the offset for which the mapping should be written.
-   902	 *
-   903	 * Used by display for DPT and GGTT paths to enccode BO's.
-   904	 */
-   905	xe_ggtt_pte_encode_bo_fn xe_ggtt_get_encode_pte_bo_fn(struct xe_ggtt *ggtt)
- > 906	{
-
--- 
+--
 0-DAY CI Kernel Test Service
 https://github.com/intel/lkp-tests/wiki
