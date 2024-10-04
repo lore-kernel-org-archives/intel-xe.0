@@ -4,51 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F93CCFA759
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 10:16:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF5FDCFA765
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 10:44:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15AA810E163;
-	Fri,  4 Oct 2024 10:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD07310E27D;
+	Fri,  4 Oct 2024 10:44:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="gOMCkEWX";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="F4ZxACCd";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="I2WbXEph";
 	dkim-atps=neutral
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7680810E11E;
- Fri,  4 Oct 2024 10:16:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=u1NWgOqMNyUtDvE04Axpn1gDc+Ve2ri/GBG7osPQrOg=; b=gOMCkEWXOJRBXfM0ddK81Q71DG
- 4OY3tAjYpeIZ8X/iteABsPzv77ZA/bJAu3Q1vTKBeCva1EhxUpS4Fjw6KI2BsZwc3So9Dr0EZVvm4
- GE8SYL82QOlnDDDrAuWBaU4Yz3XmPDD2oa9PpNI6megKX3AAZRUVn+6xogNfat+DH8vZDdsw4wr06
- gt5nDiZYX9ThnwqNjGBJgP0aWOzbA6rVSczOJGGSPHIL5K51nL3ZnjrJ5CPREIr7Nl5T4xcldr07s
- HkgqUv0+UHFCQhRIdXvUsnbpd9Kcf/7WoZNNZAxJ4fFy+xRN4PtDpWtjMxdu9kGqxW1IGtpUTxaa7
- Kw+7kjeQ==;
-Received: from j130084.upc-j.chello.nl ([24.132.130.84]
- helo=noisy.programming.kicks-ass.net)
- by casper.infradead.org with esmtpsa (Exim 4.98 #2 (Red Hat Linux))
- id 1swfLt-0000000A9yn-0Mev; Fri, 04 Oct 2024 10:16:01 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id 56BDA30083E; Fri,  4 Oct 2024 12:16:01 +0200 (CEST)
-Date: Fri, 4 Oct 2024 12:16:01 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>,
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
- Boqun Feng <boqun.feng@gmail.com>,
- Maarten Lankhorst <maarten@lankhorst.se>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] locking/ww_mutex: Adjust to lockdep nest_lock
- requirements
-Message-ID: <20241004101601.GQ18071@noisy.programming.kicks-ass.net>
-References: <20241002125611.361001-1-thomas.hellstrom@linux.intel.com>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 032DE10E27D;
+ Fri,  4 Oct 2024 10:44:51 +0000 (UTC)
+Date: Fri, 4 Oct 2024 12:44:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1728038689;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=o6B6gvnrO8I7TCnILAWRKtXJUiUCLDNl6LRrHw3VzyU=;
+ b=F4ZxACCdhigUyQXGvF5x65CUAqM0ah+5DOr4Ua7bnsTLMPQ4UAMoBLOgftmVNGQey1Agxx
+ zg9GLXKYt0tpwgoGxc7RqLDlJm/2egF2+DFSdsA7YZbqzmU6hVSJxAfug2c29M6921ErZE
+ MKwlkUCo8BY6D/s4j7EPzGFKZi7nAXAeZgryG/gTrsXaYowOCvWI/C0LDKOKuUrg/JMNxT
+ 2/pmSK70WFl/2I/NpRb58+TuNhNmm1T44QzaxRUkw3jI+CcYvP35pn+ApCebsMS1NRC2hf
+ M3cEbKJNawYpDVOq8CkZhdIUKd5iqBGK2ZS+hrlcvZ5ZABW6U5w5GASEq+9XWg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1728038689;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=o6B6gvnrO8I7TCnILAWRKtXJUiUCLDNl6LRrHw3VzyU=;
+ b=I2WbXEphzYQsbWkKjfmT5XHWzRhRB6yHavx0Ex4pJyHBWxr/IHXHoq1/kpQA3SamlVD1ox
+ o9VpI94onxZhY/DQ==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH v3 0/8] drm/i915: PREEMPT_RT related fixups.
+Message-ID: <20241004104448.as7iuUly@linutronix.de>
+References: <20240628130601.1772849-1-bigeasy@linutronix.de>
+ <20241002162543.TKbd-8g0@linutronix.de>
+ <Zv17oKlIImyfg_KI@intel.com>
+ <20241004064951.XLw7TFbS@linutronix.de>
+ <Zv-n2h0gsquKOvXu@intel.com>
+ <20241004084525.333iWV-t@linutronix.de>
+ <Zv-wTDujdFuH_wIQ@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241002125611.361001-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <Zv-wTDujdFuH_wIQ@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,21 +73,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 02, 2024 at 02:56:11PM +0200, Thomas Hellström wrote:
-> When using mutex_acquire_nest() with a nest_lock, lockdep refcounts the
-> number of acquired lockdep_maps of mutexes of the same class, and also
-> keeps a pointer to the first acquired lockdep_map of a class. That pointer
-> is then used for various comparison-, printing- and checking purposes,
-> but there is no mechanism to actively ensure that lockdep_map stays in
-> memory. Instead, a warning is printed if the lockdep_map is freed and
-> there are still held locks of the same lock class, even if the lockdep_map
-> itself has been released.
-> 
-> In the context of WW/WD transactions that means that if a user unlocks
-> and frees a ww_mutex from within an ongoing ww transaction, and that
-> mutex happens to be the first ww_mutex grabbed in the transaction,
-> such a warning is printed and there might be a risk of a UAF.
+On 2024-10-04 12:07:24 [+0300], Ville Syrj=C3=A4l=C3=A4 wrote:
+> > what happens if this gets delayed? Just flicker or worse?
+>=20
+> In the best best case it just gets you a corrupted frame
+> of some sort, in the worst case the hardware falls over.
+> Depends on what kind of update is happening, and what
+> platform we're dealing with.
+>=20
+> We've tried to mitigate some of the worst issues by
+> trying to order the register writes more carefully,
+> but some of the ordering constraints (eg. scalers vs.
+> DDB) are more or less in conflict with each other
+> so making it 100% safe seems impossible.
 
-I'm assuming you actually hit this?
+So based on what you are saying, this _has_ to happen with disabled
+interrupts.
 
-Anyway, work around seems sane enough, thanks!
+> >=20
+> > Is this something that affects all i915 based HW or only old ones? As
+> > far as I remember, there is a register lock which is only required on
+> > older HW.
+>=20
+> Currently it affects everything. There is a new double buffer
+> latching inhibit bit on some of the very latest platforms that
+> we could probably use to make things more safe if vblank evasion
+> fails, but we've not hooked that up. But vblank evasion would still
+> be necessary at least for cursor updates since those are
+> done as mailbox style updates (ie. multiple updates per frame)
+> and there is no way to guarantee forward progress without vblank
+> evasion.
+
+This sounds sad. Especially since the delay is at 100us.
+
+> Register access locks aren't relevant here, and most
+> register accesses in the vblank evade critical section
+> are lockless anyway. The locks were too expensive and we
+> determined that we an safely use lockless accesses here.
+
+The register lock question was only an example of something that is not
+required on newish hardware. Also disabling interrupts within in patch
+1, 2 would require to make uncore:lock a raw_spinlock_t since it is
+acquire there.
+
+What do suggest as in how do we move forward? In terms of testing, I
+have here an i7 sandy bridge with embedded GPU.
+
+Sebastian
