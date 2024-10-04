@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 941C5CFA775
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 12:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4F6CCFA779
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:10:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5758C10E2A8;
-	Fri,  4 Oct 2024 12:49:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6742610E9F0;
+	Fri,  4 Oct 2024 13:10:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n+gO8Wzs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PndmXPNv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 487EE10E266;
- Fri,  4 Oct 2024 12:49:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2BA610E9F0
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 13:10:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728046161; x=1759582161;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=xdgsY0YDuDcng7CbNpryo4/J/L41PiaVwaZGfHmXK+I=;
- b=n+gO8WzsGHe/eHN5ZoKS/zMjzI8W67Lzm+tp2JXgcSjS6AklvouI7pzW
- JZ26pWuelahYAO4cI8F0Nj2f5mhmHU25mOFSaJfRBHfzQmrFFMWsnES2f
- CLolYbHFTvXVTJrSS5KwUqxaVQuqr8w16YSzVCPcbZa5JL6NxQahu1Cte
- whTqGSEKlZbNKVHthmT31zn85Mg9A4RIVv8DMGTApP9Ip56HADex8sJVL
- DyRq6eKvIx7Mz+3EXjllBFQ7YQ22AdvtgRgS+9qZG4NxLL6bhMa4ULYub
- EZlFP28BGbvjWsz1aOU0ufMyGZ1w+zjN2Z/+5NW6T53F9cgccieSAlzT3 Q==;
-X-CSE-ConnectionGUID: /WO0UE0GQZm6ZLJ1kvzTSw==
-X-CSE-MsgGUID: Lr6keODHSk2r35YFI4pAxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="37833779"
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="37833779"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 05:49:18 -0700
-X-CSE-ConnectionGUID: ppB39njVRFKreHHoTE8YQw==
-X-CSE-MsgGUID: PnoaQI93SwaIY7o85pFCtw==
+ t=1728047406; x=1759583406;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dxSqBZEXZJMRp1U4W9RyBKHjN3X0upLBvchjwNvZGfw=;
+ b=PndmXPNvcvYy1Yg22gnldgM4dzqsYn2EGoxtZzKDa7n9F/kn8ZGO6czV
+ 02WtlawuCIPtA05eOAawYi47NsUPDQWBzg6qTLl4bLvMG2Loim3ckgSmr
+ 49SZTXKcu0nD8+Uf1GV6I/QfZjHoQKVfxnj7XOOqVf6lmdq4ngO2e3ZtD
+ XO1z+KdJOUktO0WaFYYF6CLA2BMJkQTYHuzVHbltowfvzPQHMBwXuS96r
+ AF7KhbtiQMr0DKtgzR1fmfKH7Nj7sBuS3Xngd7vN2Ywb/nkHcmZkqsa2x
+ rFV7h/4VADt31ngXGQ1FurPAH2UhZrhTbEvWsGf0aV/GqWarJ66viFlAc w==;
+X-CSE-ConnectionGUID: S8pTLh3HRueYPT6bqsUfsg==
+X-CSE-MsgGUID: mDbUcwPQQpKuQnN9EUi9/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="38401891"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="38401891"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:10:05 -0700
+X-CSE-ConnectionGUID: naf9haNXQPO06o6L0lx9qA==
+X-CSE-MsgGUID: +opM6NSyR0mIM2LLbhLAdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="79122716"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa005.fm.intel.com with ESMTP; 04 Oct 2024 05:49:16 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1swhkA-0001cy-2U;
- Fri, 04 Oct 2024 12:49:14 +0000
-Date: Fri, 4 Oct 2024 20:48:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v3 03/12] drm/i915/display: Use async flip when available
- for initial plane config
-Message-ID: <202410042053.DCNgBMOr-lkp@intel.com>
-References: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="75027963"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.57])
+ ([10.245.245.57])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:10:04 -0700
+Message-ID: <3e661da9-126f-429f-bcbc-897e481470da@intel.com>
+Date: Fri, 4 Oct 2024 14:10:02 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/tests: Fix the shrinker test compiler warnings.
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Nathan Chancellor <nathan@kernel.org>
+References: <20241004123922.38904-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20241004123922.38904-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,67 +70,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Maarten,
+On 04/10/2024 13:39, Thomas Hellström wrote:
+> The xe_bo_shrink_kunit test has an uninitialized value and illegal
+> integer size conversions on 32-bit. Fix.
+> 
+> Reported-by: Nathan Chancellor <nathan@kernel.org>
+> Closes: https://lore.kernel.org/20240913195649.GA61514@thelio-3990X/
+> Fixes: 5a90b60db5e6 ("drm/xe: Add a xe_bo subtest for shrinking / swapping")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/xe/tests/xe_bo.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+> index 7d3fd720478b..1562c08aaf34 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> @@ -440,7 +440,7 @@ static int shrink_test_run_device(struct xe_device *xe)
+>   	LIST_HEAD(bos);
+>   	struct xe_bo_link *link, *next;
+>   	struct sysinfo si;
+> -	size_t ram, ram_and_swap, purgeable, alloced, to_alloc, limit;
+> +	u64 ram, ram_and_swap, purgeable = 0, alloced, to_alloc, limit;
 
-kernel test robot noticed the following build errors:
+Maybe just double check that this doesn't now introduce 64b division 
+errors on 32b arch.
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.12-rc1]
-[cannot apply to next-20241004]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Assuming it doesn't,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-xe-display-Handle-stolen-bar-readout-in-the-same-way-as-lmem/20241004-000534
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241003154421.33805-4-maarten.lankhorst%40linux.intel.com
-patch subject: [PATCH v3 03/12] drm/i915/display: Use async flip when available for initial plane config
-config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20241004/202410042053.DCNgBMOr-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241004/202410042053.DCNgBMOr-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410042053.DCNgBMOr-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/skl_universal_plane.c:2814:14: error: call to undeclared function 'intel_read'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    2814 |         plane_ctl = intel_read(i915, PLANE_CTL(pipe, plane_id));
-         |                     ^
-   1 error generated.
-
-
-vim +/intel_read +2814 drivers/gpu/drm/i915/display/skl_universal_plane.c
-
-  2789	
-  2790	bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
-  2791					    const struct intel_initial_plane_config *plane_config)
-  2792	{
-  2793		struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-  2794		struct intel_plane *plane = to_intel_plane(crtc->base.primary);
-  2795		const struct intel_plane_state *plane_state =
-  2796			to_intel_plane_state(plane->base.state);
-  2797		enum plane_id plane_id = plane->id;
-  2798		enum pipe pipe = crtc->pipe;
-  2799		u32 base, plane_ctl;
-  2800	
-  2801		if (!plane_state->uapi.visible)
-  2802			return false;
-  2803	
-  2804		base = intel_plane_ggtt_offset(plane_state);
-  2805	
-  2806		/*
-  2807		 * We may have moved the surface to a different
-  2808		 * part of ggtt, make the plane aware of that.
-  2809		 */
-  2810		if (plane_config->base == base)
-  2811			return false;
-  2812	
-  2813		/* Perform an async flip to the new surface. */
-> 2814		plane_ctl = intel_read(i915, PLANE_CTL(pipe, plane_id));
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>   	unsigned int interrupted = 0, successful = 0, count = 0;
+>   	struct rnd_state prng;
+>   	u64 rand_seed;
