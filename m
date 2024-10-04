@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28584CF8840
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 18:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACCD0CF8854
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 18:24:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E42CF10EA5A;
-	Fri,  4 Oct 2024 18:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B41010EA64;
+	Fri,  4 Oct 2024 18:24:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RMU3oGa0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="h3IQtncK";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 873EC10EA5A;
- Fri,  4 Oct 2024 18:20:44 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 746CE10EA64;
+ Fri,  4 Oct 2024 18:24:06 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 2C03CA44266;
- Fri,  4 Oct 2024 18:20:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A08C9C4CECE;
- Fri,  4 Oct 2024 18:20:41 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id ADA805C0245;
+ Fri,  4 Oct 2024 18:24:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F704C4CEC6;
+ Fri,  4 Oct 2024 18:24:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1728066043;
- bh=qCUkdYZFENPx3eZTiw+UAraDYp+IYqhWq1wkRorpgGY=;
+ s=k20201202; t=1728066245;
+ bh=uaCsyk/8Q1WkDlCkvPx6grACTOhl/XaO4310uT5XGfg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RMU3oGa0KwsARgkSpaqjVdPLvhDS5EkpPYJaJvoO3xj2LKqPs08rx+TpwSiHD89xC
- agVCtln4lPqTO5eYKUlBY2Tn5leqZoT2rh+/kcC4kn3e81FVAV28huXL6ovVo0U6Su
- YKhWIGdI686BvOVbtbB5jr+dGk2E7gQi5edsEtlJG1+R2ekTG6xifTanlZdKjqeOy+
- gM/NH1xeCFCrKghkaWekBF4Q6pP2w1RGNYU6D0SsPGhHRqeqKnk7b4tOCwKfuOHpfh
- ZUhrNZf4sznq7PglcDA3qo5fCSdVFnmseOrcXtBmKmhEWx1q2CHxFwtVVt4/dBRv49
- 2FhHtni7TAraQ==
+ b=h3IQtncKq73pc7NF//GpfBtCmGOPVwjlRo8dj7/3ocRodBr1bRkoZNxrF059wC1zL
+ tj3YeQViQJP9s0+0qceWIE91ScsVTU49zHeOKSoL+j4CwNA5essHaa0e9585/icKAP
+ 6FALrS754z7byHHbplcXwUSeBI/VODpXe1fRgpHSD7ykJZDMkXF7mWviwKGSCR60jH
+ S2wnG+DVz6JvhWxiRANJ02WHNtCNyhuWaDI/bd/xDYl5mWI+nHNVFiK7SyLc/NXkk3
+ ss7vloLlwB0VR9JzgztWVSyOYHJonhqCNHrG1UCCMdzgs0LZNMl1QD/SWSSPbaB5cV
+ io4OSmxiy+L2A==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -41,17 +41,17 @@ Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
  daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.11 71/76] drm/xe/oa: Fix overflow in oa batch buffer
-Date: Fri,  4 Oct 2024 14:17:28 -0400
-Message-ID: <20241004181828.3669209-71-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.10 65/70] drm/xe/oa: Fix overflow in oa batch buffer
+Date: Fri,  4 Oct 2024 14:21:03 -0400
+Message-ID: <20241004182200.3670903-65-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241004181828.3669209-1-sashal@kernel.org>
-References: <20241004181828.3669209-1-sashal@kernel.org>
+In-Reply-To: <20241004182200.3670903-1-sashal@kernel.org>
+References: <20241004182200.3670903-1-sashal@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.11.2
+X-stable-base: Linux 6.10.13
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -103,7 +103,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index a13e0b3a169ed..ef777dbdf4ecc 100644
+index 541361caff3b0..5cae7ecfc431e 100644
 --- a/drivers/gpu/drm/xe/xe_bb.c
 +++ b/drivers/gpu/drm/xe/xe_bb.c
 @@ -65,7 +65,8 @@ __xe_bb_create_job(struct xe_exec_queue *q, struct xe_bb *bb, u64 *addr)
