@@ -4,59 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC1FCF8840
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 18:57:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF5CCF8857
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 19:34:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E3F810EA86;
-	Fri,  4 Oct 2024 18:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8770C10EAA6;
+	Fri,  4 Oct 2024 19:34:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JFGAj1bj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IPc7sDX3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5006010EA86
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 18:57:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CAA710EAA6
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 19:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728068268; x=1759604268;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=VxSHfkSMVgWPzCdFCYXjN4bUdn+ZijL0/BJF0/9Dpc0=;
- b=JFGAj1bjUlvnMeiXvhrjdpGLTs6/c+b/Wo9YQGh3jViQgudrm52A/Tg6
- xmcASEn0Bzp90Hs2plgVcXOKLCtphHA1diBzK1q7Wm1Cyt8qYZFENUdv/
- cs3p7igAD7jSoab0WbSk6ziflVeFIEbIXpxqL/xgc0Hfgcq+V3EytPQJE
- Wu9Ttc5z/fmrDKjBM+BeO2qELl/HTxiccYjOsGfwr+yZLIlKHIAK6JRjB
- UrhfJ5dC4k/4hOq+LU8GnCsQ/nTMxoBbH9z5C4kNJby3dyzKWZiOk3FJR
- zJMkr+xvWnHI65y44jcLxs/1kKlCbSqGhLAWwK7BcbptRhz8yya8lbY+/ g==;
-X-CSE-ConnectionGUID: HTbVc7kSTeml1smScpR6JA==
-X-CSE-MsgGUID: R5zR0kmmT5OG1LvczHvN7A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="37869079"
-X-IronPort-AV: E=Sophos;i="6.11,178,1725346800"; d="scan'208";a="37869079"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 11:57:48 -0700
-X-CSE-ConnectionGUID: sUwCWvGsSEWFBxHtRhUJ8A==
-X-CSE-MsgGUID: yzGv7075SmyypnkB/ZPSTQ==
+ t=1728070470; x=1759606470;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9la51f769TCD9YVS/Ll9VbE2cRWDtaA4E4lH68Y3RoM=;
+ b=IPc7sDX3+QMIcxgAbKPxAzGv0qasAwOxg2jXAQuobJuFKJwnuTUzYrgV
+ CXwLukxBHjjD7Ni7BX267hwyGZ86tGDl6DZ3CpZJfKUoC0QqU3TZNKWAy
+ imIac+BZuRikN0JAyzpzEU/3J35tT10IklS1Qc7Aji2UAvdYlTX6r0GId
+ ch/0tjtqoLDLK+WXOBJjFHFs59h3eEORVmt7AIef/rKNQMU13LiTELCF4
+ 0XFDwOeNSFraRTAF4M9I3fH7TcGDFna0RdWk5nakQvBxE6MQSgwkrEGrm
+ cIvSrSb6/G/ZQBagT2Ewzvq5vUEb+3oCVdstEAa/l+B4EWKJGdf23P4Sd w==;
+X-CSE-ConnectionGUID: 8rPeSSreSRiEQS7J9VQcEA==
+X-CSE-MsgGUID: nDJmB1CFQv2O2rVobGL3SQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="30188054"
+X-IronPort-AV: E=Sophos;i="6.11,178,1725346800"; d="scan'208";a="30188054"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 12:34:30 -0700
+X-CSE-ConnectionGUID: 3O8nrk0UQDqRCPU6rjHraA==
+X-CSE-MsgGUID: ZldujRgxT1KE9h2QMpuUxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,178,1725346800"; d="scan'208";a="74624166"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa010.jf.intel.com with ESMTP; 04 Oct 2024 11:57:46 -0700
-Received: from [10.245.49.38] (mwajdecz-MOBL.ger.corp.intel.com [10.245.49.38])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id C98AE32EB9;
- Fri,  4 Oct 2024 19:57:45 +0100 (IST)
-Message-ID: <959415a1-59ef-41c2-a245-a16170a5898e@intel.com>
-Date: Fri, 4 Oct 2024 20:57:45 +0200
+X-IronPort-AV: E=Sophos;i="6.11,178,1725346800"; d="scan'208";a="105650173"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by orviesa002.jf.intel.com with ESMTP; 04 Oct 2024 12:34:29 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v28 0/6] drm/xe/guc: Add GuC based register capture for error
+ capture
+Date: Fri,  4 Oct 2024 12:34:22 -0700
+Message-Id: <20241004193428.3311145-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] PF: Add functions to save and restore VF
- configuration blob
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20240919171528.1451-1-michal.wajdeczko@intel.com>
- <w7zdjqviauh2ox2xzpsg2ebqchvudzmlyji54x4p7moys7fqem@bru6lh4yj3jb>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <w7zdjqviauh2ox2xzpsg2ebqchvudzmlyji54x4p7moys7fqem@bru6lh4yj3jb>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,52 +65,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Port GuC based register capture for error capture from i915 to Xe.
 
+There are 3 parts inside:
+. Prepare for capture registers
+    There is a bo create at guc ads init time, that is very early
+    and engine map is not ready, make it hard to calculate the
+    capture buffer size, new function created for worst case size
+    caluation. Other than that, this part basically follows the i915
+    design.
+. Process capture notification message
+    Basically follows i915 design
+. Sysfs command process.
+    Xe switched to devcoredump, adopted command line process with
+    captured node list.
 
-On 03.10.2024 13:05, Michał Winiarski wrote:
-> On Thu, Sep 19, 2024 at 07:15:23PM GMT, Michal Wajdeczko wrote:
->> We already have support to save and restore GuC VF state, but that
->> will only work when the target VF configuration (provisioning) will
->> be exactly the same as the source VF configuration. To help with
->> assuring that both configurations match, allow to encode whole VF
->> configuration that can be saved as blob and restored later.
->>
->> In the future we may want to use such captured configuration blobs
->> as templates to make sure we provision VFs with exactly the same
->> configuration that was previously tested or recommended, or when
->> debugfs knobs are not be available.
-> 
-> If we end up using this for that purpose - we will need to turn the
-> ordering of fields in the blob into an ABI (or at least version it).
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 
-I guess we only need to say that this blob version uses KLVs, no need to
-enforce any explicit order of the KLVs; and any version data may/should
-be placed in the additional header maintained by the real exporter ;)
+Changes from prior revs:
+ v28:-  Remove not required pointer check
+        Move function name and pointer check change from patch 6 to
+        patch 5
+ v27:-  When devcoredump free, only put the matched node and nodes
+        with same guc id. As the design will reuse outlist, there is
+        no risk of node leaks.
+ v26:-  Rebase with drm-tip
+ v25:-  Switch back to drm managed alloc
+ v24:-  When devcoredump free, put all capture nodes
+ v23:-  Switched to devm_kzalloc vs drmm_kzalloc
+        Add null pointer check for node prealloc and snapshot print
+        Updated register list numer estimate conditions
+        Updated max registister number calculation
+ v22:-  Add null pointer check inside manual capture
+        Release all matched/locked node on devcoredump free
+ v21:-  Retest of v20
+ v20:-  Rebase with drm-tip
+ v19:-  Avoid remove of locked node
+ v18:-  Bug fix of steering needed bit not set for steering register
+        Move SFC_DONE register list insertion to patch 1.
+        Buf fix of missing engine class to guc class conversion
+        Split plumbing GuC capture patch into 2 patches
+        Add matched_node pointer to remember the node, reduce search
+        for node rate
+ v17:-  Update steering register condition check to check if current gt has
+        rcs/ccs engine.
+        Add additional null check
+        Rollback patch #3, take back RB
+ v16:-  Switch to single list of capture register define, remove MMIO registers
+        from snapshot structure.
+        Seperate register capture list for legacy GPUs
+        Rewrite 64bit register support method, add field to indicate hi/low
+        dword of 64 bit or a single 32 bit register
+        Update the wrost size calculation method
+ v15:-  Optimized guc log size code, remove the unnecessary init structure.
+        Fix a rebase line number alignment error
+ v14:-  Fixed ring buffer wrap around offset issue
+ v13:-  Move guc_mmio_reg structure define to guc_capture_abi.h
+        Remove duplicated crash/debug/capture unit check
+        Remove unnecessary guc_capture_data_extracted
+        Update u32 align check in guc_capture_log_remove_bytes
+ v12:-  Rewrite guc log size init from runtime to compile time implementation.
+        Change log buffer flush to file from structure bitfield to genmask.
+        Change the capture log data copy from u32 copy to size copy
+        There are 3 types of engine class refrenced in this series, hw engine
+        class, GuC class and GuC capture class, update function parameter type
+        to enum for easy to read.
+        Update macro names to follow GuC interface specification.
+ v11:-  Fixed a bug of missing captured check on register snapshot pre-capture
+        Fixed kernel-doc warnings
+ v10:-  Resync with updated job timed out follow
+        Add pre-capture by read from hw engine if GuC capture data is not
+        ready, the pre-captured data will be refereshed if GuC capture is
+        ready at later time.
+        Add xe_guc_capture_is_ready_for to check if GuC capture is ready
+        for a job.
+        Re-orgnize some header files to xe abi folder
+        Reduce some meesage level from warn/info to debug
+        Remove duplicated enum of GuC log type.
+  v9:-  Merged snapshot register list into capture register lists
+        Optimized devcoredump timing to take snapshot after guc reset
+        Add global and engine class registers into capture list
+        Fixed bug of incorrect matching guc class id with guc capture class id
+  v8:-  Reorgnize the order of patches
+        Change the capture size check from worst min size to worst size
+        Replace the kernel alloc with drm managed alloc
+        Replace the memcpy with xe_map_memcpy_from
+        Free GuC capture outlist as part of xe_devcoredump_free
+  v7:-  Kconfig CONFIG_DRM_XE_CAPTURE_ERROR removed
+  v6:-  Change hardcoded register snapshot fill to follow mapping tables
+        When capture is empty, take snapshot from engine
+  v5:-  Split dss helper code out as an standalone patch
+        Remove old platform registers definition.
+        Split register map table to 32 and 64bit each
+  v4:-  Move register map table to xe_hw_engine.c
+  v3:-  Remove condition compilation in code
+  v2:-  Split into multiple chunks
 
-> 
-> For the series:
-> Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
+Zhanjun Dong (6):
+  drm/xe/guc: Prepare GuC register list and update ADS size for error
+    capture
+  drm/xe/guc: Add XE_LP steered register lists
+  drm/xe/guc: Add capture size check in GuC log buffer
+  drm/xe/guc: Extract GuC error capture lists
+  drm/xe/guc: Plumb GuC-capture into dev coredump
+  drm/xe/guc: Save manual engine capture into capture list
 
-Thanks!
+ drivers/gpu/drm/xe/Makefile               |    1 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h  |    8 +
+ drivers/gpu/drm/xe/abi/guc_capture_abi.h  |  186 ++
+ drivers/gpu/drm/xe/abi/guc_log_abi.h      |   75 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h      |    2 +
+ drivers/gpu/drm/xe/xe_devcoredump.c       |   20 +-
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |    8 +
+ drivers/gpu/drm/xe/xe_gt_mcr.c            |   13 +
+ drivers/gpu/drm/xe/xe_gt_mcr.h            |    1 +
+ drivers/gpu/drm/xe/xe_guc.c               |    5 +
+ drivers/gpu/drm/xe/xe_guc.h               |    5 +
+ drivers/gpu/drm/xe/xe_guc_ads.c           |  157 +-
+ drivers/gpu/drm/xe/xe_guc_ads_types.h     |    2 +
+ drivers/gpu/drm/xe/xe_guc_capture.c       | 1972 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_capture.h       |   61 +
+ drivers/gpu/drm/xe/xe_guc_capture_types.h |   68 +
+ drivers/gpu/drm/xe/xe_guc_ct.c            |    2 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h          |   26 +-
+ drivers/gpu/drm/xe/xe_guc_log.c           |  102 ++
+ drivers/gpu/drm/xe/xe_guc_log.h           |   10 +-
+ drivers/gpu/drm/xe/xe_guc_log_types.h     |    7 +
+ drivers/gpu/drm/xe/xe_guc_submit.c        |   83 +-
+ drivers/gpu/drm/xe/xe_guc_submit.h        |    2 +
+ drivers/gpu/drm/xe/xe_guc_types.h         |    2 +
+ drivers/gpu/drm/xe/xe_hw_engine.c         |  260 +--
+ drivers/gpu/drm/xe/xe_hw_engine.h         |    6 +-
+ drivers/gpu/drm/xe/xe_hw_engine_types.h   |   66 +-
+ drivers/gpu/drm/xe/xe_lrc.c               |   18 -
+ drivers/gpu/drm/xe/xe_lrc.h               |   19 +-
+ 29 files changed, 2807 insertions(+), 380 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/abi/guc_capture_abi.h
+ create mode 100644 drivers/gpu/drm/xe/abi/guc_log_abi.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_types.h
 
-> 
-> -Michał
-> 
->>
->> Michal Wajdeczko (5):
->>   drm/xe/guc: Add yet another helper macro for threshold
->>   drm/xe/pf: Update success code of pf_validate_vf_config()
->>   drm/xe/pf: Allow to encode subset of VF configuration KLVs
->>   drm/xe/pf: Add functions to save and restore VF configuration blob
->>   drm/xe/pf: Allow to save and restore VF config blob from debugfs
->>
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 204 ++++++++++++++++--
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h    |   4 +
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  78 +++++++
->>  .../gpu/drm/xe/xe_guc_klv_thresholds_set.h    |   7 +
->>  4 files changed, 279 insertions(+), 14 deletions(-)
->>
->> -- 
->> 2.43.0
->>
+-- 
+2.34.1
 
