@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3171FCFA77A
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:21:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D9B7CFA779
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:31:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0242710E9F5;
-	Fri,  4 Oct 2024 13:21:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326C910EA00;
+	Fri,  4 Oct 2024 13:31:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="My4sbeP/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cv+AueeE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20EC410E9F5
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 13:21:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1569F10E9FA;
+ Fri,  4 Oct 2024 13:31:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728048061; x=1759584061;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mTxABbGcd8RR42zXqOQUALxz6m68OtWtHHdSKEX2qH8=;
- b=My4sbeP/ButdARVr/jCtAwAHgwiLluz7g436+/7Oekw9o3fm0rBbnM/W
- 7fvgMxuexRZX9wXv+vl+brpZJ2xcXwxsco6dAGwoXwWUmXzylURCZ0q0d
- tPPAcJ1QieWpABlSZhZ+SDOu2OD4cOWpOx0CcGbRVJN+glPMgxIZQ5eRA
- 7juytI1yIgSdLCyNfb7/BeuUCNqJRXQKWq+M26V8kDSMofMhmrPkXljU3
- r0RtbuPXZFtIFhInodMLUfleQoRirB8/DEaUnv+YvwJe+wAWtjzs/E6QZ
- aBzBpegpJE9VBSt7j2WBnKULsUEdh1/qPt/IwbDafF2zi8dCW+eKUdAPZ A==;
-X-CSE-ConnectionGUID: SaYpfw2HRHW6H6fyMQNE4g==
-X-CSE-MsgGUID: hStJclCXRIes3ICgNYybKg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="38403002"
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="38403002"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 06:21:01 -0700
-X-CSE-ConnectionGUID: kijv3OKqRhi03nGoMWu9sg==
-X-CSE-MsgGUID: lYTf2lnsRVOlZfKC4auMcA==
+ t=1728048716; x=1759584716;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=LipIKJHXywUFaT6Rr6fuW2hVVH4tKy/aeS0F5KcrTXg=;
+ b=Cv+AueeEuKnFZh5G8sJybzceq+BljgOtbtPX66dQRIbwnxEo1ezZBDah
+ WXA/Iz+FUsZMh8FtwoC+MAq/+9nmGC+bCKvP+zo9DTmjVl9ta+dGYqcbz
+ G4KC9tGxYK1vdDCH4ExDM/fvoYureCs4Hq5hCbAxZcDF/+t/PSFg5cGor
+ TkY0c8RteZ8ntsWbdOea9e36m9GEHJZfX+j9QObQ59W1s/iPCrYwCIWcJ
+ EGafFnvrK4SR6wqQgiwTILA/nORejkDSmDZ9tzMQu+dkZsfSxAVn6+UhF
+ sjnfrUiRaRD/NIDKieP2hL5Xj+lOdd1o12X2kQcgRw87ofjvb/CTuNqGh g==;
+X-CSE-ConnectionGUID: o2TV9mpFSqyaPyrUWdgGTA==
+X-CSE-MsgGUID: La+dVsqXQxKBnDndsZjAJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27150468"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="27150468"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 06:30:21 -0700
+X-CSE-ConnectionGUID: IcluhS3fSAu9RiPnoDcCzg==
+X-CSE-MsgGUID: Ij+kEMolRPubbR9Jtmn+6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="75029397"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO fedora..)
- ([10.245.245.128])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 06:21:00 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH] drm/xe/tests: include linux/prandom.h as well as
- linux/random.h
-Date: Fri,  4 Oct 2024 15:20:37 +0200
-Message-ID: <20241004132037.57528-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.46.0
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="74697089"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 04 Oct 2024 06:30:20 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1swiNt-0001fo-1R;
+ Fri, 04 Oct 2024 13:30:17 +0000
+Date: Fri, 4 Oct 2024 21:30:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v3 10/12] drm/xe: Make xe_ggtt_pt_ops private
+Message-ID: <202410042102.EdHRO7JI-lkp@intel.com>
+References: <20241003154421.33805-11-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241003154421.33805-11-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,31 +71,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The linux/prandom.h file was previously included from linux/random.h
-but starting with commit
+Hi Maarten,
 
-38d1a9d296c8 ("random: Do not include <linux/prandom.h> in <linux/random.h>")
+kernel test robot noticed the following build warnings:
 
-That's no longer the case. Since we also use functions from
-<linux/random.h>, include both.
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on linus/master v6.12-rc1]
+[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip next-20241004]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/tests/xe_bo.c | 1 +
- 1 file changed, 1 insertion(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-xe-display-Handle-stolen-bar-readout-in-the-same-way-as-lmem/20241004-000534
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20241003154421.33805-11-maarten.lankhorst%40linux.intel.com
+patch subject: [PATCH v3 10/12] drm/xe: Make xe_ggtt_pt_ops private
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241004/202410042102.EdHRO7JI-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241004/202410042102.EdHRO7JI-lkp@intel.com/reproduce)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 7d3fd720478b..39cadce0881c 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -7,6 +7,7 @@
- #include <kunit/visibility.h>
- 
- #include <linux/iosys-map.h>
-+#include <linux/prandom.h>
- #include <linux/random.h>
- #include <linux/swap.h>
- 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410042102.EdHRO7JI-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/xe/xe_ggtt.c:906: warning: expecting prototype for xe_ggtt_write_pte(). Prototype was for xe_ggtt_get_encode_pte_bo_fn() instead
+
+
+vim +906 drivers/gpu/drm/xe/xe_ggtt.c
+
+   897	
+   898	/**
+   899	 * xe_ggtt_write_pte - Write a PTE to the GGTT
+   900	 * @ggtt: &xe_ggtt
+   901	 * @offset: the offset for which the mapping should be written.
+   902	 *
+   903	 * Used by display for DPT and GGTT paths to enccode BO's.
+   904	 */
+   905	xe_ggtt_pte_encode_bo_fn xe_ggtt_get_encode_pte_bo_fn(struct xe_ggtt *ggtt)
+ > 906	{
+
 -- 
-2.46.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
