@@ -4,61 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF5FDCFA765
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 10:44:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 092E0CFA763
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 10:50:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD07310E27D;
-	Fri,  4 Oct 2024 10:44:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B20CD10E29C;
+	Fri,  4 Oct 2024 10:50:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="F4ZxACCd";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="I2WbXEph";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GdOo/AxX";
 	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 032DE10E27D;
- Fri,  4 Oct 2024 10:44:51 +0000 (UTC)
-Date: Fri, 4 Oct 2024 12:44:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1728038689;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=o6B6gvnrO8I7TCnILAWRKtXJUiUCLDNl6LRrHw3VzyU=;
- b=F4ZxACCdhigUyQXGvF5x65CUAqM0ah+5DOr4Ua7bnsTLMPQ4UAMoBLOgftmVNGQey1Agxx
- zg9GLXKYt0tpwgoGxc7RqLDlJm/2egF2+DFSdsA7YZbqzmU6hVSJxAfug2c29M6921ErZE
- MKwlkUCo8BY6D/s4j7EPzGFKZi7nAXAeZgryG/gTrsXaYowOCvWI/C0LDKOKuUrg/JMNxT
- 2/pmSK70WFl/2I/NpRb58+TuNhNmm1T44QzaxRUkw3jI+CcYvP35pn+ApCebsMS1NRC2hf
- M3cEbKJNawYpDVOq8CkZhdIUKd5iqBGK2ZS+hrlcvZ5ZABW6U5w5GASEq+9XWg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1728038689;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=o6B6gvnrO8I7TCnILAWRKtXJUiUCLDNl6LRrHw3VzyU=;
- b=I2WbXEphzYQsbWkKjfmT5XHWzRhRB6yHavx0Ex4pJyHBWxr/IHXHoq1/kpQA3SamlVD1ox
- o9VpI94onxZhY/DQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH v3 0/8] drm/i915: PREEMPT_RT related fixups.
-Message-ID: <20241004104448.as7iuUly@linutronix.de>
-References: <20240628130601.1772849-1-bigeasy@linutronix.de>
- <20241002162543.TKbd-8g0@linutronix.de>
- <Zv17oKlIImyfg_KI@intel.com>
- <20241004064951.XLw7TFbS@linutronix.de>
- <Zv-n2h0gsquKOvXu@intel.com>
- <20241004084525.333iWV-t@linutronix.de>
- <Zv-wTDujdFuH_wIQ@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C805B10E25E;
+ Fri,  4 Oct 2024 10:50:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728039046; x=1759575046;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=r6rL3L5eTw5B0T8Ujpsb9LXOrepEYcMhL1hmLv1gie4=;
+ b=GdOo/AxX9nSQCoCbtRCTn2kaMOMfV2VhtEtsGwnkSog9SqSMzVqgKJhT
+ 3oChd6aeh8yqfU/4w1zlEka5kU535/3+XPPkFvkLVFl9I1XTmvAjwgWoz
+ crGH6IP1bzKhNUpgJDOk+Bbzh3yzEf2X7MUK+8H1Tc6tefFOPcL5cpfnp
+ 2s5+tC/mdV6J3+rwfff9SdVawkmurkZ8yZJLlEtErN3oFjkUeg0SDYj7y
+ D40KeaAvh3mvyFgwpwSR54k46CzLAMVBCSNe1G+BDQ06EhGw9X1zmSPTZ
+ +MB4432doI0ld/hpLRzw87faAfCKkfpwK/7RGb3yQ+3YFnkW3zfsgqS6n w==;
+X-CSE-ConnectionGUID: cjN7ShglSKiAV6+iOUa3Cw==
+X-CSE-MsgGUID: NyS7RMmeRD+OPGEzNTvF9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27141834"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="27141834"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 03:50:44 -0700
+X-CSE-ConnectionGUID: dGyipNc9TmmqCR0NFbAMCQ==
+X-CSE-MsgGUID: 8hET29gKTpmKLsqOju4K6Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="79438667"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.128])
+ ([10.245.245.128])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 03:50:41 -0700
+Message-ID: <c8f3278c442de947a167876a565c2c96c6264cc3.camel@linux.intel.com>
+Subject: Re: [PATCH RESEND] locking/ww_mutex: Adjust to lockdep nest_lock
+ requirements
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: intel-xe@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>, Will
+ Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng
+ <boqun.feng@gmail.com>, Maarten Lankhorst <maarten@lankhorst.se>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org
+Date: Fri, 04 Oct 2024 12:50:27 +0200
+In-Reply-To: <20241004101601.GQ18071@noisy.programming.kicks-ass.net>
+References: <20241002125611.361001-1-thomas.hellstrom@linux.intel.com>
+ <20241004101601.GQ18071@noisy.programming.kicks-ass.net>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <Zv-wTDujdFuH_wIQ@intel.com>
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,50 +77,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2024-10-04 12:07:24 [+0300], Ville Syrj=C3=A4l=C3=A4 wrote:
-> > what happens if this gets delayed? Just flicker or worse?
->=20
-> In the best best case it just gets you a corrupted frame
-> of some sort, in the worst case the hardware falls over.
-> Depends on what kind of update is happening, and what
-> platform we're dealing with.
->=20
-> We've tried to mitigate some of the worst issues by
-> trying to order the register writes more carefully,
-> but some of the ordering constraints (eg. scalers vs.
-> DDB) are more or less in conflict with each other
-> so making it 100% safe seems impossible.
-
-So based on what you are saying, this _has_ to happen with disabled
-interrupts.
-
+On Fri, 2024-10-04 at 12:16 +0200, Peter Zijlstra wrote:
+> On Wed, Oct 02, 2024 at 02:56:11PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > When using mutex_acquire_nest() with a nest_lock, lockdep refcounts
+> > the
+> > number of acquired lockdep_maps of mutexes of the same class, and
+> > also
+> > keeps a pointer to the first acquired lockdep_map of a class. That
+> > pointer
+> > is then used for various comparison-, printing- and checking
+> > purposes,
+> > but there is no mechanism to actively ensure that lockdep_map stays
+> > in
+> > memory. Instead, a warning is printed if the lockdep_map is freed
+> > and
+> > there are still held locks of the same lock class, even if the
+> > lockdep_map
+> > itself has been released.
 > >=20
-> > Is this something that affects all i915 based HW or only old ones? As
-> > far as I remember, there is a register lock which is only required on
-> > older HW.
+> > In the context of WW/WD transactions that means that if a user
+> > unlocks
+> > and frees a ww_mutex from within an ongoing ww transaction, and
+> > that
+> > mutex happens to be the first ww_mutex grabbed in the transaction,
+> > such a warning is printed and there might be a risk of a UAF.
 >=20
-> Currently it affects everything. There is a new double buffer
-> latching inhibit bit on some of the very latest platforms that
-> we could probably use to make things more safe if vblank evasion
-> fails, but we've not hooked that up. But vblank evasion would still
-> be necessary at least for cursor updates since those are
-> done as mailbox style updates (ie. multiple updates per frame)
-> and there is no way to guarantee forward progress without vblank
-> evasion.
+> I'm assuming you actually hit this?
 
-This sounds sad. Especially since the delay is at 100us.
+Yes, but there was a change merged to drm_exec, a main ww_mutex user
+that makes it less likely to happen. (Unlocking in reverse unless the
+user explicitly requests an unlock which will be a more common use-case
+moving forward).
 
-> Register access locks aren't relevant here, and most
-> register accesses in the vblank evade critical section
-> are lockless anyway. The locks were too expensive and we
-> determined that we an safely use lockless accesses here.
+>=20
+> Anyway, work around seems sane enough, thanks!
 
-The register lock question was only an example of something that is not
-required on newish hardware. Also disabling interrupts within in patch
-1, 2 would require to make uncore:lock a raw_spinlock_t since it is
-acquire there.
+Thanks,
+Thomas
 
-What do suggest as in how do we move forward? In terms of testing, I
-have here an i7 sandy bridge with embedded GPU.
 
-Sebastian
