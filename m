@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADA8DCF8854
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 17:55:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28584CF8840
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 18:20:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 733C010EA53;
-	Fri,  4 Oct 2024 17:55:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E42CF10EA5A;
+	Fri,  4 Oct 2024 18:20:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="RZ83lulQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RMU3oGa0";
 	dkim-atps=neutral
-Received: from msa.smtpout.orange.fr (smtp-72.smtpout.orange.fr [80.12.242.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C0B10EA51;
- Fri,  4 Oct 2024 17:55:50 +0000 (UTC)
-Received: from [192.168.1.37] ([90.11.132.44]) by smtp.orange.fr with ESMTPA
- id wmVksyfpFTdlvwmVlsjM8t; Fri, 04 Oct 2024 19:54:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1728064487;
- bh=5/9qc1wj5VBrWaCuWdDjCcwU0H/Qapv4qLyWjHhEANA=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=RZ83lulQI7hSHE6j6QNSb9hXP5VJ601NGIFBkt464weGSSU9KICkhe71UYPaC4PVz
- yXXL3vPRu/5IfDEBnVB1a8q7wDeeTI6wShTvP/znJY1fBKkA6dRDwzFLfmjptl/kR6
- 25auBgnY/yow3MOvMOHf8V+x+AKcdY/g3b0B/oy80x3Id6DJuk1kplLVSswCF+r+Rn
- KqCq3q3L67euPpj8Tp581uRR81sQyFU5bBOaz1Px0jvYqU+x+0FjZoxgzI4o4qtRF2
- O3ELFtYJNX9SM+8g/glhoDVY8tjT/VVGMcVM4X4L6gkJLvVWKaWowXyBivqr2omwIM
- L66FEyH+4eFsw==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 04 Oct 2024 19:54:47 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <6673435f-250a-4fb7-9843-20f050e85c7c@wanadoo.fr>
-Date: Fri, 4 Oct 2024 19:54:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: Remove kstrdup_const() and
- kfree_const() usage
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 873EC10EA5A;
+ Fri,  4 Oct 2024 18:20:44 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 2C03CA44266;
+ Fri,  4 Oct 2024 18:20:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A08C9C4CECE;
+ Fri,  4 Oct 2024 18:20:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1728066043;
+ bh=qCUkdYZFENPx3eZTiw+UAraDYp+IYqhWq1wkRorpgGY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=RMU3oGa0KwsARgkSpaqjVdPLvhDS5EkpPYJaJvoO3xj2LKqPs08rx+TpwSiHD89xC
+ agVCtln4lPqTO5eYKUlBY2Tn5leqZoT2rh+/kcC4kn3e81FVAV28huXL6ovVo0U6Su
+ YKhWIGdI686BvOVbtbB5jr+dGk2E7gQi5edsEtlJG1+R2ekTG6xifTanlZdKjqeOy+
+ gM/NH1xeCFCrKghkaWekBF4Q6pP2w1RGNYU6D0SsPGhHRqeqKnk7b4tOCwKfuOHpfh
+ ZUhrNZf4sznq7PglcDA3qo5fCSdVFnmseOrcXtBmKmhEWx1q2CHxFwtVVt4/dBRv49
+ 2FhHtni7TAraQ==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-References: <f82be2ee3ac7d18dd9982b5368a88a5bf2aeb777.1727977199.git.christophe.jaillet@wanadoo.fr>
- <87h69srz1q.fsf@intel.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <87h69srz1q.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: [PATCH AUTOSEL 6.11 71/76] drm/xe/oa: Fix overflow in oa batch buffer
+Date: Fri,  4 Oct 2024 14:17:28 -0400
+Message-ID: <20241004181828.3669209-71-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241004181828.3669209-1-sashal@kernel.org>
+References: <20241004181828.3669209-1-sashal@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.11.2
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,143 +67,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Le 04/10/2024 à 11:35, Jani Nikula a écrit :
-> On Thu, 03 Oct 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
->> kstrdup_const() and kfree_const() can be confusing in code built as a
->> module. In such a case, it does not do what one could expect from the name
->> of the functions.
->>
->> The code is not wrong by itself, but in such a case, it is equivalent to
->> kstrdup() and kfree().
->>
->> So, keep thinks simple and straightforward.
->>
->> This reverts commit 379b63e7e682 ("drm/i915/display: Save a few bytes of
->> memory in intel_backlight_device_register()")
-> 
-> Sorry, I guess I'm confused here. Or I just didn't read the commit
-> message to [1] properly. Or both.
-> 
-> So the whole point of [1] was that the _const versions can be confusing
-> if i915 is builtin? But not wrong?
+From: José Roberto de Souza <jose.souza@intel.com>
 
-I'll try to explain the whole story and (try to) be clearer.
+[ Upstream commit 6c10ba06bb1b48acce6d4d9c1e33beb9954f1788 ]
 
+By default xe_bb_create_job() appends a MI_BATCH_BUFFER_END to batch
+buffer, this is not a problem if batch buffer is only used once but
+oa reuses the batch buffer for the same metric and at each call
+it appends a MI_BATCH_BUFFER_END, printing the warning below and then
+overflowing.
 
-[2] the intent of this initial patch was a micro-optimization which was 
-expected to save a few bytes of memory. The naming of the function 
-looked promising. However kstrdup_const() only saves the allocation 
-within the rodata section of the kernel [5,6]. The mechanism does not 
-work for code built as module.
+[  381.072016] ------------[ cut here ]------------
+[  381.072019] xe 0000:00:02.0: [drm] Assertion `bb->len * 4 + bb_prefetch(q->gt) <= size` failed!
+               platform: LUNARLAKE subplatform: 1
+               graphics: Xe2_LPG / Xe2_HPG 20.04 step B0
+               media: Xe2_LPM / Xe2_HPM 20.00 step B0
+               tile: 0 VRAM 0 B
+               GT: 0 type 1
 
-This patch *is not* broken by itself, it is just pointless most of the 
-time. So keeping it as-is is just fine, from my point of view.
+So here checking if batch buffer already have MI_BATCH_BUFFER_END if
+not append it.
 
-If built as a module, kstrdup_const() is just a plain kstrdup() and 
-kfree_const() is just kfree().
+v2:
+- simply fix, suggestion from Ashutosh
 
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240912153842.35813-1-jose.souza@intel.com
+(cherry picked from commit 9ba0e0f30ca42a98af3689460063edfb6315718a)
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/xe/xe_bb.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-
-[3] was a variation that tried to avoid the allocation in all cases, 
-should it be built as a module or not.
-Being a micro-optimization of a slow path, your argument of keeping 
-things simple is just fine for me.
-
-
-
-[4] just revert [2].
-[2] was not broken, so [4] does not fix anything. It just makes things 
-simpler and as before.
-
-
-So the whole point of [1,3] was that the _const versions can be 
-confusing if i915 is *NOT* builtin.
-But it *is* not wrong, just likely useless in such a case.
-
-So, from my point of view, keeping [2] as is, or applying [3] or [4] on 
-top of it does not change things much, and each solution is correct.
-
-
-
-The idea behind removing some usage of _const() function in modules is 
-related to the patch proposal [7] and more precisely the response of 
-Christoph Hellwig [8]. The patch [7] will not be applied because it 
-breaks things.
-So, should this API be removed one day, or at least removed for modules, 
-the more preparation work is already done (up to now: 4,9,10] the better 
-it is.
-
-CJ
-
-
-
-[2]: 379b63e7e682 ("drm/i915/display: Save a few bytes of memory in 
-intel_backlight_device_register()")
-
-[3]: 
-https://lore.kernel.org/all/3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr/
-
-[4]: 
-https://lore.kernel.org/all/f82be2ee3ac7d18dd9982b5368a88a5bf2aeb777.1727977199.git.christophe.jaillet@wanadoo.fr/
-
-[5]: https://elixir.bootlin.com/linux/v6.12-rc1/source/mm/util.c#L84
-[6]: 
-https://elixir.bootlin.com/linux/v6.12-rc1/source/include/asm-generic/sections.h#L177
-
-[7]: 
-https://lore.kernel.org/all/20240924050937.697118-1-senozhatsky@chromium.org/
-[8]: https://lore.kernel.org/all/ZvJfhDrv-eArtU8Y@infradead.org/
-
-[9]: 
-https://lore.kernel.org/all/63ac20f64234b7c9ea87a7fa9baf41e8255852f7.1727374631.git.christophe.jaillet@wanadoo.fr/
-[10]: 
-https://lore.kernel.org/all/06630f9ec3e153d0e7773b8d97a17e7c53e0d606.1727375615.git.christophe.jaillet@wanadoo.fr/
-
-> 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://lore.kernel.org/r/3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr
-> 
-> 
-> 
->>
->> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
->> ---
->>   drivers/gpu/drm/i915/display/intel_backlight.c | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
->> index 9e05745d797d..3f81a726cc7d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
->> @@ -949,7 +949,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
->>   	else
->>   		props.power = BACKLIGHT_POWER_OFF;
->>   
->> -	name = kstrdup_const("intel_backlight", GFP_KERNEL);
->> +	name = kstrdup("intel_backlight", GFP_KERNEL);
->>   	if (!name)
->>   		return -ENOMEM;
->>   
->> @@ -963,7 +963,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
->>   		 * compatibility. Use unique names for subsequent backlight devices as a
->>   		 * fallback when the default name already exists.
->>   		 */
->> -		kfree_const(name);
->> +		kfree(name);
->>   		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
->>   				 i915->drm.primary->index, connector->base.name);
->>   		if (!name)
->> @@ -987,7 +987,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
->>   		    connector->base.base.id, connector->base.name, name);
->>   
->>   out:
->> -	kfree_const(name);
->> +	kfree(name);
->>   
->>   	return ret;
->>   }
-> 
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index a13e0b3a169ed..ef777dbdf4ecc 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -65,7 +65,8 @@ __xe_bb_create_job(struct xe_exec_queue *q, struct xe_bb *bb, u64 *addr)
+ {
+ 	u32 size = drm_suballoc_size(bb->bo);
+ 
+-	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
++	if (bb->len == 0 || bb->cs[bb->len - 1] != MI_BATCH_BUFFER_END)
++		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 
+ 	xe_gt_assert(q->gt, bb->len * 4 + bb_prefetch(q->gt) <= size);
+ 
+-- 
+2.43.0
 
