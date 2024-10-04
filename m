@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47574CFA779
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06993CFA77E
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Oct 2024 13:46:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 100F010EA09;
-	Fri,  4 Oct 2024 13:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAC7F10E171;
+	Fri,  4 Oct 2024 13:46:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="guCYABlT";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="YFV4lxKL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70EEF10E171
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 13:45:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728049523; x=1759585523;
- h=date:from:to:cc:subject:message-id;
- bh=tOhMkZsLggA/wY4kEn7bPdaVt2zC5zTfcbh8rj0HApE=;
- b=guCYABlTPcBo567+ArxQMYHws2Amf9+YK66nHdMF2JFsgg9djFsMiSuB
- WFR9qRcJiZd1Msm7U/2xOdc6kx35lxlE8BqKq8Zg2houUZBPByLBz0p6a
- jxYMNqwso19d5ZdKI7TY0tIG3i8R2giHRFNzebpFtQAuYzm7FOv829V3X
- J40OWjUZeK7VxsUg4Ye61dXRqcPJiZIuA3B9R3pXCn8LvSYy81wpvz8Co
- QYXDoDynqqaUGoFy/WtSBLMIvsLGCblrH24Id2AaD/ZGEj1aX1ATpg8Ub
- IjZF++Zj21iBzC7FPezimKN/49KYH+s/jM6ySbXW6BvbkbjiJCTU2cwN4 Q==;
-X-CSE-ConnectionGUID: yW8mF78eSd+bq1EpnFOqwg==
-X-CSE-MsgGUID: fDflLLmJSva1lPwQLKoC1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27215217"
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="27215217"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 06:45:23 -0700
-X-CSE-ConnectionGUID: qStHp4q4QGuoYAaUd4j0Bg==
-X-CSE-MsgGUID: eF1RLcjATPi88ZXxQ+lY7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="98034719"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 04 Oct 2024 06:45:20 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1swicQ-0001iO-1Z;
- Fri, 04 Oct 2024 13:45:18 +0000
-Date: Fri, 04 Oct 2024 21:44:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- a6f3b2527375c786f2eff77d3ee8b805bcfe026d
-Message-ID: <202410042135.8YaG8LA9-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-Greylist: delayed 337 seconds by postgrey-1.36 at gabe;
+ Fri, 04 Oct 2024 09:07:46 UTC
+Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com
+ [95.215.58.186])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A62110E22B
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Oct 2024 09:07:46 +0000 (UTC)
+Message-ID: <41c46ac0-23e5-4566-8808-f0ad84a58ca0@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1728032527;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=/q7TCKWkBRa2jleMeAwpZZBWHheD5FpO/n7jqw+l1m0=;
+ b=YFV4lxKLCDKae389/8VdPDsh8vRn+pLK9YtOk17Z2dP5w1db+xISdDxHgXFQkfpjM17hVs
+ hQqv9zsx6atEPCZJDZuavDaQUhsvZ1h5oLKEJyzKQkQxuTU+ARCdX39GXq1fy2BmznpBb8
+ qQkaXngwVnTofn1S0sSBOXvuSssONo8=
+Date: Fri, 4 Oct 2024 17:01:55 +0800
+MIME-Version: 1.0
+Subject: Re: [PATCH 08/28] drm/loongson: Use video aperture helpers
+To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20240930130921.689876-1-tzimmermann@suse.de>
+ <20240930130921.689876-9-tzimmermann@suse.de>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <20240930130921.689876-9-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Fri, 04 Oct 2024 13:46:42 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,160 +62,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: a6f3b2527375c786f2eff77d3ee8b805bcfe026d  drm/xe: Fix memory leak when aborting binds
+Hi,
 
-elapsed time: 1377m
+On 2024/9/30 21:03, Thomas Zimmermann wrote:
+> DRM's aperture functions have long been implemented as helpers
+> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
+> calling the video functions directly.
 
-configs tested: 141
-configs skipped: 3
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Okay!
 
-tested configs:
-alpha                             allnoconfig    gcc-13.3.0
-alpha                             allnoconfig    gcc-14.1.0
-alpha                            allyesconfig    clang-20
-alpha                               defconfig    gcc-14.1.0
-arc                              allmodconfig    clang-20
-arc                               allnoconfig    gcc-13.2.0
-arc                               allnoconfig    gcc-14.1.0
-arc                              allyesconfig    clang-20
-arc                                 defconfig    gcc-14.1.0
-arm                              allmodconfig    clang-20
-arm                               allnoconfig    clang-20
-arm                               allnoconfig    gcc-14.1.0
-arm                              allyesconfig    clang-20
-arm                                 defconfig    gcc-14.1.0
-arm64                            allmodconfig    clang-20
-arm64                             allnoconfig    gcc-14.1.0
-arm64                               defconfig    gcc-14.1.0
-csky                              allnoconfig    gcc-14.1.0
-csky                                defconfig    gcc-14.1.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    clang-20
-hexagon                           allnoconfig    gcc-14.1.0
-hexagon                          allyesconfig    clang-20
-hexagon                             defconfig    gcc-14.1.0
-i386                             allmodconfig    clang-18
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    clang-18
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    clang-18
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20241004    clang-18
-i386        buildonly-randconfig-002-20241004    clang-18
-i386        buildonly-randconfig-002-20241004    gcc-12
-i386        buildonly-randconfig-003-20241004    clang-18
-i386        buildonly-randconfig-003-20241004    gcc-12
-i386        buildonly-randconfig-004-20241004    clang-18
-i386        buildonly-randconfig-004-20241004    gcc-12
-i386        buildonly-randconfig-005-20241004    clang-18
-i386        buildonly-randconfig-006-20241004    clang-18
-i386                                defconfig    clang-18
-i386                  randconfig-001-20241004    clang-18
-i386                  randconfig-001-20241004    gcc-12
-i386                  randconfig-002-20241004    clang-18
-i386                  randconfig-003-20241004    clang-18
-i386                  randconfig-003-20241004    gcc-12
-i386                  randconfig-004-20241004    clang-18
-i386                  randconfig-004-20241004    gcc-12
-i386                  randconfig-005-20241004    clang-18
-i386                  randconfig-005-20241004    gcc-12
-i386                  randconfig-006-20241004    clang-18
-i386                  randconfig-006-20241004    gcc-12
-i386                  randconfig-011-20241004    clang-18
-i386                  randconfig-012-20241004    clang-18
-i386                  randconfig-013-20241004    clang-18
-i386                  randconfig-014-20241004    clang-18
-i386                  randconfig-014-20241004    gcc-12
-i386                  randconfig-015-20241004    clang-18
-i386                  randconfig-016-20241004    clang-18
-loongarch                        allmodconfig    gcc-14.1.0
-loongarch                         allnoconfig    gcc-14.1.0
-loongarch                           defconfig    gcc-14.1.0
-m68k                             allmodconfig    gcc-14.1.0
-m68k                              allnoconfig    gcc-14.1.0
-m68k                             allyesconfig    gcc-14.1.0
-m68k                                defconfig    gcc-14.1.0
-microblaze                       allmodconfig    gcc-14.1.0
-microblaze                        allnoconfig    gcc-14.1.0
-microblaze                       allyesconfig    gcc-14.1.0
-microblaze                          defconfig    gcc-14.1.0
-mips                              allnoconfig    gcc-14.1.0
-nios2                             allnoconfig    gcc-14.1.0
-nios2                               defconfig    gcc-14.1.0
-openrisc                          allnoconfig    clang-20
-openrisc                          allnoconfig    gcc-14.1.0
-openrisc                         allyesconfig    gcc-14.1.0
-openrisc                            defconfig    gcc-12
-parisc                           allmodconfig    gcc-14.1.0
-parisc                            allnoconfig    clang-20
-parisc                            allnoconfig    gcc-14.1.0
-parisc                           allyesconfig    gcc-14.1.0
-parisc                              defconfig    gcc-12
-parisc64                            defconfig    gcc-14.1.0
-powerpc                          allmodconfig    gcc-14.1.0
-powerpc                           allnoconfig    clang-20
-powerpc                           allnoconfig    gcc-14.1.0
-powerpc                          allyesconfig    gcc-14.1.0
-riscv                            allmodconfig    gcc-14.1.0
-riscv                             allnoconfig    clang-20
-riscv                             allnoconfig    gcc-14.1.0
-riscv                            allyesconfig    gcc-14.1.0
-riscv                               defconfig    gcc-12
-s390                             allmodconfig    gcc-14.1.0
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.1.0
-s390                                defconfig    gcc-12
-sh                               allmodconfig    gcc-14.1.0
-sh                                allnoconfig    gcc-14.1.0
-sh                               allyesconfig    gcc-14.1.0
-sh                                  defconfig    gcc-12
-sparc                            allmodconfig    gcc-14.1.0
-sparc64                             defconfig    gcc-12
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-17
-um                                allnoconfig    clang-20
-um                               allyesconfig    clang-20
-um                                  defconfig    gcc-12
-um                             i386_defconfig    gcc-12
-um                           x86_64_defconfig    gcc-12
-x86_64                            allnoconfig    clang-18
-x86_64                           allyesconfig    clang-18
-x86_64      buildonly-randconfig-001-20241004    clang-18
-x86_64      buildonly-randconfig-002-20241004    clang-18
-x86_64      buildonly-randconfig-003-20241004    clang-18
-x86_64      buildonly-randconfig-004-20241004    clang-18
-x86_64      buildonly-randconfig-005-20241004    clang-18
-x86_64      buildonly-randconfig-006-20241004    clang-18
-x86_64                              defconfig    clang-18
-x86_64                              defconfig    gcc-11
-x86_64                                  kexec    clang-18
-x86_64                                  kexec    gcc-12
-x86_64                randconfig-001-20241004    clang-18
-x86_64                randconfig-002-20241004    clang-18
-x86_64                randconfig-003-20241004    clang-18
-x86_64                randconfig-004-20241004    clang-18
-x86_64                randconfig-005-20241004    clang-18
-x86_64                randconfig-006-20241004    clang-18
-x86_64                randconfig-011-20241004    clang-18
-x86_64                randconfig-012-20241004    clang-18
-x86_64                randconfig-013-20241004    clang-18
-x86_64                randconfig-014-20241004    clang-18
-x86_64                randconfig-015-20241004    clang-18
-x86_64                randconfig-016-20241004    clang-18
-x86_64                randconfig-071-20241004    clang-18
-x86_64                randconfig-072-20241004    clang-18
-x86_64                randconfig-073-20241004    clang-18
-x86_64                randconfig-074-20241004    clang-18
-x86_64                randconfig-075-20241004    clang-18
-x86_64                randconfig-076-20241004    clang-18
-x86_64                               rhel-8.3    gcc-12
-x86_64                          rhel-8.3-rust    clang-18
-xtensa                            allnoconfig    gcc-14.1.0
+Sometimes the aperture_remove_conflicting_devices() is more easier
+to use, as it doesn't need direct reference to the struct drm_driver.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+The third argument of aperture_remove_conflicting_devices() does not
+get used, so we can actually pass a casual string.
+
+
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Sui Jingfeng <suijingfeng@loongson.cn>
+
+
+Acked-by: Sui Jingfeng <sui.jingfeng@linux.dev>
+
+
+> ---
+>   drivers/gpu/drm/loongson/lsdc_drv.c | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/loongson/lsdc_drv.c b/drivers/gpu/drm/loongson/lsdc_drv.c
+> index a19dce35c839..b350bdcf1645 100644
+> --- a/drivers/gpu/drm/loongson/lsdc_drv.c
+> +++ b/drivers/gpu/drm/loongson/lsdc_drv.c
+> @@ -3,10 +3,10 @@
+>    * Copyright (C) 2023 Loongson Technology Corporation Limited
+>    */
+>   
+> +#include <linux/aperture.h>
+>   #include <linux/pci.h>
+>   #include <linux/vgaarb.h>
+>   
+> -#include <drm/drm_aperture.h>
+>   #include <drm/drm_atomic.h>
+>   #include <drm/drm_atomic_helper.h>
+>   #include <drm/drm_client_setup.h>
+> @@ -215,9 +215,9 @@ lsdc_create_device(struct pci_dev *pdev,
+>   		return ERR_PTR(ret);
+>   	}
+>   
+> -	ret = drm_aperture_remove_conflicting_framebuffers(ldev->vram_base,
+> -							   ldev->vram_size,
+> -							   driver);
+> +	ret = aperture_remove_conflicting_devices(ldev->vram_base,
+> +						  ldev->vram_size,
+> +						  driver->name);
+>   	if (ret) {
+>   		drm_err(ddev, "Remove firmware framebuffers failed: %d\n", ret);
+>   		return ERR_PTR(ret);
+
+-- 
+Best regards,
+Sui
+
