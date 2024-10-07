@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA054CFB443
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:42:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A847CFB442
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:42:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B6C010E1AD;
-	Mon,  7 Oct 2024 06:42:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBF5510E308;
+	Mon,  7 Oct 2024 06:42:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kok9CBdQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ur42QJp+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC96710E1AD
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 06:41:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF6A910E30C
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 06:42:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728283320; x=1759819320;
+ t=1728283322; x=1759819322;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wSent/ZpgtnOP+eS0LQIionXlAuo4pj1ziZbOevUX2c=;
- b=kok9CBdQedVDcoqBWGy0BK4Y+ceXAiKqx8oVF+E0Ulq+PwSkwWlGJrUr
- UUlM45uMwpxCRXG5olxk73et1YBYnn+AznuUVZ2K11m+kNXrMnqm5XH+9
- p1gTPcloBmWQO+Qb7nyR3V7LFvv3Nem+4TAYBykd6z05VPquyZQ5TJnJN
- ZsH5oYeCOIUx6GT1mP1G6iMQ5tvvDzv3B8i4OK8GHoHK3cFTHXlZcl+Pr
- kfanxg3QfYhDDRSZ5jiBSt/OMoiutEpi/ON+ViUK6hueegsTuzZqXK2s0
- pabMCTMa3d06UzBeufbGy/L6eT8jd72VEHV8Fv4N6ki7nRV6G9DKo44o1 g==;
-X-CSE-ConnectionGUID: 85IY6kV7T8m9bKSxJXGZPA==
-X-CSE-MsgGUID: vpbtPoFFTKSo8fGx7bgcLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548438"
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548438"
+ bh=7lyOl7SIhTeaXqvXRVQfj1NCHVXqnAvyF2M2PMnAFgI=;
+ b=Ur42QJp+OIGRqLcbfSdaaE8cg7oewh0lj6NMRVq+al5OeJ6w+VnlMA4v
+ xs2QsaoQ+b/Vge4w/4Bny1TdKHxd4JTa+COK8cmCnsyKxYlvBxXypcDgB
+ 5aAEIhJ9W60ZuePDUUeghiVvSdY+cAhaXbr4i7eC0yItWbaSv62IugTxP
+ Imz/zM4GHWReBaT2IuypgtO1+qQ+h4x8uipV874hy3ur2T6w7rMpSqnsW
+ R0bghdnTNJWJ8LlI4md9DPbWkupw052vCJYYlWX4JGqDFclmCLeDgvByi
+ OUehTsTV1GQ32F9ctYXG7SYPEoOrzRsaRpI+j4N8yULknUXT1kEQi58ha g==;
+X-CSE-ConnectionGUID: YfPmhI/lR12jf0v2MPnCsQ==
+X-CSE-MsgGUID: yCbLUZuMRii7U+u2cwdV1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548439"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548439"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2024 23:42:00 -0700
-X-CSE-ConnectionGUID: gK9ZMBBtQAqvEhyzI8flLA==
-X-CSE-MsgGUID: V63fm51STEWnfnGyabR1uQ==
+ 06 Oct 2024 23:42:02 -0700
+X-CSE-ConnectionGUID: FojlGGmcRCy6S7P6Af7fOQ==
+X-CSE-MsgGUID: lWCGjROMQimCfkQU9h3wfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842356"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842371"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:41:58 -0700
+ by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:42:00 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v7 06/26] drm/xe/device: Update handling of xe_force_wake_get
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v7 07/26] drm/xe/hdcp: Update handling of xe_force_wake_get
  return
-Date: Mon,  7 Oct 2024 12:29:57 +0530
-Message-Id: <20241007070017.1732886-7-himal.prasad.ghimiray@intel.com>
+Date: Mon,  7 Oct 2024 12:29:58 +0530
+Message-Id: <20241007070017.1732886-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
 References: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
@@ -77,113 +79,54 @@ input to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
-- xe_force_wake_put() error doesn't need to be escalated/considered as
-probing error. It internally WARNS on domain ack failure.
 
 v5
-- return unsigned int xe_force_wake_get()
+- return unsigned int for xe_force_wake_get()
 
 v7
-- Fix commit message(Badal)
+- Fix commit message
 
-Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>(#rev2)
 ---
- drivers/gpu/drm/xe/xe_device.c | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1940cd3229f4..f922a7bc43be 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -604,8 +604,8 @@ int xe_device_probe_early(struct xe_device *xe)
- static int probe_has_flat_ccs(struct xe_device *xe)
- {
- 	struct xe_gt *gt;
+diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+index 6619a40aed15..3567f474b6cb 100644
+--- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
++++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+@@ -41,6 +41,7 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
+ 	struct xe_gt *gt = tile->media_gt;
+ 	struct xe_gsc *gsc = &gt->uc.gsc;
+ 	bool ret = true;
 +	unsigned int fw_ref;
- 	u32 reg;
--	int err;
  
- 	/* Always enabled/disabled, no runtime check to do */
- 	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs)
-@@ -613,9 +613,9 @@ static int probe_has_flat_ccs(struct xe_device *xe)
- 
- 	gt = xe_root_mmio_gt(xe);
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		return err;
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return -ETIMEDOUT;
- 
- 	reg = xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_LOWER);
- 	xe->info.has_flat_ccs = (reg & XE2_FLAT_CCS_ENABLE);
-@@ -624,7 +624,8 @@ static int probe_has_flat_ccs(struct xe_device *xe)
- 		drm_dbg(&xe->drm,
- 			"Flat CCS has been disabled in bios, May lead to performance impact");
- 
--	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	return 0;
- }
- 
- int xe_device_probe(struct xe_device *xe)
-@@ -875,6 +876,7 @@ void xe_device_wmb(struct xe_device *xe)
- void xe_device_td_flush(struct xe_device *xe)
- {
- 	struct xe_gt *gt;
-+	unsigned int fw_ref;
- 	u8 id;
- 
- 	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
-@@ -889,7 +891,8 @@ void xe_device_td_flush(struct xe_device *xe)
- 		if (xe_gt_is_media_type(gt))
- 			continue;
- 
--		if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GT))
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+		if (!fw_ref)
- 			return;
- 
- 		xe_mmio_write32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
-@@ -904,22 +907,22 @@ void xe_device_td_flush(struct xe_device *xe)
- 				   150, NULL, false))
- 			xe_gt_err_once(gt, "TD flush timeout\n");
- 
--		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	if (!gsc && !xe_uc_fw_is_enabled(&gsc->fw)) {
+ 		drm_dbg_kms(&xe->drm,
+@@ -49,7 +50,8 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
  	}
- }
  
- void xe_device_l2_flush(struct xe_device *xe)
- {
- 	struct xe_gt *gt;
--	int err;
-+	uint fw_ref;
+ 	xe_pm_runtime_get(xe);
+-	if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC)) {
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
++	if (!fw_ref) {
+ 		drm_dbg_kms(&xe->drm,
+ 			    "failed to get forcewake to check proxy status\n");
+ 		ret = false;
+@@ -59,7 +61,7 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
+ 	if (!xe_gsc_proxy_init_done(gsc))
+ 		ret = false;
  
- 	gt = xe_root_mmio_gt(xe);
- 
- 	if (!XE_WA(gt, 16023588340))
- 		return;
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
- 		return;
- 
- 	spin_lock(&gt->global_invl_lock);
-@@ -929,7 +932,7 @@ void xe_device_l2_flush(struct xe_device *xe)
- 		xe_gt_err_once(gt, "Global invalidation timeout\n");
- 	spin_unlock(&gt->global_invl_lock);
- 
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+-	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
 +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+ out:
+ 	xe_pm_runtime_put(xe);
+ 	return ret;
 -- 
 2.34.1
 
