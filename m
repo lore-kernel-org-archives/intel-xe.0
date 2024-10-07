@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01768CFB443
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:41:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8ECCCFB442
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:41:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B62BD10E308;
-	Mon,  7 Oct 2024 06:41:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B564110E309;
+	Mon,  7 Oct 2024 06:41:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P0PfeN1e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="me3rJ3QJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ADE510E309
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF9F610E309
  for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 06:41:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1728283312; x=1759819312;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H5tQJ/kgldbE4Mboe1ImDplY5rBgexWrrR9j5F2Cftc=;
- b=P0PfeN1erjc4zRlhapb43zlFwET5oEwUvONvk28keDfFK9pg7eE8r3iY
- k47rZHBsGyp+eJdQjH9k7ia12OefmfPyCNYX9zB6ScyQEplS8OaEqSSLC
- H3NlUffcGVtgFOH62hhuPDnkEEXd7fLK8NGzQUT61+0cR8yQM6VgWblmo
- XdvCNMKI92lBxuoM9aQlKg6kfb+MO1klFNOL89DxNYMRalAERG9zSDYix
- tCajayv7Roion/iExRRXDl50xbD9+/2n8ZyPMFytkOdYvr5DtX3IRnEgi
- GDpbXBfJNxaGKmkq47VJvuBO4F7n1Dw02hq9E3unGVH0ManjN4AGrJeAO A==;
-X-CSE-ConnectionGUID: ZCtyFuT/RHe6+sGHZh7bng==
-X-CSE-MsgGUID: IukSF6kwTIW+Hb/jgUyPpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548431"
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548431"
+ bh=S0PVXYj5PJERiFtxI+SsluLxlIMW+f+T2tPe3EQE4Pw=;
+ b=me3rJ3QJxIP5tLv2G/TCQ3hXhMSqJgbl3V+vsKlCMp4jdB4VrB8A8N7T
+ jdaNvRAdqHb5kbeXTUvY0wQVurBaAYQB4irv9mLuJJCdrHIuZ2Pn3+M8J
+ xU3HyMkLj93SZ+UeEpJMo//sOmnqLG0Zq8hh4DLo4b2YV8KLhlxMSWDeg
+ 8nZ0sraY2B+nwaYIrVIBoz+Sps+kqIB/SHwmToqJSYmWwkfLSFIflx5gr
+ JVIq0Do0doa0bGyMZ5D9l+fw7gqrvZN7kHGs5RUb17pdtem/KDuUcxo3h
+ FOpq9JxNknvPCTuyD16pezHdODdjcAARfRiWXkVD96j+i1GrGWzoKQnt6 A==;
+X-CSE-ConnectionGUID: LBTKm3QMSVSpNRR1TcND/w==
+X-CSE-MsgGUID: iO60ojRfRM+6WwUd5j+lbw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548432"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548432"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2024 23:41:52 -0700
-X-CSE-ConnectionGUID: DkDftoQ2Tpa2guDS5mJYsg==
-X-CSE-MsgGUID: qFkLW5ctTsG9LZGYy26tMA==
+X-CSE-ConnectionGUID: GHS04kPUR7SsGhySkVSFdA==
+X-CSE-MsgGUID: K3z/mDvZQ8WQYXnHwBLuHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842310"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842323"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:41:47 -0700
+ by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:41:50 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Badal Nilawar <badal.nilawar@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v7 02/26] drm/xe/forcewake: Change awake_domain datatype
-Date: Mon,  7 Oct 2024 12:29:53 +0530
-Message-Id: <20241007070017.1732886-3-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 03/26] drm/xe/forcewake: Add a helper
+ xe_force_wake_ref_has_domain()
+Date: Mon,  7 Oct 2024 12:29:54 +0530
+Message-Id: <20241007070017.1732886-4-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
 References: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
@@ -68,30 +69,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Change the datatype of awake_domains to unsigned int to accommodate
-values that differ from the enum xe_force_wake_domains.
+The helper xe_force_wake_ref_has_domain() checks if the input domain
+has been successfully reference-counted and awakened in the reference.
+
+v2
+- Fix commit message and kernel-doc (Michal)
+- Remove unnecessary paranthesis (Michal)
 
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Badal Nilawar <badal.nilawar@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_force_wake_types.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_force_wake.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_force_wake_types.h b/drivers/gpu/drm/xe/xe_force_wake_types.h
-index 494240777d03..fde17dc3d01e 100644
---- a/drivers/gpu/drm/xe/xe_force_wake_types.h
-+++ b/drivers/gpu/drm/xe/xe_force_wake_types.h
-@@ -78,7 +78,7 @@ struct xe_force_wake {
- 	/** @lock: protects everything force wake struct */
- 	spinlock_t lock;
- 	/** @awake_domains: mask of all domains awake */
--	enum xe_force_wake_domains awake_domains;
-+	unsigned int awake_domains;
- 	/** @initialized_domains: mask of all initialized domains */
- 	unsigned int initialized_domains;
- 	/** @domains: force wake domains */
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index a2577672f4e3..1608a55edc84 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -46,4 +46,20 @@ xe_force_wake_assert_held(struct xe_force_wake *fw,
+ 	xe_gt_assert(fw->gt, fw->awake_domains & domain);
+ }
+ 
++/**
++ * xe_force_wake_ref_has_domain - verifies if the domains are in fw_ref
++ * @fw_ref : the force_wake reference
++ * @domain : forcewake domain to verify
++ *
++ * This function confirms whether the @fw_ref includes a reference to the
++ * specified @domain.
++ *
++ * Return: true if domain is refcounted.
++ */
++static inline bool
++xe_force_wake_ref_has_domain(unsigned int fw_ref, enum xe_force_wake_domains domain)
++{
++	return fw_ref & domain;
++}
++
+ #endif
 -- 
 2.34.1
 
