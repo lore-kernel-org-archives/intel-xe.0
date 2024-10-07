@@ -4,70 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A90DBD0D791
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40552D0D798
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1BFE10EAE8;
-	Fri, 11 Oct 2024 13:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 097E110EAF3;
+	Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=everestkc-com-np.20230601.gappssmtp.com header.i=@everestkc-com-np.20230601.gappssmtp.com header.b="p9wI0917";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UYLzhHvT";
 	dkim-atps=neutral
-Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
- [209.85.215.196])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1732210E0DB
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 06:47:49 +0000 (UTC)
-Received: by mail-pg1-f196.google.com with SMTP id
- 41be03b00d2f7-7e6ed072cdaso395261a12.0
- for <intel-xe@lists.freedesktop.org>; Wed, 09 Oct 2024 23:47:49 -0700 (PDT)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+ [209.85.210.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42F9C10E0E7;
+ Mon,  7 Oct 2024 17:49:15 +0000 (UTC)
+Received: by mail-pf1-f169.google.com with SMTP id
+ d2e1a72fcca58-71927b62fa1so672468b3a.2; 
+ Mon, 07 Oct 2024 10:49:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=everestkc-com-np.20230601.gappssmtp.com; s=20230601; t=1728542868;
- x=1729147668; darn=lists.freedesktop.org; 
+ d=gmail.com; s=20230601; t=1728323355; x=1728928155; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=33F/qO1jWhb/z9QZCc7vqOINV1AdFFbOfnQtd2l6oAE=;
- b=p9wI0917CsWn1G00yghbMXNAiRE+PX58iwmoc+mPH7dJwAiYYVUI4XJnwJgOO4nT4N
- HXnMekSrPTuefUCsZMZ32biqIBlAfw+PmJVRn9D7dtvHxPuxO3g9KF3/ye17t5+UzeYH
- 718scN4g7CND0rNTc9E6jMfotCcjbuyrWMNBZqJhrxM9W2M88CA+Tzyw83sXvjpXm9LV
- rnZ/dZLhOYtLFgk3p9kmHek2hT8sE/aYiFRQRlQm5XlDIfgMi3BsBoTkxB50nG3wqa7e
- fI5lEKEt9BCHRbDlkgNWWm5YZDgOTu2pw6DMao8NU3HjCoq+cg565kA6i+7/iSegC4Sn
- OAuA==
+ bh=xFIN27AG3WgjOnmH18Fk8WaAPf1pZ2KMgetkW6A+4t0=;
+ b=UYLzhHvT+90mPuUXy9T6UQlLMSdrpLftvDkqEc1RieGiImICzGK9uiSLSIHelOA/y0
+ hylcc8Xf5RGH65tuNVgWkMu7xJLFCWZtkiDUnw0LEmCtIX3mXc3qiJS7te5n7WWEaME/
+ kBNpJkF5vdgoFMi/LF4BUpawILosE8/zlwjdUcaXft7Y7s9GOG1jW0FCa9fhuCAWg0xc
+ 6BYITVuyvch0sI9ebQlfkt2fO0EBdfrZOBvGJ2tfwsjIsZxd+ezzzJpZOP9I2/0c9Uxx
+ kfLZT4hboyhS3duRzB6qE9B7gPZeHuBlkTCLG00XNMWM2pHdNRHspud9ZfD+2T2IkNox
+ MHiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728542868; x=1729147668;
+ d=1e100.net; s=20230601; t=1728323355; x=1728928155;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=33F/qO1jWhb/z9QZCc7vqOINV1AdFFbOfnQtd2l6oAE=;
- b=mq0WTRpV7/sSeDk8XX3EEmnh9UGRDsU+zxd/cl26PCgnEqEgIuN3pQDDv8CJX6cHfN
- AlRueSBguAA9F07NAaHEtqC6u/s1pYJVhpwq0icqkmMkUysm8TF16MHJwiv5fMEbgBcn
- oiFh9iix/XBkXH8BpbW2+65eYp5sokvTINeT8lDTZBFprXh+GvtId6V2zDkyLYjkxX6+
- aHb6dbAeJ4RPbwbm22DC+0yCCnP0FWKmnXJC4Qv9fSvQNEThbXtzI3mgz1bx1Mmdm8Ca
- Gfaxk5+/SXW7KJMeDw5JEzV91uFtmEDi4EkMohEp4EhvltTyea+bkhGYJ8vN/URXd2Wm
- qIXg==
+ bh=xFIN27AG3WgjOnmH18Fk8WaAPf1pZ2KMgetkW6A+4t0=;
+ b=t8Nalz/usrjY7inP+Ri6G1F0BDbN74qeIdqiQ5sqVlPukwoICqkZVdlrcV+Anwd8wA
+ rqilBJfUxz8qB3QBkOQyOJOBXtTtQcf0UxAZr8SoPS/byWEMjj+tQCKFN0QAWloa512a
+ PwYZe7sdkMjpLUvXrUdl6WUqVKP7s4biGoLGPsekXy51ldYbz+lVHYB8S49kA6E9fgd0
+ BGGeH8S/2CneoUISWE7lWn6hrXExUHRx0KywN646AouDdxe+4+C4F0FzbplGSM6dRi7A
+ +EB3ktGBQfYqgmEbsO4KDf9O55DMdVcSKr8/k+xhDfnu12vz9D6qa212ucJzkNdocTd3
+ yqRw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUEH7kXiVXMx0HbTywu5bVHDAfBl8PgcFay6WtOpTkOoGS/yV3Ebr7XIBtjnVwdXAUOquJJvXNFUg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwRV69nL077mUbg1jNFNZXwp8wqOy0f4HbgTfN0tHyr2Pm9l+CM
- 4u/6ub6nxALp7MBizx8dN1KhdNWV1J7vzECLD92h99gFDw+gF488a9O/FD+VwT4=
-X-Google-Smtp-Source: AGHT+IEgUc4JwOQEFIr4+Uu9TrvsM9ik9NQZ6rVUYqg5KibEvwonxSBx64smuK3WsnJ9Ka0B0r8fYA==
-X-Received: by 2002:a05:6a21:1583:b0:1d7:11af:6a with SMTP id
- adf61e73a8af0-1d8a3c4be3amr7324895637.37.1728542868540; 
- Wed, 09 Oct 2024 23:47:48 -0700 (PDT)
-Received: from localhost.localdomain ([132.178.238.28])
- by smtp.googlemail.com with ESMTPSA id
- d2e1a72fcca58-71e2aa93dd2sm424402b3a.119.2024.10.09.23.47.47
+ AJvYcCUb4mtaulSbMRSfiruD6KH90/3aPT1+rMinDeEYmwkweNj5g6cEPdcwUeCLbc1qxbbwFtoFMU1qBHM=@lists.freedesktop.org,
+ AJvYcCV235rMUhHCcsuQFU5oealB4rd7lGnpFQU8FXr1cIxYr7T003bCUjYpR89bH+FIp+xvrUv2gm+DdaA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyk9zfkwW4aEzerDXkMHaOTWQouj6ZkjwyTGcluD+Sf+T4v3W74
+ z7QQY8zOVvmOUygP+Ri4PNwAQYTdg3zUc9hBLfP9OkRv27LBLDfB
+X-Google-Smtp-Source: AGHT+IH236XZqVh5kSYznYvuShbIvj5woyfy5XKiXBwQQoAWzcu2Nl7W5TjR15p5S8ffsQdMMGim+g==
+X-Received: by 2002:a05:6a00:2e24:b0:71d:f744:67 with SMTP id
+ d2e1a72fcca58-71df744011amr4789204b3a.7.1728323354725; 
+ Mon, 07 Oct 2024 10:49:14 -0700 (PDT)
+Received: from dev.. ([2402:e280:214c:86:a843:852f:eac4:ff92])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-71df0cd0ae9sm4649923b3a.82.2024.10.07.10.49.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Oct 2024 23:47:48 -0700 (PDT)
-From: "Everest K.C." <everestkc@everestkc.com.np>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-Cc: "Everest K.C." <everestkc@everestkc.com.np>, skhan@linuxfoundation.org,
- dan.carpenter@linaro.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH V3] drm/xe/guc: Fix dereference before NULL check
-Date: Thu, 10 Oct 2024 00:46:34 -0600
-Message-ID: <20241010064636.3970-1-everestkc@everestkc.com.np>
-X-Mailer: git-send-email 2.43.0
+ Mon, 07 Oct 2024 10:49:14 -0700 (PDT)
+From: R Sundar <prosunofficial@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ imre.deak@intel.com, ville.syrjala@linux.intel.com,
+ R Sundar <prosunofficial@gmail.com>, kernel test robot <lkp@intel.com>,
+ Julia Lawall <julia.lawall@inria.fr>
+Subject: [PATCH linux-next] drm/i915/dp: use string choice helpers
+Date: Mon,  7 Oct 2024 23:18:57 +0530
+Message-Id: <20241007174857.85061-1-prosunofficial@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 11 Oct 2024 13:55:28 +0000
@@ -85,53 +88,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The pointer list->list is dereferenced before the NULL check.
-Fix this by moving the NULL check outside the for loop, so that
-the check is performed before the dereferencing.
-The list->list pointer cannot be NULL so this has no effect on runtime.
-It's just a correctness issue.
+Use str_on_off string helpers for better readability and to fix cocci
+warning.
 
-This issue was reported by Coverity Scan.
-https://scan7.scan.coverity.com/#/project-view/51525/11354?selectedIssue=1600335
-
-Fixes: a18c696fa5cb ("drm/xe/guc: Fix dereference before Null check")
-Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Julia Lawall <julia.lawall@inria.fr>
+Closes: https://lore.kernel.org/r/202410071252.cWILJzrH-lkp@intel.com/
+Signed-off-by: R Sundar <prosunofficial@gmail.com>
 ---
-V2 -> V3: - Changed Null to NULL in the changelog
-          - Corrected typo in the changelong
-          - Added more description to the changelong
-	  - Fixed the link for Coverity Report
-	  - Removed the space after the Fixes tag
-V1 -> V2: - Combined the `!list->list` check in preexisting if statement
-	  - Added Fixes tag 
-	  - Added the link to the Coverity Scan report 
 
- drivers/gpu/drm/xe/xe_guc_capture.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Reported in linux repo:
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 41262bda20ed..947c3a6d0e5a 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -1531,7 +1531,7 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
- {
- 	int i;
- 
--	if (!list || list->num_regs == 0)
-+	if (!list || !list->list || list->num_regs == 0)
- 		return;
- 
- 	if (!regs)
-@@ -1541,9 +1541,6 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
- 		struct __guc_mmio_reg_descr desc = list->list[i];
- 		u32 value;
- 
--		if (!list->list)
--			return;
--
- 		if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
- 			value = xe_hw_engine_mmio_read32(hwe, desc.reg);
- 		} else {
+cocci warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/i915/display/intel_dp.c:2243:6-9: opportunity for str_on_off(dsc)
+
+vim +2243 drivers/gpu/drm/i915/display/intel_dp.c
+
+compile tested only.
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index fbb096be02ad..733619b14193 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2475,7 +2475,7 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+ 		    encoder->base.base.id, encoder->base.name,
+ 		    crtc->base.base.id, crtc->base.name,
+ 		    adjusted_mode->crtc_clock,
+-		    dsc ? "on" : "off",
++		    str_on_off(dsc),
+ 		    limits->max_lane_count,
+ 		    limits->max_rate,
+ 		    limits->pipe.max_bpp,
 -- 
-2.43.0
+2.34.1
 
