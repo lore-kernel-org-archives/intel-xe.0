@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91A52CFB448
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 15:12:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 825D8CFB448
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 15:41:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6196F10E3C7;
-	Mon,  7 Oct 2024 15:12:05 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07D9310E3C5;
- Mon,  7 Oct 2024 15:12:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27D5010E363;
+	Mon,  7 Oct 2024 15:41:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KpwRD2Bp";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD6410E363
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 15:41:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728315716; x=1759851716;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PEo0OQS5IkiamOHYeh4u050bhc9y8B76QI7+xuXnhTU=;
+ b=KpwRD2BpWG190Iht96Qz0+REcqZzaekWy6G7slKM5PtdzeTLNjyfK7d/
+ 3TkZPtUKtxh5d/cRxxngazwaHzb2fX2d93dKtLAcECF3J4dlrD19nbw4K
+ VstENyALViSYHxAVX3IpWaoLxo+bvg9Hj1yVEG4Jhqk7+tWEDrOtcB9bR
+ OjiNuP7przT1op4GSnA5ZzXUPlb8j+RkBG2aDqIu36M1nw3wXl0vlvIak
+ 0svGIz391i5yurd8giiRSdj2BHIw4Gtmqwdlf8XtTGecFYaenwl1k8bnv
+ zLyQornuw2Glykqhp8NGBROqVnBy3a1iSR0bFrp32+Ab5VYWa3U5p6kv4 A==;
+X-CSE-ConnectionGUID: r1X4nep3Qv6PjHpMm3Ju1Q==
+X-CSE-MsgGUID: O4BfP4uVTd+0dTY1WxL+Ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="44999816"
+X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; d="scan'208";a="44999816"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2024 08:41:55 -0700
+X-CSE-ConnectionGUID: hAwKvFCEQi6bS9fpTJOyEw==
+X-CSE-MsgGUID: xcDv7FWBRKKspJ9FghYFbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; d="scan'208";a="76349400"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2024 08:41:54 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v2] drm/xe/ptl: L3bank mask is not available on the media GT
+Date: Mon,  7 Oct 2024 08:41:44 -0700
+Message-ID: <20241007154143.2021124-2-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.46.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Add_Xe3_and_Panther_Lake?=
- =?utf-8?q?_support_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Oct 2024 15:12:05 -0000
-Message-ID: <172831392502.1199042.8101170178245256260@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241004220550.94308-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20241004220550.94308-1-matthew.s.atwood@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +63,186 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-Series: Add Xe3 and Panther Lake support (rev2)
-URL   : https://patchwork.freedesktop.org/series/138349/
-State : success
+On PTL platforms with media version 30.00, the fuse registers for
+reporting L3 bank availability to the GT just read out as ~0 and do not
+provide proper values.  Xe does not use the L3 bank mask for anything
+internally; it only passes the mask through to userspace via the GT
+topology query.
 
-== Summary ==
+Since we don't have any way to get the real L3 bank mask, we don't want
+to pass garbage to userspace.  Passing a zeroed mask or a copy of the
+primary GT's L3 bank mask would also be inaccurate and likely to cause
+confusion for userspace.  The best approach is to simply not include L3
+in the list of masks returned by the topology query in cases where we
+aren't able to provide a meaningful value.  This won't change the
+behavior for any existing platforms (where we can always obtain L3 masks
+successfully for all GTs), it will only prevent us from mis-reporting
+bad information on upcoming platform(s).
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 39a016b276ce8adac629cc6c31892d0b7d2af634
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+There's a good chance this will become a formal workaround in the
+future, but for now we don't have a lineage number so "no_media_l3" is
+used in place of a lineage as the OOB workaround descriptor.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+v2:
+ - Re-calculate query size to properly match data returned. (Gustavo)
+ - Update kerneldoc to clarify that the L3bank mask may not be included
+   in the query results if the hardware doesn't make it available.
+   (Gustavo)
 
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Co-developed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_topology.c | 14 ++++++++++
+ drivers/gpu/drm/xe/xe_query.c       | 42 +++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_wa_oob.rules  |  1 +
+ include/uapi/drm/xe_drm.h           |  4 ++-
+ 4 files changed, 49 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index 651ba53623e5..df2042db7ee6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_gt_topology.h"
+ 
++#include <generated/xe_wa_oob.h>
+ #include <linux/bitmap.h>
+ #include <linux/compiler.h>
+ 
+@@ -12,6 +13,7 @@
+ #include "xe_assert.h"
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
++#include "xe_wa.h"
+ 
+ static void
+ load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
+@@ -129,6 +131,18 @@ load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 fuse3 = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
+ 
++	/*
++	 * PTL platforms with media version 30.00 do not provide proper values
++	 * for the media GT's L3 bank registers.  Skip the readout since we
++	 * don't have any way to obtain real values.
++	 *
++	 * This may get re-described as an official workaround in the future,
++	 * but there's no tracking number assigned yet so we use a custom
++	 * OOB workaround descriptor.
++	 */
++	if (XE_WA(gt, no_media_l3))
++		return;
++
+ 	if (GRAPHICS_VER(xe) >= 20) {
+ 		xe_l3_bank_mask_t per_node = {};
+ 		u32 meml3_en = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, fuse3);
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 5246a4a2740e..158629971eab 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -9,6 +9,7 @@
+ #include <linux/sched/clock.h>
+ 
+ #include <drm/ttm/ttm_placement.h>
++#include <generated/xe_wa_oob.h>
+ #include <uapi/drm/xe_drm.h>
+ 
+ #include "regs/xe_engine_regs.h"
+@@ -23,6 +24,7 @@
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
+ #include "xe_ttm_vram_mgr.h"
++#include "xe_wa.h"
+ 
+ static const u16 xe_to_user_engine_class[] = {
+ 	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+@@ -455,12 +457,23 @@ static int query_hwconfig(struct xe_device *xe,
+ 
+ static size_t calc_topo_query_size(struct xe_device *xe)
+ {
+-	return xe->info.gt_count *
+-		(4 * sizeof(struct drm_xe_query_topology_mask) +
+-		 sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
+-		 sizeof_field(struct xe_gt, fuse_topo.c_dss_mask) +
+-		 sizeof_field(struct xe_gt, fuse_topo.l3_bank_mask) +
+-		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss));
++	struct xe_gt *gt;
++	size_t query_size = 0;
++	int id;
++
++	for_each_gt(gt, xe, id) {
++		query_size += 3 * sizeof(struct drm_xe_query_topology_mask) +
++			sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
++			sizeof_field(struct xe_gt, fuse_topo.c_dss_mask) +
++			sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss);
++
++		/* L3bank mask may not be available for some GTs */
++		if (!XE_WA(gt, no_media_l3))
++			query_size += sizeof(struct drm_xe_query_topology_mask) +
++				sizeof_field(struct xe_gt, fuse_topo.l3_bank_mask);
++	}
++
++	return query_size;
+ }
+ 
+ static int copy_mask(void __user **ptr,
+@@ -513,11 +526,18 @@ static int query_gt_topology(struct xe_device *xe,
+ 		if (err)
+ 			return err;
+ 
+-		topo.type = DRM_XE_TOPO_L3_BANK;
+-		err = copy_mask(&query_ptr, &topo, gt->fuse_topo.l3_bank_mask,
+-				sizeof(gt->fuse_topo.l3_bank_mask));
+-		if (err)
+-			return err;
++		/*
++		 * If the kernel doesn't have a way to obtain a correct L3bank
++		 * mask, then it's better to omit L3 from the query rather than
++		 * reporting bogus or zeroed information to userspace.
++		 */
++		if (!XE_WA(gt, no_media_l3)) {
++			topo.type = DRM_XE_TOPO_L3_BANK;
++			err = copy_mask(&query_ptr, &topo, gt->fuse_topo.l3_bank_mask,
++					sizeof(gt->fuse_topo.l3_bank_mask));
++			if (err)
++				return err;
++		}
+ 
+ 		topo.type = gt->fuse_topo.eu_type == XE_GT_EU_TYPE_SIMD16 ?
+ 			DRM_XE_TOPO_SIMD16_EU_PER_DSS :
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 920ca5060146..0154fbe154e9 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -37,3 +37,4 @@
+ 16023588340	GRAPHICS_VERSION(2001)
+ 14019789679	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION_RANGE(1270, 2004)
++no_media_l3	MEDIA_VERSION(3000)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index b6fbe4988f2e..c4182e95a619 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -512,7 +512,9 @@ struct drm_xe_query_gt_list {
+  *    containing the following in mask:
+  *    ``DSS_COMPUTE    ff ff ff ff 00 00 00 00``
+  *    means 32 DSS are available for compute.
+- *  - %DRM_XE_TOPO_L3_BANK - To query the mask of enabled L3 banks
++ *  - %DRM_XE_TOPO_L3_BANK - To query the mask of enabled L3 banks.  This type
++ *    may be omitted if the driver is unable to query the mask from the
++ *    hardware.
+  *  - %DRM_XE_TOPO_EU_PER_DSS - To query the mask of Execution Units (EU)
+  *    available per Dual Sub Slices (DSS). For example a query response
+  *    containing the following in mask:
+-- 
+2.46.2
 
