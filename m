@@ -4,110 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37A52CFB444
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 13:41:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 473E4CFB441
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 13:52:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B397610E399;
-	Mon,  7 Oct 2024 13:41:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="YHDQhAmz";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="JBkwBIcq";
-	dkim-atps=neutral
-X-Greylist: delayed 437 seconds by postgrey-1.36 at gabe;
- Mon, 07 Oct 2024 13:41:15 UTC
-Received: from flow-a8-smtp.messagingengine.com
- (flow-a8-smtp.messagingengine.com [103.168.172.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EFA510E164;
- Mon,  7 Oct 2024 13:41:15 +0000 (UTC)
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal
- [10.202.2.50])
- by mailflow.phl.internal (Postfix) with ESMTP id A2F0020035A;
- Mon,  7 Oct 2024 09:33:57 -0400 (EDT)
-Received: from phl-imap-11 ([10.202.2.101])
- by phl-compute-10.internal (MEProxy); Mon, 07 Oct 2024 09:33:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1728308037;
- x=1728315237; bh=K4c7rwEkHHs7JNOKsZBJCFJ86mbVpg4BE5CRtZ2UsCQ=; b=
- YHDQhAmzydIOpgSHcA3YX0bmb8syVBfcIexSwhZNHqVXfNqJQAAEONGAzq55GI7p
- 11R3aiC6t3bTHYkuwCRHP8uQNKlivqk1VlRSfr+LyAupIOCTld72Lz2xRAgJwy6g
- v0+HxuUy4H9fd/3GFspxk+vtiE9AQq9lxb5uGrJkvyWX/MUlE08uRIoBEOjpNDMs
- kyxpKiDkTmbHYAz64QA+PdrQo9yknVgsa2R7VGm4F9vw5IW+l9kOLUsY2EHtz3D6
- Tc4gIZd/o5le3GeLm9o6eRM5eCP8T6vKwVthZBPzY6YCn2MsjHJHZdoHrjaKS6ho
- 6oVxa7NzWaEavQiMc77pPw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1728308037; x=
- 1728315237; bh=K4c7rwEkHHs7JNOKsZBJCFJ86mbVpg4BE5CRtZ2UsCQ=; b=J
- BkwBIcqSWTLRYBYgCse0kmNIG0FalO2AoyqyWQlelRAffPOG5VukkG0bhsa0xWqI
- TueRSYf0SzV/OStG+nWoxmGlyElfc09kw1Ereb93gkykZefc2vER0XdnyCrESkrQ
- 5eFstOGTbfu5qY1mcHIhlatNVHAAXZVXkTRQ0ohc+0SJASdxpjLDwPopxB5/KM/6
- XFMcLd4FsccvlOg/10ruCm7YrzoKxvOTmu04G8jNJrOVr7xc4jFNxMCbd3AduiJx
- RjhyQWIChWToyQq1FcS8XkaoWAWuUf3yA4hMpXelWxZh99NibmdvviiCzP8ZgTRE
- m87OApOVJKR5y9V+mg9PQ==
-X-ME-Sender: <xms:ROMDZ2uhzN6iUlqUhyXgRzGdbkYhwsnC4IkYuifqhiHCNMinKjElnQ>
- <xme:ROMDZ7f4wJbjZIYRpZ_zseQcOm9roVh8jslwmBLju73undd42jdBBXWys0eHSF6zR
- kUPGSMLcTbp2aAkuRg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddvledgieeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
- rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
- htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
- necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
- guvgeqnecuggftrfgrthhtvghrnhepfefhheetffduvdfgieeghfejtedvkeetkeejfeek
- keelffejteevvdeghffhiefhnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlh
- hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnugesrghr
- nhgusgdruggvpdhnsggprhgtphhtthhopedvledpmhhouggvpehsmhhtphhouhhtpdhrtg
- hpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopegrihhrlhhivggu
- sehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhuihiirdguvghnthiisehgmhgrihhlrd
- gtohhmpdhrtghpthhtohepphgrthhrihhkrdhrrdhjrghkohgsshhsohhnsehgmhgrihhl
- rdgtohhmpdhrtghpthhtohepmhgrrhgtvghlsehhohhlthhmrghnnhdrohhrghdprhgtph
- htthhopehluhgtrghsrdguvghmrghrtghhihesihhnthgvlhdrtghomhdprhgtphhtthho
- pehrohgurhhighhordhvihhvihesihhnthgvlhdrtghomhdprhgtphhtthhopegrrhhnug
- eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhirhhishhlrggshieskhgvrhhnvghl
- rdhorhhg
-X-ME-Proxy: <xmx:ROMDZxyosoEJgK0h0mYtt9W4kbfEv2X46qXcZB-2HLhzVVD24kQ77Q>
- <xmx:ROMDZxMozkL7hpKXIZSPf__oKocXC8ZuETUVXgc7DgfmMw5DTwU2xg>
- <xmx:ROMDZ2_mj1FR00fok_BZPG6amC8ZVGoa9--w6heHTT5fRrNSay8ijQ>
- <xmx:ROMDZ5VzhzRK_RqqQ_UXW6Wg8vTthGqsypD5csOvJMsv8UElFxut3w>
- <xmx:ReMDZ4Ez-gpcLv6QqQ8ntic7pnvCNRVE7_8UAFdm54iPfSDSKMyerq4i>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id A32892220072; Mon,  7 Oct 2024 09:33:56 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	by gabe.freedesktop.org (Postfix) with ESMTP id 172E410E3A2;
+	Mon,  7 Oct 2024 13:52:15 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 484BC10E3A2;
+ Mon,  7 Oct 2024 13:52:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5306243938840678711=="
 MIME-Version: 1.0
-Date: Mon, 07 Oct 2024 13:33:36 +0000
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Niklas Schnelle" <schnelle@linux.ibm.com>,
- "Brian Cain" <bcain@quicinc.com>, "Marcel Holtmann" <marcel@holtmann.org>,
- "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
- "Patrik Jakobsson" <patrik.r.jakobsson@gmail.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Dave Airlie" <airlied@gmail.com>, 
- "Simona Vetter" <simona@ffwll.ch>, "Dave Airlie" <airlied@redhat.com>,
- "Gerd Hoffmann" <kraxel@redhat.com>,
- "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Jiri Slaby" <jirislaby@kernel.org>, "Maciej W. Rozycki" <macro@orcam.me.uk>, 
- "Heiko Carstens" <hca@linux.ibm.com>
-Cc: linux-kernel@vger.kernel.org, linux-hexagon@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-serial@vger.kernel.org,
- Linux-Arch <linux-arch@vger.kernel.org>, "Arnd Bergmann" <arnd@kernel.org>
-Message-Id: <724b9809-49b9-49a4-be4e-0c464c29a1f0@app.fastmail.com>
-In-Reply-To: <20241007-b4-has_ioport-v6-0-03f7240da6e5@linux.ibm.com>
-References: <20241007-b4-has_ioport-v6-0-03f7240da6e5@linux.ibm.com>
-Subject: Re: [PATCH v6 0/5] treewide: Remove I/O port accessors for
- HAS_IOPORT=n
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_GuC_based_regi?=
+ =?utf-8?q?ster_capture_for_error_capture_=28rev28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Oct 2024 13:52:14 -0000
+Message-ID: <172830913428.1198606.13226346390786767086@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241004193428.3311145-1-zhanjun.dong@intel.com>
+In-Reply-To: <20241004193428.3311145-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,31 +36,193 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 7, 2024, at 11:40, Niklas Schnelle wrote:
-> Hi All,
->
-> This is a follow up in my long running effort of making inb()/outb() and
-> similar I/O port accessors compile-time optional. After initially
-> sending this as a treewide series with the latest revision at[0]
-> we switched to per subsystem series. Now though as we're left with only
-> 5 patches left I'm going back to a single series with Arnd planning
-> to take this via the the asm-generic tree.
->
-> This series may also be viewed for your convenience on my git.kernel.org
-> tree[1] under the b4/has_ioport branch. As for compile-time vs runtime
-> see Linus' reply to my first attempt[2].
+--===============5306243938840678711==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This all looks good to me and I'd like to merge it all in the
-asm-generic tree in the next few days, assuming nobody has any
-further objections.
+== Series Details ==
 
-If something breaks, we can fix it with a patch on top.
+Series: drm/xe/guc: Add GuC based register capture for error capture (rev28)
+URL   : https://patchwork.freedesktop.org/series/128077/
+State : success
 
-I have a few more patches make it possible to build arm64 kernels
-without CONFIG_HAS_IOPORT, but we don't need them as part of your
-series and can merge them through driver trees independently.
+== Summary ==
 
-     Arnd
+CI Bug Log - changes from xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965_BAT -> xe-pw-128077v28_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-128077v28_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#2754])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-lnl-2:          [SKIP][5] ([Intel XE#2850]) -> [SKIP][6] ([Intel XE#2850] / [Intel XE#929]) +2 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html
+    - bat-dg2-oem2:       [SKIP][7] ([Intel XE#2850]) -> [SKIP][8] ([Intel XE#2850] / [Intel XE#929]) +2 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-7:         [SKIP][9] ([Intel XE#2838]) -> [SKIP][10] ([Intel XE#2838] / [Intel XE#979])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
+    - bat-dg2-oem2:       [SKIP][11] ([Intel XE#2838]) -> [SKIP][12] ([Intel XE#2838] / [Intel XE#979])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+    - bat-atsm-2:         [SKIP][13] ([Intel XE#2838]) -> [SKIP][14] ([Intel XE#2838] / [Intel XE#979])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
+    - bat-adlp-vf:        [SKIP][15] ([Intel XE#2838]) -> [SKIP][16] ([Intel XE#2838] / [Intel XE#979])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8052 -> IGT_8054
+  * Linux: xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965 -> xe-pw-128077v28
+
+  IGT_8052: 8052
+  IGT_8054: 3f627b7fd48c6ab324ceaa80dd8cf0131292bf63 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965: 92d12099cc768f36cf676ee1b014442a5c5ba965
+  xe-pw-128077v28: 128077v28
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/index.html
+
+--===============5306243938840678711==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Add GuC based register capture for error capture (rev28)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128077/">https://patchwork.freedesktop.org/series/128077/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965_BAT -&gt; xe-pw-128077v28_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-128077v28_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v28/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8052 -&gt; IGT_8054</li>
+<li>Linux: xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965 -&gt; xe-pw-128077v28</li>
+</ul>
+<p>IGT_8052: 8052<br />
+  IGT_8054: 3f627b7fd48c6ab324ceaa80dd8cf0131292bf63 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2016-92d12099cc768f36cf676ee1b014442a5c5ba965: 92d12099cc768f36cf676ee1b014442a5c5ba965<br />
+  xe-pw-128077v28: 128077v28</p>
+
+</body>
+</html>
+
+--===============5306243938840678711==--
