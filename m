@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EC3CCFB440
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 11:40:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D519CFB440
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 11:40:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD6CB10E332;
-	Mon,  7 Oct 2024 11:40:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC1AB10E332;
+	Mon,  7 Oct 2024 11:40:58 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5476810E369;
- Mon,  7 Oct 2024 11:40:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E17210E332;
+ Mon,  7 Oct 2024 11:40:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/tests=3A_incl?=
- =?utf-8?q?ude_linux/prandom=2Eh_as_well_as_linux/random=2Eh?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/tests=3A_include_l?=
+ =?utf-8?q?inux/prandom=2Eh_as_well_as_linux/random=2Eh?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Oct 2024 11:40:35 -0000
-Message-ID: <172830123534.1197978.1728756615116263623@2413ebb6fbb6>
+Date: Mon, 07 Oct 2024 11:40:58 -0000
+Message-ID: <172830125811.1197975.7567038716977715497@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241004132037.57528-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20241004132037.57528-1-thomas.hellstrom@linux.intel.com>
@@ -44,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/tests: include linux/prandom.h as well as linux/random.h
 URL   : https://patchwork.freedesktop.org/series/139561/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9d79cb6da4e3 drm-tip: 2024y-10m-07d-11h-28m-13s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/tests: include linux/prandom.h as well as linux/random.h
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e5d6e5fc0cb17fdfcc018217faabc30dbb3ea752
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Oct 4 15:20:37 2024 +0200
+
+    drm/xe/tests: include linux/prandom.h as well as linux/random.h
+    
+    The linux/prandom.h file was previously included from linux/random.h
+    but starting with commit
+    
+    38d1a9d296c8 ("random: Do not include <linux/prandom.h> in <linux/random.h>")
+    
+    That's no longer the case. Since we also use functions from
+    <linux/random.h>, include both.
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 9d79cb6da4e37d5ed37db2917b0b69c3f58cf845 drm-intel
+e5d6e5fc0cb1 drm/xe/tests: include linux/prandom.h as well as linux/random.h
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+38d1a9d296c8 ("random: Do not include <linux/prandom.h> in <linux/random.h>")
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
 
 
