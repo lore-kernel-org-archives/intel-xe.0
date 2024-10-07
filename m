@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D3F7CFB45D
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 20:16:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67076CFB45F
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 20:18:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D573810E41F;
-	Mon,  7 Oct 2024 20:16:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mjaaTfW1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1914510E41B
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 20:16:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728332197; x=1759868197;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gvTBMsi6IpM3DDrXjbGzdaZDZ9gyr0TtOC/yCBpdaRs=;
- b=mjaaTfW1Z61S3u+KQtsFAK5oloCDr3AjtpF52u3+d9YVzthneW0Gp/lN
- TBxGcc6HBNBwHjF3/Ej1eeqnUzB+67LdHb+UTDIt+Zy4OmHbJ+RKU+XVf
- qfCtQLY44gTj25ue2hHXpQAuRZJeBRv7pFQWF+7kZDaAkfT5890xN4hyz
- 7Ocg426C4dbniA0fzmTOSAndLb7OmFzj+/9wHlZ378c2AHqRu3aM5Wyao
- 6jXhyVYAsvlyVCI9t/jYkd3YWiZhJ9l0bxQMgeHfR+J1iqlQBcw9SNlvX
- q7EiThJB6Q6F1OSjdjgX5c/bkTc6OlxS6tlt2UIfwOrXLMKS7pr4jwFrg A==;
-X-CSE-ConnectionGUID: mrb/fPt4QuGftA4mnmXWOw==
-X-CSE-MsgGUID: Q/GFDKAZT8GSEmcB/R/jRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="44968867"
-X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; d="scan'208";a="44968867"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2024 13:16:37 -0700
-X-CSE-ConnectionGUID: NWhr9KsrS4Op2ocCuUUVtg==
-X-CSE-MsgGUID: Wl8VeaQrQeODo6Ng1qSAIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; d="scan'208";a="75964176"
-Received: from gkczarna.igk.intel.com ([10.102.139.130])
- by fmviesa010.fm.intel.com with ESMTP; 07 Oct 2024 13:16:36 -0700
-From: Tomasz Lis <tomasz.lis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>
-Subject: [PATCH v4 3/4] drm/xe/vf: Start post-migration fixups with
- provisinoning query
-Date: Mon,  7 Oct 2024 22:16:30 +0200
-Message-Id: <20241007201631.3369513-4-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241007201631.3369513-1-tomasz.lis@intel.com>
-References: <20241007201631.3369513-1-tomasz.lis@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3189310E41B;
+	Mon,  7 Oct 2024 20:18:22 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A8E110E346;
+ Mon,  7 Oct 2024 20:18:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_treewide=3A_Remove_I?=
+ =?utf-8?q?/O_port_accessors_for_HAS=5FIOPORT=3Dn?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niklas Schnelle" <schnelle@linux.ibm.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Oct 2024 20:18:21 -0000
+Message-ID: <172833230103.1200404.12047755711965268630@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241007-b4-has_ioport-v6-0-03f7240da6e5@linux.ibm.com>
+In-Reply-To: <20241007-b4-has_ioport-v6-0-03f7240da6e5@linux.ibm.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,82 +36,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During post-migration recovery, only MMIO communication to GuC is
-allowed. The VF KMD needs to use that channel to ask for the new
-provisioning, which includes a new GGTT range assigned to the VF.
+== Series Details ==
 
-v2: query config only instead of handshake; no need to get pm ref as
- it's now kept through whole recovery (Michal)
-v3: switched names of 'err' and 'ret'  (Michal)
+Series: treewide: Remove I/O port accessors for HAS_IOPORT=n
+URL   : https://patchwork.freedesktop.org/series/139641/
+State : failure
 
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
----
- drivers/gpu/drm/xe/xe_sriov_vf.c | 36 ++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index c8cbd17d88d3..97ab66edd711 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -25,6 +25,31 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
- 	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
- }
- 
-+/**
-+ * vf_post_migration_requery_guc - Re-query GuC for current VF provisioning.
-+ * @xe: the &xe_device struct instance
-+ *
-+ * After migration, we need to re-query all VF configuration to make sure
-+ * they match previous provisioning. Note that most of VF provisioning
-+ * shall be the same, except GGTT range, since GGTT is not virtualized per-VF.
-+ *
-+ * Returns: 0 if the operation completed successfully, or a negative error
-+ * code otherwise.
-+ */
-+static int vf_post_migration_requery_guc(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+	int err, ret = 0;
-+
-+	for_each_gt(gt, xe, id) {
-+		err = xe_gt_sriov_vf_query_config(gt);
-+		ret = ret ?: err;
-+	}
-+
-+	return ret;
-+}
-+
- /*
-  * vf_post_migration_notify_resfix_done - Notify all GuCs about resource fixups apply finished.
-  * @xe: the &xe_device struct instance
-@@ -45,12 +70,23 @@ static void vf_post_migration_notify_resfix_done(struct xe_device *xe)
- 
- static void vf_post_migration_recovery(struct xe_device *xe)
- {
-+	int err;
-+
- 	drm_dbg(&xe->drm, "migration recovery in progress\n");
- 	xe_pm_runtime_get(xe);
-+	err = vf_post_migration_requery_guc(xe);
-+	if (unlikely(err))
-+		goto fail;
-+
- 	/* FIXME: add the recovery steps */
- 	vf_post_migration_notify_resfix_done(xe);
- 	xe_pm_runtime_put(xe);
- 	drm_notice(&xe->drm, "migration recovery ended\n");
-+	return;
-+fail:
-+	xe_pm_runtime_put(xe);
-+	drm_err(&xe->drm, "migration recovery failed (%pe)\n", ERR_PTR(err));
-+	xe_device_declare_wedged(xe);
- }
- 
- static void migration_worker_func(struct work_struct *w)
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 1f72b793ff06 drm-tip: 2024y-10m-07d-19h-29m-51s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/gma500/Kconfig:1
+error: drivers/gpu/drm/gma500/Kconfig: patch does not apply
+error: patch failed: drivers/gpu/drm/qxl/Kconfig:2
+error: drivers/gpu/drm/qxl/Kconfig: patch does not apply
+error: patch failed: drivers/gpu/drm/tiny/bochs.c:2
+error: drivers/gpu/drm/tiny/bochs.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: hexagon: Don't select GENERIC_IOMAP without HAS_IOPORT support
+Applying: Bluetooth: add HAS_IOPORT dependencies
+Applying: drm: handle HAS_IOPORT dependencies
+Patch failed at 0003 drm: handle HAS_IOPORT dependencies
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
