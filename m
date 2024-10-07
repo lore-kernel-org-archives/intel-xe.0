@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D8BCCFB443
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:42:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1836CFB442
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:42:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB2210E30A;
-	Mon,  7 Oct 2024 06:42:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A1210E30C;
+	Mon,  7 Oct 2024 06:42:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JIk4oTLB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JnHpMWNu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49A5410E30A
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 06:42:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1656310E30D
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 06:42:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728283353; x=1759819353;
+ t=1728283355; x=1759819355;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W4Gfr81amz1ZiCPNfhd3s8Ppp4dlMmYeWPPM2SQ4g1g=;
- b=JIk4oTLBdiimJJWcd6S8Ii8Jl0VJhPDk2qu2CYxPuazIRv7ks4LmyPVv
- tTD5B3AYS6XPeYFV5dsYmNblnjXQ0bYE1AMEIILMc1tp0aeSFdoQjP4g1
- ivB1o2vZTIR1iahpakXM44OSYzMFREahwbxtfAqdjCryDqZPibDmgG4IP
- F4pi6xR/wzYgb90zgmvetFssCm8U1a6E3nq3AvLGbOjmMschHu3qg7+nL
- T6J2kskPvAhvZls7rpwVmTSmQ6NsQnpRnhGMW7EAFl8S4nmwzjlecbTze
- KR87bqG3YH0oz7ExW7T2zLHyvGzkY3XQr7rANefUDrWrnTv+Imjf085Cz A==;
-X-CSE-ConnectionGUID: /sjLLYi1Sn2pnqdsJDCmcA==
-X-CSE-MsgGUID: UYxszyFlTNGT0lRnZ2RP2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548472"
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548472"
+ bh=VDnbpG/RkGylf4f4dUVQpZVRMKw4HelXbmPYJtnDX9s=;
+ b=JnHpMWNuMFGqXLsXMN5bhnCVJywXsiF8q6SMpKpDvAsZ1+Yh6LYQK6GA
+ KCkLlDIElHPruTVoqOTWlvC7fDBurcY6D0UPPxOt4Zb1MPxguqG7SLvt/
+ FSsjD/Sx+zflQpXA1XYvzfLdIZXRyiltdXrR4VpY4AYqPCtOpO1uxcatn
+ rOJgNEe3eA1fuWYvVSRFtFlzNLQqwmlgZ1cHzDojdsW+uOq6R53nyMA9v
+ 5MN7ewK/3kXKrrLif8HKz3EzLYRInKN4T05yNOAIXD2QTZD03dTJzndLi
+ dQBEnf64oChCeCEVaQveGgG3XHGNdyr9l55b8YJkfexL8y3z6VwxrvJoj w==;
+X-CSE-ConnectionGUID: hqFqW1uUTMOzDuNllH/5Vg==
+X-CSE-MsgGUID: ualLd9TQRXSygVTOsuHbRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548474"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548474"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2024 23:42:33 -0700
-X-CSE-ConnectionGUID: sPHJttNmTNaR4MqxJdbF1A==
-X-CSE-MsgGUID: kZlXmo2JROmrldzC14tBrw==
+ 06 Oct 2024 23:42:35 -0700
+X-CSE-ConnectionGUID: YmRDwMduQEuj9Tb0IYw9bA==
+X-CSE-MsgGUID: KUVnuYHsSKuOlADzUJbtwA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842593"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842598"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:42:31 -0700
+ by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:42:33 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v7 22/26] drm/xe/query: Update handling of xe_force_wake_get
+Subject: [PATCH v7 23/26] drm/xe/vram: Update handling of xe_force_wake_get
  return
-Date: Mon,  7 Oct 2024 12:30:13 +0530
-Message-Id: <20241007070017.1732886-23-himal.prasad.ghimiray@intel.com>
+Date: Mon,  7 Oct 2024 12:30:14 +0530
+Message-Id: <20241007070017.1732886-24-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
 References: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
@@ -68,66 +68,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With xe_force_wake_get() now returning the refcount-incremented
-domain mask, a non-zero return value in the case of XE_FORCEWAKE_ALL
-does not necessarily indicate success. Use xe_force_wake_ref_has_domain()
-to determine the status of the call.
-
-Modify the return handling of xe_force_wake_get() accordingly and
-pass the return value to xe_force_wake_put().
+xe_force_wake_get() now returns the reference count-incremented domain
+mask. If it fails for individual domains, the return value will always
+be 0. However, for XE_FORCEWAKE_ALL, it may return a non-zero value even
+in the event of failure. Update the return handling of xe_force_wake_get()
+to reflect this behavior, and ensure that the return value is passed as
+input to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
-- xe_force_wake_put() error doesn't need to be checked. It internally
-WARNS on domain ack failure.
+- xe_force_wake_put() error doesn't need to be escalated/considered as
+probing error. It internally WARNS on domain ack failure.
 
 v5
 - return unsigned int from xe_force_wake_get()
 
-v6
-- Use helper Use xe_force_wake_ref_has_domain()
+v7
+- Fix commit message
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vram.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 5246a4a2740e..6e950c13944d 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -118,6 +118,7 @@ query_engine_cycles(struct xe_device *xe,
- 	__ktime_func_t cpu_clock;
- 	struct xe_hw_engine *hwe;
- 	struct xe_gt *gt;
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 2a623bfcda7e..b1f81dca610d 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -220,8 +220,8 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *gt = tile->primary_gt;
 +	unsigned int fw_ref;
+ 	u64 offset;
+-	int err;
+ 	u32 reg;
  
- 	if (query->size == 0) {
- 		query->size = size;
-@@ -150,8 +151,11 @@ query_engine_cycles(struct xe_device *xe,
- 	if (!hwe)
- 		return -EINVAL;
+ 	if (IS_SRIOV_VF(xe)) {
+@@ -240,9 +240,9 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+ 		return 0;
+ 	}
  
--	if (xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL))
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))  {
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 		return -EIO;
-+	}
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (err)
+-		return err;
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (!fw_ref)
++		return -ETIMEDOUT;
  
- 	__read_timestamps(gt,
- 			  RING_TIMESTAMP(hwe->mmio_base),
-@@ -161,7 +165,7 @@ query_engine_cycles(struct xe_device *xe,
- 			  &resp.cpu_delta,
- 			  cpu_clock);
+ 	/* actual size */
+ 	if (unlikely(xe->info.platform == XE_DG1)) {
+@@ -264,7 +264,9 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+ 	/* remove the tile offset so we have just the available size */
+ 	*vram_size = offset - *tile_offset;
  
--	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
 +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	resp.width = 36;
++
++	return 0;
+ }
  
- 	/* Only write to the output fields of user query */
+ static void vram_fini(void *arg)
 -- 
 2.34.1
 
