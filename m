@@ -4,29 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D929CFB440
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 10:23:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EC3CCFB440
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 11:40:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4D8410E1F6;
-	Mon,  7 Oct 2024 10:23:50 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E4CC10E1F6;
- Mon,  7 Oct 2024 10:23:49 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2.1 03/12] drm/i915/display: Use async flip when available
- for initial plane config
-Date: Mon,  7 Oct 2024 12:23:55 +0200
-Message-ID: <20241007102355.134080-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
-References: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD6CB10E332;
+	Mon,  7 Oct 2024 11:40:36 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5476810E369;
+ Mon,  7 Oct 2024 11:40:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/tests=3A_incl?=
+ =?utf-8?q?ude_linux/prandom=2Eh_as_well_as_linux/random=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Oct 2024 11:40:35 -0000
+Message-ID: <172830123534.1197978.1728756615116263623@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241004132037.57528-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20241004132037.57528-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,59 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I'm planning to reorder readout in the Xe sequence in such a way that
-interrupts will not be available, so just use an async flip.
+== Series Details ==
 
-Since the new FB points to the same pages, it will not tear. It also
-has the benefit of perhaps being slightly faster.
+Series: drm/xe/tests: include linux/prandom.h as well as linux/random.h
+URL   : https://patchwork.freedesktop.org/series/139561/
+State : success
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
-Fix compiler fails..
-Change intel_de_wait_custom to normal variant.
+== Summary ==
 
-I still believe we should be fine with async flips. The buffer will not
-be a standard RGBX8888 on the first plane. If we violate a constraint, it
-will be from alignment, and for that it would be interesting to find any
-border cases we missed.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9d79cb6da4e3 drm-tip: 2024y-10m-07d-11h-28m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/tests: include linux/prandom.h as well as linux/random.h
 
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index fdb141cfa4274..c7ba8fcff20c9 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2800,7 +2800,7 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
- 		to_intel_plane_state(plane->base.state);
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = crtc->pipe;
--	u32 base;
-+	u32 base, plane_ctl;
- 
- 	if (!plane_state->uapi.visible)
- 		return false;
-@@ -2814,7 +2814,16 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
- 	if (plane_config->base == base)
- 		return false;
- 
-+	/* Perform an async flip to the new surface. */
-+	plane_ctl = intel_de_read(i915, PLANE_CTL(pipe, plane_id));
-+	plane_ctl |= PLANE_CTL_ASYNC_FLIP;
-+
-+	intel_de_write(i915, PLANE_CTL(pipe, plane_id), plane_ctl);
- 	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
- 
--	return true;
-+	if (intel_de_wait(i915, PLANE_SURFLIVE(pipe, plane_id), ~0U, base, 40) < 0)
-+		drm_warn(&i915->drm, "async flip timed out\n");
-+
-+	/* No need to vblank wait either */
-+	return false;
- }
--- 
-2.45.2
 
