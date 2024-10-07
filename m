@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 570F0CFB440
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:42:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E15BCFB440
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 06:42:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2483810E1AD;
-	Mon,  7 Oct 2024 06:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B57810E308;
+	Mon,  7 Oct 2024 06:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iDB8MmXi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CKftsg8q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89E5210E30A
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 06:42:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A938010E308
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Oct 2024 06:42:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728283347; x=1759819347;
+ t=1728283349; x=1759819349;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HuQiSy7hBcgDt6V9fZ07V76p52JXf9JdJFbpGa7XfEM=;
- b=iDB8MmXiYj+dtmCZqth2nsz5nc3UDqSCaYY/YrjsqflY9doZAzH2K9N+
- RT12F3UDa6r3NbdPVC/x25qAF/wapBWC+iFl+EzkBFPVKYRX0Rv823g1P
- yiKqBf5b1LwSfjrsQJqloQhzxpDuEHISwcC7QPkuq2NldRcUbp3Ng+ty7
- yTOy5lvqD7rCP92Kkm8sOjOt4HOaHu2ZG1up+DsnQ856l9ZMZZynR8BuH
- t2RqDwvp5pwXjcwF+RNkeyH0BM32JPvO1V4Am5tY0v+//TCVDzoXEi7Xu
- LMdxMA6lVKwA5D3YCZR1FdTLfVFYC3erZBZZPd4hvxRXvagOAqd7DjQfA A==;
-X-CSE-ConnectionGUID: 82yLUWHiRCSdqobzeZwRJw==
-X-CSE-MsgGUID: xVQzKswgQwuo2Z+PyHJ0FQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548468"
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548468"
+ bh=OtmLdOUv/z+s8k4zmKZP2WdezhK3mxoZ2F8AFkhMk8E=;
+ b=CKftsg8qv4AjI6DZMMtaNky6XI6T7Sz8BNq3SBcYhR7KwnWqoysKItlI
+ ZIRAP7aPP7AY//PMgKespWEG9sqLKm0X2FoX8LnszjABzr4ue33KiZwdE
+ A70/X48hVlgKwbN/TzNfv0to+1ukQ2cdMZfS0Z2Ym7qNEcFRqVOOvE6je
+ lMfbYbfyGSc1U71A/XqNhCK+C36EVHS9AB6P5oyd3R5puM3FKvqqu4ei2
+ FDmmOQt7PmVKgMLtH/c1kDp+hfCRihoDzeSg/rYuGsm7+nSNSXtGDe5AK
+ BQjrsetMgkjqnvqcEq9gepanssynlsAzgI/hsAkMCI7drcy+yxGh+FQpq g==;
+X-CSE-ConnectionGUID: hbtWRN0/QiKLrv11cD0l6g==
+X-CSE-MsgGUID: djnmH6doQ0WzZ9wvrEYBGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11217"; a="38548469"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="38548469"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2024 23:42:27 -0700
-X-CSE-ConnectionGUID: bCEjCvRiToKbyfBcIVZO+w==
-X-CSE-MsgGUID: uaWoqTKiSrWsEFVG06UQ6g==
+ 06 Oct 2024 23:42:29 -0700
+X-CSE-ConnectionGUID: chGVmUMySza0U7omvvX4CQ==
+X-CSE-MsgGUID: K0UYFC1ZQfajy8v/u0of9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842552"
+X-IronPort-AV: E=Sophos;i="6.11,183,1725346800"; d="scan'208";a="112842574"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:42:25 -0700
+ by orviesa001.jf.intel.com with ESMTP; 06 Oct 2024 23:42:27 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v7 19/26] drm/xe/pat: Update handling of xe_force_wake_get
- return
-Date: Mon,  7 Oct 2024 12:30:10 +0530
-Message-Id: <20241007070017.1732886-20-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 20/26] drm/xe/gt_tlb_invalidation_ggtt: Update handling of
+ xe_force_wake_get return
+Date: Mon,  7 Oct 2024 12:30:11 +0530
+Message-Id: <20241007070017.1732886-21-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
 References: <20241007070017.1732886-1-himal.prasad.ghimiray@intel.com>
@@ -78,9 +78,6 @@ input to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
-- xe_force_wake_put() error doesn't need to be checked. It internally
-WARNS on domain ack failure.
-- don't use xe_assert() to report HW errors (Michal)
 
 v5
 - return unsigned int from xe_force_wake_get()
@@ -88,161 +85,45 @@ v5
 
 v7
 - Fix commit message
-- Remove redundant header
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 65 +++++++++++++++++--------------------
- 1 file changed, 30 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 6bd6adfdfc74..02e720471bb2 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -182,11 +182,12 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
- static void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 98616de0c5bb..302ac48186d3 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -259,6 +259,7 @@ static int xe_gt_tlb_invalidation_guc(struct xe_gt *gt,
+ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
  {
  	struct xe_device *xe = gt_to_xe(gt);
--	int i, err;
 +	unsigned int fw_ref;
-+	int i;
  
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		goto err_fw;
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return;
+ 	if (xe_guc_ct_enabled(&gt->uc.guc.ct) &&
+ 	    gt->uc.guc.submission_state.enabled) {
+@@ -279,7 +280,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 		if (IS_SRIOV_VF(xe))
+ 			return 0;
  
- 	drm_printf(p, "PAT table:\n");
- 
-@@ -198,9 +199,7 @@ static void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   XELP_MEM_TYPE_STR_MAP[mem_type], pat);
+-		xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
+ 			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
+ 					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
+@@ -289,7 +290,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
+ 					GUC_TLB_INV_CR_INVALIDATE);
+ 		}
+-		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
  	}
  
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--err_fw:
--	xe_assert(xe, !err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- static const struct xe_pat_ops xelp_pat_ops = {
-@@ -211,11 +210,12 @@ static const struct xe_pat_ops xelp_pat_ops = {
- static void xehp_dump(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	int i, err;
-+	unsigned int fw_ref;
-+	int i;
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		goto err_fw;
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return;
- 
- 	drm_printf(p, "PAT table:\n");
- 
-@@ -229,9 +229,7 @@ static void xehp_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   XELP_MEM_TYPE_STR_MAP[mem_type], pat);
- 	}
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--err_fw:
--	xe_assert(xe, !err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- static const struct xe_pat_ops xehp_pat_ops = {
-@@ -242,11 +240,12 @@ static const struct xe_pat_ops xehp_pat_ops = {
- static void xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	int i, err;
-+	unsigned int fw_ref;
-+	int i;
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		goto err_fw;
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return;
- 
- 	drm_printf(p, "PAT table:\n");
- 
-@@ -258,9 +257,7 @@ static void xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   REG_FIELD_GET(XEHPC_CLOS_LEVEL_MASK, pat), pat);
- 	}
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--err_fw:
--	xe_assert(xe, !err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- static const struct xe_pat_ops xehpc_pat_ops = {
-@@ -271,11 +268,12 @@ static const struct xe_pat_ops xehpc_pat_ops = {
- static void xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	int i, err;
-+	unsigned int fw_ref;
-+	int i;
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		goto err_fw;
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return;
- 
- 	drm_printf(p, "PAT table:\n");
- 
-@@ -292,9 +290,7 @@ static void xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   REG_FIELD_GET(XELPG_INDEX_COH_MODE_MASK, pat), pat);
- 	}
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--err_fw:
--	xe_assert(xe, !err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- /*
-@@ -330,12 +326,13 @@ static void xe2lpm_program_pat(struct xe_gt *gt, const struct xe_pat_table_entry
- static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	int i, err;
-+	unsigned int fw_ref;
- 	u32 pat;
-+	int i;
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		goto err_fw;
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return;
- 
- 	drm_printf(p, "PAT table:\n");
- 
-@@ -374,9 +371,7 @@ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
- 		   REG_FIELD_GET(XE2_COH_MODE, pat),
- 		   pat);
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--err_fw:
--	xe_assert(xe, !err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- static const struct xe_pat_ops xe2_pat_ops = {
+ 	return 0;
 -- 
 2.34.1
 
