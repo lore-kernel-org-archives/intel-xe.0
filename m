@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B15A6CFB450
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 18:15:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67F3BCFB452
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Oct 2024 18:20:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82DFD10E3F8;
-	Mon,  7 Oct 2024 18:15:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F1FE10E3FB;
+	Mon,  7 Oct 2024 18:20:27 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8D3E10E3F8;
- Mon,  7 Oct 2024 18:15:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D13B10E3F9;
+ Mon,  7 Oct 2024 18:20:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Reduce_fli?=
- =?utf-8?q?ckering_when_inheriting_BIOS_fb=2E_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_x86/apic=3A_Stop_the?=
+ =?utf-8?q?_TSC_Deadline_timer_during_lapic_timer_shutdown?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Oct 2024 18:15:44 -0000
-Message-ID: <172832494488.1199785.8644475070199095844@2413ebb6fbb6>
+Date: Mon, 07 Oct 2024 18:20:25 -0000
+Message-ID: <172832522524.1199807.406116341770370930@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
+References: <20241007135242.3028131-1-karthik.poosa@intel.com>
+In-Reply-To: <20241007135242.3028131-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,23 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Reduce flickering when inheriting BIOS fb. (rev2)
-URL   : https://patchwork.freedesktop.org/series/139516/
-State : failure
+Series: x86/apic: Stop the TSC Deadline timer during lapic timer shutdown
+URL   : https://patchwork.freedesktop.org/series/139636/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 39a016b276ce drm-tip: 2024y-10m-07d-13h-05m-35s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/display/xe_plane_initial.c:245
-error: drivers/gpu/drm/xe/display/xe_plane_initial.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe/display: Handle stolen bar readout in the same way as lmem
-Applying: drm/xe: Remove double pageflip
-Patch failed at 0002 drm/xe: Remove double pageflip
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: x86/apic: Stop the TSC Deadline timer during lapic timer shutdown
 
 
