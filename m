@@ -4,47 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DBC9D0D791
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C6BFD0D794
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F2D410EAF7;
-	Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3817D10EAE8;
+	Fri, 11 Oct 2024 13:55:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; secure) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="NIqB1jgX";
+	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=everestkc.com.np header.i=@everestkc.com.np header.b="tV1tMXYn";
 	dkim-atps=neutral
-Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
- by gabe.freedesktop.org (Postfix) with ESMTP id 336DF10E7D6
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 19:22:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
- t=1728501746; bh=Cgq/9yo0Az36vK7/5pvekRKWRvtfNHMNj/p/Mdzc/D0=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=NIqB1jgXz0HDy8xuQcAo1CgLNUp91yheh2qZh3Tza9eJ7JwAzo68493YzvmHrNl5p
- L8MqK16soqPjKoAHivWjjzhQDFzxPVBcf1qrNyNB2ubPJUq/v1dDzYWRqW7B8+12xU
- meuwaaobeB32BsUPxR0yLy8aKVr3ctNviNDOGZV8aownetVA2Lebvpvnp3nYiJ1tpb
- lr17lGrgflr3AlZgn1G9WweCxXyABUrYYW8PVpCMZp1ljJPLGuhuVkNyxBasEWkpnk
- 9ParMjhmRkuFCYGaHfX0+bQb1JUYd7VYDqsoIONF25DUA/XW6bypWdyNhk5O1Vvmv/
- hCrkQ0d24/flSYJS4uhYkZOacVtWF+kLFTQXpZLlKSmwP59fMdxVJZL6RvFbpYYSe3
- EcZH3Ur6IdwkTzR583XFxYKcp6ojinJDQzXhTbV2yClT6p43nm8vSNSY/QnzoclKNC
- GvE6x7IWDe5FXf8CgdLvqKi6UEKjCb/N8rlO51g3CzXPLnk9gfYw8M8JgcWcZeaTxH
- KHaUSydWZiQo9lV98Que3S5N0YRUzKIW05z14FloUQvnpz7BkyYKPA6cup0tuEcFRa
- DONvcQfgy0t38hBo2cPPXrejoeoDIlIcYzlBoFF5cuL2OotnryF6qsJVcgMKjUzCxp
- iyg+582Kz4hWA+pXzkWobT1c=
-Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl
- [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
- by bout3.ijzerbout.nl (Postfix) with ESMTPSA id 54990160E0A;
- Wed,  9 Oct 2024 21:22:26 +0200 (CEST)
-Message-ID: <859bc217-0f47-4f2c-83a3-d1f99eb7ca4b@ijzerbout.nl>
-Date: Wed, 9 Oct 2024 21:22:24 +0200
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7DA110E5BD
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Oct 2024 20:55:06 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-20ba9f3824fso46805275ad.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 08 Oct 2024 13:55:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=everestkc.com.np; s=everest; t=1728420906; x=1729025706;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=0tFkED+mY089YHzAtW+B1O+++Bw0Z0pfmZQ8b1ZguYk=;
+ b=tV1tMXYnmFaJB4EbvwVZdBUkMld7Y5n8y7YlrWWai8RdSUzv2Pty7nncsNGuYw+mxm
+ qAQtu7YT/TM8vBlLUk0i2JUbIBqLmKkXoGzdY8oHnpCbYmhU3QzsCmAxOiaz7ptavaRL
+ wGmKIdpMnVX5UuzkWcBTayA+Ty9z2twbTZB9ZbFHUTSmQRaAToUHX3ZllhwwdPzuukeo
+ wN5lY3VLG0lINiI/m+bj3hHLakClcFpbrbqDVEKwA8j4Ans0kmo/U4dMD/53RRPEiAqY
+ KHIGuOULnQSGIgyf9evxYgGhYsS8bcMutjSdoODOKcRT0cOpVtDv+rQLG/UtQlCqtE56
+ l+Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728420906; x=1729025706;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=0tFkED+mY089YHzAtW+B1O+++Bw0Z0pfmZQ8b1ZguYk=;
+ b=FuYRxF7DPOISL+CG68FXUq4RjyEh6Af2diriSodA09/LenunXMxm79Gs3UWtrP8mGc
+ o1cbSB/qq37mxtR093vlh92gA3Clbdqj6NGWa2Ou4cpPGjiy8RUJ6MirvRL1myIKuhAg
+ iUPq+zHFYjhxXHrL+NVyDhKLLp5UrFF5ReAoKefV5cHv3VqYC5U0mESfRP1nYIz8L3A3
+ Khyv9bVFIrD+ofLFFvYIFivC4Q6VMDHXBPh8HduByWdUUcIoOWSSLeSlHFRfs7Uxa+rR
+ z4r5SYBgA/TsFMRMkJH5O7CXItnSEW6/JVOrFjX5GA/A4C77W4KyVZugXgOix/FyHQun
+ 4Hsw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXgSukMN5NI8kbM8XzsWOreBt/Cti9xgQzMAccFFrcoRWPgg9aR08NR85Ql0DbdpVLg28yABt1lUw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx73of1lc1WPdo1ifRybhnn813b7EdVL86xQSlc5qyXwWKPss1A
+ 0xYK7kmK5G0FV5CvzAxr7w3o8zuZLaubqWXP0WyJnd+H/5XGQEOaW+GupmBF5sk=
+X-Google-Smtp-Source: AGHT+IG5QtndTuvxUc4EQsIUMZuzUEKCOMQYR+xtaqDBDhzPRGHOGMjKNeFwj/pDDHDOMAis6O/BGw==
+X-Received: by 2002:a17:902:c411:b0:20b:9f8c:e9de with SMTP id
+ d9443c01a7336-20c6376dfefmr4938325ad.13.1728420906131; 
+ Tue, 08 Oct 2024 13:55:06 -0700 (PDT)
+Received: from localhost.localdomain ([132.178.207.21])
+ by smtp.googlemail.com with ESMTPSA id
+ d9443c01a7336-20c13986787sm59611735ad.242.2024.10.08.13.55.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Oct 2024 13:55:05 -0700 (PDT)
+From: "Everest K.C." <everestkc@everestkc.com.np>
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Cc: "Everest K.C." <everestkc@everestkc.com.np>, skhan@linuxfoundation.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/xe/guc: Fix deference after check
+Date: Tue,  8 Oct 2024 14:53:48 -0600
+Message-ID: <20241008205352.4480-1-everestkc@everestkc.com.np>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v28,6/6] drm/xe/guc: Save manual engine capture into capture list
-To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
-References: <20241004193428.3311145-7-zhanjun.dong@intel.com>
-Content-Language: en-US
-From: Kees Bakker <kees@ijzerbout.nl>
-In-Reply-To: <20241004193428.3311145-7-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 11 Oct 2024 13:55:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,68 +84,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Op 04-10-2024 om 21:34 schreef Zhanjun Dong:
-> Save manual engine capture into capture list.
-> This removes duplicate register definitions across manual-capture vs
-> guc-err-capture.
->
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_devcoredump.c     |   3 +-
->   drivers/gpu/drm/xe/xe_guc_capture.c     | 153 +++++++++++++-
->   drivers/gpu/drm/xe/xe_guc_capture.h     |   3 +-
->   drivers/gpu/drm/xe/xe_hw_engine.c       | 255 +-----------------------
->   drivers/gpu/drm/xe/xe_hw_engine.h       |   2 -
->   drivers/gpu/drm/xe/xe_hw_engine_types.h |  59 ------
->   6 files changed, 163 insertions(+), 312 deletions(-)
->
-> [...]
-> +static void
-> +read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_group *list,
-> +		 struct guc_mmio_reg *regs)
-> +{
-> +	int i;
-> +
-> +	if (!list || list->num_regs == 0)
-> +		return;
-> +
-> +	if (!regs)
-> +		return;
-> +
-> +	for (i = 0; i < list->num_regs; i++) {
-> +		struct __guc_mmio_reg_descr desc = list->list[i];
-> +		u32 value;
-> +
-> +		if (!list->list)
-This test makes no sense at this point.
-Notice that list->list[i] is used to get "desc". It would have crashed 
-if list->list was NULL.
-It could make sense before the for-loop, but you'll have to decide on that.
-> +			return;
-> +
-> +		if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
-> +			value = xe_hw_engine_mmio_read32(hwe, desc.reg);
-> +		} else {
-> +			if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS &&
-> +			    FIELD_GET(GUC_REGSET_STEERING_NEEDED, desc.flags)) {
-> +				int group, instance;
-> +
-> +				group = FIELD_GET(GUC_REGSET_STEERING_GROUP, desc.flags);
-> +				instance = FIELD_GET(GUC_REGSET_STEERING_INSTANCE, desc.flags);
-> +				value = xe_gt_mcr_unicast_read(hwe->gt, XE_REG_MCR(desc.reg.addr),
-> +							       group, instance);
-> +			} else {
-> +				value = xe_mmio_read32(&hwe->gt->mmio, desc.reg);
-> +			}
-> +		}
-> +
-> +		regs[i].value = value;
-> +		regs[i].offset = desc.reg.addr;
-> +		regs[i].flags = desc.flags;
-> +		regs[i].mask = desc.mask;
-> +	}
-> +}
->
+The `if (!snapshot->copy)` evaluates to True only when `snapshot->copy`
+is Null. Thus, derefrencing `snapshot->copy` inside this if block is
+equivalent to Null pointer derefrencing.
+The `if` condition is now changed to evaluate to true only when
+`snapshot->copy` is not Null.
+This issue was reported by Coverity Scan.
+
+Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+---
+ drivers/gpu/drm/xe/xe_guc_log.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 7fbc56cceaba..4e1a5e8ba1e3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -122,7 +122,7 @@ void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
+ 	if (!snapshot)
+ 		return;
+ 
+-	if (!snapshot->copy) {
++	if (snapshot->copy) {
+ 		for (i = 0; i < snapshot->num_chunks; i++)
+ 			kfree(snapshot->copy[i]);
+ 		kfree(snapshot->copy);
 -- 
-Kees
+2.43.0
+
