@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69698CF042F
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:37:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E4A2CF0434
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD0010E60B;
-	Tue,  8 Oct 2024 22:37:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3F810E615;
+	Tue,  8 Oct 2024 22:37:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N0usWddA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BreKkOpD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8E310E603;
- Tue,  8 Oct 2024 22:37:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAE2B10E60F;
+ Tue,  8 Oct 2024 22:37:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728427069; x=1759963069;
+ t=1728427071; x=1759963071;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lVEu8PXqU/hx6B5niOi9zHYApMRmg9lo5UOPf0rdyFY=;
- b=N0usWddAi2B+05sTCCh5ODhfpOfMqvDd7EbSqYz9R+hr6MqXBhN9nHRM
- TGKpyRmo8jSC8UvncoTdn0Up8/iM7SlAJoEjM4dyVbRbOqVUGLvLrN4z6
- 9xY+t6mrqI2IvheyIVY/Otx2M7hFLeglpTvwi2CzYFn2+Y31wjCnZ4YsQ
- uVGEtQlGNXtNJOWqKq8xrPOaYf/LNxvWm08nO5qn/rnnrIDwlSuMYlp9W
- TfY3Zh3RkwO30kSVem+mtUjdZrXb14EMPHlAAU3r4tj/eVekFSO8f34DQ
- lOWENZJOobQtLF7ZzcoasXfS+yZmk08b4sHMGaFF4QXYozIt59cw36OEV g==;
-X-CSE-ConnectionGUID: +p+5x41JRZCxSiUDGHYnlQ==
-X-CSE-MsgGUID: 4IBF9sqtTlWPHt1ZQUfiHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037294"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037294"
+ bh=4WYcOxeFEHx7fhoQsQjrYNitYn6S0kg+pmhaVq8NAnU=;
+ b=BreKkOpDblOS+tpsgw0xg9N8bgdgLJ/FM22P9OlR0Q5k5PM8G6r3fiwM
+ Gokx7WHfHtfiNG2H8ox2QUhyelWBrnCTOr9aWqLsDDaPUzHTEIy6KaGHz
+ HYflBZnAFCg/r2PlRSs5X/3hgGcwd4/D2ekYCsGq9OojV3HAuBXgvc4Vx
+ n12ZfF2zluvLR1hEh5dupmAJtWsWj1y4lFpIpq5+16fQxNkS/5LaoeeuG
+ 9TRQs/97zxtiiY9Nf3ljVw09Iex0QBp3KlJFIxlz3LtYax49CpJk2IVzi
+ LJowYiaKbGAU0Q7aA/g2//AXx+CwckUjvb0wyuHnDGiYTg9a4mPlP9C3E A==;
+X-CSE-ConnectionGUID: ml0vXaL9RV+ZqtpmnDQuXA==
+X-CSE-MsgGUID: S+E36AleTtK3+Ro+S3QK/Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037302"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037302"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:48 -0700
-X-CSE-ConnectionGUID: Le0+tN6vQRSX/0fljF7n3w==
-X-CSE-MsgGUID: OTKGOF2lR7Caqp8D5mISKA==
+ 08 Oct 2024 15:37:50 -0700
+X-CSE-ConnectionGUID: NeBRjr7XQAytROD2nf/xUw==
+X-CSE-MsgGUID: +uav4hpwSJKgqp8w6rkNRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811842"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811856"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:48 -0700
+ 08 Oct 2024 15:37:50 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 05/10] drm/i915/xe3lpd: Add cdclk changes
-Date: Tue,  8 Oct 2024 15:37:36 -0700
-Message-ID: <20241008223741.82790-6-matthew.s.atwood@intel.com>
+Subject: [PATCH 09/10] drm/i915/xe3lpd: Add check to see if edp over type c is
+ allowed
+Date: Tue,  8 Oct 2024 15:37:40 -0700
+Message-ID: <20241008223741.82790-10-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
 References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
@@ -69,119 +69,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Xe3_LPD has new max cdclk of 691200 which requires reusing the lnl table
-and modify/add higher frequencies. Updating the max cdclk supported by
-the platform and voltage_level determination is also updated.
+Read PICA register to see if edp over type C is possible and then
+add the appropriate tables for it.
 
-There are minor changes in cdclk programming sequence compared to lnl,
-where programming cd2x divider needs to be skipped. This is already handled
-by the calculations in existing code.
-
-Bspec: 68861, 68863, 68864
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Bspec: 68846
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 56 +++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c     |  2 ++
+ .../gpu/drm/i915/display/intel_display_types.h   |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c          | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h                  |  3 +++
+ 4 files changed, 22 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index fa1c2012b10c..6ac7bd6afc36 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1468,6 +1468,32 @@ static const struct intel_cdclk_vals xe2hpd_cdclk_table[] = {
- 	{}
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 0d6f75ae35f5..1c8c2a2b05e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2261,6 +2261,8 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
+ 			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
+ 				return xe2hpd_c20_edp_tables;
++			if (DISPLAY_VER(i915) >= 30 && encoder->typec_supp)
++				return xe3lpd_c20_dp_edp_tables;
+ 		}
  
-+static const struct intel_cdclk_vals xe3lpd_cdclk_table[] = {
-+	{ .refclk = 38400, .cdclk = 153600, .ratio = 16, .waveform = 0xaaaa },
-+	{ .refclk = 38400, .cdclk = 172800, .ratio = 16, .waveform = 0xad5a },
-+	{ .refclk = 38400, .cdclk = 192000, .ratio = 16, .waveform = 0xb6b6 },
-+	{ .refclk = 38400, .cdclk = 211200, .ratio = 16, .waveform = 0xdbb6 },
-+	{ .refclk = 38400, .cdclk = 230400, .ratio = 16, .waveform = 0xeeee },
-+	{ .refclk = 38400, .cdclk = 249600, .ratio = 16, .waveform = 0xf7de },
-+	{ .refclk = 38400, .cdclk = 268800, .ratio = 16, .waveform = 0xfefe },
-+	{ .refclk = 38400, .cdclk = 288000, .ratio = 16, .waveform = 0xfffe },
-+	{ .refclk = 38400, .cdclk = 307200, .ratio = 16, .waveform = 0xffff },
-+	{ .refclk = 38400, .cdclk = 330000, .ratio = 25, .waveform = 0xdbb6 },
-+	{ .refclk = 38400, .cdclk = 360000, .ratio = 25, .waveform = 0xeeee },
-+	{ .refclk = 38400, .cdclk = 390000, .ratio = 25, .waveform = 0xf7de },
-+	{ .refclk = 38400, .cdclk = 420000, .ratio = 25, .waveform = 0xfefe },
-+	{ .refclk = 38400, .cdclk = 450000, .ratio = 25, .waveform = 0xfffe },
-+	{ .refclk = 38400, .cdclk = 480000, .ratio = 25, .waveform = 0xffff },
-+	{ .refclk = 38400, .cdclk = 487200, .ratio = 29, .waveform = 0xfefe },
-+	{ .refclk = 38400, .cdclk = 522000, .ratio = 29, .waveform = 0xfffe },
-+	{ .refclk = 38400, .cdclk = 556800, .ratio = 29, .waveform = 0xffff },
-+	{ .refclk = 38400, .cdclk = 561600, .ratio = 36, .waveform = 0xf7de },
-+	{ .refclk = 38400, .cdclk = 604800, .ratio = 36, .waveform = 0xfefe },
-+	{ .refclk = 38400, .cdclk = 648000, .ratio = 36, .waveform = 0xfffe },
-+	{ .refclk = 38400, .cdclk = 691200, .ratio = 36, .waveform = 0xffff },
-+	{}
-+};
-+
- static const int cdclk_squash_len = 16;
+ 		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 2bb1fa64da2f..e9dc7707fbcd 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -158,6 +158,7 @@ struct intel_encoder {
+ 	enum port port;
+ 	u16 cloneable;
+ 	u8 pipe_mask;
++	bool typec_supp;
  
- static int cdclk_squash_divider(u16 waveform)
-@@ -1594,6 +1620,20 @@ static u8 rplu_calc_voltage_level(int cdclk)
- 				  rplu_voltage_level_max_cdclk);
+ 	/* Check and recover a bad link state. */
+ 	struct delayed_work link_check_work;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index fbb096be02ad..917a503cc43b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5570,6 +5570,20 @@ intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
+ 		drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp->dpcd);
  }
  
-+static u8 xe3lpd_calc_voltage_level(int cdclk)
++static void
++intel_dp_check_edp_typec_supp(struct intel_encoder *encoder)
 +{
-+	static const int xe3lpd_voltage_level_max_cdclk[] = {
-+		[0] = 307200,
-+		[1] = 480000,
-+		[2] = 556800,
-+		[3] = 691200,
-+	};
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	bool is_tc_port = intel_encoder_is_tc(encoder);
++	u32 ret = 0;
 +
-+	return calc_voltage_level(cdclk,
-+				  ARRAY_SIZE(xe3lpd_voltage_level_max_cdclk),
-+				  xe3lpd_voltage_level_max_cdclk);
++	if (encoder->type != INTEL_OUTPUT_EDP || !is_tc_port)
++		return;
++
++	ret = intel_de_read(i915, PICA_PHY_CONFIG_CONTROL);
++	encoder->typec_supp = ret & EDP_ON_TYPEC;
 +}
 +
- static void icl_readout_refclk(struct intel_display *display,
- 			       struct intel_cdclk_config *cdclk_config)
- {
-@@ -3437,7 +3477,9 @@ void intel_update_max_cdclk(struct intel_display *display)
- {
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ static int
+ intel_dp_detect(struct drm_connector *connector,
+ 		struct drm_modeset_acquire_ctx *ctx,
+@@ -5595,6 +5609,8 @@ intel_dp_detect(struct drm_connector *connector,
+ 	if (!intel_display_driver_check_access(dev_priv))
+ 		return connector->status;
  
--	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
-+	if (DISPLAY_VER(display) >= 30) {
-+		display->cdclk.max_cdclk_freq = 691200;
-+	} else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
- 		if (display->cdclk.hw.ref == 24000)
- 			display->cdclk.max_cdclk_freq = 552000;
- 		else
-@@ -3650,6 +3692,13 @@ void intel_cdclk_debugfs_register(struct intel_display *display)
- 			    display, &i915_cdclk_info_fops);
- }
- 
-+static const struct intel_cdclk_funcs xe3lpd_cdclk_funcs = {
-+	.get_cdclk = bxt_get_cdclk,
-+	.set_cdclk = bxt_set_cdclk,
-+	.modeset_calc_cdclk = bxt_modeset_calc_cdclk,
-+	.calc_voltage_level = xe3lpd_calc_voltage_level,
-+};
++	intel_dp_check_edp_typec_supp(encoder);
 +
- static const struct intel_cdclk_funcs rplu_cdclk_funcs = {
- 	.get_cdclk = bxt_get_cdclk,
- 	.set_cdclk = bxt_set_cdclk,
-@@ -3794,7 +3843,10 @@ void intel_init_cdclk_hooks(struct intel_display *display)
- {
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	/* Can't disconnect eDP */
+ 	if (intel_dp_is_edp(intel_dp))
+ 		status = edp_detect(intel_dp);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index da65500cd0c8..5f5a6ade5f8c 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4583,4 +4583,7 @@ enum skl_power_gate {
  
--	if (DISPLAY_VER(display) >= 20) {
-+	if (DISPLAY_VER(display) >= 30) {
-+		display->funcs.cdclk = &xe3lpd_cdclk_funcs;
-+		display->cdclk.table = xe3lpd_cdclk_table;
-+	} else if (DISPLAY_VER(display) >= 20) {
- 		display->funcs.cdclk = &rplu_cdclk_funcs;
- 		display->cdclk.table = xe2lpd_cdclk_table;
- 	} else if (DISPLAY_VER_FULL(display) >= IP_VER(14, 1)) {
+ #define MTL_MEDIA_GSI_BASE		0x380000
+ 
++#define PICA_PHY_CONFIG_CONTROL 	_MMIO(0x16FE68)
++#define   EDP_ON_TYPEC			REG_BIT(31)
++
+ #endif /* _I915_REG_H_ */
 -- 
 2.45.0
 
