@@ -4,113 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A44D6CEF168
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E442CEF15B
 	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 12:07:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1981110E4F6;
-	Tue,  8 Oct 2024 12:07:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F336310E4F4;
+	Tue,  8 Oct 2024 12:07:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="fqDiSvyo";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="WLhBiKSC";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="X/0Nyqkt";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="usJY0D7K";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="EknPmGZo";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xkZNWRm8";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="izR8ofX9";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="t7mxaT60";
 	dkim-atps=neutral
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5757D10E4EA;
- Tue,  8 Oct 2024 12:07:02 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FAE210E4E3;
+ Tue,  8 Oct 2024 12:07:00 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id E800C21D09;
- Tue,  8 Oct 2024 12:07:00 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E7DF121D03;
+ Tue,  8 Oct 2024 12:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728389221; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ t=1728389219; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=IsvMEHX9PDibqe+CFHjz7sWP3V9vxsZlmK4U6YXqBeg=;
- b=fqDiSvyoolk4Z6evz447Dc6wZWicpvKsM//6wQEog3Jw60OjeNFNffijs8TdImU2fgbWvo
- w54x1iJr1WOkwgzYZcf87FFP0Y3V981RUnsC90AMdBJDRQ8oLp6zMWBiFYQaEKey0aqv63
- e4Pe4Dj6ggZWyUPwcULzPyS8Id1tGNA=
+ bh=Q7dm6/pAob6cQoFvbxeS/acJ/RTSMVveONDiyoUMYTk=;
+ b=EknPmGZoyUJzSJj2RRJ6L4DDNWYk9o5JGIDglZ4Wn8gW+Gv8nW0YgqNVswV+dWkVrk2rp7
+ JHUZHJ2wl14wmlrwunTfF92NZ8HJMp5vVGB+jNUhO2KFErbOIs4BeP3hjSqoDYlMuuP+KX
+ p0ItQ3dm8FsyZK7j4/CGThVCZSxDq4k=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728389221;
+ s=susede2_ed25519; t=1728389219;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=IsvMEHX9PDibqe+CFHjz7sWP3V9vxsZlmK4U6YXqBeg=;
- b=WLhBiKSC9TswlBjeddxXm6wNFunJscIxNLvSNEFx+4/RslqnRjGw8eZku7fJIeLYZHpTwK
- ev1rPONZY6bflsCw==
+ bh=Q7dm6/pAob6cQoFvbxeS/acJ/RTSMVveONDiyoUMYTk=;
+ b=xkZNWRm8oZUo2DHRix35wufVb7EH2Bu4MrVpoqpBdRwzaGffXlYVAbqslGzXkeOO4mQBDX
+ S8s8X6ynHrPA1ODQ==
 Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b="X/0Nyqkt";
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=usJY0D7K
+	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728389220; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ t=1728389218; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=IsvMEHX9PDibqe+CFHjz7sWP3V9vxsZlmK4U6YXqBeg=;
- b=X/0NyqktVL0ASjoOsM0+g4wIWU1TEvrXkXwNxkM6jnFBE+sklU2BAevR4aTGa2lIQM2XfE
- mHAGaN7uewCT7nQrMV7fU4mISuwTrbbjU6V8BGbCtZZk9oMNn+BUNXLqPgPA5dL0fCRGIZ
- WlO+0JMC5827w+AtE6LcrxpAWQ8Wb5s=
+ bh=Q7dm6/pAob6cQoFvbxeS/acJ/RTSMVveONDiyoUMYTk=;
+ b=izR8ofX90ofuJxsFAW2jhKqLWJo6Q75dFo5NtHTafHU9iF7cZ2nZngf1P8c1Gm7HILDyCq
+ yKUMHKJNy3uNBlDd0zg5Q+t94JHxd5BMp8chthQAVxozqVeht+NNXpqNRBuuvMi2hIakfn
+ z0eoRw/B6O7qrc3kNjHYyGhy7iET79Q=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728389220;
+ s=susede2_ed25519; t=1728389218;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=IsvMEHX9PDibqe+CFHjz7sWP3V9vxsZlmK4U6YXqBeg=;
- b=usJY0D7KiN5r+X1mmJibsGztsKgyARIFfoMs0CPalAQcx/kXxVTPTVDB/GV4v6qcpjmejd
- qyQoMYwb5K6rnKAw==
+ bh=Q7dm6/pAob6cQoFvbxeS/acJ/RTSMVveONDiyoUMYTk=;
+ b=t7mxaT60Gj5fyiHNXTRqD5HJ47xBELo4PZZij0QPqdqpFUGQw5fHHnupy9HYjmZ3iqfBJ4
+ MMS8ZkQxn110sLBw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 673551340C;
- Tue,  8 Oct 2024 12:07:00 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3F3BF1340C;
+ Tue,  8 Oct 2024 12:06:58 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id +LIAGGQgBWcCbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 08 Oct 2024 12:07:00 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id YCmaBGIgBWcCbgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 08 Oct 2024 12:06:58 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: simona@ffwll.ch, airlied@gmail.com, javierm@redhat.com, jfalempe@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>
-Subject: [PATCH v3 08/12] drm/amdgpu: Suspend and resume internal clients with
- client helpers
-Date: Tue,  8 Oct 2024 13:59:27 +0200
-Message-ID: <20241008120652.159190-9-tzimmermann@suse.de>
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v3 05/12] drm/fbdev: Store fbdev module parameters in separate
+ file
+Date: Tue,  8 Oct 2024 13:59:24 +0200
+Message-ID: <20241008120652.159190-6-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241008120652.159190-1-tzimmermann@suse.de>
 References: <20241008120652.159190-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: E800C21D09
-X-Spamd-Result: default: False [-3.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- ARC_NA(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- RCPT_COUNT_TWELVE(0.00)[12]; MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
+ MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+]; FROM_HAS_DN(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo];
  FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ RCPT_COUNT_SEVEN(0.00)[9]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ TO_DN_SOME(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,105 +112,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace calls to drm_fb_helper_set_suspend_unlocked() with calls
-to the client functions drm_client_dev_suspend() and
-drm_client_dev_resume(). Any registered in-kernel client will now
-receive suspend and resume events.
+The fbdev code does not really belong into drm_kms_helper.ko. But
+there are module parameters that control the behavior of the fbdev
+emulation. It is not possible to remove them from the module without
+breaking someone's installation.
+
+Therefore move the fbdev module parameters to drm_kms_helper_common.c,
+so that the actual fbdev implementaton can later go into a separate
+module.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Xinhui Pan <Xinhui.Pan@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 22 +++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/drm_fb_helper.c         | 31 ----------------------
+ drivers/gpu/drm/drm_internal.h          |  7 +++++
+ drivers/gpu/drm/drm_kms_helper_common.c | 35 +++++++++++++++++++++++++
+ 3 files changed, 42 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index fd853dc843e9..9c40d620a658 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -37,8 +37,8 @@
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+index d5e8994345bb..004f7c437897 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -46,37 +46,6 @@
+ #include "drm_internal.h"
+ #include "drm_crtc_internal.h"
  
- #include <drm/drm_aperture.h>
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_client_event.h>
- #include <drm/drm_crtc_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/amdgpu_drm.h>
- #include <linux/device.h>
-@@ -4711,13 +4711,13 @@ int amdgpu_device_prepare(struct drm_device *dev)
-  * amdgpu_device_suspend - initiate device suspend
-  *
-  * @dev: drm dev pointer
-- * @fbcon : notify the fbdev of suspend
-+ * @notify_clients: notify in-kernel DRM clients
-  *
-  * Puts the hw in the suspend state (all asics).
-  * Returns 0 for success or an error on failure.
-  * Called at driver suspend.
-  */
--int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
-+int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
- {
- 	struct amdgpu_device *adev = drm_to_adev(dev);
- 	int r = 0;
-@@ -4737,8 +4737,8 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
- 	if (amdgpu_acpi_smart_shift_update(dev, AMDGPU_SS_DEV_D3))
- 		DRM_WARN("smart shift update failed\n");
+-static bool drm_fbdev_emulation = true;
+-module_param_named(fbdev_emulation, drm_fbdev_emulation, bool, 0600);
+-MODULE_PARM_DESC(fbdev_emulation,
+-		 "Enable legacy fbdev emulation [default=true]");
+-
+-static int drm_fbdev_overalloc = CONFIG_DRM_FBDEV_OVERALLOC;
+-module_param(drm_fbdev_overalloc, int, 0444);
+-MODULE_PARM_DESC(drm_fbdev_overalloc,
+-		 "Overallocation of the fbdev buffer (%) [default="
+-		 __MODULE_STRING(CONFIG_DRM_FBDEV_OVERALLOC) "]");
+-
+-/*
+- * In order to keep user-space compatibility, we want in certain use-cases
+- * to keep leaking the fbdev physical address to the user-space program
+- * handling the fbdev buffer.
+- *
+- * This is a bad habit, essentially kept to support closed-source OpenGL
+- * drivers that should really be moved into open-source upstream projects
+- * instead of using legacy physical addresses in user space to communicate
+- * with other out-of-tree kernel modules.
+- *
+- * This module_param *should* be removed as soon as possible and be
+- * considered as a broken and legacy behaviour from a modern fbdev device.
+- */
+-static bool drm_leak_fbdev_smem;
+-#if IS_ENABLED(CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM)
+-module_param_unsafe(drm_leak_fbdev_smem, bool, 0600);
+-MODULE_PARM_DESC(drm_leak_fbdev_smem,
+-		 "Allow unsafe leaking fbdev physical smem address [default=false]");
+-#endif
+-
+ static LIST_HEAD(kernel_fb_helper_list);
+ static DEFINE_MUTEX(kernel_fb_helper_lock);
  
--	if (fbcon)
--		drm_fb_helper_set_suspend_unlocked(adev_to_drm(adev)->fb_helper, true);
-+	if (notify_clients)
-+		drm_client_dev_suspend(adev_to_drm(adev), false);
+diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+index 1705bfc90b1e..9af72bab86d1 100644
+--- a/drivers/gpu/drm/drm_internal.h
++++ b/drivers/gpu/drm/drm_internal.h
+@@ -54,6 +54,13 @@ bool drm_dev_needs_global_mutex(struct drm_device *dev);
+ struct drm_file *drm_file_alloc(struct drm_minor *minor);
+ void drm_file_free(struct drm_file *file);
  
- 	cancel_delayed_work_sync(&adev->delayed_init_work);
++/* drm_kms_helper_common.c */
++#if defined(CONFIG_DRM_FBDEV_EMULATION)
++extern bool drm_fbdev_emulation;
++extern int drm_fbdev_overalloc;
++extern bool drm_leak_fbdev_smem;
++#endif
++
+ #ifdef CONFIG_PCI
  
-@@ -4773,13 +4773,13 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
-  * amdgpu_device_resume - initiate device resume
-  *
-  * @dev: drm dev pointer
-- * @fbcon : notify the fbdev of resume
-+ * @notify_clients: notify in-kernel DRM clients
-  *
-  * Bring the hw back to operating state (all asics).
-  * Returns 0 for success or an error on failure.
-  * Called at driver resume.
-  */
--int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
-+int amdgpu_device_resume(struct drm_device *dev, bool notify_clients)
- {
- 	struct amdgpu_device *adev = drm_to_adev(dev);
- 	int r = 0;
-@@ -4835,8 +4835,8 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
- 	/* Make sure IB tests flushed */
- 	flush_delayed_work(&adev->delayed_init_work);
+ /* drm_pci.c */
+diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
+index 0c7550c0462b..cfdbc1ac88dc 100644
+--- a/drivers/gpu/drm/drm_kms_helper_common.c
++++ b/drivers/gpu/drm/drm_kms_helper_common.c
+@@ -27,6 +27,41 @@
  
--	if (fbcon)
--		drm_fb_helper_set_suspend_unlocked(adev_to_drm(adev)->fb_helper, false);
-+	if (notify_clients)
-+		drm_client_dev_resume(adev_to_drm(adev), false);
+ #include <linux/module.h>
  
- 	amdgpu_ras_resume(adev);
- 
-@@ -5448,7 +5448,7 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
- 				if (r)
- 					goto out;
- 
--				drm_fb_helper_set_suspend_unlocked(adev_to_drm(tmp_adev)->fb_helper, false);
-+				drm_client_dev_resume(adev_to_drm(tmp_adev), false);
- 
- 				/*
- 				 * The GPU enters bad state once faulty pages
-@@ -5734,7 +5734,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		 */
- 		amdgpu_unregister_gpu_instance(tmp_adev);
- 
--		drm_fb_helper_set_suspend_unlocked(adev_to_drm(tmp_adev)->fb_helper, true);
-+		drm_client_dev_suspend(adev_to_drm(tmp_adev), false);
- 
- 		/* disable ras on ALL IPs */
- 		if (!need_emergency_restart &&
++#include "drm_internal.h"
++
++#if defined(CONFIG_DRM_FBDEV_EMULATION)
++bool drm_fbdev_emulation = true;
++module_param_named(fbdev_emulation, drm_fbdev_emulation, bool, 0600);
++MODULE_PARM_DESC(fbdev_emulation,
++		 "Enable legacy fbdev emulation [default=true]");
++
++int drm_fbdev_overalloc = CONFIG_DRM_FBDEV_OVERALLOC;
++module_param(drm_fbdev_overalloc, int, 0444);
++MODULE_PARM_DESC(drm_fbdev_overalloc,
++		 "Overallocation of the fbdev buffer (%) [default="
++		 __MODULE_STRING(CONFIG_DRM_FBDEV_OVERALLOC) "]");
++
++/*
++ * In order to keep user-space compatibility, we want in certain use-cases
++ * to keep leaking the fbdev physical address to the user-space program
++ * handling the fbdev buffer.
++ *
++ * This is a bad habit, essentially kept to support closed-source OpenGL
++ * drivers that should really be moved into open-source upstream projects
++ * instead of using legacy physical addresses in user space to communicate
++ * with other out-of-tree kernel modules.
++ *
++ * This module_param *should* be removed as soon as possible and be
++ * considered as a broken and legacy behaviour from a modern fbdev device.
++ */
++bool drm_leak_fbdev_smem;
++#if IS_ENABLED(CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM)
++module_param_unsafe(drm_leak_fbdev_smem, bool, 0600);
++MODULE_PARM_DESC(drm_leak_fbdev_smem,
++		 "Allow unsafe leaking fbdev physical smem address [default=false]");
++#endif
++#endif
++
+ MODULE_AUTHOR("David Airlie, Jesse Barnes");
+ MODULE_DESCRIPTION("DRM KMS helper");
+ MODULE_LICENSE("GPL and additional rights");
 -- 
 2.46.0
 
