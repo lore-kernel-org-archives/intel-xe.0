@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 100CDCF0435
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:37:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57D30CF042A
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:43:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6662210E611;
-	Tue,  8 Oct 2024 22:37:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EEeeJn0G";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4073610E60F;
- Tue,  8 Oct 2024 22:37:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728427071; x=1759963071;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=x12u9sZdj9Z+CFEQFhSZUb1EdU1mYtiL5y0WfZwvTuY=;
- b=EEeeJn0GbAIT1f8gOlTEavYhnPD0wOcUKAlfpBnO/AgnECws8+lbOsJO
- PCI0mT7Tr6Aa96GU/ikZZ5DqfKRyyB6PGSp6PxdhdwnHqfiKl6ngZKThg
- lVa3eOeWT7G2sVQrL/09uTI+MeSKVVpoIUYTypX65eX5MJ9qz1WJwxmVu
- I46H17p1UtQ5UWbzEb/eTfwwxoMuebPbCstWK9ATJVkzqJzD2oGvXOj9X
- Bu/teRbeK+5tIO6nRpfIUMUERmo1/sKonWwbY3Cor1NltPsd6rgnZg1HN
- EwjvAqwTKl4IxPQV7Mi6gIotcoJxy693C583WywJxDr8Y727Im/by9W8n A==;
-X-CSE-ConnectionGUID: zaHMlG7qTsKPI6Dwgv5H9g==
-X-CSE-MsgGUID: T3uR0f0hQbidwtGz62s4Ug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037303"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037303"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:51 -0700
-X-CSE-ConnectionGUID: O9CHIl+XR9SkJ6hbt5jbfA==
-X-CSE-MsgGUID: TGX14IIATPKWVMcrsTxZtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811859"
-Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:51 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 10/10] drm/i915/xe3lpd: Add powerdown value of eDP over type c
-Date: Tue,  8 Oct 2024 15:37:41 -0700
-Message-ID: <20241008223741.82790-11-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
-References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D01610E604;
+	Tue,  8 Oct 2024 22:43:28 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53F5C10E604;
+ Tue,  8 Oct 2024 22:43:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_xe3lpd_edp_enabl?=
+ =?utf-8?q?ing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Oct 2024 22:43:27 -0000
+Message-ID: <172842740734.1206241.6628993518631221847@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,34 +36,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+== Series Details ==
 
-Add condition for P2.PG power down value.
+Series: Add xe3lpd edp enabling
+URL   : https://patchwork.freedesktop.org/series/139732/
+State : success
 
-Bspec: 74494
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 1c8c2a2b05e1..3d95ee65a9f1 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3144,7 +3144,8 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
- 	if (intel_encoder_is_c10phy(encoder))
- 		return CX0_P2PG_STATE_DISABLE;
- 
--	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
-+	if ((IS_BATTLEMAGE(i915) && encoder->port == PORT_A) ||
-+	    (DISPLAY_VER(i915) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
- 		return CX0_P2PG_STATE_DISABLE;
- 
- 	return CX0_P4PG_STATE_DISABLE;
--- 
-2.45.0
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c8e01f4159a7 drm-tip: 2024y-10m-08d-22h-38m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/xe3lpd: reuse xe2lpd definition
+Applying: drm/i915/xe3lpd: Adjust watermark calculations
+Applying: drm/i915/xe3lpd: Add new display power wells
+Applying: drm/i915/xe3lpd: Update pmdemand programming
+Applying: drm/i915/xe3lpd: Add cdclk changes
+Applying: drm/i915/xe3lpd: Add macro to choose HDCP_LINE_REKEY bit
+Applying: drm/i915/xe3lpd: Add C20 Phy consolidated programming table
+Applying: drm/i915/xe3lpd: Add new bit range of MAX swing setup
+Applying: drm/i915/xe3lpd: Add check to see if edp over type c is allowed
+Applying: drm/i915/xe3lpd: Add powerdown value of eDP over type c
+
 
