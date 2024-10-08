@@ -4,51 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BF2DCED24E
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 01:35:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17B46CED24D
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 01:35:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B816E10E347;
-	Tue,  8 Oct 2024 01:35:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA5EF10E07D;
+	Tue,  8 Oct 2024 01:35:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VazOLqSi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iXP74oEN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 923BC10E07D
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Oct 2024 01:35:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB84B10E07D
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Oct 2024 01:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728351315; x=1759887315;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=P1rMr79CHM7qxN2FkuSgQ1eZO+6mRdHE9f7Un5Gjs/c=;
- b=VazOLqSiPNPmqX73oan9u60kFq7fUnOUwbTvfsVJakODzY+4ZoiKG/8g
- w2i8NTXVwCfe/9p+XksEiK0dbFV8HJw7NChUWvmTI0Hbj64uybGedN11w
- GiCgzU2L8ZpuPgfEZW7pS3+b1KZ4Adun2t3cepOhL7Vnry81PNVgmfiFI
- SXbA5gqqHjQdi08cuj/USpSXBIPTTLvHfdl84HIEBw3RfgZIlVaU1he5C
- Zo9UOVxkeJteLjzwvEfNE1h8Wr34glpeT0tjoKsIj1AUrAK5mEkttLdmi
- syY6vD6SFRK5wy1NxawKdzNK6+3yJAgulwTVbvxKCwncxgI3h38Apr+/5 w==;
-X-CSE-ConnectionGUID: EUQ+x3lLQvW9ng5Fcs52pQ==
-X-CSE-MsgGUID: TEbfGtm2SpCU2QqqNgDvPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="38652972"
-X-IronPort-AV: E=Sophos;i="6.11,185,1725346800"; d="scan'208";a="38652972"
+ t=1728351316; x=1759887316;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=AKpDAuZ0/y4NnJb6PkJpHFPY4b+MIi+Apr8F01xYvjM=;
+ b=iXP74oENUf627UxOQSuwN5PDBk3wUTUCsAenm4G3XXztm510+611hCb9
+ FuJ9nXkuKJDm6IcqLSyu4q4uIexFtafoQaAZHzRMEWTl6GqQRHma042XN
+ bSdjco+0WVmvlaS/R+Cjw59lDV42j55mScTU75fCxXHYtSbIWc1/S8E/Q
+ CHevSe5LFCn9uUHNjzmRXpMBHV+j3mejFflO3BWghB46FUli3A3iUgc5d
+ 7IkxXzz2gIwQWqRTlro5FWj0yh+nHdCLuUQJvUjxGaOMGlm/AOg9DRFRQ
+ FHSoNZAHFTwtY7zJJ55aOq2SaJ4s81pMxAeoHmhZuhk06y40Pkonfh8mS Q==;
+X-CSE-ConnectionGUID: BXv4hU6aQN2Qh5ieEfq+aA==
+X-CSE-MsgGUID: 3u2XJO8WSRuDMvP8n/35TA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="38652973"
+X-IronPort-AV: E=Sophos;i="6.11,185,1725346800"; d="scan'208";a="38652973"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2024 18:35:15 -0700
-X-CSE-ConnectionGUID: CgT7pg+SRmyv8dMzLpcY8g==
-X-CSE-MsgGUID: FJbC9zJFSsqoOTlBdkBrvQ==
+ 07 Oct 2024 18:35:16 -0700
+X-CSE-ConnectionGUID: wIh++TKPTl20J91opAGamA==
+X-CSE-MsgGUID: fME6PGQDQcaMBeMF32JZmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,185,1725346800"; d="scan'208";a="80454293"
+X-IronPort-AV: E=Sophos;i="6.11,185,1725346800"; d="scan'208";a="80454297"
 Received: from msatwood-mobl.amr.corp.intel.com (HELO
  msatwood-mobl.hsd1.or.comcast.net) ([10.125.110.117])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2024 18:35:14 -0700
+ 07 Oct 2024 18:35:15 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 0/6 v3] Add Xe3 and Panther Lake support
-Date: Mon,  7 Oct 2024 18:35:03 -0700
-Message-ID: <20241008013509.61233-1-matthew.s.atwood@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 1/6] drm/xe/xe3: Xe3 uses the same PAT settings as Xe2
+Date: Mon,  7 Oct 2024 18:35:04 -0700
+Message-ID: <20241008013509.61233-2-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
+In-Reply-To: <20241008013509.61233-1-matthew.s.atwood@intel.com>
+References: <20241008013509.61233-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,42 +69,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the basic enabling for Xe3 gt and media and add the Panther Lake
-platform definition. This defines the Xe3 feature flags and initial GT
-workarounds.
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Display support will follow later.
+Xe3 platforms use the same PAT tables as Xe2.
 
-v2: Drop several patches in favor of a more lightweight approach,
-address feedback on the remainder, reorder.
+Bspec: 71582
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pat.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-v3: reuse xe2_graphics defintion, merge steering entries where
-appropriate, fix mistake in stepping for 2 workarounds.
-
-Gustavo Sousa (1):
-  drm/xe/xe3: Add initial set of workarounds
-
-Haridhar Kalvala (3):
-  drm/xe/xe3: Define Xe3 feature flags
-  drm/xe/ptl: PTL re-uses Xe2 MOCS table
-  drm/xe/ptl: Add PTL platform definition
-
-Matt Roper (2):
-  drm/xe/xe3: Xe3 uses the same PAT settings as Xe2
-  drm/xe/xe3lpm: Add new "instance0" steering table
-
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  3 ++
- drivers/gpu/drm/xe/xe_gt_mcr.c           | 17 +++++++-
- drivers/gpu/drm/xe/xe_mocs.c             |  1 +
- drivers/gpu/drm/xe/xe_pat.c              |  2 +-
- drivers/gpu/drm/xe/xe_pci.c              | 16 +++++++-
- drivers/gpu/drm/xe/xe_platform_types.h   |  1 +
- drivers/gpu/drm/xe/xe_wa.c               | 49 +++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_wa_oob.rules       |  3 +-
- include/drm/intel/xe_pciids.h            | 11 ++++++
- 10 files changed, 99 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 6bd6adfdfc74..b16473818173 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -387,7 +387,7 @@ static const struct xe_pat_ops xe2_pat_ops = {
+ 
+ void xe_pat_init_early(struct xe_device *xe)
+ {
+-	if (GRAPHICS_VER(xe) == 20) {
++	if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
+ 		xe->pat.ops = &xe2_pat_ops;
+ 		xe->pat.table = xe2_pat_table;
+ 
 -- 
 2.45.0
 
