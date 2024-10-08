@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BA8DCF042E
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:37:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A53ECF0432
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA2010E60A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE94A10E60E;
 	Tue,  8 Oct 2024 22:37:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRg9fa2x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JRBtYYqU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBA0310E287;
- Tue,  8 Oct 2024 22:37:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06BF210E603;
+ Tue,  8 Oct 2024 22:37:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728427067; x=1759963067;
+ t=1728427069; x=1759963069;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X4yFoYG09nBDCVGDiZa3j9lk+3PKGtYPHU6d9kBAYt8=;
- b=WRg9fa2xQBc8P74jkVoeJbKTOYS5fJQkVgw01aI7CXaFMFJJkjsWbqlU
- 6SG5xsr+18G5oy3trPwZUdEn9Ssfl/ocjV3lMfdvHmFWPI8flpgelOOCo
- sp6Z+jQntCzCKFgiyBw6Ahj9CGORZcRa+M+PUDJhGE3luOGKmsavOK0k8
- ZQG4+9VBWvcpkAjSatwftL2xR6P0XwT2zWFp/0WD0CV+VYnPNp6GpDGD/
- 2PD0fvYZOvO6PLHW4w/6LzXFhH7ZeZoy6aYwY6VXcBpwjNljzKlX2DsHF
- WazAToh2099RDvBDf6+FmTMwosoFsRG1EJBTd5JuAmBQRDEirNwZng3ji w==;
-X-CSE-ConnectionGUID: UwQvN7+jRUGhUf61Z3EJrg==
-X-CSE-MsgGUID: qX2/x22KTPq+bisS3bNoUA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037282"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037282"
+ bh=Ezuk9ZVixS0Bdwk+/pYM8vQ6lsIZj7vxUNdV2OyKVBU=;
+ b=JRBtYYqUjOjrvTpTOZGwl8AYImkK/zLGcZw99hKZzRYAZngqEBAzJh7x
+ 9MhrRyol9aGD9GKYc+rSQ+aFTpwkBtY6ixyiMa7iVD9AG9xgr66APFEyH
+ vgKzR/3r/IFymPimml9HsSl1nQ/iLXNpV1+z/SMdhkEZlHceDxfjYpK5r
+ GV/o3xfLnDDnLzapaF3Y66xZ8Q+lK4aIFgjSd8Hwz/xaY3Ja6e3aOWXTw
+ YpwASMD9+WYRGpfrjvcifiqFjkcTrosF4qfY47m1j1YTaojH+mLp2vjl3
+ siDHhwSUCbr8WgANrYKnMshecPi9P7fQZVyDm36NpaU1+YUmEKZUEyQ/d Q==;
+X-CSE-ConnectionGUID: 2A71NvSLQqKf+oAK7ScVJA==
+X-CSE-MsgGUID: bOlRj3FSQYegh7rb/S/wfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037295"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037295"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:46 -0700
-X-CSE-ConnectionGUID: 0+8QxvPDS66j3AlNm/7ksg==
-X-CSE-MsgGUID: waNaBbhjSpCpS9rp8s7Lqg==
+ 08 Oct 2024 15:37:49 -0700
+X-CSE-ConnectionGUID: TJMXs95XTXqacxZOtDjrfw==
+X-CSE-MsgGUID: p62INz4bRYW52m4quLdxaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811832"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811846"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:46 -0700
+ 08 Oct 2024 15:37:48 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 02/10] drm/i915/xe3lpd: Adjust watermark calculations
-Date: Tue,  8 Oct 2024 15:37:33 -0700
-Message-ID: <20241008223741.82790-3-matthew.s.atwood@intel.com>
+Subject: [PATCH 06/10] drm/i915/xe3lpd: Add macro to choose HDCP_LINE_REKEY bit
+Date: Tue,  8 Oct 2024 15:37:37 -0700
+Message-ID: <20241008223741.82790-7-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
 References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
@@ -68,82 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Xe3 makes a couple minor tweaks to the watermark algorithm's block count
-calculations.
+DISPLAY_VER() >= 30 has the HDCP_LINE_REKEY bit redefined from
+bit 12 to bit 14. Create a macro to choose the correct bit based
+on DISPLAY_VER().
 
-Bspec: 68985
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 5 +++--
+ drivers/gpu/drm/i915/i915_reg.h           | 2 +-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 6e1f04d5ef47..31de33e868df 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -718,7 +718,7 @@ static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
- 				 int width, const struct drm_format_info *format,
- 				 u64 modifier, unsigned int rotation,
- 				 u32 plane_pixel_rate, struct skl_wm_params *wp,
--				 int color_plane);
-+				 int color_plane, unsigned int pan_x);
- 
- static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 				 struct intel_plane *plane,
-@@ -765,7 +765,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
- 				    drm_format_info(DRM_FORMAT_ARGB8888),
- 				    DRM_FORMAT_MOD_LINEAR,
- 				    DRM_MODE_ROTATE_0,
--				    crtc_state->pixel_rate, &wp, 0);
-+				    crtc_state->pixel_rate, &wp, 0, 0);
- 	drm_WARN_ON(&i915->drm, ret);
- 
- 	for (level = 0; level < i915->display.wm.num_levels; level++) {
-@@ -1742,7 +1742,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
- 		      int width, const struct drm_format_info *format,
- 		      u64 modifier, unsigned int rotation,
- 		      u32 plane_pixel_rate, struct skl_wm_params *wp,
--		      int color_plane)
-+		      int color_plane, unsigned int pan_x)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-@@ -1803,7 +1803,9 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
- 					   wp->y_min_scanlines,
- 					   wp->dbuf_block_size);
- 
--		if (DISPLAY_VER(i915) >= 10)
-+		if (DISPLAY_VER(i915) >= 30)
-+			interm_pbpl += (pan_x != 0);
-+		else if (DISPLAY_VER(i915) >= 10)
- 			interm_pbpl++;
- 
- 		wp->plane_blocks_per_line = div_fixed16(interm_pbpl,
-@@ -1845,7 +1847,8 @@ skl_compute_plane_wm_params(const struct intel_crtc_state *crtc_state,
- 				     fb->format, fb->modifier,
- 				     plane_state->hw.rotation,
- 				     intel_plane_pixel_rate(crtc_state, plane_state),
--				     wp, color_plane);
-+				     wp, color_plane,
-+				     plane_state->uapi.src.x1);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index ed6aa87403e2..e9b0414590ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -47,10 +47,11 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+ 			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
+ 				     0, HDCP_LINE_REKEY_DISABLE);
+ 		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
+-			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
++			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER) ||
++			 DISPLAY_VER(display) >= 30)
+ 			intel_de_rmw(display,
+ 				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
+-				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
++				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE(display));
+ 	}
  }
  
- static bool skl_wm_has_lines(struct drm_i915_private *i915, int level)
-@@ -1909,7 +1912,10 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 		}
- 	}
- 
--	blocks = fixed16_to_u32_round_up(selected_result) + 1;
-+	blocks = fixed16_to_u32_round_up(selected_result);
-+	if (DISPLAY_VER(i915) < 30)
-+		blocks++;
-+
- 	/*
- 	 * Lets have blocks at minimum equivalent to plane_blocks_per_line
- 	 * as there will be at minimum one line for lines configuration. This
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index d30459f8d1cb..da65500cd0c8 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3832,7 +3832,7 @@ enum skl_power_gate {
+ #define  TRANS_DDI_EDP_INPUT_B_ONOFF	(5 << 12)
+ #define  TRANS_DDI_EDP_INPUT_C_ONOFF	(6 << 12)
+ #define  TRANS_DDI_EDP_INPUT_D_ONOFF	(7 << 12)
+-#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(12)
++#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE(display)	(DISPLAY_VER(display) >= 30 ? REG_BIT(15) : REG_BIT(12))
+ #define  TRANS_DDI_MST_TRANSPORT_SELECT_MASK	REG_GENMASK(11, 10)
+ #define  TRANS_DDI_MST_TRANSPORT_SELECT(trans)	\
+ 	REG_FIELD_PREP(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, trans)
 -- 
 2.45.0
 
