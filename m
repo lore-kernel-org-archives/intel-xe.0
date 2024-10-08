@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 907F6CED274
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 06:53:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09EC8CED272
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 06:53:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DCFC10E478;
-	Tue,  8 Oct 2024 06:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE2B210E474;
+	Tue,  8 Oct 2024 06:53:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VC8OoU5B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Og7XpaDk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47FD310E478
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Oct 2024 06:53:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C87810E474
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Oct 2024 06:53:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728370386; x=1759906386;
+ t=1728370388; x=1759906388;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6gtsAsqD60YxpaW/0FXm/RQ+4jIRaQx0qLCzq2kvTdk=;
- b=VC8OoU5BqBZfXJ28Q7eDqxRU0VSkQaHe3M56p+SqGi7m4xRc10q/n+WZ
- 4ZJYlLu7SZe6Nw6C/9ymzF8Qug5CqoietUTBnLm0aH9jf2MwGbZ33NGtF
- 2Kn7jgbDFwvye3UpT17FHHkVkPyJswJ7sGK72rYGvQzp/g7uNgLem07mk
- XKgETE4YGX4d/MROG6hdV7LmeGdvZpmdwD7Y6SNsYvBxRRZng6+6LZslK
- ryfkMenU/oKw115ULcFJAQpVzZQp2qATSmtSxG5ZKGdSe/Ws5zYFxf0BQ
- BXkTHJnJBmdd3dFzglR9ygrT0s4bs2q/A42ZHwL5u3vBcNoNsOeYFftfx A==;
-X-CSE-ConnectionGUID: GSlbAgZiRIqxy4l97U/I0Q==
-X-CSE-MsgGUID: F9t28cxwR9qAg36QYWDwdQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="31430426"
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; d="scan'208";a="31430426"
+ bh=w4gNh3xVcwZb4lINTZqUvdTcypH4fEmzJsaxdTiGco0=;
+ b=Og7XpaDkyidzHp0/Jrhp0YIIwRKWAoT7Wsnk4LFuqKK7ZMIWV0ZUYXVG
+ 4POeUCrpO5BDAwUfT4sRYfSqovQirurnVMbRRE8+mMaQaxOdxjaliNiqF
+ PbnOp4QpdQcHvsuVW5x9Sl8S6bd9RPSjPPitOGKljJHaV8MUNMB0n6Yz6
+ KfYpsEMCpXG49zKu/sqyCaziozI7C+NPNFAGLwkS9P6ULp9f3bnWaIkz3
+ nxoHvraA+1ZyR1iDMG7wwDdpdCEhkDLQZAdXjjoGhrDp7di3YLOaUl5im
+ qjlSKW1eT1L8zBhz5DvbGhf5RpI9RWb8haTOa3muUYgLWx0nU71xA3E12 Q==;
+X-CSE-ConnectionGUID: dfdn6d4nQg6b5TetftGJZA==
+X-CSE-MsgGUID: zm4776ELRnmjvupipe81UQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="31430433"
+X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; d="scan'208";a="31430433"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2024 23:53:06 -0700
-X-CSE-ConnectionGUID: 9DR1chP4Rzi+HWeztHHFMA==
-X-CSE-MsgGUID: 0VBj3DkIQf2rIX8NsP+VOg==
+ 07 Oct 2024 23:53:08 -0700
+X-CSE-ConnectionGUID: 3Tus/sCKSVq3kimjqu1vug==
+X-CSE-MsgGUID: rqFaGc1KQlmogHbMIixuKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; d="scan'208";a="106577702"
+X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; d="scan'208";a="106577710"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa002.jf.intel.com with ESMTP; 07 Oct 2024 23:53:05 -0700
+ by orviesa002.jf.intel.com with ESMTP; 07 Oct 2024 23:53:07 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v8 10/26] drm/xe/xe_gt_idle: Update handling of
+Subject: [PATCH v8 11/26] drm/xe/devcoredump: Update handling of
  xe_force_wake_get return
-Date: Tue,  8 Oct 2024 12:40:59 +0530
-Message-Id: <20241008071115.1862704-11-himal.prasad.ghimiray@intel.com>
+Date: Tue,  8 Oct 2024 12:41:00 +0530
+Message-Id: <20241008071115.1862704-12-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241008071115.1862704-1-himal.prasad.ghimiray@intel.com>
 References: <20241008071115.1862704-1-himal.prasad.ghimiray@intel.com>
@@ -71,21 +71,19 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 xe_force_wake_get() now returns the reference count-incremented domain
 mask. If it fails for individual domains, the return value will always
 be 0. However, for XE_FORCEWAKE_ALL, it may return a non-zero value even
-in the event of failure. Update the return handling of xe_force_wake_get()
-to reflect this behavior, and ensure that the return value is passed as
-input to xe_force_wake_put().
+in the event of failure. Use helper xe_force_wake_ref_has_domain to
+verify all domains are initialized or not. Update the return handling of
+xe_force_wake_get() to reflect this behavior, and ensure that the return
+value is passed as input to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
-- xe_force_wake_put() error doesn't need to be checked. It internally
-WARNS on domain ack failure.
-
-v4
-- Rebase fix
 
 v5
 - return unsigned int for xe_force_wake_get()
-- Remove reudandant WARN calls.
+
+v6
+- use helper xe_force_wake_ref_has_domain()
 
 v7
 - Fix commit message
@@ -94,103 +92,61 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_idle.c | 26 +++++++++++++++-----------
- 1 file changed, 15 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index 746812aee8ff..fd80afeef56a 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -101,6 +101,7 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt)
- 	struct xe_gt_idle *gtidle = &gt->gtidle;
- 	struct xe_mmio *mmio = &gt->mmio;
- 	u32 vcs_mask, vecs_mask;
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index a2d816713489..dfe71549f308 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -154,13 +154,15 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ {
+ 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
+ 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
 +	unsigned int fw_ref;
- 	int i, j;
  
- 	if (IS_SRIOV_VF(xe))
-@@ -127,7 +128,7 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt)
- 						     VDN_MFXVDENC_POWERGATE_ENABLE(j));
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+-	if (xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL))
++	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+ 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+ 	xe_vm_snapshot_capture_delayed(ss->vm);
+ 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
+-	xe_force_wake_put(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
++	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
+ 
+ 	/* Calculate devcoredump size */
+ 	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
+@@ -233,8 +235,9 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	u32 width_mask = (0x1 << q->width) - 1;
+ 	const char *process_name = "no process";
+ 
+-	int i;
++	unsigned int fw_ref;
+ 	bool cookie;
++	int i;
+ 
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+@@ -257,8 +260,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
  	}
  
--	XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 	if (xe->info.skip_guc_pc) {
- 		/*
- 		 * GuC sets the hysteresis value when GuC PC is enabled
-@@ -138,12 +139,13 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt)
- 	}
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+-	if (xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL))
+-		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
++	fw_ref = xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
  
- 	xe_mmio_write32(mmio, POWERGATE_ENABLE, gtidle->powergate_enable);
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
+ 	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+@@ -277,7 +279,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ 	queue_work(system_unbound_wq, &ss->work);
+ 
+-	xe_force_wake_put(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
++	xe_force_wake_put(gt_to_fw(q->gt), fw_ref);
+ 	dma_fence_end_signalling(cookie);
  }
  
- void xe_gt_idle_disable_pg(struct xe_gt *gt)
- {
- 	struct xe_gt_idle *gtidle = &gt->gtidle;
-+	unsigned int fw_ref;
- 
- 	if (IS_SRIOV_VF(gt_to_xe(gt)))
- 		return;
-@@ -151,9 +153,9 @@ void xe_gt_idle_disable_pg(struct xe_gt *gt)
- 	xe_device_assert_mem_access(gt_to_xe(gt));
- 	gtidle->powergate_enable = 0;
- 
--	XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 	xe_mmio_write32(&gt->mmio, POWERGATE_ENABLE, gtidle->powergate_enable);
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
- /**
-@@ -172,7 +174,8 @@ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
- 	enum xe_gt_idle_state state;
- 	u32 pg_enabled, pg_status = 0;
- 	u32 vcs_mask, vecs_mask;
--	int err, n;
-+	unsigned int fw_ref;
-+	int n;
- 	/*
- 	 * Media Slices
- 	 *
-@@ -208,14 +211,14 @@ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
- 
- 	/* Do not wake the GT to read powergating status */
- 	if (state != GT_IDLE_C6) {
--		err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--		if (err)
--			return err;
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+		if (!fw_ref)
-+			return -ETIMEDOUT;
- 
- 		pg_enabled = xe_mmio_read32(&gt->mmio, POWERGATE_ENABLE);
- 		pg_status = xe_mmio_read32(&gt->mmio, POWERGATE_DOMAIN_STATUS);
- 
--		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	}
- 
- 	if (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK) {
-@@ -298,13 +301,14 @@ static void gt_idle_fini(void *arg)
- {
- 	struct kobject *kobj = arg;
- 	struct xe_gt *gt = kobj_to_gt(kobj->parent);
-+	unsigned int fw_ref;
- 
- 	xe_gt_idle_disable_pg(gt);
- 
- 	if (gt_to_xe(gt)->info.skip_guc_pc) {
--		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 		xe_gt_idle_disable_c6(gt);
--		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	}
- 
- 	sysfs_remove_files(kobj, gt_idle_attrs);
 -- 
 2.34.1
 
