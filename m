@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0A5FCF042D
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:37:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 100CDCF0435
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 22:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47C8910E614;
-	Tue,  8 Oct 2024 22:37:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6662210E611;
+	Tue,  8 Oct 2024 22:37:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqPMItKv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EEeeJn0G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1985D10E608;
- Tue,  8 Oct 2024 22:37:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4073610E60F;
+ Tue,  8 Oct 2024 22:37:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728427070; x=1759963070;
+ t=1728427071; x=1759963071;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=flY6UGWxGmAB6AHvdOEcIlWrpTLqwN0jhUutDadTauQ=;
- b=eqPMItKvSfrPfG15flIkjj0HBExgRkoJoT7qOTQHYMyMYn89JHRf8yEC
- eFOmOgK3YfegJWwRhJxBp3r53Cmctud3LOFYBgXPdU0VcvdonE2LmGDoO
- mprLuEDkxt7yFFQoMyNwjH+BkHP+UwsEAD3i9+++Lyy9mMLDY/0jnikJO
- 2EWwHB5TIjhtuJeBHYaK8ENprcfmyFmnlTcE7YG6kDwjb5rct7beIHXZb
- S0u4xEGU6pWIUTU6WpDdE2PPqsqF+S8XsiRhs1/fNFFesOFuO/kXrmAkL
- gdVKCgKFhJriwAUVNHwdgquNWcmBnBquZasaGw/PiCk8/LDaCnpjD1zNF A==;
-X-CSE-ConnectionGUID: 6+i0pRq3Thu0Z9kbLZLnZg==
-X-CSE-MsgGUID: ToamC6ExT82oeGbwv3mtyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037300"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037300"
+ bh=x12u9sZdj9Z+CFEQFhSZUb1EdU1mYtiL5y0WfZwvTuY=;
+ b=EEeeJn0GbAIT1f8gOlTEavYhnPD0wOcUKAlfpBnO/AgnECws8+lbOsJO
+ PCI0mT7Tr6Aa96GU/ikZZ5DqfKRyyB6PGSp6PxdhdwnHqfiKl6ngZKThg
+ lVa3eOeWT7G2sVQrL/09uTI+MeSKVVpoIUYTypX65eX5MJ9qz1WJwxmVu
+ I46H17p1UtQ5UWbzEb/eTfwwxoMuebPbCstWK9ATJVkzqJzD2oGvXOj9X
+ Bu/teRbeK+5tIO6nRpfIUMUERmo1/sKonWwbY3Cor1NltPsd6rgnZg1HN
+ EwjvAqwTKl4IxPQV7Mi6gIotcoJxy693C583WywJxDr8Y727Im/by9W8n A==;
+X-CSE-ConnectionGUID: zaHMlG7qTsKPI6Dwgv5H9g==
+X-CSE-MsgGUID: T3uR0f0hQbidwtGz62s4Ug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037303"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037303"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:50 -0700
-X-CSE-ConnectionGUID: 20Yw8cKTT6aWdPNhvvjnoA==
-X-CSE-MsgGUID: 1g1qGnifTiC2H3VpKlIArA==
+ 08 Oct 2024 15:37:51 -0700
+X-CSE-ConnectionGUID: O9CHIl+XR9SkJ6hbt5jbfA==
+X-CSE-MsgGUID: TGX14IIATPKWVMcrsTxZtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811853"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811859"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:49 -0700
+ 08 Oct 2024 15:37:51 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 08/10] drm/i915/xe3lpd: Add new bit range of MAX swing setup
-Date: Tue,  8 Oct 2024 15:37:39 -0700
-Message-ID: <20241008223741.82790-9-matthew.s.atwood@intel.com>
+Subject: [PATCH 10/10] drm/i915/xe3lpd: Add powerdown value of eDP over type c
+Date: Tue,  8 Oct 2024 15:37:41 -0700
+Message-ID: <20241008223741.82790-11-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
 References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
@@ -70,45 +70,29 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Add new bit range for Max PHY Swing Setup in PORT_ALPM_CTL
-register for DISPLAY_VER >= 30.
+Add condition for P2.PG power down value.
 
-Bspec: 70277
+Bspec: 74494
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 2 +-
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 4 +++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 55f3ae1e68c9..100ce776a203 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -334,7 +334,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 		intel_de_write(display,
- 			       PORT_ALPM_CTL(port),
- 			       PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE |
--			       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
-+			       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(display, 15) |
- 			       PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
- 			       PORT_ALPM_CTL_SILENCE_PERIOD(
- 				       intel_dp->alpm_parameters.silence_period_sym_clocks));
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 0841242543ca..046e400704e8 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -299,7 +299,9 @@
- #define PORT_ALPM_CTL(port)			_MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
- #define  PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE	REG_BIT(31)
- #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(23, 20)
--#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
-+#define  PTL_PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(25, 20)
-+#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(display, val)	(DISPLAY_VER(display) >= 30 ? REG_FIELD_PREP(PTL_PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val) :\
-+							 REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val))
- #define  PORT_ALPM_CTL_MAX_PHY_SWING_HOLD_MASK	REG_GENMASK(19, 16)
- #define  PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_HOLD_MASK, val)
- #define  PORT_ALPM_CTL_SILENCE_PERIOD_MASK	REG_GENMASK(7, 0)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 1c8c2a2b05e1..3d95ee65a9f1 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -3144,7 +3144,8 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
+ 	if (intel_encoder_is_c10phy(encoder))
+ 		return CX0_P2PG_STATE_DISABLE;
+ 
+-	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
++	if ((IS_BATTLEMAGE(i915) && encoder->port == PORT_A) ||
++	    (DISPLAY_VER(i915) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
+ 		return CX0_P2PG_STATE_DISABLE;
+ 
+ 	return CX0_P4PG_STATE_DISABLE;
 -- 
 2.45.0
 
