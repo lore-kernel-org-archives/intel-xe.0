@@ -4,26 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C50CACF042B
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 23:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCAA4CF042A
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 23:27:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A0010E606;
-	Tue,  8 Oct 2024 23:25:20 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA35710E606;
- Tue,  8 Oct 2024 23:25:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7752924248706023151=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B75E10E60E;
+	Tue,  8 Oct 2024 23:27:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WJwU9cGM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBC6B10E60E
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Oct 2024 23:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728430031; x=1759966031;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tPFTpDGqBUV4UGBM0D17Qq6vERwcCEUgbEmVBN3jZyg=;
+ b=WJwU9cGM2GL23lHFUjSML5ECaJqFZurrBOsMoXHGYnzxAJFeeqT5qBQi
+ +JFQZ6K1uruqrPg/NYzTFIRe3pxtclAX04GUFwuWyHYgfBsT9W9ckKxYn
+ I+5/IsVp3FT1BqRUxEV7ClQg9WgvLTuLEK7MV4zFo4xvBw3nuZiJ/NF1U
+ IhEpQEGGPTZFcHgnvFgYAsxZkN/lEkzi8ppI5yjzCU3PTUiY1VDIAxwRP
+ ndg2u6xhdpycDimnLw5Tvz9c7N9HtQUREcylm+ieOl/hUMeHfxG5RWylx
+ 5GgWIszkMEEgIZVbVijPEwxlVWNEZYrXYSKmRZrqHeksFkiymj6Xim8Qh Q==;
+X-CSE-ConnectionGUID: pOEs9OUjQQKnsl+Ah2eK3A==
+X-CSE-MsgGUID: n98lYLgZRsO0wP2Gc7acYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39077898"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39077898"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 16:27:11 -0700
+X-CSE-ConnectionGUID: wNVsGIu4R4uj2SvpJliQrA==
+X-CSE-MsgGUID: 6vve7i/0TbaerTwQYfA8hA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="76382144"
+Received: from fyang16-desk.jf.intel.com ([10.165.21.214])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 16:27:10 -0700
+From: fei.yang@intel.com
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, Fei Yang <fei.yang@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH 1/1] drm/xe: enable lite restore
+Date: Tue,  8 Oct 2024 16:30:59 -0700
+Message-Id: <20241008233059.125021-2-fei.yang@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241008233059.125021-1-fei.yang@intel.com>
+References: <20241008233059.125021-1-fei.yang@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_xe3lpd_edp_enabling?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Oct 2024 23:25:19 -0000
-Message-ID: <172842991981.1206493.15215924213941786161@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,213 +64,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7752924248706023151==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Fei Yang <fei.yang@intel.com>
 
-== Series Details ==
+The lite restore feature is supposed to be enabled by default.
 
-Series: Add xe3lpd edp enabling
-URL   : https://patchwork.freedesktop.org/series/139732/
-State : success
+Signed-off-by: Fei Yang <fei.yang@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc.c      | 2 ++
+ drivers/gpu/drm/xe/xe_guc_fwif.h | 1 +
+ 2 files changed, 3 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 8570b1218287..e1dad02b0770 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -75,6 +75,8 @@ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
+ 	if (!guc_to_xe(guc)->info.skip_guc_pc)
+ 		flags |= GUC_CTL_ENABLE_SLPC;
+ 
++	flags |= GUC_CTL_ENABLE_LITE_RESTORE;
++
+ 	return flags;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 01e3ab590c3a..08ffe59f22fa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -105,6 +105,7 @@ struct guc_update_exec_queue_policy {
+ 
+ #define GUC_CTL_FEATURE			2
+ #define   GUC_CTL_ENABLE_SLPC		BIT(2)
++#define   GUC_CTL_ENABLE_LITE_RESTORE	BIT(4)
+ #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
+ 
+ #define GUC_CTL_DEBUG			3
+-- 
+2.25.1
 
-CI Bug Log - changes from xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34_BAT -> xe-pw-139732v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139732v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#877])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
-    - bat-lnl-2:          [PASS][4] -> [FAIL][5] ([Intel XE#2754])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#288]) +32 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][7] -> [INCOMPLETE][8] ([Intel XE#2874]) +1 other test incomplete
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][9] ([Intel XE#2229])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - {bat-bmg-2}:        [INCOMPLETE][10] ([Intel XE#2874]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-    - bat-adlp-7:         [INCOMPLETE][12] ([Intel XE#2874]) -> [PASS][13] +1 other test pass
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * IGT: IGT_8060 -> IGT_8061
-  * Linux: xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34 -> xe-pw-139732v1
-
-  IGT_8060: 9c3e2ca96853ab5f77b60c82a9c66e7e2f2b7358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8061: 8061
-  xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34: 8752b50cc6ea4e90f3caa68dd1cc169112ac4b34
-  xe-pw-139732v1: 139732v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/index.html
-
---===============7752924248706023151==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add xe3lpd edp enabling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139732/">https://patchwork.freedesktop.org/series/139732/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34_BAT -&gt; xe-pw-139732v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139732v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8060 -&gt; IGT_8061</li>
-<li>Linux: xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34 -&gt; xe-pw-139732v1</li>
-</ul>
-<p>IGT_8060: 9c3e2ca96853ab5f77b60c82a9c66e7e2f2b7358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8061: 8061<br />
-  xe-2026-8752b50cc6ea4e90f3caa68dd1cc169112ac4b34: 8752b50cc6ea4e90f3caa68dd1cc169112ac4b34<br />
-  xe-pw-139732v1: 139732v1</p>
-
-</body>
-</html>
-
---===============7752924248706023151==--
