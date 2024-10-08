@@ -4,117 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 775F9CEF15C
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 11:33:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFEEACEF158
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Oct 2024 11:33:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4440B10E1DD;
-	Tue,  8 Oct 2024 11:33:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="Z+cpsbRm";
-	dkim-atps=neutral
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1755810E4C7;
- Tue,  8 Oct 2024 11:33:24 +0000 (UTC)
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 498ARMbw023040;
- Tue, 8 Oct 2024 11:33:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from
- :date:subject:content-type:message-id:references:in-reply-to:to
- :cc:content-transfer-encoding:mime-version; s=pp1; bh=gJGd5/wr8D
- cxtqBm0AFwiAsWUR/rh1W6zfn73uIs31M=; b=Z+cpsbRmH9MdZ61lvkxpv7bgXT
- v0RWVmtXrvis5IvNBlZypfw7jqxeq3VRc2lAp8L4OrfaLN1RcW/i6XMx9jNFHyow
- uInJ81ZXy+UALnKor7qHImqILyFHLCWAt1nRzJdwusOjJ65cnjWajZa2FSR3Uerk
- lumEjEOBctTF1kd8MNbJsHeZ219/V5Rki24D/3dEOjwQ4Fg7+X0kIn8uHV/QPM0H
- /ildfZgQkzIzbsb1tlmWErOBIXakSO9XDFa3y7idn7mpTYMDgLUflR4jaOIKF+GQ
- SsQmemVb3LWEMX9uxROVL9ftM3tng+Xf3oWiAIA4k1jcUL8wpM9ul1ah12lg==
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 425309ga5b-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 08 Oct 2024 11:33:14 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
- by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 498BUEto029972;
- Tue, 8 Oct 2024 11:33:13 GMT
-Received: from ppma21.wdc07v.mail.ibm.com
- (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 425309ga55-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 08 Oct 2024 11:33:13 +0000 (GMT)
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4989MUEq030168;
- Tue, 8 Oct 2024 11:33:12 GMT
-Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
- by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 423gsmkxq4-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 08 Oct 2024 11:33:12 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com
- [10.39.53.232])
- by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 498BXBkt24314614
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 8 Oct 2024 11:33:11 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id E879C58059;
- Tue,  8 Oct 2024 11:33:10 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id B137458053;
- Tue,  8 Oct 2024 11:33:05 +0000 (GMT)
-Received: from tuxmaker.boeblingen.de.ibm.com (unknown [9.152.85.9])
- by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Tue,  8 Oct 2024 11:33:05 +0000 (GMT)
-From: Niklas Schnelle <schnelle@linux.ibm.com>
-Date: Tue, 08 Oct 2024 13:32:05 +0200
-Subject: [PATCH v7 5/5] asm-generic/io.h: Remove I/O port accessors for
- HAS_IOPORT=n
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20241008-b4-has_ioport-v7-5-8624c09a4d77@linux.ibm.com>
-References: <20241008-b4-has_ioport-v7-0-8624c09a4d77@linux.ibm.com>
-In-Reply-To: <20241008-b4-has_ioport-v7-0-8624c09a4d77@linux.ibm.com>
-To: Brian Cain <bcain@quicinc.com>, Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- "Maciej W. Rozycki" <macro@orcam.me.uk>, Heiko Carstens <hca@linux.ibm.com>
-Cc: linux-kernel@vger.kernel.org, linux-hexagon@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-serial@vger.kernel.org,
- linux-arch@vger.kernel.org, Niklas Schnelle <schnelle@linux.ibm.com>,
- Arnd Bergmann <arnd@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5763;
- i=schnelle@linux.ibm.com; h=from:subject:message-id;
- bh=j7KaGUsyaLEUfGtXkukiFzIvWKJHDMnnZRqJknyuK2M=;
- b=owGbwMvMwCX2Wz534YHOJ2GMp9WSGNJZJQKcd74uvPkwU5TH009quVS60Nnlje/2azPJnK5ye
- LBr+ov+jlIWBjEuBlkxRZZFXc5+6wqmmO4J6u+AmcPKBDKEgYtTACayTJbhD29UTM3GYzsYvx16
- dmnL9yM/zhaf8Ofw4WO78WDqnI9M16oYGWYnTWg9z7Znzh+frfMmODMLXvZdUhn3yKf42qvD3lf
- jGvkB
-X-Developer-Key: i=schnelle@linux.ibm.com; a=openpgp;
- fpr=9DB000B2D2752030A5F72DDCAFE43F15E8C26090
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: j963C7hg_va3UzGaH-IIbWizxGCOj-bw
-X-Proofpoint-ORIG-GUID: 7CEvGhYvuz6_kpeSosvf8xTJAGAqQeuz
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F10610E4C0;
+	Tue,  8 Oct 2024 11:33:50 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86F3E10E1DD;
+ Tue,  8 Oct 2024 11:33:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0331671660464954007=="
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-08_10,2024-10-08_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 bulkscore=0
- spamscore=0 suspectscore=0 mlxlogscore=999 impostorscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 clxscore=1015
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410080072
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
+ =?utf-8?q?rm/xe=3A_fix_unbalanced_rpm_put=28=29_with_fence=5Ffini=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Oct 2024 11:33:49 -0000
+Message-ID: <172838722954.1203151.4669654438836804832@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241008104723.98300-3-matthew.auld@intel.com>
+In-Reply-To: <20241008104723.98300-3-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,211 +36,183 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With all subsystems and drivers either declaring their dependence on
-HAS_IOPORT or fencing I/O port specific code sections we can finally
-make inb()/outb() and friends compile-time dependent on HAS_IOPORT as
-suggested by Linus in the linked mail. The main benefit of this is that
-on platforms such as s390 which have no meaningful way of implementing
-inb()/outb() their use without the proper HAS_IOPORT dependency will
-result in easy to catch and fix compile-time errors instead of compiling
-code that can never work.
+--===============0331671660464954007==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Link: https://lore.kernel.org/lkml/CAHk-=wg80je=K7madF4e7WrRNp37e3qh6y10Svhdc7O8SZ_-8g@mail.gmail.com/
-Co-developed-by: Arnd Bergmann <arnd@kernel.org>
-Signed-off-by: Arnd Bergmann <arnd@kernel.org>
-Signed-off-by: Niklas Schnelle <schnelle@linux.ibm.com>
----
- include/asm-generic/io.h | 60 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+== Series Details ==
 
-diff --git a/include/asm-generic/io.h b/include/asm-generic/io.h
-index 80de699bf6af4b7b77f582c0469c43e978f67a43..1027be6a62bcbcd5f6797e0fa42035208d0ca79f 100644
---- a/include/asm-generic/io.h
-+++ b/include/asm-generic/io.h
-@@ -540,6 +540,7 @@ static inline void writesq(volatile void __iomem *addr, const void *buffer,
- 
- #if !defined(inb) && !defined(_inb)
- #define _inb _inb
-+#ifdef CONFIG_HAS_IOPORT
- static inline u8 _inb(unsigned long addr)
- {
- 	u8 val;
-@@ -549,10 +550,15 @@ static inline u8 _inb(unsigned long addr)
- 	__io_par(val);
- 	return val;
- }
-+#else
-+u8 _inb(unsigned long addr)
-+	__compiletime_error("inb()) requires CONFIG_HAS_IOPORT");
-+#endif
- #endif
- 
- #if !defined(inw) && !defined(_inw)
- #define _inw _inw
-+#ifdef CONFIG_HAS_IOPORT
- static inline u16 _inw(unsigned long addr)
- {
- 	u16 val;
-@@ -562,10 +568,15 @@ static inline u16 _inw(unsigned long addr)
- 	__io_par(val);
- 	return val;
- }
-+#else
-+u16 _inw(unsigned long addr)
-+	__compiletime_error("inw() requires CONFIG_HAS_IOPORT");
-+#endif
- #endif
- 
- #if !defined(inl) && !defined(_inl)
- #define _inl _inl
-+#ifdef CONFIG_HAS_IOPORT
- static inline u32 _inl(unsigned long addr)
- {
- 	u32 val;
-@@ -575,36 +586,55 @@ static inline u32 _inl(unsigned long addr)
- 	__io_par(val);
- 	return val;
- }
-+#else
-+u32 _inl(unsigned long addr)
-+	__compiletime_error("inl() requires CONFIG_HAS_IOPORT");
-+#endif
- #endif
- 
- #if !defined(outb) && !defined(_outb)
- #define _outb _outb
-+#ifdef CONFIG_HAS_IOPORT
- static inline void _outb(u8 value, unsigned long addr)
- {
- 	__io_pbw();
- 	__raw_writeb(value, PCI_IOBASE + addr);
- 	__io_paw();
- }
-+#else
-+void _outb(u8 value, unsigned long addr)
-+	__compiletime_error("outb() requires CONFIG_HAS_IOPORT");
-+#endif
- #endif
- 
- #if !defined(outw) && !defined(_outw)
- #define _outw _outw
-+#ifdef CONFIG_HAS_IOPORT
- static inline void _outw(u16 value, unsigned long addr)
- {
- 	__io_pbw();
- 	__raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
- 	__io_paw();
- }
-+#else
-+void _outw(u16 value, unsigned long addr)
-+	__compiletime_error("outw() requires CONFIG_HAS_IOPORT");
-+#endif
- #endif
- 
- #if !defined(outl) && !defined(_outl)
- #define _outl _outl
-+#ifdef CONFIG_HAS_IOPORT
- static inline void _outl(u32 value, unsigned long addr)
- {
- 	__io_pbw();
- 	__raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
- 	__io_paw();
- }
-+#else
-+void _outl(u32 value, unsigned long addr)
-+	__compiletime_error("outl() requires CONFIG_HAS_IOPORT");
-+#endif
- #endif
- 
- #include <linux/logic_pio.h>
-@@ -688,53 +718,83 @@ static inline void outl_p(u32 value, unsigned long addr)
- 
- #ifndef insb
- #define insb insb
-+#ifdef CONFIG_HAS_IOPORT
- static inline void insb(unsigned long addr, void *buffer, unsigned int count)
- {
- 	readsb(PCI_IOBASE + addr, buffer, count);
- }
-+#else
-+void insb(unsigned long addr, void *buffer, unsigned int count)
-+	__compiletime_error("insb() requires HAS_IOPORT");
-+#endif
- #endif
- 
- #ifndef insw
- #define insw insw
-+#ifdef CONFIG_HAS_IOPORT
- static inline void insw(unsigned long addr, void *buffer, unsigned int count)
- {
- 	readsw(PCI_IOBASE + addr, buffer, count);
- }
-+#else
-+void insw(unsigned long addr, void *buffer, unsigned int count)
-+	__compiletime_error("insw() requires HAS_IOPORT");
-+#endif
- #endif
- 
- #ifndef insl
- #define insl insl
-+#ifdef CONFIG_HAS_IOPORT
- static inline void insl(unsigned long addr, void *buffer, unsigned int count)
- {
- 	readsl(PCI_IOBASE + addr, buffer, count);
- }
-+#else
-+void insl(unsigned long addr, void *buffer, unsigned int count)
-+	__compiletime_error("insl() requires HAS_IOPORT");
-+#endif
- #endif
- 
- #ifndef outsb
- #define outsb outsb
-+#ifdef CONFIG_HAS_IOPORT
- static inline void outsb(unsigned long addr, const void *buffer,
- 			 unsigned int count)
- {
- 	writesb(PCI_IOBASE + addr, buffer, count);
- }
-+#else
-+void outsb(unsigned long addr, const void *buffer, unsigned int count)
-+	__compiletime_error("outsb() requires HAS_IOPORT");
-+#endif
- #endif
- 
- #ifndef outsw
- #define outsw outsw
-+#ifdef CONFIG_HAS_IOPORT
- static inline void outsw(unsigned long addr, const void *buffer,
- 			 unsigned int count)
- {
- 	writesw(PCI_IOBASE + addr, buffer, count);
- }
-+#else
-+void outsw(unsigned long addr, const void *buffer, unsigned int count)
-+	__compiletime_error("outsw() requires HAS_IOPORT");
-+#endif
- #endif
- 
- #ifndef outsl
- #define outsl outsl
-+#ifdef CONFIG_HAS_IOPORT
- static inline void outsl(unsigned long addr, const void *buffer,
- 			 unsigned int count)
- {
- 	writesl(PCI_IOBASE + addr, buffer, count);
- }
-+#else
-+void outsl(unsigned long addr, const void *buffer, unsigned int count)
-+	__compiletime_error("outsl() requires HAS_IOPORT");
-+#endif
- #endif
- 
- #ifndef insb_p
+Series: series starting with [1/2] drm/xe: fix unbalanced rpm put() with fence_fini()
+URL   : https://patchwork.freedesktop.org/series/139688/
+State : success
 
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-2022-131a5dd267541faa13894b97d44af39b257fc887_BAT -> xe-pw-139688v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139688v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#2229])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][4] ([Intel XE#1861]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2022-131a5dd267541faa13894b97d44af39b257fc887/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [INCOMPLETE][6] ([Intel XE#2874]) -> [PASS][7] +1 other test pass
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2022-131a5dd267541faa13894b97d44af39b257fc887/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8056 -> IGT_8058
+  * Linux: xe-2022-131a5dd267541faa13894b97d44af39b257fc887 -> xe-pw-139688v1
+
+  IGT_8056: a327720fd57ba9f17ed8f15c6453cd2234f9398d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8058: f5b25de73fc0216d2cac08bd58c72de355f75d7c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2022-131a5dd267541faa13894b97d44af39b257fc887: 131a5dd267541faa13894b97d44af39b257fc887
+  xe-pw-139688v1: 139688v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/index.html
+
+--===============0331671660464954007==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: fix unbalanced rpm put() with fence_fini()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139688/">https://patchwork.freedesktop.org/series/139688/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2022-131a5dd267541faa13894b97d44af39b257fc887_BAT -&gt; xe-pw-139688v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139688v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2022-131a5dd267541faa13894b97d44af39b257fc887/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2022-131a5dd267541faa13894b97d44af39b257fc887/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139688v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8056 -&gt; IGT_8058</li>
+<li>Linux: xe-2022-131a5dd267541faa13894b97d44af39b257fc887 -&gt; xe-pw-139688v1</li>
+</ul>
+<p>IGT_8056: a327720fd57ba9f17ed8f15c6453cd2234f9398d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8058: f5b25de73fc0216d2cac08bd58c72de355f75d7c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2022-131a5dd267541faa13894b97d44af39b257fc887: 131a5dd267541faa13894b97d44af39b257fc887<br />
+  xe-pw-139688v1: 139688v1</p>
+
+</body>
+</html>
+
+--===============0331671660464954007==--
