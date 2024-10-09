@@ -4,51 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 529CCD0D794
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA71BD0D79B
 	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FB8610EAF4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28EC010EAF5;
 	Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
-X-Greylist: delayed 421 seconds by postgrey-1.36 at gabe;
- Mon, 07 Oct 2024 21:16:19 UTC
-Received: from angie.orcam.me.uk (angie.orcam.me.uk [78.133.224.34])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1452810E427;
- Mon,  7 Oct 2024 21:16:19 +0000 (UTC)
-Received: by angie.orcam.me.uk (Postfix, from userid 500)
- id B37EC92009C; Mon,  7 Oct 2024 23:09:15 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
- by angie.orcam.me.uk (Postfix) with ESMTP id A591592009B;
- Mon,  7 Oct 2024 22:09:15 +0100 (BST)
-Date: Mon, 7 Oct 2024 22:09:15 +0100 (BST)
-From: "Maciej W. Rozycki" <macro@orcam.me.uk>
-To: Niklas Schnelle <schnelle@linux.ibm.com>
-cc: Brian Cain <bcain@quicinc.com>, Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Dave Airlie <airlied@redhat.com>, 
- Gerd Hoffmann <kraxel@redhat.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Heiko Carstens <hca@linux.ibm.com>, linux-kernel@vger.kernel.org, 
- linux-hexagon@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, virtualization@lists.linux.dev, 
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-serial@vger.kernel.org, linux-arch@vger.kernel.org, 
- Arnd Bergmann <arnd@kernel.org>
-Subject: Re: [PATCH v6 4/5] tty: serial: handle HAS_IOPORT dependencies
-In-Reply-To: <20241007-b4-has_ioport-v6-4-03f7240da6e5@linux.ibm.com>
-Message-ID: <alpine.DEB.2.21.2410072109130.30973@angie.orcam.me.uk>
-References: <20241007-b4-has_ioport-v6-0-03f7240da6e5@linux.ibm.com>
- <20241007-b4-has_ioport-v6-4-03f7240da6e5@linux.ibm.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=everestkc.com.np header.i=@everestkc.com.np header.b="RufwUNJ3";
+	dkim-atps=neutral
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+ [209.85.210.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ABEA10E813
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 21:40:41 +0000 (UTC)
+Received: by mail-pf1-f194.google.com with SMTP id
+ d2e1a72fcca58-71de9e1f431so238105b3a.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 09 Oct 2024 14:40:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=everestkc.com.np; s=everest; t=1728510040; x=1729114840;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=/X1R7jziJAUOGlYud471jpMxA58653P4VmVwYBUwEFw=;
+ b=RufwUNJ37r8Nb9Hql9pEJ4vZN5NDT905a4ST9lIPk883XRNIVnLi3ldxbrdOtZuB4l
+ fvmwrVjJVLdsytbf0JF7Kwhy6aVRYZHPqZ/fNfUMerU5GM1oVT83Stjp6EcQfrHwbfHQ
+ kyms+PvsQL2G/WoPbLer6RHMmxdwuShDOgz+blODJ8kxBi5FBjTebp0I7FYCrvxXByfe
+ S7g/8a4ZfyWDAGPhYKA8jCQHxMB2GS32a6nSwiY/ZMTLHoaoLEmnooEmFI40aFBiDNyw
+ /Rnz3iekwKYpAMt1itc9kMOsswnqpjnAKg0eXsgJtz0e1//mEBmU2ODHXCK8eSK3sSY2
+ RQyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728510040; x=1729114840;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=/X1R7jziJAUOGlYud471jpMxA58653P4VmVwYBUwEFw=;
+ b=wnx5V0UYsgGWsbOhGdbbvt69mhLmkoL0AwZ4K0LLimPdAx1vA1psJ6a9tptJn/p9c8
+ xsbp4it913lFdbPjYzIa+FJd/MWqXoM7BL48ALI8Ohn/w70hYtmnYf1vV+/QGvYMJlnQ
+ Jbz735TVhrufdGqXSlNuq8sCelH33ldnblmJ1iBh7BhViv/R4UjYXSwhUv61/vXDoEms
+ rlOCQ7IFLxZajDmTNQDWkwm2LlW4f0Bdi1ad33e9u4E/zAiKZ9Ykv/es+LRtPhbZvQVu
+ saq5ff8W0dy5OSC6XG6T+I6cq3Hp0wubh2SHJRDiUPvmX4a5zOD71aC00PvmBOc3osR/
+ 6AFg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUR72TQEEB4W7BAnuC/ZSF/ba0XtE+GCpbTN5NzRxxnx4KeuPdDU62586zOUXzJbXQ3DQaXNWGCnQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyOI8ktQp+4TsId5NZ7uejfXMklmquc1DY7XeiUcQh2+VfFLrx6
+ 5lLkahtpLQ3oewO4KVChU42kFA4bkzyfwdaPZOND5zZ5NfYbH0Sl2847bO9r1JE=
+X-Google-Smtp-Source: AGHT+IEVjxb8q3sxQHY7BRbeLePk3SvJC2jHMCY+loRxISySa+TSK3hZmXPkiAMN30Y1g+VBgiK0xw==
+X-Received: by 2002:a05:6a00:2394:b0:71e:1b6d:5a94 with SMTP id
+ d2e1a72fcca58-71e1db64896mr6487949b3a.5.1728510040550; 
+ Wed, 09 Oct 2024 14:40:40 -0700 (PDT)
+Received: from localhost.localdomain ([81.17.122.158])
+ by smtp.googlemail.com with ESMTPSA id
+ d2e1a72fcca58-71e03288a37sm5717000b3a.155.2024.10.09.14.40.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Oct 2024 14:40:40 -0700 (PDT)
+From: "Everest K.C." <everestkc@everestkc.com.np>
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Cc: "Everest K.C." <everestkc@everestkc.com.np>, skhan@linuxfoundation.org,
+ dan.carpenter@linaro.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH V2] drm/xe/guc: Fix dereference before Null check
+Date: Wed,  9 Oct 2024 15:39:20 -0600
+Message-ID: <20241009213922.37962-1-everestkc@everestkc.com.np>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 11 Oct 2024 13:55:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,113 +85,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 7 Oct 2024, Niklas Schnelle wrote:
+The pointer list->list is derefrenced before the Null check.
+Fix this by moving the Null check outside the for loop, so that
+the check is performed before the derefrencing.
 
-> diff --git a/drivers/tty/serial/8250/8250_pci.c b/drivers/tty/serial/8250/8250_pci.c
-> index 6709b6a5f3011db38acc58dc7223158fe4fcf72e..6a638feb44e443a1998980dd037748f227ec1bc8 100644
-> --- a/drivers/tty/serial/8250/8250_pci.c
-> +++ b/drivers/tty/serial/8250/8250_pci.c
-[...]
->  	iobase = pci_resource_start(dev, 0);
->  	outb(0x0, iobase + CH384_XINT_ENABLE_REG);
->  }
->  
-> -
->  static int
->  pci_sunix_setup(struct serial_private *priv,
->  		const struct pciserial_board *board,
+This issue was reported by Coverity Scan.
+https://scan7.scan.coverity.com/#/project-view/51525/11354
+?selectedIssue=1600335
 
- Gratuitous change here.
+Fixes: a18c696fa5cb ("drm/xe/guc: Fix dereference before Null check")
 
-> diff --git a/drivers/tty/serial/8250/8250_pcilib.c b/drivers/tty/serial/8250/8250_pcilib.c
-> index ea906d721b2c3eac15c9e8d62cc6fa56c3ef6150..fc1882d7515b5814ff1240ffdbe1009ab908ad6b 100644
-> --- a/drivers/tty/serial/8250/8250_pcilib.c
-> +++ b/drivers/tty/serial/8250/8250_pcilib.c
-> @@ -28,6 +28,10 @@ int serial8250_pci_setup_port(struct pci_dev *dev, struct uart_8250_port *port,
->  		port->port.membase = pcim_iomap_table(dev)[bar] + offset;
->  		port->port.regshift = regshift;
->  	} else {
-> +		if (!IS_ENABLED(CONFIG_HAS_IOPORT)) {
-> +			pr_err("Serial port %lx requires I/O port support\n", port->port.iobase);
-> +			return -EINVAL;
-> +		}
->  		port->port.iotype = UPIO_PORT;
->  		port->port.iobase = pci_resource_start(dev, bar) + offset;
->  		port->port.mapbase = 0;
+Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+---
+V1 -> V2: - Combined the `!list->list` check in preexisting if statement
+	  - Added Fixes tag 
+	  - Added the link to the Coverity Scan report 
 
- Can we please flatten this conditional and get rid of the negation, and 
-also use `pci_err' for clear identification (`port->port.iobase' may not 
-even have been set to anything meaningful if this triggers)?  I.e.:
+ drivers/gpu/drm/xe/xe_guc_capture.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-		/* ... */
-	} else if (IS_ENABLED(CONFIG_HAS_IOPORT)) {
-		/* ... */
-	} else {
-		pci_err(dev, "serial port requires I/O port support\n");
-		return -EINVAL;
-	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 41262bda20ed..947c3a6d0e5a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1531,7 +1531,7 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
+ {
+ 	int i;
+ 
+-	if (!list || list->num_regs == 0)
++	if (!list || !list->list || list->num_regs == 0)
+ 		return;
+ 
+ 	if (!regs)
+@@ -1541,9 +1541,6 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
+ 		struct __guc_mmio_reg_descr desc = list->list[i];
+ 		u32 value;
+ 
+-		if (!list->list)
+-			return;
+-
+ 		if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
+ 			value = xe_hw_engine_mmio_read32(hwe, desc.reg);
+ 		} else {
+-- 
+2.43.0
 
-I'd also say "port I/O" (by analogy to "memory-mapped I/O") rather than 
-"I/O port", but I can imagine it might be debatable.
-
-> +static __always_inline bool is_upf_fourport(struct uart_port *port)
-> +{
-> +	if (!IS_ENABLED(CONFIG_HAS_IOPORT))
-> +		return false;
-> +
-> +	return port->flags & UPF_FOURPORT;
-> +}
-
- Can we perhaps avoid adding this helper and then tweaking code throughout 
-by having:
-
-#ifdef CONFIG_SERIAL_8250_FOURPORT
-#define UPF_FOURPORT		((__force upf_t) ASYNC_FOURPORT       /* 1  */ )
-#else
-#define UPF_FOURPORT		0
-#endif
-
-in include/linux/serial_core.h instead?  I can see the flag is reused by 
-drivers/tty/serial/sunsu.c, but from a glance over it seems rubbish to me 
-and such a change won't hurt the driver anyway.
-
-> @@ -1174,7 +1201,7 @@ static void autoconfig(struct uart_8250_port *up)
->  		 */
->  		scratch = serial_in(up, UART_IER);
->  		serial_out(up, UART_IER, 0);
-> -#ifdef __i386__
-> +#if defined(__i386__) && defined(CONFIG_HAS_IOPORT)
->  		outb(0xff, 0x080);
->  #endif
->  		/*
-> @@ -1183,7 +1210,7 @@ static void autoconfig(struct uart_8250_port *up)
->  		 */
->  		scratch2 = serial_in(up, UART_IER) & UART_IER_ALL_INTR;
->  		serial_out(up, UART_IER, UART_IER_ALL_INTR);
-> -#ifdef __i386__
-> +#if defined(__i386__) && defined(CONFIG_HAS_IOPORT)
->  		outb(0, 0x080);
->  #endif
->  		scratch3 = serial_in(up, UART_IER) & UART_IER_ALL_INTR;
-
- Nah, i386 does have machine OUTB instructions, it has the port I/O 
-address space in the ISA, so these two changes make no sense to me.  
-
- Though this #ifdef should likely be converted to CONFIG_X86_32 via a 
-separate change.
-
-> @@ -1306,12 +1333,12 @@ static void autoconfig_irq(struct uart_8250_port *up)
->  {
->  	struct uart_port *port = &up->port;
->  	unsigned char save_mcr, save_ier;
-> +	unsigned long irqs;
->  	unsigned char save_ICP = 0;
->  	unsigned int ICP = 0;
-> -	unsigned long irqs;
->  	int irq;
-
- Gratuitous change here (also breaking the reverse Christmas tree order).
-
- Thanks for making the clean-ups we discussed.
-
-  Maciej
