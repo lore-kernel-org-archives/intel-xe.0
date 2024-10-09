@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ECF6CF0440
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 05:00:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A807CF043F
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 05:00:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFD4B10E104;
-	Wed,  9 Oct 2024 05:00:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB26110E104;
+	Wed,  9 Oct 2024 05:00:43 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1316010E104;
- Wed,  9 Oct 2024 05:00:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880E210E104;
+ Wed,  9 Oct 2024 05:00:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe2lpg=3A_Add?=
- =?utf-8?q?_WA_15016589081_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe2lpg=3A_Add_WA_1?=
+ =?utf-8?q?5016589081_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Oct 2024 05:00:24 -0000
-Message-ID: <172845002407.1207089.7294159419828746346@2413ebb6fbb6>
+Date: Wed, 09 Oct 2024 05:00:41 -0000
+Message-ID: <172845004155.1207088.4115647810748618900@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
 In-Reply-To: <20240930120602.1720218-1-aradhya.bhatia@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2c8a08f54bef drm-tip: 2024y-10m-09d-04h-19m-30s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2lpg: Add WA 15016589081
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4ecc6d24abc9495a2444a7ce0a23b8eaeb514e94
+Author: Aradhya Bhatia <aradhya.bhatia@intel.com>
+Date:   Mon Sep 30 17:36:02 2024 +0530
+
+    drm/xe/xe2lpg: Add WA 15016589081
+    
+    Add workaround (wa) 15016589081 which applies to Xe2_v3_LPG_MD.
+    
+    Xe2_v3_LPG_MD is a Lunar Lake platform with GFX version: 20.04.
+    This wa is type: permanent, and hence is applicable on all steppings.
+    
+    Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
+    Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 2c8a08f54befdd831076e0854fe311569c209835 drm-intel
+4ecc6d24abc9 drm/xe/xe2lpg: Add WA 15016589081
 
 
