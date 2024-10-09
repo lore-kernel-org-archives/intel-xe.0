@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4D64CEE326
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 16:05:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4530CEE32F
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 16:24:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A15B410E77F;
-	Wed,  9 Oct 2024 16:05:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dSJeT52O";
-	dkim-atps=neutral
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
- [209.85.167.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BE3310E77F;
- Wed,  9 Oct 2024 16:05:15 +0000 (UTC)
-Received: by mail-lf1-f52.google.com with SMTP id
- 2adb3069b0e04-53993564cb1so7892723e87.2; 
- Wed, 09 Oct 2024 09:05:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728489913; x=1729094713; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=IIa5sZ1sQN4F9/EAh7jCAPDk1gS2+mafy4s61EUtTUw=;
- b=dSJeT52OH5GuzKLsmckkkPmBh/6/5QOW1Vd6X3dA6Nn6aj0tJXf7wM8sPfvZctCjxc
- iC4sFMcmkXS7IPmlsOYiDsPrYDkp4EXfJCja/JFBzZLw7cJpfVlVTmNFXa00frZqi2Aq
- LI7hLU21XMR7XXKr47rdwmYsyOzrUiuuyNpBwL7X/mxU238P+n8552sTsyKnoZPEVDrD
- RmI92Sntyhrg+f9nKCJx7YbklKWFFtW8nyogatV4LThS+ZHQbjcoUNUv5d5/fk/cVQux
- L9d4kZD5s4NLBrCg31uvBAeftFeWLi57VCJtFfoUTPamGmTCTIGyzb7zU+DCXtPXzZiW
- f6eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728489913; x=1729094713;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=IIa5sZ1sQN4F9/EAh7jCAPDk1gS2+mafy4s61EUtTUw=;
- b=IMHAQidOcC4KD1syfE6qSWwI3gy6me3926SIRWKu2TP/RDcDxf92N1lKnYwWVZLKLS
- 2JTPgzCpNJX61+2FcXyTUxjceK5T1g0a3CELaKH7VuOrd5S62Wphz6q9m2nO8IBSD7vr
- szEgcN2pyMxwKIV+qAud+DVnYmWsCvUi0h1sbwC5DfVuR7izrMR6We0Sw2e61Hn7BTWy
- aKwkx93FP5KNcvzssPXza9qCx4juXxRo9I4MQcyOwStJHepuXsVO1vki2dqt6si0pdvR
- nHznWnP15kaQW5B7kngFpkRBe3zBDfGezaQ+zlCpmJ6yo1EY3ZoUvIGJbri+Q9AT2pIQ
- jFJQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWFnfTn09FcbSPxLkumH3+7dFQkdfrA0H0Sw7vppl/oCpTTd3FyAmyVZGdT5bPkYbbH7nqQT3RP2rk=@lists.freedesktop.org,
- AJvYcCXf5SlGpACpaohfqPVpw1w5kFlJrupJiSC+JfJwiYAPkCP1Y9U7xJ7lRKJD9tl6vbZa7aqHg5TJaN8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzaLNgJsD1REbZcSdhUz5wefpujn7jv6V3vhuhc7kvAMWEcqHux
- pW56m+Vt8pX3j4UDV7hMfxEY7vjjJO5EdpY2z9Y0CwqYp2U7YEgr
-X-Google-Smtp-Source: AGHT+IHIlkFtmtsRJ++tKxL+GXbAqdTfJNdHb/CKldkqVa2DzJdvODeH4o865Vxvc5KYCgRQ2o8PaA==
-X-Received: by 2002:a2e:8e6f:0:b0:2fa:bb5d:db67 with SMTP id
- 38308e7fff4ca-2fb187aeb2emr16410001fa.32.1728489912522; 
- Wed, 09 Oct 2024 09:05:12 -0700 (PDT)
-Received: from localhost
- (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5c8e0598947sm5582859a12.11.2024.10.09.09.05.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Oct 2024 09:05:11 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Julia Filipchuk <julia.filipchuk@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/xe/guc: Fix inverted logic on snapshot->copy check
-Date: Wed,  9 Oct 2024 17:05:10 +0100
-Message-Id: <20241009160510.372195-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9357910E787;
+	Wed,  9 Oct 2024 16:24:38 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED35E10E781;
+ Wed,  9 Oct 2024 16:24:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9110425358007448410=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_add_system_memory_page?=
+ =?utf-8?q?_iterator_support_to_xe=5Fres=5Fcursor?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hajda" <andrzej.hajda@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Oct 2024 16:24:37 -0000
+Message-ID: <172849107796.1210972.9406341094116870180@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241009-xe_res_cursor_add_page_iterator-v1-1-c883446e5770@intel.com>
+In-Reply-To: <20241009-xe_res_cursor_add_page_iterator-v1-1-c883446e5770@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,34 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently the check to see if snapshot->copy has been allocated is
-inverted and ends up dereferencing snapshot->copy when free'ing
-objects in the array when it is null or not free'ing the objects
-when snapshot->copy is allocated. Fix this by using the correct
-non-null pointer check logic.
+--===============9110425358007448410==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: d8ce1a977226 ("drm/xe/guc: Use a two stage dump for GuC logs and add more info")
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/xe/xe_guc_log.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 93921f04153f..cc70f448d879 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -122,7 +122,7 @@ void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
- 	if (!snapshot)
- 		return;
- 
--	if (!snapshot->copy) {
-+	if (snapshot->copy) {
- 		for (i = 0; i < snapshot->num_chunks; i++)
- 			kfree(snapshot->copy[i]);
- 		kfree(snapshot->copy);
--- 
-2.39.5
+Series: drm/xe: add system memory page iterator support to xe_res_cursor
+URL   : https://patchwork.freedesktop.org/series/139780/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d_BAT -> xe-pw-139780v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139780v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139780v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][3] -> [INCOMPLETE][4] ([Intel XE#2874]) +1 other test incomplete
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139780v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+
+
+Build changes
+-------------
+
+  * Linux: xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d -> xe-pw-139780v1
+
+  IGT_8061: 8061
+  xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d: 4bc6397aee1aea6a062e635f5a3468ff439ff05d
+  xe-pw-139780v1: 139780v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139780v1/index.html
+
+--===============9110425358007448410==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: add system memory page iterator support to xe_res_cursor</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139780/">https://patchwork.freedesktop.org/series/139780/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139780v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139780v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d_BAT -&gt; xe-pw-139780v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139780v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139780v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139780v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d -&gt; xe-pw-139780v1</li>
+</ul>
+<p>IGT_8061: 8061<br />
+  xe-2035-4bc6397aee1aea6a062e635f5a3468ff439ff05d: 4bc6397aee1aea6a062e635f5a3468ff439ff05d<br />
+  xe-pw-139780v1: 139780v1</p>
+
+</body>
+</html>
+
+--===============9110425358007448410==--
