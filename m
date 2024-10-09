@@ -4,73 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E30ACEDD91
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 13:32:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B92CECEDD93
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 13:43:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24B3010E6FE;
-	Wed,  9 Oct 2024 13:32:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82F1E10E72A;
+	Wed,  9 Oct 2024 13:43:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ICyS3uEq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJzm/qMW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD08510E6FE
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 13:31:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94D0F10E722;
+ Wed,  9 Oct 2024 13:43:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728480720; x=1760016720;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=RaB9f8p5dpAK4PUGYcdxE0aA/cjeQmM36XHd6Yr8Ntg=;
- b=ICyS3uEqJEmiQXts4E6LgiQwSjO/jAfYxrXIdcMBTM2xtixVgUrUmJH8
- 6rti62WiC0ea9xvl095PDsg3wZpdCJwooT8bLSSqX+RVJ81LAHFeB8gqO
- oHlZnyjC3wknuHJTWPo1OmZNE+dsclXj0OyRzeI8HK59OxvXLOtz5Mzq1
- IRDSlZzU0EaqoUwBNjTj9r2YfLUhA4fPrQhXtV/oMW2aw/ybwmi235e4j
- dNL+4vzZYprEm4N8wBVLj53r/yRY7Y29c9dpgqYnKM9HinLlicsYxWga8
- ovpPgVB5fdkAgNZ1y3T2wPdSV8OxZ55GQadnvtN1rnkCTszYY8nV0b+2k A==;
-X-CSE-ConnectionGUID: 6ds3Pw6OQUKXmpM4A6Ua4A==
-X-CSE-MsgGUID: 1ZITk6SqRC2XHZxyxa7Law==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="27728280"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27728280"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:31:59 -0700
-X-CSE-ConnectionGUID: zwGuuYaYSRuQXB3B+ZpFWQ==
-X-CSE-MsgGUID: V/vJFUZuTRyZKPEIfYX9sw==
+ t=1728481415; x=1760017415;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=BmZuKYMkRJ8L4w1vaVjp3jgciXYLxJjGTkK4HfuIKHE=;
+ b=PJzm/qMWsX8QcyB4IkbhzyiyGfqhskSYJB1xyn0QR8neyv00098YBItj
+ ZEB+QutTuUBkygVysPIgKEid33IrRQ/dYvM8OfIQ+X7zKBoNBQOuy95UH
+ r0GnuKuJaNWv5gDYC0AVQKTFIR/gSeN6gHxBKjXh1TkNaEY3qte4kQ740
+ DADANJ+Pfh531fxWYHFK4j0s5zvfLeaYpdjdTurPZ53QEVD3oolWO+WIv
+ Vet/6MhR+lK/8NL0fbr6tQ6XebYs/uRmfNfYrNwtbWdualILa4cmDo7mc
+ SvizWcG+sq+SjIH3XT6n5vCJPfQvjCCQcMpM02R28TigCcswTO53VBI7T Q==;
+X-CSE-ConnectionGUID: rfbVQhkiRaKh8onFBoITwg==
+X-CSE-MsgGUID: iQ8VM9opQHu+5KWoWYkp9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="39142953"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="39142953"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 06:43:34 -0700
+X-CSE-ConnectionGUID: bPpCYgWzR1W8nDTQLGhBjg==
+X-CSE-MsgGUID: HeHDlAiMQNyfm4UODcHrCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76704339"
-Received: from lab-ah.igk.intel.com ([10.102.138.202])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:31:59 -0700
-From: Hajda <andrzej.hajda@intel.com>
-Date: Wed, 09 Oct 2024 15:31:37 +0200
-Subject: [PATCH] drm/xe: add system memory page iterator support to
- xe_res_cursor
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="75855340"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.243])
+ ([10.245.245.243])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 06:43:32 -0700
+Message-ID: <c5e8899f4bcba24a787cd0f4c92c3fc4d7ef3130.camel@linux.intel.com>
+Subject: Re: [PATCH v2] locking/ww_mutex: Adjust to lockdep nest_lock
+ requirements
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: intel-xe@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>, Will
+ Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng
+ <boqun.feng@gmail.com>, Maarten Lankhorst <maarten@lankhorst.se>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org
+Date: Wed, 09 Oct 2024 15:43:29 +0200
+In-Reply-To: <20241009131015.GP17263@noisy.programming.kicks-ass.net>
+References: <20241009092031.6356-1-thomas.hellstrom@linux.intel.com>
+ <20241009131015.GP17263@noisy.programming.kicks-ass.net>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241009-xe_res_cursor_add_page_iterator-v1-1-c883446e5770@intel.com>
-X-B4-Tracking: v=1; b=H4sIALiFBmcC/x3NQQrDIBBA0auEWVcwplDsVUqRUafJLKoyk5RAy
- N1ru3yb/w9QEiaF+3CA0IeVa+kYLwOkBctMhnM3OOuuo7Xe7BSENKRNtErAnEPDmQKvJLhWMdn
- 5fJvSRNF76JUm9OL9f3g8uyMqmShY0vLrZnmblRuc5xel5x5qiwAAAA==
-To: intel-xe@lists.freedesktop.org
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2995;
- i=andrzej.hajda@intel.com; h=from:subject:message-id;
- bh=RaB9f8p5dpAK4PUGYcdxE0aA/cjeQmM36XHd6Yr8Ntg=;
- b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBnBoXN73Uc5fcEvjivhPLLwCLef6hSP7XNxJkJKC/f
- NH+nA7mJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZwaFzQAKCRAjYrKT3hD91xPRC/
- sF/SEpK35EBCeZUXiaNAuYVRqeIzzQ6GtYJazql9IP1Nnf8DZrjxx16kr09RAwYVsGIpemvSqmyVxp
- Xn9VImx6y1pDMejM/jhCinD8t4xxa3tndHKXIkXBbOdudO20S91O0PHtMYzO5tXi0jzkV4UopWn56G
- iWNaD50K3NML63fWRWn0wXFa/JFWZtQt4zoSxqxmCdoLBqjyryXU10jrapxP0NwKuX8Ru7cq4k1X9B
- b+IBQQhDbwsdY5C8boBeBRSrtVucpP3xZHuRQVxVbhEk+cSbS/o2a0QTa/TAtkU0OvRM6c+kJlItOC
- sNu1NR/sJm94XVIo9cC5Tq2mSyQYAmcAHb64l3IlfQQBCoT3orWvPdKUPrCnyXBGueW6FgcpNwk8zI
- gnuzpmvs5PSdTj5qdMzCare8SvZad1GEcBIyda8pBpx2YnyXwlN8L3vYRc15UTKDikTtepp6zE7IAQ
- T4LYuEjpll/UTpog8WTPxmX2q3U5gXY++tD+8Bdu6h3/I=
-X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
- fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,109 +77,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently xe_res_cursor allows iteration only over DMA side of scatter
-gatter tables. Adding possibility to iterate over pages allows
-to use the cursor in more contexts.
+On Wed, 2024-10-09 at 15:10 +0200, Peter Zijlstra wrote:
+> On Wed, Oct 09, 2024 at 11:20:31AM +0200, Thomas Hellstr=C3=B6m wrote:
+> > When using mutex_acquire_nest() with a nest_lock, lockdep refcounts
+> > the
+> > number of acquired lockdep_maps of mutexes of the same class, and
+> > also
+> > keeps a pointer to the first acquired lockdep_map of a class. That
+> > pointer
+> > is then used for various comparison-, printing- and checking
+> > purposes,
+> > but there is no mechanism to actively ensure that lockdep_map stays
+> > in
+> > memory. Instead, a warning is printed if the lockdep_map is freed
+> > and
+> > there are still held locks of the same lock class, even if the
+> > lockdep_map
+> > itself has been released.
+> >=20
+> > In the context of WW/WD transactions that means that if a user
+> > unlocks
+> > and frees a ww_mutex from within an ongoing ww transaction, and
+> > that
+> > mutex happens to be the first ww_mutex grabbed in the transaction,
+> > such a warning is printed and there might be a risk of a UAF.
+> >=20
+> > Note that this is only problem when lockdep is enabled and affects
+> > only
+> > dereferences of struct lockdep_map.
+> >=20
+> > Adjust to this by adding a fake lockdep_map to the acquired context
+> > and
+> > make sure it is the first acquired lockdep map of the associated
+> > ww_mutex class. Then hold it for the duration of the WW/WD
+> > transaction.
+> >=20
+> > This has the side effect that trying to lock a ww mutex *without* a
+> > ww_acquire_context but where a such context has been acquire, we'd
+> > see
+> > a lockdep splat. The test-ww_mutex.c selftest attempts to do that,
+> > so
+> > modify that particular test to not acquire a ww_acquire_context if
+> > it
+> > is not going to be used.
+> >=20
+> > v2:
+> > - Lower the number of locks in the test-ww_mutex
+> > =C2=A0 stress(STRESS_ALL) test to accommodate the dummy lock
+> > =C2=A0 introduced in this patch without overflowing lockdep held lock
+> > =C2=A0 references.
+>=20
+> Thanks, I rebased tip/locking/core, which should now have this patch.
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
-Hi all,
+Thanks.
+It takes some time for that failing CI test to run, though so, and
+since I can't repro the failure locally I'll keep a watch out.
 
-This patch is required to proper implementation of userptr_vma access
-in configurations with iommu turned on[1]. Required by upcoming eudebug
-feature.
-
-[1]: https://lore.kernel.org/intel-xe/20241001144306.1991001-13-mika.kuoppala@linux.intel.com/
-
-Regards
-Andrzej
----
- drivers/gpu/drm/xe/xe_res_cursor.h | 51 +++++++++++++++++++++++++++++---------
- 1 file changed, 39 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
-index dca374b6521c..c1f39a680ae0 100644
---- a/drivers/gpu/drm/xe/xe_res_cursor.h
-+++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-@@ -129,18 +129,35 @@ static inline void __xe_res_sg_next(struct xe_res_cursor *cur)
- {
- 	struct scatterlist *sgl = cur->sgl;
- 	u64 start = cur->start;
-+	unsigned int len;
- 
--	while (start >= sg_dma_len(sgl)) {
--		start -= sg_dma_len(sgl);
-+	while (true) {
-+		len = (cur->mem_type == XE_PL_SYSTEM) ? sgl->length : sg_dma_len(sgl);
-+		if (start < len)
-+			break;
-+		start -= len;
- 		sgl = sg_next(sgl);
- 		XE_WARN_ON(!sgl);
- 	}
--
- 	cur->start = start;
--	cur->size = sg_dma_len(sgl) - start;
-+	cur->size = len - start;
- 	cur->sgl = sgl;
- }
- 
-+static inline void __xe_res_first_sg(const struct sg_table *sg,
-+				   u64 start, u64 size,
-+				   struct xe_res_cursor *cur, u32 mem_type)
-+{
-+	XE_WARN_ON(!sg);
-+	cur->node = NULL;
-+	cur->start = start;
-+	cur->remaining = size;
-+	cur->size = 0;
-+	cur->sgl = sg->sgl;
-+	cur->mem_type = mem_type;
-+	__xe_res_sg_next(cur);
-+}
-+
- /**
-  * xe_res_first_sg - initialize a xe_res_cursor with a scatter gather table
-  *
-@@ -155,14 +172,24 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
- 				   u64 start, u64 size,
- 				   struct xe_res_cursor *cur)
- {
--	XE_WARN_ON(!sg);
--	cur->node = NULL;
--	cur->start = start;
--	cur->remaining = size;
--	cur->size = 0;
--	cur->sgl = sg->sgl;
--	cur->mem_type = XE_PL_TT;
--	__xe_res_sg_next(cur);
-+	__xe_res_first_sg(sg, start, size, cur, XE_PL_TT);
-+}
-+
-+/**
-+ * xe_res_first_sg_system - initialize a xe_res_cursor for iterate system memory pages
-+ *
-+ * @sg: scatter gather table to walk
-+ * @start: Start of the range
-+ * @size: Size of the range
-+ * @cur: cursor object to initialize
-+ *
-+ * Start walking over the range of allocations between @start and @size
-+ */
-+static inline void xe_res_first_sg_system(const struct sg_table *sg,
-+				   u64 start, u64 size,
-+				   struct xe_res_cursor *cur)
-+{
-+	__xe_res_first_sg(sg, start, size, cur, XE_PL_SYSTEM);
- }
- 
- /**
-
----
-base-commit: f1561e6c62b5b5c3fe0276f2fbe7325e0d7c262d
-change-id: 20241009-xe_res_cursor_add_page_iterator-d29d73c3eb99
-
-Best regards,
--- 
-Andrzej Hajda <andrzej.hajda@intel.com>
+/Thomas
 
