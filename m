@@ -4,72 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA71BD0D79B
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DBC9D0D791
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28EC010EAF5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F2D410EAF7;
 	Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=everestkc.com.np header.i=@everestkc.com.np header.b="RufwUNJ3";
+	dkim=pass (4096-bit key; secure) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="NIqB1jgX";
 	dkim-atps=neutral
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
- [209.85.210.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ABEA10E813
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 21:40:41 +0000 (UTC)
-Received: by mail-pf1-f194.google.com with SMTP id
- d2e1a72fcca58-71de9e1f431so238105b3a.3
- for <intel-xe@lists.freedesktop.org>; Wed, 09 Oct 2024 14:40:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=everestkc.com.np; s=everest; t=1728510040; x=1729114840;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=/X1R7jziJAUOGlYud471jpMxA58653P4VmVwYBUwEFw=;
- b=RufwUNJ37r8Nb9Hql9pEJ4vZN5NDT905a4ST9lIPk883XRNIVnLi3ldxbrdOtZuB4l
- fvmwrVjJVLdsytbf0JF7Kwhy6aVRYZHPqZ/fNfUMerU5GM1oVT83Stjp6EcQfrHwbfHQ
- kyms+PvsQL2G/WoPbLer6RHMmxdwuShDOgz+blODJ8kxBi5FBjTebp0I7FYCrvxXByfe
- S7g/8a4ZfyWDAGPhYKA8jCQHxMB2GS32a6nSwiY/ZMTLHoaoLEmnooEmFI40aFBiDNyw
- /Rnz3iekwKYpAMt1itc9kMOsswnqpjnAKg0eXsgJtz0e1//mEBmU2ODHXCK8eSK3sSY2
- RQyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728510040; x=1729114840;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=/X1R7jziJAUOGlYud471jpMxA58653P4VmVwYBUwEFw=;
- b=wnx5V0UYsgGWsbOhGdbbvt69mhLmkoL0AwZ4K0LLimPdAx1vA1psJ6a9tptJn/p9c8
- xsbp4it913lFdbPjYzIa+FJd/MWqXoM7BL48ALI8Ohn/w70hYtmnYf1vV+/QGvYMJlnQ
- Jbz735TVhrufdGqXSlNuq8sCelH33ldnblmJ1iBh7BhViv/R4UjYXSwhUv61/vXDoEms
- rlOCQ7IFLxZajDmTNQDWkwm2LlW4f0Bdi1ad33e9u4E/zAiKZ9Ykv/es+LRtPhbZvQVu
- saq5ff8W0dy5OSC6XG6T+I6cq3Hp0wubh2SHJRDiUPvmX4a5zOD71aC00PvmBOc3osR/
- 6AFg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUR72TQEEB4W7BAnuC/ZSF/ba0XtE+GCpbTN5NzRxxnx4KeuPdDU62586zOUXzJbXQ3DQaXNWGCnQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyOI8ktQp+4TsId5NZ7uejfXMklmquc1DY7XeiUcQh2+VfFLrx6
- 5lLkahtpLQ3oewO4KVChU42kFA4bkzyfwdaPZOND5zZ5NfYbH0Sl2847bO9r1JE=
-X-Google-Smtp-Source: AGHT+IEVjxb8q3sxQHY7BRbeLePk3SvJC2jHMCY+loRxISySa+TSK3hZmXPkiAMN30Y1g+VBgiK0xw==
-X-Received: by 2002:a05:6a00:2394:b0:71e:1b6d:5a94 with SMTP id
- d2e1a72fcca58-71e1db64896mr6487949b3a.5.1728510040550; 
- Wed, 09 Oct 2024 14:40:40 -0700 (PDT)
-Received: from localhost.localdomain ([81.17.122.158])
- by smtp.googlemail.com with ESMTPSA id
- d2e1a72fcca58-71e03288a37sm5717000b3a.155.2024.10.09.14.40.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Oct 2024 14:40:40 -0700 (PDT)
-From: "Everest K.C." <everestkc@everestkc.com.np>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-Cc: "Everest K.C." <everestkc@everestkc.com.np>, skhan@linuxfoundation.org,
- dan.carpenter@linaro.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH V2] drm/xe/guc: Fix dereference before Null check
-Date: Wed,  9 Oct 2024 15:39:20 -0600
-Message-ID: <20241009213922.37962-1-everestkc@everestkc.com.np>
-X-Mailer: git-send-email 2.43.0
+Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 336DF10E7D6
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 19:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
+ t=1728501746; bh=Cgq/9yo0Az36vK7/5pvekRKWRvtfNHMNj/p/Mdzc/D0=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=NIqB1jgXz0HDy8xuQcAo1CgLNUp91yheh2qZh3Tza9eJ7JwAzo68493YzvmHrNl5p
+ L8MqK16soqPjKoAHivWjjzhQDFzxPVBcf1qrNyNB2ubPJUq/v1dDzYWRqW7B8+12xU
+ meuwaaobeB32BsUPxR0yLy8aKVr3ctNviNDOGZV8aownetVA2Lebvpvnp3nYiJ1tpb
+ lr17lGrgflr3AlZgn1G9WweCxXyABUrYYW8PVpCMZp1ljJPLGuhuVkNyxBasEWkpnk
+ 9ParMjhmRkuFCYGaHfX0+bQb1JUYd7VYDqsoIONF25DUA/XW6bypWdyNhk5O1Vvmv/
+ hCrkQ0d24/flSYJS4uhYkZOacVtWF+kLFTQXpZLlKSmwP59fMdxVJZL6RvFbpYYSe3
+ EcZH3Ur6IdwkTzR583XFxYKcp6ojinJDQzXhTbV2yClT6p43nm8vSNSY/QnzoclKNC
+ GvE6x7IWDe5FXf8CgdLvqKi6UEKjCb/N8rlO51g3CzXPLnk9gfYw8M8JgcWcZeaTxH
+ KHaUSydWZiQo9lV98Que3S5N0YRUzKIW05z14FloUQvnpz7BkyYKPA6cup0tuEcFRa
+ DONvcQfgy0t38hBo2cPPXrejoeoDIlIcYzlBoFF5cuL2OotnryF6qsJVcgMKjUzCxp
+ iyg+582Kz4hWA+pXzkWobT1c=
+Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl
+ [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
+ by bout3.ijzerbout.nl (Postfix) with ESMTPSA id 54990160E0A;
+ Wed,  9 Oct 2024 21:22:26 +0200 (CEST)
+Message-ID: <859bc217-0f47-4f2c-83a3-d1f99eb7ca4b@ijzerbout.nl>
+Date: Wed, 9 Oct 2024 21:22:24 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v28,6/6] drm/xe/guc: Save manual engine capture into capture list
+To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
+References: <20241004193428.3311145-7-zhanjun.dong@intel.com>
+Content-Language: en-US
+From: Kees Bakker <kees@ijzerbout.nl>
+In-Reply-To: <20241004193428.3311145-7-zhanjun.dong@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 11 Oct 2024 13:55:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,48 +60,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The pointer list->list is derefrenced before the Null check.
-Fix this by moving the Null check outside the for loop, so that
-the check is performed before the derefrencing.
-
-This issue was reported by Coverity Scan.
-https://scan7.scan.coverity.com/#/project-view/51525/11354
-?selectedIssue=1600335
-
-Fixes: a18c696fa5cb ("drm/xe/guc: Fix dereference before Null check")
-
-Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
----
-V1 -> V2: - Combined the `!list->list` check in preexisting if statement
-	  - Added Fixes tag 
-	  - Added the link to the Coverity Scan report 
-
- drivers/gpu/drm/xe/xe_guc_capture.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 41262bda20ed..947c3a6d0e5a 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -1531,7 +1531,7 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
- {
- 	int i;
- 
--	if (!list || list->num_regs == 0)
-+	if (!list || !list->list || list->num_regs == 0)
- 		return;
- 
- 	if (!regs)
-@@ -1541,9 +1541,6 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
- 		struct __guc_mmio_reg_descr desc = list->list[i];
- 		u32 value;
- 
--		if (!list->list)
--			return;
--
- 		if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
- 			value = xe_hw_engine_mmio_read32(hwe, desc.reg);
- 		} else {
+Op 04-10-2024 om 21:34 schreef Zhanjun Dong:
+> Save manual engine capture into capture list.
+> This removes duplicate register definitions across manual-capture vs
+> guc-err-capture.
+>
+> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_devcoredump.c     |   3 +-
+>   drivers/gpu/drm/xe/xe_guc_capture.c     | 153 +++++++++++++-
+>   drivers/gpu/drm/xe/xe_guc_capture.h     |   3 +-
+>   drivers/gpu/drm/xe/xe_hw_engine.c       | 255 +-----------------------
+>   drivers/gpu/drm/xe/xe_hw_engine.h       |   2 -
+>   drivers/gpu/drm/xe/xe_hw_engine_types.h |  59 ------
+>   6 files changed, 163 insertions(+), 312 deletions(-)
+>
+> [...]
+> +static void
+> +read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_group *list,
+> +		 struct guc_mmio_reg *regs)
+> +{
+> +	int i;
+> +
+> +	if (!list || list->num_regs == 0)
+> +		return;
+> +
+> +	if (!regs)
+> +		return;
+> +
+> +	for (i = 0; i < list->num_regs; i++) {
+> +		struct __guc_mmio_reg_descr desc = list->list[i];
+> +		u32 value;
+> +
+> +		if (!list->list)
+This test makes no sense at this point.
+Notice that list->list[i] is used to get "desc". It would have crashed 
+if list->list was NULL.
+It could make sense before the for-loop, but you'll have to decide on that.
+> +			return;
+> +
+> +		if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
+> +			value = xe_hw_engine_mmio_read32(hwe, desc.reg);
+> +		} else {
+> +			if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS &&
+> +			    FIELD_GET(GUC_REGSET_STEERING_NEEDED, desc.flags)) {
+> +				int group, instance;
+> +
+> +				group = FIELD_GET(GUC_REGSET_STEERING_GROUP, desc.flags);
+> +				instance = FIELD_GET(GUC_REGSET_STEERING_INSTANCE, desc.flags);
+> +				value = xe_gt_mcr_unicast_read(hwe->gt, XE_REG_MCR(desc.reg.addr),
+> +							       group, instance);
+> +			} else {
+> +				value = xe_mmio_read32(&hwe->gt->mmio, desc.reg);
+> +			}
+> +		}
+> +
+> +		regs[i].value = value;
+> +		regs[i].offset = desc.reg.addr;
+> +		regs[i].flags = desc.flags;
+> +		regs[i].mask = desc.mask;
+> +	}
+> +}
+>
 -- 
-2.43.0
-
+Kees
