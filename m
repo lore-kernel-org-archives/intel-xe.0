@@ -4,72 +4,174 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F939CEE347
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 20:35:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42E7ACEE348
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 20:36:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C426710E0CE;
-	Wed,  9 Oct 2024 20:35:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E3DF10E80E;
+	Wed,  9 Oct 2024 20:36:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="V6XPQ8Pq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dyBndHrV";
 	dkim-atps=neutral
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
- [209.85.221.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2F0510E7F7
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 20:35:34 +0000 (UTC)
-Received: by mail-wr1-f49.google.com with SMTP id
- ffacd0b85a97d-37ccdc0d7f6so103386f8f.0
- for <intel-xe@lists.freedesktop.org>; Wed, 09 Oct 2024 13:35:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1728506133; x=1729110933; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=ZjYS14YTYv2OCMWHkLucdNx0+SeUm3LsT48uh8uJaRw=;
- b=V6XPQ8Pq/kjhSfh23VPB8uHURHTbIgudB6b+e9H+YmvubRSZ51ytM23ifS2GXD62yW
- OQ/YGhjTLfLHwEetbodDTfsX1TXTiwJGaH0vfd3MCE1+vcYDZ5mr6gwAOtFw7JL89Gk1
- MNnl1hEynNhRUTZzvoRe8GHD17xTlNLhJkzG8H/fGFHUHi8tD2tBN3dhwHzLR5nCwygG
- d3vm6CaspfyymyzrRKA1hkySJP8Wc0FMZDW0wAupNZfMgwzcC/2DvIlp/hyVcXYZQL8F
- wLcnJwNJqeJGskCv3Q1NnwgwULP6mKOpuXUpONciv+fNYg8WOkdNEJKXw2/d+JW+sT9R
- dGGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728506133; x=1729110933;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ZjYS14YTYv2OCMWHkLucdNx0+SeUm3LsT48uh8uJaRw=;
- b=betV4MLUj51q+qJgnXw0wsJeAjQwaXd3mQwpTqO6sL2+nwpmKZw8p2TMyTQlHF7ObG
- FU9p+lNmAFcKt3L0riIydiVRBaiqQvvE1sJLAuCmYtb0eiRbl3keaXxzboJIgMhNcvSk
- NhRXzVA4VreKMrznyAZES/m//0BA3Pl0zN+OEbJwwOT80XyF599Uu8G4xu/5qqtbCiR8
- Ym4AHQ2fjFCCGwY0mLPrIIWTY4RCZ49ejgJLZjsNy9CoJhEiBb79bZjiPcxXbwcuWEJK
- cwJuIs1oFDZfZ/GvNOxtlBumx5O7oz8MXT9bwnDaWeQ5R6b/le/IQxTqVx4D7sEeFCAp
- OjUQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCULHChCi+CRKtbrds58mTSoh1+bM9Jj7ExrIO410NoQv6f0Ylp1vBZHmp+rPvlo8dff6+9jJrq0rg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywfi7sk9qp1KbxUKgAvEAWBvzvxZEOBLrS9nWvNSJFJfr70KL4y
- a4Rq/zS+HbLrIZQ2xMs2i5DZ53q6KuMaLu69KwAuOAZLJhGzzWNYvRlihISH8dU=
-X-Google-Smtp-Source: AGHT+IFbfMwsabJqo51FxMyaKfk6sJ6eDGqAwAcM1939Wwk+xOhuo14+AUTXfblGExsREK8B+2rfDQ==
-X-Received: by 2002:a5d:6d48:0:b0:375:c4c7:c7ac with SMTP id
- ffacd0b85a97d-37d3aabfd1emr2434741f8f.49.1728506132947; 
- Wed, 09 Oct 2024 13:35:32 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-37d2e65d618sm4572798f8f.23.2024.10.09.13.35.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Oct 2024 13:35:31 -0700 (PDT)
-Date: Wed, 9 Oct 2024 23:35:27 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: "Everest K.C." <everestkc@everestkc.com.np>
-Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, skhan@linuxfoundation.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH][next] drm/xe/guc: Fix dereference before Null check
-Message-ID: <07d9eb6e-87d3-4428-aaa4-8721a6844404@stanley.mountain>
-References: <20241009184951.4991-1-everestkc@everestkc.com.np>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A7A110E814;
+ Wed,  9 Oct 2024 20:36:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728506161; x=1760042161;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=QgJtQhSPnbaFJjdTzCynbOwIzGMxV1zDlMfFALCEv24=;
+ b=dyBndHrVOz5UuX+qxGMcKtgNAIUdxgJZG3roa5OU9HSoPfXmTRJM4r97
+ W2+pGeam/5QVeyKXJQg2p5Y8oC3O5U2hhfQSauC3lxXJ1MASaXQr6V9Me
+ U64XuQWindz2OurbuGcfTHpTJSUuzoFhfsymf8ZdUHVKDl3EXtevnRlv9
+ K48RT2xctNnCewThWZETIVBKHdxC7TSrHbQzZ6uvXUR2lSSc0WcdWzLrf
+ yCqq3uOmB+8+Q1qV58pYd0T2fq+Uk4Qv+PR2hOzEFSXlwQZiGw+B5bQNS
+ cqsoVSRTrjB3oq6muGorPDi4ABmL5S9DrpdfE6IQIHbKlqfZa09EG4keb w==;
+X-CSE-ConnectionGUID: FqhxGLzDRlqOqw+quwnnuA==
+X-CSE-MsgGUID: xQfTVY+dQb2rezTTsxizZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="27646282"
+X-IronPort-AV: E=Sophos;i="6.11,190,1725346800"; d="scan'208";a="27646282"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 13:36:01 -0700
+X-CSE-ConnectionGUID: qnvHs4FKRqi1vgl+Y0QuUA==
+X-CSE-MsgGUID: xTwzyCbBQRGPBhcVFNY1vg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,190,1725346800"; d="scan'208";a="81175913"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 09 Oct 2024 13:36:00 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 9 Oct 2024 13:36:00 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 9 Oct 2024 13:35:59 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 9 Oct 2024 13:35:59 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 9 Oct 2024 13:35:59 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YiRJHlcKHeUDY8frd2dWFIXaz6Fb1qSXGMvpMNMeRl1KNqMNr8Oq5ArLFk6IR2xNa89htbB9ygJRQTN6yRVqMBQblwKX+wCXzOkPNGf3sbnN9vNiKh2eTBJI10BkzyaihW3p2jFuDglWB2d5EMgthYkzqybXoSQ6pj8u70U9GBG9G7yepvmBoYtoH1s0v2vh/3Na59X8H8RB+01VB5bSKcK7sAD+QmlCRtCQusDJl4D3i885A/3gVXVYpQVoPLy0icXbgPQEeH+2FcHGvaw7B+M/0zRqz9e2YYd9Dutju9ohfZBdho2WzlrpATPPnLN7FOENaOOb+5zqhlZw49aiUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2nJL+YIPFc4J6gnhxQ3ECc1sNrLv9aHmHmUXtTFE8lU=;
+ b=vWo+eX4eECCq7QJ4BV3/46jB8eUg4qtCzi9GU0uO+sVh/uei8qLUeMvqL9WsOCaQQ0UebfAnavKhNPNpkYiU0hK5F0E4DHP3Cet8qys4EEmGeqN5ePI0Lpht8Pr4+o81/o9u8m5vnB8MVrQFJqbS64nzRE5Yp79ExDttlU+bZpFfWMSyWUpaZGiV/DHtGWaj00onYsP82Mmzjo1i2Wep/DYM9gNCBiP9+XjKACS5pWHZKutvFMQP/koGDdihecW5ygfhtna+STsQ2wt61wqOnFvdMBaiKujVCU6HfWxulFtlUIzkQb8+HR09imhQMXXWKUCqlG6/drHmA9PYHzKqRA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
+ by SA2PR11MB5195.namprd11.prod.outlook.com (2603:10b6:806:11a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Wed, 9 Oct
+ 2024 20:35:57 +0000
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace%4]) with mapi id 15.20.8048.013; Wed, 9 Oct 2024
+ 20:35:56 +0000
+From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH v2 1/4] drm/i915/dp: Assume panel power is off if runtime
+ suspended
+Thread-Topic: [PATCH v2 1/4] drm/i915/dp: Assume panel power is off if runtime
+ suspended
+Thread-Index: AQHbGoOOOD75BKxKc0KbGwi7+GhuzrJ+2h1A
+Date: Wed, 9 Oct 2024 20:35:56 +0000
+Message-ID: <CH0PR11MB5444908185C8687D0C8F07CBE57F2@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20241009194358.1321200-1-imre.deak@intel.com>
+ <20241009194358.1321200-2-imre.deak@intel.com>
+In-Reply-To: <20241009194358.1321200-2-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|SA2PR11MB5195:EE_
+x-ms-office365-filtering-correlation-id: 05d20de4-5f1b-407a-6bcc-08dce8a1fa6c
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?FTMN13P4g97mgQe1VD3FK76U+6PgTCN0CAe8GsFq599ss0zuQNtI57oHCMBa?=
+ =?us-ascii?Q?gdTTaFXNmj+J9LamCrTueHYaa2hv7EywmMbxgkQnDK60OKl0R49KLJQ1m8aH?=
+ =?us-ascii?Q?VQ7dO0k1GEGx1mPNLHTuT9xt2M3xpk1C3dSWTgWvjm6YkPFsq+9GsIUrKgPT?=
+ =?us-ascii?Q?EJrGKgRj4GptVFUjps+l6pIJT5KR/F5xk3LTGk/9nvnf8LiDaYefKMmTNoXQ?=
+ =?us-ascii?Q?sQYW5ekP7MCXCiNjKl0G7kGAq1qUgGZcdT3MtvIpAe/XUqvMHXmTYRW29ZWF?=
+ =?us-ascii?Q?wI9fZY3kHqnYFMXJpMUNExQCDkpguT5UUlwCOzCOZvwHfMpHu9+xCX2wYDeJ?=
+ =?us-ascii?Q?eMZMkb8fXwAl/wYA9+G8yB9wYpd2wFq+XSpvqvGze2ZHMKYZDXNKJU4IJiFf?=
+ =?us-ascii?Q?vhCVbLev3imsgolMv9S2D35gJOeDLTE2XpsdBRrqIE4WpCzjgGez9coMgKG5?=
+ =?us-ascii?Q?34/xdwlM+a/1PbKZ3vW6nTHR/Zukl40U9usKJABdah5N+SEAfqGvC+x4/rcC?=
+ =?us-ascii?Q?Zj0MtzGC9Nt8mijBR2RNuj0XtgiTAdPJjDq0IoVuFkIXdGUDBV1N04rvhaMj?=
+ =?us-ascii?Q?GWz6EN1sq6nbQM0utm/6IQjdxubYPlDdj9Y72navqomBL+yVbjHTbRjHeoJ7?=
+ =?us-ascii?Q?zPODX8g8kZQai79Vaorvpm2H7AWeoqMzzXdFIZi6eWap/dSz3c4sTz6AQ8Mo?=
+ =?us-ascii?Q?yzL3X7cP3RDcAZHTL41vOPqrvMZDphx12GQmpHD+6ImiytB9N4I5EYVgj0wC?=
+ =?us-ascii?Q?51NIlrB1RplNuIFrXAcI/R0AEYxWfrHuO3IxJ5djdtlVKnMD1cq58HAzgsI7?=
+ =?us-ascii?Q?d6O3YXIj7M1hyv71xJzLap2G0fd4WVl6vrh3MNy/lh94v9EeeSd4O3dhbkUy?=
+ =?us-ascii?Q?gw5dVsIYVXDmQH/mil6wTfkggQXTJiDRVi5wUzdZfiQCTYtSYDINCBA0aFYi?=
+ =?us-ascii?Q?htszKvJqcrMh+Ikd8rA3cEnydmRJPpKKPAp0+ayuGQpydL+N9uSw72K+Xo5k?=
+ =?us-ascii?Q?bV2stybXVJwFmNTe4itKwCX48UH7TqxHd+zpHIDU2uc/KsZT0OUM6F+UIzyl?=
+ =?us-ascii?Q?NmqLpZyUvZsjPSmqpd4KIW/FPqF7WKMx0moPr+NPECGS7th1Gd4wTGTkwsy3?=
+ =?us-ascii?Q?ELsNzi1jFN6YsqGLHkRs04WHWDyfMR/tQEw91tvbB2HkdCn0hWR/aR9PO0pG?=
+ =?us-ascii?Q?B5u6wuo/PEpoQYEG++51lD951UKJuUvknlEvYjloQCTBMWZhXN99nGqVCR5M?=
+ =?us-ascii?Q?QK4GvN0EORFyBehILT0lLkH9/U0baUo9qtKV+CzQndL8pyX5Kfz8uXg0X2b9?=
+ =?us-ascii?Q?lWy9CXwGJOx9Iaz65MwhoQcC?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+TCcbu1jGeE5AzY1493DuBeKkhx+h9NiJcmoHWnj2ztWPPbTj8KOqFKsVxAf?=
+ =?us-ascii?Q?yOp2Pw+KFhn2829PGhJt7nCku1BQPLS6q7iP2Wpb2YES0L0OtkRoDhyL5ZEU?=
+ =?us-ascii?Q?uzWFGePyFRVDBxH9iNY1wqohA+UQtzBxo8WaWOmxiInFtt+sWwmO+Pd3tvqH?=
+ =?us-ascii?Q?tk1Eo0sIc7btl8xZ25Gq/xUNg/NLCPpw/GholUl4OEq6dtQkFn42S34sXoHM?=
+ =?us-ascii?Q?l0J7LNzXzxVuWE+Kse0J3M6k7rmovwXuhzCn2Ruva3BTdvZClMvwx2QOb/yQ?=
+ =?us-ascii?Q?/UFJnP1j/P4p2FBhqQYeOvRI2wBvnpp3JXGMqX/amblpxJbb6sbLjXyKH8wb?=
+ =?us-ascii?Q?3t3oRjOqiEMtbqfSSurc5ZuGhIApQTaHfaFp/j/QYRnhX8+G82dKwR8kIpvp?=
+ =?us-ascii?Q?UWSvavpZLAE0qLBGAVBv9icJXPWpt8Z0TRTcO9mlyx7LSKigmndizjasT2dz?=
+ =?us-ascii?Q?pHROybojYC945OGqP761L71EOq3JkRn5B9Z6xPA1Yp4jwjuY2ArGYGc6kwIy?=
+ =?us-ascii?Q?O+Nk8cFCha20/OXgL0iRuoGd/lyRgmfX0gh+KCjDARYIq4c2M831ItSCtNXu?=
+ =?us-ascii?Q?25n2VMBJ4Sn0nm0n6P0C2JF3pFtZAmLr8vuuae3CnCOHLOkF2u+JDe6D6WkO?=
+ =?us-ascii?Q?inGOunyY7cvR6HfZeoEuO8C3grj5bpsqz1kjFrrDHzLvAp+KaHK2oXjMqVB+?=
+ =?us-ascii?Q?g+Kxa8ruNsja9ItAxxTItPeAI3xkghJv5YOlXznWCujRIMeJh9RV3W1J9KqZ?=
+ =?us-ascii?Q?JCXWK7VYMDz8y9XsE9qAaxphdPmcLW9Ye6Lp8dXEqeDIyLgSoOiT3VZ1qtOT?=
+ =?us-ascii?Q?xtQqhRoPGupboN8pjRFzZByJ9wm5qB6x54Df0hEsFfpusDVvvP6ONMCdP2xQ?=
+ =?us-ascii?Q?QmTPfmXdLfu7eES2LNKGn61yCqOJP1ffsbWjjue4X+1RK4gMs1kIjjIYrhcs?=
+ =?us-ascii?Q?8yv3N4IuQFoYZezFQkLrtj9LbPToN2cPB34i18KpNpDcHeGtY+FXasmKnoBe?=
+ =?us-ascii?Q?raFaZvIgvO95MamL388ihI+XeqWTuvWvPl2vIC0k4MvmK01bSKLnwFiXkeOq?=
+ =?us-ascii?Q?iE+9oXqgeP5SW7EAK07GJg+He0AitCRywWpDI2PxcTZ+WbJuXlV0v2jyX81z?=
+ =?us-ascii?Q?px72cqTXRLJ8r/uCV6iDx7+rsiiKASRhtta24h3bgU9BWia/u9mAVvqEiJjj?=
+ =?us-ascii?Q?6zuxuJ0v25pwgOls6sIANfrwcbY6JIZhybvobwiGqzNScA1iSIfxykgzMpN+?=
+ =?us-ascii?Q?oetM2/3bSb+f/0Y5zslmCu5GNtJV0u/kfWkwgSGX1sbN+w54o+5+HnU34b6d?=
+ =?us-ascii?Q?e1lPo1xMNYsK/LansUkVWLzurKUNDmebzattXlKAT0IEl2hM4Q0WPdvrxqqR?=
+ =?us-ascii?Q?0uuNzMFFZJLakw7GkOl2M1OcsJZsXWb5d4RSd6jCA0S3vAH8TDvwUdlnXD2X?=
+ =?us-ascii?Q?sjw2DqTl2f3Npj9peCMmgVdwLdmoVOYbtpy1xGgvdDtdot91bUdTV/4krYzG?=
+ =?us-ascii?Q?ddswOPNb4rdtvSjGwmWJM8W9dFPhQ/E5Z4H3ONSBA98btlmnQ7JzmaXcqwfX?=
+ =?us-ascii?Q?zykkACfgBLT6b3gx2XpiIpyt/H4xWC7WGwAdxGXFTgOOYJNwqKtSbFvJWyGn?=
+ =?us-ascii?Q?Wg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009184951.4991-1-everestkc@everestkc.com.np>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05d20de4-5f1b-407a-6bcc-08dce8a1fa6c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2024 20:35:56.8216 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CO1oxngOJk3wYzRKXWas7L6LdgFDABT/Ae8fwkg/romuHTBP9Q/Mu5sF13hFb0fPX+D0khXAT+UbWEfXiwC5KaWdax+D9SSj6fgJfHNoXIA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5195
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,45 +186,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 09, 2024 at 12:49:49PM -0600, Everest K.C. wrote:
-> The pointer list->list was derefrenced before the Null check
-> resulting in possibility of Null pointer derefrencing.
-> This patch moves the Null check outside the for loop, so that
-> the check is performed before the derefrencing.
-> 
-> This issue was reported by Coverity Scan.
-> 
-> Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
-
-You need to add a Fixes tag.
-
+-----Original Message-----
+From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Imre D=
+eak
+Sent: Wednesday, October 9, 2024 12:44 PM
+To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2 1/4] drm/i915/dp: Assume panel power is off if runtime s=
+uspended
+>=20
+> If the device is runtime suspended the eDP panel power is also off.
+> Ignore a short HPD on eDP if the device is suspended accordingly,
+> instead of checking the panel power state via the PPS registers for the
+> same purpose. The latter involves runtime resuming the device
+> unnecessarily, in a frequent scenario where the panel generates a
+> spurious short HPD after disabling the panel power and the device is
+> runtime suspended.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_guc_capture.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-> index 41262bda20ed..de63c622747d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-> @@ -1537,13 +1537,13 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
->  	if (!regs)
->  		return;
->  
-> +	if (!list->list)
-> +		return;
+>  drivers/gpu/drm/i915/display/intel_dp.c                   | 5 ++++-
+>  drivers/gpu/drm/i915/intel_runtime_pm.h                   | 8 +++++++-
+>  drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h | 8 ++++++++
+>  3 files changed, 19 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index fbb096be02ade..3eff35dd59b8a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -85,6 +85,7 @@
+>  #include "intel_pch_display.h"
+>  #include "intel_pps.h"
+>  #include "intel_psr.h"
+> +#include "intel_runtime_pm.h"
+>  #include "intel_quirks.h"
+>  #include "intel_tc.h"
+>  #include "intel_vdsc.h"
+> @@ -6054,7 +6055,9 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_p=
+ort, bool long_hpd)
+>  	u8 dpcd[DP_RECEIVER_CAP_SIZE];
+> =20
+>  	if (dig_port->base.type =3D=3D INTEL_OUTPUT_EDP &&
+> -	    (long_hpd || !intel_pps_have_panel_power_or_vdd(intel_dp))) {
+> +	    (long_hpd ||
+> +	     intel_runtime_pm_suspended(&i915->runtime_pm) ||
+> +	     !intel_pps_have_panel_power_or_vdd(intel_dp))) {
 
-Could you merge this with the other sanity checks at the start of the function.
+From what I'm reading, I'm fairly certain that
+"i915->runtime_pm->kdev" is equivalent to "i915->drm.dev".
+At least, this seems to be the case according to this comment on
+the intel_runtime_pm struct in intel_runtime_pm.h:
 
--       if (!list || list->num_regs == 0)
-+       if (!list || !list->list || list->num_regs == 0)
+"	struct device *kdev; /* points to i915->drm.dev */"
 
-The list->list pointer can't actually be NULL.  It comes from
-guc_capture_get_one_list(), so if the reglists[i].list pointer is NULL it
-returns NULL.  However, obviously checking for NULL after a dereference is not
-the correct so it's worth fixing and probably deserves a Fixes tag.  Although it
-doesn't affect runtime, adding a Fixes tag helps backporters know they can
-automatically ignore this one because the commit it's fixing is very recent.
+So, "intel_runtime_pm_suspended(&i915->runtime_pm)" seems
+to be logically equivalent to
+"pm_runtime_suspended(i915->drm.dev)", which would mean we
+wouldn't need to declare the new helper function
+"intel_runtime_pm_suspended" as both want to operate
+pm_runtime_suspended on the same relative path for their target
+drm device.
 
-regards,
-dan carpenter
+Though, perhaps I'm missing some other reasons we would want
+the additional helper function besides, so I won't block on this:
 
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+-Jonathan Cavitt
+
+>  		/*
+>  		 * vdd off can generate a long/short pulse on eDP which
+>  		 * would require vdd on to handle it, and thus we
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i9=
+15/intel_runtime_pm.h
+> index 126f8320f86eb..e22669d61e954 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+> @@ -96,10 +96,16 @@ intel_rpm_wakelock_count(int wakeref_count)
+>  	return wakeref_count >> INTEL_RPM_WAKELOCK_SHIFT;
+>  }
+> =20
+> +static inline bool
+> +intel_runtime_pm_suspended(struct intel_runtime_pm *rpm)
+> +{
+> +	return pm_runtime_suspended(rpm->kdev);
+> +}
+> +
+>  static inline void
+>  assert_rpm_device_not_suspended(struct intel_runtime_pm *rpm)
+>  {
+> -	WARN_ONCE(pm_runtime_suspended(rpm->kdev),
+> +	WARN_ONCE(intel_runtime_pm_suspended(rpm),
+>  		  "Device suspended during HW access\n");
+>  }
+> =20
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h b/=
+drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
+> index cba587ceba1b6..274042bff1bec 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
+> @@ -20,6 +20,14 @@ static inline void enable_rpm_wakeref_asserts(void *rp=
+m)
+>  {
+>  }
+> =20
+> +static inline bool
+> +intel_runtime_pm_suspended(struct xe_runtime_pm *pm)
+> +{
+> +	struct xe_device *xe =3D container_of(pm, struct xe_device, runtime_pm)=
+;
+> +
+> +	return pm_runtime_suspended(xe->drm.dev);
+> +}
+> +
+>  static inline intel_wakeref_t intel_runtime_pm_get(struct xe_runtime_pm =
+*pm)
+>  {
+>  	struct xe_device *xe =3D container_of(pm, struct xe_device, runtime_pm)=
+;
+> --=20
+> 2.44.2
+>=20
+>=20
