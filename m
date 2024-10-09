@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C168CED612
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 06:55:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AC3BCED610
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 06:56:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C8E510E65D;
-	Wed,  9 Oct 2024 06:55:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD44610E65D;
+	Wed,  9 Oct 2024 06:56:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XH9WFzLp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UhFBK8t/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1B2810E65C;
- Wed,  9 Oct 2024 06:55:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54E3310E65D
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 06:56:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728456911; x=1759992911;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=WPL9N67WCr4LTSutyk0oYFngowLOd4f5W9UQ+e/9tsM=;
- b=XH9WFzLp/gh2Am5J50WxnYYDnctTp7E5xur4n/HS6Di2QONfkCj7MKk3
- Z+RflytENpeQfrk8CIIE/om4TKXba/tfIOuTTKDsQN7qtQBgYLBzlSpWq
- Yq1ny57mEZzgCGTXf/ycSgdE1skrijMC9zbrz8DO25q9ifVX8ESEshvlF
- xFyck39mvb+scZHRf5LWqxkKxahdfC7YUt2hocoMs8yvRrBlPiOFmdcUl
- edrn2xxvwCHa7152lKtyqkjn56MPgobJhIXFyRTGgAsSrxFOWrpdQdsLC
- n53mEJ6WcXTC1QBQvpkNZrryrQ1uT3IHoxbSlJ1zROS+GHVd3W5GphpKX Q==;
-X-CSE-ConnectionGUID: 8ceOKfqPSaagItd1oPxqhg==
-X-CSE-MsgGUID: EZeChFnBTvi7ZTMX/CEeqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27551899"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27551899"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 23:55:10 -0700
-X-CSE-ConnectionGUID: jjJgMBwhQpCacefLP+BJGA==
-X-CSE-MsgGUID: oJIZSzsLQG6Q9bVgp/4wAQ==
+ t=1728456970; x=1759992970;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eaJpZ6Eoo8HMOtrJHCTvzX8trIxmea5hEdOVG1EIld0=;
+ b=UhFBK8t/9e6RlESniw41WRiH4ZxAFfOul+R8nUAnK3tdgRrFlch69f9O
+ ERaFcJL82873gFFGqMkZ/p14zwAyFNeXTBZwdqv5qnNrc4yBxOOlW7B/m
+ p0/LjDVVFxHP4nXNxz3fG3weC8Q4LR+5vlSujgvto7/z6bnSUISwpohuB
+ k1CkVtyBvk5OOHCceHKRDS6N8Yp5gc9yH2Jel4gubsHVcXgIxogqAhgoS
+ rnSv4Cy/dKchObQyG/arbFmV3xEjmtLhhtWHdMcDxXz0YZ9F+n6QUJTV+
+ OVDZ5+SE4kbRb9oZPRSRW/VlLE7FW9u6g2i3+sYuKP5BlaZi6G32F6ye2 w==;
+X-CSE-ConnectionGUID: /TgX2saoS3Gx0Wu1OFXBrA==
+X-CSE-MsgGUID: zmiQAvQCQti4PfeQhC5yvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="30612343"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="30612343"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 23:56:10 -0700
+X-CSE-ConnectionGUID: DvtytHMnR6+9LMbN2M4UKA==
+X-CSE-MsgGUID: 3PsMNIM2SLK4m/3/JZIJBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76263407"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 08 Oct 2024 23:55:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Oct 2024 09:55:06 +0300
-Date: Wed, 9 Oct 2024 09:55:06 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- uma.shankar@intel.com, chaitanya.kumar.borah@intel.com
-Subject: Re: [PATCH] drm/i915/color: Use correct variable to load lut
-Message-ID: <ZwYoymdhNQAh42UQ@intel.com>
-References: <20241009063753.1799234-2-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="80729094"
+Received: from baradhya-z690i-a-ultra-plus.iind.intel.com (HELO
+ aradhyab-desk.iind.intel.com) ([10.145.169.55])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 23:56:08 -0700
+From: Aradhya Bhatia <aradhya.bhatia@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>,
+ Aradhya Bhatia <aradhya.bhatia@intel.com>
+Subject: [PATCH v2] drm/xe/xe2lpg: Extend Wa_15016589081 for xe2lpg
+Date: Wed,  9 Oct 2024 12:25:42 +0530
+Message-Id: <20241009065542.283151-1-aradhya.bhatia@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241009063753.1799234-2-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,45 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 09, 2024 at 12:07:53PM +0530, Suraj Kandpal wrote:
-> Use the blob variable instead of post_csc_lut as it may end up
-> being null.
+Add workaround (wa) 15016589081 which applies to Xe2_v3_LPG_MD.
 
-Not possible. We always have a LUT for each half in split
-gamma mode, and if we don't then someone screwed up much
-earlier before we end up here.
+Xe2_v3_LPG_MD is a Lunar Lake platform with GFX version: 20.04.
+This wa is type: permanent, and hence is applicable on all steppings.
 
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index caf1af039960..22b7090c4f6f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1503,7 +1503,7 @@ static void ivb_load_luts(const struct intel_crtc_state *crtc_state)
->  		ivb_load_lut_10(crtc_state, pre_csc_lut, PAL_PREC_SPLIT_MODE |
->  				PAL_PREC_INDEX_VALUE(0));
->  		ivb_load_lut_ext_max(crtc_state);
-> -		ivb_load_lut_10(crtc_state, post_csc_lut, PAL_PREC_SPLIT_MODE |
-> +		ivb_load_lut_10(crtc_state, blob, PAL_PREC_SPLIT_MODE |
->  				PAL_PREC_INDEX_VALUE(512));
->  		break;
->  	case GAMMA_MODE_MODE_10BIT:
-> @@ -1531,7 +1531,7 @@ static void bdw_load_luts(const struct intel_crtc_state *crtc_state)
->  		bdw_load_lut_10(crtc_state, pre_csc_lut, PAL_PREC_SPLIT_MODE |
->  				PAL_PREC_INDEX_VALUE(0));
->  		ivb_load_lut_ext_max(crtc_state);
-> -		bdw_load_lut_10(crtc_state, post_csc_lut, PAL_PREC_SPLIT_MODE |
-> +		bdw_load_lut_10(crtc_state, blob, PAL_PREC_SPLIT_MODE |
->  				PAL_PREC_INDEX_VALUE(512));
->  		break;
->  	case GAMMA_MODE_MODE_10BIT:
-> -- 
-> 2.43.2
+Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+Change Log:
+v2:
+  - Update the commit subject as suggested by Tejas Upadhyay.
+  - Add his R-b tag as well.
 
+Previous revisions:
+v1: https://lore.kernel.org/all/20240930120602.1720218-1-aradhya.bhatia@intel.com/
+
+---
+ drivers/gpu/drm/xe/xe_wa.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 94ea76b098ed..df2abdfae2b2 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -711,6 +711,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 			     DIS_PARTIAL_AUTOSTRIP |
+ 			     DIS_AUTOSTRIP))
+ 	},
++	{ XE_RTP_NAME("15016589081"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_CLIP_NEGATIVE_BOUNDING_BOX))
++	},
+ 
+ 	/* Xe2_HPG */
+ 	{ XE_RTP_NAME("15010599737"),
+
+base-commit: 0f1fdf5592259cc68ee5ec968c6cddb26d0ecf77
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
