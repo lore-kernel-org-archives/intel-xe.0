@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 886BCCED618
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 07:32:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C25AACED619
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 07:36:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B3710E668;
-	Wed,  9 Oct 2024 07:32:38 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2EF10E668;
- Wed,  9 Oct 2024 07:32:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6877679892264908136=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91AC810E668;
+	Wed,  9 Oct 2024 07:36:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZBPmIUji";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 583AB10E668
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 07:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728459412; x=1759995412;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=B7uMsGYoqMewZIJoeDrYELC/8K+H8VQzZASufrWOr9w=;
+ b=ZBPmIUjisF26Fi6IOjEPFawl0ab30hfa8SR6mLd22IcS4cy2zkvAOULE
+ bGbNt3syxWrJhm+SLDm9SdjK0aNIvf1koZ3L6ljcK/net5PU5C0Id6vwG
+ ot8H/nygQNeoy16YgAGXM1vbEXYpUCCUB89Jm0j9vWusQ2acfuYEPV8Us
+ tnCLwLRDwbALFWnmpz/qZBX5vkLSSAIA4uQDZNGU2qnBqkGXENH0TTFUJ
+ lsyngD3S6Ff774EUG3fU9kODjFeoxj5wGX9MrIFHahhBxSYp8JcSmoM6M
+ wBNRFC1YMvh+DpSTWzwWb1xsP44d8Rph5d9Q+z9WRXvv7kFWBhF+lpDN4 A==;
+X-CSE-ConnectionGUID: Q8sg3yc/QOWoEYdqI6cNaQ==
+X-CSE-MsgGUID: vpHl9pVzRr2GyM26GF9Xdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27621053"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27621053"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 00:36:52 -0700
+X-CSE-ConnectionGUID: OCRwz6KHQp6r/9BTdiO64w==
+X-CSE-MsgGUID: SNfYIr3ET+Oc7g3AWvxBUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="99484772"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.243])
+ ([10.245.245.243])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 00:36:51 -0700
+Message-ID: <824201591dfbd8fd2f9595720156121478b3a4b0.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Drop xe_mark_range_accessed in HMM layer
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Date: Wed, 09 Oct 2024 09:36:49 +0200
+In-Reply-To: <20240909182128.585364-1-matthew.brost@intel.com>
+References: <20240909182128.585364-1-matthew.brost@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/hdcp=3A_Move_dig=5Fport?=
- =?utf-8?q?_assignment_lower_in_the_sequence?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Oct 2024 07:32:37 -0000
-Message-ID: <172845915762.1207706.10542017478083203733@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241009062455.1796615-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241009062455.1796615-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +67,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6877679892264908136==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 2024-09-09 at 11:21 -0700, Matthew Brost wrote:
+> Not needed as hmm_range_fault does this and also as pages returned
+> from
+> hmm_range_fault could move while mmap lock is dropped and not not
+> holding notifier lock. Page corruption showed up in similar code
+> paths
+> in SVM work.
+>=20
+> Fixes: 81e058a3e7fd ("drm/xe: Introduce helper to populate userptr")
+> Suggested-by: Simona Vetter <simona.vetter@ffwll.ch>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-== Series Details ==
+I wonder whether you can add something like "Write-enabled
+hmm_range_fault() always ensures CPU ptes are marked dirty for the page
+."
 
-Series: drm/i915/hdcp: Move dig_port assignment lower in the sequence
-URL   : https://patchwork.freedesktop.org/series/139745/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2028-2c8a08f54befdd831076e0854fe311569c209835_BAT -> xe-pw-139745v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139745v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2028-2c8a08f54befdd831076e0854fe311569c209835/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
 
-Build changes
--------------
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_hmm.c | 25 -------------------------
+> =C2=A01 file changed, 25 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_hmm.c
+> b/drivers/gpu/drm/xe/xe_hmm.c
+> index 2c32dc46f7d4..dde80a66c9aa 100644
+> --- a/drivers/gpu/drm/xe/xe_hmm.c
+> +++ b/drivers/gpu/drm/xe/xe_hmm.c
+> @@ -19,30 +19,6 @@ static u64 xe_npages_in_range(unsigned long start,
+> unsigned long end)
+> =C2=A0	return (end - start) >> PAGE_SHIFT;
+> =C2=A0}
+> =C2=A0
+> -/*
+> - * xe_mark_range_accessed() - mark a range is accessed, so core mm
+> - * have such information for memory eviction or write back to
+> - * hard disk
+> - *
+> - * @range: the range to mark
+> - * @write: if write to this range, we mark pages in this range
+> - * as dirty
+> - */
+> -static void xe_mark_range_accessed(struct hmm_range *range, bool
+> write)
+> -{
+> -	struct page *page;
+> -	u64 i, npages;
+> -
+> -	npages =3D xe_npages_in_range(range->start, range->end);
+> -	for (i =3D 0; i < npages; i++) {
+> -		page =3D hmm_pfn_to_page(range->hmm_pfns[i]);
+> -		if (write)
+> -			set_page_dirty_lock(page);
+> -
+> -		mark_page_accessed(page);
+> -	}
+> -}
+> -
+> =C2=A0/*
+> =C2=A0 * xe_build_sg() - build a scatter gather table for all the physica=
+l
+> pages/pfn
+> =C2=A0 * in a hmm_range. dma-map pages if necessary. dma-address is save
+> in sg table
+> @@ -242,7 +218,6 @@ int xe_hmm_userptr_populate_range(struct
+> xe_userptr_vma *uvma,
+> =C2=A0	if (ret)
+> =C2=A0		goto free_pfns;
+> =C2=A0
+> -	xe_mark_range_accessed(&hmm_range, write);
+> =C2=A0	userptr->sg =3D &userptr->sgt;
+> =C2=A0	userptr->notifier_seq =3D hmm_range.notifier_seq;
+> =C2=A0
 
-  * Linux: xe-2028-2c8a08f54befdd831076e0854fe311569c209835 -> xe-pw-139745v1
-
-  IGT_8061: 8061
-  xe-2028-2c8a08f54befdd831076e0854fe311569c209835: 2c8a08f54befdd831076e0854fe311569c209835
-  xe-pw-139745v1: 139745v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/index.html
-
---===============6877679892264908136==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Move dig_port assignment lower in the sequence</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139745/">https://patchwork.freedesktop.org/series/139745/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2028-2c8a08f54befdd831076e0854fe311569c209835_BAT -&gt; xe-pw-139745v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139745v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2028-2c8a08f54befdd831076e0854fe311569c209835/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2028-2c8a08f54befdd831076e0854fe311569c209835 -&gt; xe-pw-139745v1</li>
-</ul>
-<p>IGT_8061: 8061<br />
-  xe-2028-2c8a08f54befdd831076e0854fe311569c209835: 2c8a08f54befdd831076e0854fe311569c209835<br />
-  xe-pw-139745v1: 139745v1</p>
-
-</body>
-</html>
-
---===============6877679892264908136==--
