@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63339CEDD87
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 11:52:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A0FCEDD88
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 11:56:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2530510E1C6;
-	Wed,  9 Oct 2024 11:52:17 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E414910E1C6;
- Wed,  9 Oct 2024 11:52:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 159C510E291;
+	Wed,  9 Oct 2024 11:56:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q3EWJ6kF";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82F0610E291
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 11:56:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728474966; x=1760010966;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=gLQ7eu4d87VCZFxe/MGHGu/7FRjFPAUyV4c8Lpay5Zw=;
+ b=Q3EWJ6kFyDXyDje8TsvQZQNi8Smbz6wLfZtI6kPC9bSod4I7RRnx7ZqQ
+ Jhg+ix0MY8iD+yIHRNcedSL3bWVMfcZAnfwhWYxoOcnUjoaO0tCnJxbUg
+ Bu83vscHkk84BZ7gmaAV27i0HoMrsAnat5wudTDvk4qeuTeGXQBYplcLk
+ N7k3GtKzIVWgOMvYpho+CWqMGAWH+W8dsCnSqeQ5QJmXPKkJpqMBdZesW
+ KWnTyV7FwyDryL4rIyZsIyCxTPFQCm+4OoqBIhjlGwDilZPKyrcxs544w
+ LL8P/sUbw6thpjfVsJBDsyO2UFHrZ7o0LE0/xrmXm5BpZztW1G1zQjYpz g==;
+X-CSE-ConnectionGUID: PMQlCmzXQuGQZ4daffLPeA==
+X-CSE-MsgGUID: Tnd13E5qT5OIWsEdhE94NA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="27661939"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27661939"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 04:56:05 -0700
+X-CSE-ConnectionGUID: n85tr6UbTUKSRS6oipRcXg==
+X-CSE-MsgGUID: K4/80dPFRyGeZJTiu568jg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76674051"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.80])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 04:56:02 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: matthew.d.roper@intel.com, Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Subject: xe generated headers (was: Re: [PATCH] drm/xe/ptl: L3bank mask is
+ not available on the media GT)
+In-Reply-To: <20241004212037.1431184-2-matthew.d.roper@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241004212037.1431184-2-matthew.d.roper@intel.com>
+Date: Wed, 09 Oct 2024 14:55:59 +0300
+Message-ID: <878quxa3sg.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/cdclk=3A_Check_?=
- =?utf-8?q?cdclk_value_before_division?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Oct 2024 11:52:15 -0000
-Message-ID: <172847473592.1209342.16643337261701754259@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241009084634.1801800-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241009084634.1801800-1-suraj.kandpal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +69,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 04 Oct 2024, Matt Roper <matthew.d.roper@intel.com> wrote:
+> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+> index 651ba53623e5..df2042db7ee6 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_topology.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include "xe_gt_topology.h"
+>  
+> +#include <generated/xe_wa_oob.h>
 
-Series: drm/i915/cdclk: Check cdclk value before division
-URL   : https://patchwork.freedesktop.org/series/139759/
-State : warning
+Hijacking the thread here a bit, sorry.
 
-== Summary ==
+This use of system include path <> instead of "" for xe generated
+headers keeps bugging me.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 78fcd5d6428edd31d1b4dc8efc5a3d5dd0d90a9b
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+There's a global directory for generated headers, and that's what
+<generated/...> usually means. See:
+
+	git grep -h "#include <generated/" | sort | uniq
+
+Or look at top level include/generated in the build directory.
+
+Especially putting #include <generated/...> next to #include <linux/...>
+implies we're referring to the system generated headers, but we're not.
+
+I think we should be using #include "generated/xe_wa_oob.h" instead,
+possibly with a completely different subdirectory name to not have the
+name collision and confusion at all.
+
+Another alternative is to do this in the Makefile:
+
+	subdir-ccflags-y += -I$(obj)/generated -I$(src)
+
+and just use #include "xe_wa_oob.h" directly. (FWIW this is what msm
+does.)
 
 
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
