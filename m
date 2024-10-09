@@ -4,183 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63C99CF042B
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 00:09:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C737CF042D
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 00:42:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1061910E249;
-	Wed,  9 Oct 2024 00:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B1F710E1A4;
+	Wed,  9 Oct 2024 00:42:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kAgrHmAa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hWTfDD9/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F123510E249
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 00:09:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 117F710E1A4
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 00:42:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728432593; x=1759968593;
+ t=1728434561; x=1759970561;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=5CqDkvk964CbGpC0uSwENThpt3mnUuc9AhbnNVi+tZM=;
- b=kAgrHmAaBt/kD+GPIyKyWoBH5zkkbC2yBbm0G+wEKQB5hBTyIzlg6LOD
- rLFgjQtxBM9/OHv6St6hUrJ5SO06tKe35QkiT6VbXdLJROKQheLyfR3EG
- uax3kaBm02wPPmxp8Bb4aUlPlBG7gsB1wfrqcVIFzj2InH4miBqZOtJnL
- dyzyGy/MqYdJSiukRdCa4wYVJ+BFtlZDoHfaqbWjkFnDrM7y4ozVM4+Em
- eO+8SwLMapfaKEJiGqZqErtIKHzJ6M8CRtdp+R1WjOXdCwKRfDpduEx4v
- Bb8ldIdIoW72y1qYKZBcBp2HGhvNgb5vog/CB9tcHUm/IlRrlgqqyyokZ g==;
-X-CSE-ConnectionGUID: ET+muJdJSNaeLvE4RFsyrQ==
-X-CSE-MsgGUID: lfhdAu0+RqWAXGegdRZLsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27818068"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="27818068"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 17:09:52 -0700
-X-CSE-ConnectionGUID: MKEz3gH4T4uFG5GkplPI5w==
-X-CSE-MsgGUID: cup8JGwOQ62l3uN0YzuwEg==
+ bh=cAC7zO3dddMz8twEx7PzKlPUDUQIKq3wH3FXihzgQsA=;
+ b=hWTfDD9/KUh17lA9z+SHxxDGU9bzdOckNm9ZZOHhTmvoy3S6Bbl8D0Ta
+ kRkqsGNAtWYcGOgix9o9sUn27IU//WpXO9BrVjDmjd2ERnEvYx/vm1Pnd
+ FE0Eut6FeA6GQbm9EnQpoAIC4/bWuuUwXVa1RXGOoYIL982l4i7+cJDqP
+ N/dG7uH3pZQ4wUCHLC1JfuwVShX48n2BGMm+PHDxhOWb726Yi5xVDa5+8
+ K+L1PTF5nf4HLL5lzizgLrMYHbvcA4ONo/jdxQyyjShuB9u8sPyNohWTK
+ alN5Qvu/CUwgbtzPmZjeKSKICNcVnaNW7N+eVv2KabSXIK0xIkBwBdSM1 A==;
+X-CSE-ConnectionGUID: QXmt39+tS4OW2ZfWmWbnGw==
+X-CSE-MsgGUID: fmTVvKBMSYiwXfsipPSbXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27858864"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="27858864"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 17:42:40 -0700
+X-CSE-ConnectionGUID: fNeibas5TJmhlgcKJvvpmg==
+X-CSE-MsgGUID: Q3lQu8/YSm2osduu9S4Zlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80617465"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Oct 2024 17:09:52 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="76294855"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Oct 2024 17:42:40 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 8 Oct 2024 17:09:52 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 8 Oct 2024 17:42:39 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 8 Oct 2024 17:09:51 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 8 Oct 2024 17:09:51 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.47) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 8 Oct 2024 17:42:39 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 8 Oct 2024 17:09:51 -0700
+ 15.1.2507.39; Tue, 8 Oct 2024 17:42:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mRy//vHdOl9b9UndoGoFzvoF14HUJfaauvSvezF+n1NLTnBaeAocV84CDdKm5DIWEZyIIi3hmInp29enhWZlaUwO/K9hqSuP//7pOKjwMBYJ4uT/yqX1ajQtHLTVbGabfGh5W7p51JdYoXlBrJwHEzu1ycAhuf7dXZqEaGq7dJM+8VGIgXmBr1JECWnQt7z1+291c7FI6ULy8iwbiY++e8r/BlRVHoWbrfl8fZJ9SDFP5tqFbPEpkjz7RBJ7l4FTjAUHL+lHS1g3gbGCr3ZHZeZXO1xDIZnEKefIGKCG76UuQcIFn07iVfRJfYKLaOjfvARe4Fen+D1tGm1YUMuiSQ==
+ b=eq+GyQ28Tk8S9jHWlAW33ICc/obnx6iTTJrK9xrDZQv1yfCVTAVm39vRFajJv06hAy4HTdQGxnH7dGdwWOaSerePOtRIJSN99mFURnrNKzp81EwXkSs7QyU1bEjNcR7U+/A5ioiZb11vPzsGCcBUNXc2n7PUbNFSFQwKcEbM/PRjj92+1zFQxNQ5fQLZcLwI2ae26j7pn1fZky1t15phx1VpCWtLLZxej8Cd+7v8hJr7fabeOtH7erCUDQCkjS54gmduulRzXi8zDeUaCuL1tu9CniDuF9SyTR2yuBJJn+x1FcdhH2pzlqpgHYlLhRolnmvDhOHdAQkCidPiW+J36Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fNbOfb7AAIA81shAPT6yvNk97qN9w5dN8DfBbPcJME0=;
- b=clw3YslGI+csm/P9VJ/H6i93AupbZZfGvzb6g9GJe8AuQpYTT8i2FMIZpv7KN4C+1UXNDSichgQkxgAPRpSIRH+cnZUrey5eoB7GBM5KxkRJeb8KJQLEofWw56RXmMcYbqNv9UsTwt3tGFP3ee6KKh+QmgmIU875731IsfinmK1zaFPGZDPMYaBkvhHhCrrs6QmhIDodGbzjOs5tWR+yAx2mR3rPRMbnwNgUsgn7fYDbWn/ZYwthEiAUEUypmRdum9vMymocXkuogvqbNk1Gq2uAvl3QNBbErZfUHtFFTiPWW0KlEQzps5AASMd+tBQdKfYSqptGIqShvC2W5hSCfw==
+ bh=bK5HfKviDdc78JuZQQMGAPWgDYg0btkcI3aiQbJWSBc=;
+ b=CiVVyiNuFskqKfeWwk4iVhTGDCPnH+wJZ4vo466+78NOodINnPMJHjcGagUgwoTI1qw3s7mktvNflUkrHFNb60P/15u5UtQaVV7nD5G/cdZz5yYuk/9elTkWuXq2f+keOjZwNG/Vbe4QRtF31AZH2DPkwboWF6EIfgp6tmwv8AdqW3VKRRsRz2d2lzIr3fimPbaUjWEz2N5ZeyHcBO1ukr62qs4O/2jImArWlns1JDFnRpHVoMrP6uvm3SfRPaoP1pPO2+T04Qkn42v/DXQM42p83xNIXlgeKNxgmKYjDfxQ9ZPS7tvTICSzUlBl9FEBb8eGW9cLrmW+Iv18qhPQlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by SJ2PR11MB7573.namprd11.prod.outlook.com (2603:10b6:a03:4d2::10)
+ by PH7PR11MB7569.namprd11.prod.outlook.com (2603:10b6:510:273::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Wed, 9 Oct
- 2024 00:09:48 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Wed, 9 Oct
+ 2024 00:42:36 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550%3]) with mapi id 15.20.8048.013; Wed, 9 Oct 2024
- 00:09:48 +0000
-Message-ID: <d3d243b0-a720-429d-8d96-3a4595728df6@intel.com>
-Date: Tue, 8 Oct 2024 17:09:46 -0700
+ 00:42:36 +0000
+Message-ID: <29b4c644-f70c-4608-b8cf-7a24d8c6817c@intel.com>
+Date: Tue, 8 Oct 2024 17:42:33 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/12] drm/xe/pxp: add a query for PXP status
+Subject: Re: [PATCH v2 09/12] drm/xe/pxp: Add API to mark a BO as using PXP
 To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  <intel-xe@lists.freedesktop.org>
-CC: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+CC: Matthew Brost <matthew.brost@intel.com>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
 References: <20240816190024.2176976-1-daniele.ceraolospurio@intel.com>
- <20240816190024.2176976-9-daniele.ceraolospurio@intel.com>
+ <20240816190024.2176976-10-daniele.ceraolospurio@intel.com>
 Content-Language: en-GB
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20240816190024.2176976-9-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20240816190024.2176976-10-daniele.ceraolospurio@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR04CA0063.namprd04.prod.outlook.com
- (2603:10b6:303:6b::8) To CH3PR11MB8441.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW4P222CA0003.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:303:114::8) To CH3PR11MB8441.namprd11.prod.outlook.com
  (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|SJ2PR11MB7573:EE_
-X-MS-Office365-Filtering-Correlation-Id: 96b0fe16-2915-4ae7-8bdf-08dce7f6b054
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH7PR11MB7569:EE_
+X-MS-Office365-Filtering-Correlation-Id: eeb8fa7f-c173-4477-3bdd-08dce7fb44f0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?amdXMGF2NW16a3FROFNYR2FVdmxvZEMvTm9rVHlOVFQzL1BINHpEQnEvVkFs?=
- =?utf-8?B?OHBEYjBZRVBFL2pwekhxSERPalpFaWQ2ZHlTbmp1VGdFbUxOVEJQNFlBdDZy?=
- =?utf-8?B?TU8wRDFyNVNFSEdJUnovNlhJajQ4QTUvUi9GZGZXa2h1c21KaGFtMXBlMHRk?=
- =?utf-8?B?QVBPVGdYYjYxU2lVQ1VHaU16ZUFKWE5ZMU1EYndDT3g0STZ5d1o2MU1JTFdI?=
- =?utf-8?B?TlNJcXZYbFE2Tlhpb0dDMWc5SnkwTWYreXlXUytzVG1ZbFM3VXJwYXkvNlVI?=
- =?utf-8?B?RXJsVTc3NkhsRjUzZVNVb2h5YVFnU2RNRnQybGQrQTFLS0I5VVdMS1B2NC9R?=
- =?utf-8?B?ZUFqM2xxSXlJeHZnY0x6Z1ZPREg5cEF0TmU1SFlpKzlxWTcxZTVlWW1YNFRE?=
- =?utf-8?B?Vy9PMlVlYUNtVHBXSzIzend5SkRQblFDcmxUK1dERnNaMm13SUFHQ3UzanJV?=
- =?utf-8?B?VjRCMkR3WnhuT1JVNHdlUThBTjAxS0JSNEJQQUZuSUlCMVVYc1FQNWIvK2lB?=
- =?utf-8?B?QS9vdm1CTStqZEdZR2FHdkhHMk12ck9EU2dac3hrdUZ3ZjdpODh6MlZ4Z0JX?=
- =?utf-8?B?cTVYOC9pTGNabE9Gd1p5TmJWZmxuemRESWxnM0FBMkx5SjJxc0FLNy9MOUlY?=
- =?utf-8?B?djlvWVdMT0NUNTU2V21mTmJXbTMzMGNCRVRSTFhpWGJYbFJESlRsZXpNYS9J?=
- =?utf-8?B?Vm1YajI4aVJvS1hrcGo3eVNpb09sMDF6cWpOS1NiYkI1T3NOcEFaNjhvbmdE?=
- =?utf-8?B?UFpwRHFmbzF6aTFMdmtsUk15QmIxSjVTT3ZlV2tRQXU5WWYvN211endCUVcz?=
- =?utf-8?B?RllzS0luUDVadW1pd3pGaEZQVktESmVJWXI5MGxZNEtIbHJOeUlDcko1Wk9s?=
- =?utf-8?B?QUdOWUppeWl5UGRFdFZ4WkMzdkhIeDNVblkrWTRXZC9PNis0amlHbmhPTzdO?=
- =?utf-8?B?WWExM2w4VVVreTBtbHZRN043RUc5MFhWMG8rQXdOSHRqUmlsVTlGRTdMc2gz?=
- =?utf-8?B?akpYa1pKWHFySk00YlBZNkN1VTRaS01keG1KWEVFUFJQSDZMYWd2TDl3RDl3?=
- =?utf-8?B?SDVkeWZ4VEVoTkNUT0lJK1RFTjJWbU85ZWtIY3ZsOVNsRWJZNVloRGtQZHN1?=
- =?utf-8?B?d3RqTWw2OXh4NFNSZk5PaUxKYlA3U21BdlA5K2tWTFVxazFUaHNiV1M3c0pN?=
- =?utf-8?B?RmkzWDBKZmh5dUI1RExHZUU4WWxFa2hLdC9TaDloUzNKMzZIUUZXb1RpczdJ?=
- =?utf-8?B?TWoyQ2J5WlZ4V01tcWlPK1VvK2pTZlJPMjhRcTBuQjBJRFcyS01ka1VzanNv?=
- =?utf-8?B?VVFVVTNIN0hjOWNQT1dSNlVsa3F0SUV2N25qYmJ2aithM2xxSVE4Ti9HV01p?=
- =?utf-8?B?Q1E1T05LK1BpWDd3YkY1NTY3QnRLNGliK1l5Qm9ib1VNUjJiL1VqdEJ1WlZW?=
- =?utf-8?B?TGovdEpTNzkwVk5TUDVBMU9OblhpdW13THYyaHY2Tm1WbW5Oa3FpV0NpamIr?=
- =?utf-8?B?MzVnN05xZCtIQURXSEtLYjg1RDF5M0orVUdrOTFtbXFDUXhPcCt0WVhKMndQ?=
- =?utf-8?B?ZFJpa254SUw5dVVSbWtvQWRpdVd4MExhd0VzQzA5YS9JRjk4YTZPUjJwV2Vj?=
- =?utf-8?B?NjFLL2cyYWlxalRLZ0NLVWdIZXhEQmdIUHFzSnZVUkpqN0lyL2UrU3g2Qjlq?=
- =?utf-8?B?c3pqeG05ZW9WMWhSVE5HMEVoclRLQ093WndoZGJqWnpTKy9GZUhhSll3PT0=?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TWdyUllzbWpHbEkzQlVsQTlJTVFVQmx3TU1xbVlEM2xmRVVVVjMyOUZnejBR?=
+ =?utf-8?B?MDJCZHlzME9NM1d5ZUtWVWlBeEsrMktMejg2bXJWTStiWjdMWlZFVzdtY085?=
+ =?utf-8?B?UFR2aFg1bG5XbForODR4WE1zR2xSbFRXQlRlZjY4VHI4U2dBWTc4WFBlSjFT?=
+ =?utf-8?B?WS8yTDdBaGMzd1QzZXJ1ZEhGNUVEdGRiMlJJRkV1emJiR25EVDEwbTNzMW9T?=
+ =?utf-8?B?UzYwSC8yY2M0d25TZzlYM3RDS0xhSXBjNlcrQUlua0Vod3hjSFM0K2o1Y3p1?=
+ =?utf-8?B?UGdDUmFnYnNpSXpQTHpCcDFCbWRKRWx4ZWo5S1o0YTBMN1NISEdYRE9zdVo5?=
+ =?utf-8?B?R1VFdGlvdzNjOVNmYnZGZWZSMTgyK3lWdGEyb2dWRDRaaXF0SFkwWTFPQUly?=
+ =?utf-8?B?TEtmd1duNE44MnlkYk9sS01BWWR4a3ByVi9zcHl3QlhkL3pzblFjS3NOMlhM?=
+ =?utf-8?B?dzh3eXBpQk0yMC82dWxIbmVuQW9GUlNWeXh0K2ZxRUh3Qkk0Y2RJZDNqSlln?=
+ =?utf-8?B?VDNFbFU4dnZuK3NkRmNwRG0vL0VHSktzcDA2TnFRcnFiVWJyc1V6SUcrY2Nm?=
+ =?utf-8?B?b0hvbnc2THFHTEdRTEVCc0lvcDVXRUhJN3ZtZWRwODFtVnh5SGNaYXVTTjhp?=
+ =?utf-8?B?T1VmbXNWU0RIdlZTTG80N28xZjR4Y0t0V2ZqdWE4NC82TTk1SDI3TmtTaHVR?=
+ =?utf-8?B?cG00d0lCNVZEYmVmWGN2T1UwakFvMllpZStnV2VhYXBYaUd3TVg5RUtkS1Fu?=
+ =?utf-8?B?S0FnRWc0QnBRVVdzWWRlYXp3azlYbEFkTXhDS0ZNN3NpNmo3K3d0S1I5Slo4?=
+ =?utf-8?B?eEhlbjJ6Q1NjOStuS2VOQlIzQWdyNjl3S2VIVU1Yd016YnBvdEpSSzQ0VFJJ?=
+ =?utf-8?B?UlNjYm5wZllCa1dFTXJXT29KL3BDUkp6ZXhXUDd3WTdHNTZESkVCQktVSWdR?=
+ =?utf-8?B?UUR6aUticW9TR0NQL2ZLc3ZMN2J1VTBNOG4wRnBldXBxMlErN09GV01ES3ZX?=
+ =?utf-8?B?aG1tRDUzNmdKY2ppQzg0VUx1T2Ztc2hlZmx4OVU1UUxHTXhCeE5sNllwc3U2?=
+ =?utf-8?B?d0YvZHFEb09rSnU4ZTFHZHE1cVR0VGJJd1IxSS92V1VIT0t5TWNJangrYytI?=
+ =?utf-8?B?b1hOS2MwT3QrNDQrNjBPRWpqc2F4ZWNvQUtrOFFqQzdBWkJldVFCRnAxRkpk?=
+ =?utf-8?B?dFFBYlcvMUxHZDF5NjJBTkxUUGFNNFBaVEl1dnhNdXFOd29xdCtuUlA1a0JH?=
+ =?utf-8?B?N0gyTTVUMWd0aU9vUklZZStVdHVuMnRFQTdtR1BFM29WUHhvajBKQ0FEN3Ry?=
+ =?utf-8?B?WjFwR2VRUXdnck5Vdk5lY1pnakJlK0t0bWlPZXFCamdSbytNZnhTc0VHNHJv?=
+ =?utf-8?B?cDlmK1NXYnpZWHpRUTFwbGFVblpPcnNKakVXeTczZ2tqemUvSnpjbUJSMG91?=
+ =?utf-8?B?Ymk4cWN4alVmU3p3dGYvQjRqbHBjK1NnZ2h0T3NkYTl5WDJBMlp3bk50NGY5?=
+ =?utf-8?B?WHlDRkZLL2xLUG5RcThUaWJmY1ZPTWlDRHJ4QjdkVTBUZmlsaDI4b21MVFpj?=
+ =?utf-8?B?RVdQdXFpbFBlbVovdGJ4U2FMcm5YRVd5eWN3d1JWbGRtdmE1T2F1a0pDQTNU?=
+ =?utf-8?B?VXI0a3NDTjl1cmZ1ZWtUT0t0SnFTWXUyai8yelBsSGEwRVlScW1yTE4ySUJ5?=
+ =?utf-8?B?YWg1dTEyYjFZaytGcDJ4T3o0dmptQ3p1ZzNKRFUzTDAzaXF2eUw4dkpRPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDNhRVQ2REhMNnRBM3NOdWxSQUt1UlQzRjI3bW1LWXZxcGRiQmc4cjJpN1FO?=
- =?utf-8?B?YTNiWE5XcmxzUzdTMFc3THJhYisrKzdLeDI5U3NiTVFTZGRCT1hrZmptSGp0?=
- =?utf-8?B?d2NUU0RueVovZW5Rck5ub0ZBbEg5REhTNDN5d3FoUnRoOXloZy9CMlhqZXhV?=
- =?utf-8?B?cDFxRTVIV01oSDdUa25rZHpXVFNGQXVTdWljSWVlUnlGaURyaXNvMGxmVGd0?=
- =?utf-8?B?M2ZxdHM2eTBBTTBNTnVsd1ZIWXlHSkZYQXd0YkNGeXEycHZLV0kzbFRXVXRW?=
- =?utf-8?B?Wi9IVGlpNHU3UTMxMDRuRTl6cGlZOFR6Qi9kUmtHU09uK0RCeCtrWitjVXRk?=
- =?utf-8?B?RTJ2VkEvMTdjM2I3ZGtRS0dkNVRiMSsvb3FrWUdweVRuL3E5WS9kUDhobklD?=
- =?utf-8?B?ZGJiZWF0Q09FelpWSGhPdFc0K0VTektNcHNUbUhTWlJLWHRabnAzanA3NHNB?=
- =?utf-8?B?cDNvdzFYRCtEd2crdUtKdHJoQk1qc1oyUE1vS0FYT3lUaTAwT2ZqZTBWZ0FV?=
- =?utf-8?B?UFhlMlhYMEVkUE1kdUE3L3RJZ0UwME02eVVPeHM0ZzgvZ3NxQWFNcURiWWRV?=
- =?utf-8?B?dm12eUU3QTBHQUlQUFJLbVo5bXdkN2tFTXdPNUZPQ0ZzOThnSURYa2hBd1lI?=
- =?utf-8?B?bVBwbTNhWU9POWhkSUNodmNFL2dzQ0NqNCs2QytVcVlUbExqN2VEUzhsMGRh?=
- =?utf-8?B?TVlRQkx4eFRveFBJMThNYVlxMXI5UVVMaVF6Vm9FL240VEJrclpLYzkwSkNP?=
- =?utf-8?B?bmF3blhYMTd3MmRKSXdxQUF2U2RFU2lRcVhxL0wzOE1hOVZvM3NIZ05URGdV?=
- =?utf-8?B?K2kxdm52NnpzbHJVRGYzdXlKcHR4WVp2SXJrZHVkMVZncis5M0R5ZFNNSUZF?=
- =?utf-8?B?M2dWaHdodVczb1lCZSt4bkhNZEwyUXhmczVzR1NFbFNqNGdUU2tHakprVXpM?=
- =?utf-8?B?T0c3ZUQ5Wm1KUHJVcFVkT2VKZjU1Y252Y2JWbFRtekVXbnJIMkhEMFpmc1ZJ?=
- =?utf-8?B?Mm5yVnJIUEtnSDN5eUFMRzdhS0s2dVA5LytaQk01UXR2YWJ0Q0tiVEg5R09i?=
- =?utf-8?B?RWExaHl0cm94RGFNWGMvOEFiWXYvQ243RE5EcmdlMHIveGJ0SXFycTIvTUYx?=
- =?utf-8?B?SENRWVVWTzdXM1B1RS8wOVVEaUVoc2dvMFdidVBQVldTM3FKdTJSOE5FY21v?=
- =?utf-8?B?Y29nSEJHSlB2a2crOVdCbzRXL21YWDFORlZEamVoNENFNU0xZUU2TkY5WHdx?=
- =?utf-8?B?cDZOdGVJcm1xeit3V08yWkR4UXNGanAreTRjY0huaDUvRENQaC9Ta0dkbjVt?=
- =?utf-8?B?MENzdGY0TkV3azk5ZFQvTGhDbXRqVDdSK1ppT3dTMjhrVmRJTTJMeWZpMkhW?=
- =?utf-8?B?dmttdE5hNXJuS2lYUVNyVU8wcldGWUUwRlhNTldwWUpwSWk2aW80NVo1UlVT?=
- =?utf-8?B?aVN5S3R2TVVneGVMMkhWanFrYXVuTG4yVWV3WGU5bjNrQkVyZWZ6OVNpTTF2?=
- =?utf-8?B?dW5tdUQyazNNZnBLYjVCSnlNMWFBZnZESXR4YlhZVndZNEk0dkNPWmJyNENj?=
- =?utf-8?B?ajVOMTZ0bXlaTGZRVUpoMEcwUE1YaU1qUXYxVm95MXdWbmRLaHlkVWxPTFpx?=
- =?utf-8?B?bWhZQmFpcnh3SDRhN0prK1BpYXdOZk9wWWoyc3hRUGthMXZPRTNRR2x6VnRT?=
- =?utf-8?B?eE5GK2FGSzFudTdrZVpBbXRoUjRob3FwdWd4QTBCdnB5OG5OMTdvdVlVbG9i?=
- =?utf-8?B?ckNpVGxoSHlkbTRnRGxiMmluUWsxeEFxamtHdVBLMC9vTGpTRXdxM3ArVThJ?=
- =?utf-8?B?UDJreFhXaGY0M0puUWhQTW9Gd2FGYkxyeEE5N1dqUklNeGRwRlpoUGFZV1M3?=
- =?utf-8?B?YnFUWkNVYjZER1pTZzN1MEl5SGtSQi90VkJzdU9Gb2hlYWd3Q1VYSjZqZENF?=
- =?utf-8?B?WE9lVWFOT3Yrd1JpT3Q4OG1Ca3grQUJwUXRNQ0xHVEwzYUxVNGlDcXpESUVW?=
- =?utf-8?B?WUJxeHBVcW1OTkc4cHdLRFByVUx4K0RaejdkUU5uUDl2Zm5rVWNxaVlKWTdw?=
- =?utf-8?B?dVBEcVhyeVRHdGFaakZ6em1jL1pHUjBEaFhVRnMwWHp4NmVKUFI1aFFFVXJk?=
- =?utf-8?B?LzczQ3FuUWR2SXBmSlpsT09KOVB6NFM5SE55WkpzUSttRFJPdnd3TGRzZUpX?=
- =?utf-8?B?bEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96b0fe16-2915-4ae7-8bdf-08dce7f6b054
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T3lhUjdwSkhWY2EzcTlSL0VXTytML0VCcXRQZ0x1anhnTEFSNEtxR3BKOWh2?=
+ =?utf-8?B?WmpSU3JGQUZHQ1VLajI0YUdkSlVFVFdHSFBOdjZQQWg2N3NZa3gzcncxMVF2?=
+ =?utf-8?B?Ymp4UHllazVtelpZVkwzWGpMc0RwM2xlV0hrWERSMWJnY3BkSnZWMFZxQjRB?=
+ =?utf-8?B?NTBkOGJuamh3Q0ZNQ3c1b0VKL1hER0lTTUNKTWQ0dGZWY3BkOUp4d1RDRWFx?=
+ =?utf-8?B?aWNkRGxVMmhHY0tBazNvRDJmV1drT0wwYkF1S3ByUmFoOVpjM0JaVEpzZVlq?=
+ =?utf-8?B?dWVSK01sMUhITGFlSlAvbEV4ZmNvenZCUXp5YTBlazB6QzcxZHFUTzE4dmNy?=
+ =?utf-8?B?SzIyMGdQS3FCZkwwRm51cnUxaXFJMCtNTWVoeDdvL1ROZ2Q4elpNQzNoVE5o?=
+ =?utf-8?B?Z2tGZWpOYUoyTEdJMWlaMVpZbnZmTVFEemwvcHJqVHBtd284UzFGeS9DUDJW?=
+ =?utf-8?B?YkFucVhkM0hoQ0RqVzVtQ1hMQkdOR2JhTUd3RHVoblcyUW93TytINWpkU0h3?=
+ =?utf-8?B?NCtKMkFkcWZacFg0S0JrZ1ZNN0dLdkdobkdXOWw1ZElaKzY0aFZuemcrQ0dv?=
+ =?utf-8?B?cTBERVpCczJUdEpHODAwNXNuZXNXYWhHSVJrMURIYThMTlIrWktwenlienpY?=
+ =?utf-8?B?MEtoVFI0NDRhOHV5cXQ5UVFBdzhqVHZvNTBGT0toalJSZUhyU3M1cVRHQnFE?=
+ =?utf-8?B?RjFxUTdVOEpVL1Mrd3hNZmY3QmUvc1BFTlNQTkQ1elRVMmJ1aWo5ZFZ3ZmZy?=
+ =?utf-8?B?ay9wbGluTXVtbHpvaUtUUnRodDExRUFnVzFhL1JpeXc4VHRCRitOcEh0YUtJ?=
+ =?utf-8?B?RlRVNmt5TEZNYy9ocWZLc29JTkJpQ2o0QTF2U2hVcmU0K1FXMVN3MDVSQjZs?=
+ =?utf-8?B?azdPMmt4TU50N1YzNWZIcUs3cXNQMnl0d1RiajMrUllJbnpPUWJRMmRnaEVh?=
+ =?utf-8?B?RWlBZ0NSQXYxQzFDckpPWTJFb2FaakhhWVZxdGRoYlpmanBtMVlZRjcwUTJP?=
+ =?utf-8?B?UHJhTTNtMHovTlRTM2grR25HZmdTOFNEczN3NzQrdFVQWTJ6VExPU0Mwekdh?=
+ =?utf-8?B?ekVGRzF3cUdzYzJBTDV3Sk5VSGxQSmM2VUprVFFQdHZWbXdSdnN2VWN3Rmkv?=
+ =?utf-8?B?TGZEU08yemJ2cG9UWU9Oa1MrYlNQb3hycXJKQzg5US9URVFFU0JtZXpNWVBh?=
+ =?utf-8?B?dGF4QkxlbUhobTYxbHZ5Y0dJVFROVTZROG9ORTh1MGtpdUcrT0xkdStSbjJy?=
+ =?utf-8?B?UjNoK2k4dFVRZXBXczNQUkd4U3V4dlg1Z3hkRndkNVgrNWllOWZSNkhpdnpZ?=
+ =?utf-8?B?OFRkckZZVTlYdlZNK09mZHFFdWdNUWRQdVN5SytnQmZUU3ZaZDJ2aFFwRGMr?=
+ =?utf-8?B?RmxEU2FNeE4vWEdvZHhOMWJCNUNDN09tQ3dwSkw3aEMyeWFXRnkwYWwxMXZ6?=
+ =?utf-8?B?ZjYwaisrZ0hSc2M5R2lhaWRUSjJqeWw3cEU2TittZkl4ZlIyMXdGZXZkVmpl?=
+ =?utf-8?B?TnNxb0JYNnVGdFVXTW82TFhiYzRUSXlPdnh5Zy8vUnFENzdsNTBLcjdTdWd3?=
+ =?utf-8?B?MnNYMEs0c1lDSmoyblV6cWR2UElzRVB2NXB1ekNlUElPR2ttZmRJdk5Tbm44?=
+ =?utf-8?B?KzZJT0FjcGlndjMybXp0NGdUYVdmb1lMOGhESFhMcmYrNkFFWlhYNTZWWGZw?=
+ =?utf-8?B?bldSR3JRVlI3OEd3VUpOOGI0ZTVRNnZiV2ZxQVB4dHhWTUl2ai9iMkUxZTMx?=
+ =?utf-8?B?QjFIaWRrY2RxL3V5RkVjUWtKY0pFQnNVU1JQLzZDMzJhNk43emlsN29zZnJo?=
+ =?utf-8?B?cE94VDJhRDI2VDBDdWZQdmFzRi9UNXJoQWVMRUk2QkMxdHZ0RC9WWlZRV093?=
+ =?utf-8?B?MHh1bnVpWm1RZEhVU1I4M2JjaUgwcjdOVlZHUnA1L2NGMjNMc2l5UFlrWnRV?=
+ =?utf-8?B?M0p1UFR6NW40VEdtMUJQN2htSkdxNUtFdUlEV2llVGp1bERmRmpHaWNKZklI?=
+ =?utf-8?B?TXB4MFg2dkxJbHowWkNNM2dsYTcrQzAyUkxhYllkL3Q5a2J1TEltemhGN0w4?=
+ =?utf-8?B?d3VrUis4eTlnZk9nZW0yU3FWdlVFeDRlWEVBbC9QTkhYYzFtdCtjYTdwTEV3?=
+ =?utf-8?B?MmV3R2gyMm5CdFMwTmtmQm5SdXpCeHV0VkVhUk9UcUF3WmZId09PUkh4czdl?=
+ =?utf-8?B?ZVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: eeb8fa7f-c173-4477-3bdd-08dce7fb44f0
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 00:09:48.7363 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 00:42:36.0721 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BcBxxRnGA3fQBQ9Sf4yvJyj7ExfehvTL8T+r+ju9wR8zrHmFPtI+B2gMzMBIXrOnJ32sc12lScYAt1tr/9Z/Wg6stm13fJRh8waWJRM8tcw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7573
+X-MS-Exchange-CrossTenant-UserPrincipalName: tlemmk+2cIMi9ajXycYiXr7xKU1aaLlyoYb0COs5p4mCnyRRsE+hyQSTT7MtDKAD4ZnlKv1bcJ0bdw2ELhOxC0EkXAqjW5OUcGyxchURjDI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7569
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,215 +194,577 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 8/16/2024 12:00, Daniele Ceraolo Spurio wrote:
-> PXP prerequisites (SW proxy and HuC auth via GSC) are completed
-> asynchronously from driver load, which means that userspace can start
-> submitting before we're ready to start a PXP session. Therefore, we need
-> a query that userspace can use to check not only if PXP is supported by
-by -> but?
-
-> also to wait until the prerequisites are done.
+> The driver needs to know if a BO is encrypted with PXP to enable the
+> display decryption at flip time.
+> Furthermore, we want to keep track of the status of the encryption and
+> reject any operation that involves a BO that is encrypted using an old
+> key. There are two points in time where such checks can kick in:
 >
-> v2: Improve doc, do not report TYPE_NONE as supported (José)
+> 1 - at VM bind time, all operations except for unmapping will be
+>      rejected if the key used to encrypt the BO is no longer valid. This
+>      check is opt-in via a new VM_BIND flag, to avoid a scenario where a
+>      malicious app purposely shares an invalid BO with the compositor (or
+>      other app) and cause an error there.
+Not following the last statement here.
+
+>
+> 2 - at job submission time, if the queue is marked as using PXP, all
+>      objects bound to the VM will be checked and the submission will be
+>      rejected if any of them was encrypted with a key that is no longer
+>      valid.
+>
+> Note that there is no risk of leaking the encrypted data if a user does
+> not opt-in to those checks; the only consequence is that the user will
+> not realize that the encryption key is changed and that the data is no
+> longer valid.
 >
 > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: José Roberto de Souza <jose.souza@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_pxp.c   | 33 +++++++++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_pxp.h   |  1 +
->   drivers/gpu/drm/xe/xe_query.c | 32 ++++++++++++++++++++++++++++++++
->   include/uapi/drm/xe_drm.h     | 35 +++++++++++++++++++++++++++++++++++
->   4 files changed, 101 insertions(+)
+>   .../xe/compat-i915-headers/pxp/intel_pxp.h    |  10 +-
+>   drivers/gpu/drm/xe/xe_bo.c                    | 100 +++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_bo.h                    |   5 +
+>   drivers/gpu/drm/xe/xe_bo_types.h              |   3 +
+>   drivers/gpu/drm/xe/xe_exec.c                  |   6 ++
+>   drivers/gpu/drm/xe/xe_pxp.c                   |  74 +++++++++++++
+>   drivers/gpu/drm/xe/xe_pxp.h                   |   4 +
+>   drivers/gpu/drm/xe/xe_pxp_types.h             |   3 +
+>   drivers/gpu/drm/xe/xe_vm.c                    |  46 +++++++-
+>   drivers/gpu/drm/xe/xe_vm.h                    |   2 +
+>   include/uapi/drm/xe_drm.h                     |  19 ++++
+>   11 files changed, 265 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-> index acdc25c8e8a1..ca4302af4ced 100644
-> --- a/drivers/gpu/drm/xe/xe_pxp.c
-> +++ b/drivers/gpu/drm/xe/xe_pxp.c
-> @@ -60,6 +60,39 @@ static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
->   	return ready;
->   }
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
+> index 881680727452..d8682f781619 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
+> @@ -9,6 +9,9 @@
+>   #include <linux/errno.h>
+>   #include <linux/types.h>
 >   
-> +/**
-> + * xe_pxp_get_readiness_status - check whether PXP is ready for userspace use
-> + * @pxp: the xe_pxp pointer (can be NULL if PXP is disabled)
-> + *
-> + * This function is used for status query from userspace, so the returned value
-value -> values
-
-> + * follow the uapi (see drm_xe_query_pxp_status)
-> + *
-> + * Returns: 0 if PXP is not ready yet, 1 if it is ready, an errno value if PXP
-> + * is not supported/enabled or if something went wrong in the initialization of
-> + * the prerequisites.
-You have two independent statements regarding the return code. Would be 
-better to just have the "Returns: ..." paragraph but include a statement 
-that these values are as defined in the UAPI.
-
-> + */
-> +int xe_pxp_get_readiness_status(struct xe_pxp *pxp)
-> +{
-> +	int ret = 0;
-> +
-> +	if (!xe_pxp_is_enabled(pxp))
-> +		return -ENODEV;
-> +
-> +	/* if the GSC or HuC FW are in an error state, PXP will never work */
-> +	if (xe_uc_fw_status_to_error(pxp->gt->uc.huc.fw.status) ||
-> +	    xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
-> +		return -EIO;
-> +
-> +	xe_pm_runtime_get(pxp->xe);
-> +
-> +	/* PXP requires both HuC loaded and GSC proxy initialized */
-> +	if (pxp_prerequisites_done(pxp))
-> +		ret = 1;
-> +
-> +	xe_pm_runtime_put(pxp->xe);
-> +	return ret;
-> +}
-> +
->   static bool pxp_session_is_in_play(struct xe_pxp *pxp, u32 id)
->   {
->   	struct xe_gt *gt = pxp->gt;
-> diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
-> index 2e0ab186072a..868813cc84b9 100644
-> --- a/drivers/gpu/drm/xe/xe_pxp.h
-> +++ b/drivers/gpu/drm/xe/xe_pxp.h
-> @@ -14,6 +14,7 @@ struct xe_pxp;
->   
->   bool xe_pxp_is_supported(const struct xe_device *xe);
->   bool xe_pxp_is_enabled(const struct xe_pxp *pxp);
-> +int xe_pxp_get_readiness_status(struct xe_pxp *pxp);
->   
->   int xe_pxp_init(struct xe_device *xe);
->   void xe_pxp_irq_handler(struct xe_device *xe, u16 iir);
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 73ef6e4c2dc9..a1e297234972 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -22,6 +22,7 @@
->   #include "xe_guc_hwconfig.h"
->   #include "xe_macros.h"
->   #include "xe_mmio.h"
+> +#include "xe_bo.h"
 > +#include "xe_pxp.h"
->   #include "xe_ttm_vram_mgr.h"
+> +
+>   struct drm_i915_gem_object;
+>   struct xe_pxp;
 >   
->   static const u16 xe_to_user_engine_class[] = {
-> @@ -680,6 +681,36 @@ static int query_oa_units(struct xe_device *xe,
->   	return ret ? -EFAULT : 0;
+> @@ -16,13 +19,16 @@ static inline int intel_pxp_key_check(struct xe_pxp *pxp,
+>   				      struct drm_i915_gem_object *obj,
+>   				      bool assign)
+>   {
+> -	return -ENODEV;
+> +	if (assign)
+> +		return -EINVAL;
+What does 'assign' mean and why is it always invalid?
+
+> +
+> +	return xe_pxp_key_check(pxp, obj);
 >   }
 >   
-> +static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *query)
+>   static inline bool
+>   i915_gem_object_is_protected(const struct drm_i915_gem_object *obj)
+>   {
+> -	return false;
+> +	return xe_bo_is_protected(obj);
+>   }
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 56a089aa3916..0f591b7d93b1 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -6,6 +6,7 @@
+>   #include "xe_bo.h"
+>   
+>   #include <linux/dma-buf.h>
+> +#include <linux/nospec.h>
+>   
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_gem_ttm_helper.h>
+> @@ -24,6 +25,7 @@
+>   #include "xe_migrate.h"
+>   #include "xe_pm.h"
+>   #include "xe_preempt_fence.h"
+> +#include "xe_pxp.h"
+>   #include "xe_res_cursor.h"
+>   #include "xe_trace_bo.h"
+>   #include "xe_ttm_stolen_mgr.h"
+> @@ -1949,6 +1951,95 @@ void xe_bo_vunmap(struct xe_bo *bo)
+>   	__xe_bo_vunmap(bo);
+>   }
+>   
+> +static int gem_create_set_pxp_type(struct xe_device *xe, struct xe_bo *bo, u64 value)
 > +{
-> +	struct drm_xe_query_pxp_status __user *query_ptr = u64_to_user_ptr(query->data);
-> +	size_t size = sizeof(struct drm_xe_query_pxp_status);
-> +	struct drm_xe_query_pxp_status resp;
-> +	int ret;
-> +
-> +	if (query->size == 0) {
-> +		query->size = size;
+> +	if (value == DRM_XE_PXP_TYPE_NONE)
 > +		return 0;
-> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-Do we not allow structures to grow in future versions? In a backwards 
-compatible way, that is.
-
+> +
+> +	/* we only support DRM_XE_PXP_TYPE_HWDRM for now */
+> +	if (XE_IOCTL_DBG(xe, value != DRM_XE_PXP_TYPE_HWDRM))
 > +		return -EINVAL;
-> +	}
 > +
-> +	if (copy_from_user(&resp, query_ptr, size))
-> +		return -EFAULT;
-Why copy in the data from the user side only to overwrite everything in 
-the structure?
-
-> +
-> +	ret = xe_pxp_get_readiness_status(xe->pxp);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	resp.status = ret;
-> +	resp.supported_session_types = BIT(DRM_XE_PXP_TYPE_HWDRM);
-> +
-> +	if (copy_to_user(query_ptr, &resp, size))
-> +		return -EFAULT;
+> +	xe_pxp_key_assign(xe->pxp, bo);
 > +
 > +	return 0;
 > +}
 > +
->   static int (* const xe_query_funcs[])(struct xe_device *xe,
->   				      struct drm_xe_device_query *query) = {
->   	query_engines,
-> @@ -691,6 +722,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
->   	query_engine_cycles,
->   	query_uc_fw_version,
->   	query_oa_units,
-> +	query_pxp_status,
->   };
+> +typedef int (*xe_gem_create_set_property_fn)(struct xe_device *xe,
+> +					     struct xe_bo *bo,
+> +					     u64 value);
+> +
+> +static const xe_gem_create_set_property_fn gem_create_set_property_funcs[] = {
+> +	[DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY] = gem_create_set_pxp_type,
+> +};
+> +
+> +static int gem_create_user_ext_set_property(struct xe_device *xe,
+> +					    struct xe_bo *bo,
+> +					    u64 extension)
+> +{
+> +	u64 __user *address = u64_to_user_ptr(extension);
+> +	struct drm_xe_ext_set_property ext;
+> +	int err;
+> +	u32 idx;
+> +
+> +	err = __copy_from_user(&ext, address, sizeof(ext));
+> +	if (XE_IOCTL_DBG(xe, err))
+> +		return -EFAULT;
+> +
+> +	if (XE_IOCTL_DBG(xe, ext.property >=
+> +			 ARRAY_SIZE(gem_create_set_property_funcs)) ||
+> +	    XE_IOCTL_DBG(xe, ext.pad) ||
+> +	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY))
+Two overlapping checks on the same field in the same if statement seems 
+unnecessary.
+
+> +		return -EINVAL;
+> +
+> +	idx = array_index_nospec(ext.property, ARRAY_SIZE(gem_create_set_property_funcs));
+> +	if (!gem_create_set_property_funcs[idx])
+> +		return -EINVAL;
+> +
+> +	return gem_create_set_property_funcs[idx](xe, bo, ext.value);
+> +}
+> +
+> +typedef int (*xe_gem_create_user_extension_fn)(struct xe_device *xe,
+> +					       struct xe_bo *bo,
+> +					       u64 extension);
+> +
+> +static const xe_gem_create_user_extension_fn gem_create_user_extension_funcs[] = {
+> +	[DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY] = gem_create_user_ext_set_property,
+> +};
+> +
+> +#define MAX_USER_EXTENSIONS	16
+> +static int gem_create_user_extensions(struct xe_device *xe, struct xe_bo *bo,
+> +				      u64 extensions, int ext_number)
+> +{
+> +	u64 __user *address = u64_to_user_ptr(extensions);
+> +	struct drm_xe_user_extension ext;
+> +	int err;
+> +	u32 idx;
+> +
+> +	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
+> +		return -E2BIG;
+> +
+> +	err = __copy_from_user(&ext, address, sizeof(ext));
+> +	if (XE_IOCTL_DBG(xe, err))
+> +		return -EFAULT;
+> +
+> +	if (XE_IOCTL_DBG(xe, ext.pad) ||
+> +	    XE_IOCTL_DBG(xe, ext.name >= ARRAY_SIZE(gem_create_user_extension_funcs)))
+> +		return -EINVAL;
+> +
+> +	idx = array_index_nospec(ext.name,
+> +				 ARRAY_SIZE(gem_create_user_extension_funcs));
+> +	err = gem_create_user_extension_funcs[idx](xe, bo, extensions);
+> +	if (XE_IOCTL_DBG(xe, err))
+> +		return err;
+> +
+> +	if (ext.next_extension)
+> +		return gem_create_user_extensions(xe, bo, ext.next_extension,
+> +						  ++ext_number);
+> +
+> +	return 0;
+> +}
+> +
+>   int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   			struct drm_file *file)
+>   {
+> @@ -1961,8 +2052,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   	u32 handle;
+>   	int err;
 >   
->   int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 5f4d08123672..9972ceb3fbfb 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -627,6 +627,39 @@ struct drm_xe_query_uc_fw_version {
->   	__u64 reserved;
->   };
+> -	if (XE_IOCTL_DBG(xe, args->extensions) ||
+> -	    XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
+> +	if (XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
+>   	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>   		return -EINVAL;
+>   
+> @@ -2037,6 +2127,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   		goto out_vm;
+>   	}
+>   
+> +	if (args->extensions) {
+> +		err = gem_create_user_extensions(xe, bo, args->extensions, 0);
+> +		if (err)
+> +			goto out_bulk;
+> +	}
+> +
+>   	err = drm_gem_handle_create(file, &bo->ttm.base, &handle);
+>   	if (err)
+>   		goto out_bulk;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 1c9dc8adaaa3..721f7dc35aac 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -171,6 +171,11 @@ static inline bool xe_bo_is_pinned(struct xe_bo *bo)
+>   	return bo->ttm.pin_count;
+>   }
+>   
+> +static inline bool xe_bo_is_protected(const struct xe_bo *bo)
+> +{
+> +	return bo->pxp_key_instance;
+> +}
+> +
+>   static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+>   {
+>   	if (likely(bo)) {
+> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+> index ebc8abf7930a..8668e0374b18 100644
+> --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> @@ -56,6 +56,9 @@ struct xe_bo {
+>   	 */
+>   	struct list_head client_link;
+>   #endif
+> +	/** @pxp_key_instance: key instance this bo was created against (if any) */
+> +	u32 pxp_key_instance;
+> +
+>   	/** @freed: List node for delayed put. */
+>   	struct llist_node freed;
+>   	/** @update_index: Update index if PT BO */
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index f36980aa26e6..aa4f2fe2e131 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -250,6 +250,12 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		goto err_exec;
+>   	}
+>   
+> +	if (xe_exec_queue_uses_pxp(q)) {
+> +		err = xe_vm_validate_protected(q->vm);
+> +		if (err)
+> +			goto err_exec;
+> +	}
+> +
+>   	job = xe_sched_job_create(q, xe_exec_queue_is_parallel(q) ?
+>   				  addresses : &args->address);
+>   	if (IS_ERR(job)) {
+> diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+> index ca4302af4ced..640e62d1d5d7 100644
+> --- a/drivers/gpu/drm/xe/xe_pxp.c
+> +++ b/drivers/gpu/drm/xe/xe_pxp.c
+> @@ -8,6 +8,8 @@
+>   #include <drm/drm_managed.h>
+>   #include <drm/xe_drm.h>
+>   
+> +#include "xe_bo.h"
+> +#include "xe_bo_types.h"
+>   #include "xe_device_types.h"
+>   #include "xe_exec_queue.h"
+>   #include "xe_exec_queue_types.h"
+> @@ -132,6 +134,9 @@ static void pxp_terminate(struct xe_pxp *pxp)
+>   
+>   	pxp_invalidate_queues(pxp);
+>   
+> +	if (pxp->status == XE_PXP_ACTIVE)
+> +		pxp->key_instance++;
+> +
+>   	/*
+>   	 * If we have a termination already in progress, we need to wait for
+>   	 * it to complete before queueing another one. We update the state
+> @@ -343,6 +348,8 @@ int xe_pxp_init(struct xe_device *xe)
+>   	pxp->xe = xe;
+>   	pxp->gt = gt;
+>   
+> +	pxp->key_instance = 1;
+> +
+>   	/*
+>   	 * we'll use the completion to check if there is a termination pending,
+>   	 * so we start it as completed and we reinit it when a termination
+> @@ -574,3 +581,70 @@ static void pxp_invalidate_queues(struct xe_pxp *pxp)
+>   	spin_unlock_irq(&pxp->queues.lock);
+>   }
 >   
 > +/**
-> + * struct drm_xe_query_pxp_status - query if PXP is ready
+> + * xe_pxp_key_assign - mark a BO as using the current PXP key iteration
+> + * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
+> + * @bo: the BO to mark
 > + *
-> + * If PXP is enabled and no fatal error as occurred, the status will be set to
-as -> has
+> + * Returns: -ENODEV if PXP is disabled, 0 otherwise.
+> + */
+> +int xe_pxp_key_assign(struct xe_pxp *pxp, struct xe_bo *bo)
+> +{
+> +	if (!xe_pxp_is_enabled(pxp))
+> +		return -ENODEV;
+> +
+> +	xe_assert(pxp->xe, !bo->pxp_key_instance);
+> +
+> +	/*
+> +	 * Note that the PXP key handling is inherently racey, because the key
+> +	 * can theoretically change at any time (although it's unlikely to do
+> +	 * so without triggers), even right after we copy it. Taking a lock
+> +	 * wouldn't help because the value might still change as soon as we
+> +	 * release the lock.
+> +	 * Userspace needs to handle the fact that their BOs can go invalid at
+> +	 * any point.
+> +	 */
+> +	bo->pxp_key_instance = pxp->key_instance;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_pxp_key_check - check if the key used by a BO is valid
+> + * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
+> + * @bo: the BO we want to check
+> + *
+> + * Checks whether a BO was encrypted with the current key or an obsolete one.
+> + *
+> + * Returns: 0 if the key is valid, -ENODEV if PXP is disabled, -EINVAL if the
+> + * BO is not using PXP,  -ENOEXEC if the key is not valid.
+> + */
+> +int xe_pxp_key_check(struct xe_pxp *pxp, struct xe_bo *bo)
+> +{
+> +	if (!xe_pxp_is_enabled(pxp))
+> +		return -ENODEV;
+> +
+> +	if (!xe_bo_is_protected(bo))
+> +		return -EINVAL;
+> +
+> +	xe_assert(pxp->xe, bo->pxp_key_instance);
+> +
+> +	/*
+> +	 * Note that the PXP key handling is inherently racey, because the key
+> +	 * can theoretically change at any time (although it's unlikely to do
+> +	 * so without triggers), even right after we check it. Taking a lock
+> +	 * wouldn't help because the value might still change as soon as we
+> +	 * release the lock.
+> +	 * We mitigate the risk by checking the key at multiple points (on each
+> +	 * submission involving the BO and right before flipping it on the
+> +	 * display), but there is still a very small chance that we could
+> +	 * operate on an invalid BO for a single submission or a single frame
+> +	 * flip. This is a compromise made to protect the encrypted data (which
+> +	 * is what the key termination is for).
+> +	 */
+> +	if (bo->pxp_key_instance != pxp->key_instance)
+And the possibility that the key_instance value has wrapped around and 
+is valid again is considered not a problem? Using a bo with a bad key 
+potentially results in garbage being displayed but nothing worse than that?
 
-> + * one of the following values:
-> + * 0: PXP init still in progress
-> + * 1: PXP init complete
+> +		return -ENOEXEC;
+> +
+> +	return 0;
+> +}
+> +
+> diff --git a/drivers/gpu/drm/xe/xe_pxp.h b/drivers/gpu/drm/xe/xe_pxp.h
+> index 868813cc84b9..2d22a6e6ab27 100644
+> --- a/drivers/gpu/drm/xe/xe_pxp.h
+> +++ b/drivers/gpu/drm/xe/xe_pxp.h
+> @@ -8,6 +8,7 @@
+>   
+>   #include <linux/types.h>
+>   
+> +struct xe_bo;
+>   struct xe_device;
+>   struct xe_exec_queue;
+>   struct xe_pxp;
+> @@ -23,4 +24,7 @@ int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct xe_exec_queue *q, u8 t
+>   int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q);
+>   void xe_pxp_exec_queue_remove(struct xe_pxp *pxp, struct xe_exec_queue *q);
+>   
+> +int xe_pxp_key_assign(struct xe_pxp *pxp, struct xe_bo *bo);
+> +int xe_pxp_key_check(struct xe_pxp *pxp, struct xe_bo *bo);
+> +
+>   #endif /* __XE_PXP_H__ */
+> diff --git a/drivers/gpu/drm/xe/xe_pxp_types.h b/drivers/gpu/drm/xe/xe_pxp_types.h
+> index eb6a0183320a..1bb747837f86 100644
+> --- a/drivers/gpu/drm/xe/xe_pxp_types.h
+> +++ b/drivers/gpu/drm/xe/xe_pxp_types.h
+> @@ -108,6 +108,9 @@ struct xe_pxp {
+>   		/** @queues.list: list of exec_queues that use PXP */
+>   		struct list_head list;
+>   	} queues;
+> +
+> +	/** @key_instance: keep track of the current iteration of the PXP key */
+> +	u32 key_instance;
+>   };
+>   
+>   #endif /* __XE_PXP_TYPES_H__ */
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 56f105797ae6..1011d643ebb8 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -34,6 +34,7 @@
+>   #include "xe_pm.h"
+>   #include "xe_preempt_fence.h"
+>   #include "xe_pt.h"
+> +#include "xe_pxp.h"
+>   #include "xe_res_cursor.h"
+>   #include "xe_sync.h"
+>   #include "xe_trace_bo.h"
+> @@ -2754,7 +2755,8 @@ static struct dma_fence *vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+>   	(DRM_XE_VM_BIND_FLAG_READONLY | \
+>   	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
+>   	 DRM_XE_VM_BIND_FLAG_NULL | \
+> -	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
+> +	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
+> +	 DRM_XE_VM_BIND_FLAG_CHECK_PXP)
+>   
+>   #ifdef TEST_VM_OPS_ERROR
+>   #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
+> @@ -2916,7 +2918,7 @@ static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
+>   
+>   static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+>   					u64 addr, u64 range, u64 obj_offset,
+> -					u16 pat_index)
+> +					u16 pat_index, u32 op, u32 bind_flags)
+>   {
+>   	u16 coh_mode;
+>   
+> @@ -2951,6 +2953,12 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+>   		return  -EINVAL;
+>   	}
+>   
+> +	/* If a BO is protected it must be valid to be mapped */
+"is protected it can only be mapped if the key is still valid". The 
+above can be read as saying the BO must be mappable, which isn't the 
+same thing.
+
+> +	if ((bind_flags & DRM_XE_VM_BIND_FLAG_CHECK_PXP) && xe_bo_is_protected(bo) &&
+> +	    op != DRM_XE_VM_BIND_OP_UNMAP && op != DRM_XE_VM_BIND_OP_UNMAP_ALL)
+> +		if (XE_IOCTL_DBG(xe, xe_pxp_key_check(xe->pxp, bo) != 0))
+> +			return -ENOEXEC;
+> +
+>   	return 0;
+>   }
+>   
+> @@ -3038,6 +3046,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		u32 obj = bind_ops[i].obj;
+>   		u64 obj_offset = bind_ops[i].obj_offset;
+>   		u16 pat_index = bind_ops[i].pat_index;
+> +		u32 op = bind_ops[i].op;
+> +		u32 bind_flags = bind_ops[i].flags;
+>   
+>   		if (!obj)
+>   			continue;
+> @@ -3050,7 +3060,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		bos[i] = gem_to_xe_bo(gem_obj);
+>   
+>   		err = xe_vm_bind_ioctl_validate_bo(xe, bos[i], addr, range,
+> -						   obj_offset, pat_index);
+> +						   obj_offset, pat_index, op,
+> +						   bind_flags);
+>   		if (err)
+>   			goto put_obj;
+>   	}
+> @@ -3343,6 +3354,35 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+>   	return ret;
+>   }
+>   
+> +int xe_vm_validate_protected(struct xe_vm *vm)
+> +{
+> +	struct drm_gpuva *gpuva;
+> +	int err = 0;
+> +
+> +	if (!vm)
+> +		return -ENODEV;
+> +
+> +	mutex_lock(&vm->snap_mutex);
+> +
+> +	drm_gpuvm_for_each_va(gpuva, &vm->gpuvm) {
+> +		struct xe_vma *vma = gpuva_to_vma(gpuva);
+> +		struct xe_bo *bo = vma->gpuva.gem.obj ?
+> +			gem_to_xe_bo(vma->gpuva.gem.obj) : NULL;
+> +
+> +		if (!bo)
+> +			continue;
+> +
+> +		if (xe_bo_is_protected(bo)) {
+> +			err = xe_pxp_key_check(vm->xe->pxp, bo);
+> +			if (err)
+> +				break;
+> +		}
+> +	}
+> +
+> +	mutex_unlock(&vm->snap_mutex);
+> +	return err;
+> +}
+> +
+>   struct xe_vm_snapshot {
+>   	unsigned long num_snaps;
+>   	struct {
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index bfc19e8113c3..dd51c9790dab 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -216,6 +216,8 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma,
+>   
+>   int xe_vm_invalidate_vma(struct xe_vma *vma);
+>   
+> +int xe_vm_validate_protected(struct xe_vm *vm);
+> +
+>   static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+>   {
+>   	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 9972ceb3fbfb..335febe03e40 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -776,8 +776,23 @@ struct drm_xe_device_query {
+>    *  - %DRM_XE_GEM_CPU_CACHING_WC - Allocate the pages as write-combined. This
+>    *    is uncached. Scanout surfaces should likely use this. All objects
+>    *    that can be placed in VRAM must use this.
 > + *
-> + * If PXP is not enabled or something has gone wrong, the query will be failed
-> + * with one of the following error codes:
-> + * -ENODEV: PXP not supported or disabled;
-> + * -EIO: fatal error occurred during init, so PXP will never be enabled;
-> + * -EINVAL: incorrect value provided as part of the query;
-> + * -EFAULT: error copying the memory between kernel and userspace.
-Currently, could also be copying from user to kernel. Although that copy 
-seems unnecessary.
+> + * This ioctl supports setting the following properties via the
+> + * %DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY extension, which uses the
+> + * generic @drm_xe_ext_set_property struct:
+> + *
+> + *  - %DRM_XE_GEM_CREATE_SET_PROPERTY_PXP_TYPE - set the type of PXP session
+> + *    this object will be used with. Valid values are listed in enum
+> + *    drm_xe_pxp_session_type. %DRM_XE_PXP_TYPE_NONE is the default behavior, so
+> + *    there is no need to explicitly set that. Objects used with session of type
+> + *    %DRM_XE_PXP_TYPE_HWDRM will be marked as invalid if a PXP invalidation
+> + *    event occurs after their creation. Attempting to flip an invalid object
+> + *    will cause a black frame to be displayed instead. Submissions with invalid
+> + *    objects mapped in the VM will be rejected.
+Again, seems like the per type descriptions should be collected together 
+in the type enum.
 
 John.
 
-> + *
-> + * The status can only be 0 in the first few seconds after driver load. If
-> + * everything works as expected, the status will transition to init complete in
-> + * less than 1 second, while in case of errors the driver might take longer to
-> + * start returning an error code, but it should still take less than 10 seconds.
-> + *
-> + * The supported session type bitmask is based on the values in
-> + * enum drm_xe_pxp_session_type. TYPE_NONE is always supported and therefore
-> + * is not reported in the bitmask.
-> + *
-> + */
-> +struct drm_xe_query_pxp_status {
-> +	/** @status: current PXP status */
-> +	__u32 status;
-> +
-> +	/** @supported_session_types: bitmask of supported PXP session types */
-> +	__u32 supported_session_types;
-> +};
-> +
->   /**
->    * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
->    * structure to query device information
-> @@ -646,6 +679,7 @@ struct drm_xe_query_uc_fw_version {
->    *    attributes.
->    *  - %DRM_XE_DEVICE_QUERY_GT_TOPOLOGY
->    *  - %DRM_XE_DEVICE_QUERY_ENGINE_CYCLES
-> + *  - %DRM_XE_DEVICE_QUERY_PXP_STATUS
->    *
->    * If size is set to 0, the driver fills it with the required size for
->    * the requested type of data to query. If size is equal to the required
-> @@ -698,6 +732,7 @@ struct drm_xe_device_query {
->   #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
->   #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
->   #define DRM_XE_DEVICE_QUERY_OA_UNITS		8
-> +#define DRM_XE_DEVICE_QUERY_PXP_STATUS		9
->   	/** @query: The type of data to query */
->   	__u32 query;
+>    */
+>   struct drm_xe_gem_create {
+> +#define DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY	0
+> +#define   DRM_XE_GEM_CREATE_SET_PROPERTY_PXP_TYPE	0
+>   	/** @extensions: Pointer to the first extension struct, if any */
+>   	__u64 extensions;
+>   
+> @@ -939,6 +954,9 @@ struct drm_xe_vm_destroy {
+>    *    will only be valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
+>    *    handle MBZ, and the BO offset MBZ. This flag is intended to
+>    *    implement VK sparse bindings.
+> + *  - %DRM_XE_VM_BIND_FLAG_CHECK_PXP - If the object is encrypted via PXP,
+> + *    reject the binding if the encryption key is no longer valid. This
+> + *    flag has no effect on BOs that are not marked as using PXP.
+>    */
+>   struct drm_xe_vm_bind_op {
+>   	/** @extensions: Pointer to the first extension struct, if any */
+> @@ -1029,6 +1047,7 @@ struct drm_xe_vm_bind_op {
+>   #define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+>   #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
+>   #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
+> +#define DRM_XE_VM_BIND_FLAG_CHECK_PXP	(1 << 4)
+>   	/** @flags: Bind flags */
+>   	__u32 flags;
 >   
 
