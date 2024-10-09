@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B92CECEDD93
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 13:43:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EE02CEDD97
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 13:51:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82F1E10E72A;
-	Wed,  9 Oct 2024 13:43:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJzm/qMW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94D0F10E722;
- Wed,  9 Oct 2024 13:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728481415; x=1760017415;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=BmZuKYMkRJ8L4w1vaVjp3jgciXYLxJjGTkK4HfuIKHE=;
- b=PJzm/qMWsX8QcyB4IkbhzyiyGfqhskSYJB1xyn0QR8neyv00098YBItj
- ZEB+QutTuUBkygVysPIgKEid33IrRQ/dYvM8OfIQ+X7zKBoNBQOuy95UH
- r0GnuKuJaNWv5gDYC0AVQKTFIR/gSeN6gHxBKjXh1TkNaEY3qte4kQ740
- DADANJ+Pfh531fxWYHFK4j0s5zvfLeaYpdjdTurPZ53QEVD3oolWO+WIv
- Vet/6MhR+lK/8NL0fbr6tQ6XebYs/uRmfNfYrNwtbWdualILa4cmDo7mc
- SvizWcG+sq+SjIH3XT6n5vCJPfQvjCCQcMpM02R28TigCcswTO53VBI7T Q==;
-X-CSE-ConnectionGUID: rfbVQhkiRaKh8onFBoITwg==
-X-CSE-MsgGUID: iQ8VM9opQHu+5KWoWYkp9g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="39142953"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="39142953"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:43:34 -0700
-X-CSE-ConnectionGUID: bPpCYgWzR1W8nDTQLGhBjg==
-X-CSE-MsgGUID: HeHDlAiMQNyfm4UODcHrCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="75855340"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.243])
- ([10.245.245.243])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:43:32 -0700
-Message-ID: <c5e8899f4bcba24a787cd0f4c92c3fc4d7ef3130.camel@linux.intel.com>
-Subject: Re: [PATCH v2] locking/ww_mutex: Adjust to lockdep nest_lock
- requirements
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: intel-xe@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>, Will
- Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng
- <boqun.feng@gmail.com>, Maarten Lankhorst <maarten@lankhorst.se>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Date: Wed, 09 Oct 2024 15:43:29 +0200
-In-Reply-To: <20241009131015.GP17263@noisy.programming.kicks-ass.net>
-References: <20241009092031.6356-1-thomas.hellstrom@linux.intel.com>
- <20241009131015.GP17263@noisy.programming.kicks-ass.net>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D91110E722;
+	Wed,  9 Oct 2024 13:51:23 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED3D610E722;
+ Wed,  9 Oct 2024 13:51:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3890013480325506900=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/mmap=3A_Add_mmap_support_?=
+ =?utf-8?q?for_PCI_memory_barrier?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Oct 2024 13:51:21 -0000
+Message-ID: <172848188196.1210162.14153164484443318286@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241009101004.664216-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20241009101004.664216-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,64 +36,165 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-10-09 at 15:10 +0200, Peter Zijlstra wrote:
-> On Wed, Oct 09, 2024 at 11:20:31AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > When using mutex_acquire_nest() with a nest_lock, lockdep refcounts
-> > the
-> > number of acquired lockdep_maps of mutexes of the same class, and
-> > also
-> > keeps a pointer to the first acquired lockdep_map of a class. That
-> > pointer
-> > is then used for various comparison-, printing- and checking
-> > purposes,
-> > but there is no mechanism to actively ensure that lockdep_map stays
-> > in
-> > memory. Instead, a warning is printed if the lockdep_map is freed
-> > and
-> > there are still held locks of the same lock class, even if the
-> > lockdep_map
-> > itself has been released.
-> >=20
-> > In the context of WW/WD transactions that means that if a user
-> > unlocks
-> > and frees a ww_mutex from within an ongoing ww transaction, and
-> > that
-> > mutex happens to be the first ww_mutex grabbed in the transaction,
-> > such a warning is printed and there might be a risk of a UAF.
-> >=20
-> > Note that this is only problem when lockdep is enabled and affects
-> > only
-> > dereferences of struct lockdep_map.
-> >=20
-> > Adjust to this by adding a fake lockdep_map to the acquired context
-> > and
-> > make sure it is the first acquired lockdep map of the associated
-> > ww_mutex class. Then hold it for the duration of the WW/WD
-> > transaction.
-> >=20
-> > This has the side effect that trying to lock a ww mutex *without* a
-> > ww_acquire_context but where a such context has been acquire, we'd
-> > see
-> > a lockdep splat. The test-ww_mutex.c selftest attempts to do that,
-> > so
-> > modify that particular test to not acquire a ww_acquire_context if
-> > it
-> > is not going to be used.
-> >=20
-> > v2:
-> > - Lower the number of locks in the test-ww_mutex
-> > =C2=A0 stress(STRESS_ALL) test to accommodate the dummy lock
-> > =C2=A0 introduced in this patch without overflowing lockdep held lock
-> > =C2=A0 references.
->=20
-> Thanks, I rebased tip/locking/core, which should now have this patch.
+--===============3890013480325506900==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks.
-It takes some time for that failing CI test to run, though so, and
-since I can't repro the failure locally I'll keep a watch out.
+== Series Details ==
 
-/Thomas
+Series: drm/xe/mmap: Add mmap support for PCI memory barrier
+URL   : https://patchwork.freedesktop.org/series/139769/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a_BAT -> xe-pw-139769v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139769v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#2229])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [INCOMPLETE][4] ([Intel XE#2874]) -> [PASS][5] +1 other test pass
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+
+
+Build changes
+-------------
+
+  * Linux: xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a -> xe-pw-139769v1
+
+  IGT_8061: 8061
+  xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a: 80a5a3d55cc0af07a9833696969ffce346ca692a
+  xe-pw-139769v1: 139769v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/index.html
+
+--===============3890013480325506900==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/mmap: Add mmap support for PCI memory barrier</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139769/">https://patchwork.freedesktop.org/series/139769/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a_BAT -&gt; xe-pw-139769v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139769v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139769v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a -&gt; xe-pw-139769v1</li>
+</ul>
+<p>IGT_8061: 8061<br />
+  xe-2033-80a5a3d55cc0af07a9833696969ffce346ca692a: 80a5a3d55cc0af07a9833696969ffce346ca692a<br />
+  xe-pw-139769v1: 139769v1</p>
+
+</body>
+</html>
+
+--===============3890013480325506900==--
