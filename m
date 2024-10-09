@@ -4,58 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72148CF0453
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 11:17:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97975CEDD83
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 11:28:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD8510E6E1;
-	Wed,  9 Oct 2024 11:17:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nhZSKTNs";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0AFC10E6E1;
- Wed,  9 Oct 2024 11:17:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728472632; x=1760008632;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=HvdMwIQXrItVN5T5I6sBAYt/1kK8gKX51RnruTmI3vc=;
- b=nhZSKTNsmVVDwBvo1S5MaFfwiwuXMj65Tpg7Ov5FMJ7mMXtPWhDAEytx
- pzbcCrmmw2VNgtPXhfJ48WyqMmJw15+QHaPYu5zWxntV3BN7+bOM0TmvM
- /Vlj+1bcBnswXnC2u2muhxwpZThO3PkAhbzz8oJ6lgt6/mHjtvb+yl1Ck
- JyaPO3m4BJel2QBkF3YIqPjkO8Lnswdctg1Z7yVY20T10quNj8ae4UuT4
- syQ0AhGJzBSFo4ul5VCi++QIp/l/HSPAdXshXzQaJpRHkxtzAEQ+6O4Mk
- IiFTSkTShZ5vD+M88/s9BGPKBlg6s1WXPDjRo6Zr2I47TffK2bzqJIac1 Q==;
-X-CSE-ConnectionGUID: ZDeitKKYSjm7NBx4kHxthA==
-X-CSE-MsgGUID: 1bNpd+p1RY2uqDyDfi7yAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27213413"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27213413"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 04:17:11 -0700
-X-CSE-ConnectionGUID: KSbY7MgTTJiskkO2IxrjJw==
-X-CSE-MsgGUID: Se3csPNgTkOvmLwMH90t6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="81232562"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.80])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 04:17:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/4] drm/i915/pmu: Add support for gen2
-In-Reply-To: <20241008214349.23331-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241008214349.23331-1-ville.syrjala@linux.intel.com>
- <20241008214349.23331-5-ville.syrjala@linux.intel.com>
-Date: Wed, 09 Oct 2024 14:17:06 +0300
-Message-ID: <87frp5a5l9.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4632810E163;
+	Wed,  9 Oct 2024 11:28:05 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD7D10E163;
+ Wed,  9 Oct 2024 11:28:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3992077145526728884=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv2=2C1/2?=
+ =?utf-8?q?=5D_drm/xe=3A_fix_unbalanced_rpm_put=28=29_with_fence=5Ffini=28?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Oct 2024 11:28:04 -0000
+Message-ID: <172847328417.1209195.2265098193668820469@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241009084808.204432-3-matthew.auld@intel.com>
+In-Reply-To: <20241009084808.204432-3-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,129 +37,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 09 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Implement pmu support for gen2 so that one can use intel_gpu_top
-> on it once again.
->
-> Gen2 lacks MI_MODE/MODE_IDLE so we'll have to do a bit more work
-> to determine the state of the engine:
-> - to determine if the ring contains unconsumed data we can simply
->   compare RING_TAIL vs. RING_HEAD
-> - also check RING_HEAD vs. ACTHD to catch cases where the hardware
->   is still executing a batch buffer but the ring head has already
->   caught up with the tail. Not entirely sure if that's actually
->   possible or not, but maybe it can happen if the batch buffer is
->   initiated from the very end of the ring? But even if not strictly
->   necessary there's no real harm in checking anyway.
-> - MI_WAIT_FOR_EVENT can be detected via a dedicated bit in RING_HEAD
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_regs.h |  2 +-
->  drivers/gpu/drm/i915/i915_pmu.c             | 32 +++++++++++++++++----
->  2 files changed, 27 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/dr=
-m/i915/gt/intel_engine_regs.h
-> index a8eac59e3779..1c4784cb296c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-> @@ -15,6 +15,7 @@
->  #define   HEAD_WRAP_COUNT			0xFFE00000
->  #define   HEAD_WRAP_ONE				0x00200000
->  #define   HEAD_ADDR				0x001FFFFC
-> +#define   HEAD_WAIT_I8XX			(1 << 0) /* gen2, PRBx_HEAD */
->  #define RING_START(base)			_MMIO((base) + 0x38)
->  #define RING_CTL(base)				_MMIO((base) + 0x3c)
->  #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> page=
-s */
-> @@ -26,7 +27,6 @@
->  #define   RING_VALID_MASK			0x00000001
->  #define   RING_VALID				0x00000001
->  #define   RING_INVALID				0x00000000
-> -#define   RING_WAIT_I8XX			(1 << 0) /* gen2, PRBx_HEAD */
->  #define   RING_WAIT				(1 << 11) /* gen3+, PRBx_CTL */
->  #define   RING_WAIT_SEMAPHORE			(1 << 10) /* gen6+ */
->  #define RING_SYNC_0(base)			_MMIO((base) + 0x40)
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_=
-pmu.c
-> index 67b6cbdeff1d..2eed4c866321 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -356,7 +356,7 @@ static bool exclusive_mmio_access(const struct drm_i9=
-15_private *i915)
->  	return GRAPHICS_VER(i915) =3D=3D 7;
->  }
->=20=20
-> -static void engine_sample(struct intel_engine_cs *engine, unsigned int p=
-eriod_ns)
-> +static void engine_sample_gen3(struct intel_engine_cs *engine, unsigned =
-int period_ns)
+--===============3992077145526728884==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-A bit surprising to see a gen3 suffix rather than a prefix.
+== Series Details ==
 
-Anyway, not going to spend time on looking into gen2 details, but it's
-fine,
+Series: series starting with [v2,1/2] drm/xe: fix unbalanced rpm put() with fence_fini()
+URL   : https://patchwork.freedesktop.org/series/139757/
+State : success
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
+
+CI Bug Log - changes from xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff_BAT -> xe-pw-139757v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139757v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
 
 
->  {
->  	struct intel_engine_pmu *pmu =3D &engine->pmu;
->  	bool busy;
-> @@ -391,6 +391,31 @@ static void engine_sample(struct intel_engine_cs *en=
-gine, unsigned int period_ns
->  		add_sample(&pmu->sample[I915_SAMPLE_BUSY], period_ns);
->  }
->=20=20
-> +static void engine_sample_gen2(struct intel_engine_cs *engine, unsigned =
-int period_ns)
-> +{
-> +	struct intel_engine_pmu *pmu =3D &engine->pmu;
-> +	u32 tail, head, acthd;
-> +
-> +	tail =3D ENGINE_READ_FW(engine, RING_TAIL);
-> +	head =3D ENGINE_READ_FW(engine, RING_HEAD);
-> +	acthd =3D ENGINE_READ_FW(engine, ACTHD);
-> +
-> +	if (head & HEAD_WAIT_I8XX)
-> +		add_sample(&pmu->sample[I915_SAMPLE_WAIT], period_ns);
-> +
-> +	if (head & HEAD_WAIT_I8XX || head !=3D acthd ||
-> +	    (head & HEAD_ADDR) !=3D (tail & TAIL_ADDR))
-> +		add_sample(&pmu->sample[I915_SAMPLE_BUSY], period_ns);
-> +}
-> +
-> +static void engine_sample(struct intel_engine_cs *engine, unsigned int p=
-eriod_ns)
-> +{
-> +	if (GRAPHICS_VER(engine->i915) >=3D 3)
-> +		engine_sample_gen3(engine, period_ns);
-> +	else
-> +		engine_sample_gen2(engine, period_ns);
-> +}
-> +
->  static void
->  engines_sample(struct intel_gt *gt, unsigned int period_ns)
->  {
-> @@ -1243,11 +1268,6 @@ void i915_pmu_register(struct drm_i915_private *i9=
-15)
->=20=20
->  	int ret =3D -ENOMEM;
->=20=20
-> -	if (GRAPHICS_VER(i915) <=3D 2) {
-> -		drm_info(&i915->drm, "PMU not supported for this GPU.");
-> -		return;
-> -	}
-> -
->  	spin_lock_init(&pmu->lock);
->  	hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->  	pmu->timer.function =3D i915_sample;
+Build changes
+-------------
 
---=20
-Jani Nikula, Intel
+  * Linux: xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff -> xe-pw-139757v1
+
+  IGT_8061: 8061
+  xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff
+  xe-pw-139757v1: 139757v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/index.html
+
+--===============3992077145526728884==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/xe: fix unbalanced rpm put() with fence_fini()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139757/">https://patchwork.freedesktop.org/series/139757/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff_BAT -&gt; xe-pw-139757v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139757v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff -&gt; xe-pw-139757v1</li>
+</ul>
+<p>IGT_8061: 8061<br />
+  xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff<br />
+  xe-pw-139757v1: 139757v1</p>
+
+</body>
+</html>
+
+--===============3992077145526728884==--
