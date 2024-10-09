@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 852FACED606
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 06:06:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07CEDCED606
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 06:06:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C19210E646;
-	Wed,  9 Oct 2024 06:06:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7DF610E1FA;
+	Wed,  9 Oct 2024 06:06:30 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F94410E1FA;
- Wed,  9 Oct 2024 06:06:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E66410E1FA;
+ Wed,  9 Oct 2024 06:06:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=5Fmst=3A?=
- =?utf-8?q?_Fix_dsc_mst_bw_overhead_calculation?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/dp=5Fmst=3A_Fix_?=
+ =?utf-8?q?dsc_mst_bw_overhead_calculation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Oct 2024 06:06:19 -0000
-Message-ID: <172845397945.1207293.10582442852307215781@2413ebb6fbb6>
+Date: Wed, 09 Oct 2024 06:06:29 -0000
+Message-ID: <172845398951.1207293.10349643283425565351@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241009054050.1796088-1-suraj.kandpal@intel.com>
 In-Reply-To: <20241009054050.1796088-1-suraj.kandpal@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2c8a08f54bef drm-tip: 2024y-10m-09d-04h-19m-30s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp_mst: Fix dsc mst bw overhead calculation
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0ef4c9b6a4f15b98d9e99f049fab1a44eebedda6
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Wed Oct 9 11:10:50 2024 +0530
+
+    drm/i915/dp_mst: Fix dsc mst bw overhead calculation
+    
+    Fix the DSC flag assignment based on the dsc_slice_count returned
+    to avoid divide by zero error.
+    
+    Fixes: 4e0837a8d00a ("drm/i915/dp_mst: Account for FEC and DSC overhead during BW allocation")
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 2c8a08f54befdd831076e0854fe311569c209835 drm-intel
+0ef4c9b6a4f1 drm/i915/dp_mst: Fix dsc mst bw overhead calculation
 
 
