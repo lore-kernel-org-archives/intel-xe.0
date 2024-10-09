@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AE10CED61B
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 07:30:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 886BCCED618
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 07:32:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0481210E668;
-	Wed,  9 Oct 2024 07:30:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yy7gpl/r";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C28C410E667;
- Wed,  9 Oct 2024 07:29:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728458998; x=1759994998;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FqLQcEYeaZUc5FLj0wqdKGLdyqqhB2J40hGonNR4BoA=;
- b=Yy7gpl/rpAEe+mh3fqvrX28UWO1mHYKi6FeOUbwgPEIt2d8s8zZS1rxf
- J+Hi+pfQK6hwqxJeInzvFJHjHO+/P2aarbGC5uX+wEr3J6gny7QF1W1Z2
- 3b9YziIZiVA4LbWuggcul4XPqRSNv6Kqc2Kcjs/MlD83i6xdRegpCxDyt
- wIjg/hGjF4Bi6Y+H6H/YsnfFwlbmNjwztx1LjbB2HCPQRQBs31EtmnB97
- bnm0eyhi4BkMbx72yDTt0CZTaL+bN4bfHGHaJbO276465lh7/RiecGrxQ
- HMZsTkJ5A/+OPDWqZ0O2br3Il12jkGDT4NW5bvxed+kwOaaqh4xQO3Jvm w==;
-X-CSE-ConnectionGUID: UErGqK9cQAWOblZg3k5jDA==
-X-CSE-MsgGUID: CpVGtFttTBKPLBaHDtObag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="15362744"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="15362744"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 00:29:57 -0700
-X-CSE-ConnectionGUID: yKt6mS8GS5CE8Ap40TvaYA==
-X-CSE-MsgGUID: tAgdwgBPT5aytJWa1qGTYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="75819481"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa007.fm.intel.com with ESMTP; 09 Oct 2024 00:29:56 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com, uma.shankar@intel.com, ville.syrjala@linux.intel.com
-Subject: [v2] drm/i915: Allow fastset for change in HDR infoframe
-Date: Wed,  9 Oct 2024 12:55:30 +0530
-Message-Id: <20241009072530.2952143-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B3710E668;
+	Wed,  9 Oct 2024 07:32:38 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2EF10E668;
+ Wed,  9 Oct 2024 07:32:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6877679892264908136=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/hdcp=3A_Move_dig=5Fport?=
+ =?utf-8?q?_assignment_lower_in_the_sequence?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Oct 2024 07:32:37 -0000
+Message-ID: <172845915762.1207706.10542017478083203733@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241009062455.1796615-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241009062455.1796615-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,99 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Changes in Dynamic Range and Mastering infoframe
-should not trigger a full modeset. Therefore, allow
-fastset. DP SDP programming is already hooked up in the
-fastset flow but HDMI AVI infoframe update is not, add it.
-Any other infoframe that can be fastset should be added to
-the helper intel_hdmi_fastset_infoframes().
+--===============6877679892264908136==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
- - Update HDMI AVI infoframe during fastset.
+== Series Details ==
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c     |  3 +++
- drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
- drivers/gpu/drm/i915/display/intel_hdmi.c    | 19 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_hdmi.h    |  3 +++
- 4 files changed, 27 insertions(+), 1 deletion(-)
+Series: drm/i915/hdcp: Move dig_port assignment lower in the sequence
+URL   : https://patchwork.freedesktop.org/series/139745/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index fe1ded6707f9..3195c1125ac3 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3489,6 +3489,9 @@ void intel_ddi_update_pipe(struct intel_atomic_state *state,
- 		intel_ddi_update_pipe_dp(state, encoder, crtc_state,
- 					 conn_state);
- 
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-+		intel_hdmi_fastset_infoframes(encoder, crtc_state, conn_state);
-+
- 	intel_hdcp_update_pipe(state, encoder, crtc_state, conn_state);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e1f6255e918b..e8f8f55f75d2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5683,7 +5683,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_INFOFRAME(avi);
- 	PIPE_CONF_CHECK_INFOFRAME(spd);
- 	PIPE_CONF_CHECK_INFOFRAME(hdmi);
--	PIPE_CONF_CHECK_INFOFRAME(drm);
-+	if (!fastset)
-+		PIPE_CONF_CHECK_INFOFRAME(drm);
- 	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
- 	PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 72ac910bf6ec..eba79f14d4e2 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1211,6 +1211,25 @@ static void vlv_set_infoframes(struct intel_encoder *encoder,
- 			      &crtc_state->infoframes.hdmi);
- }
- 
-+void intel_hdmi_fastset_infoframes(struct intel_encoder *encoder,
-+				   const struct intel_crtc_state *crtc_state,
-+				   const struct drm_connector_state *conn_state)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	i915_reg_t reg = HSW_TVIDEO_DIP_CTL(display,
-+					    crtc_state->cpu_transcoder);
-+	u32 val = intel_de_read(display, reg);
-+
-+	val &= ~(VIDEO_DIP_ENABLE_DRM_GLK);
-+
-+	intel_de_write(display, reg, val);
-+	intel_de_posting_read(display, reg);
-+
-+	intel_write_infoframe(encoder, crtc_state,
-+			      HDMI_INFOFRAME_TYPE_DRM,
-+			      &crtc_state->infoframes.drm);
-+}
-+
- static void hsw_set_infoframes(struct intel_encoder *encoder,
- 			       bool enable,
- 			       const struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index 9b97623665c5..466f48df8a74 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -42,6 +42,9 @@ u32 intel_hdmi_infoframes_enabled(struct intel_encoder *encoder,
- u32 intel_hdmi_infoframe_enable(unsigned int type);
- void intel_hdmi_read_gcp_infoframe(struct intel_encoder *encoder,
- 				   struct intel_crtc_state *crtc_state);
-+void intel_hdmi_fastset_infoframes(struct intel_encoder *encoder,
-+				   const struct intel_crtc_state *crtc_state,
-+				   const struct drm_connector_state *conn_state);
- void intel_read_infoframe(struct intel_encoder *encoder,
- 			  const struct intel_crtc_state *crtc_state,
- 			  enum hdmi_infoframe_type type,
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-2028-2c8a08f54befdd831076e0854fe311569c209835_BAT -> xe-pw-139745v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139745v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2028-2c8a08f54befdd831076e0854fe311569c209835/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+
+
+Build changes
+-------------
+
+  * Linux: xe-2028-2c8a08f54befdd831076e0854fe311569c209835 -> xe-pw-139745v1
+
+  IGT_8061: 8061
+  xe-2028-2c8a08f54befdd831076e0854fe311569c209835: 2c8a08f54befdd831076e0854fe311569c209835
+  xe-pw-139745v1: 139745v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/index.html
+
+--===============6877679892264908136==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Move dig_port assignment lower in the sequence</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139745/">https://patchwork.freedesktop.org/series/139745/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2028-2c8a08f54befdd831076e0854fe311569c209835_BAT -&gt; xe-pw-139745v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139745v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2028-2c8a08f54befdd831076e0854fe311569c209835/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139745v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2028-2c8a08f54befdd831076e0854fe311569c209835 -&gt; xe-pw-139745v1</li>
+</ul>
+<p>IGT_8061: 8061<br />
+  xe-2028-2c8a08f54befdd831076e0854fe311569c209835: 2c8a08f54befdd831076e0854fe311569c209835<br />
+  xe-pw-139745v1: 139745v1</p>
+
+</body>
+</html>
+
+--===============6877679892264908136==--
