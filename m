@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA2E4CED60C
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 06:27:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4BAFCED60F
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 06:40:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E27010E650;
-	Wed,  9 Oct 2024 06:27:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A22E710E658;
+	Wed,  9 Oct 2024 06:40:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AD8nZpvJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZWfi9FG5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A6F610E64F;
- Wed,  9 Oct 2024 06:27:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD84910E658;
+ Wed,  9 Oct 2024 06:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728455244; x=1759991244;
+ t=1728456031; x=1759992031;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=I+RfwyRBtJKNPf0ybmF31MAlnNnRXn6NqvsXNJVdpQc=;
- b=AD8nZpvJakE+2obCEtvQP3G1BrileUlsWGGExMTP/2c5h0Xugt7w526Z
- i7JmkSfNtu9g336BzjBBjFLanYiScT23TqEYhnRtLYRUbagPs0mKuXMit
- fh57ILKqZdQ8B4rVYzgQUA5kMt1p1l5I5vFnEHvp56IeLGhwnW+wXPIHY
- x7KhEhbve+oJswPfN4Y/JSZNaDYmrdstyBennUPHJOOqEsrkXdrSk4jec
- rbMWp0/mIylmTF1DQrhpfYgFi68bu3lQrFcUBC8SuFCh3EXbMN8/l3uVA
- KqNdGv0CoxRpy4y/DTQbyS9rEyZBb5O9hso7DFZ/3LptYluTXiQ1E7axu A==;
-X-CSE-ConnectionGUID: I0I0zDRLT0iFDxLRGNjscQ==
-X-CSE-MsgGUID: UopXgdfrSB+6YMIxJey7bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="45199557"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="45199557"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 23:27:23 -0700
-X-CSE-ConnectionGUID: 2usxZ3VaT02yPge28gT5kw==
-X-CSE-MsgGUID: nUSlFnbfQhKFplPazzi0VA==
+ bh=IoG/u7GXFbEyPNpNfkcetMLIiFTpSK2wCLLqGx7/v8M=;
+ b=ZWfi9FG53FO8pFsXfmdOpmt1EG6LHAfZhYMuZJQUw15N+vPrCV/fvcbz
+ ufeMYIegCYf2zSvTcEISg+mWpi8eFvQtsBYoPBuRM36P5zs8VCS9Sq4gG
+ oD+zaKBRzUFtAkY3hki2FZ5ODgo/GrASRz7a9ZOCgMP74ER5S9EoER515
+ trSJpkQ/FXJ+fb/7d6WtV4Vy5p6kPrHfQd0hCyBJM1DgJe6sf1mknAKf0
+ Lc4qrx3eo6VsvJJ99tKN6YK+aPEqc7Vh1YSMHdGxal70gArV5Q9BYnhP8
+ DGVnTW5ULX1XRQPCwS2pkkwFNIQJBBp6e/b8x5vs7QPKsoLqC3Vu3zyfL Q==;
+X-CSE-ConnectionGUID: SeySQvrmSe+53SmOjcpLuw==
+X-CSE-MsgGUID: mi0T8NmPROmp39lRRUx3Lw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27821292"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27821292"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 23:40:31 -0700
+X-CSE-ConnectionGUID: DFhF3iMRQjm8G6ZUB89LVQ==
+X-CSE-MsgGUID: Ecxnf1lwRWiF1ISVVlWeVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="81165227"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="80130266"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa004.jf.intel.com with ESMTP; 08 Oct 2024 23:27:21 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 08 Oct 2024 23:40:28 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Move dig_port assignment lower in the sequence
-Date: Wed,  9 Oct 2024 11:54:55 +0530
-Message-ID: <20241009062455.1796615-1-suraj.kandpal@intel.com>
+Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/color: Use correct variable to load lut
+Date: Wed,  9 Oct 2024 12:07:53 +0530
+Message-ID: <20241009063753.1799234-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,36 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move dig_port assignment much lower in the sequence to avoid NULL
-pointer deference in case encoder is not present.
+Use the blob variable instead of post_csc_lut as it may end up
+being null.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index ed6aa87403e2..ea8d56b25f6e 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2404,7 +2404,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
--	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-+	struct intel_digital_port *dig_port;
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	unsigned long check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
- 	int ret = -EINVAL;
-@@ -2418,6 +2418,8 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 		return -ENODEV;
- 	}
- 
-+	dig_port = intel_attached_dig_port(connector);
-+
- 	mutex_lock(&hdcp->mutex);
- 	mutex_lock(&dig_port->hdcp_mutex);
- 	drm_WARN_ON(display->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index caf1af039960..22b7090c4f6f 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1503,7 +1503,7 @@ static void ivb_load_luts(const struct intel_crtc_state *crtc_state)
+ 		ivb_load_lut_10(crtc_state, pre_csc_lut, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(0));
+ 		ivb_load_lut_ext_max(crtc_state);
+-		ivb_load_lut_10(crtc_state, post_csc_lut, PAL_PREC_SPLIT_MODE |
++		ivb_load_lut_10(crtc_state, blob, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(512));
+ 		break;
+ 	case GAMMA_MODE_MODE_10BIT:
+@@ -1531,7 +1531,7 @@ static void bdw_load_luts(const struct intel_crtc_state *crtc_state)
+ 		bdw_load_lut_10(crtc_state, pre_csc_lut, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(0));
+ 		ivb_load_lut_ext_max(crtc_state);
+-		bdw_load_lut_10(crtc_state, post_csc_lut, PAL_PREC_SPLIT_MODE |
++		bdw_load_lut_10(crtc_state, blob, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(512));
+ 		break;
+ 	case GAMMA_MODE_MODE_10BIT:
 -- 
 2.43.2
 
