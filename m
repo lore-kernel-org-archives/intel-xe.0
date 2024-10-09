@@ -4,28 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97975CEDD83
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 11:28:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2263CCEDD84
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 11:31:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4632810E163;
-	Wed,  9 Oct 2024 11:28:05 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD7D10E163;
- Wed,  9 Oct 2024 11:28:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3992077145526728884=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8A8410E25E;
+	Wed,  9 Oct 2024 11:31:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XAHIr8ZT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2ACD10E25E
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 11:31:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728473461; x=1760009461;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=yDnYZpjNPA4+C9Fvy1cgbmln85qK7XgFzpV8FTsmwTo=;
+ b=XAHIr8ZTKHY1qAU03RpCgnH0zRLhO7/P6jBpm1n/vDmZsbDM/Jzb+70T
+ 8+1e7WT/W/ahxwZHQA1nDSQWZI/LAMuMG5V51g8yOTzMVGbnK6rZTRm3E
+ wTyjDN9DNO69koJIklG/h2FBeUUCk+Svlxsaj+AjJ0rkZgUkspXTD/Rq+
+ 90kw3P2EYEq95x7vy1BrvO1t4OzTq04LeUKgEBL1PdyVgKtjJAYT0OaaW
+ HFVnoAjwEM5EI2tDMM93GQV1O4W5WX6088JLF+itAVGB0IjattHgu4u/z
+ Kl9a3vcIAOiKlKuwdxhu0fxft+PWY2zTcnPNo92vh2AXz9/3VdOcnPRlt g==;
+X-CSE-ConnectionGUID: L49WKDZYTIKDkemNDyP5nw==
+X-CSE-MsgGUID: MiPsdGeMRMC1lOqE5SCVKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="50302484"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="50302484"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 04:31:01 -0700
+X-CSE-ConnectionGUID: bTUvcU5OSuOG/A1U6sK1Qg==
+X-CSE-MsgGUID: D/3k6aMgQTWE5OFRA3v0jA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="81060782"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.80])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 04:30:59 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, Badal Nilawar
+ <badal.nilawar@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v8 06/26] drm/xe/device: Update handling of
+ xe_force_wake_get return
+In-Reply-To: <20241008071115.1862704-7-himal.prasad.ghimiray@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241008071115.1862704-1-himal.prasad.ghimiray@intel.com>
+ <20241008071115.1862704-7-himal.prasad.ghimiray@intel.com>
+Date: Wed, 09 Oct 2024 14:30:56 +0300
+Message-ID: <87bjzta4y7.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv2=2C1/2?=
- =?utf-8?q?=5D_drm/xe=3A_fix_unbalanced_rpm_put=28=29_with_fence=5Ffini=28?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Oct 2024 11:28:04 -0000
-Message-ID: <172847328417.1209195.2265098193668820469@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241009084808.204432-3-matthew.auld@intel.com>
-In-Reply-To: <20241009084808.204432-3-matthew.auld@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,141 +68,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3992077145526728884==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 08 Oct 2024, Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com> wrote:
+>  void xe_device_l2_flush(struct xe_device *xe)
+>  {
+>  	struct xe_gt *gt;
+> -	int err;
+> +	uint fw_ref;
 
-== Series Details ==
+uint?
 
-Series: series starting with [v2,1/2] drm/xe: fix unbalanced rpm put() with fence_fini()
-URL   : https://patchwork.freedesktop.org/series/139757/
-State : success
+>  
+>  	gt = xe_root_mmio_gt(xe);
+>  
+>  	if (!XE_WA(gt, 16023588340))
+>  		return;
+>  
+> -	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+> -	if (err)
+> +	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+> +	if (!fw_ref)
+>  		return;
+>  
+>  	spin_lock(&gt->global_invl_lock);
+> @@ -929,7 +932,7 @@ void xe_device_l2_flush(struct xe_device *xe)
+>  		xe_gt_err_once(gt, "Global invalidation timeout\n");
+>  	spin_unlock(&gt->global_invl_lock);
+>  
+> -	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+> +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+>  }
+>  
+>  u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
 
-== Summary ==
-
-CI Bug Log - changes from xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff_BAT -> xe-pw-139757v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139757v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-
-
-Build changes
--------------
-
-  * Linux: xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff -> xe-pw-139757v1
-
-  IGT_8061: 8061
-  xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff
-  xe-pw-139757v1: 139757v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/index.html
-
---===============3992077145526728884==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/xe: fix unbalanced rpm put() with fence_fini()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139757/">https://patchwork.freedesktop.org/series/139757/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff_BAT -&gt; xe-pw-139757v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139757v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139757v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff -&gt; xe-pw-139757v1</li>
-</ul>
-<p>IGT_8061: 8061<br />
-  xe-2030-97b4690ecb1eafab876fe8be401d0d45bb5eb5ff: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff<br />
-  xe-pw-139757v1: 139757v1</p>
-
-</body>
-</html>
-
---===============3992077145526728884==--
+-- 
+Jani Nikula, Intel
