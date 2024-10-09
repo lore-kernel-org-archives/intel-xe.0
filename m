@@ -4,59 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6141ACED61D
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 07:57:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDD3ACED61D
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 08:00:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F13D10E67E;
-	Wed,  9 Oct 2024 07:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F76210E67A;
+	Wed,  9 Oct 2024 08:00:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N8BRMJpH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cw4uHIFN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F1410E67C;
- Wed,  9 Oct 2024 07:57:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F304510E67A;
+ Wed,  9 Oct 2024 08:00:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728460629; x=1759996629;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tQoimHe7GN5mmswkf8Zh8FLWIPDj683O31mxdXLeLtM=;
- b=N8BRMJpHWvdKqxb77K7w2ut65QL9LKMWBMiU6xewyhAwrVWp5mEk8F9k
- 06c162J7/h+NJIAZcHFfI4BDL2RRu/Uc4XHMWe1Nzyo69QIQmO1Hg14Oi
- hkIRQlzBg/t/PwhnzibNURURtGCi42F07Tdgikn7t73N+jbPyFAwQqxyG
- UtrDpfEg+isbAEo8RrHTcr6LUDhLziMSANerC59UlloGiBv+P5RZH2pxX
- odKNs4yoh3J8Xl+xnAfLY3OHNCWPAOBzyIXkVnlHa9JeEc4B1FwF6KC4Y
- wICyOQ4B+WSy9IWUduRSxA2nETimg+byf1vRav+LViwKxEl9D9rXKqd95 w==;
-X-CSE-ConnectionGUID: n7iJVsCMToGFgtSXH8j10A==
-X-CSE-MsgGUID: pVdvme4aSea7ZwAHs5vb3A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="38331062"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="38331062"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 00:57:09 -0700
-X-CSE-ConnectionGUID: q0tPk+L4Qc+HaOcViB7PFw==
-X-CSE-MsgGUID: 3b8KrrE3RNCJPlYUlhXD1w==
+ t=1728460847; x=1759996847;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=X5Dfbqv7Nkw22/0CScbgBIGsF0hB+LEpROaW0FgeghM=;
+ b=Cw4uHIFNuV4m6IAA37kopDl0D9SyH9KvZBD00ZJF7Tj6yv6HIqLFbB46
+ 0MMDHIpflrGFw2hW1/84Gqx6+YwTarV5ZDAoWRKaztiIWAkHEevkCXv6W
+ 8mYoEKsLwK2H9+1r32qMZRdVFu7wvU9uLstdpD30wQwJdzMZ9danTyatF
+ Spb72V1DcikfWciQyntUF1YT/vSQMN7rGMpviCMlhTCPzLYVgAivv/cx+
+ duzrxFNxPSI2HPsHkBANTZJgecv7xm4LVf66CoxEpZqnt2OGWmF1f0HyV
+ Ip79GNEdfMsFLWr3mLSpTjWATBsd3x0PpPATiEiWsV4V4BMSHsxAno07s A==;
+X-CSE-ConnectionGUID: 7tf6qqB7Qrmvj9P3cGoCLg==
+X-CSE-MsgGUID: 7FUts6RaSzGnou/sSRpE/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27694029"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27694029"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 01:00:47 -0700
+X-CSE-ConnectionGUID: K98xMOjVSFOEkwHLmsYsCA==
+X-CSE-MsgGUID: OR7jKexLTJuREao8BW2T6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76043534"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.80])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 00:57:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>
-Subject: Re: [PATCH 10/10] drm/i915/xe3lpd: Add powerdown value of eDP over
- type c
-In-Reply-To: <20241008223741.82790-11-matthew.s.atwood@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
- <20241008223741.82790-11-matthew.s.atwood@intel.com>
-Date: Wed, 09 Oct 2024 10:57:03 +0300
-Message-ID: <87h69lbtf4.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76989952"
+Received: from yarbov-mobl2.ger.corp.intel.com (HELO [10.245.131.59])
+ ([10.245.131.59])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 01:00:41 -0700
+Message-ID: <a156ef31-2614-41c9-9df6-acd6d2fcf6cb@linux.intel.com>
+Date: Wed, 9 Oct 2024 10:00:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/guc: Fix deference after check
+To: "Everest K.C." <everestkc@everestkc.com.np>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: skhan@linuxfoundation.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241008205352.4480-1-everestkc@everestkc.com.np>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20241008205352.4480-1-everestkc@everestkc.com.np>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,38 +74,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 08 Oct 2024, Matt Atwood <matthew.s.atwood@intel.com> wrote:
-> From: Suraj Kandpal <suraj.kandpal@intel.com>
+
+On 10/8/2024 10:53 PM, Everest K.C. wrote:
+> The `if (!snapshot->copy)` evaluates to True only when `snapshot->copy`
+> is Null. Thus, derefrencing `snapshot->copy` inside this if block is
+> equivalent to Null pointer derefrencing.
+> The `if` condition is now changed to evaluate to true only when
+> `snapshot->copy` is not Null.
+> This issue was reported by Coverity Scan.
 >
-> Add condition for P2.PG power down value.
->
-> Bspec: 74494
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+
+Fixes: d8ce1a977226 ("drm/xe/guc: Use a two stage dump for GuC logs and add more info")
+
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/xe_guc_log.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 1c8c2a2b05e1..3d95ee65a9f1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -3144,7 +3144,8 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
->  	if (intel_encoder_is_c10phy(encoder))
->  		return CX0_P2PG_STATE_DISABLE;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+> index 7fbc56cceaba..4e1a5e8ba1e3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_log.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
+> @@ -122,7 +122,7 @@ void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
+>  	if (!snapshot)
+>  		return;
 >  
-> -	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
-> +	if ((IS_BATTLEMAGE(i915) && encoder->port == PORT_A) ||
-> +	    (DISPLAY_VER(i915) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
->  		return CX0_P2PG_STATE_DISABLE;
-
-Does this match what the subject says?
-
-BR,
-Jani.
-
->  
->  	return CX0_P4PG_STATE_DISABLE;
-
--- 
-Jani Nikula, Intel
+> -	if (!snapshot->copy) {
+> +	if (snapshot->copy) {
+>  		for (i = 0; i < snapshot->num_chunks; i++)
+>  			kfree(snapshot->copy[i]);
+>  		kfree(snapshot->copy);
