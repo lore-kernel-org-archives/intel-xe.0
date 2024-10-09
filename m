@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E820CEE330
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 16:30:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE6FECEE330
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 16:30:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66BC910E787;
-	Wed,  9 Oct 2024 16:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE4F10E789;
+	Wed,  9 Oct 2024 16:30:16 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6173D10E787;
- Wed,  9 Oct 2024 16:30:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0453410E78A;
+ Wed,  9 Oct 2024 16:30:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Align_framebuffers_a?=
- =?utf-8?q?ccording_to_what_display_minimum_alignment_states?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Align_framebuffers_accord?=
+ =?utf-8?q?ing_to_what_display_minimum_alignment_states?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Oct 2024 16:30:05 -0000
-Message-ID: <172849140539.1210980.6109820011232190836@2413ebb6fbb6>
+Date: Wed, 09 Oct 2024 16:30:16 -0000
+Message-ID: <172849141601.1210981.17230005960752326676@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241009151947.2240099-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20241009151947.2240099-1-juhapekka.heikkila@gmail.com>
@@ -48,10 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d0efccb24641 drm-tip: 2024y-10m-09d-15h-57m-48s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: add interface to request physical alignment for buffer objects
-Applying: drm/xe/display: align framebuffers according to hw requirements
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 642bf6b6ed052ed1a17abbc2d5be815ce85f1db4
+Author: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date:   Wed Oct 9 18:19:47 2024 +0300
+
+    drm/xe/display: align framebuffers according to hw requirements
+    
+    Align framebuffers in memory according to hw requirements instead of
+    default page size alignment.
+    
+    Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
++ /mt/dim checkpatch d0efccb2464195163a7194aa33c686feb84ab52c drm-intel
+159ee9444784 drm/xe: add interface to request physical alignment for buffer objects
+642bf6b6ed05 drm/xe/display: align framebuffers according to hw requirements
 
 
