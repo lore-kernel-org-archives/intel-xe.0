@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 995D6CEE345
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 19:56:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99079CEE343
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Oct 2024 20:02:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E63F10E7E5;
-	Wed,  9 Oct 2024 19:56:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 648C610E7E5;
+	Wed,  9 Oct 2024 20:02:35 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44FDA10E7E5;
- Wed,  9 Oct 2024 19:56:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2226431255892592195=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97D6810E7E5;
+ Wed,  9 Oct 2024 20:02:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_GuC_Buffer_Cache?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Enlarge_th?=
+ =?utf-8?q?e_invalidation_timeout_from_150_to_500?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Oct 2024 19:56:50 -0000
-Message-ID: <172850381027.1212123.16071113200100093910@2413ebb6fbb6>
+Date: Wed, 09 Oct 2024 20:02:34 -0000
+Message-ID: <172850415461.1212136.1215877019958892075@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241009172125.1539-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20241009172125.1539-1-michal.wajdeczko@intel.com>
+References: <20241009172208.706894-1-shuicheng.lin@intel.com>
+In-Reply-To: <20241009172208.706894-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,184 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2226431255892592195==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: GuC Buffer Cache
-URL   : https://patchwork.freedesktop.org/series/139801/
+Series: drm/xe: Enlarge the invalidation timeout from 150 to 500
+URL   : https://patchwork.freedesktop.org/series/139805/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef_BAT -> xe-pw-139801v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-bmg-1 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139801v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#288]) +32 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][5] -> [INCOMPLETE][6] ([Intel XE#2874]) +1 other test incomplete
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#2229])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [INCOMPLETE][8] ([Intel XE#2874]) -> [PASS][9] +1 other test pass
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d5a8081b7a26 drm-tip: 2024y-10m-09d-19h-27m-03s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Enlarge the invalidation timeout from 150 to 500
 
 
-Build changes
--------------
-
-  * Linux: xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef -> xe-pw-139801v1
-
-  IGT_8061: 8061
-  xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef: 5ac8672cc80fd6228fbdcee22771f9f86b811eef
-  xe-pw-139801v1: 139801v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/index.html
-
---===============2226431255892592195==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GuC Buffer Cache</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139801/">https://patchwork.freedesktop.org/series/139801/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef_BAT -&gt; xe-pw-139801v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-bmg-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139801v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139801v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef -&gt; xe-pw-139801v1</li>
-</ul>
-<p>IGT_8061: 8061<br />
-  xe-2040-5ac8672cc80fd6228fbdcee22771f9f86b811eef: 5ac8672cc80fd6228fbdcee22771f9f86b811eef<br />
-  xe-pw-139801v1: 139801v1</p>
-
-</body>
-</html>
-
---===============2226431255892592195==--
