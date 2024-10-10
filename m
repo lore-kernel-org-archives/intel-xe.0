@@ -4,58 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84DE5D2444F
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:36:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3163ED24459
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:43:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D5210E151;
-	Thu, 10 Oct 2024 22:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E040010E151;
+	Thu, 10 Oct 2024 22:43:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kP3HnD+p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bzPi3t3I";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39F3C10E151;
- Thu, 10 Oct 2024 22:36:33 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id EBB625C0161;
- Thu, 10 Oct 2024 22:36:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73B96C4CEC5;
- Thu, 10 Oct 2024 22:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1728599791;
- bh=2mWGKo67DpHVHlPBRBwjISoktypQVqAGgZpcasr0OFQ=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=kP3HnD+p/ALWJIne5QXQB/acHwiuepBOQfXYzd0eCGXIH+jnCCXUf2G7b523XVZX0
- IGwHkPQ2zrO/Lr1kb9JILZpLncYkVhiA0gD0ANREITE1HH00nC9Jkj2UUqioBL/n+w
- 3OvEynB80KcyGi4AxPrFhdmXRppzgxAiMc21IgRRfdjo4L/Yyf9M8WajB7O4y3hN7U
- 4+nzrzQ+9hRg8KNQRDj5KR3AoZ4vgLxyxyiy04xPtcMD4TtPjt8RVNHBtaCy31nAPE
- OKbN47yZg2InzUH5/D8q+KMQxPK0Bcf6md8/An7y4yB+WEddn4LpTTw88iwbHIZcHn
- /Pi4LCFAC/W1A==
-Date: Thu, 10 Oct 2024 17:36:29 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-Cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v3 3/5] PCI: Allow IOV resources to be resized in
- pci_resize_resource
-Message-ID: <20241010223629.GA581425@bhelgaas>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16B510E151;
+ Thu, 10 Oct 2024 22:43:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728600197; x=1760136197;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WD5ucyteKj34lsvV8FVZQ99Ep/Idv9gNtcGw8dVs3EE=;
+ b=bzPi3t3IDQxBoW3NOHRe3mjZBkRFkYiDr6D6xxMxzOLF3Ez8hhloIyWq
+ YxuPnnzsoyZoL5XuqUQhso0SNHJbIGvLZeMA9mHuNghrogBBabf2XDkP6
+ wPCafah6ep+62/W2qiJfN49BdZrh3RhFljjgu1sK0ghfpms72adMz9ZHd
+ iIiYqWfW1LlXaJRdHu2gY2g5n6xoODW/VZcpkr7bZZV0kBN4N02DoCZ3S
+ RWuJ7++ZIPhXSLbICWk5jk60wPIsjZ87eAVcuc+LpScQ96anPnEc/Vb29
+ Tt8esQ/S1V050Wcr04LYJNEsvTUkygisyu9ovDWVM3aMCJ4FVAksBISCI Q==;
+X-CSE-ConnectionGUID: 0rBi2ItMSlKYNO1um7w/qw==
+X-CSE-MsgGUID: Imv3sSwCR9yC4H+84iADtQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39380862"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="39380862"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 15:43:17 -0700
+X-CSE-ConnectionGUID: Wn85GRcFRoCq9xr69HzePg==
+X-CSE-MsgGUID: bdUsZiXcR3y45nEqtHFOtQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76732002"
+Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 15:43:16 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH v2 00/10] Add xe3lpd edp enabling
+Date: Thu, 10 Oct 2024 15:43:01 -0700
+Message-ID: <20241010224311.50133-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.45.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241010103203.382898-4-michal.winiarski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,76 +65,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 10, 2024 at 12:32:01PM +0200, Michał Winiarski wrote:
-> Similar to regular resizable BAR, VF BAR can also be resized.
-> The structures are very similar, which means we can reuse most of the
-> implementation. See PCIe r4.0, sec 9.3.7.4.
+This series defines the xe3lpd definition, which is functionally
+idential to the xe2lpd definition for now. This series then adds
+additional requirements mostly for edp output of display through type c.
+Additional patches will be required for display and will follow
 
-Add blank line between paragraphs.
+v2: cdclk table update, multiple patches have macros changed from
+functions to multiple platform specific paths. Several commit messages
+and subjects changed to be more accurate. PM demand patch changed to
+accurately reflect minimum number of pipes. Patch "drm/i915/xe3lpd: Add
+check to see if edp over type c is allowed" did not receive an update
+yet as the patch is still in discussion. 
 
-Add "()" after function name in subject.
+Clint Taylor (1):
+  drm/i915/xe3lpd: reuse xe2lpd definition
 
-Add what the patch does in the commit log, not just what can be done.
+Matt Roper (3):
+  drm/i915/xe3lpd: Adjust watermark calculations
+  drm/i915/xe3lpd: Add new display power wells
+  drm/i915/xe3lpd: Update pmdemand programming
 
->  static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
->  {
-> +	int cap = PCI_EXT_CAP_ID_REBAR;
->  	unsigned int pos, nbars, i;
->  	u32 ctrl;
->  
-> -	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_REBAR);
-> +#ifdef CONFIG_PCI_IOV
-> +	if (pci_resource_is_iov(bar)) {
-> +		cap = PCI_EXT_CAP_ID_VF_REBAR;
-> +		bar -= PCI_IOV_RESOURCES;
-> +	}
-> +#endif
+Radhakrishna Sripada (1):
+  drm/i915/xe3lpd: Add cdclk changes
 
-Personal preference, but I'd rather set "cap" directly here instead of
-setting a default and then overriding it in some cases.  Setting it
-here means both settings are in the same place.
+Suraj Kandpal (5):
+  drm/i915/xe3lpd: Include hblank restriction for xe3lpd
+  drm/i915/xe3lpd: Add C20 Phy consolidated programming table
+  drm/i915/xe3lpd: Add new bit range of MAX swing setup
+  drm/i915/xe3lpd: Add check to see if edp over type c is allowed
+  drm/i915/xe3lpd: Add condition for EDP to powerdown P2.PG
 
-> +	pos = pci_find_ext_capability(pdev, cap);
->  	if (!pos)
->  		return -ENOTSUPP;
+ drivers/gpu/drm/i915/display/intel_alpm.c     |   9 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  61 +++++++-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  29 +++-
+ .../drm/i915/display/intel_display_device.c   |   6 +
+ .../drm/i915/display/intel_display_device.h   |   2 +
+ .../i915/display/intel_display_power_map.c    | 135 +++++++++++++++++-
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  16 +++
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  65 ++++++---
+ drivers/gpu/drm/i915/display/intel_pmdemand.h |   4 +-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  22 +--
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  18 ++-
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +
+ include/drm/intel/i915_pciids.h               |  12 ++
+ 15 files changed, 342 insertions(+), 48 deletions(-)
 
->  
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index c55f2d7a4f37e..e15fd8fe0f81f 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -584,6 +584,8 @@ static inline bool pci_resource_is_iov(int resno)
->  {
->  	return resno >= PCI_IOV_RESOURCES && resno <= PCI_IOV_RESOURCE_END;
->  }
-> +void pci_iov_resource_set_size(struct pci_dev *dev, int resno, resource_size_t size);
-> +bool pci_iov_is_memory_decoding_enabled(struct pci_dev *dev);
->  extern const struct attribute_group sriov_pf_dev_attr_group;
->  extern const struct attribute_group sriov_vf_dev_attr_group;
->  #else
-> @@ -607,6 +609,12 @@ static inline bool pci_resource_is_iov(int resno)
->  {
->  	return false;
->  }
-> +static inline void pci_iov_resource_set_size(struct pci_dev *dev, int resno,
-> +					     resource_size_t size) { }
-> +static inline bool pci_iov_is_memory_decoding_enabled(struct pci_dev *dev)
-> +{
-> +	return false;
-> +}
->  #endif /* CONFIG_PCI_IOV */
->  
->  #ifdef CONFIG_PCIE_PTM
-> diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
-> index e2cf79253ebda..95a13a5fa379c 100644
-> --- a/drivers/pci/setup-res.c
-> +++ b/drivers/pci/setup-res.c
-> @@ -425,13 +425,37 @@ void pci_release_resource(struct pci_dev *dev, int resno)
->  }
->  EXPORT_SYMBOL(pci_release_resource);
->  
-> +static bool pci_resize_is_memory_decoding_enabled(struct pci_dev *dev, int resno)
+-- 
+2.45.0
 
-Wrap this (and others) to fit in 80 columns like the rest of the file.
-
-Bjorn
