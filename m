@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BE79D24456
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:28:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D6EDD2444F
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:30:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1737610E9E5;
-	Thu, 10 Oct 2024 22:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AEFC10E9E5;
+	Thu, 10 Oct 2024 22:30:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CrY54C5T";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UjE3esmT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5DA10E9E5
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 22:28:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728599294; x=1760135294;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=EUv1RGwDApeL/BsiVZ0JGv1sFVgohJuEXU9UQQP3buA=;
- b=CrY54C5TujnFCMdJ7N8IZTOaPDq+ZqsK2tgI8GtHix8pRzmwgVoejufu
- 0/UzSZGKU0CEcIBk7NwOgxLm+VKJJyUTUA3ncZIYVSOuFbLnnN+LyeOol
- 7rdbOs/jDNpqsMaYKBvrb7s3MiR1g+doGx6jqWc25qAaTRNyhoX1ukTxv
- iBpeDa+uuPGq+3QAGcRnbs0N7FcyUYBcQkQ4MTBgoq/URiC0Fm2QgiZps
- SyyFg2pguKbrCYuiefqV18gSwcdusMY3FsWvKVnzeRNIN12qCsGD8tp2Z
- LbzhufzO/NIFUqXd5OkDrOpBfnINtZJI2oiGcZE9d2SEi1UbLBIF1kcLX A==;
-X-CSE-ConnectionGUID: A7AOdIuLRZOm44n7Rqgkmw==
-X-CSE-MsgGUID: clNRWYsaS0qQKzd3AntVMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="27880617"
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="27880617"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:28:14 -0700
-X-CSE-ConnectionGUID: +ywGP5HqSIWGNTOsxQomaQ==
-X-CSE-MsgGUID: wxUDRwFySFGOLoLbotVkdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="107589984"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
- by orviesa002.jf.intel.com with ESMTP; 10 Oct 2024 15:28:12 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D0AB10E9E5;
+ Thu, 10 Oct 2024 22:30:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id A5D965C062A;
+ Thu, 10 Oct 2024 22:30:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24D8BC4CEC5;
+ Thu, 10 Oct 2024 22:30:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1728599419;
+ bh=RmmjDvDZ7iJUH7ngcCFh624/xsW4HOovYjuPHee/7VI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=UjE3esmTX8+GJNF4Z+olw+k/0MBVzlX+Exnc4NXTcyz7/XGvQP93CbXMtkqgXeq2M
+ eEb1WKi3YFEIJtuqB3us4HyKnAdfT37xKrmmtt4azZCZl32W3ysP3Ph9wLeTldCBnL
+ 594f2SyzMueaWevU3StH5oRsHt1nHrXMHPFpOtb1sJ6guQNEHQ9G0ZTw1QoB12ROGV
+ DJkQWXGM/sjMj2Ej33uH+4ncmZZ0VuRH0I0ZVMdFuHzdi29bjVca0sXNVCzEFVTQTm
+ 16nl0LRI50D1DVSFo8QYcRMxBvZQMfK5MK9vwVi0k7gSC1UMwoo+bsr1Yq5X/GwKQE
+ bnJj/C6sKVuQA==
+Date: Thu, 10 Oct 2024 17:30:17 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+Cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+ Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Zongyao Bai <zongyao.bai@intel.com>
-Subject: [PATCH v3] drm/xe: Enlarge the invalidation timeout from 150 to 500
-Date: Thu, 10 Oct 2024 21:53:46 +0000
-Message-Id: <20241010215346.1002048-1-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.25.1
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v3 2/5] PCI: Add a helper to identify IOV resources
+Message-ID: <20241010223017.GA581272@bhelgaas>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241010103203.382898-3-michal.winiarski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,40 +69,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are error messages like below that are occurring during stress testing:
-"[   31.004009] xe 0000:03:00.0: [drm] ERROR GT0: Global invalidation timeout"
-Previously it was hitting this 3 with 1000 executions of warm reboot.
-After raising it to 500, 1000 warm reboot executions passed and it didn't
-fail.
+On Thu, Oct 10, 2024 at 12:32:00PM +0200, Michał Winiarski wrote:
+> There are multiple places where special handling is required for IOV
+> resources.
+> Extract it to a helper and drop a few ifdefs.
 
-Due to the way xe_mmio_wait32() is implemented, the timeout is able to expire
-early when the register matches the expected value due to the wait increments
-starting small. So, the larger timeout value should have no effect during
-normal use cases.
+Add blank line between paragraphs.
 
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Tested-by: Zongyao Bai <zongyao.bai@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Include name of helper in subject line and commit log, i.e.,
+pci_resource_is_iov().  No point in guessing or making us extract it
+from the patch.  This will also make the commit log say more clearly
+what the patch does.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index cd241a8e1838..60aebf7561ec 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -925,7 +925,7 @@ void xe_device_l2_flush(struct xe_device *xe)
- 	spin_lock(&gt->global_invl_lock);
- 	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
- 
--	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
-+	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 500, NULL, true))
- 		xe_gt_err_once(gt, "Global invalidation timeout\n");
- 	spin_unlock(&gt->global_invl_lock);
- 
--- 
-2.25.1
-
+> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+> ---
+>  drivers/pci/pci.h       | 18 ++++++++++++++----
+>  drivers/pci/setup-bus.c |  5 +----
+>  drivers/pci/setup-res.c |  4 +---
+>  3 files changed, 16 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 14d00ce45bfa9..c55f2d7a4f37e 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -580,6 +580,10 @@ void pci_iov_update_resource(struct pci_dev *dev, int resno);
+>  resource_size_t pci_sriov_resource_alignment(struct pci_dev *dev, int resno);
+>  void pci_restore_iov_state(struct pci_dev *dev);
+>  int pci_iov_bus_range(struct pci_bus *bus);
+> +static inline bool pci_resource_is_iov(int resno)
+> +{
+> +	return resno >= PCI_IOV_RESOURCES && resno <= PCI_IOV_RESOURCE_END;
+> +}
+>  extern const struct attribute_group sriov_pf_dev_attr_group;
+>  extern const struct attribute_group sriov_vf_dev_attr_group;
+>  #else
+> @@ -589,12 +593,20 @@ static inline int pci_iov_init(struct pci_dev *dev)
+>  }
+>  static inline void pci_iov_release(struct pci_dev *dev) { }
+>  static inline void pci_iov_remove(struct pci_dev *dev) { }
+> +static inline void pci_iov_update_resource(struct pci_dev *dev, int resno) { }
+> +static inline resource_size_t pci_sriov_resource_alignment(struct pci_dev *dev, int resno)
+> +{
+> +	return 0;
+> +}
+>  static inline void pci_restore_iov_state(struct pci_dev *dev) { }
+>  static inline int pci_iov_bus_range(struct pci_bus *bus)
+>  {
+>  	return 0;
+>  }
+> -
+> +static inline bool pci_resource_is_iov(int resno)
+> +{
+> +	return false;
+> +}
+>  #endif /* CONFIG_PCI_IOV */
+>  
+>  #ifdef CONFIG_PCIE_PTM
+> @@ -616,12 +628,10 @@ unsigned long pci_cardbus_resource_alignment(struct resource *);
+>  static inline resource_size_t pci_resource_alignment(struct pci_dev *dev,
+>  						     struct resource *res)
+>  {
+> -#ifdef CONFIG_PCI_IOV
+>  	int resno = res - dev->resource;
+>  
+> -	if (resno >= PCI_IOV_RESOURCES && resno <= PCI_IOV_RESOURCE_END)
+> +	if (pci_resource_is_iov(resno))
+>  		return pci_sriov_resource_alignment(dev, resno);
+> -#endif
+>  	if (dev->class >> 8 == PCI_CLASS_BRIDGE_CARDBUS)
+>  		return pci_cardbus_resource_alignment(res);
+>  	return resource_alignment(res);
+> diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
+> index 23082bc0ca37a..8909948bc9a9f 100644
+> --- a/drivers/pci/setup-bus.c
+> +++ b/drivers/pci/setup-bus.c
+> @@ -1093,17 +1093,14 @@ static int pbus_size_mem(struct pci_bus *bus, unsigned long mask,
+>  			     (r->flags & mask) != type3))
+>  				continue;
+>  			r_size = resource_size(r);
+> -#ifdef CONFIG_PCI_IOV
+>  			/* Put SRIOV requested res to the optional list */
+> -			if (realloc_head && i >= PCI_IOV_RESOURCES &&
+> -					i <= PCI_IOV_RESOURCE_END) {
+> +			if (realloc_head && pci_resource_is_iov(i)) {
+>  				add_align = max(pci_resource_alignment(dev, r), add_align);
+>  				r->end = r->start - 1;
+>  				add_to_list(realloc_head, dev, r, r_size, 0 /* Don't care */);
+>  				children_add_size += r_size;
+>  				continue;
+>  			}
+> -#endif
+>  			/*
+>  			 * aligns[0] is for 1MB (since bridge memory
+>  			 * windows are always at least 1MB aligned), so
+> diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
+> index c6d933ddfd464..e2cf79253ebda 100644
+> --- a/drivers/pci/setup-res.c
+> +++ b/drivers/pci/setup-res.c
+> @@ -127,10 +127,8 @@ void pci_update_resource(struct pci_dev *dev, int resno)
+>  {
+>  	if (resno <= PCI_ROM_RESOURCE)
+>  		pci_std_update_resource(dev, resno);
+> -#ifdef CONFIG_PCI_IOV
+> -	else if (resno >= PCI_IOV_RESOURCES && resno <= PCI_IOV_RESOURCE_END)
+> +	else if (pci_resource_is_iov(resno))
+>  		pci_iov_update_resource(dev, resno);
+> -#endif
+>  }
+>  
+>  int pci_claim_resource(struct pci_dev *dev, int resource)
+> -- 
+> 2.47.0
+> 
