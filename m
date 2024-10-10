@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1600AD24459
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:31:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20339D24459
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:33:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD46010E9E9;
-	Thu, 10 Oct 2024 22:31:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PEAUnbow";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3A3310E9E5;
- Thu, 10 Oct 2024 22:31:39 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id A3FB65C5EB3;
- Thu, 10 Oct 2024 22:31:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B36C4CEC5;
- Thu, 10 Oct 2024 22:31:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1728599498;
- bh=bFO4DmRffhott1966dfnOLbsiTu6pSb4c8w8UhTpjXc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=PEAUnbowtl1iVcHAPwHU1Q38imbBuUiqwNoWd50OCPaB4jsUM6LQw1WuKjTB48RIO
- 7HiIdcjJuaQ0A3ce0FKdRqF8XcG8HWIjsKAnRGscfKJncDpv8gzhIXhyuw5TwwLK74
- UUpYyXUW2Vqu2y4cRLnW8epl5/c17nkM4+RwsPIFihOHpxTJpb6YMfKIvtjcS0e11+
- oVIx5/bpC3sgBKAN7uuBfLbnbaI9squHZBhiXegc3O68/t/RxqPZ8+wKLT8tg6LoYE
- zfpglkVb5ySM6KYWzptrrBu7GQiDsm2LJN15GGhmZ51pk3R3RLjskbXEZz2kdp30fW
- eCViZKQgBpUXQ==
-Date: Thu, 10 Oct 2024 17:31:36 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-Cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v3 1/5] PCI/IOV: Restore VF resizable BAR state after reset
-Message-ID: <20241010223136.GA581380@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5FF010E9EE;
+	Thu, 10 Oct 2024 22:33:42 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56B1210E9EE;
+ Thu, 10 Oct 2024 22:33:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241010103203.382898-2-michal.winiarski@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Enlarge_th?=
+ =?utf-8?q?e_invalidation_timeout_from_150_to_500_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 10 Oct 2024 22:33:42 -0000
+Message-ID: <172859962235.1237784.12386436786184330508@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241010215346.1002048-1-shuicheng.lin@intel.com>
+In-Reply-To: <20241010215346.1002048-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,90 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 10, 2024 at 12:31:59PM +0200, Michał Winiarski wrote:
-> Similar to regular resizable BAR, VF BAR can also be resized, e.g. by
-> the system firmware, or the PCI subsystem itself.
-> Add the capability ID and restore it as a part of IOV state.
-> See PCIe r4.0, sec 9.3.7.4.
+== Series Details ==
 
-Add blank line between paragraphs.
+Series: drm/xe: Enlarge the invalidation timeout from 150 to 500 (rev3)
+URL   : https://patchwork.freedesktop.org/series/139805/
+State : success
 
-> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/pci/iov.c             | 29 ++++++++++++++++++++++++++++-
->  include/uapi/linux/pci_regs.h |  1 +
->  2 files changed, 29 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-> index aaa33e8dc4c97..fd5c059b29c13 100644
-> --- a/drivers/pci/iov.c
-> +++ b/drivers/pci/iov.c
-> @@ -7,6 +7,7 @@
->   * Copyright (C) 2009 Intel Corporation, Yu Zhao <yu.zhao@intel.com>
->   */
->  
-> +#include <linux/bitfield.h>
->  #include <linux/pci.h>
->  #include <linux/slab.h>
->  #include <linux/export.h>
-> @@ -862,6 +863,30 @@ static void sriov_release(struct pci_dev *dev)
->  	dev->sriov = NULL;
->  }
->  
-> +static void sriov_restore_vf_rebar_state(struct pci_dev *dev)
-> +{
-> +	unsigned int pos, nbars, i;
-> +	u32 ctrl;
-> +
-> +	pos = pci_find_ext_capability(dev, PCI_EXT_CAP_ID_VF_REBAR);
-> +	if (!pos)
-> +		return;
-> +
-> +	pci_read_config_dword(dev, pos + PCI_REBAR_CTRL, &ctrl);
-> +	nbars = FIELD_GET(PCI_REBAR_CTRL_NBAR_MASK, ctrl);
-> +
-> +	for (i = 0; i < nbars; i++, pos += 8) {
-> +		int bar_idx, size;
-> +
-> +		pci_read_config_dword(dev, pos + PCI_REBAR_CTRL, &ctrl);
-> +		bar_idx = ctrl & PCI_REBAR_CTRL_BAR_IDX;
-> +		size = pci_rebar_bytes_to_size(dev->sriov->barsz[bar_idx]);
-> +		ctrl &= ~PCI_REBAR_CTRL_BAR_SIZE;
-> +		ctrl |= FIELD_PREP(PCI_REBAR_CTRL_BAR_SIZE, size);
-> +		pci_write_config_dword(dev, pos + PCI_REBAR_CTRL, ctrl);
-> +	}
-> +}
-> +
->  static void sriov_restore_state(struct pci_dev *dev)
->  {
->  	int i;
-> @@ -1021,8 +1046,10 @@ resource_size_t pci_sriov_resource_alignment(struct pci_dev *dev, int resno)
->   */
->  void pci_restore_iov_state(struct pci_dev *dev)
->  {
-> -	if (dev->is_physfn)
-> +	if (dev->is_physfn) {
-> +		sriov_restore_vf_rebar_state(dev);
->  		sriov_restore_state(dev);
-> +	}
->  }
->  
->  /**
-> diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
-> index 12323b3334a9c..a0cf701c4c3af 100644
-> --- a/include/uapi/linux/pci_regs.h
-> +++ b/include/uapi/linux/pci_regs.h
-> @@ -740,6 +740,7 @@
->  #define PCI_EXT_CAP_ID_L1SS	0x1E	/* L1 PM Substates */
->  #define PCI_EXT_CAP_ID_PTM	0x1F	/* Precision Time Measurement */
->  #define PCI_EXT_CAP_ID_DVSEC	0x23	/* Designated Vendor-Specific */
-> +#define PCI_EXT_CAP_ID_VF_REBAR 0x24	/* VF Resizable BAR */
->  #define PCI_EXT_CAP_ID_DLF	0x25	/* Data Link Feature */
->  #define PCI_EXT_CAP_ID_PL_16GT	0x26	/* Physical Layer 16.0 GT/s */
->  #define PCI_EXT_CAP_ID_NPEM	0x29	/* Native PCIe Enclosure Management */
-> -- 
-> 2.47.0
-> 
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 10f232fcfa47 drm-tip: 2024y-10m-10d-20h-57m-03s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Enlarge the invalidation timeout from 150 to 500
+
+
