@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B88CF11E6
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 12:46:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB97FCF11EB
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 12:51:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8273E10E008;
-	Thu, 10 Oct 2024 12:46:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuG0LmgP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A789E10E8E1;
- Thu, 10 Oct 2024 12:46:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728564380; x=1760100380;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sP9GNrSRwPDBt1snhmFN73pN7SrkBxUtBVajhe/Yi6E=;
- b=kuG0LmgPeFUlA/XQGIM0oB+AWsPaNqToEAfj9iBhX+0X9MjSLVOXXGBw
- dr733r790EbplFyqaRONVqO7NEVNA7JnXbdLVi/xft459PK9WAbTTilQI
- 4UxEsZEyyeepHTGXtprnWOzd/rP2FFYFcghwV38yqfBa5rntGnm3nOIqR
- eDmICfrYwXDAq3PS2fRAA+JlS5ijVBvmgGBb/2ptdGuTl2Nh2w7212ShJ
- GZS81BW2OOCKLljCl2R/y9XvZgY5Wl9apMtP19Oef9PIXgqa3FdWd2hqG
- oBcpqrE5RDPwHA58bcYuGSt51HJf/HNU7DCGYFwtMHeEoJosDAxii4hsp w==;
-X-CSE-ConnectionGUID: qu7rPH7xQWO9/5cTrTb2bg==
-X-CSE-MsgGUID: gPVnYCenRn2cdOqS5Fl1DQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="39308929"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="39308929"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 05:46:20 -0700
-X-CSE-ConnectionGUID: K8h8heRJQzaO7bhB/AEYAw==
-X-CSE-MsgGUID: 3+YFvUi5QqKlVYRaqyJWRw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="76487049"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO fedora..)
- ([10.245.244.227])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 05:46:17 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: [PATCH] drm/ttm: Fix incorrect use of kernel-doc format
-Date: Thu, 10 Oct 2024 14:45:45 +0200
-Message-ID: <20241010124545.82023-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.46.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9776110E2CA;
+	Thu, 10 Oct 2024 12:51:40 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C665010E2CA;
+ Thu, 10 Oct 2024 12:51:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/ttm=3A_Fix_incor?=
+ =?utf-8?q?rect_use_of_kernel-doc_format?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 10 Oct 2024 12:51:38 -0000
+Message-ID: <172856469880.1215105.5178588920808653526@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241010124545.82023-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20241010124545.82023-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,33 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a missing colon.
+== Series Details ==
 
-Cc: dri-devel@lists.freedesktop.org
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-Closes: https://lore.kernel.org/linux-next/20241010160942.192caf60@canb.auug.org.au/
-Fixes: fc5d96670eb2 ("drm/ttm: Move swapped objects off the manager's LRU list")
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- include/drm/ttm/ttm_device.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/ttm: Fix incorrect use of kernel-doc format
+URL   : https://patchwork.freedesktop.org/series/139844/
+State : success
 
-diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
-index 438358f72716..39b8636b1845 100644
---- a/include/drm/ttm/ttm_device.h
-+++ b/include/drm/ttm/ttm_device.h
-@@ -252,7 +252,7 @@ struct ttm_device {
- 	spinlock_t lru_lock;
- 
- 	/**
--	 * @unevictable Buffer objects which are pinned or swapped and as such
-+	 * @unevictable: Buffer objects which are pinned or swapped and as such
- 	 * not on an LRU list.
- 	 */
- 	struct list_head unevictable;
--- 
-2.46.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 8451eadce1bc drm-tip: 2024y-10m-10d-12h-27m-42s UTC integration manifest
+=== git am output follows ===
+Applying: drm/ttm: Fix incorrect use of kernel-doc format
+
 
