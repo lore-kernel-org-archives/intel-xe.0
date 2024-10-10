@@ -4,73 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38D6ED0D795
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1461D0D79C
 	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01FC510EAF2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA2BC10EAF8;
 	Fri, 11 Oct 2024 13:55:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gPkZe+35";
+	dkim=pass (2048-bit key; unprotected) header.d=everestkc-com-np.20230601.gappssmtp.com header.i=@everestkc-com-np.20230601.gappssmtp.com header.b="B3OLfkIs";
 	dkim-atps=neutral
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BED9B10E213;
- Mon,  7 Oct 2024 17:33:08 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-2e0b467da03so578850a91.2; 
- Mon, 07 Oct 2024 10:33:08 -0700 (PDT)
+Received: from mail-oi1-f196.google.com (mail-oi1-f196.google.com
+ [209.85.167.196])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 342AC10E04D
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 16:59:22 +0000 (UTC)
+Received: by mail-oi1-f196.google.com with SMTP id
+ 5614622812f47-3e4d624ac28so757558b6e.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 09:59:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728322388; x=1728927188; darn=lists.freedesktop.org;
+ d=everestkc-com-np.20230601.gappssmtp.com; s=20230601; t=1728579561;
+ x=1729184361; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=QBVwovZqhJiutGf/q57pmoMot4Vg5YimdUN+GQvqspM=;
- b=gPkZe+35mIYIIdSlBeFNfXy4WiHRuGF/z1dJ+E9rRUodAD+P+WploIqkG2wKqw1e/u
- ZEc2nn/OGnRDCESydqfU/qmvEv1bpKOfpCnvhVZlNFoJYuJytRfpQ4M/VyK8x4ocL431
- 31DGelrwDya20cbqWz1v9bIb1t9VKl3xG3CAqCg2to35CjueeduD5kQSNpquAQy7HcNE
- QySm+KERJraWGGaz5ceba08AgbO7EBQ03oTptwTw1Yk37BS4qpGeOozon0CvX3g1piCn
- HE5mu7rvLXujf4ZvPsY5gJiGzxH/cmXtviMSY/Damyu3JtcRyZraLJAPIga4fvr5igVH
- GuGw==
+ bh=2O3NkkjIemIsAieDahgo6WCW7UZHnrJROVrMuNKxroU=;
+ b=B3OLfkIsdTDV7VX5pO/OQyViOYI21/8prf2eWYw/sZKTuJPI0vamKYARZj6kuSbxOP
+ dpIFzItmFRzXPeC3NYFGu/CtIAq88cfdjXJIexPpiN9HXyre6a4nntpVuQA12pCs19zi
+ yrqUfUfo/GGxBy6IwjAo0GSmOWtS3cPYNFg9XT4ru6199tjB4DSkBT9lCXvry39HKtkb
+ TnoMNNbiq7OLVYuK3lR9/FUsRf9Uq6nMHIRXIE/84d9mVvYxcaUvnbMliAel1eTMa5sR
+ jTxCMz9v28Se8Pms9FdPB1WcJs3kxDGzRen//N3vlC4KbaeXcwELNdm/s7+wRByNVLJo
+ E9qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728322388; x=1728927188;
+ d=1e100.net; s=20230601; t=1728579561; x=1729184361;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=QBVwovZqhJiutGf/q57pmoMot4Vg5YimdUN+GQvqspM=;
- b=BB5Oli/lTVSlWhuQVtYEsU1lFP7WFXL/t71TWdKRD1uswK2dSBGGposlsTGdTkQfSl
- 8W2ossUCHxkuncO9kuC3TQZt4szv/XjMokZTITlTehUl9/M6O8BZHhqKUxfj+MtDAnf4
- 8HGij6vH3jmsjnF6yqwt9a/rJeKDKtzXzSYK2X2C+zBs8PkQHqAzCmiBW0oCzwzjjPRF
- OCef71l3iajHPSOYpy04vpaOmO7vasAdZNqwikkijapKNQQJaKrcdE7AWTXicqpc2Ojy
- glYhR/cfGPmUFSuaRbFZN+ntHhfKRyT56qQGYwZyCRMzPjTjKosPpm/dPi1O3ET/3bP7
- Rd2w==
+ bh=2O3NkkjIemIsAieDahgo6WCW7UZHnrJROVrMuNKxroU=;
+ b=g+gw2K+6kKvkNXoUTcmQeS0qrz+gOHTD3jvIG5MXiInOssXSmKXbjvnlQwlmtabrA+
+ fhmPSSDSnCegYbBkgGDQ7pJbRHoOS3pFSQMCGaTzg3/deEevn370efvMBpFyJTc33AVH
+ icSiAgGzM4jGa5X6gRF82mv+aYpKKw9Dq0qggZ318xSC5W9obWOlxKe9DtrNqx2AlavB
+ 37hHEx4vnnUrHt1OdBzFDQHVxAhS71BAkMiGgfbudBK1Q+nPMTy0EXFAecahl14Okiky
+ 7OYBnF+LVQIV+Q+EE3E582zwRrebAI6/WuYnRHMQhXJyuE6VhBCdP7qoE/KOXbiUGYaC
+ ug3Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV1EJTHXBgf8R61mABkMSg6z8dfrHCvmUCzrjeBfhY03IS2zcHCUPjI0gFvSuIyquZKqGcJHgMBOQQ=@lists.freedesktop.org,
- AJvYcCWhqVHy5FWHpYGTWo1o7SU4/igeqoFDFKGNjepZL/xn4uG/C8/ZG7AQts5GU4RTEw1BbvkDVH+HVbc=@lists.freedesktop.org,
- AJvYcCXBh/chXA0xrFa0byQAWQcTbMBLHKSXI1uvjqTaou5cR3yqSHK5qPo1a/gLX3M3INQiX7jzSJLaUomP@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwXGniTiiogeqZBC86/iMiivyOZxSHsirJ9VWLz/yOTZ3DB73cF
- d5Ui7ZYECHURJmYXM2DaaGtbFEvNBkg1xoZDzD9h9BeX976T9k2L
-X-Google-Smtp-Source: AGHT+IGbvJGQl/UAHTUNNHtW5c/lWs0TlfWR9gt/d7p98Gcfl9rgsSZB50FW193XaadNkp+X0cxCxg==
-X-Received: by 2002:a17:90b:1115:b0:2db:60b:eee with SMTP id
- 98e67ed59e1d1-2e1e63eabeemr6155040a91.9.1728322388268; 
- Mon, 07 Oct 2024 10:33:08 -0700 (PDT)
-Received: from dev.. ([2402:e280:214c:86:a843:852f:eac4:ff92])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2e1e86657d5sm7442881a91.46.2024.10.07.10.33.04
+ AJvYcCW3v82YGG0CNEPL9mZXDduMjb5sbJgJFa73H17gffrsxdAabW9R74OHmJ+5u4Q2rfKFDDMKWHy1cA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz7ge9FhnBP6XhkpN/5oQeuLkZ34aJ2tlgkqrIp9/mhFstBa1gT
+ xItv4UnaURKEJnxkloAbpypPcq31ysAwLJK5pLHsjqheKp4TNGSFvD1kaI/fHDM=
+X-Google-Smtp-Source: AGHT+IEQECyAfbtTxECBBfSegcXyiHPvb+HbTmNxdnj/9M9cty89n8mvsWrqwn4N/Jko0Uax4nMEPA==
+X-Received: by 2002:a05:6808:19a0:b0:3e3:9ba8:5af0 with SMTP id
+ 5614622812f47-3e3e66cc39dmr4801528b6e.22.1728579561189; 
+ Thu, 10 Oct 2024 09:59:21 -0700 (PDT)
+Received: from localhost.localdomain ([81.17.122.16])
+ by smtp.googlemail.com with ESMTPSA id
+ 41be03b00d2f7-7ea449688e3sm1238289a12.87.2024.10.10.09.59.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Oct 2024 10:33:08 -0700 (PDT)
-From: R Sundar <prosunofficial@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Thu, 10 Oct 2024 09:59:20 -0700 (PDT)
+From: "Everest K.C." <everestkc@everestkc.com.np>
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Cc: "Everest K.C." <everestkc@everestkc.com.np>, skhan@linuxfoundation.org,
+ dan.carpenter@linaro.org, michal.wajdeczko@intel.com,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, imre.deak@intel.com
-Cc: R Sundar <prosunofficial@gmail.com>, kernel test robot <lkp@intel.com>,
- Julia Lawall <julia.lawall@inria.fr>
-Subject: [PATCH linux-next] drm/i915/ddi: use string choice helpers
-Date: Mon,  7 Oct 2024 23:03:00 +0530
-Message-Id: <20241007173300.83902-1-prosunofficial@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V4] drm/xe/guc: Fix dereference before NULL check
+Date: Thu, 10 Oct 2024 10:57:59 -0600
+Message-ID: <20241010165801.3913-1-everestkc@everestkc.com.np>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 11 Oct 2024 13:55:28 +0000
@@ -88,42 +85,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use str_enabled_disabled string helpers for better readability and to
-fix cocci warning.
+The pointer list->list is dereferenced before the NULL check.
+Fix this by moving the NULL check outside the for loop, so that
+the check is performed before the dereferencing.
+The list->list pointer cannot be NULL so this has no effect on runtime.
+It's just a correctness issue.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Julia Lawall <julia.lawall@inria.fr>
-Closes: https://lore.kernel.org/r/202410071601.TFpXoqgW-lkp@intel.com/
-Signed-off-by: R Sundar <prosunofficial@gmail.com>
+This issue was reported by Coverity Scan.
+https://scan7.scan.coverity.com/#/project-view/51525/11354?selectedIssue=1600335
+
+Fixes: 0f1fdf559225 ("drm/xe/guc: Save manual engine capture into capture list")
+Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+Reviewed-by: Dan Carpenter <dan.carpenter@linaro.org>
 ---
+V3 -> V4: - Corrected the Fixes tag
+          - Added Reviewed-by tag
+V2 -> V3: - Changed Null to NULL in the changelog
+          - Corrected typo in the changelong
+          - Added more description to the changelong
+	  - Fixed the link for Coverity Report
+	  - Removed the space after the Fixes tag
+V1 -> V2: - Combined the `!list->list` check in preexisting if statement
+	  - Added Fixes tag 
+	  - Added the link to the Coverity Scan report 
 
-Reported in linux repo:
+ drivers/gpu/drm/xe/xe_guc_capture.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
-
-cocci warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/i915/display/intel_ddi.c:2225:7-13: opportunity for str_enabled_disabled(enable)
-
-vim +2225 drivers/gpu/drm/i915/display/intel_ddi.c
-
-compile tested only.
-
- drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index fe1ded6707f9..ff4c633c8546 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2236,7 +2236,7 @@ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
- 	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_FEC_CONFIGURATION,
- 			       enable ? DP_FEC_READY : 0) <= 0)
- 		drm_dbg_kms(display->drm, "Failed to set FEC_READY to %s in the sink\n",
--			    enable ? "enabled" : "disabled");
-+			    str_enabled_disabled(enable));
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 41262bda20ed..947c3a6d0e5a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1531,7 +1531,7 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
+ {
+ 	int i;
  
- 	if (enable &&
- 	    drm_dp_dpcd_writeb(&intel_dp->aux, DP_FEC_STATUS,
+-	if (!list || list->num_regs == 0)
++	if (!list || !list->list || list->num_regs == 0)
+ 		return;
+ 
+ 	if (!regs)
+@@ -1541,9 +1541,6 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
+ 		struct __guc_mmio_reg_descr desc = list->list[i];
+ 		u32 value;
+ 
+-		if (!list->list)
+-			return;
+-
+ 		if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
+ 			value = xe_hw_engine_mmio_read32(hwe, desc.reg);
+ 		} else {
 -- 
-2.34.1
+2.43.0
 
