@@ -4,27 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F56DCF07A9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 06:25:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB32CCF07AA
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 06:28:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9FAE10E2B1;
-	Thu, 10 Oct 2024 06:25:23 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 540E410E025;
- Thu, 10 Oct 2024 06:25:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9153C10E025;
+	Thu, 10 Oct 2024 06:28:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="jjkLrOxi";
+	dkim-atps=neutral
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2FD010E025
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 06:28:22 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-431126967d6so4709645e9.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 09 Oct 2024 23:28:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1728541701; x=1729146501; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=w9dxwcXVFs3vnkTzThkLKa7FVga4fnERpw3hSn0gAas=;
+ b=jjkLrOxi3KSTs2l0CX991Kg2uYK1O98ACWIlnfwB3Q9QgPAWOBGa49vEe2Dn8xLX27
+ ifgj8967yGpQGy2ONmpjV5y3w5Xq1c2Hm5195Ly8P/KQidCCoHIHH+JuL1lICbEskTHz
+ i9GkGjts/k+axw8NQj7JC6SS3nAgjOc6YgkJRhQ3e0U5KtffngFVzAgaAMF70X5RMchj
+ ArNymyjGcCmvHOgi8/MUMG3e4NRNVPNADFnQ8OQVyiy1LzWaqPbXi2cIJU/d8sl/Ks6H
+ AOGlKREucY8EJCia6B1O0MsOu5NZKQlJQrxqFaPS6YH9O64bUn3+vfarOTRxn8FxJ9Hc
+ iouw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728541701; x=1729146501;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=w9dxwcXVFs3vnkTzThkLKa7FVga4fnERpw3hSn0gAas=;
+ b=Ysph8dCR8jPipGTyiPTyaiqlvzrY/KoPI193zgBoSNMXTDqx+4g4QnF/AO+yfyJ3id
+ 798BdxvdWBL0ls8e0Alkv8uHbkqTCZtItHCsyepoVYslSBR28qDYcwKiDkz01xHTvtnZ
+ pIds+HS2lEfNqvJ1inB0VoVTo8nyR4teKOV7W92jLw3r4stBl0VELeOWH/+3YICwhCLi
+ r86W08iHx/VGwzVD6zWUzibTYr4SG56sV2ac6f6/bdpp55TAuLZ1CKb+ZNy6F+ls+oRv
+ owjEGby9Os6lAVTRmr1GqYnv747h0n+C/7zUB8OM0ASJZ2Bdn6jBDDOpi/dw9bxIR3RW
+ PgvA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXLNwxKVOSgrNrR5iKuJytBMlllLjkfnZVbkyae1+CmkK6Fti0sSoxvUmQ/wQ1n43dqiZ6oxCmiTw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwbyC+svPF9PVwE+KrGT9jF2UQyQ7oq69h/E7AARC5AoDnXuOoS
+ B4qcyKs10DY2rpRUiG6mqB+5TjDbov+n4r33B0H+q95TnXWPMOCuMg7bHKjrT/A=
+X-Google-Smtp-Source: AGHT+IHC0o9tqFtiDG4GnzxZXvNF3ZFqzwHj0uJ1SCAz4Q/E8H+XfyWulVcSrjl1hk3YLD9AEqhUwA==
+X-Received: by 2002:a05:600c:3b9f:b0:42c:bd4d:e8ba with SMTP id
+ 5b1f17b1804b1-430ccf0928fmr41157205e9.8.1728541701026; 
+ Wed, 09 Oct 2024 23:28:21 -0700 (PDT)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-431182d7ca3sm6172505e9.2.2024.10.09.23.28.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Oct 2024 23:28:20 -0700 (PDT)
+Date: Thu, 10 Oct 2024 09:28:16 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: "Everest K.C." <everestkc@everestkc.com.np>
+Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ simona@ffwll.ch, skhan@linuxfoundation.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2] drm/xe/guc: Fix dereference before Null check
+Message-ID: <c2a9c4ad-ce50-42ab-8dac-65914e188cac@stanley.mountain>
+References: <20241009213922.37962-1-everestkc@everestkc.com.np>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_linux-next=3A_build_fail?=
- =?utf-8?q?ure_after_merge_of_the_random_tree_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stephen Rothwell" <sfr@canb.auug.org.au>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Oct 2024 06:25:22 -0000
-Message-ID: <172854152233.1213925.10117536286644067875@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241001134423.62b12a80@canb.auug.org.au>
-In-Reply-To: <20241001134423.62b12a80@canb.auug.org.au>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241009213922.37962-1-everestkc@everestkc.com.np>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +81,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Oct 09, 2024 at 03:39:20PM -0600, Everest K.C. wrote:
+> The pointer list->list is derefrenced before the Null check.
+> Fix this by moving the Null check outside the for loop, so that
+> the check is performed before the derefrencing.
+> 
 
-Series: linux-next: build failure after merge of the random tree (rev2)
-URL   : https://patchwork.freedesktop.org/series/139356/
-State : success
+Please, mention the effect on runtime if it's not totally obvious.  In this case,
+someone reading the commit message would think that it leads to a NULL
+dereference but actually the pointer can't be NULL as I explained so there is
+no effect on run time.  Say something like:
+"The list->list pointer cannot be NULL so this has no effect on runtime.  It's
+just a correctness issue."
 
-== Summary ==
+Change Null to NULL so people don't think it's Java.  ;)  Also dereferencing
+has a typo.  s/derefrencing/dereferencing/.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast e1aba2bf4f79f2f8ae7ce538124d445fc91df852
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> This issue was reported by Coverity Scan.
+> https://scan7.scan.coverity.com/#/project-view/51525/11354
+> ?selectedIssue=1600335
 
+Don't line break URLs like this.  Just go over the 72-74 character limit.
+
+> 
+> Fixes: a18c696fa5cb ("drm/xe/guc: Fix dereference before Null check")
+> 
+
+Remove the blank line after Fixes.
+
+> Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+> ---
+
+Otherwise, it looks good.
+
+Reviewed-by: Dan Carpenter <dan.carpenter@linaro.org>
+
+regards,
+dan carpenter
 
