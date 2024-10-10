@@ -4,51 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83D1ED0D791
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 798A5D0D79B
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ECE010EAF2;
-	Fri, 11 Oct 2024 13:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 418E710EAF4;
+	Fri, 11 Oct 2024 13:55:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (4096-bit key; secure) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="a4piOjoD";
+	dkim=pass (2048-bit key; unprotected) header.d=everestkc-com-np.20230601.gappssmtp.com header.i=@everestkc-com-np.20230601.gappssmtp.com header.b="uMTUr1zL";
 	dkim-atps=neutral
-X-Greylist: delayed 593 seconds by postgrey-1.36 at gabe;
- Tue, 08 Oct 2024 21:28:39 UTC
-Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
- by gabe.freedesktop.org (Postfix) with ESMTP id 286C810E5DD
- for <Intel-Xe@Lists.FreeDesktop.Org>; Tue,  8 Oct 2024 21:28:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
- t=1728422326; bh=8lkI87krURgIcOV8uOM/P79JnTmvQgF971fRxlj7j8M=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=a4piOjoDhl1TbmKP4hz/I5SKIxh4MNnODH5rKGenosEBzrdzbFNzRl4KRbFUTp1WL
- AenbI4VSQlzeOvnmF28YSJQAxJZNbKstjKEbMm5NQ+m4nzagrLQ5nJ+tC/aDoptfrd
- O/IMZYCr9xX3UeewURl3wDAmCKXO/g0bxfvpBM7WSSuIAEGU2LdZUgtx4vJF+REBKw
- GWzJ4j8HElWZt0cqr/N0FC/Lkoj3CJQQkbxYkSiknec9igH+9KvAnDUF3BMO1CRk1h
- Wz+wSK4uGgDE56RS7FhDCiDfP1OxW2SWmgLwYU+3M545Qvdkvl3C4J4OCH+ksxK9p2
- 996Z4+aYULy+1TyO9uPXMXuovgOezEYtqrnRU8FmTlI5+8xstjvw8SJ/x9Gj9ALlGD
- kuWeIa53AUMdzBW16muvLMwYFtTtqfj2hCn6MDpx+CHVRMnVy5YgkN6wUSsRnpHFW9
- 1nhCGjk8vLn9IH4S0IP/Ys7w2AipiyPu15mZy/vDz8fCZlmjCbw1BhHM9U4SEWxuwU
- e5mcjKUSqJtoj0O8+b2LyK32NYN+EbwQPK/ykBrBDH0MjaVb38ZdRhIWq2P6qBJNNd
- QthqiIAnjWL2RtQnaOnLuyy9JSKaOICbu6bfQE9fomM/8ygjHBMjC19gcBE+Lec9co
- LglE30+54IpHerSH5PZkjw60=
-Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl
- [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
- by bout3.ijzerbout.nl (Postfix) with ESMTPSA id 5B67D16B16D;
- Tue,  8 Oct 2024 23:18:46 +0200 (CEST)
-Message-ID: <58c11f91-a5e0-4232-9050-572f835f180e@ijzerbout.nl>
-Date: Tue, 8 Oct 2024 23:18:43 +0200
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
+ [209.85.208.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A648210E02C
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 06:34:26 +0000 (UTC)
+Received: by mail-ed1-f50.google.com with SMTP id
+ 4fb4d7f45d1cf-5c42f406e29so563365a12.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 09 Oct 2024 23:34:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=everestkc-com-np.20230601.gappssmtp.com; s=20230601; t=1728542065;
+ x=1729146865; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zNbQgNGz4ln13V+1AJHezmBRqD3GeJjDxhy0+sxFIyA=;
+ b=uMTUr1zLTW4ukxU5SFglrw+oWjZlSxu3X7RWsHsGxF+isS9MhuOb7bapU9dH1mMaGC
+ eOGY3Sd9TA8YY7CpyaFQ3bgjV9dqiyLgxaz5+GiBHXNdpYGu4eJtTgxg6cHCjcaFuZFM
+ T0Lao7y7PX89tXWrPvauHIBGwtLc7ugOco6y8E5P7cqD1LowiPFFxDrPTRWwN4rIQflc
+ /qFxZ/1sMnbEGX+sAtzWeC8X96dl1UJg0oH/2Fu5GzupW+wNKwZWw9cLDvdztraurzyw
+ Pq5hkdQz5974ha2OlsLrdRKWEdx0VWLsINrW50o0FOgQatjHBCLIifHgKL3egTC18IDW
+ 2Pqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728542065; x=1729146865;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=zNbQgNGz4ln13V+1AJHezmBRqD3GeJjDxhy0+sxFIyA=;
+ b=oabbugSR6TEyBxqrHEPY/MaFHwIrfRr+5l/wTYj/5LZvvZidaiyVSUyhjWh+zhIaAT
+ K0pv50UE/rPS5Kru2wb+A2OmfnZtRpdTAxJpiK2Q1oAHzc2oJ0lSBWVh6fqGug4coXxP
+ cSnsxU57K2GB5ILeib4N41BSo6OjDUbwsKbmFwPiy4fy+ILlsHm4z2UW5K6Rx7JdmeAN
+ CIIz9Kku8WSzx0oe3kgiecuWC3j8Fhb9BuAKxj5KM572fZ+lfmwBYgBRPfIVKYVEvKvy
+ HsB1uDcSdzmBukygspuuCdoVfhEUaj0bNIKcrlglxmz8dfeCZHZhaArT2pAmwotnK4Bd
+ Hkkw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUcA+pUVoeFRh8O+Vhg6hh2jl3n7N2OSX+Sn7urFoVdgBySKPaz+iMaTlu4qr/7VM4LiTk0KPeP0A==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzmrN9gRuCO741+fYV4J0PbJidH+vkf457HvjxCUUqyG7EzSN85
+ 3zhISz1s5SajsYxzrJxe3ylUVFM1xV4Mt4fRQ5NeGWAgaendh7PxY79SiaHfCNkpPrW2/Cnli4j
+ d3FCHQXTThTiZ4yv8gT7dK7mC+BQcAEzFXxYW/A==
+X-Google-Smtp-Source: AGHT+IEFirfdNC1tkJJSNx+yCF2buHjstu4V7B995CFeHueDWDw1iSohi1NTD6YhOveJe2g1G3rj+p3QJlhlIWL6tk0=
+X-Received: by 2002:a17:907:6d11:b0:a99:4136:895f with SMTP id
+ a640c23a62f3a-a999e8cd43bmr218826866b.41.1728542064655; Wed, 09 Oct 2024
+ 23:34:24 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v9, 06/11] drm/xe/guc: Use a two stage dump for GuC logs and add
- more info
-To: John.C.Harrison@Intel.com, Intel-Xe@Lists.FreeDesktop.Org
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-References: <20241003004611.2323493-7-John.C.Harrison@Intel.com>
-Content-Language: en-US
-From: Kees Bakker <kees@ijzerbout.nl>
-In-Reply-To: <20241003004611.2323493-7-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20241009213922.37962-1-everestkc@everestkc.com.np>
+ <c2a9c4ad-ce50-42ab-8dac-65914e188cac@stanley.mountain>
+In-Reply-To: <c2a9c4ad-ce50-42ab-8dac-65914e188cac@stanley.mountain>
+From: "Everest K.C." <everestkc@everestkc.com.np>
+Date: Thu, 10 Oct 2024 00:34:13 -0600
+Message-ID: <CAEO-vhG01xvKvJ_e5Rbkn6WRQho8gauLBQw9Wd_VQj2Lyw8fyg@mail.gmail.com>
+Subject: Re: [PATCH V2] drm/xe/guc: Fix dereference before Null check
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+ skhan@linuxfoundation.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 11 Oct 2024 13:55:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,58 +85,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Op 03-10-2024 om 02:46 schreef John.C.Harrison@Intel.com:
-> From: John Harrison <John.C.Harrison@Intel.com>
+On Thu, Oct 10, 2024 at 12:28=E2=80=AFAM Dan Carpenter <dan.carpenter@linar=
+o.org> wrote:
 >
-> Split the GuC log dump into a two stage snapshot and print mechanism.
-> This allows the log to be captured at the point of an error (which may
-> be in a restricted context) and then dump it out later (from a regular
-> context such as a worker function or a sysfs file handler).
+> On Wed, Oct 09, 2024 at 03:39:20PM -0600, Everest K.C. wrote:
+> > The pointer list->list is derefrenced before the Null check.
+> > Fix this by moving the Null check outside the for loop, so that
+> > the check is performed before the derefrencing.
+> >
 >
-> Also add a bunch of other useful pieces of information that can help
-> (or are fundamentally required!) to decode and parse the log.
+> Please, mention the effect on runtime if it's not totally obvious.  In th=
+is case,
+> someone reading the commit message would think that it leads to a NULL
+> dereference but actually the pointer can't be NULL as I explained so ther=
+e is
+> no effect on run time.  Say something like:
+> "The list->list pointer cannot be NULL so this has no effect on runtime. =
+ It's
+> just a correctness issue."
 >
-> v2: Add kerneldoc and fix a couple of comment typos - review feedback
-> from Michal W.
-> v3: Move chunking code to this patch as it makes the deltas simpler.
-> Fix a bunch of kerneldoc issues.
-> v4: Move the CS frequency out of the coredump snapshot function into
-> the debugfs only code (as that info is already part of the main
-> devcoredump). Add a header to the debugfs log to match the one in the
-> devcoredump to aid processing by a unified tool. Add forcewake to the
-> GuC timestamp read so it actually works.
-> v6: Add colon to GuC version string (review feedback by Julia F).
+> Change Null to NULL so people don't think it's Java.  ;)  Also dereferenc=
+ing
+> has a typo.  s/derefrencing/dereferencing/.
 >
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
-> ---
->   drivers/gpu/drm/xe/regs/xe_guc_regs.h |   1 +
->   drivers/gpu/drm/xe/xe_guc_log.c       | 178 +++++++++++++++++++++++---
->   drivers/gpu/drm/xe/xe_guc_log.h       |   4 +
->   drivers/gpu/drm/xe/xe_guc_log_types.h |  27 ++++
->   4 files changed, 195 insertions(+), 15 deletions(-)
-> [...]
-> + * xe_guc_log_snapshot_free - free a previously captured GuC log snapshot
-> + * @snapshot: GuC log snapshot structure
-> + *
-> + * Return: pointer to a newly allocated snapshot object or null if out of memory. Caller is
-> + * responsible for calling xe_guc_log_snapshot_free when done with the snapshot.
-> + */
-> +void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
-> +{
-> +	int i;
-> +
-> +	if (!snapshot)
-> +		return;
-> +
-> +	if (!snapshot->copy) {
-I guess you meant "if (snapshot->copy) {"
-Otherwise the kfree's are going to use NULL pointers.
-> +		for (i = 0; i < snapshot->num_chunks; i++)
-> +			kfree(snapshot->copy[i]);
-> +		kfree(snapshot->copy);
-> +	}
-> +
-> +	kfree(snapshot);
-> +}
 >
+> > This issue was reported by Coverity Scan.
+> > https://scan7.scan.coverity.com/#/project-view/51525/11354
+> > ?selectedIssue=3D1600335
+>
+> Don't line break URLs like this.  Just go over the 72-74 character limit.
+>
+> >
+> > Fixes: a18c696fa5cb ("drm/xe/guc: Fix dereference before Null check")
+> >
+>
+> Remove the blank line after Fixes.
+>
+> > Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+> > ---
+>
+> Otherwise, it looks good.
+Will incorporate your feedback and will send a V3.
+Thank you for taking time to review it.
+> Reviewed-by: Dan Carpenter <dan.carpenter@linaro.org>
+>
+> regards,
+> dan carpenter
+>
+Thanks,
+Everest K.C.
