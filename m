@@ -4,52 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EDE2D24456
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:22:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02E3BD24456
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:27:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1BC10E9E5;
-	Thu, 10 Oct 2024 22:22:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC5B10E9E5;
+	Thu, 10 Oct 2024 22:27:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l680YIBE";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Pf4BhbzN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B46B10E9E5
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 22:22:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728598958; x=1760134958;
- h=date:from:to:cc:subject:message-id;
- bh=tRY+zXLD0cq/Ho1LTCJwnr7NEOOkh5o9cWBYA+5fAkM=;
- b=l680YIBEVaNbOHqjGvb3xqpIhpMt/QxV0OilpbXAxsduP6tLrJTgy+3d
- jqODHF8Z2Ki4GVgj09aA1mNQMhqTAEeodqe6mByIEfRHD3NeK1NAgRGrc
- aI0w5DzW2hF38PTt2woWdFoejFUJmYZWGbmfur0rC2GoFSCIg2dZjJJKu
- 0xuuLsWebWZVTKhvnudj29JdrXSjgp2zgIw/KJwjadzVr61Zit5J6StNj
- WthjrfWc8MC9P2XAV6roajJFXxwdyCOU/bJaJJ24vP8UErcnZyt1V/UbE
- w+sdrnfbosKMZhza4V4awO7BKpIlRamFaHG1GTdfjx9wUlIFnonURfj4Y w==;
-X-CSE-ConnectionGUID: 3dyKOKndTHKCXmO9Gp3kmw==
-X-CSE-MsgGUID: fr1wknasQHWAPnaTRuTiAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="28144182"
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="28144182"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:22:37 -0700
-X-CSE-ConnectionGUID: YifMXtalRu+jyOk3xeVoTg==
-X-CSE-MsgGUID: yZlRZEH4SMqlRI/8yih53A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76343155"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa006.fm.intel.com with ESMTP; 10 Oct 2024 15:22:36 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sz1YI-000BLp-1s;
- Thu, 10 Oct 2024 22:22:34 +0000
-Date: Fri, 11 Oct 2024 06:22:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 1badf482816417dca71f8120b4c540cdc82aa03c
-Message-ID: <202410110621.fjSGn9Bt-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A85F10E9E5;
+ Thu, 10 Oct 2024 22:27:39 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 62A9AA41813;
+ Thu, 10 Oct 2024 22:27:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 739D1C4CEC5;
+ Thu, 10 Oct 2024 22:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1728599257;
+ bh=oTNzX0Px6F2ZuEdSdbpP0nHju9ehSWKosmu3toVlgy0=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=Pf4BhbzNjET2vqzRkOWkNObKT9+3v+3g4SHSdy+1tpvL6vl4hEwcRRznlwxWc9SpL
+ 2ImhQkURL1Dsm0G/uFMlhz02FywDkPw2ml5J544X1gV81NSDVwgV1rakOLFsmiBbNV
+ EIQ2DwNgm20C5hTNMOUxlG+Xwjn2CJ9o4QJSzRPuscYWDllIHfGQN5orwonzHDa7w7
+ LBlGkdFS4EBJbVMjP+eJCc3tYX/lo4nIx0oyc431qSUO3wcI3TzRdF69JB0LByP5JJ
+ +eL9i4RdpAVTQDveIkREhRXCYwXqng5nPWsiU7lCP12cHtKUPqMPIlBjwvq9Q4f52O
+ FjtjwkQ/xbYhg==
+Date: Thu, 10 Oct 2024 17:27:35 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+Cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+ Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v3 4/5] PCI/IOV: Allow extending VF BAR within original
+ resource boundary
+Message-ID: <20241010222735.GA580854@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241010103203.382898-5-michal.winiarski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,102 +70,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 1badf482816417dca71f8120b4c540cdc82aa03c  drm/xe: Make wedged_mode debugfs writable
+On Thu, Oct 10, 2024 at 12:32:02PM +0200, Michał Winiarski wrote:
+> VF MMIO resource reservation, either created by system firmware and
+> inherited by Linux PCI subsystem or created by the subsystem itself,
+> contains enough space to fit the BAR of all SR-IOV Virtual Functions
+> that can potentially be created (total VFs supported by the device).
 
-elapsed time: 1409m
+It's *possible* that this is true, but there's no guarantee that
+firmware has assigned enough space for all BARs of all possible VFs.
 
-configs tested: 83
-configs skipped: 1
+> This can be leveraged when the device is exposing lower than optimal BAR
+> size as a default, allowing access to the entire resource when lower
+> number of VFs are created.
+> It is achieved by dynamically resizing the BAR to largest possible value
+> that allows to fit all newly created VFs within the original resource
+> boundary.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Add blank lines between paragraphs.
 
-tested configs:
-alpha                             allnoconfig    gcc-14.1.0
-alpha                            allyesconfig    clang-20
-arc                              allmodconfig    clang-20
-arc                               allnoconfig    gcc-14.1.0
-arc                              allyesconfig    clang-20
-arm                              allmodconfig    clang-20
-arm                               allnoconfig    gcc-14.1.0
-arm                              allyesconfig    clang-20
-arm64                            allmodconfig    clang-20
-arm64                             allnoconfig    gcc-14.1.0
-csky                              allnoconfig    gcc-14.1.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    gcc-14.1.0
-hexagon                          allyesconfig    clang-20
-i386                             allmodconfig    clang-18
-i386                              allnoconfig    clang-18
-i386                             allyesconfig    clang-18
-i386                                defconfig    clang-18
-loongarch                        allmodconfig    gcc-14.1.0
-loongarch                         allnoconfig    gcc-14.1.0
-m68k                             allmodconfig    gcc-14.1.0
-m68k                              allnoconfig    gcc-14.1.0
-m68k                             allyesconfig    gcc-14.1.0
-microblaze                       allmodconfig    gcc-14.1.0
-microblaze                        allnoconfig    gcc-14.1.0
-microblaze                       allyesconfig    gcc-14.1.0
-mips                              allnoconfig    gcc-14.1.0
-nios2                             allnoconfig    gcc-14.1.0
-openrisc                          allnoconfig    clang-20
-openrisc                          allnoconfig    gcc-14.1.0
-openrisc                         allyesconfig    gcc-14.1.0
-parisc                           allmodconfig    gcc-14.1.0
-parisc                            allnoconfig    clang-20
-parisc                            allnoconfig    gcc-14.1.0
-parisc                           allyesconfig    gcc-14.1.0
-powerpc                          allmodconfig    gcc-14.1.0
-powerpc                           allnoconfig    clang-20
-powerpc                           allnoconfig    gcc-14.1.0
-powerpc                          allyesconfig    gcc-14.1.0
-riscv                            allmodconfig    gcc-14.1.0
-riscv                             allnoconfig    clang-20
-riscv                             allnoconfig    gcc-14.1.0
-riscv                            allyesconfig    gcc-14.1.0
-s390                             allmodconfig    gcc-14.1.0
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.1.0
-sh                               allmodconfig    gcc-14.1.0
-sh                                allnoconfig    gcc-14.1.0
-sh                               allyesconfig    gcc-14.1.0
-sparc                            allmodconfig    gcc-14.1.0
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-17
-um                                allnoconfig    clang-20
-um                               allyesconfig    clang-20
-x86_64                            allnoconfig    clang-18
-x86_64                           allyesconfig    clang-18
-x86_64      buildonly-randconfig-001-20241011    gcc-12
-x86_64      buildonly-randconfig-002-20241011    gcc-12
-x86_64      buildonly-randconfig-003-20241011    gcc-12
-x86_64      buildonly-randconfig-004-20241011    gcc-12
-x86_64      buildonly-randconfig-005-20241011    gcc-12
-x86_64      buildonly-randconfig-006-20241011    gcc-12
-x86_64                              defconfig    clang-18
-x86_64                randconfig-001-20241011    gcc-12
-x86_64                randconfig-002-20241011    gcc-12
-x86_64                randconfig-003-20241011    gcc-12
-x86_64                randconfig-004-20241011    gcc-12
-x86_64                randconfig-005-20241011    gcc-12
-x86_64                randconfig-006-20241011    gcc-12
-x86_64                randconfig-011-20241011    gcc-12
-x86_64                randconfig-012-20241011    gcc-12
-x86_64                randconfig-013-20241011    gcc-12
-x86_64                randconfig-014-20241011    gcc-12
-x86_64                randconfig-015-20241011    gcc-12
-x86_64                randconfig-016-20241011    gcc-12
-x86_64                randconfig-071-20241011    gcc-12
-x86_64                randconfig-072-20241011    gcc-12
-x86_64                randconfig-073-20241011    gcc-12
-x86_64                randconfig-074-20241011    gcc-12
-x86_64                randconfig-075-20241011    gcc-12
-x86_64                randconfig-076-20241011    gcc-12
-x86_64                          rhel-8.3-rust    clang-18
-xtensa                            allnoconfig    gcc-14.1.0
+This log doesn't actually say what the patch does.  It describes a
+possible configuration and ways that it may be used, and even *how*
+something might be done, but something along the lines of the subject
+line should be included in the commit log.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +static void pci_iov_resource_do_extend(struct pci_dev *dev, int resno, u16 num_vfs)
+
+Please wrap to fit in 80 columns like the rest of the file.
+
+> +int pci_iov_resource_extend(struct pci_dev *dev, int resno, bool enable)
+
+Please add kerneldoc here to help users of this exported function.
+
+> @@ -480,6 +560,11 @@ static ssize_t sriov_numvfs_store(struct device *dev,
+>  		goto exit;
+>  	}
+>  
+> +	for (i = 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> +		if (pdev->sriov->rebar_extend[i])
+> +			pci_iov_resource_do_extend(pdev, i + PCI_IOV_RESOURCES, num_vfs);
+
+Wrap to fit in 80 columns.
+
+Bjorn
