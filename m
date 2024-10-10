@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1961D2445F
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:43:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59F3ED2444F
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 22:43:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A749810E9F4;
-	Thu, 10 Oct 2024 22:43:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1423710E9F8;
+	Thu, 10 Oct 2024 22:43:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fsqDKrfs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YsE1q4nR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2747C10E9F1;
- Thu, 10 Oct 2024 22:43:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 119BD10E9F8;
+ Thu, 10 Oct 2024 22:43:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728600200; x=1760136200;
+ t=1728600203; x=1760136203;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PVhaEOF88AiurjHxx8g6eH1YF4BbcNGNGEvi61+en1U=;
- b=fsqDKrfs37wNlcAAz/uTWMURVVm11djHIrD8wbb9dGjQnOLdD/Eqrzm1
- y5FZlKTwr+VvkxWXLUrFVBQV9ZJBnH+6feaaItHLu/qy17jLUoSx3aWEy
- e52RR5+SgsfshBBitwOTF2Ij1hASfhntWhpK5DHiGi0HFVE9jXQwH4iBQ
- 9PxDz2Zp58n07J+hHvgQMj+mOc31gnDZcoXtv0WkHx9Jvlo1BGolXky5S
- 60+Hzm8KE6gtbrxIr1RN5YMTGhv9+SkwK1R9WhUW1bbNW0kjJuVCRDqPG
- WVbOk2TyeBZ/Y+LKKoS4Nj7QJ6rxbYuhVi8zgbEKu+4Sscgg6CedZtFRq A==;
-X-CSE-ConnectionGUID: 8r1EHE2VTzSDjpcKltaX7A==
-X-CSE-MsgGUID: IE2w7i8xSD+Ga18H8uFjsg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39380865"
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="39380865"
+ bh=76HDhy7L1TbJ0JksrrmjGmeB7flA43MJxNe9P1cLvTw=;
+ b=YsE1q4nRuwg76uz7FPuhsAT1VHpEk6SgzzRomw7E2PZU1POic2vjICEC
+ 0pJXwcfvzBc8QzqP7esjaPsEoWVG1tlRAXj270jG5LEhNzIK6bQgyqmNr
+ PVd1NYZE0yW2MnxIqGkTefxyv/2e9KDk5xnjn8RcVRbhBGdSR6ghXvvDV
+ T2yMht3fZ0ZS4WB8e/wUMiLkoW0HDiVRz0YeBp3C+oHlwGsD9qiU/FOeU
+ 3fwSRN70nV0MnxTW0S04GCjCuUyZHXyg9TW3s/y4Och5vyBjlKO008JHA
+ 69PHkCyGO5ptnZaDlKCQJw59yYLVo3L++E3BPhT7pDNiKF2WLlbUSFxBX Q==;
+X-CSE-ConnectionGUID: j+3YzMhTTNSlJersXCRHfw==
+X-CSE-MsgGUID: Pzxkb5yxSMqqPRHafQk3qA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39380873"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="39380873"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:43:19 -0700
-X-CSE-ConnectionGUID: oCC7AQ2rTle4rUWdGkWqGg==
-X-CSE-MsgGUID: N5igB7SCQbmZf01vgZ8HGA==
+ 10 Oct 2024 15:43:22 -0700
+X-CSE-ConnectionGUID: vHgUJvKRSDiMiODyMJdrEQ==
+X-CSE-MsgGUID: eg+1MQuBSaWKfIKkqJbeKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76732024"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76732062"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:43:18 -0700
+ 10 Oct 2024 15:43:21 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>,
- Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v2 03/10] drm/i915/xe3lpd: Add new display power wells
-Date: Thu, 10 Oct 2024 15:43:04 -0700
-Message-ID: <20241010224311.50133-4-matthew.s.atwood@intel.com>
+ Clint Taylor <Clinton.A.Taylor@intel.com>
+Subject: [PATCH v2 07/10] drm/i915/xe3lpd: Add C20 Phy consolidated
+ programming table
+Date: Thu, 10 Oct 2024 15:43:08 -0700
+Message-ID: <20241010224311.50133-8-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241010224311.50133-1-matthew.s.atwood@intel.com>
 References: <20241010224311.50133-1-matthew.s.atwood@intel.com>
@@ -69,179 +70,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Xe3's power well handling is similar to previous platforms, but there
-are a few changes that need to be handled to ensure optimal power
-management:
- - PGB now only depends on PG1, not PG2
- - Transcoder B is now in PG1 (was previously in PGB)
- - Transcoders C & D are now in PG2 (were previously in PGC/PGD)
- - DC states now require PG2 to be off (whereas on Xe2 it could remain
-   on as a dependency of PGB, although the features inside of it could
-   not be used).
+From DISPLAY_VER() >= 30 C20 PHY consolidated programming table of
+DP and eDP been merged and now use the same rates and values. eDP
+over TypeC has also been introduced.
+Moreover it allows more granular and higher rates. Add new table to
+represent this change.
 
-Bspec: 72519, 68851
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Bspec: 68961
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 ---
- .../i915/display/intel_display_power_map.c    | 135 +++++++++++++++++-
- 1 file changed, 134 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 24 ++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 10948b3964ee..255b2c09607c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1586,6 +1586,137 @@ static const struct i915_power_well_desc_list xe2lpd_power_wells[] = {
- 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index f73d576fd99e..f1aea5ead41b 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -1122,6 +1122,22 @@ static const struct intel_c20pll_state * const xe2hpd_c20_dp_tables[] = {
+ 	NULL,
  };
  
-+/*
-+ * Xe3 changes the power well hierarchy slightly from Xe_LPD+; PGB now
-+ * depends on PG1 instead of PG2:
-+ *
-+ *       PG0
-+ *        |
-+ *     --PG1--
-+ *    /   |   \
-+ *  PGA  PGB  PG2
-+ *           /   \
-+ *         PGC   PGD
-+ */
-+
-+#define XE3LPD_PW_C_POWER_DOMAINS \
-+	POWER_DOMAIN_PIPE_C, \
-+	POWER_DOMAIN_PIPE_PANEL_FITTER_C
-+
-+#define XE3LPD_PW_D_POWER_DOMAINS \
-+	POWER_DOMAIN_PIPE_D, \
-+	POWER_DOMAIN_PIPE_PANEL_FITTER_D
-+
-+#define XE3LPD_PW_2_POWER_DOMAINS \
-+	XE3LPD_PW_C_POWER_DOMAINS, \
-+	XE3LPD_PW_D_POWER_DOMAINS, \
-+	POWER_DOMAIN_TRANSCODER_C, \
-+	POWER_DOMAIN_TRANSCODER_D, \
-+	POWER_DOMAIN_VGA, \
-+	POWER_DOMAIN_PORT_DDI_LANES_TC1, \
-+	POWER_DOMAIN_PORT_DDI_LANES_TC2, \
-+	POWER_DOMAIN_PORT_DDI_LANES_TC3, \
-+	POWER_DOMAIN_PORT_DDI_LANES_TC4
-+
-+I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_pw_2,
-+		     XE3LPD_PW_2_POWER_DOMAINS,
-+		     POWER_DOMAIN_INIT);
-+
-+I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_pw_b,
-+		     POWER_DOMAIN_PIPE_B,
-+		     POWER_DOMAIN_PIPE_PANEL_FITTER_B,
-+		     POWER_DOMAIN_INIT);
-+
-+I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_pw_c,
-+		     XE3LPD_PW_C_POWER_DOMAINS,
-+		     POWER_DOMAIN_INIT);
-+
-+I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_pw_d,
-+		     XE3LPD_PW_D_POWER_DOMAINS,
-+		     POWER_DOMAIN_INIT);
-+
-+static const struct i915_power_well_desc xe3lpd_power_wells_main[] = {
-+	{
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_2", &xe3lpd_pwdoms_pw_2,
-+				.hsw.idx = ICL_PW_CTL_IDX_PW_2,
-+				.id = SKL_DISP_PW_2),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.has_vga = true,
-+		.has_fuses = true,
-+	}, {
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_A", &xelpd_pwdoms_pw_a,
-+				.hsw.idx = XELPD_PW_CTL_IDX_PW_A),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.irq_pipe_mask = BIT(PIPE_A),
-+		.has_fuses = true,
-+	}, {
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_B", &xe3lpd_pwdoms_pw_b,
-+				.hsw.idx = XELPD_PW_CTL_IDX_PW_B),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.irq_pipe_mask = BIT(PIPE_B),
-+		.has_fuses = true,
-+	}, {
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_C", &xe3lpd_pwdoms_pw_c,
-+				.hsw.idx = XELPD_PW_CTL_IDX_PW_C),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.irq_pipe_mask = BIT(PIPE_C),
-+		.has_fuses = true,
-+	}, {
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("PW_D", &xe3lpd_pwdoms_pw_d,
-+				.hsw.idx = XELPD_PW_CTL_IDX_PW_D),
-+		),
-+		.ops = &hsw_power_well_ops,
-+		.irq_pipe_mask = BIT(PIPE_D),
-+		.has_fuses = true,
-+	}, {
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("AUX_A", &icl_pwdoms_aux_a, .xelpdp.aux_ch = AUX_CH_A),
-+			I915_PW("AUX_B", &icl_pwdoms_aux_b, .xelpdp.aux_ch = AUX_CH_B),
-+			I915_PW("AUX_TC1", &xelpdp_pwdoms_aux_tc1, .xelpdp.aux_ch = AUX_CH_USBC1),
-+			I915_PW("AUX_TC2", &xelpdp_pwdoms_aux_tc2, .xelpdp.aux_ch = AUX_CH_USBC2),
-+			I915_PW("AUX_TC3", &xelpdp_pwdoms_aux_tc3, .xelpdp.aux_ch = AUX_CH_USBC3),
-+			I915_PW("AUX_TC4", &xelpdp_pwdoms_aux_tc4, .xelpdp.aux_ch = AUX_CH_USBC4),
-+		),
-+		.ops = &xelpdp_aux_power_well_ops,
-+	},
++static const struct intel_c20pll_state * const xe3lpd_c20_dp_edp_tables[] = {
++	&mtl_c20_dp_rbr,
++	&xe2hpd_c20_edp_r216,
++	&xe2hpd_c20_edp_r243,
++	&mtl_c20_dp_hbr1,
++	&xe2hpd_c20_edp_r324,
++	&xe2hpd_c20_edp_r432,
++	&mtl_c20_dp_hbr2,
++	&xe2hpd_c20_edp_r675,
++	&mtl_c20_dp_hbr3,
++	&mtl_c20_dp_uhbr10,
++	&xe2hpd_c20_dp_uhbr13_5,
++	&mtl_c20_dp_uhbr20,
++	NULL,
 +};
 +
-+I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_dc_off,
-+	POWER_DOMAIN_DC_OFF,
-+	XE3LPD_PW_2_POWER_DOMAINS,
-+	XE3LPD_PW_C_POWER_DOMAINS,
-+	XE3LPD_PW_D_POWER_DOMAINS,
-+	POWER_DOMAIN_AUDIO_MMIO,
-+	POWER_DOMAIN_INIT);
-+
-+static const struct i915_power_well_desc xe3lpd_power_wells_dcoff[] = {
-+	{
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("DC_off", &xe3lpd_pwdoms_dc_off,
-+				.id = SKL_DISP_DC_OFF),
-+		),
-+		.ops = &gen9_dc_off_power_well_ops,
-+	},
-+};
-+
-+
-+static const struct i915_power_well_desc_list xe3lpd_power_wells[] = {
-+	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
-+	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
-+	I915_PW_DESCRIPTORS(xe3lpd_power_wells_dcoff),
-+	I915_PW_DESCRIPTORS(xe3lpd_power_wells_main),
-+	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
-+};
-+
- static void init_power_well_domains(const struct i915_power_well_instance *inst,
- 				    struct i915_power_well *power_well)
- {
-@@ -1693,7 +1824,9 @@ int intel_display_power_map_init(struct i915_power_domains *power_domains)
- 		return 0;
- 	}
+ /*
+  * HDMI link rates with 38.4 MHz reference clock.
+  */
+@@ -2242,11 +2258,15 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
  
--	if (DISPLAY_VER(i915) >= 20)
-+	if (DISPLAY_VER(i915) >= 30)
-+		return set_power_wells(power_domains, xe3lpd_power_wells);
-+	else if (DISPLAY_VER(i915) >= 20)
- 		return set_power_wells(power_domains, xe2lpd_power_wells);
- 	else if (DISPLAY_VER(i915) >= 14)
- 		return set_power_wells(power_domains, xelpdp_power_wells);
+ 	if (intel_crtc_has_dp_encoder(crtc_state)) {
+-		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+-			return xe2hpd_c20_edp_tables;
++		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
++			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
++				return xe2hpd_c20_edp_tables;
++		}
+ 
+ 		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
+ 			return xe2hpd_c20_dp_tables;
++		else if (DISPLAY_VER(i915) >= 30)
++			return xe3lpd_c20_dp_edp_tables;
+ 		else
+ 			return mtl_c20_dp_tables;
+ 
 -- 
 2.45.0
 
