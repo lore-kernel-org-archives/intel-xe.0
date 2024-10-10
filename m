@@ -4,60 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77765CF07BF
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 08:20:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA8BDCF07C3
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 08:29:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4308610E2B3;
-	Thu, 10 Oct 2024 08:20:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7711610E2B3;
+	Thu, 10 Oct 2024 08:29:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fBJZGJ/I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cMLkKN27";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1B2E10E899;
- Thu, 10 Oct 2024 08:20:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE94A10E2B3
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Oct 2024 08:29:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728548420; x=1760084420;
+ t=1728548991; x=1760084991;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=4oY5IifHoiDF08GsuMzKw8QrvBeSq08/tetMdla794s=;
- b=fBJZGJ/IrQ5gso/H+NyJF241ijxaG2mFQH0/oDnOkD1Y/GEc9S4Jij+r
- GsXzKTWshWr0sXXkalnZl0zb2+mFgbwd5zBi+00Id8FdpYlrF8tinkj9G
- iXdfEEdZIChdnzsf6+zJPZRHk9FxvzySxoQbQ/eBZSdjE4stK2UqO6COH
- wNB3cENLRUWp+x3wgAqIGqo2L4u2FfoWDGRj2gqg0y9NFguul37xZw6SY
- W1j6fc3lNvk01yNDhLf2u8XbFS0edH+CdV0YIBFNuETcndc0hjMbBgkfq
- GBog107l9zIgh9gfVeBkmEZ/gbHSO6CXNG1m1AbnnxmRt0zRajzn3ujmv g==;
-X-CSE-ConnectionGUID: UY7o6Ws1SWGUARyoLS4SSg==
-X-CSE-MsgGUID: +sen02/ySnamMdxAAaHaZQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="50429322"
-X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="50429322"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 01:20:20 -0700
-X-CSE-ConnectionGUID: ZA1r+WYOSXiMBx4G+cqSEw==
-X-CSE-MsgGUID: fgnUAxwuSxKSanEkaoc2pw==
+ bh=4F/YSIFvKYCGydjALU9IDXpgTn9375mpU0oWxMW4yZ8=;
+ b=cMLkKN27SSr3Tql9f1d3nXrGakubcjbgkKrXiMLRg+nPZbj+AYQkFXYW
+ HnVZu9ApXXAKe4AtYxZu6JQXWm0bJeZaeIeLfOXvcsyNCN9YcS8kQsAuS
+ kUzSjrRVgqdqM0+/8LrRBSOnG4yS+lQVGMaWtpFiOXhBU0cYFNH+t/aqu
+ /4jZ8DIzaND+fuokhWb8mZm2yRDl8vlgiQAxuvhvM8VKLPa0GCBe3lMUv
+ rgnUcd9b6Po5Frx5W1I0+IN3xj/Yn3Vj17b2On1fuPHu8w0f2MRhHKlpN
+ e5g/2F1kjUdCcZ9qoGbTM3npL3Sbwt4y5xXSRs52mcvySS7EXWnSCOKoY Q==;
+X-CSE-ConnectionGUID: H0iJvG+WRHC8Z2W+CzlazA==
+X-CSE-MsgGUID: LEEO89HxR+qTaSSENOXgvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="31787591"
+X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="31787591"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 01:29:50 -0700
+X-CSE-ConnectionGUID: KMTDTm0BQV2FaqyfA6NBgQ==
+X-CSE-MsgGUID: /jLVtl7gRoG8zSF73i0VJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="107358228"
+X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="107253068"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.131])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 01:20:17 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 01:29:48 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Atwood, Matthew S"
- <matthew.s.atwood@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>
-Subject: RE: [PATCH 09/10] drm/i915/xe3lpd: Add check to see if edp over
- type c is allowed
-In-Reply-To: <SN7PR11MB6750C1D264E35F66C2105804E3782@SN7PR11MB6750.namprd11.prod.outlook.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org
+Cc: uma.shankar@intel.com, jouni.hogander@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/psr: Implement WA to help reach PC10
+In-Reply-To: <20241006164934.1689930-2-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
- <20241008223741.82790-10-matthew.s.atwood@intel.com>
- <87jzehbtkb.fsf@intel.com> <ZwcMaS6oVZneqURv@msatwood-mobl>
- <SN7PR11MB6750C1D264E35F66C2105804E3782@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Thu, 10 Oct 2024 11:20:13 +0300
-Message-ID: <871q0o8j42.fsf@intel.com>
+References: <20241003145337.1673715-2-suraj.kandpal@intel.com>
+ <20241006164934.1689930-2-suraj.kandpal@intel.com>
+Date: Thu, 10 Oct 2024 11:29:45 +0300
+Message-ID: <87y12w743q.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -74,192 +69,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 10 Oct 2024, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Atwood, Matthew S <matthew.s.atwood@intel.com>
->> Sent: Thursday, October 10, 2024 4:36 AM
->> To: Kandpal, Suraj <suraj.kandpal@intel.com>
->> Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; Kandpal,
->> Suraj <suraj.kandpal@intel.com>
->> Subject: Re: [PATCH 09/10] drm/i915/xe3lpd: Add check to see if edp over
->> type c is allowed
->> 
->> On Wed, Oct 09, 2024 at 10:53:56AM +0300, Jani Nikula wrote:
->> > On Tue, 08 Oct 2024, Matt Atwood <matthew.s.atwood@intel.com> wrote:
->> > > From: Suraj Kandpal <suraj.kandpal@intel.com>
->> > >
->> > > Read PICA register to see if edp over type C is possible and then
->> > > add the appropriate tables for it.
->> >
->> > There's clearly more to be done for the feature than this.
->
-> From what I could see in the spec we just need to read this the rest of the framework
-> Already seemed to be in place and removing the checks where we didn't allow edp to go ahead when
-> It was type c
+On Sun, 06 Oct 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> +static bool
+> +intel_psr_is_dc5_entry_possible(struct intel_display *display,
+> +				struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *intel_crtc;
 
-Is it driven by VBT?
+Always struct intel_crtc *crtc;
 
->
->> >
->> > >
->> > > Bspec: 68846
->> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> > > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
->> > > ---
->> > >  drivers/gpu/drm/i915/display/intel_cx0_phy.c     |  2 ++
->> > >  .../gpu/drm/i915/display/intel_display_types.h   |  1 +
->> > >  drivers/gpu/drm/i915/display/intel_dp.c          | 16 ++++++++++++++++
->> > >  drivers/gpu/drm/i915/i915_reg.h                  |  3 +++
->> > >  4 files changed, 22 insertions(+)
->> > >
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > > index 0d6f75ae35f5..1c8c2a2b05e1 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > > @@ -2261,6 +2261,8 @@ intel_c20_pll_tables_get(struct intel_crtc_state
->> *crtc_state,
->> > >  		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
->> > >  			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
->> > >  				return xe2hpd_c20_edp_tables;
->> > > +			if (DISPLAY_VER(i915) >= 30 && encoder-
->> >typec_supp)
->> > > +				return xe3lpd_c20_dp_edp_tables;
->> > >  		}
->> > >
->> > >  		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1)) diff --git
->> > > a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > > index 2bb1fa64da2f..e9dc7707fbcd 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > > @@ -158,6 +158,7 @@ struct intel_encoder {
->> > >  	enum port port;
->> > >  	u16 cloneable;
->> > >  	u8 pipe_mask;
->> > > +	bool typec_supp;
->> >
->> > The register is global, why do we store this per encoder?
->
-> Do you think having this in drm_i915_private makes sense wanted to put it there originally
+> +
+> +	if ((display->power.domains.target_dc_state &
+> +	     DC_STATE_EN_UPTO_DC5_DC6_MASK) == 0)
+> +		return false;
+> +
+> +	if (!crtc_state->has_psr && !crtc_state->has_sel_update &&
+> +	    !crtc_state->has_panel_replay)
+> +		return false;
+> +
+> +	for_each_intel_crtc(display->drm, intel_crtc) {
+> +		struct drm_crtc *crtc = &intel_crtc->base;
 
-Ugh no. We've stopped putting *anything* in drm_i915_private.
+Just don't add struct drm_crtc local variables, so you don't get the
+name conflict.
 
-I couldn't find much detail about how the register behaves, but it looks
-like a strap. I think I'd put the info in struct
-intel_display_runtime_info and initialize in
-__intel_display_device_info_runtime_init() based on the register,
-similar to a ton of other things there.
+> +		struct drm_vblank_crtc *vblank;
+> +		struct intel_encoder *encoder;
+> +
+> +		if (!intel_crtc->active)
+> +			continue;
+> +
+> +		vblank = drm_crtc_vblank_crtc(crtc);
+> +
+> +		if (vblank->enabled)
+> +			return false;
+> +
+> +		for_each_encoder_on_crtc(display->drm, crtc, encoder)
+> +			if (encoder->type != INTEL_OUTPUT_EDP ||
+> +			    !CAN_PSR(enc_to_intel_dp(encoder)))
+> +				return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
 
->
->> >
->> > Side not, please let's not abbreviate stuff like _supp for the sake of
->> > abbreviating stuff.
->
-> Sure will fix the naming
-> Also quick question what would be the rule when abbreviating variables or
-> When would we want to abbreviate the a variable if we want to
+[snip]
 
-It's all about conventions, scope, and context. Certain things always
-have the same name. Shorter names are fine in tight scope. Context can
-allow you to shorten the name if parts of it are obvious from context.
+> +void intel_psr_compute_config_late(struct intel_encoder *intel_encoder,
 
->
->> >
->> > >
->> > >  	/* Check and recover a bad link state. */
->> > >  	struct delayed_work link_check_work; diff --git
->> > > a/drivers/gpu/drm/i915/display/intel_dp.c
->> > > b/drivers/gpu/drm/i915/display/intel_dp.c
->> > > index fbb096be02ad..917a503cc43b 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > > @@ -5570,6 +5570,20 @@ intel_dp_detect_sdp_caps(struct intel_dp
->> *intel_dp)
->> > >  		drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp-
->> >dpcd);  }
->> > >
->> > > +static void
->> > > +intel_dp_check_edp_typec_supp(struct intel_encoder *encoder)
->> >
->> > It's not about checking anything, it's about reading, right?
->
-> Yes will rename this to intel_dp_read_edp_typec_support
+Always struct intel_encoder *encoder;
 
-If we move the check to runtime info, the function shouldn't be needed.
+> +				   struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_encoder);
+> +	struct intel_dp *dp = enc_to_intel_dp(intel_encoder);
 
->
->> >
->> > > +{
->> > > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->> > > +	bool is_tc_port = intel_encoder_is_tc(encoder);
->> > > +	u32 ret = 0;
->> > > +
->> > > +	if (encoder->type != INTEL_OUTPUT_EDP || !is_tc_port)
->> >
->> > Currently we warn at connector init for eDP type-C combo.
->
-> That's true we will need to remove that check for DISPLAY_VER > 20
-> Thanks will add that in this patch
+Always struct intel_dp *intel_dp;
 
-That check should be amended with the runtime info check.
-
->
->> >
->> > > +		return;
->> > > +
->> > > +	ret = intel_de_read(i915, PICA_PHY_CONFIG_CONTROL);
->> > > +	encoder->typec_supp = ret & EDP_ON_TYPEC; }
->> > > +
->> > >  static int
->> > >  intel_dp_detect(struct drm_connector *connector,
->> > >  		struct drm_modeset_acquire_ctx *ctx, @@ -5595,6 +5609,8
->> @@
->> > > intel_dp_detect(struct drm_connector *connector,
->> > >  	if (!intel_display_driver_check_access(dev_priv))
->> > >  		return connector->status;
->> > >
->> > > +	intel_dp_check_edp_typec_supp(encoder);
->> > > +
->> >
->> > Isn't this something that should be determined at intel_ddi_init() time?
->
-> Or intel_dp_connector_init can add it there what do you think ?
-
-Yes, that's where we check the type-C/eDP combo currently.
-
-BR,
-Jani.
-
->
-> Regards,
-> Suraj Kandpal
->> >
->> > BR,
->> > Jani.
->> Please respond to Jani's comments
->> MattA
->> >
->> >
->> > >  	/* Can't disconnect eDP */
->> > >  	if (intel_dp_is_edp(intel_dp))
->> > >  		status = edp_detect(intel_dp);
->> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
->> > > b/drivers/gpu/drm/i915/i915_reg.h index da65500cd0c8..5f5a6ade5f8c
->> > > 100644
->> > > --- a/drivers/gpu/drm/i915/i915_reg.h
->> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
->> > > @@ -4583,4 +4583,7 @@ enum skl_power_gate {
->> > >
->> > >  #define MTL_MEDIA_GSI_BASE		0x380000
->> > >
->> > > +#define PICA_PHY_CONFIG_CONTROL 	_MMIO(0x16FE68)
->> > > +#define   EDP_ON_TYPEC			REG_BIT(31)
->> > > +
->> > >  #endif /* _I915_REG_H_ */
->> >
->> > --
->> > Jani Nikula, Intel
+> +
+> +	if (DISPLAY_VER(display) == 20) {
+> +		mutex_lock(&dp->psr.lock);
+> +		dp->psr.is_dpkgc_configured =
+> +			intel_psr_is_dpkgc_configured(display, crtc_state);
+> +		dp->psr.is_dc5_entry_possible =
+> +			intel_psr_is_dc5_entry_possible(display, crtc_state);
+> +		dp->psr.is_wa_delayed_vblank_limit =
+> +			intel_psr_check_wa_delayed_vblank(&crtc_state->hw.adjusted_mode);
+> +		mutex_unlock(&dp->psr.lock);
+> +	}
+> +}
+> +
 
 -- 
 Jani Nikula, Intel
