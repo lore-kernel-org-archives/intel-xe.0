@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BE15CFC5E2
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 17:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC305CFC5E7
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 17:33:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 697F110E982;
-	Thu, 10 Oct 2024 17:32:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C22510E9A0;
+	Thu, 10 Oct 2024 17:33:00 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B3AE10E982;
- Thu, 10 Oct 2024 17:32:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFF810E99F;
+ Thu, 10 Oct 2024 17:32:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_enable_lit?=
- =?utf-8?q?e_restore_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_enable_lite_res?=
+ =?utf-8?q?tore_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: fei.yang@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Oct 2024 17:32:47 -0000
-Message-ID: <172858156723.1237137.6229947277238717438@2413ebb6fbb6>
+Date: Thu, 10 Oct 2024 17:32:59 -0000
+Message-ID: <172858157930.1237115.9505061773735249182@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241010173142.425498-1-fei.yang@intel.com>
 In-Reply-To: <20241010173142.425498-1-fei.yang@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3cea446aebc5 drm-tip: 2024y-10m-10d-12h-55m-34s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: enable lite restore
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ce9f3e7ee2f7ef923dc6d5dca74b7e7e96d1a2d3
+Author: Fei Yang <fei.yang@intel.com>
+Date:   Thu Oct 10 10:31:42 2024 -0700
+
+    drm/xe: enable lite restore
+    
+    The lite restore feature is supposed to be enabled by default.
+    
+    Signed-off-by: Fei Yang <fei.yang@intel.com>
+    Cc: John Harrison <John.C.Harrison@Intel.com>
++ /mt/dim checkpatch 3cea446aebc55b80abbe6bcb1b0022ab03e01958 drm-intel
+ce9f3e7ee2f7 drm/xe: enable lite restore
 
 
