@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E874CF11DF
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 12:22:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B88CF11E6
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Oct 2024 12:46:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477A210E157;
-	Thu, 10 Oct 2024 12:22:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8273E10E008;
+	Thu, 10 Oct 2024 12:46:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZnUlYTpK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuG0LmgP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF03010E157;
- Thu, 10 Oct 2024 12:22:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A789E10E8E1;
+ Thu, 10 Oct 2024 12:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728562954; x=1760098954;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=FwLQ+7HxyyHuco3cxblOsFwG2WJu/a9vzRLHfdQKl/k=;
- b=ZnUlYTpKwVHpQFEX1hx/osB9UgdtR8Ny3Lnt/FdeTiR1RPwLKyJhR405
- PdsA9Gpcr1peZL8yFWOqCLqKaHVy+ThAViipmEj/BKtgUCvmikQmEuFJ2
- CwHPc5FLxMMbv1hUVnfPRapO+Oq1NGPpBiVFaiJZZTNj3n40q0wPWm1e2
- AkBue5jAKoLBlNrUdkbOqzbIcBEv08lxNoHhwiCQQj+hNE9LGiLroLvl5
- p563J3KQCL48uWhbHWgGntyOLB/bnkk6dijgTqeLV3j7VERKzdw1uixbe
- 7/HH4/c0xctCfpUVBrRM+gIYNg/MukMjpgPjz4UVls1MEz0aehhlVT3iP g==;
-X-CSE-ConnectionGUID: tCvEOXSvRHmx2h3VgE669w==
-X-CSE-MsgGUID: TWHKTyweQp6XToG0ZVP1Mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="15541452"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="15541452"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 05:22:33 -0700
-X-CSE-ConnectionGUID: xG0yq7q1S06Kml/iYeMdBw==
-X-CSE-MsgGUID: F1pMsZRqTPCXgd4e7LucnQ==
+ t=1728564380; x=1760100380;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sP9GNrSRwPDBt1snhmFN73pN7SrkBxUtBVajhe/Yi6E=;
+ b=kuG0LmgPeFUlA/XQGIM0oB+AWsPaNqToEAfj9iBhX+0X9MjSLVOXXGBw
+ dr733r790EbplFyqaRONVqO7NEVNA7JnXbdLVi/xft459PK9WAbTTilQI
+ 4UxEsZEyyeepHTGXtprnWOzd/rP2FFYFcghwV38yqfBa5rntGnm3nOIqR
+ eDmICfrYwXDAq3PS2fRAA+JlS5ijVBvmgGBb/2ptdGuTl2Nh2w7212ShJ
+ GZS81BW2OOCKLljCl2R/y9XvZgY5Wl9apMtP19Oef9PIXgqa3FdWd2hqG
+ oBcpqrE5RDPwHA58bcYuGSt51HJf/HNU7DCGYFwtMHeEoJosDAxii4hsp w==;
+X-CSE-ConnectionGUID: qu7rPH7xQWO9/5cTrTb2bg==
+X-CSE-MsgGUID: gPVnYCenRn2cdOqS5Fl1DQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="39308929"
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="39308929"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 05:46:20 -0700
+X-CSE-ConnectionGUID: K8h8heRJQzaO7bhB/AEYAw==
+X-CSE-MsgGUID: 3+YFvUi5QqKlVYRaqyJWRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="76569925"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 05:22:28 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/4] drm/i915/irq: s/gen3/gen2/
-In-Reply-To: <ZwfB6l8nQelIYx2c@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241008214349.23331-1-ville.syrjala@linux.intel.com>
- <20241008214349.23331-4-ville.syrjala@linux.intel.com>
- <87o73ta86y.fsf@intel.com> <ZwfB6l8nQelIYx2c@intel.com>
-Date: Thu, 10 Oct 2024 15:22:25 +0300
-Message-ID: <87frp46tby.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="76487049"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO fedora..)
+ ([10.245.244.227])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 05:46:17 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: [PATCH] drm/ttm: Fix incorrect use of kernel-doc format
+Date: Thu, 10 Oct 2024 14:45:45 +0200
+Message-ID: <20241010124545.82023-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,38 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 10 Oct 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Oct 09, 2024 at 01:20:53PM +0300, Jani Nikula wrote:
->> On Wed, 09 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >
->> > Now that we use the gen3 codepaths also for gen2
->> > rename everything to gen2_ to match.
->>=20
->> This was fine for the gt stuff where there are gen5 and gen6 functions,
->> but should we just call these something more generic since there are no
->> platform specific functions?
->>=20
->> The naming is a bit funky already.
->>=20
->> intel_irq_init() is *not* the higher level function for init. It's
->> actually intel_irq_install() -> intel_irq_postinstall() that calls
->> gen3_irq_init() and some other stuff.
->
-> intel_irq_init() seems like it should be ripped apart and distributed to
-> more appropriate places. The guc stuff at least. And most of the l3
-> parity stuff also lives in some gt code, so the rest should probably
-> move as well (Either that or we rip out the wole thing. I suspect no
-> is actually using that anywhere).
->
-> But no idea what to do about the gen2_ stuff.
+Add a missing colon.
 
-*shrug* I guess in the mean time we can go ahead with this.
+Cc: dri-devel@lists.freedesktop.org
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Closes: https://lore.kernel.org/linux-next/20241010160942.192caf60@canb.auug.org.au/
+Fixes: fc5d96670eb2 ("drm/ttm: Move swapped objects off the manager's LRU list")
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ include/drm/ttm/ttm_device.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
+index 438358f72716..39b8636b1845 100644
+--- a/include/drm/ttm/ttm_device.h
++++ b/include/drm/ttm/ttm_device.h
+@@ -252,7 +252,7 @@ struct ttm_device {
+ 	spinlock_t lru_lock;
+ 
+ 	/**
+-	 * @unevictable Buffer objects which are pinned or swapped and as such
++	 * @unevictable: Buffer objects which are pinned or swapped and as such
+ 	 * not on an LRU list.
+ 	 */
+ 	struct list_head unevictable;
+-- 
+2.46.0
 
-
-
---=20
-Jani Nikula, Intel
