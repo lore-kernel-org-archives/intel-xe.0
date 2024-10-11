@@ -4,56 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55B43CFD2E0
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 08:27:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 287E7CFD2E4
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 08:47:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF2F10EA7E;
-	Fri, 11 Oct 2024 08:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBB8710EA88;
+	Fri, 11 Oct 2024 08:47:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WQDL//cJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OmmK3wfv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1622F10EA7D;
- Fri, 11 Oct 2024 08:27:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 141B910EA87;
+ Fri, 11 Oct 2024 08:47:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728635277; x=1760171277;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=GuOStsVN7v3Z1w/jlst54taOyydcHInkXiYYOIfP+xA=;
- b=WQDL//cJ51A82DZB5vZPW46qYsF1ADMPRfPg1gLtyD8dgDZmuvY0FW+8
- CcqbBILrSIIdZ5AdnmSCqgkU3FyfDOoklN/eoF81M83NsFRBWrBuiWBpN
- fusB+Lx5YgUoQ8DnK1bE9i2e2tdB4JmMqNvJsQwk6NLV1QYnFzXfeQz8D
- nOHgthN3a5jeqtum/TbcZRDvMGippzMMMWfekLpe+ZOFcXhTiuZiEXC6N
- BQ6dw2N8fFdJE0XOnZ+tTpqJMsouGGr1osDOxTvP8lJTws7XlYb3Jyd8P
- ZwcNUTh14vVTyIOfb2Ip9CYexZAuo/F1QTX6OZ+6/6vrsWhRuyurcoXnp Q==;
-X-CSE-ConnectionGUID: LohqH56yS1CQBquGSdQSvQ==
-X-CSE-MsgGUID: dqBKCzIIQ3mqEG00k3gsdQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="30904481"
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="30904481"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 01:27:56 -0700
-X-CSE-ConnectionGUID: xvPaOFs1StqNsLvTSZAK1g==
-X-CSE-MsgGUID: JXD3HC+lTYeIM327pTThQw==
+ t=1728636460; x=1760172460;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=2nj39NWEoWIviTYiFxe5RTBXqZ1nw3RnvVjKbtRqWpk=;
+ b=OmmK3wfvtASFjT2+/rXc3e/1ZAIHc8bhcLtC3PFSuXLVNJN8cNG+ZZXB
+ Nbaz03llFrf/UKObABUOdS7TlNka9FMtZx2lCVNc1Qydd8ij9RdfXRIog
+ EcHPhPnBrd+hQkiMjybMHtAaeDIOryqpzmHlcLmC3y2quhJwbKNOBAp6/
+ I/PvYW5gB8t+6uFSpN8tjYdncyDbZae+/rF82Bwo3/bkaCxm+gOFkFKhn
+ MnYmhZNgnNGxJwyrAdqBRz6+JFs8goAPiHfHPxMpZUjLaZ0t1a3jJ/+u0
+ iMXigaJqxMMZKDOUz7Y879umTYFkLq1CEBSLY+r9Puevs3x6PWFzSabmo g==;
+X-CSE-ConnectionGUID: bMT37ctjRXCJuFPaLbRgYw==
+X-CSE-MsgGUID: XvOJBWMWQjC/J/OCSJozuQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="27838121"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="27838121"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:47:40 -0700
+X-CSE-ConnectionGUID: AnQ4uspyTuy6Fs0fH+5acg==
+X-CSE-MsgGUID: vqCFHIglQBub6i2f/JPFMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="77047856"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.178])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 01:27:55 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: Re: [PATCH] drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()
-In-Reply-To: <20241010155552.994880-1-shuicheng.lin@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241010155552.994880-1-shuicheng.lin@intel.com>
-Date: Fri, 11 Oct 2024 11:27:48 +0300
-Message-ID: <877caf6o3f.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="81644719"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:47:35 -0700
+Date: Fri, 11 Oct 2024 11:47:32 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, airlied@gmail.com,
+ simona@ffwll.ch, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
+Message-ID: <ZwjmJFaK1FYVK7TK@black.fi.intel.com>
+References: <20240930073845.347326-1-raag.jadav@intel.com>
+ <20240930073845.347326-2-raag.jadav@intel.com>
+ <26f90d12-6a04-445e-96ff-aafbe3dc8132@intel.com>
+ <Zv6Ms7G4pSLdgUKo@black.fi.intel.com>
+ <ZwVJk8ESEyxyemrG@black.fi.intel.com>
+ <ghawgrgfbochcupnbq52q4ep6l5rfj32i4wcnmykah3zxmehts@r5eaynm4vocf>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ghawgrgfbochcupnbq52q4ep6l5rfj32i4wcnmykah3zxmehts@r5eaynm4vocf>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,70 +80,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 10 Oct 2024, Shuicheng Lin <shuicheng.lin@intel.com> wrote:
-> The function parse_lfp_panel_dtd() is called when the driver
-> attempts to initialize the eDP connector, and it allocates memory,
-> which is recorded in panel->vbt.lfp_vbt_mode. However, since no
-> eDP panel is connected, the driver fails at intel_edp_init_dpcd()
-> and follows the failure path. Unfortunately, the allocated memory
-> is not freed in this case.
->
-> To fix this issue, free the memory in the failure path.
->
-> leak info from kmemleak:
-> "
-> unreferenced object 0xffff8881252f8800 (size 128):
->   comm "systemd-udevd", pid 192, jiffies 4294896880
->   hex dump (first 32 bytes):
->     e8 fd 00 00 00 04 18 04 a0 04 40 05 00 00 00 03  ..........@.....
->     03 03 09 03 26 03 00 00 0a 00 00 00 00 00 00 00  ....&...........
->   backtrace (crc 7448f6b4):
->     [<ffffffff82475c9b>] kmemleak_alloc+0x4b/0x80
->     [<ffffffff814bb50e>] __kmalloc_cache_noprof+0x2be/0x390
->     [<ffffffffa069862c>] intel_bios_init_panel+0x1c4c/0x2720 [xe]
->     [<ffffffffa0699123>] intel_bios_init_panel_early+0x13/0x20 [xe]
->     [<ffffffffa06fceb9>] intel_dp_init_connector+0x2f9/0x1080 [xe]
->     [<ffffffffa06c370a>] intel_ddi_init+0xbba/0xf50 [xe]
->     [<ffffffffa069b906>] intel_bios_for_each_encoder+0x36/0x60 [xe]
->     [<ffffffffa06d7bd6>] intel_setup_outputs+0x206/0x450 [xe]
->     [<ffffffffa06dad33>] intel_display_driver_probe_nogem+0x163/0x1f0 [xe]
->     [<ffffffffa0680fc7>] xe_display_init_noaccel+0x27/0x70 [xe]
->     [<ffffffffa05b30d6>] xe_device_probe+0x806/0x9a0 [xe]
->     [<ffffffffa0612f0f>] xe_pci_probe+0x31f/0x590 [xe]
->     [<ffffffff81b41718>] local_pci_probe+0x48/0xb0
->     [<ffffffff81b432c8>] pci_device_probe+0xc8/0x280
->     [<ffffffff81d5dde8>] really_probe+0xf8/0x390
->     [<ffffffff81d5e11a>] __driver_probe_device+0x8a/0x170
-> "
->
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
+On Thu, Oct 10, 2024 at 08:02:10AM -0500, Lucas De Marchi wrote:
+> On Tue, Oct 08, 2024 at 06:02:43PM +0300, Raag Jadav wrote:
+> > On Thu, Oct 03, 2024 at 03:23:22PM +0300, Raag Jadav wrote:
+> > > On Tue, Oct 01, 2024 at 02:20:29PM +0200, Michal Wajdeczko wrote:
+> > > > On 30.09.2024 09:38, Raag Jadav wrote:
+> > > > >
+> > > > > +/**
+> > > > > + * enum drm_wedge_recovery - Recovery method for wedged device in order of
+> > > > > + * severity. To be set as bit fields in drm_device.wedge_recovery variable.
+> > > > > + * Drivers can choose to support any one or multiple of them depending on
+> > > > > + * their needs.
+> > > > > + */
+> > > > > +enum drm_wedge_recovery {
+> > > > > +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
+> > > > > +	DRM_WEDGE_RECOVERY_REBIND,
+> > > > > +
+> > > > > +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
+> > > > > +	DRM_WEDGE_RECOVERY_BUS_RESET,
+> > > > > +
+> > > > > +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
+> > > > > +	DRM_WEDGE_RECOVERY_REBOOT,
+> > > > > +
+> > > > > +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
+> > > > > +	DRM_WEDGE_RECOVERY_MAX
+> > > > > +};
+> > > > > +
+> > > > >  /**
+> > > > >   * struct drm_device - DRM device structure
+> > > > >   *
+> > > > > @@ -317,6 +337,9 @@ struct drm_device {
+> > > > >  	 * Root directory for debugfs files.
+> > > > >  	 */
+> > > > >  	struct dentry *debugfs_root;
+> > > > > +
+> > > > > +	/** @wedge_recovery: Supported recovery methods for wedged device */
+> > > > > +	unsigned long wedge_recovery;
+> > > >
+> > > > hmm, so before the driver can ask for a reboot as a recovery method from
+> > > > wedge it has to somehow add 'reboot' as available method? why it that?
+> > > 
+> > > It's for consumers to use as fallbacks in case the preferred recovery method
+> > > (sent along with uevent) don't workout. (patch 2/5)
+> > 
+> > On second thought...
+> > 
+> > Lucas, do we have a convincing enough usecase for fallback recovery?
+> > If <method> were to fail, I would expect there to be even bigger problems
+> > like kernel crash or unrecoverable hardware failure.
+> > 
+> > At that point is it worth retrying?
+> 
+> when we were talking about this, I brought it up about allowing the
+> driver to inform what was the supported wedge recovery mechanisms
+> when the notification is sent. Not to be intended as fallback mechanism.
+> 
+> So if the driver sends a notification with:
+> 
+> 	DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET | DRM_WEDGE_RECOVERY_REBOOT
+> 
+> it means any of these would be suitable, with the first being the option
+> with less side-effect. I don't think we are advising userspace to use
+> fallback, just informing what the driver/device supports. Depending on
+> the error, the driver may leave only
+> 
+> 	DRM_WEDGE_RECOVERY_REBOOT
+> 
+> That name could actually be DRM_WEDGE_RECOVERY_NONE. Because at that
+> state the driver doesn't really know what can be done to recover.
+> With that we can drop _MAX and use _NONE for bounding check. I think
+> we can also omit it in the notification as it's clear:
+> 
+> 	WEDGED
+> 	DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET
+> 
+> This means the driver can use any of these options to recover
+> 
+> 	WEDGED
+> 	DRM_WEDGE_RECOVERY_BUS_RESET
+> 
+> only bus reset would fix it
+> 
+> 	WEDGED
+> 	
+> driver doesn't know anything that could fix it. It may be a soft-reboot,
+> hard-reboot, firmware flashing etc... We just don't know.
 
-For future reference, the commit message and subject should indicate
-this is v2, and what the changes were. See submitting-patches.rst.
+With this I think we can drop sysfs.
+(Already too many ABIs to deal with)
 
-No need to resend for this.
-
-BR,
-Jani.
-
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 90fa73575feb..7141e3ca0d83 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -6801,6 +6801,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->  
->  out_vdd_off:
->  	intel_pps_vdd_off_sync(intel_dp);
-> +	intel_bios_fini_panel(&intel_connector->panel);
->  
->  	return false;
->  }
-
--- 
-Jani Nikula, Intel
+Raag
