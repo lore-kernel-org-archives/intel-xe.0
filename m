@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 953DAD0EE19
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 18:40:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3306AD0EE19
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 19:06:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 630C510E1C3;
-	Fri, 11 Oct 2024 18:40:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEF7710E197;
+	Fri, 11 Oct 2024 19:06:35 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA20F10E1C3;
- Fri, 11 Oct 2024 18:40:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7253310E197;
+ Fri, 11 Oct 2024 19:06:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5151240871066736927=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/guc=3A_Fix_derefe?=
- =?utf-8?q?rence_before_NULL_check_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Fix_dereference_be?=
+ =?utf-8?q?fore_NULL_check_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Everest K.C." <everestkc@everestkc.com.np>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Oct 2024 18:40:06 -0000
-Message-ID: <172867200675.1241760.8208264839035511798@2413ebb6fbb6>
+Date: Fri, 11 Oct 2024 19:06:34 -0000
+Message-ID: <172867359446.1241788.10357663891007161024@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241009184951.4991-1-everestkc@everestkc.com.np>
 In-Reply-To: <20241009184951.4991-1-everestkc@everestkc.com.np>
@@ -40,34 +40,190 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5151240871066736927==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe/guc: Fix dereference before NULL check (rev4)
 URL   : https://patchwork.freedesktop.org/series/139890/
-State : success
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast d2577be8b969257afb5f76964afc16ae4f6f7c07
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07_BAT -> xe-pw-139890v4_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-139890v4_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-139890v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-139890v4_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1:
+    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139890v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#1861])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
+    - bat-lnl-2:          [PASS][5] -> [FAIL][6] ([Intel XE#2754])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-bmg-1:          [PASS][7] -> [INCOMPLETE][8] ([Intel XE#2874] / [Intel XE#2998]) +1 other test incomplete
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+    - bat-dg2-oem2:       [PASS][9] -> [INCOMPLETE][10] ([Intel XE#2874]) +1 other test incomplete
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#2998]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998
 
 
+Build changes
+-------------
+
+  * IGT: IGT_8065 -> IGT_8066
+  * Linux: xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07 -> xe-pw-139890v4
+
+  IGT_8065: c727cc3fad56f16f1a9f35023ae5dd7111976fa3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8066: 6eb0694325c565c6eb4c437f6e5c0650c2b5fd4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07: d2577be8b969257afb5f76964afc16ae4f6f7c07
+  xe-pw-139890v4: 139890v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/index.html
+
+--===============5151240871066736927==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix dereference before NULL check (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139890/">https://patchwork.freedesktop.org/series/139890/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07_BAT -&gt; xe-pw-139890v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-139890v4_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-139890v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-139890v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139890v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
+<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998">Intel XE#2998</a>) +1 other test incomplete</li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v4/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8065 -&gt; IGT_8066</li>
+<li>Linux: xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07 -&gt; xe-pw-139890v4</li>
+</ul>
+<p>IGT_8065: c727cc3fad56f16f1a9f35023ae5dd7111976fa3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8066: 6eb0694325c565c6eb4c437f6e5c0650c2b5fd4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2050-d2577be8b969257afb5f76964afc16ae4f6f7c07: d2577be8b969257afb5f76964afc16ae4f6f7c07<br />
+  xe-pw-139890v4: 139890v4</p>
+
+</body>
+</html>
+
+--===============5151240871066736927==--
