@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D649D0D788
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 823CED0D786
 	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 12:39:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9F910EADB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4227710EAD6;
 	Fri, 11 Oct 2024 12:39:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LknPRI6C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GPxpz2wd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6789E10EAD6
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Oct 2024 12:39:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B7B210EAD6
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Oct 2024 12:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728650362; x=1760186362;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QnwraeRBQwLmpM0ZhIyjjhTj3WuBUCC0rTCXV+udk2U=;
- b=LknPRI6C/8T+15/poR+TtrjooIOkVp5Rdw2M1qVJzPHw2xr4tjTpqqmB
- 3DCQJAF3u7ECXjNf9dbf4Abrx03sTiW6N72iZ/9MLXAcZIlRZD6eOtFGY
- IVWciYY+ixXmnPLqVx7G7WkrqN/x3IoVS9BMGeZ1JJ79ish3EzXxnYXKe
- 2OGvZ5MY01Gq/pvweVk4yi8ttT0EVpoRcTGxqEaR1+KMJaNHznRhQFPsD
- pIj+B09sGgTw3xNWLLYut15NadyArdCAL4iT1O0O2Q2Or6Lhyz5GnK5ua
- IczkZmf3xn5PeK9wf+a2eTxHp1kF8RBU2ROjdDTEGcjtPkJeUjAL2h34T Q==;
-X-CSE-ConnectionGUID: DadeSNtCQ2S1hwfBtFJawg==
-X-CSE-MsgGUID: iDO09lEQTSKTMMj3ADl2Lg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="50589555"
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="50589555"
+ t=1728650363; x=1760186363;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=alHwx7mmO0joOceqanuMKEODFlpZ7+5rO5ZW+razv7Q=;
+ b=GPxpz2wdNisM2zRMYtEOPFLsZbNKssPWmaK9ZhmhczKu6roW3DLz/zr0
+ RBbrIOHV6XzCuKjpynDB/RVVnB623kA8dkp8rDmRrFaE1IteQy5PpLATN
+ TBjftAEcQCkFPnEKIBvDHcMQGa/PTae3XI0Z1Pj8O3QVXGwgGpp3snsOc
+ hEHgDAOS6V/HmE0A6/yqn5sNXte+aWD0vjewGva6b6Z93n5vUKL80OgrK
+ +IqJV88LjDjFPF4pph3rReaHqYFrZYS3naKiNoXH4pZgLNiY6slLGwcza
+ Z30geD9WGRyTln5+Uy1yFMDjiu4qE3ID0UFWXr6ThoKIyS5DNvAfSjyfF A==;
+X-CSE-ConnectionGUID: KrpK7YK/RQCXzp0MnSVQTA==
+X-CSE-MsgGUID: gA25vGegQfevV5Q+AyrTyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="50589556"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="50589556"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 05:39:22 -0700
-X-CSE-ConnectionGUID: c12HmPmRQa2kRc+p5jH4Bg==
-X-CSE-MsgGUID: 6Lh2q8iXRhiY9f7rimopTw==
+ 11 Oct 2024 05:39:23 -0700
+X-CSE-ConnectionGUID: 2p9IGwcFQAGhYWTS3IG74w==
+X-CSE-MsgGUID: IyXIG1BSRjSLOxYgpvNQcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="80911074"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="80911077"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 05:39:20 -0700
+ 11 Oct 2024 05:39:22 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 1/2] drm/xe/ufence: Prefetch ufence addr to catch bogus address
-Date: Fri, 11 Oct 2024 13:57:14 +0200
-Message-ID: <20241011115715.3486872-1-nirmoy.das@intel.com>
+Subject: [PATCH 2/2] drm/xe/ufence: Warn if mmget_not_zero() fails
+Date: Fri, 11 Oct 2024 13:57:15 +0200
+Message-ID: <20241011115715.3486872-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20241011115715.3486872-1-nirmoy.das@intel.com>
+References: <20241011115715.3486872-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
@@ -66,31 +68,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-access_ok() only checks for addr overflow so also try to read the addr
-to catch invalid addr sent from userspace.
+This shouldn't happen but seen this while debugging ufence timeout
+issue time to time so log it to isolate this particular case.
 
 Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1630
 Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sync.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_sync.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index bb3c2a830362..6a2e4dd41d56 100644
+index 6a2e4dd41d56..41758f528d7c 100644
 --- a/drivers/gpu/drm/xe/xe_sync.c
 +++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -54,8 +54,9 @@ static struct xe_user_fence *user_fence_create(struct xe_device *xe, u64 addr,
- {
- 	struct xe_user_fence *ufence;
- 	u64 __user *ptr = u64_to_user_ptr(addr);
-+	u64 __maybe_unused prefetch_val;
+@@ -83,6 +83,8 @@ static void user_fence_worker(struct work_struct *w)
+ 			XE_WARN_ON("Copy to user failed");
+ 		kthread_unuse_mm(ufence->mm);
+ 		mmput(ufence->mm);
++	} else {
++		XE_WARN_ON("mmget_not_zero() failed");
+ 	}
  
--	if (!access_ok(ptr, sizeof(*ptr)))
-+	if (get_user(prefetch_val, ptr))
- 		return ERR_PTR(-EFAULT);
- 
- 	ufence = kmalloc(sizeof(*ufence), GFP_KERNEL);
+ 	wake_up_all(&ufence->xe->ufence_wq);
 -- 
 2.46.0
 
