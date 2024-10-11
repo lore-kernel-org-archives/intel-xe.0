@@ -4,72 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 546EDD0D795
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:55:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CCCFD0D791
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 14:07:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2554E10EAF3;
-	Fri, 11 Oct 2024 13:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E02BE10E154;
+	Fri, 11 Oct 2024 14:07:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=everestkc.com.np header.i=@everestkc.com.np header.b="llaSCUp3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f/hsSPMP";
 	dkim-atps=neutral
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8DEB10E7C3
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Oct 2024 18:51:11 +0000 (UTC)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-20c767a9c50so557495ad.1
- for <intel-xe@lists.freedesktop.org>; Wed, 09 Oct 2024 11:51:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=everestkc.com.np; s=everest; t=1728499871; x=1729104671;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=+0QE2yWoVqIEzNKM/3F/Lnwv5evjqB7rUXVgq/OQiuw=;
- b=llaSCUp3BQGZsdnJGYyMX2gPa9Yb7Pzro/8l/ciGcA9kT/yCl8JkaM64idKJDu99iM
- pgtvxXpz/p/tM8tYyFCgKCwGr1RymN+L+nbJo/Q0hyZbOcR+p3fKEfBBCjbzhm1NPQ4X
- MVnOzam5DRGLbOVapsDtcL3y9GzRY9BciDcBUv28arcQxVvGy/D9YJuVtiG8Lojyk4xf
- vxCBJRbtddOFmXkTTmi48eRtZJ88K58Qxm7DjLxwdbzRAxslixdvcqQ2TLQoWLrky2v8
- yMIicAU2pcIB+a6WVgd/WAY5bJY+EtZecxum/YFvzOkve8cP7RBwK4FQImKuyTr72Jsq
- SLNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728499871; x=1729104671;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=+0QE2yWoVqIEzNKM/3F/Lnwv5evjqB7rUXVgq/OQiuw=;
- b=Qlm1E2os096e0Iwpzn/teUjbuhdted5rX97JYHIB9t14klPX4n9k5ZDp9T3OWgj3/W
- uw2sW8AxyfiE4vCdxWczPuWSRfFyFqKKjgTDj4CQ3EkNV05zWx+EDD/fSqlgrZKIsa70
- F9YIz8XekxXoCyDj9e35bCRo6S0WbDMcDCzyqLeAKUeidhvYYNpiCYrXJ71eQGbvWXGs
- lRME9EypBa2gOwNYHI4I1GmODCialsNW2Ar79xqp9jzABT5PVX+RFeA4aDO1UbwM67Vt
- 3DsVyR6SNui3k3ZPJohIc0Of3rvbjrzLoOOEcjM8eKf0jYsWj0whBMw/cW2SnXe9X7/w
- qpRw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW90RqD26bYtuFGXp9tB64E6S53xTDI2grVKf84i0AUdvfBgBFGIOOsd0WAlEbabvX5QIFNJjGSNg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxukioD8epYdQ5wEPdBdVTv5uozmbQm4bn6uKbboe2s8l5Tp7ZL
- qkP9mxXK0xzDw5PPrwnMlAURI+rvSxpko8vb8yNjuhKBrXNIf5e2UOX08Qw4z/M=
-X-Google-Smtp-Source: AGHT+IHpQGViTVc+tm/tkjno8glkT35adg2V8Ycv4zbgyv863j7Td5NNgYxT1CIZMuESuswQ3Zwc8g==
-X-Received: by 2002:a17:902:dacc:b0:20b:7ece:322c with SMTP id
- d9443c01a7336-20c63742f31mr54388955ad.29.1728499871390; 
- Wed, 09 Oct 2024 11:51:11 -0700 (PDT)
-Received: from localhost.localdomain ([81.17.122.158])
- by smtp.googlemail.com with ESMTPSA id
- d9443c01a7336-20c54056b07sm29864905ad.64.2024.10.09.11.51.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Oct 2024 11:51:10 -0700 (PDT)
-From: "Everest K.C." <everestkc@everestkc.com.np>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-Cc: "Everest K.C." <everestkc@everestkc.com.np>, skhan@linuxfoundation.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/xe/guc: Fix dereference before Null check
-Date: Wed,  9 Oct 2024 12:49:49 -0600
-Message-ID: <20241009184951.4991-1-everestkc@everestkc.com.np>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA95A10E154
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Oct 2024 14:07:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728655660; x=1760191660;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lyKD+2N1e3w7ZDehh3RYOxh6saqANnxHCe0vh0jkPRA=;
+ b=f/hsSPMPEmMdSSTjj0MAI1B65y8CuJJPMcsf0WS8dRGd+0oCyxsRS3Jo
+ 63BlVpkRudEAa2nB/7cCbrowzlLvRSp4sVnGIM016LtL1qLSyKxwp4Yyj
+ yTUQh79IEdLYnC7+rfNdZEEXQEU18ajTC55ZBv4m+y+gawVr18w08g0RH
+ Zgmwl1/IR7BR8EB/6Xh3RI9cOrSRRKmJZzWoVxikT9aTAAOaqp4vYnVV4
+ YJkXqD6K/uEpibQEA9IBXdQiY4ZJuteaTpI0PFds5sdDwoYx7goB1qjrp
+ r5vwLhupQMVuKjbegZa5E5ePUBWXSaoa9J84czwh9Za8Ys0qA5xJz+LXG w==;
+X-CSE-ConnectionGUID: KI4FY9gCQhCP6B6zMrURig==
+X-CSE-MsgGUID: hgF42yh1QOOhZ57KuTJLBA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28213910"
+X-IronPort-AV: E=Sophos;i="6.11,196,1725346800"; d="scan'208";a="28213910"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 07:07:39 -0700
+X-CSE-ConnectionGUID: LNtUFH2eQaKHmhzqXGMEpA==
+X-CSE-MsgGUID: 5YY7U31bTISZ/v700fFZuw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,196,1725346800"; d="scan'208";a="77387576"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 07:07:37 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, stable@vger.kernel.org,
+ Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/ufence: ufence can be signaled right after wait_woken
+Date: Fri, 11 Oct 2024 15:25:32 +0200
+Message-ID: <20241011132532.3845488-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 11 Oct 2024 13:55:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,39 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The pointer list->list was derefrenced before the Null check
-resulting in possibility of Null pointer derefrencing.
-This patch moves the Null check outside the for loop, so that
-the check is performed before the derefrencing.
+do_comapre() can return success after wait_woken() which is treated as
+-ETIME here.
 
-This issue was reported by Coverity Scan.
-
-Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+Fixes: e670f0b4ef24 ("drm/xe/uapi: Return correct error code for xe_wait_user_fence_ioctl")
+Cc: <stable@vger.kernel.org> # v6.8+
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1630
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_capture.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 41262bda20ed..de63c622747d 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -1537,13 +1537,13 @@ read_reg_to_node(struct xe_hw_engine *hwe, const struct __guc_mmio_reg_descr_gro
- 	if (!regs)
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index d46fa8374980..d532283d4aa3 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -169,7 +169,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 			args->timeout = 0;
+ 	}
  
-+	if (!list->list)
-+		return;
-+
- 	for (i = 0; i < list->num_regs; i++) {
- 		struct __guc_mmio_reg_descr desc = list->list[i];
- 		u32 value;
+-	if (!timeout && !(err < 0))
++	if (!timeout && err < 0)
+ 		err = -ETIME;
  
--		if (!list->list)
--			return;
--
- 		if (list->type == GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE) {
- 			value = xe_hw_engine_mmio_read32(hwe, desc.reg);
- 		} else {
+ 	if (q)
 -- 
-2.43.0
+2.46.0
 
