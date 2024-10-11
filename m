@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FBC2D0EE12
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 16:31:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20ABBD0EE12
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 16:31:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7E3710EB34;
-	Fri, 11 Oct 2024 16:31:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C32F710EB37;
+	Fri, 11 Oct 2024 16:31:42 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 358CA10EB2B;
- Fri, 11 Oct 2024 16:31:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD39D10EB32;
+ Fri, 11 Oct 2024 16:31:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/ddi=3A_use_?=
- =?utf-8?q?string_choice_helpers?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/ddi=3A_use_strin?=
+ =?utf-8?q?g_choice_helpers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "R Sundar" <prosunofficial@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Oct 2024 16:31:31 -0000
-Message-ID: <172866429121.1241258.16304109597203647878@2413ebb6fbb6>
+Date: Fri, 11 Oct 2024 16:31:41 -0000
+Message-ID: <172866430183.1241250.8974120553123284731@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241007173300.83902-1-prosunofficial@gmail.com>
 In-Reply-To: <20241007173300.83902-1-prosunofficial@gmail.com>
@@ -44,13 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/ddi: use string choice helpers
 URL   : https://patchwork.freedesktop.org/series/139891/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d2577be8b969 drm-tip: 2024y-10m-11d-14h-32m-37s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/ddi: use string choice helpers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 79692df24dd997ebd47cb30f6f6860d6cca160e3
+Author: R Sundar <prosunofficial@gmail.com>
+Date:   Mon Oct 7 23:03:00 2024 +0530
+
+    drm/i915/ddi: use string choice helpers
+    
+    Use str_enabled_disabled string helpers for better readability and to
+    fix cocci warning.
+    
+    Reported-by: kernel test robot <lkp@intel.com>
+    Reported-by: Julia Lawall <julia.lawall@inria.fr>
+    Closes: https://lore.kernel.org/r/202410071601.TFpXoqgW-lkp@intel.com/
+    Signed-off-by: R Sundar <prosunofficial@gmail.com>
++ /mt/dim checkpatch d2577be8b969257afb5f76964afc16ae4f6f7c07 drm-intel
+79692df24dd9 drm/i915/ddi: use string choice helpers
+-:9: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#9: 
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Julia Lawall <julia.lawall@inria.fr>
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
