@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C9EDCF043A
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 19:54:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6901BD0EE30
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 19:55:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F3A410E04B;
-	Fri, 11 Oct 2024 19:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2302F10EBAC;
+	Fri, 11 Oct 2024 19:55:00 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9125910E04B;
- Fri, 11 Oct 2024 19:54:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABBC010EBA8;
+ Fri, 11 Oct 2024 19:54:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ufence=3A_ufe?=
- =?utf-8?q?nce_can_be_signaled_right_after_wait=5Fwoken_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/ufence=3A_ufence_c?=
+ =?utf-8?q?an_be_signaled_right_after_wait=5Fwoken_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Oct 2024 19:54:43 -0000
-Message-ID: <172867648359.1241944.17204228407038358441@2413ebb6fbb6>
+Date: Fri, 11 Oct 2024 19:54:58 -0000
+Message-ID: <172867649870.1241934.9778819279305117812@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241011151029.4160630-1-nirmoy.das@intel.com>
 In-Reply-To: <20241011151029.4160630-1-nirmoy.das@intel.com>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 04bb73440015 drm-tip: 2024y-10m-11d-19h-31m-48s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/ufence: ufence can be signaled right after wait_woken
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d8d6e63796b3855f7ce7b7df726f0082f44f5ab3
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Fri Oct 11 17:10:29 2024 +0200
+
+    drm/xe/ufence: ufence can be signaled right after wait_woken
+    
+    do_comapre() can return success after a timedout wait_woken() which was
+    treated as -ETIME. The loop calling wait_woken() sets correct err so
+    there is no need to re-evaluate err.
+    
+    v2: Remove entire check that reevaluate err at the end(Matt)
+    
+    Fixes: e670f0b4ef24 ("drm/xe/uapi: Return correct error code for xe_wait_user_fence_ioctl")
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1630
+    Cc: <stable@vger.kernel.org> # v6.8+
+    Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch 04bb73440015e221297eed8aa260e6e75442b4e6 drm-intel
+d8d6e63796b3 drm/xe/ufence: ufence can be signaled right after wait_woken
 
 
