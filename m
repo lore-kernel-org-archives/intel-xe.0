@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 941C8D0D78D
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:16:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C31FD0D78D
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:17:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4958710EAE7;
-	Fri, 11 Oct 2024 13:16:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047D210EAE8;
+	Fri, 11 Oct 2024 13:17:13 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D97BB10EAE7;
- Fri, 11 Oct 2024 13:16:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CEB810EAE8;
+ Fri, 11 Oct 2024 13:17:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/2=5D_drm/xe/ufence=3A_Prefetch_ufence_addr_to_catch_bogus_a?=
- =?utf-8?q?ddress?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/xe/ufence=3A_Prefetch_ufence_addr_to_catch_bogus_addres?=
+ =?utf-8?q?s?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Oct 2024 13:16:50 -0000
-Message-ID: <172865261088.1240581.16359256365966464663@2413ebb6fbb6>
+Date: Fri, 11 Oct 2024 13:17:11 -0000
+Message-ID: <172865263163.1240589.15188550948526415168@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241011115715.3486872-1-nirmoy.das@intel.com>
 In-Reply-To: <20241011115715.3486872-1-nirmoy.das@intel.com>
@@ -49,10 +49,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 20c57deec46e drm-tip: 2024y-10m-11d-11h-59m-13s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/ufence: Prefetch ufence addr to catch bogus address
-Applying: drm/xe/ufence: Warn if mmget_not_zero() fails
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 29e20daf437994881d56132f3a9bd9286bc5f3bd
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Fri Oct 11 13:57:15 2024 +0200
+
+    drm/xe/ufence: Warn if mmget_not_zero() fails
+    
+    This shouldn't happen but seen this while debugging ufence timeout
+    issue time to time so log it to isolate this particular case.
+    
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1630
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch 20c57deec46e59d392ec6d4a23257f4bb5673982 drm-intel
+42521d05208c drm/xe/ufence: Prefetch ufence addr to catch bogus address
+29e20daf4379 drm/xe/ufence: Warn if mmget_not_zero() fails
 
 
