@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69A67D0D78F
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:31:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32FD5D0D791
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 13:34:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 364D510EAE8;
-	Fri, 11 Oct 2024 13:31:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKndH+bL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1646710EAE8
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Oct 2024 13:31:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728653516; x=1760189516;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2iEz/CYGri8hF0fy63iQj2HpAeitgEQcM48glh15FWM=;
- b=UKndH+bLDGu9WBg7iXBFYtDHI9YN6cqoFaZ8LJXLzOtVIOFFo+Cypbhp
- zHW3w8Itwmocqxg7sKq0MySzHdRF/CEw3aXNqS1jLSjFd1YB+4WNYfTYH
- Si7mdoFP4gRusaOiC3tn0uXkZ7A65C2/ASwBmjChrRWXuKFJf0jYMiD3K
- 1pNVAPCYpoF8NGuViJ1cK1LxJvatXUC7MFG9K8b8uswXq60JHGLVVmbjY
- mOOQmiPQgrYDU2kYEPlUw08KF7JKmXKDLQ0SUxHHhcoscbxlBixMKGUIf
- rwbYoGFKcNOVQExyibedNDOqtUK7uD1x6f8tv1NLMHNNKS3pSeOekH2VU w==;
-X-CSE-ConnectionGUID: FQo5nR+TR4Giqi09rgkyrw==
-X-CSE-MsgGUID: L8m8K4rSSSCwegHw6TAR7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="38620669"
-X-IronPort-AV: E=Sophos;i="6.11,196,1725346800"; d="scan'208";a="38620669"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 06:31:55 -0700
-X-CSE-ConnectionGUID: Gq3gfs4IQcehlGpDGyclYA==
-X-CSE-MsgGUID: 5gkNsraRRZCj6Ra5HtklcQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,196,1725346800"; d="scan'208";a="81441113"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa005.fm.intel.com with ESMTP; 11 Oct 2024 06:31:54 -0700
-Received: from [10.245.84.117] (unknown [10.245.84.117])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 3BAF028784;
- Fri, 11 Oct 2024 14:31:52 +0100 (IST)
-Message-ID: <876afb5e-c105-45d8-8c67-a81a466adba7@intel.com>
-Date: Fri, 11 Oct 2024 15:31:50 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 017AE10EAEB;
+	Fri, 11 Oct 2024 13:34:33 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B41A810EAEB;
+ Fri, 11 Oct 2024 13:34:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] drm/xe: Add xe_ggtt_alloc
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-References: <20241009125114.412624-1-maarten.lankhorst@linux.intel.com>
- <20241009125114.412624-4-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20241009125114.412624-4-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_drm/xe/ufence=3A_Prefetch_ufence_addr_to_catch_bogus_address?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 11 Oct 2024 13:34:31 -0000
+Message-ID: <172865367173.1240631.2794012306415629428@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241011115715.3486872-1-nirmoy.das@intel.com>
+In-Reply-To: <20241011115715.3486872-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,92 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: series starting with [1/2] drm/xe/ufence: Prefetch ufence addr to catch bogus address
+URL   : https://patchwork.freedesktop.org/series/139887/
+State : success
 
-On 09.10.2024 14:51, Maarten Lankhorst wrote:
-> Instead of allocating inside xe_tile, create a new function that returns
-> an allocated struct xe_ggtt from xe_ggtt.c
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c | 16 ++++++++++++++++
->  drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
->  drivers/gpu/drm/xe/xe_tile.c |  4 +---
->  3 files changed, 19 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 16be6f53b75b2..c9fa9d15b69de 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -160,6 +160,22 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
->  	}
->  }
->  
-> +/**
-> + * xe_ggtt_alloc - Allocate a GGTT for a given &xe_tile
+== Summary ==
 
-nit: this comment is little confusing, as you're allocating the xe_ggtt
-object that represents the GGTT, not the GGTT itself
+lib/modules/6.12.0-rc2-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc2-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc2-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc2-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc2-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc2-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/
+lib/modules/6.12.0-rc2-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc2-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc2-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc2-xe/build
+lib/modules/6.12.0-rc2-xe/modules.alias.bin
+lib/modules/6.12.0-rc2-xe/modules.builtin
+lib/modules/6.12.0-rc2-xe/modules.softdep
+lib/modules/6.12.0-rc2-xe/modules.alias
+lib/modules/6.12.0-rc2-xe/modules.order
+lib/modules/6.12.0-rc2-xe/modules.symbols
+lib/modules/6.12.0-rc2-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1728653661:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1728653661:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> + * @tile: &xe_tile
-> + *
-> + * Allocates a &xe_ggtt for a given tile.
-
-that sounds better
-
-> + *
-> + * Return: &xe_ggtt on success, or NULL when out of memory.
-
-Return: pointer to the &xe_ggtt on success, or NULL when out of memory.
-
-> + */
-> +struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile)
-> +{
-> +	struct xe_ggtt *ggtt = drmm_kzalloc(&tile_to_xe(tile)->drm, sizeof(*ggtt), GFP_KERNEL);
-
-"Missing a blank line after declarations
-
-> +	if (ggtt)
-> +		ggtt->tile = tile;
-> +	return ggtt;
-> +}
-> +
->  static void ggtt_fini_early(struct drm_device *drm, void *arg)
->  {
->  	struct xe_ggtt *ggtt = arg;
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-> index 62c8ce636939a..0bab1fd7cc817 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-> @@ -9,7 +9,9 @@
->  #include "xe_ggtt_types.h"
->  
->  struct drm_printer;
-> +struct xe_tile;
->  
-> +struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile);
->  int xe_ggtt_init_early(struct xe_ggtt *ggtt);
->  int xe_ggtt_init(struct xe_ggtt *ggtt);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 07cf7cfe4abd5..19814bfbab423 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -88,11 +88,9 @@ static int xe_tile_alloc(struct xe_tile *tile)
->  {
->  	struct drm_device *drm = &tile_to_xe(tile)->drm;
->  
-> -	tile->mem.ggtt = drmm_kzalloc(drm, sizeof(*tile->mem.ggtt),
-> -				      GFP_KERNEL);
-> +	tile->mem.ggtt = xe_ggtt_alloc(tile);
->  	if (!tile->mem.ggtt)
->  		return -ENOMEM;
-> -	tile->mem.ggtt->tile = tile;
->  
->  	tile->mem.vram_mgr = drmm_kzalloc(drm, sizeof(*tile->mem.vram_mgr), GFP_KERNEL);
->  	if (!tile->mem.vram_mgr)
 
