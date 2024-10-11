@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC9F6D24458
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 05:13:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CB57D24471
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Oct 2024 05:13:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE9D10E162;
-	Fri, 11 Oct 2024 05:13:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6839B10E162;
+	Fri, 11 Oct 2024 05:13:49 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45DF010E162;
- Fri, 11 Oct 2024 05:13:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0624210EA38;
+ Fri, 11 Oct 2024 05:13:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Some_correction_in_t?=
- =?utf-8?q?he_DP_Link_Training_sequence_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Some_correction_in_the_DP?=
+ =?utf-8?q?_Link_Training_sequence_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Oct 2024 05:13:36 -0000
-Message-ID: <172862361628.1238691.16793334392780473378@2413ebb6fbb6>
+Date: Fri, 11 Oct 2024 05:13:48 -0000
+Message-ID: <172862362802.1238691.8421593897440955987@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240925034432.1777029-1-arun.r.murthy@intel.com>
 In-Reply-To: <20240925034432.1777029-1-arun.r.murthy@intel.com>
@@ -44,15 +44,57 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Some correction in the DP Link Training sequence (rev4)
 URL   : https://patchwork.freedesktop.org/series/139026/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f3354eab2a45 drm-tip: 2024y-10m-11d-04h-48m-44s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp: use fsleep instead of usleep_range for LT
-Applying: drm/i915/dp: read Aux RD interval just before setting the FFE preset
-Applying: drm/i915/dp: Include the time taken by AUX Tx for timeout
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2f3c8839e8d39ec6786551c7cef23b8f15914cce
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Wed Sep 25 09:14:32 2024 +0530
+
+    drm/i915/dp: Include the time taken by AUX Tx for timeout
+    
+    As per DP spec the timeout for LANE_CHANNEL_EQ_DONE is 400ms. But this
+    timeout value is exclusively for the Aux RD Interval and excludes the
+    time consumed for the AUX Tx (i.e reading/writing FFE presets). Add
+    another 50ms for these AUX Tx to the 400ms timeout.
+    Ref: "Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence" of
+    DP2.1a spec.
+    
+    Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Acked-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch f3354eab2a45420cf38a67f6d7735d5dff53eb6f drm-intel
+b3c54d54213f drm/i915/dp: use fsleep instead of usleep_range for LT
+-:12: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#12: 
+Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+426e05b8cd37 drm/i915/dp: read Aux RD interval just before setting the FFE preset
+-:14: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#14: 
+Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+2f3c8839e8d3 drm/i915/dp: Include the time taken by AUX Tx for timeout
+-:13: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#13: 
+Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
