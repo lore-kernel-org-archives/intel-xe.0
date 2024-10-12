@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE6E4D1A42F
-	for <intel-xe@archiver.kernel.org>; Sat, 12 Oct 2024 03:09:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6F96D1A427
+	for <intel-xe@archiver.kernel.org>; Sat, 12 Oct 2024 03:09:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8251410EB5E;
-	Sat, 12 Oct 2024 03:09:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8856010EB61;
+	Sat, 12 Oct 2024 03:09:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RX1Mm1+0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UVbDujtJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 229F210E03B;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D046310E12D;
  Sat, 12 Oct 2024 03:09:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1728702576; x=1760238576;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=atl/aZPG9eTBILf795lVhGtWKP57SdAb7suS20UKOBA=;
- b=RX1Mm1+06ugEBwxSi96z32UfHMfPdElr88G75lGddQdaE4V1USfREiuT
- Kd8zNP6zLwKFfphRQSlrsjsXai6UkNeHkmqJpYsc62ckjANKTm6vvv9w0
- 72PZm+GoUj1G8X9TTo2Ugx+4FynpjoanR2x+BPaHD7a689ZpwC2N8MYAj
- vpjm5ioqy8F5TbZEUSIheQSnMNLKMSMsrGzx8/smW9OqvXUh5b24M1ets
- nVy93n6MhzKaLGnzyksP3cZpFgfn6YWVmR9r5zppTlsVoxLfjZZb7J8eN
- XiqwZUdKRYv1Fy68Af19l21NaUCSB8bMEuybOjSpNOb8N+yZTIc8gNEOF g==;
-X-CSE-ConnectionGUID: OhCyPhOWQsqAvtfzq6SqTQ==
-X-CSE-MsgGUID: yN1sh+E6TJqQ7pf+AfuTvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="38687314"
-X-IronPort-AV: E=Sophos;i="6.11,197,1725346800"; d="scan'208";a="38687314"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Ebo1SegaNMj89+yiH94zvaeAmGSEGTceF7n5dRd9dfM=;
+ b=UVbDujtJZQaaobEKe+ml+CZ+P0Db3szF5y0GI/8hW2Yv3bREkNfcr+mi
+ a7QXxrJdNRyqE5zVjROZyu9yYyhuhV7zA06peynnBx5hiy7BKl+TRcWuD
+ ktpEBn02CR+WkG0q0EXkUv5a2qC8+8aK32xPoa8K58VXmfrfkpXweuBOz
+ w/x0QquyF1Ci28/d19CUkxutAHujyX/GluX+OOoVR75WyZ6xEAYJiQeVR
+ ZrTFTeVB0qlYsct0zciurXmp+d4WKrDSXl/9smwXJmo0OP+molho3lLZa
+ v7poe59/8108jEfqu5IJvDwW+3ZCbsJufTmsF7pOfL+l9zC5qwUTQL0k4 A==;
+X-CSE-ConnectionGUID: H4qW9KXkRo6GDmkhvJ70jw==
+X-CSE-MsgGUID: JWX5yfGySo+Bg8+8PbbApQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="38687323"
+X-IronPort-AV: E=Sophos;i="6.11,197,1725346800"; d="scan'208";a="38687323"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 20:09:35 -0700
-X-CSE-ConnectionGUID: twNCcypoTI2QDX26HEPVBw==
-X-CSE-MsgGUID: n7yIuaFLRiafbQWBp0S4UQ==
+ 11 Oct 2024 20:09:36 -0700
+X-CSE-ConnectionGUID: 2IdKiDezTVCJBdRBsDXTKw==
+X-CSE-MsgGUID: I2IIRz82T4acY+quH5+Nvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,197,1725346800"; d="scan'208";a="77278454"
+X-IronPort-AV: E=Sophos;i="6.11,197,1725346800"; d="scan'208";a="77278470"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Oct 2024 20:09:36 -0700
 From: Vivek Kasireddy <vivek.kasireddy@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Dongwon Kim <dongwon.kim@intel.com>
-Subject: [PATCH v1 0/5] drm/xe/sriov: Don't migrate dmabuf BO to System RAM
- while running in VM
-Date: Fri, 11 Oct 2024 19:40:22 -0700
-Message-ID: <20241012024524.1377836-1-vivek.kasireddy@intel.com>
+Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>
+Subject: [PATCH v1 5/5] drm/xe/pt: Add an additional check for dmabuf BOs
+ while updating PTEs
+Date: Fri, 11 Oct 2024 19:40:27 -0700
+Message-ID: <20241012024524.1377836-6-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.45.1
+In-Reply-To: <20241012024524.1377836-1-vivek.kasireddy@intel.com>
+References: <20241012024524.1377836-1-vivek.kasireddy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,74 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While testing [1] and [2] with a SRIOV enabled dGPU, it was noticed
-that migrating a BO to System RAM before exporting it as a dmabuf
-results in considerable performance degradation while running in a
-Guest VM. For example, running a simple 3D app such as weston-simple-egl
-would yield ~50 FPS instead of ~59 FPS, assuming a mode of 1920x1080@60.
+If a BO's is_devmem_external flag is set, it means that it is an
+imported dmabuf BO that has a backing store in VRAM. Therefore, we
+need to add XE_PPGTT_PTE_DM to the PTE flags as part of vm_bind.
 
-One fix to this problem is to not migrate the BO and keep it in VRAM
-during export. However, given that the GPU running in PF mode on the
-Host cannot effectively access the PCI BAR addresses backing the
-imported dmabuf BO, they need to be translated into LMEM addresses
-(DPA) to enable this use-case to work properly.
+Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-With this patch series applied, it would become possible to display
-(via Qemu GTK UI) Guest VM compositor's framebuffer (created in its LMEM)
-on the Host without having to make any copies of it or a roundtrip
-to System RAM. And, weston-simple-egl can now achieve ~59 FPS while
-running with Gnome Wayland in the Guest VM.
-
-[1] https://lore.kernel.org/dri-devel/20240813035509.3360760-1-vivek.kasireddy@intel.com/
-[2] https://lore.kernel.org/dri-devel/20240624065552.1572580-1-vivek.kasireddy@intel.com/
-
-Patchset overview:
-
-Patch 1: PCI driver patch to not block P2P DMA between VF and PF
-Patch 2: Prevent BO migration to System RAM while running in VM
-Patch 3: Helper function to get VF's starting address in LMEM
-Patch 4-5: Create new SG for VRAM based dmabuf BO to hold translated
-           LMEM addresses
-
-This series is tested using the following method:
-- Run Qemu with the following relevant options:
-  qemu-system-x86_64 -m 4096m ....
-  -device vfio-pci,host=0000:03:00.1
-  -device virtio-vga,max_outputs=1,blob=true,xres=1920,yres=1080
-  -display gtk,gl=on
-  -object memory-backend-memfd,id=mem1,size=4096M
-  -machine memory-backend=mem1 ...
-- Run Gnome Wayland with the following options in the Guest VM:
-  # cat /usr/lib/udev/rules.d/61-mutter-primary-gpu.rules
-  ENV{DEVNAME}=="/dev/dri/card1", TAG+="mutter-device-preferred-primary", TAG+="mutter-device-disable-kms-modifiers"
-  # XDG_SESSION_TYPE=wayland dbus-run-session -- /usr/bin/gnome-shell --wayland --no-x11 &
-
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Dongwon Kim <dongwon.kim@intel.com>
-
-Vivek Kasireddy (5):
-  PCI/P2PDMA: Don't enforce ACS check for functions of same device
-  drm/xe/dmabuf: Don't migrate BO to System RAM while running in VF mode
-  drm/xe/pf: Add a helper function to get a VF's starting address in
-    LMEM
-  drm/xe/bo: Create a new sg for dmabuf BOs that are associated with a
-    VF
-  drm/xe/pt: Add an additional check for dmabuf BOs while updating PTEs
-
- drivers/gpu/drm/xe/xe_bo.c                 | 108 ++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_bo_types.h           |   6 ++
- drivers/gpu/drm/xe/xe_dma_buf.c            |   9 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |  23 +++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |   1 +
- drivers/gpu/drm/xe/xe_pt.c                 |   5 +-
- drivers/pci/p2pdma.c                       |  12 ++-
- include/linux/pci.h                        |   1 +
- 8 files changed, 158 insertions(+), 7 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index f27f579f4d85..909e5b96d518 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -660,10 +660,11 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 			xe_walk.default_pte &= ~XE_USM_PPGTT_PTE_AE;
+ 	}
+ 
+-	if (is_devmem) {
++	if (is_devmem || bo->is_devmem_external)
+ 		xe_walk.default_pte |= XE_PPGTT_PTE_DM;
++
++	if (is_devmem)
+ 		xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
+-	}
+ 
+ 	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
+ 		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
 -- 
 2.45.1
 
