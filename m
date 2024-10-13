@@ -4,168 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13FBBCF2576
-	for <intel-xe@archiver.kernel.org>; Sun, 13 Oct 2024 15:47:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59EBCCF2579
+	for <intel-xe@archiver.kernel.org>; Sun, 13 Oct 2024 17:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94BD210E37F;
-	Sun, 13 Oct 2024 15:47:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8B510E170;
+	Sun, 13 Oct 2024 17:05:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VDN0SKoa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eGjq/xcv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FDDF10E37D;
- Sun, 13 Oct 2024 15:47:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 010D510E170
+ for <intel-xe@lists.freedesktop.org>; Sun, 13 Oct 2024 17:05:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728834421; x=1760370421;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=z9+YH1icmetYO+gmBBfXxFIQZmY/ZeJ5Jf2C3bq6rUk=;
- b=VDN0SKoame++YI/wMHPacSpNUm7AaYKQIYZ+ocMFpjsd+AzYJPW/ctCK
- 0UJ/FywmWTQCP5ARmLjNrqhLw756OBkZbA1zwLuSnNTbhk1fQezLEVLhC
- SxKYpf0Ja+NjnaEuVi5/G30ZStr6qxqX726KQo/oHEjCZRYOWC0HumyHE
- xJ9tVxmfHz6K9reGbExDRknav7Uj2LdIadXSXbJQAvQC1pJHtMhkU1Bt9
- iz5u8lEs6zLr2mq+yu0Grzvu+qQSXrS45+mjgVThWVDt7bDtfJbmEf6/V
- hj7GA7MwWJCp86wEA1l7owqrkclpY3gHxQ92sNfJMIYiCX2/i5qn5IInD A==;
-X-CSE-ConnectionGUID: K5EI/6NiSgmUMDQtsgOldg==
-X-CSE-MsgGUID: F9xUH0OFTyGdekO3gdJ7iQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="28267258"
-X-IronPort-AV: E=Sophos;i="6.11,201,1725346800"; d="scan'208";a="28267258"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2024 08:47:01 -0700
-X-CSE-ConnectionGUID: flrQaeuKT5OI1Uf4ldz8aQ==
-X-CSE-MsgGUID: +g84QqDJSqSBKk+KSI8HDw==
+ t=1728839147; x=1760375147;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=5M/5tMoESHroIwWShnqlH8dBtl/aC4Nk0Oljq+W8OPQ=;
+ b=eGjq/xcvjg/gGPJKOb0NMdnd6I/mTtxO1ZN7frtxqKzUSOn6gxE/S0Ob
+ nzcamCyM1K0tn/8+33zyx/YKi6qSDQnOM06iZ3FaMsxLCrrvBMO04zaCu
+ du+NRWhUBpf8pQdW+difrp6QgEdakzO8ageBtLQPavSfe4th+ZINkezho
+ YyczOKgtmBJQWFNpU7ieNt7VfLPsxYmoKwXURyqIRVVvh+ZA3tLGX35pN
+ jMwT8AM0H9Z1b8uu7Hf7GU6bCEj+Yt3gfGUIr2yRW6are0uxR6nPQDbb6
+ vGy//Gg1zdoK+2/bZ0cAGPz9dC1khvmuJRgdYxzTKtBUr4y+V70Urykly Q==;
+X-CSE-ConnectionGUID: Kvtz03a7QK2VzdPeejQ36Q==
+X-CSE-MsgGUID: 0kxNk+ZiTTiNDrAT35xpFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28315296"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28315296"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2024 10:05:47 -0700
+X-CSE-ConnectionGUID: v7KotWUPQUu0LUIDHL3oig==
+X-CSE-MsgGUID: XPjIfMipTvqrefyW7vGl0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,201,1725346800"; d="scan'208";a="114799309"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Oct 2024 08:47:01 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sun, 13 Oct 2024 08:47:00 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Sun, 13 Oct 2024 08:47:00 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Sun, 13 Oct 2024 08:46:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g5E1uRPz0UXyrzIqjbF2oytJD1kAqJhsvU6pReBUHpomdsDMFIauedE28ls9deDnuMVwaU75YDEHcrt+KgGyXRSQpxGdum2E8iIiaksSRmxPuDKN4Bq/ZgLvOcyrrbMhkgiG1HqJ9wo6GuspASjthUa1pP0+VUnk96sDEP5a2t6IcLRKZdfRyaNoLOHKf5u9RJ/buY6Hf4vaPATT7NUkx27g0ZacfqbgyCOWD8tvC4oL/qdXKH1RAbze/Gv5A83qF8bnISgFoJs39R/MSMKGXUQ33eF0vlYk32v6pm5e9tojdE+JjHXjdhD+Ya+AOYee1ATvHv96FOw8ZPj8R+a8rw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qlScVydh6TahULQNTqPggwYg9TrXnxiIE/tXs68W+FY=;
- b=iWKa7QW0LJfpgADijV9t/dOUp8XEvgor51fJiTAJ8hZrPsMYpgh4I5pjpOGoxGbJ+qTIs9svyJOjAiUq3E0jwm4W+pR/qD2S6bgVduakSEmXPYYoLv2CCR0audocomqkSoLB5gjBWKYaqzxuAV87SpTyl3bYxWnwV61XB7UeFHSNB9/23/naK9Xw4Mh3s2/zRJ/helmMGjbp5f4tluYxwnPW12q0S9zpCV6zrOtvc/glYKY+4jwJINwx9akACdVCoq9bUiO6s2DeSALd1X41QNhYt22iE0lKd0EHXlUoICFX0Kj1D8uEKeF+vZDniw85cQhUwn5Px7u9i4aIHtEF0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by DS0PR11MB7683.namprd11.prod.outlook.com (2603:10b6:8:df::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.20; Sun, 13 Oct
- 2024 15:46:57 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8048.020; Sun, 13 Oct 2024
- 15:46:57 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Subject: RE: [PATCH 7/7] drm/i915/dp: Set the DSC link limits
- intel_dp_compute_config_link_bpp_limits
-Thread-Topic: [PATCH 7/7] drm/i915/dp: Set the DSC link limits
- intel_dp_compute_config_link_bpp_limits
-Thread-Index: AQHbFYDlSpys4nSFckKfntHjFD/+4LKE4sOQ
-Date: Sun, 13 Oct 2024 15:46:57 +0000
-Message-ID: <SN7PR11MB675050291C57CDC3B4CB5189E37B2@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20241003104343.984060-1-ankit.k.nautiyal@intel.com>
- <20241003104343.984060-8-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241003104343.984060-8-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|DS0PR11MB7683:EE_
-x-ms-office365-filtering-correlation-id: 4b80cdcd-f7e3-4268-3afe-08dceb9e4515
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?/m0anfwbTzlpxCCj2DjDb/Hyg80RIIs9Evm4Enrw01V8Ed5/ItchrP/9R8iE?=
- =?us-ascii?Q?ykTi0vmOfblc7herUkpdoeerv/oblUZCEuWgrFOtvPwONK9Gj/GxHPuU3iOR?=
- =?us-ascii?Q?Y3fCPwppE0WUdPEfRKGTW7zHIYELLiTAyuzuroHE1zd4DopauMNCCMI/IFRM?=
- =?us-ascii?Q?TsqMsL2Xxp2PS2accj36VqkFWY5y4GHH9eqM4FQyKPVXKAeiiHnJYa3w9HwK?=
- =?us-ascii?Q?2C8jTRajBE2uYsAGqpPFpzEBtlh/NybncSZzimzQLbxpsLhr4Dt7INEYT76L?=
- =?us-ascii?Q?qwW8tlamdAbdIT+JHSYMEIHT/bVM5W90I41D2Bov+yItyPs9lS4OVx0ZpXiR?=
- =?us-ascii?Q?HthUolMiVYwv86BSmoY+TZPxUA5Q0tHqBLSnhASSta38k0xHQqrxfbVqKatx?=
- =?us-ascii?Q?cAou24I6m94weBCRF7QwVRRITZXJzdF+Bfdqvas/J6RPr8Hdn/9Ymc9PIuPs?=
- =?us-ascii?Q?Ck8NOZ0ElU6alLez5lnFXxC+S2eeitiGoYYuTwY2XLg3xKkUsVmLfAi53o09?=
- =?us-ascii?Q?7jn8VwXj2e5dQ5oiSFRZC482cGnY3p8lPJZCHFxla6hpD/2bJrbg0yqdosN5?=
- =?us-ascii?Q?pLXk7hWLP3fPixb+Of/fAAKR30ag7E+5cZ+2foeuCzcYYRcU8ghFntcg0/Yf?=
- =?us-ascii?Q?QYi+BewsAXVRelEaT7xyiIroJg3pk9TeBcJ4JH+5Ryk8hJFURZMt8TZvv5aS?=
- =?us-ascii?Q?YbASqmxCOo5Inkru+M1JEwvKov4yg0aGrrw1LAe3Z71u1atp+fjhVMzNwMZc?=
- =?us-ascii?Q?1tBSsnTFvvbIz/qjcpJKr1vTCEwEelvZ4rbmllRQUtAR1EqmzyQ2aWxXcPSB?=
- =?us-ascii?Q?3/QXxSO7Pcrt/kTBuhGVcsq2Ejp1Ox6mMGF/qUV14T8aAvN4eewFU2kSEoZs?=
- =?us-ascii?Q?qgDdtvMz9ekioOOb6OLW8ypDiO/S9kt7c+R9Zvx6iHoaTooDuofM3T+DmLDx?=
- =?us-ascii?Q?DncTWfXr3VA95GXtlumKcaDir5UZLeu2PkT/AhsM1TQ0ohkUFxv7vxK4ydAa?=
- =?us-ascii?Q?V7U3gkMaolX/E0/6/PVaHUArsM8N5h/stG8fU+z9cS4Wqy4mnMjicIWcqXky?=
- =?us-ascii?Q?yJ4ojoGw3aCZvBM5tRZGnw5HjnUgGUL0U06RL9vFlP1L74c9k9+kgGhp+lAq?=
- =?us-ascii?Q?NSEawaAGIbGON7ofN5+UZntl8ry5QPgpuLtbJIVbdSbydR8OzygqWPxW7erd?=
- =?us-ascii?Q?cqGENixwiHrJVmdM6eTiSofTFFhezf9vPYrxXPyIW7O3f2GqZ+TNsEGeRp8Q?=
- =?us-ascii?Q?862pUEuoNB0WvMorsVcSe9Yx0Mkf6Dk/gp0XPNrVIENqimjZY4n+oGrOWDOr?=
- =?us-ascii?Q?y4TVIPAsAS431PW3ePPI+woP?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+RcTDZJ/H5yyKlxoyggXmaYVdLzKcVQyel4tnp3Fx9RNYXsvxDeqeAhRm+Cv?=
- =?us-ascii?Q?8n8/Om4VVEBv/l2+q+tRdHr/Ns4rmOl5mES6Q8+CejzNiswY8W76efwoS73s?=
- =?us-ascii?Q?Lp3kdqI2WTJjcbxScgB+IW5TxsLg/n8HW8OYaJ9YFwlcDxxrwxWF96IgD5F4?=
- =?us-ascii?Q?m6PCwCv2m288dgvkoxh/dgZdy8gquUA6f7qJtc9Pb+flImcdon3Z7s1EZ/Fk?=
- =?us-ascii?Q?Oc6+tKohXNRdRt/fQFrzoeYtJfrWKfG9vaw5dtPFVHpegtN0FVT4GHGGyYOX?=
- =?us-ascii?Q?z56B8q73p59nFB4xiczeQq5JM5cDIq1Ilvyi5xkqnscxW+8XQhbIuKbWwDYt?=
- =?us-ascii?Q?AdUK8MMPCuA75Yi/VDFhIVg9elB58tJ9ge/w2RjXLlSOEwxgRSE8bgpItePG?=
- =?us-ascii?Q?EVImwEbQ/2eNpM9VoyR3g7Px0NbggSxEJD2Nftb0FfAGwjP5DbScrYuKWTYa?=
- =?us-ascii?Q?YnDmJYfjphOLjrpQfC0pflBClnFGnWfNwZc3/TKWfJv2l1xKAeRwK0SU5SI4?=
- =?us-ascii?Q?ms1jHAZm1owefTNrvqyGHohhlyNqBb9B2GWB5pTlL56rVqN0MRvjhuBBbq4e?=
- =?us-ascii?Q?c6BrfAH6RXVX4TLHmlC7xQbOnUHsUwIaTSxC7acm09cpe0VIZfr3oIchRl0M?=
- =?us-ascii?Q?keQWv0qdrUkw6KAYvBk5i3Cm+wYSF4a/C0PNW1rsos1ubaHqNaUd2GEUPh60?=
- =?us-ascii?Q?X5fg65n604qzLyNneab6pE+ceycb4QvcFRpQAxwVbVE6FWPXSCiD8UpDXdz5?=
- =?us-ascii?Q?wu88BfR49wfSiuWTl078SOT7XCHp721EwqZq3LWBsuNZ+d5478ULKB78ZDPI?=
- =?us-ascii?Q?go/1NixS73EHBMUb5HiZ/Ou2GilSwSPuYRIkxhSmiHQX4MhWGVsWh9QKzFk9?=
- =?us-ascii?Q?guTis56dg+hpQSQ4RGl2Zt1180m/Zl7i3A5soxd6sEp4AG6fwdKuhNNR5e4o?=
- =?us-ascii?Q?d+lBDJt1coo+2RxzW7u2t6ov3XnCzMLJjBDcqVwucp8jzrZ2D4N8LrhbD8QX?=
- =?us-ascii?Q?HYP00w68HVMbm2qSnr9aGPwTZxD6+r6juFK9RRetLU61s59OCxlKlJg3oVIR?=
- =?us-ascii?Q?Y4KyR62F+m2KT2aNdOcIf+qPwPnQtEn9OO7Jge5XUQgiq8LC6kDbuPZvxnAy?=
- =?us-ascii?Q?ImfvhbcffqCDcY6FRoVDZ1cJ0b3q4dlVGCZVVTbTL6hv6zdEc/aGqApxHaL1?=
- =?us-ascii?Q?Ny+0/hBDVMUFdRepS8zstbrtyomJesH8FX9SxbpC7Hs1/g9OQ6MyZPANUwp4?=
- =?us-ascii?Q?f0nufK1D9W47XVfgisyGZSVTfxg4usU3JPP9QieG0vMFEssolmta75Tw2ipF?=
- =?us-ascii?Q?uU8U2S6cpE6eD/Q/Sz1B6GvJ/0xtUAudU0YFRUXqrSCM9qWXsNCYeViu32zl?=
- =?us-ascii?Q?KHNuBhGJ2ghr0ueO2l2bYLd8t7p4Is8MFoXy59EUEu9h3bzqGvPb+nbeo+Z3?=
- =?us-ascii?Q?7O50OAc13z8YcFcHbeweRLmcQLOhXLuMrH9J8ypoIONBbVvE6x+fYvzGRgb5?=
- =?us-ascii?Q?vyht91UMt43pxpP2lPSzjrEiDXEF8A5/g9RLfgXzbiNKqu/SnCNo3OLiurWr?=
- =?us-ascii?Q?DvrfJoE00l3BguZc6aTtgN++XN+pmPj7+m2K4Cvt?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.11,201,1725346800"; d="scan'208";a="77227136"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa009.jf.intel.com with ESMTP; 13 Oct 2024 10:05:44 -0700
+Received: from [10.245.97.255] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.97.255])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 3873B27BC5;
+ Sun, 13 Oct 2024 18:05:42 +0100 (IST)
+Message-ID: <b2ee979e-9f4a-4d24-b562-ee7fb777aeae@intel.com>
+Date: Sun, 13 Oct 2024 19:05:41 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b80cdcd-f7e3-4268-3afe-08dceb9e4515
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2024 15:46:57.5968 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hoScdflUsQ6pK879WcHQ8OyY0b1rcpnZ1gGUyt+E0vOLG6SOQ3EQgn+MjUlXfQYyTC99BT5g2niLfxwM+EVCXw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7683
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] drm/xe/vf: React to MIGRATED interrupt
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+References: <20241007201631.3369513-1-tomasz.lis@intel.com>
+ <20241007201631.3369513-2-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20241007201631.3369513-2-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,223 +74,334 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: Thursday, October 3, 2024 4:14 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org; Kandpal, Suraj
-> <suraj.kandpal@intel.com>; jani.nikula@linux.intel.com
-> Subject: [PATCH 7/7] drm/i915/dp: Set the DSC link limits
-> intel_dp_compute_config_link_bpp_limits
->=20
-> The helper intel_dp_compute_config_link_bpp_limits is the correct place t=
-o
-> set the DSC link limits. Move the code to this function and remove the
-> #TODO item.
->=20
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On 07.10.2024 22:16, Tomasz Lis wrote:
+> To properly support VF Save/Restore procedure, fixups need to be
+> applied after PF driver finishes its part of VF Restore. Those
+> fixups are applied by the VF driver within a VM.
+> 
+> A VF driver gets informed that it was migrated by receiving an
+> interrupt from each GuC. That should be the trigger for fixups.
+> 
+> The VF can safely do post-migration fixups on resources associated
+> to each GuC only after that GuC issued the MIGRATED interrupt.
 
-LGTM,
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+you should also say somewhere that this MIGRATED interrupt is a
+GUC_INTR_SW_INT_0
 
+> 
+> This change introduces a worker to be used for post-migration fixups,
+> and a mechanism to schedule said worker when all GuCs sent the irq.
+
+and since in this commit message 'fixup' was mentioned 5x then it
+wouldn't hurt if we also add some explanation what those 'fixups' could be
+
+> 
+> v2: renamed and moved functions, updated logged messages, removed
+>   unused includes, used anon struct (Michal)
+> v3: ordering, kerneldoc, asserts, debug messages,
+>   on_all_tiles -> on_all_gts (Michal)
+> v4: fixed missing header include
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 64 +++++++++++++------------
-> drivers/gpu/drm/i915/display/intel_dp.h |  4 +-
->  2 files changed, 35 insertions(+), 33 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 02009ae03840..bfc31b3af864 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1958,7 +1958,7 @@ static int dsc_compute_link_config(struct intel_dp
-> *intel_dp,
->=20
->  static
->  u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct
-> intel_connector *connector,
-> -					    struct intel_crtc_state
-> *pipe_config,
-> +					    const struct intel_crtc_state
-> *pipe_config,
->  					    int bpc)
->  {
->  	u16 max_bppx16 =3D drm_edp_dsc_sink_output_bpp(connector-
-> >dp.dsc_dpcd);
-> @@ -1983,7 +1983,7 @@ u16
-> intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector
-> *connec
->  	return 0;
+>  drivers/gpu/drm/xe/Makefile          |  3 +-
+>  drivers/gpu/drm/xe/xe_device_types.h |  2 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c  | 24 +++++++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.h  |  1 +
+>  drivers/gpu/drm/xe/xe_guc.c          | 11 ++++
+>  drivers/gpu/drm/xe/xe_memirq.c       |  3 ++
+>  drivers/gpu/drm/xe/xe_sriov.c        |  4 ++
+>  drivers/gpu/drm/xe/xe_sriov_types.h  | 17 ++++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.c     | 77 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.h     | 14 +++++
+>  10 files changed, 155 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 26cd21bc7189..aec8e1b16219 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -123,7 +123,8 @@ xe-y += \
+>  	xe_gt_sriov_vf.o \
+>  	xe_guc_relay.o \
+>  	xe_memirq.o \
+> -	xe_sriov.o
+> +	xe_sriov.o \
+> +	xe_sriov_vf.o
+>  
+>  xe-$(CONFIG_PCI_IOV) += \
+>  	xe_gt_sriov_pf.o \
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 85bede4dd646..e86b5ca047c8 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -374,6 +374,8 @@ struct xe_device {
+>  
+>  		/** @sriov.pf: PF specific data */
+>  		struct xe_device_pf pf;
+> +		/** @sriov.vf: VF specific data */
+> +		struct xe_device_vf vf;
+>  
+>  		/** @sriov.wq: workqueue used by the virtualization workers */
+>  		struct workqueue_struct *wq;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index d3baba50f085..38dd17f278de 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -27,6 +27,7 @@
+>  #include "xe_guc_relay.h"
+>  #include "xe_mmio.h"
+>  #include "xe_sriov.h"
+> +#include "xe_sriov_vf.h"
+>  #include "xe_uc_fw.h"
+>  #include "xe_wopcm.h"
+>  
+> @@ -692,6 +693,29 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
+>  	return err;
 >  }
->=20
-> -int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state
-> *pipe_config)
-> +int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state
-> +*pipe_config)
+>  
+> +/**
+> + * xe_gt_sriov_vf_migrated_event_handler - Start a VF migration recovery,
+> + *   or just mark that a GuC is ready for it.
+> + * @gt: the &xe_gt struct instance linked to target GuC
+> + *
+> + * This function shall be called only by VF.
+> + */
+> +void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +
+> +	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+> +
+> +	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
+> +	/*
+> +	 * We need to be certain that if all flags were set, at least one
+> +	 * thread will notice that and schedule the recovery.
+> +	 */
+> +	smp_mb__after_atomic();
+
+nit: set_bit + mb could be placed in some small helper,
+or at least add separation line
+
+> +	xe_gt_sriov_info(gt, "ready for recovery after migration\n");
+> +	xe_sriov_vf_start_migration_recovery(xe);
+> +}
+> +
+>  static bool vf_is_negotiated(struct xe_gt *gt, u16 major, u16 minor)
 >  {
->  	/* From Mandatory bit rate range Support Table 2-157 (DP v2.0) */
->  	switch (pipe_config->output_format) {
-> @@ -2001,7 +2001,7 @@ int
-> intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state
-> *pipe_config)  }
->=20
->  int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector
-> *connector,
-> -					 struct intel_crtc_state *pipe_config,
-> +					 const struct intel_crtc_state
-> *pipe_config,
->  					 int bpc)
+>  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> index e541ce57bec2..9959a296b221 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> @@ -17,6 +17,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
+> +void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+>  
+>  u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+>  u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index c2ddf883702b..fb5704526954 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -1093,10 +1093,21 @@ int xe_guc_self_cfg64(struct xe_guc *guc, u16 key, u64 val)
+>  	return guc_self_cfg(guc, key, 2, val);
+>  }
+>  
+> +static void xe_guc_sw_0_irq_handler(struct xe_guc *guc)
+> +{
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +
+> +	if (IS_SRIOV_VF(gt_to_xe(gt)))
+> +		xe_gt_sriov_vf_migrated_event_handler(gt);
+> +}
+> +
+>  void xe_guc_irq_handler(struct xe_guc *guc, const u16 iir)
 >  {
->  	return intel_dp_dsc_max_sink_compressed_bppx16(connector,
-> @@ -2130,21 +2130,16 @@ static int dsc_compute_compressed_bpp(struct
-> intel_dp *intel_dp,  {
->  	const struct drm_display_mode *adjusted_mode =3D &pipe_config-
-> >hw.adjusted_mode;
->  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> -	int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
-> -	int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
-> +	int dsc_min_bpp;
-> +	int dsc_max_bpp;
->  	int dsc_joiner_max_bpp;
->  	int num_joined_pipes =3D intel_crtc_num_joined_pipes(pipe_config);
->=20
-> -	dsc_src_min_bpp =3D dsc_src_min_compressed_bpp();
-> -	dsc_sink_min_bpp =3D
-> intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
-> -	dsc_min_bpp =3D max(dsc_src_min_bpp, dsc_sink_min_bpp);
-> -	dsc_min_bpp =3D max(dsc_min_bpp, fxp_q4_to_int_roundup(limits-
-> >link.min_bpp_x16));
-> +	dsc_min_bpp =3D fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
->=20
-> -	dsc_src_max_bpp =3D dsc_src_max_compressed_bpp(intel_dp);
-> -	dsc_sink_max_bpp =3D
-> intel_dp_dsc_sink_max_compressed_bpp(connector,
-> -								pipe_config,
-> -								pipe_bpp /
-> 3);
-> -	dsc_max_bpp =3D dsc_sink_max_bpp ? min(dsc_sink_max_bpp,
-> dsc_src_max_bpp) : dsc_src_max_bpp;
-> +	dsc_max_bpp =3D intel_dp_dsc_sink_max_compressed_bpp(connector,
-> +							   pipe_config,
-> +							   pipe_bpp / 3);
->=20
->  	dsc_joiner_max_bpp =3D get_max_compressed_bpp_with_joiner(i915,
-> adjusted_mode->clock,
->=20
-> 	adjusted_mode->hdisplay,
-> @@ -2255,8 +2250,8 @@ static int intel_edp_dsc_compute_pipe_bpp(struct
-> intel_dp *intel_dp,
->  	struct intel_connector *connector =3D
->  		to_intel_connector(conn_state->connector);
->  	int pipe_bpp, forced_bpp;
-> -	int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
-> -	int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
-> +	int dsc_min_bpp;
-> +	int dsc_max_bpp;
->=20
->  	forced_bpp =3D intel_dp_force_dsc_pipe_bpp(intel_dp, limits);
->=20
-> @@ -2276,16 +2271,12 @@ static int
-> intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  	pipe_config->port_clock =3D limits->max_rate;
->  	pipe_config->lane_count =3D limits->max_lane_count;
->=20
-> -	dsc_src_min_bpp =3D dsc_src_min_compressed_bpp();
-> -	dsc_sink_min_bpp =3D
-> intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
-> -	dsc_min_bpp =3D max(dsc_src_min_bpp, dsc_sink_min_bpp);
-> -	dsc_min_bpp =3D max(dsc_min_bpp, fxp_q4_to_int_roundup(limits-
-> >link.min_bpp_x16));
-> +	dsc_min_bpp =3D fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
+>  	if (iir & GUC_INTR_GUC2HOST)
+>  		xe_guc_ct_irq_handler(&guc->ct);
 > +
-> +	dsc_max_bpp =3D intel_dp_dsc_sink_max_compressed_bpp(connector,
-> +							   pipe_config,
-> +							   pipe_bpp / 3);
->=20
-> -	dsc_src_max_bpp =3D dsc_src_max_compressed_bpp(intel_dp);
-> -	dsc_sink_max_bpp =3D
-> intel_dp_dsc_sink_max_compressed_bpp(connector,
-> -								pipe_config,
-> -								pipe_bpp /
-> 3);
-> -	dsc_max_bpp =3D dsc_sink_max_bpp ? min(dsc_sink_max_bpp,
-> dsc_src_max_bpp) : dsc_src_max_bpp;
->  	dsc_max_bpp =3D min(dsc_max_bpp, fxp_q4_to_int(limits-
-> >link.max_bpp_x16));
->=20
->  	/* Compressed BPP should be less than the Input DSC bpp */ @@ -
-> 2428,6 +2419,7 @@ intel_dp_compute_config_link_bpp_limits(struct
-> intel_dp *intel_dp,
->  		&crtc_state->hw.adjusted_mode;
->  	const struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	const struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)-
-> >base;
-> +	struct intel_connector *connector =3D intel_dp->attached_connector;
->  	int max_link_bpp_x16;
->=20
->  	max_link_bpp_x16 =3D min(crtc_state->max_link_bpp_x16, @@ -
-> 2441,12 +2433,22 @@ intel_dp_compute_config_link_bpp_limits(struct
-> intel_dp *intel_dp,
->=20
->  		limits->link.min_bpp_x16 =3D fxp_q4_from_int(limits-
-> >pipe.min_bpp);
->  	} else {
-> -		/*
-> -		 * TODO: set the DSC link limits already here, atm these are
-> -		 * initialized only later in
-> intel_edp_dsc_compute_pipe_bpp() /
-> -		 * intel_dp_dsc_compute_pipe_bpp()
-> -		 */
-> -		limits->link.min_bpp_x16 =3D 0;
-> +		int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
-> +		int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
+> +	if (iir & GUC_INTR_SW_INT_0)
+> +		xe_guc_sw_0_irq_handler(guc);
+>  }
+>  
+>  void xe_guc_sanitize(struct xe_guc *guc)
+> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+> index f833da88150a..51dc90906003 100644
+> --- a/drivers/gpu/drm/xe/xe_memirq.c
+> +++ b/drivers/gpu/drm/xe/xe_memirq.c
+> @@ -442,6 +442,9 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+>  
+>  	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
+>  		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
 > +
-> +		dsc_src_min_bpp =3D dsc_src_min_compressed_bpp();
-> +		dsc_sink_min_bpp =3D
-> intel_dp_dsc_sink_min_compressed_bpp(crtc_state);
-> +		dsc_min_bpp =3D max(dsc_src_min_bpp, dsc_sink_min_bpp);
-> +		limits->link.min_bpp_x16 =3D fxp_q4_from_int(dsc_min_bpp);
-> +
-> +		dsc_src_max_bpp =3D
-> dsc_src_max_compressed_bpp(intel_dp);
-> +		dsc_sink_max_bpp =3D
-> intel_dp_dsc_sink_max_compressed_bpp(connector,
-> +
-> 	crtc_state,
-> +									limits-
-> >pipe.max_bpp / 3);
-> +		dsc_max_bpp =3D dsc_sink_max_bpp ?
-> +			      min(dsc_sink_max_bpp, dsc_src_max_bpp) :
-> dsc_src_max_bpp;
-> +
-> +		max_link_bpp_x16 =3D min(max_link_bpp_x16,
-> +fxp_q4_from_int(dsc_max_bpp));
+> +	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
+> +		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+> index ef10782af656..04e2f539ccd9 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov.c
+> @@ -14,6 +14,7 @@
+>  #include "xe_mmio.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_pf.h"
+> +#include "xe_sriov_vf.h"
+>  
+>  /**
+>   * xe_sriov_mode_to_string - Convert enum value to string.
+> @@ -114,6 +115,9 @@ int xe_sriov_init(struct xe_device *xe)
+>  			return err;
 >  	}
->=20
->  	limits->link.max_bpp_x16 =3D max_link_bpp_x16; diff --git
-> a/drivers/gpu/drm/i915/display/intel_dp.h
-> b/drivers/gpu/drm/i915/display/intel_dp.h
-> index 8bd0bb4ec0e1..d4ca00ba49b4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -145,9 +145,9 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct
-> drm_i915_private *i915,
->  					enum intel_output_format
-> output_format,
->  					u32 pipe_bpp,
->  					u32 timeslots);
-> -int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state
-> *pipe_config);
-> +int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state
-> +*pipe_config);
->  int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector
-> *connector,
-> -					 struct intel_crtc_state *pipe_config,
-> +					 const struct intel_crtc_state
-> *pipe_config,
->  					 int bpc);
->  u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
->  				int mode_clock, int mode_hdisplay,
-> --
-> 2.45.2
+>  
+> +	if (IS_SRIOV_VF(xe))
+> +		xe_sriov_vf_init_early(xe);
+> +
+>  	xe_assert(xe, !xe->sriov.wq);
+>  	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
+>  	if (!xe->sriov.wq)
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
+> index c7b7ad4af5c8..5ade678b7c66 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_types.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/build_bug.h>
+>  #include <linux/mutex.h>
+>  #include <linux/types.h>
+> +#include <linux/workqueue_types.h>
+>  
+>  /**
+>   * VFID - Virtual Function Identifier
+> @@ -56,4 +57,20 @@ struct xe_device_pf {
+>  	struct mutex master_lock;
+>  };
+>  
+> +/**
+> + * struct xe_device_pv - Xe Virtual Function related data
+
+typo s/pv/vf
+
+> + *
+> + * The data in this structure is valid only if driver is running in the
+> + * @XE_SRIOV_MODE_VF mode.
+> + */
+> +struct xe_device_vf {
+> +	/** @migration: VF Migration state data */
+> +	struct {
+> +		/** @migration.worker: VF migration recovery worker */
+> +		struct work_struct worker;
+> +		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
+> +		unsigned long gt_flags;
+> +	} migration;
+> +};
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> new file mode 100644
+> index 000000000000..b8c54926bdaa
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> @@ -0,0 +1,77 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "xe_assert.h"
+> +#include "xe_device.h"
+> +#include "xe_gt_sriov_printk.h"
+> +#include "xe_sriov.h"
+> +#include "xe_sriov_vf.h"
+> +#include "xe_sriov_printk.h"
+> +
+> +static void migration_worker_func(struct work_struct *w);
+> +
+> +/**
+> + * xe_sriov_vf_init_early - Initialize SR-IOV VF specific data.
+> + * @xe: the &xe_device to initialize
+> + */
+> +void xe_sriov_vf_init_early(struct xe_device *xe)
+> +{
+> +	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
+> +}
+> +
+> +static void vf_post_migration_recovery(struct xe_device *xe)
+> +{
+> +	drm_dbg(&xe->drm, "migration recovery in progress\n");
+> +	/* FIXME: add the recovery steps */
+> +	drm_notice(&xe->drm, "migration recovery ended\n");
+> +}
+> +
+> +static void migration_worker_func(struct work_struct *w)
+> +{
+> +	struct xe_device *xe = container_of(w, struct xe_device,
+> +					    sriov.vf.migration.worker);
+> +
+> +	vf_post_migration_recovery(xe);
+> +}
+> +
+> +static bool vf_ready_to_recovery_on_all_gts(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		if (!test_bit(id, &xe->sriov.vf.migration.gt_flags)) {
+> +			xe_gt_sriov_dbg_verbose(gt, "still not ready to recover\n");
+> +			return false;
+> +		}
+> +	}
+> +	return true;
+> +}
+> +
+> +/**
+> + * xe_sriov_vf_start_migration_recovery - Start VF migration recovery.
+> + * @xe: the &xe_device to start recovery on
+> + *
+> + * This function shall be called only by VF.
+> + */
+> +void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
+> +{
+> +	bool started;
+> +
+> +	xe_assert(xe, IS_SRIOV_VF(xe));
+> +
+> +	if (!vf_ready_to_recovery_on_all_gts(xe))
+> +		return;
+> +
+> +	WRITE_ONCE(xe->sriov.vf.migration.gt_flags, 0);
+> +	/* Ensure other threads see that no flags are set now. */
+> +	smp_mb();
+> +
+> +	started = queue_work(xe->sriov.wq, &xe->sriov.vf.migration.worker);
+> +	drm_info(&xe->drm, "VF migration recovery %s\n", started ?
+> +		 "scheduled" : "already in progress");
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> new file mode 100644
+> index 000000000000..7b8622cff2b7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_SRIOV_VF_H_
+> +#define _XE_SRIOV_VF_H_
+> +
+> +struct xe_device;
+> +
+> +void xe_sriov_vf_init_early(struct xe_device *xe);
+> +void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
+> +
+> +#endif
 
