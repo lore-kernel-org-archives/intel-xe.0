@@ -4,174 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70C3BCF2589
-	for <intel-xe@archiver.kernel.org>; Sat, 12 Oct 2024 23:46:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A953CCF2576
+	for <intel-xe@archiver.kernel.org>; Sun, 13 Oct 2024 11:55:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1FE10E009;
-	Sat, 12 Oct 2024 23:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4402310E0E2;
+	Sun, 13 Oct 2024 11:55:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lC4mt+nT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dGfoDF4e";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37BD210E009
- for <intel-xe@lists.freedesktop.org>; Sat, 12 Oct 2024 23:46:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D15F710E0E2
+ for <intel-xe@lists.freedesktop.org>; Sun, 13 Oct 2024 11:55:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728776765; x=1760312765;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=3SeBImfg+uFx2Fvi/jHPWy6vwyGGfhefsxZhb4TWB70=;
- b=lC4mt+nTUzTu+Ne8JSc5fT/wvBY94UW+qpw9LgBhjy1x960PplonN/mh
- I1Ut50KurxSKnGkiAmbD4PW1jGYXaRflLQ/udvpEEtKNqObjMhiKuEzz3
- 6i548Ds/FCsKN0A+IrXmAB3Il8Ke4K9CdkAdsqOQUpNbtOlcnpf7L4h96
- Xd0TrhgeS1fTt6T/igeUqv4Jy2OVwQFJLYBl4fkexBYddcIma9kNm1nsA
- 10Le1eU4umgCY7fo1nY8r2YKIokFvSmj7+XiFxLKUc+7u2kGZnJjX9f6d
- dYNHQhYW4y134UAq0XVqEjB5f4RMXsk6FmNVAfNuUhEgAJkrYuRrO31jG A==;
-X-CSE-ConnectionGUID: siEf9Ny0RQiGQ+40EhOrVw==
-X-CSE-MsgGUID: VgPjw/StTlKHeCTn2xzc3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="45657176"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="45657176"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2024 16:46:04 -0700
-X-CSE-ConnectionGUID: wd0+DKf6QPO0U10B2LV4mg==
-X-CSE-MsgGUID: nAW3i94jTt2GCeezoOQPsg==
+ t=1728820551; x=1760356551;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/b+guqEkRvzw6VD8FWOCO1UX2mP6YKqvljHShoj7CAA=;
+ b=dGfoDF4eIoYf2FXtpCEcEkF/zTTJMtsOyuQZmnfDG6f2nIo14/C3FIzC
+ 2SfbFFZoBZ9PXTKYYxpDWKb/BbS/tXisMtBAlzNLoK/gtwjh4KC5Vy4eU
+ u+t2vplMkh1S8nId6qt+KFuCM3hB/ogCisYbaNCmZeDiKmtT52JaLFVhD
+ W1KgpCl6B1Q+WIb3X3VhYlQRu2cyQlFstlria4C5Ao7RD0X3PFNcxe8v7
+ bX+4vpYIEd08H2lFwt422SQgqUWpaw2NuSNg8TvzVxUJDMa+rVta3CGJI
+ 0kcYSqa0DbYONpLPKZdB6NwKBgoDq/C2pij0TFPW+JvsosEnydSTzzh4b g==;
+X-CSE-ConnectionGUID: 01fDzBLSTCKwGL7Ssh7PUg==
+X-CSE-MsgGUID: eJWbiW54QpyTCJady8v8Bg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28359917"
+X-IronPort-AV: E=Sophos;i="6.11,200,1725346800"; d="scan'208";a="28359917"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2024 04:55:50 -0700
+X-CSE-ConnectionGUID: ARng4VqqS0yCbSLp6yvP4g==
+X-CSE-MsgGUID: tBXrjtKAQuq3w9NRAMY+eg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="76863818"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Oct 2024 16:46:04 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sat, 12 Oct 2024 16:46:03 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Sat, 12 Oct 2024 16:46:03 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Sat, 12 Oct 2024 16:46:03 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NxE8EnF+pPk8O+EaIryi9Aa88iSbG61HKawdhIzXDzAgjPLECFVMIVmASYYBRmKAIEDHHh6gtO5IfCHpbQEp+V0prb4b+Lo5tcDlhJxBsHfHhN92sjqxt8zg/FwKZQ3cWXAISGbaUQ6OWNmApw7nd57DuycG3RgeApDcVVhYDwjyPfi5qb89qa3Oxerpw67KH6KaYpFlYgW3oPRevCiwqsVzItxnUyHSzUurfiNJp/9LawvdRubgnyWItjyHEJOm2QvvVAJrW+2xqdP/Rlc6orXBOduX+/3HpOi7AP7+cb8mpo13I1Vm6Sm1x2hJcxPq8Bx4NtWE/XyelCD31stKwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EsICSCM3WkMDrQGV1gBymHuFG0xL14+mK0JiVDRQL0U=;
- b=vaIFBDUMMpMYPd7M16fjbh200YqE2Sixx792qjkjbg2mERdsQFSzIWDIsSmpbxmIker5k8eUOgrcTeoGkD/8kEg/wJbuDXAJE17XvHePexMJpLdDUYZ5xXalrLZNljf5bYr+FYZouGJ11nF/+eJMXLWJCC127mQmpEIfKEtbTLjO3igXgomfpF0xcPoC2GQOPyeZ3bnT31hV/hWxdI+9ocsZqpCM+dZwXCshgLQ7L5tTvYUxMgaJiNiEP4mJ4aXoHFrQI/qRwOxYeaoCOl8jOH2UxHXXN5mbEOxC+1wS6QiUIGaingMD/e93xjq82m9kOdNBUlv0iqa+YSjmO5xC3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by LV3PR11MB8580.namprd11.prod.outlook.com (2603:10b6:408:1ae::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.25; Sat, 12 Oct
- 2024 23:46:01 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8048.020; Sat, 12 Oct 2024
- 23:46:00 +0000
-Date: Sat, 12 Oct 2024 18:45:57 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>,
- <intel-xe@lists.freedesktop.org>, Niranjana Vishwanathapura
- <niranjana.vishwanathapura@intel.com>, Tejas Upadhyay
- <tejas.upadhyay@intel.com>, Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 2/2] drm/xe: Use the filelist from drm for ccs_mode
- change
-Message-ID: <7k7rfpbdy5ky3w3fzgg4vicrgooqdtnvhmh3fgpmgublqkhgsh@ek3j3leh2tt2>
-References: <20241008073628.377433-3-balasubramani.vivekanandan@intel.com>
- <ZwVHmw8KPluuPgvC@DUT025-TGLU.fm.intel.com>
- <bl3ildwwdjswvvfpim4fgqdmlqvonccfbavdxymyxr4bdp53bn@xwd5njyqad4d>
- <ZwVS0eVGUaa8Z3v3@DUT025-TGLU.fm.intel.com>
- <l2a4np3y6htwcp7emufsrajyrozpmguwm4ucosbu2ne444jpwa@2ohs4dowlmr6>
- <ZwVq0JIEz64OhROM@DUT025-TGLU.fm.intel.com>
- <ZwVzOahncbCljo1f@DUT025-TGLU.fm.intel.com>
- <Zwe0bJJkKs3p-9Q8@bvivekan-mobl1>
- <qkxumw627jw4ukxsdywxhlzziub2324ydn43isdrp7yn5cfwta@vpipjndue5is>
- <Zwn+ZGwd4o9wNx8e@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <Zwn+ZGwd4o9wNx8e@DUT025-TGLU.fm.intel.com>
-X-ClientProxiedBy: MW2PR16CA0048.namprd16.prod.outlook.com
- (2603:10b6:907:1::25) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.11,200,1725346800"; d="scan'208";a="108068645"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa001.fm.intel.com with ESMTP; 13 Oct 2024 04:55:47 -0700
+Received: from [10.246.19.248] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.246.19.248])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 2350928169;
+ Sun, 13 Oct 2024 12:55:46 +0100 (IST)
+Message-ID: <66db813f-a475-4043-bdef-25be321e18c3@intel.com>
+Date: Sun, 13 Oct 2024 13:55:45 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|LV3PR11MB8580:EE_
-X-MS-Office365-Filtering-Correlation-Id: 837fa6c0-b45b-4638-b0a7-08dceb1806a6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?m04u1orIwnFO0VDFhFrOAV3Z55f+fm8M8rPva1qgHG+2mGEjuk5sgcIUFrpZ?=
- =?us-ascii?Q?33RP0fKfow9cfAU+1YSBT8SLqeungsXZFrunqDaKJP8xX7CI/77odZx18hs6?=
- =?us-ascii?Q?vs/AeIjA2KWBGZQBBbdiaWt1S8hqw7+8ni+N/KbTF324sqve49TZI4WjuB5Y?=
- =?us-ascii?Q?6tpx3g9O/fQq7ymmke7PfmkVTVb/bVKtIId8xHwnbp3qw0pn5fvP3FVR6Q6C?=
- =?us-ascii?Q?1KUxokLv4Bw7gl3fX1WPhT0H7s5GgWWXJ6Cwop7R7Go+oDmlXrOkZW2o5NyO?=
- =?us-ascii?Q?TKCphB1TZa4ZT7u25t1xV8UjYpGW5g9ECA/RSbEKim0p4oxAQu9bX5CLYdsm?=
- =?us-ascii?Q?pbfjaN2m9kQYiiaO38JGg7tqxp2rPN9ZKob3jhbvi36CsKgGehogBlVpDrNY?=
- =?us-ascii?Q?fAAyweoYcCASbm9WyEEYhwU6n2Y20DMTCe/NuM5mhyOxVbIZmL4/FTzIMTDf?=
- =?us-ascii?Q?Gk3m7FvIennvuyfOyZ9I4eoA00d689n3Yw5wzEordeakqnjPuyUxV8u9v0rM?=
- =?us-ascii?Q?YUZ98Hrf/Vhf7/gRibPUL2eImQ/+2afc0v4EU5mITqF6riNRVSjHItTQ7TWC?=
- =?us-ascii?Q?UENym3haR1iPjWnHJMNm8ae8a430xHvCn4DyAMDruL+FuU//fpLuGbLLyrFd?=
- =?us-ascii?Q?22pdZIz1UeST636ajpsdPR0+r8g2UndGu87Rlrhch7y/pluTZVU+yg8HrsFe?=
- =?us-ascii?Q?GFZrIT6uqWGaKeJSKzIiMWnqCdYvV+YuQNfN+IXcFxRN+OrXTyY5cI3buVsU?=
- =?us-ascii?Q?YIV7M0aslf4fPNizA/pgEsWmgL7SdebuZv5KR0GAr+SGFNmEooM9qAsMkgQO?=
- =?us-ascii?Q?3zuuVlOsDaiGkerVFQ/kuXofyW50SNDTHx1mMSgkETMUrEvNV7fFP9INL4kQ?=
- =?us-ascii?Q?gFS/y6IEqi7kx7P+PZxxj7EACK+gLHFDlL7JAfKanjxNSZ+Ud+kA7DAsY3iE?=
- =?us-ascii?Q?QtJqha6CGrqkaO4hPdvKG9QIcVdNac4QIpvlaJ/IQtpwMnQD5svfp+Ult8Qz?=
- =?us-ascii?Q?2xD+qeA94loCGJu/wnHT+/Br8ub2cNSsKDGt19sr03G63j4i3Ck0GhNCXzw1?=
- =?us-ascii?Q?nbkYVDkD8K/TeqG6wJSfhbEzvtcx2t+Mhvziw+XQZGC/tJTq5XT4MkwhpcxG?=
- =?us-ascii?Q?Uz2GICp/PGdcrETWb+tHXYEBxsN1yYN5/4gJq2DF6Ut+pWxvbWdTH2T4hvuf?=
- =?us-ascii?Q?3dVWyzvIBufkdq4pDDhmqhRszhFquxWH6AogBwz1j9nG1dvAr73TOfh18Ol9?=
- =?us-ascii?Q?eTe+1rcsXl5JKElOGey0WNlttPQzn+wO47nf57HXgw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NHBhq//O0+573EGvOYpUEJIOXsiUVQ++03Te0vJQe/H6ujsdl+3JdvSm4nqI?=
- =?us-ascii?Q?mITW3lMH7xe0o5c+HWA7VwUq06pVKMMoHH2JmU0YlBzVkPgLlN7iYj0zl+iF?=
- =?us-ascii?Q?CelsfWq2w20ARqOCN5bR3qOsjalCP067tO9RvCVYojieP3d5KTR0PxKNO+Ps?=
- =?us-ascii?Q?0fKfWM/ienU2Mlempe/VafrEEiTxSCgRAOyn9tT21tbqjM7hQ+btHyLtRG2+?=
- =?us-ascii?Q?wANFh/zMEcUH0qQYmZ+i6Xyn0mrhfUzlZOQwQX4vNpXI+fRak9Nt61ew3zJc?=
- =?us-ascii?Q?Gm6gBz3nRH0FvpZhWX4LHJzrKpyyWgZNJ5j4j8B5tcV6WosDOVRAqAXKXpfj?=
- =?us-ascii?Q?mqNu4qQDsZWl90QVYyk63V0COZo3KTtsHfvwBgbKWwBOhVCLthjpfxO1x0Gw?=
- =?us-ascii?Q?XDX902iQqHZWzSshLJdf3w/xAenDw2e0Jyq4FI3b1woXKbgzSTQtE8HgCBlR?=
- =?us-ascii?Q?uy0m/7gYTIRt357NOq7eo9N4MMSAH6q0gaNmG43fRItfn2u4J7XclGZGlF70?=
- =?us-ascii?Q?LL6Wu7JwFS9z0ThSqYwjT0PLXPiWt/UnaEx3oOqLc+FxJKq83K0YichctiJ4?=
- =?us-ascii?Q?wuBIVd34Su3rdfeq/shZB+w4DkmByoRcsp4K9ct/kQnz5B1LeCcaqKxGHr1W?=
- =?us-ascii?Q?l8BBpVEUKsZHqhF7WqEaqDBUmy8mAcxbTFlLZYZKyBZObOkvruPJ6XNfAqK6?=
- =?us-ascii?Q?CPUH7aOewYBt3KRZuwnGjtTFHLuV7UmZJUeAtm7CP9zkvUDKvp2yOYBYj0uH?=
- =?us-ascii?Q?c8lW4tn73jBvLifLDEfA4/Gcf+MmwMiZm1FYoc1eGA7r6akJw/8ZgW8JJdhO?=
- =?us-ascii?Q?WX5sc05sH2CcgWFX1BQSVlo63nqjkMrBGdK71W4e0aQJi1ewZ8BAEjCp4tnU?=
- =?us-ascii?Q?RDrPgZzaOlJ8EcwD7ggDWjHK+7pQORZUVL8/ZVX+O34FpAkm//WlxMTais4j?=
- =?us-ascii?Q?jNI5H2y3IGTDBlcDZzDBaf64uftG16kJbA/1t3BC7opooACrzQXE8tO/KKVG?=
- =?us-ascii?Q?DEXgSmQZaP/GpUTjZHBgC2aqBHeefAjp00SQZlRjdKDRFahSYBXTW1GKyGOn?=
- =?us-ascii?Q?HJwgkaf1MsmxWBvhFkBX0HxnlooSFRwHY7dK/wvZiLZ1h3oQkq9wWW94Y3zU?=
- =?us-ascii?Q?u70vpOZ/N5/YtbIX8CuJaL6z9+ec1+7NHzaRM93Kh33sc3QyKraNXtHr25FS?=
- =?us-ascii?Q?SiStUqioF49MOP2+f0T5fzbCmGQO5lLp8YPzEl+DZpBYTvRlNVEPzpogXhtQ?=
- =?us-ascii?Q?EzAavqJlCdfBDkdouMybQb5el/OcVDeWHFUBnhD8Do6qD+5sInlrvyWCYGWb?=
- =?us-ascii?Q?JnQ0xfjOkh9LklLZq6AU6OJUapaCOTj7aw3B7bjSqoHjJ0myqCbLUAgxlLjL?=
- =?us-ascii?Q?LN1bQyNZ9P/FxHdKeSrrg3/flri2Cf4pkTfWhkby/DvrrfGo7+j2KHjO8u1H?=
- =?us-ascii?Q?CZiEPQYFTXlqBQYvWZWbfEoNgJn07qogmTM7d7OrsbwG/eHhGg8YpPU8gOen?=
- =?us-ascii?Q?iB85wi0/s9A+eXj1hc+ispnrQXc85LQ4w11fl3f4s0hK+ogNo7wjDMDgJvJ/?=
- =?us-ascii?Q?CUXWrwVqNVItbnvhXjyMPuYnbTKuTJVSxlf/k0NCLm+5u9XYeulpY0hTrVwe?=
- =?us-ascii?Q?8Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 837fa6c0-b45b-4638-b0a7-08dceb1806a6
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2024 23:46:00.5022 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V7Qr2LMv60JVjbYG/9hD78b8Q5Z5h7UiylibAkGyRM1PKD2SzZYB1lISjYBnqApLscge+8U6QQAnQ4sIiVvJ4NiR/exOsmvEDBBueOpMkGc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8580
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] drm/xe/guc: Introduce the GuC Buffer Cache
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20241009172125.1539-1-michal.wajdeczko@intel.com>
+ <20241009172125.1539-2-michal.wajdeczko@intel.com>
+ <ZwnV7WFgRw85mdxZ@DUT025-TGLU.fm.intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <ZwnV7WFgRw85mdxZ@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,119 +73,563 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It looks like I forgot to Cc, so let's try again.
 
-Lucas De Marchi
 
-On Sat, Oct 12, 2024 at 04:43:16AM +0000, Matthew Brost wrote:
->On Thu, Oct 10, 2024 at 11:02:56AM -0500, Lucas De Marchi wrote:
->> On Thu, Oct 10, 2024 at 04:33:08PM +0530, Vivekanandan, Balasubramani wrote:
->> > On 08.10.2024 18:00, Matthew Brost wrote:
->> > > On Tue, Oct 08, 2024 at 05:24:32PM +0000, Matthew Brost wrote:
->> > > > On Tue, Oct 08, 2024 at 11:55:03AM -0500, Lucas De Marchi wrote:
->> > > > > On Tue, Oct 08, 2024 at 03:42:09PM +0000, Matthew Brost wrote:
->> > > > > > On Tue, Oct 08, 2024 at 10:20:15AM -0500, Lucas De Marchi wrote:
->> > > > > > > On Tue, Oct 08, 2024 at 02:54:19PM +0000, Matthew Brost wrote:
->> > > > > > > > On Tue, Oct 08, 2024 at 01:06:28PM +0530, Balasubramani Vivekanandan wrote:
->> > > > > > > > > Drop the exclusive client count tracking and use the filelist from the
->> > > > > > > > > drm to track the active clients. This also ensures the clients created
->> > > > > > > > > internally by the driver won't block changing the ccs mode.
->> > > > > > > > >
->> > > > > > > > > Fixes: ce8c161cbad4 ("drm/xe: Add ref counting for xe_file")
->> > > > > > > >
->> > > > > > > > Is this really fixing anything. As far as I can tell nothing upstream
->> > > > > > > > opens a file internally (i.e. xe_file_open) is never called directly.
->> > > > > > >
->> > > > > > > should fix this case:
->> > > > > > >
->> > > > > > > 	open()
->> > > > > > > 	close()
->> > > > > > > 			<---- race here
->> > > > > > > 	change_ccs_mode()
->> > > > > > >
->> > > > > > > because the close is not completely sync - the cleanup where the
->> > > > > > > previous number of clients is decremented is executed too late and
->> > > > > > > subject to a race fixed here.
->> > > > > > >
->> > > > > >
->> > > > > > Ah, ok. But then IMO just move the clients.count decrement to
->> > > > > > xe_file_close. I try to preach solid locking / layering and this seems
->> > > > > > to go against this idea.
->> > > > >
->> > > > > why do you want to track the exact same thing in 2 ways, one in drm and
->> > > > > the other in xe? "Are there clients connected?" is something drm_file
->> > > > > answer and doesn't need to be duplicated in the individual drivers.
->> > > > >
->> > > >
->> > > > Well layering, making assumptions about the file list means, and not
->> > > > randomly deciding what we can and can't do with locks we don't own.
->> > > >
->> > >
->> > > I looked at this a bit more, if we want to do it this way then I think
->> > > at a minimum we need a drm helper for this.
->> > >
->> > > e.g.,
->> > >
->> > > bool drm_device_user_clients_open(struct drm_device *dev)
->> > > {
->> > > 	lockdep_assert(&dev->filelist_mutex);
->> > >
->> > > 	return !!list_empty(&dev->filelist);
->> > > }
->> >
->> > Still the driver would be required to use the filelist_mutex outside the
->> > drm layer. So will not solve the layering problem completely.
->> > Otherwise we can define two helper functions in drm, the first one would
->> > check there are no open files and returns true holding the mutex.
->> > The second function can be used to release the mutex.
->> > Does it sound too invasive?
->
->I'd say helper to acquire / release the file lock indicating it is ok
->for other layers to use the lock. Then add helpers with annotaions (like
->my example) for internal access to that layer. Maybe a bit much, I find
->myself writing code in this style these days.
->
+On 12.10.2024 03:50, Matthew Brost wrote:
+> On Wed, Oct 09, 2024 at 07:21:21PM +0200, Michal Wajdeczko wrote:
+>> The purpose of the GuC Buffer Cache is to prepare a cached buffer
+>> that could be used by some of the CTB based communication actions
+>> which require an indirect data to be passed in a separate location
+>> than CT message buffer.
 >>
->> yes, and I'd rather prefer not adding these helpers.  If someone wants
->> to add helpers later and convert the current use cases, that's a
->> cleanup/refactor that can be done on top. For me, these helpers are not
->> really helping.
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> 
+> Quick reaction without to much thought, this looks like reinventing
+> suballocation which we already have in the DRM layer / Xe.
+> 
+> See - xe_sa.c, drm_suballoc.c
+> 
+> So I'd say build this layer on top one of those or ditch this layer
+> entirely and directly use xe_sa.c. I'm pretty sure you could allocate
+> from the existing pool of tile->mem.kernel_bb_pool as the locking in
+> that layers make that safe. Maybe rename 'tile->mem.kernel_bb_pool' to
+> something more generic if that works.
+
+TBH reuse of the xe_sa was my first approach but then I found that every
+new GPU sub-allocation actually still allocates some host memory:
+
+struct drm_suballoc * drm_suballoc_new(...)
+{
+...
+	sa = kmalloc(sizeof(*sa), gfp);
+
+so it didn't match my requirement to avoid any memory allocations since
+I want to use it while sending H2G with VFs re-provisioning during a
+reset - as attempt to resolve issue mentioned in [1]
+
+[1]
+https://lore.kernel.org/intel-xe/3e13401972fd49240f486fd7d47580e576794c78.camel@intel.com/
+
+
+> 
+> Matt
+> 
+>> ---
+>>  drivers/gpu/drm/xe/Makefile           |   1 +
+>>  drivers/gpu/drm/xe/xe_guc_buf.c       | 387 ++++++++++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_guc_buf.h       |  48 ++++
+>>  drivers/gpu/drm/xe/xe_guc_buf_types.h |  40 +++
+>>  4 files changed, 476 insertions(+)
+>>  create mode 100644 drivers/gpu/drm/xe/xe_guc_buf.c
+>>  create mode 100644 drivers/gpu/drm/xe/xe_guc_buf.h
+>>  create mode 100644 drivers/gpu/drm/xe/xe_guc_buf_types.h
 >>
->> Rodrigo / Thomas, any thought?
->
->Another opinion would be good. I know this seems a bit pedantic but
->locking is about the most important thing a driver and certainly the
->most difficult to unwind is we do it incorrectly.
->
->Matt
->
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index da80c29aa363..0aed652dc806 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -56,6 +56,7 @@ xe-y += xe_bb.o \
+>>  	xe_gt_topology.o \
+>>  	xe_guc.o \
+>>  	xe_guc_ads.o \
+>> +	xe_guc_buf.o \
+>>  	xe_guc_capture.o \
+>>  	xe_guc_ct.o \
+>>  	xe_guc_db_mgr.o \
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
+>> new file mode 100644
+>> index 000000000000..a49be711ea86
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_guc_buf.c
+>> @@ -0,0 +1,387 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2024 Intel Corporation
+>> + */
+>> +
+>> +#include <linux/bitmap.h>
+>> +#include <linux/cleanup.h>
+>> +#include <linux/mutex.h>
+>> +
+>> +#include <drm/drm_managed.h>
+>> +
+>> +#include "xe_assert.h"
+>> +#include "xe_bo.h"
+>> +#include "xe_gt_printk.h"
+>> +#include "xe_guc.h"
+>> +#include "xe_guc_buf.h"
+>> +
+>> +/**
+>> + * DOC: GuC Buffer Cache
+>> + *
+>> + * The purpose of the `GuC Buffer Cache`_ is to prepare a cached buffer for use
+>> + * by the GuC `CTB based communication` actions that require an indirect data to
+>> + * be passed in a separate GPU memory location, that needs to be available only
+>> + * during processing of that GuC action.
+>> + *
+>> + * The xe_guc_buf_cache_init() will allocate and initialize the cache object.
+>> + * The object is drm managed and will be allocated with GFP_KERNEL flag.
+>> + * The size of the underlying GPU memory buffer will be aligned to SZ_4K.
+>> + * The cache will then support up to BITS_PER_LONG a sub-allocations from that
+>> + * data buffer. Each sub-allocation will be at least aligned to SZ_64.
+>> + *
+>> + * ::
+>> + *
+>> + *       <------> chunk (n * 64)
+>> + *       <------------- CPU mirror (n * 4K) -------------------------------->
+>> + *      +--------+--------+--------+--------+-----------------------+--------+
+>> + *      |   0    |   1    |   2    |   3    |                       |   m    |
+>> + *      +--------+--------+--------+--------+-----------------------+--------+
+>> + *                                                 ||       /\
+>> + *                                                flush     ||
+>> + *                                                 ||      sync
+>> + *                                                 \/       ||
+>> + *      +--------+--------+--------+--------+-----------------------+--------+
+>> + *      |   0    |   1    |   2    |   3    |                       |   m    |
+>> + *      +--------+--------+--------+--------+-----------------------+--------+
+>> + *       <--------- GPU allocation (n * 4K) -------------------------------->
+>> + *       <------> chunk (n * 64)
+>> + *
+>> + * The xe_guc_buf_reserve() will return a reference to a new sub-allocation.
+>> + * The xe_guc_buf_release() shall be used to release a such sub-allocation.
+>> + *
+>> + * The xe_guc_buf_cpu_ptr() will provide access to the sub-allocation.
+>> + * The xe_guc_buf_flush() shall be used to flush data from any mirror buffer to
+>> + * the underlying GPU memory.
+>> + *
+>> + * The xe_guc_buf_gpu_addr() will provide a GPU address of the sub-allocation.
+>> + * The xe_guc_buf_sync() might be used to copy the content of the sub-allocation
+>> + * from the GPU memory to the local mirror buffer.
+>> + */
+>> +
+>> +static struct xe_guc *cache_to_guc(struct xe_guc_buf_cache *cache)
+>> +{
+>> +	return cache->guc;
+>> +}
+>> +
+>> +static struct xe_gt *cache_to_gt(struct xe_guc_buf_cache *cache)
+>> +{
+>> +	return guc_to_gt(cache_to_guc(cache));
+>> +}
+>> +
+>> +static struct xe_device *cache_to_xe(struct xe_guc_buf_cache *cache)
+>> +{
+>> +	return gt_to_xe(cache_to_gt(cache));
+>> +}
+>> +
+>> +static struct mutex *cache_mutex(struct xe_guc_buf_cache *cache)
+>> +{
+>> +	return &cache_to_guc(cache)->ct.lock;
+>> +}
+>> +
+>> +static void __fini_cache(void *arg)
+>> +{
+>> +	struct xe_guc_buf_cache *cache = arg;
+>> +	struct xe_gt *gt = cache_to_gt(cache);
+>> +
+>> +	if (cache->used)
+>> +		xe_gt_dbg(gt, "buffer cache unclean: %#lx = %u * %u bytes\n",
+>> +			  cache->used, bitmap_weight(&cache->used, BITS_PER_LONG), cache->chunk);
+>> +
+>> +	kvfree(cache->mirror);
+>> +	cache->mirror = NULL;
+>> +	cache->bo = NULL;
+>> +	cache->used = 0;
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_cache_init() - Allocate and initialize a GuC Buffer Cache.
+>> + * @guc: the &xe_guc where this cache will be used
+>> + * @size: minimum size of the cache
+>> + *
+>> + * See `GuC Buffer Cache`_ for details.
+>> + *
+>> + * Return: pointer to the &xe_guc_buf_cache on success or a ERR_PTR() on failure.
+>> + */
+>> +struct xe_guc_buf_cache *xe_guc_buf_cache_init(struct xe_guc *guc, u32 size)
+>> +{
+>> +	struct xe_gt *gt = guc_to_gt(guc);
+>> +	struct xe_tile *tile = gt_to_tile(gt);
+>> +	struct xe_device *xe = tile_to_xe(tile);
+>> +	struct xe_guc_buf_cache *cache;
+>> +	u32 chunk_size;
+>> +	u32 cache_size;
+>> +	int ret;
+>> +
+>> +	cache_size = ALIGN(size, SZ_4K);
+>> +	chunk_size = cache_size / BITS_PER_LONG;
+>> +
+>> +	xe_gt_assert(gt, size);
+>> +	xe_gt_assert(gt, IS_ALIGNED(chunk_size, SZ_64));
+>> +
+>> +	cache = drmm_kzalloc(&xe->drm, sizeof(*cache), GFP_KERNEL);
+>> +	if (!cache)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	cache->bo = xe_managed_bo_create_pin_map(xe, tile, cache_size,
+>> +						 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+>> +						 XE_BO_FLAG_GGTT |
+>> +						 XE_BO_FLAG_GGTT_INVALIDATE);
+>> +	if (IS_ERR(cache->bo))
+>> +		return ERR_CAST(cache->bo);
+>> +
+>> +	cache->guc = guc;
+>> +	cache->chunk = chunk_size;
+>> +	cache->mirror = kvzalloc(cache_size, GFP_KERNEL);
+>> +	if (!cache->mirror)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	ret = devm_add_action_or_reset(xe->drm.dev, __fini_cache, cache);
+>> +	if (ret)
+>> +		return ERR_PTR(ret);
+>> +
+>> +	xe_gt_dbg(gt, "buffer cache at %#x (%uKiB = %u x %zu dwords) for %ps\n",
+>> +		  xe_bo_ggtt_addr(cache->bo), cache_size / SZ_1K,
+>> +		  BITS_PER_LONG, chunk_size / sizeof(u32), __builtin_return_address(0));
+>> +	return cache;
+>> +}
+>> +
+>> +static bool cache_is_ref_active(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	lockdep_assert_held(cache_mutex(cache));
+>> +	return bitmap_subset(&ref, &cache->used, BITS_PER_LONG);
+>> +}
+>> +
+>> +static bool ref_is_valid(unsigned long ref)
+>> +{
+>> +	return ref && find_next_bit(&ref, BITS_PER_LONG,
+>> +				    find_first_bit(&ref, BITS_PER_LONG) +
+>> +				    bitmap_weight(&ref, BITS_PER_LONG)) == BITS_PER_LONG;
+>> +}
+>> +
+>> +static void cache_assert_ref(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	xe_gt_assert_msg(cache_to_gt(cache), ref_is_valid(ref),
+>> +			 "# malformed ref %#lx %*pbl", ref, (int)BITS_PER_LONG, &ref);
+>> +	xe_gt_assert_msg(cache_to_gt(cache), cache_is_ref_active(cache, ref),
+>> +			 "# stale ref %#lx %*pbl vs used %#lx %*pbl",
+>> +			 ref, (int)BITS_PER_LONG, &ref,
+>> +			 cache->used, (int)BITS_PER_LONG, &cache->used);
+>> +}
+>> +
+>> +static unsigned long cache_reserve(struct xe_guc_buf_cache *cache, u32 size)
+>> +{
+>> +	unsigned long index;
+>> +	unsigned int nbits;
+>> +
+>> +	lockdep_assert_held(cache_mutex(cache));
+>> +	xe_gt_assert(cache_to_gt(cache), size);
+>> +	xe_gt_assert(cache_to_gt(cache), size <= BITS_PER_LONG * cache->chunk);
+>> +
+>> +	nbits = DIV_ROUND_UP(size, cache->chunk);
+>> +	index = bitmap_find_next_zero_area(&cache->used, BITS_PER_LONG, 0, nbits, 0);
+>> +	if (index >= BITS_PER_LONG) {
+>> +		xe_gt_dbg(cache_to_gt(cache), "no space for %u byte%s in cache at %#x used %*pbl\n",
+>> +			  size, str_plural(size), xe_bo_ggtt_addr(cache->bo),
+>> +			  (int)BITS_PER_LONG, &cache->used);
+>> +		return 0;
+>> +	}
+>> +
+>> +	bitmap_set(&cache->used, index, nbits);
+>> +
+>> +	return GENMASK(index + nbits - 1, index);
+>> +}
+>> +
+>> +static u64 cache_ref_offset(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	cache_assert_ref(cache, ref);
+>> +	return __ffs(ref) * cache->chunk;
+>> +}
+>> +
+>> +static u32 cache_ref_size(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	cache_assert_ref(cache, ref);
+>> +	return hweight_long(ref) * cache->chunk;
+>> +}
+>> +
+>> +static u64 cache_ref_gpu_addr(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	return xe_bo_ggtt_addr(cache->bo) + cache_ref_offset(cache, ref);
+>> +}
+>> +
+>> +static void *cache_ref_cpu_ptr(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	return cache->mirror + cache_ref_offset(cache, ref);
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_reserve() - Reserve a new sub-allocation.
+>> + * @cache: the &xe_guc_buf_cache where reserve sub-allocation
+>> + * @size: the requested size of the buffer
+>> + *
+>> + * Use xe_guc_buf_is_valid() to check if returned buffer reference is valid.
+>> + * Must use xe_guc_buf_release() to release a sub-allocation.
+>> + *
+>> + * Return: a &xe_guc_buf of new sub-allocation.
+>> + */
+>> +struct xe_guc_buf xe_guc_buf_reserve(struct xe_guc_buf_cache *cache, u32 size)
+>> +{
+>> +	guard(mutex)(cache_mutex(cache));
+>> +	unsigned long ref;
+>> +
+>> +	ref = cache_reserve(cache, size);
+>> +
+>> +	return (struct xe_guc_buf){ .cache = cache, .ref = ref };
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_from_data() - Reserve a new sub-allocation using data.
+>> + * @cache: the &xe_guc_buf_cache where reserve sub-allocation
+>> + * @data: the data to flush the sub-allocation
+>> + * @size: the size of the data
+>> + *
+>> + * Similar to xe_guc_buf_reserve() but flushes @data to the GPU memory.
+>> + *
+>> + * Return: a &xe_guc_buf of new sub-allocation.
+>> + */
+>> +struct xe_guc_buf xe_guc_buf_from_data(struct xe_guc_buf_cache *cache,
+>> +				       const void *data, size_t size)
+>> +{
+>> +	guard(mutex)(cache_mutex(cache));
+>> +	unsigned long ref;
+>> +
+>> +	ref = cache_reserve(cache, size);
+>> +	if (ref) {
+>> +		u32 offset = cache_ref_offset(cache, ref);
+>> +
+>> +		xe_map_memcpy_to(cache_to_xe(cache), &cache->bo->vmap,
+>> +				 offset, data, size);
+>> +	}
+>> +
+>> +	return (struct xe_guc_buf){ .cache = cache, .ref = ref };
+>> +}
+>> +
+>> +static void cache_release_ref(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	cache_assert_ref(cache, ref);
+>> +	cache->used &= ~ref;
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_release() - Release a sub-allocation.
+>> + * @buf: the &xe_guc_buf to release
+>> + *
+>> + * Releases a sub-allocation reserved by xe_guc_buf_reserve().
+>> + */
+>> +void xe_guc_buf_release(const struct xe_guc_buf buf)
+>> +{
+>> +	guard(mutex)(cache_mutex(buf.cache));
+>> +
+>> +	if (!buf.ref)
+>> +		return;
+>> +
+>> +	cache_release_ref(buf.cache, buf.ref);
+>> +}
+>> +
+>> +static u64 cache_flush_ref(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	u32 offset = cache_ref_offset(cache, ref);
+>> +	u32 size = cache_ref_size(cache, ref);
+>> +
+>> +	xe_map_memcpy_to(cache_to_xe(cache), &cache->bo->vmap,
+>> +			 offset, cache->mirror + offset, size);
+>> +
+>> +	return cache_ref_gpu_addr(cache, ref);
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_flush() - Copy the data from the sub-allocation to the GPU memory.
+>> + * @buf: the &xe_guc_buf to flush
+>> + *
+>> + * Return: a GPU address of the sub-allocation.
+>> + */
+>> +u64 xe_guc_buf_flush(const struct xe_guc_buf buf)
+>> +{
+>> +	guard(mutex)(cache_mutex(buf.cache));
+>> +
+>> +	return cache_flush_ref(buf.cache, buf.ref);
+>> +}
+>> +
+>> +static void *cache_sync_ref(struct xe_guc_buf_cache *cache, unsigned long ref)
+>> +{
+>> +	u32 offset = cache_ref_offset(cache, ref);
+>> +	u32 size = cache_ref_size(cache, ref);
+>> +
+>> +	xe_map_memcpy_from(cache_to_xe(cache), cache->mirror + offset,
+>> +			   &cache->bo->vmap, offset, size);
+>> +
+>> +	return cache_ref_cpu_ptr(cache, ref);
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_sync() - Copy the data from the GPU memory to the sub-allocation.
+>> + * @buf: the &xe_guc_buf to sync
+>> + *
+>> + * Return: the CPU pointer to the sub-allocation.
+>> + */
+>> +void *xe_guc_buf_sync(const struct xe_guc_buf buf)
+>> +{
+>> +	guard(mutex)(cache_mutex(buf.cache));
+>> +
+>> +	return cache_sync_ref(buf.cache, buf.ref);
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_cpu_ptr() - Obtain a CPU pointer to the sub-allocation.
+>> + * @buf: the &xe_guc_buf to query
+>> + *
+>> + * Return: the CPU pointer of the sub-allocation.
+>> + */
+>> +void *xe_guc_buf_cpu_ptr(const struct xe_guc_buf buf)
+>> +{
+>> +	guard(mutex)(cache_mutex(buf.cache));
+>> +
+>> +	return cache_ref_cpu_ptr(buf.cache, buf.ref);
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_buf_gpu_addr() - Obtain a GPU address of the sub-allocation.
+>> + * @buf: the &xe_guc_buf to query
+>> + *
+>> + * Return: the GPU address of the sub-allocation.
+>> + */
+>> +u64 xe_guc_buf_gpu_addr(const struct xe_guc_buf buf)
+>> +{
+>> +	guard(mutex)(cache_mutex(buf.cache));
+>> +
+>> +	return cache_ref_gpu_addr(buf.cache, buf.ref);
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_cache_gpu_addr_from_ptr() - Lookup a GPU address using the pointer.
+>> + * @cache: the &xe_guc_buf_cache with sub-allocations
+>> + * @ptr: the CPU pointer to the data from a sub-allocation
+>> + * @size: the size of the data at @ptr
+>> + *
+>> + * Return: the GPU address on success or 0 on failure.
+>> + */
+>> +u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *ptr, u32 size)
+>> +{
+>> +	guard(mutex)(cache_mutex(cache));
+>> +	ptrdiff_t offset = ptr - cache->mirror;
+>> +	unsigned long ref;
+>> +	int first, last;
+>> +
+>> +	if (offset < 0)
+>> +		return 0;
+>> +
+>> +	first = div_u64(offset, cache->chunk);
+>> +	last = DIV_ROUND_UP(offset + max(1, size), cache->chunk) - 1;
+>> +
+>> +	if (last >= BITS_PER_LONG)
+>> +		return 0;
+>> +
+>> +	ref = GENMASK(last, first);
+>> +	cache_assert_ref(cache, ref);
+>> +
+>> +	return xe_bo_ggtt_addr(cache->bo) + offset;
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_buf.h b/drivers/gpu/drm/xe/xe_guc_buf.h
+>> new file mode 100644
+>> index 000000000000..700e7b06c149
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_guc_buf.h
+>> @@ -0,0 +1,48 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2024 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_GUC_BUF_H_
+>> +#define _XE_GUC_BUF_H_
+>> +
+>> +#include <linux/cleanup.h>
+>> +
+>> +#include "xe_guc_buf_types.h"
+>> +
+>> +struct xe_guc_buf_cache *xe_guc_buf_cache_init(struct xe_guc *guc, u32 size);
+>> +
+>> +struct xe_guc_buf xe_guc_buf_reserve(struct xe_guc_buf_cache *cache, u32 size);
+>> +struct xe_guc_buf xe_guc_buf_from_data(struct xe_guc_buf_cache *cache,
+>> +				       const void *data, size_t size);
+>> +void xe_guc_buf_release(const struct xe_guc_buf buf);
+>> +
+>> +/**
+>> + * xe_guc_buf_is_valid() - Check if the GuC Buffer Cache sub-allocation is valid.
+>> + * @buf: the &xe_guc_buf reference to check
+>> + *
+>> + * Return: true if @buf represents a valid sub-allocation.
+>> + */
+>> +static inline bool xe_guc_buf_is_valid(const struct xe_guc_buf buf)
+>> +{
+>> +	return buf.ref;
+>> +}
+>> +
+>> +void *xe_guc_buf_sync(const struct xe_guc_buf buf);
+>> +void *xe_guc_buf_cpu_ptr(const struct xe_guc_buf buf);
+>> +u64 xe_guc_buf_flush(const struct xe_guc_buf buf);
+>> +u64 xe_guc_buf_gpu_addr(const struct xe_guc_buf buf);
+>> +
+>> +u64 xe_guc_cache_gpu_addr_from_ptr(struct xe_guc_buf_cache *cache, const void *ptr, u32 size);
+>> +
+>> +DEFINE_CLASS(xe_guc_buf, struct xe_guc_buf,
+>> +	     xe_guc_buf_release(_T),
+>> +	     xe_guc_buf_reserve(cache, size),
+>> +	     struct xe_guc_buf_cache *cache, u32 size);
+>> +
+>> +DEFINE_CLASS(xe_guc_buf_from_data, struct xe_guc_buf,
+>> +	     xe_guc_buf_release(_T),
+>> +	     xe_guc_buf_from_data(cache, data, size),
+>> +	     struct xe_guc_buf_cache *cache, const void *data, u32 size);
+>> +
+>> +#endif
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_buf_types.h b/drivers/gpu/drm/xe/xe_guc_buf_types.h
+>> new file mode 100644
+>> index 000000000000..fe93b32e97f8
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_guc_buf_types.h
+>> @@ -0,0 +1,40 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2024 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_GUC_BUF_TYPES_H_
+>> +#define _XE_GUC_BUF_TYPES_H_
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +struct xe_bo;
+>> +struct xe_guc;
+>> +
+>> +/**
+>> + * struct xe_guc_buf_cache - GuC Data Buffer Cache.
+>> + */
+>> +struct xe_guc_buf_cache {
+>> +	/** @guc: the parent GuC where buffers are used */
+>> +	struct xe_guc *guc;
+>> +	/** @bo: the main cache buffer object with GPU allocation */
+>> +	struct xe_bo *bo;
+>> +	/** @mirror: the CPU pointer to the data buffer */
+>> +	void *mirror;
+>> +	/** @used: the bitmap used to track allocated chunks */
+>> +	unsigned long used;
+>> +	/** @chunk: the size of the smallest sub-allocation */
+>> +	u32 chunk;
+>> +};
+>> +
+>> +/**
+>> + * struct xe_guc_buf - GuC Data Buffer Reference.
+>> + */
+>> +struct xe_guc_buf {
+>> +	/** @cache: the cache where this allocation belongs */
+>> +	struct xe_guc_buf_cache *cache;
+>> +	/** @ref: the internal reference */
+>> +	unsigned long ref;
+>> +};
+>> +
+>> +#endif
+>> -- 
+>> 2.43.0
 >>
->> Lucas De Marchi
->>
->> >
->> > Regards,
->> > Bala
->> >
->> > >
->> > > Matt
->> > >
->> > > > > At least it's also used for similar reasons in amdgpu and vmwgfx:
->> > > > >
->> > > > > $ git grep -l -e "->filelist" -- drivers/gpu/drm/
->> > > > > drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> > > > > drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
->> > > > > drivers/gpu/drm/drm_client.c
->> > > > > drivers/gpu/drm/drm_debugfs.c
->> > > > > drivers/gpu/drm/drm_drv.c
->> > > > > drivers/gpu/drm/drm_file.c
->> > > > > drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
->> > > > >
->> > > >
->> > > > The AMD / VMWGFX usage certainly looks wrong to me. If the file list was
->> > > > meant to be traversed by drivers there should be an exported iterator
->> > > > IMO.
->> > > >
->> > > > Matt
->> > > >
->> > > > >
->> > > > > Lucas De Marchi
+
