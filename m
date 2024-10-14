@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1DB9CF259D
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 06:47:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39303CF259D
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:00:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74C6F10E0FA;
-	Mon, 14 Oct 2024 06:47:14 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B2E810E0FA;
- Mon, 14 Oct 2024 06:47:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5182576284704660850=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_support_for_EU_stall_samplin?=
- =?utf-8?q?g?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Harish Chegondi" <harish.chegondi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA30210E0FA;
+	Mon, 14 Oct 2024 07:00:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HAAMl3iN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ABF910E0DD;
+ Mon, 14 Oct 2024 07:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728889218; x=1760425218;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YqN/hFmhp0Wsr1QESwyDq0MTFch54KgMs2/Qdhk4quE=;
+ b=HAAMl3iNObBWAFgBML6SRdL4+nrzNUo/uGcSjd/sCoru7jTI9ER9tj41
+ oR2/kAyMs+b/BxPUCi5rMikMjhK1S6iDtBhkSKMZ2AEaQn7AqSVZwCxu9
+ MhVKIYwa1ne5tfcrgIJIJsPgsOQxTYIpualNEKRxn46nGzdaQWvV12Y3N
+ e9i7KEIr3KynBOAg6xQaeyl9zd6PAplVzDE7THWGc6BctMClK1evCfnOz
+ /k8bYhCWvcy3n4aP4jGyPmTWIyxmR7u8bFmiJ5zcVTkWVfuMpDVbAbtOD
+ KMUzT1i+xuSPSrwOOBFflnw11wNum+d8XIeFqheZekXR0jm7C2AssR/us g==;
+X-CSE-ConnectionGUID: HTuuKGBNTIOqh/0SFq/kAg==
+X-CSE-MsgGUID: OASQZIkQTcmDeHcRJoW5wA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39337964"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39337964"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 00:00:18 -0700
+X-CSE-ConnectionGUID: t17dbTO7Si29S3YZ/7hk4A==
+X-CSE-MsgGUID: 8lxw3dqsQAK2N3KiZzkUqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="78310805"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 00:00:17 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 14 Oct 2024 06:47:13 -0000
-Message-ID: <172888843316.1246180.16205495839697588592@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1728884074.git.harish.chegondi@intel.com>
-In-Reply-To: <cover.1728884074.git.harish.chegondi@intel.com>
+Subject: [PATCH 0/9] Add support for 3 VDSC engines 12 slices
+Date: Mon, 14 Oct 2024 12:32:17 +0530
+Message-ID: <20241014070226.2729008-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +61,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5182576284704660850==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+For BMG 3 VDSC engines are supported and each pipe can then support
+3 slices. For Ultra joiner cases for modes like 8k@120 Hz we require
+ultrajoiner and 3 x 4= 12 slices.
+Add support for 3 VDSC engines and 12 DSC slices. Along with this
+Pixel replication and Odd pixel considerartions are also required.
 
-== Series Details ==
+Ankit Nautiyal (9):
+  drm/i915/display: Prepare for dsc 3 stream splitter
+  drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC engine
+  drm/i915/vdsc: Add register bits for VDSC2 engine
+  drm/i915/vdsc: Add support for read/write PPS for DSC3
+  drm/i915/dp: Add check for hdisplay divisible by slice count
+  drm/i915/display: Add DSC pixel replication
+  drm/i915/dp: Compute pixel replication count for DSC 12 slices case
+  drm/i915/dsc: Account for Odd pixel removal
+  drm/i915/dp: Add support for 3 vdsc engines and 12 slices.
 
-Series: Add support for EU stall sampling
-URL   : https://patchwork.freedesktop.org/series/139931/
-State : success
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   3 +-
+ .../drm/i915/display/intel_display_types.h    |   9 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  75 ++++++++++++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 +
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 105 ++++++++++++++++--
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |  22 +++-
+ 8 files changed, 200 insertions(+), 20 deletions(-)
 
-== Summary ==
+-- 
+2.45.2
 
-CI Bug Log - changes from xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06_BAT -> xe-pw-139931v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139931v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139931v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [FAIL][3] ([Intel XE#886]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139931v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * Linux: xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06 -> xe-pw-139931v1
-
-  IGT_8068: 8068
-  xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06: 61475267a6e1ec41d171c840a833dc1a2c1bcf06
-  xe-pw-139931v1: 139931v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139931v1/index.html
-
---===============5182576284704660850==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for EU stall sampling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139931/">https://patchwork.freedesktop.org/series/139931/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139931v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139931v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06_BAT -&gt; xe-pw-139931v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139931v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139931v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139931v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06 -&gt; xe-pw-139931v1</li>
-</ul>
-<p>IGT_8068: 8068<br />
-  xe-2059-61475267a6e1ec41d171c840a833dc1a2c1bcf06: 61475267a6e1ec41d171c840a833dc1a2c1bcf06<br />
-  xe-pw-139931v1: 139931v1</p>
-
-</body>
-</html>
-
---===============5182576284704660850==--
