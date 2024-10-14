@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A3A2D16242
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 11:14:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 830B4D16243
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 11:19:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04A1E10E436;
-	Mon, 14 Oct 2024 11:14:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TnIy2hJ8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C63AF10E434
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 11:14:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728904449; x=1760440449;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LQE6BKg3fUvrFZnL34rj5wBTL8ydCGLtZvziFCsKI2E=;
- b=TnIy2hJ8c2HIJ6ub5qv9CADHVjrGK3NUGMIJrPGRrVosHJnftN+fO58m
- efL+W7wFqd3zzuXafOg5pGGa61N8wkvSCvFyyGCuKsbSCFyIIOlPVjO6n
- AMnSOR+qlkdmfv/yLJeFkFl46R5Chx6AG8P2ZNfC1BhMY4HwMFK4xm1HM
- VW5EagR1vrkKZthaw8/LNirfrfV9qVb6sMoRsPdVyeIjCPEUJnxSkrVkg
- lSS4t3/iwHM1l0QyxGJYNPsYX8TAMSFTRo6ekNobyGHmv/bjAzdVyh90+
- MphReh45Mye24KDGnnYF8AfHYhJv2g1ziOjkVqzEkuAvsQZcf2cvCgvs/ Q==;
-X-CSE-ConnectionGUID: jKG7XWcxRkWVRHAhKxnZrw==
-X-CSE-MsgGUID: +KPsgVAxRDqLriuB8Vdqpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="53667991"
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="53667991"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 04:14:09 -0700
-X-CSE-ConnectionGUID: yBTp+soXRoSgY5GD4i2fow==
-X-CSE-MsgGUID: jsATXfVeQGmO9O+uviWVtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="77192772"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa007.fm.intel.com with ESMTP; 14 Oct 2024 04:14:07 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH v2 5/5] drm/i915/display: Load the lut values and enable
- sharpness
-Date: Mon, 14 Oct 2024 16:44:42 +0530
-Message-Id: <20241014111442.95530-6-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241014111442.95530-1-nemesa.garg@intel.com>
-References: <20241014111442.95530-1-nemesa.garg@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A01710E290;
+	Mon, 14 Oct 2024 11:19:21 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C90A610E433;
+ Mon, 14 Oct 2024 11:19:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Introduce_drm_sharpn?=
+ =?utf-8?q?ess_property?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 14 Oct 2024 11:19:20 -0000
+Message-ID: <172890476081.1248107.508755732343957905@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241014111442.95530-1-nemesa.garg@intel.com>
+In-Reply-To: <20241014111442.95530-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,121 +36,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Load the lut values during pipe enable.
+== Series Details ==
 
-v2: Add the display version check
+Series: Introduce drm sharpness property
+URL   : https://patchwork.freedesktop.org/series/139954/
+State : failure
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c        |  3 +++
- drivers/gpu/drm/i915/display/intel_display.c     |  6 ++++++
- .../gpu/drm/i915/display/intel_display_types.h   |  2 ++
- drivers/gpu/drm/i915/display/skl_scaler.c        | 16 +++++++++++++++-
- 4 files changed, 26 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 1b578cad2813..a8aaea0d2932 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -379,6 +379,9 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 
- 	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
- 
-+	if (DISPLAY_VER(dev_priv) >= 20)
-+		drm_crtc_create_sharpness_strength_property(&crtc->base);
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 55d09c71b082 drm-tip: 2024y-10m-14d-09h-06m-35s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:212: new blank line at EOF.
 +
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f85ed0c9a94d..e8044c0275dd 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1783,6 +1783,9 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 			intel_crtc_wait_for_next_vblank(wa_crtc);
- 		}
- 	}
-+
-+	if (new_crtc_state->hw.casf_params.strength_changed)
-+		intel_filter_lut_load(crtc, new_crtc_state);
- }
- 
- void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state)
-@@ -6934,6 +6937,9 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 			intel_vrr_set_transcoder_timings(new_crtc_state);
- 	}
- 
-+	if (intel_casf_strength_changed(state))
-+		intel_casf_enable(new_crtc_state);
-+
- 	intel_fbc_update(state, crtc);
- 
- 	drm_WARN_ON(&i915->drm, !intel_display_power_is_enabled(i915, POWER_DOMAIN_DC_OFF));
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index de3867faa4d7..56022193d4a1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1047,6 +1047,8 @@ struct intel_casf {
- 	struct scaler_filter_coeff coeff[SCALER_FILTER_NUM_TAPS];
- 	u8 win_size;
- 	bool need_scaler;
-+	bool strength_changed;
-+	u8 strength;
- };
- 
- struct intel_crtc_state {
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 1cd2f7d6c080..4ee2f6e67d97 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -7,6 +7,7 @@
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
-+#include "intel_casf_regs.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- 
-@@ -914,15 +915,17 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state)
- 
- void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	int id = -1;
- 	int i;
- 
- 	/* find scaler attached to this pipe */
- 	for (i = 0; i < crtc->num_scalers; i++) {
--		u32 ctl, pos, size;
-+		u32 ctl, pos, size, sharp;
- 
- 		ctl = intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
- 		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN | PS_BINDING_PIPE))
-@@ -930,6 +933,17 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 
- 		id = i;
- 
-+		if (DISPLAY_VER(dev_priv) >= 20) {
-+			sharp = intel_de_read(dev_priv, SHARPNESS_CTL(display, cpu_transcoder));
-+			if (sharp & FILTER_EN) {
-+				crtc_state->hw.casf_params.strength =
-+					REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) - 16;
-+				crtc_state->hw.casf_params.need_scaler = true;
-+				crtc_state->hw.casf_params.win_size =
-+					REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
-+			}
-+		}
-+
- 		if (!crtc_state->hw.casf_params.need_scaler)
- 			crtc_state->pch_pfit.enabled = true;
- 
--- 
-2.25.1
+error: patch failed: drivers/gpu/drm/i915/display/intel_display_types.h:1036
+error: drivers/gpu/drm/i915/display/intel_display_types.h: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm: Introduce sharpness strength property
+Applying: drm/i915/display: Compute the scaler filter coefficients
+Patch failed at 0002 drm/i915/display: Compute the scaler filter coefficients
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
