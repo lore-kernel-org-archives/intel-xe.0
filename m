@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD9D4CFC502
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:38:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C33ACFC500
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:38:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDA510E3A9;
-	Mon, 14 Oct 2024 07:38:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1986210E3AE;
+	Mon, 14 Oct 2024 07:38:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wr9+qCMf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e0Jb6dhW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D4E10E3A6
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:38:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA0510E3AD
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:38:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728891484; x=1760427484;
+ t=1728891489; x=1760427489;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ho8PD7KfdAR/7Ea/EAlo1wlWeAByrLrjxt9GWgGVBlo=;
- b=Wr9+qCMfz1a7KAQIT5ArZbE/l7mMx/tJiVr6Xq8UEkoYrR8325Gj64d4
- vA7f12/1F440AMR0Zr7j2lbnLGxrtiG+5xjGsZPFOhHse3PUWu6o/yoLA
- pXo3T+AYHrbmFovQ4pInuu/7qdm1FvdhsCaCu4QtniBC7WJk6IHfep7hJ
- OI7SESHA7FVqiEm7oUnDq7icC8IVUDohkZIGzwd29o5YSLuSj8V+ku4mB
- lSyaQjvfMbnj4+hkFd6zYDtrJt0jsylTrpcXIOOrN/Ecirp20mBlfrGaZ
- H094QWKqfZ4pcy8Q71A7neKNSxOh+a9o7iDkYcmcOnELFhLf2kVYkFj3Q g==;
-X-CSE-ConnectionGUID: isc0G5dBSV6kncRb6shfQg==
-X-CSE-MsgGUID: Rhysw3ovR/ivvgS2hd5y1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686812"
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686812"
+ bh=VDnbpG/RkGylf4f4dUVQpZVRMKw4HelXbmPYJtnDX9s=;
+ b=e0Jb6dhWB4UnykGGqS7gR7do6OhD5L4AOWHwZ/tK6QzTWQ8ucOnvBKSa
+ mCU7MI7nxwYaIuxFtVM71hROFPMmNwVblgjfk/SdaWKsPJGeeG5HU7Z7d
+ UVPPIj726mA1+gaGq14TbMpTSHimLQjCMhAOxoG6XxlazSJkN9rGT2gaC
+ krgsTgby+6vbmL23znoID24C0uOnIXBD5KV3r2H7N3e58e1MJIbkuSh0h
+ GyuipPyyNpkdq+3Eov7lEGK8rxx1PI2YpUFnXAt9g8XN8IwK7kCvREGQD
+ MLwlLOvOTNphz10ZSKT2AJ1LfPIr5B6ESYaY0QuiHcQNoR0M1wq62+YNy A==;
+X-CSE-ConnectionGUID: nnAeWSZ5TP+TeEg2nF0dfw==
+X-CSE-MsgGUID: 9IqfX0HySFSQJ8FrbKZ3PQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686818"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686818"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 00:38:03 -0700
-X-CSE-ConnectionGUID: WOzqpvdcQ0OJPdLbZ4TDpA==
-X-CSE-MsgGUID: u70fVO+HS8GPPjGkx3nxAQ==
+ 14 Oct 2024 00:38:09 -0700
+X-CSE-ConnectionGUID: QvysrxAmQk+H1O9v1Gf+Lw==
+X-CSE-MsgGUID: aK/yVd8hRqav78txIUYiRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268751"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268782"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:38:01 -0700
+ by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:38:07 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v9 20/26] drm/xe/gt_tlb_invalidation_ggtt: Update handling of
- xe_force_wake_get return
-Date: Mon, 14 Oct 2024 13:25:55 +0530
-Message-Id: <20241014075601.2324382-21-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v9 23/26] drm/xe/vram: Update handling of xe_force_wake_get
+ return
+Date: Mon, 14 Oct 2024 13:25:58 +0530
+Message-Id: <20241014075601.2324382-24-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
 References: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
@@ -78,52 +77,60 @@ input to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
+- xe_force_wake_put() error doesn't need to be escalated/considered as
+probing error. It internally WARNS on domain ack failure.
 
 v5
 - return unsigned int from xe_force_wake_get()
-- remove redundant warns
 
 v7
 - Fix commit message
 
-Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vram.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index a530a933eedc..773de1f08db9 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -268,6 +268,7 @@ static int xe_gt_tlb_invalidation_guc(struct xe_gt *gt,
- int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 2a623bfcda7e..b1f81dca610d 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -220,8 +220,8 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
  {
- 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *gt = tile->primary_gt;
 +	unsigned int fw_ref;
+ 	u64 offset;
+-	int err;
+ 	u32 reg;
  
- 	if (xe_guc_ct_enabled(&gt->uc.guc.ct) &&
- 	    gt->uc.guc.submission_state.enabled) {
-@@ -286,7 +287,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
- 		if (IS_SRIOV_VF(xe))
- 			return 0;
- 
--		xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
- 			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
- 					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
-@@ -296,7 +297,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
- 			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
- 					GUC_TLB_INV_CR_INVALIDATE);
- 		}
--		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	if (IS_SRIOV_VF(xe)) {
+@@ -240,9 +240,9 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+ 		return 0;
  	}
  
- 	return 0;
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (err)
+-		return err;
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (!fw_ref)
++		return -ETIMEDOUT;
+ 
+ 	/* actual size */
+ 	if (unlikely(xe->info.platform == XE_DG1)) {
+@@ -264,7 +264,9 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+ 	/* remove the tile offset so we have just the available size */
+ 	*vram_size = offset - *tile_offset;
+ 
+-	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++
++	return 0;
+ }
+ 
+ static void vram_fini(void *arg)
 -- 
 2.34.1
 
