@@ -4,168 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AC0ED16250
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 12:05:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 752AED1624F
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 12:10:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F98410E44A;
-	Mon, 14 Oct 2024 12:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3653E10E44A;
+	Mon, 14 Oct 2024 12:10:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HYKWpd1W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H/XJ+xfs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FED910E449;
- Mon, 14 Oct 2024 12:05:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FD9010E44A
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 12:10:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728907554; x=1760443554;
- h=from:to:cc:subject:date:message-id:references:
+ t=1728907831; x=1760443831;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=uZ5M32djcaBeLiyLHuX8Aue9yRl1KGVWxETkpyooDpU=;
- b=HYKWpd1WTo/xt4ZbJmjMNc8fbdr30nKHuskzKKrTQCSlQX7NNWHHkXsV
- TWQ+lFKDUD64gjJ8s9UyNY5p+P5ZawXPCAiIPhGA5O2M021V6OpippKWe
- IsC9YOiIiKr+CZQhowkBA2c5jW2zdv6O6dz2LUD9wGjbdNEPnr7Lil6IQ
- UqJOk4jfokiajI0MYeNnY4/q2J1+br2KQ+SBY2sgEEp9Xz48GDDa4Aouq
- 8RV0dvgfYKXcSGbREUPFp5DaXWP9MdEZ/mc2X3qfWigbU+ejO7AVAJK0O
- IGR1mRut8rDrsyjmyUiraxw7a6tNtS5nJ/8/yqodZ8PTCG3iZ31R4vPf8 Q==;
-X-CSE-ConnectionGUID: lv3fX0OwRR6LqQl/uTE1ZQ==
-X-CSE-MsgGUID: wMavqKg7QOmCL9XxrAIZrw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="45725134"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="45725134"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 05:05:54 -0700
-X-CSE-ConnectionGUID: vraEaq+vQX6fLXuuSILUiQ==
-X-CSE-MsgGUID: 7pJgqfGiSGyYJvkLPaSBmQ==
+ bh=xDsNeFTbESR4c+rA3jXRgJHZTy1gvKwi/4EYkIX71T0=;
+ b=H/XJ+xfssFve31ATuH+3jV1x1iV2z8Cx0JgJeREu/0XQUFvpTtI3y6zb
+ 5kO56XgoQZJCatBEqSxKVrYkwTYDPX9ZE2GA4YjqGLqzhhbu4GAxtMhMx
+ 53qXciVNPfU2o6jVrtp/wKVwZhVIGeM2PIYR65Vuric9/riJOVlZwlB+W
+ oUG49mWAdvm8OsfCM+BQOeu3UHM4U9unaEURKvYyCi+VaOzcg/UBrDGOc
+ 7M7fXyy87+AEHQmdseNT2w1rlFG56FlI1EOSKx8Zpq4K1sgTlZIKY15jV
+ A9yXoeYyj7DOH4216OiADcAzppcZcGCS2PqxjBJxoT1Xb/Eelybm1Jq+8 w==;
+X-CSE-ConnectionGUID: 5GdGR2w2TMmGWeauy8rfAg==
+X-CSE-MsgGUID: oojosTDfTei0zXH7qbZhfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="32169780"
+X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="32169780"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 05:10:26 -0700
+X-CSE-ConnectionGUID: j7IDu0wBTsuFiHlvIyZhQA==
+X-CSE-MsgGUID: rXEfi/qhRhGvwGTt2L/YPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="77565362"
+X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="77739777"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Oct 2024 05:05:53 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Oct 2024 05:10:26 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 14 Oct 2024 05:05:53 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Mon, 14 Oct 2024 05:10:25 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 14 Oct 2024 05:05:53 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 14 Oct 2024 05:10:25 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.46) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 14 Oct 2024 05:05:51 -0700
+ 15.1.2507.39; Mon, 14 Oct 2024 05:10:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aEctOXVslEgLKJpeI18iEFgtgAHHZ2GrK/zwE2dfwrUpH2vdhkG9EV56XJtBLKKD+eeOMa3ALmNKUx88fKU2E80D3sJL0ASyly112W2A02BNh6lrZD7/IycfpOS0gmU/qCLk0ChWDeo2K6efNZyhh59kgdRYaHKPtc8BYibe5VIF9109E3CnPT5p0TwkA+eBmU0fLvdBkTAoP+Bn6iwBe6XJftjPcrnB01vpFUWrv1xG6c8a8EmWkq97dn+SQnUjQYqG1gj7LZIG6KyWnPCSV0HfiI+bLCHTbUIuAW69ebhCrsXHbHOOrodQXCgP+1uGntk3oGhLwlYWxBnzjGmT5g==
+ b=depEjpZfntQSf7Z0PysxCwo0JDa5cJCTqIBf4FzzzIVShK9Fy/cp6kmIavmBp9zar4XYCWeMWnQHtcRzZLEQVtXH6XLxJwUrKV21ROOt3KjaKavDA024OUBkflVx9j3CXkYz5CDJJzhhqjFhE+DjPW7/8lMUIAt9ghsZDIz9azuE+peGSZ81UHCmi6bLcqhp6uaXUiNn3rtDgoOIkV2BmnkV08Z7MRWoVZ5o2IujliDuLQkSzduFyXxrIbA5f8+Ox93R+ibmv0bdtRTZlwwZH5nxqohMJVSqi7QdPKPriddCaCMVrgpKV37vkzJ+RcnhBURttVm9PqOvnVBGfFBicw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z+lWnYdRYwJ61fSTY91QXWQKUVos1FpJWGUOQFZERnA=;
- b=Uu6jaDAc0/74CutJQ4IdMd/i3MfnjzWBciNfas6YCT1EisClflaV66wwVbUjYVLIRt/w7fn3gXtGnnaI4UuSkNxLu4I3/MzfdDlCD+NKUeVYP/yTzMKF/AWu+lSeblFj12+Ikr6nCW3iByWFA/9ho8r4Yo4+NHdmPZz2xbhzy6KIZp5FAf6ZfZeEgTkBP5ryRMqdlNYRgARv2sYncaSpqvU3rLvOH2mwPsQIH6mFVPryNv703pePoiXJ0ObeTgEo9ecQgAnpV1vVP4z8000R7ozmwrY7XL7nxVCHI9wajF+0sC8PbkEB6d4VsxcrHiUCYQiK6Li4N8Tw80sTi1+Ikg==
+ bh=7kK6aI7+nNbikEaz51SdZ2pjVZuEHODYyHGcWSDW6QU=;
+ b=JeMH6NKCzI8QwpDNmFv6/KnH6emm6+YoYrj9MsuDfA2rCqxpzxWTletwCi4Ee1HysJZWHyvFobI3gsxbgsCAfNE116hSSY9lJUM9cUdHiS6pmxE50JtXxur/+MSonpJHea3FtBKanRuDFDOYcbFS9eNahDfCVI8LkYfMMLTznbqqAyQolaf4Ka695gNr/SJCmKW5upbdsEwHhDBL58JSb0GSTqEfadn6I/kn5tioamKL2beOoF1Vd3PbH3i18jjWu4Ew4SyxW4cJClCUbe96uHGbtcfwuQflBIXGIagyfz0DICaWqHB063oIZvYaDxogSe/VQSHuEEzYZ1CCz3wAXg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by BL1PR11MB6003.namprd11.prod.outlook.com (2603:10b6:208:387::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.21; Mon, 14 Oct
- 2024 12:05:47 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525%2]) with mapi id 15.20.8048.020; Mon, 14 Oct 2024
- 12:05:47 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Srikanth V, NagaVenkata" <nagavenkata.srikanth.v@intel.com>, "Deak, Imre"
- <imre.deak@intel.com>
-Subject: RE: [v2] drm/i915/dp: Add FEC Enable Retry mechanism
-Thread-Topic: [v2] drm/i915/dp: Add FEC Enable Retry mechanism
-Thread-Index: AQHbGYHGm17D62JhuEC/IU6Q4bqywbJ+iYgAgAeHLFA=
-Date: Mon, 14 Oct 2024 12:05:47 +0000
-Message-ID: <SJ1PR11MB6129A960831536B70DFD252CB9442@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <20241008125331.2893681-1-chaitanya.kumar.borah@intel.com>
- <87ldyx8fx5.fsf@intel.com>
-In-Reply-To: <87ldyx8fx5.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|BL1PR11MB6003:EE_
-x-ms-office365-filtering-correlation-id: 7dd24c1e-83a1-4102-b368-08dcec488a17
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?ryiMKnECAQGDUxGezA68dSM8Vd06A/NkieVkV2s102dSxAYYAlCV3uCoWG7j?=
- =?us-ascii?Q?N2zavdkeSFTRUS/6Bph8XEbie8qlWOPb9P5Vkyo3V5anQyUPTfyTpi60won3?=
- =?us-ascii?Q?6qVBhMRloVOwMU2US9QQ2a8SO+SLpPGa4mQhBHatIdFInr+D9sY1/RGUdhuc?=
- =?us-ascii?Q?47evU7hPlga0Xk9pqBDQzHs3DIJ5WULO63cQP2PRgWpqFsR7PzyATk/jyw2J?=
- =?us-ascii?Q?goYn/4Y5aD7Neh7TIkm/muWH6h0PNxIgZMQTcOUohm6HRAtyTT44We6kzSB3?=
- =?us-ascii?Q?DpDv2IDn81Wo5yGp3VL1i+vpVpb9A4zsIa3F7OnL/6d9yUBL5IqvzaHVj5FY?=
- =?us-ascii?Q?W2HPPAhujgowDGL7HTo+2D2HeqkN1ughqm3NFGKQXtWrybJB9kcG7OlX59sA?=
- =?us-ascii?Q?Sm5SDhXkrMPFsij19vz2GLREJ8Ok/UBs6yPbqSIpqBYhaX2nF5HD7dAfx5Cd?=
- =?us-ascii?Q?dNbWPlE1ME55QGQdpzik6tzHzK7/J5kuEVLYmgRkOfU3OW8n5KxMYfAIE+eO?=
- =?us-ascii?Q?184wfNi+yJ0/ljjVn/IVGCyJfQiFX22pQOpLUD8m4NKsOW3rptOB2l2KweUR?=
- =?us-ascii?Q?eMNme68RRoe6+qQ4yPzKXTByzgruTOSlAF5UjANCx0NKGWHBOvkmglfpRZD8?=
- =?us-ascii?Q?RPzY6KSBR8EszzjRpzQoYGG9kYAq519UEUAgu1C6ejPZLY4nYl+d5x4fRGGX?=
- =?us-ascii?Q?Cxm4ZUr4+7tl+vPOVM3t15JfLPInF0Zhgh2UMFxCXuZi7sFA4uTPGQdztTG9?=
- =?us-ascii?Q?lbraT/uE2uf3hgvkd96gdRNPtBB7J8Dv3xzgrQtWKqL5jA+peCkDRXtajytL?=
- =?us-ascii?Q?sqViRacxKfq4k2ds+g+OeeIL7yDdb1pqi+9fZJgmml81aCc1ZsvsVA1SdUL1?=
- =?us-ascii?Q?HzFkDp4mNLW+pQIwJ5RwAkAPLNEhJgAFZomygIGvjJ/r28n8CBD4PRMTqpKc?=
- =?us-ascii?Q?zO04stpOMTsEdtsAmgeFv9RAUtfCxvvhLKEtuh+5mt2doHNAO+6Zhq9oFjgj?=
- =?us-ascii?Q?nz4ZpydOFF151xX6TVmlDjlN3OTgfaiS0XNUYLvikourUFobbqqb+UDe07Ov?=
- =?us-ascii?Q?QDlOHQ+N7Khh8AQABwedPWCuUtYIIAH7vtkk6VgrlF4iJivMF/WOgX7fhxeR?=
- =?us-ascii?Q?4sVewnIF702Up/1yZeJFDHQhs9EskPGFU/Y/MB5gYqgrV0VN6s9ldyEpynbI?=
- =?us-ascii?Q?1AzccXmYrj2i1FzliNzGZMlwZ+1e0ZtgtP3WZ7Bnes+mhvaGMlzOTx87lhJC?=
- =?us-ascii?Q?rJwqZwsaADvj/gf7XCZgsK8e0OoWwlgKDyiJQn8lk8ziHSUqefLuG8eFERUI?=
- =?us-ascii?Q?tdmn9wwP1qREyMUsK8ieAt2MJlmKB9A6SDovVSlO7eRahw=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+OsZN6j98/fhgGy+VSbchuhqNcn4PiDS9lZ20eP0aVU0bRXWA2s/PLHPPjPa?=
- =?us-ascii?Q?xutxUuNpuhVZa26WJwVY9ubjwCgbTBiOk5vRMbVeb6XylmXHk3+MiRQkMV5g?=
- =?us-ascii?Q?fvF8oQ0WLK6/6ISe3aidWZJoXbJVYnIc3+ljGC8cr146jsmsLIOoNvhrNA96?=
- =?us-ascii?Q?VULUhw1m8NO5fJc7xMHJ2Q5PjRQPBDtoYWYqgcQu1GCp2olPpISxgfa0f3EF?=
- =?us-ascii?Q?WP14m/gfUqS/r98QIFHDg35d1G6jI7y9ao9K5myBDh/PhjG9enbfiLuq9s54?=
- =?us-ascii?Q?F5fAGv1RboygzhpwrYWZuIvBubAflWQ2yHLUeqiAqkMpcNWXKt5M1GAQKEJH?=
- =?us-ascii?Q?/BiQW8Hmmc3b7RHz8wb5+1ypbFiYdMjNkBxQvAganVAuQMQJUtZuk95TNDEz?=
- =?us-ascii?Q?1bg7PkNwTQhtUEyps9zCDun8Ne2U6TqhTpjmLTtWeUUeQTdSoBIKLCD8vHXE?=
- =?us-ascii?Q?7/5dO4+LsHG7eFkmY+6oMLkx8+Iy1IJ2zjvjPfUNqHdgcqeGWu/VPX2Oeb++?=
- =?us-ascii?Q?whhLkT5ZiRWruFEgyTjSWgbBsBE/lfWwL2+P/SRwnDiP0hVuOhNlw3DIxnLX?=
- =?us-ascii?Q?PBQi14AO4psm7cEExfIC7kesAOLCzCDf98qDhRUGkbP+xgTAivys0qY0UFYF?=
- =?us-ascii?Q?hKMbjNTVi8qRgRzRBo8yMAHS2EAcY0d3JLiXcFsTgE5wjRrTitDe/RI9rLeD?=
- =?us-ascii?Q?3b6+BK2yDY5NiZqRylcMxaHYK3jfK92geudAoAHhB0QrxXzpzpTIt8KtKDVY?=
- =?us-ascii?Q?zmcjjcZ81K4CX8m2g+SWtkPTNxiGPWfaVdt4vqvhM5VMTTGTcHcFBNI4TFaC?=
- =?us-ascii?Q?loJnU91TvwTGbdn3I7W6eHk8zJOSWIjHKVkPZymRtKEaEthwim8egONcT3KR?=
- =?us-ascii?Q?3oeg8p4e1aqUjzlmu6+dzWVnR4Xblxt7AU3W46CA8guKVvps4KvDV6VEnrUq?=
- =?us-ascii?Q?3MrnznvJ4MXxv1OaQwhdY6GBIOYS/kTrijiY1qZm24QzNlUAwGLCD3HtcCr8?=
- =?us-ascii?Q?TF4J6CS24TUzTFtCqPMpXSN6qtJOup4z//9Y8M0++xMDcD6Ap/uQjbHX44OJ?=
- =?us-ascii?Q?GC6kwIGEQ7JaMrwHjKJLxW4Ua9GF2/7TcHgUyCiOCD9oIeHXaQF/VbHaxwKK?=
- =?us-ascii?Q?PwLPPxCwR5DoJQyEAytFoP34OCxquyYr0bGZfjlCjpQgii9+DYC14OmnrMXc?=
- =?us-ascii?Q?D4aan6065QY6rX6bZc0KElE9JKBTAdremARSBRFCouVqqHNIGcmvHfcWs6tp?=
- =?us-ascii?Q?dctex8jfYduV+cNrFsS0QAeIdB3sXj2Y6gd/lj6Z8w/gEZG7btbNT1jR3Nfh?=
- =?us-ascii?Q?p8IHqOf4HDb4fy9tygAAWm6sq63ibZ1ycmdvsSB6HhUBtG5JhQRb8Qi+emJw?=
- =?us-ascii?Q?k+MLoMK1LwrzN25hqNoPmoIFBAEaWZAqZ7rTJONweCvmJOCH1CYCpkh5QMZI?=
- =?us-ascii?Q?0ORiqF75cKknk4wkdiFIGKQ1y5rQ2fBCgPHqWspANObnOulhGlNuyAzDw+to?=
- =?us-ascii?Q?I9fovpEVN68Cav/0Rgg1qN02sz5wCrufJL8eoZkZcdbc9VSqvOLgbF8l2UbS?=
- =?us-ascii?Q?WJXHwnKTJI08jHjFYiBc1ZxR5safsSPCe6u0T0VsoQmPVUOc8EXqwDP/5l5x?=
- =?us-ascii?Q?2A=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by LV2PR11MB5999.namprd11.prod.outlook.com (2603:10b6:408:17d::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.22; Mon, 14 Oct
+ 2024 12:10:23 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9%6]) with mapi id 15.20.8048.020; Mon, 14 Oct 2024
+ 12:10:23 +0000
+Message-ID: <9eae52ab-fe51-487b-9db3-6c05c4a58d20@intel.com>
+Date: Mon, 14 Oct 2024 17:40:16 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe/guc/ct: Improve g2h request handling during
+ async gt reset
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <john.c.harrison@intel.com>, <rodrigo.vivi@intel.com>,
+ <matthew.auld@intel.com>
+References: <20241009105645.1416588-1-badal.nilawar@intel.com>
+ <20241009105645.1416588-2-badal.nilawar@intel.com>
+ <Zwhc5V5aQDSbhBWN@DUT025-TGLU.fm.intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <Zwhc5V5aQDSbhBWN@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0031.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:b8::18) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|LV2PR11MB5999:EE_
+X-MS-Office365-Filtering-Correlation-Id: cdef314c-f9e6-4df1-9bdd-08dcec492dde
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MWJwZ0F4ZHRhcGVCWEl1NjQ2SCtEaEhNZTMzc09CcFoyeWRpa0NON2Q1TGo2?=
+ =?utf-8?B?Zlg2ZUZ0UDV2K0xuREd5UTF6dENjUDNhdnN2QTI2bzh4ckRBNzlLcFlhUisv?=
+ =?utf-8?B?TEptOHlNaDBXUnRhdzBnUHBHZXBNanVDR25wdzdpaWpDaU9kK3dKMXFGZUI0?=
+ =?utf-8?B?ejFadC9pVzI4RHVtY2szUlpJYzhXcXhTMFZ1SHZ3aGt2SUxUdVZRWmxKWmZk?=
+ =?utf-8?B?ZkxLbVZ5Z0c1elJONmVVMjltYW5YeHRLTzBBamtrQlRWZjZCWjZ3UDVSdzUz?=
+ =?utf-8?B?WS9ldDZTZUI5SVBUWnBicVJqc1M5S25iOCtRbEdKTS8wejV2UGViTFk0U2RW?=
+ =?utf-8?B?SUg1NjVhUUFlTi9VY2ZFRG40VmFxdk9ydjZhOTdwVEZyNTJEbGd4U1BWcHhM?=
+ =?utf-8?B?cG42Y2JScFRCcWViS3N0VkZSUkw0aTBYVGtpTFVkUUVtOUlMWDJZWU9tTVVN?=
+ =?utf-8?B?MlNtb2NqYkcrVVdPMTdVZXZNK25Nd0NNTHRVWUlzSVA1cDJlM3BuRG8xRnRs?=
+ =?utf-8?B?NDVJbWhudm5QYmorYmhHTkpVbzFDYWpnYTVUd0VhK01melQxRENPdk5yMmhy?=
+ =?utf-8?B?WXZPWW9YSTROeU44cExVbjVxTnljMlh0OU5xa2Flc2VPbW1wZEowd0xHRTUw?=
+ =?utf-8?B?QzgwTktBVFhKbXVmd3NCUVJkQnUrTmxSbW5EcktmQ293cU5WNEEvTEJEMGZR?=
+ =?utf-8?B?U05iTkc4VEx5aitTU2MrcUhoVWNUYVY1L2FlUzZLOXVGMjZpbkUwZWVlakZz?=
+ =?utf-8?B?SWtqbmlKajlybUhnWmJVK0J2VGdaR3FCZkpPRlhrM3FXQjkwNW05eGMycVFO?=
+ =?utf-8?B?RVdMdTJQTExHUWhxaTRTV0paeG01QmNZbGl1OTBMdXZHbVBnRkh6UGt5bnJn?=
+ =?utf-8?B?K212c05qYmpxMW9TZ2xCS21wZytweHRkY1FQSkszN3pPWjQ0YzBpWWRTNkk2?=
+ =?utf-8?B?UzhhYmJIRVVUcHl2c1VGR0xaOEp2ZTRuMG12dnk0QTAvM0JnZzRCbytNZnVq?=
+ =?utf-8?B?NjBMcnNUMEdwUXRJVU54QlpFTE1ZQk5wUG95UUk3MU5lMXIzc05ualR1aEVh?=
+ =?utf-8?B?VHlEbC9uZG5idTRBOVp6Rm8wNnJjVGRKOUNIaDlqVWVObzdocGlWc1l1Q3pE?=
+ =?utf-8?B?Z1ZPWDZqOExLdWJVM1RzdE1KRklhaVBBNW1jZmVTUFVwdUdWUTdVSWxnKzUr?=
+ =?utf-8?B?VE1VWXlQdS9FTDludlBFRWRIRnZZSW83aTZiQWlleDhlejVONDRWWkg5OGUz?=
+ =?utf-8?B?aVRuS0ErU3JkcFVoZGJZaEl0UTJ3M2NVaDJia2d6LzJVYlZUYnVSMWRRdTBX?=
+ =?utf-8?B?bEF5dkk1Tk01OFI3bHdFMU1JenNXQ21xSEl6SG1tdkxQbnREMlgwVTlySmsv?=
+ =?utf-8?B?UUJhSjUzN09paFJvY1JyS2grT3hXUmtKUjAvRnExQUhzcDlyUW1QYklpenlC?=
+ =?utf-8?B?TkpMS0F2ZGYzQ1FhWndCZ3kwei9mSXlwUEkrWmRveENESHlpYnFXL0pWd1pK?=
+ =?utf-8?B?UUVPS05UMk5CYmZWQUFIcmdDd0w3YkZlUzFsWE0zSnBNNytYdTd2aUJxZ0x3?=
+ =?utf-8?B?TzduL2pGdWtITTkzVGlFdFgvNkVUNzg3Q0xUcy8rNllTVFQ4a1Z5aEpYSE5S?=
+ =?utf-8?B?NkNOejN4R0Z0bk9Vb25ESlJVVkFCbkFFSHE1M2pxZ0JrbHVQcCs5Q0RsR0Q1?=
+ =?utf-8?B?RXN5NW4xZkVhVmFWb3djSVZQNjN5VmI2ZnM4ZFZXWU14K2djVjNZd0lnPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZVR1SklEWFVIRWRhME42b01zNFlwK2lLb2V3cE9VOUVrZjRRZ1RkWGVMT2JU?=
+ =?utf-8?B?dW5KKzVmVDVBQ3JUS2pteHQ0REgwRTBtNWE1RVhMemdpWHd5RmEyVzNaV1NJ?=
+ =?utf-8?B?bEVrVTVCSkNTVGU1WEFFejNtLzQ3eXBtU1MydDBJR2VGWDVMTjg0Z1orUSsv?=
+ =?utf-8?B?Z0FaTW9wZ1hSM1RJdE5nSFU2bTJkdHZhb0k1RE9xUWYraEVNT2hSVkJsL0VM?=
+ =?utf-8?B?MDdJTjErVlhFNUlzbVA1UkFIQW80aGpSQkZJVTJGNkxSSjZ4WE9ObFo4VHRj?=
+ =?utf-8?B?d05EUnFyM3BrRWhIMEZCYmdiYU5vamZWck9BZjFpU3ptOVZkUmFVLzVoNXMw?=
+ =?utf-8?B?d2dnNE1HT2puN3JDaGJHSVpOUThaSzZoSjBiSjFPd1pJTHp2Rlh0aFlDV1l6?=
+ =?utf-8?B?YjM1QkQ2c3ovbGlGNHUwd2VuMVZML2ZWY0t6bTVOTUVNMzVkM2pBOFJIYzhU?=
+ =?utf-8?B?MVlJM1daNExnbVVHME5DU0JGSVE4VVp0VDVMMlNCd3VRSDNnRjZnV2IxOFBP?=
+ =?utf-8?B?M3BlOXdJVC9xbGRTKzdMVE95TGFKcWszWEYxRzROWTQvV0poS1ptMDE5Z25U?=
+ =?utf-8?B?Um8rWUZMaWVMbDEweTFKVnBWK2xXRmV6TFBhUHp0S3J0T05CZWxrbzdXYkFU?=
+ =?utf-8?B?YUlnNi9LbEhzajhVa0V4RDBBL3p5RFB2OWF6R0R5LzNYMUYxcldPMFU0cWh5?=
+ =?utf-8?B?cU0yZ2dYVFNVeGpJdkI2Wmh2VTNTS29pNlZ1OGR6MkRYbTkxRlYzc2lJeDg1?=
+ =?utf-8?B?SU1PWDE0YmJTaUE5STl1S0tUNmZIVFAwMmxiL001cUNJaFR5VmlMVTk3ZHd2?=
+ =?utf-8?B?QTlTVU95YThXUzlHK3dMaUdWelhkQmtHalZycHdXR1ZIUFJEa0ZORFN6SWtC?=
+ =?utf-8?B?VDE4NWdyTFlUQ1NNZStwazdVQ0RQRjgzL1EzbXBrS0k0RTFsK0d4YkJCYi9D?=
+ =?utf-8?B?ZFJUN1AvUGZsQlZHaFFmT1FDTjROek5yM3hlbnFPSlVZSmxWcW9RKzVwMm0v?=
+ =?utf-8?B?cUtnN3RXVU9qQ3VwSVZuY2ZrVDNMZ1grVTErbEJSVG9jejAxUndvazR3ZkRE?=
+ =?utf-8?B?NlZ5K3M5TC9Bb1ZHVC9qaGlqT0x4dnR6b05hM2pHNVUzZTk1aThlY1EzQXM1?=
+ =?utf-8?B?V0tuTGlIRlllL0JCeEplQTJlWkZmT1U3QWZOYmxvQUUrckJwRTI5VGQyVFZI?=
+ =?utf-8?B?a0QzNHhRcTloRFh3blBGRmw2N1Y2QVdKS01NR3R3bFE1UjFKODMwYVNUK2VK?=
+ =?utf-8?B?Ry9qcVBKZjRWSEZyOGdXYXFSZkJhYUNNYzJNYlg0NWQwdHpxYm5xOURYcTlp?=
+ =?utf-8?B?N2M0V0RDT2tPTUt6eWV5R1VQd2NhdzFaSkxoZloyQUFOYzM5UzU0dGdYUnVZ?=
+ =?utf-8?B?S0lwdWlramUwWS9ZVU90SjhNSktFbkdQSkJyVjFmRkRMZzlWWFRQeGdhZEF5?=
+ =?utf-8?B?Q2MwdWxseW9pNnVtYW96MHJnRmFzWWRzQ09vS1NhbEp5dTUzdDhZOGZjWDZC?=
+ =?utf-8?B?V2xSSkxWSDBzUG8wOHYxcWFRY2pvMkpQNVpDR2JzNEJ4dE9zUHpqRnlzN1pw?=
+ =?utf-8?B?a1NnbDZROXRkT0xaTVpobnpJeVFXY2ZwRGZnVTJONncvYmlvckZucTV5MkdB?=
+ =?utf-8?B?cGlGVWU0eGNmRm0zeE9iWlM4WHVsOW5ORjgwTzE0L2l2eHJUK3Q1Vm93UDdS?=
+ =?utf-8?B?NFc0OW5Ca01wYi8vcjZOQjFQT3BWWWJEbFNBYTBCTEZDMWRvWDNjeUxwVm1q?=
+ =?utf-8?B?UlNvVENvdCtLRjZoclFwU2NrN2hNSlY1bXVGbjNMWVZyMGVkSDU1aEFCb1Jv?=
+ =?utf-8?B?MWNPMGNueDhGcm0zUmVTeTA5TXpPeGJWeE1XZk9pRC9lZE9YRVFaWjg2T0lY?=
+ =?utf-8?B?UEZtU0ZDalhacHNwSERONU04TlVtYTI3MGsvcGlIMkVkdUxzU29GQnhyaWpy?=
+ =?utf-8?B?c3dTUC9va1lMTGpMT0RKWHd3Nkx4cjZTeVA0SUF6MEhzUkVUTlVId3NuN0tR?=
+ =?utf-8?B?MnE1ejlGKzdQbnFDRkc1Rit3RzNqVWF4VjFRdVNEcGdlYjIraXBaekFRenFo?=
+ =?utf-8?B?ZDEyUXdrVzhTczJHMi9NMGNFMFlUNWJmVHdRaXBCZHNqSzVKTDNPa29sZmNp?=
+ =?utf-8?B?TkpoOEhGYmdmQS9OZ1ZIVyt2WWxhdm5RUVpPQ2lINGNDTitwMVgyemdBYkJS?=
+ =?utf-8?B?OEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cdef314c-f9e6-4df1-9bdd-08dcec492dde
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7dd24c1e-83a1-4102-b368-08dcec488a17
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2024 12:05:47.7895 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fVEIssP/Yo9rGVizmZvUM6iTKlkB+JXCbQA0f0Vmrdm6TuzSx8Hxnfl6on+9kMLQEjmiZC+96lnN06u8gYMxRt9Vqzceti1ePMO1rvMCC+4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6003
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2024 12:10:22.9743 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8VS31CdcFHQhNSA+6ksmbUFtQj9eK5VJDtiIaHWl5Mdsb5MLCdfN4zsUy277xdPFPd5R0MtjFgYJvVp2KBAzkA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5999
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,363 +195,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Jani,
+Hi Matt,
 
-Thank  you for the review.
+Thanks for review comments.
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Wednesday, October 9, 2024 8:47 PM
-> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; intel-
-> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Srikanth V, NagaVenkata <nagavenkata.srikanth.v@intel.com>
-> Subject: Re: [v2] drm/i915/dp: Add FEC Enable Retry mechanism
->=20
-> On Tue, 08 Oct 2024, Chaitanya Kumar Borah
-> <chaitanya.kumar.borah@intel.com> wrote:
-> > From PTL, FEC_DECODE_EN sequence can be sent to a DPRX independent of
-> > TRANS_CONF enable. This allows us to re-issue an FEC_DECODE_EN
-> > sequence without re-doing the whole mode set sequence. This separate
-> > control over FEC_ECODE_EN/DIS sequence enables us to have a retry
-> > mechanism in case the DPRX does not respond with an FEC_ENABLE within
-> > the stipulated 5ms.
-> >
-> > v2:
-> >  - Refactor code to avoid duplication and improve readability [Jani]
-> >  - In case of PTL, wait for FEC status directly after FEC enable
-> > [Srikanth]
-> >  - Wait for FEC_ENABLE_LIVE_STATUS to be cleared before
-> >    re-enabling FEC [Srikanth]
-> >
-> > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->=20
-> What you have here is really hard to understand.
->=20
+On 11-10-2024 04:31, Matthew Brost wrote:
+> On Wed, Oct 09, 2024 at 04:26:43PM +0530, Badal Nilawar wrote:
+>> It is possible that a g2h request may be cancelled while waiting for a
+>> response due to an asynchronous gt reset. This commit ensures that in
+>> such cases, caller will be notified by returning -ECANCELED.
+>>
+>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc_ct.c | 16 ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> index c7673f56d413..b93b2821e4e8 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> @@ -512,6 +512,9 @@ void xe_guc_ct_stop(struct xe_guc_ct *ct)
+>>   {
+>>   	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_STOPPED);
+>>   	stop_g2h_handler(ct);
+>> +
+>> +	/* Notify callers that CT stopped and G2H requests are cancelled */
+>> +	wake_up_all(&ct->g2h_fence_wq);
+>>   }
+>>   
+>>   static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+>> @@ -1018,6 +1021,19 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   
+>>   	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
+> 
+> Better would be abort the wait here if a GT reset is queue'd or in
+> progess. We do this a lot in the xe_guc_submit.c - see any of the
+> wait_event functions in that file. We likely should normalize this a bit
+> with proper layering but basically the flow should be:
+> 
+> - Any wait_event_* are OR'd with a queued or in progess GT reset
 
-I will try to rephrase this.
+In xe_guc_submit.c to check if reset queued/progress we check guc 
+submission is stopped xe_guc_read_stopped(). Are you suggesting to use 
+xe_guc_read_stopped instead of checking ct->state?
 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c    | 79 +++++++++++++++++----
-> >  drivers/gpu/drm/i915/display/intel_ddi.h    |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 +-
-> >  3 files changed, 67 insertions(+), 18 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index fe1ded6707f9..047816a427d5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -2256,30 +2256,74 @@ static int read_fec_detected_status(struct
-> drm_dp_aux *aux)
-> >  	return status;
-> >  }
-> >
-> > -static void wait_for_fec_detected(struct drm_dp_aux *aux, bool
-> > enabled)
-> > +static void retry_fec_enable(struct intel_encoder *encoder,
-> > +			     const struct intel_crtc_state *crtc_state,
-> > +		struct drm_dp_aux *aux)
->=20
-> Probably shouldn't pass aux around.
->=20
+Or we should do like this?
 
-ack
+ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done || ct->state 
+== XE_GUC_CT_STATE_STOPPED, HZ);
 
-> > +{
-> > +	struct drm_i915_private *i915 =3D to_i915(aux->drm_dev);
->=20
-> struct intel_display for new code please.
->=20
-> > +	int ret =3D 0;
->=20
-> Unnecessary initialization.
->=20
+> 
+> - After wait_event_* signals check for OR condition, handle gracefully
+>    via an error code kicking it to upper layers
 
-Ack
+Agree.
 
-> > +
-> > +	ret =3D intel_de_wait_for_clear(i915, dp_tp_status_reg(encoder,
-> crtc_state),
-> > +				      DP_TP_STATUS_FEC_ENABLE_LIVE, 1);
-> > +
-> > +	if (ret)
-> > +		drm_err(&i915->drm,
-> > +			"Timeout waiting for FEC live state to get disabled
-> during
-> > +retry\n");
-> > +
-> > +	/* Clear FEC enable */
-> > +	intel_de_rmw(i915, dp_tp_ctl_reg(encoder, crtc_state),
-> > +		     DP_TP_CTL_FEC_ENABLE, 0);
-> > +
-> > +	/* Set FEC enable */
-> > +	intel_de_rmw(i915, dp_tp_ctl_reg(encoder, crtc_state),
-> > +		     0, DP_TP_CTL_FEC_ENABLE);
-> > +
-> > +	ret =3D intel_de_wait_for_set(i915, dp_tp_status_reg(encoder,
-> crtc_state),
-> > +				    DP_TP_STATUS_FEC_ENABLE_LIVE, 1);
-> > +	if (!ret)
-> > +		drm_dbg_kms(&i915->drm,
-> > +			    "Timeout waiting for FEC live state to get enabled");
-> }
-> > +
-> > +static void wait_for_fec_detected(struct intel_encoder *encoder,
-> > +				  const struct intel_crtc_state *crtc_state,
-> > +		struct drm_dp_aux *aux, bool enabled, bool retry)
->=20
-> Multiple bool parameters make for a crappy interface.
->=20
+> 
+> - All upper layers need to cope with H2G failing or use *_no_fail
+>    versions the H2G functions. The *_no_fail versions are untested as I
+>    coded those 2.5 years ago in Xe and don't have user of those functions
 
-Ack
+Ok.
 
+> 
+> - Queuing a GT reset wakes up all waiters
 
-> >  {
-> >  	struct drm_i915_private *i915 =3D to_i915(aux->drm_dev);
-> >  	int mask =3D enabled ? DP_FEC_DECODE_EN_DETECTED :
-> DP_FEC_DECODE_DIS_DETECTED;
-> >  	int status;
-> >  	int err;
-> > +	int max_retries =3D retry ? 3 : 1;
-> >
-> > -	err =3D readx_poll_timeout(read_fec_detected_status, aux, status,
-> > -				 status & mask || status < 0,
-> > -				 10000, 200000);
-> > +	for (int retrycount =3D 0; retrycount < max_retries; retrycount++) {
-> > +		err =3D readx_poll_timeout(read_fec_detected_status, aux,
-> status,
-> > +					 status & mask || status < 0,
-> > +					 retry ? 500 : 10000,
-> > +					 retry ? 5000 : 200000);
-> >
-> > -	if (!err && status >=3D 0)
-> > -		return;
-> > +		if (!err && status >=3D 0)
-> > +			return;
-> >
-> > -	if (err =3D=3D -ETIMEDOUT)
-> > -		drm_dbg_kms(&i915->drm, "Timeout waiting for FEC %s to
-> get detected\n",
-> > -			    str_enabled_disabled(enabled));
-> > -	else
-> > -		drm_dbg_kms(&i915->drm, "FEC detected status read error:
-> %d\n", status);
-> > +		if (err =3D=3D -ETIMEDOUT) {
-> > +			drm_dbg_kms(&i915->drm,
-> > +				    "Timeout waiting for FEC %s to get
-> detected, retrying (%d/%d)\n",
-> > +				    str_enabled_disabled(enabled), retrycount
-> + 1, max_retries);
-> > +
-> > +			if (retry && enabled)
-> > +				retry_fec_enable(encoder, crtc_state, aux);
->=20
-> A function whose name is "wait for fec detected" really should *not* retr=
-y
-> itself. The point is to report status. The callers are supposed to act on=
- that. It's
-> really hard to follow what's going on.
->=20
+How should we do this. After queening GT reset or during GT reset CT 
+communication will still be there. Especially during gt start we do 
+guc_pc_start there xe_guc_send_recv is used for SLPC check.
 
-ack
+> 
+> - Upon completion of GT reset the OR condition is cleared
 
-> > +		} else {
-> > +			drm_dbg_kms(&i915->drm, "FEC detected status read
-> error: %d\n", status);
-> > +			return;
-> > +		}
-> > +	}
-> > +
-> > +	drm_err(&i915->drm, "FEC %s Failed after %d attempts\n",
-> > +		str_enabled_disabled(enabled), max_retries);
-> >  }
-> >
-> >  void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
-> >  				   const struct intel_crtc_state *crtc_state,
-> > -				   bool enabled)
-> > +				   bool enabled, bool retry)
-> >  {
-> >  	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev)=
-;
-> >  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder); @@ -2305,7
-> > +2349,7 @@ void intel_ddi_wait_for_fec_status(struct intel_encoder
-> *encoder,
-> >  	 * FEC decoding disabling so skip waiting for that.
-> >  	 */
-> >  	if (enabled)
-> > -		wait_for_fec_detected(&intel_dp->aux, enabled);
-> > +		wait_for_fec_detected(encoder, crtc_state, &intel_dp->aux,
-> enabled,
-> > +retry);
-> >  }
-> >
-> >  static void intel_ddi_enable_fec(struct intel_encoder *encoder, @@
-> > -2318,6 +2362,9 @@ static void intel_ddi_enable_fec(struct
-> > intel_encoder *encoder,
-> >
-> >  	intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-> >  		     0, DP_TP_CTL_FEC_ENABLE);
-> > +
-> > +	if (DISPLAY_VER(dev_priv) >=3D 30)
-> > +		intel_ddi_wait_for_fec_status(encoder, crtc_state, true, true);
->=20
-> Ugh. So I was trying to say that I don't want duplication of fec enable. =
-But you
-> still have that. Both intel_ddi_enable_fec() and
-> retry_fec_enable() have it.
->=20
-> It's probably intel_ddi_enable_fec() that should try multiple times for d=
-isplay
-> version 30+. Right here.
->=20
-> Adding the retries in "wait for status" is odd.
->=20
-> Add building blocks for doing parts of what needs to be done, and then dr=
-ive
-> them at the high level.
->=20
+Ok. Condition will be cleared once CT is enabled.
 
-Just to confirm that I understand the comment correctly, are we talking abo=
-ut something like this
+Regards,
+Badal
 
-static void intel_ddi_enable_fec(struct intel_encoder *encoder,
-                                 const struct intel_crtc_state *crtc_state)
-{
-...
+> 
+> Matt
+> 
+>>   
+>> +	/*
+>> +	 * It is possible that the g2h request may be cancelled while waiting for a response due
+>> +	 * to an asynchronous gt reset. In such cases, return -ECANCELED.
+>> +	 */
+>> +	mutex_lock(&ct->lock);
+>> +	if (ct->state == XE_GUC_CT_STATE_STOPPED) {
+>> +		xe_gt_dbg(gt, "H2G action %#x canceled as GT reset is in progress\n",
+>> +			  action[0]);
+>> +		mutex_unlock(&ct->lock);
+>> +		return -ECANCELED;
+>> +	}
+>> +	mutex_unlock(&ct->lock);
+>> +
+>>   	/*
+>>   	 * Ensure we serialize with completion side to prevent UAF with fence going out of scope on
+>>   	 * the stack, since we have no clue if it will fire after the timeout before we can erase
+>> -- 
+>> 2.34.1
+>>
 
-        intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-                     0, DP_TP_CTL_FEC_ENABLE);
-
-        if (DISPLAY_VER(dev_priv) < 30)
-                return;
-
-        for (i =3D 0; i < 3; i++) {
-	/* Wait for FEC status */
-                ret =3D intel_ddi_wait_for_fec_status(encoder, crtc_state, =
-true);
-
-	/* Return if FEC is enabled */
-                if(!ret)
-                        return;
-	...
-
-	/* Disable FEC */
-                intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-                             DP_TP_CTL_FEC_ENABLE, 0);
-=09
-	/* Wait for FEC disabled */
-                ret =3D intel_ddi_wait_for_fec_status(encoder, crtc_state, =
-false);
-
-              ...
-	/* Enable FEC */
-                intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-                             0, DP_TP_CTL_FEC_ENABLE);
-        }
-}
-
-If so, we have to make two changes to the current code. Let me know if they=
- work.
-
-1. Change return type of intel_ddi_wait_for_fec_status and wait_for_fec_det=
-ected to int.
-2. I could not find the reason for it (may be Imre knows) but currently the=
- timeout for reading FEC DPCD register is set as 200ms with every read made=
- in an interval of 5ms. However, the spec says that sink should acknowledge=
- FEC enable within 5ms.
-    Considering that the initial values were selected based on some empiric=
-al evidence, can we have different timeout (5ms or 10ms) for the retry case=
- depending on the Display version?
-
-> >  }
-> >
-> >  static void intel_ddi_disable_fec(struct intel_encoder *encoder, @@
-> > -3010,7 +3057,7 @@ static void intel_disable_ddi_buf(struct intel_encod=
-er
-> *encoder,
-> >  		disable_ddi_buf(encoder, crtc_state);
-> >  	}
-> >
-> > -	intel_ddi_wait_for_fec_status(encoder, crtc_state, false);
-> > +	intel_ddi_wait_for_fec_status(encoder, crtc_state, false, false);
-> >  }
-> >
-> >  static void intel_ddi_post_disable_dp(struct intel_atomic_state
-> > *state, @@ -3383,6 +3430,7 @@ static void intel_enable_ddi(struct
-> intel_atomic_state *state,
-> >  			     const struct intel_crtc_state *crtc_state,
-> >  			     const struct drm_connector_state *conn_state)  {
-> > +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev)=
-;
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	struct intel_crtc *pipe_crtc;
-> >  	int i;
-> > @@ -3394,7 +3442,8 @@ static void intel_enable_ddi(struct
-> > intel_atomic_state *state,
-> >
-> >  	intel_enable_transcoder(crtc_state);
-> >
-> > -	intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
-> > +	if (DISPLAY_VER(i915) < 30)
-> > +		intel_ddi_wait_for_fec_status(encoder, crtc_state, true, false);
->=20
-> Presumably there's no harm in waiting on all platforms here. It gets tric=
-ky
-> with all the display version checks.
->=20
-
-Ack
-
-> >
-> >  	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, crtc_state, i) =
-{
-> >  		const struct intel_crtc_state *pipe_crtc_state =3D diff --git
-> > a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > index 6d85422bdefe..981e7702e11e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > @@ -65,7 +65,7 @@ void intel_ddi_enable_transcoder_clock(struct
-> > intel_encoder *encoder,  void intel_ddi_disable_transcoder_clock(const
-> > struct intel_crtc_state *crtc_state);  void intel_ddi_wait_for_fec_stat=
-us(struct
-> intel_encoder *encoder,
-> >  				   const struct intel_crtc_state *crtc_state,
-> > -				   bool enabled);
-> > +				   bool enabled, bool retry);
-> >  void intel_ddi_set_dp_msa(const struct intel_crtc_state *crtc_state,
-> >  			  const struct drm_connector_state *conn_state);
-> bool
-> > intel_ddi_connector_get_hw_state(struct intel_connector
-> > *intel_connector); diff --git
-> > a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 732d7543ad06..226ac9a73a55 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -1289,8 +1289,8 @@ static void intel_mst_enable_dp(struct
-> > intel_atomic_state *state,
-> >
-> >  	wait_for_act_sent(encoder, pipe_config);
-> >
-> > -	if (first_mst_stream)
-> > -		intel_ddi_wait_for_fec_status(encoder, pipe_config, true);
-> > +	if (first_mst_stream && DISPLAY_VER(dev_priv) < 30)
-> > +		intel_ddi_wait_for_fec_status(encoder, pipe_config, true,
-> false);
->=20
-> Ditto.
-
-Ack
-
-Regards
-
-Chaitanya
->=20
-> >
-> >  	ret =3D drm_dp_add_payload_part2(&intel_dp->mst_mgr,
-> >
-> drm_atomic_get_mst_payload_state(mst_state,
->=20
-> --
-> Jani Nikula, Intel
