@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1EC8CFC501
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:37:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1570DCFC501
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:37:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD1310E3AF;
-	Mon, 14 Oct 2024 07:37:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5C2310E3A6;
+	Mon, 14 Oct 2024 07:37:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gFJIgo+0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KmqCdcqC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDBDF10E3AD
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:37:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80BE610E3AA
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728891456; x=1760427456;
+ t=1728891458; x=1760427458;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7lyOl7SIhTeaXqvXRVQfj1NCHVXqnAvyF2M2PMnAFgI=;
- b=gFJIgo+0GJ/HROVzSQ8sGZwywqMhillnab3hfV/wPj97Hx9lRouRWf3R
- 6x+vlj9eOCfwOjJBJY50VbF6PylobomB6FM3ztEZ343eAL7u74/0Ipa3W
- FXNDx7HzfgBjsqvbuy5klzMzooqe0SkYu+Cg4YFr3FinBq17bSHCfEZyf
- Ed+IrpiJ0hQ+KiLJietud5uSUdYAvn1e7tYgHH7ABXm2oAKfcFLdwRsgl
- zuMNu7IkRbR6DOAhwKzmDmN1IWBUeR5/1+u/2PXHshnAv5dHkp2gBBiz8
- L9D7N756yMUDD3xI8WSpIgAagMA2iqYhUEsUQQjOfOnR1QB5krudwogp1 Q==;
-X-CSE-ConnectionGUID: AtTmqTW0TeCEisev75nt4Q==
-X-CSE-MsgGUID: eRjvMG2fQ9ejjfc2o+Q0ww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686772"
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686772"
+ bh=uyfnv1qjr+gCeUudIQgD2UEB0gPPaCC/16gp4fz/3CM=;
+ b=KmqCdcqCoU4StpidRTVgur1bifbyzq1gn3blVQJkuxW+BckMlSz7ETxG
+ n+Cd+JoZf4INTpDVQbSDPpO3SArstcoTMoVjY9qOaF0V1bCLJojwjA6AV
+ JVbWevaGJSiEZz74qf4jQ9OtmZzyn+w6zoQy4GPabDhSZysg1X5WlBo7s
+ UQeCih2Cs0X/IFwRH8VERNB5NprIbYnPQm+BloD8rB/8Vilu86U/Kfsjs
+ eb0PhUhWBo4hwklueBEPrnKXP3p/OkVynybxcKT0KPy68x60iGZb2KGqd
+ HIbcEY+xdgGGOX3LV1Z0zvku4mQfXnyrppqkzdM1DcwLBmC+W8FSDwZa3 g==;
+X-CSE-ConnectionGUID: luC25S86QbixjtQ3N8v93w==
+X-CSE-MsgGUID: WYrMBXyCQwK8vkehwIMkAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686779"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686779"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 00:37:35 -0700
-X-CSE-ConnectionGUID: hZEk93TuQquZ++ge0pu3Cg==
-X-CSE-MsgGUID: W7x+IOKvQeG7W5VO9VD+QQ==
+ 14 Oct 2024 00:37:38 -0700
+X-CSE-ConnectionGUID: cU6MPUswTfKq9yjAc4Qzhw==
+X-CSE-MsgGUID: uVzKAeJvSRm7H5JqHT2fzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268652"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268668"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:37:33 -0700
+ by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:37:36 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v9 07/26] drm/xe/hdcp: Update handling of xe_force_wake_get
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH v9 08/26] drm/xe/gsc: Update handling of xe_force_wake_get
  return
-Date: Mon, 14 Oct 2024 13:25:42 +0530
-Message-Id: <20241014075601.2324382-8-himal.prasad.ghimiray@intel.com>
+Date: Mon, 14 Oct 2024 13:25:43 +0530
+Message-Id: <20241014075601.2324382-9-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
 References: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
@@ -82,51 +82,141 @@ v3
 
 v5
 - return unsigned int for xe_force_wake_get()
+- No need to WARN from caller in case of forcewake get failure.
 
 v7
 - Fix commit message
 
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>(#rev2)
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gsc.c       | 23 +++++++++++------------
+ drivers/gpu/drm/xe/xe_gsc_proxy.c |  9 ++++-----
+ 2 files changed, 15 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index 6619a40aed15..3567f474b6cb 100644
---- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-+++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -41,6 +41,7 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
- 	struct xe_gt *gt = tile->media_gt;
- 	struct xe_gsc *gsc = &gt->uc.gsc;
- 	bool ret = true;
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 783b09bf3681..1eb791ddc375 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -261,19 +261,17 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_tile *tile = gt_to_tile(gt);
 +	unsigned int fw_ref;
+ 	int ret;
  
- 	if (!gsc && !xe_uc_fw_is_enabled(&gsc->fw)) {
- 		drm_dbg_kms(&xe->drm,
-@@ -49,7 +50,8 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
- 	}
+ 	if (XE_WA(tile->primary_gt, 14018094691)) {
+-		ret = xe_force_wake_get(gt_to_fw(tile->primary_gt), XE_FORCEWAKE_ALL);
++		fw_ref = xe_force_wake_get(gt_to_fw(tile->primary_gt), XE_FORCEWAKE_ALL);
+ 
+ 		/*
+ 		 * If the forcewake fails we want to keep going, because the worst
+ 		 * case outcome in failing to apply the WA is that PXP won't work,
+-		 * which is not fatal. We still throw a warning so the issue is
+-		 * seen if it happens.
++		 * which is not fatal. Forcewake get warns implicitly in case of failure
+ 		 */
+-		xe_gt_WARN_ON(tile->primary_gt, ret);
+-
+ 		xe_gt_mcr_multicast_write(tile->primary_gt,
+ 					  EU_SYSTOLIC_LIC_THROTTLE_CTL_WITH_LOCK,
+ 					  EU_SYSTOLIC_LIC_THROTTLE_CTL_LOCK_BIT);
+@@ -282,7 +280,7 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
+ 	ret = gsc_upload(gsc);
+ 
+ 	if (XE_WA(tile->primary_gt, 14018094691))
+-		xe_force_wake_put(gt_to_fw(tile->primary_gt), XE_FORCEWAKE_ALL);
++		xe_force_wake_put(gt_to_fw(tile->primary_gt), fw_ref);
+ 
+ 	if (ret)
+ 		return ret;
+@@ -352,6 +350,7 @@ static void gsc_work(struct work_struct *work)
+ 	struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int fw_ref;
+ 	u32 actions;
+ 	int ret;
+ 
+@@ -361,7 +360,7 @@ static void gsc_work(struct work_struct *work)
+ 	spin_unlock_irq(&gsc->lock);
  
  	xe_pm_runtime_get(xe);
--	if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC)) {
+-	xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC));
 +	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+	if (!fw_ref) {
- 		drm_dbg_kms(&xe->drm,
- 			    "failed to get forcewake to check proxy status\n");
- 		ret = false;
-@@ -59,7 +61,7 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
- 	if (!xe_gsc_proxy_init_done(gsc))
- 		ret = false;
+ 
+ 	if (actions & GSC_ACTION_ER_COMPLETE) {
+ 		ret = gsc_er_complete(gt);
+@@ -381,7 +380,7 @@ static void gsc_work(struct work_struct *work)
+ 		xe_gsc_proxy_request_handler(gsc);
+ 
+ out:
+-	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	xe_pm_runtime_put(xe);
+ }
+ 
+@@ -601,7 +600,7 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_mmio *mmio = &gt->mmio;
+-	int err;
++	unsigned int fw_ref;
+ 
+ 	xe_uc_fw_print(&gsc->fw, p);
+ 
+@@ -610,8 +609,8 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ 	if (!xe_uc_fw_is_enabled(&gsc->fw))
+ 		return;
+ 
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
+-	if (err)
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
++	if (!fw_ref)
+ 		return;
+ 
+ 	drm_printf(p, "\nHECI1 FWSTS: 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x\n",
+@@ -622,5 +621,5 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ 			xe_mmio_read32(mmio, HECI_FWSTS5(MTL_GSC_HECI1_BASE)),
+ 			xe_mmio_read32(mmio, HECI_FWSTS6(MTL_GSC_HECI1_BASE)));
  
 -	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
 +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- out:
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+index 6d89c22ae811..fc64b45d324b 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
++++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+@@ -450,22 +450,21 @@ void xe_gsc_proxy_remove(struct xe_gsc *gsc)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	int err = 0;
++	unsigned int fw_ref = 0;
+ 
+ 	if (!gsc->proxy.component_added)
+ 		return;
+ 
+ 	/* disable HECI2 IRQs */
+ 	xe_pm_runtime_get(xe);
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
+-	if (err)
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
++	if (!fw_ref)
+ 		xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
+ 
+ 	/* try do disable irq even if forcewake failed */
+ 	gsc_proxy_irq_toggle(gsc, false);
+ 
+-	if (!err)
+-		xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
  	xe_pm_runtime_put(xe);
- 	return ret;
+ 
+ 	xe_gsc_wait_for_worker_completion(gsc);
 -- 
 2.34.1
 
