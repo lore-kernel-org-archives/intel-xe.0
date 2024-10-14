@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E5C1D18153
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 21:26:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FF29D18151
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 21:39:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 553B510E4D5;
-	Mon, 14 Oct 2024 21:26:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 310E610E4D7;
+	Mon, 14 Oct 2024 21:39:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h/fhDutS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZvOOXie/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B21510E4D5
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 21:26:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47FAC10E4D7
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 21:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728941210; x=1760477210;
+ t=1728941993; x=1760477993;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=tUSfGNQe3OQ0BXfcCnda+0DLZxSVeGX03DZp1WzFMJc=;
- b=h/fhDutSnbiAMZNo4VdHe3gLMJo6rU99aD1nwvnpt4+IvqtZ/dIhFedS
- CU6Z5nLtCl8gufRQIcbND5m1y4B3v8FHe8TlYI5ILqluTYB++yoECWQrc
- q7rCV+bp0Sv9QO1OImDtirqsnmMsG8DjJFqP1Ta2hR2bV4XZtNyy946dS
- u5RCbJlO6iwMOR+nb7XcO0UY0SIJeFdDifxFQQ9Hg+yONqEVGtkmY/f0j
- 7W32WCgtmcYPPqHC3vlfUzHuApV8/csMAmM4zJPpIap9AcB940c1eyt3/
- +cL0RBzk4Fzt7nRfiE5H+0e8jT2JBKumJh2ubVn/lzafuNUQU7x8Qwvni g==;
-X-CSE-ConnectionGUID: MLbd2r/OQ2GDT0BgvP2gDQ==
-X-CSE-MsgGUID: 4RiBXPdyQn2FB96mea8fFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="45820092"
-X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="45820092"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 14:26:49 -0700
-X-CSE-ConnectionGUID: 8uBQVJ0dQQ2OWCATw18tew==
-X-CSE-MsgGUID: lWEPqaJpTHGCX5YE4+uQMw==
+ bh=knoKr98PIOtel3a0WjZ84qxLCamJ+eGEPTBSEtQwPMU=;
+ b=ZvOOXie//ZmtMka2W7lEQb0ReEbG57tfhEhstZOoNEfnELXClswkZiUB
+ Kv/JKr9PPIYJL2NjiJOA22utUsuZcvw3nqt2QQCB2n8zNDOaAbp9+8A9K
+ OMW1amDgk0kmbGKuKTLjlk6pgMEH2muYArN51XQI2cO8aPCs57eL+jEQT
+ 2aGw9bdQ67fpdLAbGxq2wWt0QVJxVEQkAcd3NXR+u0pjP0A9Y7+D4Us/o
+ OIO84uDuJRDmsqcHDdVSBvurNacvVjxaCKLvoQlODjo1wxcWwLr07XY5y
+ HWXvMEAnpQN9kPKrcar8clG7mLf8CVqa45mOH5/TGE95tHgEJHtqSSSc0 A==;
+X-CSE-ConnectionGUID: lIQQKMU2RvusPlJ62++ZPQ==
+X-CSE-MsgGUID: iYOdXzcNTPqE6V6jz4tiAg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28399865"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28399865"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 14:39:53 -0700
+X-CSE-ConnectionGUID: 0zHLHxjiQcS5cljg7BDMnQ==
+X-CSE-MsgGUID: 4+LcxtD6Ss+/m+D1aFx06A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="108471644"
+X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="78518530"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 14:26:49 -0700
-Date: Mon, 14 Oct 2024 14:26:49 -0700
-Message-ID: <85ldyq2x5y.wl-ashutosh.dixit@intel.com>
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 14:39:53 -0700
+Date: Mon, 14 Oct 2024 14:39:52 -0700
+Message-ID: <85jzea2wk7.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>, <james.ausmus@intel.com>,
- <felix.j.degrood@intel.com>, <jose.souza@intel.com>,
- <matias.a.cabral@intel.com>, <joshua.santosh.ranjan@intel.com>,
- <shubham.kumar@intel.com>
-Subject: Re: [PATCH v4 1/5] drm/xe/topology: Add a function to find the index
- of the last DSS in a mask
-In-Reply-To: <a8835bd49e78c13d277e8faec70f4c311c32adf0.1728884074.git.harish.chegondi@intel.com>
-References: <cover.1728884074.git.harish.chegondi@intel.com>
- <a8835bd49e78c13d277e8faec70f4c311c32adf0.1728884074.git.harish.chegondi@intel.com>
+ <felix.j.degrood@intel.com>, 
+ <jose.souza@intel.com>, <matias.a.cabral@intel.com>,
+ <joshua.santosh.ranjan@intel.com>, <shubham.kumar@intel.com>
+Subject: Re: [PATCH v4 4/5] drm/xe/query: Add a device query to get EU stall
+ data information
+In-Reply-To: <8a5f3cc1a7853b76ddde9442e4d11bf19b337509.1728884074.git.harish.chegondi@intel.com>
+References: <cover.1728884074.git.harish.chegondi@intel.com>	<8a5f3cc1a7853b76ddde9442e4d11bf19b337509.1728884074.git.harish.chegondi@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -74,52 +73,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, 13 Oct 2024 23:00:32 -0700, Harish Chegondi wrote:
+On Sun, 13 Oct 2024 23:00:35 -0700, Harish Chegondi wrote:
+
+Hi Harish,
+
+Only reviewing the uapi for now (xe_drm.h changes). Mostly nits for this
+patch.
+
 >
-> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt_topology.c | 9 +++++++++
->  drivers/gpu/drm/xe/xe_gt_topology.h | 3 +++
->  2 files changed, 12 insertions(+)
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 50ad6b2e1450..f1a0f06b61f4 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -700,6 +700,7 @@ struct drm_xe_device_query {
+>  #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
+>  #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
+>  #define DRM_XE_DEVICE_QUERY_OA_UNITS		8
+> +#define DRM_XE_DEVICE_QUERY_EU_STALL_SAMPLING	9
+
+Just call this DRM_XE_DEVICE_QUERY_EU_STALL?
+
+
+>	/** @query: The type of data to query */
+>	__u32 query;
 >
-> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-> index df2042db7ee6..1e7476f71906 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_topology.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-> @@ -278,6 +278,15 @@ xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum)
->	return find_next_bit(mask, XE_MAX_DSS_FUSE_BITS, groupnum * groupsize);
->  }
+> @@ -1738,6 +1739,25 @@ enum drm_xe_eu_stall_property_id {
+>	DRM_XE_EU_STALL_PROP_GT_ID,
+>  };
 >
-> +/*
-> + * Used to obtain the index of the last DSS.
+> +/**
+> + * struct drm_xe_query_eu_stall_data - Information about EU stall data
+> + *
+> + * If a query is made with a struct drm_xe_device_query where .query
+> + * is equal to DRM_XE_DEVICE_QUERY_EU_STALL_SAMPLING, then the reply uses
+> + * struct drm_xe_query_eu_stall_data in .data.
+
+Maybe add a @ before all references in this file. So @drm_xe_device_query,
+@DRM_XE_DEVICE_QUERY_EU_STALL_SAMPLING and @drm_xe_query_eu_stall_data.
+
+I think better to do this even if this hasn't been done for queries
+elsewhere in this file, looks like a miss.
+
 > + */
-> +unsigned int
-> +xe_dss_mask_last_dss(const xe_dss_mask_t mask)
-> +{
-> +	return find_last_bit(mask, XE_MAX_DSS_FUSE_BITS);
+> +struct drm_xe_query_eu_stall_data {
 
-Does this need to be exposed from xe_gt_topology.c/.h, can't this just be
-local to eu stall?
+Just call this 'struct drm_xe_query_eu_stall'?
 
-> +}
+> +	/** @extensions: Pointer to the first extension struct, if any */
+> +	__u64 extensions;
 > +
->  bool xe_dss_mask_empty(const xe_dss_mask_t mask)
->  {
->	return bitmap_empty(mask, XE_MAX_DSS_FUSE_BITS);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
-> index 746b325bbf6e..7ee022784397 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_topology.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_topology.h
-> @@ -28,6 +28,9 @@ void xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p);
->  unsigned int
->  xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum);
->
-> +unsigned int
-> +xe_dss_mask_last_dss(const xe_dss_mask_t mask);
+> +	/** @record_size: size of each EU stall data record */
+> +	__u64 record_size;
 > +
->  bool xe_dss_mask_empty(const xe_dss_mask_t mask);
->
->  bool
+> +	/** @capabilities: EU stall capabilities bit-mask */
+> +	__u64 capabilities;
+> +#define DRM_XE_EU_STALL_CAPS_BASE		(1 << 0)
+> +};
+> +
+>  #if defined(__cplusplus)
+>  }
+>  #endif
 > --
 > 2.45.1
 >
+
+Thanks.
+--
+Ashutosh
