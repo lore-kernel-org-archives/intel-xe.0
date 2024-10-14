@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89E61CFC51B
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 09:00:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B27BCFC50A
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 09:14:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56B6710E3DD;
-	Mon, 14 Oct 2024 09:00:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y3kEqvxw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8911110E3DD
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 09:00:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728896451; x=1760432451;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=XT7hFWfyBOh4Ff2p8uT/1xwUpMHRMUZTiFmfMsTE9Ro=;
- b=Y3kEqvxw9mcxai8VeYfskvliu5fFVylRuWwGiH3lncvnxACUfuc/vJKZ
- 65Jqy7+ZuGI4Oivh2X3PWgT9e3hb0yBD9LLXqAFs52t1dwyD+8ywsj/Tl
- 5fcO1O2lAxeM4F++9h0DYZROP8TRMixao2LGD5FQmHgO3ziiG0n8QhMYo
- W+0akNpLXCrK3OmSiCPkJjLc3Y5n6AEBtRRuI9UkcKeI1WbPI3WFoqd55
- aZJUrIML3b7Mdb5SkncgrJoSQkL6Zb30hINqvd5trCr5nsD91yD/LEEE8
- lCEnyVTMbIcdlQkxnP7BvTW9Jf8dcvpBOnfeXga1mHBeKY4gEz1SiqGh5 g==;
-X-CSE-ConnectionGUID: /e7wodLfRyyL1v3SnQ8Lsg==
-X-CSE-MsgGUID: zyp3VyxhRwu/fVDhVtZEDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="32150738"
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="32150738"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 02:00:50 -0700
-X-CSE-ConnectionGUID: BKzrU+DSRT+pabiALiFCqQ==
-X-CSE-MsgGUID: vBtjBNbBQR6PUkFQqRCDFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="78341399"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.177.190])
- ([10.245.177.190])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 02:00:47 -0700
-Message-ID: <05250a55-8d8f-4e1d-a04b-bbbd9a9f3fa4@linux.intel.com>
-Date: Mon, 14 Oct 2024 11:00:44 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3867D10E3F1;
+	Mon, 14 Oct 2024 09:14:13 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFD6A10E3E5;
+ Mon, 14 Oct 2024 09:14:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9223185208686847647=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 26/26] drm/xe: Change return type to void for
- xe_force_wake_put
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-References: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
- <20241014075601.2324382-27-himal.prasad.ghimiray@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20241014075601.2324382-27-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_support_for_3_VDSC_engines_1?=
+ =?utf-8?q?2_slices_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 14 Oct 2024 09:14:11 -0000
+Message-ID: <172889725177.1247595.4130983746047014679@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241014081000.2844245-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241014081000.2844245-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,94 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============9223185208686847647==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/14/2024 9:56 AM, Himal Prasad Ghimiray wrote:
-> There is no need to return an error from xe_force_wake_put(), as a
-> failure implicitly indicates that the domain failed to sleep.
->
-> v3
-> - Move kernel-doc to this patch (Badal)
->
-> v5
-> - change parameter to unsigned int in xe_force_wake_put()
->
-> v6
-> - Remove unneccsary wrapping (Michal)
-> - Remove non required header (Michal)
-> - Mention timeout(Michal)
->
-> v8
-> - Fix kernel-doc
->
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Badal Nilawar <badal.nilawar@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+== Series Details ==
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Series: Add support for 3 VDSC engines 12 slices (rev2)
+URL   : https://patchwork.freedesktop.org/series/139933/
+State : success
 
-> ---
->  drivers/gpu/drm/xe/xe_force_wake.c | 16 ++++++++++++----
->  drivers/gpu/drm/xe/xe_force_wake.h |  3 +--
->  2 files changed, 13 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-> index c60db78c44e6..f5067dea59c9 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.c
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
-> @@ -211,8 +211,17 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
->  	return ref_incr;
->  }
->  
-> -int xe_force_wake_put(struct xe_force_wake *fw,
-> -		      unsigned int fw_ref)
-> +/**
-> + * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
-> + * @fw: Pointer to the force wake structure
-> + * @fw_ref: return of xe_force_wake_get()
-> + *
-> + * This function reduces the reference counts for domains in fw_ref. If
-> + * refcount for any of the specified domain reaches 0, it puts the domain to sleep
-> + * and waits for acknowledgment for domain to sleep within 50 milisec timeout.
-> + * Warns in case of timeout of ack from domain.
-> + */
-> +void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
->  {
->  	struct xe_gt *gt = fw->gt;
->  	struct xe_force_wake_domain *domain;
-> @@ -225,7 +234,7 @@ int xe_force_wake_put(struct xe_force_wake *fw,
->  	 * in error path of individual domains.
->  	 */
->  	if (!fw_ref)
-> -		return 0;
-> +		return;
->  
->  	if (xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
->  		fw_ref = fw->initialized_domains;
-> @@ -249,5 +258,4 @@ int xe_force_wake_put(struct xe_force_wake *fw,
->  
->  	xe_gt_WARN(gt, ack_fail, "Forcewake domain%s %#x failed to acknowledge sleep request\n",
->  		   str_plural(hweight_long(ack_fail)), ack_fail);
-> -	return ack_fail;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
-> index 70faec9ae2d9..0e3e84bfa51c 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.h
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.h
-> @@ -17,8 +17,7 @@ void xe_force_wake_init_engines(struct xe_gt *gt,
->  				struct xe_force_wake *fw);
->  unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
->  					    enum xe_force_wake_domains domains);
-> -int xe_force_wake_put(struct xe_force_wake *fw,
-> -		      unsigned int fw_ref);
-> +void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref);
->  
->  static inline int
->  xe_force_wake_ref(struct xe_force_wake *fw,
+== Summary ==
+
+CI Bug Log - changes from xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90_BAT -> xe-pw-139933v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139933v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+
+
+Build changes
+-------------
+
+  * Linux: xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90 -> xe-pw-139933v2
+
+  IGT_8068: 8068
+  xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90: b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90
+  xe-pw-139933v2: 139933v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v2/index.html
+
+--===============9223185208686847647==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add support for 3 VDSC engines 12 slices (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139933/">https://patchwork.freedesktop.org/series/139933/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90_BAT -&gt; xe-pw-139933v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139933v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90 -&gt; xe-pw-139933v2</li>
+</ul>
+<p>IGT_8068: 8068<br />
+  xe-2061-b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90: b3b6cc77bee51d59ae1b3d2e534b05d2a635dc90<br />
+  xe-pw-139933v2: 139933v2</p>
+
+</body>
+</html>
+
+--===============9223185208686847647==--
