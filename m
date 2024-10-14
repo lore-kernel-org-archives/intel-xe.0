@@ -4,61 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB71CD16270
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 13:53:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90499D1812B
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 15:57:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 907C210E475;
-	Mon, 14 Oct 2024 13:53:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D80110E482;
+	Mon, 14 Oct 2024 15:57:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5Zcrw/H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UxsVF2Pa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB1110E45B
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 13:53:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C950510E482
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 15:57:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728913985; x=1760449985;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=12nCT/+SPmxdYVU0lthZaj31sd7ucvwxEZ+l53UTuow=;
- b=H5Zcrw/HCyc4/gbjQ/y2GHHEkHqTNroz4JVzipeQTi4YYRaZwJ1klD3Q
- rEZaGn0NOquc7Kz5n1XITbqGX7YGxnv0IQmZDawJ+ulOFbqNqibuLFubn
- T++2yMBvHe09uHZ0rW9rD+VHRJoD6T8PDW4myRYEUOjZnarHbPctICLWd
- I+7GYP0sOe83eoVIWMDLY54jyHlvmQQruuLBugnRYS46SxkG9uiSlVR6W
- dw1OtgtTTmZa3M+L1rwcu6qL/4sPDJoL8VPCH1Yj0sf6v1AIN8YgIDDeC
- oQty5DEy9+yF7mMaWHO/CknmKbiXz1qkq5VQjztrf9vKfIFWhJmKGbeFR g==;
-X-CSE-ConnectionGUID: uTKlF8XrSlaMfM9w4sWdZw==
-X-CSE-MsgGUID: YpsDjE4ER2u/9YrSNf9DRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28403815"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28403815"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 06:53:05 -0700
-X-CSE-ConnectionGUID: ATGrVhzeSDavlcmt7dvzxA==
-X-CSE-MsgGUID: 4MoQXCH9QKezM1uRHxYNLw==
+ t=1728921460; x=1760457460;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=85F/iyRt7wgbV/0pSVNJOWzs01mDKYGbeEZ6afMSybo=;
+ b=UxsVF2PaWtsgWDCWTAoOHL7wzJW5iry8wneU1eYIQ5YkCZeeVdXwIwV1
+ Kc11c3VShckCqj7NbSIbLKr0yXKmTPUtEY+q/e16j3nkYKcHF5mqfkSqu
+ Bxo2YQZ4B0qrN1RKw6IsmPd/Q7UptRSME9CZHllkJVLapAcS21jdf9CjH
+ C93Fve52pq7BmQDG4vfYpivCQ9QKhQtYfFcrpaFJDW6MR6UaCpnWhnJhj
+ I7nQ5aQB2DXF20DDF8KSpJcgJZy9h6GPwadkM/isstazA4dHrNBkUx7YZ
+ aw8dMhy+E5nHDFDJ+ma/o0DV3N+Sg7dWeC9DfSW5hZ3BgA49B+Byx1Yx+ g==;
+X-CSE-ConnectionGUID: Ddhx94u0ST+2Uqq0z68AlQ==
+X-CSE-MsgGUID: MAcPBd5JTN2x662Ea+cm2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28234630"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28234630"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 08:57:39 -0700
+X-CSE-ConnectionGUID: JhrUkvO0SESO9p5rrpPdtA==
+X-CSE-MsgGUID: 67r3VIEzRQal4vIlslPpJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="77192887"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.94])
- ([10.245.244.94])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 06:53:04 -0700
-Message-ID: <936a6826-cf97-4d77-8175-16b37f422f47@intel.com>
-Date: Mon, 14 Oct 2024 14:53:01 +0100
+X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="77791258"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Oct 2024 08:57:38 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 14 Oct 2024 08:57:37 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 14 Oct 2024 08:57:37 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 14 Oct 2024 08:57:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=upUX6xp8a/35rPEqwouvGcXHCtaRKRYME5rZyxKdCYP7LwzJmcJ4aYBnGCREVYNbZQU2oa3xLG1sD//0sK9xG/PVOOIsRLN7XhHetlpelJ2BfOoBNWFf984taTbhFEyu8EDkPkSMG3QGRbjEJTEx4brrKQzSLkaaIWjGA5HihnmIq4m0YJW1Fu40HP5EoZJ7hGjxR3ayDMQaGwJmk2Oh7kSblFpnzQ+H86CyQweo8xbEawZyjHfaqKoBwsrU8jeglyRhRy22luZSJR0usFXtD+kguA80Viezr/ECC+/2NIn1R7JkvbHGqfE3428Pz/aY+h748FmASk1B1vWstTvPww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6rkjI/7TdSnlktx7plfi/eXN65b0t5k9BZCKumtzH1Y=;
+ b=pfo6eqA88xCTc88V7w95e6O+41uRLOX6Czfbbu+WnIrMtFGBXGTZjMMDp4FriZxgybHhlWYCXNhkL/lhdfYz/DtcpyOfnu3Dh0jc4x1ociMwdFiTAlPSSi65wXHr1/G7wfxxiSpNPKDrQY3uYMU5jwYZpAPwwK/0W8txKbb8acBr6iXe+QiQcM2jqPOms6nwi3Euy95NpJHygIXtc54gY4w8Zm2ayLloqJf36PZjqs7jCoyBhYgZuTDs89rEH/+VzDMf2AhbaFTxqYcSaQ5HHrYAHAcBpp9dRqeDHl4HmcUpkl/ZlybfJ2xQc+7Qq1z1uvTJXrTjI7eArbzYIcU0bQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CH0PR11MB5314.namprd11.prod.outlook.com (2603:10b6:610:bd::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27; Mon, 14 Oct
+ 2024 15:57:35 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8048.020; Mon, 14 Oct 2024
+ 15:57:35 +0000
+Date: Mon, 14 Oct 2024 15:57:00 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <john.c.harrison@intel.com>, <rodrigo.vivi@intel.com>,
+ <matthew.auld@intel.com>
+Subject: Re: [PATCH 1/3] drm/xe/guc/ct: Improve g2h request handling during
+ async gt reset
+Message-ID: <Zw0/TCkEBMm3JMyT@DUT025-TGLU.fm.intel.com>
+References: <20241009105645.1416588-1-badal.nilawar@intel.com>
+ <20241009105645.1416588-2-badal.nilawar@intel.com>
+ <Zwhc5V5aQDSbhBWN@DUT025-TGLU.fm.intel.com>
+ <9eae52ab-fe51-487b-9db3-6c05c4a58d20@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <9eae52ab-fe51-487b-9db3-6c05c4a58d20@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0195.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::20) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/mmap: Add mmap support for PCI memory barrier
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20241009101004.664216-1-tejas.upadhyay@intel.com>
- <c55c17c9-9882-4124-918b-88b951469185@intel.com>
- <SJ1PR11MB6204E78CF08AFA14DA26E2A181442@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <e8f4f5fd-d7a1-4ca9-8a62-543d10c32a15@intel.com>
- <DS7PR11MB6197DD082F407482D23E655281442@DS7PR11MB6197.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <DS7PR11MB6197DD082F407482D23E655281442@DS7PR11MB6197.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH0PR11MB5314:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8001b132-b056-40d9-4158-08dcec68eb96
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?kmX6n6Gs1HDfjNdkBeqF90PMNk/ZyyvEueCx/Vc59mm9KUo28eTfevvy1qN+?=
+ =?us-ascii?Q?WA84QRzMT2ePZhWeAclaz2qj6qy3Nh66AFxASdTdT61H780oDltGMKKrlIxS?=
+ =?us-ascii?Q?eajudIhNDtCfU00lzCMTWYySaBwZH/GpW2vdpVZPvTaBbnB2jHH96chqzK0z?=
+ =?us-ascii?Q?iqNBaTzowBKYCtxtPRrzfHEdqz0GtNYUhTn2ZwA/5ftSz0sJ9YObuJzHTr4x?=
+ =?us-ascii?Q?QSlVrAIgHbebD/Ld1SBymvlR2YuYqx9JnzogP9GZPasAWZy+X7uyL5mLpr+3?=
+ =?us-ascii?Q?PcTZ6tyBDCaLkU33or+1Zw9AdwFkLSgpStUdE1z22WLI3Q+XV2zipS4sZQ8T?=
+ =?us-ascii?Q?LqSsVjiPdFEZzOOg8Me2cCWeZuwCUEQRi3jfcEa8rBsovN11L2k7GEjm8GdJ?=
+ =?us-ascii?Q?2BDG6PWqwXJ7Gz865bvwYXgrlauXrC/6wyt6CHwCeufclpj2Zc/Jp8ClSHFk?=
+ =?us-ascii?Q?sjDvgBnt3GozyhCHynszT8C9KWI10b10W2rvw+EiltMkmHN+FImlsPz/JRCT?=
+ =?us-ascii?Q?aeXnw0H9QL7vYhqPsYJXez4YD+BLpC7MScEuQVxYos3pUNgYNQtPavh9uXrZ?=
+ =?us-ascii?Q?uZwyr8tGKACLIRPGd2OvRXRhx7nK7+HuHXcOOKUPrrx7PwnWxv+R+5aOwzAq?=
+ =?us-ascii?Q?uW4S4XNVoNBL/rV2/Y8U2Z1D/+0RvbW2DMk0V9braUzqL/XUPnjxEkT9lEw3?=
+ =?us-ascii?Q?D4HJ5FGkY3iKMMgg7OP9nMxluy2up6BW8niq+lUGT5h1fLMPhgN/gA7s9F7I?=
+ =?us-ascii?Q?aZ2FPVNtF9NA9xVy0F+hO2MFHPwuOp5hU4vEDAVsDrr3r67BobWZQkE0rwOn?=
+ =?us-ascii?Q?wQdPgHnCZwNHdTJu9FGz4hl7/GHAGdl9y7EYaVjoUSdU7xW/lT8wEU8Yhz8O?=
+ =?us-ascii?Q?/HlrTyvVutI+F4f/9EPowKPDnDsFNNFigLeoVEf6MLQ4SWqCay1tkRXMco4t?=
+ =?us-ascii?Q?CeBDg0KdgbDbG6w/Ydg5CjkEd3Nshh2+YBcoVYHKa8GQOJjliliAwyyTT/Qm?=
+ =?us-ascii?Q?OzomddC/3huoRiQOG8fxMuUax82Lt3CrxLYxCRLvjyowcj7Yrk2QrBBuBbvY?=
+ =?us-ascii?Q?D07O9rXIUplWO6Zkg9SSzaylUQE1NKvca5vtQ1X38cbqHXaxx4Tpyy01/obB?=
+ =?us-ascii?Q?yJR9WiV6kltpBKoI89OMI+RtNHdOqVsvJCDXMczojJOjUvnCGHb8gY0UAJ8l?=
+ =?us-ascii?Q?JPNp2gjMwgrI0934PsvQrypMBuxFCoX+UMvHOguRZHEb/o6zJLO9hJlM9OcF?=
+ =?us-ascii?Q?y+o33LoBf1FqUAAQdxs/W82BdV6XhcwtbtYvSkp6iw=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Nx0UBb47fak1xtyC8r1Hd/2B/u6qNZR3joaEU0tSiWFxKFw9k77ur4dce4kp?=
+ =?us-ascii?Q?9BCwG6OHxR2LTSOHZQ3Jq/6QeihCeN78aR+CLDKUMledvbA/jrR4lH9rq6wz?=
+ =?us-ascii?Q?ivtZsRnLKbDD/JCOWCbaAuUN6RawCU1aNA4SOD/5G9jfQWlRPFW95FlsIvvF?=
+ =?us-ascii?Q?PURrMfKPIap+VO5cEA17xGw8O/yrJdfWJzzpt7uaiISDgFrBkhc/goncgIGU?=
+ =?us-ascii?Q?rUYSoVpiXVG2XT99QzHbsIJEK8MzymCeWeAq3CCPl/Me4Isfx2O0b6hilB9q?=
+ =?us-ascii?Q?xlCqUM7WXsg9QTZpkZF2anb7P80YfC6NBUFxr+M86K5YRLjbSrjPcppa2IXJ?=
+ =?us-ascii?Q?KFfDyS0IJ2aFxDJWGewnDJTA6sRlKDDpGZqL+4PlqIK3hqLmKQL1ANpO4cNq?=
+ =?us-ascii?Q?0IPmglPtP3CwNF8Flxbbt/23OuadwDervvcPxcUlO8Owah+/wlhoItb52AUa?=
+ =?us-ascii?Q?+TNgDSpZJeAaLRwLzu0KCr8PRaAYVOQVrvDZjk1hqWKVfVYje3JfkC+ifqqv?=
+ =?us-ascii?Q?EjLfLtgagycF0xaRiPbwONZiHMKWB5bnR7jkllpHT+V7EIjxxhGVFIVAfck0?=
+ =?us-ascii?Q?EDmYZBef71sYyErgCfFNb9u4oANa8KQGJ8evtF22zH5v4yNyfnu44gbOVYAt?=
+ =?us-ascii?Q?OgcFSmTS0ahP9hv7Y2AgcJwjyCoY9PHenk3prSPnbiRZrC41fFv/cR/kq/U2?=
+ =?us-ascii?Q?Z/Ujt68JM+Na9cVzDZePNfeCLf8pJHGdhHMiq/WIL3IMgQvXCBVY5d3yNDG3?=
+ =?us-ascii?Q?jEMB+FUMCc51TDKJoaky0QQkQknCMvdrVjRRJSX9zd+gXuUPPXSJuWrJ2InK?=
+ =?us-ascii?Q?Xy2PEiBc1Aw/a05jM94tdFCOH3+Dkcd1rOP2FZ4K+MOwkXxaWMzKynSxcdW7?=
+ =?us-ascii?Q?+TOgvKoLxlhJsN6rwaWGKhiX2Xz3nakG6ztmqUZVD09hNtYzyJqQ5VWuoyG1?=
+ =?us-ascii?Q?ABZSExUp1wi98/rE9P+cjLMSPoRwt+H/PQuOj1GWuwYZ6xhBLntCS9QUoEVS?=
+ =?us-ascii?Q?b5D1MchKaMEkk7Jeq0hyW4FQYgM2SKHW8sqOWtXdnfn9yLenz/uLoSkUYUzX?=
+ =?us-ascii?Q?cTZfVIrMRL6ozYfx1jrPhQUQkvZoTu+rYss/tMbrrCzbWR0lZ9iQP0Wp7I3G?=
+ =?us-ascii?Q?RfkAw5xh+GRWKiQMVr71C8DaAj5Ro8vyszCVw62M1HMV2sl7OvRN7omMVZUW?=
+ =?us-ascii?Q?cunjEkyXmHBPiyCLISMxiyVr2v9NX2UizK2z5nF4waMFdc37Jf3bUMZBUEhe?=
+ =?us-ascii?Q?8mauud1zM4Wngt1E/OydjhNbbaVmBcPYGQWJnKOHCHyiTjKEPBWTv01zPU3Y?=
+ =?us-ascii?Q?a1X2ZyCaS2Q3ClVIUnGNpN4HTehFju2+i0fZrxsJmNqsM/9tIL0hDN/LiEby?=
+ =?us-ascii?Q?lwuL1syA5IJ2fysVZNBQa0cCQLOW8lYdEGclP1tPEpiTI8eLcmOXBUkrxcrO?=
+ =?us-ascii?Q?OfhE+zjma4PeKZJNwt4/HDof+Q2Yy+w0vGzo87cb282SHzcozsI1cv7K+8Fe?=
+ =?us-ascii?Q?a2nByFNu6zAXjM3qJgqN6TfQ95GI8By2xwsVJZV7wFca5OfWaJ4AMJevUi19?=
+ =?us-ascii?Q?z1gpxB0PZeilaqXp6ub0P9/HLRcjCnkC+KBscgszq7eaB1xat8jCdvhKRkFB?=
+ =?us-ascii?Q?mA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8001b132-b056-40d9-4158-08dcec68eb96
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2024 15:57:35.4441 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZhWccj7TgwtuuraHw827UudVcD6y7mI8s7M+NIxL57673kEpTR2mmTxpIPAnvkTh/vJFmES/TkmHlMg9ug+xng==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5314
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,278 +178,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 14/10/2024 14:08, Upadhyay, Tejas wrote:
+On Mon, Oct 14, 2024 at 05:40:16PM +0530, Nilawar, Badal wrote:
+> Hi Matt,
 > 
+> Thanks for review comments.
 > 
->> -----Original Message-----
->> From: Auld, Matthew <matthew.auld@intel.com>
->> Sent: Monday, October 14, 2024 4:34 PM
->> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->> xe@lists.freedesktop.org
->> Subject: Re: [PATCH] drm/xe/mmap: Add mmap support for PCI memory
->> barrier
->>
->> On 14/10/2024 11:23, Upadhyay, Tejas wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: Auld, Matthew <matthew.auld@intel.com>
->>>> Sent: Wednesday, October 9, 2024 7:27 PM
->>>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->>>> xe@lists.freedesktop.org
->>>> Subject: Re: [PATCH] drm/xe/mmap: Add mmap support for PCI memory
->>>> barrier
->>>>
->>>> Hi,
->>>>
->>>> On 09/10/2024 11:10, Tejas Upadhyay wrote:
->>>>> In order to avoid having userspace to use MI_MEM_FENCE, we are
->>>>> adding a mechanism for userspace to generate a PCI memory barrier
->>>>> with low overhead (avoiding IOCTL call).
->>>>
->>>> I guess it doesn't work if we just do VRAM write from the host side?
->>>
->>> Writing to VRAM will adds some overhead which UMD wants to avoid. So
->> the suggestion came out was to use special MMIO page mapped directly
->> which is not accessible from the PCI bus so that the MMIO writes themselves
->> are ignored, but the PCI memory barrier will still take action as the MMIO
->> filtering will happen after the memory barrier effect.
->>
->> Would be good to add this info to the commit message.
+> On 11-10-2024 04:31, Matthew Brost wrote:
+> > On Wed, Oct 09, 2024 at 04:26:43PM +0530, Badal Nilawar wrote:
+> > > It is possible that a g2h request may be cancelled while waiting for a
+> > > response due to an asynchronous gt reset. This commit ensures that in
+> > > such cases, caller will be notified by returning -ECANCELED.
+> > > 
+> > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> > > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: John Harrison <John.C.Harrison@Intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_guc_ct.c | 16 ++++++++++++++++
+> > >   1 file changed, 16 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > index c7673f56d413..b93b2821e4e8 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > @@ -512,6 +512,9 @@ void xe_guc_ct_stop(struct xe_guc_ct *ct)
+> > >   {
+> > >   	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_STOPPED);
+> > >   	stop_g2h_handler(ct);
+> > > +
+> > > +	/* Notify callers that CT stopped and G2H requests are cancelled */
+> > > +	wake_up_all(&ct->g2h_fence_wq);
+> > >   }
+> > >   static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+> > > @@ -1018,6 +1021,19 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+> > >   	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
+> > 
+> > Better would be abort the wait here if a GT reset is queue'd or in
+> > progess. We do this a lot in the xe_guc_submit.c - see any of the
+> > wait_event functions in that file. We likely should normalize this a bit
+> > with proper layering but basically the flow should be:
+> > 
+> > - Any wait_event_* are OR'd with a queued or in progess GT reset
+> 
+> In xe_guc_submit.c to check if reset queued/progress we check guc submission
+> is stopped xe_guc_read_stopped(). Are you suggesting to use
+> xe_guc_read_stopped instead of checking ct->state?
+> 
+> Or we should do like this?
+> 
+> ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done || ct->state ==
+> XE_GUC_CT_STATE_STOPPED, HZ);
+> 
+
+Not exactly. Move 'guc->submission_state.stopped' (and helpers in
+xe_guc_submit.c) to the GT level and have both CT and GuC submission use
+those functions.
+
+> > 
+> > - After wait_event_* signals check for OR condition, handle gracefully
+> >    via an error code kicking it to upper layers
+> 
+> Agree.
+> 
+> > 
+> > - All upper layers need to cope with H2G failing or use *_no_fail
+> >    versions the H2G functions. The *_no_fail versions are untested as I
+> >    coded those 2.5 years ago in Xe and don't have user of those functions
 > 
 > Ok.
 > 
->>
->>>
->>>>
->>>>>
->>>>> This is implemented by memory-mapping a page as uncached that is
->>>>> backed by MMIO on the dGPU and thus allowing userspace to do
->> memory
->>>>> write to the page without invoking an IOCTL.
->>>>> We are selecting the MMIO so that it is not accessible from the PCI
->>>>> bus so that the MMIO writes themselves are ignored, but the PCI
->>>>> memory barrier will still take action as the MMIO filtering will
->>>>> happen after the memory barrier effect.
->>>>>
->>>>> When we detect special defined offset in mmap(), We are mapping 4K
->>>>> page which contains the last of page of doorbell MMIO range to
->>>>> userspace for same purpose.
->>>>>
->>>>> Note: Test coverage for this is added by IGT
->>>>>          https://patchwork.freedesktop.org/patch/618931/  here.
->>>>>
->>>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->>>>
->>>> Needs some UMD Cc. This was requested by some UMD?
->>>
->>> Yes, I will add someone in cc.
->>>
->>>>
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_device.c | 68
->>>> +++++++++++++++++++++++++++++++++-
->>>>>     1 file changed, 67 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device.c
->>>>> b/drivers/gpu/drm/xe/xe_device.c index cd241a8e1838..c97a4d1f0a98
->>>>> 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_device.c
->>>>> @@ -239,12 +239,78 @@ static long xe_drm_compat_ioctl(struct file
->>>>> *file,
->>>> unsigned int cmd, unsigned lo
->>>>>     #define xe_drm_compat_ioctl NULL
->>>>>     #endif
->>>>>
->>>>> +static void barrier_open(struct vm_area_struct *vma) {
->>>>> +	drm_dev_get(vma->vm_private_data);
->>>>> +}
->>>>> +
->>>>> +static void barrier_close(struct vm_area_struct *vma) {
->>>>> +	drm_dev_put(vma->vm_private_data);
->>>>> +}
->>>>> +
->>>>> +static const struct vm_operations_struct vm_ops_barrier = {
->>>>> +	.open = barrier_open,
->>>>> +	.close = barrier_close,
->>>>> +};
->>>>> +
->>>>> +static int xe_pci_barrier_mmap(struct file *filp,
->>>>> +			       struct vm_area_struct *vma) {
->>>>> +	struct drm_file *priv = filp->private_data;
->>>>> +	struct drm_device *dev = priv->minor->dev;
->>>>> +	unsigned long pfn;
->>>>> +	pgprot_t prot;
->>>>> +
->>>>> +	if (vma->vm_end - vma->vm_start > PAGE_SIZE)
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	if (is_cow_mapping(vma->vm_flags))
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	if (vma->vm_flags & (VM_READ | VM_EXEC))
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
->>>>> +	vm_flags_set(vma, VM_PFNMAP | VM_DONTEXPAND |
->>>> VM_DONTDUMP | VM_IO);
->>>>> +
->>>>> +	prot = vm_get_page_prot(vma->vm_flags); #define
->>>> LAST_DB_PAGE_OFFSET
->>>>> +0x7ff001
->>>>> +	pfn = PHYS_PFN(pci_resource_start(to_pci_dev(dev->dev), 0) +
->>>>> +			LAST_DB_PAGE_OFFSET);
->>>>> +	if (vmf_insert_pfn_prot(vma, vma->vm_start, pfn,
->>>>> +				pgprot_noncached(prot)) !=
->>>> VM_FAULT_NOPAGE)
->>>>> +		return -EFAULT;
->>>>> +
->>>>> +	vma->vm_ops = &vm_ops_barrier;
->>>>> +	vma->vm_private_data = dev;
->>>>> +	drm_dev_get(vma->vm_private_data);
->>>>
->>>> What is going on here with pci power states? Say device goes into
->>>> d3hot or d3cold and you touch this mmio, what happens? Do you get pci
->>>> errors in dmesg? Does rpm need to get involved here? Might be good to
->>>> have a testcase for this.
->>>
->>> I am not sure here. But we will have follow up IGT patch once basic IGT is
->> merged, where we will try to add test you are suggesting here.
->>
->> I think we need to understand this. If we need rpm here, then the design
->> might need to change, since grabbing rpm for the lifetime of the mmap is
->> likely the same as just disabling rpm completely, which is maybe not
->> acceptable. Not sure though.
+> > 
+> > - Queuing a GT reset wakes up all waiters
 > 
-> we don't need rpm here as the membarrier is to generate a side-effect on the GT to serialise any memory traffic across the PCI bus; if the device is asleep, there is no memory traffic across the bus, thus the requirement is satisfied
-
-Ok, but would be good to confirm that. At least for stuff like pci 
-access with LMEMBAR, IIRC device must be in d0 or you can get pci 
-errors, even if writes are ignored.
-
+> How should we do this. After queening GT reset or during GT reset CT
+> communication will still be there. Especially during gt start we do
+> guc_pc_start there xe_guc_send_recv is used for SLPC check.
 > 
->>
->>>
->>>>
->>>>> +	return 0;
->>>>> +}
->>>>> +
->>>>> +static int xe_mmap(struct file *filp, struct vm_area_struct *vma) {
->>>>> +	struct drm_file *priv = filp->private_data;
->>>>> +	struct drm_device *dev = priv->minor->dev;
->>>>> +
->>>>> +	if (drm_dev_is_unplugged(dev))
->>>>> +		return -ENODEV;
->>>>
->>>> With hotunplug I think there is also a special dummy page that gets faulted
->> in
->>>> if we detect that we are unplugged in the fault handler to avoid sigbus
->> killing
->>>> stuff (see xe_gem_fault()). Also I guess all mmaps are nuked on unplug so
->>>> everything gets refaulted. But this doesn't look to use fault handler and
->> just
->>>> pre-populates it here, so wondering what would happen here?
->>>
->>> Got your point. This might have problem, Do you have any suggestion here?
->>
->> Not really. But maybe first just try it with an igt and see what
->> happens? We can run hotunplug igt for example.
+
+See xe_guc_submit_reset_prepare - wake_up_all(&guc->ct.wq). This wakes
+up all waiters in xe_guc_submit.c. So after moving
+'guc->submission_state.stopped' to GT layer, we'd call down into the
+lower layers which will wake up any waiters. We'd need to call
+wake_up_all on guc->ct.wq & ct->g2h_fence_wq or maybe just drop the
+later.
+
+> > 
+> > - Upon completion of GT reset the OR condition is cleared
 > 
-> If unplug happens then it's a new device at that point and the client needs to reload, so I think we don’t need to take care this.
+> Ok. Condition will be cleared once CT is enabled.
+>
 
-At least for normal bo mmap stuff you usually don't want to crash the 
-app/umd, hence why a lot of effort is spent trying to avoid returning 
-SIGBUS by instead mapping a dummy page if we detect device was detached 
-in the fault handler. The user will need to get a new driver fd 
-(assuming device comes back), but user should be able to gracefully 
-detect the unplug instead of crashing (all iocts will return an error 
-for example).
+See above. This would moving 'guc->submission_state.stopped' clearing to
+the GT level.
 
-When you do the unplug the driver instance stays alive, even after pci 
-remove callback is called, where that driver instance is detached from 
-the pci device underneath. If user is accessing the barrier ptr when 
-this happens does it crash? Would be good to check that.
+Hopefully this reshuffle isn't too painful but this seems to the correct
+way to do this.
 
+Matt
+
+> Regards,
+> Badal
 > 
->>
->>>
->>>>
->>>>> +
->>>>> +#define XE_PCI_BARRIER_MMAP_OFFSET (0x50 << PAGE_SHIFT)
->>>>
->>>> This needs to go in uapi header I think?
->>>
->>> Yes I went though uapi header, did not see any offset there, did not find
->> suitable place. Any suggestion where should this be positioned in uapi
->> header?
->>
->> It might make sense to have mmap_offest flag instead (as per below),
->> then we don't need this.
->>
->>>
->>>>
->>>>> +	switch (vma->vm_pgoff) {
->>>>
->>>> I think pgoff is the fake offset to be able to lookup the bo, so for this to
->> work I
->>>> think you would need to reserve this page somehow (if we go with this
->>>> approach), otherwise user can easily end up mmapping a normal bo and
->> get
->>>> back a fake offset that happens to be this exact special barrier offset and
->> then
->>>> things go boom.
->>>>
->>>> Another idea could be to have mmap_offset called with special flag to
->>>> indicate this BARRIER thing, and then it returns the magic reserved offset.
->>>> That way we don't need to hardcode XE_PCI_BARRIER_MMAP_OFFSET in
->> the
->>>> uapi, and be forever stuck with it.
->>>
->>> Are you saying on different platforms this unused offset might change. For
->> current purpose BMG and PVC both has correct value for this as unused
->> offset.
->>
->> Why is it an unused offset, also why is it platform specific? The
->> vm_pgoff can also contain the fake offset to lookup the BO, so you would
->> now need to ensure that the special barrier offset is never used, and so
->> doesn't clash with some random BO offset. Maybe I'm missing something
->> here...
+> > 
+> > Matt
+> > 
+> > > +	/*
+> > > +	 * It is possible that the g2h request may be cancelled while waiting for a response due
+> > > +	 * to an asynchronous gt reset. In such cases, return -ECANCELED.
+> > > +	 */
+> > > +	mutex_lock(&ct->lock);
+> > > +	if (ct->state == XE_GUC_CT_STATE_STOPPED) {
+> > > +		xe_gt_dbg(gt, "H2G action %#x canceled as GT reset is in progress\n",
+> > > +			  action[0]);
+> > > +		mutex_unlock(&ct->lock);
+> > > +		return -ECANCELED;
+> > > +	}
+> > > +	mutex_unlock(&ct->lock);
+> > > +
+> > >   	/*
+> > >   	 * Ensure we serialize with completion side to prevent UAF with fence going out of scope on
+> > >   	 * the stack, since we have no clue if it will fire after the timeout before we can erase
+> > > -- 
+> > > 2.34.1
+> > > 
 > 
-> Oh now I recall, for vm_pgoff, there is some offset added, which is leaving anything below that offset untouched. We selected vm_pgoff to be used from that area.
-
-Ah, you mean DRM_FILE_PAGE_OFFSET_START? It does feel a bit scary to 
-rely on that internal behaviour and then bake it into the uapi forever. 
-So far I assume drivers are not really depending on that behaviour so 
-that could change in the future.
-
->   
-> Tejas
->   
->>
->>>
->>> But I agree for future compatibility, we can have this handling in KMD itself
->> to detect platform and provide correct unused defined offset to UMD to map.
->> I will take care of this.
->>>
->>> Tejas
->>>
->>>>
->>>>
->>>>> +	case XE_PCI_BARRIER_MMAP_OFFSET >> PAGE_SHIFT:
->>>>> +		return xe_pci_barrier_mmap(filp, vma);
->>>>> +	}
->>>>> +
->>>>> +	return drm_gem_mmap(filp, vma);
->>>>> +}
->>>>> +
->>>>>     static const struct file_operations xe_driver_fops = {
->>>>>     	.owner = THIS_MODULE,
->>>>>     	.open = drm_open,
->>>>>     	.release = drm_release_noglobal,
->>>>>     	.unlocked_ioctl = xe_drm_ioctl,
->>>>> -	.mmap = drm_gem_mmap,
->>>>> +	.mmap = xe_mmap,
->>>>>     	.poll = drm_poll,
->>>>>     	.read = drm_read,
->>>>>     	.compat_ioctl = xe_drm_compat_ioctl,
