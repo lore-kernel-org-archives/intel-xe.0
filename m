@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B285CFC500
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD9D4CFC502
 	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:38:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C24B10E3A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDA510E3A9;
 	Mon, 14 Oct 2024 07:38:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PvypJ826";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wr9+qCMf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6D710E3A7
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:38:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10D4E10E3A6
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:38:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728891485; x=1760427485;
+ t=1728891484; x=1760427484;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NC5f11v2FU4nzQtpjVt8x+u5VG5NV0EW02U3Mex7gNg=;
- b=PvypJ826n92cMnAK4noUr5fJlhpIvMRIchNOqRNV18JGITjux8S54c9C
- UJ4zD04vN7ovgLwTzb3hQUC2CdbAQhLfpWHbrVw5dV0keKx6kg919Zrck
- qF/ApXZybROxmrmkGtJ5IP5RK9hyPZzfXAcwXuuK9fC+m9i2dhSqX2aIU
- euwNLs1dWwRoSog4Zv6hRzhkfOgH9qrAEcIlrUoCzMF6oWZM1+xkKG8O+
- fRNtIitR+0Up7gYX1s5VrTggSIrV9Xxp63+PA9kCVIxQ7diwcqife5vqU
- NeYXzUDUhn4ltEnzFt9knK/i9/tOHL/lOPU41K3njKIMPMRCbJUUj+pst w==;
-X-CSE-ConnectionGUID: jHOLoPYuThuHTb2anhzHWA==
-X-CSE-MsgGUID: 2bSC2chtQgi/0Qnfu1DK8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686813"
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686813"
+ bh=Ho8PD7KfdAR/7Ea/EAlo1wlWeAByrLrjxt9GWgGVBlo=;
+ b=Wr9+qCMfz1a7KAQIT5ArZbE/l7mMx/tJiVr6Xq8UEkoYrR8325Gj64d4
+ vA7f12/1F440AMR0Zr7j2lbnLGxrtiG+5xjGsZPFOhHse3PUWu6o/yoLA
+ pXo3T+AYHrbmFovQ4pInuu/7qdm1FvdhsCaCu4QtniBC7WJk6IHfep7hJ
+ OI7SESHA7FVqiEm7oUnDq7icC8IVUDohkZIGzwd29o5YSLuSj8V+ku4mB
+ lSyaQjvfMbnj4+hkFd6zYDtrJt0jsylTrpcXIOOrN/Ecirp20mBlfrGaZ
+ H094QWKqfZ4pcy8Q71A7neKNSxOh+a9o7iDkYcmcOnELFhLf2kVYkFj3Q g==;
+X-CSE-ConnectionGUID: isc0G5dBSV6kncRb6shfQg==
+X-CSE-MsgGUID: Rhysw3ovR/ivvgS2hd5y1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686812"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686812"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 00:38:05 -0700
-X-CSE-ConnectionGUID: SvuCj+z0Sneswg/jaSNAAg==
-X-CSE-MsgGUID: cArx0Xn4S5mSTrghPmypqA==
+ 14 Oct 2024 00:38:03 -0700
+X-CSE-ConnectionGUID: WOzqpvdcQ0OJPdLbZ4TDpA==
+X-CSE-MsgGUID: u70fVO+HS8GPPjGkx3nxAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268766"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268751"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:38:03 -0700
+ by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:38:01 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v9 21/26] drm/xe/xe_reg_sr: Update handling of
+Subject: [PATCH v9 20/26] drm/xe/gt_tlb_invalidation_ggtt: Update handling of
  xe_force_wake_get return
-Date: Mon, 14 Oct 2024 13:25:56 +0530
-Message-Id: <20241014075601.2324382-22-himal.prasad.ghimiray@intel.com>
+Date: Mon, 14 Oct 2024 13:25:55 +0530
+Message-Id: <20241014075601.2324382-21-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
 References: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
@@ -68,106 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With xe_force_wake_get() now returning the refcount-incremented
-domain mask, a non-zero return value in the case of XE_FORCEWAKE_ALL does
-not necessarily indicate success. Use xe_force_wake_ref_has_domain()
-to determine the status of the call.
-
-Modify the return handling of xe_force_wake_get() accordingly and
-pass the return value to xe_force_wake_put().
+xe_force_wake_get() now returns the reference count-incremented domain
+mask. If it fails for individual domains, the return value will always
+be 0. However, for XE_FORCEWAKE_ALL, it may return a non-zero value even
+in the event of failure. Update the return handling of xe_force_wake_get()
+to reflect this behavior, and ensure that the return value is passed as
+input to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
-- xe_force_wake_put() error doesn't need to be checked. It internally
-WARNS on domain ack failure.
 
 v5
 - return unsigned int from xe_force_wake_get()
+- remove redundant warns
 
-v6
-- use helper xe_force_wake_ref_has_domain()
+v7
+- Fix commit message
 
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 191cb4121acd..e1a0e27cda14 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -188,27 +188,27 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index a530a933eedc..773de1f08db9 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -268,6 +268,7 @@ static int xe_gt_tlb_invalidation_guc(struct xe_gt *gt,
+ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
  {
- 	struct xe_reg_sr_entry *entry;
- 	unsigned long reg;
--	int err;
+ 	struct xe_device *xe = gt_to_xe(gt);
 +	unsigned int fw_ref;
  
- 	if (xa_empty(&sr->xa))
- 		return;
+ 	if (xe_guc_ct_enabled(&gt->uc.guc.ct) &&
+ 	    gt->uc.guc.submission_state.enabled) {
+@@ -286,7 +287,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 		if (IS_SRIOV_VF(xe))
+ 			return 0;
  
- 	xe_gt_dbg(gt, "Applying %s save-restore MMIOs\n", sr->name);
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	if (err)
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
- 		goto err_force_wake;
- 
- 	xa_for_each(&sr->xa, reg, entry)
- 		apply_one_mmio(gt, entry);
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	XE_WARN_ON(err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 
- 	return;
- 
- err_force_wake:
--	xe_gt_err(gt, "Failed to apply, err=%d\n", err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	xe_gt_err(gt, "Failed to apply, err=-ETIMEDOUT\n");
- }
- 
- void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
-@@ -221,15 +221,15 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 	u32 mmio_base = hwe->mmio_base;
- 	unsigned long reg;
- 	unsigned int slot = 0;
--	int err;
-+	unsigned int fw_ref;
- 
- 	if (xa_empty(&sr->xa))
- 		return;
- 
- 	drm_dbg(&xe->drm, "Whitelisting %s registers\n", sr->name);
- 
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	if (err)
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
- 		goto err_force_wake;
- 
- 	p = drm_dbg_printer(&xe->drm, DRM_UT_DRIVER, NULL);
-@@ -254,13 +254,13 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
- 		xe_mmio_write32(&gt->mmio, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
+-		xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
+ 			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
+ 					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
+@@ -296,7 +297,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
+ 					GUC_TLB_INV_CR_INVALIDATE);
+ 		}
+-		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
  	}
  
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	XE_WARN_ON(err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 
- 	return;
- 
- err_force_wake:
--	drm_err(&xe->drm, "Failed to apply, err=%d\n", err);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	drm_err(&xe->drm, "Failed to apply, err=-ETIMEDOUT\n");
- }
- 
- /**
+ 	return 0;
 -- 
 2.34.1
 
