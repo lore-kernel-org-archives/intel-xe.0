@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FF29D18151
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 21:39:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BE81D18157
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 22:21:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 310E610E4D7;
-	Mon, 14 Oct 2024 21:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2253E10E0E4;
+	Mon, 14 Oct 2024 22:21:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZvOOXie/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EfGqNvPE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47FAC10E4D7
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 21:39:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6463110E0E4
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 22:21:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728941993; x=1760477993;
+ t=1728944473; x=1760480473;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=knoKr98PIOtel3a0WjZ84qxLCamJ+eGEPTBSEtQwPMU=;
- b=ZvOOXie//ZmtMka2W7lEQb0ReEbG57tfhEhstZOoNEfnELXClswkZiUB
- Kv/JKr9PPIYJL2NjiJOA22utUsuZcvw3nqt2QQCB2n8zNDOaAbp9+8A9K
- OMW1amDgk0kmbGKuKTLjlk6pgMEH2muYArN51XQI2cO8aPCs57eL+jEQT
- 2aGw9bdQ67fpdLAbGxq2wWt0QVJxVEQkAcd3NXR+u0pjP0A9Y7+D4Us/o
- OIO84uDuJRDmsqcHDdVSBvurNacvVjxaCKLvoQlODjo1wxcWwLr07XY5y
- HWXvMEAnpQN9kPKrcar8clG7mLf8CVqa45mOH5/TGE95tHgEJHtqSSSc0 A==;
-X-CSE-ConnectionGUID: lIQQKMU2RvusPlJ62++ZPQ==
-X-CSE-MsgGUID: iYOdXzcNTPqE6V6jz4tiAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28399865"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28399865"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 14:39:53 -0700
-X-CSE-ConnectionGUID: 0zHLHxjiQcS5cljg7BDMnQ==
-X-CSE-MsgGUID: 4+LcxtD6Ss+/m+D1aFx06A==
+ bh=7yd6/BdDmGX14fNW9lIlLhqg40o20PdPOeFy64h4iiw=;
+ b=EfGqNvPEVziDJVCmuP+Nv3ThhFeoaGcAIOvDHb2A4MUf1NgOq5wHKmKA
+ 0YnyNy4+poV2V2Ova7C17lgsMgyRn9OHz7Dm+l1rFsIfI46S/oGUvWb2h
+ NN2hT0D2Z0h9UNzkKWwwEU052Ziw9bCUKRLpCRQjaojKvVDof9MTS7HSQ
+ gqr0vBPe5bq0+e0d1EUyvkzDc9gA6V3BDeN80u/micmBHgxMreEorCaWf
+ bn/GiK5eQJs909IsQ4YKQA1PH3He2rcdocbWcvISXQpXEYJ48j6hNRC5f
+ /N72rjNDJjbLYPgMQZEYHucCE7zsDpo4b9y2568LLqRw+9ZxWmtBExSbW Q==;
+X-CSE-ConnectionGUID: UTPttn2yTv22WJKG3zO9+w==
+X-CSE-MsgGUID: 9mBajRr/T4W4zqdEvXT2ug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="32234090"
+X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="32234090"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 15:21:12 -0700
+X-CSE-ConnectionGUID: B9flvpwDTvGfmfAKOqk9QQ==
+X-CSE-MsgGUID: sne/n07dQFqAOPKhF0FQTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="78518530"
+X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; d="scan'208";a="82469292"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 14:39:53 -0700
-Date: Mon, 14 Oct 2024 14:39:52 -0700
-Message-ID: <85jzea2wk7.wl-ashutosh.dixit@intel.com>
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2024 15:21:13 -0700
+Date: Mon, 14 Oct 2024 15:21:12 -0700
+Message-ID: <85h69e2unb.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>, <james.ausmus@intel.com>,
  <felix.j.degrood@intel.com>, 
  <jose.souza@intel.com>, <matias.a.cabral@intel.com>,
  <joshua.santosh.ranjan@intel.com>, <shubham.kumar@intel.com>
-Subject: Re: [PATCH v4 4/5] drm/xe/query: Add a device query to get EU stall
- data information
-In-Reply-To: <8a5f3cc1a7853b76ddde9442e4d11bf19b337509.1728884074.git.harish.chegondi@intel.com>
-References: <cover.1728884074.git.harish.chegondi@intel.com>	<8a5f3cc1a7853b76ddde9442e4d11bf19b337509.1728884074.git.harish.chegondi@intel.com>
+Subject: Re: [PATCH v4 2/5] drm/xe/eustall: Introduce API for EU stall sampling
+In-Reply-To: <a4ca443e9dc0e25ff4d77908f785cdfdf6c80f7f.1728884074.git.harish.chegondi@intel.com>
+References: <cover.1728884074.git.harish.chegondi@intel.com>	<a4ca443e9dc0e25ff4d77908f785cdfdf6c80f7f.1728884074.git.harish.chegondi@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -73,61 +72,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, 13 Oct 2024 23:00:35 -0700, Harish Chegondi wrote:
+On Sun, 13 Oct 2024 23:00:33 -0700, Harish Chegondi wrote:
+>
 
 Hi Harish,
 
-Only reviewing the uapi for now (xe_drm.h changes). Mostly nits for this
-patch.
+Once again only reviewing the uapi (changes to xe_drm.h) for now.
 
->
 > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 50ad6b2e1450..f1a0f06b61f4 100644
+> index c4182e95a619..50ad6b2e1450 100644
 > --- a/include/uapi/drm/xe_drm.h
 > +++ b/include/uapi/drm/xe_drm.h
-> @@ -700,6 +700,7 @@ struct drm_xe_device_query {
->  #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
->  #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
->  #define DRM_XE_DEVICE_QUERY_OA_UNITS		8
-> +#define DRM_XE_DEVICE_QUERY_EU_STALL_SAMPLING	9
-
-Just call this DRM_XE_DEVICE_QUERY_EU_STALL?
-
-
->	/** @query: The type of data to query */
->	__u32 query;
+> @@ -1397,6 +1397,8 @@ struct drm_xe_wait_user_fence {
+>  enum drm_xe_observation_type {
+>	/** @DRM_XE_OBSERVATION_TYPE_OA: OA observation stream type */
+>	DRM_XE_OBSERVATION_TYPE_OA,
+> +	/** @DRM_XE_OBSERVATION_TYPE_EU_STALL: EU stall sampling observation stream type */
+> +	DRM_XE_OBSERVATION_TYPE_EU_STALL,
+>  };
 >
-> @@ -1738,6 +1739,25 @@ enum drm_xe_eu_stall_property_id {
->	DRM_XE_EU_STALL_PROP_GT_ID,
+>  /**
+> @@ -1696,6 +1698,46 @@ struct drm_xe_oa_stream_info {
+>	__u64 reserved[3];
 >  };
 >
 > +/**
-> + * struct drm_xe_query_eu_stall_data - Information about EU stall data
+> + * enum drm_xe_eu_stall_property_id - EU stall sampling input property ids.
 > + *
-> + * If a query is made with a struct drm_xe_device_query where .query
-> + * is equal to DRM_XE_DEVICE_QUERY_EU_STALL_SAMPLING, then the reply uses
-> + * struct drm_xe_query_eu_stall_data in .data.
+> + * These properties are passed to the driver as a chain of
+> + * @drm_xe_ext_set_property structures with @property set to these
+> + * properties' enums and @value set to the corresponding values of these
+> + * properties. @drm_xe_user_extension base.name should be set to
+> + * @DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY.
 
-Maybe add a @ before all references in this file. So @drm_xe_device_query,
-@DRM_XE_DEVICE_QUERY_EU_STALL_SAMPLING and @drm_xe_query_eu_stall_data.
+We need to add a comment here saying that EU stall stream has to be enabled
+using @DRM_XE_OBSERVATION_IOCTL_ENABLE before reading data. Also, another
+comment that EIO return from read() indicates buffer overflow.
 
-I think better to do this even if this hasn't been done for queries
-elsewhere in this file, looks like a miss.
+We are not using DRM_XE_OBSERVATION_IOCTL_STATUS here the way OA does to
+return the reason for EIO return. I think that is OK for now. If later it
+turns out we have other reasons (apart from overflow) for returning EIO, we
+can handle it via capabilities.
 
 > + */
-> +struct drm_xe_query_eu_stall_data {
-
-Just call this 'struct drm_xe_query_eu_stall'?
-
-> +	/** @extensions: Pointer to the first extension struct, if any */
-> +	__u64 extensions;
+> +enum drm_xe_eu_stall_property_id {
+> +#define DRM_XE_EU_STALL_EXTENSION_SET_PROPERTY		0
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate
+> +	 * in multiples of 251 cycles. Valid values are 1 to 7.
+> +	 * If the value is 1, sampling interval is 251 cycles.
+> +	 * If the value is 7, sampling interval is 7 x 251 cycles.
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_SAMPLE_RATE = 1,
 > +
-> +	/** @record_size: size of each EU stall data record */
-> +	__u64 record_size;
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_POLL_PERIOD: EU stall data
+> +	 * poll period in nanoseconds at which the driver polls
+> +	 * for EU stall data in the buffer. Should be at least 100000 ns.
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_POLL_PERIOD,
 > +
-> +	/** @capabilities: EU stall capabilities bit-mask */
-> +	__u64 capabilities;
-> +#define DRM_XE_EU_STALL_CAPS_BASE		(1 << 0)
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT: Minimum number of
+> +	 * EU stall data rows to be present in the kernel buffer for
+> +	 * poll() to set POLLIN (data present).
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT,
+> +
+> +	/**
+> +	 * @DRM_XE_EU_STALL_PROP_GT_ID: GT ID of the GT on which
+> +	 * EU stall data will be captured.
+> +	 */
+> +	DRM_XE_EU_STALL_PROP_GT_ID,
+
+Note that we need to show UMD usage of /each/ of these properties in order
+to merge them. So are we sure at least one UMD is using each of these
+properties? If not we need to drop them from xe_drm.h.
+
+I don't like DRM_XE_EU_STALL_PROP_POLL_PERIOD in particular because it is
+exposing a parameter related to internal implemenation in the kernel. OA
+had a similar property but turned out it was never used. Not sure what the
+situation here is.
+
 > +};
 > +
 >  #if defined(__cplusplus)
