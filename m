@@ -4,51 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62A25CF259D
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 03:24:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E47DD1A429
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 06:00:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9DF10E26F;
-	Mon, 14 Oct 2024 03:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C076D10E270;
+	Mon, 14 Oct 2024 06:00:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="i52m3GTZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ekuUPx8v";
 	dkim-atps=neutral
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C594510E1C5;
- Mon, 14 Oct 2024 03:24:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1728876281;
- bh=vsCrLNHWS9aX1Ot8mwWPJBHzbluUUToFirZ71fWGFDg=;
- h=Date:From:To:Cc:Subject:From;
- b=i52m3GTZPdS/NbEffenH7z35LD1OSo/ryvAKSA1lY6+S5x2uIEx86jNor6ePLYO3m
- 5muO1kuCKmK8MBqypRqVo0LDSIuSc+KrlOpZmUyXcTKbiSpHEkU7yotF4USrTpLVTf
- 6Gy/lnI4KFJO2dLJZOEgvTRmpGqwtH8bWuQYDR1Oyp0VVV1dRNbRHEWJgbeyBc+JiI
- sgRNsmziLITOjjvMLLL4sQVAHay+qlEusidxQmNUf9oKI4iuyiOkTWL91UYef0YQzi
- wKagNBz0MEFdFib2NkXdc5F4O6uEEQzZTmaucZTqXgzNRgBiZrpUwcTlFkYBF7CGBI
- fYVP7OkknGkMQ==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4XRjJl5vVQz4x8H;
- Mon, 14 Oct 2024 14:24:39 +1100 (AEDT)
-Date: Mon, 14 Oct 2024 14:24:39 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
- =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Simona Vetter
- <simona.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- DRM XE List <intel-xe@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Ville =?UTF-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Subject: linux-next: manual merge of the drm-xe tree with the drm-intel tree
-Message-ID: <20241014142439.40e63852@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B314A10E270
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 06:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728885643; x=1760421643;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3EMNjWYrlMikdWT5RJd0BDU0wHliCenkpFo+uRoK60A=;
+ b=ekuUPx8vMFUzRmVxSY+Ay8GHoJsvaTS+zKsZkwvE27ByFXRPyLZ1J7Yy
+ cLTIpMHEsgsAXl5yvps6uoximWW8oCEm7yeyFgQhMqcILYShHBMFfFugo
+ c7/GwSbc80cQ9qIIyQ4r0d03zqQkV5qDhj4/k3tck0v4HHbESPvcmTjyV
+ Bm/WflpuwzUtBcTupJPNkdUezuTuvQMPpm45Q14Ls+zBZv3p7R6mdE5yG
+ bKGhNNjwtOIeLJFMFzPEOtGL+MXEqH8ZMutEs4BDXR9e1VZzPHmW2BV1i
+ f+SWjfWs/ph5w1/6TaIo2zR77jMDiYWwBDCpotv4ZDhi9qPtlCLBsgJTj Q==;
+X-CSE-ConnectionGUID: BWoftwUDTBql/b0f8QI/uA==
+X-CSE-MsgGUID: dn4vmpz2QFiQjnx5F7royw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="39599326"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="39599326"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2024 23:00:42 -0700
+X-CSE-ConnectionGUID: bKrFPyToTGGfAiOm3rbzAA==
+X-CSE-MsgGUID: aJmlZyHKQNa05bH0ZK9l8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="77575032"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2024 23:00:42 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
+ felix.j.degrood@intel.com, jose.souza@intel.com, matias.a.cabral@intel.com,
+ joshua.santosh.ranjan@intel.com, shubham.kumar@intel.com,
+ Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH v4 1/5] drm/xe/topology: Add a function to find the index of
+ the last DSS in a mask
+Date: Sun, 13 Oct 2024 23:00:32 -0700
+Message-ID: <a8835bd49e78c13d277e8faec70f4c311c32adf0.1728884074.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.45.1
+In-Reply-To: <cover.1728884074.git.harish.chegondi@intel.com>
+References: <cover.1728884074.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/KeC9M0Dl/+gIMMc_bQsZZ3e";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,87 +70,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/KeC9M0Dl/+gIMMc_bQsZZ3e
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_topology.c | 9 +++++++++
+ drivers/gpu/drm/xe/xe_gt_topology.h | 3 +++
+ 2 files changed, 12 insertions(+)
 
-Hi all,
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index df2042db7ee6..1e7476f71906 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -278,6 +278,15 @@ xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum)
+ 	return find_next_bit(mask, XE_MAX_DSS_FUSE_BITS, groupnum * groupsize);
+ }
+ 
++/*
++ * Used to obtain the index of the last DSS.
++ */
++unsigned int
++xe_dss_mask_last_dss(const xe_dss_mask_t mask)
++{
++	return find_last_bit(mask, XE_MAX_DSS_FUSE_BITS);
++}
++
+ bool xe_dss_mask_empty(const xe_dss_mask_t mask)
+ {
+ 	return bitmap_empty(mask, XE_MAX_DSS_FUSE_BITS);
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
+index 746b325bbf6e..7ee022784397 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.h
++++ b/drivers/gpu/drm/xe/xe_gt_topology.h
+@@ -28,6 +28,9 @@ void xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p);
+ unsigned int
+ xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum);
+ 
++unsigned int
++xe_dss_mask_last_dss(const xe_dss_mask_t mask);
++
+ bool xe_dss_mask_empty(const xe_dss_mask_t mask);
+ 
+ bool
+-- 
+2.45.1
 
-Today's linux-next merge of the drm-xe tree got a conflict in:
-
-  drivers/gpu/drm/xe/display/xe_display.c
-
-between commit:
-
-  5c30cfa295cc ("drm/i915/dmc: Convert DMC code to intel_display")
-
-from the drm-intel tree and commit:
-
-  a4de6beb83fc ("drm/xe/display: Separate the d3cold and non-d3cold runtime=
- PM handling")
-
-from the drm-xe tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/xe/display/xe_display.c
-index 957ae763531d,5c6b74c36b60..000000000000
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@@ -344,7 -340,10 +344,10 @@@ static void __xe_display_pm_suspend(str
- =20
-  	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
- =20
- -	intel_dmc_suspend(xe);
- +	intel_dmc_suspend(display);
-+=20
-+ 	if (runtime && has_display(xe))
-+ 		intel_hpd_poll_enable(xe);
-  }
- =20
-  void xe_display_pm_suspend(struct xe_device *xe)
-@@@ -453,13 -452,14 +458,15 @@@ static void __xe_display_pm_resume(stru
-  		intel_display_driver_resume(xe);
-  		drm_kms_helper_poll_enable(&xe->drm);
-  		intel_display_driver_enable_user_access(xe);
-- 		intel_hpd_poll_disable(xe);
-  	}
- =20
-+ 	if (has_display(xe))
-+ 		intel_hpd_poll_disable(xe);
-+=20
-  	intel_opregion_resume(display);
- =20
- -	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
- +	if (!runtime)
- +		intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
- =20
-  	intel_power_domains_enable(xe);
-  }
-
---Sig_/KeC9M0Dl/+gIMMc_bQsZZ3e
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmcMjvcACgkQAVBC80lX
-0Gx46Af+O9T6L4SVn7ON3qDiCfRFb6/nMexq1bbs25/rxn+9aeMGziGRRdHIDoin
-tfaQkvCHaPvxrifyu+aBGY6mTQDdnVrR2XAjj3wnsG++F4qwDj08yT6aGQ3pAVLM
-zRuf4l8fsXXPjeAypXBDtuXfNqo9t5V4u2fhpogvPUUq+k0ymtOuKxUNb8U6VTvs
-nhIpJ2JOJGkZrmbg6FkaU5FCUa8YimhGWSw4cntEdAAaRKyI183ufpQfuN5F1oGw
-LeJmpNpGqGr8Uh3qfHrMMMcUhnrgcYpKCnYt/CUsJNYX5X3hD+y2Uf9PlHiu47td
-IwzjSOeX2R8QF4UmedcbPp34prsSug==
-=kQCa
------END PGP SIGNATURE-----
-
---Sig_/KeC9M0Dl/+gIMMc_bQsZZ3e--
