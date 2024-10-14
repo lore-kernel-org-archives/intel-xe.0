@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEF09CFC500
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:37:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8595CFC500
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Oct 2024 07:37:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB54D10E3A7;
-	Mon, 14 Oct 2024 07:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A542E10E3AD;
+	Mon, 14 Oct 2024 07:37:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RRJNbcHB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hf0k2wI6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD4710E3AB
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:37:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C385C10E3AB
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Oct 2024 07:37:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728891469; x=1760427469;
+ t=1728891472; x=1760427472;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=G95nnFn39inclNrFNhZ7UTCAKWp6RoqTRXKSFIRMEws=;
- b=RRJNbcHBPpAskGOzSHUeqRB1zPqM4GSrfdGcU5n2uHdDaSoX1OKNNOki
- w9nUt2RLfQA29ueaNj070XwC/b1uViw2dNnQTB2RTubL6ZjlZh83eXtf2
- wUUCCJDQRzleejVyD0dYN+griGNGRxoV0iNtCc1wlr3t0eSCKcce2+gDt
- l+TiGoG5CguxiewSrMc2zc6mAd2JarFHw5g5MMG9/4J381wDVE/gjyBIC
- Zz7Tb34NiiUVd4FVXiRUKbflucgvczXGu0n/rx4SORLsVFIsR9vdnzCbr
- 4RvgmUobsDdDCyVpQabQNWy4XOXCEssxEs2LdjEaXfWeK/LYr/MYETcFR w==;
-X-CSE-ConnectionGUID: 993F74cwRn6kawwSjX8yWQ==
-X-CSE-MsgGUID: zV2LOAeKTAS6mX6M/edPtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686798"
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686798"
+ bh=ddTZDctZxQv/d5M/Z8N7CyWfscq6NFhOL2WpvHxoOQg=;
+ b=Hf0k2wI6f70eM0E63rQ45Y6+I5R6oV8diptadnttm87q5ZO8XEvYuQiE
+ aRZCYg6ho65B5hxP22+fwVrhXhbKSbhfOEY0ZZKOp1P6fpvWnTVxx2HIL
+ 2Q6y5zBKn0kyQcAE8+Urw/sLkB5hYRJGAMg0XF5vGYipUbUVQUggmegjK
+ Mjj7Zkm50vh508N6fqggyUI82s7ANUO9sQJgpFqAePHxeJiAkswvH+MSs
+ 1egXINSyrk/MfdZP+ERj+iHnpj+jRwT0ILxbnlFofN0b00Nfg6HbMvDky
+ UrAm32jeD9QswHKls5My7yAf1zz+fzql7IH6JDKCbeMZYEQtMecQsGVif Q==;
+X-CSE-ConnectionGUID: i2aj1t14TWGh75QZHv6eNg==
+X-CSE-MsgGUID: VS/T+AiySgu9npzxpbx9cg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27686802"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27686802"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 00:37:49 -0700
-X-CSE-ConnectionGUID: vDfVfE9iSsuogSWcbKPsVQ==
-X-CSE-MsgGUID: NsFbhxUtTeaulzuZecRvqA==
+ 14 Oct 2024 00:37:52 -0700
+X-CSE-ConnectionGUID: 6HOdWLdBQR6TzYAJL9RwxA==
+X-CSE-MsgGUID: yAaNsOYISci1FMhoZ+lSDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268710"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82268721"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:37:47 -0700
+ by orviesa005.jf.intel.com with ESMTP; 14 Oct 2024 00:37:51 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v9 13/26] drm/xe/mocs: Update handling of xe_force_wake_get
- return
-Date: Mon, 14 Oct 2024 13:25:48 +0530
-Message-Id: <20241014075601.2324382-14-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v9 15/26] drm/xe/xe_gt_debugfs: Update handling of
+ xe_force_wake_get return
+Date: Mon, 14 Oct 2024 13:25:50 +0530
+Message-Id: <20241014075601.2324382-16-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
 References: <20241014075601.2324382-1-himal.prasad.ghimiray@intel.com>
@@ -69,67 +68,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_force_wake_get() now returns the reference count-incremented domain
-mask. If it fails for individual domains, the return value will always
-be 0. However, for XE_FORCEWAKE_ALL, it may return a non-zero value even
-in the event of failure. Update the return handling of xe_force_wake_get()
-to reflect this behavior, and ensure that the return value is passed as
-input to xe_force_wake_put().
+With xe_force_wake_get() now returning the refcount-incremented
+domain mask, a non-zero return value in the case of XE_FORCEWAKE_ALL does
+not necessarily indicate success. Use xe_force_wake_ref_has_domain()
+determine the status of the call.
+
+Modify the return handling of xe_force_wake_get() accordingly and
+pass the return value to xe_force_wake_put().
 
 v3
 - return xe_wakeref_t instead of int in xe_force_wake_get()
-- don't use xe_assert() to report HW errors (Michal)
+- xe_force_wake_put() error doesn't need to be checked. It internally
+WARNS on domain ack failure.
 
 v5
-- return unsigned int from xe_force_wake_get()
-- Remove redundant warn
+- return unsigned int for xe_force_wake_get()
 
-v7
-- Fix commit message
+v6
+- use helper xe_force_wake_ref_has_domain()
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mocs.c | 14 +++++---------
- 1 file changed, 5 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 231d0e86ed83..54d199b5cfb2 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -774,25 +774,21 @@ void xe_mocs_init(struct xe_gt *gt)
- 
- void xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
- {
--	struct xe_mocs_info table;
--	unsigned int flags;
--	u32 ret;
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index cbc43973ff7e..3e8c351a0eab 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -90,22 +90,21 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
  	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_mocs_info table;
-+	unsigned int fw_ref, flags;
+ 	struct xe_hw_engine *hwe;
+ 	enum xe_hw_engine_id id;
+-	int err;
++	unsigned int fw_ref;
  
- 	flags = get_mocs_settings(xe, &table);
+ 	xe_pm_runtime_get(xe);
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (err) {
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
+ 		xe_pm_runtime_put(xe);
+-		return err;
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++		return -ETIMEDOUT;
+ 	}
  
- 	xe_pm_runtime_get_noresume(xe);
--	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--
--	if (ret)
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
- 		goto err_fw;
+ 	for_each_hw_engine(hwe, gt, id)
+ 		xe_hw_engine_print(hwe, p);
  
- 	table.ops->dump(&table, flags, gt, p);
- 
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--
+-	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
 +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- err_fw:
--	xe_assert(xe, !ret);
  	xe_pm_runtime_put(xe);
- }
+-	if (err)
+-		return err;
  
+ 	return 0;
+ }
 -- 
 2.34.1
 
