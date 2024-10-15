@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FBC9D20682
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Oct 2024 23:11:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A77E2D20682
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Oct 2024 23:17:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30A1810E63D;
-	Tue, 15 Oct 2024 23:11:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ilPHMXH0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 950D010E634;
- Tue, 15 Oct 2024 23:11:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729033899; x=1760569899;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5JEC5lBCzUGad9AV/E8lp/x62Yzoe2RcCu2ZxmdL6Xs=;
- b=ilPHMXH0Qpp1pOyrJvCujP9/MmoSVE6IiSmzEzsoZai0g2c3tdctNAXF
- YnlnrJoCKSQcmfnXK5v58+rCn/2HSEPaceC78NhAsYWFQrhfokR5A7BMn
- CK5OI5jy99Cc10iuGuyE3tkPPl7fEi1jXyP6takuJN/n6CQ5XBGMWl7vq
- Bkix5LjWjczjTHUAZ5j0oZnRTmlw6M6HKPxcGjlflcu+G5xRH7n9inqz6
- n29mZNT42yIFsSriQDoqAJI9i9tYJOVtn01R7tL0Mad7dAgZqqU5kYHGB
- Op7OVLOC88tqRb2RMEp7eziXhVxgK69xSmvTHmk/St07tTLsHBztHJ0vO g==;
-X-CSE-ConnectionGUID: 5Pi8jDmBSFuqYQIymcbZ1A==
-X-CSE-MsgGUID: Am8lr37gQi+qYl5K15Zylg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28600799"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28600799"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 16:11:37 -0700
-X-CSE-ConnectionGUID: /PyvhZ2uTiawBTw4NM/e5w==
-X-CSE-MsgGUID: sYgKEM20Qjmfkxys5cSo5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="83120437"
-Received: from msatwood-mobl.amr.corp.intel.com (HELO
- msatwood-mobl.hsd1.or.comcast.net) ([10.125.108.167])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 16:11:36 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v3 7/7] drm/i915/xe3lpd: Add condition for EDP to powerdown
- P2.PG
-Date: Tue, 15 Oct 2024 16:11:24 -0700
-Message-ID: <20241015231124.23982-8-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20241015231124.23982-1-matthew.s.atwood@intel.com>
-References: <20241015231124.23982-1-matthew.s.atwood@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70CF210E62C;
+	Tue, 15 Oct 2024 23:17:49 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCC6C10E134;
+ Tue, 15 Oct 2024 23:17:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_xe3lpd_edp_enabl?=
+ =?utf-8?q?ing_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Oct 2024 23:17:48 -0000
+Message-ID: <172903426889.1270963.12571154468606744193@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241015231124.23982-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20241015231124.23982-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,36 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+== Series Details ==
 
-Add condition for P2.PG power down value.
+Series: Add xe3lpd edp enabling (rev3)
+URL   : https://patchwork.freedesktop.org/series/139732/
+State : success
 
-v2: change subject line to better match patch condition
+== Summary ==
 
-Bspec: 74494
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 01c7b2c084e5 drm-tip: 2024y-10m-15d-14h-57m-37s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/xe3lpd: Update pmdemand programming
+Applying: drm/i915/xe3lpd: Add cdclk changes
+Applying: drm/i915/xe3lpd: Include hblank restriction for xe3lpd
+Applying: drm/i915/xe3lpd: Add C20 Phy consolidated programming table
+Applying: drm/i915/xe3lpd: Add new bit range of MAX swing setup
+Applying: drm/i915/xe3lpd: Add check to see if edp over type c is allowed
+Applying: drm/i915/xe3lpd: Add condition for EDP to powerdown P2.PG
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 37c66b32325d..13a99f494680 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3146,7 +3146,8 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
- 	if (intel_encoder_is_c10phy(encoder))
- 		return CX0_P2PG_STATE_DISABLE;
- 
--	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
-+	if ((IS_BATTLEMAGE(i915) && encoder->port == PORT_A) ||
-+	    (DISPLAY_VER(i915) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
- 		return CX0_P2PG_STATE_DISABLE;
- 
- 	return CX0_P4PG_STATE_DISABLE;
--- 
-2.45.0
 
