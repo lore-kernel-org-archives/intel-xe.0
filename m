@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6666CFC271
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Oct 2024 06:33:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6FC0CFC27F
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Oct 2024 09:47:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A70C210E504;
-	Tue, 15 Oct 2024 06:33:57 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66F3B10E504;
- Tue, 15 Oct 2024 06:33:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6136B10E555;
+	Tue, 15 Oct 2024 09:47:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PO4CvEh6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32A7C10E092
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Oct 2024 09:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728985676; x=1760521676;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=B5BMLDbTLvfYjyyFjW+49loShAgxzhrEXN3F9yal58M=;
+ b=PO4CvEh6jCxxc0ua6Jn61cOm6vugTHceezcWWfyv8YpYFzkyF2/l55pt
+ VINRNVs+CWh7RRFV4BYPlgK9xQwmZVUjA5K3SUVhFBkCvhl/3kHjJ2O8b
+ khjZYsBLFRfg/ow7mhltXoPkSWyvuir1wPa4RE4udX+XCNseScn94LJxE
+ KJ+XICO9rBPPHjudfOwfSSyFxiTAkKnmBfNsM5o6uQZxT5tFE1Izuto88
+ nIXbdGAo0W5KNFKoLpUrvlodAF76hb/0MgB8URCTPKtlg0rlRPLp8Yqts
+ zwJQs+1OQDEGXZqIeBkY/VJgx8foEkq8RbwEC+e+2PGyc/aNd5EVENFGv Q==;
+X-CSE-ConnectionGUID: 3o1h9WazQPuDrvkuQEGRnQ==
+X-CSE-MsgGUID: EwazIqy8Q9qNFf2Zai7E5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="27850218"
+X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; d="scan'208";a="27850218"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2024 02:47:56 -0700
+X-CSE-ConnectionGUID: Ch00kt+yTQmEXc7bl9D6rw==
+X-CSE-MsgGUID: s7tpUPXLSkm3sejuTHGI2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; d="scan'208";a="82888575"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2024 02:47:54 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 0/2]  Improve ufence addr validation and error handling
+Date: Tue, 15 Oct 2024 11:05:44 +0200
+Message-ID: <20241015090546.3082719-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Add_6k_resolution_suppor?=
- =?utf-8?q?t_for_a_single_CRTC?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Oct 2024 06:33:56 -0000
-Message-ID: <172897403641.1267941.14343331438378430820@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241015061011.2087826-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241015061011.2087826-1-suraj.kandpal@intel.com>
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +67,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Resending https://patchwork.freedesktop.org/series/139887/ with 
+Test-with tag to validate we catch bogus addr from userspace early.
 
-Series: Add 6k resolution support for a single CRTC
-URL   : https://patchwork.freedesktop.org/series/139979/
-State : warning
+Test-with: 20241014141839.1618518-1-nirmoy.das@intel.com
+Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Nirmoy Das (2):
+  drm/xe/ufence: Prefetch ufence addr to catch bogus address
+  drm/xe/ufence: Warn if mmget_not_zero() fails
 
-== Summary ==
+ drivers/gpu/drm/xe/xe_sync.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f6087efed4047ae323633876dc9b3222bee4ec41
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.46.0
 
