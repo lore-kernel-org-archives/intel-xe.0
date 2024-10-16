@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDD8D2069C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87DDBD206A0
 	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D134510E673;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA1BA10E674;
 	Wed, 16 Oct 2024 03:25:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKlNoFJO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hm75kds3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E114210E655;
- Wed, 16 Oct 2024 03:24:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5DE10E652;
+ Wed, 16 Oct 2024 03:25:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729049100; x=1760585100;
+ t=1729049101; x=1760585101;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BECEKjt3/SZr9qsgy7YowNtKwx8dqZbSvxMcfY44Auk=;
- b=PKlNoFJOS2/JY+BrE1VeslYX3GMpV5vOV+TmKBJXqZTRVyWqlHtNH01A
- 9GjXJMuZk6SpRh/JgJA3XR8OTELwH/k7O1RsILRWC2903oqg0AOXEwX80
- UjY5EI6vtte833EEi+jblTFJ4V0wKyuP/jPe9f6N9FUrtOxz9ZQeBAfGc
- IvMjyL7k7b5WKXTRvo6nB0Ii56upGgNifDlexjSpk1H1FcF71DvAlMj8Z
- WMR+hpfn6CbvPsk7crGCpYDgDD0cnTV5iiBkVQzD/BRwnhif92G8RZyiX
- RJ1yVbrM96+FPFQVaRhSQdNwFjh7lkWm8wFbOTw8xMQlCEY7aOBTzmavi g==;
-X-CSE-ConnectionGUID: +XyQpLCdTMut2kBPRF7K7A==
-X-CSE-MsgGUID: ozI2l1VaSGiaiunw8Dpm1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056410"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056410"
+ bh=eTXNwt4ohW1Ul1+kM3O45oOKJpWi5ziikETnzlU1Etg=;
+ b=hm75kds3r4M8tZqakkf4M83Pu2EODPddUjx4PA+TxOSY7p2jlujvjy3Q
+ oezXAoNfVAnFHlGorSWS+IbwRzNgQGIBx5ICQOOlwM0XQj2IM1bjbsWtO
+ CDsxGkR4XWVQ6ETRoU0DZpK7DjwB0V3nksVoTs5TfYRlX2ozWeiTljfaX
+ AnYsKoYNXCWmkGq5etPMFu/HlC0ZvSSdlszG7lupX/MG6BHeErzm0TsZo
+ JoNOEfXvQrF0U2riN7ILXV5jp0OAonwsERlwJRlunK8lxL6q2TiGrR9ye
+ pIVS3DYW09lZD21LR13YM17V2tHDz+c3dgUS8ga6bTQNFPkyih77yEcAA A==;
+X-CSE-ConnectionGUID: oymZj8JTTcyFWDf07XdaQw==
+X-CSE-MsgGUID: soweXvw7QBimXXJDLfwanQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056489"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056489"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:58 -0700
-X-CSE-ConnectionGUID: gktd9X5pS7GQPGR+iUKbTw==
-X-CSE-MsgGUID: RcIppEbNRzWAZohC7pSTGg==
+ 15 Oct 2024 20:24:59 -0700
+X-CSE-ConnectionGUID: 0wmjHhOzR7OHGYKm03dtKg==
+X-CSE-MsgGUID: z2fHJcLSS920pIwZlvYo+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930263"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930279"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:58 -0700
@@ -47,10 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 14/29] drm/xe: Do not allow system allocator VMA unbind if
- the GPU has bindings
-Date: Tue, 15 Oct 2024 20:25:03 -0700
-Message-Id: <20241016032518.539495-15-matthew.brost@intel.com>
+Subject: [PATCH v2 27/29] drm/xe: Add modparam for SVM notifier size
+Date: Tue, 15 Oct 2024 20:25:16 -0700
+Message-Id: <20241016032518.539495-28-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
@@ -70,79 +69,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-uAPI is designed with the the use case that only mapping a BO to a
-malloc'd address will unbind a system allocator VMA. Thus it doesn't
-make tons of sense to allow a system allocator VMA unbind if the GPU has
-bindings in the range being unbound. Do not support this as it
-simplifies the code. Can always be revisited if a use case for this
-arrises.
+Useful to experiment with notifier size and how it affects performance.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c |  5 +++++
- drivers/gpu/drm/xe/xe_svm.h |  1 +
- drivers/gpu/drm/xe/xe_vm.c  | 16 ++++++++++++++++
- 3 files changed, 22 insertions(+)
+ drivers/gpu/drm/xe/xe_module.h | 1 +
+ drivers/gpu/drm/xe/xe_svm.c    | 5 +++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 161a5e6f717f..5a3bfea8b7b4 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -22,6 +22,7 @@ struct xe_modparam {
+ 	unsigned int max_vfs;
+ #endif
+ 	int wedged_mode;
++	u32 svm_notifier_size;
+ };
+ 
+ extern struct xe_modparam xe_modparam;
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 0762126f65e0..1d8021b4e2f0 100644
+index acf2a3750f38..16e34aaead79 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -378,3 +378,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- err_out:
- 	return err;
+@@ -8,6 +8,7 @@
+ #include "xe_bo.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
++#include "xe_module.h"
+ #include "xe_pt.h"
+ #include "xe_svm.h"
+ #include "xe_ttm_vram_mgr.h"
+@@ -573,8 +574,8 @@ int xe_svm_init(struct xe_vm *vm)
+ 
+ 	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
+ 			       current->mm, xe_svm_devm_owner(vm->xe), 0,
+-			       vm->size, SZ_512M, &gpusvm_ops,
+-			       fault_chunk_sizes,
++			       vm->size, xe_modparam.svm_notifier_size * SZ_1M,
++			       &gpusvm_ops, fault_chunk_sizes,
+ 			       ARRAY_SIZE(fault_chunk_sizes));
  }
-+
-+bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
-+{
-+	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 06d90d0f71a6..472fbc51f30e 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -29,6 +29,7 @@ void xe_svm_close(struct xe_vm *vm);
- int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 			    struct xe_tile *tile, u64 fault_addr,
- 			    bool atomic);
-+bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
  
- static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- {
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 76a20e96084e..158fbb1c3f28 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2348,6 +2348,17 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			struct xe_vma *old =
- 				gpuva_to_vma(op->base.remap.unmap->va);
- 			bool skip = xe_vma_is_system_allocator(old);
-+			u64 start = xe_vma_start(old), end = xe_vma_end(old);
-+
-+			if (op->base.remap.prev)
-+				start = op->base.remap.prev->va.addr +
-+					op->base.remap.prev->va.range;
-+			if (op->base.remap.next)
-+				end = op->base.remap.next->va.addr;
-+
-+			if (xe_vma_is_system_allocator(old) &&
-+			    xe_svm_has_mapping(vm, start, end))
-+				return -EBUSY;
- 
- 			op->remap.start = xe_vma_start(old);
- 			op->remap.range = xe_vma_size(old);
-@@ -2430,6 +2441,11 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 		{
- 			struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
- 
-+			if (xe_vma_is_system_allocator(vma) &&
-+			    xe_svm_has_mapping(vm, xe_vma_start(vma),
-+					       xe_vma_end(vma)))
-+				return -EBUSY;
-+
- 			if (!xe_vma_is_system_allocator(vma))
- 				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
 -- 
 2.34.1
 
