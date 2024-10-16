@@ -4,60 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AB36D1AD5F
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 14:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9660BD1AD5E
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 14:01:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31F6D10E71A;
-	Wed, 16 Oct 2024 14:01:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XIVeEjPZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 934CB10E715;
- Wed, 16 Oct 2024 14:01:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729087278; x=1760623278;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JZ60b3KLOBWJAC5gGErz2xLEh1rCI5XIBOXVymbehLg=;
- b=XIVeEjPZHzE+PCsMICohiqnqE7hfY8cu/KFrV/JlgrEiRgsUVY7uBqmR
- JNrap8fOfNrYMt2vyct+g8TkUX90unAzdH0yVdyxNn/X00zKryMYhCmsK
- GxM8JwDM3CmLLql4RIkYX60ujUlB4PHVzMH2oRQtNrBZKptOC03I88mPj
- oYs/N+csL1u2Un34Xoa4qd+1nf8JqBr1+SCG9M6c26c/PFFsHIRpAIC+/
- zYzpesNCMWRxPh8pnXyKRiTyu9Rl2Gb1opIWGpAsR7MTPDwYMMgt5M3oR
- AfyQn+l7JxZR7kH2r6dcAsJIbusqGoKhupbbTWW0p9M1ffOQQc0fWf+vY Q==;
-X-CSE-ConnectionGUID: ZuzWxHcLRQS2ySGsxvkNTA==
-X-CSE-MsgGUID: Vo5QSFCkRcikkZiLHoccUA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11226"; a="32336275"
-X-IronPort-AV: E=Sophos;i="6.11,208,1725346800"; d="scan'208";a="32336275"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 07:01:06 -0700
-X-CSE-ConnectionGUID: 2kH5F2wmT2GSBeHH0Kymkg==
-X-CSE-MsgGUID: MygklSySSom16wCBqnx0/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,208,1725346800"; d="scan'208";a="78284921"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 Oct 2024 07:01:03 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 16 Oct 2024 17:01:02 +0300
-Date: Wed, 16 Oct 2024 17:01:02 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: plane property for async supported
- modifiers
-Message-ID: <Zw_HHn42gYFvjWmP@intel.com>
-References: <20241016053626.2850384-1-arun.r.murthy@intel.com>
- <Zw-_6yuy139Zmir3@intel.com> <Zw_FgeZFATAk-aMf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 655BA10E71B;
+	Wed, 16 Oct 2024 14:01:45 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28BB110E71B;
+ Wed, 16 Oct 2024 14:01:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4924788067326893564=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zw_FgeZFATAk-aMf@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Workaround_to_handle_G2H_timeout?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Oct 2024 14:01:44 -0000
+Message-ID: <172908730415.1274253.1769036472583416435@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241016115256.349791-1-badal.nilawar@intel.com>
+In-Reply-To: <20241016115256.349791-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,192 +35,204 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 16, 2024 at 04:54:09PM +0300, Ville Syrjälä wrote:
-> On Wed, Oct 16, 2024 at 04:30:19PM +0300, Ville Syrjälä wrote:
-> > On Wed, Oct 16, 2024 at 11:06:26AM +0530, Arun R Murthy wrote:
-> > > Create a i915 private plane property for sharing the async supported
-> > > modifiers to the user.
-> > > UMD related discussion requesting the same
-> > > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
-> > > 
-> > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > ---
-> > >  .../gpu/drm/i915/display/intel_atomic_plane.c |  6 +++
-> > >  .../drm/i915/display/intel_display_types.h    |  4 ++
-> > >  .../drm/i915/display/skl_universal_plane.c    | 49 ++++++++++++++++++-
-> > 
-> > This whole thing belongs in the drm core.
-> 
-> And I don't even see an actual implementation of anything here.
-> Why did you even post this when it doesn't do anything?
-> 
-> Anyways, thinking about how we might actually implement this,
-> we can probably leverage
-> https://patchwork.freedesktop.org/patch/619047/?series=139807&rev=3
+--===============4924788067326893564==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Although we should probably pass the format to that as well...
+== Series Details ==
 
-> 
-> > >  3 files changed, 58 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > index b7e462075ded..ef41b50cc765 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > @@ -117,6 +117,9 @@ intel_plane_duplicate_state(struct drm_plane *plane)
-> > >  	intel_state->dpt_vma = NULL;
-> > >  	intel_state->flags = 0;
-> > >  
-> > > +	if (intel_state->async_sup_modifiers)
-> > > +		drm_property_blob_get(intel_state->async_sup_modifiers);
-> > > +
-> > >  	/* add reference to fb */
-> > >  	if (intel_state->hw.fb)
-> > >  		drm_framebuffer_get(intel_state->hw.fb);
-> > > @@ -141,6 +144,9 @@ intel_plane_destroy_state(struct drm_plane *plane,
-> > >  	drm_WARN_ON(plane->dev, plane_state->ggtt_vma);
-> > >  	drm_WARN_ON(plane->dev, plane_state->dpt_vma);
-> > >  
-> > > +	if (plane_state->async_sup_modifiers)
-> > > +		drm_property_blob_put(plane_state->async_sup_modifiers);
-> > > +
-> > >  	__drm_atomic_helper_plane_destroy_state(&plane_state->uapi);
-> > >  	if (plane_state->hw.fb)
-> > >  		drm_framebuffer_put(plane_state->hw.fb);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index 2bb1fa64da2f..a5a301ca521a 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -683,6 +683,8 @@ struct intel_plane_state {
-> > >  	u64 ccval;
-> > >  
-> > >  	const char *no_fbc_reason;
-> > > +
-> > > +	struct drm_property_blob *async_sup_modifiers;
-> > >  };
-> > >  
-> > >  struct intel_initial_plane_config {
-> > > @@ -1435,6 +1437,8 @@ struct intel_plane {
-> > >  
-> > >  	struct intel_fbc *fbc;
-> > >  
-> > > +	struct drm_property *async_modifiers_property;
-> > > +
-> > >  	/*
-> > >  	 * NOTE: Do not place new plane state fields here (e.g., when adding
-> > >  	 * new plane properties).  New runtime state should now be placed in
-> > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > index 9557b08ca2e2..6790bdf00c8f 100644
-> > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > @@ -2383,6 +2383,29 @@ static bool icl_plane_format_mod_supported(struct drm_plane *_plane,
-> > >  	}
-> > >  }
-> > >  
-> > > +static int intel_plane_get_property(struct drm_plane *plane,
-> > > +				    const struct drm_plane_state *state,
-> > > +				    struct drm_property *property,
-> > > +				    uint64_t *val)
-> > > +{
-> > > +	struct drm_i915_private *i915 = to_i915(plane->dev);
-> > > +	const struct intel_plane_state *intel_plane_state =
-> > > +		to_intel_plane_state(state);
-> > > +	struct intel_plane *intel_plane = to_intel_plane(plane);
-> > > +
-> > > +	if (property == intel_plane->async_modifiers_property) {
-> > > +		*val = intel_plane_state->async_sup_modifiers ?
-> > > +			intel_plane_state->async_sup_modifiers->base.id : 0;
-> > > +	} else {
-> > > +		drm_err(&i915->drm,
-> > > +			"Unknown property [PROP:%d:%s]\n",
-> > > +			property->base.id, property->name);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
-> > >  					   u32 format, u64 modifier)
-> > >  {
-> > > @@ -2442,6 +2465,7 @@ static const struct drm_plane_funcs skl_plane_funcs = {
-> > >  	.atomic_duplicate_state = intel_plane_duplicate_state,
-> > >  	.atomic_destroy_state = intel_plane_destroy_state,
-> > >  	.format_mod_supported = skl_plane_format_mod_supported,
-> > > +	.atomic_get_property = intel_plane_get_property,
-> > >  };
-> > >  
-> > >  static const struct drm_plane_funcs icl_plane_funcs = {
-> > > @@ -2451,6 +2475,7 @@ static const struct drm_plane_funcs icl_plane_funcs = {
-> > >  	.atomic_duplicate_state = intel_plane_duplicate_state,
-> > >  	.atomic_destroy_state = intel_plane_destroy_state,
-> > >  	.format_mod_supported = icl_plane_format_mod_supported,
-> > > +	.atomic_get_property = intel_plane_get_property,
-> > >  };
-> > >  
-> > >  static const struct drm_plane_funcs tgl_plane_funcs = {
-> > > @@ -2460,6 +2485,7 @@ static const struct drm_plane_funcs tgl_plane_funcs = {
-> > >  	.atomic_duplicate_state = intel_plane_duplicate_state,
-> > >  	.atomic_destroy_state = intel_plane_destroy_state,
-> > >  	.format_mod_supported = tgl_plane_format_mod_supported,
-> > > +	.atomic_get_property = intel_plane_get_property,
-> > >  };
-> > >  
-> > >  static void
-> > > @@ -2549,6 +2575,25 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> > >  	return caps;
-> > >  }
-> > >  
-> > > +static void intel_plane_attach_async_modifiers_property(struct intel_plane *intel_plane)
-> > > +{
-> > > +	struct drm_plane *plane = &intel_plane->base;
-> > > +	struct drm_device *dev = plane->dev;
-> > > +	struct drm_property *prop;
-> > > +
-> > > +	prop = intel_plane->async_modifiers_property;
-> > > +	if (!prop) {
-> > > +		prop = drm_property_create(dev, DRM_MODE_PROP_BLOB | DRM_MODE_PROP_ATOMIC,
-> > > +					   "Async Supported Modifiers", 0);
-> > > +		if (!prop)
-> > > +			return;
-> > > +
-> > > +		intel_plane->async_modifiers_property = prop;
-> > > +	}
-> > > +
-> > > +	drm_object_attach_property(&plane->base, prop, 0);
-> > > +}
-> > > +
-> > >  struct intel_plane *
-> > >  skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> > >  			   enum pipe pipe, enum plane_id plane_id)
-> > > @@ -2694,10 +2739,12 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> > >  	if (DISPLAY_VER(dev_priv) >= 12)
-> > >  		drm_plane_enable_fb_damage_clips(&plane->base);
-> > >  
-> > > -	if (DISPLAY_VER(dev_priv) >= 11)
-> > > +	if (DISPLAY_VER(dev_priv) >= 11) {
-> > >  		drm_plane_create_scaling_filter_property(&plane->base,
-> > >  						BIT(DRM_SCALING_FILTER_DEFAULT) |
-> > >  						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
-> > > +		intel_plane_attach_async_modifiers_property(plane);
-> > > +	}
-> > >  
-> > >  	intel_plane_helper_add(plane);
-> > >  
-> > > -- 
-> > > 2.25.1
-> > 
-> > -- 
-> > Ville Syrjälä
-> > Intel
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Series: Workaround to handle G2H timeout
+URL   : https://patchwork.freedesktop.org/series/140056/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519_BAT -> xe-pw-140056v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-140056v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][2] -> [INCOMPLETE][3] ([Intel XE#2874]) +1 other test incomplete
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][5] ([Intel XE#1861]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-lnl-1:          [DMESG-FAIL][7] ([Intel XE#2687]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - {bat-bmg-2}:        [INCOMPLETE][9] ([Intel XE#2874] / [Intel XE#2998]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+    - bat-dg2-oem2:       [INCOMPLETE][11] ([Intel XE#2874]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2687]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#2998]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8076 -> IGT_8077
+  * Linux: xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519 -> xe-pw-140056v1
+
+  IGT_8076: e511df10a1201d0d83c03ccbcabc3d57191e5f8e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519: 12e4970af1ecdeb76e94df2daf51a9c3d6b9f519
+  xe-pw-140056v1: 140056v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/index.html
+
+--===============4924788067326893564==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Workaround to handle G2H timeout</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140056/">https://patchwork.freedesktop.org/series/140056/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519_BAT -&gt; xe-pw-140056v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-140056v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687">Intel XE#2687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998">Intel XE#2998</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140056v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8076 -&gt; IGT_8077</li>
+<li>Linux: xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519 -&gt; xe-pw-140056v1</li>
+</ul>
+<p>IGT_8076: e511df10a1201d0d83c03ccbcabc3d57191e5f8e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519: 12e4970af1ecdeb76e94df2daf51a9c3d6b9f519<br />
+  xe-pw-140056v1: 140056v1</p>
+
+</body>
+</html>
+
+--===============4924788067326893564==--
