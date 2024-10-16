@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E94BED2A52C
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 15:37:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B3E5D2A52E
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 15:51:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B12DB10E73E;
-	Wed, 16 Oct 2024 15:37:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NcQmecyT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDF7610E73A;
- Wed, 16 Oct 2024 15:37:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729093047; x=1760629047;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lL4//Oqzwbvxk/txT4MlT2rCJlZ9T5IyzMsGW/YAPLw=;
- b=NcQmecyTjMzcFg1ghX0ofz2hTWVHqlEOASN1Gtk4IwXXFPGgyXvABm55
- Zm18dHMGDuN9Tf9IPMPC4ixuhk/8NjyBF3HNrY1aILEzT7q0jnw9RoCIv
- ud9UETljVvxfhDsIPq9nv/f+bDwfnOz2lPkQkbX8KY01DuYjSYy2f0omk
- sia4XTz7E8nTCGWIN4sFn2FJ04vlxax1qm9cyrxXesIDXaW8EzPwYwMQ4
- flvAJmoCfeVecxvOb34+8PZn9yLsDXtzv/R2pi/veKhJ5qB8zUDcRSuja
- JEyzSwH7utZwlT06ygXnxAswph9zJzVaG1F3KIqBJA8DQkRq4iP8RPUt2 g==;
-X-CSE-ConnectionGUID: wL0QQ8uPQyCK53G2GNTTJw==
-X-CSE-MsgGUID: KVVv5ZXVTR2hMtvtobPDDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28435151"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28435151"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 08:37:27 -0700
-X-CSE-ConnectionGUID: CdBb9hdqTv6CFM16Tz2/vw==
-X-CSE-MsgGUID: vWKv6rOqRKK7USSQQP/L7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,208,1725346800"; d="scan'208";a="78710501"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
- by orviesa007.jf.intel.com with ESMTP; 16 Oct 2024 08:37:27 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2] drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()
-Date: Wed, 16 Oct 2024 15:01:54 +0000
-Message-Id: <20241016150154.1466131-1-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 091C710E050;
+	Wed, 16 Oct 2024 15:51:59 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED84710E73E;
+ Wed, 16 Oct 2024 15:51:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6571491862170014031=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_caller_info_to_xe?=
+ =?utf-8?q?=5Fgt=5Freset=5Fasync_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Oct 2024 15:51:57 -0000
+Message-ID: <172909391796.1274744.11754164044892533556@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241016141717.881143-1-nirmoy.das@intel.com>
+In-Reply-To: <20241016141717.881143-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +36,204 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The function parse_lfp_panel_dtd() is called when the driver
-attempts to initialize the eDP connector, and it allocates memory,
-which is recorded in panel->vbt.lfp_vbt_mode. However, since no
-eDP panel is connected, the driver fails at intel_edp_init_dpcd()
-and follows the failure path. Unfortunately, the allocated memory
-is not freed in this case.
+--===============6571491862170014031==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To fix this issue, free the memory in the failure path.
+== Series Details ==
 
-leak info from kmemleak:
-"
-unreferenced object 0xffff8881252f8800 (size 128):
-  comm "systemd-udevd", pid 192, jiffies 4294896880
-  hex dump (first 32 bytes):
-    e8 fd 00 00 00 04 18 04 a0 04 40 05 00 00 00 03  ..........@.....
-    03 03 09 03 26 03 00 00 0a 00 00 00 00 00 00 00  ....&...........
-  backtrace (crc 7448f6b4):
-    [<ffffffff82475c9b>] kmemleak_alloc+0x4b/0x80
-    [<ffffffff814bb50e>] __kmalloc_cache_noprof+0x2be/0x390
-    [<ffffffffa069862c>] intel_bios_init_panel+0x1c4c/0x2720 [xe]
-    [<ffffffffa0699123>] intel_bios_init_panel_early+0x13/0x20 [xe]
-    [<ffffffffa06fceb9>] intel_dp_init_connector+0x2f9/0x1080 [xe]
-    [<ffffffffa06c370a>] intel_ddi_init+0xbba/0xf50 [xe]
-    [<ffffffffa069b906>] intel_bios_for_each_encoder+0x36/0x60 [xe]
-    [<ffffffffa06d7bd6>] intel_setup_outputs+0x206/0x450 [xe]
-    [<ffffffffa06dad33>] intel_display_driver_probe_nogem+0x163/0x1f0 [xe]
-    [<ffffffffa0680fc7>] xe_display_init_noaccel+0x27/0x70 [xe]
-    [<ffffffffa05b30d6>] xe_device_probe+0x806/0x9a0 [xe]
-    [<ffffffffa0612f0f>] xe_pci_probe+0x31f/0x590 [xe]
-    [<ffffffff81b41718>] local_pci_probe+0x48/0xb0
-    [<ffffffff81b432c8>] pci_device_probe+0xc8/0x280
-    [<ffffffff81d5dde8>] really_probe+0xf8/0x390
-    [<ffffffff81d5e11a>] __driver_probe_device+0x8a/0x170
-"
+Series: drm/xe: Add caller info to xe_gt_reset_async (rev2)
+URL   : https://patchwork.freedesktop.org/series/140065/
+State : success
 
-v2 (Jani):
-  -use intel_bios_fini_panel() to pair with intel_bios_init_panel_early()
+== Summary ==
 
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 1 +
- 1 file changed, 1 insertion(+)
+CI Bug Log - changes from xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519_BAT -> xe-pw-140065v2_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 90fa73575feb..7141e3ca0d83 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6801,6 +6801,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 
- out_vdd_off:
- 	intel_pps_vdd_off_sync(intel_dp);
-+	intel_bios_fini_panel(&intel_connector->panel);
- 
- 	return false;
- }
--- 
-2.25.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-140065v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][2] -> [INCOMPLETE][3] ([Intel XE#2874]) +1 other test incomplete
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][5] ([Intel XE#1861]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-lnl-1:          [DMESG-FAIL][7] ([Intel XE#2687]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - {bat-bmg-2}:        [INCOMPLETE][9] ([Intel XE#2874] / [Intel XE#2998]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+    - bat-dg2-oem2:       [INCOMPLETE][11] ([Intel XE#2874]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2687]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#2998]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8076 -> IGT_8077
+  * Linux: xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519 -> xe-pw-140065v2
+
+  IGT_8076: e511df10a1201d0d83c03ccbcabc3d57191e5f8e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519: 12e4970af1ecdeb76e94df2daf51a9c3d6b9f519
+  xe-pw-140065v2: 140065v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/index.html
+
+--===============6571491862170014031==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add caller info to xe_gt_reset_async (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140065/">https://patchwork.freedesktop.org/series/140065/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519_BAT -&gt; xe-pw-140065v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-140065v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687">Intel XE#2687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998">Intel XE#2998</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140065v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8076 -&gt; IGT_8077</li>
+<li>Linux: xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519 -&gt; xe-pw-140065v2</li>
+</ul>
+<p>IGT_8076: e511df10a1201d0d83c03ccbcabc3d57191e5f8e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2072-12e4970af1ecdeb76e94df2daf51a9c3d6b9f519: 12e4970af1ecdeb76e94df2daf51a9c3d6b9f519<br />
+  xe-pw-140065v2: 140065v2</p>
+
+</body>
+</html>
+
+--===============6571491862170014031==--
