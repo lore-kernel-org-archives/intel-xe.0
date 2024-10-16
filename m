@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33AC2D1AD35
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 09:25:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A3BD1AD3A
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 09:48:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB3BE10E6DD;
-	Wed, 16 Oct 2024 09:25:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C53jUAh0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C287410E6DD
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Oct 2024 09:25:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729070713; x=1760606713;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=w6xazLI3TMU2lB+QpfBy+RAJY6mEQrFtckIFPooEVZE=;
- b=C53jUAh0ddFBc2uU6ghi1C3sV2gWtGrPbDNzKhyFwaJ4oJP3b3JAq2ie
- zB3zUM795P/kDLahQU/dIFOtY4xGqGCDJe4RnaWs2nHUnKE8Q8lgk51nv
- Qj++BqkXaAoGReph0FjDosX8PMKHMA6lHgTb0Zw6Koxizwj9odk+iglCd
- anlif58Tjp+XnIYzkZlLsgse+g8q7wAIwHtCZ/pRqO4OzavgqtBntwYmD
- yDuHOxgonZYc+SJYKQi/2gexLpPD8AXifkyESBK1TsjhrTIQhi3iK6Qbi
- VJCuXW0yMIqJuOUIjXZk0rODxZpO0C51SuNHBRAS+BL60sfzfqgFb8vLW A==;
-X-CSE-ConnectionGUID: kjA2eKyUT96w+iwgvTinZg==
-X-CSE-MsgGUID: fVaeqF8TQ4e7p7UoyGmxKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39087656"
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="39087656"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 02:25:13 -0700
-X-CSE-ConnectionGUID: xR+f/htSSzCAv/FwGLrGZA==
-X-CSE-MsgGUID: NvEW7w9XSTmGx3jD/ni72Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="82946587"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.166.105])
- ([10.245.166.105])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 02:25:10 -0700
-Message-ID: <9efef283-9a60-48b4-ac64-0bc997ebdd26@linux.intel.com>
-Date: Wed, 16 Oct 2024 11:25:06 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id E366D10E011;
+	Wed, 16 Oct 2024 09:48:35 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA50310E011;
+ Wed, 16 Oct 2024 09:48:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3712368630473488981=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] drm/xe: Enlarge the invalidation timeout from 150 to
- 500
-To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Jia Yao <jia.yao@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Zongyao Bai <zongyao.bai@intel.com>
-References: <20241015161207.1373401-1-shuicheng.lin@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20241015161207.1373401-1-shuicheng.lin@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_locking/ww=5Fmutex=3A_Adjust_to_?=
+ =?utf-8?q?lockdep_nest=5Flock_requirements_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Oct 2024 09:48:34 -0000
+Message-ID: <172907211482.1273231.15190653387368947823@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241016070554.2888-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20241016070554.2888-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,51 +36,159 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3712368630473488981==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/15/2024 6:12 PM, Shuicheng Lin wrote:
-> There are error messages like below that are occurring during stress testing:
-> "[   31.004009] xe 0000:03:00.0: [drm] ERROR GT0: Global invalidation timeout"
-> Previously it was hitting this 3 with 1000 executions of warm reboot.
-> After raising it to 500, 1000 warm reboot executions passed and it didn't
-> fail.
->
-> Due to the way xe_mmio_wait32() is implemented, the timeout is able to expire
-> early when the register matches the expected value due to the wait increments
-> starting small. So, the larger timeout value should have no effect during
-> normal use cases.
->
-> v2 (Jonathan):
->   - rework the commit message
-> v3 (Lucas):
->   - add conclusive message for the fail rate and test case
-> v4:
->   - add suggested-by
->
-> Suggested-by: Jia Yao <jia.yao@intel.com>
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Tested-by: Zongyao Bai <zongyao.bai@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 962751c966d1..22b572f0612c 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -925,7 +925,7 @@ void xe_device_l2_flush(struct xe_device *xe)
->  	spin_lock(&gt->global_invl_lock);
->  	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
->  
-> -	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
-> +	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 500, NULL, true))
->  		xe_gt_err_once(gt, "Global invalidation timeout\n");
->  	spin_unlock(&gt->global_invl_lock);
->  
+== Series Details ==
+
+Series: locking/ww_mutex: Adjust to lockdep nest_lock requirements (rev5)
+URL   : https://patchwork.freedesktop.org/series/123522/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557_BAT -> xe-pw-123522v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-123522v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#2754])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-dg2-oem2:       [PASS][3] -> [INCOMPLETE][4] ([Intel XE#2874]) +1 other test incomplete
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][5] ([Intel XE#1861]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8075 -> IGT_8076
+  * Linux: xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557 -> xe-pw-123522v5
+
+  IGT_8075: 8075
+  IGT_8076: e511df10a1201d0d83c03ccbcabc3d57191e5f8e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557: 0bebd793802b4eae14c71400e833cda8f91b0557
+  xe-pw-123522v5: 123522v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/index.html
+
+--===============3712368630473488981==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>locking/ww_mutex: Adjust to lockdep nest_lock requirements (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123522/">https://patchwork.freedesktop.org/series/123522/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557_BAT -&gt; xe-pw-123522v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-123522v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v5/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8075 -&gt; IGT_8076</li>
+<li>Linux: xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557 -&gt; xe-pw-123522v5</li>
+</ul>
+<p>IGT_8075: 8075<br />
+  IGT_8076: e511df10a1201d0d83c03ccbcabc3d57191e5f8e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2071-0bebd793802b4eae14c71400e833cda8f91b0557: 0bebd793802b4eae14c71400e833cda8f91b0557<br />
+  xe-pw-123522v5: 123522v5</p>
+
+</body>
+</html>
+
+--===============3712368630473488981==--
