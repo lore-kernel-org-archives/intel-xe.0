@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3E2DD20693
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85786D2069E
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C86010E671;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6C4D10E66F;
 	Wed, 16 Oct 2024 03:25:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLHFyGcB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LEcintfR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94A5A10E65A;
- Wed, 16 Oct 2024 03:25:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1429410E661;
+ Wed, 16 Oct 2024 03:25:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729049101; x=1760585101;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0/WMZvPOHopheOFLZcaLkL05mgv9PLVtBY6jcstOOrU=;
- b=YLHFyGcBH6jBuylPhI4yLG4SiZ3ysz54qtCURRNlv9gYGVkAur2BfqTw
- wlQvmnudSvJr77/H5QKJiR6LV1Wv72Z5csakB3rcSxu5zWQMP+Ekncw7g
- QXNDarC5OiRuOZqhT+rMWXFEhxTmCpIIrdudeRxHrJVK8skmEoh/M9O/E
- JYe8Z5z4lh856KrQWfnvooGkqCdOY/VMOYJPC2r+z4YBMm+kSaZngj0vN
- ohREfVsC3Mu/7Kp6UGkF1QNTHWSXlf/js6rLaZ6ky2AG4tZCafDdyJLu7
- E1ACcbqd4DaJcmx03hRbtxF7L5LKVvL9RRLY3UQYr9202FcMn1/kN7s49 Q==;
-X-CSE-ConnectionGUID: JOWhFSUFTiaWnmXVAjLU/A==
-X-CSE-MsgGUID: 10XpccESQoO1GR3LISsADA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056454"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056454"
+ bh=bUN4jq1o+rYB1ezfVgEu1kXGEgKTqubBrkkHBcJyFu4=;
+ b=LEcintfRxyxDiUqcNXLJPXkcOQi8gxSMCXAJ/0fTzphDPVbcnEPRl3kL
+ NTSt8dsCvxQpaleVZo44KN1RAkglODE37j7XiuWZHDgnLoPJmc1QpFNNP
+ 76knvzpalWjgwqEN/0EbtpMOb1XxTBM776G193ow7JJlbf09cstmbZwtB
+ JcR4C/LVrrUzIepAKbmWKC7DMYp8mi0wBvoRsEYomoWI567r/jTXrTZg+
+ feKnrKxKcHGVXczfGKua0DJ/NFEqbTGVleWaCO5UpxBBTBm3ZmJYOe2x3
+ imqX8pQObGirCAlBH6HE++856vztZ+x3nsrG5HUkEt08KmQbefWqX9Wvl w==;
+X-CSE-ConnectionGUID: sj0QVJPWQ8S6SGa1akVmrQ==
+X-CSE-MsgGUID: 6v84oK3HT6Km/ZjepOwnfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056497"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056497"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:59 -0700
-X-CSE-ConnectionGUID: gvFcycOKTdyEFRdY4Hx1jQ==
-X-CSE-MsgGUID: Lh07rNieRVuo5bR0oo9FhQ==
+X-CSE-ConnectionGUID: +a5dXW9eTb+VRRfQFvcqJA==
+X-CSE-MsgGUID: aEE0CD9RTs2Tg1vKO7mTSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930271"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930281"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:58 -0700
@@ -47,14 +47,13 @@ To: intel-xe@lists.freedesktop.org,
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 20/29] drm/xe: Add drm_pagemap ops to SVM
-Date: Tue, 15 Oct 2024 20:25:09 -0700
-Message-Id: <20241016032518.539495-21-matthew.brost@intel.com>
+Subject: [PATCH v2 29/29] drm/doc: gpusvm: Add GPU SVM documentation
+Date: Tue, 15 Oct 2024 20:25:18 -0700
+Message-Id: <20241016032518.539495-30-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,90 +69,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-Add support for mapping device pages to Xe SVM.
+Add documentation for agree upon GPU SVM design principles, current
+status, and future plans.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  7 +++++++
- drivers/gpu/drm/xe/xe_svm.c          | 30 ++++++++++++++++++++++++++++
- 2 files changed, 37 insertions(+)
+ Documentation/gpu/rfc/gpusvm.rst | 70 ++++++++++++++++++++++++++++++++
+ Documentation/gpu/rfc/index.rst  |  4 ++
+ 2 files changed, 74 insertions(+)
+ create mode 100644 Documentation/gpu/rfc/gpusvm.rst
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 2ac5de7751c9..72264f9f64d7 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -12,6 +12,8 @@
- #include <drm/drm_file.h>
- #include <drm/ttm/ttm_device.h>
+diff --git a/Documentation/gpu/rfc/gpusvm.rst b/Documentation/gpu/rfc/gpusvm.rst
+new file mode 100644
+index 000000000000..2d3f79a6c30a
+--- /dev/null
++++ b/Documentation/gpu/rfc/gpusvm.rst
+@@ -0,0 +1,70 @@
++===============
++GPU SVM Section
++===============
++
++Agreed upon design principles
++=============================
++
++* migrate_to_ram path
++	* Rely on core MM concepts (migration ptes, page refs, and page locking)
++	  only
++	* No driver specific locks other than locks for hardware interaction in
++	  this path
++	* Partial migration is supported
++	* Driver handles mixed migrations via retry loops rather than locking
++* Eviction
++	* Only looking at physical memory datastructures and locks
++	* No looking at mm/vma structs or relying on those being locked
++* GPU fault side
++	* mmap_read only used around core MM functions which require this lock
++	* Big retry loop to handle all races with the mmu notifier under the gpu
++	  pagetable locks/mmu notifier range lock/whatever we end up calling
++          those
++	* Races (especially against concurrent eviction/migrate_to_ram) should
++	  not be handled on the fault side by trying to hold locks
++* Physical memory to virtual backpointer
++	* Does not work, no pointers from physical memory to virtual should
++	  exist
++* GPU pagetable locking
++	* Notifier lock only protects range tree, pages, pagetable entries, and
++	  mmu notifier seqno tracking, it is not a global lock to protect
++          against races
++	* All races handled with big retry as mentioned above
++
++Overview of current design
++==========================
++
++Current design is simple as possible to get a working basline in which can built
++upon.
++
++.. kernel-doc:: drivers/gpu/drm/xe/drm_gpusvm.c
++   :doc: Overview
++   :doc: Locking
++   :doc: Migrataion
++   :doc: Partial Unmapping of Ranges
++   :doc: Examples
++
++Possible future design features
++===============================
++
++* Concurrent GPU faults
++	* CPU faults are concurrent so makes sense to have concurrent GPU faults
++	* Should be possible with fined grained locking in the driver GPU
++	  fault handler
++	* No expected GPU SVM changes required
++* Ranges with mixed system and device pages
++	* Can be added if required to drm_gpusvm_get_pages fairly easily
++* Multi-GPU support
++	* Work in progress and patches expected after initially landing on GPU
++	  SVM
++	* Ideally can be done with little to no changes to GPU SVM
++* Drop ranges in favor of radix tree
++	* May be desirable for faster notifiers
++* Compound device pages
++	* Nvidia, AMD, and Intel all have agreed expensive core MM functions in
++	  migrate device layer are a performance bottleneck, having compound
++	  device pages should help increase performance by reducing the number
++	  of these expensive calls
++* Higher order dma mapping for migration
++	* 4k dma mapping adversely affects migration performance on Intel
++	  hardware, higher order (2M) dma mapping should help here
+diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+index 476719771eef..396e535377fb 100644
+--- a/Documentation/gpu/rfc/index.rst
++++ b/Documentation/gpu/rfc/index.rst
+@@ -16,6 +16,10 @@ host such documentation:
+ * Once the code has landed move all the documentation to the right places in
+   the main core, helper or driver sections.
  
-+#include "drm_pagemap.h"
++.. toctree::
 +
- #include "xe_devcoredump_types.h"
- #include "xe_heci_gsc.h"
- #include "xe_lmtt_types.h"
-@@ -106,6 +108,11 @@ struct xe_mem_region {
- 	void __iomem *mapping;
- 	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
- 	struct dev_pagemap pagemap;
-+	/**
-+	 * @dpagemap: The struct drm_pagemap of the ZONE_DEVICE memory
-+	 * pages of this tile.
-+	 */
-+	struct drm_pagemap dpagemap;
- 	/**
- 	 * @hpa_base: base host physical address
- 	 *
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index b33fd42d035b..4f01941b2cc2 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -431,6 +431,32 @@ static const u64 fault_chunk_sizes[] = {
- 	SZ_4K,
- };
++    gpusvm.rst
++
+ .. toctree::
  
-+static struct drm_pagemap_dma_addr
-+xe_drm_pagemap_map_dma(struct drm_pagemap *dpagemap,
-+		       struct device *dev,
-+		       struct page *page,
-+		       unsigned int order,
-+		       enum dma_data_direction dir)
-+{
-+	struct device *pgmap_dev = dpagemap->dev;
-+	dma_addr_t addr;
-+	enum drm_interconnect_protocol prot;
-+
-+	if (pgmap_dev == dev) {
-+		addr = xe_mem_region_page_to_dpa(page_to_mr(page), page);
-+		prot = XE_INTERCONNECT_VRAM;
-+	} else {
-+		addr = DMA_MAPPING_ERROR;
-+		prot = 0;
-+	}
-+
-+	return drm_pagemap_dma_addr_encode(addr, prot, order, dir);
-+}
-+
-+static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
-+	.map_dma = xe_drm_pagemap_map_dma,
-+};
-+
- int xe_svm_init(struct xe_vm *vm)
- {
- 	spin_lock_init(&vm->svm.garbage_collector.lock);
-@@ -572,6 +598,10 @@ int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr)
- 	mr->pagemap.ops = drm_gpusvm_pagemap_ops_get();
- 	mr->pagemap.owner = xe_svm_devm_owner(xe);
- 	addr = devm_memremap_pages(dev, &mr->pagemap);
-+
-+	mr->dpagemap.dev = dev;
-+	mr->dpagemap.ops = &xe_drm_pagemap_ops;
-+
- 	if (IS_ERR(addr)) {
- 		devm_release_mem_region(dev, res->start, resource_size(res));
- 		ret = PTR_ERR(addr);
+     i915_gem_lmem.rst
 -- 
 2.34.1
 
