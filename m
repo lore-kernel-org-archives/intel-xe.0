@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35A8CD2069B
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED05AD20697
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38F2410E670;
-	Wed, 16 Oct 2024 03:25:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7648110E65A;
+	Wed, 16 Oct 2024 03:25:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lzS/pFMg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9DKV7lZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC8EA10E65A;
- Wed, 16 Oct 2024 03:25:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A474E10E649;
+ Wed, 16 Oct 2024 03:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729049101; x=1760585101;
+ t=1729049098; x=1760585098;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=h2evK/5DBRBfRJ+ldw/Gfm5vxi1D3heD5gJw9vcczOA=;
- b=lzS/pFMglIcg5vcJkfrnq0B80vWzQONiqTCB5sbai4AHhNh5bEv7UHdE
- TLuE1AN06KlLX34efcpdfOpvO5Jp5M/AiG12yvEN5anqDgbyPuj7ZRfcz
- NxApoeLZo7TiyqJelodXXbGElvj13UV9IVYxPkCyybskn/1CAhPylIDvH
- vLb/HiyiDN14dxocex2PiA32vWCGa0ZQd9Jv0PNnuq2EM2mbBu3nWvMpW
- xF5MC0kCj4//OWxehL8iXcWW7EjE3JziPiibW9cWPFHXekicPdd4fQ9vI
- r0xxfYsw0DP4LKXsqirOUbRCz520eckqakjVheJWBojtqPC3bRRgz2Gsf Q==;
-X-CSE-ConnectionGUID: Xamk1HmNRPSxLjdCu6Tf4w==
-X-CSE-MsgGUID: KiyAKXUiTSaSj5IMkgef6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056474"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056474"
+ bh=eRd+5+tAX4zMxXXCYWmdLl42ThwbYqoNgUGSEaU+eBw=;
+ b=g9DKV7lZGSKdSWJlbbLemadDVtmKFtb0rd39lg4fGZNIQwJYUPa87jI9
+ 4rpLLf2sHv7JJyV4EKWVowNob24Cr5ILz/gvOS4xvcWaQXK6vP45WwC4L
+ uGLuLMIbLIxH+XKw1tBFZ93RLSyNNnR5Qhrc9bOI4czgiwMoxpT3SvGoz
+ S1ISRyDjXovjPN8R7gEKRdc4FL9YWVHWajFlD5whYJQW7ljk9YPUy+cV5
+ tgXuA/+aHpHbvHk/w+Q74Mzsz9l9iiQeXLx+JWWr76nzt1vLTkX58SPsP
+ 3L3Ow0XseIOOkDXsQprYxwsvPHd1Uns+wIFJ0IwSDvvJIzB8EB60/7qUr Q==;
+X-CSE-ConnectionGUID: K7YxcCBOT5Cfs6fWZeBysg==
+X-CSE-MsgGUID: Tf5t3odHRhq0hid9hhfJQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056335"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056335"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:59 -0700
-X-CSE-ConnectionGUID: R/kTC2jTSAqsX/CE8fFw1g==
-X-CSE-MsgGUID: PvIWz52LR+m4ToyM1yE4Nw==
+ 15 Oct 2024 20:24:57 -0700
+X-CSE-ConnectionGUID: A0uaQJEDSAu5moJ+K+YbJw==
+X-CSE-MsgGUID: Hhxt9dBCRkC3VTlP2xWx/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930277"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930251"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:58 -0700
+ 15 Oct 2024 20:24:57 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 25/29] drm/xe: Basic SVM BO eviction
-Date: Tue, 15 Oct 2024 20:25:14 -0700
-Message-Id: <20241016032518.539495-26-matthew.brost@intel.com>
+Subject: [PATCH v2 02/29] mm/migrate: Add migrate_device_prepopulated_range
+Date: Tue, 15 Oct 2024 20:24:51 -0700
+Message-Id: <20241016032518.539495-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
@@ -69,106 +69,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wire xe_bo_move to GPUSVM migration to SRAM with trylocking of mmap
-lock.
+Add migrate_device_prepoluated_range which prepares an array of
+pre-populated device pages for migration.
 
 v2:
- - Use xe_svm_bo_evict
- - Drop bo->range
+ - s/migrate_device_vma_range/migrate_device_prepopulated_range
+ - Drop extra mmu invalidation (Vetter)
 
+Cc: Andrew Morton <akpm@linux-foundation.org>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c  | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.c |  5 +++++
- drivers/gpu/drm/xe/xe_svm.h |  3 +++
- 3 files changed, 28 insertions(+)
+ include/linux/migrate.h |  1 +
+ mm/migrate_device.c     | 35 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index dbd03383878e..17d158762e03 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -25,6 +25,7 @@
- #include "xe_pm.h"
- #include "xe_preempt_fence.h"
- #include "xe_res_cursor.h"
-+#include "xe_svm.h"
- #include "xe_trace_bo.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
-@@ -250,6 +251,8 @@ int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
- static void xe_evict_flags(struct ttm_buffer_object *tbo,
- 			   struct ttm_placement *placement)
- {
-+	struct xe_bo *bo;
-+
- 	if (!xe_bo_is_xe_bo(tbo)) {
- 		/* Don't handle scatter gather BOs */
- 		if (tbo->type == ttm_bo_type_sg) {
-@@ -261,6 +264,12 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
- 		return;
- 	}
+diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+index 002e49b2ebd9..9146ed39a2a3 100644
+--- a/include/linux/migrate.h
++++ b/include/linux/migrate.h
+@@ -229,6 +229,7 @@ void migrate_vma_pages(struct migrate_vma *migrate);
+ void migrate_vma_finalize(struct migrate_vma *migrate);
+ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
+ 			unsigned long npages);
++int migrate_device_prepopulated_range(unsigned long *src_pfns, unsigned long npages);
+ void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
+ 			unsigned long npages);
+ void migrate_device_finalize(unsigned long *src_pfns,
+diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+index 9cf26592ac93..f163c2131022 100644
+--- a/mm/migrate_device.c
++++ b/mm/migrate_device.c
+@@ -924,6 +924,41 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
+ }
+ EXPORT_SYMBOL(migrate_device_range);
  
-+	bo = ttm_to_xe_bo(tbo);
-+	if (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC) {
-+		*placement = sys_placement;
-+		return;
-+	}
++/**
++ * migrate_device_prepopulated_range() - migrate device private pfns to normal memory.
++ * @src_pfns: pre-popluated array of source device private pfns to migrate.
++ * @npages: number of pages to migrate.
++ *
++ * Similar to migrate_device_range() but supports non-contiguous pre-popluated
++ * array of device pages to migrate.
++ */
++int migrate_device_prepopulated_range(unsigned long *src_pfns, unsigned long npages)
++{
++	unsigned long i;
 +
- 	/*
- 	 * For xe, sg bos that are evicted to system just triggers a
- 	 * rebind of the sg list upon subsequent validation to XE_PL_TT.
-@@ -738,6 +747,17 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		}
- 	}
- 
-+	if (!move_lacks_source && (bo->flags & XE_BO_FLAG_SYSTEM_ALLOC) &&
-+	    new_mem->mem_type == XE_PL_SYSTEM) {
-+		ret = xe_svm_bo_evict(bo);
-+		if (!ret) {
-+			drm_dbg(&xe->drm, "Evict system allocator BO success\n");
-+			ttm_bo_move_null(ttm_bo, new_mem);
++	for (i = 0; i < npages; i++) {
++		struct page *page = pfn_to_page(src_pfns[i]);
++
++		if (!get_page_unless_zero(page)) {
++			src_pfns[i] = 0;
++			continue;
 +		}
 +
-+		goto out;
++		if (!trylock_page(page)) {
++			src_pfns[i] = 0;
++			put_page(page);
++			continue;
++		}
++
++		src_pfns[i] = migrate_pfn(src_pfns[i]) | MIGRATE_PFN_MIGRATE;
 +	}
 +
- 	if (!move_lacks_source &&
- 	    ((old_mem_type == XE_PL_SYSTEM && resource_is_vram(new_mem)) ||
- 	     (mem_type_is_vram(old_mem_type) &&
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 31b80cde15c4..555bc71ae523 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -752,3 +752,8 @@ int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr)
- 		 tile->id, mr->io_start, mr->io_start + mr->usable_size, res);
- 	return 0;
- }
++	migrate_device_unmap(src_pfns, npages, NULL);
 +
-+int xe_svm_bo_evict(struct xe_bo *bo)
-+{
-+	return drm_gpusvm_evict_to_ram(&bo->devmem_allocation);
++	return 0;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 6893664dae70..5b9d5ac9ef72 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -11,6 +11,7 @@
- 
- #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
- 
-+struct xe_bo;
- struct xe_mem_region;
- struct xe_tile;
- struct xe_vm;
-@@ -35,6 +36,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 			    bool atomic);
- bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
- 
-+int xe_svm_bo_evict(struct xe_bo *bo);
++EXPORT_SYMBOL(migrate_device_prepopulated_range);
 +
- static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- {
- 	return drm_gpusvm_range_pages_valid(range->base.gpusvm, &range->base);
+ /*
+  * Migrate a device coherent folio back to normal memory. The caller should have
+  * a reference on folio which will be copied to the new folio if migration is
 -- 
 2.34.1
 
