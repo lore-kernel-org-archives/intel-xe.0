@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A104FD1AD43
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 11:32:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53110D1AD48
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 11:32:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C12010E2DA;
-	Wed, 16 Oct 2024 11:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF1810E2E7;
+	Wed, 16 Oct 2024 11:32:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AmN6ZjZe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OxXmG0op";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8003710E2DA
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Oct 2024 11:32:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D73E010E2DA
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Oct 2024 11:32:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729078346; x=1760614346;
+ t=1729078349; x=1760614349;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=viB42UoqVLCCSC7jIqI/uX3PX5ZjgHhFQ1kmTnK5+gs=;
- b=AmN6ZjZeuwHjkPTBUQHWTr7s71Kg7/FmaVnd35wgxQf2iSi0nUg8TJ9n
- b02IBgnf7DRzW2tpW6CFtlzLCk1lwDz0YliyEqRIX95mlv9lK7d5FRF7W
- SaufW4uyiJ/7kh3Dv0WauZ78S2hBOJLDi4GJEaq6L4wUM2aUQC/H2a85m
- JdShEGtA7i2GeBDKec6NqmSFt6gAx4CjJUCB2hmHzXdLy+JmUwEClc/2L
- qnAvT0972sMY+z+R2Hk0PzcEZ7RQyLJiriXSZvN9FcSpeS4z6aJrcAVCu
- UZqYHvrMzfxGylYXQecR6BkJx7KB4pBYNf49/reAec7rccEr43jZ+RSaR Q==;
-X-CSE-ConnectionGUID: sV/4BrkyQDy0DsGIMZrl3Q==
-X-CSE-MsgGUID: bP+qBvVpT3m7kfygVFB7Lw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28472513"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28472513"
+ bh=FcVv71Mx/UuXNrxP1khmfFbNSUa8LiOi4bfNRNEawEI=;
+ b=OxXmG0opTEpPGSMlwP+V280q+KKa+qj+2eoqmYEK7TC+Pgi/GklNrSS9
+ 31kejOxMoh9u0qUAqM7p/dKs2mcdCxhCAD1YRKWcPxgsUINqD4H2fmIk8
+ 57qWiWx7lTHBPyUhbF9OcbZv769jw32XDD4Gnct1CTlX7NnVyrxD5p9f5
+ jYtJT0+dh8ry/RJ7elQllvZc01H+sIoMkka4VH+VECx9uIHDVrLp+LREU
+ Im2PFHlVKg8FE1Ev5TuC/KWTDAFC0pLC56dnHCAJ75T3IfvbVWQurwA8n
+ iapGJ/BN54B+Y8zJaT1I3t1X1MskgPVu4+NqlPuk3Olfx+IimXzzfulAL A==;
+X-CSE-ConnectionGUID: INzDiH53QkGthksH3hKuhg==
+X-CSE-MsgGUID: tFJnwqOYSKSqiq00sf3c6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28472519"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28472519"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 04:32:26 -0700
-X-CSE-ConnectionGUID: n1WlAX8jTNKJd8gIpM5PJg==
-X-CSE-MsgGUID: DK9JDrwDSMSSuukkghMt4Q==
+ 16 Oct 2024 04:32:28 -0700
+X-CSE-ConnectionGUID: jiYq/AMhR3q8J+lAbGrreQ==
+X-CSE-MsgGUID: vRty0UThTzewARFskom0zg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="108941599"
+X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="108941613"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.59])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 04:32:24 -0700
+ 16 Oct 2024 04:32:26 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, john.c.harrison@intel.com,
  rodrigo.vivi@intel.com, matthew.brost@intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH v2 1/2] drm/xe/guc/ct: Increase wait timeout for g2h response
-Date: Wed, 16 Oct 2024 17:22:55 +0530
-Message-Id: <20241016115256.349791-2-badal.nilawar@intel.com>
+Subject: [PATCH v2 2/2] drm/xe/guc/ct: Flush g2h worker in case of g2h
+ response timeout
+Date: Wed, 16 Oct 2024 17:22:56 +0530
+Message-Id: <20241016115256.349791-3-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016115256.349791-1-badal.nilawar@intel.com>
 References: <20241016115256.349791-1-badal.nilawar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,12 +70,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Occasionally, the G2H worker starts running after a delay of more than
-a second even after being queued and activated by the Linux workqueue
-subsystem.
-To prevent G2H timeout errors, the wait timeout is being increased.
+In case if g2h worker doesn't get opportunity to within specified
+timeout delay then flush the g2h worker explicitly.
 
-v2: Add comment to describe this change with TODO (Matt B/John H)
+v2:
+  - Describe change in comment and add TODO (Matt B/John H)
+  - Add xe_gt_warn on fence done after G2H flush (John H)
 
 Closes: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1620
 Closes: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2902
@@ -83,32 +85,35 @@ Cc: Matthew Auld <matthew.auld@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index c7673f56d413..3096baa4c9f4 100644
+index 3096baa4c9f4..c4e06d6722f0 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1016,7 +1016,17 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		return ret;
- 	}
+@@ -1028,6 +1028,21 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
  
--	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
+ 	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ * 3);
+ 
 +	/*
-+	 * Occasionally it is seen that the G2H worker starts running after a delay of more than
-+	 * a second even after being queued and activated by the Linux workqueue subsystem. This
-+	 * leads to G2H timeout error. This is seen especially while running xe_pm and gt reset
-+	 * flow which uses xe_guc_ct_send_recv(). To prevent G2H timeout errors, the wait timeout
-+	 * is being increased.
++	 * Explicitly flush g2h_worker if it hasn’t had the chance to run after being queued due
++	 * to delays in workqueue scheduling.
 +	 *
-+	 * TODO: Reduce the timeout Once workqueue scheduling delay issue root caused and fixed.
++	 * TODO: Drop this change once workqueue scheduling delay issue root caused and fixed.
 +	 */
++	if (!ret) {
++		flush_work(&ct->g2h_worker);
++		if (g2h_fence.done) {
++			xe_gt_warn(gt, "G2H fence %u, action %04x, done %s after G2H flush\n",
++				   g2h_fence.seqno, action[0], str_yes_no(g2h_fence.done));
++			ret = 1;
++		}
++	}
 +
-+	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ * 3);
- 
  	/*
  	 * Ensure we serialize with completion side to prevent UAF with fence going out of scope on
+ 	 * the stack, since we have no clue if it will fire after the timeout before we can erase
 -- 
 2.34.1
 
