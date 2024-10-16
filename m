@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC82DD206AB
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 07:52:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 080A6D206AC
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 07:52:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C94D10E123;
-	Wed, 16 Oct 2024 07:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE03310E123;
+	Wed, 16 Oct 2024 07:52:25 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3EE910E123;
- Wed, 16 Oct 2024 07:52:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E694910E123;
+ Wed, 16 Oct 2024 07:52:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?plane_property_for_async_supported_modifiers?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_plane?=
+ =?utf-8?q?_property_for_async_supported_modifiers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 16 Oct 2024 07:52:01 -0000
-Message-ID: <172906512172.1272578.2663277020284981232@2413ebb6fbb6>
+Date: Wed, 16 Oct 2024 07:52:24 -0000
+Message-ID: <172906514493.1272578.14797435148202917760@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241016053626.2850384-1-arun.r.murthy@intel.com>
 In-Reply-To: <20241016053626.2850384-1-arun.r.murthy@intel.com>
@@ -44,13 +44,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: plane property for async supported modifiers
 URL   : https://patchwork.freedesktop.org/series/140037/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0bebd793802b drm-tip: 2024y-10m-16d-06h-40m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: plane property for async supported modifiers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1057af4d57f072100a90999e99fe633b70e3f62d
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Wed Oct 16 11:06:26 2024 +0530
+
+    drm/i915/display: plane property for async supported modifiers
+    
+    Create a i915 private plane property for sharing the async supported
+    modifiers to the user.
+    UMD related discussion requesting the same
+    https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch 0bebd793802b4eae14c71400e833cda8f91b0557 drm-intel
+1057af4d57f0 drm/i915/display: plane property for async supported modifiers
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
+
+total: 0 errors, 1 warnings, 0 checks, 122 lines checked
 
 
