@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A6A3D206A2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02E7ED2069A
 	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE4F10E672;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C87F10E676;
 	Wed, 16 Oct 2024 03:25:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XlCKMnWp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXMvGJPV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59DA710E652;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA87D10E652;
  Wed, 16 Oct 2024 03:25:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729049100; x=1760585100;
+ t=1729049101; x=1760585101;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DqXx+tHQx5aFwqC8s4xirhuMVV7bWDu0Qh7dnKRf8f4=;
- b=XlCKMnWpcPBlq+X3LTgcyeI98zM40J8gt3f2+WnnBk+hRNcNxwZihooa
- MmpZ14lzRETkceo0yp7pfjSoy5zehr/ouQFlYHA1PMERXeHAl65BMeL6d
- wLDKpyo/qNwWQhZ3MJ1sLvNXnwpPwLAlsILd+8k9+6E8oHpIGegj9Nv3a
- JGystK07JLaR1qvPfWNTxWupH4ynlZcVs9mkJ3SI+5QPM58awBVegcMIE
- ekF3MGj7jEGqYAad3mOHr2HbiZlP+VPZ1O5BRBdnaXoVvHmCPzHfedvet
- joKflfa67y/txagV7KuuYNetFFRa50nHSQP/6mh5g5nRwQ10NHmk4fDvy A==;
-X-CSE-ConnectionGUID: N2KuuN5LS1iFoz1ty7qdcQ==
-X-CSE-MsgGUID: ahp8N/NgSQSs/O6svcbFXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056436"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056436"
+ bh=1Rhq0od1gt2wuUofhIwYc5H7ttqJYEzdoRIRFxCTNX8=;
+ b=EXMvGJPVDZiwbv2TKUGn2oARgfLsCdZ5ADd9bO3TLhwxTxMdk0+JFqZr
+ YUZsik8uvZ6CAgra46ZPDXF9oOIzHkaIt2MTwoFCKTsqwHMIJHztRKJet
+ dbu2U0WcBjPDgKD1F8ESw6+Ahweyus5R9RUdaEN4qsq5IbX3kgO35ZWjU
+ /6z9vY2ofS0akfZ1zh6n280Mq4+xeZKEiAVTpjdyTc0/MKOowlH7ZlbOI
+ I47AqqWxgEbXaTEexOZ4Eh9sFp94gQVLX/xzJGIBDwtvppsavRKNvGsq4
+ 1rixJsz65gCDzOiEj9q8MZnKSqmbZk0VyahDgey5NPLn3/H0UV+8TnQPy A==;
+X-CSE-ConnectionGUID: wkz4ncrrSDy2VshvvG5DdA==
+X-CSE-MsgGUID: xZPPg0ETQF62yn4qzQEVsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056457"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056457"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:59 -0700
-X-CSE-ConnectionGUID: gzBdbpwhRXmsusa9va/Lsw==
-X-CSE-MsgGUID: vtR/01LcTqWuyahe73u0AA==
+X-CSE-ConnectionGUID: 9VTIUnhhSP2StqYDpKMfHw==
+X-CSE-MsgGUID: SyISU9A9T4udhJtI0mtNow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930269"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930274"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:58 -0700
@@ -47,9 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 18/29] drm/xe: Add drm_gpusvm_devmem to xe_bo
-Date: Tue, 15 Oct 2024 20:25:07 -0700
-Message-Id: <20241016032518.539495-19-matthew.brost@intel.com>
+Subject: [PATCH v2 22/29] drm/xe: Add Xe SVM devmem_release vfunc
+Date: Tue, 15 Oct 2024 20:25:11 -0700
+Message-Id: <20241016032518.539495-23-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
@@ -69,36 +69,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add drm_gpusvm_devmem to xe_bo. Required to enable SVM migrations.
+Implement with a simple BO put.
+
+v2:
+ - Use new drm_gpusvm_devmem_ops
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo_types.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 13c6d8a69e91..54d337004621 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -8,6 +8,8 @@
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 19fcb8f71791..976b4ce15db4 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -5,6 +5,7 @@
  
- #include <linux/iosys-map.h>
+ #include "drm_gpusvm.h"
  
-+#include "drm_gpusvm.h"
++#include "xe_bo.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
+ #include "xe_pt.h"
+@@ -419,6 +420,11 @@ static struct xe_bo *to_xe_bo(struct drm_gpusvm_devmem *devmem_allocation)
+ 	return container_of(devmem_allocation, struct xe_bo, devmem_allocation);
+ }
+ 
++static void xe_svm_devmem_release(struct drm_gpusvm_devmem *devmem_allocation)
++{
++	xe_bo_put(to_xe_bo(devmem_allocation));
++}
 +
- #include <drm/ttm/ttm_bo.h>
- #include <drm/ttm/ttm_device.h>
- #include <drm/ttm/ttm_execbuf_util.h>
-@@ -74,6 +76,9 @@ struct xe_bo {
- 	 */
- 	u16 cpu_caching;
+ static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
+ {
+ 	return PHYS_PFN(offset + mr->hpa_base);
+@@ -454,6 +460,7 @@ static int xe_svm_populate_devmem_pfn(struct drm_gpusvm_devmem *devmem_allocatio
  
-+	/** @devmem_allocation: SVM device memory allocation */
-+	struct drm_gpusvm_devmem devmem_allocation;
-+
- 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
- 		struct list_head vram_userfault_link;
- 
+ __maybe_unused
+ static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
++	.devmem_release = xe_svm_devmem_release,
+ 	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
+ 	.copy_to_devmem = xe_svm_copy_to_devmem,
+ 	.copy_to_ram = xe_svm_copy_to_ram,
 -- 
 2.34.1
 
