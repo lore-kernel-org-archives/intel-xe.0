@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED05AD20697
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3E2DD20693
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7648110E65A;
-	Wed, 16 Oct 2024 03:25:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C86010E671;
+	Wed, 16 Oct 2024 03:25:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9DKV7lZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLHFyGcB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A474E10E649;
- Wed, 16 Oct 2024 03:24:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A5A10E65A;
+ Wed, 16 Oct 2024 03:25:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729049098; x=1760585098;
+ t=1729049101; x=1760585101;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eRd+5+tAX4zMxXXCYWmdLl42ThwbYqoNgUGSEaU+eBw=;
- b=g9DKV7lZGSKdSWJlbbLemadDVtmKFtb0rd39lg4fGZNIQwJYUPa87jI9
- 4rpLLf2sHv7JJyV4EKWVowNob24Cr5ILz/gvOS4xvcWaQXK6vP45WwC4L
- uGLuLMIbLIxH+XKw1tBFZ93RLSyNNnR5Qhrc9bOI4czgiwMoxpT3SvGoz
- S1ISRyDjXovjPN8R7gEKRdc4FL9YWVHWajFlD5whYJQW7ljk9YPUy+cV5
- tgXuA/+aHpHbvHk/w+Q74Mzsz9l9iiQeXLx+JWWr76nzt1vLTkX58SPsP
- 3L3Ow0XseIOOkDXsQprYxwsvPHd1Uns+wIFJ0IwSDvvJIzB8EB60/7qUr Q==;
-X-CSE-ConnectionGUID: K7YxcCBOT5Cfs6fWZeBysg==
-X-CSE-MsgGUID: Tf5t3odHRhq0hid9hhfJQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056335"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056335"
+ bh=0/WMZvPOHopheOFLZcaLkL05mgv9PLVtBY6jcstOOrU=;
+ b=YLHFyGcBH6jBuylPhI4yLG4SiZ3ysz54qtCURRNlv9gYGVkAur2BfqTw
+ wlQvmnudSvJr77/H5QKJiR6LV1Wv72Z5csakB3rcSxu5zWQMP+Ekncw7g
+ QXNDarC5OiRuOZqhT+rMWXFEhxTmCpIIrdudeRxHrJVK8skmEoh/M9O/E
+ JYe8Z5z4lh856KrQWfnvooGkqCdOY/VMOYJPC2r+z4YBMm+kSaZngj0vN
+ ohREfVsC3Mu/7Kp6UGkF1QNTHWSXlf/js6rLaZ6ky2AG4tZCafDdyJLu7
+ E1ACcbqd4DaJcmx03hRbtxF7L5LKVvL9RRLY3UQYr9202FcMn1/kN7s49 Q==;
+X-CSE-ConnectionGUID: JOWhFSUFTiaWnmXVAjLU/A==
+X-CSE-MsgGUID: 10XpccESQoO1GR3LISsADA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056454"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056454"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:57 -0700
-X-CSE-ConnectionGUID: A0uaQJEDSAu5moJ+K+YbJw==
-X-CSE-MsgGUID: Hhxt9dBCRkC3VTlP2xWx/w==
+ 15 Oct 2024 20:24:59 -0700
+X-CSE-ConnectionGUID: gvFcycOKTdyEFRdY4Hx1jQ==
+X-CSE-MsgGUID: Lh07rNieRVuo5bR0oo9FhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930251"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930271"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:57 -0700
+ 15 Oct 2024 20:24:58 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 02/29] mm/migrate: Add migrate_device_prepopulated_range
-Date: Tue, 15 Oct 2024 20:24:51 -0700
-Message-Id: <20241016032518.539495-3-matthew.brost@intel.com>
+Subject: [PATCH v2 20/29] drm/xe: Add drm_pagemap ops to SVM
+Date: Tue, 15 Oct 2024 20:25:09 -0700
+Message-Id: <20241016032518.539495-21-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,78 +70,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add migrate_device_prepoluated_range which prepares an array of
-pre-populated device pages for migration.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-v2:
- - s/migrate_device_vma_range/migrate_device_prepopulated_range
- - Drop extra mmu invalidation (Vetter)
+Add support for mapping device pages to Xe SVM.
 
-Cc: Andrew Morton <akpm@linux-foundation.org>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- include/linux/migrate.h |  1 +
- mm/migrate_device.c     | 35 +++++++++++++++++++++++++++++++++++
- 2 files changed, 36 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h |  7 +++++++
+ drivers/gpu/drm/xe/xe_svm.c          | 30 ++++++++++++++++++++++++++++
+ 2 files changed, 37 insertions(+)
 
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 002e49b2ebd9..9146ed39a2a3 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -229,6 +229,7 @@ void migrate_vma_pages(struct migrate_vma *migrate);
- void migrate_vma_finalize(struct migrate_vma *migrate);
- int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- 			unsigned long npages);
-+int migrate_device_prepopulated_range(unsigned long *src_pfns, unsigned long npages);
- void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
- 			unsigned long npages);
- void migrate_device_finalize(unsigned long *src_pfns,
-diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index 9cf26592ac93..f163c2131022 100644
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@ -924,6 +924,41 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- }
- EXPORT_SYMBOL(migrate_device_range);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 2ac5de7751c9..72264f9f64d7 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -12,6 +12,8 @@
+ #include <drm/drm_file.h>
+ #include <drm/ttm/ttm_device.h>
  
-+/**
-+ * migrate_device_prepopulated_range() - migrate device private pfns to normal memory.
-+ * @src_pfns: pre-popluated array of source device private pfns to migrate.
-+ * @npages: number of pages to migrate.
-+ *
-+ * Similar to migrate_device_range() but supports non-contiguous pre-popluated
-+ * array of device pages to migrate.
-+ */
-+int migrate_device_prepopulated_range(unsigned long *src_pfns, unsigned long npages)
++#include "drm_pagemap.h"
++
+ #include "xe_devcoredump_types.h"
+ #include "xe_heci_gsc.h"
+ #include "xe_lmtt_types.h"
+@@ -106,6 +108,11 @@ struct xe_mem_region {
+ 	void __iomem *mapping;
+ 	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
+ 	struct dev_pagemap pagemap;
++	/**
++	 * @dpagemap: The struct drm_pagemap of the ZONE_DEVICE memory
++	 * pages of this tile.
++	 */
++	struct drm_pagemap dpagemap;
+ 	/**
+ 	 * @hpa_base: base host physical address
+ 	 *
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index b33fd42d035b..4f01941b2cc2 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -431,6 +431,32 @@ static const u64 fault_chunk_sizes[] = {
+ 	SZ_4K,
+ };
+ 
++static struct drm_pagemap_dma_addr
++xe_drm_pagemap_map_dma(struct drm_pagemap *dpagemap,
++		       struct device *dev,
++		       struct page *page,
++		       unsigned int order,
++		       enum dma_data_direction dir)
 +{
-+	unsigned long i;
++	struct device *pgmap_dev = dpagemap->dev;
++	dma_addr_t addr;
++	enum drm_interconnect_protocol prot;
 +
-+	for (i = 0; i < npages; i++) {
-+		struct page *page = pfn_to_page(src_pfns[i]);
-+
-+		if (!get_page_unless_zero(page)) {
-+			src_pfns[i] = 0;
-+			continue;
-+		}
-+
-+		if (!trylock_page(page)) {
-+			src_pfns[i] = 0;
-+			put_page(page);
-+			continue;
-+		}
-+
-+		src_pfns[i] = migrate_pfn(src_pfns[i]) | MIGRATE_PFN_MIGRATE;
++	if (pgmap_dev == dev) {
++		addr = xe_mem_region_page_to_dpa(page_to_mr(page), page);
++		prot = XE_INTERCONNECT_VRAM;
++	} else {
++		addr = DMA_MAPPING_ERROR;
++		prot = 0;
 +	}
 +
-+	migrate_device_unmap(src_pfns, npages, NULL);
-+
-+	return 0;
++	return drm_pagemap_dma_addr_encode(addr, prot, order, dir);
 +}
-+EXPORT_SYMBOL(migrate_device_prepopulated_range);
 +
- /*
-  * Migrate a device coherent folio back to normal memory. The caller should have
-  * a reference on folio which will be copied to the new folio if migration is
++static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
++	.map_dma = xe_drm_pagemap_map_dma,
++};
++
+ int xe_svm_init(struct xe_vm *vm)
+ {
+ 	spin_lock_init(&vm->svm.garbage_collector.lock);
+@@ -572,6 +598,10 @@ int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr)
+ 	mr->pagemap.ops = drm_gpusvm_pagemap_ops_get();
+ 	mr->pagemap.owner = xe_svm_devm_owner(xe);
+ 	addr = devm_memremap_pages(dev, &mr->pagemap);
++
++	mr->dpagemap.dev = dev;
++	mr->dpagemap.ops = &xe_drm_pagemap_ops;
++
+ 	if (IS_ERR(addr)) {
+ 		devm_release_mem_region(dev, res->start, resource_size(res));
+ 		ret = PTR_ERR(addr);
 -- 
 2.34.1
 
