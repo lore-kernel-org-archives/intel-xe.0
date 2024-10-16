@@ -4,171 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFECCD2069D
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 04:42:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33466D2069D
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 04:46:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE88510E65A;
-	Wed, 16 Oct 2024 04:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1DFB10E67F;
+	Wed, 16 Oct 2024 04:46:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6jbyN9K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3ytFQam";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA11010E65A;
- Wed, 16 Oct 2024 04:42:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1FE710E684;
+ Wed, 16 Oct 2024 04:46:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729053747; x=1760589747;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=/vfA7wqnegc45Ge9Szmy8vSfdE7X+QoRvcpxNfyy0DQ=;
- b=a6jbyN9KND/bIAMgqsVuEaxo1qQ0XRja/uSgZ9A1Os0J3vm1X7SSAkcY
- RAGckIc2ntDy0V9Gjy/fzfAivOJ2kGU4g0GoJFawcuxsC3PoXSgLBtKbD
- A1C3+zOa928tQB/3MTqkF1xjzV5KonHNfPKOhnBu5o+fkdhLUoI2jmP3p
- oS/9kX8vwq7mqoZHbaocUSFDiLtmaiIJ9F2WLKGRO+mPJmunQ2HbTF3wk
- de5CrqTvtm90LKcJMOZ9RgmPWMrAToqoqUQOtWLi1VqMGNcd9cENzNL7e
- PEkuCRoe1vez1WKkl3Um1GvDALBBuRecx3SexyP8lEtCl1SeRpy8ThBy5 g==;
-X-CSE-ConnectionGUID: jwFYV9snRA69Bew/ffiPKw==
-X-CSE-MsgGUID: h1Zyrk2iQL60bRgpWkS2mg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39856093"
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="39856093"
+ t=1729054015; x=1760590015;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=sQNA2qriHbTSuqCusXfQ/WyxYsiw9HS05OjPG83Xy8E=;
+ b=n3ytFQamXZ2RCCuuzdJPUW8SzP+fMQ4x1UwfbBd1FvPfz6MLg82HLRal
+ 32E2BYLtMG4RiVu4AD+fTP0lwwhMtR6bfM240264uJCs7TVmtyRCOePe8
+ vSse2ITQdsWRqD0oI0kUJZeUdvIcrqNzfqp5KDvdLzKD2wuAIKp83L68y
+ JT/JmJ40rIU2d7rmbGqRgTGV+syMyyUXr/y585x8FuQeNPRndtnR0TnO3
+ R9OG37c1yl43ccFWRq3ix6zI3gpNTK7ZQfBvhahVIo+7mZ9xrOpf7SHpM
+ jQRuXz2SIjhejlngr5sihQXHZBk2tV9xsRopIEBQ6OLmb8Q7TMN1zKbAk Q==;
+X-CSE-ConnectionGUID: j700iChFRCqcvxb4DiOALA==
+X-CSE-MsgGUID: uW6fEX2vS6Kw4l4oqIuuew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39856446"
+X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="39856446"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 21:42:26 -0700
-X-CSE-ConnectionGUID: W4yP9ZcMStWiExPKZg0R+w==
-X-CSE-MsgGUID: O9EM77iOQVSoLSrj8RTBFA==
+ 15 Oct 2024 21:46:54 -0700
+X-CSE-ConnectionGUID: 94G1DmiMQfmguI3OcgAl7g==
+X-CSE-MsgGUID: /RTygPR2SDeAwTk4LcDNcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="78000263"
+X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="78001068"
 Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
  by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Oct 2024 21:42:27 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ 15 Oct 2024 21:46:53 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 15 Oct 2024 21:42:25 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 15 Oct 2024 21:42:25 -0700
+ 15.1.2507.39; Tue, 15 Oct 2024 21:46:53 -0700
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 15 Oct 2024 21:42:25 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ 15.1.2507.39 via Frontend Transport; Tue, 15 Oct 2024 21:46:53 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.42) by
  edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 15 Oct 2024 21:42:24 -0700
+ 15.1.2507.39; Tue, 15 Oct 2024 21:46:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AH5s2jzLiFH/PKnMfMECqUDGmEQU8HiEpKkR/02T9MGG/1ZstmxXhAzQ0BlvOuTueqlySzyB2q5DuhGl1sVktdACzf0lyLTHt3BSw84VPunxIbTsUFdvioEJN6RXYYggQuGHHzDZFCrXA+uTixrHezRvBLt9EIlTlnvWlOsXqy+eAHLlJuVx1u680PPMzY8fA4YmuW3k0A58ZlSe0pr3zJzCo18s3VQJN/8A0gcJSx1nIKfgMMlGvCyX9sIjEZCUqQr8V8S/VS+w9IeWKTF3I7KKlCcO8AYLUdyZQv2aHQb/zRZhyES+hbUn4x0anJUfkPdJgyVeW8hlQeyX7TS+Wg==
+ b=FNjBIjwOxEG1qo3ltkqc4w7dZT/LQwbXhOHgGzdLofo2ADVRYuaYutEH9/+/8HpO3uJ3NNmdxdHlyjGu3YpC0sX0bjPc5ymnwdPR+4JyruAreXJJLZWyw1ANrSUu5edhi4QRi/fb3CWRIWdILh7T/aMO4li4avRlFRZ7/0kOzXbZB+37eL5T8XJdZ5CpxnAX4mVkSXR4qsjY/gNdQ3RdCnylniR184rUHsC0ND4jiNC0yYPz9xRutaOURf/5nIwOGtSveFQ3Oy7/yt/pxp4nEXxv/+BDykHd5I6KITrJR3TlFguN+2ssauI0qCxfjGb/aCLDgxMNcRaR81wKGP722g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Pw3lKZX4x4GdQ/lzazf4YjEJSEncIEO2cgjs0yT8CZ8=;
- b=GPxhXon4UfSIxH/lP+Q5iBSLF1X42x/rAY8K2pMxrrZShu7HeGPh7AXO+7s+6QFOFAnhZ/qLdJIeVONnCFl+mCPBik2piPpov2hNORgCeeJdCKrnm39AXhZ+f7/rEAEZwuiHWa/QwPZj4Q9SlQ68R2vtjuDTvEf/oJnlVbAWrd+qv51iTj7RyYZZQkFMM0VdBOOw61bgYAsU0dtt78b4BZYyqyoPFCsv4GroIY4PC8fhc4H/vbdoTYC8kVAa8QVbx6rAZIzTHJL4LrEz5uWuzxuoK/xsNRAx1yZ+LVIMo7sIylRg9th4JQ8biuCqIvbLTkd/4YzJOvmq4B+74g4rCw==
+ bh=6Nb+p35E76f9GGtRokBG88UOUlt/uGV2fVP/JqtvhJU=;
+ b=FmDB2eh0xCaAp40n/eC8Uk4qZqmxzH27jRdPhXC4dAsNgwXKHdTj239UmBXe+lwX/cpo5Uj+mMYGAI4dXqzmb82O7UMYbfJDJlO8H4uMxc8WDSEjL4jpZe99myNfoP8lGK3XjTLNEdRPNkrqiljuw7vhb4SfapuA1fQacJHUZgZhA/3KO4EeoZpIlf+O+YkP0KWo6vgGgP/RwVLjwixXGGFLUH3zOO34lnozB19IjJajrL4nVgI0+PYkxvvn7ZVsVBNEwUTyUdos0h79m5I7CDXD2M4lKH1XAFJzMTcdPSQm/Cx6xC7V2O/jjoN/CsMAoTMG72jkQjfHf36T8CpEaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CY5PR11MB6344.namprd11.prod.outlook.com (2603:10b6:930:3b::6) with
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CH3PR11MB8364.namprd11.prod.outlook.com (2603:10b6:610:174::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.18; Wed, 16 Oct
- 2024 04:42:22 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8048.020; Wed, 16 Oct 2024
- 04:42:22 +0000
-Date: Wed, 16 Oct 2024 04:41:41 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Alistair Popple <apopple@nvidia.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <airlied@gmail.com>, <christian.koenig@amd.com>,
- <thomas.hellstrom@linux.intel.com>, <simona.vetter@ffwll.ch>,
- <felix.kuehling@amd.com>, <dakr@kernel.org>
-Subject: Re: [PATCH v2 03/29] mm/migrate: Trylock device page in do_swap_page
-Message-ID: <Zw9EBRHCZkLvXmZs@DUT025-TGLU.fm.intel.com>
-References: <20241016032518.539495-1-matthew.brost@intel.com>
- <20241016032518.539495-4-matthew.brost@intel.com>
- <87sesw8ziu.fsf@nvdebian.thelocal>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+ 2024 04:46:50 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.8048.020; Wed, 16 Oct 2024
+ 04:46:50 +0000
+Message-ID: <31c2fe01-f1c8-4dc8-a38f-ef20dcf42717@intel.com>
+Date: Wed, 16 Oct 2024 10:16:40 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/lspcon: do not hardcode settle timeout
+To: =?UTF-8?Q?Giedrius_Statkevi=C4=8Dius?= <giedriuswork@gmail.com>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, "Joonas
+ Lahtinen" <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>
+CC: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20241014093914.109162-1-giedriuswork@gmail.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241014093914.109162-1-giedriuswork@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87sesw8ziu.fsf@nvdebian.thelocal>
-X-ClientProxiedBy: SJ0PR05CA0126.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::11) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-ClientProxiedBy: MAXP287CA0002.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a00:49::23) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY5PR11MB6344:EE_
-X-MS-Office365-Filtering-Correlation-Id: 51e5f995-8ac5-455f-a295-08dced9cec9b
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CH3PR11MB8364:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5061367a-392a-4061-1f42-08dced9d8c91
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?AMqvdqvCrWENV5uXTqIpVsiiL+UBG7V+ZHRwf0aKiVhPqfG+UCz83pj6Wj?=
- =?iso-8859-1?Q?OlC+++6zOIEJBXcS5GkMrM2QKziuw+qtAk9DP1DvzrTxf7uLBuYsPddpTG?=
- =?iso-8859-1?Q?Wsnebk6XG2czhxICkNt2K/1fBKl4WCNCi4/0+C6w+4MKOytQP0e9AaYCZ7?=
- =?iso-8859-1?Q?1I9fLnOpyJ7Uu/qSXB1m5LrfJhSds2mFvnQlUUtI/aCwpqMxgUwd9XY/Kc?=
- =?iso-8859-1?Q?/BayYIBiC3Eegu0VQtpyLBnEx1CC5T5NoQCNAEsgDN1/tzi7NTGEIZ88LV?=
- =?iso-8859-1?Q?AWTDKmLF+t6OIa3S34fRvDfHAIuDlikYlzBILlZOyowD6zm+g+NwsOHhvd?=
- =?iso-8859-1?Q?bmvMedbbVSmWfS0M1rVGRlxWgwbzsIVZQDJeH9ymnDx3iHTAn5jCBeqwTO?=
- =?iso-8859-1?Q?SGvn/7Ys9FfjuYeUeLAfkQpVwWAy/O7C81PBk/NZPz301KWMLw24b7/vWw?=
- =?iso-8859-1?Q?sOrT6Dk53F0cdWrnBBVSPqHI6yQ1TuPFNOh6Pc3Cql7ADgnccRDGqPdS5+?=
- =?iso-8859-1?Q?LIttsmLLL5tE6DulOfCx2O2celU6zA8cBUQYJ10r3GyTVcqEoGXChpfiZf?=
- =?iso-8859-1?Q?8Mt/PudfLR4eIJovnYaQxK88S8XpctiEjeCJlnGEDddGTjE330S/EryS0d?=
- =?iso-8859-1?Q?9Y76eLtTLlvJZuPSJwbGMR31/y/YjKJ+TUdyFTZnWktNbn2NBDyCuLVYxK?=
- =?iso-8859-1?Q?lGU7ZlddDUYpscunDMowR9mJ5yleswQcS2aAOV1mYYWP5TTG/YZPhF35f5?=
- =?iso-8859-1?Q?ldr+xgYM2AlCc3QWZ/O3Xvr4uBSAiBPPUQfpenPInEPFHKt31PDVheFqA8?=
- =?iso-8859-1?Q?1hwqMiEI6tOmLahTQ5AEO9cgRyA5P5/uYOpkAk1MKFzV/j4PlWhGXMgI8X?=
- =?iso-8859-1?Q?X0leklP0hy1hb7mUgB0JWX5/keUcvhpTJpyWtqfvuBy+t6KUNYZj438bHQ?=
- =?iso-8859-1?Q?qWQaWkVwGqVEUKr0fZ4ozNt7QFGn9vmUJwdsTOjW6jLpqt84Yvn4oeb+6X?=
- =?iso-8859-1?Q?uWCLB4Mu0ILd3sWUDspXNqEn7Tl6kWGDZYIoGHOi+TgBu2ArSV6IfeAEEQ?=
- =?iso-8859-1?Q?O5rUfAZd0VUcZPKTaVMJcOTsUIXiMsgst+TMmDv0Qss0FBWxLk+vmN+Xsj?=
- =?iso-8859-1?Q?7+YKPY7LJW28F5YEM0TOzO2Tzp9madwrq8WwhbPtgwI7PPaUs4eCvtS7lK?=
- =?iso-8859-1?Q?C3IJTetQinyE0RUpk4jVLJw5BQKARp/5KE0QiybLidAtXPh5pPymaVfdIg?=
- =?iso-8859-1?Q?BQStnubRdrT1jTrHuMlPh9R3UTBZ06OdyvmoXFXvPxd05Svbb0ierX7XTN?=
- =?iso-8859-1?Q?o0Nik5LK0P21muyVBoTpPMwdyw=3D=3D?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|7416014|376014|1800799024|921020; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?d0kxQVhMTjh1aTU2bnFPMitsdFJ5Uy9sMjlYV0szWFdXUlN3WnJjZWhSVG15?=
+ =?utf-8?B?OGZ5aHk2STc5emdDR0JwcE9zQ0h3WlhFU2M4T21IbmZCWmVrS3dvQmhvT21k?=
+ =?utf-8?B?V21qZThsS0RkRzJaSGZnSlhtZnA5NFc3Yk52bGhOeXpVeHlJWUZqNUJCRHZi?=
+ =?utf-8?B?YXBTZlNnOE5wTVdzSC9sOU8yQTh5SGFEc3VIbkI5MDAzZGQ5UHMwdzExdHRu?=
+ =?utf-8?B?dnhTRE5CSEFxYUtWeE1aNmNpM2M1TjRIN1R4YWdTdE52WFkwSWd4MDZqRHJ5?=
+ =?utf-8?B?VHZvcXlsUmc4SC9rSWpuS2d4WGRsOG5hbTNYTW9GaUFxOWRqbHVSdW40eml2?=
+ =?utf-8?B?M1ZLc2hVQ3FSRDdCTzgxcjZMMk5xSFZlZk95cWhUZXVYeEJqdS9EeUhDbUkz?=
+ =?utf-8?B?MDFTeHppWFBhNHBEclZIODBXRlgzQk00YTEvSlU3VUxYSzFEUkZmZzlvTjAz?=
+ =?utf-8?B?MU12OFk5a0Q3RGNNOU9sUTRDZVZvT0g3ZUpqVUFvbnkyR2hUV25pek8raWhn?=
+ =?utf-8?B?Y1U3cXJmMk9EQUx1b012cmhzTDIrNkhmb0VnM0locm1ma1NUSDFYN0psWXZC?=
+ =?utf-8?B?TU1MVHlBTlN2YWRlYUN2d2RKOUZtM3l1YzFlTVdpNXdWc0RNUzhCbnlwUFly?=
+ =?utf-8?B?T29tNHZ1MVVJemRGU2YyekIwYzQwZDlrYlN5MGRjQm5ldGpVTzlvRXRteUUy?=
+ =?utf-8?B?QTFhbW1ydzQwN0xnL1dWS0U1VDZmQUdXeVVZczBHRnlxRVF3c2o4NlBXYmsr?=
+ =?utf-8?B?ZzZ4VmpwYVlPVjVDZ3Q4RTFlb2pwOTFyTDBuM0NXSkhrRUd6STBoWEF3ajVP?=
+ =?utf-8?B?MlQwSllQVllNR1o1TVZXaCt6cXJTOVF2dTFyNVJ1bmovTXJYU1pjbVN0clFG?=
+ =?utf-8?B?aGNUUnVyQmVqODVjR25vVURkQW01YTlWRmpOSHloc2JnWGVOOXptdWZ1MmVi?=
+ =?utf-8?B?NGw1b0w1Qi9JZFU2cDJTcmdHekYra3I1U3k5Y2YzWE9oQmhhT3RNdjRrb2Mx?=
+ =?utf-8?B?enVJWlFxZnIrendjSEZ1Mi92RnhoWTRZc0dVNzZOcmxnM3lhNHdHbVNIdjF0?=
+ =?utf-8?B?aUFFSFJFdHgwVDh4VGdWYnhGL3VuZmZLbmQ2YjRucW5OQUxSZHhyUjJKR1k0?=
+ =?utf-8?B?SUI0SGJQNzhJWnZ3Zk9iNm1Camg3eUg0S2cvcVZ2VnY0MTdJVUNkdFF5eURY?=
+ =?utf-8?B?OWpUeDVlZk9UQ2xsSjc0eTVwZXVQZUtpMlhSditsZ2QvK0Q1eUxwT1lRQkRo?=
+ =?utf-8?B?QnprNy9TYXBOdE1ucUN6a3hBMGlpTS83VHhNNzRqZGdVOHdKaDV1aHRBaTZ0?=
+ =?utf-8?B?VEV3UXlWaG9mak1DbWtpaDEyODY1dkgzTklYL1VPQ3Q0Ym8xOExlNXc2STQ2?=
+ =?utf-8?B?c3NjaHdyRHF5b3Byb3czQnJmNEovTVRXRGxzaTJyZkRhbTJndUVQY252Ti9i?=
+ =?utf-8?B?cGx3dzliYlRhY3MwNTc3QXVZZlhnbEpjcmtsYzJ4c3NncDB4N3dzdjVXdjBh?=
+ =?utf-8?B?aVZHYXVsc0tHd0pRdEphL2thTk1XVFl5SURUeWg1S1NFQUI4dVNuakQyczRT?=
+ =?utf-8?B?UzRHVzZmL0VVQ0xRN08yR1gyQjdjUkpkcTFrd3poTDRzdXF5KzNrb3ZvVVcy?=
+ =?utf-8?B?Mkh6aHZWcTdIalN1SEpJcHd0RWFlVUZHblFwNWVGREp5eHdtL3NJUS92dWNG?=
+ =?utf-8?B?b3lobHpuL292TkdmdnIyOVhabWdLTU5zNmZoRXdhMGJSS1BOZEtoS3hPOUlV?=
+ =?utf-8?Q?cy6EqQyk2tkGNc9mgESCUZZJroUzf7XQTYnJ8IR?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024)(921020); DIR:OUT; SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?M1mqMyLTTQo5+Lvii8tv2IbY+0PSoy9ix2KKVyv81cFAZAJ6mM17BpluEB?=
- =?iso-8859-1?Q?B/gb95aVal8787EZdBSbNXgCciR22ze/nVi0M0cvoo27rtA3MacZeyBUwF?=
- =?iso-8859-1?Q?3T8Npl2SgLPfnbgN1ZwXvn9v6vc6ge4wRfLwETnQtR/oVZay/uFf8F4oiw?=
- =?iso-8859-1?Q?efT+GVom5DGpcEC4JCKzErQUHeX8jvh6pcpC81VceqWjlSKESVtSadlkoZ?=
- =?iso-8859-1?Q?BMwIRSOmdB/fxEU3IF1GbrjvFiFHxtEpXx3b9uWX9Sml+1xCcGnKks0ivf?=
- =?iso-8859-1?Q?dUaGOLwshK5ypZcLjxhFJoTW2LcGs78MCu3SURLVMOkBPYDTwDSgl8y2Yf?=
- =?iso-8859-1?Q?5ZRz7MUeiOJ3T4QTPhsaXiGoMgY+G80oeGfsQsUqFdpcY/HINax9hrMf+x?=
- =?iso-8859-1?Q?gZnotArp4UI5ZlCqoPlNMMx83hTbl0gsq4r4JGm+Gg7WYg6tEAab4qVtHk?=
- =?iso-8859-1?Q?XpsVF0IrvwKcd3TKjbCQqdrySL57iHLzskqeSZchska8r4MsfJ5u5ideWL?=
- =?iso-8859-1?Q?dw93gjjilmoHDmYRn+HoQoWyynNx3qUuO7ukkKUD+xKpplao1SvpRwlKcS?=
- =?iso-8859-1?Q?hHjJ6e0Rubq6dd3JUyZ7I8RsuaWC65E0xFs5CUjqcbKoNfSOkdL0KSImCc?=
- =?iso-8859-1?Q?PMaF5sOcK7e98r+8SjXJLUybdrfC88RZN2z+kYVOGxG/hJwaO9fmRCi2BU?=
- =?iso-8859-1?Q?wwaNGa7NcTabmLXt47KOmGLvFq8UrtL33j2BvtTjDS0HqtB0ItRW3LEtal?=
- =?iso-8859-1?Q?oLJx1rfA4wch7eVuNp6QmiKXv77ZS9B9Zz7+OQ4SBQavXZurRJbuHDYyQV?=
- =?iso-8859-1?Q?lHUZQoqJuzLk3frgWpyNpwF3X8PSs1HXIs5PSBpfdZB9kiK0MqpmbjuI6y?=
- =?iso-8859-1?Q?VnwYHkHQbv5odNy3UyM1D3KqggsgPZ3w5HmXvi99XrI+0uUDTIINMCTLKA?=
- =?iso-8859-1?Q?uayq8hSwNDyhmd/cYa34rYcDVeB2fKKXytGNSLKmupxXGbLyb32jRgiayE?=
- =?iso-8859-1?Q?E922zaURVnvI2njWK6lzfnu7hR5T/BHMfc9kCswNB4LOD4K2WZKRmLjCGL?=
- =?iso-8859-1?Q?ctqSq/JSFPnMAKfMcRCa3GNS9o5JQEU8o8F9+jAjrt06GXudazincBm2iu?=
- =?iso-8859-1?Q?UV6VYEUdRHpWzY7JnWtB92J649jZkFctfFeqOZfrMDrFa8Xdk7hblAlili?=
- =?iso-8859-1?Q?CeOhOvTSeCJVasO8UrQxMCgJ92+bhyFqLPgybrAC3tm2vNEcOJor+UnJ0B?=
- =?iso-8859-1?Q?P8C/aIM7VFQVR0FutMqWGp0G8Tx8wDVXUxWtHW5mHpoZqG2tm37TzYiNFP?=
- =?iso-8859-1?Q?C0vP/WgC5SXLnr5NEp7Xn/JIr3l+k7395oh1ayBFVs9q+BefeIUH6fdaju?=
- =?iso-8859-1?Q?PGYgywb2+2LpHdM9e3EtEM/gi/z8jPiGf+Udc9wfCk2WjGa5eQYT8AdcFH?=
- =?iso-8859-1?Q?K03pdDBBTyVRt3kqZDcfHqMrHY0eUL8jq7Tc4vAN4UvRCyT2JLCKw/fK2U?=
- =?iso-8859-1?Q?/sFFUKG+tn4lEzOt39Fsc2J3jiT+ADhtv4i2jGPnE4/el9Y0jxb3aiXv+0?=
- =?iso-8859-1?Q?bWP7+1X7IxuXdaHpwO6ys+acKKnz1XmTt9H93HZCV1556Q+nugdO3uXJXJ?=
- =?iso-8859-1?Q?/XJ782iUORwVXLVIoVBDQsAAaTvAhBMNOjVN2gJZZ4K+KmSg9uwl4v5w?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51e5f995-8ac5-455f-a295-08dced9cec9b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGdmeGExUWtpaW5pR3ZVTXRVWWVsb2c0ZDZmL0tVbzZNUFlldVBCbXdoV2VM?=
+ =?utf-8?B?NWJpbnQ4YUxuNjRSV3NILzZWdmFlelFncktJeUh1VlNMaHIxTmM3NnNSamFF?=
+ =?utf-8?B?dWtmMmNENFl6emcyUGpoRGFZWnp6NVFtTGVVY3ByUE15YmRPUWMzME05TC9M?=
+ =?utf-8?B?ZjRoZWhrbkUxRysxYVFRQlVxaGZWeUF3TkF0TGtFWXpJWXdia2QrWDBBWFAz?=
+ =?utf-8?B?SW9xa3hKQ1ROOTdTT25wcHFETFNBOXdOV3dkc0o1VFZ1UThOUjUvdXdjUE8w?=
+ =?utf-8?B?cWU1eWcwVjJHc0lxeXIxVFpsZStqOWxtOXBaT0o0YmlSSUxOSHl3R0lTdmF1?=
+ =?utf-8?B?VEVJRC8xQWVYbng1VEVydEZJbjN2bzM3NnpqbDhGcFpXRDRsU3Y1cVgvMzY4?=
+ =?utf-8?B?elk3S1RMS1gxaGdiUWVUTVBqM09CV1owZC9nRXQwV2NXejdUNWl1QjhTU0ll?=
+ =?utf-8?B?bEthN0ErVlRyQ295Nkk2dXhZU0x6ZnRvbGd6bzdnTGU0bG5TUFF2VUtvZmN6?=
+ =?utf-8?B?ZDBmczliOU5jSllUazhSRkdvQzJFekRzV3J5NGVOUmhmN0JlSWFtVmlzd0lK?=
+ =?utf-8?B?RHduck1yWmNCaDdsdFlvWWhYN0tpUjlud2FYN0tud1FpaEFDdjlYaGZEdm1x?=
+ =?utf-8?B?NnpLWnNBUGlmTks4MnlLWkliRE9tT0E0NTJEMGtTUlY5SUJHeW4rM0N1bFNT?=
+ =?utf-8?B?WC9lN3IxY05tVFhCbTRxNlhqS1ZLbTVtYnkxVjI1NlZLTUJWcHdHb2FTd2dK?=
+ =?utf-8?B?Z0FWdjVrVFBlaTliVk11SW43T05YSnM2NGdCekRFUkhHbmJCeDkzTzZYN1Y5?=
+ =?utf-8?B?cHU5TTg3TWFQUzk1eXVydm9Fd1N6K1I0b3hac3pSUXlWSGlibWZHMFJIdThy?=
+ =?utf-8?B?UVNhYVdFS1VQc2Yvc2h3aXNpL2FXdlRIWmJqU1V0RkJNYlQ5empDZUFncy9Q?=
+ =?utf-8?B?NEJ5cDlaaWNzSVN1NHZTYXJHeUVKTGZxZk40RTBIUlczYlRHejZIc3VnVUNm?=
+ =?utf-8?B?NGxMWmpCdVh0MjN1MUpPOGV0SUlnVHI5bHpRWGJrYWZ2OUhjaU52Zm54TmVz?=
+ =?utf-8?B?U1o3OTcyWHI3K29nMndjaFZxNnJBYmpuNjlFWW5hYnA0TFpLNjJLcUp6NUJw?=
+ =?utf-8?B?NGVnRmVOTFQ4SXNkWHJKUkZCVmlRam05Y2Q5OHVtODZzUG1pQ051aGVVV2hl?=
+ =?utf-8?B?L3JXZmJJaHpmdUNaSmRPWFAxYXEyRDk3UnNWZnE2ZUZ0a3I3dFhtbnB5RTJG?=
+ =?utf-8?B?Z2V1QjNRUURwZWN3SWU0ekhrNEw1Z3hDM2RrTllUV1hSN2lEZnF0bnBpYWRR?=
+ =?utf-8?B?ajdyU3dmQ093TTc3RHlsZTh4ZHl1eTY0ZHJjVXpUc2JqOVBjb3RHNnYveENv?=
+ =?utf-8?B?bGRuK3VLcWNUb0d4MGNQYTBQWnV6YzkraTJnUUdReXpjclVMVGcrOEtBenZW?=
+ =?utf-8?B?OURRM3psQzc4bGc2NXFucC81S01hanZaYjF2Wk5Za2hPaU9mbkxBanZuTlpT?=
+ =?utf-8?B?UTNmK1BYeXgvaTZwV3dTV1Q3ZjdiODJ5RzhnUG9wMFJhNkRaMjkvaGhCcjFG?=
+ =?utf-8?B?dmdDY3JWZE9od2I5SEN2Q0phNTJtN2YveFl5TSttd2tsUVlUQ3RLRW8wS0pC?=
+ =?utf-8?B?dkpkUW5oRjJldlBhSDhUK1cwdWJMY0lUN0E2ZkVSVUwyWDJ0YUdoWlRZZGFE?=
+ =?utf-8?B?N09wNFdZR001aDA0RmhqL0FBSUlFbHdoc3ByKzZUaFZ2UUN4cEhtS1AwRlRX?=
+ =?utf-8?B?c3hpRDRsRHlKY0wxYnREVW9mTXltbEduSWdOWWY0NWRVNUpsTTJ4UGtzRXR1?=
+ =?utf-8?B?VTlpanBtc0hnMHQ5cjFnbUw2T1NYbHgvU1dKWVBwSlNTUy9EaVJ6U3E0UExa?=
+ =?utf-8?B?UTZyRzlIVWpGMXZWWS8yVWorTXpLQklBNHNLVFA1a0VRVVNtdERuWlVSb3RO?=
+ =?utf-8?B?M1BVY0Qxd0J1WEF2WE01dllzQUdPZHExL2ljTjNjNHlteW9CVjZhYkEyK1RJ?=
+ =?utf-8?B?MCtOZm92VFhsdFRraHl2eXMwOEorTnBIME10R3FPTks2NnJqVERla29tYWVz?=
+ =?utf-8?B?WnlZeFhTRWRvaGVPZTQ3ZlQxMEk0TEJWNDIrMmVpTllPREc0VGoxZHpCaCtt?=
+ =?utf-8?B?TGwzMnl3dGFxVUZsZkV2TkQyNlk3STNrdnA4QXllQTU1cFdrODRiYTRtZHpH?=
+ =?utf-8?B?amc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5061367a-392a-4061-1f42-08dced9d8c91
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2024 04:42:22.1206 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2024 04:46:50.7345 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /XilQALvVR917dZFvmBeziTcGYAzwJoKR51wHIZebTgAjMyiC698Opyai8JGmfuYh74GxJDlyAue3MdfsU26OA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6344
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9SoImEcI0DkImQXRqkBmQTEfJkFU+tV156oXnSUV4w91Sg2MkR9OQTULFDWzXWL/RWjzF0vUQLJXnP/JbqGyJRzzNkqgncwlQ4BuF9kh444=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8364
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,246 +199,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 16, 2024 at 03:00:08PM +1100, Alistair Popple wrote:
-> 
-> Matthew Brost <matthew.brost@intel.com> writes:
-> 
-> > Avoid multiple CPU page faults to the same device page racing by trying
-> > to lock the page in do_swap_page before taking an extra reference to the
-> > page. This prevents scenarios where multiple CPU page faults each take
-> > an extra reference to a device page, which could abort migration in
-> > folio_migrate_mapping. With the device page being locked in
-> > do_swap_page, the migrate_vma_* functions need to be updated to avoid
-> > locking the fault_page argument.
-> >
-> > Prior to this change, a livelock scenario could occur in Xe's (Intel GPU
-> > DRM driver) SVM implementation if enough threads faulted the same device
-> > page.
-> >
-> > Cc: Philip Yang <Philip.Yang@amd.com>
-> > Cc: Felix Kuehling <felix.kuehling@amd.com>
-> > Cc: Christian K�nig <christian.koenig@amd.com>
-> > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > Suggessted-by: Simona Vetter <simona.vetter@ffwll.ch>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  mm/memory.c         | 13 ++++++---
-> >  mm/migrate_device.c | 69 ++++++++++++++++++++++++++++++---------------
-> >  2 files changed, 56 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/mm/memory.c b/mm/memory.c
-> > index 2366578015ad..b72bde782611 100644
-> > --- a/mm/memory.c
-> > +++ b/mm/memory.c
-> > @@ -4252,10 +4252,15 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
-> >  			 * Get a page reference while we know the page can't be
-> >  			 * freed.
-> >  			 */
-> > -			get_page(vmf->page);
-> > -			pte_unmap_unlock(vmf->pte, vmf->ptl);
-> > -			ret = vmf->page->pgmap->ops->migrate_to_ram(vmf);
-> > -			put_page(vmf->page);
-> > +			if (trylock_page(vmf->page)) {
-> > +				get_page(vmf->page);
-> > +				pte_unmap_unlock(vmf->pte, vmf->ptl);
-> > +				ret = vmf->page->pgmap->ops->migrate_to_ram(vmf);
-> > +				put_page(vmf->page);
-> > +				unlock_page(vmf->page);
-> 
-> I don't think my previous review of this change has really been
-> addressed. Why don't we just install the migration entry here? Seems
-> like it would be a much simpler way of solving this.
-> 
 
-I should have mentioned this in the cover-letter, I haven't got around
-to trying that out yet. Included this existing version for correctness
-but I also think this is not strickly required to merge this series as
-our locking in migrate_to_ram only relies on the core MM locks so
-some thread would eventually win the race and make forward progress.
+On 10/14/2024 3:09 PM, Giedrius Statkevičius wrote:
+> Avoid hardcoding the LSPCON settle timeout because it takes a longer
+> time on certain chips made by certain vendors. Use the function that
+> already exists to determine the timeout.
+>
+> Signed-off-by: Giedrius Statkevičius <giedriuswork@gmail.com>
+> ---
+>   drivers/gpu/drm/display/drm_dp_dual_mode_helper.c | 3 +--
+>   drivers/gpu/drm/i915/display/intel_lspcon.c       | 2 +-
+>   include/drm/display/drm_dp_dual_mode_helper.h     | 2 +-
+>   3 files changed, 3 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c b/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c
+> index 14a2a8473682..ae9d6b93136b 100644
+> --- a/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c
+> @@ -491,11 +491,10 @@ EXPORT_SYMBOL(drm_lspcon_get_mode);
+>    * 0 on success, -error on failure/timeout
+>    */
+>   int drm_lspcon_set_mode(const struct drm_device *dev, struct i2c_adapter *adapter,
+> -			enum drm_lspcon_mode mode)
+> +			enum drm_lspcon_mode mode, int time_out)
 
-So I guess just ignore this patch and will send an updated version
-individually with installing a migration entry in do_swap_page. If for
-some reason that doesn't work, I'll respond here explaining why.
+Add documentation for new argument 'time_out', as also reported by 
+kernel test robot.
 
-Matt
+Otherwise looks good to me.
 
-> > +			} else {
-> > +				pte_unmap_unlock(vmf->pte, vmf->ptl);
-> > +			}
-> >  		} else if (is_hwpoison_entry(entry)) {
-> >  			ret = VM_FAULT_HWPOISON;
-> >  		} else if (is_pte_marker_entry(entry)) {
-> > diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-> > index f163c2131022..2477d39f57be 100644
-> > --- a/mm/migrate_device.c
-> > +++ b/mm/migrate_device.c
-> > @@ -60,6 +60,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >  				   struct mm_walk *walk)
-> >  {
-> >  	struct migrate_vma *migrate = walk->private;
-> > +	struct folio *fault_folio = migrate->fault_page ?
-> > +		page_folio(migrate->fault_page) : NULL;
-> >  	struct vm_area_struct *vma = walk->vma;
-> >  	struct mm_struct *mm = vma->vm_mm;
-> >  	unsigned long addr = start, unmapped = 0;
-> > @@ -88,11 +90,13 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >  
-> >  			folio_get(folio);
-> >  			spin_unlock(ptl);
-> > -			if (unlikely(!folio_trylock(folio)))
-> > +			if (unlikely(fault_folio != folio &&
-> > +				     !folio_trylock(folio)))
-> >  				return migrate_vma_collect_skip(start, end,
-> >  								walk);
-> >  			ret = split_folio(folio);
-> > -			folio_unlock(folio);
-> > +			if (fault_folio != folio)
-> > +				folio_unlock(folio);
-> >  			folio_put(folio);
-> >  			if (ret)
-> >  				return migrate_vma_collect_skip(start, end,
-> > @@ -192,7 +196,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >  		 * optimisation to avoid walking the rmap later with
-> >  		 * try_to_migrate().
-> >  		 */
-> > -		if (folio_trylock(folio)) {
-> > +		if (fault_folio == folio || folio_trylock(folio)) {
-> >  			bool anon_exclusive;
-> >  			pte_t swp_pte;
-> >  
-> > @@ -204,7 +208,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >  
-> >  				if (folio_try_share_anon_rmap_pte(folio, page)) {
-> >  					set_pte_at(mm, addr, ptep, pte);
-> > -					folio_unlock(folio);
-> > +					if (fault_folio != folio)
-> > +						folio_unlock(folio);
-> >  					folio_put(folio);
-> >  					mpfn = 0;
-> >  					goto next;
-> > @@ -363,6 +368,8 @@ static unsigned long migrate_device_unmap(unsigned long *src_pfns,
-> >  					  unsigned long npages,
-> >  					  struct page *fault_page)
-> >  {
-> > +	struct folio *fault_folio = fault_page ?
-> > +		page_folio(fault_page) : NULL;
-> >  	unsigned long i, restore = 0;
-> >  	bool allow_drain = true;
-> >  	unsigned long unmapped = 0;
-> > @@ -427,7 +434,8 @@ static unsigned long migrate_device_unmap(unsigned long *src_pfns,
-> >  		remove_migration_ptes(folio, folio, 0);
-> >  
-> >  		src_pfns[i] = 0;
-> > -		folio_unlock(folio);
-> > +		if (fault_folio != folio)
-> > +			folio_unlock(folio);
-> >  		folio_put(folio);
-> >  		restore--;
-> >  	}
-> > @@ -536,6 +544,8 @@ int migrate_vma_setup(struct migrate_vma *args)
-> >  		return -EINVAL;
-> >  	if (args->fault_page && !is_device_private_page(args->fault_page))
-> >  		return -EINVAL;
-> > +	if (args->fault_page && !PageLocked(args->fault_page))
-> > +		return -EINVAL;
-> >  
-> >  	memset(args->src, 0, sizeof(*args->src) * nr_pages);
-> >  	args->cpages = 0;
-> > @@ -799,19 +809,13 @@ void migrate_vma_pages(struct migrate_vma *migrate)
-> >  }
-> >  EXPORT_SYMBOL(migrate_vma_pages);
-> >  
-> > -/*
-> > - * migrate_device_finalize() - complete page migration
-> > - * @src_pfns: src_pfns returned from migrate_device_range()
-> > - * @dst_pfns: array of pfns allocated by the driver to migrate memory to
-> > - * @npages: number of pages in the range
-> > - *
-> > - * Completes migration of the page by removing special migration entries.
-> > - * Drivers must ensure copying of page data is complete and visible to the CPU
-> > - * before calling this.
-> > - */
-> > -void migrate_device_finalize(unsigned long *src_pfns,
-> > -			unsigned long *dst_pfns, unsigned long npages)
-> > +static void __migrate_device_finalize(unsigned long *src_pfns,
-> > +				      unsigned long *dst_pfns,
-> > +				      unsigned long npages,
-> > +				      struct page *fault_page)
-> >  {
-> > +	struct folio *fault_folio = fault_page ?
-> > +		page_folio(fault_page) : NULL;
-> >  	unsigned long i;
-> >  
-> >  	for (i = 0; i < npages; i++) {
-> > @@ -824,7 +828,8 @@ void migrate_device_finalize(unsigned long *src_pfns,
-> >  
-> >  		if (!page) {
-> >  			if (dst) {
-> > -				folio_unlock(dst);
-> > +				if (fault_folio != dst)
-> > +					folio_unlock(dst);
-> >  				folio_put(dst);
-> >  			}
-> >  			continue;
-> > @@ -834,14 +839,16 @@ void migrate_device_finalize(unsigned long *src_pfns,
-> >  
-> >  		if (!(src_pfns[i] & MIGRATE_PFN_MIGRATE) || !dst) {
-> >  			if (dst) {
-> > -				folio_unlock(dst);
-> > +				if (fault_folio != dst)
-> > +					folio_unlock(dst);
-> >  				folio_put(dst);
-> >  			}
-> >  			dst = src;
-> >  		}
-> >  
-> >  		remove_migration_ptes(src, dst, 0);
-> > -		folio_unlock(src);
-> > +		if (fault_folio != src)
-> > +			folio_unlock(src);
-> >  
-> >  		if (folio_is_zone_device(src))
-> >  			folio_put(src);
-> > @@ -849,7 +856,8 @@ void migrate_device_finalize(unsigned long *src_pfns,
-> >  			folio_putback_lru(src);
-> >  
-> >  		if (dst != src) {
-> > -			folio_unlock(dst);
-> > +			if (fault_folio != dst)
-> > +				folio_unlock(dst);
-> >  			if (folio_is_zone_device(dst))
-> >  				folio_put(dst);
-> >  			else
-> > @@ -857,6 +865,22 @@ void migrate_device_finalize(unsigned long *src_pfns,
-> >  		}
-> >  	}
-> >  }
-> > +
-> > +/*
-> > + * migrate_device_finalize() - complete page migration
-> > + * @src_pfns: src_pfns returned from migrate_device_range()
-> > + * @dst_pfns: array of pfns allocated by the driver to migrate memory to
-> > + * @npages: number of pages in the range
-> > + *
-> > + * Completes migration of the page by removing special migration entries.
-> > + * Drivers must ensure copying of page data is complete and visible to the CPU
-> > + * before calling this.
-> > + */
-> > +void migrate_device_finalize(unsigned long *src_pfns,
-> > +			unsigned long *dst_pfns, unsigned long npages)
-> > +{
-> > +	return __migrate_device_finalize(src_pfns, dst_pfns, npages, NULL);
-> > +}
-> >  EXPORT_SYMBOL(migrate_device_finalize);
-> >  
-> >  /**
-> > @@ -872,7 +896,8 @@ EXPORT_SYMBOL(migrate_device_finalize);
-> >   */
-> >  void migrate_vma_finalize(struct migrate_vma *migrate)
-> >  {
-> > -	migrate_device_finalize(migrate->src, migrate->dst, migrate->npages);
-> > +	__migrate_device_finalize(migrate->src, migrate->dst, migrate->npages,
-> > +				  migrate->fault_page);
-> >  }
-> >  EXPORT_SYMBOL(migrate_vma_finalize);
-> 
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+>   {
+>   	u8 data = 0;
+>   	int ret;
+> -	int time_out = 200;
+>   	enum drm_lspcon_mode current_mode;
+>   
+>   	if (mode == DRM_LSPCON_MODE_PCON)
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> index f9db867fae89..764cf4898364 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -211,7 +211,7 @@ static int lspcon_change_mode(struct intel_lspcon *lspcon,
+>   		return 0;
+>   	}
+>   
+> -	err = drm_lspcon_set_mode(intel_dp->aux.drm_dev, ddc, mode);
+> +	err = drm_lspcon_set_mode(intel_dp->aux.drm_dev, ddc, mode, lspcon_get_mode_settle_timeout(lspcon));
+>   	if (err < 0) {
+>   		drm_err(display->drm, "LSPCON mode change failed\n");
+>   		return err;
+> diff --git a/include/drm/display/drm_dp_dual_mode_helper.h b/include/drm/display/drm_dp_dual_mode_helper.h
+> index 7ee482265087..7ac6969db935 100644
+> --- a/include/drm/display/drm_dp_dual_mode_helper.h
+> +++ b/include/drm/display/drm_dp_dual_mode_helper.h
+> @@ -117,5 +117,5 @@ const char *drm_dp_get_dual_mode_type_name(enum drm_dp_dual_mode_type type);
+>   int drm_lspcon_get_mode(const struct drm_device *dev, struct i2c_adapter *adapter,
+>   			enum drm_lspcon_mode *current_mode);
+>   int drm_lspcon_set_mode(const struct drm_device *dev, struct i2c_adapter *adapter,
+> -			enum drm_lspcon_mode reqd_mode);
+> +			enum drm_lspcon_mode reqd_mode, int time_out);
+>   #endif
