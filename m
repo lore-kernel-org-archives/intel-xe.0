@@ -4,165 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA83D2069D
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 04:47:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22E32D2069F
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 04:51:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3536910E66F;
-	Wed, 16 Oct 2024 04:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5BB710E671;
+	Wed, 16 Oct 2024 04:51:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X47D+OsB";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ODOxxD45";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1155310E65D;
- Wed, 16 Oct 2024 04:47:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729054058; x=1760590058;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=n+dN2M3eEnTZulIpsRR6EZpl+Y5mi3e2B92QVXDN/FE=;
- b=X47D+OsBE2rfQuBoGKPkdBYr96q9EPlH3DVhKpZetRaqZBalfV7kyHje
- JiVPFBgoeFOgoROOHv1G8Q4Pp45JcVf7FXCFdmWGlpnB0zTKm7yNXQc20
- RVVEYPR2BR/C/z0+1ZI4CEeyA9It1oFeqYznto36wJnYOc2d1Kdhy0urA
- 6mRUFhdjBsTdf9nmPHeXFiw+g077qxlpzZg/69GyJ6SDctMZXcDE6thFP
- 863RF5lV/SHdBXfg/dZFcnAK9W9E8pQ6OpBD5YS2qBgbTWfi7ZAkxeCQp
- L92oZiGLQTpjYqZTIhvESjx521AFl48+/bYD/THhyeCrGdwvO5DpXjXFx Q==;
-X-CSE-ConnectionGUID: qak4RaG1SEWv88g8X0MItA==
-X-CSE-MsgGUID: 1KPxgcylQ72zq9u2B4nNpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="53898601"
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="53898601"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 21:47:37 -0700
-X-CSE-ConnectionGUID: jpvre5TPQQCAKNtffY3sYw==
-X-CSE-MsgGUID: NIV5w+JBQH2ct9h76ANScw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="78281267"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Oct 2024 21:47:37 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 15 Oct 2024 21:47:36 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 15 Oct 2024 21:47:36 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 15 Oct 2024 21:47:36 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2059.outbound.protection.outlook.com [40.107.237.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64EFD10E229;
+ Wed, 16 Oct 2024 04:51:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VH1cvEN5zBSu3HwzctWLY5nynI4oGCEsfh4mdokpEELfubrnMlAQFeul6xcghtYbllT9El401g/AWN6ZwAMABTDcQrWkfObBHEJ5M8O8fm9h13V16iIQBMQgz26b6c/3CwyCkipeANopoGaUYxr45XYtmAjluPH+7ebMLw5A8LinCTrmhI89JCuKUWFeke+0qZEthpSVdWXeLdRJxXBb0r6J7+2V6Xl+d65KnamimIKIttT/wKRCWfpNh7+bjAjd1pwAxtO+pDTb0zicTJ5bnzuROJlOpG/XvJt9eRJ+oybkf+EnDBnOe7GyXRs2ldX7SZBkCVz4KB/ZSRjoTa9DZw==
+ b=yuVTibHcweXKQdgGbId2S0jkxdCCkjYjq7FeKT04+nGslQ98N3iVWlmRwOwHQGghYs0qOtl9eTzshtMXcTliFioU8+0veKqLzxpJWYvhXK+asKu5SiDNUn4AJL6tdd+CXZtohNeNaNn+cjhzVXbxB8YqEgvLt20I1YvDxSjL3mPtAs+BswTTFrwAsEz5MFtcF+IrjCS/9ZNsTLQy8Npj3Aqp/+dhCSWpUHTLKLYGStPMMVOr6z5VRWKURKncVDJMi8Yuek1ifMBHXubpT3E3OzACmgtr6zItT5oJmzYpWga6Rtv58Kp/is3oXT35aTl3qFptfLnGzDQ8cOi4IzbP3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J7oTPVc/Dw+CPwvKAQxUSBlYfXBHYfuXOjXUta8SiAE=;
- b=e4cjPD45mJLnYt3lVJeXK0n8aFtIAZvMglWS6xUEUDZR/BZsMK6heGAD1dXaf3SG9ZzhwLZ/wQTVFVPMUOt73s1NhDlHFQGEgfNTWpg+rojyKBzLrLnv8mQMa0KzraQpWQ/gsJxp98xdDhoCDMVsE6uqBXgkny/pO1s9m2yg3KnL3h9zrrwMQKXJ9zpyaoHuSZ5BJwBciGhhLqCXD7oOeJQtm6SfA9XNZe8fDUoRhtZltw8OO9vFzmDQYhSbw/OLf38CPmt20szTUiB/uvyjF2RTk0OdEeZ6p6zSu0HUMRTAMr0cMH7cqMMzJw1hF0MBdRkgcd0cwh5/Hfu9EbYXTg==
+ bh=k7SC8nJpiemz+bp+nBrldi61WKtknr4GLCvn750QwTg=;
+ b=bb/phNmpDNM6JDEQSKxRMXZOj/nPQ2JTenrX0gVvEBYyLV7EPuHUoPD1566/ivy7JKZ+R1szE1tAQQx6X2G2tVpN3GQ0dlcWyJcvy8dxPd8JlnThk5JUHya6Wn/txWDlOG9NAIYrKxv6eXqvmFDKFJyycIVL3MtZLYzRCN6WVBUEaHQ0u14pMzSBKURFyqjhT6evG6wkQi6kJ3GEg2/esOIzglbcLqsUIXiiV1IB+gqLraBr7aMI+eVT4KiwZvXCArC6RYOStcCoXIXJCCMeEXLEJ3ihPSaF/ZLRdGest1YpOM6V71Zl2Yf6XchBt2vkiS5pHxWO8WuaxMej/fd+Mg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k7SC8nJpiemz+bp+nBrldi61WKtknr4GLCvn750QwTg=;
+ b=ODOxxD45RQbepwhUIHByQkdCSVGzz2mOQ35dDu/lensR4JT2vbkJqHkOBSmIhFrvX5MsLJqis2IoWwPnDg/wc0nJraATGp57V7mmmynrxbKEs/Ftc7QF/xH+U+OPSQjPCDCW2mV73sfkU8Plf9G6pdrXsWfJ5CEEtaXgRKAdiZb4HkerrkbnAlVWQoboN3pouk/NW84an142m6H/4RCz7RFHo9s1Ql02Zve/QFM52IzYv682ozXCWpSM2KomxkyMrG9PZ9MEVFtXXPHo8RiDB1RfYRlpfobylV4z0C+1jcUoedJw/Jcpl4Sp1Razub3lLkRmF14ueBHXO+j7km9rpA==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MW3PR11MB4586.namprd11.prod.outlook.com (2603:10b6:303:5e::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27; Wed, 16 Oct
- 2024 04:47:34 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8048.020; Wed, 16 Oct 2024
- 04:47:33 +0000
-Date: Wed, 16 Oct 2024 04:46:52 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Alistair Popple <apopple@nvidia.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <airlied@gmail.com>, <christian.koenig@amd.com>,
- <thomas.hellstrom@linux.intel.com>, <simona.vetter@ffwll.ch>,
- <felix.kuehling@amd.com>, <dakr@kernel.org>
-Subject: Re: [PATCH v2 02/29] mm/migrate: Add migrate_device_prepopulated_range
-Message-ID: <Zw9FPAzlvGVswwxR@DUT025-TGLU.fm.intel.com>
-References: <20241016032518.539495-1-matthew.brost@intel.com>
- <20241016032518.539495-3-matthew.brost@intel.com>
- <87o73k8yyq.fsf@nvdebian.thelocal>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87o73k8yyq.fsf@nvdebian.thelocal>
-X-ClientProxiedBy: BYAPR04CA0020.namprd04.prod.outlook.com
- (2603:10b6:a03:40::33) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
+ DS0PR12MB8020.namprd12.prod.outlook.com (2603:10b6:8:14f::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8069.17; Wed, 16 Oct 2024 04:51:00 +0000
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe%3]) with mapi id 15.20.8069.016; Wed, 16 Oct 2024
+ 04:51:00 +0000
+References: <20241015111322.97514-1-thomas.hellstrom@linux.intel.com>
+ <20241015121759.GG3394334@nvidia.com>
+ <19fb79c069b812b164abd4f79d38bb12d2f5afa4.camel@linux.intel.com>
+ <20241015130221.GK3394334@nvidia.com>
+ <67d855c26e95d89997f0ae5a0e1a5fdc636f6b95.camel@linux.intel.com>
+User-agent: mu4e 1.10.8; emacs 29.1
+From: Alistair Popple <apopple@nvidia.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>, intel-xe@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>, DRI-devel <dri-devel@lists.freedesktop.org>,
+ Linux Memory Management List <linux-mm@kvack.org>, LKML
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH] mm/hmm, mm/migrate_device: Allow p2p access and p2p
+ migration
+Date: Wed, 16 Oct 2024 15:46:28 +1100
+In-reply-to: <67d855c26e95d89997f0ae5a0e1a5fdc636f6b95.camel@linux.intel.com>
+Message-ID: <87jze88xch.fsf@nvdebian.thelocal>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: SY6PR01CA0055.ausprd01.prod.outlook.com
+ (2603:10c6:10:ea::6) To CY8PR12MB7705.namprd12.prod.outlook.com
+ (2603:10b6:930:84::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW3PR11MB4586:EE_
-X-MS-Office365-Filtering-Correlation-Id: 962bc01d-7565-4b7f-deea-08dced9da63e
+X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|DS0PR12MB8020:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d49b5ae-1c3e-442d-f3b2-08dced9e2127
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+h2c9GpWfdhdawlk1CrgJOD9haouRBUaHO5TKzVaBjkGnRd169njhMoWkPvt?=
- =?us-ascii?Q?Cr9qC2CkGXDmgaCkQBZyh/22N0njAM5olH6GoEDAcOH8KaAUjIdNPg5euWbK?=
- =?us-ascii?Q?lYO+r99Qqj9YxXkMtKYG0I6hm1+D4/V0pkVICJM2RNzNdqaTPaagadr4lUic?=
- =?us-ascii?Q?+XU9RgkQ2uZokmkUWUN5s/43B99fLUy5bmkji6YOWV2Z18pKDjUXeIB6AuGY?=
- =?us-ascii?Q?vtqLnYnywHWMXgLnLTv7EVGa+qZ275h4jnG5sdSTm4ApervvW64BfP1gErqX?=
- =?us-ascii?Q?LqzcIPOUAl5M2Qs6lgO3Tp5yFN90zx4ymTB1A1WfPGCcCCaGt0HMRPT4fUe5?=
- =?us-ascii?Q?eIYSnnTZ7u2eBHhPLb8CAbMxFjINvTA7DC/HQNECEGpSoDKb3xxwwHrYmNCO?=
- =?us-ascii?Q?/l1JdbrDnj86fXcxtDUjJKy5OxI+yUVtUQwVoUxeE+2oHeryXtJfQ9cKcMQ+?=
- =?us-ascii?Q?0qj9+5uTFXIdGxMCahAVWooXdDjPWHK9E1Fz1paBQV0lfBSpFhDth5lCuq7S?=
- =?us-ascii?Q?sfC1ASkDxQzDtQowctHs+OSY0dGiq3NANfc82dAwkQLbw2GXCEaQEX1ymoNQ?=
- =?us-ascii?Q?2l7qx3aCiCP5KKladukuYSbI1O7pPl8IX6+7kg4ukWT9lPMyqOZT1+Kh7gYq?=
- =?us-ascii?Q?9+jtffpKUsUXvzHcMKPexI/M1lA7jJbiODo5+xaxzud4i/k2K11jKzwl+xHx?=
- =?us-ascii?Q?Byg2GANS1r2sFgtIUp+3Zvj5kV7AYa1oB7ICxiFzjHmu7Yy3wpP6eefdFItC?=
- =?us-ascii?Q?UvruDwLXZ4MD0Kaw1qOIubZcoJEDEl2/m5tOWvbhFbZng7bBK71DjZGxzxUd?=
- =?us-ascii?Q?jsYRxYgBvoEbIRUDNESDXP4pzcQ0EvOIg8zYvcM/38ngYD+CNNFQHqx5pmFc?=
- =?us-ascii?Q?bRBwuTGPDT1F6UrPvpag4uwtQ5rAOIHF3XPdRC7X+8np37aV19Xqra1Szft2?=
- =?us-ascii?Q?yoF1BIfnwe0um+UIe7wAmUJfNPZ+NM2l1VBqVxBtBYk65pJLyOY48wna39pU?=
- =?us-ascii?Q?4XS96S24eF0QaLGEmsmqlG3grG+qkcISto2gUCoVDQwTGBX9tAKCTJmFaCi9?=
- =?us-ascii?Q?frF+T3aKSPHCFpH9LTCTYM5yyM0JJI1t6YRkBDKGr1lXmLkdwEObBTRPn9C1?=
- =?us-ascii?Q?glgysI3UFYUZmTkdAcpdyjWjPszajSo32ex/pKBMHZivQXuXh8/atmLvuZJc?=
- =?us-ascii?Q?cXX9Y8VNZQgmzGvh4YpoRiMcQ1b7PbUmw1zbAXX+J3bERqaiD8zvuu/WPBcH?=
- =?us-ascii?Q?auoBPGyjzFsbVIVh1muWnzxppai3sgVgV7lsSwsINQ=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UWRmZlZ4VHdGMENHUGlmSmR0MWxIaHU5cWV6R1QrSHpvUnlQTFhnR0graitl?=
+ =?utf-8?B?dG9Lbkh0WFVDdHh5bFBwYnpsWkR5cStZdmpYaWVzQnRubGhZWXB6bVVRemlm?=
+ =?utf-8?B?QUVuNzV2OFQ2blNPbElLTzBFSjVhRW1TUWZNeE9BTnJXQmlRMDJsTUJxL0hj?=
+ =?utf-8?B?ck1zcEZXak1NeWo3d2RydzhnTjFkcWY2Yi8wclZTM0k4MUxUOVZCQ0hxRjhD?=
+ =?utf-8?B?K3l3VTBtMEpLaVNacVVmdEVldEN6QkNZcm8vSnFXTm51Sm5UTGdUeE9JMG5Q?=
+ =?utf-8?B?MGwwZkM3c1RSaVAzanlRM3pEcG9aNkswQTlrckNuTnhDSEJrKzM5SWJZWmRt?=
+ =?utf-8?B?OVJ2MVUzZDVZMHFuY0pHKzhsMDBvaks3UXhMTkZ0N3NvMUlpR29TMGxHWU5i?=
+ =?utf-8?B?RDVNRFM0OVEyQWJncjJHTml0VnpYN256eStrOFB5eW9nbWdaMHpxSUdwWVkx?=
+ =?utf-8?B?WlpyZEt3NnZpdzFNS1J6QzNpMy85K0ZNblQzYWg0OXdrSk5VZW5UYXRpSWF2?=
+ =?utf-8?B?WTA5L0g3Yk1lcjF4N0cvS28wdDBiSzM3R0pjbnZGdnVQRUd2WFpQcFk4cnhj?=
+ =?utf-8?B?SDI2SDhFTDgxcEtsdWpTS2t4NDYwYVZCUnY3UUJMNU1UR3ZVTDhHQXB3Yy92?=
+ =?utf-8?B?eUJJY3ZYK0VraWd2TGtPK3JGenJDa1N1VVNTeFo3NW40SWZaTFRBVXNnM1Y0?=
+ =?utf-8?B?RWVlcHVONXJaTHlxckJVQ3FQZldBVUo0a2hhV1lsSUFzSHZDbEJrdWxWNVJv?=
+ =?utf-8?B?K0pVRkdrZVlPbmJQTGgxS0VxamZ6dmRmV3dYMDlRZkpTdE5ZUGwrYzNjTCt3?=
+ =?utf-8?B?dGhhL3gwL0JPMmE3Q3ZFZ1VSKzJCWTJkYWwzc2oxQWNsOVdtby9HR0lWcHFp?=
+ =?utf-8?B?VkpjN1BnVGJsb1FZT01yVW1uOTN0ejdtVk5ZeWhGSUR6M296TjNuYlAyVElk?=
+ =?utf-8?B?dWRVaHhkL09RdnVlS2ZBMzB1bW12UEJlaW9FenJxbmtyZk9LZzNNZTlQckdH?=
+ =?utf-8?B?VFFmNjNWeTRrR3hnbldoNDhFeFRicnBjcm9MWXJsRjlUVlVsNno4bHAxWjU1?=
+ =?utf-8?B?dWJSWkxiL3gybGhXNk5iK3d6TGpYaWpVTjA4RnFFbmtmTzlmc3hHbEJ0QzAz?=
+ =?utf-8?B?Wm4yMENrc0w4L3hTVkhZQ29FSDM4bFJFUE5TOTI4OGhXWXFSa3UycEZ6QlBB?=
+ =?utf-8?B?ZkplSUVDakc2WUkrczB0dzRpOUkzYjVHUkZUYkE3ZmZjNEowMTVIcXJIZXNL?=
+ =?utf-8?B?TFdsMExZQTEvMGV0SG94cWxIQkpuYlA4aEsrSU1hdkRNQXZPdzF3aEhCeC8w?=
+ =?utf-8?B?NlBleGQrZDVMQWlvczdvbmdMRzNUY1pTRFZZakhnUVpjbUNkSFV0dzZvdDBv?=
+ =?utf-8?B?bWEwUXp4aGhGVU9PekNKWFNpaGNpNWNQcDlHczZ6L044ekw0R0JwTlliTlMr?=
+ =?utf-8?B?bGQxeWVOeVF3b3JsOGE1d1ZwdmxHQUZmYU1zS1hxZkNQVE5lRnFsa3lyMUlR?=
+ =?utf-8?B?WkhQaDdVL2FzUlJ4eU5qMHN1VWU4MjhIRzl6dU92a2hTaDdGY244eGF4S0k2?=
+ =?utf-8?B?UVBtQXE0VXRlRFJwMTlPSHJBc3JLNFo2NGNudVhHQ1RzK3Z3aXJnSVRzSWMz?=
+ =?utf-8?B?eW5rYWllRjE0N0VENng0NW5wZU9FOFh4aFJEbnl1dXFiZ3pFSjEvcTVRVkg0?=
+ =?utf-8?B?cmVkQ0phb0tndERXMGFWdHpxTXJORU1md0dLekhOazNxaVpZWUI3WERnPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wnrEdNYYnzBZOM/ueUfmLw+4bZgsel/KHwA/x9jrG4vkPAguomj0boziMPXz?=
- =?us-ascii?Q?HPWskrf8+Zry8g41x9WSDr9V65V9iI6tqNoNMJ0qA5GOgbLy1IA6nl1i1bs7?=
- =?us-ascii?Q?MRVkqfI5YolSbtoN9vGqaELZHfrKUsRYsksbxrvE8lRR8nWKFjw0xgruiOJO?=
- =?us-ascii?Q?55CTxYztU99vMgGqkHn5EomEQ3k0DWMv+Hx9+hbSocOgPfTv5MWVcMq34J6x?=
- =?us-ascii?Q?Ly7yaas8oZlATcyGg+67kQayP6GtiBckXf7igI9JYK57+z46gncs6JuO5qK3?=
- =?us-ascii?Q?J0Kb9PThVDHP4+Op5qLBIlnt+W8STIbSE4J6x6VFUECmqc8jh4NrKr+Ojyi8?=
- =?us-ascii?Q?L5MvYR1TiPzh2PwB10uthLptIB7ZeUiTKtZb1XMP77HyeAn/bTVYx2PAVmss?=
- =?us-ascii?Q?d4+70abWs5um54Xd5q7V5hyN3pa/58IJ35Chn7NsFEBursu+vbIgAXgTekJ/?=
- =?us-ascii?Q?tihUn5wxj4A60vRS5e5Xm29xKQnSBSRWDEPgU4jbfZAqQc0YhjvCEQVFhwXd?=
- =?us-ascii?Q?ZUh6kw/6rUgpTSzv9PiORO5lYSKgNcrGt5XpkWEPYDHkaTFmeiFe01/7wEAu?=
- =?us-ascii?Q?vrwNFb67juieo6xKiDp90Zsj1c+u1zKonPYNiBeOM2kZUeb2bti6Jv5eklzX?=
- =?us-ascii?Q?PtaSp+rikrWw0sd9OaxJeufN4QkXycyNA0EnWS+GS+mK2diBk2zqjFV+IPz4?=
- =?us-ascii?Q?SSkn+75LueF3m4MiWBsDhOpBk2t/e+kQexTePMOZIOSTo0h3zugduGEwC8KX?=
- =?us-ascii?Q?Hiq1IcVHa6DydBjQr9cKBRI1daod+Zbb1ZBjrmeRSENqXlmwfaFhr7ml8jZL?=
- =?us-ascii?Q?WanTKIQM502Adja5x5KBn5Xw4EsjTxOf5yEHViFgLVx3pTA8kWLYS7X8+B69?=
- =?us-ascii?Q?sJH4+lTtq2o5Kse6M6DsMd07L4wHWnpiC/653Iyp0N9NJKq9497bMxaqc5QZ?=
- =?us-ascii?Q?M6RNJmgQ1FCk9Kh6hw2xqCMTP7d0j9huwNsic12Gtdw7VTj6rqNu27UfJZHg?=
- =?us-ascii?Q?9XsQQk+hyb0rvStp1qOkPFIG258eKSOX4MkdHjZPVW5PSjNc673nZutzzhNm?=
- =?us-ascii?Q?NQCATDoPUT4KaZTikRAJw8gQ8tx3MwuDVx0EYtbRjFuwkKdVMz7Krx0R37xG?=
- =?us-ascii?Q?iR2Ii//CUpIMie5+eFzZKJW9gpkdPCxgDwSqvonIVEW3Gh5oZakZ5oIe2yk5?=
- =?us-ascii?Q?xDXpBVIdT0i93ter4OO3bfzEFaLJSxro9rV+Rd+vuOfsrDQpSahfqA5IOnA8?=
- =?us-ascii?Q?Fo/ZloHyxOxnEGnj1w60MleOA8b4tI56W9XXZIhgSGaFfRGm1aBX0H+SWg3G?=
- =?us-ascii?Q?CEwutT0Jnz7BPNbJz5cbnjS6oRYSKzYYVKge2GbGlWYGZtnUaxAlu6f9agU8?=
- =?us-ascii?Q?9Oum2zQBcusNYpLG7Zj1AvIzFTRFYZPqxKIlZO/x6yVD7cwqDfG6uSgJcbfz?=
- =?us-ascii?Q?USAdOKzCuJL8U3yY8HfvY6ywd8MwKHv9Kg38tZ8G5Lo7eO/AYK4Ndx4a1eog?=
- =?us-ascii?Q?K1e72mavQerET1RvtioJpxrYlEEhhks7jhPwa+ReoxNTPujpFRgwWPzSfYxE?=
- =?us-ascii?Q?rUXWPUeaHbrn+fibXUGInMNyjRMfMi19WYHNL6tssJGpGXKwPHV764itY7sd?=
- =?us-ascii?Q?Ag=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 962bc01d-7565-4b7f-deea-08dced9da63e
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TkR4OUpScW13disxSk1nOWNxdk4yRHUzTjdSVFhrTFZQQ3ZZbit2K3FGZHhp?=
+ =?utf-8?B?N1hraldGbHRqVDBiYmI3WlZMZytYd2UxeUtRUlpPa3FyRkJBTkJZYmFmYnZS?=
+ =?utf-8?B?VVlIOUFqUXRrajNVUTlVWkhYUW5WTThKc1RXSlZMd1RMLytDcVFzOXJucXV3?=
+ =?utf-8?B?MnQ5czEwRnZDZ0dIc3FtOEhyT3EyeWJpZ2pFVDNPb2R1WHd4MzAwakxaS3Bq?=
+ =?utf-8?B?OVZXZWlQMzhlQWU4UURON25VZEV5bGhLRnBzZ2NPc0I4WUxpb2Q1R0hvczJL?=
+ =?utf-8?B?NzZIR3o1MTJHbSswdlA2NVFMdTN0OU1BM0htcnNCeno2OVQzWEpFS1VzbVlZ?=
+ =?utf-8?B?SEpWTEVmMjhyV2ZBd1pORVlSeWkrcTBGY05DZnJYVDA2TnRJbXc4djZxellY?=
+ =?utf-8?B?dXk5Zkpyeko1NjFsOThURzd3UWpjRWhVbU9hZjJzMnFUbXF4eXR3b3ZtakN5?=
+ =?utf-8?B?UVpnaDR3SS8zL1VZMVdMNkt2RlF3b3lqN21jKzB0N2FtZmtBT1JCK3Yrdk80?=
+ =?utf-8?B?SWsvQ0hTRkJSanZuRW1wQ3lYTXhqSUY3dDNPTEJmdUNPTHZRQTd2WldjNmVy?=
+ =?utf-8?B?TkV1YWtocDl6aUxGYTZHbjk1ODZRZm0wMGRuUE44Y1NaMi9YdXYvUTdyRlRm?=
+ =?utf-8?B?RENad0hPcFVHRjdsSytSRGhxU3p6MHFWRW44UXBQS1F2bVJXelRGWm5PQVFm?=
+ =?utf-8?B?NGk0NTRPbHhxbW1pdHM4ZU1JYllLeEloRkxqWDcwWHREVjlCRkZXOGdzbmZD?=
+ =?utf-8?B?aDJOeU9JdW90NTFoUnNMMUFHTDlhay9tVGFXMG1zUys2dFhNNnlLajRwc3Y2?=
+ =?utf-8?B?U0J5ODgwbngxQk51ZCtabVZ0YlA2clh4Wmg3QzdHUFY5SDJOb0syN0txeEp6?=
+ =?utf-8?B?YW1uQXdDQkVNbndjcFIwZTZOWS9XaG01ZTRxaFZ4aC80c0tyUXhCL2F1L283?=
+ =?utf-8?B?VmEyWFdac0tGSHp1d2RYKzRlTktSdThIWWdqNGt3WGh3SmViYWpZWXJuWEp4?=
+ =?utf-8?B?RHE5bnRScy9Tc0FRZHZGS3JNaFB1S2tKTWhMY1lUaFA2Y3hzL2Q1VzRVenJH?=
+ =?utf-8?B?bkI1eXJTT2RJUDRtNURRM2Q5MnJNL1ViN3pwQTFkOW92ZDBqaHJ2ZWxOWXAw?=
+ =?utf-8?B?cHN3dTRqY01jZGZtcDRYWmJMbUtZN2JpcEFVK1pPZE1NWWRsZUJpK2JlTWVU?=
+ =?utf-8?B?TDdnWWd2M2VZYmpBVFJFVDFqWEltUkNGMzYxN2U1K1FuK2x6YVhMdk56NEM0?=
+ =?utf-8?B?U2RZRlR4ZFg5bkhKTU9OdjRKRnNvdFVoWTU0MkpjRWlpVEt5RGY3MGY0SGtv?=
+ =?utf-8?B?ejNjWURRRlpodm9RRVRMNWZmYXhWQkZRVnp5Z3dyUXlJeVE3blFBT29CUXBL?=
+ =?utf-8?B?Rk1CM3FjY1dnSnZMRkZOZ1lQSTJ4WFBVQ25jbjJBTi94WjF4dFFSTXVlMFA0?=
+ =?utf-8?B?anhlUDRTNVAzbGRWMGtjemZBQ0p3OHQ2azA4bHJ4YUVRdTBieFNPSGdHSERo?=
+ =?utf-8?B?eVptbkIvbEp4ZmFMSWFObHdmVjBVL0RKS2kyaVRpNDJWWldVOUg4ZnE5MW1y?=
+ =?utf-8?B?WkMvalJMd2FKU0hRZ1VBWW9EQllQbFpzMHpSTExoUzBHemJwbnhuZFJydUlh?=
+ =?utf-8?B?YVVYNmZ2dklwTnI0dGRIRDRBR0drOVFsdHR6V0FySldIRFZPMHJsaVprU24z?=
+ =?utf-8?B?ejRtdHI1SFlqNnJ2a2NWTlFVUHpVdWcvbWw4emdoS1ZhcTAyNHN5WVJSMjlF?=
+ =?utf-8?B?MytYbENBZlAyT3VrbVpRbElTMHAvaDBtZkJEYmUvRFdRalRzV2pPem5aMzhS?=
+ =?utf-8?B?N2k1bitPdVNpZXRGN2xTZVpucWltVDhjdXlVcTFrbWZ5ME93SWl4OVRNMVJT?=
+ =?utf-8?B?R1lyanpIeTdsRnZIVmFCNTIrS3pNU0JrYnluZUV4MitkVmZZV3NldGFEbm9a?=
+ =?utf-8?B?TDZqSGF0a2g1cVo2SHA2UHJxU3MyWVRKKzN2TnZIR2RuQ0h6YVdnY3RtOFZ1?=
+ =?utf-8?B?dVJNeGR0Ulp6b2oyRFVkcmdyTnNyTEhWQ2ZQM0F6QmpZWjFRMThjdmNMMTI0?=
+ =?utf-8?B?MmNNcTBzT1BYODVCWEt5VDV6MStiUytuZmszT0dMTmxWYUZpY256eXpmTFBW?=
+ =?utf-8?Q?ueSSpbYlo4yL6Exx9rtYRYNVI?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d49b5ae-1c3e-442d-f3b2-08dced9e2127
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7705.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2024 04:47:33.5514 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2024 04:51:00.4219 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kL161UNEnqgh13xulyAxV4Ok9d8OZlFHXAOLJCxWWA0nxyvjiWeUMEQaAJHfyTYKftr0D0DndAqRmkRnkkHCIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4586
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: xUGHaKlEP7nNsvIVy0xPd+rqNLBMuSteP5eQF7bs7Cm4mxwxpXvAICtkZW6eBIkUbA/2JLUHIfj1AghmcjSn0g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8020
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,108 +165,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 16, 2024 at 03:04:06PM +1100, Alistair Popple wrote:
-> 
-> Matthew Brost <matthew.brost@intel.com> writes:
-> 
-> > Add migrate_device_prepoluated_range which prepares an array of
-> > pre-populated device pages for migration.
-> 
-> It would be nice if the commit message could also include an explanation
-> of why the existing migrate_device_range() is inadequate for your needs.
-> 
 
-Yea, my bad. It should explain this is required for non-contiguous
-device pages. I suppose I could always iterate for contiguous regions
-with migrate_device_range too if you think that is better.
+Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com> writes:
 
-> > v2:
-> >  - s/migrate_device_vma_range/migrate_device_prepopulated_range
-> >  - Drop extra mmu invalidation (Vetter)
-> >
-> > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  include/linux/migrate.h |  1 +
-> >  mm/migrate_device.c     | 35 +++++++++++++++++++++++++++++++++++
-> >  2 files changed, 36 insertions(+)
-> >
-> > diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-> > index 002e49b2ebd9..9146ed39a2a3 100644
-> > --- a/include/linux/migrate.h
-> > +++ b/include/linux/migrate.h
-> > @@ -229,6 +229,7 @@ void migrate_vma_pages(struct migrate_vma *migrate);
-> >  void migrate_vma_finalize(struct migrate_vma *migrate);
-> >  int migrate_device_range(unsigned long *src_pfns, unsigned long start,
-> >  			unsigned long npages);
-> > +int migrate_device_prepopulated_range(unsigned long *src_pfns, unsigned long npages);
-> >  void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
-> >  			unsigned long npages);
-> >  void migrate_device_finalize(unsigned long *src_pfns,
-> > diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-> > index 9cf26592ac93..f163c2131022 100644
-> > --- a/mm/migrate_device.c
-> > +++ b/mm/migrate_device.c
-> > @@ -924,6 +924,41 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
-> >  }
-> >  EXPORT_SYMBOL(migrate_device_range);
-> >  
-> > +/**
-> > + * migrate_device_prepopulated_range() - migrate device private pfns to normal memory.
-> > + * @src_pfns: pre-popluated array of source device private pfns to migrate.
-> > + * @npages: number of pages to migrate.
-> > + *
-> > + * Similar to migrate_device_range() but supports non-contiguous pre-popluated
-> > + * array of device pages to migrate.
-> > + */
-> > +int migrate_device_prepopulated_range(unsigned long *src_pfns, unsigned long npages)
-> 
-> I don't love the name, I think because it is quite long and makes me
-> think of something complicated like prefaulting. Perhaps
-> migrate_device_pfns()?
-> 
+> On Tue, 2024-10-15 at 10:02 -0300, Jason Gunthorpe wrote:
+>> On Tue, Oct 15, 2024 at 02:41:24PM +0200, Thomas Hellstr=C3=B6m wrote:
+>> > > It has nothing to do with kernel P2P, you are just allowing more
+>> > > selective filtering of dev_private_owner. You should focus on
+>> > > that in
+>> > > the naming, not p2p. ie allow_dev_private()
+>> > >=20
+>> > > P2P is stuff that is dealing with MEMORY_DEVICE_PCI_P2PDMA.
+>> >=20
+>> > Yes, although the intention was to incorporate also other fast
+>> > interconnects in "P2P", not just "PCIe P2P", but I'll definitely
+>> > take a
+>> > look at the naming.
+>>=20
+>> It has nothing to do with that, you are just filtering the device
+>> private pages differently than default.
+>>=20
+>> Your end use might be P2P, but at this API level it certainly is not.
+>
+> Sure. Will find something more suitable.
+>
+>>=20
+>> > > This is just allowing more instances of the same driver to co-
+>> > > ordinate
+>> > > their device private memory handle, for whatever purpose.
+>> >=20
+>> > Exactly, or theoretically even cross-driver.
+>>=20
+>> I don't want to see things like drivers changing their pgmap handles
+>> privately somehow. If we are going to make it cross driver then it
+>> needs to be generalized alot more.
+>
+> Cross-driver is initially not a thing, so let's worry about that later.
+> My impression though is that this is the only change required for
+> hmm_range_fault() and that infrastructure for opt-in and dma-mapping
+> would need to be provided elsewhere?
 
-Sure.
+Cross-driver is tricky because the device-private pages have no meaning
+outside of the driver which owns/allocates them. One option is to have a
+callback which returns P2PDMA pages which can then be dma-mapped. See
+https://lore.kernel.org/linux-mm/20241015152348.3055360-1-ymaman@nvidia.com=
+/
+for an example of that.
 
-> > +{
-> > +	unsigned long i;
-> > +
-> > +	for (i = 0; i < npages; i++) {
-> > +		struct page *page = pfn_to_page(src_pfns[i]);
-> > +
-> > +		if (!get_page_unless_zero(page)) {
-> > +			src_pfns[i] = 0;
-> > +			continue;
-> > +		}
-> > +
-> > +		if (!trylock_page(page)) {
-> > +			src_pfns[i] = 0;
-> > +			put_page(page);
-> > +			continue;
-> > +		}
-> > +
-> > +		src_pfns[i] = migrate_pfn(src_pfns[i]) | MIGRATE_PFN_MIGRATE;
-> 
-> This needs to be converted to use a folio like
-> migrate_device_range(). But more importantly this should be split out as
-> a function that both migrate_device_range() and this function can call
-> given this bit is identical.
-> 
+>>=20
+>> > >=20
+>> > > Otherwise I don't see a particular problem, though we have talked
+>> > > about widening the matching for device_private more broadly using
+>> > > some
+>> > > kind of grouping tag or something like that instead of a
+>> > > callback.
+>> > > You
+>> > > may consider that as an alternative
+>> >=20
+>> > Yes. Looked at that, but (if I understand you correctly) that would
+>> > be
+>> > the case mentioned in the commit message where the group would be
+>> > set
+>> > up statically at dev_pagemap creation time?
+>>=20
+>> Not necessarily statically, but the membership would be stored in the
+>> pagemap and by updated during hotplug/etc
+>>=20
+>> If this is for P2P then the dynamic behavior is pretty limited, some
+>> kind of NxN bitmap.
+>>=20
+>> > > hmm_range struct inside a caller private data struct and use that
+>> > > instead if inventing a whole new struct and pointer.
+>> >=20
+>> > Our first attempt was based on that but then that wouldn't be
+>> > reusable
+>> > in the migrate_device.c code. Hence the extra indirection.
+>>=20
+>> It is performance path, you should prefer duplication rather than
+>> slowing it down..
+>
+> OK. Will look at duplicating.
+>
+> Thanks,
+> Thomas
+>
+>
+>>=20
+>> Jason
 
-Missed the folio conversion and agree a helper shared between this
-function and migrate_device_range would be a good idea. Let add that.
-
-Matt
-
-> > +	}
-> > +
-> > +	migrate_device_unmap(src_pfns, npages, NULL);
-> > +
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL(migrate_device_prepopulated_range);
-> > +
-> >  /*
-> >   * Migrate a device coherent folio back to normal memory. The caller should have
-> >   * a reference on folio which will be copied to the new folio if migration is
-> 
