@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A85C1D2069A
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 06:17:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C77DAD2069E
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 06:20:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A51510E2D4;
-	Wed, 16 Oct 2024 06:17:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cese27kP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E688B10E2D4;
- Wed, 16 Oct 2024 06:17:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729059478; x=1760595478;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=DbGFQO1PVOYb+7WvhwRXAC3V0LwgDa2w/LNZHgQKhBU=;
- b=cese27kPS1toEWkKjwdbJsaVPwFKn0qfnVkCM19SILIxrGJr264q0Rwl
- 5vpT5LeRlawORC76mat1lyo8kvzdiniOUB4rlEPGHnxlERYGk2q2ciRuP
- XJsMxGmTBbJKjzl1Q62ebhD9Ayvzj/GPO1KCN3jYoXo26yoT3DQvbks4r
- lJxnP5s4KcsgNIAwGeZs0We0onHagavWVH6FrU84Of+j0Nr/HOOn/F61x
- xU5ZkXTpaAg4AOcE1wb1e+v3EEWBpaK3X27XpuZQF4WfUi6KAof3gUkdz
- K8e4QvNPSyX7JYsFltvvDyzLVEAtDr2FV+AUkjHikQYMb+aGl1xnX2f0S w==;
-X-CSE-ConnectionGUID: oKORmGYyTqSNbnjchGX50A==
-X-CSE-MsgGUID: M2Ubri5+TK2dO7OecvfZuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="28367118"
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="28367118"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 23:17:57 -0700
-X-CSE-ConnectionGUID: vbhxgz5HQSOemlec6166lA==
-X-CSE-MsgGUID: Yv/2DeicReqkGatn6QXyGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="78475506"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO [10.245.246.80])
- ([10.245.246.80])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 23:17:54 -0700
-Message-ID: <ee955c4d3e63edd3d1e37b6467bf01c2c4efc827.camel@linux.intel.com>
-Subject: Re: [PATCH v2] locking/ww_mutex: Adjust to lockdep nest_lock
- requirements
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Boqun Feng <boqun.feng@gmail.com>
-Cc: intel-xe@lists.freedesktop.org, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long
- <longman@redhat.com>, Maarten Lankhorst <maarten@lankhorst.se>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Wed, 16 Oct 2024 08:17:50 +0200
-In-Reply-To: <Zw6touohNwfqs3T0@boqun-archlinux>
-References: <20241009092031.6356-1-thomas.hellstrom@linux.intel.com>
- <Zw19sMtnKdyOVQoh@boqun-archlinux>
- <bf7632b74c075f2c430fdb98cefed486b4d9e74f.camel@linux.intel.com>
- <Zw6touohNwfqs3T0@boqun-archlinux>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 948F510E68F;
+	Wed, 16 Oct 2024 06:20:32 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 504D710E68E;
+ Wed, 16 Oct 2024 06:20:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_mm/hmm=2C_mm/migrate?=
+ =?utf-8?q?=5Fdevice=3A_Allow_p2p_access_and_p2p_migration_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Oct 2024 06:20:31 -0000
+Message-ID: <172905963132.1272209.5582604042992195569@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241015111322.97514-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20241015111322.97514-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,284 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-10-15 at 11:00 -0700, Boqun Feng wrote:
-> On Tue, Oct 15, 2024 at 05:27:28PM +0200, Thomas Hellstr=C3=B6m wrote:
-> [..]
-> > > diff --git a/lib/locking-selftest.c b/lib/locking-selftest.c
-> > > index 6f6a5fc85b42..6750321e3e9a 100644
-> > > --- a/lib/locking-selftest.c
-> > > +++ b/lib/locking-selftest.c
-> > > @@ -1720,8 +1720,6 @@ static void ww_test_normal(void)
-> > > =C2=A0{
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ret;
-> > >=20
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WWAI(&t);
-> > > -
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * None of the ww_mut=
-ex codepaths should be taken in the
-> > > 'normal'
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * mutex calls. The e=
-asiest way to verify this is by
-> > > using
-> > > the
-> > > @@ -1770,6 +1768,8 @@ static void ww_test_normal(void)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ww_mutex_base_unlock(&o.ba=
-se);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WARN_ON(o.ctx !=3D (void *=
-)~0UL);
-> > >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WWAI(&t);
-> > > +
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* nest_lock */
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 o.ctx =3D (void *)~0UL;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ww_mutex_base_lock_nest_lo=
-ck(&o.base, &t);
-> > >=20
-> > > Please confirm whether this change is intended.
-> >=20
-> > This fix looks correct and while this change was not intended, I
-> > think
-> > it makes sense and if this locking order is present in existing
-> > code
-> > apart from this selftest, it's probably easily fixable.
-> >=20
-> > >=20
-> > > The second is a case as follow:
-> > >=20
-> > > 	ww_acquire_init(...);
-> > > 	spin_lock(...);
-> > > 	ww_mutex_lock(...); // this should trigger a context
-> > > 			=C2=A0=C2=A0=C2=A0 // invalidation. But the mutex was
-> > > 			=C2=A0=C2=A0=C2=A0 // initialized by ww_acquire_init()
-> > > as a
-> > > 			=C2=A0=C2=A0=C2=A0 // LD_WAIT_INV lock.
-> > >=20
-> > > The following could fix this:
-> > >=20
-> > > diff --git a/include/linux/ww_mutex.h b/include/linux/ww_mutex.h
-> > > index a401a2f31a77..45ff6f7a872b 100644
-> > > --- a/include/linux/ww_mutex.h
-> > > +++ b/include/linux/ww_mutex.h
-> > > @@ -156,8 +156,8 @@ static inline void ww_acquire_init(struct
-> > > ww_acquire_ctx *ctx,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 debug_check_no_locks_freed=
-((void *)ctx, sizeof(*ctx));
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lockdep_init_map(&ctx->dep=
-_map, ww_class->acquire_name,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- &ww_class->acquire_key, 0);
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lockdep_init_map(&ctx->first_lo=
-ck_dep_map, ww_class-
-> > > > mutex_name,
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &w=
-w_class->mutex_key, 0);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lockdep_init_map_wait(&ctx->fir=
-st_lock_dep_map, ww_class-
-> > > > mutex_name,
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 &ww_class->mutex_key, 0,
-> > > LD_WAIT_SLEEP);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_acquire(&ctx->dep_ma=
-p, 0, 0, _RET_IP_);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_acquire_nest(&ctx->f=
-irst_lock_dep_map, 0, 0, &ctx-
-> > > > dep_map, _RET_IP_);
-> > > =C2=A0#endif
-> > >=20
-> > > A v3 with all these fixed would look good to me, and I can add a
-> > > Tested-by tag to it. Thanks!
-> >=20
-> > The fix here is a bit confusing. It looks like this test is crafted
-> > to
-> > fail because we take a sleeping ww_mutex inside a spinlock. But the
-> > ww_mutex lockdep map is already initialized as LD_WAIT_SLEEP. How
-> > come
-> > the first_lock_dep_map locking mode LD_WAIT_INV is used in the
-> > ww_mutex_lock()? Is that because of the lockdep hlock refcounting?
-> >=20
->=20
-> No, it's not because of refcounting, actually in this case
-> refcounting
-> won't happen because there is a spin_lock sitting in between:
->=20
-> held_locks stack:
->=20
-> 	ww_lockdep_acquire
-> 	=C2=A0 ww_lockdep_mutex
-> 	=C2=A0=C2=A0=C2=A0 lock_A
->=20
-> because there is a lock_A here, the following "if" will be false for
-> ww_mutex_lock() in the test case:
->=20
-> 	hlock =3D curr->held_locks + depth - 1;
-> 	if (hlock->class_idx =3D=3D class_idx && nest_lock) {
->=20
-> The reason why the wait types of 'first_lock_dep_map' matter is
-> because
-> the lock class it shares with ww_mutex_lock() are registered at
-> *acquire* time. So because we do
->=20
-> 	ww_acquire_init():
-> 	=C2=A0 ...
-> 	=C2=A0 lockdep_init_map(...);
-> 	=C2=A0 ...
-> 	=C2=A0 mutex_acquire_nest(...);
-> 	...
-> 	ww_mutex_lock():
-> 	=C2=A0 __mutex_lock_common():
-> 	=C2=A0=C2=A0=C2=A0 mutex_acquire_nest(...);
->=20
-> in the test case, these two mutex_acquire_nest()s use different
-> lockdep_maps but share the same key, therefore whoever call
-> mutex_acquire_nest() registers the lock class with its wait types.
->=20
-> So even though first_lock_dep_map is a fake lock, it has to have the
-> same wait types as a real mutex.
+== Series Details ==
 
-Understood.
->=20
-> Does this make sense?
+Series: mm/hmm, mm/migrate_device: Allow p2p access and p2p migration (rev2)
+URL   : https://patchwork.freedesktop.org/series/139995/
+State : success
 
-Yes it does. I'll update to a v3, and add a Tested-by: tag. Would you
-like a Co-developed-by: tag as well?
+== Summary ==
 
-Thanks,
-Thomas
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 01c7b2c084e5 drm-tip: 2024y-10m-15d-14h-57m-37s UTC integration manifest
+=== git am output follows ===
+Applying: mm/hmm, mm/migrate_device: Allow p2p access and p2p migration
 
-
->=20
-> Regards,
-> Boqun
->=20
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > Regards,
-> > > Boqun
-> > >=20
-> > > > Cc: Peter Zijlstra <peterz@infradead.org>
-> > > > Cc: Ingo Molnar <mingo@redhat.com>
-> > > > Cc: Will Deacon <will@kernel.org>
-> > > > Cc: Waiman Long <longman@redhat.com>
-> > > > Cc: Boqun Feng <boqun.feng@gmail.com>
-> > > > Cc: Maarten Lankhorst <maarten@lankhorst.se>
-> > > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Cc: linux-kernel@vger.kernel.org
-> > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > <thomas.hellstrom@linux.intel.com>
-> > > > ---
-> > > > =C2=A0include/linux/ww_mutex.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-| 14 ++++++++++++++
-> > > > =C2=A0kernel/locking/test-ww_mutex.c |=C2=A0 8 +++++---
-> > > > =C2=A02 files changed, 19 insertions(+), 3 deletions(-)
-> > > >=20
-> > > > diff --git a/include/linux/ww_mutex.h
-> > > > b/include/linux/ww_mutex.h
-> > > > index bb763085479a..a401a2f31a77 100644
-> > > > --- a/include/linux/ww_mutex.h
-> > > > +++ b/include/linux/ww_mutex.h
-> > > > @@ -65,6 +65,16 @@ struct ww_acquire_ctx {
-> > > > =C2=A0#endif
-> > > > =C2=A0#ifdef CONFIG_DEBUG_LOCK_ALLOC
-> > > > =C2=A0	struct lockdep_map dep_map;
-> > > > +	/**
-> > > > +	 * @first_lock_dep_map: fake lockdep_map for first
-> > > > locked
-> > > > ww_mutex.
-> > > > +	 *
-> > > > +	 * lockdep requires the lockdep_map for the first
-> > > > locked
-> > > > ww_mutex
-> > > > +	 * in a ww transaction to remain in memory until all
-> > > > ww_mutexes of
-> > > > +	 * the transaction have been unlocked. Ensure this by
-> > > > keeping a
-> > > > +	 * fake locked ww_mutex lockdep map between
-> > > > ww_acquire_init() and
-> > > > +	 * ww_acquire_fini().
-> > > > +	 */
-> > > > +	struct lockdep_map first_lock_dep_map;
-> > > > =C2=A0#endif
-> > > > =C2=A0#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
-> > > > =C2=A0	unsigned int deadlock_inject_interval;
-> > > > @@ -146,7 +156,10 @@ static inline void ww_acquire_init(struct
-> > > > ww_acquire_ctx *ctx,
-> > > > =C2=A0	debug_check_no_locks_freed((void *)ctx, sizeof(*ctx));
-> > > > =C2=A0	lockdep_init_map(&ctx->dep_map, ww_class-
-> > > > >acquire_name,
-> > > > =C2=A0			 &ww_class->acquire_key, 0);
-> > > > +	lockdep_init_map(&ctx->first_lock_dep_map, ww_class-
-> > > > > mutex_name,
-> > > > +			 &ww_class->mutex_key, 0);
-> > > > =C2=A0	mutex_acquire(&ctx->dep_map, 0, 0, _RET_IP_);
-> > > > +	mutex_acquire_nest(&ctx->first_lock_dep_map, 0, 0,
-> > > > &ctx-
-> > > > > dep_map, _RET_IP_);
-> > > > =C2=A0#endif
-> > > > =C2=A0#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
-> > > > =C2=A0	ctx->deadlock_inject_interval =3D 1;
-> > > > @@ -185,6 +198,7 @@ static inline void ww_acquire_done(struct
-> > > > ww_acquire_ctx *ctx)
-> > > > =C2=A0static inline void ww_acquire_fini(struct ww_acquire_ctx *ctx=
-)
-> > > > =C2=A0{
-> > > > =C2=A0#ifdef CONFIG_DEBUG_LOCK_ALLOC
-> > > > +	mutex_release(&ctx->first_lock_dep_map, _THIS_IP_);
-> > > > =C2=A0	mutex_release(&ctx->dep_map, _THIS_IP_);
-> > > > =C2=A0#endif
-> > > > =C2=A0#ifdef DEBUG_WW_MUTEXES
-> > > > diff --git a/kernel/locking/test-ww_mutex.c
-> > > > b/kernel/locking/test-
-> > > > ww_mutex.c
-> > > > index 10a5736a21c2..5d58b2c0ef98 100644
-> > > > --- a/kernel/locking/test-ww_mutex.c
-> > > > +++ b/kernel/locking/test-ww_mutex.c
-> > > > @@ -62,7 +62,8 @@ static int __test_mutex(unsigned int flags)
-> > > > =C2=A0	int ret;
-> > > > =C2=A0
-> > > > =C2=A0	ww_mutex_init(&mtx.mutex, &ww_class);
-> > > > -	ww_acquire_init(&ctx, &ww_class);
-> > > > +	if (flags & TEST_MTX_CTX)
-> > > > +		ww_acquire_init(&ctx, &ww_class);
-> > > > =C2=A0
-> > > > =C2=A0	INIT_WORK_ONSTACK(&mtx.work, test_mutex_work);
-> > > > =C2=A0	init_completion(&mtx.ready);
-> > > > @@ -90,7 +91,8 @@ static int __test_mutex(unsigned int flags)
-> > > > =C2=A0		ret =3D wait_for_completion_timeout(&mtx.done,
-> > > > TIMEOUT);
-> > > > =C2=A0	}
-> > > > =C2=A0	ww_mutex_unlock(&mtx.mutex);
-> > > > -	ww_acquire_fini(&ctx);
-> > > > +	if (flags & TEST_MTX_CTX)
-> > > > +		ww_acquire_fini(&ctx);
-> > > > =C2=A0
-> > > > =C2=A0	if (ret) {
-> > > > =C2=A0		pr_err("%s(flags=3D%x): mutual exclusion
-> > > > failure\n",
-> > > > @@ -679,7 +681,7 @@ static int __init test_ww_mutex_init(void)
-> > > > =C2=A0	if (ret)
-> > > > =C2=A0		return ret;
-> > > > =C2=A0
-> > > > -	ret =3D stress(2047, hweight32(STRESS_ALL)*ncpus,
-> > > > STRESS_ALL);
-> > > > +	ret =3D stress(2046, hweight32(STRESS_ALL)*ncpus,
-> > > > STRESS_ALL);
-> > > > =C2=A0	if (ret)
-> > > > =C2=A0		return ret;
-> > > > =C2=A0
-> > > > --=20
-> > > > 2.46.0
-> > > >=20
-> >=20
 
