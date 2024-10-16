@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E03D20693
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D6F6D20695
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 652F810E658;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C922810E655;
 	Wed, 16 Oct 2024 03:25:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JlSvFLXR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C22UMkW0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BCF210E654;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3165010E652;
  Wed, 16 Oct 2024 03:24:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729049099; x=1760585099;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7ZzqpGt17SxXa0MbU/ZRLW7G1H1KReE2c3WJkteHOcM=;
- b=JlSvFLXRUqVvHAfkcIb/EngnEur412lMdPJGwPz+zDPLd6N9fu/Yp+s9
- ZUd8GXHNmHAQfxSLEp+6D67SO1JLeUaU6yChCdy0HlWJSqs1iv8S8d8cB
- 0h2p7sZP3wL46xEouRSCC50bAZux7dYdZ3O7x/RLwf/U4fzFpSu9Ub1dr
- XRT1/OobkAZNJaAY4QeytjZZBo5Rdk7uyRQbBaHmBp7KLtMpwXRYODhLG
- 25oGuJ61uM5eZTVBr+otHmI6ann/N8cfzzrJtbbbUuqtXswAVlWFz/ZqO
- h4wExT0e2MrktYyFVeGV0+8Je2jHI9AEDtr9lPCkgk53IRAnoOAHmXvat g==;
-X-CSE-ConnectionGUID: ljPpfosERn+LY2FEfyMpxA==
-X-CSE-MsgGUID: Zl3zZYYiS2OYQG1d+Es9fw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056397"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056397"
+ bh=CW2ne7cFkhsudCG3M0bweu+9Qn2BUd5ErI6jR5c9IWc=;
+ b=C22UMkW0QGhXIZksiw2DcUMHrPwmsaGo7ujRvm3Q9N+x08MILmxf3dMR
+ fVSmRceTCaR8cWXNwZRS/pLkJqqw/peEHBYBuW0EkpuVxKcvh3PME0S8e
+ pF+U5lOXnCW69WKa5NOxby3gXG/xjhm8RRR7kZJav+U+BU5BFhcHEMgYN
+ 667Nx9/yn+JtPIlhMDCQgKThUUgiFu9XjVxt+xPFB0ZQtJbpzijeomy2R
+ 1Fp7H0ZZamGQjByogS4arlE3WzppQPcddTIel7QO6QMyMirDCxST3+69N
+ ceT24MDYEUoewIkoZwwaEHQVlMpJ7fV6/MTLBWTPCHeEZ3QP7r8ELNge/ g==;
+X-CSE-ConnectionGUID: V6v0roZCTJWyJLN+6m1FeA==
+X-CSE-MsgGUID: FPNdyWAORs+xPBgwL1eP2w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056367"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056367"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:58 -0700
-X-CSE-ConnectionGUID: QSvSmoiPQOeVlE5Iotigng==
-X-CSE-MsgGUID: RnZDGZffSAKVPrPZGfFkMw==
+X-CSE-ConnectionGUID: we0DPZ6qQpKgIZJLvLZK5Q==
+X-CSE-MsgGUID: ckWeWR6ITRyxBJcM4PMSEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930261"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930256"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:58 -0700
+ 15 Oct 2024 20:24:57 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 12/29] drm/xe: Add SVM garbage collector
-Date: Tue, 15 Oct 2024 20:25:01 -0700
-Message-Id: <20241016032518.539495-13-matthew.brost@intel.com>
+Subject: [PATCH v2 07/29] drm/xe: Add SVM init / close / fini to faulting VMs
+Date: Tue, 15 Oct 2024 20:24:56 -0700
+Message-Id: <20241016032518.539495-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,203 +70,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add basic SVM garbage collector which can destroy an SVM range upon an
-MMU UNMAP event.
+Add SVM init / close / fini to faulting VMs. Minimual implementation.
 
 v2:
- - Flush garbage collector in xe_svm_close
+ - Add close function
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c      | 87 +++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_svm.h      |  1 +
- drivers/gpu/drm/xe/xe_vm.c       |  4 ++
- drivers/gpu/drm/xe/xe_vm_types.h |  5 ++
- 4 files changed, 95 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/Makefile      |  1 +
+ drivers/gpu/drm/xe/xe_svm.c      | 46 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h      | 15 +++++++++++
+ drivers/gpu/drm/xe/xe_vm.c       | 12 +++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  7 +++++
+ 5 files changed, 81 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8d991d4a92a5..c3e85bcfd4d1 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -96,6 +96,7 @@ xe-y += drm_gpusvm.o \
+ 	xe_sa.o \
+ 	xe_sched_job.o \
+ 	xe_step.o \
++	xe_svm.o \
+ 	xe_sync.o \
+ 	xe_tile.o \
+ 	xe_tile_sysfs.o \
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index a9addaea316d..9c2f44cba166 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
+new file mode 100644
+index 000000000000..57b740367843
+--- /dev/null
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -30,6 +30,7 @@ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
- 	if (!range)
- 		return ERR_PTR(-ENOMEM);
- 
-+	INIT_LIST_HEAD(&range->garbage_collector_link);
- 	xe_vm_get(gpusvm_to_vm(gpusvm));
- 
- 	return &range->base;
-@@ -46,6 +47,24 @@ static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
- 	return container_of(r, struct xe_svm_range, base);
- }
- 
-+static void
-+xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
-+				   const struct mmu_notifier_range *mmu_range)
+@@ -0,0 +1,46 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#include "drm_gpusvm.h"
++
++#include "xe_svm.h"
++#include "xe_vm.h"
++#include "xe_vm_types.h"
++
++static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
++			      struct drm_gpusvm_notifier *notifier,
++			      const struct mmu_notifier_range *mmu_range)
 +{
-+	struct xe_device *xe = vm->xe;
-+
-+	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
-+
-+	spin_lock(&vm->svm.garbage_collector.lock);
-+	if (list_empty(&range->garbage_collector_link))
-+		list_add_tail(&range->garbage_collector_link,
-+			      &vm->svm.garbage_collector.range_list);
-+	spin_unlock(&vm->svm.garbage_collector.lock);
-+
-+	queue_work(xe_device_get_root_tile(xe)->primary_gt->usm.pf_wq,
-+		   &vm->svm.garbage_collector.work);
++	/* TODO: Implement */
 +}
 +
- static u8
- xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
- 				  const struct mmu_notifier_range *mmu_range,
-@@ -88,7 +107,9 @@ xe_svm_range_notifier_event_end(struct xe_vm *vm, struct drm_gpusvm_range *r,
- 	struct drm_gpusvm_ctx ctx = { .in_notifier = true, };
- 
- 	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
--	/* TODO: Add range to garbage collector */
-+	if (mmu_range->event == MMU_NOTIFY_UNMAP)
-+		xe_svm_garbage_collector_add_range(vm, to_xe_range(r),
-+						   mmu_range);
- }
- 
- static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
-@@ -184,6 +205,58 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
- 		xe_svm_range_notifier_event_end(vm, r, mmu_range);
- }
- 
-+static int __xe_svm_garbage_collector(struct xe_vm *vm,
-+				      struct xe_svm_range *range)
++static const struct drm_gpusvm_ops gpusvm_ops = {
++	.invalidate = xe_svm_invalidate,
++};
++
++static const u64 fault_chunk_sizes[] = {
++	SZ_2M,
++	SZ_64K,
++	SZ_4K,
++};
++
++int xe_svm_init(struct xe_vm *vm)
 +{
-+	/* TODO: Do unbind */
-+
-+	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
-+
-+	return 0;
++	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
++			       current->mm, NULL, 0, vm->size,
++			       SZ_512M, &gpusvm_ops, fault_chunk_sizes,
++			       ARRAY_SIZE(fault_chunk_sizes));
 +}
 +
-+static int xe_svm_garbage_collector(struct xe_vm *vm)
++void xe_svm_close(struct xe_vm *vm)
 +{
-+	struct xe_svm_range *range, *next;
-+	int err;
-+
-+	lockdep_assert_held_write(&vm->lock);
-+
-+	if (xe_vm_is_closed_or_banned(vm))
-+		return -ENOENT;
-+
-+	spin_lock(&vm->svm.garbage_collector.lock);
-+	list_for_each_entry_safe(range, next,
-+				 &vm->svm.garbage_collector.range_list,
-+				 garbage_collector_link) {
-+		list_del(&range->garbage_collector_link);
-+		spin_unlock(&vm->svm.garbage_collector.lock);
-+
-+		err = __xe_svm_garbage_collector(vm, range);
-+		if (err) {
-+			drm_warn(&vm->xe->drm,
-+				 "Garbage collection failed: %d\n", err);
-+			xe_vm_kill(vm, true);
-+			return err;
-+		}
-+
-+		spin_lock(&vm->svm.garbage_collector.lock);
-+	}
-+	spin_unlock(&vm->svm.garbage_collector.lock);
-+
-+	return 0;
 +}
 +
-+static void xe_svm_garbage_collector_work_func(struct work_struct *w)
++void xe_svm_fini(struct xe_vm *vm)
 +{
-+	struct xe_vm *vm = container_of(w, struct xe_vm,
-+					svm.garbage_collector.work);
++	xe_assert(vm->xe, xe_vm_is_closed(vm));
 +
-+	down_write(&vm->lock);
-+	xe_svm_garbage_collector(vm);
-+	up_write(&vm->lock);
++	drm_gpusvm_fini(&vm->svm.gpusvm);
 +}
-+
- static const struct drm_gpusvm_ops gpusvm_ops = {
- 	.range_alloc = xe_svm_range_alloc,
- 	.range_free = xe_svm_range_free,
-@@ -198,6 +271,11 @@ static const u64 fault_chunk_sizes[] = {
- 
- int xe_svm_init(struct xe_vm *vm)
- {
-+	spin_lock_init(&vm->svm.garbage_collector.lock);
-+	INIT_LIST_HEAD(&vm->svm.garbage_collector.range_list);
-+	INIT_WORK(&vm->svm.garbage_collector.work,
-+		  xe_svm_garbage_collector_work_func);
-+
- 	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
- 			       current->mm, NULL, 0, vm->size,
- 			       SZ_512M, &gpusvm_ops, fault_chunk_sizes,
-@@ -211,6 +289,8 @@ void xe_svm_close(struct xe_vm *vm)
- 	/* Flush running notifiers making xe_vm_close() visable */
- 	xe_svm_notifier_lock(vm);
- 	xe_svm_notifier_unlock(vm);
-+
-+	flush_work(&vm->svm.garbage_collector.work);
- }
- 
- void xe_svm_fini(struct xe_vm *vm)
-@@ -241,7 +321,10 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	lockdep_assert_held_write(&vm->lock);
- 
- retry:
--	/* TODO: Run garbage collector */
-+	/* Always process UNMAPs first so view SVM ranges is current */
-+	err = xe_svm_garbage_collector(vm);
-+	if (err)
-+		return err;
- 
- 	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, fault_addr,
- 					    xe_vma_start(vma), xe_vma_end(vma),
 diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index ee0bd1ae655b..06d90d0f71a6 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
+new file mode 100644
+index 000000000000..979f2322eeba
+--- /dev/null
 +++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -17,6 +17,7 @@ struct xe_vma;
- 
- struct xe_svm_range {
- 	struct drm_gpusvm_range base;
-+	struct list_head garbage_collector_link;
- 	u8 tile_present;
- 	u8 tile_invalidated;
- };
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef _XE_SVM_H_
++#define _XE_SVM_H_
++
++struct xe_vm;
++
++int xe_svm_init(struct xe_vm *vm);
++void xe_svm_fini(struct xe_vm *vm);
++void xe_svm_close(struct xe_vm *vm);
++
++#endif
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 63aa0a25d3b7..399cbbdbddd5 100644
+index 0d887fb9de59..b11fb0ac9520 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3071,6 +3071,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto put_exec_queue;
+@@ -35,6 +35,7 @@
+ #include "xe_preempt_fence.h"
+ #include "xe_pt.h"
+ #include "xe_res_cursor.h"
++#include "xe_svm.h"
+ #include "xe_sync.h"
+ #include "xe_trace_bo.h"
+ #include "xe_wa.h"
+@@ -1503,6 +1504,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		}
  	}
  
-+	/* Ensure all UNMAPs visable */
-+	if (xe_vm_in_fault_mode(vm))
-+		flush_work(&vm->svm.garbage_collector.work);
++	if (flags & XE_VM_FLAG_FAULT_MODE) {
++		err = xe_svm_init(vm);
++		if (err)
++			goto err_close;
++	}
 +
- 	err = down_write_killable(&vm->lock);
- 	if (err)
- 		goto put_vm;
+ 	if (number_tiles > 1)
+ 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
+ 
+@@ -1548,6 +1555,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	xe_vm_close(vm);
+ 	if (xe_vm_in_preempt_fence_mode(vm))
+ 		flush_work(&vm->preempt.rebind_work);
++	if (xe_vm_in_fault_mode(vm))
++		xe_svm_close(vm);
+ 
+ 	down_write(&vm->lock);
+ 	for_each_tile(tile, xe, id) {
+@@ -1616,6 +1625,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe_vma_destroy_unlocked(vma);
+ 	}
+ 
++	if (xe_vm_in_fault_mode(vm))
++		xe_svm_fini(vm);
++
+ 	up_write(&vm->lock);
+ 
+ 	down_write(&xe->usm.lock);
 diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index b736e53779d2..2eae3575c409 100644
+index 1764781c376b..bd1c0e368238 100644
 --- a/drivers/gpu/drm/xe/xe_vm_types.h
 +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -146,6 +146,11 @@ struct xe_vm {
- 	struct {
- 		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
- 		struct drm_gpusvm gpusvm;
-+		struct {
-+			spinlock_t lock;
-+			struct list_head range_list;
-+			struct work_struct work;
-+		} garbage_collector;
- 	} svm;
+@@ -6,6 +6,7 @@
+ #ifndef _XE_VM_TYPES_H_
+ #define _XE_VM_TYPES_H_
  
++#include "drm_gpusvm.h"
+ #include <drm/drm_gpuvm.h>
+ 
+ #include <linux/dma-resv.h>
+@@ -140,6 +141,12 @@ struct xe_vm {
+ 	/** @gpuvm: base GPUVM used to track VMAs */
+ 	struct drm_gpuvm gpuvm;
+ 
++	/** @svm: Shared virtual memory state */
++	struct {
++		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
++		struct drm_gpusvm gpusvm;
++	} svm;
++
  	struct xe_device *xe;
+ 
+ 	/* exec queue used for (un)binding vma's */
 -- 
 2.34.1
 
