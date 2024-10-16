@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C532DD206A5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65FDFD206A4
 	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFAC10E678;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C0710E677;
 	Wed, 16 Oct 2024 03:25:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IysFok7g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZkoA8zF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B03E10E655;
- Wed, 16 Oct 2024 03:25:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4F7810E654;
+ Wed, 16 Oct 2024 03:24:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729049100; x=1760585100;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JPDahZu0li5bjPvSiy3nWAji9ySJZFrS0qUJ+LsDo3Y=;
- b=IysFok7g4kQ7Kd/dfMo95v1oLP1A5MlixhlbmVclKNxw+Vs5nH6OOYnX
- MQFuBxPVM/DRtywfEp9muj6Y2DE1D1tbBmMLXwZ1BzH9EDU0XTjSD0QXQ
- Bg1C/e23PNZCSORTbzPTESwugT+su7o6J8wX0yuhvXgUDK7Hd8PGk9EIB
- 2z9AhMrjQixnONBXQy4+cYVG3O2cAO0+E2qYr8eSQwo86skhAsXyvOE6d
- uDSYu1dZXsbq31GqWKZmOTWqSjW2jmSqppRGxa2Ucx1+EPRbSBk3AXv0G
- GYL09QjUA4vsMyjv6GxQj5bjs/mrXJzDloUV4y2fAO/SOIri02pEkqe7W w==;
-X-CSE-ConnectionGUID: LjIHMsuYSvCkUtzMVs+hmw==
-X-CSE-MsgGUID: gwp4koSqQdShpdQYmF4+zg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056446"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056446"
+ bh=8kvGQpdRMNyCP7s2PzUAYdGOWlOFvz7/HodsYrJ0Qeg=;
+ b=CZkoA8zFAgtPGeaniMXYQig/PBF5fTot23J2rY+B+TIMgd6Ixkb1zMNb
+ k7E+BOIMLOQ3O6dEKue+E+Kui7RPZ/CuqlUXC75S+eDUsn3FweTwh6Bue
+ 63B2SQsD0nRdeKnI3mPMt3J9E6zk+Zm0flpiI2Flq2UVSJ9YAntiVpFbR
+ dpOgvqWcCCU+sXj9bFfHpDb9orCjcwtBA2vNaIsfznETW1v0/9+P0o9cH
+ CXwe/RGsdPjEj8nUuHzD9ZtYS2n1WXwE8JaLBCYLwK3hZ98Mjfv14L3QE
+ jcJjgQKwI5/YxxYug0RnmwLWqkWole4pjHL2rgxjj5ZYr1Ue4BIfD1agI g==;
+X-CSE-ConnectionGUID: NVjzK2uvSa6dBHyTTf91Mg==
+X-CSE-MsgGUID: nBuiUZWZSKem0Odd6eCA1g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056407"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056407"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:59 -0700
-X-CSE-ConnectionGUID: 4RXrR2pYQqO6B5yYRutoTQ==
-X-CSE-MsgGUID: 0RzearjGR5eWdwdckrjoPw==
+ 15 Oct 2024 20:24:58 -0700
+X-CSE-ConnectionGUID: KXDTw3sHQWecuOWPln/OMA==
+X-CSE-MsgGUID: 4gT5VkLIRvaft2NEZJkN1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930272"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930262"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:58 -0700
@@ -47,9 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 21/29] drm/xe: Add Xe SVM populate_devmem_pfn vfunc
-Date: Tue, 15 Oct 2024 20:25:10 -0700
-Message-Id: <20241016032518.539495-22-matthew.brost@intel.com>
+Subject: [PATCH v2 13/29] drm/xe: Add unbind to SVM garbage collector
+Date: Tue, 15 Oct 2024 20:25:02 -0700
+Message-Id: <20241016032518.539495-14-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
@@ -69,78 +69,348 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Get VRAM pfns from BO's buddy blocks.
+Add unbind to SVM garbage collector. To facilitate add unbind support
+function to VM layer which unbinds a SVM range. Also teach PY layer to
+understand unbinds of SVM ranges.
 
-v2:
- - Use new drm_gpusvm_devmem_ops
-
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 40 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c       | 84 ++++++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_svm.c      |  9 +++-
+ drivers/gpu/drm/xe/xe_vm.c       | 73 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h       |  2 +
+ drivers/gpu/drm/xe/xe_vm_types.h | 12 ++++-
+ 5 files changed, 162 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 4f01941b2cc2..19fcb8f71791 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -9,6 +9,7 @@
- #include "xe_migrate.h"
- #include "xe_pt.h"
- #include "xe_svm.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_types.h"
- 
-@@ -413,8 +414,47 @@ static int xe_svm_copy_to_ram(struct page **pages, dma_addr_t *dma_addr,
- 	return xe_svm_copy(pages, dma_addr, npages, XE_SVM_COPY_TO_SRAM);
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 024e4eb83408..687abd1a5e74 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -925,10 +925,16 @@ static void xe_pt_cancel_bind(struct xe_vma *vma,
+ 	}
  }
  
-+static struct xe_bo *to_xe_bo(struct drm_gpusvm_devmem *devmem_allocation)
++#define INVALID_VMA	(struct xe_vma*)(0xdeaddeadull)
++
+ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ {
+-	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_vm *vm;
+ 
++	if (vma == INVALID_VMA)
++		return;
++
++	vm = xe_vma_vm(vma);
+ 	lockdep_assert_held(&vm->lock);
+ 
+ 	if (!xe_vma_has_no_bo(vma))
+@@ -954,7 +960,8 @@ static void xe_pt_commit(struct xe_vma *vma,
+ 		for (j = 0; j < entries[i].qwords; j++) {
+ 			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
+ 
+-			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags, deferred);
++			xe_pt_destroy(oldpte, (vma == INVALID_VMA) ? 0 :
++				      xe_vma_vm(vma)->flags, deferred);
+ 		}
+ 	}
+ }
+@@ -1387,6 +1394,9 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 	list_for_each_entry(op, &vops->list, link) {
+ 		struct xe_svm_range *range = op->map_range.range;
+ 
++		if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
++			continue;
++
+ 		xe_assert(vm->xe, xe_vma_is_system_allocator(op->map_range.vma));
+ 		xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
+ 
+@@ -1585,7 +1595,9 @@ static const struct xe_pt_walk_ops xe_pt_stage_unbind_ops = {
+  * xe_pt_stage_unbind() - Build page-table update structures for an unbind
+  * operation
+  * @tile: The tile we're unbinding for.
++ * @vm: The vm
+  * @vma: The vma we're unbinding.
++ * @range: The range we're unbinding.
+  * @entries: Caller-provided storage for the update structures.
+  *
+  * Builds page-table update structures for an unbind operation. The function
+@@ -1595,9 +1607,14 @@ static const struct xe_pt_walk_ops xe_pt_stage_unbind_ops = {
+  *
+  * Return: The number of entries used.
+  */
+-static unsigned int xe_pt_stage_unbind(struct xe_tile *tile, struct xe_vma *vma,
++static unsigned int xe_pt_stage_unbind(struct xe_tile *tile,
++				       struct xe_vm *vm,
++				       struct xe_vma *vma,
++				       struct xe_svm_range *range,
+ 				       struct xe_vm_pgtable_update *entries)
+ {
++	u64 start = range ? range->base.va.start : xe_vma_start(vma);
++	u64 end = range ? range->base.va.end : xe_vma_end(vma);
+ 	struct xe_pt_stage_unbind_walk xe_walk = {
+ 		.base = {
+ 			.ops = &xe_pt_stage_unbind_ops,
+@@ -1605,14 +1622,14 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile, struct xe_vma *vma,
+ 			.max_level = XE_PT_HIGHEST_LEVEL,
+ 		},
+ 		.tile = tile,
+-		.modified_start = xe_vma_start(vma),
+-		.modified_end = xe_vma_end(vma),
++		.modified_start = start,
++		.modified_end = end,
+ 		.wupd.entries = entries,
+ 	};
+-	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
++	struct xe_pt *pt = vm->pt_root[tile->id];
+ 
+-	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
+-				xe_vma_end(vma), &xe_walk.base);
++	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
++				&xe_walk.base);
+ 
+ 	return xe_walk.wupd.num_used_entries;
+ }
+@@ -1854,13 +1871,6 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 	       "Preparing unbind, with range [%llx...%llx)\n",
+ 	       xe_vma_start(vma), xe_vma_end(vma) - 1);
+ 
+-	/*
+-	 * Wait for invalidation to complete. Can corrupt internal page table
+-	 * state if an invalidation is running while preparing an unbind.
+-	 */
+-	if (xe_vma_is_userptr(vma) && xe_vm_in_fault_mode(xe_vma_vm(vma)))
+-		mmu_interval_read_begin(&to_userptr_vma(vma)->userptr.notifier);
+-
+ 	pt_op->vma = vma;
+ 	pt_op->bind = false;
+ 	pt_op->rebind = false;
+@@ -1869,7 +1879,8 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 	if (err)
+ 		return err;
+ 
+-	pt_op->num_entries = xe_pt_stage_unbind(tile, vma, pt_op->entries);
++	pt_op->num_entries = xe_pt_stage_unbind(tile, xe_vma_vm(vma),
++						vma, NULL, pt_op->entries);
+ 
+ 	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
+ 				pt_op->num_entries, false);
+@@ -1884,6 +1895,42 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 	return 0;
+ }
+ 
++static int unbind_range_prepare(struct xe_vm *vm,
++				struct xe_tile *tile,
++				struct xe_vm_pgtable_update_ops *pt_update_ops,
++				struct xe_svm_range *range)
 +{
-+	return container_of(devmem_allocation, struct xe_bo, devmem_allocation);
-+}
++	u32 current_op = pt_update_ops->current_op;
++	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
 +
-+static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
-+{
-+	return PHYS_PFN(offset + mr->hpa_base);
-+}
++	if (!(range->tile_present & BIT(tile->id)))
++		return 0;
 +
-+static struct drm_buddy *tile_to_buddy(struct xe_tile *tile)
-+{
-+	return &tile->mem.vram_mgr->mm;
-+}
++	vm_dbg(&vm->xe->drm,
++	       "Preparing unbind, with range [%llx...%llx)\n",
++	       range->base.va.start, range->base.va.end - 1);
 +
-+static int xe_svm_populate_devmem_pfn(struct drm_gpusvm_devmem *devmem_allocation,
-+				      unsigned long npages, unsigned long *pfn)
-+{
-+	struct xe_bo *bo = to_xe_bo(devmem_allocation);
-+	struct ttm_resource *res = bo->ttm.resource;
-+	struct list_head *blocks = &to_xe_ttm_vram_mgr_resource(res)->blocks;
-+	struct drm_buddy_block *block;
-+	int j =0;
++	pt_op->vma = INVALID_VMA;
++	pt_op->bind = false;
++	pt_op->rebind = false;
 +
-+	list_for_each_entry(block, blocks, link) {
-+		struct xe_mem_region *mr = block->private;
-+		struct xe_tile *tile = mr_to_tile(mr);
-+		struct drm_buddy *buddy = tile_to_buddy(tile);
-+		u64 block_pfn = block_offset_to_pfn(mr, drm_buddy_block_offset(block));
-+		int i;
++	pt_op->num_entries = xe_pt_stage_unbind(tile, vm, NULL, range,
++						pt_op->entries);
 +
-+		for(i = 0; i < drm_buddy_block_size(buddy, block) >> PAGE_SHIFT; ++i)
-+			pfn[j++] = block_pfn + i;
-+	}
++	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
++				pt_op->num_entries, false);
++	xe_pt_update_ops_rfence_interval(pt_update_ops, range->base.va.start,
++					 range->base.va.end);
++	++pt_update_ops->current_op;
++	pt_update_ops->needs_svm_lock = true;
++	pt_update_ops->needs_invalidation = true;
++
++	xe_pt_commit_prepare_unbind(INVALID_VMA, pt_op->entries,
++				    pt_op->num_entries);
 +
 +	return 0;
 +}
 +
- __maybe_unused
- static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
-+	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
- 	.copy_to_devmem = xe_svm_copy_to_devmem,
- 	.copy_to_ram = xe_svm_copy_to_ram,
+ static int op_prepare(struct xe_vm *vm,
+ 		      struct xe_tile *tile,
+ 		      struct xe_vm_pgtable_update_ops *pt_update_ops,
+@@ -1951,6 +1998,9 @@ static int op_prepare(struct xe_vm *vm,
+ 			err = bind_range_prepare(vm, tile, pt_update_ops,
+ 						 op->map_range.vma,
+ 						 op->map_range.range);
++		} else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE) {
++			err = unbind_range_prepare(vm, tile, pt_update_ops,
++						   op->unmap_range.range);
+ 		}
+ 		break;
+ 	default:
+@@ -2139,6 +2189,8 @@ static void op_commit(struct xe_vm *vm,
+ 		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
+ 			op->map_range.range->tile_present |= BIT(tile->id);
+ 			op->map_range.range->tile_invalidated &= ~BIT(tile->id);
++		} else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE) {
++			op->unmap_range.range->tile_present &= ~BIT(tile->id);
+ 		}
+ 		break;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 9c2f44cba166..0762126f65e0 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -208,7 +208,14 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ static int __xe_svm_garbage_collector(struct xe_vm *vm,
+ 				      struct xe_svm_range *range)
+ {
+-	/* TODO: Do unbind */
++	struct dma_fence *fence;
++
++	xe_vm_lock(vm, false);
++	fence = xe_vm_range_unbind(vm, range);
++	xe_vm_unlock(vm);
++	if (IS_ERR(fence))
++		return PTR_ERR(fence);
++	dma_fence_put(fence);
+ 
+ 	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 399cbbdbddd5..76a20e96084e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -972,6 +972,79 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+ 	return fence;
+ }
+ 
++static void xe_vm_populate_range_unbind(struct xe_vma_op *op,
++					struct xe_svm_range *range)
++{
++	INIT_LIST_HEAD(&op->link);
++	op->tile_mask = range->tile_present;
++	op->base.op = DRM_GPUVA_OP_USER;
++	op->subop = XE_VMA_SUBOP_UNMAP_RANGE;
++	op->unmap_range.range = range;
++}
++
++static int
++xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
++			   struct xe_svm_range *range)
++{
++	struct xe_vma_op *op;
++
++	op = kzalloc(sizeof(*op), GFP_KERNEL);
++	if (!op)
++		return -ENOMEM;
++
++	xe_vm_populate_range_unbind(op, range);
++	list_add_tail(&op->link, &vops->list);
++	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present);
++
++	return 0;
++}
++
++struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
++				     struct xe_svm_range *range)
++{
++	struct dma_fence *fence = NULL;
++	struct xe_vma_ops vops;
++	struct xe_vma_op *op, *next_op;
++	struct xe_tile *tile;
++	u8 id;
++	int err;
++
++	lockdep_assert_held(&vm->lock);
++	xe_vm_assert_held(vm);
++	xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
++
++	if (!range->tile_present)
++		return dma_fence_get_stub();
++
++	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
++	for_each_tile(tile, vm->xe, id) {
++		vops.pt_update_ops[id].wait_vm_bookkeep = true;
++		vops.pt_update_ops[tile->id].q =
++			xe_tile_migrate_exec_queue(tile);
++	}
++
++	err = xe_vm_ops_add_range_unbind(&vops, range);
++	if (err)
++		return ERR_PTR(err);
++
++	err = xe_vma_ops_alloc(&vops, false);
++	if (err) {
++		fence = ERR_PTR(err);
++		goto free_ops;
++	}
++
++	fence = ops_execute(vm, &vops);
++
++free_ops:
++	list_for_each_entry_safe(op, next_op, &vops.list, link) {
++		list_del(&op->link);
++		kfree(op);
++	}
++	xe_vma_ops_fini(&vops);
++
++	return fence;
++}
++
+ static void xe_vma_free(struct xe_vma *vma)
+ {
+ 	if (xe_vma_is_userptr(vma))
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 8bd921b33090..d577ca9e3d65 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -222,6 +222,8 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+ 				     struct xe_vma *vma,
+ 				     struct xe_svm_range *range,
+ 				     u8 tile_mask);
++struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
++				     struct xe_svm_range *range);
+ 
+ int xe_vm_invalidate_vma(struct xe_vma *vma);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 2eae3575c409..d38cf7558f62 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -348,6 +348,12 @@ struct xe_vma_op_map_range {
+ 	struct xe_svm_range *range;
  };
+ 
++/** struct xe_vma_op_unmap_range - VMA unmap range operation */
++struct xe_vma_op_unmap_range {
++	/** @range: SVM range to unmap */
++	struct xe_svm_range *range;
++};
++
+ /** enum xe_vma_op_flags - flags for VMA operation */
+ enum xe_vma_op_flags {
+ 	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
+@@ -362,6 +368,8 @@ enum xe_vma_op_flags {
+ enum xe_vma_subop {
+ 	/** @XE_VMA_SUBOP_MAP_RANGE: Map range */
+ 	XE_VMA_SUBOP_MAP_RANGE,
++	/** @XE_VMA_SUBOP_UNMAP_RANGE: Unmap range */
++	XE_VMA_SUBOP_UNMAP_RANGE,
+ };
+ 
+ /** struct xe_vma_op - VMA operation */
+@@ -384,8 +392,10 @@ struct xe_vma_op {
+ 		struct xe_vma_op_remap remap;
+ 		/** @prefetch: VMA prefetch operation specific data */
+ 		struct xe_vma_op_prefetch prefetch;
+-		/** @map: VMA map range operation specific data */
++		/** @map_range: VMA map range operation specific data */
+ 		struct xe_vma_op_map_range map_range;
++		/** @unmap_range: VMA unmap range operation specific data */
++		struct xe_vma_op_map_range unmap_range;
+ 	};
+ };
+ 
 -- 
 2.34.1
 
