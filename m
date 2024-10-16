@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03ACFD1AD58
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 13:30:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94E82D1AD5A
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 13:33:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1BD310E2DD;
-	Wed, 16 Oct 2024 13:30:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nWKO7hZY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05B3210E2DD;
- Wed, 16 Oct 2024 13:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729085423; x=1760621423;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=U7HGvL7PEU9CKc6sj4d3REeSNVMURtrPx91kShnPIxg=;
- b=nWKO7hZYl6W/IkDB+k1BitMcTGdUOirPFKtPG9kQdjcS9VJqtZMhLJfF
- QsTyOrJKfw3Njz7+GxrxsYnYbzhwKq8PHPitfkZjnXgWICe4ZZ0LXTkSX
- ojCHthBayT42KSWaRcXRS/Et+3aNDvSn4h+JJi0FFdsheM9KzBuDQjZh6
- iV7YKlHir63mFud9aDz+JMhNSVbbNnOKAFYZi81Q7TNUcH38EuoJpfeGw
- 9m6NHCUscS9yqXY0ENt7qozC/RgRMVgP0GRIBollWCLd5rtORbG4GgyaM
- gZLtpW7VkWqYNApWnbT9solaLOc6fldmfnWI/RTFyfFo1xwYShOXBeoYO Q==;
-X-CSE-ConnectionGUID: A9xoZMcdSoisG3i1O9aXJQ==
-X-CSE-MsgGUID: +8HTWfq5T6mX3aAo4j2YAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11226"; a="46029515"
-X-IronPort-AV: E=Sophos;i="6.11,208,1725346800"; d="scan'208";a="46029515"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 06:30:23 -0700
-X-CSE-ConnectionGUID: jNEHQ44LQ1G5Xu0Y0mlVLw==
-X-CSE-MsgGUID: gZ3Qbi1iTB65Fy1vVvwFqA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,208,1725346800"; d="scan'208";a="78281223"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 Oct 2024 06:30:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 16 Oct 2024 16:30:19 +0300
-Date: Wed, 16 Oct 2024 16:30:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: plane property for async supported
- modifiers
-Message-ID: <Zw-_6yuy139Zmir3@intel.com>
-References: <20241016053626.2850384-1-arun.r.murthy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A14210E708;
+	Wed, 16 Oct 2024 13:33:35 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75C8A10E708;
+ Wed, 16 Oct 2024 13:33:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241016053626.2850384-1-arun.r.murthy@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Workaround_to_handle_G2H_timeo?=
+ =?utf-8?q?ut?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Oct 2024 13:33:34 -0000
+Message-ID: <172908561447.1274053.18319009850324330931@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241016115256.349791-1-badal.nilawar@intel.com>
+In-Reply-To: <20241016115256.349791-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,172 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 16, 2024 at 11:06:26AM +0530, Arun R Murthy wrote:
-> Create a i915 private plane property for sharing the async supported
-> modifiers to the user.
-> UMD related discussion requesting the same
-> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  6 +++
->  .../drm/i915/display/intel_display_types.h    |  4 ++
->  .../drm/i915/display/skl_universal_plane.c    | 49 ++++++++++++++++++-
+== Series Details ==
 
-This whole thing belongs in the drm core.
+Series: Workaround to handle G2H timeout
+URL   : https://patchwork.freedesktop.org/series/140056/
+State : success
 
->  3 files changed, 58 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index b7e462075ded..ef41b50cc765 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -117,6 +117,9 @@ intel_plane_duplicate_state(struct drm_plane *plane)
->  	intel_state->dpt_vma = NULL;
->  	intel_state->flags = 0;
->  
-> +	if (intel_state->async_sup_modifiers)
-> +		drm_property_blob_get(intel_state->async_sup_modifiers);
-> +
->  	/* add reference to fb */
->  	if (intel_state->hw.fb)
->  		drm_framebuffer_get(intel_state->hw.fb);
-> @@ -141,6 +144,9 @@ intel_plane_destroy_state(struct drm_plane *plane,
->  	drm_WARN_ON(plane->dev, plane_state->ggtt_vma);
->  	drm_WARN_ON(plane->dev, plane_state->dpt_vma);
->  
-> +	if (plane_state->async_sup_modifiers)
-> +		drm_property_blob_put(plane_state->async_sup_modifiers);
-> +
->  	__drm_atomic_helper_plane_destroy_state(&plane_state->uapi);
->  	if (plane_state->hw.fb)
->  		drm_framebuffer_put(plane_state->hw.fb);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2bb1fa64da2f..a5a301ca521a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -683,6 +683,8 @@ struct intel_plane_state {
->  	u64 ccval;
->  
->  	const char *no_fbc_reason;
-> +
-> +	struct drm_property_blob *async_sup_modifiers;
->  };
->  
->  struct intel_initial_plane_config {
-> @@ -1435,6 +1437,8 @@ struct intel_plane {
->  
->  	struct intel_fbc *fbc;
->  
-> +	struct drm_property *async_modifiers_property;
-> +
->  	/*
->  	 * NOTE: Do not place new plane state fields here (e.g., when adding
->  	 * new plane properties).  New runtime state should now be placed in
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 9557b08ca2e2..6790bdf00c8f 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -2383,6 +2383,29 @@ static bool icl_plane_format_mod_supported(struct drm_plane *_plane,
->  	}
->  }
->  
-> +static int intel_plane_get_property(struct drm_plane *plane,
-> +				    const struct drm_plane_state *state,
-> +				    struct drm_property *property,
-> +				    uint64_t *val)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(plane->dev);
-> +	const struct intel_plane_state *intel_plane_state =
-> +		to_intel_plane_state(state);
-> +	struct intel_plane *intel_plane = to_intel_plane(plane);
-> +
-> +	if (property == intel_plane->async_modifiers_property) {
-> +		*val = intel_plane_state->async_sup_modifiers ?
-> +			intel_plane_state->async_sup_modifiers->base.id : 0;
-> +	} else {
-> +		drm_err(&i915->drm,
-> +			"Unknown property [PROP:%d:%s]\n",
-> +			property->base.id, property->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
->  					   u32 format, u64 modifier)
->  {
-> @@ -2442,6 +2465,7 @@ static const struct drm_plane_funcs skl_plane_funcs = {
->  	.atomic_duplicate_state = intel_plane_duplicate_state,
->  	.atomic_destroy_state = intel_plane_destroy_state,
->  	.format_mod_supported = skl_plane_format_mod_supported,
-> +	.atomic_get_property = intel_plane_get_property,
->  };
->  
->  static const struct drm_plane_funcs icl_plane_funcs = {
-> @@ -2451,6 +2475,7 @@ static const struct drm_plane_funcs icl_plane_funcs = {
->  	.atomic_duplicate_state = intel_plane_duplicate_state,
->  	.atomic_destroy_state = intel_plane_destroy_state,
->  	.format_mod_supported = icl_plane_format_mod_supported,
-> +	.atomic_get_property = intel_plane_get_property,
->  };
->  
->  static const struct drm_plane_funcs tgl_plane_funcs = {
-> @@ -2460,6 +2485,7 @@ static const struct drm_plane_funcs tgl_plane_funcs = {
->  	.atomic_duplicate_state = intel_plane_duplicate_state,
->  	.atomic_destroy_state = intel_plane_destroy_state,
->  	.format_mod_supported = tgl_plane_format_mod_supported,
-> +	.atomic_get_property = intel_plane_get_property,
->  };
->  
->  static void
-> @@ -2549,6 +2575,25 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
->  	return caps;
->  }
->  
-> +static void intel_plane_attach_async_modifiers_property(struct intel_plane *intel_plane)
-> +{
-> +	struct drm_plane *plane = &intel_plane->base;
-> +	struct drm_device *dev = plane->dev;
-> +	struct drm_property *prop;
-> +
-> +	prop = intel_plane->async_modifiers_property;
-> +	if (!prop) {
-> +		prop = drm_property_create(dev, DRM_MODE_PROP_BLOB | DRM_MODE_PROP_ATOMIC,
-> +					   "Async Supported Modifiers", 0);
-> +		if (!prop)
-> +			return;
-> +
-> +		intel_plane->async_modifiers_property = prop;
-> +	}
-> +
-> +	drm_object_attach_property(&plane->base, prop, 0);
-> +}
-> +
->  struct intel_plane *
->  skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  			   enum pipe pipe, enum plane_id plane_id)
-> @@ -2694,10 +2739,12 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  	if (DISPLAY_VER(dev_priv) >= 12)
->  		drm_plane_enable_fb_damage_clips(&plane->base);
->  
-> -	if (DISPLAY_VER(dev_priv) >= 11)
-> +	if (DISPLAY_VER(dev_priv) >= 11) {
->  		drm_plane_create_scaling_filter_property(&plane->base,
->  						BIT(DRM_SCALING_FILTER_DEFAULT) |
->  						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
-> +		intel_plane_attach_async_modifiers_property(plane);
-> +	}
->  
->  	intel_plane_helper_add(plane);
->  
-> -- 
-> 2.25.1
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+lib/modules/6.12.0-rc3-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc3-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc3-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc3-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc3-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc3-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/
+lib/modules/6.12.0-rc3-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc3-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc3-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc3-xe/build
+lib/modules/6.12.0-rc3-xe/modules.alias.bin
+lib/modules/6.12.0-rc3-xe/modules.builtin
+lib/modules/6.12.0-rc3-xe/modules.softdep
+lib/modules/6.12.0-rc3-xe/modules.alias
+lib/modules/6.12.0-rc3-xe/modules.order
+lib/modules/6.12.0-rc3-xe/modules.symbols
+lib/modules/6.12.0-rc3-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1729085608:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1729085608:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
