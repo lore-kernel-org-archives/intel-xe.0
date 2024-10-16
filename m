@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D6F6D20695
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B13D9D2069A
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Oct 2024 03:25:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C922810E655;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C969710E657;
 	Wed, 16 Oct 2024 03:25:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C22UMkW0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fl/i1/8P";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3165010E652;
- Wed, 16 Oct 2024 03:24:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B4AA10E649;
+ Wed, 16 Oct 2024 03:24:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729049099; x=1760585099;
+ t=1729049098; x=1760585098;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CW2ne7cFkhsudCG3M0bweu+9Qn2BUd5ErI6jR5c9IWc=;
- b=C22UMkW0QGhXIZksiw2DcUMHrPwmsaGo7ujRvm3Q9N+x08MILmxf3dMR
- fVSmRceTCaR8cWXNwZRS/pLkJqqw/peEHBYBuW0EkpuVxKcvh3PME0S8e
- pF+U5lOXnCW69WKa5NOxby3gXG/xjhm8RRR7kZJav+U+BU5BFhcHEMgYN
- 667Nx9/yn+JtPIlhMDCQgKThUUgiFu9XjVxt+xPFB0ZQtJbpzijeomy2R
- 1Fp7H0ZZamGQjByogS4arlE3WzppQPcddTIel7QO6QMyMirDCxST3+69N
- ceT24MDYEUoewIkoZwwaEHQVlMpJ7fV6/MTLBWTPCHeEZ3QP7r8ELNge/ g==;
-X-CSE-ConnectionGUID: V6v0roZCTJWyJLN+6m1FeA==
-X-CSE-MsgGUID: FPNdyWAORs+xPBgwL1eP2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056367"
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056367"
+ bh=+gR/suRP+Y4jEabpDl9XtLdajDyFKlpkAVmT/X78dTg=;
+ b=fl/i1/8PURVAj/D36kDZc2LbvtCbKLRUgq+bhkF820XkMjjHWg3ZuC/u
+ AfBWkh+lMmgUtJdpFjkfJuhoM934lJTps085eMSDg7lld+5G5KqmncBZv
+ LYsjDg3nmTaPbvsLxZtHuHa2SBvJuDn4mwyaQ/7utwWapaYturlKNdWBk
+ H5cAK4JoZ/tkbBmIvzNyfurOAtVcT4StvgsKBqPTHc+o4wAcqYmieMebm
+ Bfj7uGCQCiONA3jKaRTVQPw+n+ZdI699RsB96KFVfrCrCn0Ccr1BRvKWs
+ htOCynIOr+9Or0hLjhRwNA3N54q/cgzNzBEHQgly/3npHX2p2wFzw2H9F w==;
+X-CSE-ConnectionGUID: JFC7IkPqRW259c9nyGY70w==
+X-CSE-MsgGUID: YdrTsgxiTKCfTHcNmIgcag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39056358"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="39056358"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 20:24:58 -0700
-X-CSE-ConnectionGUID: we0DPZ6qQpKgIZJLvLZK5Q==
-X-CSE-MsgGUID: ckWeWR6ITRyxBJcM4PMSEA==
+ 15 Oct 2024 20:24:57 -0700
+X-CSE-ConnectionGUID: tnMH+2f1TcCNZYv/d5WxGQ==
+X-CSE-MsgGUID: 8GiVcoPLQZKWb351T9snPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930256"
+X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="78930253"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2024 20:24:57 -0700
@@ -47,14 +47,14 @@ To: intel-xe@lists.freedesktop.org,
 Cc: apopple@nvidia.com, airlied@gmail.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v2 07/29] drm/xe: Add SVM init / close / fini to faulting VMs
-Date: Tue, 15 Oct 2024 20:24:56 -0700
-Message-Id: <20241016032518.539495-8-matthew.brost@intel.com>
+Subject: [PATCH v2 04/29] drm/pagemap: Add DRM pagemap
+Date: Tue, 15 Oct 2024 20:24:53 -0700
+Message-Id: <20241016032518.539495-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241016032518.539495-1-matthew.brost@intel.com>
 References: <20241016032518.539495-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,176 +70,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add SVM init / close / fini to faulting VMs. Minimual implementation.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-v2:
- - Add close function
+Introduce drm_pagemap ops to map and unmap dma to VRAM resources. In the
+local memory case it's a matter of merely providing an offset into the
+device's physical address. For future p2p the map and unmap functions may
+encode as needed.
+
+Similar to how dma-buf works, let the memory provider (drm_pagemap) provide
+the mapping functionality.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/Makefile      |  1 +
- drivers/gpu/drm/xe/xe_svm.c      | 46 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h      | 15 +++++++++++
- drivers/gpu/drm/xe/xe_vm.c       | 12 +++++++++
- drivers/gpu/drm/xe/xe_vm_types.h |  7 +++++
- 5 files changed, 81 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_svm.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+ drivers/gpu/drm/xe/drm_pagemap.h | 103 +++++++++++++++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/drm_pagemap.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 8d991d4a92a5..c3e85bcfd4d1 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -96,6 +96,7 @@ xe-y += drm_gpusvm.o \
- 	xe_sa.o \
- 	xe_sched_job.o \
- 	xe_step.o \
-+	xe_svm.o \
- 	xe_sync.o \
- 	xe_tile.o \
- 	xe_tile_sysfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+diff --git a/drivers/gpu/drm/xe/drm_pagemap.h b/drivers/gpu/drm/xe/drm_pagemap.h
 new file mode 100644
-index 000000000000..57b740367843
+index 000000000000..b6b387b81479
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -0,0 +1,46 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include "drm_gpusvm.h"
-+
-+#include "xe_svm.h"
-+#include "xe_vm.h"
-+#include "xe_vm_types.h"
-+
-+static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
-+			      struct drm_gpusvm_notifier *notifier,
-+			      const struct mmu_notifier_range *mmu_range)
-+{
-+	/* TODO: Implement */
-+}
-+
-+static const struct drm_gpusvm_ops gpusvm_ops = {
-+	.invalidate = xe_svm_invalidate,
-+};
-+
-+static const u64 fault_chunk_sizes[] = {
-+	SZ_2M,
-+	SZ_64K,
-+	SZ_4K,
-+};
-+
-+int xe_svm_init(struct xe_vm *vm)
-+{
-+	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
-+			       current->mm, NULL, 0, vm->size,
-+			       SZ_512M, &gpusvm_ops, fault_chunk_sizes,
-+			       ARRAY_SIZE(fault_chunk_sizes));
-+}
-+
-+void xe_svm_close(struct xe_vm *vm)
-+{
-+}
-+
-+void xe_svm_fini(struct xe_vm *vm)
-+{
-+	xe_assert(vm->xe, xe_vm_is_closed(vm));
-+
-+	drm_gpusvm_fini(&vm->svm.gpusvm);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-new file mode 100644
-index 000000000000..979f2322eeba
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -0,0 +1,15 @@
++++ b/drivers/gpu/drm/xe/drm_pagemap.h
+@@ -0,0 +1,103 @@
 +/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
++#ifndef _DRM_PAGEMAP_H_
++#define _DRM_PAGEMAP_H_
++
++#include <linux/dma-direction.h>
++#include <linux/hmm.h>
++#include <linux/types.h>
++
++struct drm_pagemap;
++struct device;
++
++/**
++ * enum drm_interconnect_protocol - Used to identify an interconnect protocol.
 + */
++enum drm_interconnect_protocol {
++	DRM_INTERCONNECT_SYSTEM,    /* DMA map is system pages. */
++	DRM_INTERCONNECT_PCIE_P2P,  /* DMA map is PCIE P2P */
++	DRM_INTERCONNECT_DRIVER,    /* DMA map is driver defined */
++	/* A driver can add private values beyond DRM_INTERCONNECT_DRIVER */
++};
 +
-+#ifndef _XE_SVM_H_
-+#define _XE_SVM_H_
++/**
++ * struct drm_pagemap_dma_addr - DMA address representation.
++ * @addr: The dma address or driver-defined address for driver private interconnects.
++ * @proto: The interconnect protocol.
++ * @order: The page order of the dma mapping. (Size is PAGE_SIZE << order).
++ * @dir: The DMA direction.
++ *
++ * Note: There is room for improvement here. We should be able to pack into
++ * 64 bits.
++ */
++struct drm_pagemap_dma_addr {
++	dma_addr_t addr;
++	u64 proto : 54;
++	u64 order : 8;
++	u64 dir : 2;
++};
 +
-+struct xe_vm;
++/**
++ * drm_pagemap_dma_addr_encode() - Encode a dma address with metadata
++ * @addr: The dma address or driver-defined address for driver private interconnects.
++ * @proto: The interconnect protocol.
++ * @order: The page order of the dma mapping. (Size is PAGE_SIZE << order).
++ * @dir: The DMA direction.
++ *
++ * Return: A struct drm_pagemap_dma_addr encoding the above information.
++ */
++static inline struct drm_pagemap_dma_addr
++drm_pagemap_dma_addr_encode(dma_addr_t addr,
++			    enum drm_interconnect_protocol proto,
++			    unsigned int order,
++			    enum dma_data_direction dir)
++{
++	return (struct drm_pagemap_dma_addr) {
++		.addr = addr,
++		.proto = proto,
++		.order = order,
++		.dir = dir,
++	};
++}
 +
-+int xe_svm_init(struct xe_vm *vm);
-+void xe_svm_fini(struct xe_vm *vm);
-+void xe_svm_close(struct xe_vm *vm);
++/**
++ * struct drm_pagemap_ops: Ops for a drm-pagemap.
++ */
++struct drm_pagemap_ops {
++	/**
++	 * @map_dma: Map for dma access or provide a virtual address suitable for
++	 * @dev.
++	 * @dpagemap: The struct drm_pagemap for the page.
++	 * @dev: The dma mapper.
++	 * @page: The page to map.
++	 * @dir: The transfer direction.
++	 * @protocol: The protocol to use.
++	 */
++	struct drm_pagemap_dma_addr (*map_dma)(struct drm_pagemap *dpagemap,
++					       struct device *dev,
++					       struct page *page,
++					       unsigned int order,
++					       enum dma_data_direction dir);
++
++	/**
++	 * @unmap_dma: Unmap a dma address previously obtained using  @map_dma.
++	 * @dev: The dma unmapper.
++	 * @addr: The dma address obtained when mapping.
++	 */
++	void (*unmap_dma)(struct drm_pagemap *dpagemap,
++			  struct device *dev,
++			  struct drm_pagemap_dma_addr addr);
++
++};
++
++/**
++ * struct drm_pagemap: Additional information for a struct dev_pagemap
++ * used for device p2p handshaking.
++ * @ops: The struct drm_pagemap_ops.
++ * @dev: The struct drevice owning the device-private memory.
++ */
++struct drm_pagemap {
++	const struct drm_pagemap_ops *ops;
++	struct device *dev;
++};
 +
 +#endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 0d887fb9de59..b11fb0ac9520 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -35,6 +35,7 @@
- #include "xe_preempt_fence.h"
- #include "xe_pt.h"
- #include "xe_res_cursor.h"
-+#include "xe_svm.h"
- #include "xe_sync.h"
- #include "xe_trace_bo.h"
- #include "xe_wa.h"
-@@ -1503,6 +1504,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		}
- 	}
- 
-+	if (flags & XE_VM_FLAG_FAULT_MODE) {
-+		err = xe_svm_init(vm);
-+		if (err)
-+			goto err_close;
-+	}
-+
- 	if (number_tiles > 1)
- 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
- 
-@@ -1548,6 +1555,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	xe_vm_close(vm);
- 	if (xe_vm_in_preempt_fence_mode(vm))
- 		flush_work(&vm->preempt.rebind_work);
-+	if (xe_vm_in_fault_mode(vm))
-+		xe_svm_close(vm);
- 
- 	down_write(&vm->lock);
- 	for_each_tile(tile, xe, id) {
-@@ -1616,6 +1625,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		xe_vma_destroy_unlocked(vma);
- 	}
- 
-+	if (xe_vm_in_fault_mode(vm))
-+		xe_svm_fini(vm);
-+
- 	up_write(&vm->lock);
- 
- 	down_write(&xe->usm.lock);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 1764781c376b..bd1c0e368238 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_VM_TYPES_H_
- #define _XE_VM_TYPES_H_
- 
-+#include "drm_gpusvm.h"
- #include <drm/drm_gpuvm.h>
- 
- #include <linux/dma-resv.h>
-@@ -140,6 +141,12 @@ struct xe_vm {
- 	/** @gpuvm: base GPUVM used to track VMAs */
- 	struct drm_gpuvm gpuvm;
- 
-+	/** @svm: Shared virtual memory state */
-+	struct {
-+		/** @svm.gpusvm: base GPUSVM used to track fault allocations */
-+		struct drm_gpusvm gpusvm;
-+	} svm;
-+
- 	struct xe_device *xe;
- 
- 	/* exec queue used for (un)binding vma's */
 -- 
 2.34.1
 
