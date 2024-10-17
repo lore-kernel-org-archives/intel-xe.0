@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCE09D3C538
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 23:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A120AD3C538
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 23:34:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B74910E332;
-	Thu, 17 Oct 2024 23:15:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B07710E0D6;
+	Thu, 17 Oct 2024 23:34:11 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB4410E0D6;
- Thu, 17 Oct 2024 23:15:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECEA510E0D6;
+ Thu, 17 Oct 2024 23:34:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2811135681021496017=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Log_unreliable?=
- =?utf-8?q?_MMIO_reads_during_forcewake_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Log_unreliable_MMIO_re?=
+ =?utf-8?q?ads_during_forcewake_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Oct 2024 23:15:04 -0000
-Message-ID: <172920690417.1280532.918985891945921271@2413ebb6fbb6>
+Date: Thu, 17 Oct 2024 23:34:09 -0000
+Message-ID: <172920804993.1280532.18096789425297697418@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241017034026.1525693-1-shuicheng.lin@intel.com>
 In-Reply-To: <20241017034026.1525693-1-shuicheng.lin@intel.com>
@@ -40,6 +40,11 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2811135681021496017==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: Log unreliable MMIO reads during forcewake (rev4)
@@ -48,26 +53,108 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4a1a4fc678a06046ca0443a2d0d61f2174c56b1d
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d_BAT -> xe-pw-139922v4_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139922v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
+    - bat-lnl-2:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2687])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139922v4/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+
+  
+  [Intel XE#2687]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687
 
 
+Build changes
+-------------
+
+  * Linux: xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d -> xe-pw-139922v4
+
+  IGT_8078: 175bddf20141ccad40130719ca46bde5140f4872 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d: 4a1a4fc678a06046ca0443a2d0d61f2174c56b1d
+  xe-pw-139922v4: 139922v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139922v4/index.html
+
+--===============2811135681021496017==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Log unreliable MMIO reads during forcewake (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139922/">https://patchwork.freedesktop.org/series/139922/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139922v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139922v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d_BAT -&gt; xe-pw-139922v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139922v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_compute_mode@twice-userptr-invalidate:<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139922v4/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687">Intel XE#2687</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d -&gt; xe-pw-139922v4</li>
+</ul>
+<p>IGT_8078: 175bddf20141ccad40130719ca46bde5140f4872 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2084-4a1a4fc678a06046ca0443a2d0d61f2174c56b1d: 4a1a4fc678a06046ca0443a2d0d61f2174c56b1d<br />
+  xe-pw-139922v4: 139922v4</p>
+
+</body>
+</html>
+
+--===============2811135681021496017==--
