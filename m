@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC715D374A3
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 14:44:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A37DD374A4
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 14:44:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7138E10E201;
-	Thu, 17 Oct 2024 14:44:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5FDA10E337;
+	Thu, 17 Oct 2024 14:44:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6g5pLxp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G7GuaN29";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 268B710E201
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Oct 2024 14:44:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7701110E337
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Oct 2024 14:44:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729176273; x=1760712273;
+ t=1729176274; x=1760712274;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Oz95CjlCKl1RlUVdHYQ5yrw6SsHaSVQCX/kz7CQM5sM=;
- b=V6g5pLxp3rspKavlVQ/3aJHS6tLIKgb5YCvHfHCzglUyY1R24qfm0VZR
- eu/kr3b8+61panxmGqZS506MxI93U9v5hYovSDGwY5okVTTGziwgX1IPo
- LVYLqHGFnJfErK3yjKim4fSzQ6eVoM9ckBKMmlfa/0NWjwtznDTaUar21
- bZB5aI6DWyjrPLQEluCS9CMoHiNpgMn5SLF/Iu7zwYqN2lzpjj2gD4J6g
- VwkT8xRMGH/ksQ1IDVw4FlDtHrPqlnOUyyEDIg3vHhcuBvWzx6hW0AKFn
- j9qwlWfMiIcNsUO+bFThhButmMxlqNt+PKdeRNpXowuUKlNCnry3Yuw8C A==;
-X-CSE-ConnectionGUID: XidCkW9tTTuHA46eEaPHxA==
-X-CSE-MsgGUID: 5cEMAAIaTkaPsvrOF+nveg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11228"; a="28547046"
-X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="28547046"
+ bh=jj9Kvyxoxi34x3R7spgUrEIQFsWZwHOvZ81II6NkVWM=;
+ b=G7GuaN29NeN8KVvewdlze5yhJykGxz9llTKTHIRM1B/nJCa2F239zeRe
+ 7dPNUGfCqe6MmPS6EZnA5vF4uJChDAdFxKLqeLNQoBL2GHfOnVHSWfLzl
+ VvRfj65CPclGVSMowUyas0nCTJNwaGyoVaiarnNDmuHgHBEiWiqFE6DQs
+ iqLa8K3d88mSfMkLO+a/ETNO5OkSZ7cjQFK/+60VnIDSxcriFVxPNQ0VR
+ E0A1UeDOerCZHyXrjLHUuNJWyJ0nO45oFUJS184piK2Bp4BUMhcY9Xr4T
+ b9gHOibmvZZqopnQPOHmdT1XVJOwburPdbYjvJb/gnKdV6F3XzUtbViKV w==;
+X-CSE-ConnectionGUID: Q5u3yVWBQKGf1JqjmgsZow==
+X-CSE-MsgGUID: xFtHQUZKS2+njeL2g0GsGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11228"; a="28547048"
+X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="28547048"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 07:44:33 -0700
-X-CSE-ConnectionGUID: r55fGgFFTyOoHZBVRhnPDg==
-X-CSE-MsgGUID: i3XTYlzJTIi+KO6gGMFC8Q==
+ 17 Oct 2024 07:44:34 -0700
+X-CSE-ConnectionGUID: XCh70tEVTvOLRmbQhTWIww==
+X-CSE-MsgGUID: 8115T+6cSPSWuPX4WMpcKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="82522960"
+X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="82522962"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.150])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 07:44:32 -0700
+ 17 Oct 2024 07:44:33 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 1/2] drm/xe: Avoid the OOM killer on buffer object memory
- allocation
-Date: Thu, 17 Oct 2024 16:44:06 +0200
-Message-ID: <20241017144407.91919-2-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 2/2] drm/xe: Don't unnecessarily invoke the OOM killer on
+ multiple binds
+Date: Thu, 17 Oct 2024 16:44:07 +0200
+Message-ID: <20241017144407.91919-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241017144407.91919-1-thomas.hellstrom@linux.intel.com>
 References: <20241017144407.91919-1-thomas.hellstrom@linux.intel.com>
@@ -70,79 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than invoking the OOM killer on buffer object memory
-allocations and validations, have the allocations fail and
-pass the error to user-space if applicable.
+Multiple single-ioctl binds can be split up into multiple bind
+ioctls, reducing the memory required to hold the bind array.
+
+So rather than allowing the OOM killer to be invoked, return
+-ENOMEM or -ENOBUFS to user-space to take corrective action.
 
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2701
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index c74c121ea7bb..d060f4f019a2 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -876,6 +876,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
- 	};
- 	struct ttm_operation_ctx ctx = {
- 		.interruptible = false,
-+		.gfp_retry_mayfail = true,
- 	};
- 	struct ttm_resource *new_mem;
- 	int ret;
-@@ -937,6 +938,7 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
- {
- 	struct ttm_operation_ctx ctx = {
- 		.interruptible = false,
-+		.gfp_retry_mayfail = false,
- 	};
- 	struct ttm_resource *new_mem;
- 	int ret;
-@@ -1099,7 +1101,8 @@ static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operati
- static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
- {
- 	struct ttm_operation_ctx ctx = {
--		.interruptible = false
-+		.interruptible = false,
-+		.gfp_retry_mayfail = false,
- 	};
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c99380271de6..0142b4daf714 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -733,7 +733,7 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+ 		vops->pt_update_ops[i].ops =
+ 			kmalloc_array(vops->pt_update_ops[i].num_ops,
+ 				      sizeof(*vops->pt_update_ops[i].ops),
+-				      GFP_KERNEL);
++				      GFP_KERNEL | __GFP_RETRY_MAYFAIL);
+ 		if (!vops->pt_update_ops[i].ops)
+ 			return array_of_binds ? -ENOBUFS : -ENOMEM;
+ 	}
+@@ -2733,7 +2733,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
  
- 	if (ttm_bo->ttm) {
-@@ -1294,6 +1297,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 	struct ttm_operation_ctx ctx = {
- 		.interruptible = true,
- 		.no_wait_gpu = false,
-+		.gfp_retry_mayfail = true,
- 	};
- 	struct ttm_placement *placement;
- 	uint32_t alignment;
-@@ -1880,6 +1884,7 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
- 	struct ttm_operation_ctx ctx = {
- 		.interruptible = true,
- 		.no_wait_gpu = false,
-+		.gfp_retry_mayfail = true,
- 	};
+ 		*bind_ops = kvmalloc_array(args->num_binds,
+ 					   sizeof(struct drm_xe_vm_bind_op),
+-					   GFP_KERNEL | __GFP_ACCOUNT);
++					   GFP_KERNEL | __GFP_ACCOUNT | __GFP_RETRY_MAYFAIL);
+ 		if (!*bind_ops)
+ 			return args->num_binds > 1 ? -ENOBUFS : -ENOMEM;
  
- 	if (vm) {
-@@ -2223,6 +2228,7 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type)
- 	struct ttm_operation_ctx ctx = {
- 		.interruptible = true,
- 		.no_wait_gpu = false,
-+		.gfp_retry_mayfail = true,
- 	};
- 	struct ttm_placement placement;
- 	struct ttm_place requested;
-@@ -2273,6 +2279,7 @@ int xe_bo_evict(struct xe_bo *bo, bool force_alloc)
- 		.interruptible = false,
- 		.no_wait_gpu = false,
- 		.force_alloc = force_alloc,
-+		.gfp_retry_mayfail = true,
- 	};
- 	struct ttm_placement placement;
- 	int ret;
+@@ -2973,14 +2973,14 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 	if (args->num_binds) {
+ 		bos = kvcalloc(args->num_binds, sizeof(*bos),
+-			       GFP_KERNEL | __GFP_ACCOUNT);
++			       GFP_KERNEL | __GFP_ACCOUNT | __GFP_RETRY_MAYFAIL);
+ 		if (!bos) {
+ 			err = -ENOMEM;
+ 			goto release_vm_lock;
+ 		}
+ 
+ 		ops = kvcalloc(args->num_binds, sizeof(*ops),
+-			       GFP_KERNEL | __GFP_ACCOUNT);
++			       GFP_KERNEL | __GFP_ACCOUNT | __GFP_RETRY_MAYFAIL);
+ 		if (!ops) {
+ 			err = -ENOMEM;
+ 			goto release_vm_lock;
 -- 
 2.46.0
 
