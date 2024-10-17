@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15DC7D3C522
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 16:34:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41604D3C523
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 16:42:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D50D710E891;
-	Thu, 17 Oct 2024 16:34:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E11AB10E87B;
+	Thu, 17 Oct 2024 16:42:16 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C69910E885;
- Thu, 17 Oct 2024 16:34:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5519514808941919095=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62A0F10E87B;
+ Thu, 17 Oct 2024 16:42:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_locking/ww=5Fmutex=3A_Adjust_to_?=
- =?utf-8?q?lockdep_nest=5Flock_requirements_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_enable_lit?=
+ =?utf-8?q?e_restore?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: fei.yang@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Oct 2024 16:34:12 -0000
-Message-ID: <172918285224.1279864.9692120432212044626@2413ebb6fbb6>
+Date: Thu, 17 Oct 2024 16:42:15 -0000
+Message-ID: <172918333540.1279889.8192080576932316070@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241017151007.92215-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20241017151007.92215-1-thomas.hellstrom@linux.intel.com>
+References: <20241017162710.942553-1-fei.yang@intel.com>
+In-Reply-To: <20241017162710.942553-1-fei.yang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,147 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5519514808941919095==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: locking/ww_mutex: Adjust to lockdep nest_lock requirements (rev6)
-URL   : https://patchwork.freedesktop.org/series/123522/
+Series: drm/xe: enable lite restore
+URL   : https://patchwork.freedesktop.org/series/140129/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2_BAT -> xe-pw-123522v6_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-123522v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-lnl-1:          [PASS][3] -> [FAIL][4] ([Intel XE#2754])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][5] -> [INCOMPLETE][6] ([Intel XE#2874]) +1 other test incomplete
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c315a22fd2fd drm-tip: 2024y-10m-17d-16h-16m-00s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: enable lite restore
 
 
-Build changes
--------------
-
-  * Linux: xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2 -> xe-pw-123522v6
-
-  IGT_8078: 175bddf20141ccad40130719ca46bde5140f4872 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2: 6d5c65cb1afb42b0bbe813847d9271271d2875a2
-  xe-pw-123522v6: 123522v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/index.html
-
---===============5519514808941919095==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>locking/ww_mutex: Adjust to lockdep nest_lock requirements (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123522/">https://patchwork.freedesktop.org/series/123522/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2_BAT -&gt; xe-pw-123522v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-123522v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123522v6/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2 -&gt; xe-pw-123522v6</li>
-</ul>
-<p>IGT_8078: 175bddf20141ccad40130719ca46bde5140f4872 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2079-6d5c65cb1afb42b0bbe813847d9271271d2875a2: 6d5c65cb1afb42b0bbe813847d9271271d2875a2<br />
-  xe-pw-123522v6: 123522v6</p>
-
-</body>
-</html>
-
---===============5519514808941919095==--
