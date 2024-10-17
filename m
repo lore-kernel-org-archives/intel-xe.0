@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E82FBD2F7EA
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 04:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64A60D2F7EA
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 04:21:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A92CC10E12D;
-	Thu, 17 Oct 2024 04:21:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1A110E12D;
+	Thu, 17 Oct 2024 04:21:30 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD1E810E12D;
- Thu, 17 Oct 2024 04:21:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60B3210E798;
+ Thu, 17 Oct 2024 04:21:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Log_unreli?=
- =?utf-8?q?able_MMIO_reads_during_forcewake_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Log_unreliable_?=
+ =?utf-8?q?MMIO_reads_during_forcewake_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Oct 2024 04:21:17 -0000
-Message-ID: <172913887781.1276815.16048293786930537373@2413ebb6fbb6>
+Date: Thu, 17 Oct 2024 04:21:29 -0000
+Message-ID: <172913888939.1276815.13173030973659458309@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241017034026.1525693-1-shuicheng.lin@intel.com>
 In-Reply-To: <20241017034026.1525693-1-shuicheng.lin@intel.com>
@@ -48,9 +48,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 87312f4bbb70 drm-tip: 2024y-10m-16d-15h-28m-24s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Log unreliable MMIO reads during forcewake
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1d01bb4f1a0ae3d0e4c1515acf764587c9dc22bd
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Thu Oct 17 03:40:26 2024 +0000
+
+    drm/xe: Log unreliable MMIO reads during forcewake
+    
+    In some cases, when the driver attempts to read an MMIO register,
+    the hardware may return 0xFFFFFFFF. The current force wake path
+    code treats this as a valid response, as it only checks the BIT.
+    However, 0xFFFFFFFF should be considered an invalid value, indicating
+    a potential issue. To address this, we should add a log entry to
+    highlight this condition.
+    
+    v2 (Matt Brost):
+      - set ret value (-EIO) to kick the error to upper layers
+    
+    Suggested-by: Alex Zuo <alex.zuo@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 87312f4bbb70018f831a8ef565db9cdc37b4da67 drm-intel
+1d01bb4f1a0a drm/xe: Log unreliable MMIO reads during forcewake
 
 
