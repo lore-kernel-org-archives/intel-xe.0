@@ -4,178 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 532F5D3C526
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 16:44:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D7DBD3C525
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 16:54:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82BBC10E885;
-	Thu, 17 Oct 2024 16:44:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D03AC10E886;
+	Thu, 17 Oct 2024 16:54:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EJXWMUB8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BfcwOPqT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 160DE10E168;
- Thu, 17 Oct 2024 16:44:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6A310E886
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Oct 2024 16:54:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729183450; x=1760719450;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=mF5yBJXuZj8ANZ/cYV+2booiwGLwwA5Utl8RFr3pMqc=;
- b=EJXWMUB8LsnpwrFDtDEzuPACciwhwwNjj68uWYFjTaMBeb9JtC39gyDQ
- fIKKqQ6znJ9Q+BvCn7mgEoY857rqMClFw71GSgKtI34EAsS4zRStekxrg
- e98CWNtgk061tGkjcU0d3BD48Zccn/wPBVPCd5QeLD0zFEfZV0p5V7X9O
- z7aO6gj3Bih4gnw4YmLb2mfs705eWD43FffYwjBqIaJUkSUCZPs3wFYV7
- wl0cuTeVZ80R72S7MJlkg5sWmZzLbqPMI4kjhDdeoJ0hbXP31Nb6MQPJI
- 0l0OgJ6QEvNtMp2XT8aWQURsOgSpTJoFR2hKbHfXaPw1YhcSgTx7hGvsB w==;
-X-CSE-ConnectionGUID: mzW42sUHTnC50CURRYI5AA==
-X-CSE-MsgGUID: I8ivanrOTXK6iIEYnoVPLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="32369297"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="32369297"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 09:44:09 -0700
-X-CSE-ConnectionGUID: RzoSr1m7T5G+ho9AK33ifA==
-X-CSE-MsgGUID: NRpRoUaITsiEFN9HZK8EIw==
+ t=1729184040; x=1760720040;
+ h=message-id:date:subject:to:references:from:cc:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=UywmsIK4xT4SWN87EWGiEgK+K/XfJWRmAyHuZwlhV/g=;
+ b=BfcwOPqT8S+KM9QLDpChT8kj1nUql2WqNrFtpweGgvJyTxyvZJje9vWE
+ /F2Lf/kSihJoAbjjklkNwra9sChoY/QGYPfgoXtNA+gepfQJhXMgdadKM
+ 7gve68KEhV9NY4fl09aGoYnMbu4BO96A1++dyrsCsN4I50DhaGquuZnho
+ n09Jx0a81E7nooSn8LILE4lzTiLAKsiTpe4kne7N/1xJjPTg6PHDchupW
+ WeY/0QT07kBTADyOqsxjY3MC5cVFrRzbqyYR3ZuUFFhElR8nBABQea9Tn
+ vSc6W1/G6hsyQY2CRg/v4wSjhGt/K/MUMT/3YvvakdiYn9HpE7omsU02U A==;
+X-CSE-ConnectionGUID: eUiGdM8TRXqqdypYm4NUug==
+X-CSE-MsgGUID: m23+zrVkRDucJBewFfnAFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11228"; a="39320116"
+X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="39320116"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 09:53:59 -0700
+X-CSE-ConnectionGUID: mJD/9RtnQ321YAoqxbLETA==
+X-CSE-MsgGUID: A6x+EbZ5QvOydRzMty227g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="109411051"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Oct 2024 09:44:08 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="78279676"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 17 Oct 2024 09:53:58 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 17 Oct 2024 09:44:07 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 17 Oct 2024 09:53:58 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 17 Oct 2024 09:44:07 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.48) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 17 Oct 2024 09:53:58 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 17 Oct 2024 09:44:06 -0700
+ 15.1.2507.39; Thu, 17 Oct 2024 09:53:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lYrrbi4F+LtwsLZ6BL7kJrDCDiBK4mWPj2nusNPA14LywNmIgMnQtk8YEryK9uNKfs8KXAwMH8M7YV61cgPsiW/1iHq1d13z0pUEE5b8xrfOrVyozCZHmv0zN7qbc3AnyqmXeT4LyAMtN764atIVfArfqDSSjpGGQMG9XiXl2NbgK5Fjoaqnzj649p1yCaFg4RXU6IDJsMbO2he1rEdQ+dqdwNdyjB2xIFe4luanZZfjFjuUIs4+RsYcSZMs3RjlrDzUeO+HAd6Fl0MUZYDlV62AAjiRYaMVSLpcI9Fi8ExF7OL0nXPe1DJeTc5oz3PwZzn4zWvIIBOWAOMwLD69fw==
+ b=H94Qq3hd/iBfiM9raS2qe5QraGTbWMppc5Rv3lDKMEfE2Yz6tQY0f2hjGcGGG+B44YKRHzYJzYWpVFRaNUcKt43sohE8oOL1oE/+S/2MMbExQf3ghzJ4Gwm889HD/DcVyZe56nTAmquaP3pQzZxRhIK6wVXIZpLOVLVZepPwMQ5xQnVdqKtU5VRtHtceZzYRWO7EkufEToGHgwc2/JNzqs339ZtXac5MyrpUwiFOTWodlU1jShCWPygl+Oa8pILejh4yyr01jJSvN0zmccsUtrxc8KOjntsyvfP0/0R7+fixWo97zRRRRyeThxGBcZCOBqvTNmPLzTwXufDLe1PaoA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CWTgg4cchy6tr9B4UWNJ2J4f+f3fmdfeVf1sv64zS/M=;
- b=AhmbQUQsv8O7xftCDcv01g8sGI5Ta2GuY9rNs8DPumSSb2d8xrZQOXgo3+qBnvLFOGrro2iQLu10LQeHD7rUzz0HiaJn9UsfCMPUx6uL1WyckFRdt0nHx1NiE8bZZf82c/jApk7fCrRviRjZcG1D4agknZTQqA95fQ/4Hly/kgQcrwqgqYTke6zVZgaNKuk4OCtS6g7tXC0hE7Uxz+amsLB0a2OyBy3W98JFwfAp2BJjIzR1KdohgJ9oZeXFClFW8x+I4/9xiSdIKH4qJGcnPkhLxRaAeAyXYzCdOVrTWwkIjCAYx1DmLwaqquaKRcUWSpmagmQk5yRE0uZSG9cCcA==
+ bh=Is3Rd3y1YrKOFU9HDugE6jfYwFTlNa6bOi+sx3dD+A8=;
+ b=sfHiCWvE5L6Z7a8KfKW6CyMslWspgsvzPY2CAdRNMuWnCyJtX5Xe1pwSYfYtvgeGXZnmSryUYs/C47K3xpNJPwsLboewVqVgqr85bZs1/CYuhNTdzceNUenzSq1PmSbsWHGLd4p1cXMkW2Sf1QHHcV2FTx4gX/nL9r9guHGT0/mtNhHpxVpf3h6Sl78NP8Gam0siFaLRf9Kbdug2Nmd8s5ICJUq6QIrq/gkNMf8ZC/GhBJ6QhJJkTZZBnl6D/HlpVbivih4QdxjseiVjkulXFPH937iaKytEGILvaqF4pTZQCdfiiEoq3cFxwWJikb1A7HbXfyhLEK1PZdUBp/iztQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by PH8PR11MB6801.namprd11.prod.outlook.com (2603:10b6:510:1c9::8)
+Received: from BYAPR11MB3238.namprd11.prod.outlook.com (2603:10b6:a03:7e::30)
+ by PH7PR11MB7480.namprd11.prod.outlook.com (2603:10b6:510:268::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.18; Thu, 17 Oct
- 2024 16:44:00 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8069.018; Thu, 17 Oct 2024
- 16:44:00 +0000
-Date: Thu, 17 Oct 2024 12:43:51 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-CC: Raag Jadav <raag.jadav@intel.com>, <airlied@gmail.com>, <simona@ffwll.ch>, 
- <lucas.demarchi@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <jani.nikula@linux.intel.com>, <andriy.shevchenko@linux.intel.com>,
- <joonas.lahtinen@linux.intel.com>, <tursulin@ursulin.net>,
- <lina@asahilina.net>, <intel-xe@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <himal.prasad.ghimiray@intel.com>, <francois.dugast@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <anshuman.gupta@intel.com>,
- <andi.shyti@linux.intel.com>, <matthew.d.roper@intel.com>,
- <boris.brezillon@collabora.com>, <adrian.larumbe@collabora.com>,
- <kernel@collabora.com>, <maraeo@gmail.com>, <friedrich.vock@gmx.de>,
- <michel@daenzer.net>, <joshua@froggi.es>, <alexander.deucher@amd.com>,
- <andrealmeid@igalia.com>, <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
-Message-ID: <ZxE-x6osh_jFHl5X@intel.com>
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-2-raag.jadav@intel.com>
- <ZxB6yKRrgvCoRK7y@black.fi.intel.com>
- <9b720b21-6195-408c-88bf-a092e0e7555c@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9b720b21-6195-408c-88bf-a092e0e7555c@amd.com>
-X-ClientProxiedBy: MW4P222CA0008.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:303:114::13) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27; Thu, 17 Oct
+ 2024 16:53:55 +0000
+Received: from BYAPR11MB3238.namprd11.prod.outlook.com
+ ([fe80::ba3:e9e3:27c2:bd03]) by BYAPR11MB3238.namprd11.prod.outlook.com
+ ([fe80::ba3:e9e3:27c2:bd03%3]) with mapi id 15.20.8048.020; Thu, 17 Oct 2024
+ 16:53:55 +0000
+Message-ID: <9abd8034-abd5-48da-b5af-ec2f24bb0795@intel.com>
+Date: Thu, 17 Oct 2024 22:23:47 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display: Workaround for odd panning for planar
+ yuv
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Garg, Nemesa"
+ <nemesa.garg@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+References: <20240930112146.2673086-1-nemesa.garg@intel.com>
+ <20241016072436.261438-1-nemesa.garg@intel.com>
+ <SN7PR11MB6750713F83272902F5472C03E3472@SN7PR11MB6750.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: "Pottumuttu, Sai Teja" <sai.teja.pottumuttu@intel.com>
+CC: Matt Roper <matthew.d.roper@intel.com>
+In-Reply-To: <SN7PR11MB6750713F83272902F5472C03E3472@SN7PR11MB6750.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA1PR01CA0164.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:71::34) To BYAPR11MB3238.namprd11.prod.outlook.com
+ (2603:10b6:a03:7e::30)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH8PR11MB6801:EE_
-X-MS-Office365-Filtering-Correlation-Id: b8855940-146e-43f1-b0df-08dceecae6b9
+X-MS-TrafficTypeDiagnostic: BYAPR11MB3238:EE_|PH7PR11MB7480:EE_
+X-MS-Office365-Filtering-Correlation-Id: deed6b11-60b3-4437-b673-08dceecc4949
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?M3rEXuCYE5kLvszGNMxWse9cK9HbOGDCuZVD9ff2GISpL5gV93iDZaiUSJ?=
- =?iso-8859-1?Q?4I0wElDsMXjo41KjTY3yTkpfsp1cxUC+6UYANLkT2RESSKeXCPTjrOyL4Y?=
- =?iso-8859-1?Q?iGlbj+udp1FdN085cQ8TsyhMl7DHNuprRNaqxD5p0RqrRYNNnYPK3gemGl?=
- =?iso-8859-1?Q?iTbdhVqfhgyWwKE8GxOU+ySzxJjDNd+1z42vrvoQHgF++Yye6i8ekF/c+3?=
- =?iso-8859-1?Q?E/+mUaHWCWC4Y9zEDJnCk9qiW47cWFvlnCsZlebOjdb5RowjXgJq3F3uBj?=
- =?iso-8859-1?Q?7ewTsmUFFy04qPAFFW3/r2G9iCMORcRvmWrxt0nA+XSDKq51Ru5rfeEKha?=
- =?iso-8859-1?Q?qq2s3p/T/udc/7pe30FGlrJ3jDmh9cTXKM5ctErFSDNKVkkasaPiB3BXpu?=
- =?iso-8859-1?Q?PcgNAckqbTJWLzzB5D4QsP9B5wx7jaDumjTfXVvmjM0H7B8b1zaGpbfEvP?=
- =?iso-8859-1?Q?81dKrCUepxCmGiJDJwiTKhCbzvyPqBQvACrA43y0TiE1Ku3a8iNbqti0sQ?=
- =?iso-8859-1?Q?oISwG+VT5uYDZFePbor0QebbfRepMvRyILDRtoBsGTRTbVO+hIM/uAFKfQ?=
- =?iso-8859-1?Q?I3N0WwqyCDhgreqAm1TWDYud8YUAgTsR+R5NXQF9uAuxVUu7ZER0Yo1iu/?=
- =?iso-8859-1?Q?eLurdxqFCOeyB9mv4/xu6Fv6Iv9iUOLdwYbTRm4ybyRbJF3cY+seMS05Tm?=
- =?iso-8859-1?Q?njI4S440Bzv9hMfbynca7AfMoIw1324oNNFMFO2zmMHi6Evh1LKpaGYyWC?=
- =?iso-8859-1?Q?R5ZfS5HROGPn/BY0xpd/w41QRpn/WHN/JAn0mDIrue6iq//zIpqON2ftE3?=
- =?iso-8859-1?Q?bh0ATjz0eUEPQQDp9Vpgzyr3rVLHNiK5MBkJjUh2hOAsoVQJxhJ6tLMNfm?=
- =?iso-8859-1?Q?SCUhN72UoLcfKET7KXLdLu5vIW1Mb9kL3COUBCjD2aqEnISvhQL/d/IdvO?=
- =?iso-8859-1?Q?hwvdrF4auMVd+dPv5WgfLSLRxFjZtDdceKu9JijydK5cAgsykeJcD3sGvd?=
- =?iso-8859-1?Q?pMvMshZU7bxwvaNTk5hecc1+wK5mVR4vY5vdq7UF7u7yeFPCzuYSsiU/fn?=
- =?iso-8859-1?Q?bZRMCv3+/2t2Y7xz0pRqUpN3oQYUOL9fOfudhiGb3hlul9SfjdMT3gxEw3?=
- =?iso-8859-1?Q?mN9IkRU7ab3R7rf8j0ZIcjmKSky2pZvej0qJerlNxyKyfgu4acO/k0Um3M?=
- =?iso-8859-1?Q?aDlt1zQfoSFIBDiwWQAe65Z0PKTYbEGRWHSMUiKHh+a2AYEQ6mFK5ynKTw?=
- =?iso-8859-1?Q?8laxsvTOPmaBTXOhBichBXaKi4XfslrqbC7cCSb9nQAH4heWY7ZMkGtC4r?=
- =?iso-8859-1?Q?AhTjzOs3vKpGvHYHbU/vspi3fTpCFPHeHXoXcuYGj2sv6JRvQFijo0NT6F?=
- =?iso-8859-1?Q?Onb7JyhiWZ?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?clloYnpVNG5PQnhMUVVNTTFENHpGcVdYZW4yNVlJM2EvV0Q5L1ZrSWIvK0hM?=
+ =?utf-8?B?WWZvOUFNZHEzSWNlV3p0RWpVWUp4RDdkNzdCa2RvdnFQY1dvTlREaExPRGsw?=
+ =?utf-8?B?b1Fha1MyczI2NXd1SFZTTkpqUEZaWFdHZGpnd1puaWJvZHl4dFpBSEtwNmhy?=
+ =?utf-8?B?NkJUbWRwald6OW9HaFZWM3dxNGRqVDBWM3c1OUFLTGRLck83RElsREs3ZWlW?=
+ =?utf-8?B?Y2xJZWhHanFyN0czYS9NTEcyaU04aVVnTzQzTWdHbEYxUm5sS0xhelQ2M0xM?=
+ =?utf-8?B?RU9INkVtWWREV1prbk5SL3pMKytrU2FLSm5xQU5FSmhNZm5BS2liQWxkNTJB?=
+ =?utf-8?B?ZmpJV09QclJRSnFFN21MQ1FNNyt5U25DeS8wUlZnTmIwYzBoZkRBZVNzUjFE?=
+ =?utf-8?B?ZXZ4ZTNpaHlwWnR4NzZqSEdYdStPTUhQaHZleWpiTzZiRU5Eem1hVEU4Y2tO?=
+ =?utf-8?B?ZnEvVys4SWhyT1ZYb2lqNFA2dFV6TjdXWU5yYnRtSzJuNlNpMUJnWm13enp2?=
+ =?utf-8?B?NVBrUWNLaFJaSm9wQS9PNnNFRXM0cnZ2RTJrVGdJbTBtU1RoQVhaNDVIZ0E4?=
+ =?utf-8?B?Sm83N2UybHUrRms5b2tibVlYY3c3cGkrYmhzb01ETXRMcHBaclFaeFFZNmJ1?=
+ =?utf-8?B?KzlxVStYL3puK2NSbGFVRURZVFBYeExHRHFPN3VLZFJyWEFOYzI2a1dLTWtU?=
+ =?utf-8?B?d0pQcmtzTFk2UHdhSVFRMEZ5Wm5aSXVKWnpObjhPWUdlUFBuNWJSZXROTWRz?=
+ =?utf-8?B?RmprZEwyMktPUk4zaHk1TVRTR1ArY1NNaThVdlRRTE1JU0FZZElwVEpncmJn?=
+ =?utf-8?B?L2FKWWxBazBUQTYvN0JWTjlhd2toNVFTZUhDR0dxdG0yZmEvSGN6TnFDZ3dh?=
+ =?utf-8?B?K2tiUUtYT2V4Nkx3UXh0Z0piSEs3dDlWNThyQVRBYy9GK1RaUjR3S3EvRU9q?=
+ =?utf-8?B?dzZHckdBeVE5TURIcXBVYlRhZ3kwdDlCYmcwM2l0Rmh4WCtleXFCUDB0S21m?=
+ =?utf-8?B?RGo2SmRSWFk5R2tudVRJRm12eEwvSjdXRzRnVWYzMk9tUjVnZG1jYVlheUhS?=
+ =?utf-8?B?SUdleUFPZXB5bm16ZVF3M3E5Tm4yUGdnM0UvS0NnVnA1S2hmZE41bmMwRDY0?=
+ =?utf-8?B?R1E5eFNtb0xBWGRNREZ4WWlXN1FkOUlRdE9pUGdSZnVjYzI3Y3ZLa2daeW93?=
+ =?utf-8?B?WG42QkdHOEdIMEJTN0FQd1dqL0RpR1RMM1FIWlFkbnNkckRkakFkQU0xc1ZW?=
+ =?utf-8?B?Y1Z4NzErbzBCSnZLQTFDb3IzdnYxRHhETEJHMTcwK3RLbDhjbFFKKzVQWkQy?=
+ =?utf-8?B?TzdDa2NYZlA0R0NWam1TZnE1b2tFWnpjckRsNlhncG44dmc4TXIzUGI5bU4y?=
+ =?utf-8?B?OFg4bXVZRWpYVmRSTzJsd2RVSUhxdzc1WFl0S241cnZHOG9QZnc1QTZsSFBt?=
+ =?utf-8?B?UXYyVVhyaTdhNVhtNmZzM2N1SUoybldVNzVRNllUMHZmNFl4dU9rNDFqM0hH?=
+ =?utf-8?B?NkVGT0FTd2RXejBYZUJXd25ZcGs4SFpCZmQwUFNVTkttbUdhMXpDYStnSVB4?=
+ =?utf-8?B?NHJwSXNkOUlKclJZajFtemJxaUVLM3B4ejYxWDVjWjJwQmlXU2lobTQ3RXJY?=
+ =?utf-8?B?eHpzQ29ORk9WaWY3TE9QNWZ0KzE0MW1aaW90SHVFNVUrd1YwMmFmU2s1NklK?=
+ =?utf-8?B?bVFaaEpUMXBCVDk1cHVWczJESUUrV040czg0QThiY2tRZUZYTEJPRk5MZHZS?=
+ =?utf-8?Q?KQp0q9Wh0NyTTnji+HaeQMq7cMWcg/krPp6bFBF?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(7416014)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3238.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?mHaGNO9HTWXNqay4Cnmxmn1xs1Yu03T3MDkHyFk7lwwybDAZEBTfvpi5qN?=
- =?iso-8859-1?Q?UMU0Cnd/hvsNFZcMDAoxuMkOQng8zxBaACiCWySlHh1sEEtNfxGLV/1nkv?=
- =?iso-8859-1?Q?vDor/BaprtMHhBfMsKJ4srySO5Najvm4Q9ebyPCoOTrhnVm3nHSoTtZ21i?=
- =?iso-8859-1?Q?gkW2aRJn7643uVsE40V7XCO/2NnMCeqFNHh32tvx1qOZjXHz25vFRein7H?=
- =?iso-8859-1?Q?hsNskiFO00bCt45VE/5hUm1DVW8nUgIzwv+NPL174hgUwClKvISZAmX9e7?=
- =?iso-8859-1?Q?oWd9nwaSrn/JePt8HuTVAU5r7ODz4bq8ZM0f9eTf/94Dzm2qnE6V1fAYpT?=
- =?iso-8859-1?Q?VecOhT/ZCo0uGUaUNekVaID31LElHFed8rmgOiOvPFxK6k1FQm1C/My7OV?=
- =?iso-8859-1?Q?LXWCOFozvDraV7FufAvqUeH+QlbkKK558sC/5OyENxSfMWW9kjz2825dMK?=
- =?iso-8859-1?Q?TkGPnVMDlUoaIS+hl8+bMaLZ9sdRnW7U7k3lM2uDuTNHCf0sQLDO3de3Qo?=
- =?iso-8859-1?Q?o0YPwHmhNqSoR3vSFJjK5eGNPC7ULjSVLZXpzAb72fGzoenG1IZ95TtBzb?=
- =?iso-8859-1?Q?EypKT/rrkvZ8kgGIYYQUr71P/wSklNrMg+p18DXS/rzGCLwOj5d7YbgixG?=
- =?iso-8859-1?Q?62jjBGr1+s1zGk9VUReI4cfOnhn5wljyfvFyJOsZccjp4efpqdqIONK1xX?=
- =?iso-8859-1?Q?GCtv+hKAEIADb3EcSTFKQR4kY2u4CGrzrOB0KDZ1fuSQ8NBSyXk5X1n1wR?=
- =?iso-8859-1?Q?0IHRt6614DRh4O5w0zZF72oJ+sHKSXj0LvQrtGS6sRvTVEIU3kPL1+IlvQ?=
- =?iso-8859-1?Q?IRrcq83rem+wKBYQw1diHFrv4UIvqhrm3p2Jgfi3W1jZ4O0dDvNrTQ4BKV?=
- =?iso-8859-1?Q?QmFW7jTjI/2T17OuSPmPqLSWuZZ7LwKYNPNwPjbOsy+XRW2OS8baHtfD5D?=
- =?iso-8859-1?Q?2UEtLihjEDW5MXmFeiNa/o/O7IAnQbYtV++8ICsXzDKlMmv4wsL/ElO9ov?=
- =?iso-8859-1?Q?gbQk/2cblQarjdk6o33ZvhrH5BxSu9CzirYEtEEvQ3PicWI6ujktv0g/PM?=
- =?iso-8859-1?Q?HkdfXSxpeS/YSIDl2Lc9ws+t4i28UdqNhUPXqeja4bsLhfvUsW8N73Wsm0?=
- =?iso-8859-1?Q?xCACaSbA7bV2IA3CGok4bl9hVx68NaOKSC2fyuwscTMZHr8uG7LmmxIBFS?=
- =?iso-8859-1?Q?LSqgm1Tts7ZygZ2KMQLWIupFdYUi8KlsORIQc51mYUi6V+DjV3bfxET5Ce?=
- =?iso-8859-1?Q?hqvEuJHuvEKD8wOiYqWxicxIpq6WPpcaVjupNCF0XAH/jRe+NBX0nrvReR?=
- =?iso-8859-1?Q?hxLR1RbD2o7tEI9ZLR4z0XmVofhQgU92PmddN0pCcsnyT0g44fsJsCJCB3?=
- =?iso-8859-1?Q?2jLD+OothkydEA3dOAdcdOKcKzWY81D9PBohk740QbtYJ/7rr8tt3mIrKB?=
- =?iso-8859-1?Q?4LitzMl9DkgdV8BspDYrRIt0RWRt+9QSO1yX3n+9/vgZdSWxLfvsQxgGGJ?=
- =?iso-8859-1?Q?Ya6QemzVsYFFdGeDiaJd21NXj51iJn7SO/uyPA4PT73NjbZCAjfkt9ysPS?=
- =?iso-8859-1?Q?h0Zbpf6hekfcDq6ipV46unkXGhHWMC7ZdXf42MnlyLuvylcND3WfcmcyMu?=
- =?iso-8859-1?Q?CrCyUG8l684iBiSTTiWsMuKfg+ssW9yzyPKNjeBN6Pj2UzMeeAoIxxrw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b8855940-146e-43f1-b0df-08dceecae6b9
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3JzYzA1YkhhT242MjFSeE1LbmRSaVhnZVZROXY0OE5HSWFPT2VNZUQwbnFR?=
+ =?utf-8?B?NCtITFpXR254U3FsZ0ZDdU9JcnlyTmJPdk9BQXdFMHF5U3JGdWJHSzhPRXdT?=
+ =?utf-8?B?cWpBUmprUzlrNGxyQUM2WHphYUw4NXBSYUhMWGFsZ2RtRVpXQ3B3QWJYYXdl?=
+ =?utf-8?B?d2I3dk9mbnRXWldzQVNYbHRCMFQ3NElZUWZ3UmtmWU5PakdFc0hTZ2VjaGFM?=
+ =?utf-8?B?ZDRDK09jdDJFeU9acVlLRDA1bzR1RTAzMVNZcjFuOEVQT0lJK2N5VmY1S3h0?=
+ =?utf-8?B?d0JkRjJZbG04cS9OM2JqaTVTZUY1OTZGKzFEVFB3azZrM0o5NGhKK1VMOWll?=
+ =?utf-8?B?U0JIL0IwZnZrV2J5bEJCSmllS3FIV3FickM5ay9NSE45eE1SdEVqTUUxN0pD?=
+ =?utf-8?B?eU15Z1NVNHJIVHFRb1pCeUU3V2VvRW5JYUNRcUZCbFZYME9YeHh1eVNXMkVs?=
+ =?utf-8?B?KysySWNPK01aSzdNQTlYL0NQZ1BPVzc4WVd4VGdKNWFETTJyMWFrbVgxMXJ6?=
+ =?utf-8?B?ZmhLNndkNlljVU9VeG9YZWEyNGpMdE1lV2hMYXJWUXFSTitEWHNSdzY4Y3Qv?=
+ =?utf-8?B?SFZ5ZnMwZjhLLzhnZDI0ODRsNHlRRXR3ejcxQnNzWGhUQzcrajdCZ2ptQmMx?=
+ =?utf-8?B?dWZYa0lZak1RRlVscGlhZzRGMnBqYWJNQWNkZVdodlZFZVZMWFRkSDF6eG9t?=
+ =?utf-8?B?TDNQcSs1aFVkME9JTEMyVnV6MVlPQW03TVlkMTMvOGJGSGdmajZDblp0eUg4?=
+ =?utf-8?B?NVpuS2g3K0RrRFBicVEwaVB5STdHamFQTkFVSXJSRVlMcWF2cHJZNU1Ma2RC?=
+ =?utf-8?B?UjRmUmRsdkV6OXc1M3BPS25oNzgxYWViOFBWdFh1dTRYekdxTXg4ejRXdlFZ?=
+ =?utf-8?B?UUdONE9ENE4zMHAwRFpDRHpCQldORmFSSE5rY2dSN0xqMDNiSSs3NkxOdmxv?=
+ =?utf-8?B?L0tGNmRqem9qTTFvSGp3anBzNnV2Nko3SExhSG5DRDBBN2NqVFFsNnBwZ1NM?=
+ =?utf-8?B?QVd6enF1VThYdFNCajhFMFZEUUNoSDExV2V3cnNtMHBJYUV2RkYzZHNIL0VV?=
+ =?utf-8?B?a051TnJlYmdYanFMekNhUWhSYS9vLzVwU3o1TEhYcEtnNzVMcVVvam0wTTVo?=
+ =?utf-8?B?SitpSTZ3eDBxSXlnc1NoRFhVOUlsaHE0U2xLRmxhTGh1U0Q1TUo4NDgyc2Y4?=
+ =?utf-8?B?SDNHbDFTY2JhM3pHNmYrdmpKc3pBdUhKU2hUcGFkYmlMQXRjSXJ1Z0l5QWF0?=
+ =?utf-8?B?Yk9YRHdOVnQyNERRdHQzWXVzZ1hQVFNGTkpoMmo3WE5GTCtKYXEzMjhidkNp?=
+ =?utf-8?B?c1c0WWlpcW5ERWJ1M1ZoMitIWlFiMGIxU1o4TmFCUDdtRlpKbCt0alJEcWhn?=
+ =?utf-8?B?WGV6d1FpVmd0MUcwR2dCdjBZVXh1dEFITUl3UDJ4L0UrelNTWllFK1Awaml4?=
+ =?utf-8?B?aEhHZGNDZUtReDZ6UmNiZElVSElwSllCRGppNEY1Q1lpNllNY0xTQWxKZGdH?=
+ =?utf-8?B?SThlenJHK0hJbTBFN3VySlFQWEp0UkViR0p3SExhWjY3bXY5bXhvMDlzc1U2?=
+ =?utf-8?B?SmJQbWRDWkd2TEt3RHdrVDlHZDVGNEZFQTJCbXM5MmtQM3lsb09vQnd1Y05X?=
+ =?utf-8?B?MGVySkEyKzc5Z0l5ZTJqUWVpK0xWZmdhTG9OMHpPOVkzRWNnTmY3TEV2MGZB?=
+ =?utf-8?B?aXpBYk5zUmpib0R0bVVQTVlCdENLMUwrcVJnME5XRUxLN3huZXpTaU5ZbVdE?=
+ =?utf-8?B?c3hpeFZaOWZDU3duZnJ3LzZqaUtrM2p4aFBEYUQyQmxGNnRRUlJraVhENWs2?=
+ =?utf-8?B?YmJKMktoVUNrUFM3OVNBYWFBeWFQMm9UZVlIOWxVTElTSlY1WkxsdG5YNkJp?=
+ =?utf-8?B?eE1ycktQM29XaUlSS0xCMERLbGoxNSsxODgyM0g2b0xML3RydjQ4dDl5UmlR?=
+ =?utf-8?B?TU9XaUE2cVdLbDlEbWtDOTBvT21hTkRFL1NWOEs3Wms5MWo4dHgxZ1RVcDlh?=
+ =?utf-8?B?dTJrb3U1VWkxM204YTdmSFIyRnZpSG9pYUhkTVROb0RER0ZyZVdBVHB1b0RM?=
+ =?utf-8?B?eDJDa01YNVdZQWNkMlNrQzdTS2JPdWtYMldrK09uS0Nqa1M4TUd5dEYvU2pH?=
+ =?utf-8?B?QVNvTkNvcnNDcUpib29aT2hYUTBTMmFlWkNLdVFhWTVCMTJwUVNuNU9ILzZ5?=
+ =?utf-8?B?WlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: deed6b11-60b3-4437-b673-08dceecc4949
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3238.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2024 16:44:00.4710 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2024 16:53:55.3228 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y7mfkAbzoyRfFq6y+V/70dpGPNbq0XH0E6gT7BAMvy2GrnlGUoiqnZwA7f7uU/GqvdKhMUx720wywgDMGmm7hw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6801
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2aurRX00JBUdIFwTOIYKLQO9Gl2laYuJeNYBb/4r1tsdlmWJbTOgiwSUavciTEFPABALGkYARjQ74nXySLROvwTL5stI9QYSuCVvVb5ZH78=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7480
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -191,263 +196,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 17, 2024 at 09:59:10AM +0200, Christian König wrote:
-> Am 17.10.24 um 04:47 schrieb Raag Jadav:
-> > On Mon, Sep 30, 2024 at 01:08:41PM +0530, Raag Jadav wrote:
-> > > Introduce device wedged event, which will notify userspace of wedged
-> > > (hanged/unusable) state of the DRM device through a uevent. This is
-> > > useful especially in cases where the device is no longer operating as
-> > > expected even after a hardware reset and has become unrecoverable from
-> > > driver context.
-> 
-> Well introduce is probably the wrong wording since i915 already has that and
-> amdgpu looked into it but never upstreamed the support.
 
-in i915 we have the reset and error uevents, but not one specific for 'wedge'.
-This would indeed be a new one.
+On 17-10-2024 13:35, Kandpal, Suraj wrote:
+>
+>> -----Original Message-----
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
+>> Nemesa Garg
+>> Sent: Wednesday, October 16, 2024 12:55 PM
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: Garg, Nemesa <nemesa.garg@intel.com>
+>> Subject: [PATCH] drm/i915/display: Workaround for odd panning for planar
+>> yuv
+>>
+>> Disable the support for odd x pan for even xsize for NV12 format as
+>> underrun issue is seen.
 
-> 
-> I would rather say standardize.
-> 
-> > > 
-> > > Purpose of this implementation is to provide drivers a generic way to
-> > > recover with the help of userspace intervention. Different drivers may
-> > > have different ideas of a "wedged device" depending on their hardware
-> > > implementation, and hence the vendor agnostic nature of the event.
-> > > It is up to the drivers to decide when they see the need for recovery
-> > > and how they want to recover from the available methods.
-> > > 
-> > > Current implementation defines three recovery methods, out of which,
-> > > drivers can choose to support any one or multiple of them. Preferred
-> > > recovery method will be sent in the uevent environment as WEDGED=<method>.
-> > > Userspace consumers (sysadmin) can define udev rules to parse this event
-> > > and take respective action to recover the device.
-> > > 
-> > >      =============== ==================================
-> > >      Recovery method Consumer expectations
-> > >      =============== ==================================
-> > >      rebind          unbind + rebind driver
-> > >      bus-reset       unbind + reset bus device + rebind
-> > >      reboot          reboot system
-> > >      =============== ==================================
-> 
-> Well that sounds like userspace would need to be involved in recovery.
-> 
-> That in turn is a complete no-go since we at least need to signal all
-> dma_fences to unblock the kernel. In other words things like bus reset needs
-> to happen inside the kernel and *not* in userspace.
-> 
-> What we can do is to signal to userspace: Hey a bus reset of device X
-> happened, maybe restart container, daemon, whatever service which was using
-> this device.
+- Probably with the discussion and the latest update to the patch we 
+should also update the commit message to aptly reflect what are we doing 
+here. (We can remove even xsize part or maybe give more explanation on 
+why even x size is not being checked in the patch)
 
-Well, when we declare device 'wedged' it is because we don't want to take
-any drastic measures inside the kernel and want to leave it in a protected
-and unusable state. In a way that users wouldn't lose display for instance,
-or at least the device is in a debugable state.
+- We should ideally be using the workaround lineage number in the commit 
+message.
 
-Then, the instructions here is to tell what could possibly be attempted
-from userspace to get the device to an usable state.
+- Also, seems like NV12 is not the only planar format, should we check 
+for a planar format in general instead of NV12 specifically?
+Cc: Matt Roper
 
-The 'wedge' mode (the one emiting this uevent) needs to be responsible
-for signaling all the fences and everything needed for a clean unbind
-and whatever next step might be indicated to userspace.
+Thanks
+Sai Teja
 
-That should already be part of any wedged mode, regardless the uevent
-to inform the userspace here.
-
-> 
-> Regards,
-> Christian.
-> 
-> > > 
-> > > v4: s/drm_dev_wedged/drm_dev_wedged_event
-> > >      Use drm_info() (Jani)
-> > >      Kernel doc adjustment (Aravind)
-> > > v5: Send recovery method with uevent (Lina)
-> > > v6: Access wedge_recovery_opts[] using helper function (Jani)
-> > >      Use snprintf() (Jani)
-> > > v7: Convert recovery helpers into regular functions (Andy, Jani)
-> > >      Aesthetic adjustments (Andy)
-> > >      Handle invalid method cases
-> > > 
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > ---
-> > Cc'ing amd, collabora and others as I found semi-related work at
-> > 
-> > https://lore.kernel.org/dri-devel/20230627132323.115440-1-andrealmeid@igalia.com/
-> > https://lore.kernel.org/amd-gfx/20240725150055.1991893-1-alexander.deucher@amd.com/
-> > https://lore.kernel.org/dri-devel/20241011225906.3789965-3-adrian.larumbe@collabora.com/
-> > https://lore.kernel.org/amd-gfx/CAAxE2A5v_RkZ9ex4=7jiBSKVb22_1FAj0AANBcmKtETt5c3gVA@mail.gmail.com/
-> > 
-> > 
-> > Please share feedback about usefulness and adoption of this.
-> > Improvements are welcome.
-> > 
-> > Raag
-> > 
-> > >   drivers/gpu/drm/drm_drv.c | 77 +++++++++++++++++++++++++++++++++++++++
-> > >   include/drm/drm_device.h  | 23 ++++++++++++
-> > >   include/drm/drm_drv.h     |  3 ++
-> > >   3 files changed, 103 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > > index ac30b0ec9d93..cfe9600da2ee 100644
-> > > --- a/drivers/gpu/drm/drm_drv.c
-> > > +++ b/drivers/gpu/drm/drm_drv.c
-> > > @@ -26,6 +26,8 @@
-> > >    * DEALINGS IN THE SOFTWARE.
-> > >    */
-> > > +#include <linux/array_size.h>
-> > > +#include <linux/build_bug.h>
-> > >   #include <linux/debugfs.h>
-> > >   #include <linux/fs.h>
-> > >   #include <linux/module.h>
-> > > @@ -33,6 +35,7 @@
-> > >   #include <linux/mount.h>
-> > >   #include <linux/pseudo_fs.h>
-> > >   #include <linux/slab.h>
-> > > +#include <linux/sprintf.h>
-> > >   #include <linux/srcu.h>
-> > >   #include <linux/xarray.h>
-> > > @@ -70,6 +73,42 @@ static struct dentry *drm_debugfs_root;
-> > >   DEFINE_STATIC_SRCU(drm_unplug_srcu);
-> > > +/*
-> > > + * Available recovery methods for wedged device. To be sent along with device
-> > > + * wedged uevent.
-> > > + */
-> > > +static const char *const drm_wedge_recovery_opts[] = {
-> > > +	[DRM_WEDGE_RECOVERY_REBIND] = "rebind",
-> > > +	[DRM_WEDGE_RECOVERY_BUS_RESET] = "bus-reset",
-> > > +	[DRM_WEDGE_RECOVERY_REBOOT] = "reboot",
-> > > +};
-> > > +
-> > > +static bool drm_wedge_recovery_is_valid(enum drm_wedge_recovery method)
-> > > +{
-> > > +	static_assert(ARRAY_SIZE(drm_wedge_recovery_opts) == DRM_WEDGE_RECOVERY_MAX);
-> > > +
-> > > +	return method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX;
-> > > +}
-> > > +
-> > > +/**
-> > > + * drm_wedge_recovery_name - provide wedge recovery name
-> > > + * @method: method to be used for recovery
-> > > + *
-> > > + * This validates wedge recovery @method against the available ones in
-> > > + * drm_wedge_recovery_opts[] and provides respective recovery name in string
-> > > + * format if found valid.
-> > > + *
-> > > + * Returns: pointer to const recovery string on success, NULL otherwise.
-> > > + */
-> > > +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method)
-> > > +{
-> > > +	if (drm_wedge_recovery_is_valid(method))
-> > > +		return drm_wedge_recovery_opts[method];
-> > > +
-> > > +	return NULL;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_wedge_recovery_name);
-> > > +
-> > >   /*
-> > >    * DRM Minors
-> > >    * A DRM device can provide several char-dev interfaces on the DRM-Major. Each
-> > > @@ -497,6 +536,44 @@ void drm_dev_unplug(struct drm_device *dev)
-> > >   }
-> > >   EXPORT_SYMBOL(drm_dev_unplug);
-> > > +/**
-> > > + * drm_dev_wedged_event - generate a device wedged uevent
-> > > + * @dev: DRM device
-> > > + * @method: method to be used for recovery
-> > > + *
-> > > + * This generates a device wedged uevent for the DRM device specified by @dev.
-> > > + * Recovery @method from drm_wedge_recovery_opts[] (if supprted by the device)
-> > > + * is sent in the uevent environment as WEDGED=<method>, on the basis of which,
-> > > + * userspace may take respective action to recover the device.
-> > > + *
-> > > + * Returns: 0 on success, or negative error code otherwise.
-> > > + */
-> > > +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method)
-> > > +{
-> > > +	/* Event string length up to 16+ characters with available methods */
-> > > +	char event_string[32] = {};
-> > > +	char *envp[] = { event_string, NULL };
-> > > +	const char *recovery;
-> > > +
-> > > +	recovery = drm_wedge_recovery_name(method);
-> > > +	if (!recovery) {
-> > > +		drm_err(dev, "device wedged, invalid recovery method %d\n", method);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	if (!test_bit(method, &dev->wedge_recovery)) {
-> > > +		drm_err(dev, "device wedged, %s based recovery not supported\n",
-> > > +			drm_wedge_recovery_name(method));
-> > > +		return -EOPNOTSUPP;
-> > > +	}
-> > > +
-> > > +	snprintf(event_string, sizeof(event_string), "WEDGED=%s", recovery);
-> > > +
-> > > +	drm_info(dev, "device wedged, generating uevent for %s based recovery\n", recovery);
-> > > +	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_dev_wedged_event);
-> > > +
-> > >   /*
-> > >    * DRM internal mount
-> > >    * We want to be able to allocate our own "struct address_space" to control
-> > > diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> > > index c91f87b5242d..fed6f20e52fb 100644
-> > > --- a/include/drm/drm_device.h
-> > > +++ b/include/drm/drm_device.h
-> > > @@ -40,6 +40,26 @@ enum switch_power_state {
-> > >   	DRM_SWITCH_POWER_DYNAMIC_OFF = 3,
-> > >   };
-> > > +/**
-> > > + * enum drm_wedge_recovery - Recovery method for wedged device in order of
-> > > + * severity. To be set as bit fields in drm_device.wedge_recovery variable.
-> > > + * Drivers can choose to support any one or multiple of them depending on
-> > > + * their needs.
-> > > + */
-> > > +enum drm_wedge_recovery {
-> > > +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
-> > > +	DRM_WEDGE_RECOVERY_REBIND,
-> > > +
-> > > +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
-> > > +	DRM_WEDGE_RECOVERY_BUS_RESET,
-> > > +
-> > > +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
-> > > +	DRM_WEDGE_RECOVERY_REBOOT,
-> > > +
-> > > +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
-> > > +	DRM_WEDGE_RECOVERY_MAX
-> > > +};
-> > > +
-> > >   /**
-> > >    * struct drm_device - DRM device structure
-> > >    *
-> > > @@ -317,6 +337,9 @@ struct drm_device {
-> > >   	 * Root directory for debugfs files.
-> > >   	 */
-> > >   	struct dentry *debugfs_root;
-> > > +
-> > > +	/** @wedge_recovery: Supported recovery methods for wedged device */
-> > > +	unsigned long wedge_recovery;
-> > >   };
-> > >   #endif
-> > > diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> > > index 02ea4e3248fd..d8dbc77010b0 100644
-> > > --- a/include/drm/drm_drv.h
-> > > +++ b/include/drm/drm_drv.h
-> > > @@ -462,6 +462,9 @@ bool drm_dev_enter(struct drm_device *dev, int *idx);
-> > >   void drm_dev_exit(int idx);
-> > >   void drm_dev_unplug(struct drm_device *dev);
-> > > +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method);
-> > > +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method);
-> > > +
-> > >   /**
-> > >    * drm_dev_is_unplugged - is a DRM device unplugged
-> > >    * @dev: DRM device
-> > > -- 
-> > > 2.34.1
-> > > 
-> 
+>>
+>> WA: 16024459452
+> This should be right above your signed-off-by
+> The rest LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>
+>> v2: Replace HSD with WA in commit message [Suraj]
+>>      Modified the condition for handling odd panning
+>>
+>> v3: Simplified the condition for checking hsub
+>>      Using older framework for wa as rev1[Jani]
+>>
+>> v4: Modify the condition for hsub [Sai Teja]
+>>      Initialize hsub in else path [Dan]
+>>
+>> v5: Replace IS_LUNARLAKE with display version.
+>>      Resolve nitpicks[Jani]
+>>
+>> v6: Replace -EINVAL with hsub [Suraj]
+>>      Remove src_w check as not required
+>>
+>> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_atomic_plane.c | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> index e979786aa5cf..2d7ca6e62926 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> @@ -1031,6 +1031,11 @@ int intel_plane_check_src_coordinates(struct
+>> intel_plane_state *plane_state)
+>>   		 */
+>>   		hsub = 1;
+>>   		vsub = 1;
+>> +
+>> +		/* Wa_16023981245 */
+>> +		if (DISPLAY_VER(i915) == 20 && fb->format->format ==
+>> DRM_FORMAT_NV12 &&
+>> +		    src_x % 2 != 0)
+>> +			hsub = 2;
+>>   	} else {
+>>   		hsub = fb->format->hsub;
+>>   		vsub = fb->format->vsub;
+>> --
+>> 2.25.1
