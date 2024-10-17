@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2831BD21262
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 09:24:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A4AFD21268
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 09:33:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB86B10E1E8;
-	Thu, 17 Oct 2024 09:24:10 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F41D10E1E8;
- Thu, 17 Oct 2024 09:24:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5686561336321190944=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32EB510E30D;
+	Thu, 17 Oct 2024 09:33:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MnWzEaK2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC58410E30D;
+ Thu, 17 Oct 2024 09:33:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729157593; x=1760693593;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=cy+twF8z7Jnj7L9H+pNd7pTHZdDX7ewEwiApxmQ9j+s=;
+ b=MnWzEaK2bb7sYlZi128BkiHYd0jW1qtDeRuLnivYhWaqX8/dJdeRUQzK
+ 8dhQTUecsO0DUb8XgYJ4rEHVWPVfE5ahesZ1MWvCqaq0wMbeg+5fupBVR
+ dW6o0eYnirTCqatPa6dc+4Pc95U1geV4xSiEU2fomfKlgXXoS8YzQg540
+ jlp+2G3Z2Uu25tf0Lmc04kPLV4XBeC1OMqLQTx2mjbITnYzYtEV5xLYfj
+ P1THlDwH3Y6q0y16FfQq64Ha0+OyBqhkhM8mV2sGg5l3hdWOQpK0ptxgv
+ HzQ3CGCOpmeh616qP7nXHkfRxKGQ4GkZzSIpBhCfB1zyNfNHk7iV4L3Dj g==;
+X-CSE-ConnectionGUID: AOIck+aeT4GsknVP0X5seg==
+X-CSE-MsgGUID: INM1WWhsTdy9g1CcjMHRTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28585927"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28585927"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 02:33:13 -0700
+X-CSE-ConnectionGUID: +RMHLClxSnC2YrilGB4sFQ==
+X-CSE-MsgGUID: ZfYMod8TRu660JxHhrTGYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="109302045"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.246.150])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 02:33:02 -0700
+Date: Thu, 17 Oct 2024 11:32:51 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-next
+Message-ID: <ZxDZaRRQAzrG1uir@fedora>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_support_for_3_VDSC_engines_1?=
- =?utf-8?q?2_slices_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Oct 2024 09:24:10 -0000
-Message-ID: <172915705017.1277901.5196422641813447992@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,176 +71,116 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5686561336321190944==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Dave, Simona
 
-== Series Details ==
+This week's -next PR. Note the implicit fencing uapi fix.
 
-Series: Add support for 3 VDSC engines 12 slices (rev3)
-URL   : https://patchwork.freedesktop.org/series/139933/
-State : success
+Thanks,
+Thomas
 
-== Summary ==
+drm-xe-next-2024-10-17:
+UAPI Changes:
+- (Implicit) Fix the exec unnecessary implicit fencing (Matt Brost)
 
-CI Bug Log - changes from xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0_BAT -> xe-pw-139933v3_BAT
-====================================================
+Driver Changes:
+- Fix an inverted if statement (Colin)
+- Fixes around display d3cold vs non-d3cold runtime pm (Imre)
+- A couple of scheduling fixes (Matt Brost)
+- Increase a query timestamp witdh (Lucas)
+- Move a timestamp read (Lucas)
+- Tidy some code using multiple put_user() (Lucas)
+- Fix an ufence signaling error (Nirmoy)
+- Initialize the ufence.signalled field (Matt Auld)
+- Display fb alignement work (Juha-Pekka)
+- Disallow horisontal flip with tile4 + display20 (Juha-Pekka)
+- Extend a workaround (Shekhar)
+- Enlarge the global invalidation timeout (Shuicheng)
 
-Summary
--------
+The following changes since commit a187c1b0a800565a4db6372268692aff99df7f53:
 
-  **SUCCESS**
+  drm/xe: fix unbalanced rpm put() with declare_wedged() (2024-10-10 09:15:59 +0100)
 
-  No regressions found.
+are available in the Git repository at:
 
-  
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2024-10-17
 
-Participating hosts (9 -> 9)
-------------------------------
+for you to fetch changes up to 2eb460ab9f4bc5b575f52568d17936da0af681d8:
 
-  No changes in participating hosts
+  drm/xe: Enlarge the invalidation timeout from 150 to 500 (2024-10-16 16:11:10 +0100)
 
-Known issues
-------------
+----------------------------------------------------------------
+UAPI Changes:
+- (Implicit) Fix the exec unnecessary implicit fencing (Matt Brost)
 
-  Here are the changes found in xe-pw-139933v3_BAT that come from known issues:
+Driver Changes:
+- Fix an inverted if statement (Colin)
+- Fixes around display d3cold vs non-d3cold runtime pm (Imre)
+- A couple of scheduling fixes (Matt Brost)
+- Increase a query timestamp witdh (Lucas)
+- Move a timestamp read (Lucas)
+- Tidy some code using multiple put_user() (Lucas)
+- Fix an ufence signaling error (Nirmoy)
+- Initialize the ufence.signalled field (Matt Auld)
+- Display fb alignement work (Juha-Pekka)
+- Disallow horisontal flip with tile4 + display20 (Juha-Pekka)
+- Extend a workaround (Shekhar)
+- Enlarge the global invalidation timeout (Shuicheng)
 
-### IGT changes ###
+----------------------------------------------------------------
+Colin Ian King (1):
+      drm/xe/guc: Fix inverted logic on snapshot->copy check
 
-#### Issues hit ####
+Imre Deak (2):
+      drm/xe/display: Separate the d3cold and non-d3cold runtime PM handling
+      drm/xe/display: Add missing HPD interrupt enabling during non-d3cold RPM resume
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+Juha-Pekka Heikkila (3):
+      drm/xe: add interface to request physical alignment for buffer objects
+      drm/xe/display: align framebuffers according to hw requirements
+      drm/i915/display: Don't allow tile4 framebuffer to do hflip on display20 or greater
 
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][3] ([Intel XE#288]) +32 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+Lucas De Marchi (3):
+      drm/xe/query: Increase timestamp width
+      drm/xe/query: Move timestamp reg to hwe_read_timestamp()
+      drm/xe/query: Tidy up error EFAULT returns
 
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [PASS][4] -> [INCOMPLETE][5] ([Intel XE#2874]) +1 other test incomplete
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+Matthew Auld (1):
+      drm/xe/xe_sync: initialise ufence.signalled
 
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][6] ([Intel XE#2229])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+Matthew Brost (3):
+      drm/xe: Take job list lock in xe_sched_add_pending_job
+      drm/xe: Don't free job in TDR
+      drm/xe: Use bookkeep slots for external BO's in exec IOCTL
 
-  
-#### Possible fixes ####
+Nirmoy Das (1):
+      drm/xe/ufence: ufence can be signaled right after wait_woken
 
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [INCOMPLETE][7] ([Intel XE#2874]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+Shekhar Chauhan (1):
+      drm/xe/xe3lpg: Extend Wa_18034896535 to Xe3_LPG.
 
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+Shuicheng Lin (1):
+      drm/xe: Enlarge the invalidation timeout from 150 to 500
 
-
-Build changes
--------------
-
-  * Linux: xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0 -> xe-pw-139933v3
-
-  IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0: 6f9cc21188c822a692fbbcfaa7cb40cbd8082df0
-  xe-pw-139933v3: 139933v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/index.html
-
---===============5686561336321190944==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for 3 VDSC engines 12 slices (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139933/">https://patchwork.freedesktop.org/series/139933/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0_BAT -&gt; xe-pw-139933v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139933v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v3/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0 -&gt; xe-pw-139933v3</li>
-</ul>
-<p>IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0: 6f9cc21188c822a692fbbcfaa7cb40cbd8082df0<br />
-  xe-pw-139933v3: 139933v3</p>
-
-</body>
-</html>
-
---===============5686561336321190944==--
+ drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++
+ drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 11 +++++
+ .../xe/compat-i915-headers/gem/i915_gem_stolen.h   |  2 +-
+ drivers/gpu/drm/xe/display/xe_display.c            | 20 ++++++--
+ drivers/gpu/drm/xe/display/xe_fb_pin.c             | 57 +++++++++++++---------
+ drivers/gpu/drm/xe/xe_bo.c                         | 29 ++++++++---
+ drivers/gpu/drm/xe/xe_bo.h                         |  8 ++-
+ drivers/gpu/drm/xe/xe_bo_types.h                   |  5 ++
+ drivers/gpu/drm/xe/xe_device.c                     |  2 +-
+ drivers/gpu/drm/xe/xe_exec.c                       | 12 ++---
+ drivers/gpu/drm/xe/xe_ggtt.c                       |  2 +-
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h              |  2 +
+ drivers/gpu/drm/xe/xe_guc_log.c                    |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c                 |  7 ++-
+ drivers/gpu/drm/xe/xe_query.c                      | 42 ++++++----------
+ drivers/gpu/drm/xe/xe_sync.c                       |  2 +-
+ drivers/gpu/drm/xe/xe_wa.c                         |  5 ++
+ drivers/gpu/drm/xe/xe_wait_user_fence.c            |  3 --
+ 19 files changed, 147 insertions(+), 78 deletions(-)
