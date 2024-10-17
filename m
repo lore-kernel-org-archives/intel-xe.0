@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB6C3D374A9
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 15:52:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08CF0D374A9
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 15:52:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC44210E1CC;
-	Thu, 17 Oct 2024 15:52:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C753810E865;
+	Thu, 17 Oct 2024 15:52:51 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D7C410E1CC;
- Thu, 17 Oct 2024 15:52:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6005310E1CC;
+ Thu, 17 Oct 2024 15:52:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_locking/ww=5Fmutex?=
- =?utf-8?q?=3A_Adjust_to_lockdep_nest=5Flock_requirements_=28rev6=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_locking/ww=5Fmutex=3A_Adj?=
+ =?utf-8?q?ust_to_lockdep_nest=5Flock_requirements_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Oct 2024 15:52:37 -0000
-Message-ID: <172918035711.1279634.13462781815655163971@2413ebb6fbb6>
+Date: Thu, 17 Oct 2024 15:52:50 -0000
+Message-ID: <172918037039.1279635.1542470877846854940@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241017151007.92215-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20241017151007.92215-1-thomas.hellstrom@linux.intel.com>
@@ -44,13 +44,83 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: locking/ww_mutex: Adjust to lockdep nest_lock requirements (rev6)
 URL   : https://patchwork.freedesktop.org/series/123522/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6d5c65cb1afb drm-tip: 2024y-10m-17d-14h-17m-19s UTC integration manifest
-=== git am output follows ===
-Applying: locking/ww_mutex: Adjust to lockdep nest_lock requirements
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c9dc63be50201d035d201ed30f8aebc3ecec0be9
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Thu Oct 17 17:10:07 2024 +0200
+
+    locking/ww_mutex: Adjust to lockdep nest_lock requirements
+    
+    When using mutex_acquire_nest() with a nest_lock, lockdep refcounts the
+    number of acquired lockdep_maps of mutexes of the same class, and also
+    keeps a pointer to the first acquired lockdep_map of a class. That pointer
+    is then used for various comparison-, printing- and checking purposes,
+    but there is no mechanism to actively ensure that lockdep_map stays in
+    memory. Instead, a warning is printed if the lockdep_map is freed and
+    there are still held locks of the same lock class, even if the lockdep_map
+    itself has been released.
+    
+    In the context of WW/WD transactions that means that if a user unlocks
+    and frees a ww_mutex from within an ongoing ww transaction, and that
+    mutex happens to be the first ww_mutex grabbed in the transaction,
+    such a warning is printed and there might be a risk of a UAF.
+    
+    Note that this is only problem when lockdep is enabled and affects only
+    dereferences of struct lockdep_map.
+    
+    Adjust to this by adding a fake lockdep_map to the acquired context and
+    make sure it is the first acquired lockdep map of the associated
+    ww_mutex class. Then hold it for the duration of the WW/WD transaction.
+    
+    This has the side effect that trying to lock a ww mutex *without* a
+    ww_acquire_context but where a such context has been acquire, we'd see
+    a lockdep splat. The test-ww_mutex.c selftest attempts to do that, so
+    modify that particular test to not acquire a ww_acquire_context if it
+    is not going to be used.
+    
+    v2:
+    - Lower the number of locks in the test-ww_mutex
+      stress(STRESS_ALL) test to accommodate the dummy lock
+      introduced in this patch without overflowing lockdep held lock
+      references.
+    
+    v3:
+    - Adjust the ww_test_normal locking-api selftest to avoid
+      recursive locking (Boqun Feng)
+    - Initialize the dummy lock map with LD_WAIT_SLEEP to agree with
+      how the corresponding ww_mutex lockmaps are initialized
+      (Boqun Feng)
+    
+    Cc: Peter Zijlstra <peterz@infradead.org>
+    Cc: Ingo Molnar <mingo@redhat.com>
+    Cc: Will Deacon <will@kernel.org>
+    Cc: Waiman Long <longman@redhat.com>
+    Cc: Boqun Feng <boqun.feng@gmail.com>
+    Cc: Maarten Lankhorst <maarten@lankhorst.se>
+    Cc: Christian König <christian.koenig@amd.com>
+    Cc: dri-devel@lists.freedesktop.org
+    Cc: linux-kernel@vger.kernel.org
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Acked-by: maarten.lankhorst@linux.intel.com #v1
++ /mt/dim checkpatch 6d5c65cb1afb42b0bbe813847d9271271d2875a2 drm-intel
+c9dc63be5020 locking/ww_mutex: Adjust to lockdep nest_lock requirements
+-:130: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#130: FILE: kernel/locking/test-ww_mutex.c:684:
++	ret = stress(2046, hweight32(STRESS_ALL)*ncpus, STRESS_ALL);
+ 	                                        ^
+
+total: 0 errors, 0 warnings, 1 checks, 75 lines checked
 
 
