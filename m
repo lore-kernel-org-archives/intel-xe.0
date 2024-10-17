@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 117BCD3C53A
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 23:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE50CD3C538
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 23:44:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED0610E33B;
-	Thu, 17 Oct 2024 23:39:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HtUP5B7p";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA0F310E335;
- Thu, 17 Oct 2024 23:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729208358; x=1760744358;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LHKbFRn+SCZV5qIq4QvtH2Tn8fwN95EU3gfHHrr4Wsg=;
- b=HtUP5B7pIMh9bOXsXKNmZ7ed9AzrGuVucERT+bmhl0Ubw6HTy81QAtdz
- 1JHZ54LhXyg+W3eVI8vCmNsKE7sbFJouqx6k/c4PEeJXKkYBCtdnF9wvi
- 3jZNNQUlER8CT2pbTAcp/0vJ8Wv+FNljILYe/Qxw9IZHDYcDHlazAFIUP
- CXo3QSObYvr9CuUjKM1VLJn2TnLL56RF83HZvxjxXIlcLZyKwonqcmjWf
- FzPUm9ik9YSXY8uyilvZCw9bi9pzo2V7SasWGASXFMmGIUCaGcsz8VhJq
- ccR2OZQYyPrkoD1nu4/f+m7a+hzNMJWVtSwH0Ye4/RJ271t1VQBRhS5SR Q==;
-X-CSE-ConnectionGUID: DXr3mVtwQVartGE2m9IZPQ==
-X-CSE-MsgGUID: /uog3adAQ9W06zzpDBPmsw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11228"; a="32518608"
-X-IronPort-AV: E=Sophos;i="6.11,212,1725346800"; d="scan'208";a="32518608"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 16:39:17 -0700
-X-CSE-ConnectionGUID: vcCANo6VTGaf5lxFsgZInQ==
-X-CSE-MsgGUID: vbto/nNJS3WlUq7Fe/QYYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,212,1725346800"; d="scan'208";a="83778406"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 16:39:17 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: thomas.hellstrom@linux.intel.com
-Subject: [RFC PATCH 0/1] Enable non-contiguous VRAM access in Xe
-Date: Thu, 17 Oct 2024 16:39:39 -0700
-Message-Id: <20241017233941.1047522-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A41610E10E;
+	Thu, 17 Oct 2024 23:44:18 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB5910E10E;
+ Thu, 17 Oct 2024 23:44:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_non-contiguou?=
+ =?utf-8?q?s_VRAM_access_in_Xe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 17 Oct 2024 23:44:17 -0000
+Message-ID: <172920865711.1280532.15353671256834968822@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241017233941.1047522-1-matthew.brost@intel.com>
+In-Reply-To: <20241017233941.1047522-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,21 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Patches should be split but quick RFC for feedback.
+== Series Details ==
 
-Matt
+Series: Enable non-contiguous VRAM access in Xe
+URL   : https://patchwork.freedesktop.org/series/140137/
+State : success
 
-Matthew Brost (1):
-  drm/ttm, drm/xe: Add ttm_bo_access
+== Summary ==
 
- drivers/gpu/drm/ttm/ttm_bo_vm.c | 20 +++++++++-----
- drivers/gpu/drm/xe/xe_bo.c      | 48 +++++++++++++++++++++++++++++++++
- include/drm/ttm/ttm_bo.h        |  2 ++
- 3 files changed, 64 insertions(+), 6 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 4a1a4fc678a0 drm-tip: 2024y-10m-17d-21h-17m-38s UTC integration manifest
+=== git am output follows ===
+Applying: drm/ttm, drm/xe: Add ttm_bo_access
 
--- 
-2.34.1
 
