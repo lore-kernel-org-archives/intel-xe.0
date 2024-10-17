@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B86DD21275
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 10:29:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33B65D21277
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 10:29:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D925D10E7E8;
-	Thu, 17 Oct 2024 10:29:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D950710E7E9;
+	Thu, 17 Oct 2024 10:29:26 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21DC710E7E8;
- Thu, 17 Oct 2024 10:29:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECADE10E7E9;
+ Thu, 17 Oct 2024 10:29:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ufence=3A_Kic?=
- =?utf-8?q?k_ufence_immediately_when_possible_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/ufence=3A_Kick_ufe?=
+ =?utf-8?q?nce_immediately_when_possible_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Oct 2024 10:29:15 -0000
-Message-ID: <172916095513.1278211.1620561638830022705@2413ebb6fbb6>
+Date: Thu, 17 Oct 2024 10:29:25 -0000
+Message-ID: <172916096596.1278219.16593591171268954457@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241017094237.279327-1-nirmoy.das@intel.com>
 In-Reply-To: <20241017094237.279327-1-nirmoy.das@intel.com>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6f9cc21188c8 drm-tip: 2024y-10m-17d-07h-13m-58s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/ufence: Kick ufence immediately when possible
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 76095a724ecf41313edfc81b147b91123317dc0f
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Thu Oct 17 11:42:37 2024 +0200
+
+    drm/xe/ufence: Kick ufence immediately when possible
+    
+    If the backing fence is signaled then signal ufence soon with
+    system_wq. This should reduce load from the xe ordered_wq and also
+    won't block signaling a ufence which doesn't require any serialization.
+    
+    v2: fix system_wq typo
+    
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1630
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    gc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch 6f9cc21188c822a692fbbcfaa7cb40cbd8082df0 drm-intel
+76095a724ecf drm/xe/ufence: Kick ufence immediately when possible
 
 
