@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 745CBD21272
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 11:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E40D21272
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Oct 2024 11:12:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 330B610E316;
-	Thu, 17 Oct 2024 11:09:11 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D32410E316;
- Thu, 17 Oct 2024 11:09:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5448837351552584698=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12A9E10E316;
+	Thu, 17 Oct 2024 11:12:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GgSr6Eb3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAA8910E316
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Oct 2024 11:12:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729163557; x=1760699557;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=tExxkdGVIScA6uxbbKZFMC8fYXC5KfUNAteDg+i1EDI=;
+ b=GgSr6Eb3TXze+f3Al8OBgsBgdhS7hlMv5vOujArgYc2/vnG89J6udqA0
+ Zy+ybbRQrSinhY7d727OEHkrkl3s+SlMgC1QpuSLH3Ybp8SSFJQOescZH
+ feFE1PaUSpxVs0IS1AwP1rk2cPBm838FR4ROS4tBp/1cuczKdQQDgZjMx
+ 36PECnQaTZTwZSVHddclK1NmXvAQUw6Bipri5iw8MA0D+2hLhl7TwUtLZ
+ Q6ZYNqsyMLo4YPmRYGifdhKh1bYF6GkQ+BOjMqOVbgGGtI7IVNvesYKz3
+ JSDzMcvSOXODaJ1OEFl71gcf8nZ65Wug4Ss/FW1wu95XsGW8/rpHjlxwA A==;
+X-CSE-ConnectionGUID: AsvECzkyT/W0H9igq+TyGg==
+X-CSE-MsgGUID: S3knWMxKQ967dWnHSF9RbA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="32328940"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="32328940"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 04:12:36 -0700
+X-CSE-ConnectionGUID: A7XFOFlDRVCovJUmqvPhlw==
+X-CSE-MsgGUID: StCUy+0pRYmE3ajamUOQfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="83070944"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa005.fm.intel.com with ESMTP; 17 Oct 2024 04:12:34 -0700
+Received: from [10.246.17.177] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.246.17.177])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id CC30A2FA8;
+ Thu, 17 Oct 2024 12:12:32 +0100 (IST)
+Message-ID: <b352367d-5f94-4406-ad3a-71f804bed078@intel.com>
+Date: Thu, 17 Oct 2024 13:12:32 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/ufence=3A_Kick_ufence_imm?=
- =?utf-8?q?ediately_when_possible_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Oct 2024 11:09:10 -0000
-Message-ID: <172916335011.1278373.8940339797211472235@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241017094237.279327-1-nirmoy.das@intel.com>
-In-Reply-To: <20241017094237.279327-1-nirmoy.das@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/3] drm/xe/pf: Add functions to save and restore VF
+ LMEM and CCS data
+To: Lukasz Laguna <lukasz.laguna@intel.com>, intel-xe@lists.freedesktop.org
+Cc: michal.winiarski@intel.com
+References: <20241016095745.7477-1-lukasz.laguna@intel.com>
+ <20241016095745.7477-4-lukasz.laguna@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20241016095745.7477-4-lukasz.laguna@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,174 +70,186 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5448837351552584698==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/xe/ufence: Kick ufence immediately when possible (rev2)
-URL   : https://patchwork.freedesktop.org/series/140104/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0_BAT -> xe-pw-140104v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140104v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-adlp-7:         [PASS][2] -> [INCOMPLETE][3] ([Intel XE#2874]) +1 other test incomplete
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#2229])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - {bat-bmg-2}:        [INCOMPLETE][5] ([Intel XE#2874] / [Intel XE#2998]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-    - bat-dg2-oem2:       [INCOMPLETE][7] ([Intel XE#2874]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#2998]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998
 
 
-Build changes
--------------
+On 16.10.2024 11:57, Lukasz Laguna wrote:
+> State of VF LMEM and corresponding CCS metadata needs to be saved and
+> restored during migration of VM with attached dGPU VF. Add helpers that
+> allow it. We will start using them in upcoming patches.
+> 
+> Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com
+> ---
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c | 100 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h |   7 ++
+>  2 files changed, 107 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
+> index c712111aa30d..feb22d3e5dd5 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
+> @@ -12,6 +12,7 @@
+>  #include "xe_gt_sriov_printk.h"
+>  #include "xe_guc.h"
+>  #include "xe_guc_ct.h"
+> +#include "xe_migrate.h"
+>  #include "xe_sriov.h"
+>  
+>  /* Return: number of dwords saved/restored/required or a negative error code on failure */
+> @@ -382,6 +383,105 @@ ssize_t xe_gt_sriov_pf_migration_write_guc_state(struct xe_gt *gt, unsigned int
+>  }
+>  #endif /* CONFIG_DEBUG_FS */
+>  
+> +static int pf_save_restore_lmem(struct xe_gt *gt, unsigned int vfid, struct xe_bo *sysmem,
+> +				struct xe_bo *ccs, u64 offset, size_t size, bool save)
 
-  * Linux: xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0 -> xe-pw-140104v2
+bool flags are not welcomed by the maintainters
 
-  IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0: 6f9cc21188c822a692fbbcfaa7cb40cbd8082df0
-  xe-pw-140104v2: 140104v2
+> +{
+> +	struct xe_bo *vram;
+> +	struct dma_fence *fence;
+> +	int ret;
 
-== Logs ==
+you may want to assert that vfid != PFID
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/index.html
+> +
+> +	if (!sysmem && !ccs)
+> +		return -EINVAL;
 
---===============5448837351552584698==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+input parameters shall be validated at the top public function, in all
+internal static functions/helpers we should just have asserts
 
+> +
+> +	vram = gt->sriov.pf.vfs[vfid].config.lmem_obj;
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+access to config.lmem_obj should be under xe_gt_sriov_pf_master_mutex
 
+> +	if (!vram)
+> +		return -ENXIO;
+> +
+> +	if (!xe_bo_trylock(vram))
+> +		return -EBUSY;
+> +
+> +	if (sysmem) {
+> +		if (!xe_bo_trylock(sysmem)) {
+> +			ret = -EBUSY;
+> +			goto err_vram_unlock;
+> +		}
+> +	}
+> +	if (ccs) {
+> +		if (!xe_bo_trylock(ccs)) {
+> +			ret = -EBUSY;
+> +			goto err_sysmem_unlock;
+> +		}
+> +	}
+> +
+> +	fence = xe_migrate_raw_vram_copy(vram, offset, sysmem, 0, ccs, 0, size, save);
+> +	if (IS_ERR(fence)) {
+> +		ret = PTR_ERR(fence);
+> +		goto err_ccs_unlock;
+> +	}
+> +	ret = dma_fence_wait_timeout(fence, false, 5 * HZ);
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/ufence: Kick ufence immediately when possible (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140104/">https://patchwork.freedesktop.org/series/140104/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+do you want to keep this hardcoded 5s for all cases?
+maybe the fence should be returned to the caller?
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/index.html</a></td></tr>
+> +	if (!ret)
+> +		ret = -ETIME;
+> +
+> +	dma_fence_put(fence);
+> +
+> +err_ccs_unlock:
+> +	if (ccs)
+> +		xe_bo_unlock(ccs);
+> +err_sysmem_unlock:
+> +	if (sysmem)
+> +		xe_bo_unlock(sysmem);
+> +err_vram_unlock:
+> +	xe_bo_unlock(vram);
+> +
+> +	return ret < 0 ? ret : 0;
+> +}
+> +
+> +/**
+> + * xe_gt_sriov_pf_migration_save_lmem() - Save a VF LMEM and corresponding CCS.
+> + * @gt: the &xe_gt
+> + * @vfid: the VF identifier
+> + * @smem: the sysmem BO to save LMEM data to (NULL if not needed)
 
-</table>
+likely the vfio driver will not be able to provide such BO, so do we
+plan to introduce yet another layer for it?
 
+> + * @ccs: the sysmem BO to save CCS data to (NULL if not needed)
 
-    <h1>CI Bug Log - changes from xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0_BAT -&gt; xe-pw-140104v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140104v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>{bat-bmg-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998">Intel XE#2998</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140104v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0 -&gt; xe-pw-140104v2</li>
-</ul>
-<p>IGT_8077: 42f9e9702f74a4993318adea936baaa186084689 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2074-6f9cc21188c822a692fbbcfaa7cb40cbd8082df0: 6f9cc21188c822a692fbbcfaa7cb40cbd8082df0<br />
-  xe-pw-140104v2: 140104v2</p>
+shouldn't the logic about need of the CCS data be somehow hidden from
+the caller?
 
-</body>
-</html>
+> + * @offset: the offset of VF LMEM chunk
+> + * @size: the size of VF LMEM chunk
+> + *
+> + * This function is for PF only.
+> + *
+> + * This functions saves VF LMEM and corresponding CCS data into sysmem buffer
+> + * objects.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_gt_sriov_pf_migration_save_lmem(struct xe_gt *gt, unsigned int vfid,
+> +				       struct xe_bo *sysmem, struct xe_bo *ccs, u64 offset,
+> +				       size_t size)
+> +{
+> +	return pf_save_restore_lmem(gt, vfid, sysmem, ccs, offset, size, true);
+> +}
+> +
+> +/**
+> + * xe_gt_sriov_pf_migration_restore_lmem() - Restore a VF LMEM and corresponding CCS.
+> + * @gt: the &xe_gt
+> + * @vfid: the VF identifier
+> + * @smem: the sysmem BO to restore LMEM data from (NULL if not needed)
+> + * @ccs: the sysmem BO to restore CCS data from (NULL if not needed)
+> + * @offset: the offset of VF LMEM chunk
+> + * @size: the size of VF LMEM chunk
+> + *
+> + * This function is for PF only.
+> + *
+> + * This functions restores VF LMEM and corresponding CCS data from sysmem
+> + * buffer objects.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_gt_sriov_pf_migration_restore_lmem(struct xe_gt *gt, unsigned int vfid,
+> +					  struct xe_bo *sysmem, struct xe_bo *ccs, u64 offset,
+> +					  size_t size)
+> +{
+> +	return pf_save_restore_lmem(gt, vfid, sysmem, ccs, offset, size, false);
+> +}
+> +
+>  static bool pf_check_migration_support(struct xe_gt *gt)
+>  {
+>  	/* GuC 70.25 with save/restore v2 is required */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h
+> index 09faeae00ddb..dc1e6c5b44fa 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.h
+> @@ -8,11 +8,18 @@
+>  
+>  #include <linux/types.h>
+>  
+> +struct xe_bo;
+>  struct xe_gt;
+>  
+>  int xe_gt_sriov_pf_migration_init(struct xe_gt *gt);
+>  int xe_gt_sriov_pf_migration_save_guc_state(struct xe_gt *gt, unsigned int vfid);
+>  int xe_gt_sriov_pf_migration_restore_guc_state(struct xe_gt *gt, unsigned int vfid);
+> +int xe_gt_sriov_pf_migration_save_lmem(struct xe_gt *gt, unsigned int vfid,
+> +				       struct xe_bo *sysmem, struct xe_bo *ccs, u64 offset,
+> +				       size_t size);
+> +int xe_gt_sriov_pf_migration_restore_lmem(struct xe_gt *gt, unsigned int vfid,
+> +					  struct xe_bo *sysmem, struct xe_bo *ccs, u64 offset,
+> +					  size_t size);
+>  
+>  #ifdef CONFIG_DEBUG_FS
+>  ssize_t xe_gt_sriov_pf_migration_read_guc_state(struct xe_gt *gt, unsigned int vfid,
 
---===============5448837351552584698==--
