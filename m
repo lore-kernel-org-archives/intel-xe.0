@@ -4,27 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59B91D374BF
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 16:58:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59A0DD2FFF1
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 17:06:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D78F110E37D;
-	Fri, 18 Oct 2024 16:58:58 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50D9610E37C;
- Fri, 18 Oct 2024 16:58:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1918349603806402368=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0D2010E37D;
+	Fri, 18 Oct 2024 17:06:16 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1DA710E37D
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Oct 2024 17:06:15 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI v2 1/4] drm/xe: Remove double pageflip
+Date: Fri, 18 Oct 2024 19:06:28 +0200
+Message-ID: <20241018170631.6598-2-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241018170631.6598-1-maarten.lankhorst@linux.intel.com>
+References: <20241018170631.6598-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/ufence=3A_Signal_ufence_f?=
- =?utf-8?q?aster_when_possible?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Oct 2024 16:58:58 -0000
-Message-ID: <172927073832.1282733.2854249490066043245@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241018152958.1975994-1-nirmoy.das@intel.com>
-In-Reply-To: <20241018152958.1975994-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,156 +34,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1918349603806402368==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is already handled below by fixup_initial_plane_config.
 
-== Series Details ==
+Fixes: a8153627520a ("drm/i915: Try to relocate the BIOS fb to the start of ggtt")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-Series: drm/xe/ufence: Signal ufence faster when possible
-URL   : https://patchwork.freedesktop.org/series/140181/
-State : success
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 8c113463a3d55..668f544a7ac80 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -194,8 +194,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 		to_intel_plane(crtc->base.primary);
+ 	struct intel_plane_state *plane_state =
+ 		to_intel_plane_state(plane->base.state);
+-	struct intel_crtc_state *crtc_state =
+-		to_intel_crtc_state(crtc->base.state);
+ 	struct drm_framebuffer *fb;
+ 	struct i915_vma *vma;
+ 
+@@ -241,14 +239,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
+ 
+ 	plane_config->vma = vma;
+-
+-	/*
+-	 * Flip to the newly created mapping ASAP, so we can re-use the
+-	 * first part of GGTT for WOPCM, prevent flickering, and prevent
+-	 * the lookup of sysmem scratch pages.
+-	 */
+-	plane->check_plane(crtc_state, plane_state);
+-	plane->async_flip(NULL, plane, crtc_state, plane_state, true);
+ 	return;
+ 
+ nofb:
+-- 
+2.45.2
 
-== Summary ==
-
-CI Bug Log - changes from xe-2092-455be4c26aa3c20e5b9537954759e201817c9600_BAT -> xe-pw-140181v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140181v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-bmg-1:          [PASS][1] -> [INCOMPLETE][2] ([Intel XE#2874] / [Intel XE#2998]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2092-455be4c26aa3c20e5b9537954759e201817c9600/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2092-455be4c26aa3c20e5b9537954759e201817c9600/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-lnl-2:          [FAIL][5] ([Intel XE#2754]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2092-455be4c26aa3c20e5b9537954759e201817c9600/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#2998]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998
-
-
-Build changes
--------------
-
-  * Linux: xe-2092-455be4c26aa3c20e5b9537954759e201817c9600 -> xe-pw-140181v1
-
-  IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2092-455be4c26aa3c20e5b9537954759e201817c9600: 455be4c26aa3c20e5b9537954759e201817c9600
-  xe-pw-140181v1: 140181v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/index.html
-
---===============1918349603806402368==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/ufence: Signal ufence faster when possible</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140181/">https://patchwork.freedesktop.org/series/140181/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2092-455be4c26aa3c20e5b9537954759e201817c9600_BAT -&gt; xe-pw-140181v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140181v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2092-455be4c26aa3c20e5b9537954759e201817c9600/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998">Intel XE#2998</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2092-455be4c26aa3c20e5b9537954759e201817c9600/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2092-455be4c26aa3c20e5b9537954759e201817c9600/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140181v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2092-455be4c26aa3c20e5b9537954759e201817c9600 -&gt; xe-pw-140181v1</li>
-</ul>
-<p>IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2092-455be4c26aa3c20e5b9537954759e201817c9600: 455be4c26aa3c20e5b9537954759e201817c9600<br />
-  xe-pw-140181v1: 140181v1</p>
-
-</body>
-</html>
-
---===============1918349603806402368==--
