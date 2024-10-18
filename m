@@ -4,25 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7BE9D2FFF8
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 12:11:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92D2AD2FFFD
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 12:16:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CD6010E901;
-	Fri, 18 Oct 2024 12:11:17 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F28C610E8FE
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Oct 2024 12:11:08 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [FOR CI 3/4] drm/xe: Move suballocator init to after display init
-Date: Fri, 18 Oct 2024 14:11:22 +0200
-Message-ID: <20241018121123.5351-4-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241018121123.5351-1-maarten.lankhorst@linux.intel.com>
-References: <20241018121123.5351-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D1D510E8FF;
+	Fri, 18 Oct 2024 12:16:34 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82AEC10E8FE;
+ Fri, 18 Oct 2024 12:16:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_initia?=
+ =?utf-8?q?l_framebuffer_handover=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 18 Oct 2024 12:16:33 -0000
+Message-ID: <172925379352.1281967.15649413575085020319@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241018121123.5351-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20241018121123.5351-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,78 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No allocations should be done before we have had a chance to preserve
-the display fb.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_device.c |  6 ++++++
- drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
- drivers/gpu/drm/xe/xe_tile.h   |  1 +
- 3 files changed, 15 insertions(+), 4 deletions(-)
+Series: drm/xe: Fix initial framebuffer handover.
+URL   : https://patchwork.freedesktop.org/series/140165/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 51bb9d875268f..76d8c6868d15e 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -736,6 +736,12 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err;
- 
-+	for_each_tile(tile, xe, id) {
-+		err = xe_tile_init(tile);
-+		if (err)
-+			goto err;
-+	}
-+
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 07cf7cfe4abd5..2825553b568f7 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -170,10 +170,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	if (err)
- 		return err;
- 
--	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
--	if (IS_ERR(tile->mem.kernel_bb_pool))
--		return PTR_ERR(tile->mem.kernel_bb_pool);
--
- 	xe_wa_apply_tile_workarounds(tile);
- 
- 	err = xe_tile_sysfs_init(tile);
-@@ -181,6 +177,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	return 0;
- }
- 
-+int xe_tile_init(struct xe_tile *tile)
-+{
-+	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
-+	if (IS_ERR(tile->mem.kernel_bb_pool))
-+		return PTR_ERR(tile->mem.kernel_bb_pool);
-+
-+	return 0;
-+}
- void xe_tile_migrate_wait(struct xe_tile *tile)
- {
- 	xe_migrate_wait(tile->migrate);
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index 1c9e42ade6b05..eb939316d55b0 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -12,6 +12,7 @@ struct xe_tile;
- 
- int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
- int xe_tile_init_noalloc(struct xe_tile *tile);
-+int xe_tile_init(struct xe_tile *tile);
- 
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
--- 
-2.45.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c1837d4e9af4 drm-tip: 2024y-10m-18d-10h-07m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Remove double pageflip
+Applying: drm/i915/display: Use async flip when available for initial plane config
+Applying: drm/xe: Move suballocator init to after display init
+Applying: drm/xe: Initialise display before GT and tile init
+
 
