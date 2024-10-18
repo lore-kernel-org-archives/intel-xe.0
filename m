@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21A18D3F29E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B07EED3F2A0
 	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 20:49:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB9FA10E9A0;
-	Fri, 18 Oct 2024 20:49:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C1E010E9A7;
+	Fri, 18 Oct 2024 20:49:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PQEEDTSx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YEpy4oO3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87E0010E9A0;
- Fri, 18 Oct 2024 20:49:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22A2810E9AC;
+ Fri, 18 Oct 2024 20:49:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729284594; x=1760820594;
+ t=1729284595; x=1760820595;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rjp8/tR3gqm4GS5X/ajslw5SDaQIA9QpQg3HsQOXC/w=;
- b=PQEEDTSx+W6DIsj36ep8ifmU/KOPES+bKPlUyCZO6FdgdJ8U3PCvlMC/
- +OST+dh3P4nhSC/HTBh7yufHIJqFMxDIjNP7c7DdubPFUa1/PSeF1d0m7
- QFzY14YLP4fk7ofyuVCqwXF1+96s1QQ/JsuCTbtTYP605q6gAWbV6KK+g
- lvGcN7U5QQDJoakot1s6NNbLXjyn4LOwKPtEo3eJa9za/Rac7W+4Jrur7
- 9tkgqd2x09Pqtl+SldFDrP6mVPwTnfYl1SHHSGezGyW6H6Qdh0eF9kh4U
- cgxe9XjAB/k9JEuea36u1suwMb66AHy8E8+MgzsACKA9aI9QutbAeAviB Q==;
-X-CSE-ConnectionGUID: 19vJ+cvuTc+sHJTeZXCc9g==
-X-CSE-MsgGUID: JGDCnyosR2aGK+8+I4qmKw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="54240192"
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="54240192"
+ bh=BWjSRRwMvtz851UbvKh5g4kBb5j9EaZ03BLUR8hbJyc=;
+ b=YEpy4oO3rE7HcH3QvabUX8LDfCvwNC5BQQ+DzwbChAf9xISCZ5r2cjlm
+ DuNEkkeM4owj/j+LTVYBfv0ZT2dYm9fziFUKgW6vNma+MNPjj2lrbYCQt
+ EAXtD6G/L5IB2WPCPqoAs9Z0RAeCyP/iWjK9HqE8i5YRwpLS4n5xZRTKG
+ PUVcRO8lMIS2iEC9Etovkh3DFnSDFqJ0RPkBjNmn9RFSj8eTvB7J4VSP+
+ NXf2gmD+blxqbMjNUwnwr07eOiqblKixOHbRfJUTAXQJV64HV53cSqyET
+ +eSFRjNv70wvTkAbL+Av7PKnU5BJENPphQSe1WYfg3ORB+Oe6opU0iSJF A==;
+X-CSE-ConnectionGUID: e9p9HChJSKKHwjybXX5wmQ==
+X-CSE-MsgGUID: cHNdMx2/Tpiry2iaVIv35g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="54240195"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="54240195"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Oct 2024 13:49:54 -0700
-X-CSE-ConnectionGUID: HElyHhZ/QsGkOQW3kwP1/w==
-X-CSE-MsgGUID: sz58Dz4rTISXm9vK5B9sFQ==
+X-CSE-ConnectionGUID: J3dU9nJrRnqP6edXn0kpYA==
+X-CSE-MsgGUID: 0ZdZzEHQSfejizu/RHW4+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="109798961"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="109798973"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.145])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2024 13:49:52 -0700
+ 18 Oct 2024 13:49:54 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>,
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 07/12] drm/i915/xe3lpd: Skip disabling VRR during modeset
- disable
-Date: Fri, 18 Oct 2024 13:49:36 -0700
-Message-ID: <20241018204941.73473-8-matthew.s.atwood@intel.com>
+Subject: [PATCH 10/12] drm/i915/xe3lpd: Increase bigjoiner limitations
+Date: Fri, 18 Oct 2024 13:49:39 -0700
+Message-ID: <20241018204941.73473-11-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241018204941.73473-1-matthew.s.atwood@intel.com>
 References: <20241018204941.73473-1-matthew.s.atwood@intel.com>
@@ -69,37 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Spec does not request to disable VRR in the modeset disabling
-sequence for DP and HDMI for xe3_lpd.
+With 6k resolution support for a single crtc being added
+bigjoiner will only come into picture when hdisplay > 6144
 
-Bspec: 68848
-Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index dad415650b40..90669c7f988b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1310,9 +1310,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index be21e2743801..0093bd43c712 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1314,14 +1314,16 @@ bool intel_dp_needs_joiner(struct intel_dp *intel_dp,
+ 			   int num_joined_pipes)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	int hdisplay_limit;
  
--	if (intel_crtc_vrr_disabling(state, crtc)) {
--		intel_vrr_disable(old_crtc_state);
--		intel_crtc_update_active_timings(old_crtc_state, false);
-+	if (DISPLAY_VER(dev_priv) < 30) {
-+		if (intel_crtc_vrr_disabling(state, crtc)) {
-+			intel_vrr_disable(old_crtc_state);
-+			intel_crtc_update_active_timings(old_crtc_state, false);
-+		}
- 	}
+ 	if (!intel_dp_has_joiner(intel_dp))
+ 		return false;
  
- 	if (audio_disabling(old_crtc_state, new_crtc_state))
++	hdisplay_limit = DISPLAY_VER(i915) >= 30 ? 6144 : 5120;
+ 	num_joined_pipes /= 2;
+ 
+ 	return clock > num_joined_pipes * i915->display.cdclk.max_dotclk_freq ||
+-	       hdisplay > num_joined_pipes * 5120;
++	       hdisplay > num_joined_pipes * hdisplay_limit;
+ }
+ 
+ int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
 -- 
 2.45.0
 
