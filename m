@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08E0ED3F29E
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 21:16:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24034D3F29B
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 21:20:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A1CB10E9B5;
-	Fri, 18 Oct 2024 21:16:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LYGH6tfx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 201B710E9A7;
- Fri, 18 Oct 2024 21:15:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729286159; x=1760822159;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=R76qaQsWJwXSD60V/rJWhDs90E5lGsxWrquGL4AWbf8=;
- b=LYGH6tfxDBlw2WG95WqC3EeIXfrGAf4ZEy5I5SGFaUzVmzBAWgG2Xw15
- pgkt1jcPfYm1VMUlsOp54ydTwrXDN5QfWL+p7pD0N2kMy/+Bell+HcQtM
- RRwR1eWKKvwfm8VnaktLngFloOH9hIzpOuz/4YsuOGl53Jt9A23GY1d/S
- 6OceYv5udr1A8bYfxSb3lIHyzJ0NUDwwJQu7Lkcg27cORRf8ToiLK1rOX
- GXij5AziLeebUbhmD7nlw7IZvBWW4UglCaE6lrIXiJf+s9rGrjESWyPYp
- 2sO11JhE2Ja854o9+Jzhs/tYLkTsk6yQmi08385EId9Urj2eJfyvYRbsH g==;
-X-CSE-ConnectionGUID: DZ/muQhXQKyYZfFDVKOu3Q==
-X-CSE-MsgGUID: gC+v8F0+QZaVHUEnm/w7yQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="46329579"
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="46329579"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2024 14:15:58 -0700
-X-CSE-ConnectionGUID: zwD+a687Qg6tkmH50ziGOw==
-X-CSE-MsgGUID: wQpINdcOS++x6FuY8nYr1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="84040235"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2024 14:15:59 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: matthew.auld@intel.com,
-	thomas.hellstrom@linux.intel.com
-Subject: [PATCH v2 3/3] drm/xe: Use ttm_bo_access in
- xe_vm_snapshot_capture_delayed
-Date: Fri, 18 Oct 2024 14:16:23 -0700
-Message-Id: <20241018211623.1367891-4-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241018211623.1367891-1-matthew.brost@intel.com>
-References: <20241018211623.1367891-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF34110E9B7;
+	Fri, 18 Oct 2024 21:20:17 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9E5810E9B4;
+ Fri, 18 Oct 2024 21:20:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8058053893420340285=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Add_xe3lpd_edp_enabling_=28rev4?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 18 Oct 2024 21:20:15 -0000
+Message-ID: <172928641595.1294974.8000075390157896791@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241018200311.67324-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20241018200311.67324-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,65 +36,173 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Non-contiguous mapping of BO in VRAM doesn't work, use ttm_bo_access
-instead.
+--===============8058053893420340285==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
- - Fix error handling
+== Series Details ==
 
-Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 18 +++++++-----------
- 1 file changed, 7 insertions(+), 11 deletions(-)
+Series: Add xe3lpd edp enabling (rev4)
+URL   : https://patchwork.freedesktop.org/series/139732/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c99380271de6..0f760fd69d44 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3303,7 +3303,6 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
- 
- 	for (int i = 0; i < snap->num_snaps; i++) {
- 		struct xe_bo *bo = snap->snap[i].bo;
--		struct iosys_map src;
- 		int err;
- 
- 		if (IS_ERR(snap->snap[i].data))
-@@ -3316,16 +3315,12 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
- 		}
- 
- 		if (bo) {
--			xe_bo_lock(bo, false);
--			err = ttm_bo_vmap(&bo->ttm, &src);
--			if (!err) {
--				xe_map_memcpy_from(xe_bo_device(bo),
--						   snap->snap[i].data,
--						   &src, snap->snap[i].bo_ofs,
--						   snap->snap[i].len);
--				ttm_bo_vunmap(&bo->ttm, &src);
--			}
--			xe_bo_unlock(bo);
-+			err = ttm_bo_access(&bo->ttm, snap->snap[i].bo_ofs,
-+					    snap->snap[i].data, snap->snap[i].len, 0);
-+			if (!(err < 0) && err != snap->snap[i].len)
-+				err = -EIO;
-+			else if (!(err < 0))
-+				err = 0;
- 		} else {
- 			void __user *userptr = (void __user *)(size_t)snap->snap[i].bo_ofs;
- 
-@@ -3375,6 +3370,7 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 			u32 *val = snap->snap[i].data + j;
- 			char dumped[ASCII85_BUFSZ];
- 
-+			printk("%s:%d: j=%d", __func__, __LINE__, (int)j);
- 			drm_puts(p, ascii85_encode(*val, dumped));
- 		}
- 
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3_BAT -> xe-pw-139732v4_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-139732v4_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-139732v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-139732v4_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-plain-flip:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3/bat-lnl-1/igt@kms_flip@basic-plain-flip.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/bat-lnl-1/igt@kms_flip@basic-plain-flip.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-139732v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [PASS][3] -> [FAIL][4] ([Intel XE#886]) +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][5] -> [INCOMPLETE][6] ([Intel XE#2874]) +1 other test incomplete
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3 -> xe-pw-139732v4
+
+  IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3: cebb76fe419dd92609fb86e59c9671387c5325a3
+  xe-pw-139732v4: 139732v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/index.html
+
+--===============8058053893420340285==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add xe3lpd edp enabling (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139732/">https://patchwork.freedesktop.org/series/139732/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3_BAT -&gt; xe-pw-139732v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-139732v4_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-139732v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-139732v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3/bat-lnl-1/igt@kms_flip@basic-plain-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/bat-lnl-1/igt@kms_flip@basic-plain-flip.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-139732v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139732v4/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3 -&gt; xe-pw-139732v4</li>
+</ul>
+<p>IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2093-cebb76fe419dd92609fb86e59c9671387c5325a3: cebb76fe419dd92609fb86e59c9671387c5325a3<br />
+  xe-pw-139732v4: 139732v4</p>
+
+</body>
+</html>
+
+--===============8058053893420340285==--
