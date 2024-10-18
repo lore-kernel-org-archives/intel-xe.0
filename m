@@ -4,82 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC640D3F2A0
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 21:07:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39305D3F29E
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 21:10:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DFB610E9A7;
-	Fri, 18 Oct 2024 21:07:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E206910E9AA;
+	Fri, 18 Oct 2024 21:10:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VwuPK+vR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TKm8pf6n";
 	dkim-atps=neutral
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82CA810E9A7;
- Fri, 18 Oct 2024 21:07:35 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-2e2da8529e1so357322a91.1; 
- Fri, 18 Oct 2024 14:07:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1729285655; x=1729890455; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GilArzcu4Hbn+I4UKAApN9Owi+SU2WsB5zAzUG0U1kQ=;
- b=VwuPK+vRui4gw3z08Wy522i6ifU8HEURM0nKuQPD7XWBQYsQOZCtBR4mF8dKK4jJaT
- lYYlZX0AdhvxrO4BPw1aT6nUyF9Hr45SnkLK7n22pipM97duXp0QBsfPR8vJLtH0ukXj
- LnxLCuFk0cAU5yvG4NQibIIxoh+is383c1LGb1yEzlxQZTuC/VzBtAv7bZbxzJzvyCnn
- PQQBgcLgNT4LmRW36LGET8QJDeM2au2tm57i1xnIpYCHpLWlPxR2gso60ZmOsZd9fYHO
- pbF/PaGsGsLYvvJvzBO1LubeNFnr3JSMrb0756fCtbbEVrpV08jDWdrPCNBkervE8UH5
- W0Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1729285655; x=1729890455;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=GilArzcu4Hbn+I4UKAApN9Owi+SU2WsB5zAzUG0U1kQ=;
- b=MW/atw/JTpso3vPBCZNvHkrV/Xn9hoq4oKRBNn4QW1P2EE+tIZ3IkUlbeTaZDllpt6
- qri2Ne/j2J6Jlesm7iMu/BjspTDvy90Zz9PuwHER+QHb7VG0pbpUzApiQoljde0pzj/G
- HiaaazpvD8TMyeN6RcNpsp8MkwgSihp7Rd+BaWSyODqOhjHivFbkPygTZM7cts12g98m
- nj0r92TfQGI72Z6DYWcsY5OSU0lYd5yFMrN4J1dAuX0GxYVKVRWhUq8bpmCdt6D1Jiav
- cSJwpu+z/v+H6m73/lkQTNcAYSYqQrAlME3XI92gblQefGXw67aJT7YHn96P2+ZmQwUO
- xAZQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU7OTeD7teN3x+0DUjTpMk92cTQBKF3sNYyc7wsx5os2knY5jA3DE+8fYh274GfcYbEeitPfucllcY=@lists.freedesktop.org,
- AJvYcCW/wh6BI2CjDQH4DeH1yN7vewB8XpNQmdNhZub1OT16Nv4MdWlum92cFJamfPRLpEkkjFFcKF64nLg=@lists.freedesktop.org,
- AJvYcCXGSByGWUniqzSIo1mAoT63CQeRCioI29WEuw6RisylzkZDUKZnsM8AXgWugWU8LrGQxUIuEAzIwmFl@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyA+VTJ3hlMNrdWmRDYBCp5hZ9Pw//UzmrcbOB5McU3a1CBFmzj
- wdOqPUPIADKtdya/rLgSr5sq98BgW8Pu1QJglvieZHRQhyKbpuG+PCqhzWLxtg/NiudM1Xb7UBB
- /ME1QkVm1PVq+V9CJHvrcgtCX7eg29g==
-X-Google-Smtp-Source: AGHT+IFwr7vwyC0hDdtyxQgt8YmggDPsbKGu0sdvg54UaQ0r5Dm5gv6GH/d4TyHy+/nYRP9nYoWc1g99caCbKP4i6QI=
-X-Received: by 2002:a17:90a:1784:b0:2e2:da69:e3fa with SMTP id
- 98e67ed59e1d1-2e5616c5312mr2012101a91.2.1729285654958; Fri, 18 Oct 2024
- 14:07:34 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1CE010E9B1;
+ Fri, 18 Oct 2024 21:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729285840; x=1760821840;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xRxU3EWfTWf08sUiweA9BID3fRg68EpqncHnrNT0/JI=;
+ b=TKm8pf6nBLjqRcllr2DSR+5eWAnRGdboceX5fu+C/vLdaHiUN5Y/Cdfx
+ 1v8m+oU0TUshc+REn75UrZlIVRAIelNd00C1C9eb/VAs9x/B3mP/rsbzt
+ Hcw7+FZrblQIh25wpOjVnUAHQZV072/vBYBZRsO9fggbzcOXvW5iWEq94
+ fhqmjax6xBV5WGVa25z1WEHIkqdgO0ZfdqMT8Jyxt1THN31XraYxZlcQ/
+ GJVUxhedveA4T+5H9HejDyxsTAI0FNXsVFZQ1FHnqGg9u33oGhsfETfsz
+ QkdPLA/F0eC/7FxkITbYRpwC2tgHsF8wE0Iqf6XoMcPBCrIZdZSYbNHbu Q==;
+X-CSE-ConnectionGUID: fv/cK9bjR3q39Tujms39gQ==
+X-CSE-MsgGUID: gq0EGWN3T1WqC8hfeK3qaQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="54241733"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="54241733"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2024 14:10:40 -0700
+X-CSE-ConnectionGUID: HcN1sxsFTU+0cgSHdiEpdw==
+X-CSE-MsgGUID: ic3q76LSQx6r5yyJS2BElg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="79311940"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2024 14:10:39 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: matthew.auld@intel.com,
+	thomas.hellstrom@linux.intel.com
+Subject: [PATCH 1/3] drm/ttm: Add ttm_bo_access
+Date: Fri, 18 Oct 2024 14:11:01 -0700
+Message-Id: <20241018211103.1367643-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241018211103.1367643-1-matthew.brost@intel.com>
+References: <20241018211103.1367643-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-2-raag.jadav@intel.com>
- <ed8cb1e9-df05-44a7-9088-90b3ee8dce85@igalia.com> <ZxJ3DJWY9Lsc9Mn4@intel.com>
- <CADnq5_M62YZRvBT7sQwrZTiHrUsifaqqgrWOD_z+YY=EiBtEcA@mail.gmail.com>
- <3fac9971-8d26-4d52-badb-2b14b3f84263@igalia.com>
-In-Reply-To: <3fac9971-8d26-4d52-badb-2b14b3f84263@igalia.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 18 Oct 2024 17:07:22 -0400
-Message-ID: <CADnq5_PmHnYDvQpGNCF_3xP0a84EKsEuMqrj0MuUC=TyKTTrDg@mail.gmail.com>
-Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
-To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Raag Jadav <raag.jadav@intel.com>, 
- intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com, 
- simona@ffwll.ch, intel-gfx@lists.freedesktop.org, 
- joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org, 
- himal.prasad.ghimiray@intel.com, lucas.demarchi@intel.com, 
- tursulin@ursulin.net, francois.dugast@intel.com, jani.nikula@linux.intel.com, 
- airlied@gmail.com, aravind.iddamsetty@linux.intel.com, 
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com, 
- matthew.d.roper@intel.com, andriy.shevchenko@linux.intel.com, 
- lina@asahilina.net, kernel-dev@igalia.com, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,116 +69,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 18, 2024 at 1:56=E2=80=AFPM Andr=C3=A9 Almeida <andrealmeid@iga=
-lia.com> wrote:
->
-> Em 18/10/2024 12:31, Alex Deucher escreveu:
-> > On Fri, Oct 18, 2024 at 11:23=E2=80=AFAM Rodrigo Vivi <rodrigo.vivi@int=
-el.com> wrote:
-> >>
-> >> On Thu, Oct 17, 2024 at 04:16:09PM -0300, Andr=C3=A9 Almeida wrote:
-> >>> Hi Raag,
-> >>>
-> >>> Em 30/09/2024 04:38, Raag Jadav escreveu:
-> >>>> Introduce device wedged event, which will notify userspace of wedged
-> >>>> (hanged/unusable) state of the DRM device through a uevent. This is
-> >>>> useful especially in cases where the device is no longer operating a=
-s
-> >>>> expected even after a hardware reset and has become unrecoverable fr=
-om
-> >>>> driver context.
-> >>>>
-> >>>> Purpose of this implementation is to provide drivers a generic way t=
-o
-> >>>> recover with the help of userspace intervention. Different drivers m=
-ay
-> >>>> have different ideas of a "wedged device" depending on their hardwar=
-e
-> >>>> implementation, and hence the vendor agnostic nature of the event.
-> >>>> It is up to the drivers to decide when they see the need for recover=
-y
-> >>>> and how they want to recover from the available methods.
-> >>>>
-> >>>> Current implementation defines three recovery methods, out of which,
-> >>>> drivers can choose to support any one or multiple of them. Preferred
-> >>>> recovery method will be sent in the uevent environment as WEDGED=3D<=
-method>.
-> >>>> Userspace consumers (sysadmin) can define udev rules to parse this e=
-vent
-> >>>> and take respective action to recover the device.
-> >>>>
-> >>>>       =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-> >>>>       Recovery method Consumer expectations
-> >>>>       =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-> >>>>       rebind          unbind + rebind driver
-> >>>>       bus-reset       unbind + reset bus device + rebind
-> >>>>       reboot          reboot system
-> >>>>       =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-> >>>>
-> >>>>
-> >>>
-> >>> I proposed something similar in the past: https://lore.kernel.org/dri=
--devel/20221125175203.52481-1-andrealmeid@igalia.com/
-> >>>
-> >>> The motivation was that amdgpu was getting stuck after every GPU rese=
-t, and
-> >>> there was just a black screen. The uevent would then trigger a daemon=
- to
-> >>> reset the compositor and getting things back together. As you can see=
- in my
-> >>> thread, the feature was blocked in favor of getting better overall GP=
-U reset
-> >>> from the kernel side.
-> >>>
-> >>> Which kind of scenarios are making i915/xe the need to have userspace
-> >>> involvement? I tested a bunch of resets in i915 but never managed to =
-get the
-> >>> driver stuck.
-> >>
-> >> 2 scenarios:
-> >>
-> >> 1. Multiple levels of reset has failed and device was declared wedged.=
- This is
-> >> rare indeed as the resets improved a lot.
-> >> 2. Debug case. We can boot the driver with option to declare device we=
-dged at
-> >> any timeout, so the device can be debugged.
-> >>
-> >>>
-> >>> For the bus-reset, amdgpu does that too, but it doesn't require users=
-pace
-> >>> intervention.
-> >>
-> >> How do you trigger that?
-> >
-> > What do you mean by bus reset?  I think Chrisitian is just referring
-> > to a full adapter reset (as opposed to a queue reset or something more
-> > fine grained).  Driver can reset the device via MMIO or firmware,
-> > depending on the device.  I think there are also PCI helpers for
-> > things like PCI FLR.
-> >
->
-> I was referring to AMD_RESET_PCI:
->
-> "Does a full bus reset using core Linux subsystem PCI reset and does a
-> secondary bus reset or FLR, depending on what the underlying hardware
-> supports."
->
-> And that can be triggered by using `amdgpu_reset_method=3D5` as the modul=
-e
-> option.
->
+Non-contiguous VRAM cannot easily be mapped in TTM nor can non-visible
+VRAM easily be accessed. Add ttm_bo_access, which is similar to
+ttm_bo_vm_access, to access such memory.
 
-That option doesn't actually do anything useful on most AMD GPUs.  We
-don't support FLR on most boards and SBR doesn't work once the driver
-has been loaded except for really old chips.  That said, internally
-these all end up being mode1 or mode2 resets which the driver can
-trigger directly and which are the defaults.
+Reported-by: Christoph Manszewski <christoph.manszewski@intel.com>
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 85 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/ttm/ttm_bo_vm.c   | 65 +----------------------
+ include/drm/ttm/ttm_bo.h          |  2 +
+ 3 files changed, 88 insertions(+), 64 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index d939925efa81..9e427c8342ab 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -919,3 +919,88 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+ 
+ 	return progress;
+ }
++
++static int ttm_bo_access_kmap(struct ttm_buffer_object *bo,
++			      unsigned long offset,
++			      uint8_t *buf, int len, int write)
++{
++	unsigned long page = offset >> PAGE_SHIFT;
++	unsigned long bytes_left = len;
++	int ret;
++
++	/* Copy a page at a time, that way no extra virtual address
++	 * mapping is needed
++	 */
++	offset -= page << PAGE_SHIFT;
++	do {
++		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
++		struct ttm_bo_kmap_obj map;
++		void *ptr;
++		bool is_iomem;
++
++		ret = ttm_bo_kmap(bo, page, 1, &map);
++		if (ret)
++			return ret;
++
++		ptr = (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
++		WARN_ON_ONCE(is_iomem);
++		if (write)
++			memcpy(ptr, buf, bytes);
++		else
++			memcpy(buf, ptr, bytes);
++		ttm_bo_kunmap(&map);
++
++		page++;
++		buf += bytes;
++		bytes_left -= bytes;
++		offset = 0;
++	} while (bytes_left);
++
++	return len;
++}
++/**
++ * ttm_bo_access - Helper to access a buffer object
++ *
++ * @bo: ttm buffer object
++ * @offset: access offset into buffer object
++ * @buf: pointer to caller memory to read into or write from
++ * @len: length of access
++ * @write: write access
++ *
++ * Utility function to access a buffer object. Useful when buffer object cannot
++ * be easily mapped (non-contiguous, non-visible, etc...).
++ *
++ * Returns:
++ * Number of bytes accessed or errno
++ */
++int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
++		  void *buf, int len, int write)
++{
++	int ret;
++
++	if (len < 1 || (offset + len) > bo->base.size)
++		return -EIO;
++
++	ret = ttm_bo_reserve(bo, true, false, NULL);
++	if (ret)
++		return ret;
++
++	switch (bo->resource->mem_type) {
++	case TTM_PL_SYSTEM:
++		fallthrough;
++	case TTM_PL_TT:
++		ret = ttm_bo_access_kmap(bo, offset, buf, len, write);
++		break;
++	default:
++		if (bo->bdev->funcs->access_memory)
++			ret = bo->bdev->funcs->access_memory(
++				bo, offset, buf, len, write);
++		else
++			ret = -EIO;
++	}
++
++	ttm_bo_unreserve(bo);
++
++	return ret;
++}
++EXPORT_SYMBOL(ttm_bo_access);
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+index 2c699ed1963a..20b1e5f78684 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+@@ -366,45 +366,6 @@ void ttm_bo_vm_close(struct vm_area_struct *vma)
+ }
+ EXPORT_SYMBOL(ttm_bo_vm_close);
+ 
+-static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
+-				 unsigned long offset,
+-				 uint8_t *buf, int len, int write)
+-{
+-	unsigned long page = offset >> PAGE_SHIFT;
+-	unsigned long bytes_left = len;
+-	int ret;
+-
+-	/* Copy a page at a time, that way no extra virtual address
+-	 * mapping is needed
+-	 */
+-	offset -= page << PAGE_SHIFT;
+-	do {
+-		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
+-		struct ttm_bo_kmap_obj map;
+-		void *ptr;
+-		bool is_iomem;
+-
+-		ret = ttm_bo_kmap(bo, page, 1, &map);
+-		if (ret)
+-			return ret;
+-
+-		ptr = (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
+-		WARN_ON_ONCE(is_iomem);
+-		if (write)
+-			memcpy(ptr, buf, bytes);
+-		else
+-			memcpy(buf, ptr, bytes);
+-		ttm_bo_kunmap(&map);
+-
+-		page++;
+-		buf += bytes;
+-		bytes_left -= bytes;
+-		offset = 0;
+-	} while (bytes_left);
+-
+-	return len;
+-}
+-
+ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 		     void *buf, int len, int write)
+ {
+@@ -412,32 +373,8 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 	unsigned long offset = (addr) - vma->vm_start +
+ 		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
+ 		 << PAGE_SHIFT);
+-	int ret;
+-
+-	if (len < 1 || (offset + len) > bo->base.size)
+-		return -EIO;
+ 
+-	ret = ttm_bo_reserve(bo, true, false, NULL);
+-	if (ret)
+-		return ret;
+-
+-	switch (bo->resource->mem_type) {
+-	case TTM_PL_SYSTEM:
+-		fallthrough;
+-	case TTM_PL_TT:
+-		ret = ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
+-		break;
+-	default:
+-		if (bo->bdev->funcs->access_memory)
+-			ret = bo->bdev->funcs->access_memory(
+-				bo, offset, buf, len, write);
+-		else
+-			ret = -EIO;
+-	}
+-
+-	ttm_bo_unreserve(bo);
+-
+-	return ret;
++	return ttm_bo_access(bo, offset, buf, len, write);
+ }
+ EXPORT_SYMBOL(ttm_bo_vm_access);
+ 
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 5804408815be..8ea11cd8df39 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -421,6 +421,8 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+ int ttm_bo_evict_first(struct ttm_device *bdev,
+ 		       struct ttm_resource_manager *man,
+ 		       struct ttm_operation_ctx *ctx);
++int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
++		  void *buf, int len, int write);
+ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+ 			     struct vm_fault *vmf);
+ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+-- 
+2.34.1
+
