@@ -4,178 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94652D3C545
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 03:49:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0684D3C549
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 04:02:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB9910E1E5;
-	Fri, 18 Oct 2024 03:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 787AD10E1E5;
+	Fri, 18 Oct 2024 04:02:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i2SwInoH";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NlsRIzX8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A554C10E1E5
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Oct 2024 03:49:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729223378; x=1760759378;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=AGp88HjZ8v8VqIcHkhq35qh6PHuKEMk15Z47DqtsQ6U=;
- b=i2SwInoHNtqn5iZmD8dFcNz97w4gXNVr2Ytp8uptBRrRbgj26b8/96fN
- v/dsq9FN3MFVQykWk+BSz+g+iR/7r+N4U4+pjLkBCvoHJPHwc6H/XWqkG
- M2tJNllBDfUA3cieG5yX2/k4LCOW4FuRq6RlySeQ8sCvaQ1qRf4fqOOiH
- Dl+KZxqmO7LOECbQF9eZoRT4f4q4HjvNGGdbGZ39ZBJ+zdo86fGrxB0nQ
- F1AgFGWHxoHNJip06BnteOlxRrt7f2RYDtESF+2mGnbyYUuNs+cHC62og
- 7buAjLMF9aVafXCvuarkcl0rRQwazKRz54KrjejhILGJ40wHvBvjJvGj0 w==;
-X-CSE-ConnectionGUID: xqjPwsE5SoyCJ07erp5Yaw==
-X-CSE-MsgGUID: Cy4tCqkTQha3qZNMicQAoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39867694"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39867694"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 20:49:38 -0700
-X-CSE-ConnectionGUID: xyMSd/FpTr+f37E3G/bi/Q==
-X-CSE-MsgGUID: RBy0lQa4TTanMlLqR0f3iw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,212,1725346800"; d="scan'208";a="78716022"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Oct 2024 20:49:38 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 17 Oct 2024 20:49:35 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 17 Oct 2024 20:49:35 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.42) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 17 Oct 2024 20:49:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yXKuu05PGllqKKl2bZ4mt/6x6WwnLJGFkC3AAKXE/3RdKV2+invzPieF7gQhs66Y+Qcm9f13WeLa4acA+7chSK3lQZng/izQDavcRnO+Q3fAcF63OSfJP9jhtWvqGegy+s7Fkerdt7Qkgfjm9ZOPp3Y43Pv5Au4Iver/t74GERQr95QNOWBwO+wja/WQwrw4FMft+jVG0gCwQ2kE47VLMDWgv5tM0FYgqZ16apcJ3O+Nbi9YSoeWgcaMWsSLwWfJwMy/wNlc4eSxB+M1Bt5mxOaTzJJdEuut5KorMVs0s0o99XCRHMbPGEYi/5KzZGMVVXvyat+ZC+T5aTHGfZ3TEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kHE4fSkQCZSp990ahkII89HF/PRS9s7TsginnRDux0s=;
- b=YSqeuwfwUmVfXS3yZ+Z8Oj820oct4IphkZwKp0+ReulLXxNKLRHnhU9Rc69o3a8aKH3SvrL4WwzxQq9NKqoCndT9ceN51OKMfQWda4hCTJzGZbbNj6x6XVB0TsLE+xuoHeUzUcgk1JPBHQEhdyOkLybFRhmxP36mOIsj+R3C/F9/864983wr6cZ00rkuIrjlMKjPkqf+w8M2aAzE1HMNazyZQYmSq77cwWkWi4vHNJwnt6tuBvOkBItiyBUtV/DlgRTiMPeupO+eJZggKgoP0qWqqTCqGpXKyPGoCkojW23FmMEoDzXv/tcFtEU+up35rPruPYQ+Eh7N0iHEiagCRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by PH0PR11MB5080.namprd11.prod.outlook.com (2603:10b6:510:3f::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.21; Fri, 18 Oct
- 2024 03:49:33 +0000
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5]) by MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5%4]) with mapi id 15.20.8069.016; Fri, 18 Oct 2024
- 03:49:33 +0000
-Message-ID: <63adcddf-4c71-4fb2-9585-fca4178ab152@intel.com>
-Date: Fri, 18 Oct 2024 09:19:27 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Use __counted_by for flexible arrays
-To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20241018030039.1077842-1-matthew.brost@intel.com>
-Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20241018030039.1077842-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0001.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::14) To MW4PR11MB7056.namprd11.prod.outlook.com
- (2603:10b6:303:21a::12)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6421910E1E5
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Oct 2024 04:02:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1729224152;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=NT+35gy0p2nmlcoAovM9NQ32DMS9fnGkSDHL+7Pc30Y=;
+ b=NlsRIzX8HxVOzCVbLvfyt4v22sEpxCVgsig2LRMhyRXCLOmtHQ0SELvVmU9N+8fGMbLPgZ
+ TBEvJC2zhEZegyjZE6NVzAH66Kp+9dhSjmKSh1aBAkrxROBxtAo5s6muCK5lI4r9/d5vj8
+ C8YvaB0sFuIaWdLWsYukoK+KWPeYQRM=
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com
+ [209.85.167.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-75-jMHu0qk4N_G2w1hyZemUmw-1; Fri, 18 Oct 2024 00:02:31 -0400
+X-MC-Unique: jMHu0qk4N_G2w1hyZemUmw-1
+Received: by mail-lf1-f72.google.com with SMTP id
+ 2adb3069b0e04-539e03bfd4aso1440703e87.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Oct 2024 21:02:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1729224149; x=1729828949;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=NT+35gy0p2nmlcoAovM9NQ32DMS9fnGkSDHL+7Pc30Y=;
+ b=OSUSd2KqR+E+4mjwTa9DNnyMHJGSsgeBGF7KrtUMqaPJE2u3qv5yBS1Hat1FbXy++P
+ 9jrYOt5ljspe4d4+79WoYYtoqSjuvaEFIVhmwPO0u1uya3p+nZro06zuOZbC9rWeWSbu
+ 4X6UDjDR6FbNjaZKJjvfpgiUbCeY407hs9H7jpo3X6UUc/gFDeMj8CLsFkNTMEr313PF
+ EhQ7MPs29fjUFNyy7w0AnaA9jn4TAVVrld12MDLCXgs89Oe99/0UZPDGvhCRj4l2pa76
+ C8dVpKQ/NexC0qwgKt8Vg1E8/kxN12jrQ8oxKHthyeWUjT9jTQ/TFUOSU84zVqP0f2AY
+ SOXA==
+X-Gm-Message-State: AOJu0YzZqxStLycH+wQKhBJs10X83Gv1hDYG575hsGR2nLVbIHnrrSov
+ 11S+LLlPJg/HsSrBiKfQ1TESn9ejNKkgbk1/Om+x0tLbFSDQQn9KO7BUTB+Jg57nCZ3dECW/SBA
+ /NSD0d1tG6Td6li/G6CtLRUdLmjSKAVHign2RURNSMLbzxDHh0h0fEgtsZyvVN6A=
+X-Received: by 2002:a05:6512:690:b0:539:ea12:d629 with SMTP id
+ 2adb3069b0e04-53a153407b0mr526031e87.8.1729224149018; 
+ Thu, 17 Oct 2024 21:02:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHcNaqbODBXl2K5aIll/SDHOlqD+BaftR+tTb7U6ZN7JCNU/tl4huHMoe7dgocL6LmpK1ctqw==
+X-Received: by 2002:a05:6512:690:b0:539:ea12:d629 with SMTP id
+ 2adb3069b0e04-53a153407b0mr526011e87.8.1729224148367; 
+ Thu, 17 Oct 2024 21:02:28 -0700 (PDT)
+Received: from [192.168.1.86] (82-181-87-79.bb.dnainternet.fi. [82.181.87.79])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-53a151f0afdsm103623e87.133.2024.10.17.21.02.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 17 Oct 2024 21:02:27 -0700 (PDT)
+Message-ID: <6f5a335a-1c1a-424d-94b9-96cad6fa642b@redhat.com>
+Date: Fri, 18 Oct 2024 07:02:27 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|PH0PR11MB5080:EE_
-X-MS-Office365-Filtering-Correlation-Id: e13aa8b5-8f78-4f3d-f225-08dcef27e086
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Vlcyb0dZRUlZSFlYeHF2cDlDYnJNaTlVMTQ5T3kwY2c5eGZBK0xwbis3d3No?=
- =?utf-8?B?RzNaRXA2b0kyT0FUeVYyUXZmM0tOY3FHbllSTUh4aEtyOWRiMlRJSWo0NkJD?=
- =?utf-8?B?SnFiQlBUZ3VaNHo3NlErQzNURERhMmMvYjZVZWd4RjBJUzJ5c3d4Rk1jOEh4?=
- =?utf-8?B?REdSZ2FGeGlnQTFDaHNzOGI5dlpjRHZMM3lrcmN0b0lYUk1NdEpFRFAvMGt5?=
- =?utf-8?B?d25nTGlpNG00cHRvZTVvYkpGSzdzM0xVVGcwb2t3N1NsV0VGVXYxb2sxalRu?=
- =?utf-8?B?QnJzK0s5K3NCYXRiT3Y1azlBTitNVHBkUzJvb3hQS3NuT2Y2eTJPTkVqTXpE?=
- =?utf-8?B?SmJJS3MrNnk1QU12RUhlUGtyTWV6SjdzakJqMS9zU0RhM1NLWklGN2k0cjVH?=
- =?utf-8?B?eHBET2NoK0RDdnNOQXlBcUp6VWRHcE45L1BTY3QxUnhPcTVyQW01NDgxQmE3?=
- =?utf-8?B?eU5CWDRiMGxobnNzNTJnMENGMnFvaUdNbWN5MjBXMCsyRDI5d1RPb0dFQzJX?=
- =?utf-8?B?MS9lcUNYZDl2aFZMcXozOGhxdlJmd2JVOHV4N2lrMVNzQWdEcDlNZ2lueWl6?=
- =?utf-8?B?OGwvZUFEYUxMQXhSK1djMVZaZ0RpNlZ4dXd4VTRwNEpDT1Y1WEFXWWFGcnJR?=
- =?utf-8?B?R3VBYW1icWxpZy9GYkdObXZhRGNzRjFGSmtoUWdPWmQ0b3EycW9DZTJtWHM3?=
- =?utf-8?B?OGRQTkRiZE1COEYwRGMxSWxMRE5pNVFhb3FuWUdIMzV6MFJ0UVV3ZnlNRVRp?=
- =?utf-8?B?QlpJRFptenAvWGZyZVZOQ21VbGljaVg0R3lTUENlQURpb3NzdTViVis5UFpn?=
- =?utf-8?B?ckhoWnpOMVVzNDRaQmVjU3N1dnhaVW9TYnpKRG9pdXBkWTY1NlJEeTVyWkVK?=
- =?utf-8?B?SFRmNUdpTEE1MGkvVmJmUEphT25JTldlZXd0OVQzZ1RycWdFVHNUeVNJUWY0?=
- =?utf-8?B?QWF3dDI5UHIwOVE4UFVzZjhqY002UG85SVJCQVJmYy9RMy8yUVNlRmVGN3dC?=
- =?utf-8?B?NDk0VW8zeEZubXVRcTFBblRoSWFCRmRwSWJwS1Y3SUNLWWJuZ3g3akxtMUl6?=
- =?utf-8?B?WmJJUStIMDhiVVdpamdFYUtVdmZ4N3BIcGUvZTNTY3paUlBuaHp5TzZaVFQy?=
- =?utf-8?B?Z1R1VmJ1VFdZRGNYZ2Zkd3phZE5xd1RkcjA5N1hxYytYcXJxZnZGT0VpWEpK?=
- =?utf-8?B?bEo1alFRKy8wM2NSaXIycnhtSkNDREI3Q0JKcUNONVBkakY2RFBYTjRxTTJJ?=
- =?utf-8?B?WkJrTGlEbkRISXRIa0NKbzE2RDlOWEo3R2xJb0pVVVpWdFpYbFVodUdRR0Q5?=
- =?utf-8?B?VjlWUElURzJXL1phM1dqTjc4TkdCZVk1SStLL2lXclNHazZ5dmlyUnhhRjlu?=
- =?utf-8?B?ODRtZWlsU2R0Ky9Gbk8vNFVrQ1lJK3FFSFl6QmprbE1lUzBWakZ3dTFHRnVZ?=
- =?utf-8?B?ZnM2aGUzQ3UxWnVCKytYcHlINFhyTUZwZzh2T0M1SFArdFRtcFl2OUNEN0pO?=
- =?utf-8?B?ZTJuNnFoeHRXSC9oRmdSRi80SFIzMEY5V1Q5RWpqZlNKZ3Y4V0FxQ0dXcDNF?=
- =?utf-8?B?TWJXaTdlY05GNjFVQmpLTkY0dHl2a1lYc2QrZEhXSy9abWRVb0I5c1ZXeThF?=
- =?utf-8?B?S280LzNsQkh5Q2x2TU1NZHN0M2k0ODNYWE9aRDVXdUNCMFRtYlUvMG1ldFNx?=
- =?utf-8?B?WkxYNDZFWXZJYVNaaUpTeVAvL05OR3I5dU90bm14Z0Q3MWI4TERDS1VYK3NO?=
- =?utf-8?Q?KxDFDWebpH4Y0xFn2qXqD6l4HeSpUPWdO1laYlC?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bDJHZE5pYXduMXJwUE9MY3hXQzZyeU9ZVjVPMDRhZHRTTDN2K2xtcVNuZjFm?=
- =?utf-8?B?bU52SEgzYXVDYVBxUlY5Rk1ESW9wWk1EYUx2SlBNcjVFb3dObU9PNHI1anA1?=
- =?utf-8?B?NWxrNmVvMUR2SkR4MGplTUs1L1hjeHZWNTdNU3NYRkVxQU9hZHpwTWdiU2lB?=
- =?utf-8?B?UzZOdk1JSHMwZkErY3NsNVRwTVJ5TTdOWkwxUDUyS3NhTVZuMzF4SGM1Tm5a?=
- =?utf-8?B?blQxWGpZd1d1QlR3aXhFVUd2TDdEQUxEc0tmN2lsSE5MclM0TDJxMW9HRi9i?=
- =?utf-8?B?MVZMbXNIU1hHSWlwSXEzb0hGV3VmaXh1V1MyWkI0NGI5MC92dHlIT2Y1V2ho?=
- =?utf-8?B?eE5TU1FPeFFEdEtlSDBEUEVYMUhwMzF0WkRBbWpIUERRRGcxMzFsNXVLaUh6?=
- =?utf-8?B?KzNtUkZXeWh3Mmp0OHF3bHYySUtaWkg0TkpHakNMVHFOM0ZRRUJWYzJOYzhJ?=
- =?utf-8?B?R21SRHJEU0hPNFpGTHRQY1V6SDQveG53Rm5EbDVsU0NkUktIenI2OGNyUVhv?=
- =?utf-8?B?ancyOVBBVHlFbHRMUnZFV3B5Q0JCSW5MdUdST0ZreEhoTGIzbXUzWFN0Y0Fv?=
- =?utf-8?B?SzJhamZBZ09jaEtNR3NCY2NxOUpCTzFJbjFsTWVZUm43Lzg2azhIdVlGOHZU?=
- =?utf-8?B?SUw0S0dFWTQ0ajNpWWpFcURFVUtud3hRV1JaT3pzaDU2aEhUaFVSL2pxazJK?=
- =?utf-8?B?NHRMOS9UOVJyNVZJdDVaVElYcFAxQzZpWXFNYTB6d2ZLZG5YM2FSRUFyVGtY?=
- =?utf-8?B?WUgwRHZucHhRWDYvOVExWGxBa3ZPNjhJaGt2VFg3RHpER2lHejFsU3RLY21z?=
- =?utf-8?B?blRVM3lRMHB2Y1JQdDNjMEorL1VON2h2TERwT1c0VVBBNnduOERkRkJOQ0U2?=
- =?utf-8?B?ZFlaTlRkS1JyQ2d2ZUtHdHR1aXhSUEJ5RHQ5cTdydXRpZVFYZ0pST2p1ZFk2?=
- =?utf-8?B?dzJrYnZoeGlFSEV1djVCWHBoaEdYeWpCRWpTeUVrV1YwbUZ3RDBxbDJLQWt1?=
- =?utf-8?B?S3haNDdsR3piSHFFTXNpQkZ6OFBER21CaFJGaUFrVmtSZjcvYUhvV1FHOThy?=
- =?utf-8?B?OEZRSFVHVzQ5TFZwTHB2ZkZwWjdPN3R4bHZjdVBNMW9CMUMzZWM3ZlBjeWc4?=
- =?utf-8?B?SWhnSFhnbnVPRmp6SmRoYTN2d3F2emlTMUxrVEovbzJHSHJxTS9SMmIrRnRB?=
- =?utf-8?B?M2lDVmYrR1FMRGkxaHhSNGVLU1JaMDRyMzdrSWh6cE9WN0ZwS2o5NGxMZjky?=
- =?utf-8?B?UzZQL3RPSnBETXFVUzRhUjUxb0VCR2FWWHNrVmJpdW4vVERWeHdXaW8wY015?=
- =?utf-8?B?eXVuNnl2TU5rOFNuTVd4RUtPSnFNTXdpTG9nUytOM1JzdU9JZWVLSW1wYXRU?=
- =?utf-8?B?eWZuc3lqRGJwV1Eram54QU9mVmh1SEh4eGo5Vld4bG56eHFIYkRBWWRLRk52?=
- =?utf-8?B?VlRwTzFScThVUVg0MFBKU2diVEwyWHFCM0YzSVVGZXZkUGhaeEMyb1dkQ0pK?=
- =?utf-8?B?WmozZG5sQWVBM3JwdDJSdlp5dks0UlRVcmxUa0ZxOUx2MTBoTFlkKzE5U21o?=
- =?utf-8?B?TmMreE5TdGFWTDJLOFN0Q0o5MUp5NzdFejI3MmdhYzBvZjQ5eDY3NUlsSjJi?=
- =?utf-8?B?Q1hpOU5nMmpBcGJJYUpvUkpqbWN6eTZ4clJPcHU0TVludEhOajZaS0I1WlM2?=
- =?utf-8?B?K2pLY1pRRUFVWGJlZ3JSMFdxOEJLNkZqQ2dxT1U4L1NUanFhOTBzNjRHVmw4?=
- =?utf-8?B?bVNKUTliRklzWGtFSzQ2UzBUTCs0Z2orSDl2SGp5cVhhTWlSbnlFYlgrYVNP?=
- =?utf-8?B?UnNNZmlYamZpNGF1aE1TcDh2WG14ekJ5eUtlTy9Ma2lpNjJTeUdvUlJHaFMw?=
- =?utf-8?B?Vkg0K0FZTU9lL1lCOFd1NXM2UkNSaFZla1pVOTZlU2djbDRTSy9Na2ZKUWls?=
- =?utf-8?B?TGtvRVlseDNmcmpsR2ZubThqR0p0NGl3b0psWXhVb00wSHVneVp6MERIY1hJ?=
- =?utf-8?B?SXd2WEc2K2ZaMzAvM0poQjBWRm5wR2tsWWpDZDJjRW8rRUhWL2VQTzNnL3Ix?=
- =?utf-8?B?WkdLRFdmUUFhNjVyWGRGc1RnaGhTdjJkaXFLdTdyVDRSUXVxVktSN1BoMHI1?=
- =?utf-8?B?WFVscngzTUVieHNWUTBiYkJxNUJPWXEweFVpc1pQSG52MnNiZkFMNndycjhL?=
- =?utf-8?Q?1KKF4mQR73Ms/AmDOQ8IYXw=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e13aa8b5-8f78-4f3d-f225-08dcef27e086
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2024 03:49:33.2547 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V/zVFmcxwe7ZnFPl1/9F3rhZCLyWn3m8f+G126+x+Pkcy3RuBBSgbtc3rh/5asa3PfgpKAgpxPF1IludAhaEsq3IdC4DWgeOCfyZvKzKLks=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5080
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/29] mm/migrate: Add migrate_device_prepopulated_range
+To: Alistair Popple <apopple@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
+ felix.kuehling@amd.com, dakr@kernel.org
+References: <20241016032518.539495-1-matthew.brost@intel.com>
+ <20241016032518.539495-3-matthew.brost@intel.com>
+ <87o73k8yyq.fsf@nvdebian.thelocal>
+ <Zw9FPAzlvGVswwxR@DUT025-TGLU.fm.intel.com>
+ <ZxBgqc0sRE2Ur2D4@DUT025-TGLU.fm.intel.com>
+ <87h69bo5u2.fsf@nvdebian.thelocal>
+ <ZxB6NypgrYN1spYc@DUT025-TGLU.fm.intel.com>
+ <874j5bo0yu.fsf@nvdebian.thelocal>
+ <ZxCNeUqqd7os5fyn@DUT025-TGLU.fm.intel.com>
+ <87zfn3mg69.fsf@nvdebian.thelocal>
+ <ZxEwAIc4dW7Sig36@DUT025-TGLU.fm.intel.com>
+ <87r08emlb7.fsf@nvdebian.thelocal>
+From: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
+In-Reply-To: <87r08emlb7.fsf@nvdebian.thelocal>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -190,45 +105,321 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi,
+
+On 10/18/24 00:58, Alistair Popple wrote:
+> Matthew Brost <matthew.brost@intel.com> writes:
+>
+>> On Thu, Oct 17, 2024 at 04:49:11PM +1100, Alistair Popple wrote:
+>>> Matthew Brost <matthew.brost@intel.com> writes:
+>>>
+>>>> On Thu, Oct 17, 2024 at 02:21:13PM +1100, Alistair Popple wrote:
+>>>>> Matthew Brost <matthew.brost@intel.com> writes:
+>>>>>
+>>>>>> On Thu, Oct 17, 2024 at 12:49:55PM +1100, Alistair Popple wrote:
+>>>>>>> Matthew Brost <matthew.brost@intel.com> writes:
+>>>>>>>
+>>>>>>>> On Wed, Oct 16, 2024 at 04:46:52AM +0000, Matthew Brost wrote:
+>>>>>>>>> On Wed, Oct 16, 2024 at 03:04:06PM +1100, Alistair Popple wrote:
+>>>>>>> [...]
+>>>>>>>
+>>>>>>>>>>> +{
+>>>>>>>>>>> +	unsigned long i;
+>>>>>>>>>>> +
+>>>>>>>>>>> +	for (i = 0; i < npages; i++) {
+>>>>>>>>>>> +		struct page *page = pfn_to_page(src_pfns[i]);
+>>>>>>>>>>> +
+>>>>>>>>>>> +		if (!get_page_unless_zero(page)) {
+>>>>>>>>>>> +			src_pfns[i] = 0;
+>>>>>>>>>>> +			continue;
+>>>>>>>>>>> +		}
+>>>>>>>>>>> +
+>>>>>>>>>>> +		if (!trylock_page(page)) {
+>>>>>>>>>>> +			src_pfns[i] = 0;
+>>>>>>>>>>> +			put_page(page);
+>>>>>>>>>>> +			continue;
+>>>>>>>>>>> +		}
+>>>>>>>>>>> +
+>>>>>>>>>>> +		src_pfns[i] = migrate_pfn(src_pfns[i]) | MIGRATE_PFN_MIGRATE;
+>>>>>>>>>> This needs to be converted to use a folio like
+>>>>>>>>>> migrate_device_range(). But more importantly this should be split out as
+>>>>>>>>>> a function that both migrate_device_range() and this function can call
+>>>>>>>>>> given this bit is identical.
+>>>>>>>>>>
+>>>>>>>>> Missed the folio conversion and agree a helper shared between this
+>>>>>>>>> function and migrate_device_range would be a good idea. Let add that.
+>>>>>>>>>
+>>>>>>>> Alistair,
+>>>>>>>>
+>>>>>>>> Ok, I think now I want to go slightly different direction here to give
+>>>>>>>> GPUSVM a bit more control over several eviction scenarios.
+>>>>>>>>
+>>>>>>>> What if I exported the helper discussed above, e.g.,
+>>>>>>>>
+>>>>>>>>  905 unsigned long migrate_device_pfn_lock(unsigned long pfn)
+>>>>>>>>  906 {
+>>>>>>>>  907         struct folio *folio;
+>>>>>>>>  908
+>>>>>>>>  909         folio = folio_get_nontail_page(pfn_to_page(pfn));
+>>>>>>>>  910         if (!folio)
+>>>>>>>>  911                 return 0;
+>>>>>>>>  912
+>>>>>>>>  913         if (!folio_trylock(folio)) {
+>>>>>>>>  914                 folio_put(folio);
+>>>>>>>>  915                 return 0;
+>>>>>>>>  916         }
+>>>>>>>>  917
+>>>>>>>>  918         return migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
+>>>>>>>>  919 }
+>>>>>>>>  920 EXPORT_SYMBOL(migrate_device_pfn_lock);
+>>>>>>>>
+>>>>>>>> And then also export migrate_device_unmap.
+>>>>>>>>
+>>>>>>>> The usage here would be let a driver collect the device pages in virtual
+>>>>>>>> address range via hmm_range_fault, lock device pages under notifier
+>>>>>>>> lock ensuring device pages are valid, drop the notifier lock and call
+>>>>>>>> migrate_device_unmap.
+>>>>>>> I'm still working through this series but that seems a bit dubious, the
+>>>>>>> locking here is pretty subtle and easy to get wrong so seeing some code
+>>>>>>> would help me a lot in understanding what you're suggesting.
+>>>>>>>
+>>>>>> For sure locking in tricky, my mistake on not working through this
+>>>>>> before sending out the next rev but it came to mind after sending +
+>>>>>> regarding some late feedback from Thomas about using hmm for eviction
+>>>>>> [2]. His suggestion of using hmm_range_fault to trigger migration
+>>>>>> doesn't work for coherent pages, while something like below does.
+>>>>>>
+>>>>>> [2] https://patchwork.freedesktop.org/patch/610957/?series=137870&rev=1#comment_1125461
+>>>>>>
+>>>>>> Here is a snippet I have locally which seems to work.
+>>>>>>
+>>>>>> 2024 retry:
+>>>>>> 2025         hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+>>>>>> 2026         hmm_range.hmm_pfns = src;
+>>>>>> 2027
+>>>>>> 2028         while (true) {
+>>>>>> 2029                 mmap_read_lock(mm);
+>>>>>> 2030                 err = hmm_range_fault(&hmm_range);
+>>>>>> 2031                 mmap_read_unlock(mm);
+>>>>>> 2032                 if (err == -EBUSY) {
+>>>>>> 2033                         if (time_after(jiffies, timeout))
+>>>>>> 2034                                 break;
+>>>>>> 2035
+>>>>>> 2036                         hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+>>>>>> 2037                         continue;
+>>>>>> 2038                 }
+>>>>>> 2039                 break;
+>>>>>> 2040         }
+>>>>>> 2041         if (err)
+>>>>>> 2042                 goto err_put;
+>>>>>> 2043
+>>>>>> 2044         drm_gpusvm_notifier_lock(gpusvm);
+>>>>>> 2045         if (mmu_interval_read_retry(notifier, hmm_range.notifier_seq)) {
+>>>>>> 2046                 drm_gpusvm_notifier_unlock(gpusvm);
+>>>>>> 2047                 memset(src, 0, sizeof(*src) * npages);
+>>>>>> 2048                 goto retry;
+>>>>>> 2049         }
+>>>>>> 2050         for (i = 0; i < npages; ++i) {
+>>>>>> 2051                 struct page *page = hmm_pfn_to_page(src[i]);
+>>>>>> 2052
+>>>>>> 2053                 if (page && (is_device_private_page(page) ||
+>>>>>> 2054                     is_device_coherent_page(page)) && page->zone_device_data)
+>>>>>> 2055                         src[i] = src[i] & ~HMM_PFN_FLAGS;
+>>>>>> 2056                 else
+>>>>>> 2057                         src[i] = 0;
+>>>>>> 2058                 if (src[i])
+>>>>>> 2059                         src[i] = migrate_device_pfn_lock(src[i]);
+>>>>>> 2060         }
+>>>>>> 2061         drm_gpusvm_notifier_unlock(gpusvm);
+>>>>> Practically for eviction isn't this much the same as calling
+>>>>> migrate_vma_setup()? And also for eviction as Sima mentioned you
+>>>>> probably shouldn't be looking at mm/vma structs.
+>>>>>
+>>>> hmm_range_fault is just collecting the pages, internally I suppose it
+>>>> does look at a VMA (struct vm_area_struct) but I think the point is
+>>>> drivers should not be looking at VMA here.
+>>> migrate_vma_setup() is designed to be called by drivers and needs a vma,
+>>> so in general I don't see a problem with drivers looking up vma's. The
+>>> problem arises specifically for eviction and whether or not that happens
+>>> in the driver or hmm_range_fault() is pretty irrelevant IMHO for the
+>>> issues there (see below).
+>>>
+>> Ok, if you think it ok for drivers to lookup the VMA then purposed
+>> exporting of migrate_device_pfn_lock & migrate_device_unmap is not
+>> needed, rather just the original function exported in the this patch.
+>>
+>> More below too.
+>>
+>>>>>> 2063         migrate_device_unmap(src, npages, NULL);
+>>>>>> ...
+>>>>>> 2101         migrate_device_pages(src, dst, npages);
+>>>>>> 2102         migrate_device_finalize(src, dst, npages);
+>>>>>>
+>>>>>>
+>>>>>>>> Sima has strongly suggested avoiding a CPUVMA
+>>>>>>>> lookup during eviction cases and this would let me fixup
+>>>>>>>> drm_gpusvm_range_evict in [1] to avoid this.
+>>>>>>> That sounds reasonable but for context do you have a link to the
+>>>>>>> comments/discussion on this? I couldn't readily find it, but I may have
+>>>>>>> just missed it.
+>>>>>>>
+>>>>>> See in [4], search for '2. eviction' comment from sima.
+>>>>> Thanks for pointing that out. For reference here's Sima's comment:
+>>>>>
+>>>>>> 2. eviction
+>>>>>>
+>>>>>> Requirements much like migrate_to_ram, because otherwise we break the
+>>>>>> migration gurantee:
+>>>>>>
+>>>>>> - Only looking at physical memory datastructures and locks, no looking at
+>>>>>>   mm/vma structs or relying on those being locked. We rely entirely on
+>>>>>>   reverse maps from try_to_migrate to find all the mappings on both cpu
+>>>>>>   and gpu side (cpu only zone device swap or migration pte entries ofc).
+>>>>> I also very much agree with this. That's basically why I added
+>>>>> migrate_device_range(), so that we can forcibly evict pages when the
+>>>>> driver needs them freed (eg. driver unload, low memory, etc.). In
+>>>>> general it is impossible to guarantee eviction og all pages using just
+>>>>> hmm_range_fault().
+>>>>>
+>>>> In this code path we don't have device pages available, hence the
+>>>> purposed collection via hmm_range_fault.
+>>> Why don't you have the pfns requiring eviction available? I need to read
+>>> this series in more depth, but generally hmm_range_fault() can't
+>>> gurantee you will find every device page.
+>>>
+>> There are two cases for eviction in my series:
+>>
+>> 1. TTM decides it needs to move memory. This calls
+>> drm_gpusvm_evict_to_ram. In this case the device pfns are available
+>> directly from drm_gpusvm_devmem so the migrate_device_* calls be used
+>> here albiet with the new function added in this patch as device pfns may
+>> be non-contiguous.
+> That makes sense and is generally what I think of when I'm thinking of
+> eviction. The new function makes sense too - migrate_device_range() was
+> primarily introduced to allow a driver to evict all device-private pages
+> from a GPU so didn't consider non-contiguous cases, etc.
+>
+>> 2. An inconsistent state for VA range occurs (mixed system and device pages,
+>> partial unmap of a range, etc...). Here we want to evict the range ram
+>> to make the state consistent. No device pages are available due to an
+>> intentional disconnect between a virtual range and physical
+>> drm_gpusvm_devmem, thus the device pages have to be looked up. This the
+>> function drm_gpusvm_range_evict. Based on what you tell me, it likely is
+>> fine the way originally coded in v2 (vma lookup + migrate_vma_*) vs
+>> using hmm_range_fault like I have suggested here.
+> Thanks for the explanation. I think vma lookup + migrate_vma_setup() is
+> fine for this usage and is exactly what you want - it was designed to
+> either select all the system memory pages or device-private pages within
+> a VA range and migrate them.
+>
+> FWIW I have toyed with the idea of a combined
+> hmm_range_fault()/migrate_vma_setup() front-end to the rest of the
+> migrate_vma_*() process but haven't come up with something nice as
+> yet. I don't think mixing the two in an open-coded fashion is a good
+> idea though, I'd rather we come up with a new API that addresses the
+> short-comings of migrate_vma_setup().
+
+This is what I have been implementing and have a WIP version now, will
+cleanup, test and send soon.
+
+It does the migration entry installing while faulting pages, and you
+continue migrate with normal migrate_vma_() flow.
 
 
-On 18-10-2024 08:30, Matthew Brost wrote:
-> Good practice to use __counted_by in kernel coding for flexible arrays.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 +-
->   drivers/gpu/drm/xe/xe_sched_job_types.h  | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index 7deb480e26af..1158b6062a6c 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -143,7 +143,7 @@ struct xe_exec_queue {
->   	/** @hw_engine_group_link: link into exec queues in the same hw engine group */
->   	struct list_head hw_engine_group_link;
->   	/** @lrc: logical ring context for this exec queue */
-> -	struct xe_lrc *lrc[];
-> +	struct xe_lrc *lrc[] __counted_by(width);
->   };
->   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> index 0d3f76fb05ce..426d261d7359 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> @@ -63,7 +63,7 @@ struct xe_sched_job {
->   
->   struct xe_sched_job_snapshot {
->   	u16 batch_addr_len;
-> -	u64 batch_addr[];
-> +	u64 batch_addr[] __counted_by(batch_addr_len);
->   };
+>> Note #2 may be removed or unnecessary at some point if we decide to add
+>> support for ininconsistent state in GPU SVM and Xe. Keeping it simple for
+>> now though. See 'Ranges with mixed system and device pages' in [5].
+>>
+>> [5] https://patchwork.freedesktop.org/patch/619819/?series=137870&rev=2
+>>
+>>>>>> [3] https://patchwork.freedesktop.org/patch/610957/?series=137870&rev=1#comment_1110726
+>>>>>> [4] https://lore.kernel.org/all/BYAPR11MB3159A304925168D8B6B4671292692@BYAPR11MB3159.namprd11.prod.outlook.com/T/#m89cd6a37778ba5271d5381ebeb03e1f963856a78
+>>>>>>
+>>>>>>>> It would also make the function exported in this patch unnecessary too
+>>>>>>>> as non-contiguous pfns can be setup on driver side via
+>>>>>>>> migrate_device_pfn_lock and then migrate_device_unmap can be called.
+>>>>>>>> This also another eviction usage in GPUSVM, see drm_gpusvm_evict_to_ram
+>>>>>>>> in [1].
+>>>>>>>>
+>>>>>>>> Do you see an issue exporting migrate_device_pfn_lock,
+>>>>>>>> migrate_device_unmap?
+>>>>>>> If there is a good justification for it I can't see a problem with
+>>>>>>> exporting it. That said I don't really understand why you would
+>>>>>>> want/need to split those steps up but I'll wait to see the code.
+>>>>>>>
+>>>>>> It is so the device pages returned from hmm_range_fault, which are only
+>>>>>> guaranteed to be valid under the notifier lock + a seqno check, to be
+>>>>>> locked and ref taken for migration. migrate_device_unmap() can trigger a
+>>>>>> MMU invalidation which takes the notifier lock thus calling the function
+>>>>>> which combines migrate_device_pfn_lock + migrate_device_unmap deadlocks.
+>>>>>>
+>>>>>> I think this flow makes sense and agree in general this likely better
+>>>>>> than looking at a CPUVMA.
+>>>>> I'm still a bit confused about what is better with this flow if you are
+>>>>> still calling hmm_range_fault(). How is it better than just calling
+>>>>> migrate_vma_setup()? Obviously it will fault the pages in, but it seems
+>>>> The code in rev2 calls migrate_vma_setup but the requires a struct
+>>>> vm_area_struct argument whereas hmm_range_fault does not.
+>>> I'm not sure that's a good enough justfication because the problem isn't
+>>> whether you're looking up vma's in driver code or mm code. The problem
+>>> is you are looking up vma's at all and all that goes with that (mainly
+>>> taking mmap lock, etc.)
+>>>
+>>> And for eviction hmm_range_fault() won't even find all the pages because
+>>> their virtual address may have changed - consider what happens in cases
+>>> of mremap(), fork(), etc. So eviction really needs physical pages
+>>> (pfn's), not virtual addresses.
+>>>
+>> See above, #1 yes we use a physical pages. For #2 it is about making the
+>> state consistent within a virtual address range.
+> Yep, makes sense now. For migration of physical pages you want
+> migrate_device_*, virtual address ranges want migrate_vma_*
+>
+>  - Alistair
+>
+>> Matt
+>>  
+>>>>> we're talking about eviction here so I don't understand why that would
+>>>>> be relevant. And hmm_range_fault() still requires the VMA, although I
+>>>>> need to look at the patches more closely, probably CPUVMA is a DRM
+>>>> 'hmm_range_fault() still requires the VMA' internal yes, but again not
+>>>> as argument. This is about avoiding a driver side lookup of the VMA.
+>>>>
+>>>> CPUVMA == struct vm_area_struct in this email.
+>>> Thanks for the clarification.
+>>>
+>>>  - Alistair
+>>>
+>>>> Matt
+>>>>
+>>>>> specific concept?
+>>>>>
+>>>>> Thanks.
+>>>>>
+>>>>>  - Alistair
+>>>>>
+>>>>>> Matt
+>>>>>>  
+>>>>>>>  - Alistair
+>>>>>>>
+>>>>>>>> Matt
+>>>>>>>>
+>>>>>>>> [1] https://patchwork.freedesktop.org/patch/619809/?series=137870&rev=2
+>>>>>>>>
+>>>>>>>>> Matt
+>>>>>>>>>
+>>>>>>>>>>> +	}
+>>>>>>>>>>> +
+>>>>>>>>>>> +	migrate_device_unmap(src_pfns, npages, NULL);
+>>>>>>>>>>> +
+>>>>>>>>>>> +	return 0;
+>>>>>>>>>>> +}
+>>>>>>>>>>> +EXPORT_SYMBOL(migrate_device_prepopulated_range);
+>>>>>>>>>>> +
+>>>>>>>>>>>  /*
+>>>>>>>>>>>   * Migrate a device coherent folio back to normal memory. The caller should have
+>>>>>>>>>>>   * a reference on folio which will be copied to the new folio if migration is
 
-LGTM
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+--Mika
 
->   
->   #endif
 
