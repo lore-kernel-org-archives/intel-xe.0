@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1EC5D3F28A
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 20:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC513D3F29B
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Oct 2024 20:49:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A63710E982;
-	Fri, 18 Oct 2024 20:32:48 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C6AD10E982;
- Fri, 18 Oct 2024 20:32:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B217E10E992;
+	Fri, 18 Oct 2024 20:49:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SuN3cbJ+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C7C910E993;
+ Fri, 18 Oct 2024 20:49:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729284587; x=1760820587;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0iWqE8xPiM8xgC5QVcLRr8OFRri4Rq0NNVsfE6u4wsY=;
+ b=SuN3cbJ+xJ7KWBfj64W9U4N0IEOOVE5OTwyTol2smVon914TUNw360sE
+ b255s57BIlPw9zDfKw/A61CCAKJLtV1GtWXtRidaj7zRiKzJrFXjAbEAG
+ RLy85fhY3T4PfVkIW7xIJQCRJW02SuPr34oRhmaAcMrpLbxkgu4yJYEBn
+ zv7B1E9BYY+M3G7LlZ+BHqG+vP4aNR8kDqprDNm6F943h9xAF+RQ36LpN
+ +UX7C/wGNW+hCWzkwFDkSFvG3Zz2zGQ+80QaKyiTAdbUym79MT4DfOkEj
+ gjz208SAbh7q1wmMxvHO8KsURsy9g82AIWjC5qdvMiylF/WPtoPMx21jc g==;
+X-CSE-ConnectionGUID: /DIaWZQ4SgusG10AxGvEqg==
+X-CSE-MsgGUID: PM+p13muTI6EqNi3PdfNuw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="54240171"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="54240171"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2024 13:49:46 -0700
+X-CSE-ConnectionGUID: 2XHP5J5ISQ2XGRQ67EbxDA==
+X-CSE-MsgGUID: 0cLgG9/0R9S530KKQBw0xQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="109798925"
+Received: from msatwood-mobl.jf.intel.com ([10.24.12.145])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2024 13:49:46 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH 01/12] drm/i915/display/ptl: Fill VRR crtc_state timings
+ before other transcoder timings
+Date: Fri, 18 Oct 2024 13:49:30 -0700
+Message-ID: <20241018204941.73473-2-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.45.0
+In-Reply-To: <20241018204941.73473-1-matthew.s.atwood@intel.com>
+References: <20241018204941.73473-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Add_xe3lpd_edp_enabling_?=
- =?utf-8?q?=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Oct 2024 20:32:48 -0000
-Message-ID: <172928356811.1282733.4737920893414129498@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241018200311.67324-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20241018200311.67324-1-matthew.s.atwood@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +67,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 
-Series: Add xe3lpd edp enabling (rev4)
-URL   : https://patchwork.freedesktop.org/series/139732/
-State : warning
+In progress to make VRR timing generator as the default timing generator,
+rest other timings will be derived based on vrr.vmin and vrr.vmax. Call
+intel_vrr_get_config before intel_get_transcoder_timings to accomodate
+values getting pre-filled.
 
-== Summary ==
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast fe768c9d3f0cfbe30a1dddf3ae2319d1e04a4403
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index ef1436146325..01466611eebe 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4134,13 +4134,13 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+ 	intel_joiner_get_config(pipe_config);
+ 	intel_dsc_get_config(pipe_config);
+ 
++	if (HAS_VRR(dev_priv) && !transcoder_is_dsi(pipe_config->cpu_transcoder))
++		intel_vrr_get_config(pipe_config);
++
+ 	if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
+ 	    DISPLAY_VER(dev_priv) >= 11)
+ 		intel_get_transcoder_timings(crtc, pipe_config);
+ 
+-	if (HAS_VRR(dev_priv) && !transcoder_is_dsi(pipe_config->cpu_transcoder))
+-		intel_vrr_get_config(pipe_config);
+-
+ 	intel_get_pipe_src_size(crtc, pipe_config);
+ 
+ 	if (IS_HASWELL(dev_priv)) {
+-- 
+2.45.0
 
