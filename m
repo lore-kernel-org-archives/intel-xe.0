@@ -4,68 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD2F4D3C92D
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Oct 2024 19:08:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 975A4D3C92C
+	for <intel-xe@archiver.kernel.org>; Sat, 19 Oct 2024 19:20:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49F2B10E3A8;
-	Sat, 19 Oct 2024 19:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5053110E3AA;
+	Sat, 19 Oct 2024 19:20:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fg8qI09f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kStHKP0l";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D28C210E027;
- Sat, 19 Oct 2024 19:08:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AAF410E3AA;
+ Sat, 19 Oct 2024 19:20:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729364934; x=1760900934;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=724JEb7bJx5KyvA4qk7Tfnw3+GQOoVld9sssFLU4zw4=;
- b=fg8qI09foSDX/VCopRBuGy9x1fq+x4pTQm55+yp4rw+dMq3EdA1dTtOO
- mNVpemikgtLcLv6+d0a1ALOZ/IoL2bwsAJMzWGUafxExXW4wL2EpMwfjG
- /hVF7HNzarWKseqJw0xDJCKqRGxUXBYyZiZo2MZUmR36UzCfauZf8zTuU
- qeX4I9nMKAs2GuDL04cXlDoFO1/nrZ9oHlAn3qYNrKJ7fYzL9q0BOpJGe
- Nj8bZl8OeULOHDj7hzHRxs/nFesoVn84+BX3S0Amo+QwDcheV7rvxFwVq
- o61c84j48x29oMEoC8gvSzp1B0Tw7eruWxahRNgP5EjIhMdL6T7cBqG6Z g==;
-X-CSE-ConnectionGUID: +gwYFhu/RpGhMt5sVc4wiw==
-X-CSE-MsgGUID: HjvrDRyZTVqnVZgn3zJ37g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="16502761"
-X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="16502761"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2024 12:08:53 -0700
-X-CSE-ConnectionGUID: YS1EsQPsS56fLTMtrAi0nw==
-X-CSE-MsgGUID: mjSvnrv4SiylaFNdE64qEQ==
+ t=1729365605; x=1760901605;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=rgdWjLCAsWDICAk8WcCYB+yo/wtl3ra7r8m7MBpFXLE=;
+ b=kStHKP0lo4tjjhhLqEaa7YX3JJVxft9UlgQRFgzMAonnO8nZde1Hjk39
+ UFngqtZT5JH4uEB9kAsSxBxSH6IidSmy1P1DLYlZZHUClk8BFz7Dr/ovN
+ OTdyw4aoImabbYeenrTn7OoQC2YeyXBFzCiZOYIjQBTAsUxlUWClOBnCy
+ aba68r+bBDWnKO66uGLIs3pIlgnIVU22R+78C9LViMjeNz7sdmzR+dcaE
+ lXVjxwawH/EsF1a1jzoMALnip7/hDxBL3McPhBmrHPn6988d1aair5dzL
+ hZ1DVaxIjwOcnGaJtpi1VM42F41wRuICr7rUgKecinnm6LxyAQEqC9L4A A==;
+X-CSE-ConnectionGUID: 6MYElfkCTxmFzNZukYBetw==
+X-CSE-MsgGUID: 5874iQkJTraU+WZCF2D4Jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="28978587"
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="28978587"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2024 12:20:05 -0700
+X-CSE-ConnectionGUID: lwzLkfViTEG/snsVS7navQ==
+X-CSE-MsgGUID: w0fpAjuZQ3KZ+D1DuFEffw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="83940563"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2024 12:08:48 -0700
-Date: Sat, 19 Oct 2024 22:08:45 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- thomas.hellstrom@linux.intel.com, simona@ffwll.ch,
- intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- lucas.demarchi@intel.com, tursulin@ursulin.net,
- francois.dugast@intel.com, jani.nikula@linux.intel.com,
- airlied@gmail.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, kernel-dev@igalia.com,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
-Message-ID: <ZxQDvSfFiAjDqEE8@black.fi.intel.com>
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-2-raag.jadav@intel.com>
- <ed8cb1e9-df05-44a7-9088-90b3ee8dce85@igalia.com>
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="84212406"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2024 12:20:06 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: matthew.auld@intel.com,
+	thomas.hellstrom@linux.intel.com
+Subject: [PATCH v3 4/6] drm/xe: Use ttm_bo_access in
+ xe_vm_snapshot_capture_delayed
+Date: Sat, 19 Oct 2024 12:20:28 -0700
+Message-Id: <20241019192030.1505020-5-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241019192030.1505020-1-matthew.brost@intel.com>
+References: <20241019192030.1505020-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ed8cb1e9-df05-44a7-9088-90b3ee8dce85@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,61 +69,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 17, 2024 at 04:16:09PM -0300, André Almeida wrote:
-> Hi Raag,
-> 
-> Em 30/09/2024 04:38, Raag Jadav escreveu:
-> > Introduce device wedged event, which will notify userspace of wedged
-> > (hanged/unusable) state of the DRM device through a uevent. This is
-> > useful especially in cases where the device is no longer operating as
-> > expected even after a hardware reset and has become unrecoverable from
-> > driver context.
-> > 
-> > Purpose of this implementation is to provide drivers a generic way to
-> > recover with the help of userspace intervention. Different drivers may
-> > have different ideas of a "wedged device" depending on their hardware
-> > implementation, and hence the vendor agnostic nature of the event.
-> > It is up to the drivers to decide when they see the need for recovery
-> > and how they want to recover from the available methods.
-> > 
-> > Current implementation defines three recovery methods, out of which,
-> > drivers can choose to support any one or multiple of them. Preferred
-> > recovery method will be sent in the uevent environment as WEDGED=<method>.
-> > Userspace consumers (sysadmin) can define udev rules to parse this event
-> > and take respective action to recover the device.
-> > 
-> >      =============== ==================================
-> >      Recovery method Consumer expectations
-> >      =============== ==================================
-> >      rebind          unbind + rebind driver
-> >      bus-reset       unbind + reset bus device + rebind
-> >      reboot          reboot system
-> >      =============== ==================================
-> > 
-> > 
-> 
-> I proposed something similar in the past:
-> https://lore.kernel.org/dri-devel/20221125175203.52481-1-andrealmeid@igalia.com/
+Non-contiguous mapping of BO in VRAM doesn't work, use ttm_bo_access
+instead.
 
-Thanks for sharing. I went through it and I think we can use some of the ideas
-with generic adaption.
+v2:
+ - Fix error handling
 
-While we can always execute scripts on uevent, it'd be good to have a userspace
-daemon applying automated policies for wedge cases based on admin/user needs.
-This way we can also manage repeat offenders.
+Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 17 ++++++-----------
+ 1 file changed, 6 insertions(+), 11 deletions(-)
 
-Xe has devcoredump so telemetry would also be a nice addition.
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c99380271de6..c8782da3a5c3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3303,7 +3303,6 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
+ 
+ 	for (int i = 0; i < snap->num_snaps; i++) {
+ 		struct xe_bo *bo = snap->snap[i].bo;
+-		struct iosys_map src;
+ 		int err;
+ 
+ 		if (IS_ERR(snap->snap[i].data))
+@@ -3316,16 +3315,12 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
+ 		}
+ 
+ 		if (bo) {
+-			xe_bo_lock(bo, false);
+-			err = ttm_bo_vmap(&bo->ttm, &src);
+-			if (!err) {
+-				xe_map_memcpy_from(xe_bo_device(bo),
+-						   snap->snap[i].data,
+-						   &src, snap->snap[i].bo_ofs,
+-						   snap->snap[i].len);
+-				ttm_bo_vunmap(&bo->ttm, &src);
+-			}
+-			xe_bo_unlock(bo);
++			err = ttm_bo_access(&bo->ttm, snap->snap[i].bo_ofs,
++					    snap->snap[i].data, snap->snap[i].len, 0);
++			if (!(err < 0) && err != snap->snap[i].len)
++				err = -EIO;
++			else if (!(err < 0))
++				err = 0;
+ 		} else {
+ 			void __user *userptr = (void __user *)(size_t)snap->snap[i].bo_ofs;
+ 
+-- 
+2.34.1
 
-Great opportunity to collaborate here.
-
-> The motivation was that amdgpu was getting stuck after every GPU reset, and
-> there was just a black screen. The uevent would then trigger a daemon to
-> reset the compositor and getting things back together. As you can see in my
-> thread, the feature was blocked in favor of getting better overall GPU reset
-> from the kernel side.
-
-We have hardware level resets but (although rare) they're also prone to failure.
-We do what we can to recover from driver context but it adds on to the complexity
-overtime. Something like wedging, if done right, would be much more robust IMHO.
-
-Raag
