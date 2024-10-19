@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37F99D3C92C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E38EED3C92E
 	for <intel-xe@archiver.kernel.org>; Sat, 19 Oct 2024 19:20:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCADA10E3AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C67F210E3B1;
 	Sat, 19 Oct 2024 19:20:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MI/DWn7y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJIejuHU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCEEB10E3AA;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 374A910E3AA;
  Sat, 19 Oct 2024 19:20:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729365606; x=1760901606;
+ t=1729365605; x=1760901605;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LKihkz9CqYFI8n3HKEXZ5Df5dsNqpssKiNVE+2hzODI=;
- b=MI/DWn7yOmzrxD1g0OqM0g1ehPMnoXkpdsxWuIpcco+5/2fnLY+O+7Gr
- 4P+FhnZtURoR9PkzoUp+rVgiU2+riE8zZrzrIfYywJqfSbBM9wXSXnhw5
- 2jOjwr/cR1rzgDsFHyQvdUmGzLUd53bUXkQvRKWsMAmBGd2iiFEnArDxN
- bzV1mGxhABjr3KyUA6pcg9RyLfmEnNBVaNVZ4T8go5JdqA4UkFEs6nLtI
- JhgEbnzoEhrD2bP7kpw3w628mar8VgTDBKGy6h2dOa9c6Xg5BG9Uduu+2
- 9VdDTyoh0RlXqknDqfaFYM1QuLIlaXo8I9Bhs/ZfPB86GOl9jL0iONJqJ g==;
-X-CSE-ConnectionGUID: MJjq3yr3Rd+t7Rko1q0CuQ==
-X-CSE-MsgGUID: WOPMhPvdQR+1qk4Ns+f65g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="28978589"
-X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="28978589"
+ bh=T+3+mUn65i0LFR+EqTxgGf6IBD8UueUBauc02U88mmo=;
+ b=PJIejuHUL0kj3d2Qmmx0G7HXkXIAfUy6gJT6SKw0hje4fQ2xQmuLuKpe
+ lKxf4i5nUxvZnoUB6VJ2pzHsbhiDpoapP5uvEBr9H91xpA3wkWNiaZ2pN
+ ooraWdZC/NiPOFTP+4uj2g3GDjZWzNSaFkiWH/jVX36dbliJzI7oZt/Lf
+ qbCLZbUZLv/GN5HA9gb3EzQEySISObKYGoENHx8jP1f/dEXZtWXPmHpqo
+ XA/qAcCdYBrSEShXGoLLMBLEEJMpEYxXHnI/07jBmctZLrWR1SEPNIIwq
+ qEvnXQJdeo/JdVG1i2iLrREkb2ClnX7fhWkZ5BOs4BBqpjg+TECezFpDP Q==;
+X-CSE-ConnectionGUID: Y4nUAeCOTwmQpcDfxKBm2w==
+X-CSE-MsgGUID: YLh5rc8YQ/2+9FtPsF9KMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="28978584"
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="28978584"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Oct 2024 12:20:05 -0700
-X-CSE-ConnectionGUID: PKB6ffHaS/2dls73HvxlXA==
-X-CSE-MsgGUID: BMxxILcZQWOm1yiUkpkiTg==
+X-CSE-ConnectionGUID: Uw9zXQwJRrCbITFLq/lkCg==
+X-CSE-MsgGUID: XM5x6YgQQXGmvdzD5tPLNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="84212411"
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="84212396"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2024 12:20:06 -0700
+ 19 Oct 2024 12:20:05 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: matthew.auld@intel.com,
 	thomas.hellstrom@linux.intel.com
-Subject: [PATCH v3 6/6] drm/xe: Only allow contiguous BOs to use xe_bo_vmap
-Date: Sat, 19 Oct 2024 12:20:30 -0700
-Message-Id: <20241019192030.1505020-7-matthew.brost@intel.com>
+Subject: [PATCH v3 1/6] drm/ttm: Add ttm_bo_access
+Date: Sat, 19 Oct 2024 12:20:25 -0700
+Message-Id: <20241019192030.1505020-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241019192030.1505020-1-matthew.brost@intel.com>
 References: <20241019192030.1505020-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,75 +69,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_bo_vmap only works on contiguous BOs, disallow xe_bo_vmap on BO
-unless we are certain the BO is contiguous.
+Non-contiguous VRAM cannot easily be mapped in TTM nor can non-visible
+VRAM easily be accessed. Add ttm_bo_access, which is similar to
+ttm_bo_vm_access, to access such memory.
 
+Reported-by: Christoph Manszewski <christoph.manszewski@intel.com>
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 23 ++++++++++++++---------
- 1 file changed, 14 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 86 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/ttm/ttm_bo_vm.c   | 65 +----------------------
+ include/drm/ttm/ttm_bo.h          |  2 +
+ 3 files changed, 89 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 0a7b91df69c2..46c640f8db9e 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -162,6 +162,15 @@ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
- 	}
- }
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index d939925efa81..084d2e9b9123 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -919,3 +919,89 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
  
-+static bool force_contiguous(u32 bo_flags)
+ 	return progress;
+ }
++
++static int ttm_bo_access_kmap(struct ttm_buffer_object *bo,
++			      unsigned long offset,
++			      uint8_t *buf, int len, int write)
 +{
-+	/*
-+	 * For eviction / restore on suspend / resume objects pinned in VRAM
-+	 * must be contiguous, also only contiguous BOs support xe_bo_vmap.
++	unsigned long page = offset >> PAGE_SHIFT;
++	unsigned long bytes_left = len;
++	int ret;
++
++	/* Copy a page at a time, that way no extra virtual address
++	 * mapping is needed
 +	 */
-+	return bo_flags & (XE_BO_FLAG_PINNED | XE_BO_FLAG_GGTT);
++	offset -= page << PAGE_SHIFT;
++	do {
++		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
++		struct ttm_bo_kmap_obj map;
++		void *ptr;
++		bool is_iomem;
++
++		ret = ttm_bo_kmap(bo, page, 1, &map);
++		if (ret)
++			return ret;
++
++		ptr = (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
++		WARN_ON_ONCE(is_iomem);
++		if (write)
++			memcpy(ptr, buf, bytes);
++		else
++			memcpy(buf, ptr, bytes);
++		ttm_bo_kunmap(&map);
++
++		page++;
++		buf += bytes;
++		bytes_left -= bytes;
++		offset = 0;
++	} while (bytes_left);
++
++	return len;
 +}
 +
- static void add_vram(struct xe_device *xe, struct xe_bo *bo,
- 		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
- {
-@@ -175,12 +184,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
- 	xe_assert(xe, vram && vram->usable_size);
- 	io_size = vram->io_size;
++/**
++ * ttm_bo_access - Helper to access a buffer object
++ *
++ * @bo: ttm buffer object
++ * @offset: access offset into buffer object
++ * @buf: pointer to caller memory to read into or write from
++ * @len: length of access
++ * @write: write access
++ *
++ * Utility function to access a buffer object. Useful when buffer object cannot
++ * be easily mapped (non-contiguous, non-visible, etc...).
++ *
++ * Returns:
++ * 0 if successful, negative error code on failure.
++ */
++int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
++		  void *buf, int len, int write)
++{
++	int ret;
++
++	if (len < 1 || (offset + len) > bo->base.size)
++		return -EIO;
++
++	ret = ttm_bo_reserve(bo, true, false, NULL);
++	if (ret)
++		return ret;
++
++	switch (bo->resource->mem_type) {
++	case TTM_PL_SYSTEM:
++		fallthrough;
++	case TTM_PL_TT:
++		ret = ttm_bo_access_kmap(bo, offset, buf, len, write);
++		break;
++	default:
++		if (bo->bdev->funcs->access_memory)
++			ret = bo->bdev->funcs->access_memory(
++				bo, offset, buf, len, write);
++		else
++			ret = -EIO;
++	}
++
++	ttm_bo_unreserve(bo);
++
++	return ret;
++}
++EXPORT_SYMBOL(ttm_bo_access);
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+index 2c699ed1963a..20b1e5f78684 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+@@ -366,45 +366,6 @@ void ttm_bo_vm_close(struct vm_area_struct *vma)
+ }
+ EXPORT_SYMBOL(ttm_bo_vm_close);
  
--	/*
--	 * For eviction / restore on suspend / resume objects
--	 * pinned in VRAM must be contiguous
+-static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
+-				 unsigned long offset,
+-				 uint8_t *buf, int len, int write)
+-{
+-	unsigned long page = offset >> PAGE_SHIFT;
+-	unsigned long bytes_left = len;
+-	int ret;
+-
+-	/* Copy a page at a time, that way no extra virtual address
+-	 * mapping is needed
 -	 */
--	if (bo_flags & (XE_BO_FLAG_PINNED |
--			XE_BO_FLAG_GGTT))
-+	if (force_contiguous(bo_flags))
- 		place.flags |= TTM_PL_FLAG_CONTIGUOUS;
- 
- 	if (io_size < vram->usable_size) {
-@@ -212,8 +216,7 @@ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
- 
- 		bo->placements[*c] = (struct ttm_place) {
- 			.mem_type = XE_PL_STOLEN,
--			.flags = bo_flags & (XE_BO_FLAG_PINNED |
--					     XE_BO_FLAG_GGTT) ?
-+			.flags = force_contiguous(bo_flags) ?
- 				TTM_PL_FLAG_CONTIGUOUS : 0,
- 		};
- 		*c += 1;
-@@ -2024,13 +2027,15 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
- 
- int xe_bo_vmap(struct xe_bo *bo)
+-	offset -= page << PAGE_SHIFT;
+-	do {
+-		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
+-		struct ttm_bo_kmap_obj map;
+-		void *ptr;
+-		bool is_iomem;
+-
+-		ret = ttm_bo_kmap(bo, page, 1, &map);
+-		if (ret)
+-			return ret;
+-
+-		ptr = (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
+-		WARN_ON_ONCE(is_iomem);
+-		if (write)
+-			memcpy(ptr, buf, bytes);
+-		else
+-			memcpy(buf, ptr, bytes);
+-		ttm_bo_kunmap(&map);
+-
+-		page++;
+-		buf += bytes;
+-		bytes_left -= bytes;
+-		offset = 0;
+-	} while (bytes_left);
+-
+-	return len;
+-}
+-
+ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 		     void *buf, int len, int write)
  {
-+	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
- 	void *virtual;
- 	bool is_iomem;
- 	int ret;
+@@ -412,32 +373,8 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 	unsigned long offset = (addr) - vma->vm_start +
+ 		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
+ 		 << PAGE_SHIFT);
+-	int ret;
+-
+-	if (len < 1 || (offset + len) > bo->base.size)
+-		return -EIO;
  
- 	xe_bo_assert_held(bo);
+-	ret = ttm_bo_reserve(bo, true, false, NULL);
+-	if (ret)
+-		return ret;
+-
+-	switch (bo->resource->mem_type) {
+-	case TTM_PL_SYSTEM:
+-		fallthrough;
+-	case TTM_PL_TT:
+-		ret = ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
+-		break;
+-	default:
+-		if (bo->bdev->funcs->access_memory)
+-			ret = bo->bdev->funcs->access_memory(
+-				bo, offset, buf, len, write);
+-		else
+-			ret = -EIO;
+-	}
+-
+-	ttm_bo_unreserve(bo);
+-
+-	return ret;
++	return ttm_bo_access(bo, offset, buf, len, write);
+ }
+ EXPORT_SYMBOL(ttm_bo_vm_access);
  
--	if (!(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS))
-+	if (drm_WARN_ON(&xe->drm, !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS) ||
-+			!force_contiguous(bo->flags)))
- 		return -EINVAL;
- 
- 	if (!iosys_map_is_null(&bo->vmap))
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 5804408815be..8ea11cd8df39 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -421,6 +421,8 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+ int ttm_bo_evict_first(struct ttm_device *bdev,
+ 		       struct ttm_resource_manager *man,
+ 		       struct ttm_operation_ctx *ctx);
++int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
++		  void *buf, int len, int write);
+ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+ 			     struct vm_fault *vmf);
+ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
 -- 
 2.34.1
 
