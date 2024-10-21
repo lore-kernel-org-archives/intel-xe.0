@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4198D15D89
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C270AD15D88
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC21310E4D1;
-	Mon, 21 Oct 2024 12:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8533110E4C9;
+	Mon, 21 Oct 2024 12:32:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LHzm4PNF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXdya2Ez";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB0D10E4CD;
- Mon, 21 Oct 2024 12:32:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C82D610E4CF;
+ Mon, 21 Oct 2024 12:32:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513931; x=1761049931;
+ t=1729513935; x=1761049935;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=F9+fx4zy4nPeJawpBwIARnw1h1SvPfHF7yaMKklr2pk=;
- b=LHzm4PNFPf3H8d7tgpe57euhj2BubmYbzL7V81tYJexejDfMJzFGR4K5
- FVjMVww2dA41U9Aql1UeBmeKB6vYj7y13AgCuk75K5mcQxeWE0qyteSkb
- OU1ZBCgQgCQQQZ8gIscW8FAwLbi7KAJNL8khPOkESCIFBoUjCnz4uXF4P
- J9+b71KIhUj4Pa4Oa2mYJeqYEASqIoNe2KHbLw34ZsHy/iF47xXhRxSYJ
- RzJrhgiqbvBZaxa40hVwT10tphhtCQd55b3A8a/QAoolZDFjg5ogkg2c5
- XKLJlWDZADNwaxUZ5kIe0VKfm0govQkZdIusxNmBJsj/Yv29HgE6kR1IK Q==;
-X-CSE-ConnectionGUID: eSqShx4fQBu2IqaUZcoWRg==
-X-CSE-MsgGUID: ntgPupnFRaSLOV+1Z61uvw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459636"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459636"
+ bh=PaDEaxriKEvMCb4HfAaBmu+HCjJq9aQIDW3LbysKKSg=;
+ b=FXdya2EzwK8N7sYc76AiAfzvJyBFWph2ft8oUaCJMIPm4tDb3GZ7qUgR
+ 7wH29xVJic/GraQxMSD2fGivWivlDH5H2Pxf0Hv4nMPY4ZuKzR8kQ8sZL
+ 4kL7hu8fhSIWtMZjpgf56i9v11mdrsMYzmEIb/RpQqRvLjmoSyrqyhuKy
+ dc0Ohmaxw1AcCvqG7wWl+eNw4RnZ4rv5EnHbBKeiWINRitnAen+Xn8Vzl
+ 5jZGyQEZIMDJUC7j4q6M/kTqxBMi2Xbi19JsLESAdLzCv3Ueww/WyeTEW
+ iHI8qCTafVqBci0gw69Rl/WXdgxjXAZU+TWNNEIVZkmS3y2mleQBxY5gW Q==;
+X-CSE-ConnectionGUID: 7S99iHikR3SujsKGgB2Y2A==
+X-CSE-MsgGUID: ofPwEoN7TKKEgWzqx3mJuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459644"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459644"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:10 -0700
-X-CSE-ConnectionGUID: jeVsDfb6Ssusfc1o0XHuyg==
-X-CSE-MsgGUID: DmdaSx1SRKaZEk7+Mrs7yw==
+ 21 Oct 2024 05:32:15 -0700
+X-CSE-ConnectionGUID: iR+QyiGCRIytcV+m4pEWSA==
+X-CSE-MsgGUID: QE08/gukToGml3C6lx7wnw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866075"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866092"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:09 -0700
+ 21 Oct 2024 05:32:14 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 07/16] drm/i915/dp: Enable 3 DSC engines for 12 slices
-Date: Mon, 21 Oct 2024 18:04:05 +0530
-Message-ID: <20241021123414.3993899-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 10/16] drm/i915/dp_mst: Account for pixel replication for MST
+ overhead with DSC
+Date: Mon, 21 Oct 2024 18:04:08 +0530
+Message-ID: <20241021123414.3993899-11-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
 References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
@@ -67,67 +68,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Certain resolutions require 12 DSC slices support along with ultrajoiner.
-For such cases, the third DSC Engine per Pipe is enabled. Each DSC
-Engine processes 1 Slice, resulting in a total of 12 VDSC slices
-(4 Pipes * 3 DSC Instances per Pipe).
-Add support for 12 DSC slices and 3 DSC engines for such modes.
-
-v2: Add missing check for 3 slices support only with 4 joined pipes.
-(Suraj)
+Add the extra pixels to the hactive while computing overhead with DSC.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.h     |  1 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 17 +++++++++++++--
+ drivers/gpu/drm/i915/display/intel_vdsc.c   | 23 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vdsc.h   |  6 ++++++
+ 4 files changed, 45 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0607ea4ee321..53a437caacac 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -115,9 +115,12 @@ static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
-  * For now consider a max of 2 slices per line, which works for all platforms.
-  * With this we can have max of 4 DSC Slices per pipe.
-  *
-+ * For higher resolutions where 12 slice support is required with
-+ * ultrajoiner, only then each pipe can support 3 slices.
-+ *
-  * #TODO Split this better to use 4 slices/dsc engine where supported.
-  */
--static const u8 valid_dsc_slicecount[] = {1, 2, 4};
-+static const u8 valid_dsc_slicecount[] = {1, 2, 3, 4};
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 60baf4072dc9..e90a9dc1a8f5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -20,6 +20,7 @@ struct intel_atomic_state;
+ struct intel_connector;
+ struct intel_crtc_state;
+ struct intel_digital_port;
++struct intel_display;
+ struct intel_dp;
+ struct intel_encoder;
  
- /**
-  * intel_dp_is_edp - is the given port attached to an eDP panel (either CPU or PCH)
-@@ -1025,6 +1028,13 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 	for (i = 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
- 		u8 test_slice_count = valid_dsc_slicecount[i] * num_joined_pipes;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 1a2ff3e1cb68..72130c7748dd 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -92,20 +92,33 @@ static int intel_dp_mst_bw_overhead(const struct intel_crtc_state *crtc_state,
+ 				    const struct intel_connector *connector,
+ 				    bool ssc, int dsc_slice_count, int bpp_x16)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 	unsigned long flags = DRM_DP_BW_OVERHEAD_MST;
+ 	int overhead;
++	int replicated_pixels = 0;
  
+ 	flags |= intel_dp_is_uhbr(crtc_state) ? DRM_DP_BW_OVERHEAD_UHBR : 0;
+ 	flags |= ssc ? DRM_DP_BW_OVERHEAD_SSC_REF_CLK : 0;
+ 	flags |= crtc_state->fec_enable ? DRM_DP_BW_OVERHEAD_FEC : 0;
+ 
+-	if (dsc_slice_count)
++	if (dsc_slice_count) {
+ 		flags |= DRM_DP_BW_OVERHEAD_DSC;
 +		/*
-+		 * 3 DSC Slices per pipe need 3 DSC engines,
-+		 * which is supported only with Ultrajoiner.
++		 * When hdisplay is not divisible by dsc_slice_count, extra pixels
++		 * are added to last slice. Need to account for the extra overhead due
++		 * to these extra pixels.
 +		 */
-+		if (valid_dsc_slicecount[i] == 3 && num_joined_pipes != 4)
-+			continue;
-+
- 		if (test_slice_count >
- 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
- 			break;
-@@ -2410,8 +2420,13 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
- 	 * is greater than the maximum Cdclock and if slice count is even
- 	 * then we need to use 2 VDSC instances.
-+	 * In case of Ultrajoiner along with 12 slices we need to use 3
-+	 * VDSC instances.
- 	 */
--	if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
-+	if (pipe_config->joiner_pipes && num_joined_pipes == 4 &&
-+	    pipe_config->dsc.slice_count == 12)
-+		pipe_config->dsc.dsc_split = 3;
-+	else if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
- 		pipe_config->dsc.dsc_split = 2;
++		replicated_pixels =
++			intel_dsc_get_replicated_pixels(display,
++							adjusted_mode->hdisplay,
++							dsc_slice_count,
++							crtc_state->output_format);
++	}
  
- 	ret = intel_dp_dsc_compute_params(connector, pipe_config);
+ 	overhead = drm_dp_bw_overhead(crtc_state->lane_count,
+-				      adjusted_mode->hdisplay,
++				      adjusted_mode->hdisplay + replicated_pixels,
+ 				      dsc_slice_count,
+ 				      bpp_x16,
+ 				      flags);
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 14cc1ef3641e..c3c6a4a4dafd 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1048,3 +1048,26 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 	intel_vdsc_dump_state(p, indent, crtc_state);
+ 	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
+ }
++
++int intel_dsc_get_replicated_pixels(struct intel_display *display,
++				    int mode_hdisplay,
++				    int slice_count,
++				    enum intel_output_format output_format)
++{
++	int replicated_pixels;
++	int slice_width = DIV_ROUND_UP(mode_hdisplay, slice_count);
++
++	if (!HAS_PIXEL_REPLICATION(display))
++		return 0;
++
++	if (mode_hdisplay % slice_count == 0)
++		return 0;
++
++	/* Odd slice width is not supported by YCbCr420 format */
++	if (slice_width % 2 && output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
++		return 0;
++
++	replicated_pixels = (slice_width * slice_count) - mode_hdisplay;
++
++	return replicated_pixels;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+index 290b2e9b3482..41b8b5c5866e 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+@@ -10,9 +10,11 @@
+ 
+ struct drm_printer;
+ 
++enum intel_output_format;
+ enum transcoder;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_display;
+ struct intel_encoder;
+ 
+ bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state);
+@@ -31,5 +33,9 @@ void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
+ 			    const struct intel_crtc_state *crtc_state);
+ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 			   const struct intel_crtc_state *crtc_state);
++int intel_dsc_get_replicated_pixels(struct intel_display *display,
++				    int mode_hdisplay,
++				    int slice_count,
++				    enum intel_output_format output_format);
+ 
+ #endif /* __INTEL_VDSC_H__ */
 -- 
 2.45.2
 
