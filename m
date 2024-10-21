@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14AB8D3C53F
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 05:52:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE8DBD3C93F
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 06:08:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C50A010E0A1;
-	Mon, 21 Oct 2024 05:52:50 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E572C10E0A1;
- Mon, 21 Oct 2024 05:52:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DB2F10E229;
+	Mon, 21 Oct 2024 06:08:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="myWsaiEV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDABE10E229
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 06:08:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729490910; x=1761026910;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PeZCRy8Dc1klepupKdiV08c7/a87z0hnFe6TZGavwEE=;
+ b=myWsaiEVmE+kg7GJBbpJZPTZwKSdrYNDVb5e3oyjEuQ+Hml2SKyW0eng
+ xRftBI3ls+9LzvJvhe5Ei5rXdFx+hY1BI+f6tL0p2b7nijtTlrDr5VKRC
+ snwAPEmQeoPjRBSlhkJfeXTGDKkmE36dBZC+hgrciawxMx7NkbiFY79t6
+ jszJhwZ336O13fyH7rMWKLb/8NGtyaEZXvbuT08PY2sFcW1n6rdsifl6l
+ ajxNf1s6EdHpZGF1ljqi0+0ZbzpUaPh3G7cr3OIxosBcpaI30v2wRX0HR
+ bcMgVfubqlEs1x0lYFYYH5fhIBsqGeDvPqCd9lvM0ry/lzlvrMra+PuCR w==;
+X-CSE-ConnectionGUID: 3qqFOsKKSXudPePIAx8YAA==
+X-CSE-MsgGUID: DQbBRA0BQ4mfxctpkOhGcA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="32764629"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="32764629"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2024 23:08:29 -0700
+X-CSE-ConnectionGUID: I2SAJA38QlechjMGRLyMBQ==
+X-CSE-MsgGUID: U96ve8zMTDuTeA6gwdFwpA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79024357"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2024 23:08:27 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>
+Subject: [PATCH V3] drm/xe/mmap: Add mmap support for PCI memory barrier
+Date: Mon, 21 Oct 2024 11:41:53 +0530
+Message-Id: <20241021061153.908112-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/sriov=3A_Don=27t_migrat?=
- =?utf-8?q?e_dmabuf_BO_to_System_RAM_while_running_in_VM_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Oct 2024 05:52:49 -0000
-Message-ID: <172948996993.1303159.6430248448036997173@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241021052236.1820329-1-vivek.kasireddy@intel.com>
-In-Reply-To: <20241021052236.1820329-1-vivek.kasireddy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,121 +63,232 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In order to avoid having userspace to use MI_MEM_FENCE,
+we are adding a mechanism for userspace to generate a
+PCI memory barrier with low overhead (avoiding IOCTL call
+as well as writing to VRAM will adds some overhead).
 
-Series: drm/xe/sriov: Don't migrate dmabuf BO to System RAM while running in VM (rev2)
-URL   : https://patchwork.freedesktop.org/series/139920/
-State : failure
+This is implemented by memory-mapping a page as uncached
+that is backed by MMIO on the dGPU and thus allowing userspace
+to do memory write to the page without invoking an IOCTL.
+We are selecting the MMIO so that it is not accessible from
+the PCI bus so that the MMIO writes themselves are ignored,
+but the PCI memory barrier will still take action as the MMIO
+filtering will happen after the memory barrier effect.
 
-== Summary ==
+When we detect special defined offset in mmap(), We are mapping
+4K page which contains the last of page of doorbell MMIO range
+to userspace for same purpose.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_translate_iova_to_dpa’:
-../drivers/gpu/drm/xe/xe_bo.c:591:29: error: invalid use of undefined type ‘struct drm_pagemap_dma_addr’
-  591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-      |                             ^
-../drivers/gpu/drm/xe/xe_bo.c:591:35: error: implicit declaration of function ‘drm_pagemap_dma_addr_encode’ [-Werror=implicit-function-declaration]
-  591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-      |                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:592:49: error: ‘DRM_INTERCONNECT_DRIVER’ undeclared (first use in this function)
-  592 |                                                 DRM_INTERCONNECT_DRIVER,
-      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:592:49: note: each undeclared identifier is reported only once for each function it appears in
-../drivers/gpu/drm/xe/xe_bo.c:591:33: error: invalid use of undefined type ‘struct drm_pagemap_dma_addr’
-  591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-      |                                 ^
-In file included from ../include/linux/percpu.h:5,
-                 from ../include/linux/percpu_counter.h:14,
-                 from ../include/linux/mm_types.h:21,
-                 from ../include/linux/mmzone.h:22,
-                 from ../include/linux/gfp.h:7,
-                 from ../include/linux/mm.h:7,
-                 from ../include/linux/pagemap.h:8,
-                 from ../include/drm/ttm/ttm_tt.h:30,
-                 from ../drivers/gpu/drm/xe/xe_bo.h:9,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:6:
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_sg_to_dma_addr_array’:
-../drivers/gpu/drm/xe/xe_bo.c:626:55: error: invalid application of ‘sizeof’ to incomplete type ‘struct drm_pagemap_dma_addr’
-  626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-      |                                                       ^
-../include/linux/alloc_tag.h:202:16: note: in definition of macro ‘alloc_hooks_tag’
-  202 |         typeof(_do_alloc) _res = _do_alloc;                             \
-      |                ^~~~~~~~~
-../include/linux/slab.h:925:49: note: in expansion of macro ‘alloc_hooks’
-  925 | #define kmalloc_array(...)                      alloc_hooks(kmalloc_array_noprof(__VA_ARGS__))
-      |                                                 ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:626:24: note: in expansion of macro ‘kmalloc_array’
-  626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-      |                        ^~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:626:55: error: invalid application of ‘sizeof’ to incomplete type ‘struct drm_pagemap_dma_addr’
-  626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-      |                                                       ^
-../include/linux/alloc_tag.h:202:34: note: in definition of macro ‘alloc_hooks_tag’
-  202 |         typeof(_do_alloc) _res = _do_alloc;                             \
-      |                                  ^~~~~~~~~
-../include/linux/slab.h:925:49: note: in expansion of macro ‘alloc_hooks’
-  925 | #define kmalloc_array(...)                      alloc_hooks(kmalloc_array_noprof(__VA_ARGS__))
-      |                                                 ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:626:24: note: in expansion of macro ‘kmalloc_array’
-  626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-      |                        ^~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:626:22: warning: assignment to ‘struct drm_pagemap_dma_addr *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
-  626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-      |                      ^
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[2]: *** [/kernel/Makefile:1936: .] Error 2
-make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
+For user to query special offset we are adding special flag in
+mmap_offset ioctl which needs to be passed as follows,
+ struct drm_xe_gem_mmap_offset mmo = {
+                .handle = 0, /* this must be 0 */
+                .flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
+        };
+ igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
+ map = mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, mmo);
 
-[05:52:22] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[05:52:26] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Note: Test coverage for this is added by IGT
+      https://patchwork.freedesktop.org/patch/618931/  here.
 
+V3(MAuld)
+  - Remove offset defination from UAPI to be able to change later
+  - Edit commit message for special flag addition
+V2(MAuld)
+  - Add fault handler with dummy page to handle unplug device
+  - Add Build check for special offset to be below normal start page
+  - Test d3hot, mapping seems to be valid in d3hot as well
+  - Add more info to commit message
+
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c     |  10 ++-
+ drivers/gpu/drm/xe/xe_bo.h     |   2 +
+ drivers/gpu/drm/xe/xe_device.c | 109 ++++++++++++++++++++++++++++++++-
+ include/uapi/drm/xe_drm.h      |   3 +-
+ 4 files changed, 121 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index d5d30a0ff1e7..078f92eb0947 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2132,9 +2132,17 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, args->flags))
++	if (XE_IOCTL_DBG(xe, args->flags &
++			 ~DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER))
+ 		return -EINVAL;
+ 
++	if (args->flags & DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER) {
++		if (XE_IOCTL_DBG(xe, args->handle))
++			return -EINVAL;
++		args->offset = XE_PCI_BARRIER_MMAP_OFFSET;
++		return 0;
++	}
++
+ 	gem_obj = drm_gem_object_lookup(file, args->handle);
+ 	if (XE_IOCTL_DBG(xe, !gem_obj))
+ 		return -ENOENT;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 41624159a291..b36d1fba54c1 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -63,6 +63,8 @@
+ 
+ #define XE_BO_PROPS_INVALID	(-1)
+ 
++#define XE_PCI_BARRIER_MMAP_OFFSET	(0x50 << XE_PTE_SHIFT)
++
+ struct sg_table;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 2da4affe4dfd..8a403f6a068d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -239,12 +239,119 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
+ #define xe_drm_compat_ioctl NULL
+ #endif
+ 
++static void barrier_open(struct vm_area_struct *vma)
++{
++	drm_dev_get(vma->vm_private_data);
++}
++
++static void barrier_close(struct vm_area_struct *vma)
++{
++	drm_dev_put(vma->vm_private_data);
++}
++
++static void barrier_release_dummy_page(struct drm_device *dev, void *res)
++{
++	struct page *dummy_page = (struct page *)res;
++
++	__free_page(dummy_page);
++}
++
++static vm_fault_t barrier_fault(struct vm_fault *vmf)
++{
++	struct drm_device *dev = vmf->vma->vm_private_data;
++	struct vm_area_struct *vma = vmf->vma;
++	vm_fault_t ret = VM_FAULT_NOPAGE;
++	unsigned long address;
++	unsigned long pfn;
++	struct page *page;
++	pgprot_t prot;
++
++	prot = vm_get_page_prot(vma->vm_flags);
++
++	/* Allocate new dummy page to map all the VA range in this VMA to it*/
++	page = alloc_page(GFP_KERNEL | __GFP_ZERO);
++	if (!page)
++		return VM_FAULT_OOM;
++
++	/* Set the page to be freed using drmm release action */
++	if (drmm_add_action_or_reset(dev, barrier_release_dummy_page, page))
++		return VM_FAULT_OOM;
++
++	pfn = page_to_pfn(page);
++
++	/* Prefault the entire VMA range right away to avoid further faults */
++	for (address = vma->vm_start; address < vma->vm_end;
++	     address += XE_PAGE_SIZE)
++		ret = vmf_insert_pfn_prot(vma, address, pfn, prot);
++
++	return ret;
++}
++
++static const struct vm_operations_struct vm_ops_barrier = {
++	.open = barrier_open,
++	.close = barrier_close,
++	.fault = barrier_fault,
++};
++
++static int xe_pci_barrier_mmap(struct file *filp,
++			       struct vm_area_struct *vma)
++{
++	struct drm_file *priv = filp->private_data;
++	struct drm_device *dev = priv->minor->dev;
++	unsigned long pfn;
++	pgprot_t prot;
++
++	if (vma->vm_end - vma->vm_start > XE_PAGE_SIZE)
++		return -EINVAL;
++
++	if (is_cow_mapping(vma->vm_flags))
++		return -EINVAL;
++
++	if (vma->vm_flags & (VM_READ | VM_EXEC))
++		return -EINVAL;
++
++	vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
++	vm_flags_set(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_IO);
++
++	prot = vm_get_page_prot(vma->vm_flags);
++#define LAST_DB_PAGE_OFFSET 0x7ff001
++	pfn = PHYS_PFN(pci_resource_start(to_pci_dev(dev->dev), 0) +
++			LAST_DB_PAGE_OFFSET);
++	if (vmf_insert_pfn_prot(vma, vma->vm_start, pfn,
++				pgprot_noncached(prot)) != VM_FAULT_NOPAGE)
++		return -EFAULT;
++
++	vma->vm_ops = &vm_ops_barrier;
++	vma->vm_private_data = dev;
++	drm_dev_get(vma->vm_private_data);
++	return 0;
++}
++
++static int xe_mmap(struct file *filp, struct vm_area_struct *vma)
++{
++	struct drm_file *priv = filp->private_data;
++	struct drm_device *dev = priv->minor->dev;
++
++	if (drm_dev_is_unplugged(dev))
++		return -ENODEV;
++
++	BUILD_BUG_ON(((XE_PCI_BARRIER_MMAP_OFFSET >> XE_PTE_SHIFT) +
++		      XE_PAGE_SIZE) >= DRM_FILE_PAGE_OFFSET_START);
++
++	switch (vma->vm_pgoff) {
++	case XE_PCI_BARRIER_MMAP_OFFSET >> XE_PTE_SHIFT:
++		return xe_pci_barrier_mmap(filp, vma);
++	}
++
++	return drm_gem_mmap(filp, vma);
++}
++
+ static const struct file_operations xe_driver_fops = {
+ 	.owner = THIS_MODULE,
+ 	.open = drm_open,
+ 	.release = drm_release_noglobal,
+ 	.unlocked_ioctl = xe_drm_ioctl,
+-	.mmap = drm_gem_mmap,
++	.mmap = xe_mmap,
+ 	.poll = drm_poll,
+ 	.read = drm_read,
+ 	.compat_ioctl = xe_drm_compat_ioctl,
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index c4182e95a619..6b1b08a9f528 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -819,7 +819,8 @@ struct drm_xe_gem_mmap_offset {
+ 	/** @handle: Handle for the object being mapped. */
+ 	__u32 handle;
+ 
+-	/** @flags: Must be zero */
++#define DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER     (1 << 0)
++	/** @flags: Flag to indicate if any special offset, zero otherwise */
+ 	__u32 flags;
+ 
+ 	/** @offset: The fake offset to use for subsequent mmap call */
+-- 
+2.34.1
 
