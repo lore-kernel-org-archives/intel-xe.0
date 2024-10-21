@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD597D17135
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 20:14:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A6CD17136
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 20:14:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3C8B10E5A6;
-	Mon, 21 Oct 2024 20:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32EB610E5A7;
+	Mon, 21 Oct 2024 20:14:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXb6zt4u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kb5nXyq2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E84EC10E58F;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78FDD10E3CD;
  Mon, 21 Oct 2024 20:14:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729541685; x=1761077685;
+ t=1729541684; x=1761077684;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eSG5vY32/ZdefK/ah9eMHe8q26+p/YDG8IpBok17Zzc=;
- b=FXb6zt4umQrg3yY1KnzVDf0MWCRc/KfmUNESIJWBu+PjAtwYFpKI7eHz
- xyRtSNL6oZ+2VYP8wZOdQQmenXkGofP9jxPR0gWZfgsGM5kpvhWEf3BTv
- ON7Z3NQaw7uyPogN5NxxB2t4Li3M7NIDZ7k8+IeJQtFyM/9xBH/cHn5Xq
- 8cQgJYQk+deplL3ptQgXuZHX+3aW08b4VWX7ZYLSCKTAT1rp+tJaraU0T
- Btcl5XxegSF+d9lb7HUd2RjtlO8nmqzZLE7b9TNoPkKTU8nAifXnnNhku
- JooykaGS7fBqpFUoBIaiLpAfGmW3moPO6Fv6aN6f8WSMU6kmk7K3r4aOu A==;
-X-CSE-ConnectionGUID: YQTzoKbYTjKjWeM5n/D9Jw==
-X-CSE-MsgGUID: RXGTKtZjSxW6Cq3LJQ1BLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40167486"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40167486"
+ bh=VFeTNJiJ7lL3Wyx7JIq1pnfndPJQjcZDjNTMoynIz8U=;
+ b=kb5nXyq2e6ZRqYNLKGcNFyeDh6VHxOIP8SBHUDknIBiz/onJ26BdYNeC
+ gKlztKiyks3lcx3SkjiVysdBirb6C2hTgpyo0P01X6BOCmoQB9i2kNtH8
+ VDLBTRAFI37WxryHkNhJHEhWBCKmwwSQNPJuTaYZlSE3C5CYSe2Y693/c
+ cdUNGc5QS0KVGXR1hWNm3hQBg5FAkk4futCmYWYTykIxT2a5ird1SIsQ8
+ nMWivIH/ZjXGXYyQSs/jwLwQfoRGvyGeZsmOA25XZHVY9QDdtyp7ailYN
+ UeH2xR4l2MhMdAsbEnvdBE0HsOnX5AWXBqEtRh+EiQpeZTALkn9Wc847A g==;
+X-CSE-ConnectionGUID: qDX1KYBMTvKLXhvWELSMrA==
+X-CSE-MsgGUID: tsnCozmpQ/SVpRsxpeBwtg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40167481"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40167481"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2024 13:14:44 -0700
-X-CSE-ConnectionGUID: QiGYrWmdQFevIOqUbcOoOA==
-X-CSE-MsgGUID: zFact2ktQl2VA8pj/Zu5oA==
+X-CSE-ConnectionGUID: fSOrjTTzRWmE8exN17OYHg==
+X-CSE-MsgGUID: W1Ji1s4QTFWkDvoXuUb/tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="110472062"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="110472047"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2024 13:14:44 -0700
@@ -46,9 +46,9 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: mika.kuoppala@intel.com, matthew.auld@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v4 9/9] drm/xe: Only allow contiguous BOs to use xe_bo_vmap
-Date: Mon, 21 Oct 2024 13:15:09 -0700
-Message-Id: <20241021201509.1668074-10-matthew.brost@intel.com>
+Subject: [PATCH v4 4/9] drm/xe: Take PM ref in delayed snapshot capture worker
+Date: Mon, 21 Oct 2024 13:15:04 -0700
+Message-Id: <20241021201509.1668074-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241021201509.1668074-1-matthew.brost@intel.com>
 References: <20241021201509.1668074-1-matthew.brost@intel.com>
@@ -68,76 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_bo_vmap only works on contiguous BOs, disallow xe_bo_vmap on BO
-unless we are certain the BO is contiguous.
+The delayed snapshot capture worker can access the GPU or VRAM both of
+which require a PM reference. Take a reference in this worker.
 
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Fixes: 4f04d07c0a94 ("drm/xe: Faster devcoredump")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 23 ++++++++++++++---------
- 1 file changed, 14 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 4e1f54aad5bc..59766369a15b 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -162,6 +162,15 @@ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
- 	}
- }
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 8b0ea77661b2..956bf087d0db 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -23,6 +23,7 @@
+ #include "xe_guc_submit.h"
+ #include "xe_hw_engine.h"
+ #include "xe_module.h"
++#include "xe_pm.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm.h"
  
-+static bool force_contiguous(u32 bo_flags)
-+{
-+	/*
-+	 * For eviction / restore on suspend / resume objects pinned in VRAM
-+	 * must be contiguous, also only contiguous BOs support xe_bo_vmap.
-+	 */
-+	return bo_flags & (XE_BO_FLAG_PINNED | XE_BO_FLAG_GGTT);
-+}
+@@ -158,8 +159,11 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ {
+ 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
+ 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
++	struct xe_device *xe = coredump_to_xe(coredump);
+ 	unsigned int fw_ref;
+ 
++	xe_pm_runtime_get(xe);
 +
- static void add_vram(struct xe_device *xe, struct xe_bo *bo,
- 		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
- {
-@@ -175,12 +184,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
- 	xe_assert(xe, vram && vram->usable_size);
- 	io_size = vram->io_size;
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+ 	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
+ 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+@@ -168,6 +172,8 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
+ 	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
  
--	/*
--	 * For eviction / restore on suspend / resume objects
--	 * pinned in VRAM must be contiguous
--	 */
--	if (bo_flags & (XE_BO_FLAG_PINNED |
--			XE_BO_FLAG_GGTT))
-+	if (force_contiguous(bo_flags))
- 		place.flags |= TTM_PL_FLAG_CONTIGUOUS;
++	xe_pm_runtime_put(xe);
++
+ 	/* Calculate devcoredump size */
+ 	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
  
- 	if (io_size < vram->usable_size) {
-@@ -212,8 +216,7 @@ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
- 
- 		bo->placements[*c] = (struct ttm_place) {
- 			.mem_type = XE_PL_STOLEN,
--			.flags = bo_flags & (XE_BO_FLAG_PINNED |
--					     XE_BO_FLAG_GGTT) ?
-+			.flags = force_contiguous(bo_flags) ?
- 				TTM_PL_FLAG_CONTIGUOUS : 0,
- 		};
- 		*c += 1;
-@@ -2033,13 +2036,15 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
- 
- int xe_bo_vmap(struct xe_bo *bo)
- {
-+	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
- 	void *virtual;
- 	bool is_iomem;
- 	int ret;
- 
- 	xe_bo_assert_held(bo);
- 
--	if (!(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS))
-+	if (drm_WARN_ON(&xe->drm, !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS) ||
-+			!force_contiguous(bo->flags)))
- 		return -EINVAL;
- 
- 	if (!iosys_map_is_null(&bo->vmap))
 -- 
 2.34.1
 
