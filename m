@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E36AD1713F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F25E5D1713C
 	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 21:18:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE2810E5AD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7381910E5AE;
 	Mon, 21 Oct 2024 21:18:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lgexrK55";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n5DVA5dZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4B9410E0B4;
- Mon, 21 Oct 2024 21:18:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6603410E0B4;
+ Mon, 21 Oct 2024 21:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729545492; x=1761081492;
+ t=1729545493; x=1761081493;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IF3szAzYLAmUMg1AdI9+r6nlyZGZlqpJGjOyeoigxZo=;
- b=lgexrK55lX33avPfH9h3OxGl+3KpN9PZeebGlHf1rre0gqUOvHRIhZ8O
- Vq1niTTzjpMXLTi9Tw57wvyT+3t2gk2MSzduj5qIugS1CTEtc1e2qcqdh
- ydw6FrZE8tI3tTcWiEWcc8VEfLqpHnJqVrskV4oGLQ/Jseg6KXX4L+1MC
- bbtnvGbpooWAdCm0F6onu9IwmIvf5jboGHHhUcR8bdomkpHZ4doDxFIom
- 0d5YQaIMITMJVDDmGV+X8eJ1c7DRf1RWFDC7u62ky3N87hL+BwiToxSDq
- Sg2qBjxd2Skf3BQ6BKYktne80V7Q893/Cl+wHFcjAS279S03RTfsvCF5A g==;
-X-CSE-ConnectionGUID: HMVNmVvhTjuI3Xj/hjNbGw==
-X-CSE-MsgGUID: oDW/cQCgQTiih5hh/iIvLA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29257678"
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29257678"
+ bh=rgdWjLCAsWDICAk8WcCYB+yo/wtl3ra7r8m7MBpFXLE=;
+ b=n5DVA5dZbkVEWtfIRxulVnvXmNbxnLr2hrUu+PW/aT1V6qRx0SOBxd23
+ olyziKyNWTD5vkW7x2DbJ+1hrpzN39G0jRjyPHoG/RXrvdcr8pUxBGQdj
+ eKGazCx6ld3cfEwGQsVdICPp99Bs3ud5KOPdY4xruSDgU0T4/ljhQbKOd
+ X3AedaRyMOGj9iyBHMW3gUIPzpmF+29bqMZvsJ+h3n3OfJgRTbyQBGpvn
+ 8oXc8jC6EgTk+Acq/v65ALIL8KkjMq58Vo76noO3+LwAzNNOLSWdCx3BR
+ Iz73yn2mtskp0vtf+rNMIT027YEHHxvH2m0Rpz5W+fLTncpf77nCmYfgR g==;
+X-CSE-ConnectionGUID: /Nhn1Wr1TFCIuNlXXs6rBQ==
+X-CSE-MsgGUID: yd2hc8olSZeHa3Q0T5KfTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29257686"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29257686"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 14:18:10 -0700
-X-CSE-ConnectionGUID: t8rhjofMSYauXbjBhDmysQ==
-X-CSE-MsgGUID: ULHYPp3fQi2KaO7nOSYnVw==
+ 21 Oct 2024 14:18:11 -0700
+X-CSE-ConnectionGUID: tqQFife7TDyk8EkrfPPUbw==
+X-CSE-MsgGUID: GZbL78PPS9uSjvmteDtI1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80469579"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80469598"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2024 14:18:10 -0700
@@ -46,14 +46,14 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: mika.kuoppala@intel.com, matthew.auld@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v5 1/9] drm/xe: Add xe_bo_vm_access
-Date: Mon, 21 Oct 2024 14:18:27 -0700
-Message-Id: <20241021211835.1675640-2-matthew.brost@intel.com>
+Subject: [PATCH v5 7/9] drm/xe: Use ttm_bo_access in
+ xe_vm_snapshot_capture_delayed
+Date: Mon, 21 Oct 2024 14:18:33 -0700
+Message-Id: <20241021211835.1675640-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241021211835.1675640-1-matthew.brost@intel.com>
 References: <20241021211835.1675640-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,47 +69,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_bo_vm_access which is wrapper around ttm_bo_vm_access which takes
-rpm refs for device access.
+Non-contiguous mapping of BO in VRAM doesn't work, use ttm_bo_access
+instead.
 
-Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+v2:
+ - Fix error handling
+
+Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 17 ++++++-----------
+ 1 file changed, 6 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5b232f2951b1..0261a8b29351 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1236,11 +1236,26 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c99380271de6..c8782da3a5c3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3303,7 +3303,6 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
  
-+static int xe_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
-+			   void *buf, int len, int write)
-+{
-+	struct ttm_buffer_object *ttm_bo = vma->vm_private_data;
-+	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
-+	struct xe_device *xe = xe_bo_device(bo);
-+	int ret;
-+
-+	xe_pm_runtime_get(xe);
-+	ret = ttm_bo_vm_access(vma, addr, buf, len, write);
-+	xe_pm_runtime_put(xe);
-+
-+	return ret;
-+}
-+
- static const struct vm_operations_struct xe_gem_vm_ops = {
- 	.fault = xe_gem_fault,
- 	.open = ttm_bo_vm_open,
- 	.close = ttm_bo_vm_close,
--	.access = ttm_bo_vm_access
-+	.access = xe_bo_vm_access,
- };
+ 	for (int i = 0; i < snap->num_snaps; i++) {
+ 		struct xe_bo *bo = snap->snap[i].bo;
+-		struct iosys_map src;
+ 		int err;
  
- static const struct drm_gem_object_funcs xe_gem_object_funcs = {
+ 		if (IS_ERR(snap->snap[i].data))
+@@ -3316,16 +3315,12 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
+ 		}
+ 
+ 		if (bo) {
+-			xe_bo_lock(bo, false);
+-			err = ttm_bo_vmap(&bo->ttm, &src);
+-			if (!err) {
+-				xe_map_memcpy_from(xe_bo_device(bo),
+-						   snap->snap[i].data,
+-						   &src, snap->snap[i].bo_ofs,
+-						   snap->snap[i].len);
+-				ttm_bo_vunmap(&bo->ttm, &src);
+-			}
+-			xe_bo_unlock(bo);
++			err = ttm_bo_access(&bo->ttm, snap->snap[i].bo_ofs,
++					    snap->snap[i].data, snap->snap[i].len, 0);
++			if (!(err < 0) && err != snap->snap[i].len)
++				err = -EIO;
++			else if (!(err < 0))
++				err = 0;
+ 		} else {
+ 			void __user *userptr = (void __user *)(size_t)snap->snap[i].bo_ofs;
+ 
 -- 
 2.34.1
 
