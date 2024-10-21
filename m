@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC5BD17144
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D14D9D17147
 	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 22:28:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E74810E5BF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8234F10E5CC;
 	Mon, 21 Oct 2024 22:28:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCLa4B/R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BxHpUhS/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 584CD10E5BC;
- Mon, 21 Oct 2024 22:28:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16FEC10E5C6;
+ Mon, 21 Oct 2024 22:28:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729549698; x=1761085698;
+ t=1729549693; x=1761085693;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=82pkxPbdqdDrqUVYQtV2U8WiNHQLIJYqYJ8Q9nd6CMg=;
- b=eCLa4B/RnEXye+YGjiCAxcTih0tiJhsrnf39wVaTQY7ERZwPBBgYzrwm
- h9c3JuBJ3x4aa6vMwBqKQDZ1yd1JDRrDNH2n48wqXx6U7CC3QCOvflEEE
- FXeZG8LPeXzwSAP2HcyHqbs87ynVXlGW7uXf+LMM38aLoTglp5/WvykB0
- mywZ6bBif/6qRik9V1NjD14LUj999SgmrxLZSF5Iq/168VI+Va2c2tukP
- R7BqR9oUdbuvpBx3LwC3Ia7q+E8a81WVKyNUoK9+AN8/wlxXKfQF9K4xe
- Id9IMg/11yy3dXPO2+UpS3sEcaVhmgFu7JdmAzPDSnJ/wZaIFhPMdhVBh Q==;
-X-CSE-ConnectionGUID: V7aBkTglRa6FKxt+GQzG1w==
-X-CSE-MsgGUID: 1tjzU/TEQQ+d2C1tHknwIw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934471"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934471"
+ bh=DRVMpHHqoBET8VW6+NAaMdJ7tt9qcPDJeuasLWUXWD8=;
+ b=BxHpUhS/jFFsczbre8wxM2raTnRW0NLfmMwJkrMf4j5WlD9cwwhg1/s3
+ alBisgr5WGm8O4CCsXeOlH+s4vnx9TDU4O41+azWPqa4z7T4Qmf+lNvjY
+ aPDzEJh6LHpQwlBy5trkm3uDOLXoo2fRuQLcfsG6VeI8L/tBbfBebJE1Q
+ 3zxiJnIjFY3M7tRcCTGbegVqwpbvYzBTstbvU5u0SbwoXSLVgPpAIjZxG
+ MBoFWGJKvUCKeAx7RDZ1AFIFygQL87N9mypPkiADZ8EEoM0P2WWc2MZmC
+ W6XwNQB0flR4zGGsaRiodkvi9YYllLrwgAHHc5k6HhpRuNDMBQy1LwzT+ A==;
+X-CSE-ConnectionGUID: T7MTT2aCQYKppr1ATSP0VQ==
+X-CSE-MsgGUID: 7ZbEJ6vFRyuJmWsbsqU9HA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934464"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934464"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:18 -0700
-X-CSE-ConnectionGUID: 4SqmUJ8LTe6XdUT1x920WA==
-X-CSE-MsgGUID: TOBj4N7LT/u/9oJZf7x71Q==
+ 21 Oct 2024 15:28:13 -0700
+X-CSE-ConnectionGUID: c/h20roKTOGyyI2I7vWlPw==
+X-CSE-MsgGUID: GF1JsfBpROidA8cq0Y3NpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009637"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009616"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO
  gjsousa-mobl2.intel.com) ([10.125.110.79])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:16 -0700
+ 21 Oct 2024 15:28:11 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 10/13] drm/i915/dmc_wl: Couple enable/disable with dynamic DC
- states
-Date: Mon, 21 Oct 2024 19:27:29 -0300
-Message-ID: <20241021222744.294371-11-gustavo.sousa@intel.com>
+Subject: [PATCH 07/13] drm/i915/dmc_wl: Check ranges specific to DC states
+Date: Mon, 21 Oct 2024 19:27:26 -0300
+Message-ID: <20241021222744.294371-8-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241021222744.294371-1-gustavo.sousa@intel.com>
 References: <20241021222744.294371-1-gustavo.sousa@intel.com>
@@ -70,109 +69,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enabling and disabling the DMC wakelock should be done as part of
-enabling and disabling of dynamic DC states, respectively. We should not
-enable or disable DMC wakelock independently of DC states, otherwise we
-would risk ending up with an inconsistent state where dynamic DC states
-are enabled and the DMC wakelock is disabled, going against current
-recommendations and making MMIO transactions potentially slower. In
-future display IPs that could have a worse outcome if DMC trap
-implementation is completely removed.
+There are extra registers that require the DMC wakelock when specific
+dynamic DC states are in place. Add the table ranges for them and use
+the correct table depending on the allowed DC states.
 
-So, let's make things safer by tying stuff together, removing the
-independent calls, and also put warnings in place to detect inconsistent
-calls.
-
+Bspec: 71583
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 5 ++++-
- drivers/gpu/drm/i915/display/intel_dmc.c                | 4 ----
- drivers/gpu/drm/i915/display/intel_dmc_wl.c             | 6 ++++--
- 3 files changed, 8 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 112 +++++++++++++++++++-
+ 1 file changed, 108 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index e8946ce86aaa..1a6c93170a5a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -981,6 +981,7 @@ void gen9_disable_dc_states(struct intel_display *display)
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct intel_cdclk_config cdclk_config = {};
-+	u32 old_state = power_domains->dc_state;
- 
- 	if (power_domains->target_dc_state == DC_STATE_EN_DC3CO) {
- 		tgl_disable_dc3co(display);
-@@ -996,7 +997,9 @@ void gen9_disable_dc_states(struct intel_display *display)
- 		return;
- 	}
- 
--	intel_dmc_wl_disable(display);
-+	if (old_state == DC_STATE_EN_UPTO_DC5 ||
-+	    old_state == DC_STATE_EN_UPTO_DC6)
-+		intel_dmc_wl_disable(display);
- 
- 	intel_cdclk_get_cdclk(display, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 48bbbf8f312c..f0b12c609884 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -632,8 +632,6 @@ void intel_dmc_disable_program(struct intel_display *display)
- 	pipedmc_clock_gating_wa(display, true);
- 	disable_all_event_handlers(display);
- 	pipedmc_clock_gating_wa(display, false);
--
--	intel_dmc_wl_disable(display);
- }
- 
- void assert_dmc_loaded(struct intel_display *display)
-@@ -1140,8 +1138,6 @@ void intel_dmc_suspend(struct intel_display *display)
- 	if (dmc)
- 		flush_work(&dmc->work);
- 
--	intel_dmc_wl_disable(display);
--
- 	/* Drop the reference held in case DMC isn't loaded. */
- 	if (!intel_dmc_has_payload(display))
- 		intel_dmc_runtime_pm_put(display);
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index e27c06b7c42f..8283b607aac4 100644
+index d597cc825f64..8bf2f32be859 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -271,6 +271,7 @@ void intel_dmc_wl_init(struct intel_display *display)
- 	refcount_set(&wl->refcount, 0);
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/kernel.h>
+ 
++#include "i915_reg.h"
+ #include "intel_de.h"
+ #include "intel_dmc.h"
+ #include "intel_dmc_regs.h"
+@@ -52,6 +53,87 @@ static struct intel_dmc_wl_range lnl_wl_range[] = {
+ 	{},
+ };
+ 
++static struct intel_dmc_wl_range xe3lpd_dc5_dc6_wl_ranges[] = {
++	{ .start = 0x45500, .end = 0x45500 }, /* DC_STATE_SEL */
++	{ .start = 0x457a0, .end = 0x457b0 }, /* DC*_RESIDENCY_COUNTER */
++	{ .start = 0x45504, .end = 0x45504 }, /* DC_STATE_EN */
++	{ .start = 0x45400, .end = 0x4540c }, /* PWR_WELL_CTL_* */
++	{ .start = 0x454f0, .end = 0x454f0 }, /* RETENTION_CTRL */
++
++	/* DBUF_CTL_* */
++	{ .start = 0x44300, .end = 0x44300 },
++	{ .start = 0x44304, .end = 0x44304 },
++	{ .start = 0x44f00, .end = 0x44f00 },
++	{ .start = 0x44f04, .end = 0x44f04 },
++	{ .start = 0x44fe8, .end = 0x44fe8 },
++	{ .start = 0x45008, .end = 0x45008 },
++
++	{ .start = 0x46070, .end = 0x46070 }, /* CDCLK_PLL_ENABLE */
++	{ .start = 0x46000, .end = 0x46000 }, /* CDCLK_CTL */
++	{ .start = 0x46008, .end = 0x46008 }, /* CDCLK_SQUASH_CTL */
++
++	/* TRANS_CMTG_CTL_* */
++	{ .start = 0x6fa88, .end = 0x6fa88 },
++	{ .start = 0x6fb88, .end = 0x6fb88 },
++
++	{ .start = 0x46430, .end = 0x46430 }, /* CHICKEN_DCPR_1 */
++	{ .start = 0x46434, .end = 0x46434 }, /* CHICKEN_DCPR_2 */
++	{ .start = 0x454a0, .end = 0x454a0 }, /* CHICKEN_DCPR_4 */
++	{ .start = 0x42084, .end = 0x42084 }, /* CHICKEN_MISC_2 */
++	{ .start = 0x42088, .end = 0x42088 }, /* CHICKEN_MISC_3 */
++	{ .start = 0x46160, .end = 0x46160 }, /* CMTG_CLK_SEL */
++	{ .start = 0x8f000, .end = 0x8ffff }, /* Main DMC registers */
++
++	{},
++};
++
++static struct intel_dmc_wl_range xe3lpd_dc3co_wl_ranges[] = {
++	{ .start = 0x454a0, .end = 0x454a0 }, /* CHICKEN_DCPR_4 */
++
++	{ .start = 0x45504, .end = 0x45504 }, /* DC_STATE_EN */
++
++	/* DBUF_CTL_* */
++	{ .start = 0x44300, .end = 0x44300 },
++	{ .start = 0x44304, .end = 0x44304 },
++	{ .start = 0x44f00, .end = 0x44f00 },
++	{ .start = 0x44f04, .end = 0x44f04 },
++	{ .start = 0x44fe8, .end = 0x44fe8 },
++	{ .start = 0x45008, .end = 0x45008 },
++
++	{ .start = 0x46070, .end = 0x46070 }, /* CDCLK_PLL_ENABLE */
++	{ .start = 0x46000, .end = 0x46000 }, /* CDCLK_CTL */
++	{ .start = 0x46008, .end = 0x46008 }, /* CDCLK_SQUASH_CTL */
++	{ .start = 0x8f000, .end = 0x8ffff }, /* Main DMC registers */
++
++	/* Scanline registers */
++	{ .start = 0x70000, .end = 0x70000 },
++	{ .start = 0x70004, .end = 0x70004 },
++	{ .start = 0x70014, .end = 0x70014 },
++	{ .start = 0x70018, .end = 0x70018 },
++	{ .start = 0x71000, .end = 0x71000 },
++	{ .start = 0x71004, .end = 0x71004 },
++	{ .start = 0x71014, .end = 0x71014 },
++	{ .start = 0x71018, .end = 0x71018 },
++	{ .start = 0x72000, .end = 0x72000 },
++	{ .start = 0x72004, .end = 0x72004 },
++	{ .start = 0x72014, .end = 0x72014 },
++	{ .start = 0x72018, .end = 0x72018 },
++	{ .start = 0x73000, .end = 0x73000 },
++	{ .start = 0x73004, .end = 0x73004 },
++	{ .start = 0x73014, .end = 0x73014 },
++	{ .start = 0x73018, .end = 0x73018 },
++	{ .start = 0x7b000, .end = 0x7b000 },
++	{ .start = 0x7b004, .end = 0x7b004 },
++	{ .start = 0x7b014, .end = 0x7b014 },
++	{ .start = 0x7b018, .end = 0x7b018 },
++	{ .start = 0x7c000, .end = 0x7c000 },
++	{ .start = 0x7c004, .end = 0x7c004 },
++	{ .start = 0x7c014, .end = 0x7c014 },
++	{ .start = 0x7c018, .end = 0x7c018 },
++
++	{},
++};
++
+ static void __intel_dmc_wl_release(struct intel_display *display)
+ {
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+@@ -106,9 +188,31 @@ static bool intel_dmc_wl_addr_in_range(u32 address,
+ 	return false;
  }
  
-+/* Must only be called as part of enabling dynamic DC states. */
- void intel_dmc_wl_enable(struct intel_display *display)
+-static bool intel_dmc_wl_check_range(u32 address)
++static bool intel_dmc_wl_check_range(struct intel_display *display, u32 address)
  {
- 	struct intel_dmc_wl *wl = &display->wl;
-@@ -281,7 +282,7 @@ void intel_dmc_wl_enable(struct intel_display *display)
- 
- 	spin_lock_irqsave(&wl->lock, flags);
- 
--	if (wl->enabled)
-+	if (drm_WARN_ON(display->drm, wl->enabled))
- 		goto out_unlock;
- 
- 	/*
-@@ -314,6 +315,7 @@ void intel_dmc_wl_enable(struct intel_display *display)
- 	spin_unlock_irqrestore(&wl->lock, flags);
+-	return intel_dmc_wl_addr_in_range(address, lnl_wl_range);
++	const struct intel_dmc_wl_range *ranges;
++
++	ranges = lnl_wl_range;
++
++	if (intel_dmc_wl_addr_in_range(address, ranges))
++		return true;
++
++	switch (display->power.domains.dc_state) {
++	case DC_STATE_EN_DC3CO:
++		ranges = xe3lpd_dc3co_wl_ranges;
++		break;
++	case DC_STATE_EN_UPTO_DC5:
++	case DC_STATE_EN_UPTO_DC6:
++		ranges = xe3lpd_dc5_dc6_wl_ranges;
++		break;
++	default:
++		ranges = NULL;
++	}
++
++	if (ranges && intel_dmc_wl_addr_in_range(address, ranges))
++		return true;
++
++	return false;
  }
  
-+/* Must only be called as part of disabling dynamic DC states. */
- void intel_dmc_wl_disable(struct intel_display *display)
- {
- 	struct intel_dmc_wl *wl = &display->wl;
-@@ -326,7 +328,7 @@ void intel_dmc_wl_disable(struct intel_display *display)
+ static bool __intel_dmc_wl_supported(struct intel_display *display)
+@@ -195,7 +299,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
+ 
+-	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg.reg))
++	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(display, reg.reg))
+ 		return;
  
  	spin_lock_irqsave(&wl->lock, flags);
+@@ -247,7 +351,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
  
--	if (!wl->enabled)
-+	if (drm_WARN_ON(display->drm, !wl->enabled))
- 		goto out_unlock;
+-	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg.reg))
++	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(display, reg.reg))
+ 		return;
  
- 	/* Disable wakelock in DMC */
+ 	spin_lock_irqsave(&wl->lock, flags);
 -- 
 2.47.0
 
