@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03DFAD15D8F
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5273ED15D89
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8C2710E4DC;
-	Mon, 21 Oct 2024 12:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E70210E4CD;
+	Mon, 21 Oct 2024 12:32:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GIQPX+Jq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XYYC19ks";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64DE10E4D9;
- Mon, 21 Oct 2024 12:32:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9CA310E4C4
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 12:32:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513943; x=1761049943;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Trc2GDZgC26B/VwFLJBZqvEAGDojhENcjsHN9bH3BzA=;
- b=GIQPX+JqNv1U03rDjatV8e8MA7KfV017lREIzC7NHR4K/a5nfOgRBNaO
- j0baj9Hxi9txHOGNnC0LbHGvraoXKMwfx6xIyZRMdq1MjQVTHMkJAiM/o
- 4x9ORGlb2QQmAZYgdL+exaMMXXPdHLYAh0zFuRq3/ddKU2EcfkpmkUqDS
- 5eoVzv+ZTR1FwFd1lJTK3eyLZk+pFFVUBtAe7tI9MpYX4toPoyjiJXT4u
- NZRwDaTbiQrjPjuvUefoPGQP5U5jinFul7ECbq5CEud8dHiuIEUgRWKj3
- EgDIZMspEMBuJAuzV9OX9rE8VpBZqhQ/rSCnQSjqcj6gjMu1AcgIfj/67 A==;
-X-CSE-ConnectionGUID: G2J3fYlMTUevkUl3RC36SQ==
-X-CSE-MsgGUID: zuhhP8qaRiSP+kkJhp79vA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459655"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459655"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:23 -0700
-X-CSE-ConnectionGUID: ujE7TWmWTMmw47pbmyHVmw==
-X-CSE-MsgGUID: uJhS6RScQJiBFynbrXebWw==
+ t=1729513965; x=1761049965;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=W4Z8HZkrXaM8eq3lid1rGGV0UFQA/2vlXg8ugoA0tbg=;
+ b=XYYC19ksq10dixXYp8KYU5/5dNfv5PrLkHjmqrml4+WbKsZnVbZrQpGG
+ f/f+LUs8411+f1/INRqxFBprxG7hEph+8T6V/CxHZnUa+uerhXqWEIgZf
+ 1ja+MaegpKKph0OWSGnh0sUvGEw4c9tlAeQeQSn7+kcBYH7d8RnQCJf1c
+ gfvHdvyVJCVDJtQabg+TnxlbNbR1pI0qjIpXaPMxaktfUPq5io8txHrJh
+ e3QxUEIUj7/CmXZCxqNLxedxhjZ1tTp0VftBkkYYCdVB7SpGUffKwmcJs
+ LAzX8u/0LteSWUQhVcySHicvfW1yoIz8c7h2dCBIHqqgUE8QjACdH49vg w==;
+X-CSE-ConnectionGUID: 4CWIFu/wQVKS56BAzLMSgQ==
+X-CSE-MsgGUID: XgxDgLoQTAKlZ0NsHPzJQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="51541412"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="51541412"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 05:32:44 -0700
+X-CSE-ConnectionGUID: 0kbijT5KSHiJ51sZOT8RFA==
+X-CSE-MsgGUID: PXjDxrciSPq6u2nQl52cJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866118"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:22 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	suraj.kandpal@intel.com
-Subject: [PATCH 15/16] drm/i915/display: Adjust Pipe SRC Width for Odd Pixels
-Date: Mon, 21 Oct 2024 18:04:13 +0530
-Message-ID: <20241021123414.3993899-16-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
-References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79460065"
+Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.222])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 05:32:43 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH v2] drm/xe/ufence: Kick ufence immediately when possible
+In-Reply-To: <20241017094237.279327-1-nirmoy.das@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241017094237.279327-1-nirmoy.das@intel.com>
+Date: Mon, 21 Oct 2024 15:32:39 +0300
+Message-ID: <87zfmxy6u0.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,69 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enhance the `intel_splitter_adjust_pipe_width` helper to account for
-both pixel replication and odd pixels. When the display width is
-divided among multiple pipes, extra pixels can make the pipe source
-width odd. Since hardware expects an even width, an extra pixel is
-added to each pipe to ensure even width.
+On Thu, 17 Oct 2024, Nirmoy Das <nirmoy.das@intel.com> wrote:
+> If the backing fence is signaled then signal ufence soon with
+> system_wq. This should reduce load from the xe ordered_wq and also
+> won't block signaling a ufence which doesn't require any serialization.
+>
+> v2: fix system_wq typo
+>
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1630
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> gc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_sync.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index c6cf227ead40..1a7907293088 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -89,10 +89,14 @@ static void user_fence_worker(struct work_struct *w)
+>  	user_fence_put(ufence);
+>  }
+>  
+> -static void kick_ufence(struct xe_user_fence *ufence, struct dma_fence *fence)
+> +static void kick_ufence(struct xe_user_fence *ufence, struct dma_fence *fence,
+> +			bool signaled)
+>  {
+>  	INIT_WORK(&ufence->worker, user_fence_worker);
+> -	queue_work(ufence->xe->ordered_wq, &ufence->worker);
+> +	if (signaled)
+> +		queue_work(system_wq, &ufence->worker);
 
-The splitter hardware will remove these extra pixels.
+Just sayin, that's the same as schedule_work(&ufence->worker);
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 22 +++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+> +	else
+> +		queue_work(ufence->xe->ordered_wq, &ufence->worker);
+>  	dma_fence_put(fence);
+>  }
+>  
+> @@ -100,7 +104,7 @@ static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
+>  {
+>  	struct xe_user_fence *ufence = container_of(cb, struct xe_user_fence, cb);
+>  
+> -	kick_ufence(ufence, fence);
+> +	kick_ufence(ufence, fence, false);
+>  }
+>  
+>  int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+> @@ -236,7 +240,7 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct dma_fence *fence)
+>  		err = dma_fence_add_callback(fence, &sync->ufence->cb,
+>  					     user_fence_cb);
+>  		if (err == -ENOENT) {
+> -			kick_ufence(sync->ufence, fence);
+> +			kick_ufence(sync->ufence, fence, true);
+>  		} else if (err) {
+>  			XE_WARN_ON("failed to add user fence");
+>  			user_fence_put(sync->ufence);
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ac4a5809efd6..5fe96c53d525 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2514,12 +2514,18 @@ void intel_encoder_get_config(struct intel_encoder *encoder,
- 	intel_crtc_readout_derived_state(crtc_state);
- }
- 
--static int intel_splitter_adjust_pipe_width(int width, int replicated_pixels)
-+static int intel_splitter_adjust_pipe_width(int width, int replicated_pixels,
-+					    bool has_odd_pixel, int num_pipes)
- {
--	/* Account for Pixel replication:
-+	/* Account for Pixel replication + Odd pixel:
- 	 * Pixel replication is required due to the rounding of slice_width (Hactive / slice_count).
- 	 *
--	 * Splitter HW takes care of these by removing replicated pixels from the last pipe.
-+	 * These extra pixels when added to the pipe source width, can make the pipe source width
-+	 * odd. Since HW expects the pipe source width to be even, therefore one extra pixel needs
-+	 * to be added to the pipe source width to make it even.
-+	 *
-+	 * Splitter HW takes care of these by removing odd pixel from each pipe and
-+	 * replicated pixels from the last pipe.
- 	 */
- 
- 	if (!replicated_pixels)
-@@ -2527,7 +2533,11 @@ static int intel_splitter_adjust_pipe_width(int width, int replicated_pixels)
- 
- 	width += replicated_pixels;
- 
--	return width;
-+	if (!has_odd_pixel)
-+		return width;
-+
-+	/* Account for one extra pixel for each pipe */
-+	return width + num_pipes;
- }
- 
- static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
-@@ -2539,7 +2549,9 @@ static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
- 		return;
- 
- 	width = intel_splitter_adjust_pipe_width(drm_rect_width(&crtc_state->pipe_src),
--						 crtc_state->dsc.replicated_pixels);
-+						 crtc_state->dsc.replicated_pixels,
-+						 crtc_state->dsc.has_odd_pixel,
-+						 num_pipes);
- 
- 	height = drm_rect_height(&crtc_state->pipe_src);
- 
 -- 
-2.45.2
-
+Jani Nikula, Intel
