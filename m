@@ -4,27 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 429B5D0E6EE
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:45:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FA82D0E6F0
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:48:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7DD710E472;
-	Mon, 21 Oct 2024 10:45:54 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92A3E10E472;
- Mon, 21 Oct 2024 10:45:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5532201627746223550=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0027710E489;
+	Mon, 21 Oct 2024 10:47:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lDSUheKL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 440F610E488;
+ Mon, 21 Oct 2024 10:47:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729507679; x=1761043679;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=SMjnTSr9VUwof+iEmcpuQvv4HwVDZQDp/zIe72N2lng=;
+ b=lDSUheKL+Rv4TgTjN2o/sHyXPqvm+LVgw6pTJ2a5zOZJWm8MglV3ufxG
+ Ub1sAWs1GnNcchTe2Lhtdq28u/RVB0JrgUpc/f+i7oMd6EduZy8IPzt/W
+ V3B4I1PwyYzfb/cCapzIoiBFL8fN3xheUkH0fm/GxSrpc+oi94Y+9zEXT
+ 98DBpT/YJKtwSup23waWaSjwHiurV5/QalXVt130atEOf64PuSC1p2UDH
+ KtUcG9IHgTx1FZUx8Ua+qD/bHieGFf0frnmL2ujM2DrZlyPRMGXHBEgJx
+ ZTGX3lnANyKxSRwSYYT95mOjNWPeqctOb79E280Z7xWYNEp3DMSv+3F2v g==;
+X-CSE-ConnectionGUID: GbcUvhjUR8Kk1joprIdmOw==
+X-CSE-MsgGUID: irYKSnjPSJCaCH2aw+AUXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="32790130"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="32790130"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 03:47:58 -0700
+X-CSE-ConnectionGUID: byBY8t8sQvej1lNomSCrIg==
+X-CSE-MsgGUID: CBSbkv8PT1uk8WECIH9HMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79645959"
+Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.246.239])
+ ([10.245.246.239])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 03:47:55 -0700
+Message-ID: <64aa70d30c25a95bce34c2eeff38dd3e23d48d17.camel@linux.intel.com>
+Subject: Re: [PATCH v3] locking/ww_mutex: Adjust to lockdep nest_lock
+ requirements
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Boqun Feng <boqun.feng@gmail.com>, Peter Zijlstra <peterz@infradead.org>
+Cc: intel-xe@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>, Will
+ Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Maarten
+ Lankhorst <maarten@lankhorst.se>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com
+Date: Mon, 21 Oct 2024 12:47:42 +0200
+In-Reply-To: <ZxE3t2ztVYo1ol9T@boqun-archlinux>
+References: <20241017151007.92215-1-thomas.hellstrom@linux.intel.com>
+ <ZxE3t2ztVYo1ol9T@boqun-archlinux>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Support_EU_online_debug_on_pagef?=
- =?utf-8?q?ault?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Oct 2024 10:45:53 -0000
-Message-ID: <172950755359.1304244.17350317808864060697@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,192 +74,227 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5532201627746223550==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: Support EU online debug on pagefault
-URL   : https://patchwork.freedesktop.org/series/140239/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2103-784111a40e40a37100e61736dd137c72cedbdb39_BAT -> xe-pw-140239v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140239v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-lnl-1:          [PASS][3] -> [FAIL][4] ([Intel XE#2754])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-atsm-2:         [SKIP][5] ([Intel XE#977]) -> [SKIP][6] ([Intel XE#2839] / [Intel XE#977])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#977]) -> [SKIP][8] ([Intel XE#2839] / [Intel XE#977])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
-    - bat-adlp-7:         [SKIP][9] ([Intel XE#977]) -> [SKIP][10] ([Intel XE#2839] / [Intel XE#977])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
-    - bat-dg2-oem2:       [SKIP][11] ([Intel XE#977]) -> [SKIP][12] ([Intel XE#2839] / [Intel XE#977])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-1:          [SKIP][13] ([Intel XE#2245]) -> [SKIP][14] ([Intel XE#2237] / [Intel XE#2245])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-    - bat-lnl-2:          [SKIP][15] ([Intel XE#977]) -> [SKIP][16] ([Intel XE#2237] / [Intel XE#977])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2237]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2237
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
-  [Intel XE#2839]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+On Thu, 2024-10-17 at 09:13 -0700, Boqun Feng wrote:
+> On Thu, Oct 17, 2024 at 05:10:07PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > When using mutex_acquire_nest() with a nest_lock, lockdep refcounts
+> > the
+> > number of acquired lockdep_maps of mutexes of the same class, and
+> > also
+> > keeps a pointer to the first acquired lockdep_map of a class. That
+> > pointer
+> > is then used for various comparison-, printing- and checking
+> > purposes,
+> > but there is no mechanism to actively ensure that lockdep_map stays
+> > in
+> > memory. Instead, a warning is printed if the lockdep_map is freed
+> > and
+> > there are still held locks of the same lock class, even if the
+> > lockdep_map
+> > itself has been released.
+> >=20
+> > In the context of WW/WD transactions that means that if a user
+> > unlocks
+> > and frees a ww_mutex from within an ongoing ww transaction, and
+> > that
+> > mutex happens to be the first ww_mutex grabbed in the transaction,
+> > such a warning is printed and there might be a risk of a UAF.
+> >=20
+> > Note that this is only problem when lockdep is enabled and affects
+> > only
+> > dereferences of struct lockdep_map.
+> >=20
+> > Adjust to this by adding a fake lockdep_map to the acquired context
+> > and
+> > make sure it is the first acquired lockdep map of the associated
+> > ww_mutex class. Then hold it for the duration of the WW/WD
+> > transaction.
+> >=20
+> > This has the side effect that trying to lock a ww mutex *without* a
+> > ww_acquire_context but where a such context has been acquire, we'd
+> > see
+> > a lockdep splat. The test-ww_mutex.c selftest attempts to do that,
+> > so
+> > modify that particular test to not acquire a ww_acquire_context if
+> > it
+> > is not going to be used.
+> >=20
+> > v2:
+> > - Lower the number of locks in the test-ww_mutex
+> > =C2=A0 stress(STRESS_ALL) test to accommodate the dummy lock
+> > =C2=A0 introduced in this patch without overflowing lockdep held lock
+> > =C2=A0 references.
+> >=20
+> > v3:
+> > - Adjust the ww_test_normal locking-api selftest to avoid
+> > =C2=A0 recursive locking (Boqun Feng)
+> > - Initialize the dummy lock map with LD_WAIT_SLEEP to agree with
+> > =C2=A0 how the corresponding ww_mutex lockmaps are initialized
+> > =C2=A0 (Boqun Feng)
+> >=20
+>=20
+> Thanks!
+>=20
+> > Cc: Peter Zijlstra <peterz@infradead.org>
+> > Cc: Ingo Molnar <mingo@redhat.com>
+> > Cc: Will Deacon <will@kernel.org>
+> > Cc: Waiman Long <longman@redhat.com>
+> > Cc: Boqun Feng <boqun.feng@gmail.com>
+> > Cc: Maarten Lankhorst <maarten@lankhorst.se>
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: linux-kernel@vger.kernel.org
+>=20
+> Feel free to use these tags if you need.
+>=20
+> Co-developed-by: Boqun Feng <boqun.feng@gmail.com>
+> Signed-off-by: Boqun Feng <boqun.feng@gmail.com>
+>=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Acked-by: maarten.lankhorst@linux.intel.com=C2=A0#v1
+>=20
+> Tested-by: Boqun Feng <boqun.feng@gmail.com>
 
 
-Build changes
--------------
+Peter, Can you add these 3 tags when picking, or do you want me to send
+a v4 with the tags included.
 
-  * Linux: xe-2103-784111a40e40a37100e61736dd137c72cedbdb39 -> xe-pw-140239v1
-
-  IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2103-784111a40e40a37100e61736dd137c72cedbdb39: 784111a40e40a37100e61736dd137c72cedbdb39
-  xe-pw-140239v1: 140239v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/index.html
-
---===============5532201627746223550==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks,
+Thomas
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
 
+>=20
+> Peter, since the v2 of this is actually picked in tip/locking/core, I
+> assume you are going to drop that pick this v3? Let me know how you
+> want
+> to proceed, since I have a PR based on tip/locking/core.
+>=20
+> Regards,
+> Boqun
+>=20
+> > ---
+> > =C2=A0include/linux/ww_mutex.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 14=
+ ++++++++++++++
+> > =C2=A0kernel/locking/test-ww_mutex.c |=C2=A0 8 +++++---
+> > =C2=A0lib/locking-selftest.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 4 ++--
+> > =C2=A03 files changed, 21 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/include/linux/ww_mutex.h b/include/linux/ww_mutex.h
+> > index bb763085479a..45ff6f7a872b 100644
+> > --- a/include/linux/ww_mutex.h
+> > +++ b/include/linux/ww_mutex.h
+> > @@ -65,6 +65,16 @@ struct ww_acquire_ctx {
+> > =C2=A0#endif
+> > =C2=A0#ifdef CONFIG_DEBUG_LOCK_ALLOC
+> > =C2=A0	struct lockdep_map dep_map;
+> > +	/**
+> > +	 * @first_lock_dep_map: fake lockdep_map for first locked
+> > ww_mutex.
+> > +	 *
+> > +	 * lockdep requires the lockdep_map for the first locked
+> > ww_mutex
+> > +	 * in a ww transaction to remain in memory until all
+> > ww_mutexes of
+> > +	 * the transaction have been unlocked. Ensure this by
+> > keeping a
+> > +	 * fake locked ww_mutex lockdep map between
+> > ww_acquire_init() and
+> > +	 * ww_acquire_fini().
+> > +	 */
+> > +	struct lockdep_map first_lock_dep_map;
+> > =C2=A0#endif
+> > =C2=A0#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+> > =C2=A0	unsigned int deadlock_inject_interval;
+> > @@ -146,7 +156,10 @@ static inline void ww_acquire_init(struct
+> > ww_acquire_ctx *ctx,
+> > =C2=A0	debug_check_no_locks_freed((void *)ctx, sizeof(*ctx));
+> > =C2=A0	lockdep_init_map(&ctx->dep_map, ww_class->acquire_name,
+> > =C2=A0			 &ww_class->acquire_key, 0);
+> > +	lockdep_init_map_wait(&ctx->first_lock_dep_map, ww_class-
+> > >mutex_name,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &ww_class->mutex_key, 0,
+> > LD_WAIT_SLEEP);
+> > =C2=A0	mutex_acquire(&ctx->dep_map, 0, 0, _RET_IP_);
+> > +	mutex_acquire_nest(&ctx->first_lock_dep_map, 0, 0, &ctx-
+> > >dep_map, _RET_IP_);
+> > =C2=A0#endif
+> > =C2=A0#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+> > =C2=A0	ctx->deadlock_inject_interval =3D 1;
+> > @@ -185,6 +198,7 @@ static inline void ww_acquire_done(struct
+> > ww_acquire_ctx *ctx)
+> > =C2=A0static inline void ww_acquire_fini(struct ww_acquire_ctx *ctx)
+> > =C2=A0{
+> > =C2=A0#ifdef CONFIG_DEBUG_LOCK_ALLOC
+> > +	mutex_release(&ctx->first_lock_dep_map, _THIS_IP_);
+> > =C2=A0	mutex_release(&ctx->dep_map, _THIS_IP_);
+> > =C2=A0#endif
+> > =C2=A0#ifdef DEBUG_WW_MUTEXES
+> > diff --git a/kernel/locking/test-ww_mutex.c b/kernel/locking/test-
+> > ww_mutex.c
+> > index 10a5736a21c2..5d58b2c0ef98 100644
+> > --- a/kernel/locking/test-ww_mutex.c
+> > +++ b/kernel/locking/test-ww_mutex.c
+> > @@ -62,7 +62,8 @@ static int __test_mutex(unsigned int flags)
+> > =C2=A0	int ret;
+> > =C2=A0
+> > =C2=A0	ww_mutex_init(&mtx.mutex, &ww_class);
+> > -	ww_acquire_init(&ctx, &ww_class);
+> > +	if (flags & TEST_MTX_CTX)
+> > +		ww_acquire_init(&ctx, &ww_class);
+> > =C2=A0
+> > =C2=A0	INIT_WORK_ONSTACK(&mtx.work, test_mutex_work);
+> > =C2=A0	init_completion(&mtx.ready);
+> > @@ -90,7 +91,8 @@ static int __test_mutex(unsigned int flags)
+> > =C2=A0		ret =3D wait_for_completion_timeout(&mtx.done,
+> > TIMEOUT);
+> > =C2=A0	}
+> > =C2=A0	ww_mutex_unlock(&mtx.mutex);
+> > -	ww_acquire_fini(&ctx);
+> > +	if (flags & TEST_MTX_CTX)
+> > +		ww_acquire_fini(&ctx);
+> > =C2=A0
+> > =C2=A0	if (ret) {
+> > =C2=A0		pr_err("%s(flags=3D%x): mutual exclusion failure\n",
+> > @@ -679,7 +681,7 @@ static int __init test_ww_mutex_init(void)
+> > =C2=A0	if (ret)
+> > =C2=A0		return ret;
+> > =C2=A0
+> > -	ret =3D stress(2047, hweight32(STRESS_ALL)*ncpus,
+> > STRESS_ALL);
+> > +	ret =3D stress(2046, hweight32(STRESS_ALL)*ncpus,
+> > STRESS_ALL);
+> > =C2=A0	if (ret)
+> > =C2=A0		return ret;
+> > =C2=A0
+> > diff --git a/lib/locking-selftest.c b/lib/locking-selftest.c
+> > index 6f6a5fc85b42..6750321e3e9a 100644
+> > --- a/lib/locking-selftest.c
+> > +++ b/lib/locking-selftest.c
+> > @@ -1720,8 +1720,6 @@ static void ww_test_normal(void)
+> > =C2=A0{
+> > =C2=A0	int ret;
+> > =C2=A0
+> > -	WWAI(&t);
+> > -
+> > =C2=A0	/*
+> > =C2=A0	 * None of the ww_mutex codepaths should be taken in the
+> > 'normal'
+> > =C2=A0	 * mutex calls. The easiest way to verify this is by using
+> > the
+> > @@ -1770,6 +1768,8 @@ static void ww_test_normal(void)
+> > =C2=A0	ww_mutex_base_unlock(&o.base);
+> > =C2=A0	WARN_ON(o.ctx !=3D (void *)~0UL);
+> > =C2=A0
+> > +	WWAI(&t);
+> > +
+> > =C2=A0	/* nest_lock */
+> > =C2=A0	o.ctx =3D (void *)~0UL;
+> > =C2=A0	ww_mutex_base_lock_nest_lock(&o.base, &t);
+> > --=20
+> > 2.46.0
+> >=20
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Support EU online debug on pagefault</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140239/">https://patchwork.freedesktop.org/series/140239/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2103-784111a40e40a37100e61736dd137c72cedbdb39_BAT -&gt; xe-pw-140239v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140239v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2237">Intel XE#2237</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140239v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2237">Intel XE#2237</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2103-784111a40e40a37100e61736dd137c72cedbdb39 -&gt; xe-pw-140239v1</li>
-</ul>
-<p>IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2103-784111a40e40a37100e61736dd137c72cedbdb39: 784111a40e40a37100e61736dd137c72cedbdb39<br />
-  xe-pw-140239v1: 140239v1</p>
-
-</body>
-</html>
-
---===============5532201627746223550==--
