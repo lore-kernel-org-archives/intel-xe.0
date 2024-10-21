@@ -4,54 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A6CD17136
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 20:14:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73DFED1712E
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 20:15:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32EB610E5A7;
-	Mon, 21 Oct 2024 20:14:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38E2A10E3CD;
+	Mon, 21 Oct 2024 20:15:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kb5nXyq2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MyvKNRVQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78FDD10E3CD;
- Mon, 21 Oct 2024 20:14:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6A8910E3CD
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 20:15:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729541684; x=1761077684;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VFeTNJiJ7lL3Wyx7JIq1pnfndPJQjcZDjNTMoynIz8U=;
- b=kb5nXyq2e6ZRqYNLKGcNFyeDh6VHxOIP8SBHUDknIBiz/onJ26BdYNeC
- gKlztKiyks3lcx3SkjiVysdBirb6C2hTgpyo0P01X6BOCmoQB9i2kNtH8
- VDLBTRAFI37WxryHkNhJHEhWBCKmwwSQNPJuTaYZlSE3C5CYSe2Y693/c
- cdUNGc5QS0KVGXR1hWNm3hQBg5FAkk4futCmYWYTykIxT2a5ird1SIsQ8
- nMWivIH/ZjXGXYyQSs/jwLwQfoRGvyGeZsmOA25XZHVY9QDdtyp7ailYN
- UeH2xR4l2MhMdAsbEnvdBE0HsOnX5AWXBqEtRh+EiQpeZTALkn9Wc847A g==;
-X-CSE-ConnectionGUID: qDX1KYBMTvKLXhvWELSMrA==
-X-CSE-MsgGUID: tsnCozmpQ/SVpRsxpeBwtg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40167481"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40167481"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 13:14:44 -0700
-X-CSE-ConnectionGUID: fSOrjTTzRWmE8exN17OYHg==
-X-CSE-MsgGUID: W1Ji1s4QTFWkDvoXuUb/tg==
+ t=1729541741; x=1761077741;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tvzqtbwriAKZvdyo6aQ5KuPLECp8DsaYCbNignRbkUY=;
+ b=MyvKNRVQgXPq78ccXFiD/pkH7oO6Db37Sbns1/0dL+XXCxJoMSaVYqsc
+ 3LFRQUVq6lE8kxuhKjeOPbKlkkKwXxlyYYp3CmoGvgPvMyQ9+NOdLXf4q
+ WUnZWy6Lyb8azfvJA/NTVJJfPybuu0FbWwZxg7WQ7frME+Xxq8PR1DJ7e
+ tjllBs4UXiWyzAI0c8EFM6T0xpwC1zTGb4/WS2Sm21w/CDA5AwabX2eq2
+ Npj3KRXyfx6Rsb1nc4vJYCrmq3iAF9f03PTmyRBeh8B8WWIg92q/zs5Tr
+ zn5A4YaczXQIoE7cWy89vKCKJHIp8gs7gkOrKwPqkVLs0cXwBXe4lHf84 g==;
+X-CSE-ConnectionGUID: unBzsK6OR3CTYIimSOzWKg==
+X-CSE-MsgGUID: wPjKwl69Qwunhz8RyBWOIQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29144512"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29144512"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 13:15:41 -0700
+X-CSE-ConnectionGUID: GKPISAvZT96O2SWkVQesPw==
+X-CSE-MsgGUID: d0dj18xpQCC4mWx2/7Og8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="110472047"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 13:14:44 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: mika.kuoppala@intel.com, matthew.auld@intel.com,
- thomas.hellstrom@linux.intel.com
-Subject: [PATCH v4 4/9] drm/xe: Take PM ref in delayed snapshot capture worker
-Date: Mon, 21 Oct 2024 13:15:04 -0700
-Message-Id: <20241021201509.1668074-5-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241021201509.1668074-1-matthew.brost@intel.com>
-References: <20241021201509.1668074-1-matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="110395920"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.97.255])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 13:15:40 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH] drm/xe/pf: Show VFs LMEM provisioning summary over debugfs
+Date: Mon, 21 Oct 2024 22:15:06 +0200
+Message-Id: <20241021201506.1771-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,50 +64,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The delayed snapshot capture worker can access the GPU or VRAM both of
-which require a PM reference. Take a reference in this worker.
+While we can already view individual VF LMEM provisioning using
+lmem_quota debugfs attribute, we want to have unified way to show
+summary across all VFs, like we do for GGTT or GuC doorbells/IDs.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Fixes: 4f04d07c0a94 ("drm/xe: Faster devcoredump")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  | 35 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h  |  1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  5 +++
+ 3 files changed, 41 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 8b0ea77661b2..956bf087d0db 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -23,6 +23,7 @@
- #include "xe_guc_submit.h"
- #include "xe_hw_engine.h"
- #include "xe_module.h"
-+#include "xe_pm.h"
- #include "xe_sched_job.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index a863e50b756e..062a0c2fd2cd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -2376,6 +2376,41 @@ int xe_gt_sriov_pf_config_print_dbs(struct xe_gt *gt, struct drm_printer *p)
+ 	return 0;
+ }
  
-@@ -158,8 +159,11 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- {
- 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
- 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
-+	struct xe_device *xe = coredump_to_xe(coredump);
- 	unsigned int fw_ref;
- 
-+	xe_pm_runtime_get(xe);
++/**
++ * xe_gt_sriov_pf_config_print_lmem - Print LMEM configurations.
++ * @gt: the &xe_gt
++ * @p: the &drm_printer
++ *
++ * Print LMEM allocations across all VFs.
++ * VFs without LMEM allocation are skipped.
++ *
++ * This function can only be called on PF.
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_print_lmem(struct xe_gt *gt, struct drm_printer *p)
++{
++	unsigned int n, total_vfs = xe_sriov_pf_get_totalvfs(gt_to_xe(gt));
++	const struct xe_gt_sriov_config *config;
++	char buf[10];
 +
- 	/* keep going if fw fails as we still want to save the memory and SW data */
- 	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
- 	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
-@@ -168,6 +172,8 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
- 	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
- 
-+	xe_pm_runtime_put(xe);
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
 +
- 	/* Calculate devcoredump size */
- 	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
++	for (n = 1; n <= total_vfs; n++) {
++		config = &gt->sriov.pf.vfs[n].config;
++		if (!config->lmem_obj)
++			continue;
++
++		string_get_size(config->lmem_obj->size, 1, STRING_UNITS_2,
++				buf, sizeof(buf));
++		drm_printf(p, "VF%u:\t%zu\t(%s)\n",
++			   n, config->lmem_obj->size, buf);
++	}
++
++	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
++	return 0;
++}
++
+ /**
+  * xe_gt_sriov_pf_config_print_available_ggtt - Print available GGTT ranges.
+  * @gt: the &xe_gt
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index b74ec38baa18..0c55aa40a1a7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -65,6 +65,7 @@ void xe_gt_sriov_pf_config_restart(struct xe_gt *gt);
+ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p);
+ int xe_gt_sriov_pf_config_print_ctxs(struct xe_gt *gt, struct drm_printer *p);
+ int xe_gt_sriov_pf_config_print_dbs(struct xe_gt *gt, struct drm_printer *p);
++int xe_gt_sriov_pf_config_print_lmem(struct xe_gt *gt, struct drm_printer *p);
  
+ int xe_gt_sriov_pf_config_print_available_ggtt(struct xe_gt *gt, struct drm_printer *p);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 91fc42e386d8..05df4ab3514b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -81,6 +81,11 @@ static const struct drm_info_list pf_info[] = {
+ 		.show = xe_gt_debugfs_simple_show,
+ 		.data = xe_gt_sriov_pf_config_print_dbs,
+ 	},
++	{
++		"lmem_provisioned",
++		.show = xe_gt_debugfs_simple_show,
++		.data = xe_gt_sriov_pf_config_print_lmem,
++	},
+ 	{
+ 		"runtime_registers",
+ 		.show = xe_gt_debugfs_simple_show,
 -- 
-2.34.1
+2.43.0
 
