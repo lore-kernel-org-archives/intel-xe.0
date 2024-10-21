@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201F8D0E6D9
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:00:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9A9CD0E6D8
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:00:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC1A210E47C;
-	Mon, 21 Oct 2024 10:00:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F89810E47D;
+	Mon, 21 Oct 2024 10:00:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fd6HtuQg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dPq4n6Sa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DBA110E47C
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 10:00:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2347210E471
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 10:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729504812; x=1761040812;
+ t=1729504815; x=1761040815;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5msx+My+dmig91rUncz8LnqspWoBfEqm3qU5m5/DePU=;
- b=Fd6HtuQg1PW3kpDirqJdgqUJ/CXbSOGe5BktIYqCJYVGkrqUXO1i1V/5
- PzetstuyoxiUTog5hFHloLtKzilZkLmlCUxR5JahnaokLoBlx4rx6zMH5
- epB7hD0cbZp78xVIa2a5f1iBGicJT/vVV6LemqcBS7ohpTDBYZie7d9Co
- 3vjUkIw5V1bdtXm+ZSGTEiJczlv5p6kATaetI6kQuLrkskwTioPCSNXOb
- xXdtKfrdUmhXA8L9JtOzQ64gnXLeaBEVuQgcdcbNX6Fki8MC56XO3iVQJ
- eeYZGV4S2vhjaoVu54sHpGBTPVkuStboa9MFGDv0zd5hL+YRcQvdQKVoJ A==;
-X-CSE-ConnectionGUID: wR4G/7r4QZ6jLYprQfvkBg==
-X-CSE-MsgGUID: YoyZKRXDSrmOhqwl/vm8+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="40350873"
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="40350873"
+ bh=3TnUhbR5kPfsQO63ppSiRsuKVGQB4AEZxbHwTGq+GJc=;
+ b=dPq4n6SaNdNa7ELVhdpsIeBYYV70O6CJ5JzdDQygHyESzk1ynQiKF+vO
+ WGnylg0HiiF12i35/Uxofhx7VJrzl139B+1k+0Y2uRLjlKYDXCMpftvm0
+ 2wgmHhltjmjt8zPsFrMB3GQR8jozSXLvnAHpqYuQ0gWTkasgHdzxHJaqn
+ hEszjGweU2pqgifaU7HnTFmE5TWGnH6B01O7xj3oFoAn1TBXd+CZypvDw
+ J/4ZIWW6uMrVPVBHLhVKEOs1+XN+4wMAfR3LVBWyOMCrj1quRCn4VT16o
+ XcpAvbsWgQcg+C+QHJVQZ0D3uDkNwMcsTI9BL339Ag04Kcf8BUlSWWetK Q==;
+X-CSE-ConnectionGUID: 6qflAseDTRCzt6hnqV+Xfw==
+X-CSE-MsgGUID: AUFNUIRtRNeF1Bqoea4XAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="40350877"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="40350877"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 03:00:11 -0700
-X-CSE-ConnectionGUID: tMKYVuG2Si+RqAlQdlJA3w==
-X-CSE-MsgGUID: Pzc6DuzaRIa9ynlOiUVtcQ==
+ 21 Oct 2024 03:00:15 -0700
+X-CSE-ConnectionGUID: /INmMl4XRvefZdcqsUhzEA==
+X-CSE-MsgGUID: OewiPABxSYCcyylxt15nmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="84546767"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="84546984"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO rapter.intel.com)
  ([10.245.246.221])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 03:00:08 -0700
+ 21 Oct 2024 03:00:11 -0700
 From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: nirmoy.das@intel.com, matthew.brost@intel.com, stuart.summers@intel.com,
  christoph.manszewski@intel.com, mika.kuoppala@linux.intel.com,
  dominik.grzegorzek@intel.com, andrzej.hajda@intel.com,
  maciej.patelczyk@intel.com
-Subject: [RFC 18/19] drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
-Date: Mon, 21 Oct 2024 12:58:57 +0300
-Message-ID: <20241021095904.439555-19-gwan-gyeong.mun@intel.com>
+Subject: [RFC 19/19] drm/xe/eudebug: Support EU online debug on pagefault
+Date: Mon, 21 Oct 2024 12:58:58 +0300
+Message-ID: <20241021095904.439555-20-gwan-gyeong.mun@intel.com>
 X-Mailer: git-send-email 2.46.1
 In-Reply-To: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
 References: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
@@ -71,233 +71,1058 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christoph Manszewski <christoph.manszewski@intel.com>
+When the EU debugger is connected, if a page fault occurs,
+the DRM_XE_EUDEBUG_EVENT_PAGEFAULT event is passed to the client
+connected to the debugger after handling the pagefault WA.
 
-Introduce kunit test for eudebug. For now it checks the dynamic
-application of WAs.
+The pagefault WA is a mechanism that allows a stalled EU thread to enter
+SIP mode by installing a temporary page in the page table for the ppgtt
+address where the pagefault occurred.
 
-v2: adapt to removal of call_for_each_device (Mika)
-v3: update to use changed xe_force_wake_get() failure handling (G.G.)
+The pagefault eudebug event passed to the client follows the newly added
+struct drm_xe_eudebug_event_pagefault type.
+When a pagefault occurs, it prevents to send the
+DRM_XE_EUDEBUG_EVENT_EU_ATTENTION event to the client during
+pagefault WA processing.
 
-Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+The page fault event delivery follows the below policy.
+(1) If EU Debugger discovery has been completed, pagefault handler delivers
+    pagefault event directly.
+(2) If a pagefault occurs during eu debugger discovery process, pagefault
+    handler queues a pagefault event and sends the queued event when
+    discovery is completed
+
+The thread where the pagefault occurred will be notified only once,
+for an event with the DRM_XE_EUDEBUG_EVENT_PAGEFAULT event type.
+
+Information about EU threads where a pagefault occurred is passed to the
+client only once for each event with the
+DRM_XE_EUDEBUG_EVENT_PAGEFAULT event type.
+Of course, if a pagefault occurs for a new thread, a new pagefault event
+will be passed to the client. It is also possible that a pagefault WA for
+multiple EU threads is processed and delivered for a single pagefault event
+
+The eu attention event is sent by the attention workqueue whenever the
+attention bit is turned on, and the eu attention event is also delivered
+to the client when the attention bit is turned on by a pagefault event.
+In this case, the pagefault event is always processed before
+the eu attention event.
+
+And when the client receives the eu attention event, the client can
+spot the thread where the page fault occurred as a previously
+delivered event, so it can spot that the attention bit is turned on by
+the breakpoint for threads other than the thread where the page fault
+occurred.
+
+Adding a temporary null page follows [1].
+
+A brief description of the page fault handling mechanism flow between KMD
+and the eu thread is as follows
+
+(1) EU Thread accesses unallocated memory
+(2) Pagefault occurs, EU Thread is stopped
+(3) XE kmd set an force EU Thread exception to allow the running EU Thread
+    to enter SIP mode (kmd set ForceException / ForceExternalHalt bit of
+    TD_CTL register)
+    EU Threads that are not stopped enter SIP mode
+(4) XE kmd installs temporary page at the address where pagefault occurred
+    of ppgtt pagetable
+(5) XE kmd replies Pagefault message to GUC
+(6) stopped EU Thread resumes when pagefault is resolved
+(7) resumed eu thread enters SIP mode due to force exception set by (3)
+
+[1] https://patchwork.freedesktop.org/patch/555097
+
 Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_eudebug.c       | 175 ++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   5 +
- drivers/gpu/drm/xe/xe_eudebug.c             |   4 +
- 3 files changed, 184 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
+ drivers/gpu/drm/xe/xe_eudebug.c       | 254 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h       |  17 ++
+ drivers/gpu/drm/xe/xe_eudebug_types.h |  66 ++++++
+ drivers/gpu/drm/xe/xe_gt_debug.c      |  48 +++++
+ drivers/gpu/drm/xe/xe_gt_debug.h      |  13 ++
+ drivers/gpu/drm/xe/xe_gt_pagefault.c  | 281 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c            |  21 ++
+ drivers/gpu/drm/xe/xe_vm.h            |   2 +
+ include/uapi/drm/xe_drm_eudebug.h     |  12 ++
+ 9 files changed, 706 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_eudebug.c b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-new file mode 100644
-index 000000000000..2a736d4afd76
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-@@ -0,0 +1,175 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <kunit/visibility.h>
-+
-+#include "tests/xe_kunit_helpers.h"
-+#include "tests/xe_pci_test.h"
-+#include "tests/xe_test.h"
-+
-+#undef XE_REG_MCR
-+#define XE_REG_MCR(r_, ...)	((const struct xe_reg_mcr){					\
-+				 .__reg = XE_REG_INITIALIZER(r_,  ##__VA_ARGS__, .mcr = 1)	\
-+				 })
-+
-+static const char *reg_to_str(struct xe_reg reg)
-+{
-+	if (reg.raw == TD_CTL.__reg.raw)
-+		return "TD_CTL";
-+	else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw)
-+		return "CS_DEBUG_MODE2";
-+	else if (reg.raw == ROW_CHICKEN.__reg.raw)
-+		return "ROW_CHICKEN";
-+	else if (reg.raw == ROW_CHICKEN2.__reg.raw)
-+		return "ROW_CHICKEN2";
-+	else if (reg.raw == ROW_CHICKEN3.__reg.raw)
-+		return "ROW_CHICKEN3";
-+	else
-+		return "UNKNOWN REG";
-+}
-+
-+static u32 get_reg_mask(struct xe_device *xe, struct xe_reg reg)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	u32 val = 0;
-+
-+	if (reg.raw == TD_CTL.__reg.raw) {
-+		val = TD_CTL_BREAKPOINT_ENABLE |
-+		      TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
-+		      TD_CTL_FEH_AND_FEE_ENABLE;
-+
-+		if (GRAPHICS_VERx100(xe) >= 1250)
-+			val |= TD_CTL_GLOBAL_DEBUG_ENABLE;
-+
-+	} else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw) {
-+		val = GLOBAL_DEBUG_ENABLE;
-+	} else if (reg.raw == ROW_CHICKEN.__reg.raw) {
-+		val = STALL_DOP_GATING_DISABLE;
-+	} else if (reg.raw == ROW_CHICKEN2.__reg.raw) {
-+		val = XEHPC_DISABLE_BTB;
-+	} else if (reg.raw == ROW_CHICKEN3.__reg.raw) {
-+		val = XE2_EUPEND_CHK_FLUSH_DIS;
-+	} else {
-+		kunit_warn(test, "Invalid register selection: %u\n", reg.raw);
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+index 5ec9dac9edd5..4538fa28e755 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.c
++++ b/drivers/gpu/drm/xe/xe_eudebug.c
+@@ -236,10 +236,17 @@ static void xe_eudebug_free(struct kref *ref)
+ {
+ 	struct xe_eudebug *d = container_of(ref, typeof(*d), ref);
+ 	struct xe_eudebug_event *event;
++	struct xe_eudebug_pagefault *pf, *pf_temp;
+ 
+ 	while (kfifo_get(&d->events.fifo, &event))
+ 		kfree(event);
+ 
++	/* Since it's the last reference no race here */
++	list_for_each_entry_safe(pf, pf_temp, &d->pagefaults, list) {
++		xe_exec_queue_put(pf->q);
++		kfree(pf);
 +	}
 +
-+	return val;
+ 	xe_eudebug_destroy_resources(d);
+ 	put_task_struct(d->target_task);
+ 
+@@ -590,6 +597,12 @@ xe_eudebug_get(struct xe_file *xef)
+ 	return d;
+ }
+ 
++struct xe_eudebug *
++xe_eudebug_get_for_debugger(struct xe_file *xef)
++{
++	return _xe_eudebug_get(xef);
 +}
 +
-+static u32 get_reg_expected(struct xe_device *xe, struct xe_reg reg, bool enable_eudebug)
-+{
-+	u32 reg_mask = get_reg_mask(xe, reg);
-+	u32 reg_bits = 0;
+ static int xe_eudebug_queue_event(struct xe_eudebug *d,
+ 				  struct xe_eudebug_event *event)
+ {
+@@ -1064,6 +1077,7 @@ static int do_eu_control(struct xe_eudebug *d,
+ 	struct xe_device *xe = d->xe;
+ 	u8 *bits = NULL;
+ 	unsigned int hw_attn_size, attn_size;
++	struct dma_fence *pagefault_fence;
+ 	struct xe_exec_queue *q;
+ 	struct xe_file *xef;
+ 	struct xe_lrc *lrc;
+@@ -1129,6 +1143,23 @@ static int do_eu_control(struct xe_eudebug *d,
+ 
+ 	ret = -EINVAL;
+ 	mutex_lock(&d->eu_lock);
++	rcu_read_lock();
++	pagefault_fence = dma_fence_get_rcu_safe(&d->pagefault_fence);
++	rcu_read_unlock();
 +
-+	if (enable_eudebug || reg.raw == ROW_CHICKEN3.__reg.raw)
-+		reg_bits = reg_mask;
-+	else
-+		reg_bits = 0;
++	while (pagefault_fence) {
++		mutex_unlock(&d->eu_lock);
++		ret = dma_fence_wait(pagefault_fence, true);
++		dma_fence_put(pagefault_fence);
 +
-+	return reg_bits;
-+}
++		if (ret)
++			goto out_free;
 +
-+static void check_reg(struct xe_gt *gt, bool enable_eudebug, struct xe_reg reg)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 reg_bits_expected = get_reg_expected(xe, reg, enable_eudebug);
-+	u32 reg_mask = get_reg_mask(xe, reg);
-+	u32 reg_bits = 0;
-+
-+	if (reg.mcr)
-+		reg_bits = xe_gt_mcr_unicast_read_any(gt, (struct xe_reg_mcr){.__reg = reg});
-+	else
-+		reg_bits = xe_mmio_read32(&gt->mmio, reg);
-+
-+	reg_bits &= reg_mask;
-+
-+	kunit_printk(KERN_DEBUG, test, "%s bits: expected == 0x%x; actual == 0x%x\n",
-+		     reg_to_str(reg), reg_bits_expected, reg_bits);
-+	KUNIT_EXPECT_EQ_MSG(test, reg_bits_expected, reg_bits,
-+			    "Invalid bits set for %s\n", reg_to_str(reg));
-+}
-+
-+static void __check_regs(struct xe_gt *gt, bool enable_eudebug)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (GRAPHICS_VERx100(xe) >= 1200)
-+		check_reg(gt, enable_eudebug, TD_CTL.__reg);
-+
-+	if (GRAPHICS_VERx100(xe) >= 1250 && GRAPHICS_VERx100(xe) <= 1274)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN.__reg);
-+
-+	if (xe->info.platform == XE_PVC)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN2.__reg);
-+
-+	if (GRAPHICS_VERx100(xe) >= 2000 && GRAPHICS_VERx100(xe) <= 2004)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN3.__reg);
-+}
-+
-+static void check_regs(struct xe_device *xe, bool enable_eudebug)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	unsigned int fw_ref;
-+	struct xe_gt *gt;
-+	u8 id;
-+
-+	kunit_printk(KERN_DEBUG, test, "Check regs for eudebug %s\n",
-+		     enable_eudebug ? "enabled" : "disabled");
-+
-+	xe_pm_runtime_get(xe);
-+	for_each_gt(gt, xe, id) {
-+		if (xe_gt_is_media_type(gt))
-+			continue;
-+
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_RENDER);
-+		KUNIT_ASSERT_NE_MSG(test, fw_ref, 0, "Forcewake failed.\n");
-+
-+		__check_regs(gt, enable_eudebug);
-+
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++		mutex_lock(&d->eu_lock);
++		rcu_read_lock();
++		pagefault_fence = dma_fence_get_rcu_safe(&d->pagefault_fence);
++		rcu_read_unlock();
 +	}
-+	xe_pm_runtime_put(xe);
+ 
+ 	switch (arg->cmd) {
+ 	case DRM_XE_EUDEBUG_EU_CONTROL_CMD_INTERRUPT_ALL:
+@@ -2008,6 +2039,8 @@ xe_eudebug_connect(struct xe_device *xe,
+ 	kref_init(&d->ref);
+ 	spin_lock_init(&d->connection.lock);
+ 	mutex_init(&d->eu_lock);
++	mutex_init(&d->pf_lock);
++	INIT_LIST_HEAD(&d->pagefaults);
+ 	init_waitqueue_head(&d->events.write_done);
+ 	init_waitqueue_head(&d->events.read_done);
+ 	init_completion(&d->discovery);
+@@ -3359,6 +3392,8 @@ static void discover_clients(struct xe_device *xe, struct xe_eudebug *d)
+ 	}
+ }
+ 
++static int xe_eudebug_handle_pagefault_list(struct xe_eudebug *d);
++
+ static void discovery_work_fn(struct work_struct *work)
+ {
+ 	struct xe_eudebug *d = container_of(work, typeof(*d),
+@@ -3383,6 +3418,8 @@ static void discovery_work_fn(struct work_struct *work)
+ 
+ 	up_write(&xe->eudebug.discovery_lock);
+ 
++	xe_eudebug_handle_pagefault_list(d);
++
+ 	xe_eudebug_put(d);
+ }
+ 
+@@ -3888,6 +3925,223 @@ xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg)
+ 	return ret;
+ }
+ 
++struct xe_exec_queue *
++xe_eudebug_runalone_active_debuggable_queue_get(struct xe_gt *gt, int *lrc_idx)
++{
++	struct xe_exec_queue *q;
++	int idx;
++
++	q = runalone_active_queue_get(gt, &idx);
++	if (IS_ERR(q))
++		return q;
++
++	if (!xe_exec_queue_is_debuggable(q)) {
++		xe_exec_queue_put(q);
++		return ERR_PTR(-EPERM);
++	}
++
++	*lrc_idx = idx;
++
++	return q;
 +}
 +
-+static int toggle_reg_value(struct xe_device *xe)
++void xe_eudebug_attention_scan_pause(struct xe_gt *gt)
 +{
-+	struct kunit *test = kunit_get_current_test();
-+	bool enable_eudebug = xe->eudebug.enable;
++	attention_scan_cancel(gt_to_xe(gt));
++}
 +
-+	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
-+		     GRAPHICS_VERx100(xe));
++void xe_eudebug_attention_scan_resume(struct xe_gt *gt)
++{
++	attention_scan_flush(gt_to_xe(gt));
++}
 +
-+	check_regs(xe, enable_eudebug);
++static int send_pagefault_event(struct xe_eudebug *d, struct xe_eudebug_pagefault *pf)
++{
++	struct xe_eudebug_event_pagefault *ep;
++	struct xe_eudebug_event *event;
++	int h_c, h_queue, h_lrc;
++	u32 size = xe_gt_eu_attention_bitmap_size(pf->q->gt) * 3;
++	u32 sz = struct_size(ep, bitmask, size);
 +
-+	xe_eudebug_enable(xe, !enable_eudebug);
-+	check_regs(xe, !enable_eudebug);
++	XE_WARN_ON(pf->lrc_idx < 0 || pf->lrc_idx >= pf->q->width);
 +
-+	xe_eudebug_enable(xe, enable_eudebug);
-+	check_regs(xe, enable_eudebug);
++	XE_WARN_ON(!xe_exec_queue_is_debuggable(pf->q));
++
++	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, pf->q->vm->xef);
++	if (h_c < 0)
++		return h_c;
++
++	h_queue = find_handle(d->res, XE_EUDEBUG_RES_TYPE_EXEC_QUEUE, pf->q);
++	if (h_queue < 0)
++		return h_queue;
++
++	h_lrc = find_handle(d->res, XE_EUDEBUG_RES_TYPE_LRC, pf->q->lrc[pf->lrc_idx]);
++	if (h_lrc < 0)
++		return h_lrc;
++
++	event = __xe_eudebug_create_event(d, 0, DRM_XE_EUDEBUG_EVENT_PAGEFAULT,
++					  0, sz, GFP_KERNEL);
++
++	if (!event)
++		return -ENOSPC;
++
++	ep = cast_event(ep, event);
++	write_member(struct xe_eudebug_event_pagefault, ep, client_handle, (u64)h_c);
++	write_member(struct xe_eudebug_event_pagefault, ep, exec_queue_handle, (u64)h_queue);
++	write_member(struct xe_eudebug_event_pagefault, ep, lrc_handle, (u64)h_lrc);
++	write_member(struct xe_eudebug_event_pagefault, ep, bitmask_size, size);
++	write_member(struct xe_eudebug_event_pagefault, ep, page_fault_address, pf->fault.addr);
++
++	memcpy(ep->bitmask, pf->attentions.before.att, pf->attentions.before.size);
++	memcpy(ep->bitmask + pf->attentions.before.size,
++	       pf->attentions.after.att, pf->attentions.after.size);
++	memcpy(ep->bitmask + pf->attentions.before.size + pf->attentions.after.size,
++	       pf->attentions.resolved.att, pf->attentions.resolved.size);
++
++	event->seqno = atomic_long_inc_return(&d->events.seqno);
++
++	return xe_eudebug_queue_event(d, event);
++}
++
++static int xe_eudebug_queue_page_fault(struct xe_gt *gt, struct xe_eudebug_pagefault *pf)
++{
++	struct xe_eudebug *d;
++	struct xe_exec_queue *q;
++	int ret, lrc_idx;
++
++	if (list_empty_careful(&gt_to_xe(gt)->eudebug.list))
++		return -ENOTCONN;
++
++	q = runalone_active_queue_get(gt, &lrc_idx);
++	if (IS_ERR(q))
++		return PTR_ERR(q);
++
++	if (!xe_exec_queue_is_debuggable(q)) {
++		ret = -EPERM;
++		goto out_exec_queue_put;
++	}
++
++	d = _xe_eudebug_get(q->vm->xef);
++	if (!d) {
++		ret = -ENOTCONN;
++		goto out_exec_queue_put;
++	}
++
++	if (!completion_done(&d->discovery)) {
++		eu_dbg(d, "discovery not yet done\n");
++		ret = -EBUSY;
++		goto out_eudebug_put;
++	}
++
++	ret = send_pagefault_event(d, pf);
++	if (ret)
++		xe_eudebug_disconnect(d, ret);
++
++out_eudebug_put:
++	xe_eudebug_put(d);
++out_exec_queue_put:
++	xe_exec_queue_put(q);
++
++	return ret;
++}
++
++static int xe_eudebug_add_pagefault_list(struct xe_gt *gt, struct xe_eudebug_pagefault *pf)
++{
++	struct xe_eudebug *d;
++
++	if (list_empty_careful(&gt_to_xe(gt)->eudebug.list))
++		return -ENOTCONN;
++
++	d = _xe_eudebug_get(pf->q->vm->xef);
++	if (IS_ERR_OR_NULL(d))
++		return -EINVAL;
++
++	mutex_lock(&d->pf_lock);
++	list_add_tail(&pf->list, &d->pagefaults);
++	mutex_unlock(&d->pf_lock);
++
++	xe_eudebug_put(d);
 +
 +	return 0;
 +}
 +
-+static void xe_eudebug_toggle_reg_kunit(struct kunit *test)
++static int xe_eudebug_handle_pagefault_list(struct xe_eudebug *d)
 +{
-+	struct xe_device *xe = test->priv;
++	struct xe_eudebug_pagefault *pf, *pf_temp;
++	int ret = 0;
 +
-+	toggle_reg_value(xe);
++	mutex_lock(&d->pf_lock);
++	list_for_each_entry_safe(pf, pf_temp, &d->pagefaults, list) {
++		struct xe_gt *gt =pf->q->gt;
++
++		ret = xe_eudebug_queue_page_fault(gt, pf);
++		/* decrease the reference count of xe_exec_queue obtained from pagefault handler */
++		xe_exec_queue_put(pf->q);
++		list_del(&pf->list);
++		kfree(pf);
++
++		if (ret)
++			break;
++	}
++	mutex_unlock(&d->pf_lock);
++
++	return ret;
 +}
 +
-+static struct kunit_case xe_eudebug_tests[] = {
-+	KUNIT_CASE_PARAM(xe_eudebug_toggle_reg_kunit,
-+			 xe_pci_live_device_gen_param),
-+	{}
++int xe_eudebug_handle_page_fault(struct xe_gt *gt, struct xe_eudebug_pagefault *pf)
++{
++	int ret;
++
++	ret = xe_eudebug_queue_page_fault(gt, pf);
++
++	/* if debugger discovery is not completed, queue pagefault */
++	if (ret == -EBUSY) {
++		ret = xe_eudebug_add_pagefault_list(gt, pf);
++		if (!ret)
++			goto out;
++	}
++
++	xe_exec_queue_put(pf->q);
++	kfree(pf);
++
++out:
++	return ret;
++}
++
++static const char *
++eudebug_pagefault_get_driver_name(struct dma_fence *dma_fence)
++{
++	return "xe";
++}
++
++static const char *
++eudebug_pagefault_fence_get_timeline_name(struct dma_fence *dma_fence)
++{
++	return "eudebug_pagefault_fence";
++}
++
++static const struct dma_fence_ops eudebug_pagefault_fence_ops = {
++	.get_driver_name = eudebug_pagefault_get_driver_name,
++	.get_timeline_name = eudebug_pagefault_fence_get_timeline_name,
 +};
 +
-+VISIBLE_IF_KUNIT
-+struct kunit_suite xe_eudebug_test_suite = {
-+	.name = "xe_eudebug",
-+	.test_cases = xe_eudebug_tests,
-+	.init = xe_kunit_helper_xe_device_live_test_init,
-+};
-+EXPORT_SYMBOL_IF_KUNIT(xe_eudebug_test_suite);
-diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-index 5f14737c8210..7dd8a0a4bdfd 100644
---- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-+++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-@@ -15,6 +15,11 @@ kunit_test_suite(xe_dma_buf_test_suite);
- kunit_test_suite(xe_migrate_test_suite);
- kunit_test_suite(xe_mocs_test_suite);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-+extern struct kunit_suite xe_eudebug_test_suite;
-+kunit_test_suite(xe_eudebug_test_suite);
-+#endif
++struct xe_eudebug_pagefault_fence *
++xe_eudebug_pagefault_fence_create(void)
++{
++	struct xe_eudebug_pagefault_fence *fence;
 +
- MODULE_AUTHOR("Intel Corporation");
- MODULE_LICENSE("GPL");
- MODULE_DESCRIPTION("xe live kunit tests");
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index a24b6e553383..5ec9dac9edd5 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -3887,3 +3887,7 @@ xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg)
++	fence = kzalloc(sizeof(*fence), GFP_KERNEL);
++	if (fence == NULL)
++		return NULL;
++
++	spin_lock_init(&fence->lock);
++	dma_fence_init(&fence->base, &eudebug_pagefault_fence_ops,
++		       &fence->lock,
++		       dma_fence_context_alloc(1), 1);
++
++	return fence;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_eudebug.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
+index 403f52148da3..0a969cf8e515 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.h
++++ b/drivers/gpu/drm/xe/xe_eudebug.h
+@@ -11,6 +11,7 @@ struct drm_device;
+ struct drm_file;
+ struct xe_device;
+ struct xe_file;
++struct xe_gt;
+ struct xe_vm;
+ struct xe_vma;
+ struct xe_exec_queue;
+@@ -18,6 +19,8 @@ struct xe_hw_engine;
+ struct xe_user_fence;
+ struct xe_debug_metadata;
+ struct drm_gpuva_ops;
++struct xe_eudebug_pagefault;
++struct xe_eudebug_pagefault_fence;
  
+ #if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
+ 
+@@ -48,11 +51,18 @@ void xe_eudebug_ufence_init(struct xe_user_fence *ufence, struct xe_file *xef, s
+ void xe_eudebug_ufence_fini(struct xe_user_fence *ufence);
+ 
+ struct xe_eudebug *xe_eudebug_get(struct xe_file *xef);
++struct xe_eudebug *xe_eudebug_get_for_debugger(struct xe_file *xef);
+ void xe_eudebug_put(struct xe_eudebug *d);
+ 
+ void xe_eudebug_debug_metadata_create(struct xe_file *xef, struct xe_debug_metadata *m);
+ void xe_eudebug_debug_metadata_destroy(struct xe_file *xef, struct xe_debug_metadata *m);
+ 
++struct xe_exec_queue *xe_eudebug_runalone_active_debuggable_queue_get(struct xe_gt *gt, int *lrc_idx);
++void xe_eudebug_attention_scan_pause(struct xe_gt *gt);
++void xe_eudebug_attention_scan_resume(struct xe_gt *gt);
++int xe_eudebug_handle_page_fault(struct xe_gt *gt, struct xe_eudebug_pagefault *d_pf);
++struct xe_eudebug_pagefault_fence *xe_eudebug_pagefault_fence_create(void);
++
+ #else
+ 
+ static inline int xe_eudebug_connect_ioctl(struct drm_device *dev,
+@@ -83,11 +93,18 @@ static inline void xe_eudebug_ufence_init(struct xe_user_fence *ufence, struct x
+ static inline void xe_eudebug_ufence_fini(struct xe_user_fence *ufence) { }
+ 
+ static inline struct xe_eudebug *xe_eudebug_get(struct xe_file *xef) { return NULL; }
++static inline struct xe_eudebug *xe_eudebug_get_for_debugger(struct xe_file *xef) { return NULL; }
+ static inline void xe_eudebug_put(struct xe_eudebug *d) { }
+ 
+ static inline void xe_eudebug_debug_metadata_create(struct xe_file *xef, struct xe_debug_metadata *m) { }
+ static inline void xe_eudebug_debug_metadata_destroy(struct xe_file *xef, struct xe_debug_metadata *m) { }
+ 
++static inline struct xe_exec_queue *xe_eudebug_runalone_active_debuggable_queue_get(struct xe_gt *gt, int *lrc_idx) { return NULL; }
++static inline void xe_eudebug_attention_scan_pause(struct xe_gt *gt) { }
++static inline void xe_eudebug_attention_scan_resume(struct xe_gt *gt) { }
++static inline int xe_eudebug_handle_page_fault(struct xe_gt *gt, struct xe_eudebug_pagefault *d_pf) { return 0; }
++static inline struct xe_eudebug_pagefault_fence *xe_eudebug_pagefault_fence_create(void) { return NULL; }
++
+ #endif /* CONFIG_DRM_XE_EUDEBUG */
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
+index b79d4c078216..7c05abf19f26 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug_types.h
++++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
+@@ -16,6 +16,8 @@
+ 
+ #include <uapi/drm/xe_drm.h>
+ 
++#include "xe_gt_debug.h"
++
+ struct xe_device;
+ struct task_struct;
+ struct xe_eudebug;
+@@ -161,6 +163,10 @@ struct xe_eudebug {
+ 
+ 	/** @ops operations for eu_control */
+ 	struct xe_eudebug_eu_control_ops *ops;
++
++	struct mutex pf_lock;
++	struct list_head pagefaults;
++	struct dma_fence __rcu *pagefault_fence;
+ };
+ 
+ /**
+@@ -325,4 +331,64 @@ struct xe_eudebug_event_vm_bind_op_metadata {
+ 	u64 metadata_cookie;
+ };
+ 
++/**
++ * struct xe_eudebug_event_pagefault - Internal event for EU Pagefault
++ */
++struct xe_eudebug_event_pagefault {
++	/** @base: base event */
++	struct xe_eudebug_event base;
++
++	/** @client_handle: client for the Pagefault */
++	u64 client_handle;
++
++	/** @exec_queue_handle: handle of exec_queue which raised Pagefault */
++	u64 exec_queue_handle;
++
++	/** @lrc_handle: lrc handle of the workload which raised Pagefault */
++	u64 lrc_handle;
++
++	/** @flags: eu Pagefault event flags, currently MBZ */
++	u32 flags;
++
++	/**
++	 * @bitmask_size: sum of size before/after/resolved att bits.
++	 * It has three times the size of xe_eudebug_event_eu_attention.bitmask_size.
++	 */
++	u32 bitmask_size;
++
++	/** @page_fault_address: The ppgtt address where the Pagefault occurred */
++	u64 page_fault_address;
++
++	/**
++	 * @bitmask: Bitmask of thread attentions starting from natural,
++	 * hardware order of DSS=0, eu=0, 8 attention bits per eu.
++	 * The order of the bitmask array is before, after, resolved.
++	 */
++	u8 bitmask[];
++};
++
++struct xe_eudebug_pagefault {
++	struct list_head list;
++	struct xe_exec_queue *q;
++	int lrc_idx;
++
++	struct {
++		u64 addr;
++		int type;
++		int level;
++		int access;
++	} fault;
++
++	struct {
++		struct xe_eu_attentions before;
++		struct xe_eu_attentions after;
++		struct xe_eu_attentions resolved;
++	} attentions;
++};
++
++struct xe_eudebug_pagefault_fence {
++	struct dma_fence base;
++	spinlock_t lock;
++};
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug.c b/drivers/gpu/drm/xe/xe_gt_debug.c
+index 25013e902cbe..07bb0364abf8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debug.c
++++ b/drivers/gpu/drm/xe/xe_gt_debug.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
++#include <linux/delay.h>
+ #include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+@@ -149,3 +150,50 @@ int xe_gt_eu_threads_needing_attention(struct xe_gt *gt)
+ 
+ 	return err < 0 ? 0 : err;
+ }
++
++static inline unsigned int
++xe_eu_attentions_count(const struct xe_eu_attentions *a)
++{
++	return bitmap_weight((void *)a->att, a->size * BITS_PER_BYTE);
++}
++
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms)
++{
++	unsigned int prev = 0;
++	ktime_t end, now;
++
++	now = ktime_get_raw();
++	end = ktime_add_ms(now, settle_time_ms);
++
++	a->ts = 0;
++	a->size = min_t(int,
++			xe_gt_eu_attention_bitmap_size(gt),
++			sizeof(a->att));
++
++	do {
++		unsigned int attn;
++
++		xe_gt_eu_attention_bitmap(gt, a->att, a->size);
++		attn = xe_eu_attentions_count(a);
++
++		now = ktime_get_raw();
++
++		if (a->ts == 0)
++			a->ts = now;
++		else if (attn && attn != prev)
++			a->ts = now;
++
++		prev = attn;
++
++		if (settle_time_ms)
++			udelay(5);
++
++		/*
++		 * XXX We are gathering data for production SIP to find
++		 * the upper limit of settle time. For now, we wait full
++		 * timeout value regardless.
++		 */
++	} while (ktime_before(now, end));
++}
+\ No newline at end of file
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug.h b/drivers/gpu/drm/xe/xe_gt_debug.h
+index 342082699ff6..3123c15775bc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debug.h
++++ b/drivers/gpu/drm/xe/xe_gt_debug.h
+@@ -12,6 +12,15 @@
+ 
+ #define XE_GT_ATTENTION_TIMEOUT_MS 100
+ 
++struct xe_eu_attentions {
++#define XE_MAX_EUS 1024
++#define XE_MAX_THREADS 8
++
++	u8 att[XE_MAX_EUS * XE_MAX_THREADS / BITS_PER_BYTE];
++	unsigned int size;
++	ktime_t ts;
++};
++
+ int xe_gt_eu_threads_needing_attention(struct xe_gt *gt);
+ int xe_gt_foreach_dss_group_instance(struct xe_gt *gt,
+ 				     int (*fn)(struct xe_gt *gt,
+@@ -24,4 +33,8 @@ int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt);
+ int xe_gt_eu_attention_bitmap(struct xe_gt *gt, u8 *bits,
+ 			      unsigned int bitmap_size);
+ 
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 79c426dc2505..aa3e2f1b0b43 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -7,14 +7,23 @@
+ 
+ #include <linux/bitfield.h>
+ #include <linux/circ_buf.h>
++#include <linux/delay.h>
++#include <linux/dma-fence.h>
+ 
+ #include <drm/drm_exec.h>
+ #include <drm/drm_managed.h>
+ #include <drm/ttm/ttm_execbuf_util.h>
+ 
+ #include "abi/guc_actions_abi.h"
++#include "regs/xe_gt_regs.h"
+ #include "xe_bo.h"
++#include "xe_exec_queue.h"
++#include "xe_eudebug.h"
++#include "xe_eudebug_types.h"
++#include "xe_force_wake.h"
+ #include "xe_gt.h"
++#include "xe_gt_debug.h"
++#include "xe_gt_mcr.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+@@ -200,12 +209,206 @@ static struct xe_vm *asid_to_vm(struct xe_device *xe, u32 asid)
+ 	return vm;
+ }
+ 
+-static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
++static struct xe_eudebug_pagefault *
++get_eudebug_pagefault(struct xe_gt *gt, struct xe_vm *vm, struct pagefault *pf)
+ {
+-	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_eudebug_pagefault_fence *pagefault_fence;
++	struct xe_eudebug_pagefault *eudebug_pagefault;
++	struct xe_vma *vma = NULL;
++	struct xe_exec_queue *q;
++	struct dma_fence *fence;
++	struct xe_eudebug *d;
++	unsigned int fw_ref;
++	int lrc_idx;
++	u32 td_ctl;
++
++	down_read(&vm->lock);
++	vma = lookup_vma(vm, pf->page_addr);
++	up_read(&vm->lock);
++
++	if (vma)
++		return NULL;
++
++	d = xe_eudebug_get_for_debugger(vm->xef);
++	if (!d)
++		return NULL;
++
++	q = xe_eudebug_runalone_active_debuggable_queue_get(gt, &lrc_idx);
++	if (IS_ERR(q))
++		goto err_put_eudebug;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), q->hwe->domain);
++	if (!fw_ref)
++		goto err_put_exec_queue;
++
++	/*
++	 * If there is no debug functionality (TD_CTL_GLOBAL_DEBUG_ENABLE, etc.),
++	 * don't proceed pagefault routine for eu debugger.
++	 */
++
++	td_ctl = xe_gt_mcr_unicast_read_any(gt, TD_CTL);
++	if (!td_ctl)
++		goto err_put_fw;
++
++	eudebug_pagefault = kzalloc(sizeof(*eudebug_pagefault), GFP_KERNEL);
++	if (!eudebug_pagefault)
++		goto err_put_fw;
++
++	xe_eudebug_attention_scan_pause(gt);
++
++	mutex_lock(&d->eu_lock);
++	rcu_read_lock();
++	fence = dma_fence_get_rcu_safe(&d->pagefault_fence);
++	rcu_read_unlock();
++
++	if (fence) {
++		/*
++		 * TODO: If the new incoming pagefaulted address is different
++		 * from the pagefaulted address it is currently handling on the
++		 * same ASID, it needs a routine to wait here and then do the
++		 * following pagefault.
++		 */
++		dma_fence_put(fence);
++		goto err_unlock_eu_lock;
++	}
++
++	pagefault_fence = xe_eudebug_pagefault_fence_create();
++	if (!pagefault_fence) {
++		goto err_unlock_eu_lock;
++	}
++
++	d->pagefault_fence = &pagefault_fence->base;
++	mutex_unlock(&d->eu_lock);
++
++	INIT_LIST_HEAD(&eudebug_pagefault->list);
++
++	xe_gt_eu_attentions_read(gt, &eudebug_pagefault->attentions.before, 0);
++
++	/* Halt on next thread dispatch */
++	while (!(td_ctl & TD_CTL_FORCE_EXTERNAL_HALT)) {
++		xe_gt_mcr_multicast_write(gt, TD_CTL,
++					  td_ctl | TD_CTL_FORCE_EXTERNAL_HALT);
++		/*
++		 * The sleep is needed because some interrupts are ignored
++		 * by the HW, hence we allow the HW some time to acknowledge
++		 * that.
++		 */
++		udelay(200);
++		td_ctl = xe_gt_mcr_unicast_read_any(gt, TD_CTL);
++	}
++
++	/* Halt regardless of thread dependencies */
++	while (!(td_ctl & TD_CTL_FORCE_EXCEPTION)) {
++		xe_gt_mcr_multicast_write(gt, TD_CTL,
++					  td_ctl | TD_CTL_FORCE_EXCEPTION);
++		udelay(200);
++		td_ctl = xe_gt_mcr_unicast_read_any(gt, TD_CTL);
++	}
++
++	xe_gt_eu_attentions_read(gt, &eudebug_pagefault->attentions.after,
++				 XE_GT_ATTENTION_TIMEOUT_MS);
++
++	/*
++	 * xe_exec_queue_put() will be called from release_eudebug_pagefault()
++	 * or xe_eudebug_handle_page_fault()
++	 */
++	eudebug_pagefault->q = q;
++	eudebug_pagefault->lrc_idx = lrc_idx;
++	eudebug_pagefault->fault.addr = pf->page_addr;
++	eudebug_pagefault->fault.type = pf->fault_type;
++	eudebug_pagefault->fault.level = pf->fault_level;
++	eudebug_pagefault->fault.access = pf->access_type;
++
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	xe_eudebug_put(d);
++
++	return eudebug_pagefault;
++
++err_unlock_eu_lock:
++	mutex_unlock(&d->eu_lock);
++	xe_eudebug_attention_scan_resume(gt);
++	kfree(eudebug_pagefault);
++err_put_fw:
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++err_put_exec_queue:
++	xe_exec_queue_put(q);
++err_put_eudebug:
++	xe_eudebug_put(d);
++
++	return NULL;
++}
++
++static void
++release_eudebug_pagefault(struct xe_gt *gt, struct xe_vm *vm,
++			  struct xe_eudebug_pagefault *eudebug_pagefault,
++			  bool send_event)
++{
++	struct xe_eudebug *d;
++	unsigned int fw_ref;
++	u32 td_ctl;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), eudebug_pagefault->q->hwe->domain);
++	if (!fw_ref) {
++		struct xe_device *xe = gt_to_xe(gt);
++		drm_warn(&xe->drm, "Forcewake fail: Can not recover TD_CTL");
++	} else {
++		td_ctl = xe_gt_mcr_unicast_read_any(gt, TD_CTL);
++		xe_gt_mcr_multicast_write(gt, TD_CTL, td_ctl &
++					  ~(TD_CTL_FORCE_EXTERNAL_HALT | TD_CTL_FORCE_EXCEPTION));
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	}
++
++	if (send_event)
++		xe_eudebug_handle_page_fault(gt, eudebug_pagefault);
++
++	d = xe_eudebug_get_for_debugger(vm->xef);
++	if (d) {
++		struct dma_fence *fence;
++
++		mutex_lock(&d->eu_lock);
++		rcu_read_lock();
++		fence = dma_fence_get_rcu_safe(&d->pagefault_fence);
++		rcu_read_unlock();
++
++		if (fence) {
++			if (send_event)
++				dma_fence_signal(fence);
++
++			dma_fence_put(fence); /* deref for dma_fence_get_rcu_safe() */
++			dma_fence_put(fence); /* defef for dma_fence_init() */
++		}
++
++		d->pagefault_fence = NULL;
++		mutex_unlock(&d->eu_lock);
++
++		xe_eudebug_put(d);
++	}
++
++	if (!send_event) {
++		xe_exec_queue_put(eudebug_pagefault->q);
++		kfree(eudebug_pagefault);
++	}
++
++	xe_eudebug_attention_scan_resume(gt);
++}
++
++static void
++handle_eu_debug_pagefault(struct xe_gt *gt, struct xe_eudebug_pagefault *d_pf)
++{
++	xe_gt_eu_attentions_read(gt, &d_pf->attentions.resolved,
++				 XE_GT_ATTENTION_TIMEOUT_MS);
++}
++
++static int handle_pagefault_start(struct xe_gt *gt, struct pagefault *pf,
++				  struct xe_vm **pf_vm,
++				  struct xe_eudebug_pagefault **d_pf)
++{
++	struct xe_eudebug_pagefault *eudebug_pf;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+-	struct xe_vm *vm;
++	struct xe_device *xe = gt_to_xe(gt);
++	bool  rel_eudebug_pf = false;
+ 	struct xe_vma *vma = NULL;
++	struct xe_vm *vm;
+ 	int err;
+ 
+ 	/* SW isn't expected to handle TRTT faults */
+@@ -216,6 +419,8 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	if (IS_ERR(vm))
+ 		return PTR_ERR(vm);
+ 
++	eudebug_pf = get_eudebug_pagefault(gt, vm, pf);
++
+ 	/*
+ 	 * TODO: Change to read lock? Using write lock for simplicity.
+ 	 */
+@@ -228,8 +433,27 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 
+ 	vma = lookup_vma(vm, pf->page_addr);
+ 	if (!vma) {
+-		err = -EINVAL;
+-		goto unlock_vm;
++		if (eudebug_pf)
++			vma = xe_vm_create_scratch_vma(vm, pf->page_addr);
++
++
++		if (IS_ERR_OR_NULL(vma)) {
++			err = -EINVAL;
++			if (eudebug_pf)
++				rel_eudebug_pf = true;
++
++			goto unlock_vm;
++		}
++	} else {
++		/*
++		 * When creating an instance of eudebug_pagefault, there was
++		 * no vma containing the ppgtt address where the pagefault occurred,
++		 * but when reacquiring vm->lock, there is.
++		 * During not aquiring the vm->lock from this context,
++		 * but vma corresponding to the address where the pagefault occurred
++		 * in another context has allocated.*/
++		if (eudebug_pf)
++			rel_eudebug_pf = true;
+ 	}
+ 
+ 	err = handle_vma_pagefault(tile, pf, vma);
+@@ -238,11 +462,44 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	if (!err)
+ 		vm->usm.last_fault_vma = vma;
+ 	up_write(&vm->lock);
+-	xe_vm_put(vm);
++
++	if (rel_eudebug_pf) {
++		release_eudebug_pagefault(gt, vm, eudebug_pf, false);
++		*d_pf = NULL;
++	} else {
++		*d_pf = eudebug_pf;
++	}
++
++	/* For the lifetime of the eudebug pagefault instance, keep the VM instance.*/
++	if (!*d_pf) {
++		xe_vm_put(vm);
++		*pf_vm = NULL;
++	}
++	else {
++		*pf_vm = vm;
++	}
+ 
+ 	return err;
+ }
+ 
++static void handle_pagefault_end(struct xe_gt *gt, struct xe_vm *pf_vm,
++				 struct xe_eudebug_pagefault *d_pf)
++{
++	/* if there no eudebug_pagefault then return */
++	if (!d_pf)
++		return;
++
++	handle_eu_debug_pagefault(gt, d_pf);
++
++	/*
++	 * TODO: Remove VMA added to handle eudebug pagefault
++	 */
++
++	release_eudebug_pagefault(gt, pf_vm, d_pf, true);
++
++	xe_vm_put(pf_vm);
++}
++
+ static int send_pagefault_reply(struct xe_guc *guc,
+ 				struct xe_guc_pagefault_reply *reply)
+ {
+@@ -368,7 +625,10 @@ static void pf_queue_work_func(struct work_struct *w)
+ 	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
+ 
+ 	while (get_pagefault(pf_queue, &pf)) {
+-		ret = handle_pagefault(gt, &pf);
++		struct xe_eudebug_pagefault *d_pf = NULL;
++		struct xe_vm *pf_vm = NULL;
++
++		ret = handle_pagefault_start(gt, &pf, &pf_vm, &d_pf);
+ 		if (unlikely(ret)) {
+ 			print_pagefault(xe, &pf);
+ 			pf.fault_unsuccessful = 1;
+@@ -386,7 +646,12 @@ static void pf_queue_work_func(struct work_struct *w)
+ 			FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
+ 			FIELD_PREP(PFR_PDATA, pf.pdata);
+ 
+-		send_pagefault_reply(&gt->uc.guc, &reply);
++		ret = send_pagefault_reply(&gt->uc.guc, &reply);
++		if (unlikely(ret)) {
++			drm_dbg(&xe->drm, "GuC Pagefault reply failed: %d\n", ret);
++		}
++
++		handle_pagefault_end(gt, pf_vm, d_pf);
+ 
+ 		if (time_after(jiffies, threshold) &&
+ 		    pf_queue->tail != pf_queue->head) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index e3e8bce11e3d..bbbff17b90f9 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3555,3 +3555,24 @@ int xe_uvma_access(struct xe_userptr_vma *uvma, u64 offset,
+ 	up_read(&vm->userptr.notifier_lock);
  	return ret;
  }
 +
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_eudebug.c"
-+#endif
++struct xe_vma *xe_vm_create_scratch_vma(struct xe_vm *vm, u64 addr)
++{
++	struct xe_vma *vma;
++	int err;
++
++	if (xe_vm_is_closed_or_banned(vm))
++		return ERR_PTR(-ENOENT);
++
++	vma = xe_vma_create(vm, NULL, 0, addr, addr + SZ_64K - 1, 0, VMA_CREATE_FLAG_IS_NULL);
++	if (IS_ERR_OR_NULL(vma))
++		return vma;
++
++	err = xe_vm_insert_vma(vm, vma);
++	if (err) {
++		xe_vma_destroy_late(vma);
++		return ERR_PTR(err);
++	}
++
++	return vma;
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 99b9a9b011de..3ac446cd3b89 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -284,3 +284,5 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
+ 
+ int xe_uvma_access(struct xe_userptr_vma *uvma, u64 offset,
+ 		   void *buf, u64 len, bool write);
++
++struct xe_vma *xe_vm_create_scratch_vma(struct xe_vm *vm, u64 addr);
+diff --git a/include/uapi/drm/xe_drm_eudebug.h b/include/uapi/drm/xe_drm_eudebug.h
+index 2ebf21e15f5b..47856ca215ef 100644
+--- a/include/uapi/drm/xe_drm_eudebug.h
++++ b/include/uapi/drm/xe_drm_eudebug.h
+@@ -37,6 +37,7 @@ struct drm_xe_eudebug_event {
+ #define DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE	8
+ #define DRM_XE_EUDEBUG_EVENT_METADATA		9
+ #define DRM_XE_EUDEBUG_EVENT_VM_BIND_OP_METADATA 10
++#define DRM_XE_EUDEBUG_EVENT_PAGEFAULT		11
+ 
+ 	__u16 flags;
+ #define DRM_XE_EUDEBUG_EVENT_CREATE		(1 << 0)
+@@ -218,6 +219,17 @@ struct drm_xe_eudebug_event_vm_bind_op_metadata {
+ 	__u64 metadata_cookie;
+ };
+ 
++struct drm_xe_eudebug_event_pagefault {
++	struct drm_xe_eudebug_event base;
++	__u64 client_handle;
++	__u64 exec_queue_handle;
++	__u64 lrc_handle;
++	__u32 flags;
++	__u32 bitmask_size;
++	__u64 pagefault_address;
++	__u8 bitmask[];
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.46.1
 
