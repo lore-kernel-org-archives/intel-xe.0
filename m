@@ -4,27 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 828D4D0E6E1
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:25:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5673DD0E6EC
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:38:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4151E10E2D8;
-	Mon, 21 Oct 2024 10:25:03 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA73E10E2D8;
- Mon, 21 Oct 2024 10:25:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0674710E2D8;
+	Mon, 21 Oct 2024 10:38:13 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EAA110E2D8
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 10:38:11 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [CI v2.3] drm/xe: Initialise display before GT and tile init
+Date: Mon, 21 Oct 2024 12:38:23 +0200
+Message-ID: <20241021103823.83948-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241018200515.26129-1-maarten.lankhorst@linux.intel.com>
+References: <20241018200515.26129-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Support_EU_online_debug_?=
- =?utf-8?q?on_pagefault?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Oct 2024 10:25:02 -0000
-Message-ID: <172950630269.1304244.13525567873746973326@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +34,181 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Display needs to be initialised first, because we need to preserve the
+initial framebuffer. It will be overwritten by any allocation we do,
+especially on discrete where the framebuffer is not in stolen memory.
 
-Series: Support EU online debug on pagefault
-URL   : https://patchwork.freedesktop.org/series/140239/
-State : success
+On integrated even if we still recover the initial framebuffer after
+allocating, it still shows up as temporary corruption on-screen.
 
-== Summary ==
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 37 ++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_gt.c     | 42 ++++++++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_gt.h     |  1 +
+ 3 files changed, 61 insertions(+), 19 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 784111a40e40a37100e61736dd137c72cedbdb39
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 76d8c6868d15e..53266b662075b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -681,15 +681,8 @@ int xe_device_probe(struct xe_device *xe)
+ 				return err;
+ 		}
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+-		if (err)
+-			return err;
+-		err = xe_memirq_init(&tile->memirq);
+-		if (err)
+-			return err;
+-	}
+-
+-	for_each_gt(gt, xe, id) {
+-		err = xe_gt_init_hwconfig(gt);
++		if (!err && IS_SRIOV_VF(xe))
++			err = xe_memirq_init(&tile->memirq);
+ 		if (err)
+ 			return err;
+ 	}
+@@ -697,6 +690,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	err = xe_devcoredump_init(xe);
+ 	if (err)
+ 		return err;
++
+ 	err = devm_add_action_or_reset(xe->drm.dev, xe_driver_flr_fini, xe);
+ 	if (err)
+ 		return err;
+@@ -705,9 +699,11 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_irq_install(xe);
+-	if (err)
+-		goto err;
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_init_mcr(gt);
++		if (err)
++			return err;
++	}
+ 
+ 	err = probe_has_flat_ccs(xe);
+ 	if (err)
+@@ -736,12 +732,29 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
+ 
++	/* Now we initialise the rest of GT and tiles, and enable interrupts. */
+ 	for_each_tile(tile, xe, id) {
++		if (!IS_SRIOV_VF(xe)) {
++			err = xe_memirq_init(&tile->memirq);
++			if (err)
++				return err;
++		}
++
+ 		err = xe_tile_init(tile);
+ 		if (err)
+ 			goto err;
+ 	}
+ 
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_init_hwconfig(gt);
++		if (err)
++			return err;
++	}
++
++	err = xe_irq_install(xe);
++	if (err)
++		goto err;
++
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 89e9d9d4db060..7b65d502f948d 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -542,6 +542,38 @@ static int all_fw_domain_init(struct xe_gt *gt)
+ 	return err;
+ }
+ 
++int xe_gt_init_mcr(struct xe_gt *gt)
++{
++	/* Init enough GT for display init to go through */
++	unsigned int fw_ref;
++	int err = 0;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (!fw_ref)
++		return -ETIMEDOUT;
++
++	xe_gt_mcr_init_early(gt);
++	xe_pat_init(gt);
++
++	/* TODO: This is not ideal, we should ideally always initialise UC at the same time */
++	if (IS_SRIOV_VF(gt_to_xe(gt))) {
++		err = xe_uc_init(&gt->uc);
++		if (err)
++			goto out_fw;
++
++		err = xe_uc_init_hwconfig(&gt->uc);
++		if (err)
++			goto out_fw;
++	}
++
++	xe_gt_topology_init(gt);
++	xe_gt_mcr_init(gt);
++	xe_gt_enable_host_l2_vram(gt);
++
++out_fw:
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return err;
++}
+ /*
+  * Initialize enough GT to be able to load GuC in order to obtain hwconfig and
+  * enable CTB communication.
+@@ -551,13 +583,13 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	unsigned int fw_ref;
+ 	int err;
+ 
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
++		return 0;
++
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!fw_ref)
+ 		return -ETIMEDOUT;
+ 
+-	xe_gt_mcr_init_early(gt);
+-	xe_pat_init(gt);
+-
+ 	err = xe_uc_init(&gt->uc);
+ 	if (err)
+ 		goto out_fw;
+@@ -566,10 +598,6 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	if (err)
+ 		goto out_fw;
+ 
+-	xe_gt_topology_init(gt);
+-	xe_gt_mcr_init(gt);
+-	xe_gt_enable_host_l2_vram(gt);
+-
+ out_fw:
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 82b9b7f82fcab..58aa95fe0aa61 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -29,6 +29,7 @@ static inline bool xe_fault_inject_gt_reset(void)
+ 
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+ int xe_gt_init_hwconfig(struct xe_gt *gt);
++int xe_gt_init_mcr(struct xe_gt *gt);
+ int xe_gt_init_early(struct xe_gt *gt);
+ int xe_gt_init(struct xe_gt *gt);
+ void xe_gt_mmio_init(struct xe_gt *gt);
+-- 
+2.45.2
 
