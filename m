@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49CBFD17142
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 22:28:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70A42D17142
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 22:28:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA4010E5C3;
-	Mon, 21 Oct 2024 22:28:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37B2A10E5C2;
+	Mon, 21 Oct 2024 22:28:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZOMbYMpT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cEa1u09s";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C78510E5C3;
- Mon, 21 Oct 2024 22:28:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E5F10E5C8;
+ Mon, 21 Oct 2024 22:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729549691; x=1761085691;
+ t=1729549695; x=1761085695;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8Kzzpc8XuURkyPHa1S6835TBjrw3FX+sTs0bM74Go6Y=;
- b=ZOMbYMpTmfN71GKhVPgWUw/c+8ZT3UQV+7MNSiSljOl1iPvgPI7j4+2/
- kfae9mpvCqqeBLCHozGEsqcEdNrPIGfnaOt4+8ZyiEFvH6Mlnvg9jckmq
- Z78+3yxy55XFoQ4BTw+imBY80xe1drCE1MnpQ+S2TEcUAPqiX+lZRbgMG
- uAKKVR4U+vQ/PkDIdUqSt75MYAXpQynesSR9PpL9Ggkfu9MuPVr9mOPeR
- WmHM50kZxomFnmkeDAbLwSPmaOFouXnaudb09k8c5ZRkiy4mdwcmXfGA3
- Xmnaou4pKR5xYu0Aupc1tkaNXurMlk5Iov1xvg74d4r29u6L8A+Yu0mkV A==;
-X-CSE-ConnectionGUID: huf56cr2TB246A8mEZ+v+Q==
-X-CSE-MsgGUID: lOnX283bTlaFQV7SmD3h+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934461"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934461"
+ bh=cxy4BgqIVfn5bOCrWwMtGPLEbGxGjnusvWjemorOorQ=;
+ b=cEa1u09sw/1pR0dsmCXpgBwRBEHhph/2Wzr2ZPtLaeqBtDiv3i9bdshe
+ FXAjMf+gytqJ3Hp3RlNoKuC+LNiobvsM/DDsaYW9/S6zAb6fhIlwnUYbl
+ XSJ0dhIT4x6tq4EWacapijBOTc1gWrCx5uRPH5GRArH9zgDsxW+FONyib
+ /tgf2uB5W0FuK22KbFq5EgaRGKgtzf6wRcvee9iCWRVXs0qXuosAwzrdB
+ 5K+jM9q+EjUkRMh/fvLbCpgR697lrqaV+wo0w/d4ChSiSYGcssR2B6/Be
+ 3DT5KCcmwI9mj18M1C/mAhKQ74bEX6nvtH3NgGITSVEPkW31On+vR/+lH A==;
+X-CSE-ConnectionGUID: 9ts7y62YS9Wa90WGUjIIhg==
+X-CSE-MsgGUID: o7uka75FSlScwycThi3+vw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934466"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934466"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:11 -0700
-X-CSE-ConnectionGUID: 4Oa8x5k4S563IWdI9reaYA==
-X-CSE-MsgGUID: bICNsDL2QRywkz2+ntOQAg==
+ 21 Oct 2024 15:28:14 -0700
+X-CSE-ConnectionGUID: 5qixM0HeTyWvjxQEL+/sNQ==
+X-CSE-MsgGUID: Y12hp/DURaKkoeRJ9+lcmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009612"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009623"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO
  gjsousa-mobl2.intel.com) ([10.125.110.79])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:09 -0700
+ 21 Oct 2024 15:28:13 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 06/13] drm/i915/dmc_wl: Extract intel_dmc_wl_addr_in_range()
-Date: Mon, 21 Oct 2024 19:27:25 -0300
-Message-ID: <20241021222744.294371-7-gustavo.sousa@intel.com>
+Subject: [PATCH 08/13] drm/i915/dmc_wl: Allow simpler syntax for single reg in
+ range tables
+Date: Mon, 21 Oct 2024 19:27:27 -0300
+Message-ID: <20241021222744.294371-9-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241021222744.294371-1-gustavo.sousa@intel.com>
 References: <20241021222744.294371-1-gustavo.sousa@intel.com>
@@ -69,51 +70,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We will be using more than one range table in
-intel_dmc_wl_check_range(). As such, move the logic to a new function
-and name it intel_dmc_wl_addr_in_range().
+Allow simpler syntax for defining entries for single registers in range
+tables. That makes them easier to type as well as to read, allowing one
+to quickly tell whether a range actually refers to a single register or
+a "true range".
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 22 ++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 118 ++++++++++----------
+ 1 file changed, 60 insertions(+), 58 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 82eb9166e5f8..d597cc825f64 100644
+index 8bf2f32be859..6992ce654e75 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -95,20 +95,20 @@ static void intel_dmc_wl_work(struct work_struct *work)
- 	spin_unlock_irqrestore(&wl->lock, flags);
- }
+@@ -54,82 +54,82 @@ static struct intel_dmc_wl_range lnl_wl_range[] = {
+ };
  
--static bool intel_dmc_wl_check_range(u32 address)
-+static bool intel_dmc_wl_addr_in_range(u32 address,
-+				       const struct intel_dmc_wl_range ranges[])
- {
--	int i;
--	bool wl_needed = false;
+ static struct intel_dmc_wl_range xe3lpd_dc5_dc6_wl_ranges[] = {
+-	{ .start = 0x45500, .end = 0x45500 }, /* DC_STATE_SEL */
++	{ .start = 0x45500 }, /* DC_STATE_SEL */
+ 	{ .start = 0x457a0, .end = 0x457b0 }, /* DC*_RESIDENCY_COUNTER */
+-	{ .start = 0x45504, .end = 0x45504 }, /* DC_STATE_EN */
++	{ .start = 0x45504 }, /* DC_STATE_EN */
+ 	{ .start = 0x45400, .end = 0x4540c }, /* PWR_WELL_CTL_* */
+-	{ .start = 0x454f0, .end = 0x454f0 }, /* RETENTION_CTRL */
++	{ .start = 0x454f0 }, /* RETENTION_CTRL */
+ 
+ 	/* DBUF_CTL_* */
+-	{ .start = 0x44300, .end = 0x44300 },
+-	{ .start = 0x44304, .end = 0x44304 },
+-	{ .start = 0x44f00, .end = 0x44f00 },
+-	{ .start = 0x44f04, .end = 0x44f04 },
+-	{ .start = 0x44fe8, .end = 0x44fe8 },
+-	{ .start = 0x45008, .end = 0x45008 },
++	{ .start = 0x44300 },
++	{ .start = 0x44304 },
++	{ .start = 0x44f00 },
++	{ .start = 0x44f04 },
++	{ .start = 0x44fe8 },
++	{ .start = 0x45008 },
+ 
+-	{ .start = 0x46070, .end = 0x46070 }, /* CDCLK_PLL_ENABLE */
+-	{ .start = 0x46000, .end = 0x46000 }, /* CDCLK_CTL */
+-	{ .start = 0x46008, .end = 0x46008 }, /* CDCLK_SQUASH_CTL */
++	{ .start = 0x46070 }, /* CDCLK_PLL_ENABLE */
++	{ .start = 0x46000 }, /* CDCLK_CTL */
++	{ .start = 0x46008 }, /* CDCLK_SQUASH_CTL */
+ 
+ 	/* TRANS_CMTG_CTL_* */
+-	{ .start = 0x6fa88, .end = 0x6fa88 },
+-	{ .start = 0x6fb88, .end = 0x6fb88 },
 -
--	for (i = 0; lnl_wl_range[i].start; i++) {
--		if (address >= lnl_wl_range[i].start &&
--		    address <= lnl_wl_range[i].end) {
--			wl_needed = true;
--			break;
--		}
-+	for (int i = 0; ranges[i].start; i++) {
-+		if (ranges[i].start <= address && address <= ranges[i].end)
-+			return true;
+-	{ .start = 0x46430, .end = 0x46430 }, /* CHICKEN_DCPR_1 */
+-	{ .start = 0x46434, .end = 0x46434 }, /* CHICKEN_DCPR_2 */
+-	{ .start = 0x454a0, .end = 0x454a0 }, /* CHICKEN_DCPR_4 */
+-	{ .start = 0x42084, .end = 0x42084 }, /* CHICKEN_MISC_2 */
+-	{ .start = 0x42088, .end = 0x42088 }, /* CHICKEN_MISC_3 */
+-	{ .start = 0x46160, .end = 0x46160 }, /* CMTG_CLK_SEL */
++	{ .start = 0x6fa88 },
++	{ .start = 0x6fb88 },
++
++	{ .start = 0x46430 }, /* CHICKEN_DCPR_1 */
++	{ .start = 0x46434 }, /* CHICKEN_DCPR_2 */
++	{ .start = 0x454a0 }, /* CHICKEN_DCPR_4 */
++	{ .start = 0x42084 }, /* CHICKEN_MISC_2 */
++	{ .start = 0x42088 }, /* CHICKEN_MISC_3 */
++	{ .start = 0x46160 }, /* CMTG_CLK_SEL */
+ 	{ .start = 0x8f000, .end = 0x8ffff }, /* Main DMC registers */
+ 
+ 	{},
+ };
+ 
+ static struct intel_dmc_wl_range xe3lpd_dc3co_wl_ranges[] = {
+-	{ .start = 0x454a0, .end = 0x454a0 }, /* CHICKEN_DCPR_4 */
++	{ .start = 0x454a0 }, /* CHICKEN_DCPR_4 */
+ 
+-	{ .start = 0x45504, .end = 0x45504 }, /* DC_STATE_EN */
++	{ .start = 0x45504 }, /* DC_STATE_EN */
+ 
+ 	/* DBUF_CTL_* */
+-	{ .start = 0x44300, .end = 0x44300 },
+-	{ .start = 0x44304, .end = 0x44304 },
+-	{ .start = 0x44f00, .end = 0x44f00 },
+-	{ .start = 0x44f04, .end = 0x44f04 },
+-	{ .start = 0x44fe8, .end = 0x44fe8 },
+-	{ .start = 0x45008, .end = 0x45008 },
+-
+-	{ .start = 0x46070, .end = 0x46070 }, /* CDCLK_PLL_ENABLE */
+-	{ .start = 0x46000, .end = 0x46000 }, /* CDCLK_CTL */
+-	{ .start = 0x46008, .end = 0x46008 }, /* CDCLK_SQUASH_CTL */
++	{ .start = 0x44300 },
++	{ .start = 0x44304 },
++	{ .start = 0x44f00 },
++	{ .start = 0x44f04 },
++	{ .start = 0x44fe8 },
++	{ .start = 0x45008 },
++
++	{ .start = 0x46070 }, /* CDCLK_PLL_ENABLE */
++	{ .start = 0x46000 }, /* CDCLK_CTL */
++	{ .start = 0x46008 }, /* CDCLK_SQUASH_CTL */
+ 	{ .start = 0x8f000, .end = 0x8ffff }, /* Main DMC registers */
+ 
+ 	/* Scanline registers */
+-	{ .start = 0x70000, .end = 0x70000 },
+-	{ .start = 0x70004, .end = 0x70004 },
+-	{ .start = 0x70014, .end = 0x70014 },
+-	{ .start = 0x70018, .end = 0x70018 },
+-	{ .start = 0x71000, .end = 0x71000 },
+-	{ .start = 0x71004, .end = 0x71004 },
+-	{ .start = 0x71014, .end = 0x71014 },
+-	{ .start = 0x71018, .end = 0x71018 },
+-	{ .start = 0x72000, .end = 0x72000 },
+-	{ .start = 0x72004, .end = 0x72004 },
+-	{ .start = 0x72014, .end = 0x72014 },
+-	{ .start = 0x72018, .end = 0x72018 },
+-	{ .start = 0x73000, .end = 0x73000 },
+-	{ .start = 0x73004, .end = 0x73004 },
+-	{ .start = 0x73014, .end = 0x73014 },
+-	{ .start = 0x73018, .end = 0x73018 },
+-	{ .start = 0x7b000, .end = 0x7b000 },
+-	{ .start = 0x7b004, .end = 0x7b004 },
+-	{ .start = 0x7b014, .end = 0x7b014 },
+-	{ .start = 0x7b018, .end = 0x7b018 },
+-	{ .start = 0x7c000, .end = 0x7c000 },
+-	{ .start = 0x7c004, .end = 0x7c004 },
+-	{ .start = 0x7c014, .end = 0x7c014 },
+-	{ .start = 0x7c018, .end = 0x7c018 },
++	{ .start = 0x70000 },
++	{ .start = 0x70004 },
++	{ .start = 0x70014 },
++	{ .start = 0x70018 },
++	{ .start = 0x71000 },
++	{ .start = 0x71004 },
++	{ .start = 0x71014 },
++	{ .start = 0x71018 },
++	{ .start = 0x72000 },
++	{ .start = 0x72004 },
++	{ .start = 0x72014 },
++	{ .start = 0x72018 },
++	{ .start = 0x73000 },
++	{ .start = 0x73004 },
++	{ .start = 0x73014 },
++	{ .start = 0x73018 },
++	{ .start = 0x7b000 },
++	{ .start = 0x7b004 },
++	{ .start = 0x7b014 },
++	{ .start = 0x7b018 },
++	{ .start = 0x7c000 },
++	{ .start = 0x7c004 },
++	{ .start = 0x7c014 },
++	{ .start = 0x7c018 },
+ 
+ 	{},
+ };
+@@ -181,7 +181,9 @@ static bool intel_dmc_wl_addr_in_range(u32 address,
+ 				       const struct intel_dmc_wl_range ranges[])
+ {
+ 	for (int i = 0; ranges[i].start; i++) {
+-		if (ranges[i].start <= address && address <= ranges[i].end)
++		u32 end = ranges[i].end ?: ranges[i].start;
++
++		if (ranges[i].start <= address && address <= end)
+ 			return true;
  	}
  
--	return wl_needed;
-+	return false;
-+}
-+
-+static bool intel_dmc_wl_check_range(u32 address)
-+{
-+	return intel_dmc_wl_addr_in_range(address, lnl_wl_range);
- }
- 
- static bool __intel_dmc_wl_supported(struct intel_display *display)
 -- 
 2.47.0
 
