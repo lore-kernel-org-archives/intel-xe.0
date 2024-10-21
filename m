@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1777D15D8E
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0860D15D8D
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EF8010E4D9;
-	Mon, 21 Oct 2024 12:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA0510E4D5;
+	Mon, 21 Oct 2024 12:32:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NPJAfhnM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iWCjJLlW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C51A10E4CC;
- Mon, 21 Oct 2024 12:32:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 464A410E4C8;
+ Mon, 21 Oct 2024 12:32:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513932; x=1761049932;
+ t=1729513939; x=1761049939;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=r8mtgb51M2/QElH0HY1syEsluMAO2gpDyEBidV2W7xY=;
- b=NPJAfhnMUKLw1f6ExVetOwxr89vBysYd9QxhDxtpLnPk7OOdzy6GboYo
- ixrzUKL8SeF01nnAtUAG+4FHgN0bZv4QSST5Bm9UYGxZjmwBOYfZV9h4Y
- czzIw2boa/+bZW2O9wS3NgRqueLpOmp7Rl64mwGQsVicijL2aAnnmhlqu
- MyBAIQ6wZX/sArypH8vn0Vzj1wAKTWy5nYdk/cI5k/TIm4POk5K89JE7V
- GO2Zb99n2Xocm/pQd4cfDqWc6bEg2OBqSD2wi0Lul7w9txQQay/WH1zxT
- m0UHw+Vm56O/TdshcLbwrkPNfM1eLuThB5mXJ95OAClOAjojELPsv801+ A==;
-X-CSE-ConnectionGUID: edfCxyOGTgm7wg8uBdkr1A==
-X-CSE-MsgGUID: Z8amsSBuSSmOKpuvKZ0VfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459640"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459640"
+ bh=ZbPJcOveEqMemRpcqFimp/L0w96Wd3SN5h1DqKlOJf4=;
+ b=iWCjJLlWVksXdTKDR7gx19AWUGychiK9UB2QgnEX7opOIehCF5J95ZjX
+ INutjznz/EwrP4fXSWh1Saw9PsSGbtsPwAAIdwyBUnTIt8MDQiy0BWyqb
+ AaMspoZ3ToIU6HfdteU2Rdx26Hw660e+v+NMev0WMMOaVArPpFuCzaBfd
+ SIqSGrwSxCWOXl/Qffcu4qsA9oROXO37tb1+ogqY8oKXntOz+sNbA5zes
+ jtjuzoQXuSGW2UPaSJLnRUPVwGh0OLMyuwxm29eVEUXWpCcoPuvoBICVA
+ 6GT9WyT+R/3FZQKelTGZZE1QzE5aM77sUbtQFuIUIjb2AwLPl9HSp6aW2 Q==;
+X-CSE-ConnectionGUID: p+mfPnBYTRuzIxp0x6+4RQ==
+X-CSE-MsgGUID: JhEgeaKKTPiNnr5BibAJZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459646"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459646"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:12 -0700
-X-CSE-ConnectionGUID: WB6Pn9oQQSax2OKfMP0UGw==
-X-CSE-MsgGUID: RrVCs4Z3QMew+kEsFVh/cg==
+ 21 Oct 2024 05:32:19 -0700
+X-CSE-ConnectionGUID: 5e5+TdtqSkGJjhAS5VzcCA==
+X-CSE-MsgGUID: 1WQYr4QVS5ijKtgb5/VblA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866081"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866102"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:11 -0700
+ 21 Oct 2024 05:32:17 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 08/16] drm/i915/display: Add macro HAS_PIXEL_REPLICATION
-Date: Mon, 21 Oct 2024 18:04:06 +0530
-Message-ID: <20241021123414.3993899-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/16] drm/i915/display: Account for pixel replication in
+ pipe_src
+Date: Mon, 21 Oct 2024 18:04:10 +0530
+Message-ID: <20241021123414.3993899-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
 References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
@@ -67,28 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add macro for Pixel replication support with DSC.
-Bspec: 49259, 68912.
+With DSC pixel replication, extra pixels are added in the last slice
+of the last pipe. Due to this the total hactive gets increased by few
+pixels. Adjust the computation for pipe source width to account for
+pixel replication.
+
+These extra pixels will be take care by the Splitter logic in
+hardware.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 071a36b51f79..a21b910879df 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -149,6 +149,9 @@ enum intel_display_subplatform {
- #define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
- #define HAS_MSO(i915)			(DISPLAY_VER(i915) >= 12)
- #define HAS_OVERLAY(i915)		(DISPLAY_INFO(i915)->has_overlay)
-+#define HAS_PIXEL_REPLICATION(i915)	(HAS_DSC(i915) && \
-+					 (DISPLAY_VER(i915) >= 20 || \
-+					  DISPLAY_VER_FULL(i915) == IP_VER(14, 1)))
- #define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
- #define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
- #define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 1b772f58998e..de682fec45cd 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2514,6 +2514,22 @@ void intel_encoder_get_config(struct intel_encoder *encoder,
+ 	intel_crtc_readout_derived_state(crtc_state);
+ }
+ 
++static int intel_splitter_adjust_pipe_width(int width, int replicated_pixels)
++{
++	/* Account for Pixel replication:
++	 * Pixel replication is required due to the rounding of slice_width (Hactive / slice_count).
++	 *
++	 * Splitter HW takes care of these by removing replicated pixels from the last pipe.
++	 */
++
++	if (!replicated_pixels)
++		return width;
++
++	width += replicated_pixels;
++
++	return width;
++}
++
+ static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
+ {
+ 	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
+@@ -2522,7 +2538,9 @@ static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
+ 	if (num_pipes == 1)
+ 		return;
+ 
+-	width = drm_rect_width(&crtc_state->pipe_src);
++	width = intel_splitter_adjust_pipe_width(drm_rect_width(&crtc_state->pipe_src),
++						 crtc_state->dsc.replicated_pixels);
++
+ 	height = drm_rect_height(&crtc_state->pipe_src);
+ 
+ 	drm_rect_init(&crtc_state->pipe_src, 0, 0,
 -- 
 2.45.2
 
