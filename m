@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9E9DD0E6D2
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 08:49:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D88CD0E6D4
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 09:07:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 895D510E450;
-	Mon, 21 Oct 2024 08:49:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3F8B10E45D;
+	Mon, 21 Oct 2024 09:07:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfF/Ro3U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gsx/PQSd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42C9410E450;
- Mon, 21 Oct 2024 08:49:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C8F710E456;
+ Mon, 21 Oct 2024 09:07:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729500567; x=1761036567;
+ t=1729501655; x=1761037655;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=tlOpJGfSNgUAsSEgOjrM5zt50ZArkc8IJB8E4o7bVWg=;
- b=cfF/Ro3URgwAdqzl6A3vFy7qOKxdpi3zWQ8Ta0Fm1qMndcymvhMr8Nc8
- QwpODgrLYmCOYLXy4pPkYgs+K/jWrNB4PI6IYj9FFgJ5D1Nb/gKEQ8MNl
- tzAfDh5NFfLrn4MbB/JXfBbkgFZRgFQ2+oJrb1g2F0bJIIuAAk9FwFlWS
- qNf+0JDw74J72m+797rOXV2SqP0uSfHD3ettQxgEF2MYtn2/5+lF1u2ga
- CcW2LHNV6bMItdd0E64bNkZiEayjkZyE0fWLHvh/b7va7qH8eFk0GxzS6
- +izLwAUemH8BbZLRRoaRltZkgqbyEUAiG+HQPxWpf2gCfQvL9tqKH80on Q==;
-X-CSE-ConnectionGUID: sHw3nMhNTbeBCmFW+E3d7Q==
-X-CSE-MsgGUID: /EkGFCLIRFq5rnLj5j9xTw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="31833129"
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="31833129"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 01:49:26 -0700
-X-CSE-ConnectionGUID: cF3AQ0FgRT2NhAHHuP5svA==
-X-CSE-MsgGUID: yTfPyNn/TECZ0Ulrt9IjxA==
+ bh=wpRhA2ljVPeCf5nT5C2lTaLYCpjjggu0c9MRoee2Fwc=;
+ b=Gsx/PQSd3upnfMGrL/YLwiRI3fajjGpEQnylvY8AFbk84ahkWQaDpZLC
+ pDUypY6H8VoACk8adSr9/X3b+uSR37CqxG8d+CN+EZ+815h2/DLaTNsJu
+ QTEFvBt/WeSmZI6agXzCiVMNC29xygKmrQK0nIdh2F3j8vTIrkoOJm56Q
+ xfh04xEH+EJ1DFL/nGc6tPkax3zy9gAPK8Et40sLeaQPEzPEAFcdHid0S
+ QoBoJlc4yu/zZTgJZXAxv36guwiW5s+aTquYxsXAXBzq0240gjeTXXBQC
+ yLojiXEieTg0H7nTpAp5BWEsn/LFkctfFA1kD2akyZr4qRBpMtu4eRvY0 w==;
+X-CSE-ConnectionGUID: QL7ScAQ6QyWSsfnAXoZYlA==
+X-CSE-MsgGUID: bW3LDq5HRPmBe2/5/hvtEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="28852621"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="28852621"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 02:07:35 -0700
+X-CSE-ConnectionGUID: vkvvP4UMQ1WqdZve735COA==
+X-CSE-MsgGUID: 8tg4+vsWSsehcexGEQjzgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="110224497"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79468322"
 Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.245.206])
  ([10.245.245.206])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 01:49:23 -0700
-Message-ID: <cd1c5f3b-8e43-40e8-9bbf-9995e4ab2b97@intel.com>
-Date: Mon, 21 Oct 2024 09:49:20 +0100
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 02:07:33 -0700
+Message-ID: <3a956975-4e6b-4990-80e2-769872d17816@intel.com>
+Date: Mon, 21 Oct 2024 10:07:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/1] drm/ttm, drm/xe: Add ttm_bo_access
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- thomas.hellstrom@linux.intel.com
-References: <20241017233941.1047522-1-matthew.brost@intel.com>
- <20241017233941.1047522-2-matthew.brost@intel.com>
- <ebc06f32-6ed2-41a3-bc84-820bda1e7116@intel.com>
- <ZxKL/RbKwq8iJ/gm@DUT025-TGLU.fm.intel.com>
+Subject: Re: [PATCH v3 4/6] drm/xe: Use ttm_bo_access in
+ xe_vm_snapshot_capture_delayed
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com
+References: <20241019192030.1505020-1-matthew.brost@intel.com>
+ <20241019192030.1505020-5-matthew.brost@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ZxKL/RbKwq8iJ/gm@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <20241019192030.1505020-5-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,166 +72,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/10/2024 17:25, Matthew Brost wrote:
-> On Fri, Oct 18, 2024 at 10:08:06AM +0100, Matthew Auld wrote:
->> On 18/10/2024 00:39, Matthew Brost wrote:
->>> Non-contiguous VRAM cannot be mapped in Xe nor can non-visible VRAM
->>> easily be accessed. Add ttm_bo_access, which is similar to
->>> ttm_bo_vm_access, to access such memory.
->>
->> Is the plan to roll this out also to object error capture and clear color
->> access? Those places seem to be using ttm vmap/kmap which only seems to work
->> with contiguous VRAM, but in those cases we are mapping userspace objects
->> which are potentially not contiguous so I assume that stuff is also quite
->> broken atm?
->>
+On 19/10/2024 20:20, Matthew Brost wrote:
+> Non-contiguous mapping of BO in VRAM doesn't work, use ttm_bo_access
+> instead.
 > 
-> I quickly sent this out without checking the error capture code, but
-> that seems to be broken but no one is complaining? Seems odd.
+> v2:
+>   - Fix error handling
+> 
+> Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-It looks like we are also missing some IGTs for the vma dumpable stuff.
+The other user looks to be the clear color stuff for display. See 
+intel_bo_read_from_page(). I think that is also potentially busted?
 
+> ---
+>   drivers/gpu/drm/xe/xe_vm.c | 17 ++++++-----------
+>   1 file changed, 6 insertions(+), 11 deletions(-)
 > 
-> Let me look into this a bit more before posting a proper series. Will
-> also update the error capture if needed.
-> 
->>>
->>> Visible VRAM access is only supported at the momement but a follow up
->>> can add GPU access to non-visible VRAM.
->>>
->>> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>    drivers/gpu/drm/ttm/ttm_bo_vm.c | 20 +++++++++-----
->>>    drivers/gpu/drm/xe/xe_bo.c      | 48 +++++++++++++++++++++++++++++++++
->>>    include/drm/ttm/ttm_bo.h        |  2 ++
->>>    3 files changed, 64 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
->>> index 2c699ed1963a..b53cc064da44 100644
->>> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
->>> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
->>> @@ -405,13 +405,9 @@ static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
->>>    	return len;
->>>    }
->>> -int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
->>> -		     void *buf, int len, int write)
->>> +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
->>> +		  void *buf, int len, int write)
->>>    {
->>> -	struct ttm_buffer_object *bo = vma->vm_private_data;
->>> -	unsigned long offset = (addr) - vma->vm_start +
->>> -		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
->>> -		 << PAGE_SHIFT);
->>>    	int ret;
->>>    	if (len < 1 || (offset + len) > bo->base.size)
->>> @@ -439,6 +435,18 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
->>>    	return ret;
->>>    }
->>> +EXPORT_SYMBOL(ttm_bo_access);
->>> +
->>> +int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
->>> +		     void *buf, int len, int write)
->>> +{
->>> +	struct ttm_buffer_object *bo = vma->vm_private_data;
->>> +	unsigned long offset = (addr) - vma->vm_start +
->>> +		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
->>> +		 << PAGE_SHIFT);
->>> +
->>> +	return ttm_bo_access(bo, offset, buf, len, write);
->>> +}
->>>    EXPORT_SYMBOL(ttm_bo_vm_access);
->>>    static const struct vm_operations_struct ttm_bo_vm_ops = {
->>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>> index 5b232f2951b1..267f3b03a6d0 100644
->>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>> @@ -1111,6 +1111,53 @@ static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
->>>    	}
->>>    }
->>> +static int xe_ttm_access_memory(struct ttm_buffer_object *ttm_bo,
->>> +				unsigned long offset, void *buf, int len,
->>> +				int write)
->>> +{
->>> +	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
->>> +	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
->>> +	struct iosys_map vmap;
->>> +	struct xe_res_cursor cursor;
->>> +	struct xe_mem_region *vram;
->>> +	void __iomem *virtual;
->>> +	int bytes_left = len;
->>> +
->>> +	xe_bo_assert_held(bo);
->>
->> I think we need rpm somewhere? Although bo lock might make this tricky.
->>
-> 
-> Do we? OFC if we interact with hardware we should but also if hardware
-> is powered off a BO shouldn't be in VRAM.
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index c99380271de6..c8782da3a5c3 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -3303,7 +3303,6 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
+>   
+>   	for (int i = 0; i < snap->num_snaps; i++) {
+>   		struct xe_bo *bo = snap->snap[i].bo;
+> -		struct iosys_map src;
+>   		int err;
+>   
+>   		if (IS_ERR(snap->snap[i].data))
+> @@ -3316,16 +3315,12 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
+>   		}
+>   
+>   		if (bo) {
+> -			xe_bo_lock(bo, false);
 
-There is also d3hot which doesn't kick stuff out to system memory, but 
-VRAM is still inaccessible in that mode.
+I think we still need the lock, or is that grabbed somewhere else? Also 
+I guess CI doesn't currently hit this path?
 
-> 
-> Maybe do a get_if_awake and bail otherwise?
-> 
-> Matt
-> 
->>> +
->>> +	if (!mem_type_is_vram(ttm_bo->resource->mem_type))
->>> +		return -EIO;
->>> +
->>> +	/* FIXME: Use GPU for non-visible VRAM */
->>> +	if (!(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS))
->>> +		return -EINVAL;
->>> +
->>> +	vram = res_to_mem_region(ttm_bo->resource);
->>> +	xe_res_first(ttm_bo->resource, offset & ~PAGE_MASK, 0, &cursor);
->>> +
->>> +	do {
->>> +		int wcount = PAGE_SIZE - (offset & PAGE_MASK) > bytes_left ?
->>> +			bytes_left : PAGE_SIZE - (offset & PAGE_MASK);
->>> +
->>> +		virtual = (u8 __force *)vram->mapping + cursor.start;
->>> +
->>> +		iosys_map_set_vaddr_iomem(&vmap, (void __iomem *)virtual);
->>> +		if (write)
->>> +			xe_map_memcpy_to(xe, &vmap, offset & PAGE_MASK, buf,
->>> +					 wcount);
->>> +		else
->>> +			xe_map_memcpy_from(xe, buf, &vmap, offset & PAGE_MASK,
->>> +					   wcount);
->>> +
->>> +		offset += wcount;
->>> +		buf += wcount;
->>> +		bytes_left -= wcount;
->>> +		xe_res_next(&cursor, PAGE_SIZE);
->>> +	} while (bytes_left);
->>> +
->>> +	return len;
->>> +}
->>> +
->>>    const struct ttm_device_funcs xe_ttm_funcs = {
->>>    	.ttm_tt_create = xe_ttm_tt_create,
->>>    	.ttm_tt_populate = xe_ttm_tt_populate,
->>> @@ -1120,6 +1167,7 @@ const struct ttm_device_funcs xe_ttm_funcs = {
->>>    	.move = xe_bo_move,
->>>    	.io_mem_reserve = xe_ttm_io_mem_reserve,
->>>    	.io_mem_pfn = xe_ttm_io_mem_pfn,
->>> +	.access_memory = xe_ttm_access_memory,
->>>    	.release_notify = xe_ttm_bo_release_notify,
->>>    	.eviction_valuable = ttm_bo_eviction_valuable,
->>>    	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
->>> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
->>> index 5804408815be..8ea11cd8df39 100644
->>> --- a/include/drm/ttm/ttm_bo.h
->>> +++ b/include/drm/ttm/ttm_bo.h
->>> @@ -421,6 +421,8 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo);
->>>    int ttm_bo_evict_first(struct ttm_device *bdev,
->>>    		       struct ttm_resource_manager *man,
->>>    		       struct ttm_operation_ctx *ctx);
->>> +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
->>> +		  void *buf, int len, int write);
->>>    vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
->>>    			     struct vm_fault *vmf);
->>>    vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+> -			err = ttm_bo_vmap(&bo->ttm, &src);
+> -			if (!err) {
+> -				xe_map_memcpy_from(xe_bo_device(bo),
+> -						   snap->snap[i].data,
+> -						   &src, snap->snap[i].bo_ofs,
+> -						   snap->snap[i].len);
+> -				ttm_bo_vunmap(&bo->ttm, &src);
+> -			}
+> -			xe_bo_unlock(bo);
+> +			err = ttm_bo_access(&bo->ttm, snap->snap[i].bo_ofs,
+> +					    snap->snap[i].data, snap->snap[i].len, 0);
+> +			if (!(err < 0) && err != snap->snap[i].len)
+> +				err = -EIO;
+> +			else if (!(err < 0))
+> +				err = 0;
+>   		} else {
+>   			void __user *userptr = (void __user *)(size_t)snap->snap[i].bo_ofs;
+>   
