@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A229D17138
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 21:15:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CDF5D1713F
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 21:18:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 119D310E056;
-	Mon, 21 Oct 2024 21:15:49 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFF9C10E056;
- Mon, 21 Oct 2024 21:15:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD88A10E191;
+	Mon, 21 Oct 2024 21:18:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fwdbq5aC";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4560010E056;
+ Mon, 21 Oct 2024 21:18:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729545492; x=1761081492;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/eqKwEkykFw0EmxBn6wWQTSWmwcMpLrzqmQxMmcO2P8=;
+ b=Fwdbq5aCxnI+MVrZByy8R0DSXsKaw0LgLvCQgU62XQvO/ttf7RCvMvMn
+ /1M6Ke8oXxIQE9oqV31slDoaunVH3/YsgZaAcCaLQptHPxTfo7uXVY/h4
+ Q7OEAhc83MEM3X3zR1TduhtnVQNkW/xcijQ13cJYe8+3IAfBOObrrEPCl
+ HKaUJBhHimkPzvCH7JHR9qpJk445WdS4wf92p9Z9BSojR8U04mfZtWMVK
+ 5a1oK8PmfMFA/6BxZZttjn4/ARy4vO44Cj/LMIATXlRv6EvO9KMNy/gy8
+ NO+YQDiocRwjMGCJTIr9GOPs3AN5raZPEXzz0UyQwm8VW7y4xsAHspRWI w==;
+X-CSE-ConnectionGUID: raz5vhXnTm+/opgZfo3B9A==
+X-CSE-MsgGUID: euLA8H1CRFa57FUplBftug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29257677"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29257677"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 14:18:10 -0700
+X-CSE-ConnectionGUID: uzxHL5CVQDCDkc0k7VGVsw==
+X-CSE-MsgGUID: KzQGW00PTsWlul4aixTLWA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80469574"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 14:18:10 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: mika.kuoppala@intel.com, matthew.auld@intel.com,
+ thomas.hellstrom@linux.intel.com
+Subject: [PATCH v5 0/9] Fix non-contiguous VRAM BO access in Xe
+Date: Mon, 21 Oct 2024 14:18:26 -0700
+Message-Id: <20241021211835.1675640-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/pf=3A_Show_VFs_LM?=
- =?utf-8?q?EM_provisioning_summary_over_debugfs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Oct 2024 21:15:47 -0000
-Message-ID: <172954534797.1306617.406617453294201419@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241021201506.1771-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20241021201506.1771-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +64,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Mapping a non-contiguous VRAM BO doesn't work, start to fix this.
 
-Series: drm/xe/pf: Show VFs LMEM provisioning summary over debugfs
-URL   : https://patchwork.freedesktop.org/series/140274/
-State : success
+v2:
+ - Include missing local change
+v3:
+ - Use GPU for non-visible access
+ - Take PM ref in xe_ttm_access_memory
+ - Disable VMAP for non-contiguous BOs
+v4:
+ - Fix less than page sized non-visible access
+ - Add PM ref to xe_ttm_access_memory
+ - Add PM ref to delayed snapshot capture worker
+ - Fix a couple of warnings in xe_res_cursor
+ - Test all possible code paths
+v5:
+ - Fix 32 bit build (CI)
 
-== Summary ==
+Matthew Brost (9):
+  drm/xe: Add xe_bo_vm_access
+  drm/ttm: Add ttm_bo_access
+  drm/xe: Add xe_ttm_access_memory
+  drm/xe: Take PM ref in delayed snapshot capture worker
+  drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access
+  drm/xe/display: Update intel_bo_read_from_page to use ttm_bo_access
+  drm/xe: Use ttm_bo_access in xe_vm_snapshot_capture_delayed
+  drm/xe: Set XE_BO_FLAG_PINNED in migrate selftest BOs
+  drm/xe: Only allow contiguous BOs to use xe_bo_vmap
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast aa0898115bcff3eda6d021cc66eb8a1c3b264c56
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+ drivers/gpu/drm/ttm/ttm_bo_util.c     |  86 +++++++
+ drivers/gpu/drm/ttm/ttm_bo_vm.c       |  65 +-----
+ drivers/gpu/drm/xe/display/intel_bo.c |  25 +-
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  13 +-
+ drivers/gpu/drm/xe/xe_bo.c            | 106 +++++++--
+ drivers/gpu/drm/xe/xe_devcoredump.c   |   6 +
+ drivers/gpu/drm/xe/xe_migrate.c       | 325 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h       |   4 +
+ drivers/gpu/drm/xe/xe_vm.c            |  17 +-
+ include/drm/ttm/ttm_bo.h              |   2 +
+ 10 files changed, 533 insertions(+), 116 deletions(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.34.1
 
