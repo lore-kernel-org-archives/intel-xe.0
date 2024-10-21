@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F7DBD0E6D9
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:00:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E688D0E6D9
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 10:00:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA6810E475;
-	Mon, 21 Oct 2024 10:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4370B10E47A;
+	Mon, 21 Oct 2024 10:00:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J0Rx+BLo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NmFEhqz8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B058510E475
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 10:00:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4CE610E47A
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Oct 2024 10:00:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729504805; x=1761040805;
+ t=1729504808; x=1761040808;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lSDiBkMcUKxaSF3r3MKcy804PECarPOkXAM0YUTtsww=;
- b=J0Rx+BLo0t/MFXWT2D4a4T8JKveHKI1Wcpq7eVG1nvgtIsp0HQq2kXwp
- VnGK3lAhLlWByB3SnbF+pb9Ef80iibxovx6DrBrDbSwOqWmsxWAP4hRWV
- 8Vy68vrHuv+qK10w8bWVVmnWnp9kPgiEjnfuJ6Joy206ogKY0Peoh4Gi9
- gE/ZwrOW3YnONW70o2iWhZQtaTLYcBdYMncbpqoWcYtif7Q8Ma+0QW6pY
- 48U+vJIiOW5MJGI3itN3qV7Ym8arNyca6o2YsEOj9E3zYm9Ia1x4qGA7O
- GucD+5BCwYcUZ0RgruwL4eqNLJjH9lPm9hmdRz9QdU0mChkSLq/wUJOvO Q==;
-X-CSE-ConnectionGUID: DzAROTSWRl6vwEYEX3wnmw==
-X-CSE-MsgGUID: tnbpRltbTUG2RUqbYRW3zQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="40350862"
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="40350862"
+ bh=2yYjEDf8PXh8qBIBMcW+2QrQy0wbEZESQ2NbRlcVowQ=;
+ b=NmFEhqz88asWiKvK1lhCB5J3bE8zfUyd0iBxfzGSRcZ9J+ccdEpnZTIb
+ qgFiwO1cqXiyKNB57DpZyoLzNvDuwwqRDGsznEz38IrE2hH4kjSh773zb
+ 2f3SUzKLpGXov2JBuNMdFY5b6G5PDjIrH+WJ+jPbzY5C+N1/LJbt3MjIw
+ ppAkOMSCp5v1eoyB/4JgPgJ14ZrAcftM4E09+MyXUPaMJyLHx2E7QEmrM
+ 4TXlvh412I4PS0uGpWu/kYBWnDofEvB0VPF01etBMKmhPqfN7Ca2FQNuq
+ v/KtgYF5Q7KV9HdisbkDglljv4+a1BTfyMLGrzWS65vp/3LqFMXIQZCq3 g==;
+X-CSE-ConnectionGUID: 1odoqfZtS9uez8tSQuRTXQ==
+X-CSE-MsgGUID: Jyzh6PTiTayr0z9zWCQWdA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="40350867"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="40350867"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 03:00:05 -0700
-X-CSE-ConnectionGUID: 8v4vFJhsRRSzp5ByzK+h+Q==
-X-CSE-MsgGUID: GVXmFdVqTGKHHlkphuoPuA==
+ 21 Oct 2024 03:00:08 -0700
+X-CSE-ConnectionGUID: 259jCyo3Seia5ygGklXGPw==
+X-CSE-MsgGUID: f7rACGqCToeY/gUtEVVOsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="84546360"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="84546550"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO rapter.intel.com)
  ([10.245.246.221])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 03:00:01 -0700
+ 21 Oct 2024 03:00:04 -0700
 From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: nirmoy.das@intel.com, matthew.brost@intel.com, stuart.summers@intel.com,
  christoph.manszewski@intel.com, mika.kuoppala@linux.intel.com,
  dominik.grzegorzek@intel.com, andrzej.hajda@intel.com,
  maciej.patelczyk@intel.com
-Subject: [RFC 16/19] drm/xe/eudebug: Implement vm_bind_op discovery
-Date: Mon, 21 Oct 2024 12:58:55 +0300
-Message-ID: <20241021095904.439555-17-gwan-gyeong.mun@intel.com>
+Subject: [RFC 17/19] drm/xe/eudebug: Dynamically toggle debugger functionality
+Date: Mon, 21 Oct 2024 12:58:56 +0300
+Message-ID: <20241021095904.439555-18-gwan-gyeong.mun@intel.com>
 X-Mailer: git-send-email 2.46.1
 In-Reply-To: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
 References: <20241021095904.439555-1-gwan-gyeong.mun@intel.com>
@@ -70,85 +70,384 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-Follow the vm bind, vm_bind op sequence for
-discovery process of a vm with the vmas it has.
-Send events for ops and attach metadata if available.
+Make it possible to dynamically enable/disable debugger funtionality,
+including the setting and unsetting of required hw register values via a
+sysfs entry located at '/sys/class/drm/card<X>/device/enable_eudebug'.
 
-v2: - Fix bad op ref seqno (Christoph)
-    - with discovery semaphore, we dont need vm lock (Matthew)
+This entry uses 'kstrtobool' and as such it accepts inputs as documented
+by this function, in particular '0' and '1'.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
+v2: use new discovery_lock to gain exclusivity (Mika)
+
+Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
+Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 ---
- drivers/gpu/drm/xe/xe_eudebug.c | 45 +++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c       |   2 -
+ drivers/gpu/drm/xe/xe_device_types.h |   3 +
+ drivers/gpu/drm/xe/xe_eudebug.c      | 125 +++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_eudebug.h      |   2 -
+ drivers/gpu/drm/xe/xe_exec_queue.c   |   5 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c    |   1 -
+ drivers/gpu/drm/xe/xe_reg_sr.c       |  21 +++--
+ drivers/gpu/drm/xe/xe_reg_sr.h       |   4 +-
+ drivers/gpu/drm/xe/xe_rtp.c          |   2 +-
+ 9 files changed, 133 insertions(+), 32 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d125951e0f73..abc9b8087276 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -786,8 +786,6 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	xe_debugfs_register(xe);
+ 
+-	xe_eudebug_init_late(xe);
+-
+ 	xe_hwmon_register(xe);
+ 
+ 	for_each_gt(gt, xe, id)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 40b0f61b64b8..fc448d44752e 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -549,6 +549,9 @@ struct xe_device {
+ 		/** discovery_lock: used for discovery to block xe ioctls */
+ 		struct rw_semaphore discovery_lock;
+ 
++		/** @enable: is the debugging functionality enabled */
++		bool enable;
++
+ 		/** @attention_scan: attention scan worker */
+ 		struct delayed_work attention_scan;
+ 	} eudebug;
 diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index 35ab65ef9c80..9ef1e5d9c65d 100644
+index 9ef1e5d9c65d..a24b6e553383 100644
 --- a/drivers/gpu/drm/xe/xe_eudebug.c
 +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -3154,6 +3154,47 @@ void xe_eudebug_debug_metadata_destroy(struct xe_file *xef, struct xe_debug_meta
- 	xe_eudebug_event_put(d, debug_metadata_destroy_event(d, xef, m));
+@@ -2001,9 +2001,6 @@ xe_eudebug_connect(struct xe_device *xe,
+ 
+ 	param->version = DRM_XE_EUDEBUG_VERSION;
+ 
+-	if (!xe->eudebug.available)
+-		return -EOPNOTSUPP;
+-
+ 	d = kzalloc(sizeof(*d), GFP_KERNEL);
+ 	if (!d)
+ 		return -ENOMEM;
+@@ -2063,17 +2060,19 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	struct drm_xe_eudebug_connect * const param = data;
+-	int ret = 0;
+ 
+-	ret = xe_eudebug_connect(xe, param);
++	lockdep_assert_held(&xe->eudebug.discovery_lock);
+ 
+-	return ret;
++	if (!xe->eudebug.enable)
++		return -ENODEV;
++
++	return xe_eudebug_connect(xe, param);
  }
  
-+static int vm_discover_binds(struct xe_eudebug *d, struct xe_vm *vm)
-+{
-+	struct drm_gpuva *va;
-+	unsigned int num_ops = 0, send_ops = 0;
-+	u64 ref_seqno = 0;
-+	int err;
-+
-+	/*
-+	 * Currently only vm_bind_ioctl inserts vma's
-+	 * and with discovery lock, we have exclusivity.
-+	 */
-+	lockdep_assert_held_write(&d->xe->eudebug.discovery_lock);
-+
-+	drm_gpuvm_for_each_va(va, &vm->gpuvm)
-+		num_ops++;
-+
-+	if (!num_ops)
-+		return 0;
-+
-+	err = vm_bind_event(d, vm, num_ops, &ref_seqno);
-+	if (err)
-+		return err;
-+
-+	drm_gpuvm_for_each_va(va, &vm->gpuvm) {
-+		struct xe_vma *vma = container_of(va, struct xe_vma, gpuva);
-+
-+		if (send_ops >= num_ops)
-+			break;
-+
-+		err = vm_bind_op(d, vm, DRM_XE_EUDEBUG_EVENT_CREATE, ref_seqno,
-+				 xe_vma_start(vma), xe_vma_size(vma),
-+				 &vma->eudebug.metadata.list);
-+		if (err)
-+			return err;
-+
-+		send_ops++;
-+	}
-+
-+	return num_ops == send_ops ? 0 : -EINVAL;
-+}
-+
- static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
+ #undef XE_REG_MCR
+ #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
+ 
+-void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
++static void xe_eudebug_reinit_hw_engine(struct xe_hw_engine *hwe, bool enable)
  {
- 	struct xe_debug_metadata *m;
-@@ -3176,6 +3217,10 @@ static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
- 		err = vm_create_event(d, xef, vm);
- 		if (err)
- 			break;
-+
-+		err = vm_discover_binds(d, vm);
-+		if (err)
-+			break;
+ 	struct xe_gt *gt = hwe->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -2088,22 +2087,22 @@ void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
+ 		struct xe_reg_sr_entry sr_entry = {
+ 			.reg = ROW_CHICKEN,
+ 			.clr_bits = STALL_DOP_GATING_DISABLE,
+-			.set_bits = STALL_DOP_GATING_DISABLE,
++			.set_bits = enable ? STALL_DOP_GATING_DISABLE : 0,
+ 			.read_mask = STALL_DOP_GATING_DISABLE,
+ 		};
+ 
+-		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
  	}
  
- 	xa_for_each(&xef->exec_queue.xa, i, q) {
+ 	if (XE_WA(gt, 14015474168)) {
+ 		struct xe_reg_sr_entry sr_entry = {
+ 			.reg = ROW_CHICKEN2,
+ 			.clr_bits = XEHPC_DISABLE_BTB,
+-			.set_bits = XEHPC_DISABLE_BTB,
++			.set_bits = enable ? XEHPC_DISABLE_BTB : 0,
+ 			.read_mask = XEHPC_DISABLE_BTB,
+ 		};
+ 
+-		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
+ 	}
+ 
+ 	if (xe->info.graphics_verx100 >= 1200) {
+@@ -2113,27 +2112,112 @@ void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
+ 		struct xe_reg_sr_entry sr_entry = {
+ 			.reg = TD_CTL,
+ 			.clr_bits = mask,
+-			.set_bits = mask,
++			.set_bits = enable ? mask : 0,
+ 			.read_mask = mask,
+ 		};
+ 
+-		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
+ 	}
+ 
+ 	if (xe->info.graphics_verx100 >= 1250) {
+ 		struct xe_reg_sr_entry sr_entry = {
+ 			.reg = TD_CTL,
+ 			.clr_bits = TD_CTL_GLOBAL_DEBUG_ENABLE,
+-			.set_bits = TD_CTL_GLOBAL_DEBUG_ENABLE,
++			.set_bits = enable ? TD_CTL_GLOBAL_DEBUG_ENABLE : 0,
+ 			.read_mask = TD_CTL_GLOBAL_DEBUG_ENABLE,
+ 		};
+ 
+-		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt);
++		xe_reg_sr_add(&hwe->reg_sr, &sr_entry, gt, true);
++	}
++}
++
++static int xe_eudebug_enable(struct xe_device *xe, bool enable)
++{
++	struct xe_gt *gt;
++	int i;
++	u8 id;
++
++	if (!xe->eudebug.available)
++		return -EOPNOTSUPP;
++
++	/*
++	 * The connect ioctl has read lock so we can
++	 * serialize with taking write
++	 */
++	down_write(&xe->eudebug.discovery_lock);
++
++	if (!enable && !list_empty(&xe->eudebug.list)) {
++		up_write(&xe->eudebug.discovery_lock);
++		return -EBUSY;
++	}
++
++	if (enable == xe->eudebug.enable) {
++		up_write(&xe->eudebug.discovery_lock);
++		return 0;
+ 	}
++
++	for_each_gt(gt, xe, id) {
++		for (i = 0; i < ARRAY_SIZE(gt->hw_engines); i++) {
++			if (!(gt->info.engine_mask & BIT(i)))
++				continue;
++
++			xe_eudebug_reinit_hw_engine(&gt->hw_engines[i], enable);
++		}
++
++		xe_gt_reset_async(gt);
++		flush_work(&gt->reset.worker);
++	}
++
++	xe->eudebug.enable = enable;
++	up_write(&xe->eudebug.discovery_lock);
++
++	if (enable)
++		attention_scan_flush(xe);
++	else
++		attention_scan_cancel(xe);
++
++	return 0;
++}
++
++static ssize_t enable_eudebug_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++
++	return sysfs_emit(buf, "%u\n", xe->eudebug.enable);
++}
++
++static ssize_t enable_eudebug_store(struct device *dev, struct device_attribute *attr,
++				    const char *buf, size_t count)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	bool enable;
++	int ret;
++
++	ret = kstrtobool(buf, &enable);
++	if (ret)
++		return ret;
++
++	ret = xe_eudebug_enable(xe, enable);
++	if (ret)
++		return ret;
++
++	return count;
++}
++
++static DEVICE_ATTR_RW(enable_eudebug);
++
++static void xe_eudebug_sysfs_fini(void *arg)
++{
++	struct xe_device *xe = arg;
++
++	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_enable_eudebug.attr);
+ }
+ 
+ void xe_eudebug_init(struct xe_device *xe)
+ {
++	struct device *dev = xe->drm.dev;
++	int ret;
++
+ 	spin_lock_init(&xe->eudebug.lock);
+ 	INIT_LIST_HEAD(&xe->eudebug.list);
+ 	INIT_LIST_HEAD(&xe->clients.list);
+@@ -2142,14 +2226,17 @@ void xe_eudebug_init(struct xe_device *xe)
+ 
+ 	xe->eudebug.ordered_wq = alloc_ordered_workqueue("xe-eudebug-ordered-wq", 0);
+ 	xe->eudebug.available = !!xe->eudebug.ordered_wq;
+-}
+ 
+-void xe_eudebug_init_late(struct xe_device *xe)
+-{
+ 	if (!xe->eudebug.available)
+ 		return;
+ 
+-	attention_scan_flush(xe);
++	ret = sysfs_create_file(&xe->drm.dev->kobj, &dev_attr_enable_eudebug.attr);
++	if (ret)
++		drm_warn(&xe->drm, "eudebug sysfs init failed: %d, debugger unavailable\n", ret);
++	else
++		devm_add_action_or_reset(dev, xe_eudebug_sysfs_fini, xe);
++
++	xe->eudebug.available = ret == 0;
+ }
+ 
+ void xe_eudebug_fini(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
+index 766d0a94d200..403f52148da3 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.h
++++ b/drivers/gpu/drm/xe/xe_eudebug.h
+@@ -26,9 +26,7 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
+ 			     struct drm_file *file);
+ 
+ void xe_eudebug_init(struct xe_device *xe);
+-void xe_eudebug_init_late(struct xe_device *xe);
+ void xe_eudebug_fini(struct xe_device *xe);
+-void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe);
+ 
+ void xe_eudebug_file_open(struct xe_file *xef);
+ void xe_eudebug_file_close(struct xe_file *xef);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index c2d6993ac103..011d8bb477d4 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -422,6 +422,11 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
+ 			 !(value & DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)))
+ 		return -EINVAL;
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
++	if (XE_IOCTL_DBG(xe, !xe->eudebug.enable))
++		return -EPERM;
++#endif
++
+ 	q->eudebug_flags = EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
+ 	q->sched_props.preempt_timeout_us = 0;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 0b6e087712ea..06711cfd8bfd 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -559,7 +559,6 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	xe_tuning_process_engine(hwe);
+ 	xe_wa_process_engine(hwe);
+ 	hw_engine_setup_default_state(hwe);
+-	xe_eudebug_init_hw_engine(hwe);
+ 
+ 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
+ 	xe_reg_whitelist_process_engine(hwe);
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index e1a0e27cda14..e3a539c1c08e 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -93,22 +93,31 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
+ 
+ int xe_reg_sr_add(struct xe_reg_sr *sr,
+ 		  const struct xe_reg_sr_entry *e,
+-		  struct xe_gt *gt)
++		  struct xe_gt *gt,
++		  bool overwrite)
+ {
+ 	unsigned long idx = e->reg.addr;
+ 	struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
+ 	int ret;
+ 
+ 	if (pentry) {
+-		if (!compatible_entries(pentry, e)) {
++		if (overwrite && e->set_bits) {
++			pentry->clr_bits |= e->clr_bits;
++			pentry->set_bits |= e->set_bits;
++			pentry->read_mask |= e->read_mask;
++		} else if (overwrite && !e->set_bits) {
++			pentry->clr_bits |= e->clr_bits;
++			pentry->set_bits &= ~e->clr_bits;
++			pentry->read_mask |= e->read_mask;
++		} else if (!compatible_entries(pentry, e)) {
+ 			ret = -EINVAL;
+ 			goto fail;
++		} else {
++			pentry->clr_bits |= e->clr_bits;
++			pentry->set_bits |= e->set_bits;
++			pentry->read_mask |= e->read_mask;
+ 		}
+ 
+-		pentry->clr_bits |= e->clr_bits;
+-		pentry->set_bits |= e->set_bits;
+-		pentry->read_mask |= e->read_mask;
+-
+ 		return 0;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
+index 51fbba423e27..d67fafdcd847 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_REG_SR_
+ #define _XE_REG_SR_
+ 
++#include <linux/types.h>
++
+ /*
+  * Reg save/restore bookkeeping
+  */
+@@ -21,7 +23,7 @@ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe)
+ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
+ 
+ int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e,
+-		  struct xe_gt *gt);
++		  struct xe_gt *gt, bool overwrite);
+ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt);
+ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index b13d4d62f0b1..6006f7c90cac 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -153,7 +153,7 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
+ 	};
+ 
+ 	sr_entry.reg.addr += mmio_base;
+-	xe_reg_sr_add(sr, &sr_entry, gt);
++	xe_reg_sr_add(sr, &sr_entry, gt, false);
+ }
+ 
+ static bool rtp_process_one_sr(const struct xe_rtp_entry_sr *entry,
 -- 
 2.46.1
 
