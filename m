@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2438D17142
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 21:18:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40F87D17144
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 21:18:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7CE110E5AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA66610E5B0;
 	Mon, 21 Oct 2024 21:18:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EJdIuy4B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IkVuteXx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8148C10E119;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 068BF10E056;
  Mon, 21 Oct 2024 21:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729545493; x=1761081493;
+ t=1729545492; x=1761081492;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nZMJwEdjNoBvlGVgeI7A/wYeq0nHCWPF1Z/N58o2JT8=;
- b=EJdIuy4B3asCvTA2X6DUS00PFach7Mn9oQCg4PT1EvqozGEyF10BvRbN
- EwyWTIyFm6DQL69xkWmk5ZTUZCIH1/kkrCIIezcCbD/llBlPycMk4ogJF
- X/cs4wbbgwEZ1VtIdhs5fO94Pga/6LqQv0tCAUxD1ebLJv8oDDlVZLEuo
- LOQvQWE1y2/hdOfzJcDJgMGDOi2l//OM9PBv0KFL4SCtux0LU3twEipNU
- WJDrYLWKasTAURUjaDI00SLTLbdhb3yDcEYuIpYsXbQUyATLr7ReGGW5N
- BTtuhX9vizczF00syg2DQBSmm6Cz+s83XKnRN+N4AQkep8Iw5y8np82C+ w==;
-X-CSE-ConnectionGUID: Mxa6Yd0nQAi/LmTT3yEQ8g==
-X-CSE-MsgGUID: cPVPKNbAQ/WQecnGny+b5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29257688"
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29257688"
+ bh=Os2V+KRKEhyXzew/5Rz+DuBmMm0Uhq0rfkIAT6jkQrM=;
+ b=IkVuteXxccEqbCeVSpIjFt+a/D6hNjvRsiUgbhmhm9FiiBEzOHMzit58
+ eatEZ9HARyY+3wXu5OzNgdc5xGX/yeOgu2C5zJKq+KLrrIZgg7Nwd6xWc
+ WsTJr6qLXq0ZNX5WhWPeluaa4OIGQBgdFXDZ4xuHOnbO3RvWs2tPMFMjA
+ g5lnBVaLm4KysF6b7DwoIFprWCCmMCMdhrxiIaevk9iEyWL2fQ/5F/DqH
+ xneVpfGA3RkJ9EjRMPv+urVZsp+ptzzspGZfID114V2JGuEFxwNHLDVmx
+ FSWaTEudJGd5PUx2hpHkStTkhQ089z2YrpoLyD9BzNcoRZueeWPxWhSON Q==;
+X-CSE-ConnectionGUID: vEa6/9FATbmZfUmbk4j5aQ==
+X-CSE-MsgGUID: KXFTZzFdR6KWzZeFpbBy6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29257679"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29257679"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 14:18:11 -0700
-X-CSE-ConnectionGUID: zJ+P3zgNRsGfzTYeIR0NWQ==
-X-CSE-MsgGUID: LXJvVhDVSr6d30UATVHo2A==
+ 21 Oct 2024 14:18:10 -0700
+X-CSE-ConnectionGUID: 961B/XQ/Rf69D6N6NBcm2Q==
+X-CSE-MsgGUID: /7r4Oyh1RYO1uJbUXGR77A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80469603"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80469582"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2024 14:18:10 -0700
@@ -46,13 +46,14 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: mika.kuoppala@intel.com, matthew.auld@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v5 8/9] drm/xe: Set XE_BO_FLAG_PINNED in migrate selftest BOs
-Date: Mon, 21 Oct 2024 14:18:34 -0700
-Message-Id: <20241021211835.1675640-9-matthew.brost@intel.com>
+Subject: [PATCH v5 2/9] drm/ttm: Add ttm_bo_access
+Date: Mon, 21 Oct 2024 14:18:28 -0700
+Message-Id: <20241021211835.1675640-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241021211835.1675640-1-matthew.brost@intel.com>
 References: <20241021211835.1675640-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,61 +69,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We only allow continguous BOs to be vmapped, set XE_BO_FLAG_PINNED on
-BOs in migrate selftest as this forces continguous BOs and selftest uses
-vmaps.
+Non-contiguous VRAM cannot easily be mapped in TTM nor can non-visible
+VRAM easily be accessed. Add ttm_bo_access, which is similar to
+ttm_bo_vm_access, to access such memory.
 
+v4:
+ - Fix checkpatch warnings (CI)
+v5:
+ - Fix checkpatch warnings (CI)
+
+Reported-by: Christoph Manszewski <christoph.manszewski@intel.com>
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 86 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/ttm/ttm_bo_vm.c   | 65 +----------------------
+ include/drm/ttm/ttm_bo.h          |  2 +
+ 3 files changed, 89 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 1a192a2a941b..4cef3b20bd17 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -83,7 +83,8 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 						   bo->size,
- 						   ttm_bo_type_kernel,
- 						   region |
--						   XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+						   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+						   XE_BO_FLAG_PINNED);
- 	if (IS_ERR(remote)) {
- 		KUNIT_FAIL(test, "Failed to allocate remote bo for %s: %pe\n",
- 			   str, remote);
-@@ -642,7 +643,9 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index d939925efa81..41bb5a7477d3 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -919,3 +919,89 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
  
- 	sys_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
- 				   DRM_XE_GEM_CPU_CACHING_WC,
--				   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+				   XE_BO_FLAG_SYSTEM |
-+				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				   XE_BO_FLAG_PINNED);
+ 	return progress;
+ }
++
++static int ttm_bo_access_kmap(struct ttm_buffer_object *bo,
++			      unsigned long offset,
++			      void *buf, int len, int write)
++{
++	unsigned long page = offset >> PAGE_SHIFT;
++	unsigned long bytes_left = len;
++	int ret;
++
++	/* Copy a page at a time, that way no extra virtual address
++	 * mapping is needed
++	 */
++	offset -= page << PAGE_SHIFT;
++	do {
++		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
++		struct ttm_bo_kmap_obj map;
++		void *ptr;
++		bool is_iomem;
++
++		ret = ttm_bo_kmap(bo, page, 1, &map);
++		if (ret)
++			return ret;
++
++		ptr = (void *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
++		WARN_ON_ONCE(is_iomem);
++		if (write)
++			memcpy(ptr, buf, bytes);
++		else
++			memcpy(buf, ptr, bytes);
++		ttm_bo_kunmap(&map);
++
++		page++;
++		buf += bytes;
++		bytes_left -= bytes;
++		offset = 0;
++	} while (bytes_left);
++
++	return len;
++}
++
++/**
++ * ttm_bo_access - Helper to access a buffer object
++ *
++ * @bo: ttm buffer object
++ * @offset: access offset into buffer object
++ * @buf: pointer to caller memory to read into or write from
++ * @len: length of access
++ * @write: write access
++ *
++ * Utility function to access a buffer object. Useful when buffer object cannot
++ * be easily mapped (non-contiguous, non-visible, etc...).
++ *
++ * Returns:
++ * 0 if successful, negative error code on failure.
++ */
++int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
++		  void *buf, int len, int write)
++{
++	int ret;
++
++	if (len < 1 || (offset + len) > bo->base.size)
++		return -EIO;
++
++	ret = ttm_bo_reserve(bo, true, false, NULL);
++	if (ret)
++		return ret;
++
++	switch (bo->resource->mem_type) {
++	case TTM_PL_SYSTEM:
++		fallthrough;
++	case TTM_PL_TT:
++		ret = ttm_bo_access_kmap(bo, offset, buf, len, write);
++		break;
++	default:
++		if (bo->bdev->funcs->access_memory)
++			ret = bo->bdev->funcs->access_memory
++				(bo, offset, buf, len, write);
++		else
++			ret = -EIO;
++	}
++
++	ttm_bo_unreserve(bo);
++
++	return ret;
++}
++EXPORT_SYMBOL(ttm_bo_access);
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+index 2c699ed1963a..20b1e5f78684 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+@@ -366,45 +366,6 @@ void ttm_bo_vm_close(struct vm_area_struct *vma)
+ }
+ EXPORT_SYMBOL(ttm_bo_vm_close);
  
- 	if (IS_ERR(sys_bo)) {
- 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-@@ -666,7 +669,8 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+-static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
+-				 unsigned long offset,
+-				 uint8_t *buf, int len, int write)
+-{
+-	unsigned long page = offset >> PAGE_SHIFT;
+-	unsigned long bytes_left = len;
+-	int ret;
+-
+-	/* Copy a page at a time, that way no extra virtual address
+-	 * mapping is needed
+-	 */
+-	offset -= page << PAGE_SHIFT;
+-	do {
+-		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
+-		struct ttm_bo_kmap_obj map;
+-		void *ptr;
+-		bool is_iomem;
+-
+-		ret = ttm_bo_kmap(bo, page, 1, &map);
+-		if (ret)
+-			return ret;
+-
+-		ptr = (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
+-		WARN_ON_ONCE(is_iomem);
+-		if (write)
+-			memcpy(ptr, buf, bytes);
+-		else
+-			memcpy(buf, ptr, bytes);
+-		ttm_bo_kunmap(&map);
+-
+-		page++;
+-		buf += bytes;
+-		bytes_left -= bytes;
+-		offset = 0;
+-	} while (bytes_left);
+-
+-	return len;
+-}
+-
+ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 		     void *buf, int len, int write)
+ {
+@@ -412,32 +373,8 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 	unsigned long offset = (addr) - vma->vm_start +
+ 		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
+ 		 << PAGE_SHIFT);
+-	int ret;
+-
+-	if (len < 1 || (offset + len) > bo->base.size)
+-		return -EIO;
  
- 	ccs_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
- 				   DRM_XE_GEM_CPU_CACHING_WC,
--				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				   XE_BO_FLAG_PINNED);
+-	ret = ttm_bo_reserve(bo, true, false, NULL);
+-	if (ret)
+-		return ret;
+-
+-	switch (bo->resource->mem_type) {
+-	case TTM_PL_SYSTEM:
+-		fallthrough;
+-	case TTM_PL_TT:
+-		ret = ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
+-		break;
+-	default:
+-		if (bo->bdev->funcs->access_memory)
+-			ret = bo->bdev->funcs->access_memory(
+-				bo, offset, buf, len, write);
+-		else
+-			ret = -EIO;
+-	}
+-
+-	ttm_bo_unreserve(bo);
+-
+-	return ret;
++	return ttm_bo_access(bo, offset, buf, len, write);
+ }
+ EXPORT_SYMBOL(ttm_bo_vm_access);
  
- 	if (IS_ERR(ccs_bo)) {
- 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-@@ -690,7 +694,8 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
- 
- 	vram_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
- 				    DRM_XE_GEM_CPU_CACHING_WC,
--				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				    XE_BO_FLAG_PINNED);
- 	if (IS_ERR(vram_bo)) {
- 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
- 			   PTR_ERR(vram_bo));
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 5804408815be..8ea11cd8df39 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -421,6 +421,8 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+ int ttm_bo_evict_first(struct ttm_device *bdev,
+ 		       struct ttm_resource_manager *man,
+ 		       struct ttm_operation_ctx *ctx);
++int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
++		  void *buf, int len, int write);
+ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+ 			     struct vm_fault *vmf);
+ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
 -- 
 2.34.1
 
