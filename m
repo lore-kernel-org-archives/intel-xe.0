@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2928ED15D87
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0262D15D8B
 	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E027D10E4C8;
-	Mon, 21 Oct 2024 12:32:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6735310E4D7;
+	Mon, 21 Oct 2024 12:32:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KmHHOug8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="asdK0UPs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F7BB10E4CC;
- Mon, 21 Oct 2024 12:32:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6055710E4C8;
+ Mon, 21 Oct 2024 12:32:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513934; x=1761049934;
+ t=1729513942; x=1761049942;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OBfGZua7aq4y0UKazEUposZIJ/geY85i19WZCqaFJko=;
- b=KmHHOug8QbyBCtYqwBwnQ+YQe+JEqz6SZDJlJE4eWn59tOL4ZItOCVvp
- ywC5/bwEMYjuCSP3Hd9bePSB8evx9Q4sgWOTzEsmnaTcWe42pLBEOZhmB
- H0l4RfCZohIrEO05raIQcs+9YRyTbvBw8MerqHxs8FGkCJn6l68yWkfyZ
- P+aRxA7UQAW5YuSlgXho29I3vEGW0Iu3Wh+EsBSLhTstvZ3J8Kl45s/jw
- 9NTfpcHeHRCvttW1LtbfZ8TlPQCWws4w2Sulf/e7YWtTdbNG+U9SbBbrw
- rO62K1S4w4QsQ6Hs+4iWzhl1nXJ9Tdten3kkgZ+/ajJabvaRgw/VFCehA A==;
-X-CSE-ConnectionGUID: Dqe0+iXRRqODmj+lTY7FQA==
-X-CSE-MsgGUID: 8rnBomg9SE69Mb+40s2OlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459642"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459642"
+ bh=FVFf5WVf9WLYyR0bGP5755zR/GpK/07AQJOOMrnRsYI=;
+ b=asdK0UPs3orzGLaYXp+F7HldMF13DmRRL2YRYRu/X0SAqQbxRkcei25c
+ 485v7OF7eGel7b1s0lFhOoISi7iUxmzn5R6li2F15wwmRr3rUWjCNDv3A
+ TZJZRqFqNu5eukWTrXlDvc4fUm3jLcP3gOY1Z309Hf7P2oEAGlV7nitkl
+ 3Bjd6HwNbPlWpmspiqKKh+dCQMXgtowOyiUWqAShfcnmyhj8RoqnYoDth
+ H+uvN+J9r6Sssb1+cuMfRnQxOJ7R53xfA58RTyEk9GUgE5oISBvdgBSwa
+ TMU5nJHelK4gJVabjDsgDeGYW/bdLwZD5UhBQkO1YK3VvNH3I9k5eaYv2 A==;
+X-CSE-ConnectionGUID: r/RFVT+RRRShGYtrjoN48w==
+X-CSE-MsgGUID: zFW8DDzJTNWeBFNYYQPZFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459650"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459650"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:13 -0700
-X-CSE-ConnectionGUID: YfAhERo0Rn2+WiVx6LAp7w==
-X-CSE-MsgGUID: uyc5CGVRRwCOVOVp/yROLw==
+ 21 Oct 2024 05:32:22 -0700
+X-CSE-ConnectionGUID: PINBdPs4S8CNimkBoNDR1g==
+X-CSE-MsgGUID: RaXrAEG0Rdaz00H4ggJ26g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866084"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866112"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:12 -0700
+ 21 Oct 2024 05:32:21 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 09/16] drm/i915/display: Add support for DSC pixel replication
-Date: Mon, 21 Oct 2024 18:04:07 +0530
-Message-ID: <20241021123414.3993899-10-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 14/16] drm/i915/dsc: Introduce odd pixel removal
+Date: Mon, 21 Oct 2024 18:04:12 +0530
+Message-ID: <20241021123414.3993899-15-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
 References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
@@ -67,150 +67,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With 3 VDSC engines and Ultrajoiner, we may encounter a situation where
-hactive is not a multiple of slice count. In this case we need to add
-extra pixels to the last slice to distribute pixels evenly across
-slices.
+With 3 DSC engines we can support 12 slices. With ultra joiner
+usecase while dividing the width into 12 slices, we might
+end up having odd number of pixels per pipe.
 
-Add member to store DSC pixel replication when hactive is not divisible
-by slice count. Fill DSS_CTL3 register with the replicated pixel count.
-Also add this in dsc state dump.
+As per Bspec, pipe src size should be even, so an extra pixel is added
+in each pipe. For Pipe A and C the odd pixel is added at the end of
+pipe and for Pipe B and D it is added at the beginning of the pipe.
+This extra pixel needs to be dropped in Splitter hardware.
 
-v2: Use macro REG_FIELD_PREP and HAS_PIXEL_REPLICATION. (Suraj)
+Introduce bits to account for odd pixel removal while programming DSS CTL.
+Add a new member in crtc state to track if we need to account for the
+odd pixel.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  |  1 +
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 25 +++++++++++++++++--
- .../gpu/drm/i915/display/intel_vdsc_regs.h    |  8 ++++++
- 4 files changed, 33 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c       | 1 +
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+ drivers/gpu/drm/i915/display/intel_vdsc.c          | 9 +++++++++
+ drivers/gpu/drm/i915/display/intel_vdsc_regs.h     | 2 ++
+ 4 files changed, 13 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9e2f0fd0558f..1b772f58998e 100644
+index de682fec45cd..ac4a5809efd6 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5743,6 +5743,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_BOOL(dsc.compression_enable);
+@@ -5762,6 +5762,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
  	PIPE_CONF_CHECK_I(dsc.dsc_split);
  	PIPE_CONF_CHECK_I(dsc.compressed_bpp_x16);
-+	PIPE_CONF_CHECK_I(dsc.replicated_pixels);
+ 	PIPE_CONF_CHECK_I(dsc.replicated_pixels);
++	PIPE_CONF_CHECK_BOOL(dsc.has_odd_pixel);
  
  	PIPE_CONF_CHECK_BOOL(splitter.enable);
  	PIPE_CONF_CHECK_I(splitter.link_count);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 58f510909f4d..17554f52611c 100644
+index 17554f52611c..92c362b9f63c 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1239,6 +1239,7 @@ struct intel_crtc_state {
+@@ -1235,6 +1235,7 @@ struct intel_crtc_state {
+ 	/* Display Stream compression state */
+ 	struct {
+ 		bool compression_enable;
++		bool has_odd_pixel;
+ 		int dsc_split;
  		/* Compressed Bpp in U6.4 format (first 4 bits for fractional part) */
  		u16 compressed_bpp_x16;
- 		u8 slice_count;
-+		int replicated_pixels;
- 		struct drm_dsc_config config;
- 	} dsc;
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 777a287210f9..14cc1ef3641e 100644
+index c279f59fdda8..d3d36cb9859c 100644
 --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
 +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -774,6 +774,7 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	u32 dss_ctl1_val = 0;
- 	u32 dss_ctl2_val = 0;
-+	u32 dss_ctl3_val = 0;
- 	int vdsc_instances_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
- 
- 	if (!crtc_state->dsc.compression_enable)
-@@ -804,8 +805,16 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- 		if (intel_crtc_is_bigjoiner_primary(crtc_state))
+@@ -806,6 +806,12 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
  	}
-+
-+	if (crtc_state->dsc.replicated_pixels)
-+		dss_ctl3_val = DSC_PIXEL_REPLICATION(crtc_state->dsc.replicated_pixels);
-+
- 	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
- 	intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
-+
-+	if (HAS_PIXEL_REPLICATION(dev_priv) && dss_ctl3_val)
-+		intel_de_write(dev_priv,
-+			       BMG_PIPE_DSS_CTL3(crtc_state->cpu_transcoder), dss_ctl3_val);
- }
  
- void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
-@@ -818,6 +827,10 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
- 	    old_crtc_state->joiner_pipes) {
- 		intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
- 		intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
++	if (crtc_state->dsc.has_odd_pixel) {
++		dss_ctl2_val |= ODD_PIXEL_REMOVAL;
++		if (crtc->pipe == PIPE_A || crtc->pipe == PIPE_C)
++			dss_ctl2_val |= ODD_PIXEL_REMOVAL_CONFIG_EOL;
++	}
 +
-+		if (HAS_PIXEL_REPLICATION(dev_priv))
-+			intel_de_write(dev_priv,
-+				       BMG_PIPE_DSS_CTL3(old_crtc_state->cpu_transcoder), 0);
- 	}
- }
+ 	if (crtc_state->dsc.replicated_pixels)
+ 		dss_ctl3_val = DSC_PIXEL_REPLICATION(crtc_state->dsc.replicated_pixels);
  
-@@ -975,7 +988,7 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	enum intel_display_power_domain power_domain;
- 	intel_wakeref_t wakeref;
--	u32 dss_ctl1, dss_ctl2;
-+	u32 dss_ctl1, dss_ctl2, dss_ctl3 = 0;
- 
- 	if (!intel_dsc_source_support(crtc_state))
- 		return;
-@@ -989,6 +1002,9 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
- 	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc, cpu_transcoder));
- 	dss_ctl2 = intel_de_read(dev_priv, dss_ctl2_reg(crtc, cpu_transcoder));
- 
-+	if (HAS_PIXEL_REPLICATION(dev_priv))
-+		dss_ctl3 = intel_de_read(dev_priv, BMG_PIPE_DSS_CTL3(crtc_state->cpu_transcoder));
-+
- 	crtc_state->dsc.compression_enable = dss_ctl2 & VDSC0_ENABLE;
- 	if (!crtc_state->dsc.compression_enable)
- 		goto out;
-@@ -1003,6 +1019,10 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+@@ -1019,6 +1025,9 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
  		crtc_state->dsc.dsc_split = 0;
  	}
  
-+	if (dss_ctl3 & DSC_PIXEL_REPLICATION_MASK)
-+		crtc_state->dsc.replicated_pixels =
-+			dss_ctl3 & DSC_PIXEL_REPLICATION_MASK;
++	if (dss_ctl2 & ODD_PIXEL_REMOVAL)
++		crtc_state->dsc.has_odd_pixel = true;
 +
- 	intel_dsc_get_pps_config(crtc_state);
- out:
- 	intel_display_power_put(dev_priv, power_domain, wakeref);
-@@ -1012,9 +1032,10 @@ static void intel_vdsc_dump_state(struct drm_printer *p, int indent,
- 				  const struct intel_crtc_state *crtc_state)
- {
- 	drm_printf_indent(p, indent,
--			  "dsc-dss: compressed-bpp:" FXP_Q4_FMT ", slice-count: %d, split: %d\n",
-+			  "dsc-dss: compressed-bpp:" FXP_Q4_FMT ", slice-count: %d, replicated pixels: %d split: %d\n",
- 			  FXP_Q4_ARGS(crtc_state->dsc.compressed_bpp_x16),
- 			  crtc_state->dsc.slice_count,
-+			  crtc_state->dsc.replicated_pixels,
- 			  crtc_state->dsc.dsc_split);
- }
- 
+ 	if (dss_ctl3 & DSC_PIXEL_REPLICATION_MASK)
+ 		crtc_state->dsc.replicated_pixels =
+ 			dss_ctl3 & DSC_PIXEL_REPLICATION_MASK;
 diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index 2d478a84b07c..f07fad6239bc 100644
+index f07fad6239bc..9c4cf80c2064 100644
 --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -50,6 +50,14 @@
- 							   _ICL_PIPE_DSS_CTL2_PB, \
- 							   _ICL_PIPE_DSS_CTL2_PC)
- 
-+#define _BMG_PIPE_DSS_CTL3_PB			0x782f0
-+#define _BMG_PIPE_DSS_CTL3_PC			0x784f0
-+#define BMG_PIPE_DSS_CTL3(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _BMG_PIPE_DSS_CTL3_PB, \
-+							   _BMG_PIPE_DSS_CTL3_PC)
-+#define  DSC_PIXEL_REPLICATION_MASK		REG_GENMASK(15, 0)
-+#define  DSC_PIXEL_REPLICATION(count)		(REG_FIELD_PREP(DSC_PIXEL_REPLICATION_MASK, (count)))
-+
- /* Icelake Display Stream Compression Registers */
- #define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
- #define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
+@@ -24,6 +24,8 @@
+ #define  VDSC0_ENABLE				REG_BIT(31)
+ #define  VDSC2_ENABLE				REG_BIT(30)
+ #define  SMALL_JOINER_CONFIG_3_ENGINES		REG_BIT(23)
++#define  ODD_PIXEL_REMOVAL			REG_BIT(18)
++#define  ODD_PIXEL_REMOVAL_CONFIG_EOL		REG_BIT(17)
+ #define  VDSC1_ENABLE				REG_BIT(15)
+ #define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
+ #define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
 -- 
 2.45.2
 
