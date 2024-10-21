@@ -4,57 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7343D15D8A
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:49:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30F20D15D8C
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:49:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF4A10E4DE;
-	Mon, 21 Oct 2024 12:49:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAF8610E4D5;
+	Mon, 21 Oct 2024 12:49:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cqWeYCmH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IepJJF7k";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5848810E4E0;
- Mon, 21 Oct 2024 12:49:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D42F10E4D5;
+ Mon, 21 Oct 2024 12:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729514960; x=1761050960;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=e77ql+f/Q6G3lNiB2bgusNIkQUGPGIgLHvfLiVlSK3U=;
- b=cqWeYCmHJJJT5BTxgN67HporU9h8Klq0Yl/NjCrfrr3ITf0wW/DI8IGt
- 7d5LVaCgaQKtVqqvbdISWY916JUVkG1/gO9PFd97PHk8J0m7jh5nnHlaT
- TCZBwEVF6Rhq25NgcmkwJp6KLGzDB9yJrZcpA/uoJbXpFtKZVo3wg8WM5
- NTqbltQ3Ir94qDuC23PwT5O3z/ncWMooviqv68x2RGUmrLNj21XDl2GPZ
- PJy1QBEQ3rGHkaWg2C2F6u3mc1A676zSVzM0fHzJ6D6KxUe2sNB+LYtef
- K3jcClRcBp8Ba9F64iQ13Bjp+uweB60SDqKARxNOphQ9MdVa4nJYlXmjE g==;
-X-CSE-ConnectionGUID: 00iw0I2gS2uDXJW+fWdSKQ==
-X-CSE-MsgGUID: wGE2gGfzSqCYhrzMg+0pLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40121308"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40121308"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:49:20 -0700
-X-CSE-ConnectionGUID: QomQMmcPRWur3qQG9aAMQQ==
-X-CSE-MsgGUID: O+lHQI04SSSrp3FjmKPFBg==
+ t=1729514963; x=1761050963;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MLLzebIESJtjILk1ZWMLMm0sOzklr1PpHokbV7g3e08=;
+ b=IepJJF7k2aEcKPLctjLmKUSBd4PHtCYjt7EWdW+2nqW+eNtlGDpb6VM+
+ 9XCpwt1D2UxhziLML6idX+2mpEi0WK4pExHLSrJIWYLvkYinzBI0g55+s
+ gxcNjvXVnwL2NLNxJ29Y2CuT9touFKVrai+N50Ya6GrpyGYLvnwT7Ovmb
+ oTGJiguTh2KEQDBC2B7CAcYDqFZ3laZ1t1OehPAWygqzr61zkOEbTV9UW
+ 7s8krtT+fO0IsLSv8b4edeSkUHUfi2s/PNn5XxePtrHvklp/KzCjFGm82
+ gQD9KqJUaBM0HQyl/YiQQRHPtiG5f9fAD/1JFbkPDJtUCwBgXw/veTRJG A==;
+X-CSE-ConnectionGUID: Qi3k5lrcSMmEqEevTNmTkA==
+X-CSE-MsgGUID: x6neUpuQSsGvUAjlFposIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39534868"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39534868"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 05:49:22 -0700
+X-CSE-ConnectionGUID: OQ2GIuK6SlGlkD2GcF6adA==
+X-CSE-MsgGUID: C3zhrJ86QLS6vaGizUecxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="83529715"
-Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.222])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:49:17 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com
-Subject: Re: [PATCH 08/16] drm/i915/display: Add macro HAS_PIXEL_REPLICATION
-In-Reply-To: <20241021123414.3993899-9-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
- <20241021123414.3993899-9-ankit.k.nautiyal@intel.com>
-Date: Mon, 21 Oct 2024 15:49:14 +0300
-Message-ID: <87ttd5y62d.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79110763"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa006.fm.intel.com with ESMTP; 21 Oct 2024 05:49:19 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, jani.nikula@linux.intel.com,
+ nagavenkata.srikanth.v@intel.com
+Subject: [v3] drm/i915/dp: Add FEC Enable Retry mechanism
+Date: Mon, 21 Oct 2024 18:15:00 +0530
+Message-Id: <20241021124500.3691030-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +65,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 21 Oct 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Add macro for Pixel replication support with DSC.
+Currently, even though there is a bit to control FEC enable/disable
+individually, the FEC Decode Enable sequence is sent by the SOC only
+once TRANS_CONF enable is set. This ties the FEC enabling too tightly
+to modeset and therefore cannot be re-issued (in case of failure)
+without a modeset.
 
-Add blank line here.
+From PTL, FEC_DECODE_EN sequence can be sent to a DPRX independent
+of TRANS_CONF enable. This allows us to re-issue an FEC_DECODE_EN
+sequence without a modeset. Hence allowing us to have a retry
+mechanism in case the DPRX does not respond with an FEC_ENABLE
+within certain amount of time.
 
-> Bspec: 49259, 68912.
->
+v3:
+ - Make the commit message more legible [Jani]
+ - Refactor code to re-use existing code [Jani]
+ - Do away with platform dependent FEC enable checks [Jani]
 
-Remove blank line here.
+v2:
+ - Refactor code to avoid duplication and improve readability [Jani]
+ - In case of PTL, wait for FEC status directly after FEC enable [Srikanth]
+ - Wait for FEC_ENABLE_LIVE_STATUS to be cleared before
+   re-enabling FEC [Srikanth]
 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_device.h | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 071a36b51f79..a21b910879df 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -149,6 +149,9 @@ enum intel_display_subplatform {
->  #define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
->  #define HAS_MSO(i915)			(DISPLAY_VER(i915) >= 12)
->  #define HAS_OVERLAY(i915)		(DISPLAY_INFO(i915)->has_overlay)
-> +#define HAS_PIXEL_REPLICATION(i915)	(HAS_DSC(i915) && \
-> +					 (DISPLAY_VER(i915) >= 20 || \
-> +					  DISPLAY_VER_FULL(i915) == IP_VER(14, 1)))
->  #define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
->  #define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
->  #define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 57 +++++++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_ddi.h |  6 +--
+ 2 files changed, 50 insertions(+), 13 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index fe1ded6707f9..0e1e9e45e180 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2256,7 +2256,7 @@ static int read_fec_detected_status(struct drm_dp_aux *aux)
+ 	return status;
+ }
+ 
+-static void wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
++static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
+ {
+ 	struct drm_i915_private *i915 = to_i915(aux->drm_dev);
+ 	int mask = enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_DETECTED;
+@@ -2268,25 +2268,27 @@ static void wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
+ 				 10000, 200000);
+ 
+ 	if (!err && status >= 0)
+-		return;
++		return err;
+ 
+ 	if (err == -ETIMEDOUT)
+ 		drm_dbg_kms(&i915->drm, "Timeout waiting for FEC %s to get detected\n",
+ 			    str_enabled_disabled(enabled));
+ 	else
+ 		drm_dbg_kms(&i915->drm, "FEC detected status read error: %d\n", status);
++
++	return err;
+ }
+ 
+-void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
+-				   const struct intel_crtc_state *crtc_state,
+-				   bool enabled)
++int intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
++				  const struct intel_crtc_state *crtc_state,
++				  bool enabled)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-	int ret;
++	int ret = 0;
+ 
+ 	if (!crtc_state->fec_enable)
+-		return;
++		return ret;
+ 
+ 	if (enabled)
+ 		ret = intel_de_wait_for_set(i915, dp_tp_status_reg(encoder, crtc_state),
+@@ -2297,27 +2299,62 @@ void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
+ 
+ 	if (ret)
+ 		drm_err(&i915->drm,
+-			"Timeout waiting for FEC live state to get %s\n",
+-			str_enabled_disabled(enabled));
++			"Failure in FEC live state to get %s: %d\n",
++			str_enabled_disabled(enabled), ret);
+ 
+ 	/*
+ 	 * At least the Synoptics MST hub doesn't set the detected flag for
+ 	 * FEC decoding disabling so skip waiting for that.
+ 	 */
+ 	if (enabled)
+-		wait_for_fec_detected(&intel_dp->aux, enabled);
++		ret = wait_for_fec_detected(&intel_dp->aux, enabled);
++
++	return ret;
+ }
+ 
+ static void intel_ddi_enable_fec(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	int i;
++	int ret;
+ 
+ 	if (!crtc_state->fec_enable)
+ 		return;
+ 
+ 	intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
+ 		     0, DP_TP_CTL_FEC_ENABLE);
++
++	if (DISPLAY_VER(dev_priv) < 30)
++		return;
++
++	for (i = 0; i < 3; i++) {
++		ret = intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
++
++		if (!ret)
++			return;
++
++		drm_dbg_kms(&dev_priv->drm,
++			    "Failure waiting for FEC enabled to get detected (%d), retrying (%d/3)\n",
++			    ret, i + 1);
++
++		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
++			     DP_TP_CTL_FEC_ENABLE, 0);
++
++		ret = intel_ddi_wait_for_fec_status(encoder, crtc_state, false);
++
++		if (ret)
++			drm_err(&dev_priv->drm,
++				"Timeout waiting for FEC live state to get disabled during retry\n");
++
++		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
++			     0, DP_TP_CTL_FEC_ENABLE);
++	}
++
++	ret = intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
++
++	if (ret)
++		drm_err(&dev_priv->drm, "Failed to enable FEC after 3 retries\n");
+ }
+ 
+ static void intel_ddi_disable_fec(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+index 6d85422bdefe..640851d46b1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+@@ -63,9 +63,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+ void intel_ddi_enable_transcoder_clock(struct intel_encoder *encoder,
+ 				       const struct intel_crtc_state *crtc_state);
+ void intel_ddi_disable_transcoder_clock(const  struct intel_crtc_state *crtc_state);
+-void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
+-				   const struct intel_crtc_state *crtc_state,
+-				   bool enabled);
++int intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
++				  const struct intel_crtc_state *crtc_state,
++				  bool enabled);
+ void intel_ddi_set_dp_msa(const struct intel_crtc_state *crtc_state,
+ 			  const struct drm_connector_state *conn_state);
+ bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector);
 -- 
-Jani Nikula, Intel
+2.25.1
+
