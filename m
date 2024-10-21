@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 946B1D17121
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 17:56:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF2FD17121
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 17:56:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B804610E576;
-	Mon, 21 Oct 2024 17:56:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7283E10E579;
+	Mon, 21 Oct 2024 17:56:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hPYc8vBx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TSYOrVtB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1A4C10E573;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AFD310E114;
  Mon, 21 Oct 2024 17:56:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729533402; x=1761069402;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eABO20KdisM/PVaQcce6fai1+qRPiAxKbPBDQTQgfNQ=;
- b=hPYc8vBxryEVwcc1AmpDycAMCaaiKMUjsClmleenM2OOcrW81kiJqlgF
- Tp2zI+2D20sKGyT1SZSEzuAsgOIxlJjwzh6Qzgz84OMgRW2Bwtck9VlnY
- NMGz5D2G/U9p0VB2BvtltfHs2yoQxt0U/GOKWynIB0ra276VVNYlRXK3S
- 8lPGcyzcb0roFGKak0U8OmUIx9ab7FX6QWQY7kTi1/f4m0lpoCrGX/yZh
- 6UbnW1hZyZV3eWv5e8Xum7TEZ2SnYQoZC4BEw5+Ic4Dv1ErlouN74UPDz
- LWiu2B0qkMXNeziWUz8Wkgudnz4qlxS2R+SKDhkx3okJV0O4rfX8XAaxZ g==;
-X-CSE-ConnectionGUID: 3KzuEpcdQiixQt4EsuiVuw==
-X-CSE-MsgGUID: ajzEMk0xRpKX6mg6n50KSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28910181"
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="28910181"
+ bh=dJjRbo9MlBz0QJCq/ZVrTxqUK3CqkGW8RHmWUdEKZJM=;
+ b=TSYOrVtBkKHWWSgKDA9A/ZkU/1qCtjjXXAj/9LjhXiGqpkiDgB6NtsHR
+ i1Lt6JQF1rDerYp3hubJrP147B8cAV5TD6Zo2jCdq5XYOxHmie44wFhcZ
+ KZCAvTsrnyUme4ChBsHiGYWw5FIFWVcdvMN200JIWW5VNjTUufzaQxjpe
+ nP0pExhtVdcIhuFyZq5iNp1fz8JQ7NWxvfHYKx/b2rTjLmFuMRe9DceB1
+ Q9y8/9rJ1U2fvwH8Ly/Kpjdr1Z4xBYJ+2sR8si7O+FQXyBRs9q6XcjybT
+ MZkM+Zc5XLFZOgLX2M3/tjpSwzlOCmFVLmtq/YspEZ4dAFD2dPaZPdTjz Q==;
+X-CSE-ConnectionGUID: eqg9HjLXTXa30yxuSRzqPg==
+X-CSE-MsgGUID: LKVisONlQWeFLhgItHvghg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28910176"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="28910176"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2024 10:56:40 -0700
-X-CSE-ConnectionGUID: 5Zop7EWmRAOjlj6HrIBzog==
-X-CSE-MsgGUID: a3iLNbI/TduTmeUfkVz2yw==
+X-CSE-ConnectionGUID: YNAjmmOhTCOWJFMDUTbu1g==
+X-CSE-MsgGUID: KCDOqroqSvOeYLQUunyutA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="79680269"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="79680265"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2024 10:56:40 -0700
@@ -46,9 +46,9 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: dakr@kernel.org,
 	pstanner@redhat.com
-Subject: [PATCH 3/4] drm/xe: Mark G2H work queue with WQ_MEM_RECLAIM
-Date: Mon, 21 Oct 2024 10:57:04 -0700
-Message-Id: <20241021175705.1584521-4-matthew.brost@intel.com>
+Subject: [PATCH 2/4] drm/xe: Mark GGTT work queue with WQ_MEM_RECLAIM
+Date: Mon, 21 Oct 2024 10:57:03 -0700
+Message-Id: <20241021175705.1584521-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241021175705.1584521-1-matthew.brost@intel.com>
 References: <20241021175705.1584521-1-matthew.brost@intel.com>
@@ -68,28 +68,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-G2H work queue can be used to free memory thus we should allow this work
-queue to run during reclaim. Mark with G2H work queue with
+GGTT work queue is used to free memory thus we should allow this work
+queue to run during reclaim. Mark with GGTT work queue with
 WQ_MEM_RECLAIM appropriately.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index c260d8840990..1b5d8fb1033a 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -213,7 +213,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 1b3178226987..0124ad120c04 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -246,7 +246,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	else
+ 		ggtt->pt_ops = &xelp_pt_ops;
  
- 	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+-	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, 0);
++	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, WQ_MEM_RECLAIM);
  
--	ct->g2h_wq = alloc_ordered_workqueue("xe-g2h-wq", 0);
-+	ct->g2h_wq = alloc_ordered_workqueue("xe-g2h-wq", WQ_MEM_RECLAIM);
- 	if (!ct->g2h_wq)
- 		return -ENOMEM;
- 
+ 	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
+ 		    ggtt->size - xe_wopcm_size(xe));
 -- 
 2.34.1
 
