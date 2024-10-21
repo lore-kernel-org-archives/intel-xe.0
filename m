@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0262D15D8B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4B0FD15D8A
 	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 12:32:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6735310E4D7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CF7B10E4D6;
 	Mon, 21 Oct 2024 12:32:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="asdK0UPs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EaWUeOhp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6055710E4C8;
- Mon, 21 Oct 2024 12:32:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6F610E4D6;
+ Mon, 21 Oct 2024 12:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513942; x=1761049942;
+ t=1729513937; x=1761049937;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FVFf5WVf9WLYyR0bGP5755zR/GpK/07AQJOOMrnRsYI=;
- b=asdK0UPs3orzGLaYXp+F7HldMF13DmRRL2YRYRu/X0SAqQbxRkcei25c
- 485v7OF7eGel7b1s0lFhOoISi7iUxmzn5R6li2F15wwmRr3rUWjCNDv3A
- TZJZRqFqNu5eukWTrXlDvc4fUm3jLcP3gOY1Z309Hf7P2oEAGlV7nitkl
- 3Bjd6HwNbPlWpmspiqKKh+dCQMXgtowOyiUWqAShfcnmyhj8RoqnYoDth
- H+uvN+J9r6Sssb1+cuMfRnQxOJ7R53xfA58RTyEk9GUgE5oISBvdgBSwa
- TMU5nJHelK4gJVabjDsgDeGYW/bdLwZD5UhBQkO1YK3VvNH3I9k5eaYv2 A==;
-X-CSE-ConnectionGUID: r/RFVT+RRRShGYtrjoN48w==
-X-CSE-MsgGUID: zFW8DDzJTNWeBFNYYQPZFw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459650"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459650"
+ bh=BWBDn6MVhioBJljN/Kmr07t65EwezYucOFgYaTt6W98=;
+ b=EaWUeOhpZkn0jLIZ9+BAMb3BHiJyc6cPXl5c8aCVKsQFgTdOdgxRR8HJ
+ 5veul7wIap3hFd0WAxmUklWIGbFOE1Eg6IFeMLTyGURwaSPhYn+cw8HcS
+ v4lpyQTRqwz7KQCFdkvhvzk6vqObWP0zrvs6rkoBzhWRLa3rxOyiRAt34
+ thGw16NZRwdSDdsG/WXe6fJ7ekvp5taeqQmIFVp1GZ26jH02lxn2cz5lR
+ poUnMb2z2Bzrorpj6XDvjoerHfR46BMgktjpxhfYTPhwFPeibWpm7lxWj
+ n+O3RwTop8GlHVL4grAG1/PEAjXJGr8USwtDK6ajnPU57P5I88jZ4Z9lo g==;
+X-CSE-ConnectionGUID: gKJFAxpCS6igGU8X9w1ghQ==
+X-CSE-MsgGUID: +6ilz/1fS1KWf6atfegSDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459645"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459645"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:22 -0700
-X-CSE-ConnectionGUID: PINBdPs4S8CNimkBoNDR1g==
-X-CSE-MsgGUID: RaXrAEG0Rdaz00H4ggJ26g==
+ 21 Oct 2024 05:32:17 -0700
+X-CSE-ConnectionGUID: NaTYrRLgRFSGHDkv5Xq4sQ==
+X-CSE-MsgGUID: 04kI5qczQ6qWly+R8w0+OQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866112"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866097"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:21 -0700
+ 21 Oct 2024 05:32:16 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 14/16] drm/i915/dsc: Introduce odd pixel removal
-Date: Mon, 21 Oct 2024 18:04:12 +0530
-Message-ID: <20241021123414.3993899-15-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/16] drm/i915/dp: Account for pixel replication for BW
+ computation with DSC
+Date: Mon, 21 Oct 2024 18:04:09 +0530
+Message-ID: <20241021123414.3993899-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
 References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
@@ -67,91 +68,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With 3 DSC engines we can support 12 slices. With ultra joiner
-usecase while dividing the width into 12 slices, we might
-end up having odd number of pixels per pipe.
-
-As per Bspec, pipe src size should be even, so an extra pixel is added
-in each pipe. For Pipe A and C the odd pixel is added at the end of
-pipe and for Pipe B and D it is added at the beginning of the pipe.
-This extra pixel needs to be dropped in Splitter hardware.
-
-Introduce bits to account for odd pixel removal while programming DSS CTL.
-Add a new member in crtc state to track if we need to account for the
-odd pixel.
+Include the extra pixels added while computing bandwidth with DSC.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c       | 1 +
- drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
- drivers/gpu/drm/i915/display/intel_vdsc.c          | 9 +++++++++
- drivers/gpu/drm/i915/display/intel_vdsc_regs.h     | 2 ++
- 4 files changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index de682fec45cd..ac4a5809efd6 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5762,6 +5762,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(dsc.dsc_split);
- 	PIPE_CONF_CHECK_I(dsc.compressed_bpp_x16);
- 	PIPE_CONF_CHECK_I(dsc.replicated_pixels);
-+	PIPE_CONF_CHECK_BOOL(dsc.has_odd_pixel);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 53a437caacac..f35d6fc376c8 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1940,6 +1940,23 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_cloc
+ 	return available_bw > required_bw;
+ }
  
- 	PIPE_CONF_CHECK_BOOL(splitter.enable);
- 	PIPE_CONF_CHECK_I(splitter.link_count);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 17554f52611c..92c362b9f63c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1235,6 +1235,7 @@ struct intel_crtc_state {
- 	/* Display Stream compression state */
- 	struct {
- 		bool compression_enable;
-+		bool has_odd_pixel;
- 		int dsc_split;
- 		/* Compressed Bpp in U6.4 format (first 4 bits for fractional part) */
- 		u16 compressed_bpp_x16;
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index c279f59fdda8..d3d36cb9859c 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -806,6 +806,12 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
- 	}
- 
-+	if (crtc_state->dsc.has_odd_pixel) {
-+		dss_ctl2_val |= ODD_PIXEL_REMOVAL;
-+		if (crtc->pipe == PIPE_A || crtc->pipe == PIPE_C)
-+			dss_ctl2_val |= ODD_PIXEL_REMOVAL_CONFIG_EOL;
-+	}
++static
++u32 adjust_clock_for_extra_pixels(const struct drm_display_mode *adjusted_mode,
++				  int extra_pixels)
++{
++	u32 clock = adjusted_mode->clock;
++	u16 htotal = adjusted_mode->htotal;
 +
- 	if (crtc_state->dsc.replicated_pixels)
- 		dss_ctl3_val = DSC_PIXEL_REPLICATION(crtc_state->dsc.replicated_pixels);
- 
-@@ -1019,6 +1025,9 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
- 		crtc_state->dsc.dsc_split = 0;
- 	}
- 
-+	if (dss_ctl2 & ODD_PIXEL_REMOVAL)
-+		crtc_state->dsc.has_odd_pixel = true;
++	if (!extra_pixels)
++		return clock;
++	/*
++	 * clock = (htotal) * (vtotal) * refresh_rate
++	 * adjusted_clock = (htotal + extra_pixels) * (vtotal) * refresh_rate
++	 * = clock + (clock * extra_pixels / htotal)
++	 */
++	return clock + extra_pixels * (clock / htotal);
++}
 +
- 	if (dss_ctl3 & DSC_PIXEL_REPLICATION_MASK)
- 		crtc_state->dsc.replicated_pixels =
- 			dss_ctl3 & DSC_PIXEL_REPLICATION_MASK;
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index f07fad6239bc..9c4cf80c2064 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -24,6 +24,8 @@
- #define  VDSC0_ENABLE				REG_BIT(31)
- #define  VDSC2_ENABLE				REG_BIT(30)
- #define  SMALL_JOINER_CONFIG_3_ENGINES		REG_BIT(23)
-+#define  ODD_PIXEL_REMOVAL			REG_BIT(18)
-+#define  ODD_PIXEL_REMOVAL_CONFIG_EOL		REG_BIT(17)
- #define  VDSC1_ENABLE				REG_BIT(15)
- #define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
- #define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
+ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 				   struct intel_crtc_state *pipe_config,
+ 				   struct link_config_limits *limits,
+@@ -1948,8 +1965,12 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ {
+ 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	int link_rate, lane_count;
++	u32 adjusted_clock;
+ 	int i;
+ 
++	adjusted_clock = adjust_clock_for_extra_pixels(adjusted_mode,
++						       pipe_config->dsc.replicated_pixels);
++
+ 	for (i = 0; i < intel_dp->num_common_rates; i++) {
+ 		link_rate = intel_dp_common_rate(intel_dp, i);
+ 		if (link_rate < limits->min_rate || link_rate > limits->max_rate)
+@@ -1959,7 +1980,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 		     lane_count <= limits->max_lane_count;
+ 		     lane_count <<= 1) {
+ 			if (!is_bw_sufficient_for_dsc_config(compressed_bppx16, link_rate,
+-							     lane_count, adjusted_mode->clock,
++							     lane_count, adjusted_clock,
+ 							     pipe_config->output_format,
+ 							     timeslots))
+ 				continue;
 -- 
 2.45.2
 
