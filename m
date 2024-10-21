@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A5C6D15D8C
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 13:13:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B5ABD15D8C
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Oct 2024 13:15:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC7CB10E4F9;
-	Mon, 21 Oct 2024 13:13:45 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E65510E4F9;
- Mon, 21 Oct 2024 13:13:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7966738802093087616=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9D7910E4F9;
+	Mon, 21 Oct 2024 13:15:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bIfWxAx6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46FD510E042;
+ Mon, 21 Oct 2024 13:15:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729516530; x=1761052530;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=pNIqyk6oXIkgsXK65hv/qt8xehGiwcq8Jbjm+DD1tsw=;
+ b=bIfWxAx6eAZHEnHydtOYdQXlJUbEJisorMiVM65gBwr516bQVkg5fYma
+ 6XzJMhDJw8hSvXYZ370dP3WtwKxkpRtPuTDtlRT9n9YMStghQKJMCwoRz
+ ZFkB3BtHRd6iJ/BolzGwgRJ3J7TtHsekVadSyDG9Wd2sQCXRf1jyMCKef
+ qCf3WNPPbbX1pyXBh164vUz/PRvmUNzKahZbY3eSHLtVyQf90KzhMH6gR
+ ePIU7DWb4Im6BHY2OHQ0ilbyJnpUoluzypSJ6bL2iyOSNJn+zYqBIG+hN
+ hGGNIXyW7tuVSyO8B0wPhfkbghx4lf1kvqNUgq8I4M8chsFqNViVB/G01 g==;
+X-CSE-ConnectionGUID: XNMB068qQ66oAskcvzMJyA==
+X-CSE-MsgGUID: UlOtSesQSgCDeZDPVTFmRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29164302"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29164302"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 06:15:30 -0700
+X-CSE-ConnectionGUID: evWOK5NsQPSf6Sx6n6WpFg==
+X-CSE-MsgGUID: Ew1XAvVKSUOqmSunVsr+qQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79468951"
+Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.222])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 06:15:28 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to
+ include tx_misc
+In-Reply-To: <172951555814.2472.7619896990957879815@gjsousa-mobl2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241017205444.102979-2-gustavo.sousa@intel.com>
+ <8734kpzljp.fsf@intel.com>
+ <172951555814.2472.7619896990957879815@gjsousa-mobl2>
+Date: Mon, 21 Oct 2024 16:15:25 +0300
+Message-ID: <87plnty4uq.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_support_for_3_VDSC_engines_1?=
- =?utf-8?q?2_slices_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Oct 2024 13:13:44 -0000
-Message-ID: <172951642431.1304920.16172052951339170743@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,177 +66,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7966738802093087616==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 21 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-10-21 09:29:30-03:00)
+>>On Thu, 17 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>>> There has been an update to the Bspec in which we need to set
+>>> tx_misc=0x5 field for C20 TX Context programming for HDMI TMDS for
+>>> Xe2_LPD and newer. That field is mapped to the bits 7:0 of
+>>> SRAM_GENERIC_<A/B>_TX_CNTX_CFG_1, which in turn translates to tx[1] of
+>>> our state struct. Update the algorithm to reflect this change.
+>>>
+>>> Bspec: 74489
+>>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/display/intel_cx0_phy.c    | 17 ++++++++++++++---
+>>>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h   |  2 ++
+>>>  2 files changed, 16 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>>> index f73d576fd99e..22184b2d5a11 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>>> @@ -2142,8 +2142,12 @@ static void intel_c10pll_dump_hw_state(struct drm_i915_private *i915,
+>>>                              i + 2, hw_state->pll[i + 2], i + 3, hw_state->pll[i + 3]);
+>>>  }
+>>>  
+>>> -static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_state *pll_state)
+>>> +static int intel_c20_compute_hdmi_tmds_pll(struct intel_encoder *encoder,
+>>> +                                           u64 pixel_clock,
+>>> +                                           struct intel_c20pll_state *pll_state)
+>>>  {
+>>> +        struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>
+>>No new struct drm_i915_private local variables or parameters, please.
+>>
+>>struct intel_display *display = to_intel_display(encoder);
+>
+> I actually had thought about this when writing this patch, but then I
+> concluded that a future major refactor in the entire file would make
+> more sense, since we are not using struct intel_display anywhere in this
+> file yet...
 
-== Series Details ==
+I actually don't mind having files with mixed i915/display usage because
+it's going to be a somewhat gradual conversion anyway, and there are
+bound to be i915 stragglers even in the files that we mass convert.
 
-Series: Add support for 3 VDSC engines 12 slices (rev4)
-URL   : https://patchwork.freedesktop.org/series/139933/
-State : success
+> I can send a v2 to use struct intel_display here. Or maybe I could send
+> a series containing preparatory patch to convert everything related to
+> C10/C20 to use the new struct and then this patch as the second in the
+> series (although those two patches would not be not totally related to
+> each other).
+>
+> Let me know what is preferred.
 
-== Summary ==
+Up to you, really.
 
-CI Bug Log - changes from xe-2103-784111a40e40a37100e61736dd137c72cedbdb39_BAT -> xe-pw-139933v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139933v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-atsm-2:         [SKIP][3] ([Intel XE#977]) -> [SKIP][4] ([Intel XE#2839] / [Intel XE#977])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#977]) -> [SKIP][6] ([Intel XE#2839] / [Intel XE#977])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
-    - bat-adlp-7:         [SKIP][7] ([Intel XE#977]) -> [SKIP][8] ([Intel XE#2839] / [Intel XE#977])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
-    - bat-dg2-oem2:       [SKIP][9] ([Intel XE#977]) -> [SKIP][10] ([Intel XE#2839] / [Intel XE#977])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          [SKIP][11] ([Intel XE#2245]) -> [SKIP][12] ([Intel XE#2237] / [Intel XE#2245])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-    - bat-bmg-1:          [SKIP][13] ([Intel XE#2245]) -> [SKIP][14] ([Intel XE#2237] / [Intel XE#2245])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-    - bat-lnl-2:          [SKIP][15] ([Intel XE#977]) -> [SKIP][16] ([Intel XE#2237] / [Intel XE#977])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2237]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2237
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2839]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+BR,
+Jani.
 
 
-Build changes
--------------
+>
+> --
+> Gustavo Sousa
+>
+>>
+>>> +
+>>>          u64 datarate;
+>>>          u64 mpll_tx_clk_div;
+>>>          u64 vco_freq_shift;
+>>> @@ -2154,6 +2158,7 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_
+>>>          u64 mpll_fracn_rem;
+>>>          u8  mpllb_ana_freq_vco;
+>>>          u8  mpll_div_multiplier;
+>>> +        u16  tx_misc;
+>>>  
+>>>          if (pixel_clock < 25175 || pixel_clock > 600000)
+>>>                  return -EINVAL;
+>>> @@ -2171,6 +2176,11 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_
+>>>          mpll_div_multiplier = min_t(u8, div64_u64((vco_freq * 16 + (datarate >> 1)),
+>>>                                                    datarate), 255);
+>>>  
+>>> +        if (DISPLAY_VER(i915) >= 20)
+>>> +                tx_misc = 0x5;
+>>> +        else
+>>> +                tx_misc = 0x0;
+>>> +
+>>>          if (vco_freq <= DATARATE_3000000000)
+>>>                  mpllb_ana_freq_vco = MPLLB_ANA_FREQ_VCO_3;
+>>>          else if (vco_freq <= DATARATE_3500000000)
+>>> @@ -2182,7 +2192,7 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_
+>>>  
+>>>          pll_state->clock        = pixel_clock;
+>>>          pll_state->tx[0]        = 0xbe88;
+>>> -        pll_state->tx[1]        = 0x9800;
+>>> +        pll_state->tx[1]        = 0x9800 | C20_PHY_TX_MISC(tx_misc);
+>>>          pll_state->tx[2]        = 0x0000;
+>>>          pll_state->cmn[0]        = 0x0500;
+>>>          pll_state->cmn[1]        = 0x0005;
+>>> @@ -2266,7 +2276,8 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+>>>  
+>>>          /* try computed C20 HDMI tables before using consolidated tables */
+>>>          if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+>>> -                if (intel_c20_compute_hdmi_tmds_pll(crtc_state->port_clock,
+>>> +                if (intel_c20_compute_hdmi_tmds_pll(encoder,
+>>> +                                                    crtc_state->port_clock,
+>>
+>>Alternatively you could just pass crtc_state. *shrug*.
+>>
+>>>                                                      &crtc_state->dpll_hw_state.cx0pll.c20) == 0)
+>>>                          return 0;
+>>>          }
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+>>> index ab3ae110b68f..c1949aa1b909 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+>>> @@ -280,6 +280,8 @@
+>>>  #define PHY_C20_B_TX_CNTX_CFG(i915, idx) \
+>>>                  ((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_B_TX_CNTX_CFG : _MTL_C20_B_TX_CNTX_CFG) - (idx))
+>>>  #define   C20_PHY_TX_RATE                REG_GENMASK(2, 0)
+>>> +#define   C20_PHY_TX_MISC_MASK                REG_GENMASK(7, 0)
+>>> +#define   C20_PHY_TX_MISC(val)                REG_FIELD_PREP16(C20_PHY_TX_MISC_MASK, (val))
+>>
+>>REG_FIELD_PREP16 should have a mask of REG_GENMASK16, and all the masks
+>>and fields and bits for a register should all use the same width.
+>>
+>>BR,
+>>Jani.
+>>
+>>
+>>>  
+>>>  #define PHY_C20_A_CMN_CNTX_CFG(i915, idx) \
+>>>                  ((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_CMN_CNTX_CFG : _MTL_C20_A_CMN_CNTX_CFG) - (idx))
+>>
+>>-- 
+>>Jani Nikula, Intel
 
-  * Linux: xe-2103-784111a40e40a37100e61736dd137c72cedbdb39 -> xe-pw-139933v4
-
-  IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2103-784111a40e40a37100e61736dd137c72cedbdb39: 784111a40e40a37100e61736dd137c72cedbdb39
-  xe-pw-139933v4: 139933v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/index.html
-
---===============7966738802093087616==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for 3 VDSC engines 12 slices (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139933/">https://patchwork.freedesktop.org/series/139933/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2103-784111a40e40a37100e61736dd137c72cedbdb39_BAT -&gt; xe-pw-139933v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139933v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2839">Intel XE#2839</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2237">Intel XE#2237</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2237">Intel XE#2237</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2103-784111a40e40a37100e61736dd137c72cedbdb39/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139933v4/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2237">Intel XE#2237</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2103-784111a40e40a37100e61736dd137c72cedbdb39 -&gt; xe-pw-139933v4</li>
-</ul>
-<p>IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2103-784111a40e40a37100e61736dd137c72cedbdb39: 784111a40e40a37100e61736dd137c72cedbdb39<br />
-  xe-pw-139933v4: 139933v4</p>
-
-</body>
-</html>
-
---===============7966738802093087616==--
+-- 
+Jani Nikula, Intel
