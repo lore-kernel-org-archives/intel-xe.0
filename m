@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E365D1CDBD
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 08:54:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2008ED1CDC1
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 09:13:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4954E10E30A;
-	Tue, 22 Oct 2024 08:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCDD510E628;
+	Tue, 22 Oct 2024 09:13:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aBDX6qb5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LSELA4Rv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 122ED10E304;
- Tue, 22 Oct 2024 08:54:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1C1E10E628;
+ Tue, 22 Oct 2024 09:13:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729587296; x=1761123296;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ffcRa1krHhnJolyc+BKYr9fc9kF/uH79IeZz7m/BLfs=;
- b=aBDX6qb5plYqduO8j5Dgv1QO9PUiik+MDZaaXvozWCxE+44//GdDPC9T
- JM/Q3f+/ZcfVAc1hFwmxT8jQFWtWAPRQtNNQtZ8AyXXLch6CPYiBh7wkq
- LA947HefLc7szWrwbBnCWY39kFXPF3slJw7z5sNIguPW81KuycCIeqJ2r
- Iv29N/1Z0+gbbfChL9v+RyUdIITOU7t89ZynC4HP0vtE87IKsLSGn6lGn
- KRjxxa4NcJlNWnhvJwY5h+NeWFoBCDzOOsNibP45o1ay3mtvuMwrSOq8e
- +4rCiN5MGevHWIsIM6zL8KFa6zOJkfb+X00gOI9nYuysolNvq4D0J65xf Q==;
-X-CSE-ConnectionGUID: Be4vl4gbQ6yi/2lGYbk6KQ==
-X-CSE-MsgGUID: DR9mHVi9QRK1Y+cVhvo9sQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="32917679"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="32917679"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:54:54 -0700
-X-CSE-ConnectionGUID: VGnime6OQfungFKN9tnLCg==
-X-CSE-MsgGUID: bDs0ej/zTKSarzPB33IHSQ==
+ t=1729588386; x=1761124386;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/NyZUNEMSfQCqnevypFd/WUcnN1eH6zt/YaLhORlzAM=;
+ b=LSELA4RvG1g0GpUyTFMB7FXFwioWmvk26XrQ3feMSWLnodJ2k1SlPvar
+ gRkmkAbtGjjkqcOs1Z5FBdiN/YZk28a9frYF0+O4U84/BPm04fAeeI9Ke
+ eJQZkZzIiwpLCq28l26qs4ZKKywRJH4oRn/PDmfuwGxEywvrgxmtIs+uc
+ r8O4W4hRG3K7rb+tTVbKcmNHjmPetz16Srqh5Xk5m2UGrdKPUmGgU2coH
+ QQdWAkx1Sg6pyBvz3PZavxjwqGjW/BNdUfQJJB8lZkK0xP0CBvHDL9q/Q
+ 7A2EADFDaFmkZj2YhPSyMtuIiblsW7Q2+RTuwXTNmEZOo1ynbNmgkX/+O A==;
+X-CSE-ConnectionGUID: qKpmho/2TMGXnd6amFc8cw==
+X-CSE-MsgGUID: rZWQcAjnQ8OdNI73u2pVdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="39721975"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="39721975"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 02:13:05 -0700
+X-CSE-ConnectionGUID: AZyZRlD6RAe9AE6I1Dt+HQ==
+X-CSE-MsgGUID: IkzqAu1YRF6e7JnHaVSNDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="84393527"
-Received: from sosterlu-desk.ger.corp.intel.com (HELO [10.245.244.157])
- ([10.245.244.157])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:54:52 -0700
-Message-ID: <d11143a6-e0a4-4c12-8d5a-12663ac6b66d@intel.com>
-Date: Tue, 22 Oct 2024 09:54:50 +0100
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="79809764"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.4])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 02:13:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [drm-intel-next PATCH] drm/xe: fix build failure originating
+ from backmerge
+In-Reply-To: <ef474dc3-d338-4645-a0e6-25ca3de7ffda@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241022080943.763580-1-jani.nikula@intel.com>
+ <ef474dc3-d338-4645-a0e6-25ca3de7ffda@intel.com>
+Date: Tue, 22 Oct 2024 12:13:00 +0300
+Message-ID: <87zfmwv6ub.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 7/9] drm/xe: Use ttm_bo_access in
- xe_vm_snapshot_capture_delayed
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: mika.kuoppala@intel.com, thomas.hellstrom@linux.intel.com
-References: <20241021211835.1675640-1-matthew.brost@intel.com>
- <20241021211835.1675640-8-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20241021211835.1675640-8-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,15 +71,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21/10/2024 22:18, Matthew Brost wrote:
-> Non-contiguous mapping of BO in VRAM doesn't work, use ttm_bo_access
-> instead.
-> 
-> v2:
->   - Fix error handling
-> 
-> Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+On Tue, 22 Oct 2024, Matthew Auld <matthew.auld@intel.com> wrote:
+> On 22/10/2024 09:09, Jani Nikula wrote:
+>> ../drivers/gpu/drm/xe/display/xe_display.c: In function =E2=80=98xe_disp=
+lay_pm_shutdown=E2=80=99:
+>> ../drivers/gpu/drm/xe/display/xe_display.c:382:27: error: passing argume=
+nt 1 of =E2=80=98intel_dmc_suspend=E2=80=99 from incompatible pointer type =
+[-Werror=3Dincompatible-pointer-types]
+>>    382 |         intel_dmc_suspend(xe);
+>>        |                           ^~
+>>        |                           |
+>>        |                           struct xe_device *
+>> In file included from ../drivers/gpu/drm/xe/display/xe_display.c:24:
+>> ../drivers/gpu/drm/i915/display/intel_dmc.h:22:46: note: expected =E2=80=
+=98struct intel_display *=E2=80=99 but argument is of type =E2=80=98struct =
+xe_device *=E2=80=99
+>>     22 | void intel_dmc_suspend(struct intel_display *display);
+>>        |                        ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+>>=20
+>> Fixes: c141cf76918e ("Merge drm/drm-next into drm-intel-next")
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Acked-by: Matthew Auld <matthew.auld@intel.com>
 
+Thanks, pushed to din.
+
+BR,
+Jani.
+
+>
+>
+>> ---
+>>   drivers/gpu/drm/xe/display/xe_display.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/x=
+e/display/xe_display.c
+>> index 957ae763531d..ca00a365080f 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> @@ -379,7 +379,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+>>=20=20=20
+>>   	intel_opregion_suspend(display, PCI_D3cold);
+>>=20=20=20
+>> -	intel_dmc_suspend(xe);
+>> +	intel_dmc_suspend(display);
+>>   }
+>>=20=20=20
+>>   void xe_display_pm_runtime_suspend(struct xe_device *xe)
+
+--=20
+Jani Nikula, Intel
