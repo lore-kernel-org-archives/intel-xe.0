@@ -4,45 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EDB0D2C56A
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 15:16:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 733BBD2CDF5
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 15:51:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BBE110E164;
-	Tue, 22 Oct 2024 15:16:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 444B910E6AA;
+	Tue, 22 Oct 2024 15:51:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ivQFemiV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nPC9Jk9u";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89F3310E164;
- Tue, 22 Oct 2024 15:16:20 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 37D41A43D12;
- Tue, 22 Oct 2024 15:16:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFA96C4CEC3;
- Tue, 22 Oct 2024 15:16:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1729610179;
- bh=3vo+Tezf/hG7U5f8ffsLl14MxsehQRUwibe+lD2jl3o=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=ivQFemiVu3g0JMr+J+bFUbiqEolLhZrcDDFBF1VZg0czcW+pQXwNDm+Yiy6e64sM5
- wt2/B4lo39d0QMDiu1mBYpYRzyJFdMFeEX8FNLzHiiRmfws1NOz20gH5nBQQHP9rfZ
- TtsDGB0aGH7x0gqAiTE4L+FAklQePcSd14SocufnFwaROKI3ZJqjjRBgUpnZfqhST+
- euZ4lpspsKuEA9kpj72K9eGB9fV2dNa0wyeuEFJGa4ShIYuoXNamQ3t3N99p+5wSgi
- xazFSInVCv9vmKD9cRXfs+czpURwfr6c6qzA2AKuGe5plRh0iVuXHAIPhJFKRzmQyK
- 96Zwf9GPex7Og==
-Date: Tue, 22 Oct 2024 10:16:16 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Bjorn Helgaas <bhelgaas@google.com>,
- Logan Gunthorpe <logang@deltatee.com>, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] PCI/P2PDMA: Don't enforce ACS check for functions
- of same device
-Message-ID: <20241022151616.GA879071@bhelgaas>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC1610E6AA;
+ Tue, 22 Oct 2024 15:51:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729612290; x=1761148290;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=o3xs3Cvc3rh/wpyf+UIzrhINZ1PUKKHZWO6Lxy1aw/E=;
+ b=nPC9Jk9uNRdGukFefrk+kI52k9nPbJwuUSYPV/5whHn37qkLqRNpVcvn
+ LOTnlr6YRMGwaUyHBHdAjSFiYx2t2vNtvFxfwDOPaq+VThDLILoG67+fN
+ MKJ+EKHOCMfa3P/hA1b04hz8+odj43Nx1cxu9ovWDQM/oe52vfP6xNsOb
+ m9r++RX4WZ7HKboZxlyyM4lpuIyiYMg9iczigav04JLmVMx6Iq7LedjYW
+ evdt5RPV/baYQK2iZYuiJpYWvnVSMR5xojPUsjzOR7MySs37bOYv5oKEp
+ QY6xrJf/72aWwIcRzClq9Gzio6vYX+HXgn4tzBgLEgcGs4l8CiTTJfPhk g==;
+X-CSE-ConnectionGUID: 5XfVu/JLTUWRawgkn5Gttg==
+X-CSE-MsgGUID: CsgOZPcsTZW4TPebR+lOtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29318531"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29318531"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 08:51:30 -0700
+X-CSE-ConnectionGUID: FgHnXV0ST2SCO4DK3yi2MA==
+X-CSE-MsgGUID: NJ6/WnTxRm6zyHrqutBwFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="117374322"
+Received: from ldmartin-desk2.corp.intel.com (HELO gjsousa-mobl2.intel.com)
+ ([10.125.110.166])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 08:51:29 -0700
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/i915/xe3lpd: Load DMC
+Date: Tue, 22 Oct 2024 12:50:51 -0300
+Message-ID: <20241022155115.50989-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021052236.1820329-2-vivek.kasireddy@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,90 +65,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Oct 20, 2024 at 10:21:29PM -0700, Vivek Kasireddy wrote:
-> Functions of the same PCI device (such as a PF and a VF) share the
-> same bus and have a common root port and typically, the PF provisions
-> resources for the VF. Therefore, they can be considered compatible
-> as far as P2P access is considered.
-> 
-> Currently, although the distance (2) is correctly calculated for
-> functions of the same device, an ACS check failure prevents P2P DMA
-> access between them. Therefore, introduce a small function named
-> pci_devs_are_p2pdma_compatible() to determine if the provider and
-> client belong to the same device and facilitate P2P DMA between
-> them by not enforcing the ACS check.
-> 
-> v2:
-> - Relax the enforcment of ACS check only for Intel GPU functions
->   as they are P2PDMA compatible given the way the PF provisions
->   the resources among multiple VFs.
+Load the DMC for Xe3LPD.
 
-I don't want version history in the commit log.  If the content is
-useful, just incorporate it here directly (without the version info),
-and put the version-to-version changelog below the "---".
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Logan Gunthorpe <logang@deltatee.com>
-> Cc: <linux-pci@vger.kernel.org>
-> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
-> ---
->  drivers/pci/p2pdma.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-> index 4f47a13cb500..a230e661f939 100644
-> --- a/drivers/pci/p2pdma.c
-> +++ b/drivers/pci/p2pdma.c
-> @@ -535,6 +535,17 @@ static unsigned long map_types_idx(struct pci_dev *client)
->  	return (pci_domain_nr(client->bus) << 16) | pci_dev_id(client);
->  }
->  
-> +static bool pci_devs_are_p2pdma_compatible(struct pci_dev *provider,
-> +					   struct pci_dev *client)
-> +{
-> +	if (provider->vendor == PCI_VENDOR_ID_INTEL) {
-> +		if (pci_is_vga(provider) && pci_is_vga(client))
-> +			return pci_physfn(provider) == pci_physfn(client);
-> +	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 48bbbf8f312c..5392b68627ae 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -113,6 +113,9 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
+ #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
+ #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+ 
++#define XE3LPD_DMC_PATH			DMC_PATH(xe3lpd)
++MODULE_FIRMWARE(XE3LPD_DMC_PATH);
++
+ #define XE2LPD_DMC_PATH			DMC_PATH(xe2lpd)
+ MODULE_FIRMWARE(XE2LPD_DMC_PATH);
+ 
+@@ -168,7 +171,10 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
+ 	const char *fw_path = NULL;
+ 	u32 max_fw_size = 0;
+ 
+-	if (DISPLAY_VER_FULL(display) == IP_VER(20, 0)) {
++	if (DISPLAY_VER_FULL(display) == IP_VER(30, 0)) {
++		fw_path = XE3LPD_DMC_PATH;
++		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
++	} else if (DISPLAY_VER_FULL(display) == IP_VER(20, 0)) {
+ 		fw_path = XE2LPD_DMC_PATH;
+ 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
+ 	} else if (DISPLAY_VER_FULL(display) == IP_VER(14, 1)) {
+-- 
+2.47.0
 
-This doesn't explain why this should be specific to Intel or VGA.  As
-far as I can tell, everything mentioned in the commit log is generic.
-
-I see the previous comments
-(https://lore.kernel.org/all/eddb423c-945f-40c9-b904-43ea8371f1c4@deltatee.com/),
-but none of that context was captured here.
-
-I'm not sure what you refer to by "PF provisions resources for the
-VF".  Isn't it *always* the case that the architected PCI resources
-(BARs) are configured by the PF?  It sounds like you're referring to
-something Intel GPU-specific beyond that?
-
-> +	return false;
-> +}
-> +
->  /*
->   * Calculate the P2PDMA mapping type and distance between two PCI devices.
->   *
-> @@ -634,7 +645,7 @@ calc_map_type_and_dist(struct pci_dev *provider, struct pci_dev *client,
->  
->  	*dist = dist_a + dist_b;
->  
-> -	if (!acs_cnt) {
-> +	if (!acs_cnt || pci_devs_are_p2pdma_compatible(provider, client)) {
->  		map_type = PCI_P2PDMA_MAP_BUS_ADDR;
->  		goto done;
->  	}
-> @@ -696,7 +707,9 @@ int pci_p2pdma_distance_many(struct pci_dev *provider, struct device **clients,
->  		return -1;
->  
->  	for (i = 0; i < num_clients; i++) {
-> -		pci_client = find_parent_pci_dev(clients[i]);
-> +		pci_client = dev_is_pf(clients[i]) ?
-> +				pci_dev_get(to_pci_dev(clients[i])) :
-> +				find_parent_pci_dev(clients[i]);
->  		if (!pci_client) {
->  			if (verbose)
->  				dev_warn(clients[i],
-> -- 
-> 2.45.1
-> 
