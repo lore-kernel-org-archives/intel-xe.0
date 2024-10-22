@@ -4,54 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AABA9D1CDB8
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 08:39:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87DCDD1CDB8
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 08:43:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71BE210E1AD;
-	Tue, 22 Oct 2024 08:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59D0410E621;
+	Tue, 22 Oct 2024 08:43:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ViAJ53n6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ksC2E1xu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7628110E1AD
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Oct 2024 08:39:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F12810E621;
+ Tue, 22 Oct 2024 08:43:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729586398; x=1761122398;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=N1mE6u87ihggg8cnKAreIlaNJJvPWfl5UU9PHvHhSpo=;
- b=ViAJ53n65romGsyx/oNgLh5eY9UaJfvWZo7bIJFoiasLbosdeCm7Nr5Q
- 8/hIOK/gd1NrAQskxbEaNXPoy0RNjYKQSRjWm1gv8LCQQYq3TD8JgBvb4
- ITVvrBYE0Gfau+zbgMK7u0/y9+LLaKCTz93RnVuebJRbJesBBe8Scvgzy
- KTETSa3gF2nwAYHOqYtm+hS6CkljHBrH5ZeMWzS76v/D2K9zV/7sf1Ojl
- fma4rAyL32587SZzLb2GHRLFJAPKkzbZP+RYWg4Hie0qMIyOqB6nlxAgv
- EYwiHDz8yMh8PAKXbvXAfoxnc8x3ayxTDVj9lzvsQGaZFkVpn58xsRCWQ A==;
-X-CSE-ConnectionGUID: IEBx/SgHSzeuibl2QwwD+A==
-X-CSE-MsgGUID: gYroraCPSUKu91aPMKteHw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="32796578"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="32796578"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:39:58 -0700
-X-CSE-ConnectionGUID: m4ANh4sXRv6jIEVGgOYBLw==
-X-CSE-MsgGUID: vJR7LwRAT+uIUIEph9ueRg==
+ t=1729586620; x=1761122620;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=1xVCYWdghfTV8CkKUBjePtTCTdXLlD0E0XcWTMYLx+k=;
+ b=ksC2E1xuVBAHtdAysujTjLTD69YGKJjr9WqddCawkVdP4Nz4ZRo8KUBr
+ mepI3+wk2NUuML97lfJJtMJuVaRV///Jb0F1uXAEjjvLoHqVD/0EbLptz
+ UWVJiT5RLUuTTaDqrwGs9cUakrg90vJ5NkMbZB5UWml0axsEvtdRVw223
+ Z6f12wZTqShRqCiV4Zi5/xIlXHXCArghADO6ATg1VBZFYiQAATKHhAjuX
+ 8ho1xGW8sYMuwd2D4bZAQMy3DN2WCWGDzFDfmccxaBZYr7JlVhgA0/0PD
+ YoaGHboCnX9VbkML8ATtnExoadgQP1NbMtzyHL0eDKlHEl/UMh9F4YnTv Q==;
+X-CSE-ConnectionGUID: WGN81RnITCG4fP9zG2T5NQ==
+X-CSE-MsgGUID: 4oIE/jhBTs6ykhRjmglQCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39652119"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39652119"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 01:43:39 -0700
+X-CSE-ConnectionGUID: VUgapydwSoqChTZJZhk1qw==
+X-CSE-MsgGUID: 1+KmKN4rQMCSMTu84/+Kaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="103098894"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="79866599"
 Received: from sosterlu-desk.ger.corp.intel.com (HELO [10.245.244.157])
  ([10.245.244.157])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:39:56 -0700
-Message-ID: <dfb85077-3822-4b08-a2ba-3c20b58a8384@intel.com>
-Date: Tue, 22 Oct 2024 09:39:54 +0100
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 01:43:38 -0700
+Message-ID: <0dbc501e-c0b0-426b-83bb-fd07c8560876@intel.com>
+Date: Tue, 22 Oct 2024 09:43:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Take ref to job's fence in arm
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20241021173512.1584248-1-matthew.brost@intel.com>
+Subject: Re: [PATCH v5 6/9] drm/xe/display: Update intel_bo_read_from_page to
+ use ttm_bo_access
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: mika.kuoppala@intel.com, thomas.hellstrom@linux.intel.com
+References: <20241021211835.1675640-1-matthew.brost@intel.com>
+ <20241021211835.1675640-7-matthew.brost@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20241021173512.1584248-1-matthew.brost@intel.com>
+In-Reply-To: <20241021211835.1675640-7-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,88 +72,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21/10/2024 18:35, Matthew Brost wrote:
-> Take ref to job's fence in arm rather than run job. This ref is owned by
-> the drm scheduler so it makes sense to take the ref before handing over
-> the job to the scheduler. Also removes an atomic from the run job path.
+On 21/10/2024 22:18, Matthew Brost wrote:
+> Don't open code vmap of a BO, use ttm_bo_access helper which is safe for
+> non-contiguous BOs and non-visible BOs.
 > 
 > Suggested-by: Matthew Auld <matthew.auld@intel.com>
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+I guess needs fixes tag?
+
+With that,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
 > ---
->   drivers/gpu/drm/xe/xe_execlist.c        | 2 +-
->   drivers/gpu/drm/xe/xe_guc_submit.c      | 9 +++++----
->   drivers/gpu/drm/xe/xe_sched_job.c       | 2 +-
->   drivers/gpu/drm/xe/xe_sched_job_types.h | 1 -
->   4 files changed, 7 insertions(+), 7 deletions(-)
+>   drivers/gpu/drm/xe/display/intel_bo.c | 25 +------------------------
+>   1 file changed, 1 insertion(+), 24 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-> index f3b71fe7a96d..a8c416a48812 100644
-> --- a/drivers/gpu/drm/xe/xe_execlist.c
-> +++ b/drivers/gpu/drm/xe/xe_execlist.c
-> @@ -313,7 +313,7 @@ execlist_run_job(struct drm_sched_job *drm_job)
->   	q->ring_ops->emit_job(job);
->   	xe_execlist_make_active(exl);
+> diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
+> index 9f54fad0f1c0..43141964f6f2 100644
+> --- a/drivers/gpu/drm/xe/display/intel_bo.c
+> +++ b/drivers/gpu/drm/xe/display/intel_bo.c
+> @@ -40,31 +40,8 @@ int intel_bo_fb_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
+>   int intel_bo_read_from_page(struct drm_gem_object *obj, u64 offset, void *dst, int size)
+>   {
+>   	struct xe_bo *bo = gem_to_xe_bo(obj);
+> -	struct ttm_bo_kmap_obj map;
+> -	void *src;
+> -	bool is_iomem;
+> -	int ret;
 >   
-> -	return dma_fence_get(job->fence);
-> +	return job->fence;
+> -	ret = xe_bo_lock(bo, true);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = ttm_bo_kmap(&bo->ttm, offset >> PAGE_SHIFT, 1, &map);
+> -	if (ret)
+> -		goto out_unlock;
+> -
+> -	offset &= ~PAGE_MASK;
+> -	src = ttm_kmap_obj_virtual(&map, &is_iomem);
+> -	src += offset;
+> -	if (is_iomem)
+> -		memcpy_fromio(dst, (void __iomem *)src, size);
+> -	else
+> -		memcpy(dst, src, size);
+> -
+> -	ttm_bo_kunmap(&map);
+> -out_unlock:
+> -	xe_bo_unlock(bo);
+> -	return ret;
+> +	return ttm_bo_access(&bo->ttm, offset, dst, size, 0);
 >   }
 >   
->   static void execlist_job_free(struct drm_sched_job *drm_job)
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 0b81972ff651..25f51a947c3a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -717,6 +717,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
->   	struct xe_exec_queue *q = job->q;
->   	struct xe_guc *guc = exec_queue_to_guc(q);
->   	struct xe_device *xe = guc_to_xe(guc);
-> +	struct dma_fence *fence = NULL;
->   	bool lr = xe_exec_queue_is_lr(q);
->   
->   	xe_assert(xe, !(exec_queue_destroyed(q) || exec_queue_pending_disable(q)) ||
-> @@ -734,12 +735,12 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
->   
->   	if (lr) {
->   		xe_sched_job_set_error(job, -EOPNOTSUPP);
-> -		return NULL;
-> -	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
-> -		return job->fence;
-> +		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
-
-Just to confirm, with lr the run_job here is not going to be run more 
-than once?
-
->   	} else {
-> -		return dma_fence_get(job->fence);
-> +		fence = job->fence;
->   	}
-> +
-> +	return fence;
->   }
->   
->   static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-> index eeccc1c318ae..1905ca590965 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> @@ -280,7 +280,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
->   		fence = &chain->base;
->   	}
->   
-> -	job->fence = fence;
-> +	job->fence = dma_fence_get(fence);	/* Pairs with put in scheduler */
->   	drm_sched_job_arm(&job->drm);
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> index 0d3f76fb05ce..8ed95e1a378f 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> @@ -40,7 +40,6 @@ struct xe_sched_job {
->   	 * @fence: dma fence to indicate completion. 1 way relationship - job
->   	 * can safely reference fence, fence cannot safely reference job.
->   	 */
-> -#define JOB_FLAG_SUBMIT		DMA_FENCE_FLAG_USER_BITS
->   	struct dma_fence *fence;
->   	/** @user_fence: write back value when BB is complete */
->   	struct {
+>   struct intel_frontbuffer *intel_bo_get_frontbuffer(struct drm_gem_object *obj)
