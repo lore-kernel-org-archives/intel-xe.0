@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6D5BD1CDAC
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 07:58:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A41FD1CDAB
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 08:03:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 755F510E5FC;
-	Tue, 22 Oct 2024 07:58:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0A5D10E607;
+	Tue, 22 Oct 2024 08:03:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLxSrb4f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irHW7D7/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4644C10E5FC;
- Tue, 22 Oct 2024 07:58:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0A3710E607;
+ Tue, 22 Oct 2024 08:03:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729583906; x=1761119906;
+ t=1729584206; x=1761120206;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=hBwyZd8ba1h+s7LQuhb+Vh98mohnImhPrwGBRnlQSvk=;
- b=FLxSrb4fGp0bbYXPuGqjxmFs1yCEYbs1Y7dq1rSt8HfDbCI/E2BY8ZN1
- tHTL98oPD4YbfIYKxOdEVA1FD4ctzupkhaor78UAranglA0mHfXNlHSuk
- BfNPzkWp7vCyGPNQAeq7FTVHx2a9rJkwAre3P6aLW5bwby4ilur/magHD
- bVDqBEQDcViHh7a0zasNZ1nWsJOWDYQEfes1dGh6SLCOCpIEl7w7N2LE7
- bHopCYPefclyZOA4rx+3ENoSRfhYZF/IF83ayqhYyA9ON5/BwvxzqN5BH
- Q0P5MCuw6ZLnQyz4sXlzxBh1TB12hMT/Jv/vZkBg/a+ox2gNqYjmELAWD g==;
-X-CSE-ConnectionGUID: 9DQaiY6dQUeMJNeovt1BAg==
-X-CSE-MsgGUID: Xgx7GN6bSpyMyVxKzaze7A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="40479691"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="40479691"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 00:51:33 -0700
-X-CSE-ConnectionGUID: Y++zVitcRNKY7r05gRTBkg==
-X-CSE-MsgGUID: oGTO9Z4yQPm+NDPIpO+etA==
+ bh=bE+gwca507EgMF2YhrsSdh6PifOJ0uIv1HYzjL/+6wQ=;
+ b=irHW7D7/XyNhRMA5JYnp3aw05eMiJcAjRnrr9YQgM3qno2mflwn7Lgj+
+ DZRCvYYmFvo6UTRyIf/GNHVl2dWqaTEBUtyttye1yj8otvg56qDo0uIef
+ 32QIYYV2erlKON0pC6OYr+mVj7KOfR59OLHF9QtsE3V48RZHrOZaCwKWs
+ JCXXg/En8XuvaUrmGA5LbrcMCTWuDagJJ7S8wQZbRNJpDi/9KnU40Haq/
+ 1otzQ1nFJOhVxM1vHl8k/O/crx6JAL3th9/C/ktogbzBnFG2qv43+T/oF
+ 5SxAGNNFkCxCDG2bUfkmwN7xEfVEeSGvHC26MCN6esyk+vkD/hcDx2PFT g==;
+X-CSE-ConnectionGUID: XgG5Ngx/RNWxCTqT5euOfw==
+X-CSE-MsgGUID: u7BLZbPNSU+foqbbYG2kRQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28533542"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="28533542"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 01:03:25 -0700
+X-CSE-ConnectionGUID: qQXUpt44SV6UDNW/7ss0Fw==
+X-CSE-MsgGUID: jo0rShzDTgapYZa+jVSCrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="79416130"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="80195906"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.4])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 00:51:30 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 01:03:24 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com
-Subject: Re: [PATCH 02/16] drm/i915/display: Prepare for dsc 3 stream splitter
-In-Reply-To: <b51c1a22-304e-4b9d-aeff-666c2956838b@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 07/13] drm/i915/dmc_wl: Check ranges specific to DC states
+In-Reply-To: <20241021222744.294371-8-gustavo.sousa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
- <20241021123414.3993899-3-ankit.k.nautiyal@intel.com>
- <87wmi1y66a.fsf@intel.com>
- <b51c1a22-304e-4b9d-aeff-666c2956838b@intel.com>
-Date: Tue, 22 Oct 2024 10:51:28 +0300
-Message-ID: <874j54y3r3.fsf@intel.com>
+References: <20241021222744.294371-1-gustavo.sousa@intel.com>
+ <20241021222744.294371-8-gustavo.sousa@intel.com>
+Date: Tue, 22 Oct 2024 11:03:21 +0300
+Message-ID: <87y12gwomu.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,176 +70,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 22 Oct 2024, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 10/21/2024 6:16 PM, Jani Nikula wrote:
->> On Mon, 21 Oct 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->>> At the moment dsc_split represents that dsc splitter is used or not.
->>> With 3 DSC engines, the splitter can split into two streams or three
->>> streams. Make the member dsc_split as int and set that to 2 when dsc
->>> splitter splits to 2 stream.
->> Maybe also name it accordingly? "dsc split" sounds like a boolean, not
->> like an int.
->>
->> Moreover, when you change the meaning of a member, it's often good code
->> hygiene to rename the member to catch any incorrect uses and to ensure
->> you changed them all.
+On Mon, 21 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> There are extra registers that require the DMC wakelock when specific
+> dynamic DC states are in place. Add the table ranges for them and use
+> the correct table depending on the allowed DC states.
 >
-> Noted. Will change the name accordingly.
+> Bspec: 71583
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 112 +++++++++++++++++++-
+>  1 file changed, 108 insertions(+), 4 deletions(-)
 >
->>
->>> v2: Avoid new enum for dsc split. (Suraj)
->>>
->>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
->>>   drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
->>>   .../drm/i915/display/intel_display_types.h    |  2 +-
->>>   drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
->>>   drivers/gpu/drm/i915/display/intel_vdsc.c     | 20 ++++++++++++++-----
->>>   5 files changed, 19 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
->>> index 87a27d91d15d..553e75cf118c 100644
->>> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
->>> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
->>> @@ -1595,7 +1595,7 @@ static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
->>>   
->>>   	/* FIXME: split only when necessary */
->>>   	if (crtc_state->dsc.slice_count > 1)
->>> -		crtc_state->dsc.dsc_split = true;
->>> +		crtc_state->dsc.dsc_split = 2;
->>>   
->>>   	/* FIXME: initialize from VBT */
->>>   	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->>> index ef1436146325..9e2f0fd0558f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->>> @@ -5741,7 +5741,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->>>   	PIPE_CONF_CHECK_I(dsc.config.nsl_bpg_offset);
->>>   
->>>   	PIPE_CONF_CHECK_BOOL(dsc.compression_enable);
->>> -	PIPE_CONF_CHECK_BOOL(dsc.dsc_split);
->>> +	PIPE_CONF_CHECK_I(dsc.dsc_split);
->>>   	PIPE_CONF_CHECK_I(dsc.compressed_bpp_x16);
->>>   
->>>   	PIPE_CONF_CHECK_BOOL(splitter.enable);
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->>> index 2bb1fa64da2f..58f510909f4d 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->>> @@ -1235,7 +1235,7 @@ struct intel_crtc_state {
->>>   	/* Display Stream compression state */
->>>   	struct {
->>>   		bool compression_enable;
->>> -		bool dsc_split;
->>> +		int dsc_split;
->>>   		/* Compressed Bpp in U6.4 format (first 4 bits for fractional part) */
->>>   		u16 compressed_bpp_x16;
->>>   		u8 slice_count;
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->>> index 286b272aa98c..c1867c883b73 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>> @@ -2409,7 +2409,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->>>   	 * then we need to use 2 VDSC instances.
->>>   	 */
->>>   	if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
->>> -		pipe_config->dsc.dsc_split = true;
->>> +		pipe_config->dsc.dsc_split = 2;
->>>   
->>>   	ret = intel_dp_dsc_compute_params(connector, pipe_config);
->>>   	if (ret < 0) {
->>> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
->>> index 40525f5c4c42..3bce13c21756 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
->>> @@ -379,7 +379,14 @@ intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
->>>   
->>>   static int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state)
->>>   {
->>> -	return crtc_state->dsc.dsc_split ? 2 : 1;
->>> +	switch (crtc_state->dsc.dsc_split) {
->>> +	case 2:
->>> +		return 2;
->>> +	case 0:
->>> +	default:
->>> +		break;
->>> +	}
->>> +	return 1;
->> Seems overly complicated.
->>
->>>   }
->>>   
->>>   int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
->>> @@ -976,8 +983,11 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
->>>   	if (!crtc_state->dsc.compression_enable)
->>>   		goto out;
->>>   
->>> -	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
->>> -		(dss_ctl1 & JOINER_ENABLE);
->>> +	if ((dss_ctl1 & JOINER_ENABLE) &&
->>> +	    (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE))
->> The extra parens are unnecessary.
->>
->>> +		crtc_state->dsc.dsc_split = 2;
->>> +	else
->>> +		crtc_state->dsc.dsc_split = 0;
->>>   
->>>   	intel_dsc_get_pps_config(crtc_state);
->>>   out:
->>> @@ -988,10 +998,10 @@ static void intel_vdsc_dump_state(struct drm_printer *p, int indent,
->>>   				  const struct intel_crtc_state *crtc_state)
->>>   {
->>>   	drm_printf_indent(p, indent,
->>> -			  "dsc-dss: compressed-bpp:" FXP_Q4_FMT ", slice-count: %d, split: %s\n",
->>> +			  "dsc-dss: compressed-bpp:" FXP_Q4_FMT ", slice-count: %d, split: %d\n",
->> So what does the reader think when they see "split: 1" in the logs?
->> Split enabled?
->
-> I was meaning to capture the DSC split state as originally intended, and 
-> extend it to have splitting to 3, 2, or None.
->
-> With that we can never have split: 1, but can have either 3, 2, or 0.
->
-> I realize, split:0 is a bit ambiguous, so I am thinking about:
->
-> -change the dsc_split to dsc_streams: to capture number of DSC streams 
-> per pipe, instead of DSC splitter operation.
->
-> -dsc_streams can be 1, 2 and extended to 3.
->
-> -Splitter state will then be implicit, 1 DSC Stream => No Splitter, 2 
-> DSC Streams => Splitter used to split 2 DSC streams and so on.
->
-> With that, deriving number of DSC engine will also be straight forward 
-> (avoiding the switch case above).
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> index d597cc825f64..8bf2f32be859 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include <linux/kernel.h>
+>  
+> +#include "i915_reg.h"
+>  #include "intel_de.h"
+>  #include "intel_dmc.h"
+>  #include "intel_dmc_regs.h"
+> @@ -52,6 +53,87 @@ static struct intel_dmc_wl_range lnl_wl_range[] = {
+>  	{},
+>  };
+>  
+> +static struct intel_dmc_wl_range xe3lpd_dc5_dc6_wl_ranges[] = {
+> +	{ .start = 0x45500, .end = 0x45500 }, /* DC_STATE_SEL */
+> +	{ .start = 0x457a0, .end = 0x457b0 }, /* DC*_RESIDENCY_COUNTER */
+> +	{ .start = 0x45504, .end = 0x45504 }, /* DC_STATE_EN */
+> +	{ .start = 0x45400, .end = 0x4540c }, /* PWR_WELL_CTL_* */
+> +	{ .start = 0x454f0, .end = 0x454f0 }, /* RETENTION_CTRL */
+> +
+> +	/* DBUF_CTL_* */
+> +	{ .start = 0x44300, .end = 0x44300 },
+> +	{ .start = 0x44304, .end = 0x44304 },
+> +	{ .start = 0x44f00, .end = 0x44f00 },
+> +	{ .start = 0x44f04, .end = 0x44f04 },
+> +	{ .start = 0x44fe8, .end = 0x44fe8 },
+> +	{ .start = 0x45008, .end = 0x45008 },
+> +
+> +	{ .start = 0x46070, .end = 0x46070 }, /* CDCLK_PLL_ENABLE */
+> +	{ .start = 0x46000, .end = 0x46000 }, /* CDCLK_CTL */
+> +	{ .start = 0x46008, .end = 0x46008 }, /* CDCLK_SQUASH_CTL */
+> +
+> +	/* TRANS_CMTG_CTL_* */
+> +	{ .start = 0x6fa88, .end = 0x6fa88 },
+> +	{ .start = 0x6fb88, .end = 0x6fb88 },
+> +
+> +	{ .start = 0x46430, .end = 0x46430 }, /* CHICKEN_DCPR_1 */
+> +	{ .start = 0x46434, .end = 0x46434 }, /* CHICKEN_DCPR_2 */
+> +	{ .start = 0x454a0, .end = 0x454a0 }, /* CHICKEN_DCPR_4 */
+> +	{ .start = 0x42084, .end = 0x42084 }, /* CHICKEN_MISC_2 */
+> +	{ .start = 0x42088, .end = 0x42088 }, /* CHICKEN_MISC_3 */
+> +	{ .start = 0x46160, .end = 0x46160 }, /* CMTG_CLK_SEL */
+> +	{ .start = 0x8f000, .end = 0x8ffff }, /* Main DMC registers */
+> +
+> +	{},
+> +};
+> +
+> +static struct intel_dmc_wl_range xe3lpd_dc3co_wl_ranges[] = {
+> +	{ .start = 0x454a0, .end = 0x454a0 }, /* CHICKEN_DCPR_4 */
+> +
+> +	{ .start = 0x45504, .end = 0x45504 }, /* DC_STATE_EN */
+> +
+> +	/* DBUF_CTL_* */
+> +	{ .start = 0x44300, .end = 0x44300 },
+> +	{ .start = 0x44304, .end = 0x44304 },
+> +	{ .start = 0x44f00, .end = 0x44f00 },
+> +	{ .start = 0x44f04, .end = 0x44f04 },
+> +	{ .start = 0x44fe8, .end = 0x44fe8 },
+> +	{ .start = 0x45008, .end = 0x45008 },
+> +
+> +	{ .start = 0x46070, .end = 0x46070 }, /* CDCLK_PLL_ENABLE */
+> +	{ .start = 0x46000, .end = 0x46000 }, /* CDCLK_CTL */
+> +	{ .start = 0x46008, .end = 0x46008 }, /* CDCLK_SQUASH_CTL */
+> +	{ .start = 0x8f000, .end = 0x8ffff }, /* Main DMC registers */
+> +
+> +	/* Scanline registers */
+> +	{ .start = 0x70000, .end = 0x70000 },
+> +	{ .start = 0x70004, .end = 0x70004 },
+> +	{ .start = 0x70014, .end = 0x70014 },
+> +	{ .start = 0x70018, .end = 0x70018 },
+> +	{ .start = 0x71000, .end = 0x71000 },
+> +	{ .start = 0x71004, .end = 0x71004 },
+> +	{ .start = 0x71014, .end = 0x71014 },
+> +	{ .start = 0x71018, .end = 0x71018 },
+> +	{ .start = 0x72000, .end = 0x72000 },
+> +	{ .start = 0x72004, .end = 0x72004 },
+> +	{ .start = 0x72014, .end = 0x72014 },
+> +	{ .start = 0x72018, .end = 0x72018 },
+> +	{ .start = 0x73000, .end = 0x73000 },
+> +	{ .start = 0x73004, .end = 0x73004 },
+> +	{ .start = 0x73014, .end = 0x73014 },
+> +	{ .start = 0x73018, .end = 0x73018 },
+> +	{ .start = 0x7b000, .end = 0x7b000 },
+> +	{ .start = 0x7b004, .end = 0x7b004 },
+> +	{ .start = 0x7b014, .end = 0x7b014 },
+> +	{ .start = 0x7b018, .end = 0x7b018 },
+> +	{ .start = 0x7c000, .end = 0x7c000 },
+> +	{ .start = 0x7c004, .end = 0x7c004 },
+> +	{ .start = 0x7c014, .end = 0x7c014 },
+> +	{ .start = 0x7c018, .end = 0x7c018 },
+> +
+> +	{},
+> +};
+> +
+>  static void __intel_dmc_wl_release(struct intel_display *display)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(display->drm);
+> @@ -106,9 +188,31 @@ static bool intel_dmc_wl_addr_in_range(u32 address,
+>  	return false;
+>  }
+>  
+> -static bool intel_dmc_wl_check_range(u32 address)
+> +static bool intel_dmc_wl_check_range(struct intel_display *display, u32 address)
+>  {
+> -	return intel_dmc_wl_addr_in_range(address, lnl_wl_range);
+> +	const struct intel_dmc_wl_range *ranges;
+> +
+> +	ranges = lnl_wl_range;
+> +
+> +	if (intel_dmc_wl_addr_in_range(address, ranges))
+> +		return true;
+> +
+> +	switch (display->power.domains.dc_state) {
 
-Maybe be even more explicit, and call it num_streams or stream_count or
-something like that.
+This file has no business looking at power domain guts. Use or add
+interfaces instead of poking at data directly.
 
-Also, the crtc_state->dsc.dsc_something is a tautology, the dsc_ prefix
-is unnecessary when it's already in a dsc substruct.
+> +	case DC_STATE_EN_DC3CO:
+> +		ranges = xe3lpd_dc3co_wl_ranges;
+> +		break;
+> +	case DC_STATE_EN_UPTO_DC5:
+> +	case DC_STATE_EN_UPTO_DC6:
+> +		ranges = xe3lpd_dc5_dc6_wl_ranges;
+> +		break;
+> +	default:
+> +		ranges = NULL;
+> +	}
+> +
+> +	if (ranges && intel_dmc_wl_addr_in_range(address, ranges))
+> +		return true;
+> +
+> +	return false;
+>  }
+>  
+>  static bool __intel_dmc_wl_supported(struct intel_display *display)
+> @@ -195,7 +299,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+>  	if (!__intel_dmc_wl_supported(display))
+>  		return;
+>  
+> -	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg.reg))
+> +	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(display, reg.reg))
 
-BR,
-Jani.
+Side note, unrelated to this patch, i915_reg_t is supposed to be opaque,
+nobody should look at reg.reg directly, there's i915_mmio_reg_offset()
+for it.
 
->
->
-> Thanks & Regards,
->
-> Ankit
->
->
->
->>
->>>   			  FXP_Q4_ARGS(crtc_state->dsc.compressed_bpp_x16),
->>>   			  crtc_state->dsc.slice_count,
->>> -			  str_yes_no(crtc_state->dsc.dsc_split));
->>> +			  crtc_state->dsc.dsc_split);
->>>   }
->>>   
->>>   void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+>  		return;
+>  
+>  	spin_lock_irqsave(&wl->lock, flags);
+> @@ -247,7 +351,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+>  	if (!__intel_dmc_wl_supported(display))
+>  		return;
+>  
+> -	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg.reg))
+> +	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(display, reg.reg))
+>  		return;
+>  
+>  	spin_lock_irqsave(&wl->lock, flags);
 
 -- 
 Jani Nikula, Intel
