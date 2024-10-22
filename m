@@ -4,61 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54A1BD1CDDC
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 10:54:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C918CD1CDD5
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 10:55:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA0610E668;
-	Tue, 22 Oct 2024 10:54:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC3310E668;
+	Tue, 22 Oct 2024 10:55:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DJcg8Rfg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nbEZagat";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73A6510E666;
- Tue, 22 Oct 2024 10:54:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DB6B10E668;
+ Tue, 22 Oct 2024 10:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729594474; x=1761130474;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=BfsXnKhdgJzMKG/7b6rB43K6MAL7dLyNXcY3ypxj5yE=;
- b=DJcg8Rfgza74tCTulPsmd/fRT7aTjasO3J85mPveRCh0rGEK/D34gUur
- IsYCqUCAcvYQnAWmI0b2hQYJImB+H1OzIwKnvi6fvz4/Bts5NdJsRZTJb
- vylLGpY+L2464fPtj1fUMjA1hksiGjHrIrONBzaLuLcFbhnoJS/5IRzru
- bC10RZLc3GyLFB9GZ3ig2gs66kzFxgBOEIDt1RT0SRSdOzl4saqYylTFM
- mHeIETK5Sz2J5KlLGWKJbWWx75HEP5ZQzwdr0TTJj1epRrII35WdxNQIA
- K2aFhc8Hrsn4KwwU11E7bIM0p3Ykw/IZ69zYfZ6JuzjhQz6GWenAbCNtX A==;
-X-CSE-ConnectionGUID: ovfeDFCCS+KkGnvJ2Lf6Mw==
-X-CSE-MsgGUID: oZaVrBDWRGu/nvFnb7vvjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28576114"
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="28576114"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 03:54:34 -0700
-X-CSE-ConnectionGUID: NdOLb1o0RbW1+aP4lKu0SA==
-X-CSE-MsgGUID: 9TAyYRUXTaGr2WKKDRezrA==
+ t=1729594523; x=1761130523;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=03MOIetiYoVPF23aaS0J8aOTmi8cBd0pjCX8KbPeHMg=;
+ b=nbEZagat5WZ1gOHUWYErUrGo7Co0xc9oDdqfan9jEC4ga7Fck4tyHMmI
+ m2ldsPlOMiEkfT8Q0xCRaIC/0gDABZH8xxxz9tGADg567o6Tq4EHfWJWm
+ az/J9fcX181DIp24cjMxPT1xhAeiqyvktnmq1hsDex2L/m+MCqRZ6Qwxo
+ Yd5kkcxVdo69gb/cXWEEK0nlqxdi4eyP0WbZJpWOOnqvLSB0xKue3Df9u
+ luTZFvIG02j+svp3aXZWslw5aLOywUjnYrU4SquZnIsxEGswh3CF+JmKm
+ inpRxT+99SIlfTOmu8fqFMYO24Y72zHNEjlaO6z8BJ4EE3hfWjNqKqf55 A==;
+X-CSE-ConnectionGUID: x9YtL4aoRrmfl3DtzxyXwA==
+X-CSE-MsgGUID: Rk/KCMEKS++XP7RhIK76vg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="39705439"
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="39705439"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 03:55:22 -0700
+X-CSE-ConnectionGUID: ZTZrASkjSbWRSIOtGT3AgA==
+X-CSE-MsgGUID: 4QvwbdYKTF2zEYDjf3BvGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="79392636"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa006.fm.intel.com with ESMTP; 22 Oct 2024 03:54:32 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t3CX0-000TSU-0B;
- Tue, 22 Oct 2024 10:54:30 +0000
-Date: Tue, 22 Oct 2024 18:54:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v2 4/5] drm/xe/bo: Create new dma_addr array for dmabuf
- BOs associated with VFs
-Message-ID: <202410221832.R04DR21j-lkp@intel.com>
-References: <20241021052236.1820329-5-vivek.kasireddy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="80239103"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Oct 2024 03:55:21 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 22 Oct 2024 03:55:21 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 22 Oct 2024 03:55:20 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 22 Oct 2024 03:55:20 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.42) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 22 Oct 2024 03:55:20 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Lci0Kjs+hxj7r0Z8k7gcg/0gNsMw2RTwty77KAczPTNedaTALg8t7ls+RVsRJonZsy1bJoBNcg/MJxZxBSlKG4fdle7UDr/iQOP+Qmk9l6wPaF1rmgP3+ajmFuZAc01VQ4Lg+UFXT947U9xuMTH2q7iI8NtuPo7NhrQ0zGXYH5UVsQzKyCOgkF3M5vVRTI1OIlkE3wso1wrlZDEi1ptWJVqTjm/DGw5QXBHLx0FxJUuX5wIEOiEcgCBRuJw4W7dNjq6ghKlCOOCvL/mKJkqS4JjF8NznOl2p3/nlJipzFNpfeyNe4LHPDHknQykMfgH65LyZXZyBygeyNfvH4OgzSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LxPX+qvUTlI6Q18PEfD6QEfgEfjzZWyuQGm1IAlOT5c=;
+ b=RldJflCFBRVbRX5qYqqGL/7SNJYxWDQ0mccSBrwGu+cmPiaPAySGsdRTFqCJph7GBoxuWoB6jyN6qq8DH117n6XCeZe88Lvx/J2rLDFf3eYoXI9JBCkOd/QQRBpYtiy6PoZQP5uN/VAIgW7bVGOMI63QZpqQA1Op37hmkjBewQiCJG4a535+zg4ZmT18zr0H4D/SjB4f7H2DvxteE2Gg/Z0UAsHcjnG8/zAymWMXkmGs7+seoDGUjsge0B1fdz7uXQOs48qpB7LPFV+kPjiAdHriHPR9dKibXCaW4j4jjcU4OcBpL5ieo+RkhT/6PmwtJyS/LVzy8i8eoG6PjM/lqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by MW3PR11MB4569.namprd11.prod.outlook.com (2603:10b6:303:54::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Tue, 22 Oct
+ 2024 10:55:15 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.8069.027; Tue, 22 Oct 2024
+ 10:55:15 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <87wmi0v5u3.fsf@intel.com>
+References: <20241021222744.294371-1-gustavo.sousa@intel.com>
+ <20241021222744.294371-3-gustavo.sousa@intel.com> <87wmi0v5u3.fsf@intel.com>
+Subject: Re: [PATCH 02/13] drm/i915/dmc_wl: Use non-sleeping variant of MMIO
+ wait
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Date: Tue, 22 Oct 2024 07:55:09 -0300
+Message-ID: <172959450980.3700.12071321081236598428@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: MW2PR2101CA0032.namprd21.prod.outlook.com
+ (2603:10b6:302:1::45) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021052236.1820329-5-vivek.kasireddy@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|MW3PR11MB4569:EE_
+X-MS-Office365-Filtering-Correlation-Id: e31fecd1-81f3-4b47-8fc1-08dcf288028b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Tmpjb0RjZFdBNktxMkZzWmpZTHBrMU52ZUJxUTdnbmpXL0J6UUJBVkhpQ2R1?=
+ =?utf-8?B?a3RFRDY0K01wWGtFdG9oOThJNnN2a3ZqMlRPczd6ZjB4bjBiNkw3Y05EeFBP?=
+ =?utf-8?B?UlJBMVg5OFYyYXEyOFM3ZVoraXA4b2hWMXZacTJ3ZXJPSDlRZ3BWMzFHNGRS?=
+ =?utf-8?B?alRyTGl2LzZQNTVpcDJjeGhiR1RKMEJJTXVTVkJ0UUVMRW53dTVLL0NSQmc0?=
+ =?utf-8?B?R211cDlhY1UwREtIMUxrRnpTR0FCc2h0WENlNEhFd2dsSW5zZVdObng0d0xs?=
+ =?utf-8?B?c2xVRDNOd0FxLzNuYUxqOUZyR0NydDNmNHQ1SXhZSWxxYVZvSVlKNmdZTXdU?=
+ =?utf-8?B?V3dJVXg3blBCaU9LYVNYWlcyOFo3SGVmVmdZVmJpWEpPRDd1cm5xdnlia2l0?=
+ =?utf-8?B?dzhFaVlhYmdHR1hMSnZvT3RwMTQ1bGFrNjVPUzcwS05VUyt3MVk3NXdRYWVy?=
+ =?utf-8?B?TTRaZ0hGK3BZdWNxc0JvZklETDR2cThxSmFUZlJXWi9lK0pPbUdTbm02L2R6?=
+ =?utf-8?B?S1NPdGsvR3VOY1RSVi9XL1UzYlVVRFF0NlozeGRmcHljMnRYZ1EzYXZFd2Ux?=
+ =?utf-8?B?eGRYREF4YUF0RS9WaUhQOFBYUEUzWnJVZ2NURkdKdkxTZFNITnFZNzlIdyt6?=
+ =?utf-8?B?YXR5R1RsY2gwOThwcjhXS2t4WkI2N3IrWWNiNkV0a0I2UlpLQUI1MDZxaFVL?=
+ =?utf-8?B?K3dwUXo3TEhyTVE2ck1xRVZ4aHdScm1sS1UzbTFsNzZvZndxaGFFN20wUGN2?=
+ =?utf-8?B?UjlPczlzN0JMUERUYW9nNkhCMFZLSmVQYmRDN3RpZTdkRGZXUVM0b2RoMFEx?=
+ =?utf-8?B?U2JRY2JkejB1SnVWb0J0bVA0OTB1S0gvUjdZb0oxVHdSU1hLMk16R0hGdWNW?=
+ =?utf-8?B?TlRJK3NOM0JBdm00TCswdU85N1Q5cE5IeDBYZ2czSzFqV0cvTlQyZWh3YnV6?=
+ =?utf-8?B?TW1iZko4bzF1UnpPVFRQYk5LZFR3amtJSUFQeXVjUndxN0VzWVVPYnlIcUpK?=
+ =?utf-8?B?Q2FUVzd6QlRMM2FkQVJIbUNSbm5EQnhlUGtVMEd4VUhHWWN6YW1mSGRwdUxZ?=
+ =?utf-8?B?YWUrZjFtOEFNcjNHOTU1d3ljcWM5ZWJLRUZoSUU2N244OHJabVRtU01BNnov?=
+ =?utf-8?B?bGljbWFyRWhQL2VCdjU0R0d6aGZFWkJEcGphSnFnTS91YWtNQ0o3QTNjWjRs?=
+ =?utf-8?B?S1NuNjErcHExeVNHclVBZkplN01XVWhHQ0VGcm9MdkQxYjhabmZHaDllVkZw?=
+ =?utf-8?B?aTEzZWJzUFZHbWdVMVoyL0pOL1N1RzdGRjgzaTJxRm8wbHdXWnI2UEU1am4x?=
+ =?utf-8?B?V3FGZm9BTjRhQWpkQitjWlJ0NnVvb1l0NFJ6ZFZ4RmlHcjVoRnh6TERCVU9Q?=
+ =?utf-8?B?YTBpa212VUpacFpYbk5MODljdkxBQ2d2WGxLQmtRcWlqL2wwMndVWndTTVlE?=
+ =?utf-8?B?WGpOSHpHcGNsV0dxSGdVdE9CRWo0Y3ZJSFFIak1CWmNrWTBvTGpVR2VoYjBX?=
+ =?utf-8?B?ZllYaDRzNzluVVJqMkFHUlF5VUVuTXEwU01oSk9CSVN4TVd6Y29ZWCtXS3Bn?=
+ =?utf-8?B?ZmFlRjN5OGhsYlVGMTNWZ1Nzcjh1WHJiMkNEdjh1VVp5aU15VS9uQ1gvUlJl?=
+ =?utf-8?B?NEp6bS9TVFA3N2J1U0Vtc2hCNTdtSUgvaXNOeTFhR3NLUGRPYTdFUTFqbUpu?=
+ =?utf-8?B?eFNtVXF6T3ozOXBJUUd5RGF2eVo2QjVNdGdEci9oMDZEWWFpb3FNUEhLZU55?=
+ =?utf-8?Q?J2KjTIX2XI6iitCUoSyuoN3Ymuh2Fg9xflLuqiv?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFZGYjk0alMxUXZ6OXlPQTNFdHJEOFRWL1dDYWFOek5QWEIxMWVaOHNNZ3R5?=
+ =?utf-8?B?QVc4MmhvaHJCYjVqdTlBajdPY3RFY0xGeU9YMmxObytJd2d0eGxWb3RXTXlp?=
+ =?utf-8?B?alBXZGJkaDg4bElhRlRXNzRJWmQ1RzdkS1FZR2FEam5jWUd3eGxkZVJiTmVE?=
+ =?utf-8?B?WkQ1dUxZS3NrYXFOQVJMMGNYUkphdUVKeUgvdnF1YytwYWJ5WUl0N2M1aTNM?=
+ =?utf-8?B?ejRlSUxjajVZcmhObm9lMnJtdlJTdGk4U1JCaVZ6dWpEbkNwL3VMcmdRbUdB?=
+ =?utf-8?B?eStrWFYrMjRpUndpL3NmU1dGU1pZZ0NrenRqY1p1WEpScWp6TXNRMFJuMStk?=
+ =?utf-8?B?N3ZzY0x0bFNTcmFZSTFGK2RRUklTYVpSdjh6VlUvQnNUS2Y4U0d2Uk5YR2pu?=
+ =?utf-8?B?U3ZiRVZjaXhDZVFHSHQxMnp3Y3hOV21ldkVpL0V5V09jSW1ObUo0RzIrdFVa?=
+ =?utf-8?B?elJ1bnpKcWJXNmdMOHowTkthV0NRdzMvZGpOOXNmWDFVdWtzTjlBSUlqRDZ2?=
+ =?utf-8?B?cFFabWRWYlBzWWJCcjIxaWhmT2tRMzJzRWRpalFMdWI3RDZZUnY1ZFpqbS83?=
+ =?utf-8?B?WDRDMjFURWdqZ25HOXZ2YTlMeU9nTUd6bFI0OWkwR2t4NXErWlVqUDJaY1ow?=
+ =?utf-8?B?YW95dlhXc2V4aXExQmUzcXpIMmxTVlBGRjJjb0U1Nzd4YTUyeGpNeXkvQmlB?=
+ =?utf-8?B?RWd3V3pmNDM1bW1CVHAyQkYwQ2ZzdDNVaEo3NnJNYWZ0VHMrMGtjNkdlemdp?=
+ =?utf-8?B?Sm5zbVUyNXNqeTFVQlVveFNpb2NEOXhzYTR6cUJpd3JucjVvaFczMEk5ckww?=
+ =?utf-8?B?TDBITUp4T1J0NjZNbXpFRm82Y3AxMW5WSWxCSDllTkhtaWlnY2NLeGZUYi9I?=
+ =?utf-8?B?TXBOM2FhQnFNd3BMcTRLN0xNU0tIOENVNFNvS0R2bXhWcGxkbnJXeklac3Yv?=
+ =?utf-8?B?NkJSSmhQLzgvTXpQOGFXUjdCSmpobXRYZm90dVFQUm9WT0ZGOUVLMGcwVmJl?=
+ =?utf-8?B?R0Z6Z3dDKy9ITnRIRUh3U29EL21KSFNpaXBRWHZ6cjVlV0kwUnFLWk9raWNQ?=
+ =?utf-8?B?Sy9HVjQrcW1qZEJsbnRjenNqNTZ6SUdFRmRraFh0M0tCNitTNTh0ZE16SlB3?=
+ =?utf-8?B?cHArUzlSeHl5cit6SlBiYndnRWRwcUNTWk5oUmpsUUJlRmJTYTlnV0Jyd3hS?=
+ =?utf-8?B?cjFGME5yZjFLSW0zM25naEF6d3hKU1BjZWhBMzhTdnJsMjN2U2tJVDF2UGd3?=
+ =?utf-8?B?aEtUYjZtclpYZnRWSXBKSVRvSXM3UU9adE9VSllzTmZkRURxU0RieFk4dTJV?=
+ =?utf-8?B?YXBlVEJxNGFuWHdiZVBGK04xWHliWU13OHd6Szg5K1o2UDFpSVZVVGN3UTNp?=
+ =?utf-8?B?RnMxUFUrbmsxd0xtVVVJUlJWWERNMnRsd3ZycXFQNERLa2VFa0phWDI1NkJB?=
+ =?utf-8?B?NWE4Z0hibHRXdmRlcmRxak10UFpRcEV4YXJsM2NIVGxJZnF1QjlSdEV2cWdi?=
+ =?utf-8?B?WFJFbzhSY1hPSkJCZkt1KzErMlMzNTdTTU53cEFQZlZzeW4vbHdkMUxVTHRv?=
+ =?utf-8?B?bTQyaEo3SzJkY1VOc0NISE5kT1Bkc2FlRURteG9VTkM1dU1HTHNOWllRZGJZ?=
+ =?utf-8?B?UU85Z25xdHlDTlZrK3gzNzc3Y1lwS2hTQ0c5ZzJVeFlWaHZjaTZGL1FJdGJ3?=
+ =?utf-8?B?VXhiblh1S2EzU3VXdVBhM1RXbDJRL2J3QkZPZ2Fvak9NLzBhRWJMTGhDcFov?=
+ =?utf-8?B?N3JPUTNvT3pGUXdGOUhDRzRFUGkwQ25LcmNnM0NlUW5zNXE0bmtNVUFuVGM2?=
+ =?utf-8?B?NUwyUTV5VEtBRDZTK1Z0RkpDcFgxZGFiSVdqUndITjF5ZlJFME40NTJKWXAy?=
+ =?utf-8?B?RXZEa1dYQ1RsaEpWeXZEeldBdk5yYUtEMkwrbEJpMjhObjZveHJiWlZDaG9n?=
+ =?utf-8?B?OGtLMHB5R1V3Slp6MGtHMVJ5cVdSclhHN1VnaVBSQm44UStvV2x5dW9QZmhu?=
+ =?utf-8?B?RXpFVTlEdG03dUd1VFlCT2gwazlwVEZRMXgrNi9ZVUU5NjZwd3BENm9XanFk?=
+ =?utf-8?B?NFNZczhZSFlsbE9UZEQyYW05Um56Y3RldCtSbFFZMXFJZ0JoUmFzS1lMS2Jt?=
+ =?utf-8?B?alNldC9zcUtBT0RMYzlucDg5K2J0T0M5M2FDMGs3MjhNSzVTdlZFR2g3YUtK?=
+ =?utf-8?B?alE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e31fecd1-81f3-4b47-8fc1-08dcf288028b
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2024 10:55:15.4132 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tJnzYxF2fA+PGjJatbwQCZqEyzaqvf0UNYvhEZtVYl6whU72TZIWd04D6K+864pIxQoC6OID71Z8Osmb+Zg3gA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4569
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,153 +198,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Vivek,
+Quoting Jani Nikula (2024-10-22 06:34:44-03:00)
+>On Mon, 21 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>> Some display MMIO transactions for offsets in the range that requires
+>> the DMC wakelock happen in atomic context (this has been confirmed
+>> during tests on PTL). That means that we need to use a non-sleeping
+>> variant of MMIO waiting function.
+>>
+>> Implement __intel_de_wait_for_register_atomic_nowl() and use it when
+>> waiting for acknowledgment of acquire/release.
+>>
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_de.h     | 11 +++++++++++
+>>  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 20 ++++++++++++--------
+>>  2 files changed, 23 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i=
+915/display/intel_de.h
+>> index e017cd4a8168..4116783a62dd 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_de.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_de.h
+>> @@ -121,6 +121,17 @@ ____intel_de_wait_for_register_nowl(struct intel_di=
+splay *display,
+>>  }
+>>  #define __intel_de_wait_for_register_nowl(p,...) ____intel_de_wait_for_=
+register_nowl(__to_intel_display(p), __VA_ARGS__)
+>> =20
+>> +static inline int
+>> +____intel_de_wait_for_register_atomic_nowl(struct intel_display *displa=
+y,
+>> +                                           i915_reg_t reg,
+>> +                                           u32 mask, u32 value,
+>> +                                           unsigned int fast_timeout_us=
+)
+>> +{
+>> +        return __intel_wait_for_register(__to_uncore(display), reg, mas=
+k,
+>> +                                         value, fast_timeout_us, 0, NUL=
+L);
+>> +}
+>> +#define __intel_de_wait_for_register_atomic_nowl(p,...) ____intel_de_wa=
+it_for_register_atomic_nowl(__to_intel_display(p), __VA_ARGS__)
+>> +
+>
+>There's no need to add the wrapper when all users pass struct
+>intel_display. And we don't want new users that pass i915.
 
-kernel test robot noticed the following build errors:
+Ah, okay. Thanks.
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.12-rc4 next-20241021]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+>And why are we adding new stuff and users with double underscores?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vivek-Kasireddy/PCI-P2PDMA-Don-t-enforce-ACS-check-for-functions-of-same-device/20241021-134804
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241021052236.1820329-5-vivek.kasireddy%40intel.com
-patch subject: [PATCH v2 4/5] drm/xe/bo: Create new dma_addr array for dmabuf BOs associated with VFs
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241022/202410221832.R04DR21j-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241022/202410221832.R04DR21j-lkp@intel.com/reproduce)
+Well, this is a no-wakelock variant and it shouldn't be used broadly. I
+believe that was the motivation of all "__intel_de_*nowl" variants being
+prefixed with the underscores.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410221832.R04DR21j-lkp@intel.com/
+--
+Gustavo Sousa
 
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/xe/xe_bo.c:591:15: error: subscript of pointer to incomplete type 'struct drm_pagemap_dma_addr'
-     591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-         |                 ~~~~~~~~~~~~^
-   drivers/gpu/drm/xe/xe_bo_types.h:78:9: note: forward declaration of 'struct drm_pagemap_dma_addr'
-      78 |         struct drm_pagemap_dma_addr *dma_addr;
-         |                ^
->> drivers/gpu/drm/xe/xe_bo.c:591:21: error: call to undeclared function 'drm_pagemap_dma_addr_encode'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-         |                                   ^
->> drivers/gpu/drm/xe/xe_bo.c:592:7: error: use of undeclared identifier 'DRM_INTERCONNECT_DRIVER'
-     592 |                                                 DRM_INTERCONNECT_DRIVER,
-         |                                                 ^
->> drivers/gpu/drm/xe/xe_bo.c:626:48: error: invalid application of 'sizeof' to an incomplete type 'struct drm_pagemap_dma_addr'
-     626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-         |                                                       ^~~~~~~~~~~~~~~
-   include/linux/slab.h:925:63: note: expanded from macro 'kmalloc_array'
-     925 | #define kmalloc_array(...)                      alloc_hooks(kmalloc_array_noprof(__VA_ARGS__))
-         |                                                                                  ^~~~~~~~~~~
-   include/linux/alloc_tag.h:210:31: note: expanded from macro 'alloc_hooks'
-     210 |         alloc_hooks_tag(&_alloc_tag, _do_alloc);                        \
-         |                                      ^~~~~~~~~
-   include/linux/alloc_tag.h:202:9: note: expanded from macro 'alloc_hooks_tag'
-     202 |         typeof(_do_alloc) _res = _do_alloc;                             \
-         |                ^~~~~~~~~
-   drivers/gpu/drm/xe/xe_bo_types.h:78:9: note: forward declaration of 'struct drm_pagemap_dma_addr'
-      78 |         struct drm_pagemap_dma_addr *dma_addr;
-         |                ^
->> drivers/gpu/drm/xe/xe_bo.c:626:48: error: invalid application of 'sizeof' to an incomplete type 'struct drm_pagemap_dma_addr'
-     626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-         |                                                       ^~~~~~~~~~~~~~~
-   include/linux/slab.h:925:63: note: expanded from macro 'kmalloc_array'
-     925 | #define kmalloc_array(...)                      alloc_hooks(kmalloc_array_noprof(__VA_ARGS__))
-         |                                                                                  ^~~~~~~~~~~
-   include/linux/alloc_tag.h:210:31: note: expanded from macro 'alloc_hooks'
-     210 |         alloc_hooks_tag(&_alloc_tag, _do_alloc);                        \
-         |                                      ^~~~~~~~~
-   include/linux/alloc_tag.h:202:27: note: expanded from macro 'alloc_hooks_tag'
-     202 |         typeof(_do_alloc) _res = _do_alloc;                             \
-         |                                  ^~~~~~~~~
-   drivers/gpu/drm/xe/xe_bo_types.h:78:9: note: forward declaration of 'struct drm_pagemap_dma_addr'
-      78 |         struct drm_pagemap_dma_addr *dma_addr;
-         |                ^
-   5 errors generated.
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for MODVERSIONS
-   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
-   Selected by [y]:
-   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
-
-
-vim +591 drivers/gpu/drm/xe/xe_bo.c
-
-   570	
-   571	
-   572	static void xe_bo_translate_iova_to_dpa(struct iommu_domain *domain,
-   573						struct xe_bo *bo, struct sg_table *sg,
-   574						resource_size_t io_start, int vfid)
-   575	{
-   576		struct xe_device *xe = xe_bo_device(bo);
-   577		struct xe_gt *gt = xe_root_mmio_gt(xe);
-   578		struct scatterlist *sgl;
-   579		struct xe_bo *lmem_bo;
-   580		phys_addr_t phys;
-   581		dma_addr_t addr;
-   582		u64 offset, i;
-   583	
-   584		lmem_bo = xe_gt_sriov_pf_config_get_lmem_obj(gt, ++vfid);
-   585	
-   586		for_each_sgtable_dma_sg(sg, sgl, i) {
-   587			phys = iommu_iova_to_phys(domain, sg_dma_address(sgl));
-   588			offset = phys - io_start;
-   589			addr = xe_bo_addr(lmem_bo, offset, sg_dma_len(sgl));
-   590	
- > 591			bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
- > 592							DRM_INTERCONNECT_DRIVER,
-   593							get_order(sg_dma_len(sgl)),
-   594							DMA_BIDIRECTIONAL);
-   595		}
-   596	}
-   597	
-   598	static int xe_bo_sg_to_dma_addr_array(struct sg_table *sg, struct xe_bo *bo)
-   599	{
-   600		struct xe_device *xe = xe_bo_device(bo);
-   601		struct iommu_domain *domain;
-   602		resource_size_t io_start;
-   603		struct pci_dev *pdev;
-   604		phys_addr_t phys;
-   605		int vfid;
-   606	
-   607		if (!IS_SRIOV_PF(xe))
-   608			return 0;
-   609	
-   610		domain = iommu_get_domain_for_dev(xe->drm.dev);
-   611		if (!domain)
-   612			return 0;
-   613	
-   614		phys = iommu_iova_to_phys(domain, sg_dma_address(sg->sgl));
-   615		if (page_is_ram(PFN_DOWN(phys)))
-   616			return 0;
-   617	
-   618		pdev = xe_find_vf_dev(xe, phys);
-   619		if (!pdev)
-   620			return 0;
-   621	
-   622		vfid = pci_iov_vf_id(pdev);
-   623		if (vfid < 0)
-   624			return 0;
-   625	
- > 626		bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-   627					     GFP_KERNEL);
-   628		if (!bo->dma_addr)
-   629			return -ENOMEM;
-   630	
-   631		bo->is_devmem_external = true;
-   632		io_start = pci_resource_start(pdev, LMEM_BAR);
-   633		xe_bo_translate_iova_to_dpa(domain, bo, sg, io_start, vfid);
-   634	
-   635		return 0;
-   636	}
-   637	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+>>  static inline int
+>>  __intel_de_wait(struct intel_display *display, i915_reg_t reg,
+>>                  u32 mask, u32 value, unsigned int timeout)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/d=
+rm/i915/display/intel_dmc_wl.c
+>> index 5634ff07269d..8056a3c8666c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>> @@ -39,7 +39,7 @@
+>>   * potential future use.
+>>   */
+>> =20
+>> -#define DMC_WAKELOCK_CTL_TIMEOUT 5
+>> +#define DMC_WAKELOCK_CTL_TIMEOUT_US 5000
+>>  #define DMC_WAKELOCK_HOLD_TIME 50
+>> =20
+>>  struct intel_dmc_wl_range {
+>> @@ -78,9 +78,9 @@ static void intel_dmc_wl_work(struct work_struct *work=
+)
+>> =20
+>>          __intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, DMC_WAKELOCK_CT=
+L_REQ, 0);
+>> =20
+>> -        if (__intel_de_wait_for_register_nowl(display, DMC_WAKELOCK1_CT=
+L,
+>> -                                              DMC_WAKELOCK_CTL_ACK, 0,
+>> -                                              DMC_WAKELOCK_CTL_TIMEOUT)=
+) {
+>> +        if (__intel_de_wait_for_register_atomic_nowl(display, DMC_WAKEL=
+OCK1_CTL,
+>> +                                                     DMC_WAKELOCK_CTL_A=
+CK, 0,
+>> +                                                     DMC_WAKELOCK_CTL_T=
+IMEOUT_US)) {
+>>                  WARN_RATELIMIT(1, "DMC wakelock release timed out");
+>>                  goto out_unlock;
+>>          }
+>> @@ -216,10 +216,14 @@ void intel_dmc_wl_get(struct intel_display *displa=
+y, i915_reg_t reg)
+>>                  __intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, 0,
+>>                                      DMC_WAKELOCK_CTL_REQ);
+>> =20
+>> -                if (__intel_de_wait_for_register_nowl(display, DMC_WAKE=
+LOCK1_CTL,
+>> -                                                      DMC_WAKELOCK_CTL_=
+ACK,
+>> -                                                      DMC_WAKELOCK_CTL_=
+ACK,
+>> -                                                      DMC_WAKELOCK_CTL_=
+TIMEOUT)) {
+>> +                /*
+>> +                 * We need to use the atomic variant of the waiting rou=
+tine
+>> +                 * because the DMC wakelock is also taken in atomic con=
+text.
+>> +                 */
+>> +                if (__intel_de_wait_for_register_atomic_nowl(display, D=
+MC_WAKELOCK1_CTL,
+>> +                                                             DMC_WAKELO=
+CK_CTL_ACK,
+>> +                                                             DMC_WAKELO=
+CK_CTL_ACK,
+>> +                                                             DMC_WAKELO=
+CK_CTL_TIMEOUT_US)) {
+>>                          WARN_RATELIMIT(1, "DMC wakelock ack timed out")=
+;
+>>                          goto out_unlock;
+>>                  }
+>
+>--=20
+>Jani Nikula, Intel
