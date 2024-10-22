@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE189D2CDFA
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 16:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F14C7D2CDFD
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 16:33:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB15610E6C4;
-	Tue, 22 Oct 2024 16:31:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHe33ByN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E33F210E6C4;
- Tue, 22 Oct 2024 16:31:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729614715; x=1761150715;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QsQbPkAbJMt8bv4wR4E/RwPv2jdEZ656pOSi/vSPgJY=;
- b=eHe33ByNOj22d5hp5R3OVAEHpDJxtkwDd5fuVBmRx+4AMLRHJ0sktblY
- JL+pf/TkFrnhEDWmdmBajxe3Shr10HR8IETgsAp4yre2Qor+cDARnyDlh
- MF+Ehn06dE61vLk1CXsokSnb02JXf/awpUeMniQ/EadsXLGoApWTAR85L
- a6xdmkP244GyIGD7mQxcXYnvzrAnfRxRwP1Nb382VKod5juB2OvZ6p1Xj
- mqfrc1BhCWKPnpCzU0TmWfGIE30EdgsrcWRZt4inH47psaVvyxKrEd5UA
- 8PVtJAPgpT6qWWvLIlBvPOxurrvUZnyila6S6rU/d8W6XtrEm/ReQbELA A==;
-X-CSE-ConnectionGUID: 50Z/dQGeQjmrqwc4JOAX6w==
-X-CSE-MsgGUID: CsvoCRNpQhaPZe8VTRBJ3A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32023459"
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="32023459"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 09:31:54 -0700
-X-CSE-ConnectionGUID: yyVAxkkCQcerxjVsMJPTmQ==
-X-CSE-MsgGUID: UaYnk3AyTuOu08uDJxHJsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="84737473"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa003.jf.intel.com with ESMTP; 22 Oct 2024 09:31:52 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/display: Add Wa_16023981245
-Date: Tue, 22 Oct 2024 22:01:17 +0530
-Message-Id: <20241022163117.758401-1-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB5D210E6C4;
+	Tue, 22 Oct 2024 16:33:00 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC2E10E6C3;
+ Tue, 22 Oct 2024 16:33:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/xe3lpd=3A_Load_?=
+ =?utf-8?q?DMC?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Oct 2024 16:33:00 -0000
+Message-ID: <172961478037.1310194.16424715722695557849@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241022155115.50989-1-gustavo.sousa@intel.com>
+In-Reply-To: <20241022155115.50989-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,55 +36,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable the support for odd panning in x direction.
+== Series Details ==
 
-v2: Replace HSD with WA in commit message [Suraj]
-    Modified the condition for handling odd panning
+Series: drm/i915/xe3lpd: Load DMC
+URL   : https://patchwork.freedesktop.org/series/140320/
+State : warning
 
-v3: Simplified the condition for checking hsub
-    Using older framework for wa as rev1[Jani]
+== Summary ==
 
-v4: Modify the condition for hsub [Sai Teja]
-    Initialize hsub in else path [Dan]
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 2d11d2602dc35b03fd68309c96fedeea423beb42
+/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
+Sparse version: 
+Fast mode used, each commit won't be checked separately.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-v5: Replace IS_LUNARLAKE with display version.
-    Resolve nitpicks[Jani]
-
-v6: Replace -EINVAL with hsub [Suraj]
-    Remove src_w check as not required
-
-v7: Remove check for NV12.
-    Add check for PTL as well [Matt]
-
-Continuing discussions from:
-https://patchwork.freedesktop.org/series/136416/
-
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index b7e462075ded..d61528f18a36 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1024,6 +1024,12 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 		 */
- 		hsub = 1;
- 		vsub = 1;
-+
-+		/* Wa_16023981245 */
-+		if ((DISPLAY_VER_FULL(i915) == IP_VER(20, 0) ||
-+		    DISPLAY_VER_FULL(i915) == IP_VER(30, 0)) &&
-+		    src_x % 2 != 0)
-+			hsub = 2;
- 	} else {
- 		hsub = fb->format->hsub;
- 		vsub = fb->format->vsub;
--- 
-2.25.1
 
