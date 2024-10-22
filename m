@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 601A0D1CDD0
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 10:13:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2651D1CDD2
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 10:26:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B7BC10E303;
-	Tue, 22 Oct 2024 10:13:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PgBOPCG5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26C0510E206;
- Tue, 22 Oct 2024 10:13:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729592013; x=1761128013;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=oqGQYtWr8vWI99/SR6Frl6Jm5kQAOQev+uKlIbV/XhA=;
- b=PgBOPCG5mtxBaO8xECRDZP5XbYZV2xeYbIQi4OZWzbQfWatTTXovGWyo
- O2OxGjNnfbUkE+kvVT6u7lJ2/WFpWs0+CzN/LI+XgGylDbFH5Ms4TTjzS
- KT9G1X9s8G6TGwu9YxOQ+sEp6abTqV6YzMEH9Q+juRwKG34JkUYvqHTBi
- D61p/KpCaPJ/kcN9rJP8SRR+wFGqqRCkFrRa65iClzO028nhz3j36aeHp
- KnCysWtr5zrsmrz6mVwcSazUT30QeqoHgfr2NvtO0VsChBdNDE5HyCl/A
- FhWc+DSrHrZ5GUFYrZuwyGtZW9+OvoDoU6+ywzgvKn710iQiGEzxFqMX5 A==;
-X-CSE-ConnectionGUID: RB/pRQHSQa+CV3B86x9uQg==
-X-CSE-MsgGUID: FUS82XWVRhykI3LT9dLwSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29218394"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="29218394"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 03:13:33 -0700
-X-CSE-ConnectionGUID: GYI3IYrsRMarQ2fdIUunqQ==
-X-CSE-MsgGUID: 3PXNpFNDQQWjgQ7fpBomCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="80228365"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 22 Oct 2024 03:13:31 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t3BtI-000TQU-2c;
- Tue, 22 Oct 2024 10:13:28 +0000
-Date: Tue, 22 Oct 2024 18:12:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v2 4/5] drm/xe/bo: Create new dma_addr array for dmabuf
- BOs associated with VFs
-Message-ID: <202410221702.FLgKnDgM-lkp@intel.com>
-References: <20241021052236.1820329-5-vivek.kasireddy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E4C510E1E8;
+	Tue, 22 Oct 2024 10:26:13 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4EF10E1E8;
+ Tue, 22 Oct 2024 10:26:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8887061595217775353=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021052236.1820329-5-vivek.kasireddy@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915_=26_drm/xe=3A_shared_PC?=
+ =?utf-8?q?I_ID_macros_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Oct 2024 10:26:13 -0000
+Message-ID: <172959277304.1308984.16166207083837624803@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1729590029.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1729590029.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,169 +36,181 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Vivek,
+--===============8887061595217775353==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build errors:
+== Series Details ==
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.12-rc4 next-20241021]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm/i915 & drm/xe: shared PCI ID macros (rev2)
+URL   : https://patchwork.freedesktop.org/series/138109/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vivek-Kasireddy/PCI-P2PDMA-Don-t-enforce-ACS-check-for-functions-of-same-device/20241021-134804
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241021052236.1820329-5-vivek.kasireddy%40intel.com
-patch subject: [PATCH v2 4/5] drm/xe/bo: Create new dma_addr array for dmabuf BOs associated with VFs
-config: i386-buildonly-randconfig-003-20241022 (https://download.01.org/0day-ci/archive/20241022/202410221702.FLgKnDgM-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241022/202410221702.FLgKnDgM-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410221702.FLgKnDgM-lkp@intel.com/
+CI Bug Log - changes from xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56_BAT -> xe-pw-138109v2_BAT
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   drivers/gpu/drm/xe/xe_bo.c: In function 'xe_bo_translate_iova_to_dpa':
->> drivers/gpu/drm/xe/xe_bo.c:591:29: error: invalid use of undefined type 'struct drm_pagemap_dma_addr'
-     591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-         |                             ^
->> drivers/gpu/drm/xe/xe_bo.c:591:35: error: implicit declaration of function 'drm_pagemap_dma_addr_encode' [-Werror=implicit-function-declaration]
-     591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-         |                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/xe/xe_bo.c:592:49: error: 'DRM_INTERCONNECT_DRIVER' undeclared (first use in this function)
-     592 |                                                 DRM_INTERCONNECT_DRIVER,
-         |                                                 ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_bo.c:592:49: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/gpu/drm/xe/xe_bo.c:591:33: error: invalid use of undefined type 'struct drm_pagemap_dma_addr'
-     591 |                 bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
-         |                                 ^
-   In file included from include/linux/percpu.h:5,
-                    from arch/x86/include/asm/msr.h:15,
-                    from arch/x86/include/asm/tsc.h:10,
-                    from arch/x86/include/asm/timex.h:6,
-                    from include/linux/timex.h:67,
-                    from include/linux/time32.h:13,
-                    from include/linux/time.h:60,
-                    from include/linux/jiffies.h:10,
-                    from include/linux/ktime.h:25,
-                    from include/linux/timer.h:6,
-                    from include/linux/workqueue.h:9,
-                    from include/linux/mm_types.h:19,
-                    from include/linux/mmzone.h:22,
-                    from include/linux/gfp.h:7,
-                    from include/linux/mm.h:7,
-                    from include/linux/pagemap.h:8,
-                    from include/drm/ttm/ttm_tt.h:30,
-                    from drivers/gpu/drm/xe/xe_bo.h:9,
-                    from drivers/gpu/drm/xe/xe_bo.c:6:
-   drivers/gpu/drm/xe/xe_bo.c: In function 'xe_bo_sg_to_dma_addr_array':
->> drivers/gpu/drm/xe/xe_bo.c:626:55: error: invalid application of 'sizeof' to incomplete type 'struct drm_pagemap_dma_addr'
-     626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-         |                                                       ^
-   include/linux/alloc_tag.h:202:16: note: in definition of macro 'alloc_hooks_tag'
-     202 |         typeof(_do_alloc) _res = _do_alloc;                             \
-         |                ^~~~~~~~~
-   include/linux/slab.h:925:49: note: in expansion of macro 'alloc_hooks'
-     925 | #define kmalloc_array(...)                      alloc_hooks(kmalloc_array_noprof(__VA_ARGS__))
-         |                                                 ^~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_bo.c:626:24: note: in expansion of macro 'kmalloc_array'
-     626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-         |                        ^~~~~~~~~~~~~
->> drivers/gpu/drm/xe/xe_bo.c:626:55: error: invalid application of 'sizeof' to incomplete type 'struct drm_pagemap_dma_addr'
-     626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-         |                                                       ^
-   include/linux/alloc_tag.h:202:34: note: in definition of macro 'alloc_hooks_tag'
-     202 |         typeof(_do_alloc) _res = _do_alloc;                             \
-         |                                  ^~~~~~~~~
-   include/linux/slab.h:925:49: note: in expansion of macro 'alloc_hooks'
-     925 | #define kmalloc_array(...)                      alloc_hooks(kmalloc_array_noprof(__VA_ARGS__))
-         |                                                 ^~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_bo.c:626:24: note: in expansion of macro 'kmalloc_array'
-     626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-         |                        ^~~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_bo.c:626:22: warning: assignment to 'struct drm_pagemap_dma_addr *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     626 |         bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-         |                      ^
-   cc1: some warnings being treated as errors
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-138109v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2496]) +31 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][3] ([Intel XE#288]) +32 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_intel_bb@render@render-linear-256:
+    - bat-adlp-vf:        [PASS][4] -> [ABORT][5] ([Intel XE#3094]) +1 other test abort
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][6] ([Intel XE#2229])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-dg2-oem2:       [INCOMPLETE][7] ([Intel XE#2874]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3094]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3094
 
 
-vim +591 drivers/gpu/drm/xe/xe_bo.c
+Build changes
+-------------
 
-   570	
-   571	
-   572	static void xe_bo_translate_iova_to_dpa(struct iommu_domain *domain,
-   573						struct xe_bo *bo, struct sg_table *sg,
-   574						resource_size_t io_start, int vfid)
-   575	{
-   576		struct xe_device *xe = xe_bo_device(bo);
-   577		struct xe_gt *gt = xe_root_mmio_gt(xe);
-   578		struct scatterlist *sgl;
-   579		struct xe_bo *lmem_bo;
-   580		phys_addr_t phys;
-   581		dma_addr_t addr;
-   582		u64 offset, i;
-   583	
-   584		lmem_bo = xe_gt_sriov_pf_config_get_lmem_obj(gt, ++vfid);
-   585	
-   586		for_each_sgtable_dma_sg(sg, sgl, i) {
-   587			phys = iommu_iova_to_phys(domain, sg_dma_address(sgl));
-   588			offset = phys - io_start;
-   589			addr = xe_bo_addr(lmem_bo, offset, sg_dma_len(sgl));
-   590	
- > 591			bo->dma_addr[i] = drm_pagemap_dma_addr_encode(addr,
- > 592							DRM_INTERCONNECT_DRIVER,
-   593							get_order(sg_dma_len(sgl)),
-   594							DMA_BIDIRECTIONAL);
-   595		}
-   596	}
-   597	
-   598	static int xe_bo_sg_to_dma_addr_array(struct sg_table *sg, struct xe_bo *bo)
-   599	{
-   600		struct xe_device *xe = xe_bo_device(bo);
-   601		struct iommu_domain *domain;
-   602		resource_size_t io_start;
-   603		struct pci_dev *pdev;
-   604		phys_addr_t phys;
-   605		int vfid;
-   606	
-   607		if (!IS_SRIOV_PF(xe))
-   608			return 0;
-   609	
-   610		domain = iommu_get_domain_for_dev(xe->drm.dev);
-   611		if (!domain)
-   612			return 0;
-   613	
-   614		phys = iommu_iova_to_phys(domain, sg_dma_address(sg->sgl));
-   615		if (page_is_ram(PFN_DOWN(phys)))
-   616			return 0;
-   617	
-   618		pdev = xe_find_vf_dev(xe, phys);
-   619		if (!pdev)
-   620			return 0;
-   621	
-   622		vfid = pci_iov_vf_id(pdev);
-   623		if (vfid < 0)
-   624			return 0;
-   625	
- > 626		bo->dma_addr = kmalloc_array(sg->nents, sizeof(*bo->dma_addr),
-   627					     GFP_KERNEL);
-   628		if (!bo->dma_addr)
-   629			return -ENOMEM;
-   630	
-   631		bo->is_devmem_external = true;
-   632		io_start = pci_resource_start(pdev, LMEM_BAR);
-   633		xe_bo_translate_iova_to_dpa(domain, bo, sg, io_start, vfid);
-   634	
-   635		return 0;
-   636	}
-   637	
+  * IGT: IGT_8080 -> IGT_8081
+  * Linux: xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56 -> xe-pw-138109v2
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56: aa0898115bcff3eda6d021cc66eb8a1c3b264c56
+  xe-pw-138109v2: 138109v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/index.html
+
+--===============8887061595217775353==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915 &amp; drm/xe: shared PCI ID macros (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138109/">https://patchwork.freedesktop.org/series/138109/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56_BAT -&gt; xe-pw-138109v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138109v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-0:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) +31 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@render@render-linear-256:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3094">Intel XE#3094</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138109v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8080 -&gt; IGT_8081</li>
+<li>Linux: xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56 -&gt; xe-pw-138109v2</li>
+</ul>
+<p>IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56: aa0898115bcff3eda6d021cc66eb8a1c3b264c56<br />
+  xe-pw-138109v2: 138109v2</p>
+
+</body>
+</html>
+
+--===============8887061595217775353==--
