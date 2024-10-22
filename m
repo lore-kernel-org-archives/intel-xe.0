@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB806D1CDAD
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 08:13:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B444D1CDAD
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 08:16:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B435910E608;
-	Tue, 22 Oct 2024 08:13:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M92XjC4k";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC4F310E60D;
- Tue, 22 Oct 2024 08:12:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729584780; x=1761120780;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=uRth8du0Vy1veoBRdW6K2DA8p2oWrFm0Q+h9cPTRxE0=;
- b=M92XjC4kPQSRqPGGDTSG+k7t9I4v6xMwPYShUIpMRAWPXWAfzvZLsfmD
- ulMP9MRU7F9pWVZD4MeqHpccKRcaFEtUjNiFzfe61t5cvbE06pVTO6AaK
- I3+Y6OZb/zLitlc3mSg6rrmz8LuiB7dQX9uFualk3Z7wOTSAjZ/i8kwcz
- K5AtoVOzVNfOyvp+d755G6tnzavFm/M9nCXCJ3VIaR4PXcEiYw3J9OhWH
- s/e2xgDdOXpwrELG0ZddjBNgAbdfHOVyCDZP1NQZi6oYijYr7rggDTJhI
- U+I5Wa1RfzcqFKBEaYVC1dD3BiVQyQODvuL1Az8FCPXAM279m8nj2uU04 Q==;
-X-CSE-ConnectionGUID: hy9zsRm9TGOwKtQpk2WKpg==
-X-CSE-MsgGUID: /rRMiS7OTWqDk6LFooi3ig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28535095"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="28535095"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:13:00 -0700
-X-CSE-ConnectionGUID: cEJkiPgGSNWlFOs/gOXEHw==
-X-CSE-MsgGUID: lvg+8MVIRme3YMNaheTBPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="79789915"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.4])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:12:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCHv2] drm/i915/dp: Guarantee a minimum HBlank time
-In-Reply-To: <IA0PR11MB730729D08E9F999FBEB69327BA4C2@IA0PR11MB7307.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241001074348.2193502-1-arun.r.murthy@intel.com>
- <87ed48y4kb.fsf@intel.com>
- <IA0PR11MB730729D08E9F999FBEB69327BA4C2@IA0PR11MB7307.namprd11.prod.outlook.com>
-Date: Tue, 22 Oct 2024 11:12:55 +0300
-Message-ID: <87sesowo6w.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1868C10E606;
+	Tue, 22 Oct 2024 08:16:14 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD4C10E1CE;
+ Tue, 22 Oct 2024 08:16:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9093289938153780479=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/hdcp=3A_Add_check_to_remo?=
+ =?utf-8?q?ve_hdcp2_compatibilty_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Oct 2024 08:16:13 -0000
+Message-ID: <172958497350.1308045.1604405313588573958@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241022055655.1902-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241022055655.1902-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,172 +36,205 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 22 Oct 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: Tuesday, October 22, 2024 1:04 PM
->> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-xe@lists.freedesktop.org;
->> intel-gfx@lists.freedesktop.org
->> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
->> Subject: Re: [PATCHv2] drm/i915/dp: Guarantee a minimum HBlank time
->> 
->> On Tue, 01 Oct 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
->> > Mandate a minimum Hblank symbol cycle count between BS and BE in
->> > 8b/10b MST and 12b/132b mode.
->> 
->> Should be 128b.
->> 
-> Done
->
->> What are BS and BE? I'm not asking specifically for *me*. The commit message
->> needs to have more clarity.
->> 
-> ok
->> > Spec: DP2.1a
->> >
->> > v2: Affine calculation/updation of min HBlank to dp_mst (Jani)
->> >
->> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
->> > ---
->> >  .../drm/i915/display/intel_display_types.h    |  2 ++
->> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 30 +++++++++++++++++++
->> >  drivers/gpu/drm/i915/i915_reg.h               |  4 +++
->> >  3 files changed, 36 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > index 17fc21f6ae36..5f151ad9b878 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > @@ -1770,6 +1770,8 @@ struct intel_dp {
->> >
->> >  	u8 alpm_dpcd;
->> >
->> > +	u32 min_hblank;
->> > +
->> 
->> Why would this be in intel_dp?
->> 
-> This feature is part of DP2.1 hence adding in intel_dp struct.
->
->> >  	struct {
->> >  		unsigned long mask;
->> >  	} quirks;
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > index 4765bda154c1..45c8be7cd7b3 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > @@ -156,6 +156,30 @@ static int intel_dp_mst_calc_pbn(int pixel_clock, int
->> bpp_x16, int bw_overhead)
->> >  	return DIV_ROUND_UP(effective_data_rate * 64, 54 * 1000);  }
->> >
->> > +static void intel_dp_mst_compute_min_hblank(struct intel_crtc_state
->> *crtc_state,
->> > +					    struct intel_connector
->> *intel_connector,
->> > +					    int bpp_x16)
->> > +{
->> > +	struct intel_encoder *intel_encoder = intel_connector->encoder;
->> > +	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(intel_encoder);
->> > +	struct intel_dp *intel_dp = &intel_mst->primary->dp;
->> > +	struct intel_display *intel_display = to_intel_display(intel_encoder);
->> > +	const struct drm_display_mode *adjusted_mode =
->> > +					&crtc_state->hw.adjusted_mode;
->> > +	u32 symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
->> > +	u32 hblank;
->> > +
->> > +	if (DISPLAY_VER(intel_display) < 20)
->> > +		return;
->> > +
->> > +	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST
->> & 128b/132b */
->> > +	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal -
->> adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
->> > +	if (intel_dp_is_uhbr(crtc_state))
->> > +		intel_dp->min_hblank = hblank > 5 ? hblank : 5;
->> > +	else
->> > +		intel_dp->min_hblank = hblank > 3 ? hblank : 3;
->> 
->> Compute config must not mess with permanent data.
->> 
-> Tend to change on mode change. Hence added this in modeset config. This is MST only feature hence added in mst_compute_config.
+--===============9093289938153780479==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The point is, compute config must not mess with persistent data, such as
-struct intel_dp, so maybe the data should not be part of persistent data
-but rather crtc state, with state readout and checks etc.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe/hdcp: Add check to remove hdcp2 compatibilty (rev3)
+URL   : https://patchwork.freedesktop.org/series/140292/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56_BAT -> xe-pw-140292v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-140292v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2496]) +31 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [PASS][3] -> [FAIL][4] ([Intel XE#886]) +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][5] -> [FAIL][6] ([Intel XE#1861])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][7] ([Intel XE#288]) +32 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-bmg-2:          [PASS][8] -> [INCOMPLETE][9] ([Intel XE#2874] / [Intel XE#2998]) +1 other test incomplete
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+    - bat-adlp-7:         [PASS][10] -> [INCOMPLETE][11] ([Intel XE#2874]) +1 other test incomplete
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][12] ([Intel XE#2229])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-dg2-oem2:       [INCOMPLETE][13] ([Intel XE#2874]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#2998]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
 
 
->
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
->
->> This should be in crtc state with readout and state checker etc.
->> 
->> BR,
->> Jani.
->> 
->> > +}
->> > +
->> >  static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder
->> *encoder,
->> >  						struct intel_crtc_state
->> *crtc_state,
->> >  						int max_bpp,
->> > @@ -228,6 +252,8 @@ static int
->> intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
->> >  					 link_bpp_x16,
->> >  					 &crtc_state->dp_m_n);
->> >
->> > +		intel_dp_mst_compute_min_hblank(crtc_state, connector,
->> > +link_bpp_x16);
->> > +
->> >  		/*
->> >  		 * The TU size programmed to the HW determines which slots
->> in
->> >  		 * an MTP frame are used for this stream, which needs to
->> match @@
->> > -1274,6 +1300,10 @@ static void intel_mst_enable_dp(struct
->> intel_atomic_state *state,
->> >  			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz &
->> 0xffffff));
->> >  	}
->> >
->> > +	if (DISPLAY_VER(dev_priv) >= 20)
->> > +		intel_de_write(dev_priv, DP_MIN_HBLANK_CTL(dev_priv,
->> trans),
->> > +			       intel_dp->min_hblank);
->> > +
->> >  	enable_bs_jitter_was(pipe_config);
->> >
->> >  	intel_ddi_enable_transcoder_func(encoder, pipe_config); diff --git
->> > a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> > index 7396fc630e29..b321d136e1b0 100644
->> > --- a/drivers/gpu/drm/i915/i915_reg.h
->> > +++ b/drivers/gpu/drm/i915/i915_reg.h
->> > @@ -1138,6 +1138,10 @@
->> >  #define _TRANS_MULT_B		0x6102c
->> >  #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans),
->> _TRANS_MULT_A)
->> >
->> > +#define _DP_MIN_HBLANK_CTL_A	0x600ac
->> > +#define _DP_MIN_HBLANK_CTL_B	0x610ac
->> > +#define DP_MIN_HBLANK_CTL(dev_priv, trans)
->> 	_MMIO_TRANS2(dev_priv, (trans), _DP_MIN_HBLANK_CTL_A)
->> > +
->> >  /* VGA port control */
->> >  #define ADPA			_MMIO(0x61100)
->> >  #define PCH_ADPA                _MMIO(0xe1100)
->> 
->> --
->> Jani Nikula, Intel
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56 -> xe-pw-140292v3
+
+  IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56: aa0898115bcff3eda6d021cc66eb8a1c3b264c56
+  xe-pw-140292v3: 140292v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/index.html
+
+--===============9093289938153780479==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hdcp: Add check to remove hdcp2 compatibilty (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140292/">https://patchwork.freedesktop.org/series/140292/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56_BAT -&gt; xe-pw-140292v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-140292v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-0:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) +31 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998">Intel XE#2998</a>) +1 other test incomplete</li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140292v3/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56 -&gt; xe-pw-140292v3</li>
+</ul>
+<p>IGT_8080: 20fcbc59241a16c84d12f4f6ba390fb46fd65a36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2106-aa0898115bcff3eda6d021cc66eb8a1c3b264c56: aa0898115bcff3eda6d021cc66eb8a1c3b264c56<br />
+  xe-pw-140292v3: 140292v3</p>
+
+</body>
+</html>
+
+--===============9093289938153780479==--
