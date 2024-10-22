@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7AA6D17152
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 01:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B15E4D17151
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 01:06:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F91610E5CF;
-	Tue, 22 Oct 2024 01:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 791F010E5D1;
+	Tue, 22 Oct 2024 01:06:32 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A2CB10E5CF;
- Tue, 22 Oct 2024 01:06:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C947110E5D1;
+ Tue, 22 Oct 2024 01:06:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Preven?=
- =?utf-8?q?t_GuC_register_capture_running_on_VF_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=3A_Prevent_GuC?=
+ =?utf-8?q?_register_capture_running_on_VF_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Oct 2024 01:06:20 -0000
-Message-ID: <172955918041.1306617.17122671067226704690@2413ebb6fbb6>
+Date: Tue, 22 Oct 2024 01:06:30 -0000
+Message-ID: <172955919082.1306617.14242531447835822717@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241022010116.342240-1-zhanjun.dong@intel.com>
 In-Reply-To: <20241022010116.342240-1-zhanjun.dong@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: aa0898115bcf drm-tip: 2024y-10m-21d-17h-57m-13s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Prevent GuC register capture running on VF
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b07659fdd3a4b5ee0d105874eb3fcf029f320fbe
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Mon Oct 21 18:01:16 2024 -0700
+
+    drm/xe/guc: Prevent GuC register capture running on VF
+    
+    GuC based register capture is not supported by VF, thus prevent it
+    running on VF.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
++ /mt/dim checkpatch aa0898115bcff3eda6d021cc66eb8a1c3b264c56 drm-intel
+b07659fdd3a4 drm/xe/guc: Prevent GuC register capture running on VF
 
 
