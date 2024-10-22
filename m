@@ -4,60 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9972D2C56B
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 15:04:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EDB0D2C56A
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Oct 2024 15:16:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87AC810E699;
-	Tue, 22 Oct 2024 15:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BBE110E164;
+	Tue, 22 Oct 2024 15:16:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k4EG+rp5";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ivQFemiV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34EA610E698;
- Tue, 22 Oct 2024 15:04:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729609482; x=1761145482;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5it7bNm7opB0Z0GFB9KvyQdzjJkd37T1KxURSl8f384=;
- b=k4EG+rp5y1pSqMV1AJqXrl1jfw1GjZ8IqF9we+neXK9Sb5fEgFgXumNC
- 8UoS9PZU8Cw4c3HH+FUrrSMHEkdvzMBIWxOSh6PGgcYdizDPW7UOeuo4g
- H0B5tUyMwwwpeYHpn64EK34EjbzKM3GHpa5vKkTI2y2M4gGFKcd1qOcju
- DJ6b8Vwp2eMawi5l+ASSTlvsTP7SzYo7d3zZWIx6nC7OeMn8a3+/NwcsK
- KLccPCB+XVwnnseSpPOO9PLUivNOewnJICGZTGaUqpsZfSCtsDMHFhR5O
- nIW/Kt/L5Lh0Au3V1fUm3jw/HROQuOC1FTzMugnJO8Qa74uDzA2eHqIFB Q==;
-X-CSE-ConnectionGUID: +tcz9CcZQfeGVUP9R3RulA==
-X-CSE-MsgGUID: MHF3woA4Rcuh8dIkBVDzUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="29260256"
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="29260256"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 08:04:42 -0700
-X-CSE-ConnectionGUID: aj//eZ3gSd6mC8/xj1sosA==
-X-CSE-MsgGUID: YULvv7CwR8W8+Y6ydtGXLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="83880113"
-Received: from carterle-desk.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.31])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 08:04:39 -0700
-Date: Tue, 22 Oct 2024 17:04:36 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH v2 0/3] drm/i915 & drm/xe: shared PCI ID macros
-Message-ID: <Zxe_BOBoy8H_ub09@ashyti-mobl2.lan>
-References: <cover.1729590029.git.jani.nikula@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89F3310E164;
+ Tue, 22 Oct 2024 15:16:20 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 37D41A43D12;
+ Tue, 22 Oct 2024 15:16:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFA96C4CEC3;
+ Tue, 22 Oct 2024 15:16:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1729610179;
+ bh=3vo+Tezf/hG7U5f8ffsLl14MxsehQRUwibe+lD2jl3o=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=ivQFemiVu3g0JMr+J+bFUbiqEolLhZrcDDFBF1VZg0czcW+pQXwNDm+Yiy6e64sM5
+ wt2/B4lo39d0QMDiu1mBYpYRzyJFdMFeEX8FNLzHiiRmfws1NOz20gH5nBQQHP9rfZ
+ TtsDGB0aGH7x0gqAiTE4L+FAklQePcSd14SocufnFwaROKI3ZJqjjRBgUpnZfqhST+
+ euZ4lpspsKuEA9kpj72K9eGB9fV2dNa0wyeuEFJGa4ShIYuoXNamQ3t3N99p+5wSgi
+ xazFSInVCv9vmKD9cRXfs+czpURwfr6c6qzA2AKuGe5plRh0iVuXHAIPhJFKRzmQyK
+ 96Zwf9GPex7Og==
+Date: Tue, 22 Oct 2024 10:16:16 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Vivek Kasireddy <vivek.kasireddy@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Logan Gunthorpe <logang@deltatee.com>, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] PCI/P2PDMA: Don't enforce ACS check for functions
+ of same device
+Message-ID: <20241022151616.GA879071@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1729590029.git.jani.nikula@intel.com>
+In-Reply-To: <20241021052236.1820329-2-vivek.kasireddy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,13 +57,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Sun, Oct 20, 2024 at 10:21:29PM -0700, Vivek Kasireddy wrote:
+> Functions of the same PCI device (such as a PF and a VF) share the
+> same bus and have a common root port and typically, the PF provisions
+> resources for the VF. Therefore, they can be considered compatible
+> as far as P2P access is considered.
+> 
+> Currently, although the distance (2) is correctly calculated for
+> functions of the same device, an ACS check failure prevents P2P DMA
+> access between them. Therefore, introduce a small function named
+> pci_devs_are_p2pdma_compatible() to determine if the provider and
+> client belong to the same device and facilitate P2P DMA between
+> them by not enforcing the ACS check.
+> 
+> v2:
+> - Relax the enforcment of ACS check only for Intel GPU functions
+>   as they are P2PDMA compatible given the way the PF provisions
+>   the resources among multiple VFs.
 
-> Jani Nikula (3):
->   drm/i915/pciids: add PVC PCI ID macros
->   drm/intel/pciids: rename i915_pciids.h to just pciids.h
->   drm/xe: switch to common PCI ID macros
+I don't want version history in the commit log.  If the content is
+useful, just incorporate it here directly (without the version info),
+and put the version-to-version changelog below the "---".
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Logan Gunthorpe <logang@deltatee.com>
+> Cc: <linux-pci@vger.kernel.org>
+> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+> ---
+>  drivers/pci/p2pdma.c | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
+> index 4f47a13cb500..a230e661f939 100644
+> --- a/drivers/pci/p2pdma.c
+> +++ b/drivers/pci/p2pdma.c
+> @@ -535,6 +535,17 @@ static unsigned long map_types_idx(struct pci_dev *client)
+>  	return (pci_domain_nr(client->bus) << 16) | pci_dev_id(client);
+>  }
+>  
+> +static bool pci_devs_are_p2pdma_compatible(struct pci_dev *provider,
+> +					   struct pci_dev *client)
+> +{
+> +	if (provider->vendor == PCI_VENDOR_ID_INTEL) {
+> +		if (pci_is_vga(provider) && pci_is_vga(client))
+> +			return pci_physfn(provider) == pci_physfn(client);
+> +	}
 
-Andi
+This doesn't explain why this should be specific to Intel or VGA.  As
+far as I can tell, everything mentioned in the commit log is generic.
+
+I see the previous comments
+(https://lore.kernel.org/all/eddb423c-945f-40c9-b904-43ea8371f1c4@deltatee.com/),
+but none of that context was captured here.
+
+I'm not sure what you refer to by "PF provisions resources for the
+VF".  Isn't it *always* the case that the architected PCI resources
+(BARs) are configured by the PF?  It sounds like you're referring to
+something Intel GPU-specific beyond that?
+
+> +	return false;
+> +}
+> +
+>  /*
+>   * Calculate the P2PDMA mapping type and distance between two PCI devices.
+>   *
+> @@ -634,7 +645,7 @@ calc_map_type_and_dist(struct pci_dev *provider, struct pci_dev *client,
+>  
+>  	*dist = dist_a + dist_b;
+>  
+> -	if (!acs_cnt) {
+> +	if (!acs_cnt || pci_devs_are_p2pdma_compatible(provider, client)) {
+>  		map_type = PCI_P2PDMA_MAP_BUS_ADDR;
+>  		goto done;
+>  	}
+> @@ -696,7 +707,9 @@ int pci_p2pdma_distance_many(struct pci_dev *provider, struct device **clients,
+>  		return -1;
+>  
+>  	for (i = 0; i < num_clients; i++) {
+> -		pci_client = find_parent_pci_dev(clients[i]);
+> +		pci_client = dev_is_pf(clients[i]) ?
+> +				pci_dev_get(to_pci_dev(clients[i])) :
+> +				find_parent_pci_dev(clients[i]);
+>  		if (!pci_client) {
+>  			if (verbose)
+>  				dev_warn(clients[i],
+> -- 
+> 2.45.1
+> 
