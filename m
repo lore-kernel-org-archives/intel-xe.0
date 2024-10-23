@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5105D2E01D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 604B0D2E01F
 	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 06:51:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4D2610E75E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 234C810E75D;
 	Wed, 23 Oct 2024 06:51:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xb/n4Hn4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZOmEZ/g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E65810E752;
- Wed, 23 Oct 2024 06:50:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0205C10E75B;
+ Wed, 23 Oct 2024 06:50:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729666251; x=1761202251;
+ t=1729666259; x=1761202259;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tjBcq/usllITqwtcxzbzejklsVHWnCuUGjUtoK8N8sk=;
- b=Xb/n4Hn4yxRUY4kVYHcId2m4dOSzVRRxZxYQsu8tLQtfoVMuoA/HmdA1
- hUri7LB6omLwlJKC6ah3W4QfIqZZ0xRYciwLJjA1nQ2q0KovIbfbcpPaL
- TJasqF7+P0jhFVs2LQ5uXpgWodH9ze8DzD8MTOBq51xdBFNq28LmBh2/l
- BiUB/RSAa/Pj5Z1kLkjVnSfkIVqqcEIBgfCCi6XGawlsZbG1riSQRjh0t
- /82BCsYDncxKEE4eJ31GjUytpOChMhlYMDLLhI4JHjicpxqhYtoZf19GN
- wCrHoaZB3o5yHoMbEs+Gs7tM10zA/fAXftRJ5ROhEmkULZ71xhN5Uvpbh A==;
-X-CSE-ConnectionGUID: 75uLQnTcR9OPDO9tka0qCQ==
-X-CSE-MsgGUID: bdqquN4WR6CrmoJCWdwucA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097472"
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097472"
+ bh=xZtyL2dHYB6N2kVAXjmI8XLiIXgsiWQiZGQiyDzy0Kc=;
+ b=KZOmEZ/g8b7ixctHZNt4ulrgwh1EvHtjyF4Pc5ELkAbiyGLnrVgjk16T
+ TmlhtHTMQfCOEYdBArUOQ4FcFuiacy1mtanDk0JbIxau5VpJwGBCSkJAa
+ pRtviw3d+CwnaM3BJkqz2UsKU9qhvQ9BOoFL8N2I1pcNKvKXpWeEICVdZ
+ W3HY1a4uYz3FUr8Xi1Hzz1s+Ccub/6Z2/OhWSlead8By0srL3ve2eH1uS
+ 5CAIKb62I0fNSMeLRA0CKtX3j1qwQHX/XIp+8nNW4nbqEr/hDIPu8SHBL
+ 4gISw7q8mhKq5IucLfvPZ4jVg2R4yKJgjekeW2YrcJHnbvWeJoYy0K1dN w==;
+X-CSE-ConnectionGUID: 4pthpyPYQz2BHlGUhqideA==
+X-CSE-MsgGUID: xwoZoIl3RIiF6DxT8pd92Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097482"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097482"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:51 -0700
-X-CSE-ConnectionGUID: 2TP1WNTTQ/SvgQDoTLsCqQ==
-X-CSE-MsgGUID: vsg6GvaLSV+ZpnTc/SjhuA==
+ 22 Oct 2024 23:50:59 -0700
+X-CSE-ConnectionGUID: 7Yy+npMHQj+0Zwfkv8iZwQ==
+X-CSE-MsgGUID: SBf0IB1LRE+wtfBArF5dAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691511"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691598"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:50 -0700
+ 22 Oct 2024 23:50:58 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 06/16] drm/i915/dp: Ensure hactive is divisible by slice count
-Date: Wed, 23 Oct 2024 12:22:47 +0530
-Message-ID: <20241023065257.190035-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/16] drm/i915/dp: Account for pixel replication for BW
+ computation with DSC
+Date: Wed, 23 Oct 2024 12:22:52 +0530
+Message-ID: <20241023065257.190035-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
 References: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
@@ -67,42 +68,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to the DSC spec, the slice width should be chosen such that
-the picture width (hactive) is evenly divisible by the slice width.
-If not, extra pixels (padding) must be added to the last slice to
-ensure all slices have the same width.
-
-Currently, we do not support handling these extra pixels.
-Therefore, select a slice count that evenly divides the hactive
-(slice_width = hactive / slice_count).
-
-This check is already implemented for DSI, where the slice count is
-selected from the BIOS.
-
-For DP, currently with 1, 2, 4 slices per pipe it is unlikely to have
-slice count not being able to divide hactive, but with 3 DSC engines
-and 3 slices, we can have such cases. Adding this check prepares for
-future scenarios where such configurations might be used.
+Include the extra pixels added while computing bandwidth with DSC.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 77487a55280c..3b20ea844925 100644
+index 4065fc26e70e..f4a446824cb3 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1037,6 +1037,9 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 		if (num_joined_pipes > 1 && valid_dsc_slicecount[i] < 2)
- 			continue;
+@@ -1940,6 +1940,23 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_cloc
+ 	return available_bw > required_bw;
+ }
  
-+		if (mode_hdisplay % test_slice_count)
-+			continue;
++static
++u32 adjust_clock_for_extra_pixels(const struct drm_display_mode *adjusted_mode,
++				  int extra_pixels)
++{
++	u32 clock = adjusted_mode->clock;
++	u16 htotal = adjusted_mode->htotal;
 +
- 		if (min_slice_count <= test_slice_count)
- 			return test_slice_count;
- 	}
++	if (!extra_pixels)
++		return clock;
++	/*
++	 * clock = (htotal) * (vtotal) * refresh_rate
++	 * adjusted_clock = (htotal + extra_pixels) * (vtotal) * refresh_rate
++	 * = clock + (clock * extra_pixels / htotal)
++	 */
++	return clock + extra_pixels * (clock / htotal);
++}
++
+ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 				   struct intel_crtc_state *pipe_config,
+ 				   struct link_config_limits *limits,
+@@ -1948,8 +1965,12 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ {
+ 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	int link_rate, lane_count;
++	u32 adjusted_clock;
+ 	int i;
+ 
++	adjusted_clock = adjust_clock_for_extra_pixels(adjusted_mode,
++						       pipe_config->dsc.replicated_pixels);
++
+ 	for (i = 0; i < intel_dp->num_common_rates; i++) {
+ 		link_rate = intel_dp_common_rate(intel_dp, i);
+ 		if (link_rate < limits->min_rate || link_rate > limits->max_rate)
+@@ -1959,7 +1980,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 		     lane_count <= limits->max_lane_count;
+ 		     lane_count <<= 1) {
+ 			if (!is_bw_sufficient_for_dsc_config(compressed_bppx16, link_rate,
+-							     lane_count, adjusted_mode->clock,
++							     lane_count, adjusted_clock,
+ 							     pipe_config->output_format,
+ 							     timeslots))
+ 				continue;
 -- 
 2.45.2
 
