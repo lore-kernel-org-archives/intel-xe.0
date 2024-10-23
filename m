@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0747AD2CE17
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 21:47:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E60A2D2C56C
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 21:47:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08A0710E874;
-	Wed, 23 Oct 2024 21:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFA1410E870;
+	Wed, 23 Oct 2024 21:47:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FS7y7U4M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k015rdlP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 014E010E1A6;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CED2D10E868;
  Wed, 23 Oct 2024 21:47:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729720027; x=1761256027;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=AoT4BueZclBuWyM80tDOgvms8MGZuLBwt3c5tKlEzOQ=;
- b=FS7y7U4MwqTn7DNn2uVtRuyc9pvdyLSAUOdA4Gg91qYVjphlXnbsvrrw
- y2ocpmC1Sr4BOnW6VjkScJrBukn3IKiE8ckj8U++Dy446e+2BztrEruxT
- B0NlWsKwFrYMp5U8Ps9RzdgjQUxvLFXUJnstxv+Mzm+7CXO5Ie3kvV+Ti
- DZzZ4SNKH2y9oAqhgGpHw8vdt0F6enCmlE2uKsGWB8bO17N7MzIjx2Hzs
- l9XCAJbry3I4aZ8G7dgobSmt4aeGKJziRgsaTRXlMv+JaNmz7aJyvEWjY
- As0QA8Mm6VoB0lKiIy7h/ZpoXWmLt29f1pIrMq1sfhbzPAbIPFzVee1tq Q==;
-X-CSE-ConnectionGUID: RAI3eQy8RSKG1JZ57fAhZw==
-X-CSE-MsgGUID: 0yoGZ+rSQQ+7jWJg9dHdEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="54732009"
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="54732009"
+ bh=KgADnzTjv9C/5iOZ5wDTZEciLnf4vDDcc+EG5Z4RJ+U=;
+ b=k015rdlPvwVUquf9hWySVlc9E794aJtBa4P6fa9ZAXBmErMXbCc2IH0K
+ d6xUqse8qCbaCVEmP9jQRVu1K/azUJdAK1R1GgrgptISg1TvITtrVszV6
+ ZhwJMGKOO6R5cpUdOmabBxqBuN3D+RFXD/7v6bpVM/f5tnE5Nojmy1skr
+ x9oRhPi750jVtfNPVEpzCZpjhgKmWPihrBMzo78vZuFQ/TmSyp1YSoJzb
+ eBbJojdmC4Aa6HfWnR65DmBbD0vvg7Hqurjb77CThFxos9HaPJ3NpDZKM
+ DoPdAxcAsmUyR0Bl1WbtpAVSnJTRkfdtBez12dwTBPGFMnFwY7fiZ5+/i Q==;
+X-CSE-ConnectionGUID: qrLjJ9DeSq+YCG1fOlfX8w==
+X-CSE-MsgGUID: EtlZc/bQR0GicAKKcdEcGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="54732006"
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="54732006"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Oct 2024 14:47:06 -0700
-X-CSE-ConnectionGUID: JT4F1XNeQZqCEeAaE88buQ==
-X-CSE-MsgGUID: Xgz4AqR1TLazP9MWh3XkCw==
+X-CSE-ConnectionGUID: 5ebVs3FVRtiexjF04M2xcg==
+X-CSE-MsgGUID: tgfsttHoSTybHCFGNSP3yQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="80809808"
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="80809806"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Oct 2024 14:47:05 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 11/12] drm/i915/xe3lpd: Skip disabling VRR during modeset
- disable
-Date: Wed, 23 Oct 2024 14:47:00 -0700
-Message-Id: <20241023214701.963830-12-clinton.a.taylor@intel.com>
+Subject: [PATCH v2 09/12] drm/i915/xe3: Underrun recovery does not exist post
+ Xe2
+Date: Wed, 23 Oct 2024 14:46:58 -0700
+Message-Id: <20241023214701.963830-10-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241023214701.963830-1-clinton.a.taylor@intel.com>
 References: <20241023214701.963830-1-clinton.a.taylor@intel.com>
@@ -69,35 +69,30 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 
-Spec does not request to disable VRR in the modeset disabling
-sequence for DP and HDMI for xe3_lpd.
+From platforms xe3 Underrun recovery does not exist
 
-Bspec: 68848
+v2: improve DISPLAY_VER checking
+BSpec: 68849
 Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 124e094a9999..bc35327b37d6 100644
+index 01466611eebe..124e094a9999 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1310,9 +1310,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
+@@ -861,7 +861,7 @@ static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
+ 	 */
+ 	if (IS_DG2(dev_priv))
+ 		tmp &= ~UNDERRUN_RECOVERY_ENABLE_DG2;
+-	else if (DISPLAY_VER(dev_priv) >= 13)
++	else if ((DISPLAY_VER(dev_priv) >= 13) && (DISPLAY_VER(dev_priv) < 30))
+ 		tmp |= UNDERRUN_RECOVERY_DISABLE_ADLP;
  
--	if (intel_crtc_vrr_disabling(state, crtc)) {
--		intel_vrr_disable(old_crtc_state);
--		intel_crtc_update_active_timings(old_crtc_state, false);
-+	if (DISPLAY_VER(dev_priv) < 30) {
-+		if (intel_crtc_vrr_disabling(state, crtc)) {
-+			intel_vrr_disable(old_crtc_state);
-+			intel_crtc_update_active_timings(old_crtc_state, false);
-+		}
- 	}
- 
- 	if (audio_disabling(old_crtc_state, new_crtc_state))
+ 	/* Wa_14010547955:dg2 */
 -- 
 2.25.1
 
