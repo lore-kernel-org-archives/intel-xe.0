@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41282D2E025
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 08:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FB63D2E028
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 08:52:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3CDF10E7A3;
-	Wed, 23 Oct 2024 08:45:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E46A210E796;
+	Wed, 23 Oct 2024 08:52:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YN64kBkJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C/hrVGsa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D2A610E141;
- Wed, 23 Oct 2024 08:45:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52D3D10E0F7;
+ Wed, 23 Oct 2024 08:52:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729673123; x=1761209123;
+ t=1729673553; x=1761209553;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=A5ndovx0/E0It2utNkxkAGR1H8VRnlib7bnSfF4/6Vk=;
- b=YN64kBkJCbq6dQBuOLEbo/Bndydiy9ojo8wOP/RCN122yiFFyv8Gpgba
- AXyfgpQskkHH8+LI+7SjaEgYbj8yvJ2dLu0IN5i4BpKKi+ECX3SsMn/Ba
- lNwW9HLO9NJKVg5/YeUfHPrxKK8SZjfa1hkMLn9XNRnx7yMKKcQxkni53
- Fh8IBpeqfbnAH3EJFAaFeeOex0GgQicppVKAlKshmAM8qlbqOhWGEcPJL
- dQPcJGrXYIHr26PNkquAi8zppMzc+16xIophGyeNBYvfjdkxGhQ9c5jYO
- WMxm0wKBB1sELvzQvNsqn8rxBo1EvaecXSmjHtxRIPLtK4X1qpsw3l2GR A==;
-X-CSE-ConnectionGUID: chVR6tb+Rtii0ApbVBSEzg==
-X-CSE-MsgGUID: i00hyAjWREmIW/LyQnZh0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="29472836"
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="29472836"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 01:45:22 -0700
-X-CSE-ConnectionGUID: ax+KPFUmQt+be2JCEmOxDA==
-X-CSE-MsgGUID: Ot6elf/iQsK9c2xwI0Y3/g==
+ bh=Q5ucK7d7uRJd+cvR1lR4/2r90nHVsOJOCPAxYH7QWpM=;
+ b=C/hrVGsaevR5xrUlByPsr00+b0+uKusfnOxK+377Q0pOmFZ6ZLyT7lLA
+ hpsv1elbcY2s567p+XXXgFQ+/6vNPlp4kBvYFMLlxAsk8NPhdUA5ktKsa
+ 1dP170axFy1OIhcRazumi9bQqB8NG/SDaZ5dxdkmua2F0dmWGCsYd6Y0K
+ Ly1ZbB5rvDZcNOZwaGUcboQ9seHBM4LyriaQtpNFbY28n3QDLgfZhjXwG
+ 1P6on0zyhS1KqczdwNx9gQuXSJjjhwW6OkuCsyiUiLSggB6tW43rBrGBL
+ L/i7aXZsYomErEus/mKfsUKiRzWqBPG8ICpo3s8QTCJbfwLS75FopEMI9 A==;
+X-CSE-ConnectionGUID: uK5ERPOlSyqyc8a/rVHqow==
+X-CSE-MsgGUID: aWhmlyLhTOGRZHSym/hP/Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="51792575"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="51792575"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 01:52:33 -0700
+X-CSE-ConnectionGUID: h73qZ12oSHigC3GIMnT0gA==
+X-CSE-MsgGUID: ZVHijG1OSPSJdXDXnmMvjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84759588"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="80207426"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.84])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 01:45:18 -0700
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 01:52:29 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
@@ -51,13 +51,14 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 Cc: Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
  linux-mm@kvack.org, Maxime Ripard <mripard@kernel.org>, Maarten Lankhorst
  <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 2/7] drm/drv: Add drmm cgroup registration for dev cgroups.
-In-Reply-To: <20241023075302.27194-3-maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 6/7] [HACK] drm/xe: Hack to test with mapped pages
+ instead of vram.
+In-Reply-To: <20241023075302.27194-7-maarten.lankhorst@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
- <20241023075302.27194-3-maarten.lankhorst@linux.intel.com>
-Date: Wed, 23 Oct 2024 11:45:15 +0300
-Message-ID: <878qufus10.fsf@intel.com>
+ <20241023075302.27194-7-maarten.lankhorst@linux.intel.com>
+Date: Wed, 23 Oct 2024 11:52:26 +0300
+Message-ID: <875xpjurp1.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -75,86 +76,52 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Wed, 23 Oct 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
-> From: Maxime Ripard <mripard@kernel.org>
+> We will probably want to make this a proper region in TTM for
+> everything, so that we can charge VRAM twice, once for mapped
+> in sysmem, once for mapped in vram. That way we don't need to
+> deal with evict failing from lack of available memory in mapped.
 >
-> Drivers will need to register a cgroup device at probe time, so let's
-> give them a drm-managed helper.
->
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
 > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
 > ---
->  drivers/gpu/drm/drm_drv.c | 21 +++++++++++++++++++++
->  include/drm/drm_drv.h     |  4 ++++
->  2 files changed, 25 insertions(+)
+>  drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index c2c172eb25df7..251d1d69b09c5 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -26,6 +26,7 @@
->   * DEALINGS IN THE SOFTWARE.
->   */
->  
-> +#include <linux/cgroup_dev.h>
->  #include <linux/debugfs.h>
->  #include <linux/fs.h>
->  #include <linux/module.h>
-> @@ -820,6 +821,26 @@ void drm_dev_put(struct drm_device *dev)
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> index 9844a8edbfe19..20fa8ec8925ef 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> @@ -101,6 +101,18 @@ static void ttm_sys_mgr_fini(struct drm_device *drm, void *arg)
+>  	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, NULL);
 >  }
->  EXPORT_SYMBOL(drm_dev_put);
 >  
-> +static inline void drmm_cg_unregister_device(struct drm_device *dev, void *arg)
+> +static inline void apply_cg(struct xe_device *xe,
+> +			    struct ttm_resource_manager *man,
+> +			    u64 gtt_size)
 
-Nitpick, inline in .c files is mostly useless, just use static and let
-the compiler do its job.
-
-BR,
-Jani.
+Ditto here about static inline in .c.
 
 > +{
-> +	dev_cgroup_unregister_device(arg);
+> +	int cgregion = xe->cg.num_regions++;
+> +
+> +	xe->cg.regions[cgregion].size = gtt_size;
+> +	xe->cg.regions[cgregion].name = "mapped";
+> +	man->cgdev = &xe->cg;
+> +	man->cgidx = cgregion;
+> +
 > +}
-> +
-> +int drmm_cgroup_register_device(struct drm_device *dev,
-> +				struct dev_cgroup_device *cgdev)
-> +{
-> +	int ret;
-> +	char dev_name[32];
-> +
-> +	snprintf(dev_name, sizeof(dev_name), "drm/%s", dev->unique);
-> +	ret = dev_cgroup_register_device(cgdev, dev_name);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return drmm_add_action_or_reset(dev, drmm_cg_unregister_device, cgdev);
-> +}
-> +EXPORT_SYMBOL_GPL(drmm_cgroup_register_device);
-> +
->  static int create_compat_control_link(struct drm_device *dev)
+>  int xe_ttm_sys_mgr_init(struct xe_device *xe)
 >  {
->  	struct drm_minor *minor;
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index 1bbbcb8e2d231..3e83c7ce7f2d0 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -34,6 +34,7 @@
->  
->  #include <drm/drm_device.h>
->  
-> +struct dev_cgroup_device;
->  struct drm_fb_helper;
->  struct drm_fb_helper_surface_size;
->  struct drm_file;
-> @@ -438,6 +439,9 @@ void *__devm_drm_dev_alloc(struct device *parent,
->  			   const struct drm_driver *driver,
->  			   size_t size, size_t offset);
->  
-> +int drmm_cgroup_register_device(struct drm_device *dev,
-> +				struct dev_cgroup_device *cgdev);
+>  	struct ttm_resource_manager *man = &xe->mem.sys_mgr;
+> @@ -116,6 +128,8 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+>  	man->func = &xe_ttm_sys_mgr_func;
+>  	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+>  	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, man);
+> +	apply_cg(xe, man, gtt_size);
 > +
->  /**
->   * devm_drm_dev_alloc - Resource managed allocation of a &drm_device instance
->   * @parent: Parent device object
+>  	ttm_resource_manager_set_used(man, true);
+>  	return drmm_add_action_or_reset(&xe->drm, ttm_sys_mgr_fini, xe);
+>  }
 
 -- 
 Jani Nikula, Intel
