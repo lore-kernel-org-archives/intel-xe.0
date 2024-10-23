@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44925D0BB4B
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 23:39:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A337FD0BB4A
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 23:58:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACDF010E879;
-	Wed, 23 Oct 2024 23:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1C6710E879;
+	Wed, 23 Oct 2024 23:58:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQxFSx7q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d+TqIXLX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD9910E877;
- Wed, 23 Oct 2024 23:39:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16B8E10E1CD;
+ Wed, 23 Oct 2024 23:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729726761; x=1761262761;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DnOcHz9KmFrXRT0ci9znLuaYw7w3MglgopwNNF2CSag=;
- b=AQxFSx7qQbHg0+5bjyGJ0cB/P2WgPqQpS9DtnK+JlKJdZU2SGcy+16YC
- WMT9l7tVXNIdsnFX77SYVH7zpuK7xi4ESWO29q1tIPTuNqm6bctrrbeEX
- uavnCbb+cEcZ2wG/cbyu0bk/3Va2POZp6jVKQ6MenmLcoz+fKu8XcFM9c
- O6E3rlLWPorVCd9h2gIZ5z3tFfjyKaT5oiDNT81/+CSFbLTIRjTCIdxgL
- u6B64FhiOHjiQsUU+aDoMGnjhD9HuvwPuelIYyiv1CYCKlEfgXTrGiJTr
- qiaY8ylaCOFHbrbFAjTLT6k++sBY9tT9H0X0MYFvX/e9xuWqv1UEYPSi5 w==;
-X-CSE-ConnectionGUID: lmafojOUQUOMQIqyvPn+6Q==
-X-CSE-MsgGUID: bnPXYcsKQkCWx+hPrComTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="33251102"
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="33251102"
+ t=1729727932; x=1761263932;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/YVHzBeDHnXn32bNoEdZ472/KOq5ttreaPrtPOFnfzM=;
+ b=d+TqIXLXkMPdJRyuyWPH+mna2uU6CX62AUTUeURdKL+4yUaoeT3N2rzq
+ St9lN5Z5IdSwU6XtotF/hvTLpYC54dFDjzEpvl5VOmzZCnwLIyRZLWN6s
+ DXf5zJCMMlHPv0QR3149PO9b/riMUnuPBq0SFdqyzerzkZwGseVZZkOP5
+ OA0TcvjW3f6A6CbdfHIiNhJQ/P+klwWLt/Fy8gbf1njeUMyeqbW8Lhq9V
+ LcUQ4WIUEEhgVTirbEMoeu4uoFaW9j8UJNeg2gZbD1CtO4MFegK54+Btd
+ qt1rCFrzQhd5ItXGcGA5APmFFe7qlzQil5M3oaSNxplo5TEgm7LC0GIzz A==;
+X-CSE-ConnectionGUID: 4pRq01D2RNGDyyAxfU49fg==
+X-CSE-MsgGUID: QOMsMqh1S0Wgj2CN7PElEg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29506610"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29506610"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 16:39:19 -0700
-X-CSE-ConnectionGUID: vHd3tA6QSpCOaheKbKXr4Q==
-X-CSE-MsgGUID: zKqmRqKLQUehodDvQOtCOQ==
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 16:58:52 -0700
+X-CSE-ConnectionGUID: 33Gi5K+PT6eobU6Oy/emqg==
+X-CSE-MsgGUID: pWucxhL5Qkq5b3euRwSDiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="80420924"
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="80424237"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 16:39:19 -0700
+ 23 Oct 2024 16:58:51 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org
-Cc: linux-kernel@vger.kernel.org, simona.vetter@ffwll.ch,
- akpm@linux-foundation.org, felix.kuehling@amd.com, apopple@nvidia.com
-Subject: [PATCH v3 1/1] mm/migrate: Add migrate_device_pfns
-Date: Wed, 23 Oct 2024 16:39:44 -0700
-Message-Id: <20241023233944.1798835-2-matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: dakr@kernel.org,
+	pstanner@redhat.com,
+	ltuikov89@gmail.com
+Subject: [PATCH v2] drm/sched: Mark scheduler work queues with WQ_MEM_RECLAIM
+Date: Wed, 23 Oct 2024 16:59:17 -0700
+Message-Id: <20241023235917.1836428-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241023233944.1798835-1-matthew.brost@intel.com>
-References: <20241023233944.1798835-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,114 +67,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement migrate_device_pfns to prepare an array of PFNs for migration.
-Handles non-contiguous ranges of device pages that require migration.
+drm_gpu_scheduler.submit_wq is used to submit jobs, jobs are in the path
+of dma-fences, and dma-fences are in the path of reclaim. Mark scheduler
+work queue with WQ_MEM_RECLAIM to ensure forward progress during
+reclaim; without WQ_MEM_RECLAIM, work queues cannot make forward
+progress during reclaim.
 
 v2:
- - s/migrate_device_vma_range/migrate_device_prepopulated_range
- - Drop extra mmu invalidation (Vetter)
-v3:
- - s/migrate_device_prepopulated_range/migrate_device_pfns (Alistair)
- - Use helper to lock device pages (Alistair)
+ - Fixes tags (Philipp)
+ - Reword commit message (Philipp)
 
-Cc: Cc: Alistair Popple <apopple@nvidia.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Luben Tuikov <ltuikov89@gmail.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Philipp Stanner <pstanner@redhat.com>
+Cc: stable@vger.kernel.org
+Fixes: 34f50cc6441b ("drm/sched: Use drm sched lockdep map for submit_wq")
+Fixes: a6149f039369 ("drm/sched: Convert drm scheduler to use a work queue rather than kthread")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/linux/migrate.h |  1 +
- mm/migrate_device.c     | 52 +++++++++++++++++++++++++++++------------
- 2 files changed, 38 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/scheduler/sched_main.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 002e49b2ebd9..6254746648cc 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -229,6 +229,7 @@ void migrate_vma_pages(struct migrate_vma *migrate);
- void migrate_vma_finalize(struct migrate_vma *migrate);
- int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- 			unsigned long npages);
-+int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages);
- void migrate_device_pages(unsigned long *src_pfns, unsigned long *dst_pfns,
- 			unsigned long npages);
- void migrate_device_finalize(unsigned long *src_pfns,
-diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index 9cf26592ac93..950229706485 100644
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@ -876,6 +876,22 @@ void migrate_vma_finalize(struct migrate_vma *migrate)
- }
- EXPORT_SYMBOL(migrate_vma_finalize);
- 
-+static unsigned long migrate_device_pfn_lock(unsigned long pfn)
-+{
-+	struct folio *folio;
-+
-+	folio = folio_get_nontail_page(pfn_to_page(pfn));
-+	if (!folio)
-+		return 0;
-+
-+	if (!folio_trylock(folio)) {
-+		folio_put(folio);
-+		return 0;
-+	}
-+
-+	return migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
-+}
-+
- /**
-  * migrate_device_range() - migrate device private pfns to normal memory.
-  * @src_pfns: array large enough to hold migrating source device private pfns.
-@@ -900,29 +916,35 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
- {
- 	unsigned long i, pfn;
- 
--	for (pfn = start, i = 0; i < npages; pfn++, i++) {
--		struct folio *folio;
-+	for (pfn = start, i = 0; i < npages; pfn++, i++)
-+		src_pfns[i] = migrate_device_pfn_lock(pfn);
- 
--		folio = folio_get_nontail_page(pfn_to_page(pfn));
--		if (!folio) {
--			src_pfns[i] = 0;
--			continue;
--		}
-+	migrate_device_unmap(src_pfns, npages, NULL);
- 
--		if (!folio_trylock(folio)) {
--			src_pfns[i] = 0;
--			folio_put(folio);
--			continue;
--		}
-+	return 0;
-+}
-+EXPORT_SYMBOL(migrate_device_range);
- 
--		src_pfns[i] = migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
--	}
-+/**
-+ * migrate_device_pfns() - migrate device private pfns to normal memory.
-+ * @src_pfns: pre-popluated array of source device private pfns to migrate.
-+ * @npages: number of pages to migrate.
-+ *
-+ * Similar to migrate_device_range() but supports non-contiguous pre-popluated
-+ * array of device pfns to migrate.
-+ */
-+int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages)
-+{
-+	unsigned long i;
-+
-+	for (i = 0; i < npages; i++)
-+		src_pfns[i] = migrate_device_pfn_lock(src_pfns[i]);
- 
- 	migrate_device_unmap(src_pfns, npages, NULL);
- 
- 	return 0;
- }
--EXPORT_SYMBOL(migrate_device_range);
-+EXPORT_SYMBOL(migrate_device_pfns);
- 
- /*
-  * Migrate a device coherent folio back to normal memory. The caller should have
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 540231e6bac6..df0a5abb1400 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -1283,10 +1283,11 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 		sched->own_submit_wq = false;
+ 	} else {
+ #ifdef CONFIG_LOCKDEP
+-		sched->submit_wq = alloc_ordered_workqueue_lockdep_map(name, 0,
++		sched->submit_wq = alloc_ordered_workqueue_lockdep_map(name,
++								       WQ_MEM_RECLAIM,
+ 								       &drm_sched_lockdep_map);
+ #else
+-		sched->submit_wq = alloc_ordered_workqueue(name, 0);
++		sched->submit_wq = alloc_ordered_workqueue(name, WQ_MEM_RECLAIM);
+ #endif
+ 		if (!sched->submit_wq)
+ 			return -ENOMEM;
 -- 
 2.34.1
 
