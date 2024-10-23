@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93585D2CDF9
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 00:09:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2C9BD2CDF9
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 00:17:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3515010E33C;
-	Wed, 23 Oct 2024 00:09:04 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA9E310E082;
- Wed, 23 Oct 2024 00:09:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4595326082827071122=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFD6C10E33C;
+	Wed, 23 Oct 2024 00:17:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TyqaQ6X0";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3911E10E33C
+ for <Intel-Xe@lists.freedesktop.org>; Wed, 23 Oct 2024 00:17:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729642657; x=1761178657;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6B8DoprB8ddwapzVlbPH9p19cDlCvfkuPpfIgXXojeo=;
+ b=TyqaQ6X0Z22rRwVBgmusX1wmsyxGG5VHgMxxXqUPLDn5FmfBIsOejb3p
+ AWScuv/o6Y4n3zh6X7fy+ibRYQI9JP5V6A9olHy/lpe/J+fPbDoTeS1F+
+ fvd+/jXzfAUm3iCwRHTfX4eD8Y7ikYviyCwdzCXOKnPwC8kENZp2NKrZX
+ 1R9e1gsd3CVtq5G+eHK600ov+PteWLSqS3cWCwCQq0vDLg/qUd++4LNtv
+ TUVdrAsYMexAbeSP6/VjrGsUoNBX0qtFQVH9KuS5pYsoZyr+zBeA57EZ9
+ NA0cEE30eBpZlbk/QCoe1cIm4DrypIGPIaQ3aye3sItnZS0O/oXL85iyS w==;
+X-CSE-ConnectionGUID: Yfo83UYkQBqOO/tZTXOUPw==
+X-CSE-MsgGUID: MRthwFaPSoiDK80PeGL2Ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="16833081"
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="16833081"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 17:17:37 -0700
+X-CSE-ConnectionGUID: XzkaLlkrQy6io+6seIxNkw==
+X-CSE-MsgGUID: rTOGPcfnTwuVq6+MDWvCaA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="80447331"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orviesa007.jf.intel.com with ESMTP; 22 Oct 2024 17:17:36 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-Xe@Lists.FreeDesktop.Org
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH 0/2] drm/xe/guc: Improvements to GuC debugfs info
+Date: Tue, 22 Oct 2024 17:17:33 -0700
+Message-ID: <20241023001736.1766523-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Don=27t_short_circuit_TDR_on_job?=
- =?utf-8?q?s_not_started?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Oct 2024 00:09:02 -0000
-Message-ID: <172964214295.1312278.7790450865590204197@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241022232756.1769013-1-matthew.brost@intel.com>
-In-Reply-To: <20241022232756.1769013-1-matthew.brost@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,196 +62,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4595326082827071122==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: John Harrison <John.C.Harrison@Intel.com>
 
-== Series Details ==
+The full CTB content dump is quite large, not human readable and
+rarely interesting. So split it out of the guc_info file and into its
+own guc_ctb file. Also add some extra blank lines to improve the human
+readability of the info file.
 
-Series: Don't short circuit TDR on jobs not started
-URL   : https://patchwork.freedesktop.org/series/140339/
-State : success
+Also, the GuC timestamp is actually more than 32 bits wide, so save
+and print the full 64 bit register. It's still not the full 64 bits
+yet (only 36 bits on current platforms) but the extra few bits might
+be useful.
 
-== Summary ==
-
-CI Bug Log - changes from xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52_BAT -> xe-pw-140339v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140339v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2871])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [PASS][3] -> [SKIP][4] ([Intel XE#455]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@kms_psr@psr-primary-page-flip@edp-1:
-    - bat-adlp-7:         [PASS][5] -> [DMESG-FAIL][6] ([Intel XE#2871]) +1 other test dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#2496]) -> [PASS][8] +31 other tests pass
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][9] ([Intel XE#1861]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
-    - bat-lnl-2:          [FAIL][11] ([Intel XE#2754]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2496]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496
-  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
-  [Intel XE#2871]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
 
-Build changes
--------------
+John Harrison (2):
+  drm/xe/guc: Capture all available bits of GuC timestamp
+  drm/xe/guc: Separate full CTB content from guc_info debugfs
 
-  * IGT: IGT_8081 -> IGT_8082
-  * Linux: xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52 -> xe-pw-140339v1
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h |  3 ++-
+ drivers/gpu/drm/xe/xe_devcoredump.c   |  2 +-
+ drivers/gpu/drm/xe/xe_guc.c           |  5 ++++-
+ drivers/gpu/drm/xe/xe_guc_ct.c        | 25 ++++++++++++-------------
+ drivers/gpu/drm/xe/xe_guc_ct.h        |  8 +++++---
+ drivers/gpu/drm/xe/xe_guc_debugfs.c   | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_log.c       |  6 +++---
+ drivers/gpu/drm/xe/xe_guc_log_types.h |  2 +-
+ 8 files changed, 42 insertions(+), 23 deletions(-)
 
-  IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52: beaeaccd284ba3b69b6dbfdc18bb89441fc99a52
-  xe-pw-140339v1: 140339v1
+-- 
+2.47.0
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/index.html
-
---===============4595326082827071122==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Don&#x27;t short circuit TDR on jobs not started</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140339/">https://patchwork.freedesktop.org/series/140339/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52_BAT -&gt; xe-pw-140339v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140339v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@bad-pitch-0:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2496">Intel XE#2496</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_addfb_basic@bad-pitch-0.html">PASS</a> +31 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140339v1/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8081 -&gt; IGT_8082</li>
-<li>Linux: xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52 -&gt; xe-pw-140339v1</li>
-</ul>
-<p>IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52: beaeaccd284ba3b69b6dbfdc18bb89441fc99a52<br />
-  xe-pw-140339v1: 140339v1</p>
-
-</body>
-</html>
-
---===============4595326082827071122==--
