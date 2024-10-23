@@ -4,59 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7817CCF5388
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 13:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 620E1CF5395
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 14:31:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14C3510E7DA;
-	Wed, 23 Oct 2024 13:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29B8710E7EF;
+	Wed, 23 Oct 2024 14:31:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jFmqYqwB";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HiE4B1JD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5534C10E160;
- Wed, 23 Oct 2024 13:09:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729688949; x=1761224949;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=00up3AruYVTsbu5yC0IuIPnOuh5NPyis+vwygtQ8SCY=;
- b=jFmqYqwB+sney5HFYx0o7NU7wbs25DI/Zil2xj/ETMBrb2dt/L3GZNhi
- wduWc5VKOKgwkOV1q9JIxBbFSfBeNyCsFTZaomraDTX3dD5cAS5/0mtIl
- UP9mQyNJxOOfFIkkha/WAy3JMGOznuumUpzFWxWUrOmXlp00M6N4rYryz
- G+ipzabSdkV1PRr+LcspxEsLzbwRyxQkSME+3OSNkW6nfXmnO7DTX/NAi
- pcCgB+J95a3EM2OBk2jUG6hvIPMeJvEf5uCxpuHiW6+cDSopIPRHrrBrg
- wYuE1Vbx9ZFD31mC4fs499JBN8IgNjMqQuM4TxHz1Pl6HxKG+aAU9de58 g==;
-X-CSE-ConnectionGUID: Od6aqJauQw6HKsyZkEpG0Q==
-X-CSE-MsgGUID: dDFC4n0KQlqJ5F8Hx9x6oQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="29166738"
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="29166738"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 06:09:09 -0700
-X-CSE-ConnectionGUID: FTOiETPrQ2CpJ6GZJlu7Jg==
-X-CSE-MsgGUID: G/Br6gsORBuUb2U8m9xN/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="80270535"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.84])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 06:09:06 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- lucas.demarchi@intel.com, maarten.lankhorst@linux.intel.com
-Subject: Re: [PATCH v4 08/15] drm/i915/display: remove the display platform
- enum as unnecessary
-In-Reply-To: <ZxfltspjmnJXNJd7@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1729518793.git.jani.nikula@intel.com>
- <eeaa31b20670975479b8226d770f1559d966ef32.1729518793.git.jani.nikula@intel.com>
- <ZxfltspjmnJXNJd7@intel.com>
-Date: Wed, 23 Oct 2024 16:09:03 +0300
-Message-ID: <87r087t18w.fsf@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA36F10E7EF;
+ Wed, 23 Oct 2024 14:31:04 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id D369FA44EA5;
+ Wed, 23 Oct 2024 14:30:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDCE6C4CEC6;
+ Wed, 23 Oct 2024 14:31:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1729693863;
+ bh=jk4gZ318ElIT3NFdJQ1M7kZzjg1NdLC7IU9xiNjjbxs=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=HiE4B1JDyjn7q0jX1YKQ95GQ2wmMIC2ikObLNKInLb/smdbF3wAwK7fabCrKUnmAV
+ 0lNQbzTH6J6vI3A8jWjYXwI5c1HHW2oSd5noRPauBJ0YM25bftdO4GSNrisvMvXUDw
+ 6+7bBwYOChXEaTkzGSjNHp5C4ITv9iA3ABVEZwkki9dWEpwURuHmpWR/Hx+yQ1W4a0
+ dSJJjOT4Q0mkYOSFCNJYtnfJMu8I0HxWZ50+mQEypCSm4b+H2HGCoPxtlB3NqB1vN6
+ ltsBzpyYxvZ3ai3jFIcctHKRyEhHaBaSUzkszeSvlS9dq35XWvqNoI6+uU4is/ifY7
+ PAafT5JZm8zSw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Szymon Morek <szymon.morek@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Sasha Levin <sashal@kernel.org>,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.11 28/30] drm/xe/query: Increase timestamp width
+Date: Wed, 23 Oct 2024 10:29:53 -0400
+Message-ID: <20241023143012.2980728-28-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241023143012.2980728-1-sashal@kernel.org>
+References: <20241023143012.2980728-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.11.5
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,24 +65,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 22 Oct 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Mon, Oct 21, 2024 at 04:54:09PM +0300, Jani Nikula wrote:
->> @@ -1466,7 +1462,7 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
->>  	const struct subplatform_desc *sp;
->>  	const u16 *id;
->>  
->> -	for (sp = desc->subplatforms; sp && sp->subplatform; sp++)
->> +	for (sp = desc->subplatforms; sp && sp->pciidlist; sp++)
->
-> I honestly got confused on this... should it be a separate patch?
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Well, I'm removing ->subplatform so obviously I have to check for the
-end condition using something else. I can make it a separate patch if
-you want.
+[ Upstream commit 477d665e9b6a1369968383f50c688d56b692a155 ]
 
-BR,
-Jani.
+Starting with Xe2 the timestamp is a full 64 bit counter, contrary to
+the 36 bit that was available before. Although 36 should be sufficient
+for any reasonable delta calculation (for Xe2, of about 30min), it's
+surprising to userspace to get something truncated. Also if the
+timestamp being compared to is coming from the GPU and the application
+is not careful enough to apply the width there, a delta calculation
+would be wrong.
 
+Extend it to full 64-bits starting with Xe2.
 
+v2: Expand width=64 to media gt, as it's just a wrong tagging in the
+spec - empirical tests show it goes beyond 36 bits and match the engines
+for the main gt
+
+Bspec: 60411
+Cc: Szymon Morek <szymon.morek@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241011035618.1057602-1-lucas.demarchi@intel.com
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+(cherry picked from commit 9d559cdcb21f42188d4c3ff3b4fe42b240f4af5d)
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/xe/xe_query.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 4e01df6b1b7a1..3a30b12e22521 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -161,7 +161,11 @@ query_engine_cycles(struct xe_device *xe,
+ 			  cpu_clock);
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	resp.width = 36;
++
++	if (GRAPHICS_VER(xe) >= 20)
++		resp.width = 64;
++	else
++		resp.width = 36;
+ 
+ 	/* Only write to the output fields of user query */
+ 	if (put_user(resp.cpu_timestamp, &query_ptr->cpu_timestamp))
 -- 
-Jani Nikula, Intel
+2.43.0
+
