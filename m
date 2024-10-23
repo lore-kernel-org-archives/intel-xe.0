@@ -4,58 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64F55CFA445
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 15:55:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D562CFA44F
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 16:11:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14C9410E052;
-	Wed, 23 Oct 2024 15:55:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC4B010E052;
+	Wed, 23 Oct 2024 16:11:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Np8e5i0d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OIoUZPbt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD6A10E052
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 15:55:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0527A10E052;
+ Wed, 23 Oct 2024 16:11:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729698946; x=1761234946;
+ t=1729699881; x=1761235881;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=3IZQHkMzQJKDLBjfFwW4wFunnt4gWSYRJlam0nKNaPs=;
- b=Np8e5i0dg04j/R9TRZwRvVP5dwAT4nkOwYWMi54B/RgFj3ToKVam8qQO
- VAd6yhr5bupMHCqcHJs1gGSQzJmcqN0n7GPM/o2Rc+UPByP61JBxVHKxM
- rOSliv34m9/7SjtviDtEm66+GBmJpQDPmVGaQMvkFc9lLOPRLbzECRCnm
- nXoqBOu4+7TYdDt72xtaVExoFt+coXqHg6hI2SyCkiqoQjl+qsKFksU2h
- 1YQnN1BM5AHY85+EVZSUPsFYXOheq8UzYg9B7ZEXYVtW6UEo8JD9YM04z
- YQWHVYPendup+OJd4niRm9AiKJggzz4sSoGyZBi8qSf+dZGJsi48cx4Ju w==;
-X-CSE-ConnectionGUID: F2Cx7vfKSSu5meOusBgHZA==
-X-CSE-MsgGUID: qsSZ3vLESFada4vmlaMxwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="29403303"
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="29403303"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 08:55:45 -0700
-X-CSE-ConnectionGUID: lVh9/PxvTj68pfBMmt/DdA==
-X-CSE-MsgGUID: dddDhEigTCqEsGaD5FvnzQ==
+ bh=xgdLOBq/S0ew7IVlcDcAhh8cCEX7SWlxOmW6FF/rg4g=;
+ b=OIoUZPbtfO7RCQsSlUdb3Xanoy8Cg6N7wPUAgHjQlz79KwYmHJj5dtoj
+ 9v9IvJfQjH2ceoc3F89OBacdF+atb/ybF3IoaE5+6DGHi+AfduyYeqM4Z
+ UKHqmGY3SM0wOi2ME6+lwWyB4t8lxxx0p85Rd/9Wpu97r1yzl6nE+k+Rh
+ 57Vf5zouDG2y2kt0negQ4wCxVONdP4rysD/8BvAsozOQAWnqND1m105NP
+ gnF9hhORr9DiaTFMBW/6HXjFS1Fl72Nbc3b24++OOubuZ6m4DXRSn0I/+
+ 9lPETH0g5QadsnU5wlgkKLp19I6IOs5LbDFRlARpJ/PWRTQKZqgouvy1/ Q==;
+X-CSE-ConnectionGUID: FN17V+9aRfez4mgN5KLUmQ==
+X-CSE-MsgGUID: BxLtJJA3R5Cwmi5gzRqI0w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39847517"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39847517"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 09:11:20 -0700
+X-CSE-ConnectionGUID: XK0RswecS1OIaR9hIVP/AQ==
+X-CSE-MsgGUID: xQ21zt3nTki12a31srXWNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="80285863"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 08:55:43 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>, Badal Nilawar <badal.nilawar@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] drm/xe/guc/tlb: Flush g2h worker in case of tlb timeout
-Date: Wed, 23 Oct 2024 17:13:43 +0200
-Message-ID: <20241023151343.3463640-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.46.0
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="79941135"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa007.fm.intel.com with ESMTP; 23 Oct 2024 09:11:18 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 0/5]  Introduce drm sharpness property
+Date: Wed, 23 Oct 2024 21:42:01 +0530
+Message-Id: <20241023161206.1113519-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,45 +64,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Flush the g2h worker explicitly if TLB timeout happens which is
-observed on LNL and that points recent scheduling issue with E-cores.
-This is similar to the recent fix:
-commit e51527233804 ("drm/xe/guc/ct: Flush g2h worker in case of g2h
-response timeout") and should be removed once there is E core
-scheduling fix.
+	Many a times images are blurred or upscaled content is also not as
+crisp as original rendered image. Traditional sharpening techniques often
+apply a uniform level of enhancement across entire image, which sometimes
+result in over-sharpening of some areas and potential loss of natural details. 
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2687
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Intel has come up with Display Engine based adaptive sharpening filter 
+with minimal power and performance impact. From LNL onwards, the Display
+hardware can use one of the pipe scaler for adaptive sharpness filter.
+This can be used for both gaming and non-gaming use cases like photos,
+image viewing. It works on a region of pixels depending on the tap size.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 773de1f08db9..2c327dccbd74 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -72,6 +72,15 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_gt_tlb_invalidation_fence *fence, *next;
+This is an attempt to introduce an adaptive sharpness solution which
+helps in improving the image quality. For this new CRTC property is added.
+The user can set this property with desired sharpness strength value with
+0-255. A value of 1 representing minimum sharpening strength and 255
+representing maximum sharpness strength. A strength value of 0 means no
+sharpening or sharpening feature disabled.
+It works on a region of pixels depending on the tap size. The coefficients
+are used to generate an alpha value which is used to blend the sharpened
+image to original image.
  
-+	/*
-+	 * This is analogous to e51527233804 ("drm/xe/guc/ct: Flush g2h worker
-+	 * in case of g2h response timeout")
-+	 *
-+	 * TODO: Drop this change once workqueue scheduling delay issue is
-+	 * fixed on LNL Hybrid CPU.
-+	 */
-+	flush_work(&gt->uc.guc.ct.g2h_worker);
-+
- 	spin_lock_irq(&gt->tlb_invalidation.pending_lock);
- 	list_for_each_entry_safe(fence, next,
- 				 &gt->tlb_invalidation.pending_fences, link) {
+Middleware MR link: https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3665
+IGT patchwork link: https://patchwork.freedesktop.org/series/130218/
+
+Continuing discussions from:  https://patchwork.freedesktop.org/series/129888/
+
+Nemesa Garg (5):
+  drm: Introduce sharpness strength property
+  drm/i915/display: Compute the scaler filter coefficients
+  drm/i915/display: Enable the second scaler for sharpness
+  drm/i915/display: Add registers and compute the strength
+  drm/i915/display: Load the lut values and enable sharpness
+
+ drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
+ drivers/gpu/drm/drm_crtc.c                    |  35 +++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_casf.c     | 250 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_casf.h     |  24 ++
+ .../gpu/drm/i915/display/intel_casf_regs.h    |  36 +++
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  24 +-
+ .../drm/i915/display/intel_display_types.h    |  16 ++
+ .../drm/i915/display/intel_modeset_verify.c   |   2 +
+ drivers/gpu/drm/i915/display/intel_panel.c    |   7 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  95 ++++++-
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  17 ++
+ 16 files changed, 503 insertions(+), 15 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
+
 -- 
-2.46.0
+2.25.1
 
