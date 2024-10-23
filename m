@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FB63D2E028
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 08:52:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3C72D2E02B
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 09:16:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E46A210E796;
-	Wed, 23 Oct 2024 08:52:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBF110E7A0;
+	Wed, 23 Oct 2024 09:16:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C/hrVGsa";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IpT5ayGc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52D3D10E0F7;
- Wed, 23 Oct 2024 08:52:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729673553; x=1761209553;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Q5ucK7d7uRJd+cvR1lR4/2r90nHVsOJOCPAxYH7QWpM=;
- b=C/hrVGsaevR5xrUlByPsr00+b0+uKusfnOxK+377Q0pOmFZ6ZLyT7lLA
- hpsv1elbcY2s567p+XXXgFQ+/6vNPlp4kBvYFMLlxAsk8NPhdUA5ktKsa
- 1dP170axFy1OIhcRazumi9bQqB8NG/SDaZ5dxdkmua2F0dmWGCsYd6Y0K
- Ly1ZbB5rvDZcNOZwaGUcboQ9seHBM4LyriaQtpNFbY28n3QDLgfZhjXwG
- 1P6on0zyhS1KqczdwNx9gQuXSJjjhwW6OkuCsyiUiLSggB6tW43rBrGBL
- L/i7aXZsYomErEus/mKfsUKiRzWqBPG8ICpo3s8QTCJbfwLS75FopEMI9 A==;
-X-CSE-ConnectionGUID: uK5ERPOlSyqyc8a/rVHqow==
-X-CSE-MsgGUID: aWhmlyLhTOGRZHSym/hP/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="51792575"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="51792575"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 01:52:33 -0700
-X-CSE-ConnectionGUID: h73qZ12oSHigC3GIMnT0gA==
-X-CSE-MsgGUID: ZVHijG1OSPSJdXDXnmMvjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="80207426"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.84])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 01:52:29 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, Zefan Li
- <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, Andrew
- Morton <akpm@linux-foundation.org>
-Cc: Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, Maxime Ripard <mripard@kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 6/7] [HACK] drm/xe: Hack to test with mapped pages
- instead of vram.
-In-Reply-To: <20241023075302.27194-7-maarten.lankhorst@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
- <20241023075302.27194-7-maarten.lankhorst@linux.intel.com>
-Date: Wed, 23 Oct 2024 11:52:26 +0300
-Message-ID: <875xpjurp1.fsf@intel.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CECFD10E375;
+ Wed, 23 Oct 2024 09:16:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=2JGW/uDgq/+QFMvMCjmmFYjOZSDMvbEDxKhKwJbwj3g=; b=IpT5ayGceBbkF65INElCc0Oawh
+ a+FdjjSFEuM5Y2TYugCfQIjCRdi9HkaNs2tiCtxnkMWdskUNOEFQsEGQScTRsAM59wPZ8HVsoh1Yh
+ jc2ENu6qvG9Qy2QSj7i/PtFmu5pkOh4O7INwAMwvAjElsOzWEanN450igNiB1Q48bqSn9u2Fs7kW1
+ PrAqFNzB8qZIuMxTbaxhVFx8gPDXhETPuRG5kXfELMDUv1lGY+nCSRQdjGETWU0UmUMzW0uiKk1NA
+ 4NOscFeDY+/fJEFDPbyCP1b4+jMumJg56bUX8IDmNnF8sizj3EzE8pfej5J5HruVNYStdtKocq0D8
+ tS2sOyGw==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1t3XTp-00Dxvc-4I; Wed, 23 Oct 2024 11:16:37 +0200
+Date: Wed, 23 Oct 2024 10:16:36 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <Zxi-3wkIwI-Y1Qvj@linux>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,53 +67,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 23 Oct 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
-> We will probably want to make this a proper region in TTM for
-> everything, so that we can charge VRAM twice, once for mapped
-> in sysmem, once for mapped in vram. That way we don't need to
-> deal with evict failing from lack of available memory in mapped.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->  drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> index 9844a8edbfe19..20fa8ec8925ef 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> @@ -101,6 +101,18 @@ static void ttm_sys_mgr_fini(struct drm_device *drm, void *arg)
->  	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, NULL);
->  }
->  
-> +static inline void apply_cg(struct xe_device *xe,
-> +			    struct ttm_resource_manager *man,
-> +			    u64 gtt_size)
 
-Ditto here about static inline in .c.
+Hi Dave, Sima,
 
-> +{
-> +	int cgregion = xe->cg.num_regions++;
-> +
-> +	xe->cg.regions[cgregion].size = gtt_size;
-> +	xe->cg.regions[cgregion].name = "mapped";
-> +	man->cgdev = &xe->cg;
-> +	man->cgidx = cgregion;
-> +
-> +}
->  int xe_ttm_sys_mgr_init(struct xe_device *xe)
->  {
->  	struct ttm_resource_manager *man = &xe->mem.sys_mgr;
-> @@ -116,6 +128,8 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
->  	man->func = &xe_ttm_sys_mgr_func;
->  	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
->  	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, man);
-> +	apply_cg(xe, man, gtt_size);
-> +
->  	ttm_resource_manager_set_used(man, true);
->  	return drmm_add_action_or_reset(&xe->drm, ttm_sys_mgr_fini, xe);
->  }
+This is the main pull request for 6.13 merge window.
 
--- 
-Jani Nikula, Intel
+PXP GuC auto-teardown feature got enabled, GPU reset robustness improvement
+for Haswell and basic PMU functionality was enabled for Gen2 platforms.
+
+The rest is a handful of small cleanups.
+
+Regards,
+
+Tvrtko
+
+drm-intel-gt-next-2024-10-23:
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Enable PXP GuC autoteardown flow [guc] (Juston Li)
+- Retry RING_HEAD reset until it sticks [gt] (Nitin Gote)
+- Add basic PMU support for gen2 [pmu] (Ville Syrjälä)
+
+Miscellaneous:
+
+- Prevent a possible int overflow in wq offsets [guc] (Nikita Zhandarovich)
+- PMU code cleanups (Lucas De Marchi)
+- Fixed "CPU" -> "GPU" typo [gt] (Zhang He)
+- Gen2/3 interrupt handling cleanup (Ville Syrjälä)
+The following changes since commit 596a7f1084e49cc65072c458c348861e9b9ceab9:
+
+  drm/i915: Remove extra unlikely helper (2024-09-05 15:44:37 -0400)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2024-10-23
+
+for you to fetch changes up to 6ef0e3ef2662db71d363af77ce31fa940bb7d525:
+
+  drm/i915/gt: Retry RING_HEAD reset until it get sticks (2024-10-22 11:35:07 +0200)
+
+----------------------------------------------------------------
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Enable PXP GuC autoteardown flow [guc] (Juston Li)
+- Retry RING_HEAD reset until it get sticks [gt] (Nitin Gote)
+- Add basic PMU support for gen2 [pmu] (Ville Syrjälä)
+
+Miscellaneous:
+
+- Prevent a possible int overflow in wq offsets [guc] (Nikita Zhandarovich)
+- PMU code cleanups (Lucas De Marchi)
+- Fixed "CPU" -> "GPU" typo [gt] (Zhang He)
+- Gen2/3 interrupt handling cleanup (Ville Syrjälä)
+
+----------------------------------------------------------------
+Juston Li (1):
+      drm/i915/guc: Enable PXP GuC autoteardown flow
+
+Lucas De Marchi (2):
+      drm/i915/pmu: Drop is_igp()
+      drm/i915/pmu: Use event_to_pmu()
+
+Nikita Zhandarovich (1):
+      drm/i915/guc: prevent a possible int overflow in wq offsets
+
+Nitin Gote (1):
+      drm/i915/gt: Retry RING_HEAD reset until it get sticks
+
+Ville Syrjälä (3):
+      drm/i915/gt: Nuke gen2_irq_{enable,disable}()
+      drm/i915/gt: s/gen3/gen2/
+      drm/i915/pmu: Add support for gen2
+
+Zhang He (1):
+      drm/i915/gt: Fixed "CPU" -> "GPU" typo
+
+ drivers/gpu/drm/i915/gt/gen2_engine_cs.c          | 23 ++--------
+ drivers/gpu/drm/i915/gt/gen2_engine_cs.h          |  6 +--
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h       |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c   | 38 ++++++++++++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c            |  8 ++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h       |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  4 +-
+ drivers/gpu/drm/i915/i915_drv.h                   |  3 ++
+ drivers/gpu/drm/i915/i915_pmu.c                   | 54 +++++++++++++----------
+ drivers/gpu/drm/i915/pxp/intel_pxp.c              |  2 +-
+ 11 files changed, 82 insertions(+), 61 deletions(-)
