@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC593D2E023
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 08:12:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14E95D2E01E
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 08:12:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B75B10E788;
-	Wed, 23 Oct 2024 08:12:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5CF710E788;
+	Wed, 23 Oct 2024 08:12:43 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD34C10E788;
- Wed, 23 Oct 2024 08:12:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 299FF10E788;
+ Wed, 23 Oct 2024 08:12:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_kernel/cgroups=3A_Add_=22?=
- =?utf-8?q?dev=22_memory_accounting_cgroup=2E?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_kernel/cgroups=3A_Add_=22dev?=
+ =?utf-8?q?=22_memory_accounting_cgroup=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Oct 2024 08:12:14 -0000
-Message-ID: <172967113477.1323037.14799858857895995692@2413ebb6fbb6>
+Date: Wed, 23 Oct 2024 08:12:43 -0000
+Message-ID: <172967116316.1322977.4130578856209921239@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
@@ -44,137 +44,126 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: kernel/cgroups: Add "dev" memory accounting cgroup.
 URL   : https://patchwork.freedesktop.org/series/140361/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit d3c3bb202d972256d5f6bf2fb6c127a11b4d14f0
-Author: Maxime Ripard <mripard@kernel.org>
-Date:   Wed Oct 23 09:53:00 2024 +0200
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[08:12:15] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[08:12:19] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
+ERROR:root:In file included from ../include/drm/drm_device.h:4,
+                 from ../include/drm/drm_crtc.h:33,
+                 from ../include/drm/drm_atomic.h:31,
+                 from ../drivers/gpu/drm/tests/drm_kunit_helpers.c:3:
+../include/linux/cgroup_dev.h:61:12: error: two or more data types in declaration specifiers
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |            ^~~
+../include/linux/cgroup_dev.h:65:1: error: expected identifier or ‘(’ before ‘{’ token
+   65 | {
+      | ^
+../include/linux/cgroup_dev.h:61:16: warning: ‘dev_cgroup_try_charge’ declared ‘static’ but never defined [-Wunused-function]
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |                ^~~~~~~~~~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/tests/drm_kunit_helpers.o] Error 1
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/tests] Error 2
+make[6]: *** Waiting for unfinished jobs....
+In file included from ../include/drm/drm_device.h:4,
+                 from ../drivers/gpu/drm/display/drm_dp_dual_mode_helper.c:31:
+../include/linux/cgroup_dev.h:61:12: error: two or more data types in declaration specifiers
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |            ^~~
+../include/linux/cgroup_dev.h:65:1: error: expected identifier or ‘(’ before ‘{’ token
+   65 | {
+      | ^
+../include/linux/cgroup_dev.h:61:16: warning: ‘dev_cgroup_try_charge’ declared ‘static’ but never defined [-Wunused-function]
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |                ^~~~~~~~~~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/display/drm_dp_dual_mode_helper.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+In file included from ../include/drm/drm_device.h:4,
+                 from ../drivers/gpu/drm/ttm/ttm_tt.c:41:
+../include/linux/cgroup_dev.h:61:12: error: two or more data types in declaration specifiers
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |            ^~~
+../include/linux/cgroup_dev.h:65:1: error: expected identifier or ‘(’ before ‘{’ token
+   65 | {
+      | ^
+../include/linux/cgroup_dev.h:61:16: warning: ‘dev_cgroup_try_charge’ declared ‘static’ but never defined [-Wunused-function]
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |                ^~~~~~~~~~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/ttm/ttm_tt.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+In file included from ../drivers/gpu/drm/ttm/ttm_bo.c:45:
+../include/linux/cgroup_dev.h:61:12: error: two or more data types in declaration specifiers
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |            ^~~
+../include/linux/cgroup_dev.h:65:1: error: expected identifier or ‘(’ before ‘{’ token
+   65 | {
+      | ^
+../include/linux/cgroup_dev.h:61:16: warning: ‘dev_cgroup_try_charge’ declared ‘static’ but never defined [-Wunused-function]
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |                ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../include/drm/drm_device.h:4,
+                 from ../include/drm/drm_crtc.h:33,
+                 from ../include/drm/drm_atomic.h:31,
+                 from ../include/drm/display/drm_dp_mst_helper.h:27,
+                 from ../drivers/gpu/drm/display/drm_dp_helper.c:36:
+../include/linux/cgroup_dev.h:61:12: error: two or more data types in declaration specifiers
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |            ^~~
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/ttm/ttm_bo.o] Error 1
+../include/linux/cgroup_dev.h:65:1: error: expected identifier or ‘(’ before ‘{’ token
+   65 | {
+      | ^
+../include/linux/cgroup_dev.h:61:16: warning: ‘dev_cgroup_try_charge’ declared ‘static’ but never defined [-Wunused-function]
+   61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+      |                ^~~~~~~~~~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/display/drm_dp_helper.o] Error 1
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/display] Error 2
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/ttm] Error 2
+make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1936: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/gem: Add cgroup memory accounting
-    
-    In order to support any device using the GEM support, let's register a
-    dev cgroup device in the drm_dev_register path, and account for
-    allocated buffers in the buffer allocation path.
-    
-    Marked discussion by Maarten Lankhorst:
-    This is only implemented for drm_gem_dma_helper.c, and breaks the other
-    drivers. It's still here for discussion, as we need to figure out how to
-    make something like this work for both TTM and GEM drivers.
-    
-    Signed-off-by: Maxime Ripard <mripard@kernel.org>
-    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-+ /mt/dim checkpatch 0cd3ccdcf9525b9d2f822df5f8d16b552753cf88 drm-intel
-c2f417069c9c kernel/cgroup: Add "dev" memory accounting cgroup
--:106: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#106: 
-new file mode 100644
-
--:111: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#111: FILE: Documentation/core-api/cgroup.rst:1:
-+==================
-
--:138: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#138: FILE: Documentation/gpu/drm-compute.rst:1:
-+==================================
-
--:258: WARNING:REPEATED_WORD: Possible repeated word: 'int'
-#258: FILE: include/linux/cgroup_dev.h:61:
-+static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
-
--:372: WARNING:TYPO_SPELLING: 'succesful' may be misspelled - perhaps 'successful'?
-#372: FILE: kernel/cgroup/dev.c:22:
-+	 * Keeps the device reference alive after a succesful RCU lookup.
- 	                                            ^^^^^^^^^
-
--:551: WARNING:LINE_SPACING: Missing a blank line after declarations
-#551: FILE: kernel/cgroup/dev.c:201:
-+	struct devcg_state *devcs = kzalloc(sizeof(*devcs), GFP_KERNEL);
-+	if (!devcs)
-
--:563: WARNING:USE_LOCKDEP: Where possible, use lockdep_assert_held instead of assertions based on spin_is_locked
-#563: FILE: kernel/cgroup/dev.c:213:
-+	list_for_each_entry_rcu(pool, &devcs->pools, css_node, spin_is_locked(&devcg_lock))
-
--:611: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#611: FILE: kernel/cgroup/dev.c:261:
-+		for (pool = test_pool; pool && limit_pool != pool; pool = pool_parent(pool))
-+			{}
-
--:621: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#621: FILE: kernel/cgroup/dev.c:271:
-+		for (limit_pool = test_pool; pool_parent(limit_pool); limit_pool = pool_parent(limit_pool))
-
--:621: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#621: FILE: kernel/cgroup/dev.c:271:
-+		for (limit_pool = test_pool; pool_parent(limit_pool); limit_pool = pool_parent(limit_pool))
-+			{}
-
--:657: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
-#657: FILE: kernel/cgroup/dev.c:307:
-+		pool = kzalloc(offsetof(struct dev_cgroup_pool_state, resources[dev->base.num_regions]), GFP_NOWAIT);
-
--:714: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#714: FILE: kernel/cgroup/dev.c:364:
-+	retpool = pool = find_cg_pool_locked(devcs, dev);
-
--:813: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#813: FILE: kernel/cgroup/dev.c:463:
-+	cgdev->priv = dev = kzalloc(sizeof (*dev), GFP_KERNEL);
-
--:813: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#813: FILE: kernel/cgroup/dev.c:463:
-+	cgdev->priv = dev = kzalloc(sizeof (*dev), GFP_KERNEL);
-
--:841: WARNING:USE_LOCKDEP: Where possible, use lockdep_assert_held instead of assertions based on spin_is_locked
-#841: FILE: kernel/cgroup/dev.c:491:
-+	list_for_each_entry_rcu(dev, &devcg_devices, dev_node, spin_is_locked(&devcg_lock))
-
--:888: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#888: FILE: kernel/cgroup/dev.c:538:
-+			allocpool = kzalloc(offsetof(struct dev_cgroup_pool_state, resources[dev->base.num_regions]), GFP_KERNEL);
-
--:984: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
-#984: FILE: kernel/cgroup/dev.c:634:
-+			*ret_limit_pool = container_of(fail, struct dev_cgroup_pool_state, resources[index].cnt);
-
--:1066: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#1066: FILE: kernel/cgroup/dev.c:716:
-+
-+
-
--:1135: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#1135: FILE: kernel/cgroup/dev.c:785:
-+
-+
-
-total: 2 errors, 13 warnings, 4 checks, 1160 lines checked
-73a717e17624 drm/drv: Add drmm cgroup registration for dev cgroups.
-bcc345cd4b87 drm/ttm: Handle cgroup based eviction in TTM
--:228: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#228: FILE: drivers/gpu/drm/ttm/ttm_bo.c:591:
-+	evict_walk.try_low = evict_walk.hit_low = false;
-
-total: 0 errors, 0 warnings, 1 checks, 343 lines checked
-28dc4bcae4e7 drm/xe: Implement cgroup for vram
-a3b33ad8006a drm/amdgpu: Add cgroups implementation
-ab5ea38d5277 drm/xe: Hack to test with mapped pages instead of vram.
--:33: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#33: FILE: drivers/gpu/drm/xe/xe_ttm_sys_mgr.c:115:
-+
-+}
-
-total: 0 errors, 0 warnings, 1 checks, 26 lines checked
-d3c3bb202d97 drm/gem: Add cgroup memory accounting
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
