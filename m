@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3271AD2E037
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 09:39:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39D0CD2E035
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 09:39:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED29110E7AA;
-	Wed, 23 Oct 2024 09:39:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0537C10E7AB;
+	Wed, 23 Oct 2024 09:39:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IIUoUFlT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fqc4bmak";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 678E810E7A8;
- Wed, 23 Oct 2024 09:39:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35A1C10E7AD;
+ Wed, 23 Oct 2024 09:39:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729676389; x=1761212389;
+ t=1729676391; x=1761212391;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/9QCpGKVoMBrw63pr2oUYuGSPTdQjRz/kb58Nv+5UmM=;
- b=IIUoUFlTWpB3PPW6D5TWam+mabt4EM+21Ku3Kszw/My+7t4bdRZ5qNBH
- 3QGV96xchdGDm5Jh+T0dd5CtP6GvD6lZF118+ca1w+a2sgOArVeOzDPq1
- lbCgTEw0NST8Wv+gCaD+mTOZm3VNAV+G2sb0PaHM0bA3pTpNKyIE1/r05
- kDQLanaruijS6+h7Y6zcfITzenH9bdgygk6YN8wWsPEKWKN+FY5PNNVdN
- Q5jAyGJ0GiwmqWR4cLDq9C+/AA+GtXpvg7Uk+E/BzJwBq0BcG4/jfGLOQ
- 5hHzmDMBqxSWK/oSdjn5EY+bXdiyW/SIUvYlVas+0IQjgGqWIwqs2my+5 A==;
-X-CSE-ConnectionGUID: lTnvVN/IR/6HqBaYoMz94g==
-X-CSE-MsgGUID: x0WWIQluQrGgFE5RW/7F1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29414205"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29414205"
+ bh=Kc4el9L+O8oIyjISBfTmYS6l2rpzV7Gn+wqZZhksdg0=;
+ b=Fqc4bmakvYk0VnMw7NH/7Q9fBeBZDUhAFL5hLwS5WNl1h3kknzmCUfF/
+ B9/fDDLaX1vPTbtyrx7Au8nIOFiyBFnBUpm4zD2qjMwPZ8ytaOy/J3F8G
+ +U8Wo7fey88pcIw6O7J0FsXYNQkEO3G++pj4Tb/6cmzwp/O0bK8NVLfeL
+ c5sgXM/n4oGy6QEn8kn5WdWXHgbbVoPTWhK5HfLMTHXwxuphStDu1HXVw
+ TLBxtKR1/XnSxWVmSvRN9Mk4cXvlfMEZTRW3u3KFunmZMJARokAUFEKh9
+ kWa7EcAY5M4KGlt3AwU3VmAAEIbzd2BQhwM8jmYum6qApbEWpDv6mP9Hp A==;
+X-CSE-ConnectionGUID: aB+/AciEQhWjtPrqvJY34g==
+X-CSE-MsgGUID: 3UKYnjBYS0GUlB3roJf3nw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29414210"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29414210"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 02:39:49 -0700
-X-CSE-ConnectionGUID: WxC5zYCHTgqgFUZ/GBNOxA==
-X-CSE-MsgGUID: cPAwxTx4RfiZ9dTcBuU/cQ==
+ 23 Oct 2024 02:39:51 -0700
+X-CSE-ConnectionGUID: 5vpgexoNTvuBnd+0D0Ju2g==
+X-CSE-MsgGUID: mBpbtGRKRZiSq2v0bOd8PQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="110979543"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="110979547"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 02:39:48 -0700
+ 23 Oct 2024 02:39:50 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: igt-dev@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH i-g-t V2 1/2] drm-uapi/xe: Add new flag in mmap offset ioctl
-Date: Wed, 23 Oct 2024 15:13:26 +0530
-Message-Id: <20241023094327.965050-2-tejas.upadhyay@intel.com>
+Subject: [PATCH i-g-t V2 2/2] tests/intel: Add xe_pci_membarrier test
+Date: Wed, 23 Oct 2024 15:13:27 +0530
+Message-Id: <20241023094327.965050-3-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241023094327.965050-1-tejas.upadhyay@intel.com>
 References: <20241023094327.965050-1-tejas.upadhyay@intel.com>
@@ -67,49 +67,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add flag in mmap offset for querying special defined
-mmap offset for specific purpose like pci membarrier
-which requires to write 4K doorbell page mapped at
-defined offset.
+We want to make sure that direct mmap mapping of physical
+page at doorbell space and whole page is accessible in order
+to use pci memory barrier effect effectively.
 
-For user to query special offset, special flag can be
-passed in mmap_offset ioctl and used in mmap as follows,
-struct drm_xe_gem_mmap_offset mmo = {
-	.handle = 0, (this must be set to 0)
-	.flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-};
-igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-map = mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, mmo);
+This is basic pci memory barrier test to showcase xe driver
+support for feature. In follow up patches we will have more
+of corner and negative tests added later.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- include/drm-uapi/xe_drm.h | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ tests/intel/xe_pci_membarrier.c | 80 +++++++++++++++++++++++++++++++++
+ tests/meson.build               |  1 +
+ 2 files changed, 81 insertions(+)
+ create mode 100644 tests/intel/xe_pci_membarrier.c
 
-diff --git a/include/drm-uapi/xe_drm.h b/include/drm-uapi/xe_drm.h
-index f0a450db9..a04d6f1de 100644
---- a/include/drm-uapi/xe_drm.h
-+++ b/include/drm-uapi/xe_drm.h
-@@ -817,7 +817,18 @@ struct drm_xe_gem_mmap_offset {
- 	/** @handle: Handle for the object being mapped. */
- 	__u32 handle;
- 
--	/** @flags: Must be zero */
+diff --git a/tests/intel/xe_pci_membarrier.c b/tests/intel/xe_pci_membarrier.c
+new file mode 100644
+index 000000000..d0bf447b6
+--- /dev/null
++++ b/tests/intel/xe_pci_membarrier.c
+@@ -0,0 +1,80 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2024 Intel Corporation. All rights reserved.
++ */
++
++#include "xe_drm.h"
++#include "igt.h"
++
 +/**
-+ * For user to query special offset we are adding special flag in
-+ * mmap_offset ioctl which needs to be passed as follows,
-+ * struct drm_xe_gem_mmap_offset mmo = {
-+ *      .handle = 0, (this must be set to 0)
-+ *      .flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
-+ * };
-+ * igt_ioctl(fd, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo);
-+ * map = mmap(NULL, size, PROT_WRITE, MAP_SHARED, fd, mmo);
-+*/
-+#define DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER     (1 << 0)
-+	/** @flags: Flag to indicate if any special offset, zero otherwise */
- 	__u32 flags;
- 
- 	/** @offset: The fake offset to use for subsequent mmap call */
++ * TEST: Test if the driver is capable of putting pci memory barrier using mmap
++ * Category: Core
++ * Mega feature: General Core features
++ * Sub-category: Memory management tests
++ * Functionality: mmap with pre-defined offset
++ */
++
++IGT_TEST_DESCRIPTION("Basic MMAP tests pci memory barrier effect with special offset");
++#define PAGE_SHIFT 12
++#define PAGE_SIZE 4096
++
++/**
++ * SUBTEST: basic
++ * Description: create pci memory barrier with write on defined mmap offset.
++ * Test category: functionality test
++ *
++ */
++
++static void pci_membarrier(int xe)
++{
++	uint64_t flags = MAP_SHARED;
++	unsigned int prot = PROT_WRITE;
++	uint32_t *ptr;
++	uint64_t size = PAGE_SIZE;
++	struct timespec tv;
++        struct drm_xe_gem_mmap_offset mmo = {
++                .handle = 0,
++                .flags = DRM_XE_MMAP_OFFSET_FLAG_PCI_BARRIER,
++        };
++
++        igt_assert_eq(igt_ioctl(xe, DRM_IOCTL_XE_GEM_MMAP_OFFSET, &mmo), 0);
++        ptr = mmap(NULL, size, prot, flags, xe, mmo.offset);
++	igt_assert(ptr != MAP_FAILED);
++
++	/* Check whole page for any errors, also check as
++	 * we should not read written values back
++	 */
++	for (int i = 0; i < size / sizeof(*ptr); i++) {
++		/* It is expected unconfigured doorbell space
++		 * will return read value 0xdeadbeef
++		 */
++		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
++
++		igt_gettime(&tv);
++		ptr[i] = i;
++		if (READ_ONCE(ptr[i]) == i) {
++			while (READ_ONCE(ptr[i]) == i)
++				;
++			igt_info("fd:%d value retained for %"PRId64"ns pos:%d\n",
++				 xe, igt_nsec_elapsed(&tv), i);
++		}
++		igt_assert_neq(READ_ONCE(ptr[i]), i);
++	}
++
++	munmap(ptr, size);
++}
++
++igt_main
++{
++	int xe;
++
++	igt_fixture {
++		xe = drm_open_driver(DRIVER_XE);
++	}
++
++	igt_subtest_f("basic")
++		pci_membarrier(xe);
++
++	igt_fixture
++		drm_close_driver(xe);
++}
+diff --git a/tests/meson.build b/tests/meson.build
+index 34b87b125..15131d812 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -306,6 +306,7 @@ intel_xe_progs = [
+ 	'xe_noexec_ping_pong',
+ 	'xe_oa',
+ 	'xe_pat',
++        'xe_pci_membarrier',
+ 	'xe_peer2peer',
+ 	'xe_pm',
+ 	'xe_pm_residency',
 -- 
 2.34.1
 
