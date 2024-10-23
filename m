@@ -4,14 +4,14 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D495D2E01E
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 07:53:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC780D2E022
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 07:53:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9BD110E782;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B52BF10E77E;
 	Wed, 23 Oct 2024 07:53:10 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA92710E77C
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 07:53:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7727F10E77C
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 07:53:09 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
@@ -20,9 +20,9 @@ To: intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
 Cc: Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
  linux-mm@kvack.org, Maxime Ripard <mripard@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 4/7] drm/xe: Implement cgroup for vram
-Date: Wed, 23 Oct 2024 09:52:57 +0200
-Message-ID: <20241023075302.27194-5-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 7/7] [DISCUSSION] drm/gem: Add cgroup memory accounting
+Date: Wed, 23 Oct 2024 09:53:00 +0200
+Message-ID: <20241023075302.27194-8-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
 References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
@@ -42,77 +42,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add vram based cgroup eviction to Xe.
-Most hardware with VRAM uses TTM for its management, and can be
-similarly trivially enabled.
+From: Maxime Ripard <mripard@kernel.org>
 
-Co-developed-by: Maxime Ripard <mripard@kernel.org>
+In order to support any device using the GEM support, let's register a
+dev cgroup device in the drm_dev_register path, and account for
+allocated buffers in the buffer allocation path.
+
+Marked discussion by Maarten Lankhorst:
+This is only implemented for drm_gem_dma_helper.c, and breaks the other
+drivers. It's still here for discussion, as we need to figure out how to
+make something like this work for both TTM and GEM drivers.
+
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       |  4 ++++
- drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 10 ++++++++++
- 3 files changed, 18 insertions(+)
+ drivers/gpu/drm/drm_drv.c            | 11 ++++++++++-
+ drivers/gpu/drm/drm_gem.c            |  4 ++++
+ drivers/gpu/drm/drm_gem_dma_helper.c |  4 ++++
+ include/drm/drm_device.h             |  4 ++++
+ include/drm/drm_gem.h                |  2 ++
+ 5 files changed, 24 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 51bb9d875268f..cb4b2013eb808 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -726,6 +726,10 @@ int xe_device_probe(struct xe_device *xe)
- 	/* Allocate and map stolen after potential VRAM resize */
- 	xe_ttm_stolen_mgr_init(xe);
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 251d1d69b09c5..6b1cffd1f52c6 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -930,6 +930,12 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
+ 	if (drm_dev_needs_global_mutex(dev))
+ 		mutex_lock(&drm_global_mutex);
  
-+	err = drmm_cgroup_register_device(&xe->drm, &xe->cg);
-+	if (err)
-+		goto err;
-+
- 	/*
- 	 * Now that GT is initialized (TTM in particular),
- 	 * we can try to init display, and inherit the initial fb.
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 85bede4dd6461..0401b4fe6f645 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -7,6 +7,7 @@
- #define _XE_DEVICE_TYPES_H_
- 
- #include <linux/pci.h>
-+#include <linux/cgroup_dev.h>
- 
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
-@@ -257,6 +258,9 @@ struct xe_device {
- 	/** @devcoredump: device coredump */
- 	struct xe_devcoredump devcoredump;
- 
-+	/** @cg: device cgroup bookkeeping */
-+	struct dev_cgroup_device cg;
-+
- 	/** @info: device info */
- 	struct intel_device_info {
- 		/** @info.platform_name: platform name */
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 423b261ea7430..cb463be53f4bc 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -339,6 +339,16 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 	struct ttm_resource_manager *man = &mgr->manager;
- 	int err;
- 
-+	if (mem_type != XE_PL_STOLEN) {
-+		int cgregion = xe->cg.num_regions++;
-+
-+		xe->cg.regions[cgregion].size = size;
-+		xe->cg.regions[cgregion].name =
-+			mem_type == XE_PL_VRAM0 ? "vram0" : "vram1";
-+		man->cgdev = &xe->cg;
-+		man->cgidx = cgregion;
++	ret = drmm_cgroup_register_device(dev, &dev->cg);
++	if (ret) {
++		DRM_ERROR("Cannot create cgroup device.\n");
++		goto out_unlock;
 +	}
 +
- 	man->func = &xe_ttm_vram_mgr_func;
- 	mgr->mem_type = mem_type;
- 	mutex_init(&mgr->lock);
+ 	if (drm_core_check_feature(dev, DRIVER_COMPUTE_ACCEL))
+ 		accel_debugfs_register(dev);
+ 	else
+@@ -937,7 +943,7 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
+ 
+ 	ret = drm_minor_register(dev, DRM_MINOR_RENDER);
+ 	if (ret)
+-		goto err_minors;
++		goto out_unregister_cgroup;
+ 
+ 	ret = drm_minor_register(dev, DRM_MINOR_PRIMARY);
+ 	if (ret)
+@@ -982,6 +988,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
+ 	drm_minor_unregister(dev, DRM_MINOR_ACCEL);
+ 	drm_minor_unregister(dev, DRM_MINOR_PRIMARY);
+ 	drm_minor_unregister(dev, DRM_MINOR_RENDER);
++out_unregister_cgroup:
++	dev_cgroup_unregister_device(&dev->cg);
+ out_unlock:
+ 	if (drm_dev_needs_global_mutex(dev))
+ 		mutex_unlock(&drm_global_mutex);
+@@ -1024,6 +1032,7 @@ void drm_dev_unregister(struct drm_device *dev)
+ 	drm_minor_unregister(dev, DRM_MINOR_PRIMARY);
+ 	drm_minor_unregister(dev, DRM_MINOR_RENDER);
+ 	drm_debugfs_dev_fini(dev);
++	dev_cgroup_unregister_device(&dev->cg);
+ }
+ EXPORT_SYMBOL(drm_dev_unregister);
+ 
+diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+index ee811764c3df4..95af268d9dd9b 100644
+--- a/drivers/gpu/drm/drm_gem.c
++++ b/drivers/gpu/drm/drm_gem.c
+@@ -110,6 +110,10 @@ drm_gem_init(struct drm_device *dev)
+ 				    DRM_FILE_PAGE_OFFSET_START,
+ 				    DRM_FILE_PAGE_OFFSET_SIZE);
+ 
++	dev->cg.regions[0].size = U64_MAX;
++	dev->cg.regions[0].name = "gem";
++	dev->cg.num_regions++;
++
+ 	return drmm_add_action(dev, drm_gem_init_release, NULL);
+ }
+ 
+diff --git a/drivers/gpu/drm/drm_gem_dma_helper.c b/drivers/gpu/drm/drm_gem_dma_helper.c
+index 870b90b78bc4e..32eafbf4aa814 100644
+--- a/drivers/gpu/drm/drm_gem_dma_helper.c
++++ b/drivers/gpu/drm/drm_gem_dma_helper.c
+@@ -106,6 +106,10 @@ __drm_gem_dma_create(struct drm_device *drm, size_t size, bool private)
+ 		goto error;
+ 	}
+ 
++	ret = dev_cgroup_try_charge(&drm->cg, 0, size, &dma_obj->base.cgroup_pool_state, NULL);
++	if (ret)
++		goto error;
++
+ 	return dma_obj;
+ 
+ error:
+diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+index c91f87b5242d7..bdb7656e7db67 100644
+--- a/include/drm/drm_device.h
++++ b/include/drm/drm_device.h
+@@ -1,6 +1,7 @@
+ #ifndef _DRM_DEVICE_H_
+ #define _DRM_DEVICE_H_
+ 
++#include <linux/cgroup_dev.h>
+ #include <linux/list.h>
+ #include <linux/kref.h>
+ #include <linux/mutex.h>
+@@ -317,6 +318,9 @@ struct drm_device {
+ 	 * Root directory for debugfs files.
+ 	 */
+ 	struct dentry *debugfs_root;
++
++	/** @cg: device cgroup bookkeeping */
++	struct dev_cgroup_device cg;
+ };
+ 
+ #endif
+diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+index 5b8b1b059d32c..cc998abea7924 100644
+--- a/include/drm/drm_gem.h
++++ b/include/drm/drm_gem.h
+@@ -430,6 +430,8 @@ struct drm_gem_object {
+ 	 * The current LRU list that the GEM object is on.
+ 	 */
+ 	struct drm_gem_lru *lru;
++
++	struct dev_cgroup_pool_state *cgroup_pool_state;
+ };
+ 
+ /**
 -- 
 2.45.2
 
