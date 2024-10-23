@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02E90D2E01E
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 06:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 237BAD2E01D
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 06:50:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B106810E74F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6A7F10E751;
 	Wed, 23 Oct 2024 06:50:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XekNAQEw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bxTW8QlD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DFEB10E74A;
- Wed, 23 Oct 2024 06:50:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D09210E74C;
+ Wed, 23 Oct 2024 06:50:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729666244; x=1761202244;
+ t=1729666247; x=1761202247;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=es/HjCAJYCzwCPU7dULSoJgOHBK4YaktiMq3kR5cz+I=;
- b=XekNAQEwtbzTwPHqf4jeyyRIrp1QCQc5aLImsjoPZCWefpQldWfa3h6D
- kJzhc3XMwNZ67MQC4Z75TRPdrjZYijt3pfwdgOJoqt7cLqI2lFCJ81TCx
- G3/QZfGAQ+Z0PSbzDcOMF/4Rr8UTica+qg3jCAibSeJNJNtbBx308kHyO
- DE8Xgv8ugq3zpDwMoOuYpWkYTpwwTYA5vqI5sI7pBOcLegcT3dH0S5Nha
- NX4dZLCrLJrOj5G/n0BTQ2A1tEVCVixjIUrCeciXocJEPbXcFPfHtdyou
- nMMatsa7tBzbCcBU6u5o1wlfk2x+S/ds5pyAFoMV5qMkSEo47eZCES2mz g==;
-X-CSE-ConnectionGUID: gpDxQ8fYTnOaPBr7Sdy3KA==
-X-CSE-MsgGUID: 68Syqr21T6yW0TDbh58pag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097460"
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097460"
+ bh=8LwXJCglBB/sPofhDyBEblLJrBhz6btjVpj04G4qZCY=;
+ b=bxTW8QlDSHNuXXQqBrJ3UaSrssBPK4eO5JKdSeY/ge4tvXnyhlOSYKAW
+ krq+AmWleLV0/qXYy1fS+OG839sTMl9h4s8syePD41Lf11cILDxz6mZQy
+ ADP19z5U1/nBAC765UG4NgthJxAiSd8VQExDwt0KFuN47n1sb9mbKvF35
+ 7NzBFV45bDaB9Ag0KD10DMh1JkE7YGbaZEBQKZSrHBYuWpW7R2I+CmK7W
+ 5FuOsz0tWNKFdDUW37GXPQeVPS4B+twdqCEy0AIz7Rvmrk4zMHJEiQXX3
+ gdifh0NVCmHB5MtREE9kviqizIOcYZzuAzXlPHlsiMqYKmiSzJrLTKUVP A==;
+X-CSE-ConnectionGUID: Uesn0a1BQVqd16amgNAW3Q==
+X-CSE-MsgGUID: 5rJSpwEiRzGNV7Dztx5uqA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097465"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097465"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:43 -0700
-X-CSE-ConnectionGUID: zySYvNgFSOOxvxYtXPGmmw==
-X-CSE-MsgGUID: 5khqJcAyR02lLIjj/6+fJg==
+ 22 Oct 2024 23:50:46 -0700
+X-CSE-ConnectionGUID: IFttxzXhQCaij4/aW8qizg==
+X-CSE-MsgGUID: +wM6WmIoSQeWmzAORZU1Rg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691481"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691499"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:42 -0700
+ 22 Oct 2024 23:50:45 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 01/16] drm/i915/dp: Update Comment for Valid DSC Slices per
- Line
-Date: Wed, 23 Oct 2024 12:22:42 +0530
-Message-ID: <20241023065257.190035-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 03/16] drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC
+ engine
+Date: Wed, 23 Oct 2024 12:22:44 +0530
+Message-ID: <20241023065257.190035-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
 References: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
@@ -68,44 +68,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For some platforms, the maximum slices per DSC engine is 4, while for
-others it is 2. Update the comment to reflect this and clarify that
-the 'valid_dsc_slicecount' list represents the valid number of slices
-per pipe.
-
-Currently, we are working with 1, and 2 slices per DSC engine,
-which works for all platforms. With this the number of slices per pipe
-can be 1,2 or 4 with different slice & DSC engine configuration.
-
-Add a #TODO for adding support for 4 slices per DSC engine where
-supported.
+Drop use of LEFT/RIGHT VDSC engine and use VDSC0/VDSC1 instead.
+While at it, use REG_BIT macro for the bits.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c      | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 4 ++--
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7e04913bc2ff..286b272aa98c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -108,8 +108,14 @@
- /* Constants for DP DSC configurations */
- static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index afc40d180dec..159f83edd5b0 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -770,9 +770,9 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
  
--/* With Single pipe configuration, HW is capable of supporting maximum
-- * of 4 slices per line.
-+/*
-+ * With Single pipe configuration, HW is capable of supporting maximum of:
-+ * 2 slices per line for ICL, BMG
-+ * 4 slices per line for other platforms.
-+ * For now consider a max of 2 slices per line, which works for all platforms.
-+ * With this we can have max of 4 DSC Slices per pipe.
-+ *
-+ * #TODO Split this better to use 4 slices/dsc engine where supported.
-  */
- static const u8 valid_dsc_slicecount[] = {1, 2, 4};
+ 	intel_dsc_pps_configure(crtc_state);
+ 
+-	dss_ctl2_val |= LEFT_BRANCH_VDSC_ENABLE;
++	dss_ctl2_val |= VDSC0_ENABLE;
+ 	if (vdsc_instances_per_pipe > 1) {
+-		dss_ctl2_val |= RIGHT_BRANCH_VDSC_ENABLE;
++		dss_ctl2_val |= VDSC1_ENABLE;
+ 		dss_ctl1_val |= JOINER_ENABLE;
+ 	}
+ 	if (crtc_state->joiner_pipes) {
+@@ -972,12 +972,12 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+ 	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc, cpu_transcoder));
+ 	dss_ctl2 = intel_de_read(dev_priv, dss_ctl2_reg(crtc, cpu_transcoder));
+ 
+-	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
++	crtc_state->dsc.compression_enable = dss_ctl2 & VDSC0_ENABLE;
+ 	if (!crtc_state->dsc.compression_enable)
+ 		goto out;
+ 
+ 	if (dss_ctl1 & JOINER_ENABLE) {
+-		if (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE)
++		if (dss_ctl2 & VDSC1_ENABLE)
+ 			crtc_state->dsc.num_streams = 2;
+ 		else
+ 			crtc_state->dsc.num_streams = 1;
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+index bf32a3b46fb1..d7a72b95ee7e 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+@@ -21,8 +21,8 @@
+ #define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
+ 
+ #define DSS_CTL2				_MMIO(0x67404)
+-#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
+-#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
++#define  VDSC0_ENABLE				REG_BIT(31)
++#define  VDSC1_ENABLE				REG_BIT(15)
+ #define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
+ #define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
  
 -- 
 2.45.2
