@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08A34D2E01C
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 06:50:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44C26D2E018
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 06:51:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB2C10E755;
-	Wed, 23 Oct 2024 06:50:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C80710E75B;
+	Wed, 23 Oct 2024 06:51:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mC22ogh4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LUFjFeTf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA6EA10E752;
- Wed, 23 Oct 2024 06:50:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52ACC10E757;
+ Wed, 23 Oct 2024 06:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729666250; x=1761202250;
+ t=1729666254; x=1761202254;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hv5kpSbB7PWfGlJbGBUeRbU1ZdtggY/cIDV1NjfcY9A=;
- b=mC22ogh4tAYLWwbnlMLWduQhS3rx6ST5ll4LBXzU3hnFzgLk9JsYgmTM
- 6tyhngKbY9Ab1bVX0Mk6j3fFC/Mg97P037USmzf+zjmCcwIM6E/ZGa0bw
- nWWb+xcyUr47j3tCkVHhDYH6nCL67f8jl+jlu0pmR2aWYr4FhEjDprnLV
- 4n96Ryx8fPep7RBlBaIzzSym84rEmjXRT4iGIvzB8IAk/SLLOndDzrcEL
- ghNMsoGR7YmBDEjz3r4addNHe8Haon5DPLQdhwnfQ/3pPPSIkqoXOUBMU
- +5tagCYlk9/HrwmcZUGFhtgvD8xRbLjJ2oe4aD6pOIxwN53OeG5dY6ACG Q==;
-X-CSE-ConnectionGUID: nW5JpCdRSUu7b+t9aoBh9A==
-X-CSE-MsgGUID: XzhxYgDVQR+Urktp5+cO6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097471"
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097471"
+ bh=Vgwx+ahHrdEmXNWIGdg5TR9e6SOSsvPMxUbsa6fiK0g=;
+ b=LUFjFeTft/JMwaWMLyD0oV1CCAFcB4gH/tCV+GTDPc+KaTonPYzdoaRO
+ M91DY62CN2MqnNpIUDGMehx7TQuBC3xwGLUoHw+86+dOhP7dGw4HtiM5q
+ f1uqcEe4urTOxPCmpykZm7LqCzT6vsYJqJ8X0JOBCXYkwq3DdB45nxpwY
+ rUwjTeGyzy+k5O9oKskdSxVSqOmTJBEQKPtfry1nF+WuMwajDvEEJNLcQ
+ pFFhS1p7tzQ45UKDmu3Xoa9Zg9staH9zc6/m3ubw68U/tZmii//FyWnvJ
+ mv1hXrTNpqt+j+efzNcrR9coV58eo1QN9W/+bBBvhPDtz+8BhF1JNGElk Q==;
+X-CSE-ConnectionGUID: qOBZj/77RV2mZOcyZsE0qA==
+X-CSE-MsgGUID: UUTmpEyORgGuMMJagL/4Yg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097477"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097477"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:50 -0700
-X-CSE-ConnectionGUID: c7xaDRfQT8q0JWJxF111hA==
-X-CSE-MsgGUID: PXmamDbZSaWa4Wr40Sojtw==
+ 22 Oct 2024 23:50:54 -0700
+X-CSE-ConnectionGUID: Q6sw8USGTIqQ5GILWbuKlQ==
+X-CSE-MsgGUID: XrtN8PrOQxypNodfX50Teg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691508"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691557"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:48 -0700
+ 22 Oct 2024 23:50:53 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 05/16] drm/i915/vdsc: Add support for read/write PPS for 3rd
- DSC engine
-Date: Wed, 23 Oct 2024 12:22:46 +0530
-Message-ID: <20241023065257.190035-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 08/16] drm/i915/display: Add macro HAS_PIXEL_REPLICATION
+Date: Wed, 23 Oct 2024 12:22:49 +0530
+Message-ID: <20241023065257.190035-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
 References: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
@@ -68,78 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With BMG each pipe has 3 DSC engines, so add bits to read/write the PPS
-registers for the 3rd DSC engine
+Add macro for Pixel replication support with DSC.
 
+Bspec: 49259, 68912
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vdsc.c      | 8 +++++---
- drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 6 ++++++
- 2 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 29b1aa7f4f94..4143109aaab6 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -402,8 +402,10 @@ static void intel_dsc_get_pps_reg(const struct intel_crtc_state *crtc_state, int
- 
- 	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
- 
--	if (dsc_reg_num >= 3)
-+	if (dsc_reg_num >= 4)
- 		MISSING_CASE(dsc_reg_num);
-+	if (dsc_reg_num >= 3)
-+		dsc_reg[2] = BMG_DSC2_PPS(pipe, pps);
- 	if (dsc_reg_num >= 2)
- 		dsc_reg[1] = pipe_dsc ? ICL_DSC1_PPS(pipe, pps) : DSCC_PPS(pps);
- 	if (dsc_reg_num >= 1)
-@@ -415,7 +417,7 @@ static void intel_dsc_pps_write(const struct intel_crtc_state *crtc_state,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	i915_reg_t dsc_reg[2];
-+	i915_reg_t dsc_reg[3];
- 	int i, vdsc_per_pipe, dsc_reg_num;
- 
- 	vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-@@ -815,7 +817,7 @@ static u32 intel_dsc_pps_read(struct intel_crtc_state *crtc_state, int pps,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	i915_reg_t dsc_reg[2];
-+	i915_reg_t dsc_reg[3];
- 	int i, vdsc_per_pipe, dsc_reg_num;
- 	u32 val;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index 474a7f9f3881..2d478a84b07c 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -59,8 +59,10 @@
- #define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps) < 12 ? (pps) : (pps) + 12) * 4)
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
- #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
-+#define _BMG_DSC2_PICTURE_PARAMETER_SET_0_PB	0x78970
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
- #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC	0x78570
-+#define _BMG_DSC2_PICTURE_PARAMETER_SET_0_PC	0x78A70
- #define ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
- 							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
-@@ -73,8 +75,12 @@
- #define _ICL_DSC1_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-+#define _BMG_DSC2_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
-+							   _BMG_DSC2_PICTURE_PARAMETER_SET_0_PB, \
-+							   _BMG_DSC2_PICTURE_PARAMETER_SET_0_PC)
- #define  ICL_DSC0_PPS(pipe, pps)		_MMIO(_ICL_DSC0_PPS_0(pipe) + ((pps) * 4))
- #define  ICL_DSC1_PPS(pipe, pps)		_MMIO(_ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
-+#define  BMG_DSC2_PPS(pipe, pps)		_MMIO(_BMG_DSC2_PPS_0(pipe) + ((pps) * 4))
- 
- /* PPS 0 */
- #define   DSC_PPS0_NATIVE_422_ENABLE		REG_BIT(23)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 071a36b51f79..a21b910879df 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -149,6 +149,9 @@ enum intel_display_subplatform {
+ #define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+ #define HAS_MSO(i915)			(DISPLAY_VER(i915) >= 12)
+ #define HAS_OVERLAY(i915)		(DISPLAY_INFO(i915)->has_overlay)
++#define HAS_PIXEL_REPLICATION(i915)	(HAS_DSC(i915) && \
++					 (DISPLAY_VER(i915) >= 20 || \
++					  DISPLAY_VER_FULL(i915) == IP_VER(14, 1)))
+ #define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
+ #define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+ #define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
 -- 
 2.45.2
 
