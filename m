@@ -4,57 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA508D2E02E
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 09:27:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3848DD2E035
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 09:39:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61E8F10E7A0;
-	Wed, 23 Oct 2024 09:27:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0640910E79F;
+	Wed, 23 Oct 2024 09:39:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="huEZbA2u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cChOjn13";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB55410E7A0;
- Wed, 23 Oct 2024 09:27:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D12710E79F;
+ Wed, 23 Oct 2024 09:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729675621; x=1761211621;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KLrWiASbPkSuHp1yRJIcNj4DD8FLFm1LoJ92Apy4HHY=;
- b=huEZbA2u2qKjhApJoGd5b+4D9DE85wyDWqzo4sYHwAMkBthnRgvy99H8
- lJVWjIFzJp/tQLsbfuy0cgf6WSXeVNeS+ZC4+pXoVWVaXFy5KWH5OD0ZD
- YCCgtalf74YDo3jntclTWd4IDxjE85x1HNVF6QFUb5aSYimlpHdI84gwT
- A1RoI701aAoIiFSfULXQogVu1fdqeZHR1mLx28l5iN6JdfQccpLHl9ztM
- TbLJEgYPXOc57duOpX5WGW9gsZguD8yILpmaOWHCsOF2fRYJILmeyNT4/
- JcnwRhZSC3UU84SEWoVS1/yZaAILJ9xgqwLRZ6+ntcGL+sMvMXr0s37uJ A==;
-X-CSE-ConnectionGUID: Yu4eiBS9SGC7WaM0h2kQ1A==
-X-CSE-MsgGUID: XCkQBMdhSfGWFievOqpEwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="28695663"
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="28695663"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 02:27:01 -0700
-X-CSE-ConnectionGUID: fKU4o+z5RE+QFOJ4kgqeVg==
-X-CSE-MsgGUID: WyWG/+ncQBSYJqNLg1eg4w==
+ t=1729676388; x=1761212388;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FRz9x+iCEH3TVu9czCsm174yjECGHsU4G3kXhatMWCA=;
+ b=cChOjn13Ya71/dHxCJjDrPKl/oyWDW/NlXf53RiUc/efUXMO4USc7fbV
+ 5N/dxQ8vmxHmVLI6XCaJrfKRlPY2xAJnityRYP4bJGpUYmQP5iVwiEwYZ
+ 9PuQvNvrxmGd7oK0D9E4c6w12JsXQ7H24sWo5rMlp3TeKFPjg4inlADu5
+ YAGV12qCFxQ1rsXbv5gHspi7osu1ubLmJWniDFZIUn3Bbh4i/s0fQm/z3
+ 5P55tlyCan+7ty2QwfBgEo9JYAopkp8CxgRKL9wX0zBiAZ+JErl/vKlLx
+ iNwjYlhN+tERf7OwAsrqJsgufg/PWc6bVcF5vXFD8SOZD3J7ItC82roab Q==;
+X-CSE-ConnectionGUID: OqRCrLTjT1eCmSU75b2tMQ==
+X-CSE-MsgGUID: Do6TbIJYQ1SBV/S//kHKXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29414203"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29414203"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 02:39:48 -0700
+X-CSE-ConnectionGUID: jlz7qDJhSguTgqss+Cm8Kw==
+X-CSE-MsgGUID: 6dy4ElwgTIOACBPFa8D7NA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="80329051"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.69])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 02:26:58 -0700
-Date: Wed, 23 Oct 2024 11:26:54 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- uma.shankar@intel.com, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com
-Subject: Re: [PATCH] drm/i915: Allow fastset for change in HDR infoframe
-Message-ID: <ZxjBXh1AQzz4XAtq@ashyti-mobl2.lan>
-References: <20241023044122.3889137-1-chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="110979537"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 02:39:46 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: igt-dev@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH i-g-t V2 0/2] Add xe_pci_membarrier test
+Date: Wed, 23 Oct 2024 15:13:25 +0530
+Message-Id: <20241023094327.965050-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241023044122.3889137-1-chaitanya.kumar.borah@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,128 +65,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Caitanya,
+Series adds,
+1. New flag in mmap_offset ioctl to provide query 
+support for special offset.
+2. Adds xe_pci_membarrier test
 
-Can you please use "drm/i915/display: ..." next time?
+Note: Similar drm-uapi change made here is under review 
+in KMD as well
 
-Thanks,
-Andi
+Tejas Upadhyay (2):
+  drm-uapi/xe: Add new flag in mmap offset ioctl
+  tests/intel: Add xe_pci_membarrier test
 
-On Wed, Oct 23, 2024 at 10:11:22AM +0530, Chaitanya Kumar Borah wrote:
-> Changes in Dynamic Range and Mastering infoframe
-> should not trigger a full modeset. Therefore, allow
-> fastset. DP SDP programming is already hooked up in the
-> fastset flow but HDMI AVI infoframe update is not, add it.
-> Any other infoframe that can be fastset should be added to
-> the helper intel_hdmi_fastset_infoframes().
-> 
-> v3:
->  - Create a wrapper intel_ddi_update_pipe_hdmi to stick to
->    uniform naming (Jani)
->  - Do not disable HDMI AVI infoframe if already disabled (Uma)
-> 
-> v2:
->  - Update HDMI AVI infoframe during fastset.
-> 
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c     | 11 +++++++++
->  drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
->  drivers/gpu/drm/i915/display/intel_hdmi.c    | 24 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_hdmi.h    |  3 +++
->  4 files changed, 40 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index ff4c633c8546..0935f06a6a33 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3478,6 +3478,13 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
->  	drm_connector_update_privacy_screen(conn_state);
->  }
->  
-> +static void intel_ddi_update_pipe_hdmi(struct intel_encoder *encoder,
-> +				       const struct intel_crtc_state *crtc_state,
-> +				       const struct drm_connector_state *conn_state)
-> +{
-> +	intel_hdmi_fastset_infoframes(encoder, crtc_state, conn_state);
-> +}
-> +
->  void intel_ddi_update_pipe(struct intel_atomic_state *state,
->  			   struct intel_encoder *encoder,
->  			   const struct intel_crtc_state *crtc_state,
-> @@ -3489,6 +3496,10 @@ void intel_ddi_update_pipe(struct intel_atomic_state *state,
->  		intel_ddi_update_pipe_dp(state, encoder, crtc_state,
->  					 conn_state);
->  
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> +		intel_ddi_update_pipe_hdmi(encoder, crtc_state,
-> +					   conn_state);
-> +
->  	intel_hdcp_update_pipe(state, encoder, crtc_state, conn_state);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ef1436146325..af5062456750 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5701,7 +5701,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->  	PIPE_CONF_CHECK_INFOFRAME(avi);
->  	PIPE_CONF_CHECK_INFOFRAME(spd);
->  	PIPE_CONF_CHECK_INFOFRAME(hdmi);
-> -	PIPE_CONF_CHECK_INFOFRAME(drm);
-> +	if (!fastset)
-> +		PIPE_CONF_CHECK_INFOFRAME(drm);
->  	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
->  	PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 72ac910bf6ec..9487210dae7e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1211,6 +1211,30 @@ static void vlv_set_infoframes(struct intel_encoder *encoder,
->  			      &crtc_state->infoframes.hdmi);
->  }
->  
-> +void intel_hdmi_fastset_infoframes(struct intel_encoder *encoder,
-> +				   const struct intel_crtc_state *crtc_state,
-> +				   const struct drm_connector_state *conn_state)
-> +{
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	i915_reg_t reg = HSW_TVIDEO_DIP_CTL(display,
-> +					    crtc_state->cpu_transcoder);
-> +	u32 val = intel_de_read(display, reg);
-> +
-> +	if ((crtc_state->infoframes.enable &
-> +		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_DRM)) == 0 &&
-> +			(val & VIDEO_DIP_ENABLE_DRM_GLK) == 0)
-> +		return;
-> +
-> +	val &= ~(VIDEO_DIP_ENABLE_DRM_GLK);
-> +
-> +	intel_de_write(display, reg, val);
-> +	intel_de_posting_read(display, reg);
-> +
-> +	intel_write_infoframe(encoder, crtc_state,
-> +			      HDMI_INFOFRAME_TYPE_DRM,
-> +			      &crtc_state->infoframes.drm);
-> +}
-> +
->  static void hsw_set_infoframes(struct intel_encoder *encoder,
->  			       bool enable,
->  			       const struct intel_crtc_state *crtc_state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-> index 9b97623665c5..466f48df8a74 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-> @@ -42,6 +42,9 @@ u32 intel_hdmi_infoframes_enabled(struct intel_encoder *encoder,
->  u32 intel_hdmi_infoframe_enable(unsigned int type);
->  void intel_hdmi_read_gcp_infoframe(struct intel_encoder *encoder,
->  				   struct intel_crtc_state *crtc_state);
-> +void intel_hdmi_fastset_infoframes(struct intel_encoder *encoder,
-> +				   const struct intel_crtc_state *crtc_state,
-> +				   const struct drm_connector_state *conn_state);
->  void intel_read_infoframe(struct intel_encoder *encoder,
->  			  const struct intel_crtc_state *crtc_state,
->  			  enum hdmi_infoframe_type type,
-> -- 
-> 2.25.1
+ include/drm-uapi/xe_drm.h       | 13 +++++-
+ tests/intel/xe_pci_membarrier.c | 80 +++++++++++++++++++++++++++++++++
+ tests/meson.build               |  1 +
+ 3 files changed, 93 insertions(+), 1 deletion(-)
+ create mode 100644 tests/intel/xe_pci_membarrier.c
+
+-- 
+2.34.1
+
