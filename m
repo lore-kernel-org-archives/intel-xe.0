@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F2DFD0BB47
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 23:12:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8266ED0BB47
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 23:12:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4527A10E874;
-	Wed, 23 Oct 2024 23:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC8610E876;
+	Wed, 23 Oct 2024 23:12:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DErMAgEB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qe95km4z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4823F10E872
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 23:12:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9071D10E877
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 23:12:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729725128; x=1761261128;
+ t=1729725133; x=1761261133;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IZ/tkaD+JR8sOcEOwk4Qf2NxnICqI/ZE0kDgXu/kJ6c=;
- b=DErMAgEBF9eDjN6LXRM+EWu24IJmU4H4Ud2lQIBuKWoOYD94DasWI0dc
- nmOVgn5CHj35TMiJZ+CjQWqowwhYqOEcA12M3PPuNP99HD1oCe85xubMn
- 4Oz6j8lnEA/B5hKKkpe3MmH9Gn4mm9/EB9n7O2e/DOcZu6wYp/LVQuVdp
- fFrlDNWs3OwxC/rner0nHel0/rcJR3M8GhfmuOqY/rmZ2FtILXTn3joHH
- n2JhzP57ie6izAib+G9nWLHjNFgVs23bFgRhjU0xsGtgXuGLYxI87jVXJ
- 0qLgflie4EaolHwkXmzcRvydTC28EGZlMSjDVLm9QFI7mssKIuASlchJn w==;
-X-CSE-ConnectionGUID: idTu57WpQmyL4MV+FtW0NQ==
-X-CSE-MsgGUID: I2H4ubL9T+uOHfwMVxquog==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28775151"
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="28775151"
+ bh=uLpQYS6M09p8BGlgKfXnfadJdprUNZ39QXCYvWxKRMI=;
+ b=Qe95km4z5Q0uPIkMJKBcGdzbHNgbpn7sbBiwUNVZ1/EZ2NFOcnc47u/j
+ qfI3j02Iwv5oOw/wks2sS+3GT0cGrBqSfdpg5czjqkK2MQTlFwCF1C5dc
+ BvyTqyLM+mJQy8W4zE8gNZEo2/WPhznlsMZ9FZx/4/sR3ndOGZJvd9gc9
+ fOxCFmfBaFtgppmAAr9iPamDrWajy/rYMRhL4gil390i/vUZqFLpvFVPc
+ ax9gAs/RrAJvr8MD4nMHcin8sB436l+Y9Bg2Vw00SU05zcbGQiRaxFtz3
+ IIEVIZWCQORZQ/I8YZA0q0ufvwXUt9FK2xDsI1U3cffQmp3z0Wp/+7UFz Q==;
+X-CSE-ConnectionGUID: HDW+FazsS/K2U1MX7UYx/Q==
+X-CSE-MsgGUID: q/H7nafFQiqAt9rX5TiKdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28775161"
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="28775161"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 16:12:08 -0700
-X-CSE-ConnectionGUID: XF8B4iCXQmeD6NFCAOJxqg==
-X-CSE-MsgGUID: Y7vwarMQRbmuFxJg2M+C1Q==
+ 23 Oct 2024 16:12:12 -0700
+X-CSE-ConnectionGUID: wPhQKrwhQpSN3vOmadYFGA==
+X-CSE-MsgGUID: pngKqvKuQBqVvz9e5lVOqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="111217969"
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="111217996"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.97.255])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 16:12:06 -0700
+ 23 Oct 2024 16:12:11 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/5] drm/xe/guc: Add VF_CFG_SCHED_PRIORITY_KEY KLV definition
-Date: Thu, 24 Oct 2024 01:11:48 +0200
-Message-Id: <20241023231152.1815-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 5/5] drm/xe/pf: Adjust scheduling priority based on policy
+ change
+Date: Thu, 24 Oct 2024 01:11:52 +0200
+Message-Id: <20241023231152.1815-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20241023231152.1815-1-michal.wajdeczko@intel.com>
 References: <20241023231152.1815-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,45 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This KLV allows to set the scheduling priority for each VF, also
-for the PF.
+Local values of scheduling priorities need to be adjusted when
+changing the schedule_if_idle policy as those are related.
+
+Disabling schedule_if_idle policy forces the low priority, and
+enabling schedule_if_idle policy forces the normal priority.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 25 +++++++++++++++++++---
+ 1 file changed, 22 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 37606cf8cc5e..674f1afe38c8 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -291,6 +291,13 @@ enum  {
-  *
-  *      :0: (default)
-  *      :1-65535: number of contexts (Gen12)
-+ *
-+ * _`GUC_KLV_VF_CFG_SCHED_PRIORITY` : 0x8A0C
-+ *      This config controls VF’s scheduling priority.
-+ *
-+ *      :0: LOW = schedule VF only if it has active work (default)
-+ *      :1: NORMAL = schedule VF always, irrespective of whether it has work or not
-+ *      :2: HIGH = schedule VF in the next time-slice after current active time-slice completes
-  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+index fae5be5a2a11..c49983ceac39 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+@@ -135,14 +135,33 @@ static int pf_update_policy_u32(struct xe_gt *gt, u16 key, u32 *policy, u32 valu
+ 	return 0;
+ }
  
- #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
-@@ -343,6 +350,12 @@ enum  {
- #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY	0x8a0b
- #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_LEN	1u
- 
-+#define GUC_KLV_VF_CFG_SCHED_PRIORITY_KEY	0x8a0c
-+#define GUC_KLV_VF_CFG_SCHED_PRIORITY_LEN	1u
-+#define   GUC_SCHED_PRIORITY_LOW		0u
-+#define   GUC_SCHED_PRIORITY_NORMAL		1u
-+#define   GUC_SCHED_PRIORITY_HIGH		2u
++static void pf_bulk_reset_priority(struct xe_gt *gt, u32 priority)
++{
++	unsigned int total_vfs = 1 + xe_gt_sriov_pf_get_totalvfs(gt);
++	unsigned int n;
 +
- /*
-  * Workaround keys:
-  */
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++
++	for (n = 0; n < total_vfs; n++)
++		gt->sriov.pf.vfs[n].config.priority = priority;
++}
++
+ static int pf_provision_sched_if_idle(struct xe_gt *gt, bool enable)
+ {
++	int err;
++
+ 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
+ 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+ 
+-	return pf_update_policy_bool(gt, GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY,
+-				     &gt->sriov.pf.policy.guc.sched_if_idle,
+-				     enable);
++	err = pf_update_policy_bool(gt, GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY,
++				    &gt->sriov.pf.policy.guc.sched_if_idle,
++				    enable);
++
++	if (!err)
++		pf_bulk_reset_priority(gt, enable ? GUC_SCHED_PRIORITY_NORMAL :
++				       GUC_SCHED_PRIORITY_LOW);
++	return err;
+ }
+ 
+ static int pf_reprovision_sched_if_idle(struct xe_gt *gt)
 -- 
 2.43.0
 
