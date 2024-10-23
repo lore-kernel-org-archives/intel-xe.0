@@ -4,30 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08434D2E021
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 07:53:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC495D2E021
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Oct 2024 07:56:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C988610E778;
-	Wed, 23 Oct 2024 07:53:21 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB9FC10E77D
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 07:53:06 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Andrew Morton <akpm@linux-foundation.org>
-Cc: Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 3/7] drm/ttm: Handle cgroup based eviction in TTM
-Date: Wed, 23 Oct 2024 09:52:56 +0200
-Message-ID: <20241023075302.27194-4-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
-References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8867D10E779;
+	Wed, 23 Oct 2024 07:56:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="PbRKtm5t";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B94110E779
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 07:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1729670206;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=aCSjV0XfdWuGS9szbWzKj3cnJxaULNJJR2xbQsn+fsM=;
+ b=PbRKtm5twUGsBwbYYriu7REhqCiMYT9oQtt7E2Jh3Ude6FPZ8YhGh3Fif5eHq1gSJ/FODq
+ PUoJowUcXxbfnBwWg16uFrIRpJL/xbiurcIqO8kizCv0MnYFkUgsCbhmKn3oti5qjd7XcP
+ HH358y0Q3EBbWCb4v9/PAaGOakMeEAQ=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-126--KQRKaAhNAafNGnX0YbcpA-1; Wed, 23 Oct 2024 03:56:45 -0400
+X-MC-Unique: -KQRKaAhNAafNGnX0YbcpA-1
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-37d432f9f5eso3250653f8f.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Oct 2024 00:56:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1729670204; x=1730275004;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=aCSjV0XfdWuGS9szbWzKj3cnJxaULNJJR2xbQsn+fsM=;
+ b=aknZlOTb49XM8BDlLOE5EvxtFUPI7b0veGMVqF2gzjxuHjktGr45UbCnn+42yGprji
+ 1RS33WSDmKmxnG77A47qcaM49mJPTFstjmvkPZ6N1Xw4nc6LuIir3zQjyA/UIb+mh3ZC
+ xVtxqQRApdWNcuvlkIjY1kxpICeRr95bRZpA4kTUylxCC48oMT9SZkEq+o63rn2osOmq
+ bnWrYg4eE19Hv1zha9ZxtwQXVxGz1kd1r6AsBWRp62kBBC3F5g4edV4G85A4OGhycwHw
+ ASszZhoXR2WprtEfuR7sRT3d1Se+ZeL4rSdtqXheTrSsJ/OibQWMMSkxERfZyuWlFRj+
+ kWdw==
+X-Gm-Message-State: AOJu0YxYyrWoB06q5f+8BnFXQS4fszXBpzz45UMkeB98UnSa03Z97maS
+ Gqynu2oCxVohmUI1LhSJcHBNFQxsEgteM+tT190HrQVWQJl0MNhbydRhiQC7tddLxAeNILz+hEB
+ 3UJEMgeLI9AkRG6qM9x50GlYLiZCKvsfynciwjK1uvNftyLyC2KLZ0Xk8Smlvu1mpdIOf8u8XsZ
+ Y=
+X-Received: by 2002:a5d:6aca:0:b0:374:b35e:ea6c with SMTP id
+ ffacd0b85a97d-37efcf84aadmr1134146f8f.40.1729670203655; 
+ Wed, 23 Oct 2024 00:56:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHe4BciJC2od5KEqt5ERetsnAnNJJ1mM3rfmuv1fEcH3TIm59e6Loxri52pVa4NKLMR20Y6dQ==
+X-Received: by 2002:a5d:6aca:0:b0:374:b35e:ea6c with SMTP id
+ ffacd0b85a97d-37efcf84aadmr1134128f8f.40.1729670203142; 
+ Wed, 23 Oct 2024 00:56:43 -0700 (PDT)
+Received: from eisenberg.fritz.box ([2001:16b8:3dac:2f00:8834:dd3a:39b8:e43b])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-37ee0b943e4sm8329878f8f.75.2024.10.23.00.56.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 23 Oct 2024 00:56:42 -0700 (PDT)
+Message-ID: <07fd3c93da2bbb3c67a78e93ccd1c73705953b22.camel@redhat.com>
+Subject: Re: [PATCH 1/4] drm/sched: Mark scheduler work queues with
+ WQ_MEM_RECLAIM
+From: Philipp Stanner <pstanner@redhat.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ dakr@kernel.org, Luben Tuikov <ltuikov89@gmail.com>
+Date: Wed, 23 Oct 2024 09:56:42 +0200
+In-Reply-To: <Zxfq50e+uXfcsark@DUT025-TGLU.fm.intel.com>
+References: <20241021175705.1584521-1-matthew.brost@intel.com>
+ <20241021175705.1584521-2-matthew.brost@intel.com>
+ <a5dd3b1d6b8da184ed16f5653faca95163b79340.camel@redhat.com>
+ <Zxfq50e+uXfcsark@DUT025-TGLU.fm.intel.com>
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,428 +95,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-cgroup resource allocation has to be handled in TTM, so -EAGAIN from
-cgroups can be converted into -ENOSPC, and the limitcg can be properly
-evicted in ttm code.
+On Tue, 2024-10-22 at 18:11 +0000, Matthew Brost wrote:
+> On Tue, Oct 22, 2024 at 04:19:18PM +0200, Philipp Stanner wrote:
+> > On Mon, 2024-10-21 at 10:57 -0700, Matthew Brost wrote:
+> > > DRM scheduler work queues are used to submit jobs, jobs are in
+> > > the
+> > > path
+> >=20
+> > "scheduler work queues" is very generic, how about
+> > "drm_gpu_scheduler.submit_wq is used to submit jobs, [...]"
+> >=20
+>=20
+> Sure.
+>=20
+> > > or dma-fences, and dma-fences are in the path of reclaim. Mark
+> >=20
+> > s/or/of
+> >=20
+>=20
+> Yep.
+>=20
+> > > scheduler
+> > > work queues with WQ_MEM_RECLAIM so these work queues can continue
+> > > to
+> > > make forward progress during reclaim.
+> >=20
+> > It is just *one* queue (per scheduler) really, isn't it?
+> >=20
+>=20
+> Yes.
+>=20
+> > If the change above is applied, could just say: "Create the work
+> > queue
+> > with WQ_MEM_RECLAIM so it can continue [...]"
+> >=20
+>=20
+> Now you are confusing me.
 
-When hitting a resource limit through -EAGAIN, the cgroup for which the
-limit is hit is also returned. This allows eviction to delete only from
-cgroups which are a subgroup of the current cgroup.
+I just was hinting at using singular instead of plural.
+So
+s/work queues/work queue
 
-The returned CSS is used to determine if eviction is valuable for a
-given resource, and allows TTM to only target specific resources to
-lower memory usage.
+But that's just a nit
 
-Co-developed-by: Friedrich Vock <friedrich.vock@gmx.de>
-Signed-off-by: Friedrich Vock <friedrich.vock@gmx.de>
-Co-developed-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/ttm/tests/ttm_bo_test.c       | 18 +++---
- .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  4 +-
- drivers/gpu/drm/ttm/tests/ttm_resource_test.c |  2 +-
- drivers/gpu/drm/ttm/ttm_bo.c                  | 57 ++++++++++++++++---
- drivers/gpu/drm/ttm/ttm_resource.c            | 24 +++++++-
- include/drm/ttm/ttm_resource.h                | 16 +++++-
- 6 files changed, 98 insertions(+), 23 deletions(-)
+>=20
+> > So for my understanding: is this a performance optimization or is
+> > it a
+> > bug? IOW, would forward progress just be delayed or entirely
+> > prevented?
+> > Would be cool to state that a bit more clearly in the commit
+> > message.
+> >=20
+>=20
+> I can make that a bit more clear.
+>=20
+> > Work-queue docu says "MUST":
+> >=20
+> > ``WQ_MEM_RECLAIM`` All wq which might be used in the memory reclaim
+> > paths **MUST** have this flag set. The wq is guaranteed to have at
+> > least one execution context regardless of memory pressure.
+> >=20
+> > So it seems to me that this fixes a bug? Should it be backported in
+> > your opinion?
+> >=20
+>=20
+> Bug - yea probably a fix tag then for backporting. Will add in next
+> rev.
 
-diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
-index 3139fd9128d84..f8f20d2f61740 100644
---- a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
-+++ b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
-@@ -258,13 +258,13 @@ static void ttm_bo_unreserve_basic(struct kunit *test)
- 	bo = ttm_bo_kunit_init(test, test->priv, BO_SIZE, NULL);
- 	bo->priority = bo_prio;
- 
--	err = ttm_resource_alloc(bo, place, &res1);
-+	err = ttm_resource_alloc(bo, place, &res1, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 
- 	bo->resource = res1;
- 
- 	/* Add a dummy resource to populate LRU */
--	ttm_resource_alloc(bo, place, &res2);
-+	ttm_resource_alloc(bo, place, &res2, NULL);
- 
- 	dma_resv_lock(bo->base.resv, NULL);
- 	ttm_bo_unreserve(bo);
-@@ -300,12 +300,12 @@ static void ttm_bo_unreserve_pinned(struct kunit *test)
- 	dma_resv_lock(bo->base.resv, NULL);
- 	ttm_bo_pin(bo);
- 
--	err = ttm_resource_alloc(bo, place, &res1);
-+	err = ttm_resource_alloc(bo, place, &res1, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 	bo->resource = res1;
- 
- 	/* Add a dummy resource to the pinned list */
--	err = ttm_resource_alloc(bo, place, &res2);
-+	err = ttm_resource_alloc(bo, place, &res2, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 	KUNIT_ASSERT_EQ(test,
- 			list_is_last(&res2->lru.link, &priv->ttm_dev->unevictable), 1);
-@@ -355,7 +355,7 @@ static void ttm_bo_unreserve_bulk(struct kunit *test)
- 	ttm_bo_set_bulk_move(bo1, &lru_bulk_move);
- 	dma_resv_unlock(bo1->base.resv);
- 
--	err = ttm_resource_alloc(bo1, place, &res1);
-+	err = ttm_resource_alloc(bo1, place, &res1, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 	bo1->resource = res1;
- 
-@@ -363,7 +363,7 @@ static void ttm_bo_unreserve_bulk(struct kunit *test)
- 	ttm_bo_set_bulk_move(bo2, &lru_bulk_move);
- 	dma_resv_unlock(bo2->base.resv);
- 
--	err = ttm_resource_alloc(bo2, place, &res2);
-+	err = ttm_resource_alloc(bo2, place, &res2, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 	bo2->resource = res2;
- 
-@@ -401,7 +401,7 @@ static void ttm_bo_put_basic(struct kunit *test)
- 	bo = ttm_bo_kunit_init(test, test->priv, BO_SIZE, NULL);
- 	bo->type = ttm_bo_type_device;
- 
--	err = ttm_resource_alloc(bo, place, &res);
-+	err = ttm_resource_alloc(bo, place, &res, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 	bo->resource = res;
- 
-@@ -518,7 +518,7 @@ static void ttm_bo_pin_unpin_resource(struct kunit *test)
- 
- 	bo = ttm_bo_kunit_init(test, test->priv, BO_SIZE, NULL);
- 
--	err = ttm_resource_alloc(bo, place, &res);
-+	err = ttm_resource_alloc(bo, place, &res, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 	bo->resource = res;
- 
-@@ -569,7 +569,7 @@ static void ttm_bo_multiple_pin_one_unpin(struct kunit *test)
- 
- 	bo = ttm_bo_kunit_init(test, test->priv, BO_SIZE, NULL);
- 
--	err = ttm_resource_alloc(bo, place, &res);
-+	err = ttm_resource_alloc(bo, place, &res, NULL);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 	bo->resource = res;
- 
-diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-index 1adf18481ea05..3148f5d3dbd66 100644
---- a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-+++ b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
-@@ -542,7 +542,7 @@ static void ttm_bo_validate_no_placement_signaled(struct kunit *test)
- 		bo->ttm = old_tt;
- 	}
- 
--	err = ttm_resource_alloc(bo, place, &bo->resource);
-+	err = ttm_resource_alloc(bo, place, &bo->resource, NULL);
- 	KUNIT_EXPECT_EQ(test, err, 0);
- 	KUNIT_ASSERT_EQ(test, man->usage, size);
- 
-@@ -603,7 +603,7 @@ static void ttm_bo_validate_no_placement_not_signaled(struct kunit *test)
- 	bo = ttm_bo_kunit_init(test, test->priv, size, NULL);
- 	bo->type = params->bo_type;
- 
--	err = ttm_resource_alloc(bo, place, &bo->resource);
-+	err = ttm_resource_alloc(bo, place, &bo->resource, NULL);
- 	KUNIT_EXPECT_EQ(test, err, 0);
- 
- 	placement = kunit_kzalloc(test, sizeof(*placement), GFP_KERNEL);
-diff --git a/drivers/gpu/drm/ttm/tests/ttm_resource_test.c b/drivers/gpu/drm/ttm/tests/ttm_resource_test.c
-index a9f4b81921c3c..e6ea2bd01f07a 100644
---- a/drivers/gpu/drm/ttm/tests/ttm_resource_test.c
-+++ b/drivers/gpu/drm/ttm/tests/ttm_resource_test.c
-@@ -302,7 +302,7 @@ static void ttm_sys_man_free_basic(struct kunit *test)
- 	res = kunit_kzalloc(test, sizeof(*res), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, res);
- 
--	ttm_resource_alloc(bo, place, &res);
-+	ttm_resource_alloc(bo, place, &res, NULL);
- 
- 	man = ttm_manager_type(priv->devs->ttm_dev, mem_type);
- 	man->func->free(man, res);
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 48c5365efca1c..5bdebfdc95e92 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -42,6 +42,7 @@
- #include <linux/file.h>
- #include <linux/module.h>
- #include <linux/atomic.h>
-+#include <linux/cgroup_dev.h>
- #include <linux/dma-resv.h>
- 
- #include "ttm_module.h"
-@@ -447,7 +448,7 @@ int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man
- 	struct ttm_buffer_object *bo;
- 	struct ttm_resource *res;
- 	unsigned int mem_type;
--	int ret = 0;
-+	int ret;
- 
- 	spin_lock(&bdev->lru_lock);
- 	res = ttm_resource_manager_first(man, &cursor);
-@@ -499,14 +500,28 @@ struct ttm_bo_evict_walk {
- 	struct ttm_resource **res;
- 	/** @evicted: Number of successful evictions. */
- 	unsigned long evicted;
-+
-+	/** @limit_pool: Which pool limit we should test against */
-+	struct dev_cgroup_pool_state *limit_pool;
-+	/** @try_low: Whether we should attempt to evict BO's with low watermark threshold */
-+	bool try_low;
-+	/** @hit_low: If we cannot evict a bo when @try_low is false (first pass) */
-+	bool hit_low;
- };
- 
- static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- {
- 	struct ttm_bo_evict_walk *evict_walk =
- 		container_of(walk, typeof(*evict_walk), walk);
-+	struct ttm_resource_manager *man =
-+			ttm_manager_type(bo->bdev, bo->resource->mem_type);
- 	s64 lret;
- 
-+	if (!dev_cgroup_state_evict_valuable(man->cgdev, man->cgidx,
-+					     evict_walk->limit_pool, bo->resource->css,
-+					     evict_walk->try_low, &evict_walk->hit_low))
-+		return 0;
-+
- 	if (bo->pin_count || !bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
- 		return 0;
- 
-@@ -524,7 +539,7 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
- 	evict_walk->evicted++;
- 	if (evict_walk->res)
- 		lret = ttm_resource_alloc(evict_walk->evictor, evict_walk->place,
--					  evict_walk->res);
-+					  evict_walk->res, NULL);
- 	if (lret == 0)
- 		return 1;
- out:
-@@ -545,7 +560,8 @@ static int ttm_bo_evict_alloc(struct ttm_device *bdev,
- 			      struct ttm_buffer_object *evictor,
- 			      struct ttm_operation_ctx *ctx,
- 			      struct ww_acquire_ctx *ticket,
--			      struct ttm_resource **res)
-+			      struct ttm_resource **res,
-+			      struct dev_cgroup_pool_state *limit_pool)
- {
- 	struct ttm_bo_evict_walk evict_walk = {
- 		.walk = {
-@@ -556,22 +572,39 @@ static int ttm_bo_evict_alloc(struct ttm_device *bdev,
- 		.place = place,
- 		.evictor = evictor,
- 		.res = res,
-+		.limit_pool = limit_pool,
- 	};
- 	s64 lret;
- 
- 	evict_walk.walk.trylock_only = true;
- 	lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
-+
-+	/* One more attempt if we hit low limit? */
-+	if (!lret && evict_walk.hit_low) {
-+		evict_walk.try_low = true;
-+		lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
-+	}
- 	if (lret || !ticket)
- 		goto out;
- 
-+	/* Reset low limit */
-+	evict_walk.try_low = evict_walk.hit_low = false;
- 	/* If ticket-locking, repeat while making progress. */
- 	evict_walk.walk.trylock_only = false;
-+
-+retry:
- 	do {
- 		/* The walk may clear the evict_walk.walk.ticket field */
- 		evict_walk.walk.ticket = ticket;
- 		evict_walk.evicted = 0;
- 		lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
- 	} while (!lret && evict_walk.evicted);
-+
-+	/* We hit the low limit? Try once more */
-+	if (!lret && evict_walk.hit_low && !evict_walk.try_low) {
-+		evict_walk.try_low = true;
-+		goto retry;
-+	}
- out:
- 	if (lret < 0)
- 		return lret;
-@@ -689,6 +722,7 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
- 
- 	for (i = 0; i < placement->num_placement; ++i) {
- 		const struct ttm_place *place = &placement->placement[i];
-+		struct dev_cgroup_pool_state *limit_pool = NULL;
- 		struct ttm_resource_manager *man;
- 		bool may_evict;
- 
-@@ -701,15 +735,20 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
- 			continue;
- 
- 		may_evict = (force_space && place->mem_type != TTM_PL_SYSTEM);
--		ret = ttm_resource_alloc(bo, place, res);
-+		ret = ttm_resource_alloc(bo, place, res, force_space ? &limit_pool : NULL);
- 		if (ret) {
--			if (ret != -ENOSPC)
-+			if (ret != -ENOSPC && ret != -EAGAIN) {
-+				dev_cgroup_pool_state_put(limit_pool);
- 				return ret;
--			if (!may_evict)
-+			}
-+			if (!may_evict) {
-+				dev_cgroup_pool_state_put(limit_pool);
- 				continue;
-+			}
- 
- 			ret = ttm_bo_evict_alloc(bdev, man, place, bo, ctx,
--						 ticket, res);
-+						 ticket, res, limit_pool);
-+			dev_cgroup_pool_state_put(limit_pool);
- 			if (ret == -EBUSY)
- 				continue;
- 			if (ret)
-@@ -1056,6 +1095,8 @@ struct ttm_bo_swapout_walk {
- 	struct ttm_lru_walk walk;
- 	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
- 	gfp_t gfp_flags;
-+
-+	bool hit_low, evict_low;
- };
- 
- static s64
-@@ -1106,7 +1147,7 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- 
- 		memset(&hop, 0, sizeof(hop));
- 		place.mem_type = TTM_PL_SYSTEM;
--		ret = ttm_resource_alloc(bo, &place, &evict_mem);
-+		ret = ttm_resource_alloc(bo, &place, &evict_mem, NULL);
- 		if (ret)
- 			goto out;
- 
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index a87665eb28a62..93190f7330b5c 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -26,6 +26,7 @@
- #include <linux/io-mapping.h>
- #include <linux/iosys-map.h>
- #include <linux/scatterlist.h>
-+#include <linux/cgroup_dev.h>
- 
- #include <drm/ttm/ttm_bo.h>
- #include <drm/ttm/ttm_placement.h>
-@@ -350,15 +351,29 @@ EXPORT_SYMBOL(ttm_resource_fini);
- 
- int ttm_resource_alloc(struct ttm_buffer_object *bo,
- 		       const struct ttm_place *place,
--		       struct ttm_resource **res_ptr)
-+		       struct ttm_resource **res_ptr,
-+		       struct dev_cgroup_pool_state **ret_limit_pool)
- {
- 	struct ttm_resource_manager *man =
- 		ttm_manager_type(bo->bdev, place->mem_type);
-+	struct dev_cgroup_pool_state *pool = NULL;
- 	int ret;
- 
-+	if (man->cgdev) {
-+		ret = dev_cgroup_try_charge(man->cgdev, man->cgidx,
-+					    bo->base.size, &pool, ret_limit_pool);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	ret = man->func->alloc(man, bo, place, res_ptr);
--	if (ret)
-+	if (ret) {
-+		if (pool)
-+			dev_cgroup_uncharge(pool, man->cgidx, bo->base.size);
- 		return ret;
-+	}
-+
-+	(*res_ptr)->css = pool;
- 
- 	spin_lock(&bo->bdev->lru_lock);
- 	ttm_resource_add_bulk_move(*res_ptr, bo);
-@@ -370,6 +385,7 @@ EXPORT_SYMBOL_FOR_TESTS_ONLY(ttm_resource_alloc);
- void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
- {
- 	struct ttm_resource_manager *man;
-+	struct dev_cgroup_pool_state *pool;
- 
- 	if (!*res)
- 		return;
-@@ -377,9 +393,13 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
- 	spin_lock(&bo->bdev->lru_lock);
- 	ttm_resource_del_bulk_move(*res, bo);
- 	spin_unlock(&bo->bdev->lru_lock);
-+
-+	pool = (*res)->css;
- 	man = ttm_manager_type(bo->bdev, (*res)->mem_type);
- 	man->func->free(man, *res);
- 	*res = NULL;
-+	if (man->cgdev)
-+		dev_cgroup_uncharge(pool, man->cgidx, bo->base.size);
- }
- EXPORT_SYMBOL(ttm_resource_free);
- 
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index be034be56ba1b..12ff4b66c6f7d 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -38,6 +38,7 @@
- #define TTM_MAX_BO_PRIORITY	4U
- #define TTM_NUM_MEM_TYPES 8
- 
-+struct dev_cgroup_device;
- struct ttm_device;
- struct ttm_resource_manager;
- struct ttm_resource;
-@@ -211,6 +212,15 @@ struct ttm_resource_manager {
- 	 * bdev->lru_lock.
- 	 */
- 	uint64_t usage;
-+
-+	/**
-+	 * @cgdev: dev_cgroup_device used for memory accounting, if not NULL.
-+	 */
-+	struct dev_cgroup_device *cgdev;
-+	/**
-+	 * @cgidx: Resource index used by this resource manager for cgroup accounting
-+	 */
-+	u32 cgidx;
- };
- 
- /**
-@@ -239,6 +249,7 @@ struct ttm_bus_placement {
-  * @placement: Placement flags.
-  * @bus: Placement on io bus accessible to the CPU
-  * @bo: weak reference to the BO, protected by ttm_device::lru_lock
-+ * @css: cgroup state this resource is charged to
-  *
-  * Structure indicating the placement and space resources used by a
-  * buffer object.
-@@ -251,6 +262,8 @@ struct ttm_resource {
- 	struct ttm_bus_placement bus;
- 	struct ttm_buffer_object *bo;
- 
-+	struct dev_cgroup_pool_state *css;
-+
- 	/**
- 	 * @lru: Least recently used list, see &ttm_resource_manager.lru
- 	 */
-@@ -432,7 +445,8 @@ void ttm_resource_fini(struct ttm_resource_manager *man,
- 
- int ttm_resource_alloc(struct ttm_buffer_object *bo,
- 		       const struct ttm_place *place,
--		       struct ttm_resource **res);
-+		       struct ttm_resource **res,
-+		       struct dev_cgroup_pool_state **ret_limit_pool);
- void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
- bool ttm_resource_intersects(struct ttm_device *bdev,
- 			     struct ttm_resource *res,
--- 
-2.45.2
+Cool, thx for clarifying!
+
+P.
+
+>=20
+> >=20
+> > >=20
+> > > Cc: Luben Tuikov <ltuikov89@gmail.com>
+> >=20
+> > btw., how did you send this email? I couldn't find Luben on CC.
+> > Added
+> > him.
+>=20
+> git send-email...
+>=20
+> I may have forgot to include him on the Cc list.
+>=20
+> Matt
+>=20
+> >=20
+> > Thx,
+> > P.
+> >=20
+> > > Cc: Danilo Krummrich <dakr@kernel.org>
+> > > Cc: Philipp Stanner <pstanner@redhat.com>
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 4 ++--
+> > > =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > > b/drivers/gpu/drm/scheduler/sched_main.c
+> > > index 6e4d004d09ce..567811957c0f 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > @@ -1275,10 +1275,10 @@ int drm_sched_init(struct
+> > > drm_gpu_scheduler
+> > > *sched,
+> > > =C2=A0 sched->own_submit_wq =3D false;
+> > > =C2=A0 } else {
+> > > =C2=A0#ifdef CONFIG_LOCKDEP
+> > > - sched->submit_wq =3D alloc_ordered_workqueue_lockdep_map(name, 0,
+> > > + sched->submit_wq =3D alloc_ordered_workqueue_lockdep_map(name,
+> > > WQ_MEM_RECLAIM,
+> > > =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &drm_sched_lockdep_map);
+> > > =C2=A0#else
+> > > - sched->submit_wq =3D alloc_ordered_workqueue(name, 0);
+> > > + sched->submit_wq =3D alloc_ordered_workqueue(name,
+> > > WQ_MEM_RECLAIM);
+> > > =C2=A0#endif
+> > > =C2=A0 if (!sched->submit_wq)
+> > > =C2=A0 return -ENOMEM;
+> >=20
+>=20
 
