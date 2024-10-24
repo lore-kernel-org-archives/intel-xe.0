@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25956D0BB7C
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 09:20:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24863D0BB7A
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 09:22:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C837B10E0FA;
-	Thu, 24 Oct 2024 09:20:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dXpCRqNa";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4682810E8DF;
- Thu, 24 Oct 2024 09:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729761656; x=1761297656;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=6u8EqDaa/h1BEwUBfc6pFPW7cVjO/WBYLu/4jWtdvEA=;
- b=dXpCRqNaMdTFfobEzt5Cp/FbQLeq47wd/Qtim3XQSD4SV3cWyIkpfx2/
- ShgUB31V8pKYgVBD6VAFnuJONEspFQ2dztz6L5xphS1pCUKrhj2fWPymA
- vYLD4zyzoeXLHOxQjqJAnXMbg2lwWW0F34sV31bevpuynUYOJ0VUX4iH7
- +/ZdXEv3f89/kk7IfYTmY/gWcWVPED3MC4gL26tLZ9xma+1kyP7qStBs1
- LBlZ9cCKEbY9W5a95JofxcqIV4vmRTVxYrs/mDGmNpRu+k7aSYEvRAgF+
- 19Y4CRfLMTNtMuxik8hM5qkSfEDZRpvHUERnnCr3LZ7LAv4XhbUQujdGV A==;
-X-CSE-ConnectionGUID: jg7Mlc1qRv+M2GJhEj7Nww==
-X-CSE-MsgGUID: PlswNjAzRaKiHvsB9Jc5Fg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="29277968"
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="29277968"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 02:20:55 -0700
-X-CSE-ConnectionGUID: IitwrG5tSZWPb+3/xheZiw==
-X-CSE-MsgGUID: ABDtK7+UQZiZwiDqHSfxNg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="84509577"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.216])
- ([10.245.245.216])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 02:20:54 -0700
-Message-ID: <b48336fe-05e2-446d-9d55-f806f188cb23@intel.com>
-Date: Thu, 24 Oct 2024 10:20:51 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF9EC10E0FA;
+	Thu, 24 Oct 2024 09:21:59 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD46A10E8D8;
+ Thu, 24 Oct 2024 09:21:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/9] drm/ttm: Add ttm_bo_access
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: mika.kuoppala@intel.com, thomas.hellstrom@linux.intel.com
-References: <20241021211835.1675640-1-matthew.brost@intel.com>
- <20241021211835.1675640-3-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20241021211835.1675640-3-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/ufence=3A_Flush_xe_orde?=
+ =?utf-8?q?red=5Fwq_in_case_of_ufence_timeout?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Oct 2024 09:21:58 -0000
+Message-ID: <172976171877.1325996.8265599440811431374@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241023155817.3618388-1-nirmoy.das@intel.com>
+In-Reply-To: <20241023155817.3618388-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,221 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21/10/2024 22:18, Matthew Brost wrote:
-> Non-contiguous VRAM cannot easily be mapped in TTM nor can non-visible
-> VRAM easily be accessed. Add ttm_bo_access, which is similar to
-> ttm_bo_vm_access, to access such memory.
-> 
-> v4:
->   - Fix checkpatch warnings (CI)
-> v5:
->   - Fix checkpatch warnings (CI)
-> 
-> Reported-by: Christoph Manszewski <christoph.manszewski@intel.com>
-> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/ttm/ttm_bo_util.c | 86 +++++++++++++++++++++++++++++++
->   drivers/gpu/drm/ttm/ttm_bo_vm.c   | 65 +----------------------
->   include/drm/ttm/ttm_bo.h          |  2 +
->   3 files changed, 89 insertions(+), 64 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index d939925efa81..41bb5a7477d3 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -919,3 +919,89 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
->   
->   	return progress;
->   }
-> +
-> +static int ttm_bo_access_kmap(struct ttm_buffer_object *bo,
-> +			      unsigned long offset,
-> +			      void *buf, int len, int write)
-> +{
-> +	unsigned long page = offset >> PAGE_SHIFT;
-> +	unsigned long bytes_left = len;
-> +	int ret;
-> +
-> +	/* Copy a page at a time, that way no extra virtual address
-> +	 * mapping is needed
-> +	 */
-> +	offset -= page << PAGE_SHIFT;
-> +	do {
-> +		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
-> +		struct ttm_bo_kmap_obj map;
-> +		void *ptr;
-> +		bool is_iomem;
-> +
-> +		ret = ttm_bo_kmap(bo, page, 1, &map);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ptr = (void *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
-> +		WARN_ON_ONCE(is_iomem);
-> +		if (write)
-> +			memcpy(ptr, buf, bytes);
-> +		else
-> +			memcpy(buf, ptr, bytes);
-> +		ttm_bo_kunmap(&map);
-> +
-> +		page++;
-> +		buf += bytes;
-> +		bytes_left -= bytes;
-> +		offset = 0;
-> +	} while (bytes_left);
-> +
-> +	return len;
-> +}
-> +
-> +/**
-> + * ttm_bo_access - Helper to access a buffer object
-> + *
-> + * @bo: ttm buffer object
-> + * @offset: access offset into buffer object
-> + * @buf: pointer to caller memory to read into or write from
-> + * @len: length of access
-> + * @write: write access
-> + *
-> + * Utility function to access a buffer object. Useful when buffer object cannot
-> + * be easily mapped (non-contiguous, non-visible, etc...).
-> + *
-> + * Returns:
-> + * 0 if successful, negative error code on failure.
+== Series Details ==
 
-@len if successful
+Series: drm/xe/ufence: Flush xe ordered_wq in case of ufence timeout
+URL   : https://patchwork.freedesktop.org/series/140386/
+State : success
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Summary ==
 
-> + */
-> +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
-> +		  void *buf, int len, int write)
-> +{
-> +	int ret;
-> +
-> +	if (len < 1 || (offset + len) > bo->base.size)
-> +		return -EIO;
-> +
-> +	ret = ttm_bo_reserve(bo, true, false, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	switch (bo->resource->mem_type) {
-> +	case TTM_PL_SYSTEM:
-> +		fallthrough;
-> +	case TTM_PL_TT:
-> +		ret = ttm_bo_access_kmap(bo, offset, buf, len, write);
-> +		break;
-> +	default:
-> +		if (bo->bdev->funcs->access_memory)
-> +			ret = bo->bdev->funcs->access_memory
-> +				(bo, offset, buf, len, write);
-> +		else
-> +			ret = -EIO;
-> +	}
-> +
-> +	ttm_bo_unreserve(bo);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(ttm_bo_access);
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> index 2c699ed1963a..20b1e5f78684 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> @@ -366,45 +366,6 @@ void ttm_bo_vm_close(struct vm_area_struct *vma)
->   }
->   EXPORT_SYMBOL(ttm_bo_vm_close);
->   
-> -static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
-> -				 unsigned long offset,
-> -				 uint8_t *buf, int len, int write)
-> -{
-> -	unsigned long page = offset >> PAGE_SHIFT;
-> -	unsigned long bytes_left = len;
-> -	int ret;
-> -
-> -	/* Copy a page at a time, that way no extra virtual address
-> -	 * mapping is needed
-> -	 */
-> -	offset -= page << PAGE_SHIFT;
-> -	do {
-> -		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
-> -		struct ttm_bo_kmap_obj map;
-> -		void *ptr;
-> -		bool is_iomem;
-> -
-> -		ret = ttm_bo_kmap(bo, page, 1, &map);
-> -		if (ret)
-> -			return ret;
-> -
-> -		ptr = (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
-> -		WARN_ON_ONCE(is_iomem);
-> -		if (write)
-> -			memcpy(ptr, buf, bytes);
-> -		else
-> -			memcpy(buf, ptr, bytes);
-> -		ttm_bo_kunmap(&map);
-> -
-> -		page++;
-> -		buf += bytes;
-> -		bytes_left -= bytes;
-> -		offset = 0;
-> -	} while (bytes_left);
-> -
-> -	return len;
-> -}
-> -
->   int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
->   		     void *buf, int len, int write)
->   {
-> @@ -412,32 +373,8 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
->   	unsigned long offset = (addr) - vma->vm_start +
->   		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
->   		 << PAGE_SHIFT);
-> -	int ret;
-> -
-> -	if (len < 1 || (offset + len) > bo->base.size)
-> -		return -EIO;
->   
-> -	ret = ttm_bo_reserve(bo, true, false, NULL);
-> -	if (ret)
-> -		return ret;
-> -
-> -	switch (bo->resource->mem_type) {
-> -	case TTM_PL_SYSTEM:
-> -		fallthrough;
-> -	case TTM_PL_TT:
-> -		ret = ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
-> -		break;
-> -	default:
-> -		if (bo->bdev->funcs->access_memory)
-> -			ret = bo->bdev->funcs->access_memory(
-> -				bo, offset, buf, len, write);
-> -		else
-> -			ret = -EIO;
-> -	}
-> -
-> -	ttm_bo_unreserve(bo);
-> -
-> -	return ret;
-> +	return ttm_bo_access(bo, offset, buf, len, write);
->   }
->   EXPORT_SYMBOL(ttm_bo_vm_access);
->   
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index 5804408815be..8ea11cd8df39 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -421,6 +421,8 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo);
->   int ttm_bo_evict_first(struct ttm_device *bdev,
->   		       struct ttm_resource_manager *man,
->   		       struct ttm_operation_ctx *ctx);
-> +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
-> +		  void *buf, int len, int write);
->   vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
->   			     struct vm_fault *vmf);
->   vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc4-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc4-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/
+lib/modules/6.12.0-rc4-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc4-xe/build
+lib/modules/6.12.0-rc4-xe/modules.alias.bin
+lib/modules/6.12.0-rc4-xe/modules.builtin
+lib/modules/6.12.0-rc4-xe/modules.softdep
+lib/modules/6.12.0-rc4-xe/modules.alias
+lib/modules/6.12.0-rc4-xe/modules.order
+lib/modules/6.12.0-rc4-xe/modules.symbols
+lib/modules/6.12.0-rc4-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1729761712:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1729761712:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
