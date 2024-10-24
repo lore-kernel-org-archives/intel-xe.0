@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836C6D10397
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 22:08:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 624E9D10393
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 22:08:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB81110E9AE;
-	Thu, 24 Oct 2024 22:08:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 238A310E9AF;
+	Thu, 24 Oct 2024 22:08:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZU4cCoyE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b57cjkxV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B3AE10E3C4;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D219010E3CE;
  Thu, 24 Oct 2024 22:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729807678; x=1761343678;
+ t=1729807679; x=1761343679;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=TatkpDaF7vPAhozLnxjee95VB/3UHz0BtrnlUaYijWc=;
- b=ZU4cCoyEQwNNq5yhkS7Oe8IP3UyTxgG1tqR2nI83W+F2isqMKtdDGXHn
- gtztdXBJgOh2AKM4IHBMMzLUYEOcr4AgFsBoD2ZCyGSmVhccxKlDv7cf9
- FG2tpXLZ5+MLQZt5ykvrRtjerJJrNQ4C21mjiDOAIPw8i1K6IQXccPW5f
- 5fjT8gQaBdDSMDfl6xnp5/tdiITlg+bC8PvbKlsudkjHgPzMxMz6y4Vqq
- XIynUp+mD2P7yUh3Mk3G9+ecORRPxopr9LlCjQcgG0VnelOf3QxD/lolg
- 4QwbAJ6I8PdSWn1wkig3wf8ebHPFTHR2StB1sh7eEWONRFbUz+PaL47/b A==;
-X-CSE-ConnectionGUID: F165thDKSUmPqZaoZh8v7Q==
-X-CSE-MsgGUID: Lqkazrg9SXqgudWo+BNk9Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="29367632"
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="29367632"
+ bh=43DqmJgU+m9sfObrfw+M8LExqh73gr26cjVASPwlEsw=;
+ b=b57cjkxVAi8e3XdT7Thr4b/I9u8oD5+VulcD7UfC/sa9v17PEa9Go8Jf
+ G82jh0iDQ3pDxaAdCNrJea735aCXmJFdKxnkR5lNhMJlQ9GKPGzy3hNJv
+ YW7xnJbAroFXdO0U0TP6LQ458niPd2FcqJCf434mp1n8LqgAwjw58fMwc
+ kYkrIRc9rLBWN/KkzEWKlev5EN54lK7pMxETaKRFSB85gwSoEF9Il6Hnu
+ IYKexEWyY5rZDXxlzPcXLOtotwuSemOGG0DQ2O62ktq5/e75YKyQ9cg/r
+ rkd5RCqBbfl8ziy8lZAwXth/rR8gZcETD1gMs/ND0gYyT8K+qAeeTkQv7 A==;
+X-CSE-ConnectionGUID: +V181zhMTaybQRaTpanU3w==
+X-CSE-MsgGUID: /pBxhdpjR0m/32DUoRnLMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="29367641"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="29367641"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 15:07:57 -0700
-X-CSE-ConnectionGUID: kvB53W+JTam1rUv/OuzHQQ==
-X-CSE-MsgGUID: d+9yx5tmRFKs2a+0wEWM7g==
+ 24 Oct 2024 15:07:58 -0700
+X-CSE-ConnectionGUID: EsbxM8T4QgGKOvaUb7PUxw==
+X-CSE-MsgGUID: fSlHP4esTK2pIqJaExqoFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="84687959"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="84687968"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 15:07:57 -0700
+ 24 Oct 2024 15:07:58 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 02/11] drm/i915/xe3lpd: Disable HDCP Line Rekeying for Xe3
-Date: Thu, 24 Oct 2024 15:07:43 -0700
-Message-Id: <20241024220752.714457-3-clinton.a.taylor@intel.com>
+Subject: [PATCH v3 09/11] drm/i915/display/xe3: disable x-tiled framebuffers
+Date: Thu, 24 Oct 2024 15:07:50 -0700
+Message-Id: <20241024220752.714457-10-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241024220752.714457-1-clinton.a.taylor@intel.com>
 References: <20241024220752.714457-1-clinton.a.taylor@intel.com>
@@ -66,62 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+From: "Heikkila, Juha-pekka" <juha-pekka.heikkila@intel.com>
 
-We need to disable HDCP Line Rekeying for Xe3 when we are using an HDMI
-encoder.
+Xe3 has no more support for x-tile on display.
 
-v2: add additional definition instead of function, commit message typo
-fix and update.
-v3: restore lost conditional from v2.
-v4: subject line and subject message updated, fix the if ladder order,
-fix the bit definition order.
+v2: Include up to display 29 for X-tiled support. (Gustavo)
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Heikkila, Juha-pekka <juha-pekka.heikkila@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 10 +++++++---
- drivers/gpu/drm/i915/i915_reg.h           |  1 +
- 2 files changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index ed6aa87403e2..70dfc9d4d6ac 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -43,14 +43,18 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
- 		return;
- 
- 	if (DISPLAY_VER(display) >= 14) {
--		if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
--			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
--				     0, HDCP_LINE_REKEY_DISABLE);
-+		if (DISPLAY_VER(display) >= 30)
-+			intel_de_rmw(display,
-+				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
-+				     0, XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
- 		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
- 			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
- 			intel_de_rmw(display,
- 				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
- 				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-+		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
-+			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
-+				     0, HDCP_LINE_REKEY_DISABLE);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 89e4381f8baa..8d758947f301 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3817,6 +3817,7 @@ enum skl_power_gate {
- #define  TRANS_DDI_PVSYNC		(1 << 17)
- #define  TRANS_DDI_PHSYNC		(1 << 16)
- #define  TRANS_DDI_PORT_SYNC_ENABLE	REG_BIT(15)
-+#define  XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(15)
- #define  TRANS_DDI_EDP_INPUT_MASK	(7 << 12)
- #define  TRANS_DDI_EDP_INPUT_A_ON	(0 << 12)
- #define  TRANS_DDI_EDP_INPUT_A_ONOFF	(4 << 12)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index a7b4cf8b6d50..6a7060889f40 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -349,7 +349,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_Y,
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_X_TILED,
+-		.display_ver = DISPLAY_VER_ALL,
++		.display_ver = { 0, 29 },
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_X,
+ 	}, {
+ 		.modifier = DRM_FORMAT_MOD_LINEAR,
 -- 
 2.25.1
 
