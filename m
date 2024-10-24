@@ -4,181 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CECC1CE8E72
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 13:04:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2306CCE8E73
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 13:11:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B4AB10E933;
-	Thu, 24 Oct 2024 13:04:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E831910E936;
+	Thu, 24 Oct 2024 13:11:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dyKX3FXw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iXJWZG8H";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 542B910E933;
- Thu, 24 Oct 2024 13:04:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92DA510E936
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Oct 2024 13:11:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729775099; x=1761311099;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=wjI+Z/zVtjsTg5zdom0Uu8NGbBzRscId/lMBGbY+6dY=;
- b=dyKX3FXw+MT+m4GaKKBC7AGBAqzIinHQEGXvyn9e9A754qaIARrUjc0t
- oXd2G+Wm4ZL4/cH5g2HkzkPzARjfZ1lkWa46EnoUFk9D2MFbZvXxCURyn
- OPRO7jJVTGvWDYFIdNb16OjEee6BaRSi0rHET43WnI4TcGbbeETjLGH8F
- efnuF+vKxjHsruWtNiHrovujizgUHAizlK4zcq/4lyxBYqaveWfvXkhbb
- qopiwUYtCAcOoDbq44csorQq3s3Lb1ST6c1g3G5ghwCaaDrxrtLCjQJvf
- OtiEyo0Hn3vzTTO+70ZE7iUz7XVuenLiQH6UGkqdeiRwVV1fIb0bNKEuo g==;
-X-CSE-ConnectionGUID: G8NYG6JEQz2lS+Wz4y2V/A==
-X-CSE-MsgGUID: LgqMg+IyQ6OjHh9bjbHCSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="29506083"
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="29506083"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 06:04:58 -0700
-X-CSE-ConnectionGUID: I0WP9qntSY2alyJNeGFBFA==
-X-CSE-MsgGUID: +15rZ65LQ66Mk1pFT5RaJg==
+ t=1729775469; x=1761311469;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=oQanZdyFXkISv/c1I50S4opiv7QVz6ADGtvl3RgYRos=;
+ b=iXJWZG8Hc5vlHth1LiG3foEjI9gVksf8LH5u8AcnnTClW1nY8oxykmJs
+ VC4/E7XbR0ZMSW5v59w2d21GqB5ZKTkIwMAn16Ebeqkbvwr3+1fqoHaNw
+ xPzMXRWtshoSB40vE1J+aw1n2gCOi6T/2sYp2mceAU+ody+yovmaQAooU
+ k6TtyDy05OfTDr1BmlqpShSufXkfFQ6jEx0TP1RivM3CgT8ORfBinuSMe
+ nkUYjRGxi2Hvt1g45RM8Rs/n9Q8z36vfrxq31WfU2ORoAMz85cM1/0MQg
+ ZJtyhxbXEeDRl+uB0vGGCrCwyPx9N6WPOjvtad9ef4NFNmnSpnYaZ1Rs9 A==;
+X-CSE-ConnectionGUID: yy8Mai2KSD6bOYuHeYOVJg==
+X-CSE-MsgGUID: BpZMCxQFTcaU4SLnGcewPA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="28860208"
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="28860208"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 06:11:08 -0700
+X-CSE-ConnectionGUID: r0IFqfP2SQa4jbH21PUfcQ==
+X-CSE-MsgGUID: A081CyPwSs+hg4NNaJhOUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="80502905"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Oct 2024 06:04:58 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 24 Oct 2024 06:04:57 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 24 Oct 2024 06:04:57 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.45) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 24 Oct 2024 06:04:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lDP8NBQck27EugzyOJHbSWfwjS3tGQWpSQ+jFo52VQ3v49Gd3RMUNSwhcvMM84CaiJUiOD9U85iuYqwPW+EKHtvceIeWLC5UKlFHfEnfkDDguMTOLBJret+I63t0VSL2MknXb31WJmG6DhLflhFONJQVDUOToCm4D72a0+oh59cRYsTpvPljnMK46nzNPSpS0NkXydIke+p67sw3b5rynA/yKbXqth/a/hscFj1fCbvMb+Zov8gAo4w/W9qRzwZxA8EIPIUvTmkXY3dX5PFMll5yla0y/5di+yQB+GGjHswcPVdixJtwA1NM0yp3Yo3PNKF/XyCiyqPy18VJKqLXJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7vDGruNfe0L8GoqnEB/b13aEKKkQNPTeSL4IwrWKydw=;
- b=cBEk5XeYupqDMolw5ja7pLNN6N2LjMlPmKUUbeqyvd2+OhrP/qz1odpOrwvBLB/mdZwzmb50n+zMk8O9uYyqXQBjkUL+XVJdjvKf11IWaGsoPvbnAOWgiGAbCopUuEf4ASp8m6fEprib6wQ/XUCQIsr2JDp8Kuw06Vnb3k1SqhbF0DuR33P7xOxu1/jRIpmfkLzvRaA5E2CKOQsyeAO59G3/8QtL7N3YNIDUiKVyNq+lk8oZ4AR2bSOSSk5/dDQ2i0oFw4yUlm4B4g3KhUYJfeGJTPsoBzDHXwhP8RQ7A8Dx2isIFeVUqwx5p1/fQxohLZr/sepF3OFK02yJuMDY2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SA2PR11MB5116.namprd11.prod.outlook.com (2603:10b6:806:fa::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.20; Thu, 24 Oct
- 2024 13:04:54 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.8093.018; Thu, 24 Oct 2024
- 13:04:54 +0000
-Message-ID: <71c9ad2c-90ea-4f02-bd40-cbe86577d131@intel.com>
-Date: Thu, 24 Oct 2024 18:34:48 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/i915/xe3lpd: Increase max_h max_v for PSR
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-CC: <matthew.d.roper@intel.com>
-References: <20241024035552.94363-1-suraj.kandpal@intel.com>
- <20241024035552.94363-3-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241024035552.94363-3-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MAXPR01CA0115.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:5d::33) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="81402636"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.216])
+ ([10.245.245.216])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 06:11:06 -0700
+Message-ID: <63a1062f-56b9-4367-92fa-0ef0dd235adc@intel.com>
+Date: Thu, 24 Oct 2024 14:11:03 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA2PR11MB5116:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ce70407-27f4-4dc0-e64b-08dcf42c7403
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?M2NlaE96eVA2YmdvTkh1aXJSK1UzY1R2NVV0YWhYdFN0YmJJeEFaVGFrSWlL?=
- =?utf-8?B?T0ZqSmdQOGZTNWNLeGhEK2JJUEVBN1Zkelc2RkxKb0pMWWMrSFY0VXdKRnRh?=
- =?utf-8?B?TnY1N3kxVEw0M2V5by9JcTZ3TGxmV3VFaDhvOVA1dTJuN25TcVRQWndPYzM2?=
- =?utf-8?B?cnk0eS9pWnBEMTlDSCs5V3FIUlFLRUd3UlQwemNCWFI3NHlKaS9yRVg2Yi9t?=
- =?utf-8?B?aWVOTjg4LzVqclB2Qjc5UjdjQU01NERmUU5TWVo1Nk5QQmJ1VFNLczBkYmU0?=
- =?utf-8?B?R2lTWTRsZ3FFQk9UOFdWRXZ2TzJLWVkwWWxhbXF4SCtDLzh4ZHM5cDJUNGx0?=
- =?utf-8?B?T0hOVHI4WjY1Tzl4WlRNbE5DMVI3Yi81SXorcjhTOXY2bzBLQmhBbnRXWUNC?=
- =?utf-8?B?MzA5MG40bm5HYXBhS0lPT1BCakxTcU4vckh1MDBWVlpYaDNSMkVZSmtJMkNC?=
- =?utf-8?B?UVFJWXVWTHd1dGFKSWdSeXIvbE1RdVBuTFQxYy9mbFRhOGx3aWZRaHhGSTdI?=
- =?utf-8?B?OTY5OVZmK1doUXpCZ2pUWkFiQ1ZIMGZ5a3JDWEZRYlVsci9tN2ltQUFWd0l6?=
- =?utf-8?B?MkNla0laU2VWUld5dGJlbVVSN3JBeDIzNG5xNVhFcFhxaEp3TkN5cVc1YVRB?=
- =?utf-8?B?NkF0L0tXNHpTaHNDTzk4YTVHUlJBYWpHN09hSXYwekRBZ0p4ekJ2T3gwN2h5?=
- =?utf-8?B?SUUvZUpFd2ZuVkpHckppVklKdUtPMUV1OThJUVFJeHdiZWMyb3ZBelFIb2VO?=
- =?utf-8?B?V1pKSEVvbzg1OXExelBsVUdtaFBVWFVPdWRWbmZYRjA3Mkw3dFJxUGJHb0xq?=
- =?utf-8?B?VXF6OGZ4dytiSnB3Qk9FTlQrRWo4WUZpQnZHY21BNEx6NGJta0xKNHFQc0d2?=
- =?utf-8?B?WWZkbjNIbnk3K0VBZ0R0QlZaN3JYREpHdVNZcVQ3eDB5SmZOWkdjNjhxWXZa?=
- =?utf-8?B?cTRuRjNOSWJES0hqeG1Qc3diNlpGTXJ0T1h0RXB4YjNqcDJhOUhhempySGNv?=
- =?utf-8?B?S0hDN1g0R0R0WGZPeHdhb09VNmtpbVViZHhWWlRnSStldWtlbUY0MElzL2Jk?=
- =?utf-8?B?bDBDY0lsb2JWR2ZBUFVWbXdJZE9sKzIvMy9UaTdCcys2dFNKVGUrMFFJUmVH?=
- =?utf-8?B?Y1pzdGZDejR2VFBYRFZyV3hFNk1qaW15MTdXd2I4cTIzSGhTVnp2OXlqWGgz?=
- =?utf-8?B?am0rZHRBTEVEVjhKL3BSaC9rcEZmSXdEdVV2ZngvemdKOFJjMHFrZXRnYTFa?=
- =?utf-8?B?Q08xMEowYys4UGRFcUJrRUxXUE5uaytSaS9ncTBrY3JFZFVMRE9KTmtJSVJD?=
- =?utf-8?B?R2xTSnBhWlR5SnRwa1BvWThJamZHRkZ2NEcxdzNYNlorK2V5eVQxeE1IT1ll?=
- =?utf-8?B?RGxmaEs3VEVOUEw1ZjF4UmFCSmQvaGNmR1BjcE5NZ0xodUdEWWpGa1pRQTNR?=
- =?utf-8?B?THc0MGEvbys1ZkxzbUdhZlpnQnBvcHUrRjZkWkRnaDF5cTNtaE1DRm00UDFB?=
- =?utf-8?B?cmhYcGVCMjg1UXdwYzdFN1VOcTZOeStNUi9qZmEyQ2dkeGFtMjRHTVRZWjRM?=
- =?utf-8?B?bzVRSVZSM1UyTDR6bTVoMkJzZ3FuNC9OeDFjQlJpQUF6bkdUN3BKQ1EzS2U1?=
- =?utf-8?B?ZmNJUkpnVjEwdld2eXJQdGVtMG1hZXBzUEwxWHJhWStmdjVFMWZJY24rT0s0?=
- =?utf-8?B?NUNhT0ZYOFJ5eGJ5dkFTdUt3djk5WDBNU3Joa0hSQXpEVUZCaU5QWEE1cHN0?=
- =?utf-8?Q?7x6IbNqFRC8acBYplK+6NstDTXDk/7p1y3DFkYT?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K28ybGNDL2d2VHYrbkx4V2lUcDBmZnRRRkE3bGxsWmJiQVBrck41eDE0eC9N?=
- =?utf-8?B?VjBRSmxvWUI2anNZcmNDdzZJZGxnWlZ0bkFmVGg2b091cmNFOHFRdE1HWGdp?=
- =?utf-8?B?V1I5dUVURi9YVmdacFg2L2M1Mk1pNFRHSGJIZjRpU0d5NlNPQ2srZGVEYVo4?=
- =?utf-8?B?OHllcVlmcnUxTUgxaWoxNHNyNktQY3c2SDVteWplbGZxNjNOVHdSdkRFdU11?=
- =?utf-8?B?RGtEVktpUHJvajU2VSthclpFVENzb2EyempneG04Qk0zcytnQjM4cXgveFFZ?=
- =?utf-8?B?MDdBcWw4SlB2QjVwQ05ManFnUXB6SURvNGo3TTR1eDdDWThKTWc3U3pBUll2?=
- =?utf-8?B?V09BcTlIcE1rSkltZXhLUWsxUUxUMDNSWS9iR1dkWnEzQWNuRWZxYnlveFdE?=
- =?utf-8?B?T1VCQjBnL1JoV21rMUxoNHhndlM2Y0NTdFVsL0M3Q1BtN2FteVdtOEJoam8z?=
- =?utf-8?B?aWRBeXk0ejRka3d1TURNSElNSzVGQTEwWWZVVllMRE5wL0ZnRU03VnhjTzVM?=
- =?utf-8?B?OHVhcWNodXZSZm1OWmh0R1NhdDluRjcwL1h4ZHowZ2NJeElXQU4wSVBoR3lS?=
- =?utf-8?B?TjJYZWZiZ0o5V2xldFVrcGtZdVhQZnRqR29BOVhneTI5WFVTTEJKRmZzcFd1?=
- =?utf-8?B?dUl6TkFLRFVsWFNIS1FVNVp4QTZ2RXlGQ1EzU05hWjNoOUI3eUZxVXByTGZy?=
- =?utf-8?B?NVAveURhVnlDM0JoUDhZVlM3RDlqenlHWkh1NThZVVZVSUpLR3grVUdEdHZ3?=
- =?utf-8?B?Z0R4cmFXOTg5V0hDUmVzR0ZBV3RIYnR5cmxPYTBqZDVURG14ZzlkU0kxcWFD?=
- =?utf-8?B?VndRYnZ6RnZOQmRrQUJmQTRHbDlJR2ZmaTNzUnpaZm5RN3ZkaW0rdUtaYnQr?=
- =?utf-8?B?Z0FMOWlFOGZ4NGwxNWhWSmFITlhJZ1JHMWFMQjRDRndPZW14RjNMQ21SdWxP?=
- =?utf-8?B?bmZqNUpuQ1NlTDhpRjYxTkdsOEZYZFEvR0Fxd0RaWkZFSHZ1QjI3dTNHSWVN?=
- =?utf-8?B?TVJ0TU1CQm1sSUFNNUo2MWp4SkJEcGowMVN5UHoySm05cWhiQWJFYjdWeXcy?=
- =?utf-8?B?NHZDUy9HRUplSjBtUVZSdXpsR00xK0lqZDYwZUFldmd2NWJNOEdyTktZNmNW?=
- =?utf-8?B?MVlHVTJnaFpZUU1Cb2NtS0JJL3l1NVh0M2lRU2tldEVORncrcFRkTlFRYnJ0?=
- =?utf-8?B?NGw2cUNQVllzMk5FVDVQb3lXUlRBY3kxdU5tdE9Md3Y2aHBJRWVWQ3A3emcy?=
- =?utf-8?B?cEwybm5teThMZDI2ZWVaNkh5YVhEd0xLR3hrTEhoTzViYU85WFBYcjF6cE8w?=
- =?utf-8?B?QUpVUDVOd3dPcm5pYkpROGZLSEl0cUdGc2JtS3FKcXpObWJZQVhjYVlaN1Bj?=
- =?utf-8?B?UTRKVEhBQWZQSmhDZGdkcUJ6ZUp2UVJaMFRHOEZ3aVdXc3ZZUkJTYXByYm9i?=
- =?utf-8?B?aENlaUJxd1I1bG14ZWVwR09UVDVMaFE0OGtZR1FhTGdnNWRlbEJLL2hOc1A2?=
- =?utf-8?B?N2ZvS1ZFdkVhcFQxMDF6OEJpWVNSVU5kSnpUZ2paUHNINzZSaFZ0YzZ2Nkww?=
- =?utf-8?B?VkpVRkNheElHR0hFZ1ZuYjZPUmlRTGZpeXhsS3JLcTVveHZRTlBHdDdzRzRL?=
- =?utf-8?B?NWJwYUJJdE5qR3dnSHRTL2V5elp5Zll4aFFYbnhHVUo0UzdlUTRzTTZ1d2xO?=
- =?utf-8?B?c3FiY0RkeTcxeVBRamE2bHA5aVJSSG1GUGRqWGJ0NmdYMC9TeG5BOEptQVM0?=
- =?utf-8?B?RzhXQVoxN1lDdUlBOTRKbFRLRmtudlA4MkJEcll3YjR2dTFUSzlQL1dDbFh0?=
- =?utf-8?B?M3ROdnJhNXRzVllWL2oxMEMvblY0b0pMNmgrYkhkcnZ2RHVtN2lud2lXRVV6?=
- =?utf-8?B?c2d5SEdFcU9wRkVyTXVhOHAwYlNodjBmcVYyRFNwc2tEVmlhSCtkMFRTa24w?=
- =?utf-8?B?c3pyMmRxVFJLWjgvYWNZb1ByU3Z5MW81ektyUk5DYmxWNEZEZ08xQ0JPTWsw?=
- =?utf-8?B?QVdVUjV1bFh0TXgvRTg1ZUc4eG9Ubjc0eUJoSlB3MFJvaTBiMVpRQi8wZUta?=
- =?utf-8?B?dWp3WG12WDV4OE1vN0cvblNKL0ErMUFHN2MvT1hVS1B6d201NXNMMjM5MlFN?=
- =?utf-8?B?S0NlRkJENlJhbS9mMjhpZTdvcXp4V3NVR0s5RzB1bjEybUZ1bnEyaTNZNXdz?=
- =?utf-8?B?Mnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ce70407-27f4-4dc0-e64b-08dcf42c7403
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 13:04:54.5680 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dk8/rAgv0+0qGuTjlJUSxgQJHG1sD13fJcVgYQxC7JwHYakzWmdaQCpPH3Dzf+GkIjbSvp4iEkhG4JVRagpTRql6Q87Zdig9miEofoIQKLQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5116
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/guc/tlb: Flush g2h worker in case of tlb timeout
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ Nirmoy Das <nirmoy.das@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Anshuman Gupta <Anshuman.Gupta@intel.com>
+References: <20241023151343.3463640-1-nirmoy.das@intel.com>
+ <20af74cb-1ade-4f75-b73c-7e75b3651a00@intel.com>
+ <6179d84e-a746-467e-a0ef-a04567dc0554@linux.intel.com>
+ <24bebfeb-ffee-4c3a-8ab2-5ca76d086e59@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <24bebfeb-ffee-4c3a-8ab2-5ca76d086e59@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -193,41 +79,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 24/10/2024 14:00, Nilawar, Badal wrote:
+> 
+> 
+> On 24-10-2024 15:47, Nirmoy Das wrote:
+>>
+>> On 10/24/2024 12:02 PM, Nilawar, Badal wrote:
+>>>
+>>>
+>>> On 23-10-2024 20:43, Nirmoy Das wrote:
+>>>> Flush the g2h worker explicitly if TLB timeout happens which is
+>>>> observed on LNL and that points recent scheduling issue with E-cores.
+>>>> This is similar to the recent fix:
+>>>> commit e51527233804 ("drm/xe/guc/ct: Flush g2h worker in case of g2h
+>>>> response timeout") and should be removed once there is E core
+>>>> scheduling fix.
+>>>>
+>>>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2687
+>>>> Cc: Badal Nilawar <badal.nilawar@intel.com>
+>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 9 +++++++++
+>>>>    1 file changed, 9 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c 
+>>>> b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>>>> index 773de1f08db9..2c327dccbd74 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>>>> @@ -72,6 +72,15 @@ static void xe_gt_tlb_fence_timeout(struct 
+>>>> work_struct *work)
+>>>>        struct xe_device *xe = gt_to_xe(gt);
+>>>>        struct xe_gt_tlb_invalidation_fence *fence, *next;
+>>>>    +    /*
+>>>> +     * This is analogous to e51527233804 ("drm/xe/guc/ct: Flush g2h 
+>>>> worker
+>>>> +     * in case of g2h response timeout")
+>>>> +     *
+>>>> +     * TODO: Drop this change once workqueue scheduling delay issue is
+>>>> +     * fixed on LNL Hybrid CPU.
+>>>> +     */
+>>>> +    flush_work(&gt->uc.guc.ct.g2h_worker);
+>>>
+>>> I didn't get the idea of flushing g2h worker here. Moreover AFAIK tlb 
+>>> invalidation is handled in fast path xe_guc_ct_fast_path i.e. in IRQ 
+>>> handler itself. Is this change solving the issue.
+>>
+>> AFAIU g2h worker can also handle TLB_INVALIDATION_DONE message from 
+>> GuC(process_g2h_msg). This indeed fixes the issue from me for LNL.
+> 
+> Agreed, it does handle in the slow path as well, but upon receiving an 
+> IRQ, it will be managed in the fast path.
+> So I suspect this is a case of an G2H interrupt miss rather than a G2H 
+> worker delay due to the efficient cores in LNL.
+> For now, this change can proceed as it is helping out, but considering 
+> the possibility of an interrupt miss, I suggest debugging from that 
+> perspective.
+> In another thread, Himal mentioned that this issue is also observed on 
+> BMG, which strengthens the possibility of an G2H interrupt miss.
 
-On 10/24/2024 9:25 AM, Suraj Kandpal wrote:
-> Spec states that PSR max active is same as max pipe active values.
-> Now that each pipe supports 6k resolution increasing max_h and
-> max_v for PSR too.
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_psr.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 3b20325b3f6a..8981a180285e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1451,7 +1451,11 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
->   		return false;
->   	}
->   
-> -	if (DISPLAY_VER(display) >= 12) {
-> +	if (DISPLAY_VER(dev_priv) >= 30) {
-> +		psr_max_h = 6144;
-> +		psr_max_v = 4096;
+Note that we currently still process the G2H events in-order, so if 
+there is something earlier in the queue that can't be safely processed 
+in the irq then we leave it to the worker to handle. So we might get an 
+irq for the tlb invalidation completion and yet be unable to process it 
+in the irq.
 
-As per Bspec:69885 from XE2LPD+ the max size for PSR2 is pipe active 
-size, so psr_max_v should have been 4096 even earlier.
-
-Perhaps need to change even for earlier platform.
-
-Regards,
-
-Ankit
-
-> +		max_bpp = 30;
-> +	} else if (DISPLAY_VER(dev_priv) >= 12) {
->   		psr_max_h = 5120;
->   		psr_max_v = 3200;
->   		max_bpp = 30;
+> 
+> Regards,
+> Badal
+> 
+>>
+>>
+>> Regards,
+>>
+>> Nirmoy
+>>
+>>>
+>>> static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
+>>> {
+>>>          if (!xe_guc_ct_enabled(ct))
+>>>                  return;
+>>>
+>>>          wake_up_all(&ct->wq);
+>>>          queue_work(ct->g2h_wq, &ct->g2h_worker);
+>>>          xe_guc_ct_fast_path(ct);
+>>> }
+>>>
+>>> Regards,
+>>> Badal
+>>>
+>>>> +
+>>>>        spin_lock_irq(&gt->tlb_invalidation.pending_lock);
+>>>>        list_for_each_entry_safe(fence, next,
+>>>>                     &gt->tlb_invalidation.pending_fences, link) {
+>>>
+> 
