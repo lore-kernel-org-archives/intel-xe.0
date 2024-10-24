@@ -4,56 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63678D0BB7A
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 09:30:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07042D0BB7F
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 09:31:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3048B10E8E3;
-	Thu, 24 Oct 2024 09:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C032D10E8E7;
+	Thu, 24 Oct 2024 09:31:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oK3vaeQn";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="JSoqJntJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1BA710E8E1;
- Thu, 24 Oct 2024 09:30:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729762208; x=1761298208;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=VIAWnOT7yhKdqG1JVmEgroGJbK1+W4F0RAOiWRFw8Pw=;
- b=oK3vaeQnDL/8eBYAP4JTx9kW5RSmMG9uRYWl9z7fW3KVwCI2wE2EGC8X
- 42QM7Oq9QZ3riA3vonlOoAOs1q8okabhuGbnKpf16JmzDMuSWg3NGF0Jx
- vUFESv0KN1TyMGW7PTYG1QWobcp8BUL2vcp8RjC2VnViGe3SNGHAFZync
- yoFH8jr4SCTb8P/RSYwt0s2BPP43IXIcRUAeG8pukhpZgzBzhNoAAaImD
- k6yealQNNF7gT+lky0Zb1WYSrsOQNcJvMn96C9MbNLSVVWwUNNZFfD5bW
- 560TM4imSqjcIfioONfxfLTTceEK60e5+MicHhYgX2DUX3ZAjoR0W3XzR w==;
-X-CSE-ConnectionGUID: Bq9SnjVLSdexUZFGYQX0OA==
-X-CSE-MsgGUID: pbUMyxubTQejTtNa/qsvQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28841352"
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="28841352"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 02:30:08 -0700
-X-CSE-ConnectionGUID: X5z3Ih9gQT6NHffI5vqHuw==
-X-CSE-MsgGUID: 4N5IbP4hT7ij20Wai61rNQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80465809"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.151])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 02:30:05 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: nagavenkata.srikanth.v@intel.com, imre.deak@intel.com
-Subject: Re: [v4] drm/i915/dp: Add FEC Enable Retry mechanism
-In-Reply-To: <20241024061002.4085137-1-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241024061002.4085137-1-chaitanya.kumar.borah@intel.com>
-Date: Thu, 24 Oct 2024 12:30:02 +0300
-Message-ID: <87zfmtsvad.fsf@intel.com>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAC0010E8E3;
+ Thu, 24 Oct 2024 09:31:17 +0000 (UTC)
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49O7X44G026963;
+ Thu, 24 Oct 2024 09:30:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=ad3G7t
+ gT1LngrbCIX5zxplfREJhzCNpOY81vO9NiHaw=; b=JSoqJntJJMYj6dZwqdaVVU
+ 020F4AtcQvGN330K1KOAPMVgEeu+nDHuiJh5VgYMiIyIWfYxydU5vejx4VeEhicx
+ ywEHKuPTrN/VxW9AsAlrfnkw+I8BJVgWo9qdLOykjrNhWK7BdewaDaVNTu+5zEzv
+ /OUATsvFRaMqVDccpfSYGmSfhtCdcV0gQEnoWKJV6rRx7DSsShbCPprVX5U7Q7kC
+ K60ljMe4HsbX69v7Hf5jvRo2tFHMK6sKJgEjtYQJEe3UP9LiNGRLFBQOnv/unHUS
+ Sap4hmsjcpSkjGbE+LIaaFaZggd2kHmA4m3ZR+5XiQg8Y1EBqjHSQOMH30i385yg
+ ==
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42fhxnrjmq-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 24 Oct 2024 09:30:52 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 49O9UqU1015425;
+ Thu, 24 Oct 2024 09:30:52 GMT
+Received: from ppma21.wdc07v.mail.ibm.com
+ (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42fhxnrjmg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 24 Oct 2024 09:30:52 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 49O6otaq014287;
+ Thu, 24 Oct 2024 09:30:50 GMT
+Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
+ by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 42emhfqptj-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 24 Oct 2024 09:30:50 +0000
+Received: from smtpav04.fra02v.mail.ibm.com (smtpav04.fra02v.mail.ibm.com
+ [10.20.54.103])
+ by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 49O9UmIP12452224
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 24 Oct 2024 09:30:48 GMT
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 8D14C2004B;
+ Thu, 24 Oct 2024 09:30:48 +0000 (GMT)
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 42C3E20043;
+ Thu, 24 Oct 2024 09:30:48 +0000 (GMT)
+Received: from oc-fedora.boeblingen.de.ibm.com (unknown [9.152.212.119])
+ by smtpav04.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+ Thu, 24 Oct 2024 09:30:48 +0000 (GMT)
+Date: Thu, 24 Oct 2024 11:30:40 +0200
+From: Niklas Schnelle <schnelle@linux.ibm.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, Arnd Bergmann <arnd@arndb.de>,
+ Brian Cain <bcain@quicinc.com>, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Dave Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, "Maciej W. Rozycki" <macro@orcam.me.uk>,
+ Heiko Carstens <hca@linux.ibm.com>
+Cc: linux-kernel@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-serial@vger.kernel.org,
+ Linux-Arch <linux-arch@vger.kernel.org>, Arnd Bergmann <arnd@kernel.org>
+Subject: Re: [PATCH v8 3/5] drm: handle HAS_IOPORT dependencies
+Message-ID: <eptfarsehuuiulqz5523xu7h26jvb365rd3u5mx3mmubw74uld@53ebnpkpq6sc>
+References: <20241008-b4-has_ioport-v8-0-793e68aeadda@linux.ibm.com>
+ <20241008-b4-has_ioport-v8-3-793e68aeadda@linux.ibm.com>
+ <64cc9c8f-fff3-4845-bb32-d7f1046ef619@suse.de>
+ <a25086c4-e2fc-4ffc-bc20-afa50e560d96@app.fastmail.com>
+ <aa679655-290e-4d19-9195-1a581431b9e6@suse.de>
+ <892ba1e2f94a278813621a4872e841d66456e2f7.camel@linux.ibm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <892ba1e2f94a278813621a4872e841d66456e2f7.camel@linux.ibm.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: wJpB2cynEZVL7E3mkIzZ2ArKfrNnIlDQ
+X-Proofpoint-GUID: Fwu-J5BH5WGsugJjHbEIa2RHlaLwjr2D
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0
+ mlxlogscore=999 malwarescore=0 impostorscore=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 suspectscore=0 lowpriorityscore=0
+ phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410240073
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,200 +123,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 24 Oct 2024, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> Currently, even though there is a bit to control FEC enable/disable
-> individually, the FEC Decode Enable sequence is sent by the SOC only
-> once TRANS_CONF enable is set. This ties the FEC enabling too tightly
-> to modeset and therefore cannot be re-issued (in case of failure)
-> without a modeset.
->
-> From PTL, FEC_DECODE_EN sequence can be sent to a DPRX independent
-> of TRANS_CONF enable. This allows us to re-issue an FEC_DECODE_EN
-> sequence without a modeset. Hence allowing us to have a retry
-> mechanism in case the DPRX does not respond with an FEC_ENABLE
-> within certain amount of time.
->
-> While at it, replace struct drm_i915_private with struct intel_display
->
-> v4:
->  - More code refactor [Jani]
->  - use struct intel_display [Jani]
->  - Optimize logging [Jani]
->
-> v3:
->  - Make the commit message more legible [Jani]
->  - Refactor code to re-use existing code [Jani]
->  - Do away with platform dependent FEC enable checks [Jani]
->
-> v2:
->  - Refactor code to avoid duplication and improve readability [Jani]
->  - In case of PTL, wait for FEC status directly after FEC enable [Srikanth]
->  - Wait for FEC_ENABLE_LIVE_STATUS to be cleared before
->    re-enabling FEC [Srikanth]
->
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 81 +++++++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_ddi.h |  6 +-
->  2 files changed, 61 insertions(+), 26 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index fe1ded6707f9..ce95263d74ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2256,9 +2256,9 @@ static int read_fec_detected_status(struct drm_dp_aux *aux)
->  	return status;
->  }
->  
-> -static void wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
-> +static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
->  {
-> -	struct drm_i915_private *i915 = to_i915(aux->drm_dev);
-> +	struct intel_display *display = to_intel_display(aux->drm_dev);
->  	int mask = enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_DETECTED;
->  	int status;
->  	int err;
-> @@ -2267,57 +2267,92 @@ static void wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
->  				 status & mask || status < 0,
->  				 10000, 200000);
->  
-> -	if (!err && status >= 0)
-> -		return;
-> +	if (err || status < 0) {
-> +		drm_dbg_kms(display->drm,
-> +			    "Failed waiting for FEC %s to get detected: %d (status %d)\n",
-> +			    str_enabled_disabled(enabled), err, status);
-> +		return err ? err : status;
-> +	}
->  
-> -	if (err == -ETIMEDOUT)
-> -		drm_dbg_kms(&i915->drm, "Timeout waiting for FEC %s to get detected\n",
-> -			    str_enabled_disabled(enabled));
-> -	else
-> -		drm_dbg_kms(&i915->drm, "FEC detected status read error: %d\n", status);
-> +	return 0;
->  }
->  
-> -void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
-> -				   const struct intel_crtc_state *crtc_state,
-> -				   bool enabled)
-> +int intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
-> +				  const struct intel_crtc_state *crtc_state,
-> +				  bool enabled)
->  {
-> -	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-> +	struct intel_display *display = to_intel_display(encoder);
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	int ret;
->  
->  	if (!crtc_state->fec_enable)
-> -		return;
-> +		return 0;
->  
->  	if (enabled)
-> -		ret = intel_de_wait_for_set(i915, dp_tp_status_reg(encoder, crtc_state),
-> +		ret = intel_de_wait_for_set(display, dp_tp_status_reg(encoder, crtc_state),
->  					    DP_TP_STATUS_FEC_ENABLE_LIVE, 1);
->  	else
-> -		ret = intel_de_wait_for_clear(i915, dp_tp_status_reg(encoder, crtc_state),
-> +		ret = intel_de_wait_for_clear(display, dp_tp_status_reg(encoder, crtc_state),
->  					      DP_TP_STATUS_FEC_ENABLE_LIVE, 1);
->  
-> -	if (ret)
-> -		drm_err(&i915->drm,
-> +	if (ret) {
-> +		drm_err(display->drm,
->  			"Timeout waiting for FEC live state to get %s\n",
->  			str_enabled_disabled(enabled));
-> -
-> +		return ret;
-> +	}
+On Mon, Oct 21, 2024 at 01:18:20PM +0200, Niklas Schnelle wrote:
+> On Mon, 2024-10-21 at 12:58 +0200, Thomas Zimmermann wrote:
+> > Hi
+> > 
+> > Am 21.10.24 um 12:08 schrieb Arnd Bergmann:
+> > > On Mon, Oct 21, 2024, at 07:52, Thomas Zimmermann wrote:
+> > > > Am 08.10.24 um 14:39 schrieb Niklas Schnelle:
+> > > d 100644
+> > > > > --- a/drivers/gpu/drm/qxl/Kconfig
+> > > > > +++ b/drivers/gpu/drm/qxl/Kconfig
+> > > > > @@ -2,6 +2,7 @@
+> > > > >    config DRM_QXL
+> > > > >    	tristate "QXL virtual GPU"
+> > > > >    	depends on DRM && PCI && MMU
+> > > > > +	depends on HAS_IOPORT
+> > > > Is there a difference between this style (multiple 'depends on') and the
+> > > > one used for gma500 (&& && &&)?
+> > > No, it's the same. Doing it in one line is mainly useful
+> > > if you have some '||' as well.
+> > > 
+> > > > > @@ -105,7 +106,9 @@ static void bochs_vga_writeb(struct bochs_device *bochs, u16 ioport, u8 val)
+> > > > >    
+> > > > >    		writeb(val, bochs->mmio + offset);
+> > > > >    	} else {
+> > > > > +#ifdef CONFIG_HAS_IOPORT
+> > > > >    		outb(val, ioport);
+> > > > > +#endif
+> > > > Could you provide empty defines for the out() interfaces at the top of
+> > > > the file?
+> > > That no longer works since there are now __compiletime_error()
+> > > versions of these funcitons. However we can do it more nicely like:
+> > > 
+> > > diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.c
+> > > index 9b337f948434..034af6e32200 100644
+> > > --- a/drivers/gpu/drm/tiny/bochs.c
+> > > +++ b/drivers/gpu/drm/tiny/bochs.c
+> > > @@ -112,14 +112,12 @@ static void bochs_vga_writeb(struct bochs_device *bochs, u16 ioport, u8 val)
+> > >   	if (WARN_ON(ioport < 0x3c0 || ioport > 0x3df))
+> > >   		return;
+> > >   
+> > > -	if (bochs->mmio) {
+> > > +	if (!IS_DEFINED(CONFIG_HAS_IOPORT) || bochs->mmio) {
+> > >   		int offset = ioport - 0x3c0 + 0x400;
+> > >   
+> > >   		writeb(val, bochs->mmio + offset);
+> > >   	} else {
+> > > -#ifdef CONFIG_HAS_IOPORT
+> > >   		outb(val, ioport);
+> > > -#endif
+> > >   	}
+> > 
+> > For all functions with such a pattern, could we use:
+> > 
+> > bool bochs_uses_mmio(bochs)
+> > {
+> >      return !IS_DEFINED(CONFIG_HAS_IOPORT) || bochs->mmio
+> > }
+> > 
+> > void writeb_func()
+> > {
+> >      if (bochs_uses_mmio()) {
+> >        writeb()
+> > #if CONFIG_HAS_IOPORT
+> >      } else {
+> >        outb()
+> > #endif
+> >      }
+> > }
+> > 
+> 
+> I think if the helper were __always_inline we could still take
+> advantage of the dead code elimination and combine this with Arnd's
+> approach. Though I feel like it is a bit odd to try to do the MMIO
+> approach despite bochs->mmio being false on !HAS_IOPORT systems.
+> Is that what you wanted to correct by keeping the #ifdef
+> CONFIG_HAS_IOPORT around the else? And yes the warning makes sense to
+> me too.
 
-So the functional change here is that we skip the below wait if we timed
-out above. I think it's probably fine.
+Working on this now, I think we don't need a warning in the bochs_uses_mmio()
+helper because we should never get here with !IS_ENABLED(CONFIG_HAS_IOPORT)
+at runtime thanks to the check added in bochs_hw_init(). This also takes
+care of my original worry that we might try writeb()/readb() with an invalid
+bochs->mmio value. I'll sent a v9 with the helper added and #ifdefs's removed.
 
-I also think the patch evolved to be considerably neater than the
-original. What do you think?
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
->  	/*
->  	 * At least the Synoptics MST hub doesn't set the detected flag for
->  	 * FEC decoding disabling so skip waiting for that.
->  	 */
-> -	if (enabled)
-> -		wait_for_fec_detected(&intel_dp->aux, enabled);
-> +	if (enabled) {
-> +		ret = wait_for_fec_detected(&intel_dp->aux, enabled);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
->  }
->  
->  static void intel_ddi_enable_fec(struct intel_encoder *encoder,
->  				 const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	int i;
-> +	int ret;
->  
->  	if (!crtc_state->fec_enable)
->  		return;
->  
-> -	intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-> +	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
->  		     0, DP_TP_CTL_FEC_ENABLE);
-> +
-> +	if (DISPLAY_VER(display) < 30)
-> +		return;
-> +
-> +	ret = intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
-> +	if (!ret)
-> +		return;
-> +
-> +	for (i = 0; i < 3; i++) {
-> +		drm_dbg_kms(display->drm, "Retry FEC enabling\n");
-> +
-> +		intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
-> +			     DP_TP_CTL_FEC_ENABLE, 0);
-> +
-> +		ret = intel_ddi_wait_for_fec_status(encoder, crtc_state, false);
-> +		if (ret)
-> +			continue;
-> +
-> +		intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
-> +			     0, DP_TP_CTL_FEC_ENABLE);
-> +
-> +		ret = intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
-> +		if (!ret)
-> +			return;
-> +	}
-> +
-> +	drm_err(display->drm, "Failed to enable FEC after retries\n");
->  }
->  
->  static void intel_ddi_disable_fec(struct intel_encoder *encoder,
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-> index 6d85422bdefe..640851d46b1b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> @@ -63,9 +63,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
->  void intel_ddi_enable_transcoder_clock(struct intel_encoder *encoder,
->  				       const struct intel_crtc_state *crtc_state);
->  void intel_ddi_disable_transcoder_clock(const  struct intel_crtc_state *crtc_state);
-> -void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
-> -				   const struct intel_crtc_state *crtc_state,
-> -				   bool enabled);
-> +int intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
-> +				  const struct intel_crtc_state *crtc_state,
-> +				  bool enabled);
->  void intel_ddi_set_dp_msa(const struct intel_crtc_state *crtc_state,
->  			  const struct drm_connector_state *conn_state);
->  bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector);
-
--- 
-Jani Nikula, Intel
+Thanks,
+Niklas
