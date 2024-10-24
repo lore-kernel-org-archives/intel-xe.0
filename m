@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FE95CE8E6A
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 17:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0475CE8E6A
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 17:48:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C029010E3A5;
-	Thu, 24 Oct 2024 17:48:05 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56B4610E3A5;
- Thu, 24 Oct 2024 17:48:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 747B910E3A5;
+	Thu, 24 Oct 2024 17:48:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bddVjBAW";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B076710E3A5
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Oct 2024 17:48:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729792114; x=1761328114;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=pK/B9sr5ZxPCieC7Z/QYBlEQX+2kIHitRX4AF6jkOgE=;
+ b=bddVjBAWjybwRCdXGMWa8LYvErgw88V/wdw3In+32HWamnasQ/d0nx1b
+ gkRIPNqPoIEAGJ5ijyT0y5ZPC9ZZ8MTNmpc3nU0YyxAoVZQ075VqnTFwS
+ CODxLF7mAEWcmM7B6orPXUGQ762tvHaF2G+rNKMT2hPgx0qO8huEPPmP+
+ X6b05AThZw48MP4DL0uhhQiVr5i4B7aGaM0Dvs7lXrfFTpzRZoU0fwNTr
+ 3XuqY7N0tc83OdTXDlCHuLS82HxAxz+3sxO0TSc2YwAdQVM9VXpxwNdtF
+ tCBfNkvEldNNWT4FhEUhdkTiLRePCyrNKwoQRnWC9j0omNIwGfKk9IJlw g==;
+X-CSE-ConnectionGUID: GCgQzVy0SxKdp2BeHl2R1Q==
+X-CSE-MsgGUID: otag/2gDT6esI+0lV2rY8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="29556059"
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208,217";a="29556059"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 10:48:33 -0700
+X-CSE-ConnectionGUID: aAPlrKikTqm0uWUNt0yX5Q==
+X-CSE-MsgGUID: ktl7TqyTRYq3v/6GgFVoHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; 
+ d="scan'208,217";a="111467267"
+Received: from nkwan-mobl.amr.corp.intel.com (HELO [10.124.131.154])
+ ([10.124.131.154])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 10:48:33 -0700
+Content-Type: multipart/alternative;
+ boundary="------------JhQFtRXqjTv27VA0pfCVS2IK"
+Message-ID: <c717c281-ec3e-4c40-be0d-71d668d5b51a@linux.intel.com>
+Date: Thu, 24 Oct 2024 10:48:26 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/sched=3A_Mark_scheduler_wo?=
- =?utf-8?q?rk_queues_with_WQ=5FMEM=5FRECLAIM?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Oct 2024 17:48:04 -0000
-Message-ID: <172979208434.1327227.630803363926668232@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241023235917.1836428-1-matthew.brost@intel.com>
-In-Reply-To: <20241023235917.1836428-1-matthew.brost@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/1] drm/xe: enable lite restore
+To: fei.yang@intel.com, intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
+References: <20241017162710.942553-1-fei.yang@intel.com>
+Content-Language: en-US
+From: Ngai-Mint Kwan <ngai-mint.kwan@linux.intel.com>
+In-Reply-To: <20241017162710.942553-1-fei.yang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +67,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is a multi-part message in MIME format.
+--------------JhQFtRXqjTv27VA0pfCVS2IK
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Series: drm/sched: Mark scheduler work queues with WQ_MEM_RECLAIM
-URL   : https://patchwork.freedesktop.org/series/140406/
-State : success
+On 2024-10-17 12:27, fei.yang@intel.com wrote:
+> From: Fei Yang<fei.yang@intel.com>
+>
+> The lite restore is a performance improvement feature which avoids
+> unnecessary context switch (flush, save and rstore) if the incoming
+> context has a ContextID matching that of the outgoing context. The
+> scheduling is done by the Guc firmware, so on the driver side it's
+> just a matter of setting corresponding GuC_CTL_FEATURE flag.
+> This is supposed to be enabled by default, thus the flag is set
+> unconditionally.
+>
+> Signed-off-by: Fei Yang<fei.yang@intel.com>
 
-== Summary ==
+Please ensure that the version number is included when submitting revisions.
 
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soundcore.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/common/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/acp/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/codecs/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/ext/
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/intel/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/
-lib/modules/6.12.0-rc4-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/cmac.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/ccm.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/cryptd.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.12.0-rc4-xe/build
-lib/modules/6.12.0-rc4-xe/modules.alias.bin
-lib/modules/6.12.0-rc4-xe/modules.builtin
-lib/modules/6.12.0-rc4-xe/modules.softdep
-lib/modules/6.12.0-rc4-xe/modules.alias
-lib/modules/6.12.0-rc4-xe/modules.order
-lib/modules/6.12.0-rc4-xe/modules.symbols
-lib/modules/6.12.0-rc4-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1729792077:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1729792077:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Kwan
 
+> Fei Yang (1):
+>    drm/xe: enable lite restore
+>
+>   drivers/gpu/drm/xe/xe_guc.c      | 2 +-
+>   drivers/gpu/drm/xe/xe_guc_fwif.h | 1 +
+>   2 files changed, 2 insertions(+), 1 deletion(-)
+>
 
+--------------JhQFtRXqjTv27VA0pfCVS2IK
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 2024-10-17 12:27, <a class="moz-txt-link-abbreviated" href="mailto:fei.yang@intel.com">fei.yang@intel.com</a>
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20241017162710.942553-1-fei.yang@intel.com">
+      <pre wrap="" class="moz-quote-pre">From: Fei Yang <a class="moz-txt-link-rfc2396E" href="mailto:fei.yang@intel.com">&lt;fei.yang@intel.com&gt;</a>
+
+The lite restore is a performance improvement feature which avoids
+unnecessary context switch (flush, save and rstore) if the incoming
+context has a ContextID matching that of the outgoing context. The
+scheduling is done by the Guc firmware, so on the driver side it's
+just a matter of setting corresponding GuC_CTL_FEATURE flag.
+This is supposed to be enabled by default, thus the flag is set
+unconditionally.
+
+Signed-off-by: Fei Yang <a class="moz-txt-link-rfc2396E" href="mailto:fei.yang@intel.com">&lt;fei.yang@intel.com&gt;</a></pre>
+    </blockquote>
+    <br>
+    Please ensure that the version number is included when submitting
+    revisions.<br>
+    <br>
+    Kwan<br>
+    <br>
+    <span style="white-space: pre-wrap">
+</span>
+    <blockquote type="cite"
+      cite="mid:20241017162710.942553-1-fei.yang@intel.com">
+      <pre wrap="" class="moz-quote-pre">Fei Yang (1):
+  drm/xe: enable lite restore
+
+ drivers/gpu/drm/xe/xe_guc.c      | 2 +-
+ drivers/gpu/drm/xe/xe_guc_fwif.h | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------JhQFtRXqjTv27VA0pfCVS2IK--
