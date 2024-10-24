@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE916D1039A
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 22:08:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4BCBD1038E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 22:08:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3772610E9B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAF9B10E9B1;
 	Thu, 24 Oct 2024 22:08:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LDkKJ39t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VnulZt9R";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C47F110E3C4;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7020010E3CE;
  Thu, 24 Oct 2024 22:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729807679; x=1761343679;
+ t=1729807678; x=1761343678;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ohFe+L7LULaS+BR/dLeP4YYGJ+d9nxfbO1Y34Vs4NZY=;
- b=LDkKJ39tWpLOj9aBzd4ZnEiI9v+cSQiGiCbbb91t7jU2tlYyxgvWsm/o
- CJhApPSXynKTdQV9DdNG1E8/4r4r86XVB92OZ+xVX5HkuURCScHbOh75w
- /mh4HVtzpeyWpVSQrfRLaRxgd5WmlhqBpFTiZOfmk91A0fOf3HMze7uCj
- 6ACbD9HRsMucv+WiYnuuDpC2DSjnIXrbYWIqVTdDWjtO3MWS8j3OCohOn
- 4n7hk1B6iJsivJoqVgOQt0ZZOAD9cQQdmWuJ9iey4epn9IYzhPdlUkJzH
- 0+eTO7bYLQxo/sGrYH47PILPKCJsAMHJ58Bri6YAJuJ8Eoe51ArvAjzGB w==;
-X-CSE-ConnectionGUID: kOv1iV2XSQGcBdTE9ZmONA==
-X-CSE-MsgGUID: S6oODhjPTrqGIzQGY3u+eA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="29367640"
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="29367640"
+ bh=BVG+Z1GeQjGQQKkRWksYWn9KbDU+C4TwQamcPyGETjA=;
+ b=VnulZt9RlKsP7CPRZOaUQxZibXw1mKUFa2OrrArmWQp+6ytHDAYGHSYW
+ TuCLRX/GupdQELibDSUUcu1s4sWWInEemC2pcf93j/pyDE6kmBmmcjnCO
+ buDASGj80rJrUybDAhvLI1x9i3+sHfO4QZ0ipZ1SdQceX9okCsUZn+7d7
+ O24pu0PXmmsIIPBcDp1Iu/WqiGWCB7dKwvShuV2rgHVAwieNH+sWY/iAh
+ i04EOwg8VgdAC8GHY3PIdH8W5Dv86mN2jXrOWwTE8oZ2yJahdKxGFNXHt
+ BxknPBcuAbNi7Wl96RjOcoXy/UU+e3h1tDawAC+xn/p0B0zSCr8ZPWURj Q==;
+X-CSE-ConnectionGUID: Au2b47p+THWrC60yvYIULg==
+X-CSE-MsgGUID: 2EjMRhzKTcqHwbNei7Xbyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="29367635"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="29367635"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 15:07:58 -0700
-X-CSE-ConnectionGUID: r5EYNq9QS1mbHROCq6L53A==
-X-CSE-MsgGUID: k1p2WelARvCPUTvIbNS4WA==
+ 24 Oct 2024 15:07:57 -0700
+X-CSE-ConnectionGUID: 06MNNyafTWi6vTmrJqbmnA==
+X-CSE-MsgGUID: 5JXt5qhQQZ2XbSU1byqu/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="84687967"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="84687961"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 15:07:58 -0700
+ 24 Oct 2024 15:07:57 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 08/11] drm/i915/xe3: Underrun recovery does not exist post
- Xe2
-Date: Thu, 24 Oct 2024 15:07:49 -0700
-Message-Id: <20241024220752.714457-9-clinton.a.taylor@intel.com>
+Subject: [PATCH v3 04/11] drm/i915/ptl: Define IS_PANTHERLAKE macro
+Date: Thu, 24 Oct 2024 15:07:45 -0700
+Message-Id: <20241024220752.714457-5-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241024220752.714457-1-clinton.a.taylor@intel.com>
 References: <20241024220752.714457-1-clinton.a.taylor@intel.com>
@@ -67,34 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-From platforms xe3 Underrun recovery does not exist
+Common display code requires IS_PANTHERLAKE macro.
+Define the macro and set 0 as PTL is no longer support for i915.
 
-v2: improve DISPLAY_VER checking
-
-BSpec: 68849
-Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
-Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_drv.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ef1436146325..c904f529d0c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -861,7 +861,7 @@ static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
- 	 */
- 	if (IS_DG2(dev_priv))
- 		tmp &= ~UNDERRUN_RECOVERY_ENABLE_DG2;
--	else if (DISPLAY_VER(dev_priv) >= 13)
-+	else if ((DISPLAY_VER(dev_priv) >= 13) && (DISPLAY_VER(dev_priv) < 30))
- 		tmp |= UNDERRUN_RECOVERY_DISABLE_ADLP;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index a66e5bb078cf..ca1ab5931e28 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -538,6 +538,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+  */
+ #define IS_LUNARLAKE(i915) (0 && i915)
+ #define IS_BATTLEMAGE(i915)  (0 && i915)
++#define IS_PANTHERLAKE(i915) (0 && i915)
  
- 	/* Wa_14010547955:dg2 */
+ #define IS_ARROWLAKE(i915) \
+ 	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_ARL)
 -- 
 2.25.1
 
