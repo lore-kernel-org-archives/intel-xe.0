@@ -4,164 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03923D10395
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 23:16:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF800D10395
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 23:16:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 743CA10E9A8;
-	Thu, 24 Oct 2024 23:16:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 792C310E9AD;
+	Thu, 24 Oct 2024 23:16:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QB04y1L2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c1xoeVan";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8371110E3D2;
- Thu, 24 Oct 2024 23:16:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0B810E9AD
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Oct 2024 23:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729811773; x=1761347773;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=gLmeHvv+P1eQUjdjXbaBLyUYW6YB4DHvwqpet9L0f/g=;
- b=QB04y1L2hMVQtVSg5X7wsD9q0746JMK520l2gH2Ff/CyGoTQgluMBSfX
- KNU6ZXu57SSpi49xQOE/RWCGT409po0mlJCOuiNShfgfd1ZlpOp0t+7Ec
- uSCJz5QLKruXMOsLtomvhZ5lMykaAGzcQIvsUp+sl1JUFrsvA8WJiEtTj
- nlCQEnZo4Bb6XXj3RbYcrJLXpUc4pCblhWjErk5nCSBZAAbklKP5hXTgg
- tD6a7RmL7qJZoWD+xnozPQ55aErtmEZXaKROj6twjew582ntP9L3I4M5X
- u1pldRwtPkSrNtdUNfPSj4SXdJUiJcaVJscSD4SG/MPANru4YnXSJEm6k A==;
-X-CSE-ConnectionGUID: Gaps6AARR6i25nbyQ24N5w==
-X-CSE-MsgGUID: 0aWbb1zdRe2AekQkdSLV/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="33274186"
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="33274186"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 16:16:13 -0700
-X-CSE-ConnectionGUID: X2vo1drvSbiHzEmIPzaKEA==
-X-CSE-MsgGUID: +BzR1qY4RKOkHa09kmWPjg==
+ t=1729811808; x=1761347808;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Js7yXviismd7zB6PKA5exXkSyJB9F0nKBEqwVeC9MHI=;
+ b=c1xoeVanYsSy5CTNpVJvRd/ofpkceOENQ0w0oZYBzuXFRl3TYunmfEgK
+ HR+NzLweHzVYTyaHK5k4wGxhAYase5ccwcg1EFWi5RkvwiX6WOmTnXOIQ
+ 0l9oK8NEM3Gp9MD+pa+9ROvExy7mJhSEjfgHovgGbcmLo7yaYfjtk1+4v
+ UZJ7Ecx+FV7f8j6a1sW8nYtuGrnka3tSOwAjW1nQ802JIrfKxgNfNXzJb
+ RvSj9Ryi92yYrWEprYl5NxT82FCrBR+PJ1dmkQEj+tdOQF1jxT2kr0enj
+ vsvZWLz/RjKfpsi6cDIl+nGygmoUIOxINm87HXS7PdqvJnGaTRfzMGlaZ Q==;
+X-CSE-ConnectionGUID: QbiWSUbqS9uj1BCP4283IA==
+X-CSE-MsgGUID: OzDyUFnZSqeSSEpG4BF9tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="28924874"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="28924874"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 16:16:48 -0700
+X-CSE-ConnectionGUID: LlaFvssfS02l5CthVni99Q==
+X-CSE-MsgGUID: EiTiybyERNm9Oq2eYvth2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="80650161"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Oct 2024 16:16:13 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="80847810"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 24 Oct 2024 16:16:48 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 24 Oct 2024 16:16:12 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 24 Oct 2024 16:16:47 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 24 Oct 2024 16:16:12 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 24 Oct 2024 16:16:47 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 24 Oct 2024 16:16:11 -0700
+ 15.1.2507.39; Thu, 24 Oct 2024 16:16:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rXk2NArf52Du6UX2TA4j02ndtf+LomYHrwjVYwJDFB9JNuplkEYEwf80DF1OOkX9PKq8Iv45GLcPkDiXh3wHpkY0xoPG8/b40qriOGOV+OA6MsoBma7PnuqUvInTY+S5StShwIDUgPkwfmEH/kmqv8E4Zye8f4acnV56DYo2knmY0aIKesUBAFeyOjxS6OMJjoCZVOsO8HT/3yjm72e4AJMZ/k16eG7K1zwoMLFa04Seh89y9EI6GjMIgN7NZVktJbBlvOskOAYyhwKQd1GZ4hATshhi8ipep27zR43USVN0AascBd22EkS++1mb+YZrR2GuPwrLdUhclVh5iKbA6g==
+ b=TcG8xoLqVgZqzmTlmsZ3WrdrqBz7O8PQ+qgxPcQmEkn2DSXAiGXyJxXqQ1c9O6k2SVEd1VAFik02ttDLkUi+LhaIu47YKvMgFacjHyKOdJ3GHo/Lkhwi8E8JYDpro35EcDZk5fhn7hn2vf3wBR52P6JHb4peqtDGibjdIQVzr6MTOiWze9NmCPXO6pWqsRpQTHzZc7aSRCeh4m4ssxAn7NSOFzYCixUKZ8c9J3Bp+yVDy2HtqXh8H+2UfDVf/Sr9grcadNNiFz49naBtY9JCnLmurnVLqJNxUUWSrRzmDnFD60x7WUoyoYTGh7sZep4WrKHP/JF8jMs+jkUcJRgkeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F02WOFlq05HZr9Ham9MjBtg/7khkGzKmEFn4SOMwX3o=;
- b=G22wRaF7nRgAAZkNu5xZ6eEUKEshHmCndeTZq/5By3Q9m8XqNTnhzkxnfkMZXpk4rrNKPwv74XduJjYcO/GMYbvpO7W6gJ01iTYyaZoNR1hkIiGRXPqwqS0wU9orYPMC9qWy5tRD3S6xescXbg2BIYOE09SWMYPwt6dEVSOPvIhYAW/WnXK05Dxq43c5ye01lmYup/PUmdiH2zGbHJESUFEjq68CC2i6/Gtqxc94eZpJ0g4BtCtuwSe/qMw5+mJ3VsIA3sEGc3EPVp7Gr0GNHmj23SFkkcIRC4BZRk0LoT/c8usoss4ww4NHMwSvNZJN+6/wevF0FApOfcG90gR/ZQ==
+ bh=3Ch/cicukkt8716W64oSe6O04gAf3TCzwOdsjcYSJQY=;
+ b=wpfUICMfhRNML05RcCjy/9ctbTHrzGfnVTsSj4cIVxYTM24Mp/I07D4sH4teQVkfvKtxN0txpU8hWZJ2BKM0dOlRUHlGUvpNjYBxZ57rgWgncobW3B7bEQLCLqhcXEecHodJ/JrVg/jinNG1F9gbxtupgElFPJLmFaf5tOfDeAjRBbVyCkALNYCmc9u+p0r1N8g3OT/SOwgGyCVgJ+dhDgqsWTgUO48cdA2axdPwuq/Vq7TtgBOn4YDPHge/M+eVWEs0Mlgl4z/OXQa7ASe/0ItnfflA+g3Z6XTBrdO8Y+murGsG/LD8ktQzusdB4gu9JzIWKdzvcnk0aHOJADN36w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by PH8PR11MB6706.namprd11.prod.outlook.com (2603:10b6:510:1c5::15)
+Received: from IA1PR11MB7755.namprd11.prod.outlook.com (2603:10b6:208:420::18)
+ by SA1PR11MB6688.namprd11.prod.outlook.com (2603:10b6:806:25b::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.30; Thu, 24 Oct
- 2024 23:16:09 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.8093.018; Thu, 24 Oct 2024
- 23:16:09 +0000
-Date: Thu, 24 Oct 2024 18:15:59 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
- De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-xe-fixes
-Message-ID: <trlkoiewtc4x2cyhsxmj3atayyq4zwto4iryea5pvya2ymc3yp@fdx5nhwmiyem>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-X-ClientProxiedBy: MW3PR05CA0007.namprd05.prod.outlook.com
- (2603:10b6:303:2b::12) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.20; Thu, 24 Oct
+ 2024 23:16:43 +0000
+Received: from IA1PR11MB7755.namprd11.prod.outlook.com
+ ([fe80::8a57:c694:2dfa:e041]) by IA1PR11MB7755.namprd11.prod.outlook.com
+ ([fe80::8a57:c694:2dfa:e041%7]) with mapi id 15.20.8069.027; Thu, 24 Oct 2024
+ 23:16:43 +0000
+Message-ID: <1c4c3c04-6f04-4f7d-aaaa-9f0bf5ecee47@intel.com>
+Date: Thu, 24 Oct 2024 16:16:41 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/xe/pmu: Add GT C6 events
+To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20240927002344.2565250-1-vinay.belgaumkar@intel.com>
+ <20240927002344.2565250-3-vinay.belgaumkar@intel.com>
+ <66bd2fdb-3f25-4177-bf73-fb786643e5d2@intel.com>
+Content-Language: en-US
+From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <66bd2fdb-3f25-4177-bf73-fb786643e5d2@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY5PR17CA0001.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::14) To IA1PR11MB7755.namprd11.prod.outlook.com
+ (2603:10b6:208:420::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|PH8PR11MB6706:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8827c62a-4793-4857-1107-08dcf481d7c1
+X-MS-TrafficTypeDiagnostic: IA1PR11MB7755:EE_|SA1PR11MB6688:EE_
+X-MS-Office365-Filtering-Correlation-Id: e56f7130-ec51-423b-c573-08dcf481ec4f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zqEGoiV7cEn2vax+k3DDFF3GTi2rUZlOy9Yb/DUhqt0J/9fu9XTav6YOh0jf?=
- =?us-ascii?Q?sFpMprIYcMwhiY3ttG8PaL6SW0svpoU3scWQ8p9O4lLyMVs+hrPYSUGeLl7L?=
- =?us-ascii?Q?N0aqzeg36L5gpnNoYc5Ee81rTcAoYC/yPblJXoEiOnms2AROrHjnem8bSiOE?=
- =?us-ascii?Q?ajsL7z6ZOdkbnm1x3+No9Y97E7udM72dDY4zSselq5+ckW8a+KGKBRUY+Y8r?=
- =?us-ascii?Q?kv9+ykhvV8/+tZh1qUiwgyb9rAboReSvhXOMGhK9ICKcwsiXRwxcc031xgiz?=
- =?us-ascii?Q?Beh2NFwzWOWKMt0+goCX6O4+dw8ZmulUxDSP8kTJ3VvjtTtBA2niTv/mlPbq?=
- =?us-ascii?Q?0MyWfSlxEO13enO60a5tzBhj3OMd8ZWo+WXtYtB4MQ9d5A2l1x/7XBOU/khv?=
- =?us-ascii?Q?cF0h4JfbqhW40RziRyZ9WwQbUG/1/C3T90GoI3JKaIAciL1V0Eb9/AUnTgdL?=
- =?us-ascii?Q?KrtyyQBMz65noKF74hm53qYHs463wQ4TJAdlujla064YU8QOAOECliZlc5dq?=
- =?us-ascii?Q?k92tQcp2zkr6cPf9pwWBaq3aVXdRevDM7ZiCZyad0euSbiFPFNjIqhyxfoEY?=
- =?us-ascii?Q?Bbq5faIw20jQmAfcYwJ0p04ion+2SvM3cTlU1a97uiPTpKVjIqrg9+uppB9g?=
- =?us-ascii?Q?bJYXyceC8lkJ3vQR/haIm4P7MO0BH1zAuI8yZGgQ2LVArwVBE5C/FDNgeeOi?=
- =?us-ascii?Q?4gyDgjtM9Nj9+J/w6M42caftZEHm/yv7D8WsKkDBpn76/GQqoJmWt+VpQXe6?=
- =?us-ascii?Q?/PcAPhhWT+Sx4LCccSml6kxIPYsf0f9/+5lr+gnjAFFFLUR4oe5aJuhJ1W3w?=
- =?us-ascii?Q?N/dqboVZA1yboHogy1E9QICNxoXOfvUZQHmTraCVcWSZR3tn7id/lOzS+cTD?=
- =?us-ascii?Q?1H/sUZZk0rvBWOp4IoXOiKx9f1flZ+xwIiWlS4vPRHIlzQOpZCO1M1gPkGSf?=
- =?us-ascii?Q?RVQD6FowxbxmMHUQvZ0v6FH3v1+DLpWViwjt2sY33ipgD2LddvCTlqCtuFhz?=
- =?us-ascii?Q?hwHRJldLdoZpjFhgmufie1HM3kVdYC4wq/l/5QgA/KWkEiQkZC+hbP4dLgZw?=
- =?us-ascii?Q?OBcMQe/2z89f2hY5gQ8oxtKpfAIy/sbm8MwWzI83qHoik8baMyc2XZ1AaqlI?=
- =?us-ascii?Q?n7fIONyWKSD+hcqgvylpU0F/JSEplimESPIiZoe8CHfeQI6KHazr8RJPXAHw?=
- =?us-ascii?Q?8ez5WyDm1pnj71s504XOAkl2EUEo0GLSiz2VoH1y2KKKScoAH2HAvJoAnnPb?=
- =?us-ascii?Q?iqZMTi20LDsnTAXCmkEXtP7AgRIWDdZ0clZG36k30w=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cEIyRGNVLzlwbXVnV2tpNFZWQmlIMGlwWkZMM2g5a1ptR01XQlZnZVFXejh3?=
+ =?utf-8?B?dW0rV1RLZEhJbncvbFVoZnBNYUo4UTRUQ2pxaVU1V09FQWNIZzlBdWV6cVVn?=
+ =?utf-8?B?L2p6bWE0NFZHc1k3ZTAyK2VrWjZiR21WQVFnTmhQbGlwSVNKZnA0T0ZLKzRo?=
+ =?utf-8?B?bE5yektxWTd1S0ZhMlRyVGpHL25HZlBZN2V2eDdUVjNMSmtnZ0FGQlJySmJh?=
+ =?utf-8?B?UHE0VXN4My9yWlVpZjcvRlloR3dUbWVQVmEzSGIrSnNTRDdoTU9rNnQ5YkxE?=
+ =?utf-8?B?aXFEQnR6WHgzVVRTcU5sUnQ0WDYrb3FQeVdVTU82NEpvY2FOdzlOQlZ3bnFu?=
+ =?utf-8?B?LzFuU0FBRkp4ZmJOTXUwVmtnbEdIbnF6OUx0MlpuVHY3SktvMWMrajUxWTZk?=
+ =?utf-8?B?dmpTelYrdnpNZHdweERyNFdscVRiWUFlVHRVMFB3Lys0SUN2cGpGM3UyT2dh?=
+ =?utf-8?B?SkM0QXN6VEtoVkxMeU1VRnNWM1c0M1laMWF3SEdaZWJNc3lrdDlscTFyK2Za?=
+ =?utf-8?B?eFdYdGtVc25DWWw3cXVsUWZxR0lKNXVvS21YblQ2Ui9uRXVRVEd5MEFEbkFp?=
+ =?utf-8?B?K3V1elBPZXVtY0xZL3RPeXpwci91c052eHNBZDdMb09QMnhWYXgwTlVTY24w?=
+ =?utf-8?B?aURzcTlSNHJmNDdyNUtuNWZZc1RWbmJlNmlhVnowUXFSRG9xVTVocDlxemZp?=
+ =?utf-8?B?Tk9uSmFyeXpyNXhWeTFVSWkzNmtKd0Y5dHV5bGw1NUlFTDV1NU9PdG92YjEx?=
+ =?utf-8?B?VGt6WXpJanoybXh3S3dKV2cySDBreENzQmlJd3NsKzc2TVR1ekN2RzFnOHp2?=
+ =?utf-8?B?a08zdzZObFkyUlkrSlVJOEkwTml4ZkdJWFh1KzdoWHcvZXhVeWRHQWtDYkdH?=
+ =?utf-8?B?R0ltQnhzWE9ORVMydHljb3VVUXVlaVNkK0RxbjZiaU9mbThKWmJrclp0R2Fr?=
+ =?utf-8?B?YlNJZkFaWWdpNG5QeGpDTFRYT0Nyc051SjM5T0hpbVhJMU9xNlg2N1h3RE1v?=
+ =?utf-8?B?NHZKOEw1WmU1Y0ZHUTM1bHAxOU1lV2laaTUyQlRxR0tvMU5EOWRCNVlPWkY1?=
+ =?utf-8?B?dlpuNng1RERzVWR0TklhK3lRcWtOV0VRMi80TlM2ZWxyVmd5ZVVNTElQVjda?=
+ =?utf-8?B?WXV1bWV4MklTZW9VZU56cWxKdzk1eG92N1lpS3NLcWJpQnFCV2l2dU55MGxs?=
+ =?utf-8?B?SmR5bTNnbHNmbGtkQXkyVnJsbnNlNTl3TzBWY2ZWdDlLaVY5MWVhOUZHUDY2?=
+ =?utf-8?B?cmFqWDFkUEsxbkVqendFOFdrZlM0T2wwRllzcHAraXI0c2tPaWdlcUpSeFh0?=
+ =?utf-8?B?VWNoWlNuYVVzV2NVeUV1NDZtL1kvbFVkT1FublB5WVJjQ2c3ajd0Tm9EQ2NO?=
+ =?utf-8?B?WG9GenpYNVQybm5GaVpyWWNmL1lRS3ZsbjNrN09zWU5QTWU3M0RmWjhOc2kz?=
+ =?utf-8?B?L0RNSFFMUWdMSkR0QjVKVnhNOEwvWHRsa1p4d3paQ3BLa2owelIrT3hWWUJS?=
+ =?utf-8?B?by83K1RnemFwK2tCZXNScHR4VElVNHJNTDVuaDVJbFRYQ090bHRxK3lVVHIz?=
+ =?utf-8?B?am9sdithQkowSFR1dHE3V0tUME5YTjJNeDduVlJiZkRTNzFUa1JjaUhXVGt5?=
+ =?utf-8?B?SVd6Q1RTbFdEV0VJOFNJWWNBT3ZNWHcwa3RFdlVKYk54dlNDcWRVakV0Zmpi?=
+ =?utf-8?B?YmFZc1lTVEIxcXdJRGlpZWJ5RGJCckViVG9YcitQN214cU1MSlRNNFJ3REpI?=
+ =?utf-8?Q?wCMPnCOKgS8311hBRe0Monx56EJNDv+/SqXDA62?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB7755.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MMOxl7IlJIR8Vuxn9Tldn5FLzRR2J+OrmtyqX8RLFYgZUFtU0f3fut5oMXoM?=
- =?us-ascii?Q?hROXKQBe1qaVVS9kYfOCJeG8z15F6Xtx3XFKQQy2BEoeyKYYdZYY9Rb9g1Mn?=
- =?us-ascii?Q?aTM9lkEyZ1tvWEgnVOkPMdRJGKPKGg7PaDInLMolwXFfkbdOQSX+w7pIiNiO?=
- =?us-ascii?Q?mXNQfXQtRPLP4MNqgFfZFGU39fbLTY+M2Hn04S7ngi6i8psmXtNoN2VisSVp?=
- =?us-ascii?Q?1Ge2lqBPF6xJjuUSRWkh+1S+dqaCJnQvd0Ootw0GfW1NZDkOn6pHM/GoZ/w3?=
- =?us-ascii?Q?WOjul0LwYdVaS3yA4hSZJHCW9ljcP16too2SzVRR6hdKlHSRONPncXNiTU9o?=
- =?us-ascii?Q?4bnvqVBFgU2fC25QZ3Kih+JfZ8W8WsB8Mg1yEXfUL/ZDbgxGFQ2QcvwIbjFv?=
- =?us-ascii?Q?YI33B3mmTVeV3OfPSTps1wpg7kVQhwyuVcF3O5CPj89+3hlABHZlV7ZZItOG?=
- =?us-ascii?Q?FUQfBs52ayVtIx9Eepwedu47NhYOGT9Wmn12f8fI1oGrcGltEeYPBFNmWH3E?=
- =?us-ascii?Q?bsi/dImLCuaicjB+giOzB3lkvXb83cnH6HpcVSpz9Olk5hPVTBEIjdvsB9MA?=
- =?us-ascii?Q?DHLFhOmlcIGuXXZHKcJTpNTdJn6D/otM6l/IM+wKCyJA1FxF4cfzbx5mGHQD?=
- =?us-ascii?Q?Cfr/8dtHiEWaNXaCN+869k6X6lSBdglmXVjbwyem/d3C+RCVKrqsV+ogbqzp?=
- =?us-ascii?Q?hi2p3nT5ezK2mxYJ5c0W9iu4o/KOgv2SfpCdx4U23s32yhIXccezjJBGXobX?=
- =?us-ascii?Q?azLkatFayJWxOF+p0cYT7+cnTHetJ+4V+gE2gpjZG4MBswd/V0psQeZTJD/V?=
- =?us-ascii?Q?ilsGvv6W/qzwaBAGiubcL00pMVnFgD0IrJC+uZbFCzf2kjc0tbee0oC54Ybl?=
- =?us-ascii?Q?mEfBUP23LYu0mt60mF6NtpygKUYgIgpUqLV//e6eQh8JxEmaL0s5xXDzF/nA?=
- =?us-ascii?Q?W3LCmYEKoEQnn4xrPL29m/fLhjCNE8AVt4iXczw+HUAXCy61B16L0h9bZlEu?=
- =?us-ascii?Q?aSa2r9iFv831yxAkRzkRzH95W54WgWBLdUaoR2fpqL2pv4Kpuqgcsto5Be9D?=
- =?us-ascii?Q?CP9T06q/5OvlZDJkExZXmUUSWDJrozEWZ97bofNwbr2+HPnNOfwB5akTsYux?=
- =?us-ascii?Q?gaHE4UumCRREEKLsXWe24CgTBpz/NaeUtlCJB+m0J2r7MsXIWJDSY7FT9DU0?=
- =?us-ascii?Q?jQkak2+3VdkE+LTSphuX9KnDkIkNwRZPRx0mivzKbeSBAKCQ48EPOD7DH22K?=
- =?us-ascii?Q?jTMoulfT6qEhhTRrqrDKe2u4EQX5DJCkCQHMQAfLsDUtmZ9GNQs+8OILGI9p?=
- =?us-ascii?Q?J67ACwHEuRDrXNJ9eOcUeepy4HNvZsAkwWxBEA4+2BGQimzRczPtdx5w57at?=
- =?us-ascii?Q?X2X29RLPJrUm1cYQ6gy0Vp3mV8NsG3HK7e0pXV1mSKdHNQnBj5+IJ1CqdfHk?=
- =?us-ascii?Q?iI2pC5FVA7Esz60B8WpLOM+OFCiWgNNPtb+PbMY9AMmUhYsHewBvQW9etjKf?=
- =?us-ascii?Q?xYOh59l7isogb8m9jxqcA4toWGrUmm6ldhGtg/awkZb3m9uDHTto3+irN3sQ?=
- =?us-ascii?Q?KepR6S+WfjswhsU+SgXz5fCZjPI/bBAMLG7XtkxF/r+7iLZcz2m6XVH8alml?=
- =?us-ascii?Q?tQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8827c62a-4793-4857-1107-08dcf481d7c1
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2UwRmtwOTNDckJETUZGMFlVc2Z3MTdCZS9SYUdsZUNON1EzT1BaeGVxWWFB?=
+ =?utf-8?B?REc2TUFGbnF1dlRiV3U0UlcyWmM5b05CRjQ3SktkMXRqVEg5U01HL0ExSzZV?=
+ =?utf-8?B?bTI3YWh2L3I5TVIyNlVmMXpXVHBsdU4wTGwrcG1jakRNaUdVOWVHTHBxUjZL?=
+ =?utf-8?B?N0pPRDJtSC9QdlJZSXJhaXkxcmRNeHhxSDcxY3B0bWpISXlCbCtIMXhnL3Zz?=
+ =?utf-8?B?dy9NWjJQZzJMRXZDckdHbmFscmJHa1B3UlFJY1dmbXcwTHhpVWZWNlFTUnk5?=
+ =?utf-8?B?S1ZYTkY0YW15SDVYVHBSZWQvdWh1RTVSWCtiSVRsU0F0c0w0U2NQb2RubU1W?=
+ =?utf-8?B?MzlQSmNpeTNrSW5WRm5OL3pQYVFxTnhROUFYYzlEL0c2UkgwQXRtc3B2dVRB?=
+ =?utf-8?B?QVlGVmNTcDRXN20xa1FNREYzMDhoekY2dUwzc1FBY25TR1hiK1Q4T2RTVlQr?=
+ =?utf-8?B?STJ6ZzVLMGhSbkl5ZExMZUtHcGovTWtYVFRuZFlCTFNYb3FMRGpsanhvUmEw?=
+ =?utf-8?B?dUtrdjJZbVVXaUlEWFdCVll3Ritrc0NSaC9zbGkrRkYrODZTS3JBMDBSQ0Mw?=
+ =?utf-8?B?WE1kUjBtTnNSWVFFLzV6ZllFMjcyR0xIR1YrNVViZGhGTUY5RU9qcUFTMElq?=
+ =?utf-8?B?eEpoUTZSMUlFRndTaHNMV0ZaM3F4blpPUXBlR1JBWlNkblMzcm11Mjk4R1Zh?=
+ =?utf-8?B?QnlnalY1VGZmV3RuK2hUaFZZWTRlY3hyUEhBMG9Gc25vNzltQmgrYWNwbXRW?=
+ =?utf-8?B?QTlqUGl2OG16My9JT0kyUm1CMFZ5VFM2YTY5VEo5NWRhY081MElWRHQzWjE5?=
+ =?utf-8?B?c0pMU2U4eUtRZXUzWTRtdTVSdm9scjlRVGs3Z1ZlL0JlOGYzY0pVUmpXWENL?=
+ =?utf-8?B?a0JqZjBiRHJVbHk4aVBZQ3BUYjR2eTErZlUreVAxMnBIWVlnMnpFT3cydktH?=
+ =?utf-8?B?aStJemVuaUtXa1ExRng3MnpkT2txelRYZ0dHcTlYcERRY1NLdms1UEtEbUZP?=
+ =?utf-8?B?SlZCVTZJcXh0b293OWE1RUdFdGZrY25qVkpUbGNTNzVocUVRVFNwTWJKZE8z?=
+ =?utf-8?B?amIzYVVFenhKMTZKNnMreU55M0lrT2N1RTZmVEtEcm5UcHB1a1orYnQyT1JD?=
+ =?utf-8?B?VEQ4THlrVVdSR1psK05TTkdCYUQ5MEp5c2pwY0xUbkNuWGF5bHdwSFh3RzVJ?=
+ =?utf-8?B?YlNPaHhJTXdHV0ZVT01SRmNpd0J3UG5NbkZoZnlNeG1TbzRpaTRFL0gzaFZm?=
+ =?utf-8?B?ZEh6K3RpMXpvTnloQm1nQ01OL2ZtVURqUmJPQkd4NGJaRW92MmJGcUxBYjhM?=
+ =?utf-8?B?MDJuT3BCOE5ncVJ4UlFEVkhEc2IyZlVqblNKZTA0VnN0WmR3bmlCOHhEemwz?=
+ =?utf-8?B?QVZ5Q2d4VUlvczhDeWkycmN0NDFWSzVjUlZxMUJySVZkUWRJQTlad21mVWZq?=
+ =?utf-8?B?ajBrcHl5N3JDTWpLMnY5SWM1aXhmeTd2MlM0dXFuVkRZdEttc2RPWTlJN0x6?=
+ =?utf-8?B?M0wzN2ZieUwxbzI0dWJYUEtGNGcrMFNaRGM1bUt6NjNhSDFTZ2VZejlUdTBM?=
+ =?utf-8?B?blZQenlmMHRFZjdxTUxWRStZSFl3bWlXaGNPd09iSThZSUFHL1pPRUR5dXFB?=
+ =?utf-8?B?YlFLUWt1SWJvUmVmenM1WkY5Umo2UndrOFV1aTE5VkJ6ZlRzQ0g0TC9NR3Na?=
+ =?utf-8?B?bEhQRmUvV3M1OEliVGc3K0tGK3FYNFRhVDNKOFQrb2NZKzdGQjVFeElSUE9t?=
+ =?utf-8?B?SGRtVWl2KzZCdmNJRnBuY3pvWnM0c0l4Ky9meG1Wa3hrM242YTYvVWxhR1Rx?=
+ =?utf-8?B?bHNvVW1XOXhHRnp5WEl3eXBZK0NoR29vT3NjTjZDMit6ckpud2dZRkJHRWZq?=
+ =?utf-8?B?UG54MzVGdmRuSFZoeDZtMWFxNUczR1dmbHJydUpKQURjbTMzRFd3bWtFQm9j?=
+ =?utf-8?B?VExSaVZyd0gxT1YzL2FBZ2JOQ0ZXZXdkWWNjVGt2TXNhQUdTY2FLYTBaNmFm?=
+ =?utf-8?B?MHpuRktxVVpGR3JTbGY1Z0hXNWhVSWQwdFluc0hnOVVkSjlFSWx6MWJmMEdU?=
+ =?utf-8?B?dEFXLzNMNWt0UFZjdUs1RmxvcysxRjJ0QUg3L1g1WXpyblNodmNaZjVVeWQ5?=
+ =?utf-8?B?a1B4VndZWHJDQm9IYkpyTE4xSHN2c2dYSTByc3dWWW9TYWFwUWFyMUdGLzBZ?=
+ =?utf-8?B?MlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e56f7130-ec51-423b-c573-08dcf481ec4f
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7755.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 23:16:09.0164 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 23:16:43.3568 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xo2ku6t7r7fMGElY8Dn3wT8bC8mlmvZ/MrpaquRUxVcxPkUbpDJ/RqBvHkYRa7Y0oTSinQEwCixa3gzavNYl7D39cDj6aglrGBHeKbI85ic=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6706
+X-MS-Exchange-CrossTenant-UserPrincipalName: uvmwBU9HUy9sI74uYuKI22FO0rqVHA9JOjZkQ1DoH1pYMXSxmdCeUX0Kw3p2CA+e/8CBI8omGqqtCTLeldp3ZXblIZIWxy5qkgXOjHdPw1g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6688
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,97 +193,488 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Simona,
 
-drm-xe-fixes for 6.12-rc5 with commits mostly improving error handling.
-The g2h flush helps some LNL we are seeing, but we still have other 2
-similar ones - however they didn't make it in time to drm-xe-next to be
-properly tested, so I'm leaving for later.
+On 9/30/2024 2:35 AM, Riana Tauro wrote:
+> Hi Vinay
+>
+> On 9/27/2024 5:53 AM, Vinay Belgaumkar wrote:
+>> Provide a PMU interface for GT C6 residency counters. The implementation
+>> is ported over from the i915 PMU code. Residency is provided in units of
+>> ms(similar to sysfs entry - 
+>> /sys/class/drm/card0/device/tile0/gt0/gtidle).
+>>
+>> Following PMU events are being added-
+>>
+>>>> perf list | grep rc6
+>>
+>>    xe_0000_00_02.0/rc6-residency-gt0/                 [Kernel PMU event]
+>>    xe_0000_00_02.0/rc6-residency-gt1/                 [Kernel PMU event]
+>>
+>> v2: Checkpatch fix, move timer code to next patch
+>> v3: Fix kunit issue
+>>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_gt.c        |   2 +
+>>   drivers/gpu/drm/xe/xe_gt_idle.c   |  20 ++--
+>>   drivers/gpu/drm/xe/xe_gt_idle.h   |   1 +
+>>   drivers/gpu/drm/xe/xe_pmu.c       | 172 ++++++++++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_pmu.h       |   2 +
+>>   drivers/gpu/drm/xe/xe_pmu_types.h |  58 ++++++++++
+>>   include/uapi/drm/xe_drm.h         |   4 +
+>>   7 files changed, 253 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>> index 9b0218109647..7a190c49c573 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>> @@ -872,6 +872,8 @@ int xe_gt_suspend(struct xe_gt *gt)
+>>         xe_gt_idle_disable_pg(gt);
+>>   +    xe_pmu_suspend(gt);
+>> +
+>>       xe_gt_disable_host_l2_vram(gt);
+>>         XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c 
+>> b/drivers/gpu/drm/xe/xe_gt_idle.c
+>> index 531924b6c0a1..e0a12ac7387c 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+>> @@ -277,18 +277,26 @@ static ssize_t idle_status_show(struct device 
+>> *dev,
+>>   }
+>>   static DEVICE_ATTR_RO(idle_status);
+>>   -static ssize_t idle_residency_ms_show(struct device *dev,
+>> -                      struct device_attribute *attr, char *buff)
+>> +u64 xe_gt_idle_residency(struct xe_gt *gt)
+>>   {
+>> -    struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    struct xe_gt_idle *gtidle = &gt->gtidle;
+>>       struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+>>       u64 residency;
+>>   -    xe_pm_runtime_get(pc_to_xe(pc));
+>> +    xe_pm_runtime_get(xe);
+>>       residency = gtidle->idle_residency(pc);
+>> -    xe_pm_runtime_put(pc_to_xe(pc));
+>> +    xe_pm_runtime_put(xe);
+>> +
+>> +    return get_residency_ms(gtidle, residency);
+>> +}
+>> +
+>> +static ssize_t idle_residency_ms_show(struct device *dev,
+>> +                      struct device_attribute *attr, char *buff)
+>> +{
+>> +    struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+>>   -    return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle, 
+>> residency));
+>> +    return sysfs_emit(buff, "%llu\n", 
+>> xe_gt_idle_residency(gtidle_to_gt(gtidle)));
+>>   }
+>>   static DEVICE_ATTR_RO(idle_residency_ms);
+>>   diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h 
+>> b/drivers/gpu/drm/xe/xe_gt_idle.h
+>> index 4455a6501cb0..887791f653ac 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_idle.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+>> @@ -17,5 +17,6 @@ void xe_gt_idle_disable_c6(struct xe_gt *gt);
+>>   void xe_gt_idle_enable_pg(struct xe_gt *gt);
+>>   void xe_gt_idle_disable_pg(struct xe_gt *gt);
+>>   int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
+>> +u64 xe_gt_idle_residency(struct xe_gt *gt);
+> idle_residency_ms?
+it already calls get_residency_ms. Not sure if we want to duplicate the 
+name? I can add that info in the function doc.
+>>     #endif /* _XE_GT_IDLE_H_ */
+>> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>> index bdaea9ca1065..b1b38d245e00 100644
+>> --- a/drivers/gpu/drm/xe/xe_pmu.c
+>> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+>> @@ -11,10 +11,15 @@
+>>   #include "xe_device.h"
+>>   #include "xe_force_wake.h"
+>>   #include "xe_gt_clock.h"
+>> +#include "xe_gt_idle.h"
+>> +#include "xe_guc_pc.h"
+>>   #include "xe_mmio.h"
+>>   #include "xe_macros.h"
+>> +#include "xe_module.h"
+>>   #include "xe_pm.h"
+>>   +#define FREQUENCY 200
+>> +
+>>   static cpumask_t xe_pmu_cpumask;
+>>   static unsigned int xe_pmu_target_cpu = -1;
+>>   @@ -35,6 +40,11 @@ static unsigned int xe_pmu_target_cpu = -1;
+>>    *
+>>    */
+>>   +static struct xe_pmu *event_to_pmu(struct perf_event *event)
+>> +{
+>> +    return container_of(event->pmu, struct xe_pmu, base);
+>> +}
+>> +
+>>   static unsigned int config_gt_id(const u64 config)
+>>   {
+>>       return config >> __XE_PMU_GT_SHIFT;
+>> @@ -45,6 +55,35 @@ static u64 config_counter(const u64 config)
+>>       return config & ~(~0ULL << __XE_PMU_GT_SHIFT);
+>>   }
+>>   +static unsigned int other_bit(const u64 config)
+>> +{
+>> +    unsigned int val;
+>> +
+>> +    switch (config_counter(config)) {
+>> +    case XE_PMU_RC6_RESIDENCY:
+>> +        val = __XE_PMU_RC6_RESIDENCY_ENABLED;
+>> +        break;
+>> +    default:
+>> +        /*
+>> +         * Events that do not require sampling, or tracking state
+>> +         * transitions between enabled and disabled can be ignored.
+>> +         */
+>> +        return -1;
+>> +    }
+>> +
+>> +    return config_gt_id(config) * __XE_PMU_TRACKED_EVENT_COUNT + val;
+>> +}
+>> +
+>> +static unsigned int config_bit(const u64 config)
+>> +{
+>> +    return other_bit(config);
+>> +}
+>> +
+>> +static unsigned int event_bit(struct perf_event *event)
+>> +{
+>> +    return config_bit(event->attr.config);
+>> +}
+>> +
+>>   static void xe_pmu_event_destroy(struct perf_event *event)
+>>   {
+>>       struct xe_device *xe =
+>> @@ -64,6 +103,10 @@ config_status(struct xe_device *xe, u64 config)
+>>           return -ENOENT;
+>>         switch (config_counter(config)) {
+>> +    case XE_PMU_RC6_RESIDENCY:
+>> +        if (xe->info.skip_guc_pc)
+>> +            return -ENODEV;
+>> +        break;
+>>       default:
+>>           return -ENOENT;
+>>       }
+>> @@ -110,6 +153,63 @@ static int xe_pmu_event_init(struct perf_event 
+>> *event)
+>>       return 0;
+>>   }
+>>   +static inline s64 ktime_since_raw(const ktime_t kt)
+>> +{
+>> +    return ktime_to_ns(ktime_sub(ktime_get_raw(), kt));
+>> +}
+>> +
+>> +static u64 read_sample(struct xe_pmu *pmu, unsigned int gt_id, int 
+>> sample)
+>> +{
+>> +    return pmu->event_sample[gt_id][sample].cur;
+>> +}
+>> +
+>> +static void
+>> +store_sample(struct xe_pmu *pmu, unsigned int gt_id, int sample, u64 
+>> val)
+>> +{
+>> +    pmu->event_sample[gt_id][sample].cur = val;
+>> +}
+>> +
+>> +static u64 get_rc6(struct xe_gt *gt)
+>> +{
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    const unsigned int gt_id = gt->info.id;
+>> +    struct xe_pmu *pmu = &xe->pmu;
+>> +    bool device_awake;
+>> +    unsigned long flags;
+>> +    u64 val;
+>> +
+>> +    device_awake = xe_pm_runtime_get_if_active(xe);
+>> +    if (device_awake) {
+>> +        val = xe_gt_idle_residency(gt);
+>> +        xe_pm_runtime_put(xe);
+>> +    }
+>> +
+>> +    spin_lock_irqsave(&pmu->lock, flags);
+>> +
+>> +    if (device_awake) {
+>> +        store_sample(pmu, gt_id, __XE_SAMPLE_RC6, val);
+>> +    } else {
+>> +        /*
+>> +         * We think we are runtime suspended.
+>> +         *
+>> +         * Report the delta from when the device was suspended to now,
+>> +         * on top of the last known real value, as the approximated RC6
+>> +         * counter value.
+>> +         */
+>> +        val = ktime_since_raw(pmu->sleep_last[gt_id]);
+>> +        val += read_sample(pmu, gt_id, __XE_SAMPLE_RC6);
+>> +    }
+>> +
+>> +    if (val < read_sample(pmu, gt_id, __XE_SAMPLE_RC6_LAST_REPORTED))
+>> +        val = read_sample(pmu, gt_id, __XE_SAMPLE_RC6_LAST_REPORTED);
+>> +    else
+>> +        store_sample(pmu, gt_id, __XE_SAMPLE_RC6_LAST_REPORTED, val);
+>> +
+>> +    spin_unlock_irqrestore(&pmu->lock, flags);
+>> +
+>> +    return val;
+>> +}
+>> +
+>>   static u64 __xe_pmu_event_read(struct perf_event *event)
+>>   {
+>>       struct xe_device *xe =
+>> @@ -120,6 +220,9 @@ static u64 __xe_pmu_event_read(struct perf_event 
+>> *event)
+>>       u64 val = 0;
+>>         switch (config_counter(config)) {
+>> +    case XE_PMU_RC6_RESIDENCY:
+>> +        val = get_rc6(gt);
+>> +        break;
+>>       default:
+>>           drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+>>       }
+>> @@ -151,6 +254,28 @@ static void xe_pmu_event_read(struct perf_event 
+>> *event)
+>>     static void xe_pmu_enable(struct perf_event *event)
+>>   {
+>> +    struct xe_pmu *pmu = event_to_pmu(event);
+>> +    const unsigned int bit = event_bit(event);
+>> +    unsigned long flags;
+>> +
+>> +    if (bit == -1)
+>> +        goto update;
+>> +
+>> +    spin_lock_irqsave(&pmu->lock, flags);
+>> +
+>> +    /*
+>> +     * Update the bitmask of enabled events and increment
+>> +     * the event reference counter.
+>> +     */
+>> +    BUILD_BUG_ON(ARRAY_SIZE(pmu->enable_count) != XE_PMU_MASK_BITS);
+>> +    XE_WARN_ON(bit >= ARRAY_SIZE(pmu->enable_count));
+>> +    XE_WARN_ON(pmu->enable_count[bit] == ~0);
+>> +
+>> +    pmu->enable |= BIT(bit);
+>> +    pmu->enable_count[bit]++;
+>> +
+>> +    spin_unlock_irqrestore(&pmu->lock, flags);
+>> +update:
+>>       /*
+>>        * Store the current counter value so we can report the correct 
+>> delta
+>>        * for all listeners. Even when the event was already enabled 
+>> and has
+>> @@ -277,6 +402,7 @@ create_event_attributes(struct xe_pmu *pmu)
+>>           const char *name;
+>>           const char *unit;
+>>       } events[] = {
+>> +        __event(0, "rc6-residency", "ms"),
+>>       };
+>>         struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
+>> @@ -465,6 +591,32 @@ static void xe_pmu_unregister_cpuhp_state(struct 
+>> xe_pmu *pmu)
+>>       cpuhp_state_remove_instance(cpuhp_slot, &pmu->cpuhp.node);
+>>   }
+>>   +static void store_rc6_residency(struct xe_gt *gt)
+>> +{
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    struct xe_pmu *pmu = &xe->pmu;
+>> +
+>> +    store_sample(pmu, gt->info.id, __XE_SAMPLE_RC6,
+>> +             xe_gt_idle_residency(gt));
+>> +    pmu->sleep_last[gt->info.id] = ktime_get_raw();
+>> +}
+>> +
+>> +/**
+>> + * xe_pmu_suspend() - Save residency count before suspend
+>> + */
+>> +void xe_pmu_suspend(struct xe_gt *gt)
+>> +{
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    struct xe_pmu *pmu = &xe->pmu;
+>> +
+>> +    if (!pmu->base.event_init)
+>> +        return;
+>> +
+>> +    spin_lock_irq(&pmu->lock);
+>> +    store_rc6_residency(gt);
+>> +    spin_unlock_irq(&pmu->lock);
+>> +}
+>> +
+>>   /**
+>>    * xe_pmu_unregister() - Remove/cleanup PMU registration
+>>    */
+>> @@ -492,6 +644,24 @@ void xe_pmu_unregister(void *arg)
+>>       free_event_attributes(pmu);
+>>   }
+>>   +static void init_rc6(struct xe_pmu *pmu)
+>> +{
+>> +    struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
+>> +    struct xe_gt *gt;
+>> +    unsigned int j;
+>> +
+>> +    for_each_gt(gt, xe, j) {
+>> +        xe_pm_runtime_get(xe);
+>> +        u64 val = xe_gt_idle_residency(gt);
+>> +
+>> +        store_sample(pmu, j, __XE_SAMPLE_RC6, val);
+>> +        store_sample(pmu, j, __XE_SAMPLE_RC6_LAST_REPORTED,
+>> +                 val);
+>> +        pmu->sleep_last[j] = ktime_get_raw();
+>> +        xe_pm_runtime_put(xe);
+>> +    }
+>> +}
+>> +
+>>   /**
+>>    * xe_pmu_register() - Define basic PMU properties for Xe and add 
+>> event callbacks.
+>>    *
+>> @@ -525,6 +695,8 @@ void xe_pmu_register(struct xe_pmu *pmu)
+>>       if (!pmu->events_attr_group.attrs)
+>>           goto err_name;
+>>   +    init_rc6(pmu);
+>> +
+>>       pmu->base.attr_groups = kmemdup(attr_groups, sizeof(attr_groups),
+>>                       GFP_KERNEL);
+>>       if (!pmu->base.attr_groups)
+>> diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
+>> index d07e5dfdfec0..17f5a8d7d45c 100644
+>> --- a/drivers/gpu/drm/xe/xe_pmu.h
+>> +++ b/drivers/gpu/drm/xe/xe_pmu.h
+>> @@ -15,11 +15,13 @@ int xe_pmu_init(void);
+>>   void xe_pmu_exit(void);
+>>   void xe_pmu_register(struct xe_pmu *pmu);
+>>   void xe_pmu_unregister(void *arg);
+>> +void xe_pmu_suspend(struct xe_gt *gt);
+>>   #else
+>>   static inline int xe_pmu_init(void) { return 0; }
+>>   static inline void xe_pmu_exit(void) {}
+>>   static inline void xe_pmu_register(struct xe_pmu *pmu) {}
+>>   static inline void xe_pmu_unregister(void *arg) {}
+>> +static inline void xe_pmu_suspend(struct xe_gt *gt) {}
+>>   #endif
+>>     #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h 
+>> b/drivers/gpu/drm/xe/xe_pmu_types.h
+>> index ca0e7cbe2081..1213d2a73492 100644
+>> --- a/drivers/gpu/drm/xe/xe_pmu_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+>> @@ -11,11 +11,34 @@
+>>   #include <uapi/drm/xe_drm.h>
+>>     enum {
+>> +    __XE_SAMPLE_RC6,
+>> +    __XE_SAMPLE_RC6_LAST_REPORTED,
+>>       __XE_NUM_PMU_SAMPLERS
+>>   };
+>>     #define XE_PMU_MAX_GT 2
+>>   +/*
+>> + * Non-engine events that we need to track enabled-disabled 
+>> transition and
+>> + * current state.
+>> + */
+>> +enum xe_pmu_tracked_events {
+>> +    __XE_PMU_RC6_RESIDENCY_ENABLED,
+>> +    __XE_PMU_TRACKED_EVENT_COUNT, /* count marker */
+>> +};
+>> +
+>> +/*
+>> + * How many different events we track in the global PMU mask.
+>> + *
+>> + * It is also used to know to needed number of event reference 
+>> counters.
+>> + */
+>> +#define XE_PMU_MASK_BITS \
+>> +    (XE_PMU_MAX_GT * __XE_PMU_TRACKED_EVENT_COUNT)
+>> +
+>> +struct xe_pmu_sample {
+>> +    u64 cur;
+>> +};
+> Is struct required? Next patch also doesn't add anything under this
+>> +
+>>   struct xe_pmu {
+>>       /**
+>>        * @cpuhp: Struct used for CPU hotplug handling.
+>> @@ -58,6 +81,41 @@ struct xe_pmu {
+>>        * @pmu_attr: Memory block holding device attributes.
+>>        */
+>>       void *pmu_attr;
+>> +
+>> +    /**
+>> +     * @enable: Bitmask of specific enabled events.
+>> +     *
+>> +     * For some events we need to track their state and do some 
+>> internal
+>> +     * house keeping.
+>> +     *
+>> +     * Each engine event sampler type and event listed in enum
+>> +     * i915_pmu_tracked_events gets a bit in this field.
+>> +     *
+>> +     * Low bits are engine samplers and other events continue from 
+>> there.
+>> +     */
+>> +    u32 enable;
+>> +
+>> +    /**
+>> +     * @enable_count: Reference counts for the enabled events.
+> %s/counts/count or counter
+ok.
+>> +     *
+>> +     * Array indices are mapped in the same way as bits in the 
+>> @enable field
+>> +     * and they are used to control sampling on/off when multiple 
+>> clients
+>> +     * are using the PMU API.
+>> +     */
+>> +    unsigned int enable_count[XE_PMU_MASK_BITS];
+>> +    /**
+>> +     * @sample: Current and previous (raw) counters for sampling 
+>> events.
+>> +     *
+>> +     * These counters are updated from the i915 PMU sampling timer.
+>> +     *
+>> +     * Only global counters are held here, while the per-engine ones 
+>> are in
+>> +     * struct intel_engine_cs.
+>> +     */
+>> +    struct xe_pmu_sample 
+>> event_sample[XE_PMU_MAX_GT][__XE_NUM_PMU_SAMPLERS];
+>> +    /**
+>> +     * @sleep_last: Last time GT parked for RC6 estimation.
+>> +     */
+>> +    ktime_t sleep_last[XE_PMU_MAX_GT];
+>>   };
+>>     #endif
+>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>> index 2c5f258eee3a..3ef3926551dd 100644
+>> --- a/include/uapi/drm/xe_drm.h
+>> +++ b/include/uapi/drm/xe_drm.h
+>> @@ -1396,6 +1396,10 @@ struct drm_xe_wait_user_fence {
+>>     #define ___XE_PMU_OTHER(gt, x) \
+>>       (((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
+>> +#define __XE_PMU_OTHER(x) ___XE_PMU_OTHER(0, x)
+>> +
+>> +#define XE_PMU_RC6_RESIDENCY __XE_PMU_OTHER(0)
+>> +#define __XE_PMU_RC6_RESIDENCY(gt) ___XE_PMU_OTHER(gt, 0)
+> Do we need both of this in the uapi file.?
+> We can have only XE_PMU_RC6_RESIDENCY(gt) and use
+>
+> switch (config_counter(config)) {
+>     case XE_PMU_RC6_RESIDENCY(0)
 
-There are 2 conflicts when merging drm-next on top that I fixed
-in drm-tip: the first is trivial, just taking drm-next. The second is
-also trivial, preferring xa_erase() over xa_erase_irq(), but the diff
-context is more scary, so I'm pasting here (with a | prefix so bots
-don't try anything funny):
+I think this was done for backward compatibility in i915 code where we 
+wanted to support single GT systems. I guess we don't need that anymore 
+for Xe driver. In any case, I will be removing this uapi for now based 
+on Lucas's comments.
 
-| remerge CONFLICT (content): Merge conflict in drivers/gpu/drm/xe/xe_guc_ct.c
-| index c6caf8f92421..c260d8840990 100644
-| --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-| +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-| @@ -1019,7 +1019,6 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
-|          ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
-|   
-|          /*
-| -<<<<<<< 3cf59b00bd34 (Merge remote-tracking branch 'drm-xe/drm-xe-fixes' into drm-tip)
-|           * Occasionally it is seen that the G2H worker starts running after a delay of more than
-|           * a second even after being queued and activated by the Linux workqueue subsystem. This
-|           * leads to G2H timeout error. The root cause of issue lies with scheduling latency of
-| @@ -1044,22 +1043,10 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
-|           * correct ordering, and we lack the needed barriers.
-|           */
-|          mutex_lock(&ct->lock);
-| -       if (!ret) {
-| -               xe_gt_err(gt, "Timed out wait for G2H, fence %u, action %04x, done %s",
-| -                         g2h_fence.seqno, action[0], str_yes_no(g2h_fence.done));
-| -               xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
-| -=======
-| -        * Ensure we serialize with completion side to prevent UAF with fence going out of scope on
-| -        * the stack, since we have no clue if it will fire after the timeout before we can erase
-| -        * from the xa. Also we have some dependent loads and stores below for which we need the
-| -        * correct ordering, and we lack the needed barriers.
-| -        */
-| -       mutex_lock(&ct->lock);
-|          if (!ret) {
-|                  xe_gt_err(gt, "Timed out wait for G2H, fence %u, action %04x, done %s",
-|                            g2h_fence.seqno, action[0], str_yes_no(g2h_fence.done));
-|                  xa_erase(&ct->fence_lookup, g2h_fence.seqno);
-| ->>>>>>> c9ff14d0339a (Merge tag 'drm-intel-gt-next-2024-10-23' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-next)
+Thanks,
 
-thanks
-Lucas De Marchi
+Vinay.
 
-drm-xe-fixes-2024-10-24-1:
-Driver Changes:
-- Increase invalidation timeout to avoid errors in some hosts (Shuicheng)
-- Flush worker on timeout (Badal)
-- Better handling for force wake failure (Shuicheng)
-- Improve argument check on user fence creation (Nirmoy)
-- Don't restart parallel queues multiple times on GT reset (Nirmoy)
-The following changes since commit 42f7652d3eb527d03665b09edac47f85fb600924:
-
-   Linux 6.12-rc4 (2024-10-20 15:19:38 -0700)
-
-are available in the Git repository at:
-
-   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-10-24-1
-
-for you to fetch changes up to cdc21021f0351226a4845715564afd5dc50ed44b:
-
-   drm/xe: Don't restart parallel queues multiple times on GT reset (2024-10-24 12:42:52 -0500)
-
-----------------------------------------------------------------
-Driver Changes:
-- Increase invalidation timeout to avoid errors in some hosts (Shuicheng)
-- Flush worker on timeout (Badal)
-- Better handling for force wake failure (Shuicheng)
-- Improve argument check on user fence creation (Nirmoy)
-- Don't restart parallel queues multiple times on GT reset (Nirmoy)
-
-----------------------------------------------------------------
-Badal Nilawar (1):
-       drm/xe/guc/ct: Flush g2h worker in case of g2h response timeout
-
-Nirmoy Das (2):
-       drm/xe/ufence: Prefetch ufence addr to catch bogus address
-       drm/xe: Don't restart parallel queues multiple times on GT reset
-
-Shuicheng Lin (2):
-       drm/xe: Enlarge the invalidation timeout from 150 to 500
-       drm/xe: Handle unreliable MMIO reads during forcewake
-
-  drivers/gpu/drm/xe/xe_device.c     |  2 +-
-  drivers/gpu/drm/xe/xe_force_wake.c | 12 +++++++++---
-  drivers/gpu/drm/xe/xe_guc_ct.c     | 18 ++++++++++++++++++
-  drivers/gpu/drm/xe/xe_guc_submit.c | 14 ++++++++++++--
-  drivers/gpu/drm/xe/xe_sync.c       |  3 ++-
-  5 files changed, 42 insertions(+), 7 deletions(-)
+>
+> Thanks,
+> Riana
+>>     /**
+>>    * enum drm_xe_observation_type - Observation stream types
