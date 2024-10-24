@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E56DD0BB70
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 08:34:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4575BD0BB73
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 08:53:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CD4B10E8B3;
-	Thu, 24 Oct 2024 08:34:21 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0459110E8B3;
- Thu, 24 Oct 2024 08:34:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13A6B10E8B3;
+	Thu, 24 Oct 2024 08:53:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dM8x/wCz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49BA810E246;
+ Thu, 24 Oct 2024 08:52:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729759979; x=1761295979;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=DNf5vyaAy97cBjT+9ncS9FQcr815rIqZqus+axexMjE=;
+ b=dM8x/wCzWjv3ExYtNGZf46WS1zrJwgUNhi+6/O+TkJdeI4uXNKyssM8g
+ YozYN49fpAK18CB7gXnKoCigptcMcsbg7XHHmyGDKnY2R0kuWwqJom7RU
+ dBwyed6valELfQzNxHxGS8C0s6Wx2wEhFuDcyL5xoR93is1CsjiNaMJOz
+ NIA/CkZ2bSxJqh44V4yqeQRhmSN8fCWjH44BaOB4/5/2DguWnZjDpD0/K
+ TIyEQtkl4vqNHeN8MFxAMWtIOcsjuW5OOliLAaJlmn7jfohHXj/VegZOh
+ +8xEsBmS7rvbWVjMSN7jaaIx6ycfyHM27b0ZmTEaexjfDMOKBKLEaKInX A==;
+X-CSE-ConnectionGUID: 9Pz8tHjPRcyG8cFkEMy5Yw==
+X-CSE-MsgGUID: zgsgL1V1Q3GX/jW7YHfwNQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="17005894"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="17005894"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 01:52:59 -0700
+X-CSE-ConnectionGUID: lJ8oE/ByQqCLQwUyO1mlJw==
+X-CSE-MsgGUID: R3VzJx5LTI+C9Y1GJIVkwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80699083"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.216])
+ ([10.245.245.216])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 01:52:57 -0700
+Message-ID: <e5eb5da0-5d8b-42cb-90f1-ab2bbba09d5b@intel.com>
+Date: Thu, 24 Oct 2024 09:52:55 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/guc/tlb=3A_Flush_?=
- =?utf-8?q?g2h_worker_in_case_of_tlb_timeout?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Oct 2024 08:34:20 -0000
-Message-ID: <172975886001.1325975.12800847358223338419@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241023151343.3463640-1-nirmoy.das@intel.com>
-In-Reply-To: <20241023151343.3463640-1-nirmoy.das@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/9] drm/xe: Add xe_ttm_access_memory
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: mika.kuoppala@intel.com, thomas.hellstrom@linux.intel.com
+References: <20241021211835.1675640-1-matthew.brost@intel.com>
+ <20241021211835.1675640-4-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20241021211835.1675640-4-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +68,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/xe/guc/tlb: Flush g2h worker in case of tlb timeout
-URL   : https://patchwork.freedesktop.org/series/140382/
-State : success
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 3d45ea06af2c04db741c142380d97001b3cdb5da
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+On 21/10/2024 22:18, Matthew Brost wrote:
+> Non-contiguous VRAM cannot easily be mapped in TTM nor can non-visible
+> VRAM easily be accessed. Add xe_ttm_access_memory which hooks into
+> ttm_bo_access to access such memory.
+> 
+> v4:
+>   - Assert memory access rather than taking RPM ref (Thomas / Auld)
+>   - Fix warning on xe_res_cursor.h for non-zero offset (Mika)
+> 
+> Reported-by: Christoph Manszewski <christoph.manszewski@intel.com>
+> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
