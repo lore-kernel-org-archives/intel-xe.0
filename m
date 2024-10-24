@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C515D10395
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 212A8D10397
 	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 22:31:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 018D810E9BC;
-	Thu, 24 Oct 2024 22:31:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF02410E9BE;
+	Thu, 24 Oct 2024 22:31:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IHYmWOiK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="McLUVNVx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 534C010E9AA;
- Thu, 24 Oct 2024 22:31:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC5FC10E3C7;
+ Thu, 24 Oct 2024 22:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729809095; x=1761345095;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=wir1OW34CDvY4sYHiQf10SnfJmQ3srInYnvu7N8Izh4=;
- b=IHYmWOiK2zhFKd6gGUPqjRxWFivt8wgQWGyNSf7EGLrGMaJOzo6ym7lM
- 7gOfNiUCe1SgdVmY5r+BSyGVDTvnVRc7oPoojbmYT8iiSZlI0CPLYHSdy
- ZdwMjTTdLfYRIsNLVyewCIHPX6ZpK2JRiob7p/cr5WD93RCeWXqtDRU32
- YVnTAd6BbqPhgtHzXtZ+tuuCLUY+2HOzMow936Si1MHw9U2PbASU5Fvou
- Sk4R+vmG1xdMrUihGikbwamVFKgJJqn+rXh7MZTEzsvcetlp3EMcrtNec
- AA8jz4Lhc7TasSP45vHJral3677EdmkWd54GE9Mx7kCTY/01El+T3aYU1 w==;
-X-CSE-ConnectionGUID: AWs5ySBmQHm6JL15BFthBg==
-X-CSE-MsgGUID: l6CBCWDgSYWTWpfQG5yHJg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="46950814"
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="46950814"
+ bh=jYS9tPDiJ/uzUuOnOVkd7OBPN+Q7K31DPQPpciUuCf8=;
+ b=McLUVNVx52jjclcOXqry5QG1wkur8lZGPITpVyN5vcZJNrY0AApkw14Y
+ 07Xwe2JK4Nag9GxMqKMGJvHNk1Zz6kzTINy8x+p/XcPhglDtHWNZX4dPW
+ EW6vaMxVZBMkwPPZjm0aFeQ88/W1/6AYyZb+Y23WDXdXb/NHGGalC/sV2
+ qmYzKxnWFPXXbK64mzZHIHoH0ScFHiIe3rj89hbLmK0O+ryiaZzMCvgq+
+ CE7PX8EHC74Vstr4qw7xlzUDSZHJJvjhpfCmSmdZ2s8C+9qhsig3cRumk
+ /JC31gyuGNkHyv+Tv8KIxvmrudXY5CYL12pQFVlfWVFHKjMP1SQ6Rxq5t A==;
+X-CSE-ConnectionGUID: DoieeoyVQxW7SGB1CWrY1g==
+X-CSE-MsgGUID: 7gEKQW0fRA6hDjR4foFMgQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="46950806"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="46950806"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Oct 2024 15:31:20 -0700
-X-CSE-ConnectionGUID: oLK0BH45S6qIprkuFlegIg==
-X-CSE-MsgGUID: 0SZjqF6LQzm8VNg2f9jLzw==
+X-CSE-ConnectionGUID: 4/NxTMSBT5qmyw7ZIeppxA==
+X-CSE-MsgGUID: CFAPw3F5Ru2YXlm5Duj4eQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="80838680"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="80838666"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 15:31:20 -0700
+ 24 Oct 2024 15:31:19 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 11/11] drm/i915/xe3lpd: Power request asserting/deasserting
-Date: Thu, 24 Oct 2024 15:31:14 -0700
-Message-Id: <20241024223114.785209-12-clinton.a.taylor@intel.com>
+Subject: [PATCH v4 03/11] drm/i915/xe3lpd: Add check to see if edp over type c
+ is allowed
+Date: Thu, 24 Oct 2024 15:31:06 -0700
+Message-Id: <20241024223114.785209-4-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241024223114.785209-1-clinton.a.taylor@intel.com>
 References: <20241024223114.785209-1-clinton.a.taylor@intel.com>
@@ -66,109 +67,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mika Kahola <mika.kahola@intel.com>
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-There is a HW issue that arises when there are race conditions
-between TCSS entering/exiting TC7 or TC10 states while the
-driver is asserting/deasserting TCSS power request. As a
-workaround, Display driver will implement a mailbox sequence
-to ensure that the TCSS is in TC0 when TCSS power request is
-asserted/deasserted.
+Read PICA register to see if edp over type C is possible and then
+add the appropriate tables for it.
 
-The sequence is the following
+--v2
+-remove bool from intel_encoder have it in runtime_info [Jani]
+-initialize the bool in runtime_info init [Jani]
+-dont abbreviate the bool [Jani]
 
-1. Read mailbox command status and wait until run/busy bit is
-   clear
-2. Write mailbox data value '1' for power request asserting
-   and '0' for power request deasserting
-3. Write mailbox command run/busy bit and command value with 0x1
-4. Read mailbox command and wait until run/busy bit is clear
-   before continuing power request.
+--v3
+-Remove useless display version check [Jani]
+-change the warn on condition [Jani]
+-no need for a different function for edp type c check [Jani]
+-dont add register in i915_reg [Jani]
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Bspec: 68846
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tc.c | 40 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h         |  7 +++++
- 2 files changed, 47 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c        | 3 +++
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h   | 3 +++
+ drivers/gpu/drm/i915/display/intel_display_device.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ drivers/gpu/drm/i915/display/intel_dp.c             | 7 ++++---
+ 5 files changed, 16 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 6f2ee7dbc43b..7d9f87db381c 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1013,6 +1013,39 @@ xelpdp_tc_phy_wait_for_tcss_power(struct intel_tc_port *tc, bool enabled)
- 	return true;
- }
- 
-+static bool xelpdp_tc_phy_wait_for_tcss_ready(struct drm_i915_private *i915,
-+					      bool enable)
-+{
-+	if (DISPLAY_VER(i915) < 30)
-+		return true;
-+
-+	/* check if mailbox is running busy */
-+	if (intel_de_wait_for_clear(i915, TCSS_DISP_MAILBOX_IN_CMD,
-+				    TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY, 10)) {
-+		drm_dbg_kms(&i915->drm,
-+			    "timeout waiting for TCSS mailbox run/busy bit to clear\n");
-+		return false;
-+	}
-+
-+	if (enable)
-+		intel_de_write(i915, TCSS_DISP_MAILBOX_IN_DATA, 1);
-+	else
-+		intel_de_write(i915, TCSS_DISP_MAILBOX_IN_DATA, 0);
-+
-+	intel_de_write(i915, TCSS_DISP_MAILBOX_IN_CMD,
-+		       TCSS_DISP_MAILBOX_IN_CMD_DATA(1));
-+
-+	/* wait to clear mailbox running busy bit before continuing */
-+	if (intel_de_wait_for_clear(i915, TCSS_DISP_MAILBOX_IN_CMD,
-+				    TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY, 10)) {
-+		drm_dbg_kms(&i915->drm,
-+			    "timeout waiting for TCSS mailbox run/busy bit to clear\n");
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
- static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool enable)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 8bd5a4d1b735..d05daa7a2b03 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2257,9 +2257,12 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 			 struct intel_encoder *encoder)
  {
- 	struct drm_i915_private *i915 = tc_to_i915(tc);
-@@ -1022,6 +1055,13 @@ static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool ena
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(crtc_state);
  
- 	assert_tc_cold_blocked(tc);
+ 	if (intel_crtc_has_dp_encoder(crtc_state)) {
+ 		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
++			if (DISPLAY_RUNTIME_INFO(display)->edp_typec_support)
++				return xe3lpd_c20_dp_edp_tables;
+ 			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
+ 				return xe2hpd_c20_edp_tables;
+ 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index ab3ae110b68f..e8ebb12155a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -363,4 +363,7 @@
+ #define HDMI_DIV_MASK		REG_GENMASK16(2, 0)
+ #define HDMI_DIV(val)		REG_FIELD_PREP16(HDMI_DIV_MASK, val)
  
-+	/*
-+	 * Gfx driver workaround for PTL tcss_rxdetect_clkswb_req/ack handshake
-+	 * violation when pwwreq= 0->1 during TC7/10 entry
-+	 */
-+	drm_WARN_ON(&i915->drm,
-+		    !xelpdp_tc_phy_wait_for_tcss_ready(i915, enable));
++#define PICA_PHY_CONFIG_CONTROL		_MMIO(0x16FE68)
++#define   EDP_ON_TYPEC			REG_BIT(31)
 +
- 	val = intel_de_read(i915, reg);
- 	if (enable)
- 		val |= XELPDP_TCSS_POWER_REQUEST;
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 8d758947f301..452325c7f427 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4539,6 +4539,13 @@ enum skl_power_gate {
- #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT	REG_BIT(1)
- #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT	REG_BIT(0)
+ #endif /* __INTEL_CX0_REG_DEFS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index aa22189e3853..949838308ec9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -9,6 +9,7 @@
  
-+#define TCSS_DISP_MAILBOX_IN_CMD		_MMIO(0x161300)
-+#define   TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY	REG_BIT(31)
-+#define   TCSS_DISP_MAILBOX_IN_CMD_CMD_MASK	REG_GENMASK(7, 0)
-+#define   TCSS_DISP_MAILBOX_IN_CMD_DATA(x)	TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY | \
-+						REG_FIELD_PREP(TCSS_DISP_MAILBOX_IN_CMD_CMD_MASK, (x))
-+#define TCSS_DISP_MAILBOX_IN_DATA		_MMIO(0x161304)
+ #include "i915_drv.h"
+ #include "i915_reg.h"
++#include "intel_cx0_phy_regs.h"
+ #include "intel_de.h"
+ #include "intel_display.h"
+ #include "intel_display_device.h"
+@@ -1685,6 +1686,10 @@ static void __intel_display_device_info_runtime_init(struct drm_i915_private *i9
+ 		}
+ 	}
+ 
++	if (DISPLAY_VER(i915) >= 30)
++		display_runtime->edp_typec_support =
++			intel_de_read(display, PICA_PHY_CONFIG_CONTROL) & EDP_ON_TYPEC;
 +
- #define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
- #define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
- #define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
+ 	display_runtime->rawclk_freq = intel_read_rawclk(display);
+ 	drm_dbg_kms(&i915->drm, "rawclk rate: %d kHz\n", display_runtime->rawclk_freq);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 071a36b51f79..410f8b33a8a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -232,6 +232,7 @@ struct intel_display_runtime_info {
+ 	bool has_hdcp;
+ 	bool has_dmc;
+ 	bool has_dsc;
++	bool edp_typec_support;
+ };
+ 
+ struct intel_display_device_info {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 7e29619ba040..9f015b530289 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6441,10 +6441,11 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 
+ 	if (_intel_dp_is_port_edp(dev_priv, intel_encoder->devdata, port)) {
+ 		/*
+-		 * Currently we don't support eDP on TypeC ports, although in
+-		 * theory it could work on TypeC legacy ports.
++		 * Currently we don't support eDP on TypeC ports for DISPLAY_VER < 30,
++		 * although in theory it could work on TypeC legacy ports.
+ 		 */
+-		drm_WARN_ON(dev, intel_encoder_is_tc(intel_encoder));
++		drm_WARN_ON(dev, intel_encoder_is_tc(intel_encoder) &&
++			    DISPLAY_VER(dev_priv) < 30);
+ 		type = DRM_MODE_CONNECTOR_eDP;
+ 		intel_encoder->type = INTEL_OUTPUT_EDP;
+ 
 -- 
 2.25.1
 
