@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FF33D0BB6B
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 07:50:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79F96D0BB6A
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 07:53:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3945310E8CA;
-	Thu, 24 Oct 2024 07:50:50 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF6010E8CA;
- Thu, 24 Oct 2024 07:50:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3591278800417404795=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24E7D10E8CA;
+	Thu, 24 Oct 2024 07:53:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKT1mdyx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 068C310E8CA;
+ Thu, 24 Oct 2024 07:53:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729756406; x=1761292406;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=vTR/z9BcUAT3VxLFbbZPQzWa9IVKBORmnnBMh89ROnU=;
+ b=UKT1mdyxCzFHfkyYI5rb9A1kCb1Wn9C2G6heErJ+pGRbG6SocKM60eWx
+ /tiYzyQycbQLN6AE1aghCrfbuzoqHRQXldIn+STwcHVXsLkbTwptt4ffh
+ UOii5lS3nAJ9njUXiyBpzCeUSHOuH6/4zmnzi8WZn4g4T1F76QlC1+E+X
+ 0EBZxBcU50iq7McQ6SXVQL0/4ED1GokBRjj+DVgtCtDNk3OoS3OMmBlaw
+ SkZTbYjObrGbMSYhmRc19Ggg09Hp+978aHqKrq1GQvGSNx4V7G8UpEoBQ
+ NVlajf+WgE/D1LpNcVztQw9daXKsPlr9QqOH+o5xdthPVPLP4H3UGQWN4 A==;
+X-CSE-ConnectionGUID: CFAoeyEqTra3CprlznLkFA==
+X-CSE-MsgGUID: OWMhu3rESYmodbiCMmVhEA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="29270632"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="29270632"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 00:53:25 -0700
+X-CSE-ConnectionGUID: 0lLHbDrnQ9KHDHsCweoesw==
+X-CSE-MsgGUID: S7AEVMjAQRObk+BjmCEdTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80934902"
+Received: from mkuoppal-desk.fi.intel.com (HELO localhost) ([10.237.72.193])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 00:53:23 -0700
+From: Mika Kuoppala <mika.kuoppala@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ matthew.auld@intel.com, thomas.hellstrom@linux.intel.com
+Subject: Re: [PATCH v5 2/9] drm/ttm: Add ttm_bo_access
+In-Reply-To: <Zxl6ExJzU0QO2lht@DUT025-TGLU.fm.intel.com>
+References: <20241021211835.1675640-1-matthew.brost@intel.com>
+ <20241021211835.1675640-3-matthew.brost@intel.com>
+ <87bjzcze9v.fsf@mkuoppal-desk> <Zxl6ExJzU0QO2lht@DUT025-TGLU.fm.intel.com>
+Date: Thu, 24 Oct 2024 10:42:41 +0300
+Message-ID: <878queymj2.fsf@mkuoppal-desk>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/i915/xe2lpd=3A_Update_C20_HD?=
- =?utf-8?q?MI_TMDS_algorithm_to_include_tx=5Fmisc_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Oct 2024 07:50:49 -0000
-Message-ID: <172975624957.1325996.3782327579396177365@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241023153352.144146-1-gustavo.sousa@intel.com>
-In-Reply-To: <20241023153352.144146-1-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,300 +66,242 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3591278800417404795==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Matthew Brost <matthew.brost@intel.com> writes:
 
-== Series Details ==
+> On Tue, Oct 22, 2024 at 12:18:52PM +0300, Mika Kuoppala wrote:
+>> Matthew Brost <matthew.brost@intel.com> writes:
+>>=20
+>> > Non-contiguous VRAM cannot easily be mapped in TTM nor can non-visible
+>> > VRAM easily be accessed. Add ttm_bo_access, which is similar to
+>> > ttm_bo_vm_access, to access such memory.
+>> >
+>> > v4:
+>> >  - Fix checkpatch warnings (CI)
+>> > v5:
+>> >  - Fix checkpatch warnings (CI)
+>> >
+>> > Reported-by: Christoph Manszewski <christoph.manszewski@intel.com>
+>> > Suggested-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>=20
+>> With the igt/xe_eudebug* coverage,
+>>=20
+>> Tested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>
+> Thanks! Is this for the series or just this patch?
+>
 
-Series: drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to include tx_misc (rev2)
-URL   : https://patchwork.freedesktop.org/series/140135/
-State : failure
+Whole series applied but the coverage tested only
+ttm_bo_access().
+-Mika
 
-== Summary ==
-
-CI Bug Log - changes from xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52_BAT -> xe-pw-140135v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-140135v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-140135v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-140135v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_fault_mode@twice-invalid-fault:
-    - bat-lnl-1:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-1/igt@xe_exec_fault_mode@twice-invalid-fault.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-1/igt@xe_exec_fault_mode@twice-invalid-fault.html
-    - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-bmg-1/igt@xe_exec_fault_mode@twice-invalid-fault.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-bmg-1/igt@xe_exec_fault_mode@twice-invalid-fault.html
-
-  * igt@xe_exec_fault_mode@twice-invalid-userptr-fault:
-    - bat-lnl-2:          [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html
-
-  * igt@xe_exec_reset@cm-close-fd-no-exec:
-    - bat-adlp-vf:        [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-vf/igt@xe_exec_reset@cm-close-fd-no-exec.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-vf/igt@xe_exec_reset@cm-close-fd-no-exec.html
-    - bat-pvc-2:          [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-pvc-2/igt@xe_exec_reset@cm-close-fd-no-exec.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-pvc-2/igt@xe_exec_reset@cm-close-fd-no-exec.html
-    - bat-bmg-2:          [PASS][11] -> [DMESG-WARN][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-bmg-2/igt@xe_exec_reset@cm-close-fd-no-exec.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-bmg-2/igt@xe_exec_reset@cm-close-fd-no-exec.html
-    - bat-adlp-7:         [PASS][13] -> [DMESG-WARN][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@xe_exec_reset@cm-close-fd-no-exec.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-7/igt@xe_exec_reset@cm-close-fd-no-exec.html
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-pvc-2:          [PASS][15] -> [SKIP][16] +2 other tests skip
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-pvc-2/igt@xe_live_ktest@xe_bo.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-pvc-2/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-2:          [PASS][17] -> [SKIP][18] +2 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-#### Warnings ####
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-lnl-1:          [SKIP][19] ([Intel XE#599]) -> [SKIP][20]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-1/igt@kms_dsc@dsc-basic.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-1/igt@kms_dsc@dsc-basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140135v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [PASS][21] -> [SKIP][22] ([Intel XE#1192]) +2 other tests skip
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][23] -> [INCOMPLETE][24] ([Intel XE#2874]) +1 other test incomplete
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-7:         [PASS][25] -> [SKIP][26] ([Intel XE#1192]) +2 other tests skip
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html
-    - bat-atsm-2:         [PASS][27] -> [SKIP][28] ([Intel XE#1192]) +2 other tests skip
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][29] ([Intel XE#1861]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
-    - bat-lnl-2:          [FAIL][31] ([Intel XE#2754]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#599]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/599
-
-
-Build changes
--------------
-
-  * IGT: IGT_8081 -> IGT_8082
-  * Linux: xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52 -> xe-pw-140135v2
-
-  IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52: beaeaccd284ba3b69b6dbfdc18bb89441fc99a52
-  xe-pw-140135v2: 140135v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/index.html
-
---===============3591278800417404795==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to include tx_misc (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140135/">https://patchwork.freedesktop.org/series/140135/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52_BAT -&gt; xe-pw-140135v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-140135v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-140135v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-140135v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-invalid-fault:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-1/igt@xe_exec_fault_mode@twice-invalid-fault.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-1/igt@xe_exec_fault_mode@twice-invalid-fault.html">DMESG-WARN</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-bmg-1/igt@xe_exec_fault_mode@twice-invalid-fault.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-bmg-1/igt@xe_exec_fault_mode@twice-invalid-fault.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-invalid-userptr-fault:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_reset@cm-close-fd-no-exec:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-vf/igt@xe_exec_reset@cm-close-fd-no-exec.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-vf/igt@xe_exec_reset@cm-close-fd-no-exec.html">DMESG-WARN</a></li>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-pvc-2/igt@xe_exec_reset@cm-close-fd-no-exec.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-pvc-2/igt@xe_exec_reset@cm-close-fd-no-exec.html">DMESG-WARN</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-bmg-2/igt@xe_exec_reset@cm-close-fd-no-exec.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-bmg-2/igt@xe_exec_reset@cm-close-fd-no-exec.html">DMESG-WARN</a></li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@xe_exec_reset@cm-close-fd-no-exec.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-7/igt@xe_exec_reset@cm-close-fd-no-exec.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-pvc-2/igt@xe_live_ktest@xe_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-pvc-2/igt@xe_live_ktest@xe_bo.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-bmg-2/igt@xe_live_ktest@xe_dma_buf.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_dsc@dsc-basic:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/599">Intel XE#599</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-1/igt@kms_dsc@dsc-basic.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140135v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
-<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8081 -&gt; IGT_8082</li>
-<li>Linux: xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52 -&gt; xe-pw-140135v2</li>
-</ul>
-<p>IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2107-beaeaccd284ba3b69b6dbfdc18bb89441fc99a52: beaeaccd284ba3b69b6dbfdc18bb89441fc99a52<br />
-  xe-pw-140135v2: 140135v2</p>
-
-</body>
-</html>
-
---===============3591278800417404795==--
+> Matt
+>
+>>=20
+>> > ---
+>> >  drivers/gpu/drm/ttm/ttm_bo_util.c | 86 +++++++++++++++++++++++++++++++
+>> >  drivers/gpu/drm/ttm/ttm_bo_vm.c   | 65 +----------------------
+>> >  include/drm/ttm/ttm_bo.h          |  2 +
+>> >  3 files changed, 89 insertions(+), 64 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/t=
+tm_bo_util.c
+>> > index d939925efa81..41bb5a7477d3 100644
+>> > --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+>> > +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+>> > @@ -919,3 +919,89 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *w=
+alk, struct ttm_device *bdev,
+>> >=20=20
+>> >  	return progress;
+>> >  }
+>> > +
+>> > +static int ttm_bo_access_kmap(struct ttm_buffer_object *bo,
+>> > +			      unsigned long offset,
+>> > +			      void *buf, int len, int write)
+>> > +{
+>> > +	unsigned long page =3D offset >> PAGE_SHIFT;
+>> > +	unsigned long bytes_left =3D len;
+>> > +	int ret;
+>> > +
+>> > +	/* Copy a page at a time, that way no extra virtual address
+>> > +	 * mapping is needed
+>> > +	 */
+>> > +	offset -=3D page << PAGE_SHIFT;
+>> > +	do {
+>> > +		unsigned long bytes =3D min(bytes_left, PAGE_SIZE - offset);
+>> > +		struct ttm_bo_kmap_obj map;
+>> > +		void *ptr;
+>> > +		bool is_iomem;
+>> > +
+>> > +		ret =3D ttm_bo_kmap(bo, page, 1, &map);
+>> > +		if (ret)
+>> > +			return ret;
+>> > +
+>> > +		ptr =3D (void *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
+>> > +		WARN_ON_ONCE(is_iomem);
+>> > +		if (write)
+>> > +			memcpy(ptr, buf, bytes);
+>> > +		else
+>> > +			memcpy(buf, ptr, bytes);
+>> > +		ttm_bo_kunmap(&map);
+>> > +
+>> > +		page++;
+>> > +		buf +=3D bytes;
+>> > +		bytes_left -=3D bytes;
+>> > +		offset =3D 0;
+>> > +	} while (bytes_left);
+>> > +
+>> > +	return len;
+>> > +}
+>> > +
+>> > +/**
+>> > + * ttm_bo_access - Helper to access a buffer object
+>> > + *
+>> > + * @bo: ttm buffer object
+>> > + * @offset: access offset into buffer object
+>> > + * @buf: pointer to caller memory to read into or write from
+>> > + * @len: length of access
+>> > + * @write: write access
+>> > + *
+>> > + * Utility function to access a buffer object. Useful when buffer obj=
+ect cannot
+>> > + * be easily mapped (non-contiguous, non-visible, etc...).
+>> > + *
+>> > + * Returns:
+>> > + * 0 if successful, negative error code on failure.
+>> > + */
+>> > +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
+>> > +		  void *buf, int len, int write)
+>> > +{
+>> > +	int ret;
+>> > +
+>> > +	if (len < 1 || (offset + len) > bo->base.size)
+>> > +		return -EIO;
+>> > +
+>> > +	ret =3D ttm_bo_reserve(bo, true, false, NULL);
+>> > +	if (ret)
+>> > +		return ret;
+>> > +
+>> > +	switch (bo->resource->mem_type) {
+>> > +	case TTM_PL_SYSTEM:
+>> > +		fallthrough;
+>> > +	case TTM_PL_TT:
+>> > +		ret =3D ttm_bo_access_kmap(bo, offset, buf, len, write);
+>> > +		break;
+>> > +	default:
+>> > +		if (bo->bdev->funcs->access_memory)
+>> > +			ret =3D bo->bdev->funcs->access_memory
+>> > +				(bo, offset, buf, len, write);
+>> > +		else
+>> > +			ret =3D -EIO;
+>> > +	}
+>> > +
+>> > +	ttm_bo_unreserve(bo);
+>> > +
+>> > +	return ret;
+>> > +}
+>> > +EXPORT_SYMBOL(ttm_bo_access);
+>> > diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm=
+_bo_vm.c
+>> > index 2c699ed1963a..20b1e5f78684 100644
+>> > --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>> > +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>> > @@ -366,45 +366,6 @@ void ttm_bo_vm_close(struct vm_area_struct *vma)
+>> >  }
+>> >  EXPORT_SYMBOL(ttm_bo_vm_close);
+>> >=20=20
+>> > -static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
+>> > -				 unsigned long offset,
+>> > -				 uint8_t *buf, int len, int write)
+>> > -{
+>> > -	unsigned long page =3D offset >> PAGE_SHIFT;
+>> > -	unsigned long bytes_left =3D len;
+>> > -	int ret;
+>> > -
+>> > -	/* Copy a page at a time, that way no extra virtual address
+>> > -	 * mapping is needed
+>> > -	 */
+>> > -	offset -=3D page << PAGE_SHIFT;
+>> > -	do {
+>> > -		unsigned long bytes =3D min(bytes_left, PAGE_SIZE - offset);
+>> > -		struct ttm_bo_kmap_obj map;
+>> > -		void *ptr;
+>> > -		bool is_iomem;
+>> > -
+>> > -		ret =3D ttm_bo_kmap(bo, page, 1, &map);
+>> > -		if (ret)
+>> > -			return ret;
+>> > -
+>> > -		ptr =3D (uint8_t *)ttm_kmap_obj_virtual(&map, &is_iomem) + offset;
+>> > -		WARN_ON_ONCE(is_iomem);
+>> > -		if (write)
+>> > -			memcpy(ptr, buf, bytes);
+>> > -		else
+>> > -			memcpy(buf, ptr, bytes);
+>> > -		ttm_bo_kunmap(&map);
+>> > -
+>> > -		page++;
+>> > -		buf +=3D bytes;
+>> > -		bytes_left -=3D bytes;
+>> > -		offset =3D 0;
+>> > -	} while (bytes_left);
+>> > -
+>> > -	return len;
+>> > -}
+>> > -
+>> >  int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+>> >  		     void *buf, int len, int write)
+>> >  {
+>> > @@ -412,32 +373,8 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, =
+unsigned long addr,
+>> >  	unsigned long offset =3D (addr) - vma->vm_start +
+>> >  		((vma->vm_pgoff - drm_vma_node_start(&bo->base.vma_node))
+>> >  		 << PAGE_SHIFT);
+>> > -	int ret;
+>> > -
+>> > -	if (len < 1 || (offset + len) > bo->base.size)
+>> > -		return -EIO;
+>> >=20=20
+>> > -	ret =3D ttm_bo_reserve(bo, true, false, NULL);
+>> > -	if (ret)
+>> > -		return ret;
+>> > -
+>> > -	switch (bo->resource->mem_type) {
+>> > -	case TTM_PL_SYSTEM:
+>> > -		fallthrough;
+>> > -	case TTM_PL_TT:
+>> > -		ret =3D ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
+>> > -		break;
+>> > -	default:
+>> > -		if (bo->bdev->funcs->access_memory)
+>> > -			ret =3D bo->bdev->funcs->access_memory(
+>> > -				bo, offset, buf, len, write);
+>> > -		else
+>> > -			ret =3D -EIO;
+>> > -	}
+>> > -
+>> > -	ttm_bo_unreserve(bo);
+>> > -
+>> > -	return ret;
+>> > +	return ttm_bo_access(bo, offset, buf, len, write);
+>> >  }
+>> >  EXPORT_SYMBOL(ttm_bo_vm_access);
+>> >=20=20
+>> > diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+>> > index 5804408815be..8ea11cd8df39 100644
+>> > --- a/include/drm/ttm/ttm_bo.h
+>> > +++ b/include/drm/ttm/ttm_bo.h
+>> > @@ -421,6 +421,8 @@ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+>> >  int ttm_bo_evict_first(struct ttm_device *bdev,
+>> >  		       struct ttm_resource_manager *man,
+>> >  		       struct ttm_operation_ctx *ctx);
+>> > +int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
+>> > +		  void *buf, int len, int write);
+>> >  vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+>> >  			     struct vm_fault *vmf);
+>> >  vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+>> > --=20
+>> > 2.34.1
