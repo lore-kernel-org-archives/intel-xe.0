@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26CBCCE8E8B
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 15:30:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 689F9CE8E8B
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 15:30:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E848110E969;
-	Thu, 24 Oct 2024 15:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1CD10E972;
+	Thu, 24 Oct 2024 15:30:19 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1A710E969;
- Thu, 24 Oct 2024 15:30:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4BAD10E969;
+ Thu, 24 Oct 2024 15:30:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Add_support_fo?=
- =?utf-8?q?r_VF_scheduling_priority?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_PF=3A_Add_support_for_VF_?=
+ =?utf-8?q?scheduling_priority?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Oct 2024 15:30:04 -0000
-Message-ID: <172978380424.1327227.15637222819225723362@2413ebb6fbb6>
+Date: Thu, 24 Oct 2024 15:30:17 -0000
+Message-ID: <172978381773.1328167.16401304275719231294@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241023231152.1815-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20241023231152.1815-1-michal.wajdeczko@intel.com>
@@ -48,13 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 121cd95da591 drm-tip: 2024y-10m-24d-10h-20m-50s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Add VF_CFG_SCHED_PRIORITY_KEY KLV definition
-Applying: drm/xe/guc: Add VF_CFG_SCHED_PRIORITY to KLV helper
-Applying: drm/xe/pf: Add functions to configure VF scheduling priority
-Applying: drm/xe/pf: Allow to control scheduling priority using debugfs
-Applying: drm/xe/pf: Adjust scheduling priority based on policy change
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b4176057ba8649ed10a2aa760e9062f533738cd9
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Thu Oct 24 01:11:52 2024 +0200
+
+    drm/xe/pf: Adjust scheduling priority based on policy change
+    
+    Local values of scheduling priorities need to be adjusted when
+    changing the schedule_if_idle policy as those are related.
+    
+    Disabling schedule_if_idle policy forces the low priority, and
+    enabling schedule_if_idle policy forces the normal priority.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 121cd95da591284c97d6f9ac1c58c7a79d27b201 drm-intel
+7646a661383d drm/xe/guc: Add VF_CFG_SCHED_PRIORITY_KEY KLV definition
+741eacad4bbc drm/xe/guc: Add VF_CFG_SCHED_PRIORITY to KLV helper
+3c20533ba44b drm/xe/pf: Add functions to configure VF scheduling priority
+aea65ce2be00 drm/xe/pf: Allow to control scheduling priority using debugfs
+b4176057ba86 drm/xe/pf: Adjust scheduling priority based on policy change
 
 
