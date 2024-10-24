@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A87CCE8E96
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 17:11:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADE5CCE8E97
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 17:12:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C4F10E964;
-	Thu, 24 Oct 2024 17:11:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fH218Ou+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F09610E950;
- Thu, 24 Oct 2024 17:11:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729789879; x=1761325879;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=qlE1lDNvniULw/FfAym+urRK+yUTg9WmTkmLwlQLnlM=;
- b=fH218Ou+XwFdK+DqWDyfYvi0fL9I7d0Uq5ewCtUePgEWGKIwJLEaODgo
- bVuqDRObz8a2enrCXHeIyyzIni/bOg4gba7ffxYQHWEc2cUvW4CT2wgkg
- 4csMOWe/x2E3hjA5Kc4HKEDn46kHczRaHu0EFf/bBdjn7eUjMcYasNB0i
- C24/ie8D5uKYlJYLqDVggMvm8r2Fp9VUmOdmSLmQE5Ffx8H6kk29AchWv
- Vr5ZZxNLnu39UXcydiH1Kc7MTb2af0fpZ0HKwG4tYKicUybUfroGpOKBX
- 8aLi9NNiJQj5RXkPMWsGecUsHBOJ5X5+/P1HwVZwSjQV9zT+O003GOQfr g==;
-X-CSE-ConnectionGUID: i+SYNr1vRHOazwuccruKtg==
-X-CSE-MsgGUID: 16+9nRz5SliOEZ1wyrYtow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="40025289"
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="40025289"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 10:11:18 -0700
-X-CSE-ConnectionGUID: LzK/WFy5S/+Dm8j8MC5Jcw==
-X-CSE-MsgGUID: FlVRNYEtTWyttzcKJPQsEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="111456579"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 10:11:09 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/display: use x100 version for full version and
- release
-Date: Thu, 24 Oct 2024 20:11:04 +0300
-Message-Id: <20241024171104.2427750-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CECE10E97C;
+	Thu, 24 Oct 2024 17:12:45 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 780A610E98D;
+ Thu, 24 Oct 2024 17:12:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7680663630630843635=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_mm/migrate=3A_Add_migrate=5Fdevi?=
+ =?utf-8?q?ce=5Fpfns?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Oct 2024 17:12:44 -0000
+Message-ID: <172978996448.1327227.13521640401325453759@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241023233944.1798835-1-matthew.brost@intel.com>
+In-Reply-To: <20241023233944.1798835-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,310 +36,272 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use x100, or ver * 100 + rel, versions for full IP version checks,
-similar to what xe driver does:
+--===============7680663630630843635==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-- Replace IP_VER(14, 1) inline with 1401, etc.
+== Series Details ==
 
-- Convert DISPLAY_VER_FULL() to DISPLAY_VERx100()
+Series: mm/migrate: Add migrate_device_pfns
+URL   : https://patchwork.freedesktop.org/series/140403/
+State : failure
 
-- Convert IS_DISPLAY_VER_FULL() to IS_DISPLAY_VERx100()
+== Summary ==
 
-- Convert IS_DISPLAY_VER_STEP() to IS_DISPLAY_VERx100_STEP()
+CI Bug Log - changes from xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88_BAT -> xe-pw-140403v1_BAT
+====================================================
 
-This makes ver.rel versions easier to use, follows the xe driver
-pattern, and drops the dependency on the IP_VER() macro.
+Summary
+-------
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  6 +++---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  4 ++--
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  2 +-
- .../drm/i915/display/intel_display_device.h   | 20 +++++++++----------
- .../drm/i915/display/intel_display_power.c    |  4 ++--
- drivers/gpu/drm/i915/display/intel_dmc.c      |  6 +++---
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     |  6 +++---
- drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  8 ++++----
- drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
- 13 files changed, 33 insertions(+), 33 deletions(-)
+  **FAILURE**
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 47036d4abb33..a52b0ae68b96 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -743,7 +743,7 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
--	if (DISPLAY_VER_FULL(dev_priv) >= IP_VER(14, 1) && IS_DGFX(dev_priv))
-+	if (DISPLAY_VERx100(dev_priv) >= 1401 && IS_DGFX(dev_priv))
- 		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
- 	else if (DISPLAY_VER(dev_priv) >= 14)
- 		tgl_get_bw_info(dev_priv, &mtl_sa_info);
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 96523526a2c3..03c4eef3f92a 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2058,8 +2058,8 @@ static bool pll_enable_wa_needed(struct intel_display *display)
- {
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 
--	return (DISPLAY_VER_FULL(display) == IP_VER(20, 0) ||
--		DISPLAY_VER_FULL(display) == IP_VER(14, 0) ||
-+	return (DISPLAY_VERx100(display) == 2000 ||
-+		DISPLAY_VERx100(display) == 1400 ||
- 		IS_DG2(dev_priv)) &&
- 		display->cdclk.hw.vco > 0;
- }
-@@ -3852,7 +3852,7 @@ void intel_init_cdclk_hooks(struct intel_display *display)
- 	} else if (DISPLAY_VER(display) >= 20) {
- 		display->funcs.cdclk = &rplu_cdclk_funcs;
- 		display->cdclk.table = xe2lpd_cdclk_table;
--	} else if (DISPLAY_VER_FULL(display) >= IP_VER(14, 1)) {
-+	} else if (DISPLAY_VERx100(display) >= 1401) {
- 		display->funcs.cdclk = &rplu_cdclk_funcs;
- 		display->cdclk.table = xe2hpd_cdclk_table;
- 	} else if (DISPLAY_VER(display) >= 14) {
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 8bd5a4d1b735..85836751259f 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2260,13 +2260,13 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
- 
- 	if (intel_crtc_has_dp_encoder(crtc_state)) {
- 		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
--			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
-+			if (DISPLAY_VERx100(i915) == 1401)
- 				return xe2hpd_c20_edp_tables;
- 		}
- 
- 		if (DISPLAY_VER(i915) >= 30)
- 			return xe3lpd_c20_dp_edp_tables;
--		else if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
-+		else if (DISPLAY_VERx100(i915) == 1401)
- 			return xe2hpd_c20_dp_tables;
- 		else
- 			return mtl_c20_dp_tables;
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index ab3ae110b68f..ead486c59639 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -273,7 +273,7 @@
- #define _XE2HPD_C20_A_MPLLB_CFG		0xCCC2
- #define _XE2HPD_C20_B_MPLLB_CFG		0xCCB6
- 
--#define _IS_XE2HPD_C20(i915)	(DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
-+#define _IS_XE2HPD_C20(i915)	(DISPLAY_VERx100(i915) == 1401)
- 
- #define PHY_C20_A_TX_CNTX_CFG(i915, idx) \
- 		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_TX_CNTX_CFG : _MTL_C20_A_TX_CNTX_CFG) - (idx))
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 071a36b51f79..cac47bfaabba 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -168,10 +168,10 @@ enum intel_display_subplatform {
- #define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
- 
- /* Check that device has a display IP version within the specific range. */
--#define IS_DISPLAY_VER_FULL(__i915, from, until) ( \
--	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
--	(DISPLAY_VER_FULL(__i915) >= (from) && \
--	 DISPLAY_VER_FULL(__i915) <= (until)))
-+#define IS_DISPLAY_VERx100(__i915, from, until) ( \
-+	BUILD_BUG_ON_ZERO((from) < 200) + \
-+	(DISPLAY_VERx100(__i915) >= (from) && \
-+	 DISPLAY_VERx100(__i915) <= (until)))
- 
- /*
-  * Check if a device has a specific IP version as well as a stepping within the
-@@ -182,22 +182,22 @@ enum intel_display_subplatform {
-  * hardware fix is present and the software workaround is no longer necessary.
-  * E.g.,
-  *
-- *    IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_B2)
-- *    IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_C0, STEP_FOREVER)
-+ *    IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_B2)
-+ *    IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_C0, STEP_FOREVER)
-  *
-  * "STEP_FOREVER" can be passed as "until" for workarounds that have no upper
-  * stepping bound for the specified IP version.
-  */
--#define IS_DISPLAY_VER_STEP(__i915, ipver, from, until) \
--	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
-+#define IS_DISPLAY_VERx100_STEP(__i915, ipver, from, until) \
-+	(IS_DISPLAY_VERx100((__i915), (ipver), (ipver)) && \
- 	 IS_DISPLAY_STEP((__i915), (from), (until)))
- 
- #define DISPLAY_INFO(i915)		(__to_intel_display(i915)->info.__device_info)
- #define DISPLAY_RUNTIME_INFO(i915)	(&__to_intel_display(i915)->info.__runtime_info)
- 
- #define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
--#define DISPLAY_VER_FULL(i915)	IP_VER(DISPLAY_RUNTIME_INFO(i915)->ip.ver, \
--				       DISPLAY_RUNTIME_INFO(i915)->ip.rel)
-+#define DISPLAY_VERx100(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver * 100 + \
-+				 DISPLAY_RUNTIME_INFO(i915)->ip.rel)
- #define IS_DISPLAY_VER(i915, from, until) \
- 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index c2bc80f5bf6b..d34dd650b839 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1683,14 +1683,14 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 		intel_snps_phy_wait_for_calibration(dev_priv);
- 
- 	/* 9. XE2_HPD: Program CHICKEN_MISC_2 before any cursor or planes are enabled */
--	if (DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 1))
-+	if (DISPLAY_VERx100(dev_priv) == 1401)
- 		intel_de_rmw(dev_priv, CHICKEN_MISC_2, BMG_DARB_HALF_BLK_END_BURST, 1);
- 
- 	if (resume)
- 		intel_dmc_load_program(display);
- 
- 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p,dg2 */
--	if (IS_DISPLAY_VER_FULL(dev_priv, IP_VER(12, 0), IP_VER(13, 0)))
-+	if (IS_DISPLAY_VERx100(dev_priv, 1200, 1300))
- 		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0,
- 			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
- 			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 48bbbf8f312c..ac122b76cb58 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -168,13 +168,13 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
- 	const char *fw_path = NULL;
- 	u32 max_fw_size = 0;
- 
--	if (DISPLAY_VER_FULL(display) == IP_VER(20, 0)) {
-+	if (DISPLAY_VERx100(display) == 2000) {
- 		fw_path = XE2LPD_DMC_PATH;
- 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
--	} else if (DISPLAY_VER_FULL(display) == IP_VER(14, 1)) {
-+	} else if (DISPLAY_VERx100(display) == 1401) {
- 		fw_path = BMG_DMC_PATH;
- 		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
--	} else if (DISPLAY_VER_FULL(display) == IP_VER(14, 0)) {
-+	} else if (DISPLAY_VERx100(display) == 1400) {
- 		fw_path = MTL_DMC_PATH;
- 		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
- 	} else if (IS_DG2(i915)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7e29619ba040..6adeaacb9abb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -497,7 +497,7 @@ static int mtl_max_source_rate(struct intel_dp *intel_dp)
- 	if (intel_encoder_is_c10phy(encoder))
- 		return 810000;
- 
--	if (DISPLAY_VER_FULL(to_i915(encoder->base.dev)) == IP_VER(14, 1))
-+	if (DISPLAY_VERx100(to_i915(encoder->base.dev)) == 1401)
- 		return 1350000;
- 
- 	return 2000000;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 2e0863093cff..df05904bac8a 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1347,7 +1347,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 
- 	/* Wa_14016291713 */
- 	if ((IS_DISPLAY_VER(display, 12, 13) ||
--	     IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0)) &&
-+	     IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_C0)) &&
- 	    crtc_state->has_psr && !crtc_state->has_panel_replay) {
- 		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index ed6aa87403e2..268deddc5281 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -43,11 +43,11 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
- 		return;
- 
- 	if (DISPLAY_VER(display) >= 14) {
--		if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
-+		if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER))
- 			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
- 				     0, HDCP_LINE_REKEY_DISABLE);
--		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
--			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
-+		else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
-+			 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER))
- 			intel_de_rmw(display,
- 				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
- 				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index ceaf9e3147da..2edd3999fd2c 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -92,7 +92,7 @@ int intel_pmdemand_init(struct drm_i915_private *i915)
- 				     &pmdemand_state->base,
- 				     &intel_pmdemand_funcs);
- 
--	if (IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0))
-+	if (IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_C0))
- 		/* Wa_14016740474 */
- 		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 4176163ec19a..7b75c5ef6316 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1914,14 +1914,14 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 		 * cause issues if non-supported panels are used.
- 		 */
- 		if (!intel_dp->psr.panel_replay_enabled &&
--		    (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0) ||
-+		    (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0) ||
- 		     IS_ALDERLAKE_P(dev_priv)))
- 			intel_de_rmw(display, hsw_chicken_trans_reg(dev_priv, cpu_transcoder),
- 				     0, ADLP_1_BASED_X_GRANULARITY);
- 
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
- 		if (!intel_dp->psr.panel_replay_enabled &&
--		    IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0))
-+		    IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0))
- 			intel_de_rmw(display,
- 				     MTL_CLKGATE_DIS_TRANS(display, cpu_transcoder),
- 				     0,
-@@ -2106,7 +2106,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 	if (intel_dp->psr.sel_update_enabled) {
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
- 		if (!intel_dp->psr.panel_replay_enabled &&
--		    IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0))
-+		    IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0))
- 			intel_de_rmw(display,
- 				     MTL_CLKGATE_DIS_TRANS(display, cpu_transcoder),
- 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
-@@ -2561,7 +2561,7 @@ intel_psr_apply_su_area_workarounds(struct intel_crtc_state *crtc_state)
- 
- 	/* Wa_14014971492 */
- 	if (!crtc_state->has_panel_replay &&
--	    ((IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0) ||
-+	    ((IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0) ||
- 	      IS_ALDERLAKE_P(i915) || IS_TIGERLAKE(i915))) &&
- 	    crtc_state->splitter.enable)
- 		crtc_state->psr2_su_area.y1 = 0;
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 31de33e868df..3b0e87edbacf 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3533,7 +3533,7 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
- 	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes) {
- 		u32 pipe_val = val;
- 
--		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0)) {
-+		if (DISPLAY_VERx100(i915) == 1400) {
- 			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
- 							      new_dbuf_state->active_pipes))
- 				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
--- 
-2.39.5
+  Serious unknown changes coming with xe-pw-140403v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-140403v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-140403v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_fault_mode@twice-invalid-userptr-fault:
+    - bat-pvc-2:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html
+
+  * igt@xe_exec_reset@cm-close-fd-no-exec:
+    - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-bmg-1/igt@xe_exec_reset@cm-close-fd-no-exec.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-bmg-1/igt@xe_exec_reset@cm-close-fd-no-exec.html
+    - bat-dg2-oem2:       [PASS][5] -> [DMESG-WARN][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-dg2-oem2/igt@xe_exec_reset@cm-close-fd-no-exec.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-dg2-oem2/igt@xe_exec_reset@cm-close-fd-no-exec.html
+    - bat-atsm-2:         [PASS][7] -> [DMESG-WARN][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-atsm-2/igt@xe_exec_reset@cm-close-fd-no-exec.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-atsm-2/igt@xe_exec_reset@cm-close-fd-no-exec.html
+
+  * igt@xe_exec_threads@threads-mixed-fd-basic:
+    - bat-lnl-2:          [PASS][9] -> [DMESG-WARN][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-lnl-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-lnl-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-bmg-1:          [PASS][11] -> [SKIP][12] +2 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-140403v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [PASS][13] -> [DMESG-WARN][14] ([Intel XE#2871])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [PASS][15] -> [SKIP][16] ([Intel XE#455]) +3 other tests skip
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@kms_psr@psr-primary-page-flip@edp-1:
+    - bat-adlp-7:         [PASS][17] -> [DMESG-FAIL][18] ([Intel XE#2871]) +1 other test dmesg-fail
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-bmg-2:          [PASS][19] -> [INCOMPLETE][20] ([Intel XE#2874] / [Intel XE#2998]) +1 other test incomplete
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-dg2-oem2:       [PASS][21] -> [SKIP][22] ([Intel XE#1192]) +2 other tests skip
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
+    - bat-atsm-2:         [PASS][23] -> [SKIP][24] ([Intel XE#1192]) +2 other tests skip
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-lnl-1:          [FAIL][25] ([Intel XE#2754]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#2754]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754
+  [Intel XE#2871]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#2998]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88 -> xe-pw-140403v1
+
+  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88: 0cd3ccdcf9525b9d2f822df5f8d16b552753cf88
+  xe-pw-140403v1: 140403v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/index.html
+
+--===============7680663630630843635==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>mm/migrate: Add migrate_device_pfns</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140403/">https://patchwork.freedesktop.org/series/140403/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88_BAT -&gt; xe-pw-140403v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-140403v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-140403v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-140403v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-invalid-userptr-fault:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-userptr-fault.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_reset@cm-close-fd-no-exec:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-bmg-1/igt@xe_exec_reset@cm-close-fd-no-exec.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-bmg-1/igt@xe_exec_reset@cm-close-fd-no-exec.html">DMESG-WARN</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-dg2-oem2/igt@xe_exec_reset@cm-close-fd-no-exec.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-dg2-oem2/igt@xe_exec_reset@cm-close-fd-no-exec.html">DMESG-WARN</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-atsm-2/igt@xe_exec_reset@cm-close-fd-no-exec.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-atsm-2/igt@xe_exec_reset@cm-close-fd-no-exec.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-fd-basic:</p>
+<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-lnl-2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-lnl-2/igt@xe_exec_threads@threads-mixed-fd-basic.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">SKIP</a> +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-140403v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2998">Intel XE#2998</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2754">Intel XE#2754</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140403v1/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88 -&gt; xe-pw-140403v1</li>
+</ul>
+<p>IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2114-0cd3ccdcf9525b9d2f822df5f8d16b552753cf88: 0cd3ccdcf9525b9d2f822df5f8d16b552753cf88<br />
+  xe-pw-140403v1: 140403v1</p>
+
+</body>
+</html>
+
+--===============7680663630630843635==--
