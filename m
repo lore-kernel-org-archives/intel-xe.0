@@ -4,182 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52266CE8E8B
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 15:33:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21069CE8E8A
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 15:35:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 215BD10E969;
-	Thu, 24 Oct 2024 15:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB2D410E964;
+	Thu, 24 Oct 2024 15:35:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wwwnj0pL";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="KaMzF3R2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CBC010E969;
- Thu, 24 Oct 2024 15:33:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729784009; x=1761320009;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=CMdGpeRVY+eMdxXYeXzxZT0e/Rm5CaVczyOCOpp6JJI=;
- b=Wwwnj0pLNwJSl9u86DBNwF6BTlEZQkKqgCiF1hW6AnJrbdJgj5gRxDo8
- pmsGAF3E7DpwS/IjNnj32J3lU3Dm2TvCvTlYdNtv0UrM1Es8FH/kSaHzJ
- 4VERELVcUzyGRP+Vw10FMZhcjCCBjojrEe7mzgIiLBdau8+Vjn+sEhDpo
- FRvnDaljmZzkb9LwhJ+cIyBKqM5NKACYMnLXvkaWMxuRi/qq4YYixNfUJ
- jSgoZGNQoQCoWNQMy+Avf7sRM1J7LeemEmj3kPmFj7MirDL5FYmuIM57n
- zpOQWiADvmJgy0UgJShcOLd2hbLLiOVt7ab4whRQeIOAIYLx6NYRnt/14 A==;
-X-CSE-ConnectionGUID: qFuxG2P9Tvq+L619HdOk4w==
-X-CSE-MsgGUID: swBhZM0XR1icZ8RDwvgwuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="17049302"
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="17049302"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 08:33:28 -0700
-X-CSE-ConnectionGUID: qN/o31ZgRW2yI6R1v7GE0w==
-X-CSE-MsgGUID: eqyInTHPTzONwKqOi2mgMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="80804475"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Oct 2024 08:33:28 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 24 Oct 2024 08:33:28 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 24 Oct 2024 08:33:28 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.42) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 24 Oct 2024 08:33:27 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PRG4H9EqnMbN/QLXFDCsNadyNG71hT94cFCz9DULRUx/QyXAc2ARHWigTcJKlsAsF2nQWVuxwOQT8UqkL1ulxP/O4NYv65BzArYS/OeLOWw4UQ4/FIfxJyk+UIxO1y58XCGsZNb8jVS1OSObwj6xJQ43PXxKdxWq5A2C2hSW7wmMFt8j/KX9v20dLZg3dZT0d3sexxzvyzA8jDiXkLdh/hvOivcoOe/3WRdF2tnP6n2UbMOu7BWOgbbMOn5kdwIhEaiVQlTLVHhYMSCu95mwiVOYffTaocEFsUd4Syhw8RmaZOSBIVPanTF/rDYIb2xvTUgrml0FkcC1PslTmcWPQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GlwGsyloIbJ7GLYV7G0OXpbxRpPTXVbx8XNtaVvL6YE=;
- b=g2vAtLGZmjqXhdmHCJB+tb7HVPK1/SfqINNr73j17+rgUQ6DnvMb+LPfxj3uOVLb+0xgViSb6P6e2vR95rqg+Y85ntF/lyDc4nUSKDPtXOf36OHCKj3jlTQBqRBKdweXdIbtzT+SV9oYQY2Cdr+Jw/t2ffQygtmHXalrF+MU1W8+WMnKhFv9srLYM9HY/WyPQATOzJ0wcvDKFw8T0HTtCmkyw2kHzrMy4R92G5PS0uEZDpcIZg7MVzQIEpRjchFTOF09NzYrjV+Che7A7jNu/LBaf6M7qTu1QJhKO609U9oL5jhhDti0uSNBhb2Rw13AmRdcDuaUDtxRIVnNLNST2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by DS0PR11MB8739.namprd11.prod.outlook.com (2603:10b6:8:1bb::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.20; Thu, 24 Oct
- 2024 15:33:24 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50%6]) with mapi id 15.20.8069.027; Thu, 24 Oct 2024
- 15:33:24 +0000
-Message-ID: <5a48a3f3-bda0-45a2-98e1-068165f8e772@intel.com>
-Date: Thu, 24 Oct 2024 08:33:22 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/hdcp: Add check to remove hdcp2 compatibility
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-CC: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-References: <20241022055655.1902-1-suraj.kandpal@intel.com>
- <20241022072920.102033-1-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20241022072920.102033-1-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ2PR07CA0019.namprd07.prod.outlook.com
- (2603:10b6:a03:505::21) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D91810E964
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Oct 2024 15:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1729784152;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=t4NZF8/bs+vu0Kkuk8ifz5Ec7BVfb01ZqQ5W8OsPstM=;
+ b=KaMzF3R2qz/nowWhD61DoQNLyFX4cmN5TNyh3kZUO9j1rwh/cX40AbF7V3rDp4QPJFf7Wq
+ 41V9UJv4Nz7qn3gL0/VuiOtBp90iEub4uXeiHKLYKa11caoG/CSvTRN4Gg0yXbvjerWAbx
+ PNJtOCVaKQGIpTikQTDFQbgU1EmXEuo=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-235-vLf_yEl8NIu_RFcN8gLFqQ-1; Thu, 24 Oct 2024 11:35:50 -0400
+X-MC-Unique: vLf_yEl8NIu_RFcN8gLFqQ-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-4315a0f25afso8676165e9.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Oct 2024 08:35:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1729784149; x=1730388949;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=4XHA5y9pXsuyiZijcWa6Y104RyTQrImtABY3rWqXeDQ=;
+ b=I85Ult+7j1/R0qHLAcLEhiKgIUDF5OKemMREVDhDcL/gsmW0biDVX3wxbSqT6gP641
+ V4M9MwvxmDnSGxTTQEtbv15jFIE+ofGgnUt8KN/5BSGNTfXumnH3C4qWr+9I/OHMFYYa
+ mt02D3Wl4NLn4GmlcT1g5QTk9iUtltQHfynpPF27XG2Yd2MfnSn1wrh7qt07UAilN2at
+ XUuPASORtoF3FqW1dxq7kT1bI1BremD8+CDSNYweyCdT5qNHiOoAjonwod8zJpWnHrzj
+ Y1l9CkY93V3zmYkBauomfCi3tG5LP4rVl6Z0CC4og/+ZPzXC8zRM5TFpunlXFwmv9Nz8
+ jftg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV5cxvJxlHXjPqC0j0nq/dUzLzXNY6GcW5w6qextHG5TPuJDk6PQcNXeTBJhFniOmLgkWLpY7BWWQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyW0erwNXjeMp1qHPOxHZ+IpgGyNPB2HOhNuUxy3fe3XX9xUMx2
+ YR4OQpctNSGjzHEZMs5iQLhivxhiBJHrDNJ0zNeC4IFdBqrW/2VtvQhjVuNukc6mJf2gpqlVqRS
+ Y5xrsqvehmN70bFKc1sx6SG7aTMrVQL5HupLXpzN2rRLPRMLvlP8LfyVGMoUKm3ZM
+X-Received: by 2002:a05:600c:1552:b0:42c:b750:1a1e with SMTP id
+ 5b1f17b1804b1-4318beb62e6mr21588115e9.0.1729784149178; 
+ Thu, 24 Oct 2024 08:35:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFQIGl94tHwG/Emnz8l7XEWUupX4uA5SZbIzVOXuAA62Ha/Qm5zJGncyBGFc7PBnWa0i/sIYA==
+X-Received: by 2002:a05:600c:1552:b0:42c:b750:1a1e with SMTP id
+ 5b1f17b1804b1-4318beb62e6mr21587895e9.0.1729784148778; 
+ Thu, 24 Oct 2024 08:35:48 -0700 (PDT)
+Received: from dhcp-64-16.muc.redhat.com (nat-pool-muc-t.redhat.com.
+ [149.14.88.26]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-37ee0a5c529sm11567974f8f.62.2024.10.24.08.35.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Oct 2024 08:35:48 -0700 (PDT)
+Message-ID: <eb625699d08db636e19c5141f681759849ff4a63.camel@redhat.com>
+Subject: Re: [PATCH v2] drm/sched: Mark scheduler work queues with
+ WQ_MEM_RECLAIM
+From: Philipp Stanner <pstanner@redhat.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: dakr@kernel.org, ltuikov89@gmail.com
+Date: Thu, 24 Oct 2024 17:35:47 +0200
+In-Reply-To: <20241023235917.1836428-1-matthew.brost@intel.com>
+References: <20241023235917.1836428-1-matthew.brost@intel.com>
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DS0PR11MB8739:EE_
-X-MS-Office365-Filtering-Correlation-Id: 693c6862-ed8d-4431-71be-08dcf44132bd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RzFUbGRkYjlEeXNNWllqTUl4Y0svRTVZOVdXaHFWT3BzTTJCVndVbFZCZ0cw?=
- =?utf-8?B?bFFNTEp3WVZScGo3NlQxcEpCRHJKbFp1VWVGQndrUU04cUVmaEZ0MmY1cDVP?=
- =?utf-8?B?THpmaEtmaUJYU0kxdGtzOTQyZkk4TkNCd2dGZkFHQmN6ejZEMThTaXVTMTk2?=
- =?utf-8?B?b1RVT0p5N2pOWVlHcTBmWjlFNklvNHlNem1aQTB5QlNYZVorMVRPMG96aFI2?=
- =?utf-8?B?Wmo1NWZTZEJyTGsvUlJDbFhGdlNxSHRpN3R5eE5JOFAzNFU5Vm5TK1V4M0Yr?=
- =?utf-8?B?YmVWSzhubWJnTG9vR3BkeFR6QXdpcVJoMTJBWmwvVnFwMnV6cjQrNnE2U21X?=
- =?utf-8?B?cUIzdS9pQlhjcmV6dzkzWGlaQVRMWnVXNW8yYXNhTVk3NGRqaGpvYjJLbnVs?=
- =?utf-8?B?NEswMDZxMDVwSG0yYk8xTTVaTFdHeTFoWG1wdmtzbEtacEpXblQ4OFQ3a2dr?=
- =?utf-8?B?dDhPV2VQTjVZOTUwak4vajNaM1hBQnNzeS9kU2kvSG1ldE51NjlaQkFmMXMy?=
- =?utf-8?B?ODE0SnFxWkxvMWZ2ZjRsNDZybzFzSlF6T0ZqRGRXSGMzK21YU29wRzdFYU9v?=
- =?utf-8?B?aTFna3U5bzdnUHI0NVJoU2x3QXYxQlRJWldoVXk5YXdVckxtZ3ZyekZnSVBN?=
- =?utf-8?B?OHZUS29FNnN6VTl1OU1QeU5oTVdpNmUyRitWV3Nua3lJWkRqdUphUlhtZ3NY?=
- =?utf-8?B?WUwwNC8vWlJlUWlBODVRTHJkY0ZPV1BGR2c4TDQvMVMra3Rjc2FVUmV5bWxR?=
- =?utf-8?B?MHJQU0g5b0lWVjNmRk1hYlFVUFcrVzhFV3dkWFV5RUp5MFFyUnY5aG1VdWNJ?=
- =?utf-8?B?ckV1YjJ5QVUrUFhIRWNxcFZKbEhWVU1Bb2J2Qm9vcGhEMnBJQlB5b1g0MFZE?=
- =?utf-8?B?SFlHUDlXb3doRU9iM1pVZkVQYURQa1MyUk9YOVNoZ0NkVGlSSThsSzhOTG0r?=
- =?utf-8?B?MGt5eVd1YmdIdVpUb3hoUnRhTzNWdk5sVEtBTGcwSi9XK3JYMzlhLy8vSWtE?=
- =?utf-8?B?MFI0QnJrZ0FwK1k3R0lIUjJxb0ZyV2QvcEhwUmlKeURyVUJqQXpsVFQ2SStG?=
- =?utf-8?B?bTYxOW50Z1I3TDJnM2NCOUNwMU9kUkIyTjk3NmEyNTk0dTAzRVcxT3JPUjc0?=
- =?utf-8?B?UU1mWjd0SHdhTXEweVh3TzdrMytPbFAvLzRacWVvR1cvS3FLZWRWUE81SWZx?=
- =?utf-8?B?STh3b3NHbzhLeEptMkg1RWxERDg3cW96ZGNpRUgvSXNzMzI2c2dvcXhVSW4y?=
- =?utf-8?B?Z1lVeEJteWd4dkVLWkM5cjZnbjFnMVZ0cHM4dTFaMnJoWURCQmRHVEJEcmQ3?=
- =?utf-8?B?Q2dIZnJrNkdyT0JDY0hzWk5IazVRdjdXVzhxZWtROHA4d0ZCNWdhaElRODcx?=
- =?utf-8?B?KzZSb2VQdWJUcy9mN0x5UlpoQWxJYllLNWNZa0t0QlViUjI5NDVRUHZ5ZGl1?=
- =?utf-8?B?N2xBR0E3Uk9GdTJiRXlNY0kxc2VQQ3B6THJmZ2twaHF4SnZTV1FRbllHQ0pT?=
- =?utf-8?B?eFhMSExuLy9ZWm8yaVZwbzd1ZEJEaFJmVHRDcmU5VmZJd2ZyVWpmU1Nwby9D?=
- =?utf-8?B?M3dlY2F5WW1Ieno3WGZVUnRKUzZpM3h3SmlFdkk2VWx6ZTZURDVQT0t4V2Fx?=
- =?utf-8?B?VVplNEo3NnhIbWo1c2Y0ZXJtc2tlblRZUnZjL2hwdUZFTzRzbk0xTkZpL3Qv?=
- =?utf-8?B?ZHBRS3VUZW03RE9CZ1REU0VRTkplT1c5Zzg1L285Q25ET2MzVEQzbDQ0T1dl?=
- =?utf-8?Q?+v4fz2eqjo9rLxqUrRPJQWfAnkYNXs7Tn5PpCdr?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTBrMWJ6aDNtMkFrb0I3cis4aFlXOU9Ja1d1SElQemJQL2ZVd2FEQkFNSVZQ?=
- =?utf-8?B?bjMxenBKNy9vbHJDYTdTSW9vL2E2dHZOOExRbWxEK3FrTzV5MDVpb29sRWcr?=
- =?utf-8?B?anlrT0s3dkdTemNvbEtRRjVrMEJXcHM2QXNFejc3MzVWV3J5c0w0YUsyWlB5?=
- =?utf-8?B?YnhJNEdSTXZuQ1ZjcVZibmhZMDMxK1MzV0JUN0hVTmhmeC9PUDBobHZqbFlP?=
- =?utf-8?B?SzB6Ym1KbU5iUnRubFFSbWtMcGdqbGpJNmhZc3RXYzV1UUJSMit4Yk4vTTFa?=
- =?utf-8?B?OElvSDhOUVNxWUFRT3JoMnRCWEVBSmlVWUUrcElHQmZXRmlUMlQ5OEN1QTZw?=
- =?utf-8?B?UW1qZTFyV0d4TCtJa0U0T0FtUHJkWVRKUmpBazFPNXJ3NjlkK0hDQjhhVHpx?=
- =?utf-8?B?ME1wbll6dWo1RGZUVngrUDdnUi8zSWdoMDZaaHk4elJHZUtaYVN6SGRnNTNm?=
- =?utf-8?B?ZVJuM3VmVWRFclVoRTNMS0IxaTNudFJhaGJPSXlGTjVMb2tQTHdpZXIzVFdI?=
- =?utf-8?B?VkFNQ1pPTU8zREYzQlFaVDAzMGMwWDdYVXBRQkZmZVRLbjlaU1FkRWYydVZG?=
- =?utf-8?B?SklGOFlWYkhzeWpWM2R4TWkwY1dRMHlmVDBmYmRJbUhvWnlxakpMU1pFNndR?=
- =?utf-8?B?YVpsVElNSCt1NXVoeDQ3ZkxCbjR4MERnYjcrRmwyb0J0UUJBOFpVcEpOeGJs?=
- =?utf-8?B?bi82YTljU0NjREVDWEJwWDliTzBjYUNKWUNLSXZxZ25aeVlQb0pFVFBXc2xM?=
- =?utf-8?B?WXhCbFhFUTVnQmlGODFtUnU3T1lML3JFSEVpM3dmVUdHTCs3Qm43bHNsYlNm?=
- =?utf-8?B?UFh3aTc2b0tMNStDYVltM1BoOTdFRWhJUDlCdkkzTkMzNHdMVWdjTnU3Q3Zh?=
- =?utf-8?B?clZoNnhFaDY5RXZiWHBOSTNEeDQ3MW91V2hwbXl3YUp5WnJ4b2JXN3NsczEz?=
- =?utf-8?B?dUVsY2t0QWJKaE5ZTE92WFZDWm5weE5GSzAyRjFldzUwL0F4OXRUd3lkcnRE?=
- =?utf-8?B?S00xZVNDWlFPRXR5d3BsSHpjM2Z6eFA1QVQraHBra3BQKzVMcWp5aGtRVXNB?=
- =?utf-8?B?YWZOYWYzTVpFMWlCRE1LdkgyekYzWTN0Q05zaVFhY1Vsbng3RDNDTHBpUXBE?=
- =?utf-8?B?a0dBdTRQYVBRTGZ1UXAxVHlTYXFrR29uL0doREZUVFZTZE9uV0hhVEMzdHpk?=
- =?utf-8?B?TmxWN2w3bSthdXQyUUI2VXUxUURwMGNxSWNzVncrMlhTcmN4THJDekhPcVdN?=
- =?utf-8?B?ZnFteExtaTdBWWVsVTlIMjRjUGJrcXpvYmhQZm50aEI3TmFRNUR3S1BJUm1X?=
- =?utf-8?B?WjQwN3BaOC9KL0FYdGw5T0g3MWdPSnhkY20vVmcvYXE0ek9GVnFYUmNXYi9a?=
- =?utf-8?B?WHJpZ1N2L2UzTFNOK2laVFIvMTJDQlh4MTNPdXBZYzRyZ1BJb2ZreUtQRFQ5?=
- =?utf-8?B?SEYxV29qVWxzclZMRmprWTFwa3B6eEwvM1lSa1gxRzV0N2h1cTRObTlkSVNT?=
- =?utf-8?B?bm9jZFRDR1lQMjVCekNmZFMvZDcrSGdpZ0xQNzd4NHVHKzNPS0VtZGRnMDVX?=
- =?utf-8?B?VGNTT3M3b0RSUEhjTlNHWjRJLytYTHJRMFp5bjhUWkR5eHU2anhtZDJmWVFE?=
- =?utf-8?B?UjNGajNUVmdIWmtPeEdOb2lDTWNKNGhva1lDRlh2M1BKRndsQWE1Y2JVTU9V?=
- =?utf-8?B?RmlXOGNBUFJuYXljelhreGxmSGFDWHFLVWxFSldwdDNDUXluY1R1eWNBeWlR?=
- =?utf-8?B?eFVySlpQY2hpN3ZVYWxPaGM0dHU2S0VQK3pJN3BLNzAxTkpvR1ZQZVFkN0t4?=
- =?utf-8?B?a2dMMTBFazlNZGJkaXBneCsrdll6Z0xOaThVdFI0UVpSQUVZQ1VYbVRDanln?=
- =?utf-8?B?NEJmOVpsMXlyTHp2dFVtNGpldCtvblcxMUFFdGJUak9EUDU3Mkt3UmFIKzVZ?=
- =?utf-8?B?THZ2d2tFb0IrZm85VWVST0NMaEJKbzE0dExXOHhOYk5XNFVrOVltVlp6RFg4?=
- =?utf-8?B?ZUdkRUdPL3U5aC9uVVFTSzA4aGlpL01NNXJwT2x6Y2MxMERBejAzdU5obUUr?=
- =?utf-8?B?RDg2M2NuVzZuR2UvWFdQbFZpbE0rQUE4eTZETkw3d2poQlk5ZTJQaU1xQ05N?=
- =?utf-8?B?WlkxUlBkeU9xaU4zSndDTGVsd0thZWY2TGw4N3dEWDhOQUJmWWRUUnV6ZnN1?=
- =?utf-8?Q?dZR712YldPckHlGegtzfy/E=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 693c6862-ed8d-4431-71be-08dcf44132bd
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 15:33:24.2792 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GJfh5s4q7A7q3FbqAOLV//0e3AD0n16X3hVv1TKurhQbl0aAG0hKm3GxluCJXXvSlZPMndzDHkuVhs8njXCBFAxzkWe4OuU/0MtGE7OLMho=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8739
-X-OriginatorOrg: intel.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,74 +93,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-
-On 10/22/2024 12:29 AM, Suraj Kandpal wrote:
-> Add check to remove HDCP2 compatibility from BMG as it does not
-> have GSC which ends up causing warning when we try to get reference
-> of GSC FW.
->
-> Fixes: 89d030804831 ("drm/xe/hdcp: Fix condition for hdcp gsc cs requirement")
-> Fixes: 883631771038 ("drm/i915/mtl: Add HDCP GSC interface")
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+On Wed, 2024-10-23 at 16:59 -0700, Matthew Brost wrote:
+> drm_gpu_scheduler.submit_wq is used to submit jobs, jobs are in the
+> path
+> of dma-fences, and dma-fences are in the path of reclaim. Mark
+> scheduler
+> work queue with WQ_MEM_RECLAIM to ensure forward progress during
+> reclaim; without WQ_MEM_RECLAIM, work queues cannot make forward
+> progress during reclaim.
+>=20
+> v2:
+> =C2=A0- Fixes tags (Philipp)
+> =C2=A0- Reword commit message (Philipp)
+>=20
+> Cc: Luben Tuikov <ltuikov89@gmail.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Philipp Stanner <pstanner@redhat.com>
+> Cc: stable@vger.kernel.org
+> Fixes: 34f50cc6441b ("drm/sched: Use drm sched lockdep map for
+> submit_wq")
+> Fixes: a6149f039369 ("drm/sched: Convert drm scheduler to use a work
+> queue rather than kthread")
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 3 ++-
->   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 4 +++-
->   2 files changed, 5 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> index 55965844d829..2c1d0ee8cec2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -21,7 +21,8 @@ struct intel_hdcp_gsc_message {
->   
->   bool intel_hdcp_gsc_cs_required(struct intel_display *display)
->   {
-> -	return DISPLAY_VER(display) >= 14;
-> +	return DISPLAY_VER(display) >= 14 &&
-> +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
->   }
->   
->   bool intel_hdcp_gsc_check_status(struct intel_display *display)
-> diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> index 231677129a35..efa3441c249c 100644
-> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> @@ -8,6 +8,7 @@
->   #include <linux/delay.h>
->   
->   #include "abi/gsc_command_header_abi.h"
-> +#include "i915_drv.h"
->   #include "intel_hdcp_gsc.h"
->   #include "intel_hdcp_gsc_message.h"
->   #include "xe_bo.h"
-> @@ -32,7 +33,8 @@ struct intel_hdcp_gsc_message {
->   
->   bool intel_hdcp_gsc_cs_required(struct intel_display *display)
->   {
-> -	return DISPLAY_VER(display) >= 14;
-> +	return DISPLAY_VER(display) >= 14 &&
-> +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 5 +++--
+> =C2=A01 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> b/drivers/gpu/drm/scheduler/sched_main.c
+> index 540231e6bac6..df0a5abb1400 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -1283,10 +1283,11 @@ int drm_sched_init(struct drm_gpu_scheduler
+> *sched,
+> =C2=A0=09=09sched->own_submit_wq =3D false;
+> =C2=A0=09} else {
+> =C2=A0#ifdef CONFIG_LOCKDEP
+> -=09=09sched->submit_wq =3D
+> alloc_ordered_workqueue_lockdep_map(name, 0,
+> +=09=09sched->submit_wq =3D
+> alloc_ordered_workqueue_lockdep_map(name,
+> +=09=09=09=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0
+> =C2=A0=C2=A0 WQ_MEM_RECLAIM,
+> =C2=A0=09=09=09=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0
+> =C2=A0=C2=A0 &drm_sched_lockdep_map);
+> =C2=A0#else
+> -=09=09sched->submit_wq =3D alloc_ordered_workqueue(name, 0);
+> +=09=09sched->submit_wq =3D alloc_ordered_workqueue(name,
+> WQ_MEM_RECLAIM);
+> =C2=A0#endif
+> =C2=A0=09=09if (!sched->submit_wq)
+> =C2=A0=09=09=09return -ENOMEM;
 
-I don't think this is the correct check or the correct location. BMG 
-does require the GSC for HDCP, so intel_hdcp_gsc_cs_required() should 
-still return true; it's just that we've decided not to support GSC FW 
-loading on the platform, so we can't support HDCP2.x. Also note that the 
-this might change and/or it might apply to other platform in the future, 
-so any check needs to be done based on GSC support and not 
-platform/display ID.
 
-IMO when intel_hdcp_gsc_cs_required() returns true, the caller should 
-check if the GSC FW is defined (or if the GSCCS is available) and if it 
-is not return that hdcp2 is not supported due to unmet prerequsites and 
-fallback to 1.4 without printing any errors.
+Cool, thx =E2=80=93 looks good from my POV.
 
-Daniele
+Since you now sent this patch as a single one, what would be the
+preferred merge plan for this? Your XE-Series doesn't depend on this
+IIUC, so should we take this patch here separately into drm-misc-next?
 
->   }
->   
->   bool intel_hdcp_gsc_check_status(struct intel_display *display)
+
+Regards,
+P.
 
