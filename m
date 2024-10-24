@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D120D0BB5E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2C7BD0BB5F
 	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 03:56:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C865110E8A4;
-	Thu, 24 Oct 2024 03:56:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BABE10E8A0;
+	Thu, 24 Oct 2024 03:56:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ODCvKuhm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SVC7eiKm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A57D110E89E;
- Thu, 24 Oct 2024 03:56:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D16810E8A0;
+ Thu, 24 Oct 2024 03:56:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729742174; x=1761278174;
+ t=1729742177; x=1761278177;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zdnJzz4FD0Zj3vuMjdNGZaHzdjF/IjRHyBIsEiQw1sY=;
- b=ODCvKuhm691BUp1usVqQzgimUOLZQ8zDUk3jHjO9PfXicI8TzO38gDSi
- zQLty6EGFO+/yWEwkXHOxDXwGGGgIn6PJwuxshqIPrM/OYOem+Vz4VFWp
- LoWgoo3bFn7ZGqYoIP6k6lRw36EWiCWXDEMv+nnJSExeMwBZ11PdZvSTp
- 2BVjVCsiuRvjf5y2HEmgcC10WIWhLQ1FwpLC+r3u7A6rQ93c0xDEfsAGj
- O+oen8IlxiJu26loGexFyO6Xati+pBUM9mtsoR6UMFB3Y7woxlt8eTWrd
- FY70+K5Vpa0Q8a9GqgIAVFjk94mqRTAfrXRQLjI6kCYwovXMQNGgsulz5 Q==;
-X-CSE-ConnectionGUID: QDFu4lVsShGL/JZhf/FMwA==
-X-CSE-MsgGUID: S6Zyw8LjSVepEBSI7sb+8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28818509"
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="28818509"
+ bh=WVGydUsBQOt+BtnsAokogVjyZdg9SaHDElVZg8rj4QQ=;
+ b=SVC7eiKmYX2S89fVLsF/IH5ozpA2zT0u9RYIQqEcnd4QyM1HcKtbONjK
+ KhgDTx4MmiG+tQO3DGbbgdg5x1PzWshzLDbDM9CnsF2wlb+V8KDiIfv+9
+ Qu/k99giiv9vafoaHy4g0xoKX81CCDbB6Mr9dLEFjP0w7N1KxPJLG+ES+
+ 0y7eKLgwktdrlwl2SEkICybMPOyRsJGwhcOydAZWPZSXLcj2TYQcEXqLM
+ RMSS2LRA5Qf/80qd5Tvv8zdGgN3Ooy4pUWs4+cLOwR12+EsLn/FrUvJ0p
+ XnUUWRCdkdc5+CTP18osnZxdsKDEsuZQcxbwLFoShpAnRComb7XdgSfXv Q==;
+X-CSE-ConnectionGUID: ACXJsslsRea/9dbBMrTd/w==
+X-CSE-MsgGUID: RrEpbHlWT6qNqQcYrhpIXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28818512"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="28818512"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 20:56:13 -0700
-X-CSE-ConnectionGUID: Q1FyiEz0SwqWcz3p2OkmFA==
-X-CSE-MsgGUID: cdCIzPnoTVGLrE+XWmRi3Q==
+ 23 Oct 2024 20:56:17 -0700
+X-CSE-ConnectionGUID: O0Gnr5A7TSyj7rUJreYCbg==
+X-CSE-MsgGUID: eDayl3/HR2S229GgIJ9gwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80128111"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80128118"
 Received: from linux-lunar-lake-client-platform.iind.intel.com
  ([10.227.88.172])
- by fmviesa007.fm.intel.com with ESMTP; 23 Oct 2024 20:56:11 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 23 Oct 2024 20:56:15 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, matthew.d.roper@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/4] drm/i915/xe3lpd: Increase max_h max_v for PSR
-Date: Thu, 24 Oct 2024 09:25:50 +0530
-Message-Id: <20241024035552.94363-3-suraj.kandpal@intel.com>
+Subject: [PATCH 4/4] drm/i915/xe3lpd: Prune modes for YUV420
+Date: Thu, 24 Oct 2024 09:25:52 +0530
+Message-Id: <20241024035552.94363-5-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241024035552.94363-1-suraj.kandpal@intel.com>
 References: <20241024035552.94363-1-suraj.kandpal@intel.com>
@@ -68,32 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Spec states that PSR max active is same as max pipe active values.
-Now that each pipe supports 6k resolution increasing max_h and
-max_v for PSR too.
+We only support resolution up to 4k for single pipe when using
+YUV420 format so we prune these modes and restrict the plane size
+at src.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 3b20325b3f6a..8981a180285e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1451,7 +1451,11 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index e0baad468d76..edaea5e8c53c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1373,6 +1373,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ {
+ 	struct intel_connector *connector = to_intel_connector(_connector);
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
++	enum intel_output_format sink_format;
+ 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+ 	const struct drm_display_mode *fixed_mode;
+ 	int target_clock = mode->clock;
+@@ -1407,6 +1408,11 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 						     mode->hdisplay, target_clock);
+ 	max_dotclk *= num_joined_pipes;
  
--	if (DISPLAY_VER(display) >= 12) {
-+	if (DISPLAY_VER(dev_priv) >= 30) {
-+		psr_max_h = 6144;
-+		psr_max_v = 4096;
-+		max_bpp = 30;
-+	} else if (DISPLAY_VER(dev_priv) >= 12) {
- 		psr_max_h = 5120;
- 		psr_max_v = 3200;
- 		max_bpp = 30;
++	sink_format = intel_dp_sink_format(connector, mode);
++	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
++	    mode->hdisplay > 4096)
++		return MODE_NO_420;
++
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
+ 
 -- 
 2.34.1
 
