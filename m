@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0704ACFA451
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 10:17:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFEDDD0BB7A
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Oct 2024 10:35:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93BBA10E271;
-	Thu, 24 Oct 2024 10:17:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A18F10E004;
+	Thu, 24 Oct 2024 10:35:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z2M6/Kwp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hdlP448B";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CC6610E271
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Oct 2024 10:17:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B49310E004;
+ Thu, 24 Oct 2024 10:35:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729765039; x=1761301039;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=rJQgJpH0ElRxvH87dN8PgZDsDlpzZz9/2ocJqMFevYM=;
- b=Z2M6/KwpNQLs4jaC7r3vcLo451EIKSYDSfCGcADcyAI72ohxUOylMX8g
- wYAp7D1oaOgqHf6iJCqSf6re2hSvYeCqg+oE7EmHjlwr9G2XtWk6X84Gu
- Ga/LllKKcKizcB3x/jHXqxUKOhgAZkUomeVjFoNBo3GHJUjFNYbP+Bo8W
- 6AYw3Y2W5dA1nbtAt6YYqYUbi7Y0GVmBK+/prD1F3rpa7B1jLOuJVUr7d
- Edi58gOVo1n1azeVf9aQiUe2hSyc7A0GCXAWWSs+GMrU8+3nmZ9t31F/C
- fwKCZrI33eGaCuM4JWGsE4VdZUuGfSiNicAIuGDShVr5obDO7I+Mkgt4+ w==;
-X-CSE-ConnectionGUID: WUJXpikESlmVgYrs4rkkeQ==
-X-CSE-MsgGUID: TgF1LWGeSFOIvJkyWsw0Lw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29552060"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29552060"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 03:17:19 -0700
-X-CSE-ConnectionGUID: wooecbqyQtqNL7sM7WcweA==
-X-CSE-MsgGUID: KZUkaKcsSICGiJdEtDtReg==
+ t=1729766152; x=1761302152;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=UW0hE31GGN8jgPgRZbodK9mIg08FV4Mhsd8DDDS0j2M=;
+ b=hdlP448BcP+e2EmJITpYMAHNAJ1qv3PXbCG7enlW9f7QDrh4ep3K7KSh
+ VjvqULwvVeQBgc2al4zrQO82RfNSffwSJTVLIVFowhd5Z0mcHS5XfWVi9
+ rays/txXl4dd9itf8Q8zaOSeIVpBvYp7TODJNj1mMAJgI0vLpVdC1/s4e
+ iD+E2rds6ve+xuzwfWYKfys4kw3mwlvY6VNXcRTdSp9QAVQCjqCLryBxa
+ qCmz7ZvlL0FgnqQF42NniPcnK/gen+gPiiMQAkAd77jqy+Icj/Bs0t4uU
+ f6rknhvsZ9Y056sD+D0EDE57VmzkSdjGGocJSf+4mdTB3dmCtNTwVFgR6 g==;
+X-CSE-ConnectionGUID: QjbqwF4PSQeI76oHEUqbuw==
+X-CSE-MsgGUID: CCAnZiqMTqizsk4Kj1smaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="46879012"
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="46879012"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 03:35:51 -0700
+X-CSE-ConnectionGUID: X7Jcr4c5Q3mLZGLgDfcadA==
+X-CSE-MsgGUID: ZHEPrOvDR4mIJDGgHS9iMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="103867594"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.144.35])
- ([10.245.144.35])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 03:17:16 -0700
-Message-ID: <6179d84e-a746-467e-a0ef-a04567dc0554@linux.intel.com>
-Date: Thu, 24 Oct 2024 12:17:12 +0200
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="111368091"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+ by fmviesa001.fm.intel.com with ESMTP; 24 Oct 2024 03:35:48 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1t3vBx-000WH7-26;
+ Thu, 24 Oct 2024 10:35:45 +0000
+Date: Thu, 24 Oct 2024 18:35:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 2/7] drm/drv: Add drmm cgroup registration for dev cgroups.
+Message-ID: <202410241806.p6u3FcGS-lkp@intel.com>
+References: <20241023075302.27194-3-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc/tlb: Flush g2h worker in case of tlb timeout
-To: "Nilawar, Badal" <badal.nilawar@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Anshuman Gupta <Anshuman.Gupta@intel.com>
-References: <20241023151343.3463640-1-nirmoy.das@intel.com>
- <20af74cb-1ade-4f75-b73c-7e75b3651a00@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20af74cb-1ade-4f75-b73c-7e75b3651a00@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023075302.27194-3-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,71 +76,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Maarten,
 
-On 10/24/2024 12:02 PM, Nilawar, Badal wrote:
->
->
-> On 23-10-2024 20:43, Nirmoy Das wrote:
->> Flush the g2h worker explicitly if TLB timeout happens which is
->> observed on LNL and that points recent scheduling issue with E-cores.
->> This is similar to the recent fix:
->> commit e51527233804 ("drm/xe/guc/ct: Flush g2h worker in case of g2h
->> response timeout") and should be removed once there is E core
->> scheduling fix.
->>
->> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2687
->> Cc: Badal Nilawar <badal.nilawar@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->> index 773de1f08db9..2c327dccbd74 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->> @@ -72,6 +72,15 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
->>       struct xe_device *xe = gt_to_xe(gt);
->>       struct xe_gt_tlb_invalidation_fence *fence, *next;
->>   +    /*
->> +     * This is analogous to e51527233804 ("drm/xe/guc/ct: Flush g2h worker
->> +     * in case of g2h response timeout")
->> +     *
->> +     * TODO: Drop this change once workqueue scheduling delay issue is
->> +     * fixed on LNL Hybrid CPU.
->> +     */
->> +    flush_work(&gt->uc.guc.ct.g2h_worker);
->
-> I didn't get the idea of flushing g2h worker here. Moreover AFAIK tlb invalidation is handled in fast path xe_guc_ct_fast_path i.e. in IRQ handler itself. Is this change solving the issue.
+kernel test robot noticed the following build errors:
 
-AFAIU g2h worker can also handle TLB_INVALIDATION_DONE message from GuC(process_g2h_msg). This indeed fixes the issue from me for LNL.
+[auto build test ERROR on drm/drm-next]
+[also build test ERROR on drm-exynos/exynos-drm-next next-20241024]
+[cannot apply to tj-cgroup/for-next drm-xe/drm-xe-next akpm-mm/mm-everything drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.12-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/kernel-cgroup-Add-dev-memory-accounting-cgroup/20241023-155504
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+patch link:    https://lore.kernel.org/r/20241023075302.27194-3-maarten.lankhorst%40linux.intel.com
+patch subject: [PATCH 2/7] drm/drv: Add drmm cgroup registration for dev cgroups.
+config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241024/202410241806.p6u3FcGS-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241024/202410241806.p6u3FcGS-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410241806.p6u3FcGS-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/drm_drv.c:29:
+>> include/linux/cgroup_dev.h:61:12: error: two or more data types in declaration specifiers
+      61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+         |            ^~~
+>> include/linux/cgroup_dev.h:65:1: error: expected identifier or '(' before '{' token
+      65 | {
+         | ^
+>> include/linux/cgroup_dev.h:61:16: warning: 'dev_cgroup_try_charge' declared 'static' but never defined [-Wunused-function]
+      61 | static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+         |                ^~~~~~~~~~~~~~~~~~~~~
 
 
-Regards,
+vim +61 include/linux/cgroup_dev.h
 
-Nirmoy
+487073b1855ef4 Maarten Lankhorst 2024-10-23  60  
+487073b1855ef4 Maarten Lankhorst 2024-10-23 @61  static int int dev_cgroup_try_charge(struct dev_cgroup_device *cgdev,
+487073b1855ef4 Maarten Lankhorst 2024-10-23  62  				     u32 index, u64 size,
+487073b1855ef4 Maarten Lankhorst 2024-10-23  63  				     struct dev_cgroup_pool_state **ret_pool,
+487073b1855ef4 Maarten Lankhorst 2024-10-23  64  				     struct dev_cgroup_pool_state **ret_limit_pool);
+487073b1855ef4 Maarten Lankhorst 2024-10-23 @65  {
+487073b1855ef4 Maarten Lankhorst 2024-10-23  66  	*ret_pool = NULL;
+487073b1855ef4 Maarten Lankhorst 2024-10-23  67  
+487073b1855ef4 Maarten Lankhorst 2024-10-23  68  	if (ret_limit_pool)
+487073b1855ef4 Maarten Lankhorst 2024-10-23  69  		*ret_limit_pool = NULL;
+487073b1855ef4 Maarten Lankhorst 2024-10-23  70  
+487073b1855ef4 Maarten Lankhorst 2024-10-23  71  	return 0;
+487073b1855ef4 Maarten Lankhorst 2024-10-23  72  }
+487073b1855ef4 Maarten Lankhorst 2024-10-23  73  
 
->
-> static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
-> {
->         if (!xe_guc_ct_enabled(ct))
->                 return;
->
->         wake_up_all(&ct->wq);
->         queue_work(ct->g2h_wq, &ct->g2h_worker);
->         xe_guc_ct_fast_path(ct);
-> }
->
-> Regards,
-> Badal
->
->> +
->>       spin_lock_irq(&gt->tlb_invalidation.pending_lock);
->>       list_for_each_entry_safe(fence, next,
->>                    &gt->tlb_invalidation.pending_fences, link) {
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
