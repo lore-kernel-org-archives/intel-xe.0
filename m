@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EBD9D116F7
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 06:20:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE1CD11701
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 06:21:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51BA610E9FB;
-	Fri, 25 Oct 2024 06:20:49 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B83E310E9FA;
- Fri, 25 Oct 2024 06:20:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Add_6k_resolution_support_for_?=
- =?utf-8?q?a_single_CRTC_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Oct 2024 06:20:47 -0000
-Message-ID: <172983724774.1330837.8474140480437334385@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DEB610E9FB;
+	Fri, 25 Oct 2024 06:21:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6uH4wY+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5E010E9FA;
+ Fri, 25 Oct 2024 06:21:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729837272; x=1761373272;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zPZu5cmTrGEO1O1bwd2kkn0rQiQ2g7OXK2lJ1jXm2tU=;
+ b=T6uH4wY+cCcGOu8jT295MrOKU/hEtotVvqdNTDXq7dErDImsmuXUVHEy
+ jexkWtKBBmhg/yV9lcbnjsqCEka0PfOmQOj1HUD5dPZ73q34tqTnV6h8l
+ W7TIf1c+lcNEnBs8dzXO2r9PQQ8LWvJ0Ot4BhbPE6kNjKTXyIU3/GtGMY
+ wniAgoQzs1dCfkOA2PtkAfufF+aniG52Si8sdtIPsuN8edDa5ey/No20X
+ 5AmTyjg5kNkyAXlImie/HW5snqhDHWK/YO482AcxY/h3JbITO74ogSLft
+ IWrUJ2zPOkTcPUiWzybcftf49ffGxGipBWMkjkrrh6OmMsaWR/qsCCJ8W w==;
+X-CSE-ConnectionGUID: yxRXmJZfTz2ppNmcnf9tSg==
+X-CSE-MsgGUID: ZX6BWyZUSamg0LQC7QAbMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29437037"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29437037"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 23:21:12 -0700
+X-CSE-ConnectionGUID: frgMnMwzSTO+6CLg9CwYBw==
+X-CSE-MsgGUID: jFOhc0sPTMe3Sejrn7YgZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80925568"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 24 Oct 2024 23:21:08 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 25 Oct 2024 09:21:07 +0300
+Date: Fri, 25 Oct 2024 09:21:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH 1/5] drm/i915/display: Fix the plane max height and width
+ limits
+Message-ID: <Zxs40xP4Bo33fqe8@intel.com>
 References: <20241025060136.9884-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241025060136.9884-1-suraj.kandpal@intel.com>
+ <20241025060136.9884-2-suraj.kandpal@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241025060136.9884-2-suraj.kandpal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +69,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Oct 25, 2024 at 11:31:32AM +0530, Suraj Kandpal wrote:
+> Fix the plane max height and width limits taking into account the
+> joined pipe limits too.
+> 
+> Bspec: 28692, 49199, 68858
+> Fixes: 63dc014e37b9 ("drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.")
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index ef1436146325..fc578af4f394 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8450,9 +8450,22 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+>  	 * plane so let's not advertize modes that are
+>  	 * too big for that.
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) >= 11) {
+> -		plane_width_max = 5120 * num_joined_pipes;
+> -		plane_height_max = 4320;
+> +	if (DISPLAY_VER(dev_priv) >= 20) {
+> +		if (num_joined_pipes > 1) {
+> +			plane_width_max = 8192;
+> +			plane_height_max = 4800;
+> +		} else {
+> +			plane_width_max = 5120;
+> +			plane_height_max = 4096;
 
-Series: Add 6k resolution support for a single CRTC (rev3)
-URL   : https://patchwork.freedesktop.org/series/139979/
-State : success
+The joiner operates on horizontal lines. Why would the
+vertical resolution change here?
 
-== Summary ==
+And this is breaking ultrajoiner now.
 
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soundcore.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/common/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/acp/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/codecs/
-lib/modules/6.12.0-rc4-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/ext/
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.12.0-rc4-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/intel/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.12.0-rc4-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/
-lib/modules/6.12.0-rc4-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/cmac.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/ccm.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/cryptd.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.12.0-rc4-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.12.0-rc4-xe/build
-lib/modules/6.12.0-rc4-xe/modules.alias.bin
-lib/modules/6.12.0-rc4-xe/modules.builtin
-lib/modules/6.12.0-rc4-xe/modules.softdep
-lib/modules/6.12.0-rc4-xe/modules.alias
-lib/modules/6.12.0-rc4-xe/modules.order
-lib/modules/6.12.0-rc4-xe/modules.symbols
-lib/modules/6.12.0-rc4-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1729837240:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1729837240:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Frankly I have a hard time believing that there are any extra
+limits on plane size imposed by the hardware for joined pipes.
+If there is some kind of maximum width limit then it must be
+coming from the joiner itself (eg. max line buffer width) and
+not from the planes. So I think this is the wrong place to
+handle that.
 
+> +		}
+> +	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> +		if (num_joined_pipes > 1) {
+> +			plane_width_max = 7680;
+> +			plane_height_max = 4320;
+> +		} else {
+> +			plane_width_max = 5120;
+> +			plane_height_max = 4096;
+> +		}
+>  	} else {
+>  		plane_width_max = 5120;
+>  		plane_height_max = 4096;
+> -- 
+> 2.34.1
 
+-- 
+Ville Syrjälä
+Intel
