@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7B74D1171C
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 07:57:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88DD5D1171E
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 08:04:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55D5E10EA1B;
-	Fri, 25 Oct 2024 07:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E71010EA1C;
+	Fri, 25 Oct 2024 08:04:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Npp/MEK5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mKgbMfDL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76DDD10EA1C;
- Fri, 25 Oct 2024 07:57:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B04610EA1A;
+ Fri, 25 Oct 2024 08:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729843047; x=1761379047;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ZWHQFAYZWZx1aY++/LuQvi6u+5woaion/YJ7FH7HppU=;
- b=Npp/MEK51SVotxH7wiHXF1DkaYAtXBnU+f/q//Dy3ee4UAmlk54jpteH
- G2fZ+e/jha3Oa2YyuYVDz6mlbxq+O1gYXbqUAvbj5+7cTHXUC/X0BIWTM
- bx64ZhFZxyc+imFgHXBn7z3GT8BoJfQ6sBs8YXL4yZ/vN59DXnc7936fW
- /Kkh8l+gjsQPANz0j7Pr580G3VBIh/uopJUtOiljUlari2zQfRZpyjjID
- 0BgnuRjp4aTHJe9aiRiPCB2C+0KQ3Lo2dCYjndKgSwHVt9dHGsTQIRwAp
- m5bhb1GSp36il1zPW1Vl2ZQAv0AIGEZLTiz1+YlGCr5hxNmBYqm2yMYHM g==;
-X-CSE-ConnectionGUID: fVbcoOikTWKdjR+c6CznPw==
-X-CSE-MsgGUID: NxLikmetTiCQh5TBy44a/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29282864"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29282864"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 00:57:26 -0700
-X-CSE-ConnectionGUID: aXjW/hP0TDeVuZJnyg/zDA==
-X-CSE-MsgGUID: NQISk0PrQY2JGUIbTvTYJA==
+ t=1729843492; x=1761379492;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=RAD4L8vcnHS0iWDgbPWI+UDLv+6Lk3jihtlqC8Y/Li0=;
+ b=mKgbMfDLh71mCIC/xuOYJ1bzUOpjc72XV7fB+GNoRH/KqUjQzGNEoLZ2
+ n+QC+rkyui88alyNxPNqYYN4wZsajPi5g+x0e3E0h7jC775s87PCo/0ER
+ KOCYlPh8JJ6DvlQfRY7G0K9bGtwMOt6Pg/XdvyqE5OreVh4ouL6IKcQb2
+ +1OFXJJYlmv1Ss97xoqwBnK6sJon8Dg7CXjIUfBOV8DQ0/EC8P42ZoAK2
+ Pd/sTcm2PK4qG52A7zKtKb+eFE74rmkFJBN9PugXhKww9wmlJgFGLAN0x
+ vkdnQXuw4sco409Dg/mms95soicw+i9HzejWq7HP52EvifEz0qtlRRH7I w==;
+X-CSE-ConnectionGUID: 7/hye2JtT6i+JrWhuOZUlQ==
+X-CSE-MsgGUID: ntpphRxTTVe/RIeiSkjNAg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="46989034"
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="46989034"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2024 01:04:52 -0700
+X-CSE-ConnectionGUID: Xi+H7NgZQ1eHKxJh6oeO+w==
+X-CSE-MsgGUID: dvUl/kAxS46UsycOw6kLVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="84806953"
-Received: from zzombora-mobl1.ti.intel.com (HELO localhost) ([10.245.246.193])
- by fmviesa003-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 00:57:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: I915-ci-infra@lists.freedesktop.org, Patchwork
- <patchwork@emeril.freedesktop.org>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
-Subject: Re: =?utf-8?Q?=E2=9C=97?= CI.BAT: failure for drm/i915/display:
- platform identification with display->platform.<platform> (rev3)
-In-Reply-To: <172981565466.1330037.6238046952250769671@2413ebb6fbb6>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1729773149.git.jani.nikula@intel.com>
- <172981565466.1330037.6238046952250769671@2413ebb6fbb6>
-Date: Fri, 25 Oct 2024 10:57:20 +0300
-Message-ID: <87wmhwr4wv.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80953657"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 25 Oct 2024 01:04:49 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 25 Oct 2024 11:04:48 +0300
+Date: Fri, 25 Oct 2024 11:04:48 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com
+Subject: Re: [PATCH 1/5] drm/i915/display: Fix the plane max height and width
+ limits
+Message-ID: <ZxtRINBKqu7aEz6L@intel.com>
+References: <20241025060136.9884-1-suraj.kandpal@intel.com>
+ <20241025060136.9884-2-suraj.kandpal@intel.com>
+ <Zxs40xP4Bo33fqe8@intel.com>
+ <01ab01ee-8a41-404c-bd8f-548c4e7ee296@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <01ab01ee-8a41-404c-bd8f-548c4e7ee296@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,113 +74,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 25 Oct 2024, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm/i915/display: platform identification with display->platform.<platform> (rev3)
-> URL   : https://patchwork.freedesktop.org/series/139301/
-> State : failure
->
-> == Summary ==
->
-> CI Bug Log - changes from xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48_BAT -> xe-pw-139301v3_BAT
-> ====================================================
->
-> Summary
-> -------
->
->   **FAILURE**
->
->   Serious unknown changes coming with xe-pw-139301v3_BAT absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-139301v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
+On Fri, Oct 25, 2024 at 12:54:45PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 10/25/2024 11:51 AM, Ville Syrjälä wrote:
+> > On Fri, Oct 25, 2024 at 11:31:32AM +0530, Suraj Kandpal wrote:
+> >> Fix the plane max height and width limits taking into account the
+> >> joined pipe limits too.
+> >>
+> >> Bspec: 28692, 49199, 68858
+> >> Fixes: 63dc014e37b9 ("drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.")
+> >> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_display.c | 19 ++++++++++++++++---
+> >>   1 file changed, 16 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> >> index ef1436146325..fc578af4f394 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >> @@ -8450,9 +8450,22 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> >>   	 * plane so let's not advertize modes that are
+> >>   	 * too big for that.
+> >>   	 */
+> >> -	if (DISPLAY_VER(dev_priv) >= 11) {
+> >> -		plane_width_max = 5120 * num_joined_pipes;
+> >> -		plane_height_max = 4320;
+> >> +	if (DISPLAY_VER(dev_priv) >= 20) {
+> >> +		if (num_joined_pipes > 1) {
+> >> +			plane_width_max = 8192;
+> >> +			plane_height_max = 4800;
+> >> +		} else {
+> >> +			plane_width_max = 5120;
+> >> +			plane_height_max = 4096;
+> > The joiner operates on horizontal lines. Why would the
+> > vertical resolution change here?
+> >
+> > And this is breaking ultrajoiner now.
+> 
+> Yeah this will complicate function to check whether go to ultrajoiner or 
+> bigjoiner.
+> 
+> Perhaps need to have separate function for max_joined_plane_width() and 
+> max_unjoined_plane_width();
 
-Unrelated, please re-report.
-
-BR,
-Jani.
-
-
-
->
->   
->
-> Participating hosts (9 -> 9)
-> ------------------------------
->
->   No changes in participating hosts
->
-> Possible new issues
-> -------------------
->
->   Here are the unknown changes that may have been introduced in xe-pw-139301v3_BAT:
->
-> ### IGT changes ###
->
-> #### Possible regressions ####
->
->   * igt@xe_exec_threads@threads-mixed-fd-basic:
->     - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2]
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48/bat-adlp-vf/igt@xe_exec_threads@threads-mixed-fd-basic.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139301v3/bat-adlp-vf/igt@xe_exec_threads@threads-mixed-fd-basic.html
->
->   
-> Known issues
-> ------------
->
->   Here are the changes found in xe-pw-139301v3_BAT that come from known issues:
->
-> ### IGT changes ###
->
-> #### Issues hit ####
->
->   * igt@xe_live_ktest@xe_migrate:
->     - bat-atsm-2:         [PASS][3] -> [SKIP][4] ([Intel XE#1192]) +2 other tests skip
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
->    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139301v3/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
->
->   * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
->     - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#2229]) +2 other tests skip
->    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139301v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
->
->   
-> #### Possible fixes ####
->
->   * igt@xe_exec_reset@cm-close-fd-no-exec:
->     - bat-adlp-vf:        [DMESG-WARN][6] -> [PASS][7]
->    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48/bat-adlp-vf/igt@xe_exec_reset@cm-close-fd-no-exec.html
->    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139301v3/bat-adlp-vf/igt@xe_exec_reset@cm-close-fd-no-exec.html
->
->   * igt@xe_exec_threads@threads-mixed-fd-basic:
->     - bat-atsm-2:         [DMESG-WARN][8] -> [PASS][9]
->    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
->    [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139301v3/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
->
->   * igt@xe_live_ktest@xe_bo:
->     - bat-adlp-vf:        [SKIP][10] ([Intel XE#1192]) -> [PASS][11] +2 other tests pass
->    [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
->    [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139301v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
->
->   
->   [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
->   [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
->
->
-> Build changes
-> -------------
->
->   * Linux: xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48 -> xe-pw-139301v3
->
->   IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   xe-2122-4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48: 4a625fda23b27dd0fc6007ac5ba422a0fe6dfe48
->   xe-pw-139301v3: 139301v3
->
-> == Logs ==
->
-> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139301v3/index.html
+I don't think max plane sizes have anything to with joiner. In fact
+we should probably make this code just ask the "primary" plane its
+max dimensions and then just multiply that with the number of joined
+pipes. Any other joiner specific limits should be handled elsewhere.
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
