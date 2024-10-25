@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63135D1038E
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 01:57:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D22D4D1038E
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 01:58:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA8D10E0CF;
-	Fri, 25 Oct 2024 01:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1F2110E9CC;
+	Fri, 25 Oct 2024 01:58:33 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7B6210E0CF;
- Fri, 25 Oct 2024 01:57:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5173410E0CF;
+ Fri, 25 Oct 2024 01:58:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc/tlb=3A_Flush_g?=
- =?utf-8?q?2h_worker_in_case_of_tlb_timeout_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/guc/tlb=3A_Flush_g2h_wo?=
+ =?utf-8?q?rker_in_case_of_tlb_timeout_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Oct 2024 01:57:57 -0000
-Message-ID: <172982147794.1330038.406912473167571277@2413ebb6fbb6>
+Date: Fri, 25 Oct 2024 01:58:32 -0000
+Message-ID: <172982151233.1330038.16352733779175507806@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241024153739.994688-1-nirmoy.das@intel.com>
 In-Reply-To: <20241024153739.994688-1-nirmoy.das@intel.com>
@@ -44,51 +44,345 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc/tlb: Flush g2h worker in case of tlb timeout (rev2)
 URL   : https://patchwork.freedesktop.org/series/140382/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 0f49a87b99f688623e700bc5cd877a47ce46d80e
-Author: Nirmoy Das <nirmoy.das@intel.com>
-Date:   Thu Oct 24 17:37:39 2024 +0200
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[01:57:58] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[01:58:03] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
+ERROR:root:In file included from ../drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:16,
+                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:24:35: warning: ‘struct xe_runtime_pm’ declared inside parameter list will not be visible outside of this definition or declaration
+   24 | intel_runtime_pm_suspended(struct xe_runtime_pm *pm)
+      |                                   ^~~~~~~~~~~~~
+In file included from ../include/linux/container_of.h:5,
+                 from ../include/linux/list.h:5,
+                 from ../include/linux/wait.h:7,
+                 from ../include/linux/dma-fence.h:17,
+                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:6:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: In function ‘intel_runtime_pm_suspended’:
+../include/linux/container_of.h:20:54: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                                                      ^~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:26:32: note: in expansion of macro ‘container_of’
+   26 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+./../include/linux/compiler_types.h:458:27: error: expression in static assertion is not an integer
+  458 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:26:32: note: in expansion of macro ‘container_of’
+   26 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+In file included from ../include/uapi/linux/posix_types.h:5,
+                 from ../include/uapi/linux/types.h:14,
+                 from ../include/linux/types.h:6,
+                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h:9:
+../include/linux/stddef.h:16:33: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   16 | #define offsetof(TYPE, MEMBER)  __builtin_offsetof(TYPE, MEMBER)
+      |                                 ^~~~~~~~~~~~~~~~~~
+../include/linux/container_of.h:23:28: note: in expansion of macro ‘offsetof’
+   23 |         ((type *)(__mptr - offsetof(type, member))); })
+      |                            ^~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:26:32: note: in expansion of macro ‘container_of’
+   26 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: At top level:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:31:59: warning: ‘struct xe_runtime_pm’ declared inside parameter list will not be visible outside of this definition or declaration
+   31 | static inline intel_wakeref_t intel_runtime_pm_get(struct xe_runtime_pm *pm)
+      |                                                           ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: In function ‘intel_runtime_pm_get’:
+../include/linux/container_of.h:20:54: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                                                      ^~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:33:32: note: in expansion of macro ‘container_of’
+   33 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+./../include/linux/compiler_types.h:458:27: error: expression in static assertion is not an integer
+  458 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:33:32: note: in expansion of macro ‘container_of’
+   33 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../include/linux/stddef.h:16:33: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   16 | #define offsetof(TYPE, MEMBER)  __builtin_offsetof(TYPE, MEMBER)
+      |                                 ^~~~~~~~~~~~~~~~~~
+../include/linux/container_of.h:23:28: note: in expansion of macro ‘offsetof’
+   23 |         ((type *)(__mptr - offsetof(type, member))); })
+      |                            ^~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:33:32: note: in expansion of macro ‘container_of’
+   33 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: At top level:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:38:69: warning: ‘struct xe_runtime_pm’ declared inside parameter list will not be visible outside of this definition or declaration
+   38 | static inline intel_wakeref_t intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *pm)
+      |                                                                     ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: In function ‘intel_runtime_pm_get_if_in_use’:
+../include/linux/container_of.h:20:54: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                                                      ^~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:40:32: note: in expansion of macro ‘container_of’
+   40 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+./../include/linux/compiler_types.h:458:27: error: expression in static assertion is not an integer
+  458 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:40:32: note: in expansion of macro ‘container_of’
+   40 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../include/linux/stddef.h:16:33: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   16 | #define offsetof(TYPE, MEMBER)  __builtin_offsetof(TYPE, MEMBER)
+      |                                 ^~~~~~~~~~~~~~~~~~
+../include/linux/container_of.h:23:28: note: in expansion of macro ‘offsetof’
+   23 |         ((type *)(__mptr - offsetof(type, member))); })
+      |                            ^~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:40:32: note: in expansion of macro ‘container_of’
+   40 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: At top level:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:45:68: warning: ‘struct xe_runtime_pm’ declared inside parameter list will not be visible outside of this definition or declaration
+   45 | static inline intel_wakeref_t intel_runtime_pm_get_noresume(struct xe_runtime_pm *pm)
+      |                                                                    ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: In function ‘intel_runtime_pm_get_noresume’:
+../include/linux/container_of.h:20:54: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                                                      ^~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:47:32: note: in expansion of macro ‘container_of’
+   47 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+./../include/linux/compiler_types.h:458:27: error: expression in static assertion is not an integer
+  458 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:47:32: note: in expansion of macro ‘container_of’
+   47 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../include/linux/stddef.h:16:33: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   16 | #define offsetof(TYPE, MEMBER)  __builtin_offsetof(TYPE, MEMBER)
+      |                                 ^~~~~~~~~~~~~~~~~~
+../include/linux/container_of.h:23:28: note: in expansion of macro ‘offsetof’
+   23 |         ((type *)(__mptr - offsetof(type, member))); })
+      |                            ^~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:47:32: note: in expansion of macro ‘container_of’
+   47 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: At top level:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:54:58: warning: ‘struct xe_runtime_pm’ declared inside parameter list will not be visible outside of this definition or declaration
+   54 | static inline void intel_runtime_pm_put_unchecked(struct xe_runtime_pm *pm)
+      |                                                          ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: In function ‘intel_runtime_pm_put_unchecked’:
+../include/linux/container_of.h:20:54: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                                                      ^~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:56:32: note: in expansion of macro ‘container_of’
+   56 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+./../include/linux/compiler_types.h:458:27: error: expression in static assertion is not an integer
+  458 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:56:32: note: in expansion of macro ‘container_of’
+   56 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../include/linux/stddef.h:16:33: error: ‘struct xe_device’ has no member named ‘runtime_pm’
+   16 | #define offsetof(TYPE, MEMBER)  __builtin_offsetof(TYPE, MEMBER)
+      |                                 ^~~~~~~~~~~~~~~~~~
+../include/linux/container_of.h:23:28: note: in expansion of macro ‘offsetof’
+   23 |         ((type *)(__mptr - offsetof(type, member))); })
+      |                            ^~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:56:32: note: in expansion of macro ‘container_of’
+   56 |         struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+      |                                ^~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: At top level:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:61:48: warning: ‘struct xe_runtime_pm’ declared inside parameter list will not be visible outside of this definition or declaration
+   61 | static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, intel_wakeref_t wakeref)
+      |                                                ^~~~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h: In function ‘intel_runtime_pm_put’:
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:64:48: error: passing argument 1 of ‘intel_runtime_pm_put_unchecked’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+   64 |                 intel_runtime_pm_put_unchecked(pm);
+      |                                                ^~
+      |                                                |
+      |                                                struct xe_runtime_pm *
+../drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:54:73: note: expected ‘struct xe_runtime_pm *’ but argument is of type ‘struct xe_runtime_pm *’
+   54 | static inline void intel_runtime_pm_put_unchecked(struct xe_runtime_pm *pm)
+      |                                                   ~~~~~~~~~~~~~~~~~~~~~~^~
+../drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h: In function ‘to_i915’:
+../include/linux/container_of.h:20:54: error: invalid use of undefined type ‘struct drm_i915_private’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                                                      ^~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:22:16: note: in expansion of macro ‘container_of’
+   22 |         return container_of(dev, struct drm_i915_private, drm);
+      |                ^~~~~~~~~~~~
+./../include/linux/compiler_types.h:458:27: error: expression in static assertion is not an integer
+  458 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+../include/linux/container_of.h:20:9: note: in expansion of macro ‘static_assert’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |         ^~~~~~~~~~~~~
+../include/linux/container_of.h:20:23: note: in expansion of macro ‘__same_type’
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
+      |                       ^~~~~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:22:16: note: in expansion of macro ‘container_of’
+   22 |         return container_of(dev, struct drm_i915_private, drm);
+      |                ^~~~~~~~~~~~
+../include/linux/stddef.h:16:33: error: invalid use of undefined type ‘struct drm_i915_private’
+   16 | #define offsetof(TYPE, MEMBER)  __builtin_offsetof(TYPE, MEMBER)
+      |                                 ^~~~~~~~~~~~~~~~~~
+../include/linux/container_of.h:23:28: note: in expansion of macro ‘offsetof’
+   23 |         ((type *)(__mptr - offsetof(type, member))); })
+      |                            ^~~~~~~~
+../drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:22:16: note: in expansion of macro ‘container_of’
+   22 |         return container_of(dev, struct drm_i915_private, drm);
+      |                ^~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:1936: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe/guc/tlb: Flush g2h worker in case of tlb timeout
-    
-    Flush the g2h worker explicitly if TLB timeout happens which is
-    observed on LNL and that points to the recent scheduling issue with
-    E-cores on LNL.
-    
-    This is similar to the recent fix:
-    commit e51527233804 ("drm/xe/guc/ct: Flush g2h worker in case of g2h
-    response timeout") and should be removed once there is E core
-    scheduling fix.
-    
-    v2: Add platform check(Himal)
-    
-    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2687
-    Cc: Badal Nilawar <badal.nilawar@intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Cc: Matthew Auld <matthew.auld@intel.com>
-    Cc: John Harrison <John.C.Harrison@Intel.com>
-    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: <stable@vger.kernel.org> # v6.11+
-    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-    Acked-by: Badal Nilawar <badal.nilawar@intel.com>
-+ /mt/dim checkpatch 75eab7b9ee32a121d95a42ac704b679097f1fac4 drm-intel
-0f49a87b99f6 drm/xe/guc/tlb: Flush g2h worker in case of tlb timeout
--:57: WARNING:MISSING_FIXES_TAG: The commit message has 'stable@', perhaps it also needs a 'Fixes:' tag?
-
-total: 0 errors, 1 warnings, 0 checks, 23 lines checked
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
