@@ -4,83 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E9ABD0C5F8
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 10:07:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C08ED0C5FA
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 10:13:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC98610EA66;
-	Fri, 25 Oct 2024 10:07:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FHxBGhhu";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C53510EA64
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Oct 2024 10:07:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1729850819;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=RLWF1XI1IRMUF9kLoHorE6VU6nobmlHGWPnEZ9LtnxM=;
- b=FHxBGhhuUmGHeIoCHhnMm8yGDVB1nV9G3qI4A7NvAoh1JvS6CDnayYOafEA3b/iaB5aOWi
- z6LAyLVIMSQod+VsDlQotViu79lofbiCS0Nxt2bUxgfsHz/LVe1psR/Gr/jx1CNZgCRKzk
- 9LZnyqbzilCn9H9LKE5iZgKC65zOls8=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-629-X0jKSS2hMdqTExEdi7XJkg-1; Fri, 25 Oct 2024 06:06:55 -0400
-X-MC-Unique: X0jKSS2hMdqTExEdi7XJkg-1
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-4314c6ca114so13542975e9.1
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Oct 2024 03:06:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1729850814; x=1730455614;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=zy9d6cD2pxsXmiDYe52XZxncVOlsF2DUWlmfP7V1zlc=;
- b=kF2UmcSemMO8OiDZoSutAeAhpG7NviCsb2Qn+FvQcCL2MiuhHm+JXaLBorDYa8+Z2f
- FLH8fVqDf3EHFyeZVZDM9Yem7+kAZ7aYfprCMEZBatYY4RxJPqLvGukdR2uEBxcrlbwT
- OvfTIfpElD3jqQ5UC6cIZY2y/EUeRW9NwuJZuZwzwxSYy+eSJjqctT30jj3U192dKeXI
- PUV+ihcwWHViSc6S+xvHKHS2QWSnL5V4bo8+vr+K5CJo2RvrL4hsgj5xp87Oo5m7H3e0
- pmSg9bswVakapNuc6LZvg5J3nbvj7K0YnSuBNFbBa6S6f4m+tDm1PlLn24QxeNU69LxN
- Ngkw==
-X-Gm-Message-State: AOJu0YwDrxc/h1E2miF0Ldtd9VQA2YftBLsdbbd1zLowQPLGn4fOuRBw
- ZFbqsUYeeN6FGM7UBlDGmmOufROLFnPRZjP9J8++OskMtQXulnZyOwi6i44Xq5LAuUAJtT2+o9A
- uymrXfY2hbpb7s+pyyvo9s6vaBSlcBg4Fa2G6GkQHlZBcDzpHDXimx9gM0HO0w63k
-X-Received: by 2002:a05:600c:1d99:b0:431:5f1c:8359 with SMTP id
- 5b1f17b1804b1-4318415f41fmr69264115e9.15.1729850814506; 
- Fri, 25 Oct 2024 03:06:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE2nTQwQklAfpLsEicMD9X70tr5FanBA8x8M5m/2RYtiWItp61RQimiawap8ngTujHhoMExZQ==
-X-Received: by 2002:a05:600c:1d99:b0:431:5f1c:8359 with SMTP id
- 5b1f17b1804b1-4318415f41fmr69263955e9.15.1729850814153; 
- Fri, 25 Oct 2024 03:06:54 -0700 (PDT)
-Received: from eisenberg.fritz.box
- (200116b82de5ba00738ac8dadaac7543.dip.versatel-1u1.de.
- [2001:16b8:2de5:ba00:738a:c8da:daac:7543])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4317dde7b70sm93585205e9.1.2024.10.25.03.06.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Oct 2024 03:06:53 -0700 (PDT)
-Message-ID: <7da525c6870619301e226e4830e8355d1419a3e1.camel@redhat.com>
-Subject: Re: [PATCH v2] drm/sched: Mark scheduler work queues with
- WQ_MEM_RECLAIM
-From: Philipp Stanner <pstanner@redhat.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- dakr@kernel.org, ltuikov89@gmail.com
-Date: Fri, 25 Oct 2024 12:06:53 +0200
-In-Reply-To: <ZxpsAogpxOjU+58p@DUT025-TGLU.fm.intel.com>
-References: <20241023235917.1836428-1-matthew.brost@intel.com>
- <eb625699d08db636e19c5141f681759849ff4a63.camel@redhat.com>
- <ZxpsAogpxOjU+58p@DUT025-TGLU.fm.intel.com>
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8E4910EA69;
+	Fri, 25 Oct 2024 10:13:51 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 172A310EA69
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Oct 2024 10:13:50 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH] drm/xe: Initialise display before GT and tile init
+Date: Fri, 25 Oct 2024 12:14:03 +0200
+Message-ID: <20241025101403.172183-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241024151519.136632-1-maarten.lankhorst@linux.intel.com>
+References: <20241024151519.136632-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,98 +37,277 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2024-10-24 at 15:47 +0000, Matthew Brost wrote:
-> On Thu, Oct 24, 2024 at 05:35:47PM +0200, Philipp Stanner wrote:
-> > On Wed, 2024-10-23 at 16:59 -0700, Matthew Brost wrote:
-> > > drm_gpu_scheduler.submit_wq is used to submit jobs, jobs are in
-> > > the
-> > > path
-> > > of dma-fences, and dma-fences are in the path of reclaim. Mark
-> > > scheduler
-> > > work queue with WQ_MEM_RECLAIM to ensure forward progress during
-> > > reclaim; without WQ_MEM_RECLAIM, work queues cannot make forward
-> > > progress during reclaim.
-> > >=20
-> > > v2:
-> > > =C2=A0- Fixes tags (Philipp)
-> > > =C2=A0- Reword commit message (Philipp)
-> > >=20
-> > > Cc: Luben Tuikov <ltuikov89@gmail.com>
-> > > Cc: Danilo Krummrich <dakr@kernel.org>
-> > > Cc: Philipp Stanner <pstanner@redhat.com>
-> > > Cc: stable@vger.kernel.org
-> > > Fixes: 34f50cc6441b ("drm/sched: Use drm sched lockdep map for
-> > > submit_wq")
-> > > Fixes: a6149f039369 ("drm/sched: Convert drm scheduler to use a
-> > > work
-> > > queue rather than kthread")
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 5 +++--
-> > > =C2=A01 file changed, 3 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > index 540231e6bac6..df0a5abb1400 100644
-> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > @@ -1283,10 +1283,11 @@ int drm_sched_init(struct
-> > > drm_gpu_scheduler
-> > > *sched,
-> > > =C2=A0=09=09sched->own_submit_wq =3D false;
-> > > =C2=A0=09} else {
-> > > =C2=A0#ifdef CONFIG_LOCKDEP
-> > > -=09=09sched->submit_wq =3D
-> > > alloc_ordered_workqueue_lockdep_map(name, 0,
-> > > +=09=09sched->submit_wq =3D
-> > > alloc_ordered_workqueue_lockdep_map(name,
-> > > +=09=09=09=09=09=09=09=09=C2=A0
-> > > =C2=A0=C2=A0=C2=A0
-> > > =C2=A0=C2=A0 WQ_MEM_RECLAIM,
-> > > =C2=A0=09=09=09=09=09=09=09=09=C2=A0
-> > > =C2=A0=C2=A0=C2=A0
-> > > =C2=A0=C2=A0 &drm_sched_lockdep_map);
-> > > =C2=A0#else
-> > > -=09=09sched->submit_wq =3D alloc_ordered_workqueue(name,
-> > > 0);
-> > > +=09=09sched->submit_wq =3D alloc_ordered_workqueue(name,
-> > > WQ_MEM_RECLAIM);
-> > > =C2=A0#endif
-> > > =C2=A0=09=09if (!sched->submit_wq)
-> > > =C2=A0=09=09=09return -ENOMEM;
-> >=20
-> >=20
-> > Cool, thx =E2=80=93 looks good from my POV.
-> >=20
->=20
-> Can I get a RB?
+Display needs to be initialised first, because we need to preserve the
+initial framebuffer. It will be overwritten by any allocation we do,
+especially on discrete where the framebuffer is not in stolen memory.
 
-Oh, sure:
+On integrated even if we still recover the initial framebuffer after
+allocating, it still shows up as temporary corruption on-screen.
 
-Reviewed-by: Philipp Stanner <pstanner@redhat.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c      | 33 ++++++++++++++--------
+ drivers/gpu/drm/xe/xe_gt.c          | 43 ++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt.h          |  1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 -
+ drivers/gpu/drm/xe/xe_guc.c         | 17 ++++++------
+ drivers/gpu/drm/xe/xe_guc_ct.c      | 24 ++++++++--------
+ 6 files changed, 77 insertions(+), 42 deletions(-)
 
->=20
-> > Since you now sent this patch as a single one, what would be the
-> > preferred merge plan for this? Your XE-Series doesn't depend on
-> > this
-> > IIUC, so should we take this patch here separately into drm-misc-
-> > next?
-> >=20
->=20
-> Merge this one to drm-misc and we will backport into drm-xe-next.
-
-OK =E2=80=93 feel free to apply it yourself if you want, then we wouldn't n=
-eed
-to synchronize
-
-Philipp
-
->=20
-> Matt
->=20
-> >=20
-> > Regards,
-> > P.
-> >=20
->=20
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d145f1376069e..99f1122c0340e 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -683,20 +683,12 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+ 			return err;
+-		err = xe_memirq_init(&tile->memirq);
+-		if (err)
+-			return err;
+-	}
+-
+-	for_each_gt(gt, xe, id) {
+-		err = xe_gt_init_hwconfig(gt);
+-		if (err)
+-			return err;
+ 	}
+ 
+ 	err = xe_devcoredump_init(xe);
+ 	if (err)
+ 		return err;
++
+ 	err = devm_add_action_or_reset(xe->drm.dev, xe_driver_flr_fini, xe);
+ 	if (err)
+ 		return err;
+@@ -705,9 +697,11 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_irq_install(xe);
+-	if (err)
+-		goto err;
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_init_mcr(gt);
++		if (err)
++			return err;
++	}
+ 
+ 	err = probe_has_flat_ccs(xe);
+ 	if (err)
+@@ -740,12 +734,27 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
+ 
++	/* Now we initialise the rest of GT and tiles, and enable interrupts. */
+ 	for_each_tile(tile, xe, id) {
++		err = xe_memirq_init(&tile->memirq);
++		if (err)
++			return err;
++
+ 		err = xe_tile_init(tile);
+ 		if (err)
+ 			goto err;
+ 	}
+ 
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_init_hwconfig(gt);
++		if (err)
++			return err;
++	}
++
++	err = xe_irq_install(xe);
++	if (err)
++		goto err;
++
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 89e9d9d4db060..a0f125fba24fa 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -542,6 +542,34 @@ static int all_fw_domain_init(struct xe_gt *gt)
+ 	return err;
+ }
+ 
++int xe_gt_init_mcr(struct xe_gt *gt)
++{
++	/* Init enough GT for display init to go through */
++	unsigned int fw_ref;
++	int err = 0;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (!fw_ref)
++		return -ETIMEDOUT;
++
++	xe_gt_mcr_init_early(gt);
++	xe_pat_init(gt);
++
++	/* TODO: This is not ideal, we should ideally always initialise UC at the same time */
++	if (IS_SRIOV_VF(gt_to_xe(gt))) {
++		err = xe_uc_init(&gt->uc);
++		if (err)
++			goto out_fw;
++	}
++
++	xe_gt_topology_init(gt);
++	xe_gt_mcr_init(gt);
++	xe_gt_enable_host_l2_vram(gt);
++
++out_fw:
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return err;
++}
+ /*
+  * Initialize enough GT to be able to load GuC in order to obtain hwconfig and
+  * enable CTB communication.
+@@ -555,21 +583,16 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	if (!fw_ref)
+ 		return -ETIMEDOUT;
+ 
+-	xe_gt_mcr_init_early(gt);
+-	xe_pat_init(gt);
+-
+-	err = xe_uc_init(&gt->uc);
+-	if (err)
+-		goto out_fw;
++	if (!IS_SRIOV_VF(gt_to_xe(gt))) {
++		err = xe_uc_init(&gt->uc);
++		if (err)
++			goto out_fw;
++	}
+ 
+ 	err = xe_uc_init_hwconfig(&gt->uc);
+ 	if (err)
+ 		goto out_fw;
+ 
+-	xe_gt_topology_init(gt);
+-	xe_gt_mcr_init(gt);
+-	xe_gt_enable_host_l2_vram(gt);
+-
+ out_fw:
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 82b9b7f82fcab..58aa95fe0aa61 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -29,6 +29,7 @@ static inline bool xe_fault_inject_gt_reset(void)
+ 
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+ int xe_gt_init_hwconfig(struct xe_gt *gt);
++int xe_gt_init_mcr(struct xe_gt *gt);
+ int xe_gt_init_early(struct xe_gt *gt);
+ int xe_gt_init(struct xe_gt *gt);
+ void xe_gt_mmio_init(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index d3baba50f0851..bc8ab6b47adf3 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -489,7 +489,6 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
+ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
+ {
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+-	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+ 	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
+ 
+ 	return gt->sriov.vf.self_config.lmem_size;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 76437d42b8a1e..2a368509d36c7 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -301,6 +301,7 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+ 
+ static int vf_guc_init(struct xe_guc *guc)
+ {
++	struct xe_gt *gt = guc_to_gt(guc);
+ 	int err;
+ 
+ 	xe_guc_comm_init_early(guc);
+@@ -313,6 +314,14 @@ static int vf_guc_init(struct xe_guc *guc)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_gt_sriov_vf_bootstrap(gt);
++	if (err)
++		return err;
++
++	err = xe_gt_sriov_vf_query_config(gt);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+@@ -753,14 +762,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	int ret;
+ 
+-	ret = xe_gt_sriov_vf_bootstrap(gt);
+-	if (ret)
+-		return ret;
+-
+-	ret = xe_gt_sriov_vf_query_config(gt);
+-	if (ret)
+-		return ret;
+-
+ 	ret = xe_guc_hwconfig_init(guc);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index c260d88409907..444771e7ba820 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -207,8 +207,6 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_gt *gt = ct_to_gt(ct);
+-	struct xe_tile *tile = gt_to_tile(gt);
+-	struct xe_bo *bo;
+ 	int err;
+ 
+ 	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+@@ -234,15 +232,6 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 
+ 	primelockdep(ct);
+ 
+-	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
+-					  XE_BO_FLAG_SYSTEM |
+-					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
+-	if (IS_ERR(bo))
+-		return PTR_ERR(bo);
+-
+-	ct->bo = bo;
+-
+ 	err = drmm_add_action_or_reset(&xe->drm, guc_ct_fini, ct);
+ 	if (err)
+ 		return err;
+@@ -434,10 +423,23 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_gt *gt = ct_to_gt(ct);
++	struct xe_tile *tile = gt_to_tile(gt);
+ 	int err;
+ 
+ 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+ 
++	if (!ct->bo) {
++		struct xe_bo *bo;
++
++		bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
++						XE_BO_FLAG_SYSTEM |
++						XE_BO_FLAG_GGTT |
++						XE_BO_FLAG_GGTT_INVALIDATE);
++		if (IS_ERR(bo))
++			return PTR_ERR(bo);
++		ct->bo = bo;
++	}
++
+ 	xe_map_memset(xe, &ct->bo->vmap, 0, 0, ct->bo->size);
+ 	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
+ 	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
+-- 
+2.45.2
 
