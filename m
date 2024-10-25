@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33112D10399
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 01:31:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 070C7D1039C
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 01:52:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F171010E3D8;
-	Fri, 25 Oct 2024 01:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEE8C10E6ED;
+	Fri, 25 Oct 2024 01:52:16 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49CB610E3D8;
- Fri, 25 Oct 2024 01:31:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 652A210E0CF;
+ Fri, 25 Oct 2024 01:52:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_=28CI=29_drm/xe=3A_Fix_initial?=
- =?utf-8?q?_framebuffer_handover=2E_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ufence=3A_Flu?=
+ =?utf-8?q?sh_xe_ordered=5Fwq_in_case_of_ufence_timeout_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Oct 2024 01:31:10 -0000
-Message-ID: <172981987029.1330038.18431514678062423036@2413ebb6fbb6>
+Date: Fri, 25 Oct 2024 01:52:16 -0000
+Message-ID: <172982113641.1330038.11592116094312861851@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241018170631.6598-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20241018170631.6598-1-maarten.lankhorst@linux.intel.com>
+References: <20241024151815.929142-1-nirmoy.das@intel.com>
+In-Reply-To: <20241024151815.929142-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,69 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: (CI) drm/xe: Fix initial framebuffer handover. (rev5)
-URL   : https://patchwork.freedesktop.org/series/140183/
-State : failure
+Series: drm/xe/ufence: Flush xe ordered_wq in case of ufence timeout (rev2)
+URL   : https://patchwork.freedesktop.org/series/140386/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_guc.c: In function ‘vf_guc_init’:
-../drivers/gpu/drm/xe/xe_guc.c:316:9: error: ‘ret’ undeclared (first use in this function); did you mean ‘net’?
-  316 |         ret = xe_gt_sriov_vf_bootstrap(gt);
-      |         ^~~
-      |         net
-../drivers/gpu/drm/xe/xe_guc.c:316:9: note: each undeclared identifier is reported only once for each function it appears in
-../drivers/gpu/drm/xe/xe_guc.c:316:40: error: ‘gt’ undeclared (first use in this function)
-  316 |         ret = xe_gt_sriov_vf_bootstrap(gt);
-      |                                        ^~
-make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_guc.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1936: .] Error 2
-make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
-
-[01:30:37] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[01:30:41] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 75eab7b9ee32 drm-tip: 2024y-10m-25d-01h-19m-09s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/ufence: Flush xe ordered_wq in case of ufence timeout
 
 
