@@ -4,185 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A111D0C61D
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 15:05:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84F0FD10399
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 15:12:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5A1C10E0B1;
-	Fri, 25 Oct 2024 15:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B76A10EB04;
+	Fri, 25 Oct 2024 15:12:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irByHWO8";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="gGQZIIm+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 504C610E0B1;
- Fri, 25 Oct 2024 15:05:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729868704; x=1761404704;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/7dX+G9b1pc/76d9vm2CTVPnA2JddrfBIrx6X7Bg8eY=;
- b=irByHWO834ir7CvlfvDJ4qnBO7C335wQVOlVbQDSBn4yK79Uqik7ESEr
- 2ZV0QdMVh9Ouh8qMBfBthS0zMQBuzP+ze+EIcike1S5pWriNSFyubMQ0Q
- 1/hnatOpwVqaXEHSnylfRV+HBOtARp02U77VjVpqd+RLweDezKbG6y7u0
- NmxBfwqxW4tjyt8gpurUTGYjZZzSYignwZaB4hOj+s/Jv7kFDeOSI17sf
- vhySSvPGdtWooDXmIrfO/TO+TDDlOFK5HaRKgOMwyPzBVa+aO4ts3k9Ov
- NOU8SM8F+e0vXii9/kFl2w/Hzg+QU7kyYBg9/frBQYjoYk86dnMQRdBNK g==;
-X-CSE-ConnectionGUID: J5GF3ZMxSSCJH610IwxMhA==
-X-CSE-MsgGUID: YWF+7akPRM20G7lmAvPuew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="17172826"
-X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; d="scan'208";a="17172826"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 08:05:03 -0700
-X-CSE-ConnectionGUID: jY0/dZDzRx2w9KXqWqzLjw==
-X-CSE-MsgGUID: T81mR/gKRR+NZl4lOhjDUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; d="scan'208";a="85521768"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Oct 2024 08:05:03 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 25 Oct 2024 08:05:03 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 25 Oct 2024 08:05:03 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.47) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 25 Oct 2024 08:05:02 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RtNpSz/PaGfdpay9WTyeQeTGdfxxKYHzIqwGMhDX/jYCT26pz02L/waGTN+GvU2qWiONQb+5Cy23tRPIsTN3f+8Oj+OaWsf4/TX4coTECHEIlgmXaGCAFRp8VqC5Te8eGh595mwLiGodEEd4nYJlGLzqUaeVdEA7UqLnWI3a7LcLFq4MJXC4eSQOYCsPjpsNB6ofOAj9kuneie043v6tT682xwbkHDOb0JdR2PSpkQFNZwVKy5eOB77T3S2kLTEdvgf+n7JQ7dGumQCpY/sD8Dy+S1vCA2+ZIKUATrAHVFqnLaEpfKYuWdPj/CxQequwtSnsZeBdJtercS0L2pn+Ew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5vKzlUV9HHZpHgOivpk1sQsxFzblIKkxrARuKHNzraQ=;
- b=e5ZT7pdaNofrVhvDfsLn2Kazq71hnH06+VSG8ZnoDwvbufndsakKuMFTaNDONADkErDyNgjgDgQOb/AWYv08zdK1yfoQkMYVrcTDotejD/wqwTb5oV11IBxEZtnxs+3jX7qp0w9Gy7uzZCRvWMGVGH538g01h//SFG2e+Jm+kK9KjakBQM8Rn0f/ryfGXX4+cN2ZkO6DPc27GBdpmcu/zd6Y/OqqEpaK7j9qSFAAbz1Dy8GU1kIWqa/C3maP7c1QJhAxkTbYFdwgq9YUF1LQiKCUu3+lRPS1xJ2DWZaZYPMp6S5g2O2/xdWjGheVSMS08BblcYvFeXLDvMctQ3Cmeg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by CY8PR11MB7900.namprd11.prod.outlook.com (2603:10b6:930:7a::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.19; Fri, 25 Oct
- 2024 15:05:00 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50%6]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
- 15:04:59 +0000
-Message-ID: <906191eb-f17d-4a89-ac63-aec08fb1f66e@intel.com>
-Date: Fri, 25 Oct 2024 08:04:57 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/hdcp: Add check to remove hdcp2 compatibility
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Ghimiray, Himal Prasad"
- <himal.prasad.ghimiray@intel.com>
-References: <20241022055655.1902-1-suraj.kandpal@intel.com>
- <20241022072920.102033-1-suraj.kandpal@intel.com>
- <5a48a3f3-bda0-45a2-98e1-068165f8e772@intel.com>
- <SN7PR11MB67501BD53C3641C4BB1E9E58E34F2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <SN7PR11MB67501BD53C3641C4BB1E9E58E34F2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0198.namprd05.prod.outlook.com
- (2603:10b6:a03:330::23) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B956B10EB03;
+ Fri, 25 Oct 2024 15:12:23 +0000 (UTC)
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49P5tWvG003118;
+ Fri, 25 Oct 2024 15:12:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=CNoupa
+ qRZoqspI2s9XTJ5wvSIB28jbpBWhCey039E+o=; b=gGQZIIm+mtx4tV3rnt0Pqj
+ i8f712e11oZOsooj/2uEu0bkbBmxRGeBXrQLlLKF8k8+KQX1e7g67Ospqcwaz824
+ kBneAjAdaLzW+JhwkDbaAmBvfOc4o6mr5TubO5A/tRwlGp60hK7JYPLT6V7aJfkq
+ Vc0mzV6QYQVTudIBG18wGdQUHSQtE2vpHS9E+LM2JBYeJcgHV7nibV/rO9ldagIp
+ IjuJV0Rd578OF0kbYh78TW1q1CXXbIuOfzbzjZG3mM2XAK1VRafktm9EQgAkxG3l
+ HGe8NFs5FRtI/D5zX5Uae5jElPP5amWzV05yf0FOwhbByEZVkjbR2WwARZEOZFyw
+ ==
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42g5kxjj98-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 25 Oct 2024 15:12:06 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 49PFC5F4024991;
+ Fri, 25 Oct 2024 15:12:05 GMT
+Received: from ppma21.wdc07v.mail.ibm.com
+ (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42g5kxjj92-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 25 Oct 2024 15:12:05 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 49PEWj6t014325;
+ Fri, 25 Oct 2024 15:12:04 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+ by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 42emhfx8cr-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 25 Oct 2024 15:12:04 +0000
+Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com
+ [10.241.53.105])
+ by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 49PFC3nf43385122
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 25 Oct 2024 15:12:03 GMT
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 557A15805E;
+ Fri, 25 Oct 2024 15:12:03 +0000 (GMT)
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 454145805D;
+ Fri, 25 Oct 2024 15:11:57 +0000 (GMT)
+Received: from oc-fedora.boeblingen.de.ibm.com (unknown [9.152.212.119])
+ by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
+ Fri, 25 Oct 2024 15:11:57 +0000 (GMT)
+Message-ID: <5321f536893fd99ffe43bd49c9d26dec1c745193.camel@linux.ibm.com>
+Subject: Re: [PATCH v9 0/5] treewide: Remove I/O port accessors for
+ HAS_IOPORT=n
+From: Niklas Schnelle <schnelle@linux.ibm.com>
+To: Arnd Bergmann <arnd@arndb.de>, Brian Cain <bcain@quicinc.com>, Marcel
+ Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz
+ <luiz.dentz@gmail.com>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave Airlie
+ <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+ <jirislaby@kernel.org>, "Maciej W. Rozycki" <macro@orcam.me.uk>, Heiko
+ Carstens <hca@linux.ibm.com>
+Cc: linux-kernel@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-serial@vger.kernel.org, Linux-Arch
+ <linux-arch@vger.kernel.org>, Arnd Bergmann <arnd@kernel.org>
+Date: Fri, 25 Oct 2024 17:11:56 +0200
+In-Reply-To: <72b75acf-743d-4fe7-9246-aa5a4efabb58@app.fastmail.com>
+References: <20241024-b4-has_ioport-v9-0-6a6668593f71@linux.ibm.com>
+ <72b75acf-743d-4fe7-9246-aa5a4efabb58@app.fastmail.com>
+Autocrypt: addr=schnelle@linux.ibm.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|CY8PR11MB7900:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7a0130e6-52ba-4532-61a3-08dcf5066516
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SE9Za0xmOEtBeC9ncVNCcW5UQ21HY2dNUDkrVkVtV2R3MGo4YnRrL1JndEo2?=
- =?utf-8?B?cHNUcUdTcmZrQVlTdDFQU1Yzc0ZaemJqaEJiWDg2bDUwWGJ0aGc4dXVmQmxI?=
- =?utf-8?B?Zmx6OU4yYXBwdkt1ckwxUElNd1hJTmpvZEw0cTBYT0duRVdhcXFFQnB6NEJY?=
- =?utf-8?B?cC9SNHkzTFVDYzhYTkFIQ0FEZ2NXR0NjSVIrVXlJMW9UREQzNUlKcEdwRVlJ?=
- =?utf-8?B?UW9uUm5jVkM1dUYwbGdrQmxWQjRsQUNHZ3ZzUk5FSnRqYkN5L0hHNzJtSzNM?=
- =?utf-8?B?SXVwbThyRS9QUm14UUZ5NWJlemJpQmJIY3RrTVVCUHVHQ1RLbXRmSWVQQ0VE?=
- =?utf-8?B?cFBoQy84dE9QTHc5RHh4c1ljQW9hN1BEc21SeWNQZ3FvWS8vV2c2N2pRQUds?=
- =?utf-8?B?ek9UMzFNR0xDNzdROUtFWmN4WWlWMExmbjZyVXVKNGdZaXhxVTIxdHpxRGp2?=
- =?utf-8?B?bmxqUDlMS0tSWnRqbHFSK2tPRncwaXg3STRNWnV1RXRJOW9NS1BqbHpRdFJW?=
- =?utf-8?B?WFlZL1RFeklnTkUrUDBEbDJYTDhIM3JzNnZXVzE3QzBBS3E1SE5qMit1ZnJs?=
- =?utf-8?B?UUFjczUrd28vSFhPV0dpMEFPRW1Rb3BJYmE5clFNNS80OUJRNjNxcWxtbFNi?=
- =?utf-8?B?d0YvN28yczVhS1RSQk1Nc0l3OWhvSEZJVlkxdVdSQlVGVW9idCtUcENOYjJN?=
- =?utf-8?B?ZUZ1ZFBpN0l5YkRUM01POVpBbWdBRVBpS2NyU0Nwb3RITkJUemtoYVpRNGsx?=
- =?utf-8?B?R2QraHo2aDM2WXRiY2xKWmhhQjA2V1dicVNGMTk1RU9ia1RlYVJlck41RHFo?=
- =?utf-8?B?MnpQc0tZbnNMN3M2MEFhRzVKNXdzQXkrMWJqc0hobFc4TGNEVStHenlkNzVp?=
- =?utf-8?B?Uzd6Y05MeUIzYVhkR3RrK2lXbXhlUG9TTm9kUzY3ZWMydmY4THhCS0VKa1hw?=
- =?utf-8?B?Z1FXSEw3ODI4TnRXeEZyZ2hvY1B6cXRyc0JPL0tPSlJhQkhZWkNoR2phZGs2?=
- =?utf-8?B?dGN3WFVOWEdja2tUZDRUd0x0Vit6b0FLbjNsRE1yWm0zNUppT3haTVZNYmhG?=
- =?utf-8?B?ektmR20yYzUwelE2VWkrU0VYejRyVmJQc3hxeFJId2NBZ1V5cUpRdlltRHBw?=
- =?utf-8?B?a3lOempBOUNJUWFCZm9nekszVjJXS3B2U2pKVnU2SjNKZStseCt4TlpXL2o4?=
- =?utf-8?B?d3haVTQ4R1pJbzRiK0lrOThqYlNTSVdEMCtVMnJ5STRZY1F3ZmRVcGNsL1F6?=
- =?utf-8?B?blpYdEN6RmN5NmlwMXA0MDQwQm8zRHZvQ3ljSEZMR0JBWlpSbGpUVElTNUdC?=
- =?utf-8?B?TVJQSUhQYWltdGhyNmRiSEU2VFJsT2lrd2dmNjJ2bmZHakJRa2cxRDIwNFVt?=
- =?utf-8?B?ZHR2T3hJdWlGNE9wWkIzZXBJelBzUVFRRXpiN3h4OUhURmZRMUp1QVY4QWZ4?=
- =?utf-8?B?NHRGQ29hbS9wQVplYzU3aHFZaUJZbHY5MFpXdndtMll6eDVNYUxaaFM5U2gr?=
- =?utf-8?B?NE5YaVE5aEkzNzRXd2JJYnp3S0dqaVlKZHFETStlZFp5OEpmaDBvbXNFSHdq?=
- =?utf-8?B?QS9KemNNbnp5MXIyNTljU2FhUHhsc1VldDgvcHJqRDB3ZGdremptaUhieVFQ?=
- =?utf-8?B?dFRFS1NYNnViMEV5bnA3TjdJTWNTOFcxWlpydjZqazNvdGVlaENXenhibUdH?=
- =?utf-8?B?eGRlUDFJeEV3R2U5ZDRtWURFMzdZM0pnQVExUjR4enNQQW5FWHFYamFnY2ZZ?=
- =?utf-8?Q?6fc+2G9vWfzxiWdKtI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eTgyWEkyT1ROaUl1dENxUjZmeGthTzc5MHJ3a1dxcVJpNU1vRHpJYlFlUTRv?=
- =?utf-8?B?YWxQdDBNMmlEK1Z4TkpPL3hIWituMFVXRkhQREh5NERjUFBlcW9malZvbmh5?=
- =?utf-8?B?VkdtWmozQmJCSDFpQngwTm9XR2srMTdJZmpmN2taaWhNNlZlTjN1QWRUZjhS?=
- =?utf-8?B?K1V4SklXajRjZXp2NnNRbVltOXJhT04wSVhCMGFaOGFHZzdjRVNNNXhPZmJX?=
- =?utf-8?B?Vi9NMGJrWXQ2VWZ2aGZON0VBbEIya01CZW9lTnhXOERsUmJsT2pHRmdLZ3FN?=
- =?utf-8?B?VU1mc0c0ZnRUL1VLaU1lS0FHR3J0Z2xZSzRBYktjKzNQb2VwRGpINzRLMi9w?=
- =?utf-8?B?OW45YWNUNHhQMDcxR0E4cFdrS0Q4eEx1OGNhaU1ZM0lJc0hlZjlpWlhPUElG?=
- =?utf-8?B?WnFjUVMzdS9RZTZmUTd4OHJ6cVFrSWZBblZteGVlZzNnU0hqME15MXpNMDA2?=
- =?utf-8?B?ODlaTVZIbnZzVnIyWkdxbmdmRjRoWXlESGVlWWpIVktHL2V4eGxBd01oS09z?=
- =?utf-8?B?c0lkOFNjbmlXKzRmRTErOGt5M0tiRFZWbDIrVlU4OFVIY3FId0VDdFhJYzdj?=
- =?utf-8?B?UC94b1FhZXlGbVlBdDQrN2tWeHVzeEx1R1NYaGRYeXJnS2dWNkFVSHpoTm1V?=
- =?utf-8?B?QnltWWNJM1JaZ1RrdkRudmZIbW0vYm4wcGZhVGpjd3FWSDNRK0ZoTVRPdk1O?=
- =?utf-8?B?bTdBbHFTSzFSRnZBRVUvUE02RTlkdWZvaVVOdW9ucUZFOHRvdGNXbXFzTWZH?=
- =?utf-8?B?NGljaG1wSUZmT1BjYktoc1YwODN2aE9idnpkcGpvMFRjU05pQU9iVnNET1Za?=
- =?utf-8?B?eE9rZkdYRWRHRTdKUkhRdVlJZk5aaG5LVVZrZVczam52VG1TQXZTeXVkRUtU?=
- =?utf-8?B?aHp3UkNrZDV4ZUtEaVBIOW91K3ZEbWJxT1ltRVYwMWt6NE9Zcm5HS1JWL3BD?=
- =?utf-8?B?MTVRcG04Um1KeGRvWGtVc2JnQUtEcjhIaHMyL3lnWWlGOG96SDZLb1F6Tlky?=
- =?utf-8?B?dE84WE5CMDhOdzhVMTNXRkc2N2ZVVUZ4SlVsNDNyUWx0TDFUNU9KRCtiUnVZ?=
- =?utf-8?B?cFhzdmhaaFFhdkJ6TUttTHdxM2pUWi9NSVdjcjJrL3M2NFRUZHVGZmQycTdw?=
- =?utf-8?B?QUtiK3l3d3NmRDZmVGlrZ2VJb1hpTXVudCs2aWJTSWpVbXdGYXU5MjF0WWdI?=
- =?utf-8?B?WDBodFc4ZHp3NXlIRCtmbDYyOXlwTExaZlRWcms2d0hFdmF4YkVaeFl3emVY?=
- =?utf-8?B?M3FUT1A1VTFZbHYzdGtFd1YyL1JTZHhOdWd1ektsWEd3b3dsTytUeU5MTHgr?=
- =?utf-8?B?Y3E3ZERsamFudVBUYVp2WHYxWDRTdTlhT0NpWlVjMTZhTW1JTDlJUkhZRnNo?=
- =?utf-8?B?Q3FMdndPS0Q2UVZBNU5FLy9HRHRkSXhOemVDSGNTRVZ1ektOTWpHM0tSeWM1?=
- =?utf-8?B?M2JORDNhUlp0QkpaMVdhbHVEbzlkSkVpUzlwdW5QM1Vxd1g2WW5EeUljS2VJ?=
- =?utf-8?B?NkhBTWQzblRWMWNnS3pTMDl4NEJkVldHNlo1a2Z3bGYrUXVPMXVjRnNYNE5z?=
- =?utf-8?B?QzV2UFRLV1VBZVkvcy9GMFFFVWM1bUZnWGhlSDNnMzFPOXhRTjFhTnIxYWVz?=
- =?utf-8?B?T0hrZENncFdRZ3UzTjZGR3pESml0dmFXVUt1S0NLeE5keFdvOCtqdmUvRkVv?=
- =?utf-8?B?S1RKeFg1R3Z5ZG96L3J2bExWb3pMbm9PaGo4Uk80U1NFV09RMVlWNDlmYzhB?=
- =?utf-8?B?bVlYS0l3d3VXS2wrUVlPN0NEUEszdXh6YnYzM1FoNXJwZVNpKy9XZnFBQUFy?=
- =?utf-8?B?dldMbDBDNi9lRjZoajZCb29DVzNDTnpmQmZLTnZXUE5MbTEwUThCenQyRFEz?=
- =?utf-8?B?SWVTT1h4QzJXN0NsMzBWZVlnMlhXclhxV1phb1ZJZkNCUjliZ1BIUi84RlFD?=
- =?utf-8?B?NjlmcVR4WjEvdG91cWU4Y05tM3VBRGZZSzFsMXhwQWJpem1qL0tHbzk2NnJk?=
- =?utf-8?B?dnJNTWhGbE9rUE5sNHgwT05DZk9rd29JTWNUdmdQZy9pbzlWU0V3c1g0TkNJ?=
- =?utf-8?B?YzJtSDZNTVg0SG1NUmV1Mys4TjZwZTBMdm1KUkpqR1dncFkzb1lUdlBySjFw?=
- =?utf-8?B?ZGdHWnZmdURKL1dOS1NWV1lXMmtka2Uxa0tEd294MUdLWUtJTk03dGxZd3BQ?=
- =?utf-8?Q?Qb/JjvhL79k+lJ3GMcwBjTc=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a0130e6-52ba-4532-61a3-08dcf5066516
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 15:04:59.6438 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kVbmJn0A6vz68BjG9YEcg/mAmNRu35jAumsCE98mxavgHUFC7sanGTTrn9JyHeKrXuzS8XA5b8j7493TUKoWLD7fwI0Dajc5lH+aIHO0fn4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7900
-X-OriginatorOrg: intel.com
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: o-2P43DkpjzVooDT6zZJkQd463bBz0Qa
+X-Proofpoint-GUID: Eo_HVSAU11wlfAmnIHCCIw-ydI3dRvVf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=999
+ malwarescore=0 spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
+ suspectscore=0 phishscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410250118
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,115 +173,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, 2024-10-25 at 13:41 +0000, Arnd Bergmann wrote:
+> On Thu, Oct 24, 2024, at 17:54, Niklas Schnelle wrote:
+> > Hi All,
+> >=20
+> > This is a follow up in my long running effort of making inb()/outb() an=
+d
+> > similar I/O port accessors compile-time optional. After initially
+> > sending this as a treewide series with the latest revision at[0]
+> > we switched to per subsystem series. Now though as we're left with only
+> > 5 patches left I'm going back to a single series with Arnd planning
+> > to take this via the the asm-generic tree.
+> >=20
+> > This series may also be viewed for your convenience on my git.kernel.or=
+g
+> > tree[1] under the b4/has_ioport branch. As for compile-time vs runtime
+> > see Linus' reply to my first attempt[2].
+>=20
+> Hi Niklas,
+>=20
+> Thanks for your endless work on this. I have now pulled it into
+> the asm-generic tree as I want to ensure we get enough time to
+> test this as part of linux-next before the merge window.
+>=20
+> If minor issues still come up, I would try to fix those as
+> add-on patches to avoid rebasing my tree.
+>=20
+> I also expect that we will continue with add-on patches in
+> the future, in particular I hope to make HAS_IOPORT optional
+> on arm, arm64 and powerpc, and only enabled for
+> configurations that actually want it.
+>=20
+>      Arnd
+>=20
 
+Thanks for taking it and sticking by my side through this! Now let's
+just hope there won't be too much fallout but I will be here to help if
+needed. As for arm, arm64, and powerpc I like it, having more
+!HAS_IOPORT targets will help to share the load of new inb()/outb()
+which "worked for me on x86". I definitely learned a lot in the
+process. Of course I wished and originally expected it to go a lot
+faster but hey looks like we might persevere in the end. And yes, I
+will pour myself a drink when this finally made it into Linus' tree :-)
+And then when we meet at some conference in the future we can laugh
+about how this turned from a 5 line patch into at least 53 commits over
+3 years.
 
-
-On 10/24/2024 6:21 PM, Kandpal, Suraj wrote:
->
->> -----Original Message-----
->> From: Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>
->> Sent: Thursday, October 24, 2024 9:03 PM
->> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.org;
->> intel-gfx@lists.freedesktop.org
->> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Ghimiray, Himal Prasad
->> <himal.prasad.ghimiray@intel.com>
->> Subject: Re: [PATCH] drm/xe/hdcp: Add check to remove hdcp2 compatibility
->>
->>
->>
->>
->> On 10/22/2024 12:29 AM, Suraj Kandpal wrote:
->>> Add check to remove HDCP2 compatibility from BMG as it does not have
->>> GSC which ends up causing warning when we try to get reference of GSC
->>> FW.
->>>
->>> Fixes: 89d030804831 ("drm/xe/hdcp: Fix condition for hdcp gsc cs
->>> requirement")
->>> Fixes: 883631771038 ("drm/i915/mtl: Add HDCP GSC interface")
->>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->>> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 3 ++-
->>>    drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 4 +++-
->>>    2 files changed, 5 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->>> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->>> index 55965844d829..2c1d0ee8cec2 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->>> @@ -21,7 +21,8 @@ struct intel_hdcp_gsc_message {
->>>
->>>    bool intel_hdcp_gsc_cs_required(struct intel_display *display)
->>>    {
->>> -	return DISPLAY_VER(display) >= 14;
->>> +	return DISPLAY_VER(display) >= 14 &&
->>> +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
->>>    }
->>>
->>>    bool intel_hdcp_gsc_check_status(struct intel_display *display) diff
->>> --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->>> b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->>> index 231677129a35..efa3441c249c 100644
->>> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->>> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->>> @@ -8,6 +8,7 @@
->>>    #include <linux/delay.h>
->>>
->>>    #include "abi/gsc_command_header_abi.h"
->>> +#include "i915_drv.h"
->>>    #include "intel_hdcp_gsc.h"
->>>    #include "intel_hdcp_gsc_message.h"
->>>    #include "xe_bo.h"
->>> @@ -32,7 +33,8 @@ struct intel_hdcp_gsc_message {
->>>
->>>    bool intel_hdcp_gsc_cs_required(struct intel_display *display)
->>>    {
->>> -	return DISPLAY_VER(display) >= 14;
->>> +	return DISPLAY_VER(display) >= 14 &&
->>> +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
->> I don't think this is the correct check or the correct location. BMG does
->> require the GSC for HDCP, so intel_hdcp_gsc_cs_required() should still return
->> true; it's just that we've decided not to support GSC FW loading on the
->> platform, so we can't support HDCP2.x. Also note that the this might change
->> and/or it might apply to other platform in the future, so any check needs to
->> be done based on GSC support and not platform/display ID.
->>
->> IMO when intel_hdcp_gsc_cs_required() returns true, the caller should check
->> if the GSC FW is defined (or if the GSCCS is available) and if it is not return
->> that hdcp2 is not supported due to unmet prerequsites and fallback to 1.4
->> without printing any errors.
->>
-> Here is the thing before this I thought that should have worked too but after hdcp_gsc_cs_required()
-> We call intel_hdcp_gsc_check_status() which has the following check
->
-> if (!gsc && !xe_uc_fw_is_enabled(&gsc->fw)) {
-
-This check seems incorrect to me. Shouldn't it be an OR instead of an 
-AND? It is an OR in the i915 code.
-
->                  drm_dbg_kms(&xe->drm,
->                              "GSC Components not ready for HDCP2.x\n");
->                  return false;
->   }
->
-> And this should have returned from here but it does not it goes ahead and tries to get a xe_pm_runtime()
-> Which causes it to shout out loud which is currently causing a lot of noise in CI
-
-See comment above about possible issue. But even if that is not the bug, 
-if this function should return and it is not then we should fix this, 
-not hack the intel_hdcp_gsc_cs_required() function.
-
-Daniele
-
->
-> Regards,
-> Suraj Kandpal
->
->> Daniele
->>
->>>    }
->>>
->>>    bool intel_hdcp_gsc_check_status(struct intel_display *display)
-
+Thanks,
+Niklas
