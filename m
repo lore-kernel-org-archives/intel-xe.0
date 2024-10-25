@@ -4,144 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8270D0C611
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 13:52:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74ABAD0C612
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 13:53:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FF8210EAEF;
-	Fri, 25 Oct 2024 13:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E93910EAF1;
+	Fri, 25 Oct 2024 13:53:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="I4DKF/WH";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="OcrFsjgS";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="I4DKF/WH";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="OcrFsjgS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jVs11Np3";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1BCF10EAED;
- Fri, 25 Oct 2024 13:52:53 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 35B3C1FE29;
- Fri, 25 Oct 2024 13:52:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1729864372; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=hVp2BM2ZsW3qQ4gbDue0mRie0l4ERoGo2ToJZjkRdfc=;
- b=I4DKF/WHSXYyxn9maUAO0lJ/ctGVP/AYnNxz0kVTglnATwZNEEoSOqTCtbBsc5AaFrsPf9
- VKd6sqG1NM2MeA6E+cN/uWyVww8IMrVIy3nT11nM9Dsa1XBwO4/K0hxFfVjvZDSMCmsait
- pjmtbTrb+J2Qu5FI9v42Wme88r7a9U0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1729864372;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=hVp2BM2ZsW3qQ4gbDue0mRie0l4ERoGo2ToJZjkRdfc=;
- b=OcrFsjgS7DaKcptOnqNC2t0mP+LyutfOa+nfevufxH7FlLbS0QTriUFrEo8D8xNd4ruF6r
- o9Fvj97SA+cuslBA==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1729864372; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=hVp2BM2ZsW3qQ4gbDue0mRie0l4ERoGo2ToJZjkRdfc=;
- b=I4DKF/WHSXYyxn9maUAO0lJ/ctGVP/AYnNxz0kVTglnATwZNEEoSOqTCtbBsc5AaFrsPf9
- VKd6sqG1NM2MeA6E+cN/uWyVww8IMrVIy3nT11nM9Dsa1XBwO4/K0hxFfVjvZDSMCmsait
- pjmtbTrb+J2Qu5FI9v42Wme88r7a9U0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1729864372;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=hVp2BM2ZsW3qQ4gbDue0mRie0l4ERoGo2ToJZjkRdfc=;
- b=OcrFsjgS7DaKcptOnqNC2t0mP+LyutfOa+nfevufxH7FlLbS0QTriUFrEo8D8xNd4ruF6r
- o9Fvj97SA+cuslBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 76601132D3;
- Fri, 25 Oct 2024 13:52:51 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id GXqhG7OiG2eqTwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 25 Oct 2024 13:52:51 +0000
-Message-ID: <50017007-d2c3-4964-9cc4-ff26961e3809@suse.de>
-Date: Fri, 25 Oct 2024 15:52:51 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 707C210EAEF;
+ Fri, 25 Oct 2024 13:53:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729864398; x=1761400398;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:to:cc:date:message-id:mime-version;
+ bh=DKJFP7//DZ9GvA/s5zTyA+QpgtkyIKzTF9mHYEeXd/0=;
+ b=jVs11Np3jS2U2+PHscEpiuxHfWYkEo4RVvtvhAcSkJWBTuNOYo2H73XT
+ htAxYwVJyktIP77YT8oJ8OfVFTpWmEvG7oo5nNNAB55lbzeYqpR5ZUInz
+ fQQ9Q/rsATPXnTLc/DTtDY+LPae2EgQ9Vt7H3yvNWz7zjQ4Fdy3dkrBu/
+ moQKqxYiPQOIsOnsFLKmWv+PB1ISdAXocfuJSBljFF8O8TS6MdLVzqPlh
+ aVYp8UR8wxZaR4Xpvs+LOsvn8VGjvQ0qVNYM4j5MTTDbRao6GONuui2kZ
+ 6iwtfYzHiTz4VqQJtKGx9/a4oBbeS/sN+WiJudgsv2RwjiymNERFRW/4x A==;
+X-CSE-ConnectionGUID: lMw4h93RQlmWsVD0Ugrzig==
+X-CSE-MsgGUID: HyhFNuXxT5KO+atmQU/okw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="28984260"
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="28984260"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2024 06:53:17 -0700
+X-CSE-ConnectionGUID: /Y+T48vATnKIu4lFCZPEmg==
+X-CSE-MsgGUID: 9PHjvZcPSEWxMARi3/2QbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="85688581"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Oct 2024 06:53:15 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 25 Oct 2024 06:53:14 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 25 Oct 2024 06:53:14 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 25 Oct 2024 06:53:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tKXBIq6d7lZOnrwdxz1d/yc4rIPo1AOSwlezI9gk1PXUjTS26KG6Q7RgeRPj4EU5Scfb0K9DEges+pQCb8Uqc+j3QFB5iFm5kh+BEp9YU/yIMA+5xaSD/llZ9dmirvcFIXVLF3BibUeqiaXAO81/tc6+ZGwtUySdfqGMsHjPxfUSsgTsDg+xd2imOcfNwdT08OODFCIH1vpor6sxV6aIdkaVoGBF6YkXXFwceML1i9589mf9b4V5a1cmNT0VAXKAdIRr3ykAntWKgJd3B5jzYwVwxONuF5wkHnilVTkkkomUo+nDioHnlrheyVHQ6Fwh8f4jgc4tqjOY2hE28cnwvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fDYzKX8dvYLNQ2a+Yg7+9lKT1tcF2uDE0Jk1hAWejwU=;
+ b=OWbVpmVib4XKmkRqqqPEYvqqLVO0gRUx6GRVCX5q0NkacGPhgwQYCYdgS7zFu3nK/V/74/HK5ZlG2Zyj0TkSTEjjz9Vt7A5OflTIjLcN1BPIfpMxNDYloGiij/2iUqYDoGQ7/0kxQxMTGJcGSZSlgO3ek2CPP+PQ84ac2zxrt6VfWP06wXiC9VryhIenTHaXP5KqeqHvu9h8WGS1s58rG8/45il3uIBI97M/Hd5IfahsDquSeskHWtDajf+O2gBlJXNDoYCt7aV1qSwUNSH6SIpBxluNC+reT0bqjyww7rt2eECyK51grgQNPouqDBS7kctOLjL5U92InI5AgXaSBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by SA2PR11MB5177.namprd11.prod.outlook.com (2603:10b6:806:11c::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
+ 2024 13:53:03 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
+ 13:53:03 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241024223114.785209-7-clinton.a.taylor@intel.com>
+References: <20241024223114.785209-1-clinton.a.taylor@intel.com>
+ <20241024223114.785209-7-clinton.a.taylor@intel.com>
+Subject: Re: [PATCH v4 06/11] drm/i915/cx0: Remove bus reset after every c10
+ transaction
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Clint Taylor <clinton.a.taylor@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: Mika Kahola <mika.kahola@intel.com>
+Date: Fri, 25 Oct 2024 10:52:59 -0300
+Message-ID: <172986437914.1548.2518455286416273948@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: MW4P223CA0023.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::28) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/5] drm: handle HAS_IOPORT dependencies
-To: Niklas Schnelle <schnelle@linux.ibm.com>, Brian Cain <bcain@quicinc.com>, 
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- "Maciej W. Rozycki" <macro@orcam.me.uk>, Heiko Carstens <hca@linux.ibm.com>
-Cc: linux-kernel@vger.kernel.org, linux-hexagon@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-serial@vger.kernel.org,
- linux-arch@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>
-References: <20241024-b4-has_ioport-v9-0-6a6668593f71@linux.ibm.com>
- <20241024-b4-has_ioport-v9-3-6a6668593f71@linux.ibm.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20241024-b4-has_ioport-v9-3-6a6668593f71@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; MIME_TRACE(0.00)[0:+];
- TAGGED_RCPT(0.00)[]; TO_DN_SOME(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[29];
- FREEMAIL_TO(0.00)[linux.ibm.com,quicinc.com,holtmann.org,gmail.com,linux.intel.com,kernel.org,ffwll.ch,redhat.com,intel.com,linuxfoundation.org,arndb.de,orcam.me.uk];
- MID_RHS_MATCH_FROM(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLykjg6e7ifkwtw7jmpw7b9yio)];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, suse.de:mid,
- suse.de:email, intel.com:email]
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA2PR11MB5177:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5bdd84c-02d8-4eba-5ff6-08dcf4fc5885
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bVFZaUdmL1pmRWVYWDdXMHBWQ1BMa1QxbmpOdW9YMWJIRnJHcnYzampTVEd2?=
+ =?utf-8?B?YUFuWkdwV05oQXYzYTlzdC8yUE94YUFJdUV0OXl6dk5rUTVlVzRQaHZDcjNR?=
+ =?utf-8?B?WC92cXF2WksrRDlXSFM5UkphbmFSc0dOYWVIL3NpcGZXaWRCcGdKa3NpQXkx?=
+ =?utf-8?B?KzkzK1hDSUdvbTVaLzJmRCtldDZjR3l6OWZhRkxXVHE3MURnN2pTODRucENq?=
+ =?utf-8?B?Mmd4N1l3Y3VlZ0ZXYkx2WXd4SHZTdDVEMHlJNFJqbFh2MjJXTGlabjQ4b01l?=
+ =?utf-8?B?TGtXcDFCZDFMUjFZblpNWk93TEhIZ0R1R3pEMVhra3BNZFBzZ3NsYVVSdkFw?=
+ =?utf-8?B?eXU1eW1BaXY4SjRVbjZRVlh6OFZMUTlEMDVuOW92WXR5emh5a3FmRHN1MUQy?=
+ =?utf-8?B?ZVM5eU9peXk0WnlpS3VXcklERmlBWlRLaU1nT0FmUVpxeXdocXFaUWdpdko3?=
+ =?utf-8?B?clM1cXo5OXJRdm83SGp3UkVyWUZUd2RNbU45a0Y0RUN4NzJRRThnRWVBUFYy?=
+ =?utf-8?B?SnI3bzNaQS8vT3drQ2o1a1JNNU5NbThqNmUvWG91V2E0TEx0S2JoUlh6cStK?=
+ =?utf-8?B?bExzRDFteHFnZ20weGErbmVaZTBKcGdMOHJWcmFnYmNtdEpVVHBuR0tQN2Z6?=
+ =?utf-8?B?eHIzbnUrUmpLQ0Y0WXZiUDcraEFPME1wWnFwR1c2cjA4ZWVLeXlFN0hDeHlZ?=
+ =?utf-8?B?K3pJWE9Wcko1TndZbUl3aXFmdENaaGpGa1d2YWxJakZacDMxaGVicnJ1SEha?=
+ =?utf-8?B?d1I3NVRHMmxlUkoyTTloSUdIVjhpU0RoNGQ3eVFob3Yxd1NJcldTalNVRW1U?=
+ =?utf-8?B?TUFHS0pIOE9sdStDM1pKdjVnSnhCK0VyK1RNU1J3b2diMC9WbDRvT1puOWtK?=
+ =?utf-8?B?b0lCSVZsUS9nV1FGQTExZXBMaUpOMHpxSlY2VkVoMTl6NFR4RWdNa2lzRDdS?=
+ =?utf-8?B?UXB6S043d0JkcVB3NUtvcm1LcTJRWXBqRkRVeWxCYmtES2RZYTJWcndhUnU0?=
+ =?utf-8?B?WFJHNk9xV2FKWmZldUZZNC9tUVp6TDVCNjVhcmtaMEdDQUl3TExqU1V5SXYz?=
+ =?utf-8?B?RnhyZ1dTdExZZHl2OHZHR2RuZXU0cm0zSzF4VTBJbmY0WlBtQzc3Q2tjVDl1?=
+ =?utf-8?B?U3lsRTdGcnZSSkE3NU40UjhSMTZObmFQbktVNTREa3lzcTFwSDdtUW1qcVlP?=
+ =?utf-8?B?LzczUVlIUjI4TDU3MHVnZEk1ZkdHaS9ITTRzbFZCUS96UzYwem9tdkRuZHZm?=
+ =?utf-8?B?WU5wc1BJZk1UZkZjcXh1bjdhZVRCeEtibXRPL1ZDbjExZTJ6aDQ3RHdQQ1pk?=
+ =?utf-8?B?clZlbGVNTUFjM2RTaXBQR0lIR1VTdWN4TkRLRkJ1ZEdqQnUvMThwUTc1RCt6?=
+ =?utf-8?B?L0I0SEZQWUVMb0MwNWdBSTh3Q05JRlhaRXhXWnJmMzVJRGhWWDZ3a0YzaVBw?=
+ =?utf-8?B?QkMxTUV0S1puLzZpYVN0elRsT2pRazZFaCtNNTVNSVRKQytUcDBPRFRIeXd2?=
+ =?utf-8?B?ZVhuVzJraUwrdzk1NWhZR25Bc24wR21jS1ErYUJCUUJXYlFwVEd0M0kxcFh6?=
+ =?utf-8?B?UHhVb1JVM05ZNTF0OHI0NWhDR1Bmb1JKWGVKR1JoS1hNSXJYT0FxVm9sclFH?=
+ =?utf-8?B?U0MzdW9kVlBoYUEzeCtkY0I2OHdya1RMZmtKckRaSHVLclpibUs2RlhyQnhR?=
+ =?utf-8?B?UjhFcTBaUWpickdHWXdRcUlsOE81dEdrMTFFOHl1bEZWNEZTOE5DU0hMZmJp?=
+ =?utf-8?Q?DtM22FAfvRZbTryMT99HMHZEZBr4ur4mR1d2OHa?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGk2VVJaYzZMQ1dwemRzaDFYTTQvbW94ajErWjRCODFiVXJndzBpK2xsbStm?=
+ =?utf-8?B?Qy9nc0ExdmVtMEdyZVZYVklnLzhkWEdIdWFjUlMxbjUvVmZDOXdEQ3pwR1NC?=
+ =?utf-8?B?d3hZZjlWQnkzb2IxWlp4dzZjVXk3dDRRNnlodWFwWUZIQUxKWER1aFhMZUR4?=
+ =?utf-8?B?YUhlbC9HNUhnbTNzaUtHU0JrcnZObkEvUFhZZCtEc05RUmpHbnhqbm1maHJw?=
+ =?utf-8?B?VGF3MkViVlRuUlgyayt3UWxJbjJvSVRkRTV6QnlVRWcxUDdzYnB4Ynh3VDhv?=
+ =?utf-8?B?dzhQWXNzVEtrSnl2Ym1rbWp1OElsQ01idkJTZEsvcDlNUmZWUDJhbUFmOUJJ?=
+ =?utf-8?B?RzlsUUNLZ3RjZ2xsRzBYMCtFWk81NDk0Smk3SFRDRjdUaVVudmJlSlU1QVZu?=
+ =?utf-8?B?NDg5ZVN6Wk96bTB4N2pzOHFHKzlNS2ZxeWtGcE9WbVhhUHdPN3NVWGhseCsx?=
+ =?utf-8?B?Z2FSaXFRamxqU1NyaVo3L2ZDUTc3V09PakdzR0pQTmw1K3pFVlE0MUYzRkQv?=
+ =?utf-8?B?alRXRTJOMkpLRHNtaUZCL3ZITzdteGlaZUExUTNiQUVheGFuUTcyMW56RlZq?=
+ =?utf-8?B?dE1EZlBobFZLSFBMWVo3TG1NclNNay9BR1M3U0s2dWdXam8xK1VpYk53cWoz?=
+ =?utf-8?B?MG5kRzdzUlBFVG8xT0lLQ2NEZUF3U0dIUDRsUDJjOWdkbXpjdEhFdXdOMk1h?=
+ =?utf-8?B?dWo4QWN1M2JqUHFtdEcvN2ZMeVl5U1VmR29nc0N0MGF4LzVDSmxDZ0NnVFQ1?=
+ =?utf-8?B?L3I3YjE2NXJVMWJLMTkvRVdGaStkbzdPaitKd2ZxbFpNS09Sam13UWs4R28r?=
+ =?utf-8?B?OTNaRFRKUU1yT0F6d0I5Wjd1bHRHMmYwZGw2KzFSeS9HTEFRYXFBNmZyeXA4?=
+ =?utf-8?B?VW1XNGpkd1hEL0lBQlo3cEhZUDk3UXhocWpPUmRPck1WRzZ2Zzh1eGxPR25C?=
+ =?utf-8?B?cHEzVElJTUZYellRRm12d2pYSk9YTzcyUnk1VXVoSk5jWU50Z0F0SlR5WHFL?=
+ =?utf-8?B?aTd2WG1KSXEyUUh0U3duOFJvNkJSY2hpNnZyck91cTA1alMraEIxT1U2MUNz?=
+ =?utf-8?B?ZEpEMGNqbkRqQ3psanlsY0pYSTg4ZDd0VUR6OGFBZWoyOXgrYjUrN3d0bGl6?=
+ =?utf-8?B?dnh2L3VTRVNRZnBReG9wRGxUem5CbHY3MCs5dXY1clpDb1pBNmY1ZlFvWEkz?=
+ =?utf-8?B?eTFNbUF6T01uYWZRSzgrS1dKbkIxZElpSHdkQTFlRkR3WWZjOWwxaENXbHVu?=
+ =?utf-8?B?eG9JZnhUSGtjNlIydHRNR1hoeGg2bTMwV29jdVBaLzh1S3dwdE1HNnlWdUhN?=
+ =?utf-8?B?WThhR3pTWE1Vcm9WU3Z1RnA0VTQwVnhTUWxISHQwYTVDU0lJNjlmeWZlMXlk?=
+ =?utf-8?B?NXI1RzF1WmVSTkZZa1J5WGp0eDVTa01Pdk9iWTJjaTViMU9yV0txaWNUVW0w?=
+ =?utf-8?B?NVVuNU56MHNrMFNIMVRnTG8ra2NuYkNGUmp3KzhJUjdtanJvRFBuMHVZbjF3?=
+ =?utf-8?B?bWJTWFJpRzFpOWhVMVcxOGpJQ1V2Um5BZXpvbHp3d1YzdWszSGZMbGoxa3BI?=
+ =?utf-8?B?WHNCb0xmL0taSkJNdVAzSVV3Zmp2NEE3NzZybE03Nzd4ODJMaVB1UkpkUVZU?=
+ =?utf-8?B?ZFNFSFA0QjZsdThROFZ0SHlTRko2bTFKNTkxNkIrRnFmVm5nNDhwUm1RSE1U?=
+ =?utf-8?B?a29zV3M4U1BiUDBjY3Bqa0tqUFZjV3dsbGpvWWtkZUxxZWxnamswZm45OGRB?=
+ =?utf-8?B?aElHazRONmNxNTBNVUZDYW5LSkZwSDM0cjA1VVZLVVhFZjdqUkdhZGFIV2dh?=
+ =?utf-8?B?dFEvNUlxamM3SzlNL0NTNEdKNHQ1NlZ6RWxnK1haeGJldWdGbXg0N0h1ZDJX?=
+ =?utf-8?B?SXlXbDc2Q2x0NGtpVTQ3U24ycS9sdXpOZVFKK1FiRC9YZ0JGT3kwYjhpY3Yx?=
+ =?utf-8?B?c3ZqdGFmVldzemd2YVhQazRZM3JramQ2RXlrbnJFOEsxUTNodWpoVFBQdGhD?=
+ =?utf-8?B?TTkzK004cGNYK1Q2eDlobmUxM3c3dUdzcUZXQzAwTWl1d3lzOFZxdkhiMFlN?=
+ =?utf-8?B?Yk1kZHV4L0NhU204ZkN4YjFxdHB1YmgvaWE0K1dxdk54eFo3VXJCS21yMjZ4?=
+ =?utf-8?B?TFJMd21SMEkzaWEvSVQxd2R1QUE4a3BneDFsblRhcjhiQms5Z1RqMHp0RnZM?=
+ =?utf-8?B?a0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5bdd84c-02d8-4eba-5ff6-08dcf4fc5885
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 13:53:03.4976 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iZZW84Im97brzhH9UsIPEFxjxUHzVRYQmWirtKBa9dlfO+85XwP5LSwiHPKB+hkwqITsHcNcZK3DsO1qK1sv3A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5177
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,173 +193,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-Am 24.10.24 um 19:54 schrieb Niklas Schnelle:
-> In a future patch HAS_IOPORT=n will disable inb()/outb() and friends at
-> compile time. We thus need to add HAS_IOPORT as dependency for those
-> drivers using them. In the bochs driver there is optional MMIO support
-> detected at runtime, warn if this isn't taken when HAS_IOPORT is not
-> defined.
->
-> There is also a direct and hard coded use in cirrus.c which according to
-> the comment is only necessary during resume.  Let's just skip this as
-> for example s390 which doesn't have I/O port support also doesen't
-> support suspend/resume.
->
-> Co-developed-by: Arnd Bergmann <arnd@kernel.org>
-> Signed-off-by: Arnd Bergmann <arnd@kernel.org>
-> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com> # xe
-> Signed-off-by: Niklas Schnelle <schnelle@linux.ibm.com>
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
->   drivers/gpu/drm/gma500/Kconfig |  2 +-
->   drivers/gpu/drm/qxl/Kconfig    |  2 +-
->   drivers/gpu/drm/tiny/bochs.c   | 19 ++++++++++++++-----
->   drivers/gpu/drm/tiny/cirrus.c  |  2 ++
->   drivers/gpu/drm/xe/Kconfig     |  2 +-
->   5 files changed, 19 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/gma500/Kconfig b/drivers/gpu/drm/gma500/Kconfig
-> index efb4a2dd2f80885cb59c925d09401002278d7d61..23b7c14de5e29238ece939d5822d8a9ffc4675cc 100644
-> --- a/drivers/gpu/drm/gma500/Kconfig
-> +++ b/drivers/gpu/drm/gma500/Kconfig
-> @@ -1,7 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   config DRM_GMA500
->   	tristate "Intel GMA500/600/3600/3650 KMS Framebuffer"
-> -	depends on DRM && PCI && X86 && MMU
-> +	depends on DRM && PCI && X86 && MMU && HAS_IOPORT
->   	select DRM_KMS_HELPER
->   	select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
->   	select I2C
-> diff --git a/drivers/gpu/drm/qxl/Kconfig b/drivers/gpu/drm/qxl/Kconfig
-> index ca3f51c2a8fe1a383f8a2479f04b5c0b3fb14e44..17d6927e5e23402786117fd0f99186978956c1c2 100644
-> --- a/drivers/gpu/drm/qxl/Kconfig
-> +++ b/drivers/gpu/drm/qxl/Kconfig
-> @@ -1,7 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   config DRM_QXL
->   	tristate "QXL virtual GPU"
-> -	depends on DRM && PCI && MMU
-> +	depends on DRM && PCI && MMU && HAS_IOPORT
->   	select DRM_KMS_HELPER
->   	select DRM_TTM
->   	select DRM_TTM_HELPER
-> diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.c
-> index 31fc5d839e106ea4d5c8fe42d1bfc3c70291e3fb..e738bb85831667f55c436e21e761435def113b9a 100644
-> --- a/drivers/gpu/drm/tiny/bochs.c
-> +++ b/drivers/gpu/drm/tiny/bochs.c
-> @@ -1,5 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0-or-later
->   
-> +#include <linux/bug.h>
->   #include <linux/module.h>
->   #include <linux/pci.h>
->   
-> @@ -95,12 +96,17 @@ struct bochs_device {
->   
->   /* ---------------------------------------------------------------------- */
->   
-> +static __always_inline bool bochs_uses_mmio(struct bochs_device *bochs)
-> +{
-> +	return !IS_ENABLED(CONFIG_HAS_IOPORT) || bochs->mmio;
-> +}
-> +
->   static void bochs_vga_writeb(struct bochs_device *bochs, u16 ioport, u8 val)
->   {
->   	if (WARN_ON(ioport < 0x3c0 || ioport > 0x3df))
->   		return;
->   
-> -	if (bochs->mmio) {
-> +	if (bochs_uses_mmio(bochs)) {
->   		int offset = ioport - 0x3c0 + 0x400;
->   
->   		writeb(val, bochs->mmio + offset);
-> @@ -114,7 +120,7 @@ static u8 bochs_vga_readb(struct bochs_device *bochs, u16 ioport)
->   	if (WARN_ON(ioport < 0x3c0 || ioport > 0x3df))
->   		return 0xff;
->   
-> -	if (bochs->mmio) {
-> +	if (bochs_uses_mmio(bochs)) {
->   		int offset = ioport - 0x3c0 + 0x400;
->   
->   		return readb(bochs->mmio + offset);
-> @@ -127,7 +133,7 @@ static u16 bochs_dispi_read(struct bochs_device *bochs, u16 reg)
->   {
->   	u16 ret = 0;
->   
-> -	if (bochs->mmio) {
-> +	if (bochs_uses_mmio(bochs)) {
->   		int offset = 0x500 + (reg << 1);
->   
->   		ret = readw(bochs->mmio + offset);
-> @@ -140,7 +146,7 @@ static u16 bochs_dispi_read(struct bochs_device *bochs, u16 reg)
->   
->   static void bochs_dispi_write(struct bochs_device *bochs, u16 reg, u16 val)
->   {
-> -	if (bochs->mmio) {
-> +	if (bochs_uses_mmio(bochs)) {
->   		int offset = 0x500 + (reg << 1);
->   
->   		writew(val, bochs->mmio + offset);
-> @@ -228,7 +234,7 @@ static int bochs_hw_init(struct drm_device *dev)
->   			DRM_ERROR("Cannot map mmio region\n");
->   			return -ENOMEM;
->   		}
-> -	} else {
-> +	} else if (IS_ENABLED(CONFIG_HAS_IOPORT)) {
->   		ioaddr = VBE_DISPI_IOPORT_INDEX;
->   		iosize = 2;
->   		if (!request_region(ioaddr, iosize, "bochs-drm")) {
-> @@ -236,6 +242,9 @@ static int bochs_hw_init(struct drm_device *dev)
->   			return -EBUSY;
->   		}
->   		bochs->ioports = 1;
-> +	} else {
-> +		dev_err(dev->dev, "I/O ports are not supported\n");
-> +		return -EIO;
->   	}
->   
->   	id = bochs_dispi_read(bochs, VBE_DISPI_INDEX_ID);
-> diff --git a/drivers/gpu/drm/tiny/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
-> index 751326e3d9c374baf72115492aeefff2b73869f0..e31e1df029ab0272c4a1ff0ab3eb026ca679b560 100644
-> --- a/drivers/gpu/drm/tiny/cirrus.c
-> +++ b/drivers/gpu/drm/tiny/cirrus.c
-> @@ -509,8 +509,10 @@ static void cirrus_crtc_helper_atomic_enable(struct drm_crtc *crtc,
->   
->   	cirrus_mode_set(cirrus, &crtc_state->mode);
->   
-> +#ifdef CONFIG_HAS_IOPORT
->   	/* Unblank (needed on S3 resume, vgabios doesn't do it then) */
->   	outb(VGA_AR_ENABLE_DISPLAY, VGA_ATT_W);
-> +#endif
->   
->   	drm_dev_exit(idx);
->   }
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 7bbe46a98ff1f449bc2af30686585a00e9e8af93..116f58774135fc3a9f37d6d72d41340f5c812297 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -49,7 +49,7 @@ config DRM_XE
->   
->   config DRM_XE_DISPLAY
->   	bool "Enable display support"
-> -	depends on DRM_XE && DRM_XE=m
-> +	depends on DRM_XE && DRM_XE=m && HAS_IOPORT
->   	select FB_IOMEM_HELPERS
->   	select I2C
->   	select I2C_ALGOBIT
+Quoting Clint Taylor (2024-10-24 19:31:09-03:00)
+>C10 phy timeouts occur on xe3lpd if the c10 bus is reset every
+>transaction. Starting with xe3lpd this is bus reset not necessary
 >
 
--- 
+Yeah. Resetting the bus on every transaction was never part of the Bspec
+and it was added as a workaround for issues observed with MTL, right
+Mika?
+
+I wonder if we also see the issues with Xe2_LPD... If not, maybe we
+could instead do the resets only for Xe_LPD+.
+
+In any case, since the reset was not part of the BSpec and was causing
+issues for Xe3_LPD:
+
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+We might want extend the commit message to provide more context (i.e.
+resets not required by the BSpec and were added as workaround for MTL).
+
 --
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Gustavo Sousa
 
+>Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 ++++--
+> 1 file changed, 4 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/dr=
+m/i915/display/intel_cx0_phy.c
+>index 4d6e1c135bdc..c6e0cbff5201 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>@@ -224,7 +224,8 @@ static int __intel_cx0_read_once(struct intel_encoder =
+*encoder,
+>          * down and let the message bus to end up
+>          * in a known state
+>          */
+>-        intel_cx0_bus_reset(encoder, lane);
+>+        if (DISPLAY_VER(i915) < 30)
+>+                intel_cx0_bus_reset(encoder, lane);
+>=20
+>         return REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);
+> }
+>@@ -313,7 +314,8 @@ static int __intel_cx0_write_once(struct intel_encoder=
+ *encoder,
+>          * down and let the message bus to end up
+>          * in a known state
+>          */
+>-        intel_cx0_bus_reset(encoder, lane);
+>+        if (DISPLAY_VER(i915) < 30)
+>+                intel_cx0_bus_reset(encoder, lane);
+>=20
+>         return 0;
+> }
+>--=20
+>2.25.1
+>
