@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FB8FD1038E
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 01:30:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33112D10399
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Oct 2024 01:31:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B46210E274;
-	Fri, 25 Oct 2024 01:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F171010E3D8;
+	Fri, 25 Oct 2024 01:31:11 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F39310E274;
- Fri, 25 Oct 2024 01:30:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49CB610E3D8;
+ Fri, 25 Oct 2024 01:31:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_=28CI=29_drm/xe=3A_Fix_in?=
- =?utf-8?q?itial_framebuffer_handover=2E_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_=28CI=29_drm/xe=3A_Fix_initial?=
+ =?utf-8?q?_framebuffer_handover=2E_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Oct 2024 01:30:36 -0000
-Message-ID: <172981983638.1330038.4353911043738050382@2413ebb6fbb6>
+Date: Fri, 25 Oct 2024 01:31:10 -0000
+Message-ID: <172981987029.1330038.18431514678062423036@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241018170631.6598-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20241018170631.6598-1-maarten.lankhorst@linux.intel.com>
@@ -44,43 +44,67 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: (CI) drm/xe: Fix initial framebuffer handover. (rev5)
 URL   : https://patchwork.freedesktop.org/series/140183/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 9674a8122737838411b70485404d486d54ba36cf
-Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date:   Thu Oct 24 17:15:19 2024 +0200
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_guc.c: In function ‘vf_guc_init’:
+../drivers/gpu/drm/xe/xe_guc.c:316:9: error: ‘ret’ undeclared (first use in this function); did you mean ‘net’?
+  316 |         ret = xe_gt_sriov_vf_bootstrap(gt);
+      |         ^~~
+      |         net
+../drivers/gpu/drm/xe/xe_guc.c:316:9: note: each undeclared identifier is reported only once for each function it appears in
+../drivers/gpu/drm/xe/xe_guc.c:316:40: error: ‘gt’ undeclared (first use in this function)
+  316 |         ret = xe_gt_sriov_vf_bootstrap(gt);
+      |                                        ^~
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_guc.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1936: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe: Initialise display before GT and tile init
-    
-    Display needs to be initialised first, because we need to preserve the
-    initial framebuffer. It will be overwritten by any allocation we do,
-    especially on discrete where the framebuffer is not in stolen memory.
-    
-    On integrated even if we still recover the initial framebuffer after
-    allocating, it still shows up as temporary corruption on-screen.
-    
-    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-+ /mt/dim checkpatch 75eab7b9ee32a121d95a42ac704b679097f1fac4 drm-intel
-b92d609db116 drm/xe: Remove double pageflip
-0a12200eadc9 drm/i915/display: Use async flip when available for initial plane config
-3241ee3c49a1 drm/xe: Move suballocator init to after display init
-9674a8122737 drm/xe: Initialise display before GT and tile init
--:250: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#250: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:435:
-+		bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
-+						XE_BO_FLAG_SYSTEM |
-
-total: 0 errors, 0 warnings, 1 checks, 210 lines checked
+[01:30:37] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[01:30:41] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
