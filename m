@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 375A4D0C604
-	for <intel-xe@archiver.kernel.org>; Sat, 26 Oct 2024 18:01:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E393D0C604
+	for <intel-xe@archiver.kernel.org>; Sat, 26 Oct 2024 18:01:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D48A710E42C;
-	Sat, 26 Oct 2024 18:01:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C481610E421;
+	Sat, 26 Oct 2024 18:01:45 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC27210E430;
- Sat, 26 Oct 2024 18:01:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D80E310E424;
+ Sat, 26 Oct 2024 18:01:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/oa=3A_Increas?=
- =?utf-8?q?e_default_OA_buffer_size_to_128_M_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/oa=3A_Increase_def?=
+ =?utf-8?q?ault_OA_buffer_size_to_128_M_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 26 Oct 2024 18:01:33 -0000
-Message-ID: <172996569374.1335517.3070379471790061536@2413ebb6fbb6>
+Date: Sat, 26 Oct 2024 18:01:44 -0000
+Message-ID: <172996570488.1335516.15851489480808770365@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241023181155.1208100-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20241023181155.1208100-1-ashutosh.dixit@intel.com>
@@ -44,13 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/oa: Increase default OA buffer size to 128 M (rev2)
 URL   : https://patchwork.freedesktop.org/series/140390/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3ec61d11c742 drm-tip: 2024y-10m-25d-20h-06m-01s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/oa: Increase default OA buffer size to 128 M
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e97286af26c2099b564a273b3429b32a32d0b8d7
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Wed Oct 23 11:11:55 2024 -0700
+
+    drm/xe/oa: Increase default OA buffer size to 128 M
+    
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 3ec61d11c7429a65dcc3ac46b9e845f13891a306 drm-intel
+e97286af26c2 drm/xe/oa: Increase default OA buffer size to 128 M
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:48: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#48: FILE: drivers/gpu/drm/xe/xe_oa.c:1094:
++			     XE_OA_BUFFER_SIZE == SZ_128M ? OAG_OA_DEBUG_BUF_SIZE_SELECT: 0);
+ 			                                                                ^
+
+-:48: WARNING:CONSTANT_COMPARISON: Comparisons should place the constant on the right side of the test
+#48: FILE: drivers/gpu/drm/xe/xe_oa.c:1094:
++			     XE_OA_BUFFER_SIZE == SZ_128M ? OAG_OA_DEBUG_BUF_SIZE_SELECT: 0);
+
+total: 1 errors, 2 warnings, 0 checks, 49 lines checked
 
 
