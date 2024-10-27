@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04CA1D13564
-	for <intel-xe@archiver.kernel.org>; Sun, 27 Oct 2024 13:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50F43D13561
+	for <intel-xe@archiver.kernel.org>; Sun, 27 Oct 2024 13:43:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0F8510E2EF;
-	Sun, 27 Oct 2024 13:43:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1138410E2F0;
+	Sun, 27 Oct 2024 13:43:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrH/EP3v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c6nPPCHv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 062C210E2E9;
- Sun, 27 Oct 2024 13:43:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E21810E2EF;
+ Sun, 27 Oct 2024 13:43:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730036627; x=1761572627;
+ t=1730036631; x=1761572631;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hv5kpSbB7PWfGlJbGBUeRbU1ZdtggY/cIDV1NjfcY9A=;
- b=IrH/EP3v4VsnQc7MK5WaTWeIp1q4tEFpE0O2umQcaqf6fdQRdbvEV3R8
- UJWbrIX2C7GFJ2e1X3j6uw6NnVuCRTtxR2YbKoYM9Q9ICW/NTO3zmgZsO
- zq2hS3zR+ssC66tmLyH9iHa+l2vXYH5xKryc0pipRkB8ePTbIKzYf7ENp
- TVgf75fmehTA/cEw8MFnS38yRqGqn04ERu06P52ANCXhLge+JjPvrTXME
- +gaNNcyjZ1v/gLhFRSlzBaTG8i2kA6dqUMiRXHPgd0xid8R5hDW18m5V9
- OAn2VIZkbLpYMwF9sUDNSWiKJ2C3SYPzfG/vHdZeCIZ1c1AYwQGTGZ9TC g==;
-X-CSE-ConnectionGUID: 8WQM0TmDRteoWH+TpWsbsA==
-X-CSE-MsgGUID: sBkjy6R/SAquHOZ9D+wOZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29780953"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29780953"
+ bh=ITawyytB2t0ek5GuR0+lJE2JEwiQ0PJaUFf/Xcs/chw=;
+ b=c6nPPCHvBVu9bnQKgfn2wAA+or9KG7o/2UFAWQxsXzQwSqc/kfcKKli7
+ T8H5ZfNoVLsfp+FBUDS0syZ4WwB3yuqXCvn3EBjVam7U0XUIN5iJVVwhn
+ jKSsSf/sbZCr6VDGfBAszgsXvTUmqjeoiQfQ0+L+32KjAycqEHkSzExKJ
+ MjRDMZudE0SYhu7lmiFO2d7PAKMsjZgT7bbkzbP72QDIEkjCanwkBp6u7
+ PCLjbORK3c9DemsJY0EE1lV66zANLxpZrx5CYjJg67BYoOBln4dve/+rQ
+ EcjKmlrX0GNQThM7bbDrB+ACSx7hTNe0+vmQBk6c63yfkHq4S+DjGauAA A==;
+X-CSE-ConnectionGUID: jYG3S2cSRTuiP8z2Tr5XzQ==
+X-CSE-MsgGUID: m6gspvo2TqaQ5tND0u45lQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29780957"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29780957"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2024 06:43:47 -0700
-X-CSE-ConnectionGUID: 0B5rtFBTQWCtbGoZIVhVgA==
-X-CSE-MsgGUID: TNzJM6gJSHW/Z+foAqdwRQ==
+ 27 Oct 2024 06:43:51 -0700
+X-CSE-ConnectionGUID: utLh2IU1QPSAzmCTrop2xQ==
+X-CSE-MsgGUID: fVT2dVVRTWqGityCkWi+uA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,237,1725346800"; d="scan'208";a="118841468"
+X-IronPort-AV: E=Sophos;i="6.11,237,1725346800"; d="scan'208";a="118841476"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2024 06:43:46 -0700
+ 27 Oct 2024 06:43:49 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 5/7] drm/i915/vdsc: Add support for read/write PPS for 3rd DSC
- engine
-Date: Sun, 27 Oct 2024 19:15:55 +0530
-Message-ID: <20241027134557.862036-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 7/7] drm/i915/dp: Enable 3 DSC engines for 12 slices
+Date: Sun, 27 Oct 2024 19:15:57 +0530
+Message-ID: <20241027134557.862036-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241027134557.862036-1-ankit.k.nautiyal@intel.com>
 References: <20241027134557.862036-1-ankit.k.nautiyal@intel.com>
@@ -68,78 +67,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With BMG each pipe has 3 DSC engines, so add bits to read/write the PPS
-registers for the 3rd DSC engine
+Certain resolutions require 12 DSC slices support along with ultrajoiner.
+For such cases, the third DSC Engine per Pipe is enabled. Each DSC
+Engine processes 1 Slice, resulting in a total of 12 VDSC slices
+(4 Pipes * 3 DSC Instances per Pipe).
+Add support for 12 DSC slices and 3 DSC engines for such modes.
+
+v2: Add missing check for 3 slices support only with 4 joined pipes.
+(Suraj)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vdsc.c      | 8 +++++---
- drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 6 ++++++
- 2 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 29b1aa7f4f94..4143109aaab6 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -402,8 +402,10 @@ static void intel_dsc_get_pps_reg(const struct intel_crtc_state *crtc_state, int
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d7d42eac4be3..a38ae79d3812 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -116,9 +116,12 @@ static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
+  * For now consider a max of 2 slices per line, which works for all platforms.
+  * With this we can have max of 4 DSC Slices per pipe.
+  *
++ * For higher resolutions where 12 slice support is required with
++ * ultrajoiner, only then each pipe can support 3 slices.
++ *
+  * #TODO Split this better to use 4 slices/dsc engine where supported.
+  */
+-static const u8 valid_dsc_slicecount[] = {1, 2, 4};
++static const u8 valid_dsc_slicecount[] = {1, 2, 3, 4};
  
- 	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
+ /**
+  * intel_dp_is_edp - is the given port attached to an eDP panel (either CPU or PCH)
+@@ -1026,6 +1029,13 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 	for (i = 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
+ 		u8 test_slice_count = valid_dsc_slicecount[i] * num_joined_pipes;
  
--	if (dsc_reg_num >= 3)
-+	if (dsc_reg_num >= 4)
- 		MISSING_CASE(dsc_reg_num);
-+	if (dsc_reg_num >= 3)
-+		dsc_reg[2] = BMG_DSC2_PPS(pipe, pps);
- 	if (dsc_reg_num >= 2)
- 		dsc_reg[1] = pipe_dsc ? ICL_DSC1_PPS(pipe, pps) : DSCC_PPS(pps);
- 	if (dsc_reg_num >= 1)
-@@ -415,7 +417,7 @@ static void intel_dsc_pps_write(const struct intel_crtc_state *crtc_state,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	i915_reg_t dsc_reg[2];
-+	i915_reg_t dsc_reg[3];
- 	int i, vdsc_per_pipe, dsc_reg_num;
- 
- 	vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-@@ -815,7 +817,7 @@ static u32 intel_dsc_pps_read(struct intel_crtc_state *crtc_state, int pps,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	i915_reg_t dsc_reg[2];
-+	i915_reg_t dsc_reg[3];
- 	int i, vdsc_per_pipe, dsc_reg_num;
- 	u32 val;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index 474a7f9f3881..2d478a84b07c 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -59,8 +59,10 @@
- #define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps) < 12 ? (pps) : (pps) + 12) * 4)
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
- #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
-+#define _BMG_DSC2_PICTURE_PARAMETER_SET_0_PB	0x78970
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
- #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC	0x78570
-+#define _BMG_DSC2_PICTURE_PARAMETER_SET_0_PC	0x78A70
- #define ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
- 							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
-@@ -73,8 +75,12 @@
- #define _ICL_DSC1_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-+#define _BMG_DSC2_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
-+							   _BMG_DSC2_PICTURE_PARAMETER_SET_0_PB, \
-+							   _BMG_DSC2_PICTURE_PARAMETER_SET_0_PC)
- #define  ICL_DSC0_PPS(pipe, pps)		_MMIO(_ICL_DSC0_PPS_0(pipe) + ((pps) * 4))
- #define  ICL_DSC1_PPS(pipe, pps)		_MMIO(_ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
-+#define  BMG_DSC2_PPS(pipe, pps)		_MMIO(_BMG_DSC2_PPS_0(pipe) + ((pps) * 4))
- 
- /* PPS 0 */
- #define   DSC_PPS0_NATIVE_422_ENABLE		REG_BIT(23)
++		/*
++		 * 3 DSC Slices per pipe need 3 DSC engines,
++		 * which is supported only with Ultrajoiner.
++		 */
++		if (valid_dsc_slicecount[i] == 3 && num_joined_pipes != 4)
++			continue;
++
+ 		if (test_slice_count >
+ 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
+ 			break;
+@@ -2411,8 +2421,13 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
+ 	 * is greater than the maximum Cdclock and if slice count is even
+ 	 * then we need to use 2 VDSC instances.
++	 * In case of Ultrajoiner along with 12 slices we need to use 3
++	 * VDSC instances.
+ 	 */
+-	if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
++	if (pipe_config->joiner_pipes && num_joined_pipes == 4 &&
++	    pipe_config->dsc.slice_count == 12)
++		pipe_config->dsc.num_streams = 3;
++	else if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
+ 		pipe_config->dsc.num_streams = 2;
+ 	else
+ 		pipe_config->dsc.num_streams = 1;
 -- 
 2.45.2
 
