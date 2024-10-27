@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14D52D13560
-	for <intel-xe@archiver.kernel.org>; Sun, 27 Oct 2024 13:44:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD2F4D13560
+	for <intel-xe@archiver.kernel.org>; Sun, 27 Oct 2024 13:49:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD0A910E1E4;
-	Sun, 27 Oct 2024 13:43:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nilTCG4h";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91A8410E2EC;
- Sun, 27 Oct 2024 13:43:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730036629; x=1761572629;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Dj4r4mbRlMse3XCqN/PdKm51zShg3Cb6d92FNHsfWqM=;
- b=nilTCG4hKEtT8svy2/FkRGPPLyon3KjdzvR7Jwzuf+WOcYdlo212f1GO
- xWb9g3SOpLCPpP0aMtie6fGu15+5YGnoMsYBUMxB9BSeUMk5zPikriDiT
- mMpMP9kyywDsn/SBNJiJVDS5P1WAzXPsjp4ZfC7pbH4EBd6fGy5AcCIfx
- 9o69jdz2cu1A6fg5D7R6QPWoIUu8tCeuwQ5sV3nbIeCf3TXIIylfN9qrH
- 9dUgecvDJtomqwYVFDMJMjKDAwzDULL70aZwAN361api6zZtCxs6FqvQq
- OmgkBsBMUYseWRP1Xj6FAb7/e1Bjdq/Vl7pFGhd8q764R04LDk1shv83C Q==;
-X-CSE-ConnectionGUID: R2LVqlHJSb+9xjLfcYzNYQ==
-X-CSE-MsgGUID: e6q+26cxQmOxUUosCAPjjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29780954"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29780954"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2024 06:43:49 -0700
-X-CSE-ConnectionGUID: X3GjjQcuRUacT22VU1zihQ==
-X-CSE-MsgGUID: 2RVJwMkDTkCUVB7+8a8iKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,237,1725346800"; d="scan'208";a="118841472"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2024 06:43:47 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	suraj.kandpal@intel.com
-Subject: [PATCH 6/7] drm/i915/dp: Ensure hactive is divisible by slice count
-Date: Sun, 27 Oct 2024 19:15:56 +0530
-Message-ID: <20241027134557.862036-7-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241027134557.862036-1-ankit.k.nautiyal@intel.com>
-References: <20241027134557.862036-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 730A410E1EE;
+	Sun, 27 Oct 2024 13:49:21 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E67610E145;
+ Sun, 27 Oct 2024 13:49:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_support_for_3_VD?=
+ =?utf-8?q?SC_engines_12_slices_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sun, 27 Oct 2024 13:49:20 -0000
+Message-ID: <173003696002.1352737.11425627953208396451@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241027134557.862036-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241027134557.862036-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,46 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to the DSC spec, the slice width should be chosen such that
-the picture width (hactive) is evenly divisible by the slice width.
-If not, extra pixels (padding) must be added to the last slice to
-ensure all slices have the same width.
+== Series Details ==
 
-Currently, we do not support handling these extra pixels.
-Therefore, select a slice count that evenly divides the hactive
-(slice_width = hactive / slice_count).
+Series: Add support for 3 VDSC engines 12 slices (rev6)
+URL   : https://patchwork.freedesktop.org/series/139933/
+State : success
 
-This check is already implemented for DSI, where the slice count is
-selected from the BIOS.
+== Summary ==
 
-For DP, currently with 1, 2, 4 slices per pipe it is unlikely to have
-slice count not being able to divide hactive, but with 3 DSC engines
-and 3 slices, we can have such cases. Adding this check prepares for
-future scenarios where such configurations might be used.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3ec61d11c742 drm-tip: 2024y-10m-25d-20h-06m-01s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/dp: Update Comment for Valid DSC Slices per Line
+Applying: drm/i915/display: Prepare for dsc 3 stream splitter
+Applying: drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC engine
+Applying: drm/i915/vdsc: Introduce 3rd VDSC engine VDSC2
+Applying: drm/i915/vdsc: Add support for read/write PPS for 3rd DSC engine
+Applying: drm/i915/dp: Ensure hactive is divisible by slice count
+Applying: drm/i915/dp: Enable 3 DSC engines for 12 slices
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index dbb1d75c0576..d7d42eac4be3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1038,6 +1038,9 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 		if (num_joined_pipes > 1 && valid_dsc_slicecount[i] < 2)
- 			continue;
- 
-+		if (mode_hdisplay % test_slice_count)
-+			continue;
-+
- 		if (min_slice_count <= test_slice_count)
- 			return test_slice_count;
- 	}
--- 
-2.45.2
 
