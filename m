@@ -4,46 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 873D4D3E2A0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E030CD3E2A1
 	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 18:28:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 229B010E1E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85B2F10E1F5;
 	Mon, 28 Oct 2024 18:28:53 +0000 (UTC)
-X-Greylist: delayed 1033 seconds by postgrey-1.36 at gabe;
- Fri, 25 Oct 2024 09:30:59 UTC
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABF510EA47;
- Fri, 25 Oct 2024 09:30:59 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.19.88.194])
- by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4XZcWQ1lk2zQrZF;
- Fri, 25 Oct 2024 17:12:50 +0800 (CST)
-Received: from kwepemm600001.china.huawei.com (unknown [7.193.23.3])
- by mail.maildlp.com (Postfix) with ESMTPS id 4CE25140361;
- Fri, 25 Oct 2024 17:13:44 +0800 (CST)
-Received: from huawei.com (10.175.113.133) by kwepemm600001.china.huawei.com
- (7.193.23.3) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 25 Oct
- 2024 17:13:42 +0800
-From: Wang Hai <wanghai38@huawei.com>
-To: <lucas.demarchi@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <maarten.lankhorst@linux.intel.com>,
- <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
- <simona@ffwll.ch>, <matthew.auld@intel.com>, <matthew.brost@intel.com>,
- <michal.wajdeczko@intel.com>, <akshata.jahagirdar@intel.com>,
- <david.kershner@intel.com>, <matthew.d.roper@intel.com>,
- <zhangxiaoxu5@huawei.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <wanghai38@huawei.com>
-Subject: [PATCH] drm/xe/migrate: Fix inappropriate error printing in
- xe_migrate_sanity_test()
-Date: Fri, 25 Oct 2024 17:13:10 +0800
-Message-ID: <20241025091310.15380-1-wanghai38@huawei.com>
-X-Mailer: git-send-email 2.17.1
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="K3nzAmxr";
+	dkim-atps=neutral
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 155AB10E041;
+ Sun, 27 Oct 2024 04:58:39 +0000 (UTC)
+Received: by mail-pj1-f52.google.com with SMTP id
+ 98e67ed59e1d1-2e56750bb0dso2346023a91.0; 
+ Sat, 26 Oct 2024 21:58:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1730005118; x=1730609918; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=rGcsHrcwLS5rbJAr8cWgtD+JmSxKpAfNabdsn2Sm574=;
+ b=K3nzAmxrWyFGfTGxNN7J3ompVfLrz2SKtQkq8TiD9wpc7G3lecTFHYGUpldoWLz02s
+ py2Tlff/Hb7aKdsMkT3JcDf8CaDhGv+F7WJbsSrikouls4uqltgsMkcGcaZnfzJwRp6+
+ KN3iCN2AUFeqiwKQTSu2a2JnT7hWkZeLG93z4fSqjbvCbtHig9dOHED8QJbeMjbFx6/y
+ p5+d9sBh/cr2nITC+EBI6hSk3tOSixQIUT7BRSbbGdjQHhGkGIvd4HIsNxllyd2vkmTW
+ G+3UfGglNlwSrpqANAa4jbhAneHwlOEZMgRQiMnY3KX7iBO6xAi7wlxCFk6QGbpAM2/J
+ si1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730005118; x=1730609918;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=rGcsHrcwLS5rbJAr8cWgtD+JmSxKpAfNabdsn2Sm574=;
+ b=Vc5kDaigzZJBJ7xy5LCnC/rgE5nN2Adlfk1EQrVAMOTG5jsXFyPncgdDhxSDGdk3Ih
+ XgbxwgkI7da7b2ax30AYsGWAMJ5uT6+Eem9XaE61S9IcZonRCUs0bvK39s0vaMLIMZMA
+ 5fUNKuxu0Apui0s3gMsemIYghvrfYEk9B8u+PQJvfnFJ0wOhOICLDuNj2U8GpUPCqp/Z
+ gMHvJh/Im5lRadmQLd/bu1Ty+sH/YPkv8oUgY/Et9OX/WOwJPpFp7smopXGrh/zaTf1U
+ cL6cj4vr4xqYwln2Ct1QCvPfu27FxSK76KvpZyKOq0oeb0/IGuoOE7fz5P4dWyGZEYYg
+ lCcQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV/7CqWBbFrZr8zxBNP1q8RFb3vQVNRvfmRWuxMBMWQuVxPMSrdSEZWkjLf/7C2OLL+e9IEN/YMmhk=@lists.freedesktop.org,
+ AJvYcCVHBb4pOr55Dqv5sb3K+Zul1Vmh99s6dMG5HHnvvJZeQ9TgpGil5vdMbpYKUH82fnZ3NsRakeTG4jw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwpkFAkXX8+vhsi3MtRZBj8LCoJaySNxFhAFD37sgrPjDRhRG4G
+ 6g4hJUekG2+NbBHwZtLiZs7TSzr7nPzsXU1Xl7OBt+Mn67hhOPkU
+X-Google-Smtp-Source: AGHT+IHseJFxwF1uwMouwoVCFWM1YHzALcbP58rShHb5pBCj+o0tfLLl2KH1C/uR4GdJ9JZhP1kl9g==
+X-Received: by 2002:a17:90a:ca0f:b0:2e2:cd22:b083 with SMTP id
+ 98e67ed59e1d1-2e8f0d4dfbcmr5359887a91.0.1730005118430; 
+ Sat, 26 Oct 2024 21:58:38 -0700 (PDT)
+Received: from gye-ThinkPad-T590.. ([39.120.225.141])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2e8e3771e64sm4338817a91.50.2024.10.26.21.58.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 26 Oct 2024 21:58:38 -0700 (PDT)
+From: Gyeyoung Baek <gye976@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Cc: Gyeyoung Baek <gye976@gmail.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/xe: Fix build error for XE_IOCTL_DBG macro
+Date: Sun, 27 Oct 2024 13:57:52 +0900
+Message-Id: <20241027045752.10530-1-gye976@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.175.113.133]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- kwepemm600001.china.huawei.com (7.193.23.3)
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 28 Oct 2024 18:28:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,33 +87,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When creating pin map for tiny fails, the PTR_ERR(pt) is printed instead
-of PTR_ERR(tiny), which makes it impossible to accurately get the true
-cause of the error.
+In the previous code, there is build error.
+if CONFIG_DRM_USE_DYNAMIC_DEBUG is set,
+'drm_dbg' function is replaced with '__dynamic_func_call_cls',
+which is replaced with a do while statement.
 
-Print PTR_ERR(tiny) after creating pin map for tiny fails.
+The problem is that,
+XE_IOCTL_DBG uses this function for conditional expression.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Wang Hai <wanghai38@huawei.com>
+so I fix the expression to be compatible with the do while statement,
+by referring to "https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html".
+
+Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_macros.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 1a192a2a941b..4542925445de 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -224,8 +224,8 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 				    XE_BO_FLAG_VRAM_IF_DGFX(tile) |
- 				    XE_BO_FLAG_PINNED);
- 	if (IS_ERR(tiny)) {
--		KUNIT_FAIL(test, "Failed to allocate fake pt: %li\n",
--			   PTR_ERR(pt));
-+		KUNIT_FAIL(test, "Failed to allocate fake tiny: %li\n",
-+			   PTR_ERR(tiny));
- 		goto free_pt;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
+index daf56c846d03..58a9d1e33502 100644
+--- a/drivers/gpu/drm/xe/xe_macros.h
++++ b/drivers/gpu/drm/xe/xe_macros.h
+@@ -11,8 +11,8 @@
+ #define XE_WARN_ON WARN_ON
  
+ #define XE_IOCTL_DBG(xe, cond) \
+-	((cond) && (drm_dbg(&(xe)->drm, \
+-			    "Ioctl argument check failed at %s:%d: %s", \
+-			    __FILE__, __LINE__, #cond), 1))
++	({drm_dbg(&(xe)->drm, \
++		"Ioctl argument check failed at %s:%d: %s", \
++		__FILE__, __LINE__, #cond); (cond); })
+ 
+ #endif
 -- 
-2.17.1
+2.34.1
 
