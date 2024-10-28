@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80174D13593
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 10:05:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76B21D13588
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 10:52:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24C5B10E456;
-	Mon, 28 Oct 2024 10:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F86710E468;
+	Mon, 28 Oct 2024 10:52:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aaOhBppD";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UsLjCbA2";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E57510E455;
- Mon, 28 Oct 2024 10:05:52 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6994510E468;
+ Mon, 28 Oct 2024 10:52:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id B5CAC5C5A2A;
- Mon, 28 Oct 2024 10:05:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E927C4CEC3;
- Mon, 28 Oct 2024 10:05:50 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 80AB1A41BEF;
+ Mon, 28 Oct 2024 10:50:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26F92C4CEE4;
+ Mon, 28 Oct 2024 10:51:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1730109951;
- bh=Z2fr1jJxkc2nUFejeQVSYNaVA/Ey1sprE8dbblumJVU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=aaOhBppDvy01NoN85ZBGyg7R9bgjbbNHd4ZXHKnG8ehSDkfnYt/1UXzrme1sAUxnq
- 3FHCpVXmGmvwdkzsimAutjlw3P9mE+f7JnSxV79dEFVlx11rDEq7Ebvc7uPMxMsTRH
- tUhZ3zPo9VmkJm2zP4zG4iAH2AcMlK39dZJsf5ca0QSzF95x/8bq2N9/Won3Xgwuhd
- mcKIjNcLmvlMW4Ygz4UmhUNChHC4wPut7umYjDwvWG3cVNHVEK9Dkl7K27NLFd4bT0
- zYBzKutajMYcOLdqhT7mYVLgTAjKDE0aLjJefVlsHMa6Q0bpPvwJDhDUWfqC6BbTOg
- gUkurUyWh/9TQ==
-Date: Mon, 28 Oct 2024 11:05:48 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Tejun Heo <tj@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, 
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, 
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org, 
- linux-mm@kvack.org
-Subject: Re: [PATCH 0/7] kernel/cgroups: Add "dev" memory accounting cgroup.
-Message-ID: <20241028-meaty-mega-nuthatch-3d74b1@houat>
-References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
- <ZxlRLMwkabTaOrjc@slm.duckdns.org>
- <20241024-beautiful-spaniel-of-youth-f75b61@houat>
- <Zxp-nLXOJXoSy8BN@slm.duckdns.org>
+ s=k20201202; t=1730112720;
+ bh=bIsuXLW/KCKvhvK3+EhfVO5O9oazimM8bvpOYqcxDuM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=UsLjCbA2y0XkIvixKQneQVehDf2pwAisqy20KYXsbHF506htYdC1yUFQCeuy57VDX
+ QkYvmxMSCx2AvpEJs65aNQX7sDLqEarMzaZFkXOjFH/QEXsRc4+lqFmCFXNbQ1DXty
+ v2+6f/5aIgcP5V2mr7bYKDDipwVf1vyyft2aWCFTsjmhMRva0w7G28dswFL7U74ndD
+ JO/eDLzLRrwpdfkFaSA66ysjUSvV1JB9+jkWYRhCA3YwXix2z80fPIcW+2dmWITtZp
+ LtNYZv7XB615lvjZic5+5+amMc0YZul8qOLfn3AJO441XpOFH2Pp4xeJcCt7fqqZyK
+ sK7wDsV4xWsBg==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>, Jia Yao <jia.yao@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Zongyao Bai <zongyao.bai@intel.com>, Sasha Levin <sashal@kernel.org>,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.11 28/32] drm/xe: Enlarge the invalidation timeout
+ from 150 to 500
+Date: Mon, 28 Oct 2024 06:50:10 -0400
+Message-ID: <20241028105050.3559169-28-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241028105050.3559169-1-sashal@kernel.org>
+References: <20241028105050.3559169-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="t7lydr677wzslm3o"
-Content-Disposition: inline
-In-Reply-To: <Zxp-nLXOJXoSy8BN@slm.duckdns.org>
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.11.5
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,88 +68,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Shuicheng Lin <shuicheng.lin@intel.com>
 
---t7lydr677wzslm3o
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 0/7] kernel/cgroups: Add "dev" memory accounting cgroup.
-MIME-Version: 1.0
+[ Upstream commit c8fb95e7a54315460b45090f0968167a332e1657 ]
 
-On Thu, Oct 24, 2024 at 07:06:36AM -1000, Tejun Heo wrote:
-> Hello,
->=20
-> On Thu, Oct 24, 2024 at 09:20:43AM +0200, Maxime Ripard wrote:
-> ...
-> > > Yeah, let's not use "dev" name for this. As Waiman pointed out, it co=
-nflicts
-> > > with the devices controller from cgroup1. While cgroup1 is mostly
-> > > deprecated, the same features are provided through BPF in systemd usi=
-ng the
-> > > same terminologies, so this is going to be really confusing.
-> >=20
-> > Yeah, I agree. We switched to dev because we want to support more than
-> > just DRM, but all DMA-able memory. We have patches to support for v4l2
-> > and dma-buf heaps, so using the name DRM didn't feel great either.
-> >=20
-> > Do you have a better name in mind? "device memory"? "dma memory"?
->=20
-> Maybe just dma (I think the term isn't used heavily anymore, so the word =
-is
-> kinda open)? But, hopefully, others have better ideas.
->=20
-> > > What happened with Tvrtko's weighted implementation? I've seen many p=
-roposed
-> > > patchsets in this area but as far as I could see none could establish
-> > > consensus among GPU crowd and that's one of the reasons why nothing e=
-ver
-> > > landed. Is the aim of this patchset establishing such consensus?
-> >=20
-> > Yeah, we have a consensus by now I think. Valve, Intel, Google, and Red
-> > Hat have been involved in that series and we all agree on the implement=
-ation.
->=20
-> That's great to hear.
->=20
-> > Tvrtko aims at a different feature set though: this one is about memory
-> > allocation limits, Tvrtko's about scheduling.
-> >=20
-> > Scheduling doesn't make much sense for things outside of DRM (and even
-> > for a fraction of all DRM devices), and it's pretty much orthogonal. So
-> > i guess you can expect another series from Tvrtko, but I don't think
-> > they should be considered equivalent or dependent on each other.
->=20
-> Yeah, I get that this is about memory and that is about processing capaci=
-ty,
-> so the plan is going for separate controllers for each? Or would it be
-> better to present both under the same controller interface? Even if they'=
-re
-> going to be separate controllers, we at least want to be aligned on how
-> devices and their configurations are presented in the two controllers.
+There are error messages like below that are occurring during stress
+testing: "[   31.004009] xe 0000:03:00.0: [drm] ERROR GT0: Global
+invalidation timeout". Previously it was hitting this 3 out of 1000
+executions of warm reboot.  After raising it to 500, 1000 warm reboot
+executions passed and it didn't fail.
 
-It's still up in the air, I think.
+Due to the way xe_mmio_wait32() is implemented, the timeout is able to
+expire early when the register matches the expected value due to the
+wait increments starting small. So, the larger timeout value should have
+no effect during normal use cases.
 
-My personal opinion is that there's only DRM (and accel) devices that
-really care about scheduling constraints anyway, so it wouldn't (have
-to) be as generic as this one.
+v2 (Jonathan):
+  - rework the commit message
+v3 (Lucas):
+  - add conclusive message for the fail rate and test case
+v4:
+  - add suggested-by
 
-And if we would call it dma, then the naming becomes a bit weird since
-DMA doesn't have much to do with scheduling.
+Suggested-by: Jia Yao <jia.yao@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Tested-by: Zongyao Bai <zongyao.bai@intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241015161207.1373401-1-shuicheng.lin@intel.com
+(cherry picked from commit 2eb460ab9f4bc5b575f52568d17936da0af681d8)
+[ Fix conflict with gt->mmio ]
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/xe/xe_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-But I guess it's just another instance of the "naming is hard" problem :)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 8a44a2b6dcbb6..5226333cfdd6d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -870,7 +870,7 @@ void xe_device_l2_flush(struct xe_device *xe)
+ 	spin_lock(&gt->global_invl_lock);
+ 	xe_mmio_write32(gt, XE2_GLOBAL_INVAL, 0x1);
+ 
+-	if (xe_mmio_wait32(gt, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
++	if (xe_mmio_wait32(gt, XE2_GLOBAL_INVAL, 0x1, 0x0, 500, NULL, true))
+ 		xe_gt_err_once(gt, "Global invalidation timeout\n");
+ 	spin_unlock(&gt->global_invl_lock);
+ 
+-- 
+2.43.0
 
-Maxime
-
---t7lydr677wzslm3o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZx9h9gAKCRAnX84Zoj2+
-dlU+AYCxActcJs1M7HcXNvi88y4oVEf4bnodKMwcVHc/s5JEvI4cja+MhosCF+3b
-uptlsFIBgKwWkcuonwZQCL1tmx5YQCFFg4+etI8Oz58IK+o0xVJKfuYCyXvSKQzs
-7Ws0CK5uUQ==
-=O7zl
------END PGP SIGNATURE-----
-
---t7lydr677wzslm3o--
