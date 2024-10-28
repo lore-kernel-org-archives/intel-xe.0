@@ -4,72 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E030CD3E2A1
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 18:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EBA8D3E2A2
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 18:28:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85B2F10E1F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E329810E242;
 	Mon, 28 Oct 2024 18:28:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="K3nzAmxr";
+	dkim=pass (1024-bit key; unprotected) header.d=qq.com header.i=@qq.com header.b="uUGoTT8n";
 	dkim-atps=neutral
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 155AB10E041;
- Sun, 27 Oct 2024 04:58:39 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-2e56750bb0dso2346023a91.0; 
- Sat, 26 Oct 2024 21:58:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1730005118; x=1730609918; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=rGcsHrcwLS5rbJAr8cWgtD+JmSxKpAfNabdsn2Sm574=;
- b=K3nzAmxrWyFGfTGxNN7J3ompVfLrz2SKtQkq8TiD9wpc7G3lecTFHYGUpldoWLz02s
- py2Tlff/Hb7aKdsMkT3JcDf8CaDhGv+F7WJbsSrikouls4uqltgsMkcGcaZnfzJwRp6+
- KN3iCN2AUFeqiwKQTSu2a2JnT7hWkZeLG93z4fSqjbvCbtHig9dOHED8QJbeMjbFx6/y
- p5+d9sBh/cr2nITC+EBI6hSk3tOSixQIUT7BRSbbGdjQHhGkGIvd4HIsNxllyd2vkmTW
- G+3UfGglNlwSrpqANAa4jbhAneHwlOEZMgRQiMnY3KX7iBO6xAi7wlxCFk6QGbpAM2/J
- si1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730005118; x=1730609918;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=rGcsHrcwLS5rbJAr8cWgtD+JmSxKpAfNabdsn2Sm574=;
- b=Vc5kDaigzZJBJ7xy5LCnC/rgE5nN2Adlfk1EQrVAMOTG5jsXFyPncgdDhxSDGdk3Ih
- XgbxwgkI7da7b2ax30AYsGWAMJ5uT6+Eem9XaE61S9IcZonRCUs0bvK39s0vaMLIMZMA
- 5fUNKuxu0Apui0s3gMsemIYghvrfYEk9B8u+PQJvfnFJ0wOhOICLDuNj2U8GpUPCqp/Z
- gMHvJh/Im5lRadmQLd/bu1Ty+sH/YPkv8oUgY/Et9OX/WOwJPpFp7smopXGrh/zaTf1U
- cL6cj4vr4xqYwln2Ct1QCvPfu27FxSK76KvpZyKOq0oeb0/IGuoOE7fz5P4dWyGZEYYg
- lCcQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV/7CqWBbFrZr8zxBNP1q8RFb3vQVNRvfmRWuxMBMWQuVxPMSrdSEZWkjLf/7C2OLL+e9IEN/YMmhk=@lists.freedesktop.org,
- AJvYcCVHBb4pOr55Dqv5sb3K+Zul1Vmh99s6dMG5HHnvvJZeQ9TgpGil5vdMbpYKUH82fnZ3NsRakeTG4jw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwpkFAkXX8+vhsi3MtRZBj8LCoJaySNxFhAFD37sgrPjDRhRG4G
- 6g4hJUekG2+NbBHwZtLiZs7TSzr7nPzsXU1Xl7OBt+Mn67hhOPkU
-X-Google-Smtp-Source: AGHT+IHseJFxwF1uwMouwoVCFWM1YHzALcbP58rShHb5pBCj+o0tfLLl2KH1C/uR4GdJ9JZhP1kl9g==
-X-Received: by 2002:a17:90a:ca0f:b0:2e2:cd22:b083 with SMTP id
- 98e67ed59e1d1-2e8f0d4dfbcmr5359887a91.0.1730005118430; 
- Sat, 26 Oct 2024 21:58:38 -0700 (PDT)
-Received: from gye-ThinkPad-T590.. ([39.120.225.141])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2e8e3771e64sm4338817a91.50.2024.10.26.21.58.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 26 Oct 2024 21:58:38 -0700 (PDT)
-From: Gyeyoung Baek <gye976@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+X-Greylist: delayed 734 seconds by postgrey-1.36 at gabe;
+ Mon, 28 Oct 2024 10:02:21 UTC
+Received: from out203-205-221-164.mail.qq.com (out203-205-221-164.mail.qq.com
+ [203.205.221.164])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2159510E446;
+ Mon, 28 Oct 2024 10:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+ t=1730109738; bh=xeyQ4CVlwUPQjV1gtHpbGii9ZeSWJyc+nho/aGfUvpc=;
+ h=From:To:Cc:Subject:Date;
+ b=uUGoTT8nOEkYUu1QLaP3qK050tw4qC+XPpiO+UijjRvkiNgWuSMI9xZi5uobnZHJp
+ pVBVDzjxsm3Qc5qS72qsKSL6x6V0dXaRSM1CKqPzpaM1tO0skvtWkgSedtVLPKK4sj
+ 93Hz7gDnOm1T7/PWDxQ9HvjJc6wS+AzUkgoXFWms=
+Received: from localhost.localdomain ([111.48.58.10])
+ by newxmesmtplogicsvrsza15-1.qq.com (NewEsmtp) with SMTP
+ id ACF3628A; Mon, 28 Oct 2024 17:43:15 +0800
+X-QQ-mid: xmsmtpt1730108595tmhr2h2n9
+Message-ID: <tencent_46D189AD021D29866D1A9806B47AB013700A@qq.com>
+X-QQ-XMAILINFO: M0yQCYO1Pk4BB9UWeDIUyjZs3jTlXV1Ox3W3489j2qduakf8YQmQky95WNP7w3
+ kEHZJj3Swch0FXjcS5ciAQqliZAwisS8ib0v4l5b3DUHTMd94sPA9rtLDNodoek0O8Jrd8oEqaLo
+ ExFEQ4QQIPxKCFuQBaQsKFs/hRIeCI6aiSwU1E8vutZ+QZmVNSkCwd+jugg8H3qZKE/9mLiKxAst
+ KtB0lB2YA0wsY5n3L7hWDP0N39u+2zgCrW7cfVmyHfHRXijzrfjWiVH/n6/P+YYgc6zyJg7TS1uL
+ OpxreeJs6/tG+g5BcGTTyZrjDZS3ynmd+LiDBwtuIMtYptjcDm8lEUrrUsPwHC+vVwqOIlNhP0wN
+ tv8GtoQtJTQ+RRcxKebED7AnFpgYFung3bSpUFfS+gOfJywifJBp7UqgXyS8HQ5lUOwOc7nJOhdP
+ ASpS8U6x/y6ZW6tlNZnHMRzwvJ1mjL9grTjqiymxBTvaO6/5lCy8LH8NBfmCqo22HLavODtKmdBb
+ EpAdxq+TAN8v8ORiBVcaJyZ2QiN86d8TjGIugczIrewM5bC6vRhoF09Z4A3H9f6XHQorOBqoAi12
+ CQpwhCYJLXMjMvSkW7N+AU/LHgvZUN01y9rNfofyeSQ7A34+vsmit1jxVqk8IH4Ok6MTqYcGhdwT
+ XZP2ddKuDj0EDJ6wtJ3O7JjDc3rD/LIJRLrBstwOeExuOevfPaR8jgbGWm4kkyzcss6QjmAM9UH3
+ pN52Otdku4RRkyRwxFhfwGUGC3YZssJ3kg8vWwIq4b1YKCtjMdiLwm76TDvBogw/E1ZTpF35trkY
+ yLknEV0AyxEQqwnDIJJAFljlQs7wkRfZfqAkayQN9PV5d8Qprs1H8+pkqaUkJU2LL71VUkwKyRdU
+ RJr0Z1vF4BNVjSJH1DPKFFnzK6FPIBStBBF/UOp+0ymBAb9omPafA=
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+From: 1064094935@qq.com
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas <thomas.hellstrom@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: Gyeyoung Baek <gye976@gmail.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/xe: Fix build error for XE_IOCTL_DBG macro
-Date: Sun, 27 Oct 2024 13:57:52 +0900
-Message-Id: <20241027045752.10530-1-gye976@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, pengfuyuan <pengfuyuan@kylinos.cn>
+Subject: [PATCH] drm/xe/hdcp: Fix logic errors
+Date: Mon, 28 Oct 2024 17:43:14 +0800
+X-OQ-MSGID: <20241028094314.524356-1-1064094935@qq.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 28 Oct 2024 18:28:52 +0000
@@ -87,38 +75,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the previous code, there is build error.
-if CONFIG_DRM_USE_DYNAMIC_DEBUG is set,
-'drm_dbg' function is replaced with '__dynamic_func_call_cls',
-which is replaced with a do while statement.
+From: pengfuyuan <pengfuyuan@kylinos.cn>
 
-The problem is that,
-XE_IOCTL_DBG uses this function for conditional expression.
+Here the gsc struct null pointer check should use '||' instead of '&&'.
 
-so I fix the expression to be compatible with the do while statement,
-by referring to "https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html".
+Fix the following patches:
+    drm/xe/hdcp: Check GSC structure validity
 
-Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
+Signed-off-by: pengfuyuan <pengfuyuan@kylinos.cn>
 ---
- drivers/gpu/drm/xe/xe_macros.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
-index daf56c846d03..58a9d1e33502 100644
---- a/drivers/gpu/drm/xe/xe_macros.h
-+++ b/drivers/gpu/drm/xe/xe_macros.h
-@@ -11,8 +11,8 @@
- #define XE_WARN_ON WARN_ON
+diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+index 6619a40aed15..f4332f06b6c8 100644
+--- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
++++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+@@ -42,7 +42,7 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
+ 	struct xe_gsc *gsc = &gt->uc.gsc;
+ 	bool ret = true;
  
- #define XE_IOCTL_DBG(xe, cond) \
--	((cond) && (drm_dbg(&(xe)->drm, \
--			    "Ioctl argument check failed at %s:%d: %s", \
--			    __FILE__, __LINE__, #cond), 1))
-+	({drm_dbg(&(xe)->drm, \
-+		"Ioctl argument check failed at %s:%d: %s", \
-+		__FILE__, __LINE__, #cond); (cond); })
- 
- #endif
+-	if (!gsc && !xe_uc_fw_is_enabled(&gsc->fw)) {
++	if (!gsc || !xe_uc_fw_is_enabled(&gsc->fw)) {
+ 		drm_dbg_kms(&xe->drm,
+ 			    "GSC Components not ready for HDCP2.x\n");
+ 		return false;
 -- 
-2.34.1
+2.25.1
 
