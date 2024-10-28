@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F05E2D5B146
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 20:08:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD578D5B144
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 20:08:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E7FA10E570;
-	Mon, 28 Oct 2024 20:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7514E10E57B;
+	Mon, 28 Oct 2024 20:08:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R6RSiFHF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQq9cNHq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34E3410E566;
- Mon, 28 Oct 2024 20:08:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB6B810E572;
+ Mon, 28 Oct 2024 20:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730146087; x=1761682087;
+ t=1730146108; x=1761682108;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=73pvmV1tvYdBVZHrxWvdOOSa0KDBKnhkJWtQRKXsB6s=;
- b=R6RSiFHFYp+3CnB1mydMAQ8cSvG+nDpC1sej2nKWZqA5uUG/UFwK55EP
- EaZto7fTMXqlxYTnv536lGF4YT+mkD4BZ7US96kOXz4IPVMQbAA1bMKCz
- gbzQ+LwpWDGVB/80TYIOhI8Y5PXowZ3YUa1Gixv8r384AIvC3dH7eBlLm
- IyCCS76XioLg4w5ug43C36z7ueqGW/SvfkC6PUenPpesvNO1wJ3kPHZJk
- 0X2Y+nl9m2kZGnl2eyOHjJ8bLcGxRHMt7HWt1JsWVWX93HNP57CEXDsMM
- FczYyfqGavkKK8/tyAo8Nitgb/dZ5EUfZQRrbI8w4H6iLeZo764xTkUkf A==;
-X-CSE-ConnectionGUID: A4Sgke8tR4KVZBz5pzfW2A==
-X-CSE-MsgGUID: TpSrj0T0Sp61NWNMg52EcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33456830"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33456830"
+ bh=CU6OdBl4oA6Hg0/HZYcQAX+1j9dKcmjRm2zpEF9LG0c=;
+ b=XQq9cNHqpbNNgNdCMffzF75G/r/ZiSW6V9ns0GfMfZM52+KiNCJ9Quos
+ PGjWCTL9byynkkeIOU0WioG/LOyDJn8y33hAarzMM6GG7GRw8k+76IOrQ
+ /kDKTIyK3pQXPuYjiiMnICdtQehos9ewoUknluAet2nf77swdOqTVhykf
+ zs9iPdafFlqQ8xXqdP/rQjuK94m9nGtbOMvgAGRWcDw+aKH13EYLJ1TEY
+ ERgKSgVCJqoxreWp2kkyFU1lIHAYh011Q5zJCGxTLe6dDGq+etwGL6R+Z
+ p3uCSc2adY5NXGitgUixTy7v5foNqT6wCVYx9vUsFRjQQQAcPI+3pmPf4 w==;
+X-CSE-ConnectionGUID: jLj1B9FSThuhCQDx6fGDDQ==
+X-CSE-MsgGUID: GuKLhvIvQvKhC7B5Cwqewg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33456872"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33456872"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 13:08:07 -0700
-X-CSE-ConnectionGUID: Vi0gXWD2RwKRm+Xh57SfSg==
-X-CSE-MsgGUID: BJvdugamQcWmM1uJ7/Cj+A==
+ 28 Oct 2024 13:08:27 -0700
+X-CSE-ConnectionGUID: IttZxe2DSjSOKNF+gmhyvA==
+X-CSE-MsgGUID: JfhpETYyTjWqipPNt15G5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81628549"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81628607"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.21])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 13:08:05 -0700
+ 28 Oct 2024 13:08:25 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 v2 06/12] drm/i915/dp/hdcp: convert to struct intel_display
-Date: Mon, 28 Oct 2024 22:07:24 +0200
-Message-Id: <be67ec8953a678b78033a862ac6af2e177c62f8c.1730146000.git.jani.nikula@intel.com>
+Subject: [CI v2 v2 10/12] drm/i915/ips: convert to struct intel_display
+Date: Mon, 28 Oct 2024 22:07:28 +0200
+Message-Id: <66060d0c3fbb20e5d2c98a92133f091de6b25230.1730146000.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730146000.git.jani.nikula@intel.com>
 References: <cover.1730146000.git.jani.nikula@intel.com>
@@ -71,376 +71,194 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 struct intel_display will replace struct drm_i915_private as the main
-device pointer for display code. Switch DP HDCP code over to it.
+device pointer for display code. Switch HSW IPS code over to it.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 88 ++++++++++----------
- 1 file changed, 45 insertions(+), 43 deletions(-)
+ drivers/gpu/drm/i915/display/hsw_ips.c | 47 ++++++++++++++------------
+ 1 file changed, 26 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index 5d77adaaf566..e7f9619bccc0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -58,7 +58,7 @@ static
- int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
- 				u8 *an)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	u8 aksv[DRM_HDCP_KSV_LEN] = {};
- 	ssize_t dpcd_ret;
+diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
+index c571c6e76d4a..34c5d28fc866 100644
+--- a/drivers/gpu/drm/i915/display/hsw_ips.c
++++ b/drivers/gpu/drm/i915/display/hsw_ips.c
+@@ -15,6 +15,7 @@
  
-@@ -66,7 +66,7 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
- 	dpcd_ret = drm_dp_dpcd_write(&dig_port->dp.aux, DP_AUX_HDCP_AN,
- 				     an, DRM_HDCP_AN_LEN);
- 	if (dpcd_ret != DRM_HDCP_AN_LEN) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Failed to write An over DP/AUX (%zd)\n",
- 			    dpcd_ret);
- 		return dpcd_ret >= 0 ? -EIO : dpcd_ret;
-@@ -82,7 +82,7 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
- 	dpcd_ret = drm_dp_dpcd_write(&dig_port->dp.aux, DP_AUX_HDCP_AKSV,
- 				     aksv, DRM_HDCP_KSV_LEN);
- 	if (dpcd_ret != DRM_HDCP_KSV_LEN) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Failed to write Aksv over DP/AUX (%zd)\n",
- 			    dpcd_ret);
- 		return dpcd_ret >= 0 ? -EIO : dpcd_ret;
-@@ -93,13 +93,13 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
- static int intel_dp_hdcp_read_bksv(struct intel_digital_port *dig_port,
- 				   u8 *bksv)
+ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
  {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	u32 val;
+@@ -27,16 +28,16 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 	 * This function is called from post_plane_update, which is run after
+ 	 * a vblank wait.
+ 	 */
+-	drm_WARN_ON(&i915->drm,
++	drm_WARN_ON(display->drm,
+ 		    !(crtc_state->active_planes & ~BIT(PLANE_CURSOR)));
  
- 	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BKSV, bksv,
- 			       DRM_HDCP_KSV_LEN);
- 	if (ret != DRM_HDCP_KSV_LEN) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Read Bksv from DP/AUX failed (%zd)\n", ret);
- 		return ret >= 0 ? -EIO : ret;
+ 	val = IPS_ENABLE;
+ 
+-	if (i915->display.ips.false_color)
++	if (display->ips.false_color)
+ 		val |= IPS_FALSE_COLOR;
+ 
+ 	if (IS_BROADWELL(i915)) {
+-		drm_WARN_ON(&i915->drm,
++		drm_WARN_ON(display->drm,
+ 			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL,
+ 					    val | IPS_PCODE_CONTROL));
+ 		/*
+@@ -46,7 +47,7 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 		 * so we need to just enable it and continue on.
+ 		 */
+ 	} else {
+-		intel_de_write(i915, IPS_CTL, val);
++		intel_de_write(display, IPS_CTL, val);
+ 		/*
+ 		 * The bit only becomes 1 in the next vblank, so this wait here
+ 		 * is essentially intel_wait_for_vblank. If we don't have this
+@@ -54,14 +55,15 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 		 * the HW state readout code will complain that the expected
+ 		 * IPS_CTL value is not the one we read.
+ 		 */
+-		if (intel_de_wait_for_set(i915, IPS_CTL, IPS_ENABLE, 50))
+-			drm_err(&i915->drm,
++		if (intel_de_wait_for_set(display, IPS_CTL, IPS_ENABLE, 50))
++			drm_err(display->drm,
+ 				"Timed out waiting for IPS enable\n");
  	}
-@@ -109,7 +109,7 @@ static int intel_dp_hdcp_read_bksv(struct intel_digital_port *dig_port,
- static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
- 				      u8 *bstatus)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 
- 	/*
-@@ -120,7 +120,7 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
- 	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BINFO,
- 			       bstatus, DRM_HDCP_BSTATUS_LEN);
- 	if (ret != DRM_HDCP_BSTATUS_LEN) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
- 		return ret >= 0 ? -EIO : ret;
- 	}
-@@ -129,7 +129,7 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
- 
- static
- int intel_dp_hdcp_read_bcaps(struct drm_dp_aux *aux,
--			     struct drm_i915_private *i915,
-+			     struct intel_display *display,
- 			     u8 *bcaps)
- {
- 	ssize_t ret;
-@@ -137,7 +137,7 @@ int intel_dp_hdcp_read_bcaps(struct drm_dp_aux *aux,
- 	ret = drm_dp_dpcd_read(aux, DP_AUX_HDCP_BCAPS,
- 			       bcaps, 1);
- 	if (ret != 1) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Read bcaps from DP/AUX failed (%zd)\n", ret);
- 		return ret >= 0 ? -EIO : ret;
- 	}
-@@ -149,11 +149,11 @@ static
- int intel_dp_hdcp_repeater_present(struct intel_digital_port *dig_port,
- 				   bool *repeater_present)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 	u8 bcaps;
- 
--	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, i915, &bcaps);
-+	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, display, &bcaps);
- 	if (ret)
- 		return ret;
- 
-@@ -165,13 +165,14 @@ static
- int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *dig_port,
- 				u8 *ri_prime)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 
- 	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_RI_PRIME,
- 			       ri_prime, DRM_HDCP_RI_LEN);
- 	if (ret != DRM_HDCP_RI_LEN) {
--		drm_dbg_kms(&i915->drm, "Read Ri' from DP/AUX failed (%zd)\n",
-+		drm_dbg_kms(display->drm,
-+			    "Read Ri' from DP/AUX failed (%zd)\n",
- 			    ret);
- 		return ret >= 0 ? -EIO : ret;
- 	}
-@@ -182,14 +183,14 @@ static
- int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *dig_port,
- 				 bool *ksv_ready)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 	u8 bstatus;
- 
- 	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
- 			       &bstatus, 1);
- 	if (ret != 1) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
- 		return ret >= 0 ? -EIO : ret;
- 	}
-@@ -201,7 +202,7 @@ static
- int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *dig_port,
- 				int num_downstream, u8 *ksv_fifo)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 	int i;
- 
-@@ -213,7 +214,7 @@ int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *dig_port,
- 				       ksv_fifo + i * DRM_HDCP_KSV_LEN,
- 				       len);
- 		if (ret != len) {
--			drm_dbg_kms(&i915->drm,
-+			drm_dbg_kms(display->drm,
- 				    "Read ksv[%d] from DP/AUX failed (%zd)\n",
- 				    i, ret);
- 			return ret >= 0 ? -EIO : ret;
-@@ -226,7 +227,7 @@ static
- int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *dig_port,
- 				    int i, u32 *part)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 
- 	if (i >= DRM_HDCP_V_PRIME_NUM_PARTS)
-@@ -236,7 +237,7 @@ int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *dig_port,
- 			       DP_AUX_HDCP_V_PRIME(i), part,
- 			       DRM_HDCP_V_PRIME_PART_LEN);
- 	if (ret != DRM_HDCP_V_PRIME_PART_LEN) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Read v'[%d] from DP/AUX failed (%zd)\n", i, ret);
- 		return ret >= 0 ? -EIO : ret;
- 	}
-@@ -256,14 +257,14 @@ static
- bool intel_dp_hdcp_check_link(struct intel_digital_port *dig_port,
- 			      struct intel_connector *connector)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 	u8 bstatus;
- 
- 	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
- 			       &bstatus, 1);
- 	if (ret != 1) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
- 		return false;
- 	}
-@@ -275,11 +276,11 @@ static
- int intel_dp_hdcp_get_capability(struct intel_digital_port *dig_port,
- 				 bool *hdcp_capable)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
- 	ssize_t ret;
- 	u8 bcaps;
- 
--	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, i915, &bcaps);
-+	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, display, &bcaps);
- 	if (ret)
- 		return ret;
- 
-@@ -342,7 +343,7 @@ static int
- intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
- 			      u8 *rx_status)
- {
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct drm_dp_aux *aux = &dig_port->dp.aux;
- 	ssize_t ret;
-@@ -351,7 +352,7 @@ intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
- 			       DP_HDCP_2_2_REG_RXSTATUS_OFFSET, rx_status,
- 			       HDCP_2_2_DP_RXSTATUS_LEN);
- 	if (ret != HDCP_2_2_DP_RXSTATUS_LEN) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
- 		return ret >= 0 ? -EIO : ret;
- 	}
-@@ -397,7 +398,7 @@ static ssize_t
- intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,
- 			    const struct hdcp2_dp_msg_data *hdcp2_msg_data)
- {
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct intel_dp *dp = &dig_port->dp;
- 	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
-@@ -430,7 +431,7 @@ intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,
- 	}
- 
- 	if (ret)
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "msg_id %d, ret %d, timeout(mSec): %d\n",
- 			    hdcp2_msg_data->msg_id, ret, timeout);
- 
-@@ -514,8 +515,8 @@ static
- int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
- 			    u8 msg_id, void *buf, size_t size)
- {
-+	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 	struct drm_dp_aux *aux = &dig_port->dp.aux;
- 	struct intel_dp *dp = &dig_port->dp;
- 	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
-@@ -568,7 +569,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
- 		ret = drm_dp_dpcd_read(aux, offset,
- 				       (void *)byte, len);
- 		if (ret < 0) {
--			drm_dbg_kms(&i915->drm, "msg_id %d, ret %zd\n",
-+			drm_dbg_kms(display->drm, "msg_id %d, ret %zd\n",
- 				    msg_id, ret);
- 			return ret;
- 		}
-@@ -581,7 +582,8 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
- 	if (hdcp2_msg_data->msg_read_timeout > 0) {
- 		msg_expired = ktime_after(ktime_get_raw(), msg_end);
- 		if (msg_expired) {
--			drm_dbg_kms(&i915->drm, "msg_id %d, entire msg read timeout(mSec): %d\n",
-+			drm_dbg_kms(display->drm,
-+				    "msg_id %d, entire msg read timeout(mSec): %d\n",
- 				    msg_id, hdcp2_msg_data->msg_read_timeout);
- 			return -ETIMEDOUT;
- 		}
-@@ -696,7 +698,7 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
- 					bool *hdcp_capable,
- 					bool *hdcp2_capable)
- {
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
- 	struct drm_dp_aux *aux;
- 	u8 bcaps;
- 	int ret;
-@@ -709,10 +711,10 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
- 	aux = &connector->port->aux;
- 	ret =  _intel_dp_hdcp2_get_capability(aux, hdcp2_capable);
- 	if (ret)
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "HDCP2 DPCD capability read failed err: %d\n", ret);
- 
--	ret = intel_dp_hdcp_read_bcaps(aux, i915, &bcaps);
-+	ret = intel_dp_hdcp_read_bcaps(aux, display, &bcaps);
- 	if (ret)
- 		return ret;
- 
-@@ -745,8 +747,8 @@ static int
- intel_dp_mst_toggle_hdcp_stream_select(struct intel_connector *connector,
- 				       bool enable)
- {
-+	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	int ret;
- 
-@@ -754,7 +756,7 @@ intel_dp_mst_toggle_hdcp_stream_select(struct intel_connector *connector,
- 					 hdcp->stream_transcoder, enable,
- 					 TRANS_DDI_HDCP_SELECT);
- 	if (ret)
--		drm_err(&i915->drm, "%s HDCP stream select failed (%d)\n",
-+		drm_err(display->drm, "%s HDCP stream select failed (%d)\n",
- 			enable ? "Enable" : "Disable", ret);
- 	return ret;
  }
-@@ -763,8 +765,8 @@ static int
- intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
- 				    bool enable)
- {
-+	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	enum port port = dig_port->base.port;
- 	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
-@@ -780,10 +782,10 @@ intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
- 		return -EINVAL;
  
- 	/* Wait for encryption confirmation */
--	if (intel_de_wait(i915, HDCP_STATUS(i915, cpu_transcoder, port),
-+	if (intel_de_wait(display, HDCP_STATUS(display, cpu_transcoder, port),
- 			  stream_enc_status, enable ? stream_enc_status : 0,
- 			  HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
--		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
-+		drm_err(display->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
- 			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
- 		return -ETIMEDOUT;
- 	}
-@@ -795,8 +797,8 @@ static int
- intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
- 				     bool enable)
+ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
  {
-+	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
-@@ -804,8 +806,8 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
- 	enum port port = dig_port->base.port;
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	bool need_vblank_wait = false;
+@@ -70,19 +72,19 @@ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
+ 		return need_vblank_wait;
+ 
+ 	if (IS_BROADWELL(i915)) {
+-		drm_WARN_ON(&i915->drm,
++		drm_WARN_ON(display->drm,
+ 			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL, 0));
+ 		/*
+ 		 * Wait for PCODE to finish disabling IPS. The BSpec specified
+ 		 * 42ms timeout value leads to occasional timeouts so use 100ms
+ 		 * instead.
+ 		 */
+-		if (intel_de_wait_for_clear(i915, IPS_CTL, IPS_ENABLE, 100))
+-			drm_err(&i915->drm,
++		if (intel_de_wait_for_clear(display, IPS_CTL, IPS_ENABLE, 100))
++			drm_err(display->drm,
+ 				"Timed out waiting for IPS disable\n");
+ 	} else {
+-		intel_de_write(i915, IPS_CTL, 0);
+-		intel_de_posting_read(i915, IPS_CTL);
++		intel_de_write(display, IPS_CTL, 0);
++		intel_de_posting_read(display, IPS_CTL);
+ 	}
+ 
+ 	/* We need to wait for a vblank before we can disable the plane. */
+@@ -188,6 +190,7 @@ bool hsw_crtc_supports_ips(struct intel_crtc *crtc)
+ 
+ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 
+@@ -195,7 +198,7 @@ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
+ 	if (!hsw_crtc_supports_ips(crtc))
+ 		return false;
+ 
+-	if (!i915->display.params.enable_ips)
++	if (!display->params.enable_ips)
+ 		return false;
+ 
+ 	if (crtc_state->pipe_bpp > 24)
+@@ -209,7 +212,7 @@ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
+ 	 * Should measure whether using a lower cdclk w/o IPS
+ 	 */
+ 	if (IS_BROADWELL(i915) &&
+-	    crtc_state->pixel_rate > i915->display.cdclk.max_cdclk_freq * 95 / 100)
++	    crtc_state->pixel_rate > display->cdclk.max_cdclk_freq * 95 / 100)
+ 		return false;
+ 
+ 	return true;
+@@ -259,6 +262,7 @@ int hsw_ips_compute_config(struct intel_atomic_state *state,
+ 
+ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 
+@@ -266,7 +270,7 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+ 		return;
+ 
+ 	if (IS_HASWELL(i915)) {
+-		crtc_state->ips_enabled = intel_de_read(i915, IPS_CTL) & IPS_ENABLE;
++		crtc_state->ips_enabled = intel_de_read(display, IPS_CTL) & IPS_ENABLE;
+ 	} else {
+ 		/*
+ 		 * We cannot readout IPS state on broadwell, set to
+@@ -280,9 +284,9 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+ static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
+ {
+ 	struct intel_crtc *crtc = data;
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 
+-	*val = i915->display.ips.false_color;
++	*val = display->ips.false_color;
+ 
+ 	return 0;
+ }
+@@ -290,7 +294,7 @@ static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
+ static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
+ {
+ 	struct intel_crtc *crtc = data;
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_crtc_state *crtc_state;
  	int ret;
  
--	drm_WARN_ON(&i915->drm, enable &&
--		    !!(intel_de_read(i915, HDCP2_AUTH_STREAM(i915, cpu_transcoder, port))
-+	drm_WARN_ON(display->drm, enable &&
-+		    !!(intel_de_read(display, HDCP2_AUTH_STREAM(display, cpu_transcoder, port))
- 		    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
- 
- 	ret = intel_dp_mst_toggle_hdcp_stream_select(connector, enable);
-@@ -813,11 +815,11 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
+@@ -298,7 +302,7 @@ static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
+ 	if (ret)
  		return ret;
  
- 	/* Wait for encryption confirmation */
--	if (intel_de_wait(i915, HDCP2_STREAM_STATUS(i915, cpu_transcoder, pipe),
-+	if (intel_de_wait(display, HDCP2_STREAM_STATUS(display, cpu_transcoder, pipe),
- 			  STREAM_ENCRYPTION_STATUS,
- 			  enable ? STREAM_ENCRYPTION_STATUS : 0,
- 			  HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
--		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
-+		drm_err(display->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
- 			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
- 		return -ETIMEDOUT;
- 	}
+-	i915->display.ips.false_color = val;
++	display->ips.false_color = val;
+ 
+ 	crtc_state = to_intel_crtc_state(crtc->base.state);
+ 
+@@ -325,18 +329,19 @@ DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
+ static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
+ {
+ 	struct intel_crtc *crtc = m->private;
++	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	intel_wakeref_t wakeref;
+ 
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+ 
+ 	seq_printf(m, "Enabled by kernel parameter: %s\n",
+-		   str_yes_no(i915->display.params.enable_ips));
++		   str_yes_no(display->params.enable_ips));
+ 
+-	if (DISPLAY_VER(i915) >= 8) {
++	if (DISPLAY_VER(display) >= 8) {
+ 		seq_puts(m, "Currently: unknown\n");
+ 	} else {
+-		if (intel_de_read(i915, IPS_CTL) & IPS_ENABLE)
++		if (intel_de_read(display, IPS_CTL) & IPS_ENABLE)
+ 			seq_puts(m, "Currently: enabled\n");
+ 		else
+ 			seq_puts(m, "Currently: disabled\n");
 -- 
 2.39.5
 
