@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B87B0D33992
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 15:00:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E853D33992
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 15:00:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 512DC10E4E0;
-	Mon, 28 Oct 2024 15:00:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E696910E4E0;
+	Mon, 28 Oct 2024 15:00:45 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7DF10E4E3;
- Mon, 28 Oct 2024 15:00:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C83AA10E4E0;
+ Mon, 28 Oct 2024 15:00:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_6k_resolution_su?=
- =?utf-8?q?pport_for_a_single_CRTC_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Add_6k_resolution_support?=
+ =?utf-8?q?_for_a_single_CRTC_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Oct 2024 15:00:28 -0000
-Message-ID: <173012762837.1354457.11836959140640511928@2413ebb6fbb6>
+Date: Mon, 28 Oct 2024 15:00:44 -0000
+Message-ID: <173012764481.1354457.5747075189275324231@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241028074333.182041-1-suraj.kandpal@intel.com>
 In-Reply-To: <20241028074333.182041-1-suraj.kandpal@intel.com>
@@ -48,11 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 24707cf2a7c4 drm-tip: 2024y-10m-28d-14h-24m-33s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/xe3lpd: Increase resolution for plane to support 6k
-Applying: drm/i915/psr: Change psr size limits check
-Applying: drm/i914/xe3lpd: Increase bigjoiner limitations
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f65fc86fd66868da940406c2955b8d8b881ccc14
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Mon Oct 28 13:13:33 2024 +0530
+
+    drm/i914/xe3lpd: Increase bigjoiner limitations
+    
+    With 6k resolution support for a single crtc being added
+    bigjoiner will only come into picture when hdisplay > 6144
+    
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch 24707cf2a7c47d4cd192c97e73d58aa4011de154 drm-intel
+6d1dc33faeea drm/i915/xe3lpd: Increase resolution for plane to support 6k
+8a1a02071b4a drm/i915/psr: Change psr size limits check
+f65fc86fd668 drm/i914/xe3lpd: Increase bigjoiner limitations
 
 
