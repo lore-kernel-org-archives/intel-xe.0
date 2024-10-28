@@ -4,25 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42EC8D5B846
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 22:31:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 775FAD5B845
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 22:31:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F367310E1A6;
-	Mon, 28 Oct 2024 22:31:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 416A310E1A6;
+	Mon, 28 Oct 2024 22:31:39 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75C1910E1A6;
- Mon, 28 Oct 2024 22:31:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87BFE10E1A6;
+ Mon, 28 Oct 2024 22:31:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?convert_I915=5FSTATE=5FWARN=28=29_to_struct_intel=5Fdisplay_=28re?=
- =?utf-8?q?v2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_conve?=
+ =?utf-8?q?rt_I915=5FSTATE=5FWARN=28=29_to_struct_intel=5Fdisplay_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Oct 2024 22:31:23 -0000
-Message-ID: <173015468347.1357055.852338136517460088@2413ebb6fbb6>
+Date: Mon, 28 Oct 2024 22:31:38 -0000
+Message-ID: <173015469855.1357055.8769734127453390145@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241024162510.2410128-1-jani.nikula@intel.com>
 In-Reply-To: <20241024162510.2410128-1-jani.nikula@intel.com>
@@ -45,13 +44,77 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: convert I915_STATE_WARN() to struct intel_display (rev2)
 URL   : https://patchwork.freedesktop.org/series/140450/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 810b65a3bab4 drm-tip: 2024y-10m-28d-20h-55m-14s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: convert I915_STATE_WARN() to struct intel_display
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit abab92412612f8e0ee324de50a0f4150c6bda99e
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Oct 24 19:25:10 2024 +0300
+
+    drm/i915/display: convert I915_STATE_WARN() to struct intel_display
+    
+    Convert I915_STATE_WARN() to struct intel_display *, and rename to
+    INTEL_DISPLAY_STATE_WARN(). Do some minor opportunistic struct
+    drm_i915_private to struct intel_display conversions while at it.
+    
+    v2: crtc_state may be NULL in intel_connector_verify_state()
+    
+    Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 810b65a3bab4c67517ef050df06dcf998d66b664 drm-intel
+abab92412612 drm/i915/display: convert I915_STATE_WARN() to struct intel_display
+-:156: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#156: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3408:
++			INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->mpllb[i] != mpll_sw_state->mpllb[i],
+
+-:167: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#167: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3415:
++			INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->mplla[i] != mpll_sw_state->mplla[i],
+
+-:264: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#264: FILE: drivers/gpu/drm/i915/display/intel_display.h:594:
++#define INTEL_DISPLAY_STATE_WARN(__display, condition, format...) ({	\
+ 	int __ret_warn_on = !!(condition);				\
+ 	if (unlikely(__ret_warn_on))					\
++		if (!drm_WARN((__display)->drm, (__display)->params.verbose_state_checks, format)) \
++			drm_err((__display)->drm, format);		\
+ 	unlikely(__ret_warn_on);					\
+ })
+
+-:349: WARNING:LONG_LINE: line length of 154 exceeds 100 columns
+#349: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:1212:
++				 (intel_de_read(display, UTIL_PIN_CTL) & (UTIL_PIN_ENABLE | UTIL_PIN_MODE_MASK)) == (UTIL_PIN_ENABLE | UTIL_PIN_MODE_PWM),
+
+-:549: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#549: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4709:
++					 pll->info->name, pipe_name(crtc->pipe), pll->state.pipe_mask);
+
+-:576: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#576: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:41:
++					  TRANS_DDI_FUNC_CTL(display, cpu_transcoder)) & TRANS_DDI_FUNC_ENABLE;
+
+-:914: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#914: FILE: drivers/gpu/drm/i915/display/intel_pch_display.c:89:
++				 intel_crt_port_enabled(dev_priv, PCH_ADPA, &port_pipe) && port_pipe == pipe,
+
+-:923: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#923: FILE: drivers/gpu/drm/i915/display/intel_pch_display.c:94:
++				 intel_lvds_port_enabled(dev_priv, PCH_LVDS, &port_pipe) && port_pipe == pipe,
+
+-:1033: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#1033: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:2024:
++				 "[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
+
+total: 0 errors, 8 warnings, 1 checks, 947 lines checked
 
 
