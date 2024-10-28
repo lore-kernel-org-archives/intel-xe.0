@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F77ED3E2BA
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 19:30:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36948D3E2C2
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 19:30:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7318A10E53A;
-	Mon, 28 Oct 2024 19:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 800D210E54F;
+	Mon, 28 Oct 2024 19:30:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tzylxg5h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PmuP/muP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F75910E53B;
- Mon, 28 Oct 2024 19:30:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9644210E537;
+ Mon, 28 Oct 2024 19:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730143822; x=1761679822;
+ t=1730143821; x=1761679821;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ohFe+L7LULaS+BR/dLeP4YYGJ+d9nxfbO1Y34Vs4NZY=;
- b=Tzylxg5hgzSXJ8tq+CiY1iuc9EReUONUgcGowDKNweYEXhekjIUZ4HzE
- 9ac3o15lcAaqTP08d2LTTzjaDKhrV02W8f7EQrA23TSPCm14LC+0lLcbG
- lCUBa+doStcF9mS9GNSMzNZUhkPPVJlOGetom6zVJ4y3rjXMce0sQDirn
- kWTxrMB5ywYThAGT74bAdIS0/GGcJnWeMf/9i6qFzJF7Pap484gJ4onvC
- paDRzRlsLRYQDhDCnnPulyV1mmJ1NhlCTxeda1A9OD2Ie9k384CaZngRP
- rn9QbPxHE8UvFSowhPxluX/KhNR9+oa/3cfODx3/nDWBhm+79MbhOGqO9 Q==;
-X-CSE-ConnectionGUID: n1asafmaREmtlHhwaBVgiA==
-X-CSE-MsgGUID: ruE+pPuwRTaA0QX3Cn2pNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855936"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855936"
+ bh=473kuUZ65hJpucHeRXkcsnZJ/ujs/cOrVMrw685WOvQ=;
+ b=PmuP/muPt6OY0RxOHzz3h+3SMpoW9OQO9DmfvQFqMGswLaszgYirHsxp
+ F2kdJp4+mVg9Sg73ajx/o2oDKs5Y/B00y8/Qk/E83adDCOAgbeho7jiab
+ HXDqd+TBGwCvtbHQ+EC0WFnj6msKUCoeE2OoOq71fjj3yv52UaxdbmazV
+ Mbvm/KJv/HaBJcg4RFpQ9PNda6smU/ucok3AcQFES3jJy3fdHYmt2eCzf
+ F66yHen7UUhsr0lJgQtrfFblYXTaZOncz/8GvnTOVxah3m8j1qs59REAJ
+ tqXLrMpU0qn5q3G3k5poGjVIjLxjNoyOGIw+aeF3k1Qgh5l+gV4ts+RIG g==;
+X-CSE-ConnectionGUID: xQgCI3bJSfiXnfHVs7SqAg==
+X-CSE-MsgGUID: RLHwxkaFS8W8ZQWNXf6bAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855929"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855929"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:30:21 -0700
-X-CSE-ConnectionGUID: 8xEFC754Qxaraziuc3Uh7g==
-X-CSE-MsgGUID: i8w93i1rRYSXuIqG9mp+pA==
+ 28 Oct 2024 12:30:20 -0700
+X-CSE-ConnectionGUID: mIwY6gEqS9KMBbXPhOfOzg==
+X-CSE-MsgGUID: b4x5MDY4TkGzCZqOyoJ7YQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777552"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777540"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:30:20 -0700
+ 28 Oct 2024 12:30:19 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 7/9] drm/i915/xe3: Underrun recovery does not exist post Xe2
-Date: Mon, 28 Oct 2024 12:30:13 -0700
-Message-Id: <20241028193015.3241858-8-clinton.a.taylor@intel.com>
+Subject: [PATCH v6 1/9] drm/i915/xe3lpd: Update pmdemand programming
+Date: Mon, 28 Oct 2024 12:30:07 -0700
+Message-Id: <20241028193015.3241858-2-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
 References: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
@@ -66,34 +66,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-From platforms xe3 Underrun recovery does not exist
+There are some minor changes to pmdemand handling on Xe3:
+ - Active scalers are no longer tracked.  We can simply skip the readout
+   and programming of this field.
+ - Active dbuf slices are no longer tracked.  We should skip the readout
+   and programming of this field and also make sure that it stays 0 in
+   our software bookkeeping so that we won't erroneously return true
+   from intel_pmdemand_needs_update() due to mismatches.
+ - Even though there aren't enough pipes to utilize them, the size of
+   the 'active pipes' field has expanded to four bits, taking over the
+   register bits previously used for dbuf slices.  Since the lower bits
+   of the mask have moved, we need to update our reads/writes to handle
+   this properly.
 
-v2: improve DISPLAY_VER checking
+v2: active pipes is no longer always max 3, add in the ability to go to
+4 for PTL.
+v3: use intel_display for display_ver check, use INTEL_NUM_PIPES
+v4: add a conditional for number of pipes macro vs using 3.
+v5: reverse conditional order of v4.
+v6: undo v5 and fix num_pipes assignment
+v7: pass display struct instead of i915, checkpatch fix
+v8: Alignment issue
 
-BSpec: 68849
-Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+Bspec: 68883, 69125
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
-Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 69 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_pmdemand.h |  4 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  1 +
+ 3 files changed, 51 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ef1436146325..c904f529d0c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -861,7 +861,7 @@ static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
- 	 */
- 	if (IS_DG2(dev_priv))
- 		tmp &= ~UNDERRUN_RECOVERY_ENABLE_DG2;
--	else if (DISPLAY_VER(dev_priv) >= 13)
-+	else if ((DISPLAY_VER(dev_priv) >= 13) && (DISPLAY_VER(dev_priv) < 30))
- 		tmp |= UNDERRUN_RECOVERY_DISABLE_ADLP;
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index ceaf9e3147da..92190ff25136 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -258,6 +258,7 @@ intel_pmdemand_connector_needs_update(struct intel_atomic_state *state)
  
- 	/* Wa_14010547955:dg2 */
+ static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
+ {
++	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_bw_state *new_bw_state, *old_bw_state;
+ 	const struct intel_cdclk_state *new_cdclk_state, *old_cdclk_state;
+ 	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+@@ -274,12 +275,16 @@ static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
+ 	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
+ 	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
+ 	if (new_dbuf_state &&
+-	    (new_dbuf_state->active_pipes !=
+-	     old_dbuf_state->active_pipes ||
+-	     new_dbuf_state->enabled_slices !=
+-	     old_dbuf_state->enabled_slices))
++	    new_dbuf_state->active_pipes != old_dbuf_state->active_pipes)
+ 		return true;
+ 
++	if (DISPLAY_VER(display) < 30) {
++		if (new_dbuf_state &&
++		    new_dbuf_state->enabled_slices !=
++		    old_dbuf_state->enabled_slices)
++			return true;
++	}
++
+ 	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+ 	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+ 	if (new_cdclk_state &&
+@@ -327,10 +332,15 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
+ 	if (IS_ERR(new_dbuf_state))
+ 		return PTR_ERR(new_dbuf_state);
+ 
+-	new_pmdemand_state->params.active_pipes =
+-		min_t(u8, hweight8(new_dbuf_state->active_pipes), 3);
+-	new_pmdemand_state->params.active_dbufs =
+-		min_t(u8, hweight8(new_dbuf_state->enabled_slices), 3);
++	if (DISPLAY_VER(i915) < 30) {
++		new_pmdemand_state->params.active_dbufs =
++			min_t(u8, hweight8(new_dbuf_state->enabled_slices), 3);
++		new_pmdemand_state->params.active_pipes =
++			min_t(u8, hweight8(new_dbuf_state->active_pipes), 3);
++	} else {
++		new_pmdemand_state->params.active_pipes =
++			min_t(u8, hweight8(new_dbuf_state->active_pipes), INTEL_NUM_PIPES(i915));
++	}
+ 
+ 	new_cdclk_state = intel_atomic_get_cdclk_state(state);
+ 	if (IS_ERR(new_cdclk_state))
+@@ -395,27 +405,32 @@ intel_pmdemand_init_pmdemand_params(struct drm_i915_private *i915,
+ 
+ 	reg2 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
+ 
+-	/* Set 1*/
+ 	pmdemand_state->params.qclk_gv_bw =
+ 		REG_FIELD_GET(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, reg1);
+ 	pmdemand_state->params.voltage_index =
+ 		REG_FIELD_GET(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, reg1);
+ 	pmdemand_state->params.qclk_gv_index =
+ 		REG_FIELD_GET(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, reg1);
+-	pmdemand_state->params.active_pipes =
+-		REG_FIELD_GET(XELPDP_PMDEMAND_PIPES_MASK, reg1);
+-	pmdemand_state->params.active_dbufs =
+-		REG_FIELD_GET(XELPDP_PMDEMAND_DBUFS_MASK, reg1);
+ 	pmdemand_state->params.active_phys =
+ 		REG_FIELD_GET(XELPDP_PMDEMAND_PHYS_MASK, reg1);
+ 
+-	/* Set 2*/
+ 	pmdemand_state->params.cdclk_freq_mhz =
+ 		REG_FIELD_GET(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, reg2);
+ 	pmdemand_state->params.ddiclk_max =
+ 		REG_FIELD_GET(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, reg2);
+-	pmdemand_state->params.scalers =
+-		REG_FIELD_GET(XELPDP_PMDEMAND_SCALERS_MASK, reg2);
++
++	if (DISPLAY_VER(i915) >= 30) {
++		pmdemand_state->params.active_pipes =
++			REG_FIELD_GET(XE3_PMDEMAND_PIPES_MASK, reg1);
++	} else {
++		pmdemand_state->params.active_pipes =
++			REG_FIELD_GET(XELPDP_PMDEMAND_PIPES_MASK, reg1);
++		pmdemand_state->params.active_dbufs =
++			REG_FIELD_GET(XELPDP_PMDEMAND_DBUFS_MASK, reg1);
++
++		pmdemand_state->params.scalers =
++			REG_FIELD_GET(XELPDP_PMDEMAND_SCALERS_MASK, reg2);
++	}
+ 
+ unlock:
+ 	mutex_unlock(&i915->display.pmdemand.lock);
+@@ -442,6 +457,10 @@ void intel_pmdemand_program_dbuf(struct drm_i915_private *i915,
+ {
+ 	u32 dbufs = min_t(u32, hweight8(dbuf_slices), 3);
+ 
++	/* PM Demand only tracks active dbufs on pre-Xe3 platforms */
++	if (DISPLAY_VER(i915) >= 30)
++		return;
++
+ 	mutex_lock(&i915->display.pmdemand.lock);
+ 	if (drm_WARN_ON(&i915->drm,
+ 			!intel_pmdemand_check_prev_transaction(i915)))
+@@ -460,7 +479,8 @@ void intel_pmdemand_program_dbuf(struct drm_i915_private *i915,
+ }
+ 
+ static void
+-intel_pmdemand_update_params(const struct intel_pmdemand_state *new,
++intel_pmdemand_update_params(struct intel_display *display,
++			     const struct intel_pmdemand_state *new,
+ 			     const struct intel_pmdemand_state *old,
+ 			     u32 *reg1, u32 *reg2, bool serialized)
+ {
+@@ -495,16 +515,22 @@ intel_pmdemand_update_params(const struct intel_pmdemand_state *new,
+ 	update_reg(reg1, qclk_gv_bw, XELPDP_PMDEMAND_QCLK_GV_BW_MASK);
+ 	update_reg(reg1, voltage_index, XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK);
+ 	update_reg(reg1, qclk_gv_index, XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK);
+-	update_reg(reg1, active_pipes, XELPDP_PMDEMAND_PIPES_MASK);
+-	update_reg(reg1, active_dbufs, XELPDP_PMDEMAND_DBUFS_MASK);
+ 	update_reg(reg1, active_phys, XELPDP_PMDEMAND_PHYS_MASK);
+ 
+ 	/* Set 2*/
+ 	update_reg(reg2, cdclk_freq_mhz, XELPDP_PMDEMAND_CDCLK_FREQ_MASK);
+ 	update_reg(reg2, ddiclk_max, XELPDP_PMDEMAND_DDICLK_FREQ_MASK);
+-	update_reg(reg2, scalers, XELPDP_PMDEMAND_SCALERS_MASK);
+ 	update_reg(reg2, plls, XELPDP_PMDEMAND_PLLS_MASK);
+ 
++	if (DISPLAY_VER(display) >= 30) {
++		update_reg(reg1, active_pipes, XE3_PMDEMAND_PIPES_MASK);
++	} else {
++		update_reg(reg1, active_pipes, XELPDP_PMDEMAND_PIPES_MASK);
++		update_reg(reg1, active_dbufs, XELPDP_PMDEMAND_DBUFS_MASK);
++
++		update_reg(reg2, scalers, XELPDP_PMDEMAND_SCALERS_MASK);
++	}
++
+ #undef update_reg
+ }
+ 
+@@ -514,6 +540,7 @@ intel_pmdemand_program_params(struct drm_i915_private *i915,
+ 			      const struct intel_pmdemand_state *old,
+ 			      bool serialized)
+ {
++	struct intel_display *display = &i915->display;
+ 	bool changed = false;
+ 	u32 reg1, mod_reg1;
+ 	u32 reg2, mod_reg2;
+@@ -529,7 +556,7 @@ intel_pmdemand_program_params(struct drm_i915_private *i915,
+ 	reg2 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
+ 	mod_reg2 = reg2;
+ 
+-	intel_pmdemand_update_params(new, old, &mod_reg1, &mod_reg2,
++	intel_pmdemand_update_params(display, new, old, &mod_reg1, &mod_reg2,
+ 				     serialized);
+ 
+ 	if (reg1 != mod_reg1) {
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+index 128fd61f8f14..a1c49efdc493 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.h
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+@@ -20,14 +20,14 @@ struct pmdemand_params {
+ 	u8 voltage_index;
+ 	u8 qclk_gv_index;
+ 	u8 active_pipes;
+-	u8 active_dbufs;
++	u8 active_dbufs;	/* pre-Xe3 only */
+ 	/* Total number of non type C active phys from active_phys_mask */
+ 	u8 active_phys;
+ 	u8 plls;
+ 	u16 cdclk_freq_mhz;
+ 	/* max from ddi_clocks[] */
+ 	u16 ddiclk_max;
+-	u8 scalers;
++	u8 scalers;		/* pre-Xe3 only */
+ };
+ 
+ struct intel_pmdemand_state {
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 405f409e9761..89e4381f8baa 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2696,6 +2696,7 @@
+ #define  XELPDP_PMDEMAND_QCLK_GV_BW_MASK		REG_GENMASK(31, 16)
+ #define  XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK		REG_GENMASK(14, 12)
+ #define  XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK		REG_GENMASK(11, 8)
++#define  XE3_PMDEMAND_PIPES_MASK			REG_GENMASK(7, 4)
+ #define  XELPDP_PMDEMAND_PIPES_MASK			REG_GENMASK(7, 6)
+ #define  XELPDP_PMDEMAND_DBUFS_MASK			REG_GENMASK(5, 4)
+ #define  XELPDP_PMDEMAND_PHYS_MASK			REG_GENMASK(2, 0)
 -- 
 2.25.1
 
