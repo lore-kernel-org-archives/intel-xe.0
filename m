@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53FF7D149E9
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 12:56:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 305F8D10C11
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 13:00:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BCCB10E4A7;
-	Mon, 28 Oct 2024 12:56:12 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 409D210E4A7;
- Mon, 28 Oct 2024 12:56:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C886010E032;
+	Mon, 28 Oct 2024 13:00:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LbE+A+fh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB3DD10E032;
+ Mon, 28 Oct 2024 13:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730120444; x=1761656444;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Nm01YQiVJWvzNHKGuj+YJlZDd5QcuSs1YzfKZJhtLAc=;
+ b=LbE+A+fh2fbKZgcoZQ9uipoEO9d/Enwe+8+oUDvmFa6hdNvfVcdg3l2j
+ JpFmybqhB1ca8/ekRO9pWVedxxkWpMEYQb1tLcG4VCFu+HArBFjCQTUFp
+ lnDgD6/+vAWd0gCUvVBC3hFj5gWgW1MvL8u8HoQfa2/myMJqEaXZKXOrN
+ zRCWc1XtqD1SSsLKMGhtWt0hM63Lkdqzm459vI1df75qgvygZ36W+E5eP
+ EJ+aHrRyLox1yGd8UyDCRJj0WAp7Q4K71ComLlE6kITu/gTvOcPmsuNsi
+ cR6uSwbvFkiGKR04vOtfXYkp15KsmScF3y9I7D+N/gHmtAB0s3WGPZIdV w==;
+X-CSE-ConnectionGUID: p0CPr85GSt2dNXTQyl0RAg==
+X-CSE-MsgGUID: M/jQJKOeQOuweQo1xP/W0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11238"; a="29172856"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="29172856"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 06:00:43 -0700
+X-CSE-ConnectionGUID: jlsyf8dARfCMQxmchQUU2w==
+X-CSE-MsgGUID: +umz3WZvR9y+kT2okct/hQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="86223322"
+Received: from unknown (HELO kandpal-X299-UD4-Pro.iind.intel.com)
+ ([10.190.239.10])
+ by fmviesa004.fm.intel.com with ESMTP; 28 Oct 2024 06:00:38 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 2/3] drm/i915/psr: Change psr size limits check
+Date: Mon, 28 Oct 2024 18:30:13 +0530
+Message-Id: <20241028130012.199090-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241028074333.182041-3-suraj.kandpal@intel.com>
+References: <20241028074333.182041-3-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/dp=3A_Guarantee?=
- =?utf-8?q?_a_minimum_HBlank_time_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Oct 2024 12:56:11 -0000
-Message-ID: <173012017124.1354624.1177575032883125711@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241028061418.3460461-1-arun.r.murthy@intel.com>
-In-Reply-To: <20241028061418.3460461-1-arun.r.murthy@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +65,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Change the check to only check for psr size limits till Pre-Xe2
+since after that the psr size is equal to maximum pipe size anyways.
 
-Series: drm/i915/dp: Guarantee a minimum HBlank time (rev3)
-URL   : https://patchwork.freedesktop.org/series/139268/
-State : warning
+--v2
+-Check only size limit until pre-Xe2 [Matt]
 
-== Summary ==
+--v3
+-Make sure psr_max_{h,v} and max_bpp are equal to crtc_{h,v}_display
+and pipe_bpp [Ankit]
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c2877b9a7941e5b9c9e48d653e3a8917495ed681
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Bspec: 69885, 68858
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 4176163ec19a..880ea845207f 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1453,11 +1453,15 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
+ 
+-	if (DISPLAY_VER(display) >= 12) {
++	if (DISPLAY_VER(display) >= 20) {
++		psr_max_h = crtc_hdisplay;
++		psr_max_v = crtc_vdisplay;
++		max_bpp = crtc_state->pipe_bpp;
++	} else if (IS_DISPLAY_VER(display, 12, 14)) {
+ 		psr_max_h = 5120;
+ 		psr_max_v = 3200;
+ 		max_bpp = 30;
+-	} else if (DISPLAY_VER(display) >= 10) {
++	} else if (IS_DISPLAY_VER(display, 10, 11)) {
+ 		psr_max_h = 4096;
+ 		psr_max_v = 2304;
+ 		max_bpp = 24;
+-- 
+2.34.1
 
