@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6A76D3E2BD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDEA7D3E2C0
 	for <intel-xe@archiver.kernel.org>; Mon, 28 Oct 2024 19:30:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC5B10E544;
-	Mon, 28 Oct 2024 19:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 383DB10E53E;
+	Mon, 28 Oct 2024 19:30:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkkQzk6A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gjLDRRDO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC73E10E536;
- Mon, 28 Oct 2024 19:30:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2D510E536;
+ Mon, 28 Oct 2024 19:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730143821; x=1761679821;
+ t=1730143822; x=1761679822;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ZzhKKYwot3UMtRFi6MS5HLHYqjTsTycSbN3eKiH8MO0=;
- b=RkkQzk6AwhEhviam42LQG+Jrx37bjt70qNMq7wb9PNWN3acoXPXLjbui
- zrS7IyYpQ4Sc6q9I0dVzUe47M3yjeWARL3D7I0BvhXGikdny/8MKIJ+W/
- arn3ASUHTiEgEIpGB1g1QUhBZj19cjoTWBuTw5k2iTbgjHTNiLCQkqoec
- hfJgWDyag6OfKHbZJK33KdhfL0JlLVP33860SdDQlQopdUANxe1DTNUKq
- uBuByQTR1tyoW4in71qKsthjHf11cuiQ7Ty/pZEn9SBKcljhR0y80E2hq
- 0y/zImTUxMVVZXfk8a6V3IdMKhZGYjCh0tE4tCGH9WaKoulrhNMO5gy9a A==;
-X-CSE-ConnectionGUID: q4xsmTZSStKyRm/OPRbNEw==
-X-CSE-MsgGUID: 0MBwrqVnRweQB5mbgQq/FQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855931"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855931"
+ bh=43DqmJgU+m9sfObrfw+M8LExqh73gr26cjVASPwlEsw=;
+ b=gjLDRRDO35DOe8orJtAKhjuCXVh02QhbHgm+36NMjLImkAaVjVkta6jT
+ 8ukO2FsNBgASS90gVxxS/yOtzYUJY1P0RBSF9gX1UYlcifc2TTMK69mC6
+ XgPpLWGEpiCX3zWXyIRdi612to6KCLN0/kJZZiFA5Q7Hk7kUXWN+tZ1Yr
+ qIIT7LS3thlYWst2h7GW0Dg5yk+8IiZCYujETD+BeT4OMKnhE06L5jNSp
+ KFfD8E7QIiaE8kpKoPWm++nnox2Or3DH4CTNHdZkFLvsPYHaHUZ8Q+AD+
+ u7v3eWCKQOxXh2WxC9PhygYlOuiGSK3Bh4NEvxVHa2+qiGSofJ+4lLyXE Q==;
+X-CSE-ConnectionGUID: JTig47FHSwuxFhdzVsvZwQ==
+X-CSE-MsgGUID: nAybmhwnR5K9vXLmd89Upg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855937"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855937"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:30:20 -0700
-X-CSE-ConnectionGUID: sExV1IHJS4+q0B5vni3psg==
-X-CSE-MsgGUID: 59DonePKRNSn25LRyJBHJQ==
+ 28 Oct 2024 12:30:21 -0700
+X-CSE-ConnectionGUID: SoogBU8mSHmo2swiST6sjw==
+X-CSE-MsgGUID: JbyX3xpNSHejTXfx6ZO32w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777546"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777553"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Oct 2024 12:30:20 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 5/9] drm/i915/cx0: Remove bus reset after every c10
- transaction
-Date: Mon, 28 Oct 2024 12:30:11 -0700
-Message-Id: <20241028193015.3241858-6-clinton.a.taylor@intel.com>
+Subject: [PATCH v6 8/9] drm/i915/display/xe3: disable x-tiled framebuffers
+Date: Mon, 28 Oct 2024 12:30:14 -0700
+Message-Id: <20241028193015.3241858-9-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
 References: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
@@ -67,41 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-C10 phy timeouts occur on xe3lpd if the c10 bus is reset every
-transaction. Although not required by BSPEC bus resets were added for
-prior platforms as a workaround. Starting with xe3_lpd this bus reset is
-not necessary.
+From: "Heikkila, Juha-pekka" <juha-pekka.heikkila@intel.com>
 
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+Xe3 has no more support for x-tile on display.
+
+v2: Include up to display 29 for X-tiled support. (Gustavo)
+
+Signed-off-by: Heikkila, Juha-pekka <juha-pekka.heikkila@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 4d6e1c135bdc..c6e0cbff5201 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -224,7 +224,8 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
- 	 * down and let the message bus to end up
- 	 * in a known state
- 	 */
--	intel_cx0_bus_reset(encoder, lane);
-+	if (DISPLAY_VER(i915) < 30)
-+		intel_cx0_bus_reset(encoder, lane);
- 
- 	return REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);
- }
-@@ -313,7 +314,8 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
- 	 * down and let the message bus to end up
- 	 * in a known state
- 	 */
--	intel_cx0_bus_reset(encoder, lane);
-+	if (DISPLAY_VER(i915) < 30)
-+		intel_cx0_bus_reset(encoder, lane);
- 
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index a7b4cf8b6d50..6a7060889f40 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -349,7 +349,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_Y,
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_X_TILED,
+-		.display_ver = DISPLAY_VER_ALL,
++		.display_ver = { 0, 29 },
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_X,
+ 	}, {
+ 		.modifier = DRM_FORMAT_MOD_LINEAR,
 -- 
 2.25.1
 
