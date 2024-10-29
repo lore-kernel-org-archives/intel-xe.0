@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED956D2AB14
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 10:08:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16641D2AB1C
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 10:36:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B906310E608;
-	Tue, 29 Oct 2024 10:08:07 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22C0C10E608;
- Tue, 29 Oct 2024 10:08:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFD8010E610;
+	Tue, 29 Oct 2024 10:36:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="klg4rZU6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFFD310E610
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 10:36:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730198181; x=1761734181;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vlKSY1y59Sqpv1vl/FPzCY5JNU57Elu0X3S9Izh3sMI=;
+ b=klg4rZU6SiF4+WuzXahIjgzLuhZPJqtpWyhxE+Ca7Zh2YB48kkM23Xro
+ w/aSoCK8oRIUH9zp9pE5wxKbctEFenMD/3xjRNb0Dv64wOJ9VD/UGfDsz
+ DPQ5QwvdlY59dXtrc9OTVF8BzSifnZvJxwRoXzcrQQ5hZ+nvnUMGNLGn5
+ Z9jw6F29/klTctJuftQwqlEfBkchlLDGdhEx515q5wQdoQvfu80k1TRyD
+ VnCAELRg7QnVZttWJGe10VTt6yWAdHRYPH3yZhgrNWrpyM2f/fRKAQ/Cp
+ mL1PAiuRe4P4y00fak7dTaWUHf40bpNuHSzN7/PGSwL04N3NCeG+DGGVr w==;
+X-CSE-ConnectionGUID: 8FEb0vx3QU64Oh2t0evaWQ==
+X-CSE-MsgGUID: BSIZ9KA3R1u6q62O0Z4MQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="29937676"
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="29937676"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 03:36:20 -0700
+X-CSE-ConnectionGUID: WKd3/ogXQouPzkF651AFWw==
+X-CSE-MsgGUID: EqoNDcqTT4Kae4hwN0/LMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="105262786"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 03:36:18 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Badal Nilawar <badal.nilawar@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v4 1/3] drm/xe: Move LNL scheduling WA to xe_device.h
+Date: Tue, 29 Oct 2024 10:54:14 +0100
+Message-ID: <20241029095416.3919218-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_bunc?=
- =?utf-8?q?h_of_struct_intel=5Fdisplay_conversions_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Oct 2024 10:08:07 -0000
-Message-ID: <173019648713.1358125.16251036931880692202@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1730146000.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1730146000.git.jani.nikula@intel.com>
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +68,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Move LNL scheduling WA to xe_device.h so this can be used in other
+places without needing keep the same comment about removal of this WA
+in the future. The WA, which flushes work or workqueues, is now wrapped
+in macros and can be reused wherever needed.
 
-Series: drm/i915/display: bunch of struct intel_display conversions (rev4)
-URL   : https://patchwork.freedesktop.org/series/140323/
-State : warning
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+cc: <stable@vger.kernel.org> # v6.11+
+Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.c | 11 +----------
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 79811c7809c46a23b7cfceaf36d4994792c850da
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 4c3f0ebe78a9..f1fbfe916867 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -191,4 +191,18 @@ void xe_device_declare_wedged(struct xe_device *xe);
+ struct xe_file *xe_file_get(struct xe_file *xef);
+ void xe_file_put(struct xe_file *xef);
+ 
++/*
++ * Occasionally it is seen that the G2H worker starts running after a delay of more than
++ * a second even after being queued and activated by the Linux workqueue subsystem. This
++ * leads to G2H timeout error. The root cause of issue lies with scheduling latency of
++ * Lunarlake Hybrid CPU. Issue disappears if we disable Lunarlake atom cores from BIOS
++ * and this is beyond xe kmd.
++ *
++ * TODO: Drop this change once workqueue scheduling delay issue is fixed on LNL Hybrid CPU.
++ */
++#define LNL_FLUSH_WORKQUEUE(wq__) \
++	flush_workqueue(wq__)
++#define LNL_FLUSH_WORK(wrk__) \
++	flush_work(wrk__)
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 1b5d8fb1033a..703b44b257a7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1018,17 +1018,8 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 
+ 	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
+ 
+-	/*
+-	 * Occasionally it is seen that the G2H worker starts running after a delay of more than
+-	 * a second even after being queued and activated by the Linux workqueue subsystem. This
+-	 * leads to G2H timeout error. The root cause of issue lies with scheduling latency of
+-	 * Lunarlake Hybrid CPU. Issue dissappears if we disable Lunarlake atom cores from BIOS
+-	 * and this is beyond xe kmd.
+-	 *
+-	 * TODO: Drop this change once workqueue scheduling delay issue is fixed on LNL Hybrid CPU.
+-	 */
+ 	if (!ret) {
+-		flush_work(&ct->g2h_worker);
++		LNL_FLUSH_WORK(&ct->g2h_worker);
+ 		if (g2h_fence.done) {
+ 			xe_gt_warn(gt, "G2H fence %u, action %04x, done\n",
+ 				   g2h_fence.seqno, action[0]);
+-- 
+2.46.0
 
