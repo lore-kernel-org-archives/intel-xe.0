@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8259D5B16F
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 08:58:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89849D5B164
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 08:59:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8329D10E5DE;
-	Tue, 29 Oct 2024 08:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5014810E0DD;
+	Tue, 29 Oct 2024 08:59:12 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74EBE10E5E9;
- Tue, 29 Oct 2024 08:58:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C57C10E0DD;
+ Tue, 29 Oct 2024 08:59:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/hdcp=3A_Add?=
- =?utf-8?q?_the_loop_only_for_DP_encoders?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/hdcp=3A_Add_the_?=
+ =?utf-8?q?loop_only_for_DP_encoders?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Oct 2024 08:58:57 -0000
-Message-ID: <173019233747.1358125.15843010866936992111@2413ebb6fbb6>
+Date: Tue, 29 Oct 2024 08:59:11 -0000
+Message-ID: <173019235144.1358125.5096363180730373162@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241029085304.219168-1-suraj.kandpal@intel.com>
 In-Reply-To: <20241029085304.219168-1-suraj.kandpal@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 79811c7809c4 drm-tip: 2024y-10m-29d-05h-17m-38s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/hdcp: Add the loop only for DP encoders
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit db42c50cb5dc546b45776874801707be0953172a
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Tue Oct 29 14:23:04 2024 +0530
+
+    drm/i915/hdcp: Add the loop only for DP encoders
+    
+    Add the loop on the first read and write only for DP/DPMST encoders
+    as this issue is only observed here no need to burden other
+    encoders with extra retries.
+    
+    Fixes: 9d5a05f86d2f ("drm/i915/hdcp: Retry first read and writes to downstream")
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 79811c7809c46a23b7cfceaf36d4994792c850da drm-intel
+db42c50cb5dc drm/i915/hdcp: Add the loop only for DP encoders
 
 
