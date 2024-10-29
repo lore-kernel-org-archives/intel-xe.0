@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8822D3A661
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 14:43:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66EFCD3A661
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 14:44:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 710E410E684;
-	Tue, 29 Oct 2024 14:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D3F510E284;
+	Tue, 29 Oct 2024 14:44:00 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5455810E687
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D06E410E68A
  for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 14:43:55 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 2/8] drm/i915/display: Use async flip when available for
- initial plane config
-Date: Tue, 29 Oct 2024 15:44:06 +0100
-Message-ID: <20241029144412.66081-1-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 3/8] drm/xe: Move suballocator init to after display init
+Date: Tue, 29 Oct 2024 15:44:07 +0100
+Message-ID: <20241029144412.66081-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241029143934.65412-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20241029144412.66081-1-maarten.lankhorst@linux.intel.com>
 References: <20241029143934.65412-1-maarten.lankhorst@linux.intel.com>
+ <20241029144412.66081-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -38,48 +38,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I'm planning to reorder readout in the Xe sequence in such a way that
-interrupts will not be available, so just use an async flip.
-
-Since the new FB points to the same pages, it will not tear. It also
-has the benefit of perhaps being slightly faster.
+No allocations should be done before we have had a chance to preserve
+the display fb.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
+ drivers/gpu/drm/xe/xe_tile.h   |  1 +
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index a0a7ed01415a5..6740c193920ff 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2902,7 +2902,7 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
- 		to_intel_plane_state(plane->base.state);
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = crtc->pipe;
--	u32 base;
-+	u32 base, plane_ctl;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index cb4b2013eb808..d145f1376069e 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -740,6 +740,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
  
- 	if (!plane_state->uapi.visible)
- 		return false;
-@@ -2916,7 +2916,16 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
- 	if (plane_config->base == base)
- 		return false;
- 
-+	/* Perform an async flip to the new surface. */
-+	plane_ctl = intel_de_read(i915, PLANE_CTL(pipe, plane_id));
-+	plane_ctl |= PLANE_CTL_ASYNC_FLIP;
++	for_each_tile(tile, xe, id) {
++		err = xe_tile_init(tile);
++		if (err)
++			goto err;
++	}
 +
-+	intel_de_write(i915, PLANE_CTL(pipe, plane_id), plane_ctl);
- 	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
  
--	return true;
-+	if (intel_de_wait(i915, PLANE_SURFLIVE(pipe, plane_id), ~0U, base, 40) < 0)
-+		drm_warn(&i915->drm, "async flip timed out\n");
-+
-+	/* No need to vblank wait either */
-+	return false;
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 07cf7cfe4abd5..2825553b568f7 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -170,10 +170,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	if (err)
+ 		return err;
+ 
+-	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+-	if (IS_ERR(tile->mem.kernel_bb_pool))
+-		return PTR_ERR(tile->mem.kernel_bb_pool);
+-
+ 	xe_wa_apply_tile_workarounds(tile);
+ 
+ 	err = xe_tile_sysfs_init(tile);
+@@ -181,6 +177,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	return 0;
  }
+ 
++int xe_tile_init(struct xe_tile *tile)
++{
++	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
++	if (IS_ERR(tile->mem.kernel_bb_pool))
++		return PTR_ERR(tile->mem.kernel_bb_pool);
++
++	return 0;
++}
+ void xe_tile_migrate_wait(struct xe_tile *tile)
+ {
+ 	xe_migrate_wait(tile->migrate);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 1c9e42ade6b05..eb939316d55b0 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -12,6 +12,7 @@ struct xe_tile;
+ 
+ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
+ int xe_tile_init_noalloc(struct xe_tile *tile);
++int xe_tile_init(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
 -- 
 2.45.2
 
