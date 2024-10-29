@@ -4,162 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EF85D3A66F
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 16:24:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82AA6D3A670
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 16:25:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4256C10E29D;
-	Tue, 29 Oct 2024 16:24:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lp9aunXX";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5380710E29D
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 16:24:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730219042; x=1761755042;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=5Ktxnzhb+PcZQJEMHP9mu6cG/cXTP2sxj6u+yLJ8vWU=;
- b=Lp9aunXXMMUkDJf8vYaYF8ER9GbX22Z+1rbqOTZUcKj5WvFWhkDUhAS1
- A3pn7hQc5KV0Vz0uXpLbEPgMI/BqS8AjiNFS+M6a9x63ERwhs+vVyyZPM
- jirpD8kN/uXdNd7mLRjK+B4WGnMHw+qfybbuFcQ5J7AAnMfmPrnqqN6hf
- 5iPU3m+utG94eqVMCnP0NDWQV6wQvOMzjUr4HoR3xSQebhuy0HGxkRwYz
- JQvXeD6m2tMhgY6t4ck975U21y1eo0wO2vAKgf3z+eg12jBfY6V/GBso7
- zZw3UkDR6j2OnTiXMI6VqXxwtZLlCd7QxssDXktMqQ7UHMIjGOuA/bYG9 Q==;
-X-CSE-ConnectionGUID: H0I3fE3/Ti2JCUmSGHjbtw==
-X-CSE-MsgGUID: hpJdhflYTK27evMfba3tKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="29326598"
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="29326598"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 09:24:00 -0700
-X-CSE-ConnectionGUID: QXVt33/vQCCinRWyiFyoWA==
-X-CSE-MsgGUID: kb7ulZ81TAy76ZhXMKHI4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="81936642"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Oct 2024 09:23:59 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 29 Oct 2024 09:23:59 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 29 Oct 2024 09:23:59 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 29 Oct 2024 09:23:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kQA5y/j5iNt07Rm8b+dZokQm3ohJRAWvvyeWfJM5tV82CSa1+6oe5qZ080oHY4MF21U7iXacc1gOfaIWAGuHW0gLSF7Vw6GEbV/XYVGzhPpY30hChzQthYGuIjaI6pOsc/T7JfgexFmFwSs0YKVwzopoumgq02lqcz1uQZRId7LIcKEdeAqJAYah9EgEc0CuWQ2elpeoVi7cJxegunERXbby3rH7Xb20PIxe4fFLrl9Aw/dnyJUTuCwjzZmhq4if4S7FME3wlkoLxlRcUKj4mWCB0QZ8gMgaYpWRjCH/eG9cJGKmibSI5dgVAez8jFKmxKADuS9pkugH9aAc58+quQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p8wkpuvhaEQhNJvx7qqFAzc/wL2COrrodsSronFWzdM=;
- b=HfZ3lNeyqBwQEtHwoLnbGqCdFNYIeo4NUmt3VlQaTpi6QLu58PiRi2hKrcMDBTpesD2NeaYbHW7N0ukjiDtm7P8pWqwKsQHUdTVPVmwsGJR4YVyLnWUPDN4jI94QNROMOEt5IzV3KAXOVsqVbPT4URxV1iaGPPQ80D/hnUtdFl4oI8TPqgVFWuQ9Eqd9YC4Hl8JpQ0FdmgB5hg1KQ5boukAw4JQlfhueNPalC0W+lgy/x/+L5nfSl0s8zXdw6+bCp9RnaU7g8takwjnzryOROrv25wL02286ahwgaKuSUpeTFSc2GE9b0AOUGi3L1pRokrhRJ00Un6vnPRf4tN0jow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by PH7PR11MB6521.namprd11.prod.outlook.com (2603:10b6:510:213::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.27; Tue, 29 Oct
- 2024 16:23:55 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8093.024; Tue, 29 Oct 2024
- 16:23:55 +0000
-Date: Tue, 29 Oct 2024 11:23:49 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <saurabhg.gupta@intel.com>,
- <alex.zuo@intel.com>, <umesh.nerlige.ramappa@intel.com>,
- <john.c.harrison@intel.com>, <stable@vger.kernel.org>
-Subject: Re: [PATCH v3] drm/xe/xe_guc_ads: save/restore OA registers
-Message-ID: <pug6v3ckrvxd7hkrfmppwxck7nxz3ta36sorzcekpzdwgk5ljt@4hxdgwvuctwj>
-References: <20241023200716.82624-1-jonathan.cavitt@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20241023200716.82624-1-jonathan.cavitt@intel.com>
-X-ClientProxiedBy: MW4PR02CA0030.namprd02.prod.outlook.com
- (2603:10b6:303:16d::18) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F8E910E362;
+	Tue, 29 Oct 2024 16:25:13 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4070310E362;
+ Tue, 29 Oct 2024 16:25:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6521:EE_
-X-MS-Office365-Filtering-Correlation-Id: 905cd5b8-72e5-4f76-9eee-08dcf8361578
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?iaGxQiKFvQr64TyEBIXPYy4A7296k62sYLwYaR0NqFoYeJJPBOQa3UllGb6G?=
- =?us-ascii?Q?xatY1JDaR9DjRKd3ABr/rkUthCZx7FNJqFEN1t9j48S40z4TmH/wzEsdX1X/?=
- =?us-ascii?Q?dL94ysfifJS1UXrl8crsH+7Way3L9ZHYY2724n/s9Pmpgj9TPjFItyUn06Er?=
- =?us-ascii?Q?8hhKOOzhTD3NndVBSLIwP4xTo5HKqZUnwTqf7AFH1YVWTAOMmU+dwuIQOLG8?=
- =?us-ascii?Q?PMzWL6Xq2rnjFLeIVN6esOFMBMh5UMVTUBYcDNGBA6eo6fXYMoSwEHDWbaV/?=
- =?us-ascii?Q?sWePcHS8QrYZmmgWj/SB8EGpt1CQvADHw4rxc44ICMLCNq1e61yAtscH8BAX?=
- =?us-ascii?Q?OG5TyxnM3zfg1RElfLsdrW5KGdOdhB7rw//WcMYl9MFam+7SOTs5bOJS1W7t?=
- =?us-ascii?Q?c0dpXm6op4xNCtmkz7TeFI6zngcBJogHLfFfPztljdAwwIgwrri/udg79r8g?=
- =?us-ascii?Q?oD10YSLt6rTMX8nF8ixSHkzf0VtHWwCIjBoGH3jk73E1+7hcTuBPX6S0n1LM?=
- =?us-ascii?Q?2bYYpnTXKKyhXKNh29qRwCgf0LOqvYLGaxGdEtspuN83sHKj+kY9DmQJteEQ?=
- =?us-ascii?Q?dpVYuiE5lagAxQKnhCN24+dv/uchpjTLZr50Ys8gvs9Xm5B1YjeEsY4Ozhj/?=
- =?us-ascii?Q?hGQS4rS/MXsXVVLMXUukaDa6yeIxj1pTKthDHZzYOROxgaEtkuQ6Wwt6mA+i?=
- =?us-ascii?Q?BvMGa1CqK7+R2aFgCOGqQ/O133+6vL/CfpN5bNXsGQvxRaNVMYQTsF9cfDhT?=
- =?us-ascii?Q?jyF+kS9+jxc5xANjMQvX5W3/kSFFWIx8abZTcW3ZRVISfquQ6Zoj9tgyjr5w?=
- =?us-ascii?Q?FdP241wG75O0tQ7un5yNvjqEi2X6dD1QhH7RdmMoc5vEJia6uuGn0vhNzLtg?=
- =?us-ascii?Q?UrqyCeEeai9e3dGIzRpt0b+c6S6QnEep3mSBBpRZ8snpnAOSzDvl/TPXbx9a?=
- =?us-ascii?Q?Y661t6vKmYZpirSKFpBJ5ZjCzjc5avCJqIbIHQuCg4GPX0FBD6jjiAqVn3Hz?=
- =?us-ascii?Q?ex3yZ+JCHdwaEtjxpUYYiwG+b2edIwN92Ze+7//aEMHHOHrTWDVzB5hA9N7u?=
- =?us-ascii?Q?EJIwp9ASKNdME8H2vI13Cl2dn9Mfq2XSsJORmEV34navC8IkEnW1s9NMjQOW?=
- =?us-ascii?Q?T5FQYYs/1TLvbC/zzwYD7TBgRQkuK5GHurFfsJp5mf2VP6ZH82mE4adVfw0i?=
- =?us-ascii?Q?L3wh+gYeOAJwSBB8WQYS0Y5X7XCdlNRtYuI3v465IoO7C1ai5uZuBusRiXib?=
- =?us-ascii?Q?ED6tq7XDs1zx/n5etfZx?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9rQE9LkgGhPv1heAvNbtGdfBhdNertuZAusMjw8qtyfDlUfRgFp2DnD2wEEX?=
- =?us-ascii?Q?bQSOhbw7wZOpz3YQNuBCCzSzRaLuap4sihoSwk7roiIk5T2nMc2YfDQdClos?=
- =?us-ascii?Q?dHivWH5q6ePdUYKMvM96hb+oSfzSF9vfbvYyZbBGpZ8SnWRXIswQ2W6lh+o0?=
- =?us-ascii?Q?hJgRjUhFViNoMls9XITQHQ3e4YliTMmq7E3s4ZhDRbMEtGxkddqXL8UrpNDG?=
- =?us-ascii?Q?3fLFrdSPXYO0KYxK/oMtqKwxfjjpON4/V8C1Jy3HOOln+RYg6e8zDcRxDYLr?=
- =?us-ascii?Q?Zy0+uYskYNey4DU/o4Pv26a5PkBbsfIWPe5yeYDZY18469EcN3xebAhJ00yQ?=
- =?us-ascii?Q?1siArvNUHuQYpaaUg366sPJmEm4cB3uTg80TLJNhnc0Pmmy1nm0qa+SfU38s?=
- =?us-ascii?Q?mLIt/qIQ8SS7PrR9TszwHQjvY/ZJQiWw6xCv/PLWT0i+gDBP2K1ILkI/L+DO?=
- =?us-ascii?Q?eqxEFEc6fetrz8ok4/SjbKmHOK5uP2rCpXYmWHDHe1Ob2C5QRTASmBd0Gb44?=
- =?us-ascii?Q?V1dVrMau6O5p+lt0JiS83ESr5M8jRjEscV3tP7ag0VpiOUjLG9t+v4rtxVMH?=
- =?us-ascii?Q?NXDixGKTGmtMibvxEFxqePej/f5ea7UHfMXNlc13pMdVE1CInuGAAyiZGSFh?=
- =?us-ascii?Q?zXhiGY3eKBAXgnQYtGkL+GitHBns8mCPXXmp6hKVyCwlSOxWwe8SSUgPMJdi?=
- =?us-ascii?Q?lfLhtIiEl9vzYtpYQNGyDoNBfxCZxAuBpl/VG6PaHQtDhCrKz0MaMn0fF6Wb?=
- =?us-ascii?Q?VeSuUmbdEMCCm+Kv/39MMFEchYRbp0zh0g+BExl/18ZtPooJxG8p2PYbTEkN?=
- =?us-ascii?Q?5eYZoznGjI5g1zUWkanPvYzqW4NSWSXcgz//6IMShYjYJY5kZcSP//IU+clS?=
- =?us-ascii?Q?GHV7/yUbnTrhZbILnfL6EWdpDKtJ7xOwA1i29m0BUDQ7cXBUy/iqndx3J9zo?=
- =?us-ascii?Q?3P8GTgfYxTxAFFB9HfAHpc78pEc5OXiFZEEdXRKjz0riJI35PHPYGOyBLjbp?=
- =?us-ascii?Q?IcwLNnvxoVshvs4XWX+M+SVVE9dokpa4lOpe6ujAici1oygzFRSpaLfZTqSg?=
- =?us-ascii?Q?raGWYJU08QBCRKemzz2kYIIfVIK0nW7fBSD3VuPVH7++KlqGgX3f69fhu43Y?=
- =?us-ascii?Q?93px5cfmyVWQGwq6KppnRZoYmzzmW1Weeyb64Q2EbAFJKJdyMOMZZBii3uwM?=
- =?us-ascii?Q?zuVEMDOHUX9r727vIDrclfdVZuT0jQi1kEiOEqV/yPF0eA2pcNn3+aZdTa6Q?=
- =?us-ascii?Q?ZG5ZporyhjXtd5uyL+wsuf8cZnsyGyygEOo/n+zbwhfiKKx6/9C+rrLMmbkK?=
- =?us-ascii?Q?2qcxx1m8gh27EXSgZsQUDWZ3pdCKOGIrhErU/YYIug5JMEpoHYuAyfwiTPVz?=
- =?us-ascii?Q?4c6Wc+hQv7HRPVmPsFe01GbaUNcYFVFLWlAZy71vXF88Hz0pUQJ1wgTy9V9h?=
- =?us-ascii?Q?5uLSok4on5kq9L/hgJlobDRlLPm/JPod5drrs+0j3TSZLsi0Q9vlV1Am/6Xy?=
- =?us-ascii?Q?kIYuyrL4DxJCcOOVe0AS2cLZTTNRzmkVgaIGc6tNUL9sR3Vg6DVQ/w3GevnD?=
- =?us-ascii?Q?alq9OznN7LLbpuamzC+mTAOWOxT57FYPV4cTEAqUrbjdj0x+e6m/AWEpQg4J?=
- =?us-ascii?Q?Vg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 905cd5b8-72e5-4f76-9eee-08dcf8361578
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2024 16:23:55.6087 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Se7/CbWkdrc9PaSZTDffkaOc0AgXwnuvoShSb1qKnB/rjyNRBEd4i3kIyZqhF73UZRrYddhQDrjACtXPBEqJwGf3lXUcndM1z5JuUMBXIe4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6521
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/vm=3A_Add_debug_log_on_?=
+ =?utf-8?q?pending_previous_ufence?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 29 Oct 2024 16:25:11 -0000
+Message-ID: <173021911125.1359386.10712981998204661641@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241029120956.477817-1-nirmoy.das@intel.com>
+In-Reply-To: <20241029120956.477817-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,57 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 23, 2024 at 08:07:15PM +0000, Jonathan Cavitt wrote:
->Several OA registers and allowlist registers were missing from the
->save/restore list for GuC and could be lost during an engine reset.  Add
->them to the list.
->
->v2:
->- Fix commit message (Umesh)
->- Add missing closes (Ashutosh)
->
->v3:
->- Add missing fixes (Ashutosh)
->
->Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2249
->Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
->Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->Suggested-by: John Harrison <john.c.harrison@intel.com>
->Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
->CC: stable@vger.kernel.org # v6.11+
->Acked-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->---
-> drivers/gpu/drm/xe/xe_guc_ads.c | 14 ++++++++++++++
-> 1 file changed, 14 insertions(+)
->
->diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
->index 4e746ae98888..a196c4fb90fc 100644
->--- a/drivers/gpu/drm/xe/xe_guc_ads.c
->+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->@@ -15,6 +15,7 @@
-> #include "regs/xe_engine_regs.h"
-> #include "regs/xe_gt_regs.h"
-> #include "regs/xe_guc_regs.h"
->+#include "regs/xe_oa_regs.h"
-> #include "xe_bo.h"
-> #include "xe_gt.h"
-> #include "xe_gt_ccs_mode.h"
->@@ -740,6 +741,11 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
-> 		guc_mmio_regset_write_one(ads, regset_map, e->reg, count++);
-> 	}
->
->+	for (i = 0; i < RING_MAX_NONPRIV_SLOTS; i++)
->+		guc_mmio_regset_write_one(ads, regset_map,
->+					  RING_FORCE_TO_NONPRIV(hwe->mmio_base, i),
->+					  count++);
+== Series Details ==
 
-this is not the proper place. See drivers/gpu/drm/xe/xe_reg_whitelist.c.
+Series: drm/xe/vm: Add debug log on pending previous ufence
+URL   : https://patchwork.freedesktop.org/series/140659/
+State : success
 
-The loop just before these added lines should be sufficient to go over
-all engine save/restore register and give them to guc.
+== Summary ==
 
-Lucas De Marchi
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc5-xe/build
+lib/modules/6.12.0-rc5-xe/modules.alias.bin
+lib/modules/6.12.0-rc5-xe/modules.builtin
+lib/modules/6.12.0-rc5-xe/modules.softdep
+lib/modules/6.12.0-rc5-xe/modules.alias
+lib/modules/6.12.0-rc5-xe/modules.order
+lib/modules/6.12.0-rc5-xe/modules.symbols
+lib/modules/6.12.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730219104:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1730219104:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
