@@ -4,21 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF50D3A66D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E542ED3A670
 	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 15:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC6EA10E67C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE7CF10E681;
 	Tue, 29 Oct 2024 15:00:03 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A194B10E67C
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 14:59:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31FB910E67C
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 14:59:50 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 resend 6/8] drm/xe/sriov: Move VF bootstrap and
- query_config to vf_guc_init
-Date: Tue, 29 Oct 2024 16:00:03 +0100
-Message-ID: <20241029150005.68440-7-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 resend 2/8] drm/i915/display: Use async flip when available
+ for initial plane config
+Date: Tue, 29 Oct 2024 15:59:59 +0100
+Message-ID: <20241029150005.68440-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
 References: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
@@ -38,72 +38,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to split up GUC init to an alloc and noalloc part to keep the
-init path the same for VF and !VF as much as possible.
+I'm planning to reorder readout in the Xe sequence in such a way that
+interrupts will not be available, so just use an async flip.
 
-Everything in vf_guc_init should be done as early as possible, otherwise
-VRAM probing becomes impossible.
+Since the new FB points to the same pages, it will not tear. It also
+has the benefit of perhaps being slightly faster.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 -
- drivers/gpu/drm/xe/xe_guc.c         | 17 +++++++++--------
- 2 files changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index d3baba50f0851..521aaa3631f06 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -885,7 +885,6 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
- 	struct vf_runtime_reg *rr;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index a0a7ed01415a5..6740c193920ff 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2902,7 +2902,7 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
+ 		to_intel_plane_state(plane->base.state);
+ 	enum plane_id plane_id = plane->id;
+ 	enum pipe pipe = crtc->pipe;
+-	u32 base;
++	u32 base, plane_ctl;
  
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
- 	xe_gt_assert(gt, !reg.vf);
+ 	if (!plane_state->uapi.visible)
+ 		return false;
+@@ -2916,7 +2916,16 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
+ 	if (plane_config->base == base)
+ 		return false;
  
- 	if (reg.addr == GMD_ID.addr) {
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 76437d42b8a1e..2a368509d36c7 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -301,6 +301,7 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
- 
- static int vf_guc_init(struct xe_guc *guc)
- {
-+	struct xe_gt *gt = guc_to_gt(guc);
- 	int err;
- 
- 	xe_guc_comm_init_early(guc);
-@@ -313,6 +314,14 @@ static int vf_guc_init(struct xe_guc *guc)
- 	if (err)
- 		return err;
- 
-+	err = xe_gt_sriov_vf_bootstrap(gt);
-+	if (err)
-+		return err;
++	/* Perform an async flip to the new surface. */
++	plane_ctl = intel_de_read(i915, PLANE_CTL(pipe, plane_id));
++	plane_ctl |= PLANE_CTL_ASYNC_FLIP;
 +
-+	err = xe_gt_sriov_vf_query_config(gt);
-+	if (err)
-+		return err;
++	intel_de_write(i915, PLANE_CTL(pipe, plane_id), plane_ctl);
+ 	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
+ 
+-	return true;
++	if (intel_de_wait(i915, PLANE_SURFLIVE(pipe, plane_id), ~0U, base, 40) < 0)
++		drm_warn(&i915->drm, "async flip timed out\n");
 +
- 	return 0;
++	/* No need to vblank wait either */
++	return false;
  }
- 
-@@ -753,14 +762,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	int ret;
- 
--	ret = xe_gt_sriov_vf_bootstrap(gt);
--	if (ret)
--		return ret;
--
--	ret = xe_gt_sriov_vf_query_config(gt);
--	if (ret)
--		return ret;
--
- 	ret = xe_guc_hwconfig_init(guc);
- 	if (ret)
- 		return ret;
 -- 
 2.45.2
 
