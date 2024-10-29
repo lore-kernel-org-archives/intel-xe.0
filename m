@@ -4,21 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34234D3A66B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E595D3A661
 	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 15:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 508B010E111;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85BD310E295;
 	Tue, 29 Oct 2024 15:00:03 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1272510E67C
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 14:59:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6772610E680
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 14:59:51 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 resend 8/8] drm/xe: Split init of xe_gt_init_hwconfig to
- xe_gt_init and *_early
-Date: Tue, 29 Oct 2024 16:00:05 +0100
-Message-ID: <20241029150005.68440-9-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 resend 4/8] drm/xe: Defer irq init until after
+ xe_display_init_noaccel
+Date: Tue, 29 Oct 2024 16:00:01 +0100
+Message-ID: <20241029150005.68440-5-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
 References: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
@@ -38,144 +38,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we added the separate step of initialising GUC in
-xe_gt_init_early, it should be ok to initialise the minimum during early
-init, and the rest after allocations are allowed.
+Technically, I believe this means that xe_display_init_noirq and
+xe_display_init_noaccel can be merged together now.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  6 ----
- drivers/gpu/drm/xe/xe_gt.c     | 66 +++++++++++++++++-----------------
- drivers/gpu/drm/xe/xe_gt.h     |  1 -
- 3 files changed, 32 insertions(+), 41 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 12 ++++--------
+ drivers/gpu/drm/xe/xe_tile.c   |  7 +++++++
+ 2 files changed, 11 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 0d662158fc83a..9116e513dc4bc 100644
+index d145f1376069e..c8bce9858b511 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -664,12 +664,6 @@ int xe_device_probe(struct xe_device *xe)
+@@ -41,7 +41,6 @@
+ #include "xe_hw_engine_group.h"
+ #include "xe_hwmon.h"
+ #include "xe_irq.h"
+-#include "xe_memirq.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+ #include "xe_observation.h"
+@@ -683,9 +682,6 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
  			return err;
- 	}
- 
--	for_each_gt(gt, xe, id) {
--		err = xe_gt_init_hwconfig(gt);
+-		err = xe_memirq_init(&tile->memirq);
 -		if (err)
 -			return err;
--	}
--
- 	err = xe_devcoredump_init(xe);
+ 	}
+ 
+ 	for_each_gt(gt, xe, id) {
+@@ -705,10 +701,6 @@ int xe_device_probe(struct xe_device *xe)
  	if (err)
  		return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 59f26ef6e68bc..2ed2a6d643e9c 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -363,6 +363,21 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 	return err;
- }
  
-+static int gt_init_mcr(struct xe_gt *gt)
-+{
-+	unsigned int fw_ref;
+-	err = xe_irq_install(xe);
+-	if (err)
+-		goto err;
+-
+ 	err = probe_has_flat_ccs(xe);
+ 	if (err)
+ 		goto err;
+@@ -746,6 +738,10 @@ int xe_device_probe(struct xe_device *xe)
+ 			goto err;
+ 	}
+ 
++	err = xe_irq_install(xe);
++	if (err)
++		goto err;
 +
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return -ETIMEDOUT;
-+
-+	xe_gt_mcr_init_early(gt);
-+	xe_pat_init(gt);
-+
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	return 0;
-+}
-+
- int xe_gt_init_early(struct xe_gt *gt)
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 2825553b568f7..d07c1fba793ca 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -10,6 +10,7 @@
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
++#include "xe_memirq.h"
+ #include "xe_migrate.h"
+ #include "xe_pcode.h"
+ #include "xe_sa.h"
+@@ -179,6 +180,12 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 
+ int xe_tile_init(struct xe_tile *tile)
  {
- 	int err;
-@@ -393,7 +408,11 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	 */
- 	xe_gt_mmio_init(gt);
- 
--	return xe_uc_init_noalloc(&gt->uc);
-+	err = xe_uc_init_noalloc(&gt->uc);
++	int err;
++
++	err = xe_memirq_init(&tile->memirq);
 +	if (err)
 +		return err;
 +
-+	return gt_init_mcr(gt);
- }
- 
- static void dump_pat_on_error(struct xe_gt *gt)
-@@ -418,6 +437,18 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 		goto err_hw_fence_irq;
- 	}
- 
-+	err = xe_uc_init(&gt->uc);
-+	if (err)
-+		goto err_force_wake;
-+
-+	err = xe_uc_init_hwconfig(&gt->uc);
-+	if (err)
-+		goto err_force_wake;
-+
-+	xe_gt_topology_init(gt);
-+	xe_gt_mcr_init(gt);
-+	xe_gt_enable_host_l2_vram(gt);
-+
- 	if (!xe_gt_is_media_type(gt)) {
- 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
- 		if (err)
-@@ -549,39 +580,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
- 	return err;
- }
- 
--/*
-- * Initialize enough GT to be able to load GuC in order to obtain hwconfig and
-- * enable CTB communication.
-- */
--int xe_gt_init_hwconfig(struct xe_gt *gt)
--{
--	unsigned int fw_ref;
--	int err;
--
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (!fw_ref)
--		return -ETIMEDOUT;
--
--	xe_gt_mcr_init_early(gt);
--	xe_pat_init(gt);
--
--	err = xe_uc_init(&gt->uc);
--	if (err)
--		goto out_fw;
--
--	err = xe_uc_init_hwconfig(&gt->uc);
--	if (err)
--		goto out_fw;
--
--	xe_gt_topology_init(gt);
--	xe_gt_mcr_init(gt);
--	xe_gt_enable_host_l2_vram(gt);
--
--out_fw:
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	return err;
--}
--
- int xe_gt_init(struct xe_gt *gt)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 82b9b7f82fcab..0c026cc91ffe9 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -28,7 +28,6 @@ static inline bool xe_fault_inject_gt_reset(void)
- }
- 
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
--int xe_gt_init_hwconfig(struct xe_gt *gt);
- int xe_gt_init_early(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
- void xe_gt_mmio_init(struct xe_gt *gt);
+ 	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+ 	if (IS_ERR(tile->mem.kernel_bb_pool))
+ 		return PTR_ERR(tile->mem.kernel_bb_pool);
 -- 
 2.45.2
 
