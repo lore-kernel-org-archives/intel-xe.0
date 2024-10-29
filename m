@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BF01D74941
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 780C9D74943
 	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 21:44:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD2410E3B8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3821710E3B7;
 	Tue, 29 Oct 2024 21:44:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VhzHUOT5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZMU3tXj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C93FA10E3B1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7911610E3B1
  for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 21:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1730238257; x=1761774257;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vUafYDPdth1xpwRxaC1SKxS39KAcVFNpeuF6HJVMevI=;
- b=VhzHUOT51E/6n2U7UwQyy9HsM2a0iU7VRN3DjEbbyciXdzyFvBJLyfXq
- YxPMJLgTqCDLuBEud94373+SIbxOwhsqNUmm2BYtJQWIlohHaiSIw97ly
- 42wTb1NhfuO8nG/VvA6gl1Y/+Pz5vp9t18D8rkIYb84suTJe0k33LxrnP
- ocjHdrJGQ0xvvl0dQO1QSlTQlXxf2h68JxPq3zRTgoKIkuAmHIHbwSAPb
- QJ+s4Oxhd217yJLwBeW5coCJOANJjj+iiDqSR3Lnl9ciK0j7w0iq35ajQ
- g1R1KYt9Vvw+4zlM0I4YloVhi6G03h3AadOXfzyorc2YnL04DXimwNV0j A==;
-X-CSE-ConnectionGUID: bIEt5vFOR8CQGpPxzVVwBg==
-X-CSE-MsgGUID: 5/kw3GltSseP10dL5p0fhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="40523810"
-X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; d="scan'208";a="40523810"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=E9PluJ75WCfP1ejCuZHzz28eRhzDggny8/qA7y/NYPs=;
+ b=KZMU3tXjjG8diPZ/7lImAA52/Fr/yUEHKarBR0tDKhPZRMr0UFL2D/wz
+ j6DSwH5hVjBeFKhiUMDYfVAzdOC9eoxseN5SL0sCEugUbcQgfx/R/HOrn
+ XqECwYkcPwz6xzfk1WNLpZIJPsH0AzARqqhoq43xc8B1GvPaLwPokA4c6
+ 30zdtViWZxy+vf162kgE+QHQAMG2/pabk+ZtT7AdOWaVIJnp9UZ2HeayU
+ 5sBM9wbVIIQQ1I0afbEfSXuAaibn4DxWE5fg4RtyUMOzMCEDCxCUEBJvs
+ pSxrLMEJ4PASnYprU8zLej6LfEcczgfCMTzF6sTXXRWJXmn1cNRwtXINc g==;
+X-CSE-ConnectionGUID: iQKuT6T0SjOjZB1vj9RmZw==
+X-CSE-MsgGUID: t820ecgzSh268+0+4/FCjQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="40523806"
+X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; d="scan'208";a="40523806"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Oct 2024 14:44:16 -0700
-X-CSE-ConnectionGUID: /ZZPbTwMQAeJqXS2yQtRZg==
-X-CSE-MsgGUID: zPZ3nFDIQLiV47AUoBm1yw==
+X-CSE-ConnectionGUID: Lt6LVzvpRXuSKwHWlBCf3w==
+X-CSE-MsgGUID: FsSb7+xbT9GinjMKfgm2MA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; d="scan'208";a="119579597"
+X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; d="scan'208";a="119579591"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Oct 2024 14:44:16 -0700
@@ -46,14 +46,11 @@ To: <intel-xe@lists.freedesktop.org>
 Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH v2 2/4] drm/xe: Stop accumulating LRC timestamp on job_free
-Date: Tue, 29 Oct 2024 14:43:49 -0700
-Message-ID: <20241029214351.776293-3-lucas.demarchi@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2 0/4] drm/xe: Fix races on fdinfo
+Date: Tue, 29 Oct 2024 14:43:47 -0700
+Message-ID: <20241029214351.776293-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241029214351.776293-1-lucas.demarchi@intel.com>
-References: <20241029214351.776293-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,68 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The exec queue timestamp is only really useful when it's being queried
-through the fdinfo. There's no need to update it so often, on every
-job_free. Tracing a simple app like vkcube running shows an update
-rate of ~ 120Hz. In case of discrete, the BO is on vram, creating a lot
-of pcie transactions.
+The current reading of engine utilization has same races. This should
+fix most of them while also drastically reducing the update rate needed
+on "normal apps".
 
-The update on job_free() is used to cover a gap: if exec
-queue is created and destroyed rapidly, before a new query, the
-timestamp still needs to be accumulated and accounted for in the xef.
+I left tests/xe_drm_fdinfo --r utilization-single-full-load-destroy-queue
+running on 2 systems and saw no failures after 100 iterations about
+execution cycles being 0.
 
-Initial implementation in commit 6109f24f87d7 ("drm/xe: Add helper to
-accumulate exec queue runtime") couldn't do it on the exec_queue_fini
-since the xef could be gone at that point. However since commit
-ce8c161cbad4 ("drm/xe: Add ref counting for xe_file") the xef is
-refcounted and the exec queue always holds a reference, making this safe
-now.
+There are still issues calculating the percentage load - while I have
+one additional patch to "fix" it on an idle system, I still can
+consistently reproduce the issue in a LNL machine by overloading the CPU
+with `stress --cpu $(nproc)`. So I will leave that for later since it's
+a different issue not related to killing the exec queue.
 
-Improve the fix in commit 2149ded63079 ("drm/xe: Fix use after free when
-client stats are captured") by reducing the frequency in which the
-update is needed.
+Lucas De Marchi (4):
+  drm/xe: Add trace to lrc timestamp update
+  drm/xe: Stop accumulating LRC timestamp on job_free
+  drm/xe: Reword exec_queue.lock doc
+  drm/xe: Wait on killed exec queues
 
-Fixes: 2149ded63079 ("drm/xe: Fix use after free when client stats are captured")
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c | 6 ++++++
- drivers/gpu/drm/xe/xe_guc_submit.c | 2 --
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/Makefile          |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h | 11 ++++--
+ drivers/gpu/drm/xe/xe_drm_client.c   |  7 ++++
+ drivers/gpu/drm/xe/xe_exec_queue.c   | 10 ++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c   |  2 --
+ drivers/gpu/drm/xe/xe_lrc.c          |  3 ++
+ drivers/gpu/drm/xe/xe_trace_lrc.c    |  9 +++++
+ drivers/gpu/drm/xe/xe_trace_lrc.h    | 52 ++++++++++++++++++++++++++++
+ 8 files changed, 90 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.c
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.h
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d098d2dd1b2d8..fd0f3b3c9101d 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -260,8 +260,14 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	int i;
- 
-+	/*
-+	 * Before releasing our ref to lrc and xef, accumulate our run ticks
-+	 */
-+	xe_exec_queue_update_run_ticks(q);
-+
- 	for (i = 0; i < q->width; ++i)
- 		xe_lrc_put(q->lrc[i]);
-+
- 	__xe_exec_queue_free(q);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index e5d7c767a7447..ebe4665d91598 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -747,8 +747,6 @@ static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
- {
- 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
- 
--	xe_exec_queue_update_run_ticks(job->q);
--
- 	trace_xe_sched_job_free(job);
- 	xe_sched_job_put(job);
- }
 -- 
 2.47.0
 
