@@ -4,57 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE6ADD2AB1C
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 10:54:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C29AD2AB1D
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 10:59:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B69A10E625;
-	Tue, 29 Oct 2024 10:54:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 394BC10E253;
+	Tue, 29 Oct 2024 10:59:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JFw2xCfZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jwn1BWYs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30BFA10E62A;
- Tue, 29 Oct 2024 10:54:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 540EA10E253
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 10:59:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730199248; x=1761735248;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=G1TFIOsaMcnlmKI4hRyTlyP5IIirBh6IlNsl/mTKVDQ=;
- b=JFw2xCfZ9u6Yios3nqbGXYAtycbhhkBAxK2xFTEQZ8spaYp2oq+pjI/A
- NzlV9GeDUODlEEK17IDQTKtPJXFoXLd3ETjd5Ng2nWte5BI33ZDkpVcg2
- h9Bb/uqVXJ0/XFDXu3WvWb3GqitINRdSPnUD4peDrEgxk3k+20Utgl/lg
- MUf6pCI1s7bFzawElASgEqVJO4U8hyhJxT1jv6JoRWCJT/C0mbg3Pcse5
- jnjoVRvxeXTzbvmcf87gtQwm5J0tht23j80cbAhc2202e2jHkcDQx6uPO
- zUTiP6SGftIfSabKug1RgQMkqmhatdZe4mki52k1jqE4e5iyx6BNrznzs g==;
-X-CSE-ConnectionGUID: k1E8RRLGSa6DXevA41ca5A==
-X-CSE-MsgGUID: rCjx2Z0TQRuFUFjvBXrN6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="30041632"
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="30041632"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 03:54:07 -0700
-X-CSE-ConnectionGUID: nQztQP12Q4iZERUdFwoX+w==
-X-CSE-MsgGUID: r7TEebOPRYWKAjbvl4P9qA==
+ t=1730199552; x=1761735552;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=D4x0LW2X773aTtiklWD6zcs30iEW3uOTvFhsGYQ/xTM=;
+ b=Jwn1BWYssOEPOKDrZJFN8x7/R3l/lSFJNh8rMRrbMaSdopcZS8OEEq5A
+ tR83hgTtY4QWOaHpYQDBDNp+VvZILC1l5l1PQmzrRKPTjxs2bpHI6c4/H
+ oOaP0bsIkilZ8feKpj7+2PbYzrt4By9+8avVcjSWD5qE2ubMoWKKNjhWy
+ +x1Pilf7+58qwFzPXpcBy3q6eU7Ed1PD3UAFM9gmt8srD+G/b/sDdRjAf
+ 1q8WKnEWOJL2462VLimaXveEBh17JDnzkOXwIufVaA7CKGcx/F+rFo98H
+ WOXm4wGMC7WEaglFLiDEXYoKhHdUbiWB5jK41/96Z0ZlIR0FG9vU+7xv7 Q==;
+X-CSE-ConnectionGUID: DZ1XOkCeT0eXHBBgqBh/OA==
+X-CSE-MsgGUID: 7dFfOZxpRNeBCQc6G/5Suw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="17466067"
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="17466067"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 03:59:12 -0700
+X-CSE-ConnectionGUID: mXaZVkVTR7+sEWVgmdKucg==
+X-CSE-MsgGUID: gG0dogHoQFWFIXyYOzXJ1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="112728618"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.69])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 03:54:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, "Kandpal,
- Suraj" <suraj.kandpal@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/hdcp: Add the loop only for DP encoders
-In-Reply-To: <SJ1PR11MB6129CCEF0FD3585991A07693B94B2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241029085304.219168-1-suraj.kandpal@intel.com>
- <SJ1PR11MB6129CCEF0FD3585991A07693B94B2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Date: Tue, 29 Oct 2024 12:54:02 +0200
-Message-ID: <87h68vnprp.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="86535921"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.244.40])
+ ([10.245.244.40])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 03:59:10 -0700
+Message-ID: <b50daa2b-45b7-434b-88e9-d5f40bcc6542@intel.com>
+Date: Tue, 29 Oct 2024 10:59:08 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] drm/xe/guc/tlb: Flush g2h worker in case of tlb
+ timeout
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Badal Nilawar <badal.nilawar@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org
+References: <20241029095416.3919218-1-nirmoy.das@intel.com>
+ <20241029095416.3919218-3-nirmoy.das@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20241029095416.3919218-3-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,88 +75,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 29 Oct 2024, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
->> -----Original Message-----
->> From: Kandpal, Suraj <suraj.kandpal@intel.com>
->> Sent: Tuesday, October 29, 2024 2:23 PM
->> To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
->> Cc: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; Kandpal,
->> Suraj <suraj.kandpal@intel.com>
->> Subject: [PATCH] drm/i915/hdcp: Add the loop only for DP encoders
->> 
->> Add the loop on the first read and write only for DP/DPMST encoders as this
->> issue is only observed here no need to burden other encoders with extra
->> retries.
->
-> It would make the motivation of the patch clearer if we describe "this issue" here.
+On 29/10/2024 09:54, Nirmoy Das wrote:
+> Flush the g2h worker explicitly if TLB timeout happens which is
+> observed on LNL and that points to the recent scheduling issue with
+> E-cores on LNL.
+> 
+> This is similar to the recent fix:
+> commit e51527233804 ("drm/xe/guc/ct: Flush g2h worker in case of g2h
+> response timeout") and should be removed once there is E core
+> scheduling fix.
+> 
+> v2: Add platform check(Himal)
+> v3: Remove gfx platform check as the issue related to cpu
+>      platform(John)
+>      Use the common WA macro(John) and print when the flush
+>      resolves timeout(Matt B)
+> 
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.11+
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2687
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> index 773de1f08db9..0bdb3ba5220a 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> @@ -81,6 +81,15 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>   		if (msecs_to_jiffies(since_inval_ms) < tlb_timeout_jiffies(gt))
+>   			break;
+>   
+> +		LNL_FLUSH_WORK(&gt->uc.guc.ct.g2h_worker);
 
-Ditto for "the loop".
+I think here we are holding the pending lock, and g2h worker also wants 
+to grab that same lock so this smells like potential deadlock. Also 
+flush_work can sleep so I don't think is allowed under spinlock.
 
->
->> 
->> Fixes: 9d5a05f86d2f ("drm/i915/hdcp: Retry first read and writes to
->> downstream")
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_hdcp.c | 12 ++++++++++--
->>  1 file changed, 10 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> index ed6aa87403e2..fcfb5a9f303a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> @@ -1503,6 +1503,8 @@ static int hdcp2_deauthenticate_port(struct
->> intel_connector *connector)  static int
->> hdcp2_authentication_key_exchange(struct intel_connector *connector)  {
->>  	struct intel_display *display = to_intel_display(connector);
->> +	struct intel_digital_port *dig_port =
->> +		intel_attached_dig_port(connector);
->>  	struct intel_hdcp *hdcp = &connector->hdcp;
->>  	union {
->>  		struct hdcp2_ake_init ake_init;
->> @@ -1513,12 +1515,18 @@ static int
->> hdcp2_authentication_key_exchange(struct intel_connector *connector)
->>  	} msgs;
->>  	const struct intel_hdcp_shim *shim = hdcp->shim;
->>  	size_t size;
->> -	int ret, i;
->> +	int ret, i, max_retries;
->> 
->>  	/* Init for seq_num */
->>  	hdcp->seq_num_v = 0;
->>  	hdcp->seq_num_m = 0;
->> 
->> +	if (intel_encoder_is_dp(&dig_port->base) ||
->> +	    intel_encoder_is_mst(&dig_port->base))
->> +		max_retries = 10;
->> +	else
->> +		max_retries = 1;
->> +
->>  	ret = hdcp2_prepare_ake_init(connector, &msgs.ake_init);
->>  	if (ret < 0)
->>  		return ret;
->> @@ -1536,7 +1544,7 @@ static int
->> hdcp2_authentication_key_exchange(struct intel_connector *connector)
->>  	 * authentication. The values of 10 and delay of 50ms was decided
->> based
->>  	 * on multiple trial and errors.
->>  	 */
->
-> Perhaps this comment can use an update too.
->
-> Functionally LGTM.
->
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->
->> -	for (i = 0; i < 10; i++) {
->> +	for (i = 0; i < max_retries; i++) {
->>  		if (!intel_hdcp2_get_capability(connector)) {
->>  			msleep(50);
->>  			continue;
->> --
->> 2.34.1
->
+> +		since_inval_ms = ktime_ms_delta(ktime_get(),
+> +						fence->invalidation_time);
 
--- 
-Jani Nikula, Intel
+I think invalidation_time is rather when we sent off the invalidation 
+req, and we already check that above so if we get here then we know the 
+timeout has expired for this fence, so checking again after the flush 
+doesn't really help AFAICT.
+
+I think we can just move the flush to before the loop and outside the 
+lock, and then if the fence(s) gets signalled they will be removed from 
+the list and then also won't be considered for timeout?
+
+> +		if (msecs_to_jiffies(since_inval_ms) < tlb_timeout_jiffies(gt)) {
+> +			xe_gt_dbg(gt, "LNL_FLUSH_WORK resolved TLB invalidation fence timeout, seqno=%d recv=%d",
+> +				  fence->seqno, gt->tlb_invalidation.seqno_recv);
+> +			break;
+> +		}
+> +
+>   		trace_xe_gt_tlb_invalidation_fence_timeout(xe, fence);
+>   		xe_gt_err(gt, "TLB invalidation fence timeout, seqno=%d recv=%d",
+>   			  fence->seqno, gt->tlb_invalidation.seqno_recv);
