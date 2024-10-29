@@ -4,27 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A41B1D3A696
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 20:25:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34B95D3A69F
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 20:38:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 542B010E3B0;
-	Tue, 29 Oct 2024 20:25:05 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52B5E10E3B0;
- Tue, 29 Oct 2024 20:25:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02C7E10E6F9;
+	Tue, 29 Oct 2024 20:38:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=cmpxchg-org.20230601.gappssmtp.com header.i=@cmpxchg-org.20230601.gappssmtp.com header.b="z4r5ifv+";
+	dkim-atps=neutral
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
+ [209.85.219.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB6910E6F9
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 20:38:40 +0000 (UTC)
+Received: by mail-qv1-f54.google.com with SMTP id
+ 6a1803df08f44-6cbcc2bd800so2465696d6.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 13:38:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cmpxchg-org.20230601.gappssmtp.com; s=20230601; t=1730234319; x=1730839119;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=UHhE7+FsFDchxD8LtVUn2ccYddeUr5QRSaFaIZpCbLM=;
+ b=z4r5ifv+uETYA9Xxzbl8zdRMZajrKOhGx6mYqdlwIbRGXyNmG9xfdycMhyZNtZLJ5A
+ X103fuRQ7dasM1ODoLVEcwq7uxh0MFqPFyFIkHDXECF1cfvpYwzh3S5AXcYuGuwtujAf
+ yofGis3bkKtFQPjf26uPTNFKo4Ob6mUqD/if1ezr7ZdRjUbWiKOejV9gKBttpQ5O9npm
+ ATLYucdg0X2xpYfzbLBkPD1pG4Ei5x6L26ehygJAuZb8z71eoP+WAOH0rEnDS1Zqx68e
+ uNu1dvPaQHKpS8CAZ2FaMsEVpWOVg/GZauYA2xGoosCdnk4tUjwjNGfYB/Y150hKYiWG
+ sAGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730234319; x=1730839119;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UHhE7+FsFDchxD8LtVUn2ccYddeUr5QRSaFaIZpCbLM=;
+ b=u8MpsCQ+71TfqgwYKVtCPD7jsH8Ww5ZLbcu7i9yar2ZitZ3AzjGqGx/7gMV+a4jxPO
+ JPaQJCFjOTYt2zVNovXfYlloFJ23zxrRi6T9+aBb+8gX9UxhXYrYsxM2Fvk98W/cNY0p
+ uwGWntAImbcFjOfa0sdLUSOhFORL4BVlVgeExJ4hEIvrae7fJyXeFf7qWB0zX+/Zk15T
+ UcWdbHfrchhR0iKSEjlHiognnq5iv/C0ntEVbbDuwoCJKjz0i6Oli3LNTJ/HMAugdnIE
+ nA5fSsCiyNhc4ileL6OzSoooJ2FNTYWR8VXXDbKmhu/Nt+T/iEOJtiQLmeaoHJ5G7YwX
+ hZrQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUCjikpl4cw1xNd5BrKMUxsAo0t3XPEewor90CvLSC+50hTEOOaUif48bzL/msWbT19NQ8aByDTHw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzhDBOwrsohHmlU8yCCWdsFD5idHl4A7KRcvaeldRd1Rs7WE1oY
+ aKB4QxF/F6yk8xLQpPCdQzWcfdX257w012c5tKKVOFttQD4n9RWQKUgEnt9+zks=
+X-Google-Smtp-Source: AGHT+IGIGf+fLyqvRxEZUSRr0al4OL6PJFH2Lr2FvVUL+VpF7BsP3nR5JjnLPEDC4jbvktWXK39Ngg==
+X-Received: by 2002:a05:6214:5d8f:b0:6d1:7455:9b0d with SMTP id
+ 6a1803df08f44-6d2e7225ddcmr51294016d6.16.1730234319248; 
+ Tue, 29 Oct 2024 13:38:39 -0700 (PDT)
+Received: from localhost ([2603:7000:c01:2716:da5e:d3ff:fee7:26e7])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-6d1798a838fsm45773516d6.30.2024.10.29.13.38.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 29 Oct 2024 13:38:38 -0700 (PDT)
+Date: Tue, 29 Oct 2024 16:38:34 -0400
+From: Johannes Weiner <hannes@cmpxchg.org>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Tejun Heo <tj@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
+ linux-mm@kvack.org
+Subject: Re: [PATCH 0/7] kernel/cgroups: Add "dev" memory accounting cgroup.
+Message-ID: <20241029203834.GA636494@cmpxchg.org>
+References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
+ <ZxlRLMwkabTaOrjc@slm.duckdns.org>
+ <20241024-beautiful-spaniel-of-youth-f75b61@houat>
+ <Zxp-nLXOJXoSy8BN@slm.duckdns.org>
+ <20241028-meaty-mega-nuthatch-3d74b1@houat>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Move_Wa_160798?=
- =?utf-8?q?3814_to_oob?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Oct 2024 20:25:03 -0000
-Message-ID: <173023350333.1361174.11781358429582053745@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241029193258.749882-1-lucas.demarchi@intel.com>
-In-Reply-To: <20241029193258.749882-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241028-meaty-mega-nuthatch-3d74b1@houat>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +88,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Oct 28, 2024 at 11:05:48AM +0100, Maxime Ripard wrote:
+> On Thu, Oct 24, 2024 at 07:06:36AM -1000, Tejun Heo wrote:
+> > Hello,
+> > 
+> > On Thu, Oct 24, 2024 at 09:20:43AM +0200, Maxime Ripard wrote:
+> > ...
+> > > > Yeah, let's not use "dev" name for this. As Waiman pointed out, it conflicts
+> > > > with the devices controller from cgroup1. While cgroup1 is mostly
+> > > > deprecated, the same features are provided through BPF in systemd using the
+> > > > same terminologies, so this is going to be really confusing.
+> > > 
+> > > Yeah, I agree. We switched to dev because we want to support more than
+> > > just DRM, but all DMA-able memory. We have patches to support for v4l2
+> > > and dma-buf heaps, so using the name DRM didn't feel great either.
+> > > 
+> > > Do you have a better name in mind? "device memory"? "dma memory"?
+> > 
+> > Maybe just dma (I think the term isn't used heavily anymore, so the word is
+> > kinda open)? But, hopefully, others have better ideas.
+> > 
+> > > > What happened with Tvrtko's weighted implementation? I've seen many proposed
+> > > > patchsets in this area but as far as I could see none could establish
+> > > > consensus among GPU crowd and that's one of the reasons why nothing ever
+> > > > landed. Is the aim of this patchset establishing such consensus?
+> > > 
+> > > Yeah, we have a consensus by now I think. Valve, Intel, Google, and Red
+> > > Hat have been involved in that series and we all agree on the implementation.
+> > 
+> > That's great to hear.
+> > 
+> > > Tvrtko aims at a different feature set though: this one is about memory
+> > > allocation limits, Tvrtko's about scheduling.
+> > > 
+> > > Scheduling doesn't make much sense for things outside of DRM (and even
+> > > for a fraction of all DRM devices), and it's pretty much orthogonal. So
+> > > i guess you can expect another series from Tvrtko, but I don't think
+> > > they should be considered equivalent or dependent on each other.
+> > 
+> > Yeah, I get that this is about memory and that is about processing capacity,
+> > so the plan is going for separate controllers for each? Or would it be
+> > better to present both under the same controller interface? Even if they're
+> > going to be separate controllers, we at least want to be aligned on how
+> > devices and their configurations are presented in the two controllers.
+> 
+> It's still up in the air, I think.
+> 
+> My personal opinion is that there's only DRM (and accel) devices that
+> really care about scheduling constraints anyway, so it wouldn't (have
+> to) be as generic as this one.
 
-Series: drm/xe: Move Wa 1607983814 to oob
-URL   : https://patchwork.freedesktop.org/series/140687/
-State : success
+If they represent different resources that aren't always controlled in
+conjunction, it makes sense to me to have separate controllers as well.
 
-== Summary ==
+Especially if a merged version would have separate control files for
+each resource anyway (dev.region.*, dev.weight etc.)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 91b5d7af697c6765039b8700127c1740da858065
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+> And if we would call it dma, then the naming becomes a bit weird since
+> DMA doesn't have much to do with scheduling.
+> 
+> But I guess it's just another instance of the "naming is hard" problem :)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Yes it would be good to have something catchy, easy on the eyes, and
+vaguely familiar. devcomp(ute), devproc, devcpu, devcycles all kind of
+suck. drm and gpu seem too specific for a set that includes npus and
+potentially other accelerators in the future.
 
+I don't think we want to go full devspace & devtime, either, though.
 
+How about dmem for this one, and dpu for the other one. For device
+memory and device processing unit, respectively.
