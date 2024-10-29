@@ -4,52 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC692D3A661
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 15:48:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39992D3A66D
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 15:55:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3234610E29D;
-	Tue, 29 Oct 2024 15:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5055D10E25E;
+	Tue, 29 Oct 2024 15:55:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RW7K+hl6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AEIZP5bP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC3510E29D
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 15:48:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8888F10E0EA;
+ Tue, 29 Oct 2024 15:55:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730216889; x=1761752889;
- h=date:from:to:cc:subject:message-id;
- bh=iRmaYPa7QEfB4PhlG/GkKPHk/DTAhMjy/bsLFProIn8=;
- b=RW7K+hl6kgWzJjw3tgFKqGNhtGOTr9bMHQ0u8EF8+f8GDV09nbKoqtuy
- q2WWgBJsrSNx7E40dlFeuCkGSLl8QKSXG6dprhKpybTpMYNaNWjVfYJLF
- vENsnXtW8piakdgJGHqpeTxg7TKyz1qyWFqo2E6IZ6CS7g5Z4mIwmIMTw
- 8P/fkns3ecKOn7URO2Xg7tbvmLN6steB+c7oC93DCbARR7wopGaFDUDqV
- 8sBcIO6YiCnHxi9DIyUU5vg6sAV758i5IT36cGbPr+1dRcq0bM4fZmTB9
- Q1DQK9ypZ+CpSk61FvhGO5ufLzO6O8zhLb4E6mAVmgBgZh0r4lhZ2zg0h w==;
-X-CSE-ConnectionGUID: i52u9/KPS6KNmOD0rqT2eQ==
-X-CSE-MsgGUID: 6wbDWkkRQDCNQKQWYQlXhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="47350254"
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="47350254"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 08:48:08 -0700
-X-CSE-ConnectionGUID: JATB/hxjQVWIKGZe3927+g==
-X-CSE-MsgGUID: m3MckPHZTLa1JwfJ+ngOaw==
+ t=1730217344; x=1761753344;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gTpi7EdaIYLbdOU2kOrPBo0w3dqD+iTF4cG/2EOSheE=;
+ b=AEIZP5bPCJCL9fSuNuMtRdbnOxYC9+01tHYTI82JQR09z4v2jzNcF0eb
+ UgkTcnOIAwq/tYaz1c4onIBYaLtJAe3L/WaytoNtvxgn2iGYW0EiD/B9B
+ W95jUIaYVTcsWHAEc4ymSiSurXNJyFQaamxZfFpxkqHBu1bUfvjJSCQV/
+ nEG4V7thXviolz4D7g+QSafz9je1gb/NPchpuvN2ZRmJh9dIRpsuAwyPk
+ pGsY2oy9lsUueZuP+Vvp6hCi94+iIuhMAfryQJMvEl23JJFYGGVgu8n3n
+ tJGNJ0vjKy8Ik1q7fqrxxFH6QHaVXTJ/UcgmqKvtf927pd3xADCPU6Vxd w==;
+X-CSE-ConnectionGUID: DSVP2upGS3SxvDfTrvPzHg==
+X-CSE-MsgGUID: oWufmk7lT/WQNqonfr4yPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="41230817"
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="41230817"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 08:55:43 -0700
+X-CSE-ConnectionGUID: 0YlQGnD3SJOichdYeUu8zw==
+X-CSE-MsgGUID: m6iluf+3Q8erlwitHreLFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="82333574"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa010.fm.intel.com with ESMTP; 29 Oct 2024 08:48:08 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t5oRx-000dqO-0u;
- Tue, 29 Oct 2024 15:48:05 +0000
-Date: Tue, 29 Oct 2024 23:47:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 55858fa7eb2f163f7aa34339fd3399ba4ff564c6
-Message-ID: <202410292301.3AVKR8XX-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="82072789"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.69])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 08:55:41 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
+ matthew.d.roper@intel.com, lucas.demarchi@intel.com
+Subject: [PATCH v3] drm/i915/display: use x100 version for full version and
+ release
+Date: Tue, 29 Oct 2024 17:55:36 +0200
+Message-Id: <20241029155536.753413-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,142 +70,347 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 55858fa7eb2f163f7aa34339fd3399ba4ff564c6  drm/xe/xe_guc_ads: save/restore OA registers and allowlist regs
+Use x100, or ver * 100 + rel, versions for full IP version checks,
+similar to what xe driver does:
 
-elapsed time: 979m
+- Replace IP_VER(14, 1) inline with 1401, etc.
 
-configs tested: 123
-configs skipped: 3
+- Convert DISPLAY_VER_FULL() to DISPLAY_VERx100()
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+- Convert IS_DISPLAY_VER_FULL() to IS_DISPLAY_VERx100()
 
-tested configs:
-alpha                             allnoconfig    gcc-14.1.0
-alpha                            allyesconfig    clang-20
-alpha                               defconfig    gcc-14.1.0
-arc                              allmodconfig    clang-20
-arc                               allnoconfig    gcc-14.1.0
-arc                              allyesconfig    clang-20
-arc                                 defconfig    gcc-14.1.0
-arc                            hsdk_defconfig    clang-20
-arm                              allmodconfig    clang-20
-arm                               allnoconfig    gcc-14.1.0
-arm                              allyesconfig    clang-20
-arm                                 defconfig    gcc-14.1.0
-arm                          moxart_defconfig    clang-20
-arm                        multi_v5_defconfig    clang-20
-arm                        mvebu_v5_defconfig    clang-20
-arm                           tegra_defconfig    clang-20
-arm64                            allmodconfig    clang-20
-arm64                             allnoconfig    gcc-14.1.0
-arm64                               defconfig    gcc-14.1.0
-csky                              allnoconfig    gcc-14.1.0
-csky                                defconfig    gcc-14.1.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    gcc-14.1.0
-hexagon                          allyesconfig    clang-20
-hexagon                             defconfig    gcc-14.1.0
-i386                             allmodconfig    clang-19
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    clang-19
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    clang-19
-i386                             allyesconfig    gcc-12
-i386                                defconfig    clang-19
-loongarch                        allmodconfig    gcc-14.1.0
-loongarch                         allnoconfig    gcc-14.1.0
-loongarch                           defconfig    gcc-14.1.0
-m68k                             alldefconfig    clang-20
-m68k                             allmodconfig    gcc-14.1.0
-m68k                              allnoconfig    gcc-14.1.0
-m68k                             allyesconfig    gcc-14.1.0
-m68k                                defconfig    gcc-14.1.0
-m68k                          sun3x_defconfig    clang-20
-microblaze                       allmodconfig    gcc-14.1.0
-microblaze                        allnoconfig    gcc-14.1.0
-microblaze                       allyesconfig    gcc-14.1.0
-microblaze                          defconfig    gcc-14.1.0
-mips                              allnoconfig    gcc-14.1.0
-mips                          eyeq6_defconfig    clang-20
-nios2                             allnoconfig    gcc-14.1.0
-nios2                               defconfig    gcc-14.1.0
-openrisc                          allnoconfig    clang-20
-openrisc                         allyesconfig    gcc-14.1.0
-openrisc                            defconfig    gcc-12
-parisc                           allmodconfig    gcc-14.1.0
-parisc                            allnoconfig    clang-20
-parisc                           allyesconfig    gcc-14.1.0
-parisc                              defconfig    gcc-12
-parisc64                            defconfig    gcc-14.1.0
-powerpc                          allmodconfig    gcc-14.1.0
-powerpc                           allnoconfig    clang-20
-powerpc                          allyesconfig    gcc-14.1.0
-powerpc                          g5_defconfig    clang-20
-powerpc                      pasemi_defconfig    clang-20
-powerpc                       ppc64_defconfig    clang-20
-powerpc                     skiroot_defconfig    clang-20
-powerpc                      tqm8xx_defconfig    clang-20
-riscv                            allmodconfig    gcc-14.1.0
-riscv                             allnoconfig    clang-20
-riscv                            allyesconfig    gcc-14.1.0
-riscv                               defconfig    gcc-12
-s390                             allmodconfig    clang-20
-s390                             allmodconfig    gcc-14.1.0
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.1.0
-s390                                defconfig    gcc-12
-sh                               allmodconfig    gcc-14.1.0
-sh                                allnoconfig    gcc-14.1.0
-sh                               allyesconfig    gcc-14.1.0
-sh                                  defconfig    gcc-12
-sh                            titan_defconfig    clang-20
-sparc                            allmodconfig    gcc-14.1.0
-sparc                       sparc32_defconfig    clang-20
-sparc64                             defconfig    gcc-12
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-20
-um                               allyesconfig    clang-20
-um                                  defconfig    gcc-12
-um                             i386_defconfig    gcc-12
-um                           x86_64_defconfig    gcc-12
-x86_64                            allnoconfig    clang-19
-x86_64                           allyesconfig    clang-19
-x86_64      buildonly-randconfig-001-20241029    clang-19
-x86_64      buildonly-randconfig-002-20241029    clang-19
-x86_64      buildonly-randconfig-003-20241029    clang-19
-x86_64      buildonly-randconfig-004-20241029    clang-19
-x86_64      buildonly-randconfig-005-20241029    clang-19
-x86_64      buildonly-randconfig-006-20241029    clang-19
-x86_64                              defconfig    clang-19
-x86_64                              defconfig    gcc-11
-x86_64                                  kexec    clang-19
-x86_64                randconfig-001-20241029    clang-19
-x86_64                randconfig-002-20241029    clang-19
-x86_64                randconfig-003-20241029    clang-19
-x86_64                randconfig-004-20241029    clang-19
-x86_64                randconfig-005-20241029    clang-19
-x86_64                randconfig-006-20241029    clang-19
-x86_64                randconfig-011-20241029    clang-19
-x86_64                randconfig-012-20241029    clang-19
-x86_64                randconfig-013-20241029    clang-19
-x86_64                randconfig-014-20241029    clang-19
-x86_64                randconfig-015-20241029    clang-19
-x86_64                randconfig-016-20241029    clang-19
-x86_64                randconfig-071-20241029    clang-19
-x86_64                randconfig-072-20241029    clang-19
-x86_64                randconfig-073-20241029    clang-19
-x86_64                randconfig-074-20241029    clang-19
-x86_64                randconfig-075-20241029    clang-19
-x86_64                randconfig-076-20241029    clang-19
-x86_64                               rhel-8.3    gcc-12
-x86_64                           rhel-8.3-bpf    clang-19
-x86_64                         rhel-8.3-kunit    clang-19
-x86_64                           rhel-8.3-ltp    clang-19
-x86_64                          rhel-8.3-rust    clang-19
-xtensa                            allnoconfig    gcc-14.1.0
+- Convert IS_DISPLAY_VER_STEP() to IS_DISPLAY_VERx100_STEP()
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+This makes ver.rel versions easier to use, follows the xe driver
+pattern, and drops the dependency on the IP_VER() macro.
+
+v2: Rebase, drop IP_VER() from xe compat headers
+
+v3: Rebase
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Acked-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  4 ++--
+ drivers/gpu/drm/i915/display/intel_bw.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  6 +++---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  4 ++--
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  2 +-
+ .../drm/i915/display/intel_display_device.h   | 20 +++++++++----------
+ .../drm/i915/display/intel_display_power.c    |  4 ++--
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  8 ++++----
+ drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  6 +++---
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  8 ++++----
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  2 --
+ 15 files changed, 36 insertions(+), 38 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 73fe36f00dae..d89630b2d5c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1026,8 +1026,8 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+ 		vsub = 1;
+ 
+ 		/* Wa_16023981245 */
+-		if ((DISPLAY_VER_FULL(i915) == IP_VER(20, 0) ||
+-		     DISPLAY_VER_FULL(i915) == IP_VER(30, 0)) &&
++		if ((DISPLAY_VERx100(i915) == 2000 ||
++		     DISPLAY_VERx100(i915) == 3000) &&
+ 		     src_x % 2 != 0)
+ 			hsub = 2;
+ 	} else {
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 47036d4abb33..a52b0ae68b96 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -743,7 +743,7 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return;
+ 
+-	if (DISPLAY_VER_FULL(dev_priv) >= IP_VER(14, 1) && IS_DGFX(dev_priv))
++	if (DISPLAY_VERx100(dev_priv) >= 1401 && IS_DGFX(dev_priv))
+ 		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
+ 	else if (DISPLAY_VER(dev_priv) >= 14)
+ 		tgl_get_bw_info(dev_priv, &mtl_sa_info);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 96523526a2c3..03c4eef3f92a 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -2058,8 +2058,8 @@ static bool pll_enable_wa_needed(struct intel_display *display)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 
+-	return (DISPLAY_VER_FULL(display) == IP_VER(20, 0) ||
+-		DISPLAY_VER_FULL(display) == IP_VER(14, 0) ||
++	return (DISPLAY_VERx100(display) == 2000 ||
++		DISPLAY_VERx100(display) == 1400 ||
+ 		IS_DG2(dev_priv)) &&
+ 		display->cdclk.hw.vco > 0;
+ }
+@@ -3852,7 +3852,7 @@ void intel_init_cdclk_hooks(struct intel_display *display)
+ 	} else if (DISPLAY_VER(display) >= 20) {
+ 		display->funcs.cdclk = &rplu_cdclk_funcs;
+ 		display->cdclk.table = xe2lpd_cdclk_table;
+-	} else if (DISPLAY_VER_FULL(display) >= IP_VER(14, 1)) {
++	} else if (DISPLAY_VERx100(display) >= 1401) {
+ 		display->funcs.cdclk = &rplu_cdclk_funcs;
+ 		display->cdclk.table = xe2hpd_cdclk_table;
+ 	} else if (DISPLAY_VER(display) >= 14) {
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 8ad19106fee1..2136673fe0ad 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2276,13 +2276,13 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
+ 			if (DISPLAY_RUNTIME_INFO(display)->edp_typec_support)
+ 				return xe3lpd_c20_dp_edp_tables;
+-			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
++			if (DISPLAY_VERx100(i915) == 1401)
+ 				return xe2hpd_c20_edp_tables;
+ 		}
+ 
+ 		if (DISPLAY_VER(i915) >= 30)
+ 			return xe3lpd_c20_dp_edp_tables;
+-		else if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
++		else if (DISPLAY_VERx100(i915) == 1401)
+ 			return xe2hpd_c20_dp_tables;
+ 		else
+ 			return mtl_c20_dp_tables;
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 582d6277d20c..f0e5c196eae4 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -273,7 +273,7 @@
+ #define _XE2HPD_C20_A_MPLLB_CFG		0xCCC2
+ #define _XE2HPD_C20_B_MPLLB_CFG		0xCCB6
+ 
+-#define _IS_XE2HPD_C20(i915)	(DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
++#define _IS_XE2HPD_C20(i915)	(DISPLAY_VERx100(i915) == 1401)
+ 
+ #define PHY_C20_A_TX_CNTX_CFG(i915, idx) \
+ 		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_TX_CNTX_CFG : _MTL_C20_A_TX_CNTX_CFG) - (idx))
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 410f8b33a8a1..10964d95277f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -168,10 +168,10 @@ enum intel_display_subplatform {
+ #define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
+ 
+ /* Check that device has a display IP version within the specific range. */
+-#define IS_DISPLAY_VER_FULL(__i915, from, until) ( \
+-	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
+-	(DISPLAY_VER_FULL(__i915) >= (from) && \
+-	 DISPLAY_VER_FULL(__i915) <= (until)))
++#define IS_DISPLAY_VERx100(__i915, from, until) ( \
++	BUILD_BUG_ON_ZERO((from) < 200) + \
++	(DISPLAY_VERx100(__i915) >= (from) && \
++	 DISPLAY_VERx100(__i915) <= (until)))
+ 
+ /*
+  * Check if a device has a specific IP version as well as a stepping within the
+@@ -182,22 +182,22 @@ enum intel_display_subplatform {
+  * hardware fix is present and the software workaround is no longer necessary.
+  * E.g.,
+  *
+- *    IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_B2)
+- *    IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_C0, STEP_FOREVER)
++ *    IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_B2)
++ *    IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_C0, STEP_FOREVER)
+  *
+  * "STEP_FOREVER" can be passed as "until" for workarounds that have no upper
+  * stepping bound for the specified IP version.
+  */
+-#define IS_DISPLAY_VER_STEP(__i915, ipver, from, until) \
+-	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
++#define IS_DISPLAY_VERx100_STEP(__i915, ipver, from, until) \
++	(IS_DISPLAY_VERx100((__i915), (ipver), (ipver)) && \
+ 	 IS_DISPLAY_STEP((__i915), (from), (until)))
+ 
+ #define DISPLAY_INFO(i915)		(__to_intel_display(i915)->info.__device_info)
+ #define DISPLAY_RUNTIME_INFO(i915)	(&__to_intel_display(i915)->info.__runtime_info)
+ 
+ #define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
+-#define DISPLAY_VER_FULL(i915)	IP_VER(DISPLAY_RUNTIME_INFO(i915)->ip.ver, \
+-				       DISPLAY_RUNTIME_INFO(i915)->ip.rel)
++#define DISPLAY_VERx100(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver * 100 + \
++				 DISPLAY_RUNTIME_INFO(i915)->ip.rel)
+ #define IS_DISPLAY_VER(i915, from, until) \
+ 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index d0c21c89c471..2766fd9208b0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1684,14 +1684,14 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 		intel_snps_phy_wait_for_calibration(dev_priv);
+ 
+ 	/* 9. XE2_HPD: Program CHICKEN_MISC_2 before any cursor or planes are enabled */
+-	if (DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 1))
++	if (DISPLAY_VERx100(dev_priv) == 1401)
+ 		intel_de_rmw(dev_priv, CHICKEN_MISC_2, BMG_DARB_HALF_BLK_END_BURST, 1);
+ 
+ 	if (resume)
+ 		intel_dmc_load_program(display);
+ 
+ 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p,dg2 */
+-	if (IS_DISPLAY_VER_FULL(dev_priv, IP_VER(12, 0), IP_VER(13, 0)))
++	if (IS_DISPLAY_VERx100(dev_priv, 1200, 1300))
+ 		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0,
+ 			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
+ 			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 5392b68627ae..87bdacfd9edf 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -171,16 +171,16 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
+ 	const char *fw_path = NULL;
+ 	u32 max_fw_size = 0;
+ 
+-	if (DISPLAY_VER_FULL(display) == IP_VER(30, 0)) {
++	if (DISPLAY_VERx100(display) == 3000) {
+ 		fw_path = XE3LPD_DMC_PATH;
+ 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
+-	} else if (DISPLAY_VER_FULL(display) == IP_VER(20, 0)) {
++	} else if (DISPLAY_VERx100(display) == 2000) {
+ 		fw_path = XE2LPD_DMC_PATH;
+ 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
+-	} else if (DISPLAY_VER_FULL(display) == IP_VER(14, 1)) {
++	} else if (DISPLAY_VERx100(display) == 1401) {
+ 		fw_path = BMG_DMC_PATH;
+ 		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
+-	} else if (DISPLAY_VER_FULL(display) == IP_VER(14, 0)) {
++	} else if (DISPLAY_VERx100(display) == 1400) {
+ 		fw_path = MTL_DMC_PATH;
+ 		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
+ 	} else if (IS_DG2(i915)) {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 694491a4c408..0780448d0cb4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -497,7 +497,7 @@ static int mtl_max_source_rate(struct intel_dp *intel_dp)
+ 	if (intel_encoder_is_c10phy(encoder))
+ 		return 810000;
+ 
+-	if (DISPLAY_VER_FULL(to_i915(encoder->base.dev)) == IP_VER(14, 1))
++	if (DISPLAY_VERx100(to_i915(encoder->base.dev)) == 1401)
+ 		return 1350000;
+ 
+ 	return 2000000;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 2e0863093cff..df05904bac8a 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1347,7 +1347,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 
+ 	/* Wa_14016291713 */
+ 	if ((IS_DISPLAY_VER(display, 12, 13) ||
+-	     IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0)) &&
++	     IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_C0)) &&
+ 	    crtc_state->has_psr && !crtc_state->has_panel_replay) {
+ 		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
+ 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index ed6aa87403e2..268deddc5281 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -43,11 +43,11 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+ 		return;
+ 
+ 	if (DISPLAY_VER(display) >= 14) {
+-		if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
++		if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER))
+ 			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
+ 				     0, HDCP_LINE_REKEY_DISABLE);
+-		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
+-			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
++		else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
++			 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER))
+ 			intel_de_rmw(display,
+ 				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
+ 				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index 92190ff25136..cdd314956a31 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -92,7 +92,7 @@ int intel_pmdemand_init(struct drm_i915_private *i915)
+ 				     &pmdemand_state->base,
+ 				     &intel_pmdemand_funcs);
+ 
+-	if (IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0))
++	if (IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_C0))
+ 		/* Wa_14016740474 */
+ 		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 880ea845207f..0c8da1701c3a 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1918,14 +1918,14 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 		 * cause issues if non-supported panels are used.
+ 		 */
+ 		if (!intel_dp->psr.panel_replay_enabled &&
+-		    (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0) ||
++		    (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0) ||
+ 		     IS_ALDERLAKE_P(dev_priv)))
+ 			intel_de_rmw(display, hsw_chicken_trans_reg(dev_priv, cpu_transcoder),
+ 				     0, ADLP_1_BASED_X_GRANULARITY);
+ 
+ 		/* Wa_16012604467:adlp,mtl[a0,b0] */
+ 		if (!intel_dp->psr.panel_replay_enabled &&
+-		    IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0))
++		    IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0))
+ 			intel_de_rmw(display,
+ 				     MTL_CLKGATE_DIS_TRANS(display, cpu_transcoder),
+ 				     0,
+@@ -2110,7 +2110,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 	if (intel_dp->psr.sel_update_enabled) {
+ 		/* Wa_16012604467:adlp,mtl[a0,b0] */
+ 		if (!intel_dp->psr.panel_replay_enabled &&
+-		    IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0))
++		    IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0))
+ 			intel_de_rmw(display,
+ 				     MTL_CLKGATE_DIS_TRANS(display, cpu_transcoder),
+ 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
+@@ -2565,7 +2565,7 @@ intel_psr_apply_su_area_workarounds(struct intel_crtc_state *crtc_state)
+ 
+ 	/* Wa_14014971492 */
+ 	if (!crtc_state->has_panel_replay &&
+-	    ((IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_A0, STEP_B0) ||
++	    ((IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0) ||
+ 	      IS_ALDERLAKE_P(i915) || IS_TIGERLAKE(i915))) &&
+ 	    crtc_state->splitter.enable)
+ 		crtc_state->psr2_su_area.y1 = 0;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 31de33e868df..3b0e87edbacf 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3533,7 +3533,7 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
+ 	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes) {
+ 		u32 pipe_val = val;
+ 
+-		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0)) {
++		if (DISPLAY_VERx100(i915) == 1400) {
+ 			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
+ 							      new_dbuf_state->active_pipes))
+ 				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index bd8c3de57dcd..84b0991b35b3 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -73,8 +73,6 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+ #define IS_BROADWELL_ULT(dev_priv) (dev_priv && 0)
+ #define IS_BROADWELL_ULX(dev_priv) (dev_priv && 0)
+ 
+-#define IP_VER(ver, rel)                ((ver) << 8 | (rel))
+-
+ #define IS_MOBILE(xe) (xe && 0)
+ 
+ #define IS_TIGERLAKE_UY(xe) (xe && 0)
+-- 
+2.39.5
+
