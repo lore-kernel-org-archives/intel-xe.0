@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34B95D3A69F
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 20:38:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C07C6D3A69F
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 20:52:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C7E10E6F9;
-	Tue, 29 Oct 2024 20:38:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=cmpxchg-org.20230601.gappssmtp.com header.i=@cmpxchg-org.20230601.gappssmtp.com header.b="z4r5ifv+";
-	dkim-atps=neutral
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
- [209.85.219.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB6910E6F9
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 20:38:40 +0000 (UTC)
-Received: by mail-qv1-f54.google.com with SMTP id
- 6a1803df08f44-6cbcc2bd800so2465696d6.0
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 13:38:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cmpxchg-org.20230601.gappssmtp.com; s=20230601; t=1730234319; x=1730839119;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=UHhE7+FsFDchxD8LtVUn2ccYddeUr5QRSaFaIZpCbLM=;
- b=z4r5ifv+uETYA9Xxzbl8zdRMZajrKOhGx6mYqdlwIbRGXyNmG9xfdycMhyZNtZLJ5A
- X103fuRQ7dasM1ODoLVEcwq7uxh0MFqPFyFIkHDXECF1cfvpYwzh3S5AXcYuGuwtujAf
- yofGis3bkKtFQPjf26uPTNFKo4Ob6mUqD/if1ezr7ZdRjUbWiKOejV9gKBttpQ5O9npm
- ATLYucdg0X2xpYfzbLBkPD1pG4Ei5x6L26ehygJAuZb8z71eoP+WAOH0rEnDS1Zqx68e
- uNu1dvPaQHKpS8CAZ2FaMsEVpWOVg/GZauYA2xGoosCdnk4tUjwjNGfYB/Y150hKYiWG
- sAGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730234319; x=1730839119;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=UHhE7+FsFDchxD8LtVUn2ccYddeUr5QRSaFaIZpCbLM=;
- b=u8MpsCQ+71TfqgwYKVtCPD7jsH8Ww5ZLbcu7i9yar2ZitZ3AzjGqGx/7gMV+a4jxPO
- JPaQJCFjOTYt2zVNovXfYlloFJ23zxrRi6T9+aBb+8gX9UxhXYrYsxM2Fvk98W/cNY0p
- uwGWntAImbcFjOfa0sdLUSOhFORL4BVlVgeExJ4hEIvrae7fJyXeFf7qWB0zX+/Zk15T
- UcWdbHfrchhR0iKSEjlHiognnq5iv/C0ntEVbbDuwoCJKjz0i6Oli3LNTJ/HMAugdnIE
- nA5fSsCiyNhc4ileL6OzSoooJ2FNTYWR8VXXDbKmhu/Nt+T/iEOJtiQLmeaoHJ5G7YwX
- hZrQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUCjikpl4cw1xNd5BrKMUxsAo0t3XPEewor90CvLSC+50hTEOOaUif48bzL/msWbT19NQ8aByDTHw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzhDBOwrsohHmlU8yCCWdsFD5idHl4A7KRcvaeldRd1Rs7WE1oY
- aKB4QxF/F6yk8xLQpPCdQzWcfdX257w012c5tKKVOFttQD4n9RWQKUgEnt9+zks=
-X-Google-Smtp-Source: AGHT+IGIGf+fLyqvRxEZUSRr0al4OL6PJFH2Lr2FvVUL+VpF7BsP3nR5JjnLPEDC4jbvktWXK39Ngg==
-X-Received: by 2002:a05:6214:5d8f:b0:6d1:7455:9b0d with SMTP id
- 6a1803df08f44-6d2e7225ddcmr51294016d6.16.1730234319248; 
- Tue, 29 Oct 2024 13:38:39 -0700 (PDT)
-Received: from localhost ([2603:7000:c01:2716:da5e:d3ff:fee7:26e7])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-6d1798a838fsm45773516d6.30.2024.10.29.13.38.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Oct 2024 13:38:38 -0700 (PDT)
-Date: Tue, 29 Oct 2024 16:38:34 -0400
-From: Johannes Weiner <hannes@cmpxchg.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Tejun Heo <tj@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org
-Subject: Re: [PATCH 0/7] kernel/cgroups: Add "dev" memory accounting cgroup.
-Message-ID: <20241029203834.GA636494@cmpxchg.org>
-References: <20241023075302.27194-1-maarten.lankhorst@linux.intel.com>
- <ZxlRLMwkabTaOrjc@slm.duckdns.org>
- <20241024-beautiful-spaniel-of-youth-f75b61@houat>
- <Zxp-nLXOJXoSy8BN@slm.duckdns.org>
- <20241028-meaty-mega-nuthatch-3d74b1@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8160210E3AE;
+	Tue, 29 Oct 2024 20:52:55 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6CA610E3AE;
+ Tue, 29 Oct 2024 20:52:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9184147354376929205=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241028-meaty-mega-nuthatch-3d74b1@houat>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Move_Wa_1607983814_to_?=
+ =?utf-8?q?oob?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 29 Oct 2024 20:52:53 -0000
+Message-ID: <173023517387.1361492.430082776844329850@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241029193258.749882-1-lucas.demarchi@intel.com>
+In-Reply-To: <20241029193258.749882-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,76 +36,196 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 28, 2024 at 11:05:48AM +0100, Maxime Ripard wrote:
-> On Thu, Oct 24, 2024 at 07:06:36AM -1000, Tejun Heo wrote:
-> > Hello,
-> > 
-> > On Thu, Oct 24, 2024 at 09:20:43AM +0200, Maxime Ripard wrote:
-> > ...
-> > > > Yeah, let's not use "dev" name for this. As Waiman pointed out, it conflicts
-> > > > with the devices controller from cgroup1. While cgroup1 is mostly
-> > > > deprecated, the same features are provided through BPF in systemd using the
-> > > > same terminologies, so this is going to be really confusing.
-> > > 
-> > > Yeah, I agree. We switched to dev because we want to support more than
-> > > just DRM, but all DMA-able memory. We have patches to support for v4l2
-> > > and dma-buf heaps, so using the name DRM didn't feel great either.
-> > > 
-> > > Do you have a better name in mind? "device memory"? "dma memory"?
-> > 
-> > Maybe just dma (I think the term isn't used heavily anymore, so the word is
-> > kinda open)? But, hopefully, others have better ideas.
-> > 
-> > > > What happened with Tvrtko's weighted implementation? I've seen many proposed
-> > > > patchsets in this area but as far as I could see none could establish
-> > > > consensus among GPU crowd and that's one of the reasons why nothing ever
-> > > > landed. Is the aim of this patchset establishing such consensus?
-> > > 
-> > > Yeah, we have a consensus by now I think. Valve, Intel, Google, and Red
-> > > Hat have been involved in that series and we all agree on the implementation.
-> > 
-> > That's great to hear.
-> > 
-> > > Tvrtko aims at a different feature set though: this one is about memory
-> > > allocation limits, Tvrtko's about scheduling.
-> > > 
-> > > Scheduling doesn't make much sense for things outside of DRM (and even
-> > > for a fraction of all DRM devices), and it's pretty much orthogonal. So
-> > > i guess you can expect another series from Tvrtko, but I don't think
-> > > they should be considered equivalent or dependent on each other.
-> > 
-> > Yeah, I get that this is about memory and that is about processing capacity,
-> > so the plan is going for separate controllers for each? Or would it be
-> > better to present both under the same controller interface? Even if they're
-> > going to be separate controllers, we at least want to be aligned on how
-> > devices and their configurations are presented in the two controllers.
-> 
-> It's still up in the air, I think.
-> 
-> My personal opinion is that there's only DRM (and accel) devices that
-> really care about scheduling constraints anyway, so it wouldn't (have
-> to) be as generic as this one.
+--===============9184147354376929205==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If they represent different resources that aren't always controlled in
-conjunction, it makes sense to me to have separate controllers as well.
+== Series Details ==
 
-Especially if a merged version would have separate control files for
-each resource anyway (dev.region.*, dev.weight etc.)
+Series: drm/xe: Move Wa 1607983814 to oob
+URL   : https://patchwork.freedesktop.org/series/140687/
+State : success
 
-> And if we would call it dma, then the naming becomes a bit weird since
-> DMA doesn't have much to do with scheduling.
-> 
-> But I guess it's just another instance of the "naming is hard" problem :)
+== Summary ==
 
-Yes it would be good to have something catchy, easy on the eyes, and
-vaguely familiar. devcomp(ute), devproc, devcpu, devcycles all kind of
-suck. drm and gpu seem too specific for a set that includes npus and
-potentially other accelerators in the future.
+CI Bug Log - changes from xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682_BAT -> xe-pw-140687v1_BAT
+====================================================
 
-I don't think we want to go full devspace & devtime, either, though.
+Summary
+-------
 
-How about dmem for this one, and dpu for the other one. For device
-memory and device processing unit, respectively.
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-140687v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#1861])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][5] -> [INCOMPLETE][6] ([Intel XE#2874]) +1 other test incomplete
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-adlp-7:         [SKIP][7] ([Intel XE#455]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@kms_psr@psr-primary-page-flip@edp-1:
+    - bat-adlp-7:         [DMESG-FAIL][9] ([Intel XE#2871]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-adlp-7:         [SKIP][11] ([Intel XE#455]) -> [DMESG-FAIL][12] ([Intel XE#2871]) +1 other test dmesg-fail
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  
+  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+  [Intel XE#2871]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682 -> xe-pw-140687v1
+
+  IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682: 95fd9af8bb5389f9b5a639d567ef5c3e43e25682
+  xe-pw-140687v1: 140687v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/index.html
+
+--===============9184147354376929205==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Move Wa 1607983814 to oob</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140687/">https://patchwork.freedesktop.org/series/140687/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682_BAT -&gt; xe-pw-140687v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-140687v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip@edp-1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_psr@psr-primary-page-flip@edp-1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@psr-sprite-plane-onoff:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140687v1/bat-adlp-7/igt@kms_psr@psr-sprite-plane-onoff.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682 -&gt; xe-pw-140687v1</li>
+</ul>
+<p>IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2137-95fd9af8bb5389f9b5a639d567ef5c3e43e25682: 95fd9af8bb5389f9b5a639d567ef5c3e43e25682<br />
+  xe-pw-140687v1: 140687v1</p>
+
+</body>
+</html>
+
+--===============9184147354376929205==--
