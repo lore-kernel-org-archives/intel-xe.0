@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06AB5D3A66B
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 15:00:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC3ACD3A66B
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Oct 2024 15:10:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AB4910E67C;
-	Tue, 29 Oct 2024 15:00:43 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8B8610E67C
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Oct 2024 14:59:50 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 resend 3/8] drm/xe: Move suballocator init to after display
- init
-Date: Tue, 29 Oct 2024 16:00:00 +0100
-Message-ID: <20241029150005.68440-4-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
-References: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA0E010E295;
+	Tue, 29 Oct 2024 15:10:51 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A17BF10E295;
+ Tue, 29 Oct 2024 15:10:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5Bv5=2C1?=
+ =?utf-8?q?/3=5D_drm/xe=3A_Move_LNL_scheduling_WA_to_xe=5Fdevice=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 29 Oct 2024 15:10:50 -0000
+Message-ID: <173021465065.1359138.160600124475224210@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241029120117.449694-1-nirmoy.das@intel.com>
+In-Reply-To: <20241029120117.449694-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,78 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No allocations should be done before we have had a chance to preserve
-the display fb.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_device.c |  6 ++++++
- drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
- drivers/gpu/drm/xe/xe_tile.h   |  1 +
- 3 files changed, 15 insertions(+), 4 deletions(-)
+Series: series starting with [v5,1/3] drm/xe: Move LNL scheduling WA to xe_device.h
+URL   : https://patchwork.freedesktop.org/series/140658/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index cb4b2013eb808..d145f1376069e 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -740,6 +740,12 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err;
- 
-+	for_each_tile(tile, xe, id) {
-+		err = xe_tile_init(tile);
-+		if (err)
-+			goto err;
-+	}
-+
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 07cf7cfe4abd5..2825553b568f7 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -170,10 +170,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	if (err)
- 		return err;
- 
--	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
--	if (IS_ERR(tile->mem.kernel_bb_pool))
--		return PTR_ERR(tile->mem.kernel_bb_pool);
--
- 	xe_wa_apply_tile_workarounds(tile);
- 
- 	err = xe_tile_sysfs_init(tile);
-@@ -181,6 +177,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	return 0;
- }
- 
-+int xe_tile_init(struct xe_tile *tile)
-+{
-+	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
-+	if (IS_ERR(tile->mem.kernel_bb_pool))
-+		return PTR_ERR(tile->mem.kernel_bb_pool);
-+
-+	return 0;
-+}
- void xe_tile_migrate_wait(struct xe_tile *tile)
- {
- 	xe_migrate_wait(tile->migrate);
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index 1c9e42ade6b05..eb939316d55b0 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -12,6 +12,7 @@ struct xe_tile;
- 
- int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
- int xe_tile_init_noalloc(struct xe_tile *tile);
-+int xe_tile_init(struct xe_tile *tile);
- 
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
--- 
-2.45.2
+== Summary ==
+
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc5-xe/build
+lib/modules/6.12.0-rc5-xe/modules.alias.bin
+lib/modules/6.12.0-rc5-xe/modules.builtin
+lib/modules/6.12.0-rc5-xe/modules.softdep
+lib/modules/6.12.0-rc5-xe/modules.alias
+lib/modules/6.12.0-rc5-xe/modules.order
+lib/modules/6.12.0-rc5-xe/modules.symbols
+lib/modules/6.12.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730214644:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1730214644:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
