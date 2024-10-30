@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1791ED7495A
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 04:25:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9C90D7495A
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 04:25:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A32AD10E3DC;
-	Wed, 30 Oct 2024 04:25:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5CC110E1ED;
+	Wed, 30 Oct 2024 04:25:31 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFEA310E1ED;
- Wed, 30 Oct 2024 04:25:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 111F110E1ED;
+ Wed, 30 Oct 2024 04:25:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_support_for_3_VD?=
- =?utf-8?q?SC_engines_12_slices_=28rev7=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Add_support_for_3_VDSC_en?=
+ =?utf-8?q?gines_12_slices_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Oct 2024 04:25:09 -0000
-Message-ID: <173026230990.1362686.5963362686392939621@2413ebb6fbb6>
+Date: Wed, 30 Oct 2024 04:25:31 -0000
+Message-ID: <173026233106.1362667.10449895599118636622@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241030041036.1238006-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20241030041036.1238006-1-ankit.k.nautiyal@intel.com>
@@ -48,15 +48,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b97473387ce1 drm-tip: 2024y-10m-30d-00h-26m-36s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp: Update Comment for Valid DSC Slices per Line
-Applying: drm/i915/display: Prepare for dsc 3 stream splitter
-Applying: drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC engine
-Applying: drm/i915/vdsc: Introduce 3rd VDSC engine VDSC2
-Applying: drm/i915/vdsc: Add support for read/write PPS for 3rd DSC engine
-Applying: drm/i915/dp: Ensure hactive is divisible by slice count
-Applying: drm/i915/dp: Enable 3 DSC engines for 12 slices
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 00b550e7845e6ee6d702d6f1f091532fea93da81
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Wed Oct 30 09:40:36 2024 +0530
+
+    drm/i915/dp: Enable 3 DSC engines for 12 slices
+    
+    Certain resolutions require 12 DSC slices support along with ultrajoiner.
+    For such cases, the third DSC Engine per Pipe is enabled. Each DSC
+    Engine processes 1 Slice, resulting in a total of 12 VDSC slices
+    (4 Pipes * 3 DSC Instances per Pipe).
+    Add support for 12 DSC slices and 3 DSC engines for such modes.
+    
+    v2: Add missing check for 3 slices support only with 4 joined pipes.
+    (Suraj)
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch b97473387ce132222c9b71f7cf39c2cd814cbb6f drm-intel
+fb9012132a5b drm/i915/dp: Update Comment for Valid DSC Slices per Line
+93198008453a drm/i915/display: Prepare for dsc 3 stream splitter
+e43b4e89f2cb drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC engine
+cbb8b16df943 drm/i915/vdsc: Introduce 3rd VDSC engine VDSC2
+ce0969b91b97 drm/i915/vdsc: Add support for read/write PPS for 3rd DSC engine
+3202e5aca2f1 drm/i915/dp: Ensure hactive is divisible by slice count
+00b550e7845e drm/i915/dp: Enable 3 DSC engines for 12 slices
 
 
