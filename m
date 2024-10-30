@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C882D6B6D0
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 19:55:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A53D6B6C4
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 20:00:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 219D210E7D6;
-	Wed, 30 Oct 2024 19:55:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJ6lMrGo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E3AF10E021;
- Wed, 30 Oct 2024 19:55:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730318111; x=1761854111;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XVD7/kVecX66Y4OG32x0NuxSjAhOYaGthhh+YqxCdvE=;
- b=UJ6lMrGoCxG3WyCP4KhgLSEbLshMI14N9gdxkvyg3gLlLCkDbSX0WK38
- gohTKFQncxYFn9Pbkcl3EBAJ5+07SxHG/JKVHAVwR21NArMjhT4dAwBBe
- nMVb+U8QykwMaJijCiC9KzQMGSFn8dqrIkDDW/PjXaeqveETfaEEdCyoE
- gE2Ae0meeSzRwLH2V5/0tmK/r9/niFi+WAgoXrUhHlzd9E7c5VCUMPyT9
- ZsrxsIjd83HPN17+1pucgIBoODCNnhZQkylVIZHtPsEVygnHTZ5UivgJz
- ms3Nw9vgsNRMS3qKKwfOucAShH22kBGBHibhayvvsNW5SY1FKk1d5aARy Q==;
-X-CSE-ConnectionGUID: iKzRZbrmRH2tWYX9EYK16A==
-X-CSE-MsgGUID: 6FOHTMpbRXuX/d+S5kFqqQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="17683117"
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="17683117"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 12:55:11 -0700
-X-CSE-ConnectionGUID: XmzwKVIUQQCfz8GBsa+0lg==
-X-CSE-MsgGUID: fA+Gign3Sw2iGGxfxzQoIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="119880013"
-Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 12:55:11 -0700
-From: Clint Taylor <clinton.a.taylor@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH v3] drm/i915/display: Fuse bit for power management disable
- removed
-Date: Wed, 30 Oct 2024 12:55:07 -0700
-Message-Id: <20241030195507.2753404-1-clinton.a.taylor@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 534B010E804;
+	Wed, 30 Oct 2024 20:00:51 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C486A10E801;
+ Wed, 30 Oct 2024 20:00:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Fuse_bit_for_power_management_disable_removed?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Clint Taylor" <clinton.a.taylor@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 30 Oct 2024 20:00:49 -0000
+Message-ID: <173031844979.1364410.12710157169744601448@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241030195507.2753404-1-clinton.a.taylor@intel.com>
+In-Reply-To: <20241030195507.2753404-1-clinton.a.taylor@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,40 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting with display version 13 the fuse bit to disable Display PM has
-been removed.
+== Series Details ==
 
-v2: Bit removed starting with display version 13 (MattR)
-v3: DG2 still uses this fuse bit (MattR)
+Series: drm/i915/display: Fuse bit for power management disable removed
+URL   : https://patchwork.freedesktop.org/series/140735/
+State : success
 
-BSPEC: 50075, 69464
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_device.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index a2ae07f6d1b7..7465e1715cc8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1775,8 +1775,10 @@ static void __intel_display_device_info_runtime_init(struct drm_i915_private *i9
- 		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
- 			display_runtime->has_hdcp = 0;
- 
--		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
--			display_runtime->fbc_mask = 0;
-+		if (IS_DG2(i915) || DISPLAY_VER(i915) < 13) {
-+			if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
-+				display_runtime->fbc_mask = 0;
-+		}
- 
- 		if (DISPLAY_VER(i915) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
- 			display_runtime->has_dmc = 0;
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c245557007af drm-tip: 2024y-10m-30d-19h-53m-31s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Fuse bit for power management disable removed
+
 
