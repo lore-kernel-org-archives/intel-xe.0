@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73AEDD3A67D
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 09:31:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEA05D3A67E
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 09:32:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 383C310E76D;
-	Wed, 30 Oct 2024 09:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E64C10E76C;
+	Wed, 30 Oct 2024 09:32:17 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5AAB10E76C;
- Wed, 30 Oct 2024 09:31:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0D5A10E76C;
+ Wed, 30 Oct 2024 09:32:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_=28CI=29_drm/xe=3A_Fix_in?=
- =?utf-8?q?itial_framebuffer_handover=2E_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_=28CI=29_drm/xe=3A_Fix_initial?=
+ =?utf-8?q?_framebuffer_handover=2E_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Oct 2024 09:31:41 -0000
-Message-ID: <173028070193.1363061.17504924043012601091@2413ebb6fbb6>
+Date: Wed, 30 Oct 2024 09:32:15 -0000
+Message-ID: <173028073578.1363062.6061940677954263033@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20241029150005.68440-1-maarten.lankhorst@linux.intel.com>
@@ -44,43 +44,76 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: (CI) drm/xe: Fix initial framebuffer handover. (rev2)
 URL   : https://patchwork.freedesktop.org/series/140671/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-30ab6715fc09baee6cc14cb3c89ad8858688d474
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 42dda3946eefb01aab6d1c1b28d7d8b860532b23
-Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date:   Tue Oct 29 16:00:05 2024 +0100
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../include/kunit/static_stub.h:18,
+                 from ../drivers/gpu/drm/xe/xe_guc_relay.c:12:
+../drivers/gpu/drm/xe/tests/xe_guc_relay_test.c: In function ‘relay_test_init’:
+../drivers/gpu/drm/xe/tests/xe_guc_relay_test.c:45:31: error: implicit declaration of function ‘xe_guc_relay_init’; did you mean ‘xe_guc_ct_init’? [-Werror=implicit-function-declaration]
+   45 |         KUNIT_ASSERT_EQ(test, xe_guc_relay_init(relay), 0);
+      |                               ^~~~~~~~~~~~~~~~~
+../include/kunit/test.h:773:22: note: in definition of macro ‘KUNIT_BASE_BINARY_ASSERTION’
+  773 |         const typeof(left) __left = (left);                                    \
+      |                      ^~~~
+../include/kunit/test.h:1348:9: note: in expansion of macro ‘KUNIT_BINARY_INT_ASSERTION’
+ 1348 |         KUNIT_BINARY_INT_ASSERTION(test,                                       \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/kunit/test.h:1345:9: note: in expansion of macro ‘KUNIT_ASSERT_EQ_MSG’
+ 1345 |         KUNIT_ASSERT_EQ_MSG(test, left, right, NULL)
+      |         ^~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_guc_relay_test.c:45:9: note: in expansion of macro ‘KUNIT_ASSERT_EQ’
+   45 |         KUNIT_ASSERT_EQ(test, xe_guc_relay_init(relay), 0);
+      |         ^~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:229: drivers/gpu/drm/xe/xe_guc_relay.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:478: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:478: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:478: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:478: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1936: .] Error 2
+make[1]: *** [/kernel/Makefile:224: __sub-make] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-    drm/xe: Split init of xe_gt_init_hwconfig to xe_gt_init and *_early
-    
-    Now that we added the separate step of initialising GUC in
-    xe_gt_init_early, it should be ok to initialise the minimum during early
-    init, and the rest after allocations are allowed.
-    
-    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-+ /mt/dim checkpatch b79238531f1e5a4f707fdc34bb6a32325bce10c7 drm-intel
-f6874ca7082e drm/xe: Remove double pageflip
-60d9042119cc drm/i915/display: Use async flip when available for initial plane config
-8c2804d4f650 drm/xe: Move suballocator init to after display init
-4d8a4fce8ae8 drm/xe: Defer irq init until after xe_display_init_noaccel
-4d45d3aabb5d drm/xe/display: Use a single early init call for display
-814ead78af9a drm/xe/sriov: Move VF bootstrap and query_config to vf_guc_init
-357200742b12 drm/xe: Simplify GuC early initialisation
--:316: WARNING:LONG_LINE_COMMENT: line length of 112 exceeds 100 columns
-#316: FILE: drivers/gpu/drm/xe/xe_uc.c:47:
-+	/* HuC and GSC have no early dependencies and can be completely initialised during full xe_uc_init(). */
-
-total: 0 errors, 1 warnings, 0 checks, 266 lines checked
-42dda3946eef drm/xe: Split init of xe_gt_init_hwconfig to xe_gt_init and *_early
+[09:31:42] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[09:31:47] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
