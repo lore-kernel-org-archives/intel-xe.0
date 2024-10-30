@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AE9BD6B6DC
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 22:00:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE780D6B6DC
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 22:00:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6D1310E808;
-	Wed, 30 Oct 2024 22:00:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A7D510E806;
+	Wed, 30 Oct 2024 22:00:56 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE4710E806;
- Wed, 30 Oct 2024 22:00:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 874D010E806;
+ Wed, 30 Oct 2024 22:00:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Fix_de?=
- =?utf-8?q?reference_before_NULL_check_=28rev6=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Fix_derefer?=
+ =?utf-8?q?ence_before_NULL_check_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Everest K.C." <everestkc@everestkc.com.np>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Oct 2024 22:00:43 -0000
-Message-ID: <173032564311.1364656.2070636541218997163@2413ebb6fbb6>
+Date: Wed, 30 Oct 2024 22:00:55 -0000
+Message-ID: <173032565555.1364410.9073637410992437371@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241023233356.5479-1-everestkc@everestkc.com.np>
 In-Reply-To: <20241023233356.5479-1-everestkc@everestkc.com.np>
@@ -44,13 +44,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc: Fix dereference before NULL check (rev6)
 URL   : https://patchwork.freedesktop.org/series/139890/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c245557007af drm-tip: 2024y-10m-30d-19h-53m-31s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Fix dereference before NULL check
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 12c9513007585c2d1b49c7798d82b4720361a1db
+Author: Everest K.C. <everestkc@everestkc.com.np>
+Date:   Wed Oct 23 17:33:55 2024 -0600
+
+    drm/xe/guc: Fix dereference before NULL check
+    
+    The pointer list->list is dereferenced before the NULL check.
+    Fix this by moving the NULL check outside the for loop, so that
+    the check is performed before the dereferencing.
+    The list->list pointer cannot be NULL so this has no effect on runtime.
+    It's just a correctness issue.
+    
+    This issue was reported by Coverity Scan.
+    https://scan7.scan.coverity.com/#/project-view/51525/11354?selectedIssue=1600335
+    
+    Fixes: 0f1fdf559225 ("drm/xe/guc: Save manual engine capture into capture list")
+    Signed-off-by: Everest K.C. <everestkc@everestkc.com.np>
+    Reviewed-by: Dan Carpenter <dan.carpenter@linaro.org>
++ /mt/dim checkpatch c245557007af0a1c23da00c47732ae1dadda7dd3 drm-intel
+12c951300758 drm/xe/guc: Fix dereference before NULL check
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+https://scan7.scan.coverity.com/#/project-view/51525/11354?selectedIssue=1600335
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
 
 
