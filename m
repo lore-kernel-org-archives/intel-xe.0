@@ -4,60 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C477D5CC90
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 10:56:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AE76D5CC9A
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 11:27:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0841410E77F;
-	Wed, 30 Oct 2024 10:56:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gSwg6MWV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89A3710E77F
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Oct 2024 10:56:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730285791; x=1761821791;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=u3fpiMSpd5OWVMKi9urV2eyV6bRldj84tDM9OFV75mA=;
- b=gSwg6MWViLRh3rOzLn3eH4a3CzNfwE2Qa+FCDrsZs7d9UFyaTDbf4lzC
- jx8vZ88y64ghV5qpL+nIVpUzX1GFBMvNnGxLS+6MtNlvVyPySjUTm3/BF
- R1zxBUM36kKWUBZQIZ5+k7WGgfmIW28/DMLIO/3WwozzmcpGxOQR4FJlJ
- JtZ4kTpD0ETnBgyhcdhau12UDI/jkJ7+ZwJgxE2TIaTDDnSf0RViaoVHw
- Zq3QWi9kr30yPr2GMcAG+lLQvx5fLFkEVhbCJ1HpGo+1/eLEmWlJIqh7n
- VOQz6yQSlQK92CSGOxmgPmXE6WCMLyVkUhW9BlCmGUIvEoXFonr0dOjUW Q==;
-X-CSE-ConnectionGUID: YGMmqzn8TDKFwaWVW1QF5g==
-X-CSE-MsgGUID: Sp+7vrPURISYyTwpDsmu6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="47454301"
-X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208";a="47454301"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 03:56:31 -0700
-X-CSE-ConnectionGUID: XYuAK2GwTS6VPZrSSXE/Ow==
-X-CSE-MsgGUID: eNo7gxECSHKqfPkSNxKZDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208";a="81926978"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO [10.245.244.252])
- ([10.245.244.252])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 03:56:29 -0700
-Message-ID: <b4b37380-caee-4a46-bedd-78f32f622698@intel.com>
-Date: Wed, 30 Oct 2024 10:56:27 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A93A10E2B6;
+	Wed, 30 Oct 2024 11:27:24 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9CE10E2B6
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Oct 2024 11:27:23 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3.1 resend] drm/xe: Simplify GuC early initialisation
+Date: Wed, 30 Oct 2024 12:27:41 +0100
+Message-ID: <20241030112741.190102-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241029150005.68440-8-maarten.lankhorst@linux.intel.com>
+References: <20241029150005.68440-8-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] drm/xe: Wait on killed exec queues
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20241029214351.776293-1-lucas.demarchi@intel.com>
- <20241029214351.776293-5-lucas.demarchi@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20241029214351.776293-5-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,87 +37,367 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 29/10/2024 21:43, Lucas De Marchi wrote:
-> When an exec queue is killed it triggers an async process of asking the
-> GuC to schedule the context out. The timestamp in the context image is
-> only updated when this process completes. In case a userspace process
-> kills an exec and tries to read the timestamp, it may not get an updated
-> runtime.
-> 
-> Add synchronization between the process reading the fdinfo and the exec
-> queue being killed. After reading all the timestamps, wait on exec
-> queues in the process of being killed. When that wait is over,
-> xe_exec_queue_fini() was already called and updated the timestamps.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2667
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_device_types.h | 5 +++++
->   drivers/gpu/drm/xe/xe_drm_client.c   | 7 +++++++
->   drivers/gpu/drm/xe/xe_exec_queue.c   | 4 ++++
->   3 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index ef7412d653d2e..b949376ca388a 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -614,6 +614,11 @@ struct xe_file {
->   		 * which does things while being held.
->   		 */
->   		struct mutex lock;
-> +		/**
-> +		 * @exec_queue.pending_removal: items pending to be removed to
-> +		 * synchronize GPU state update with ongoing query.
-> +		 */
-> +		atomic_t pending_removal;
->   	} exec_queue;
->   
->   	/** @run_ticks: hw engine class run time in ticks for this drm client */
-> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-> index 22f0f1a6dfd55..24a0a7377abf2 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_client.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-> @@ -317,6 +317,13 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
->   		break;
->   	}
->   
-> +	/*
-> +	 * Wait for any exec queue going away: their cycles will get updated on
-> +	 * context switch out, so wait for that to happen
-> +	 */
-> +	wait_var_event(&xef->exec_queue.pending_removal,
-> +		       !atomic_read(&xef->exec_queue.pending_removal));
-> +
->   	xe_pm_runtime_put(xe);
->   
->   	if (unlikely(!hwe))
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index fd0f3b3c9101d..58dd35beb15ad 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -262,8 +262,11 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
->   
->   	/*
->   	 * Before releasing our ref to lrc and xef, accumulate our run ticks
-> +	 * and wakeup any waiters.
->   	 */
->   	xe_exec_queue_update_run_ticks(q);
-> +	if (q->xef && atomic_dec_and_test(&q->xef->exec_queue.pending_removal))
-> +		wake_up_var(&q->xef->exec_queue.pending_removal);
->   
->   	for (i = 0; i < q->width; ++i)
->   		xe_lrc_put(q->lrc[i]);
-> @@ -824,6 +827,7 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
->   	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->   		return -EINVAL;
->   
-> +	atomic_inc(&xef->exec_queue.pending_removal);
+Add a 2-stage GuC init. An early one for everything that is needed
+for VF, and a full one that loads GuC and is allowed to do allocations.
 
-Probably need to move this down, otherwise I think user can supply bogus 
-queue id or perhaps just accidentally supply an already destroyed queue, 
-to get many increments per queue which is then unbalanced with the 
-fini() and then show_run_ticks() gets stuck waiting forever?
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_guc_relay_test.c |  2 +-
+ drivers/gpu/drm/xe/xe_device.c               | 16 ------
+ drivers/gpu/drm/xe/xe_gt.c                   |  9 +++-
+ drivers/gpu/drm/xe/xe_guc.c                  | 51 ++++++++++++--------
+ drivers/gpu/drm/xe/xe_guc.h                  |  1 +
+ drivers/gpu/drm/xe/xe_guc_ct.c               | 28 +++++++----
+ drivers/gpu/drm/xe/xe_guc_ct.h               |  1 +
+ drivers/gpu/drm/xe/xe_guc_relay.c            |  6 +--
+ drivers/gpu/drm/xe/xe_guc_relay.h            |  2 +-
+ drivers/gpu/drm/xe/xe_huc.h                  |  1 +
+ drivers/gpu/drm/xe/xe_uc.c                   | 21 ++++++++
+ drivers/gpu/drm/xe/xe_uc.h                   |  1 +
+ 12 files changed, 88 insertions(+), 51 deletions(-)
 
->   	mutex_lock(&xef->exec_queue.lock);
->   	q = xa_erase(&xef->exec_queue.xa, args->exec_queue_id);
->   	mutex_unlock(&xef->exec_queue.lock);
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
+index 13701451b9235..b951d55ef1b32 100644
+--- a/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
+@@ -42,7 +42,7 @@ static int relay_test_init(struct kunit *test)
+ 	kunit_activate_static_stub(test, relay_get_totalvfs,
+ 				   replacement_relay_get_totalvfs);
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_relay_init(relay), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_relay_init_noalloc(relay), 0);
+ 	KUNIT_EXPECT_TRUE(test, relay_is_ready(relay));
+ 	relay->last_rid = TEST_RID - 1;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 03394b842b458..d02751ff63abf 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -656,25 +656,9 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_gt_init_early(gt);
+ 		if (err)
+ 			return err;
+-
+-		/*
+-		 * Only after this point can GT-specific MMIO operations
+-		 * (including things like communication with the GuC)
+-		 * be performed.
+-		 */
+-		xe_gt_mmio_init(gt);
+ 	}
+ 
+ 	for_each_tile(tile, xe, id) {
+-		if (IS_SRIOV_VF(xe)) {
+-			xe_guc_comm_init_early(&tile->primary_gt->uc.guc);
+-			err = xe_gt_sriov_vf_bootstrap(tile->primary_gt);
+-			if (err)
+-				return err;
+-			err = xe_gt_sriov_vf_query_config(tile->primary_gt);
+-			if (err)
+-				return err;
+-		}
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+ 			return err;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index d6744be01a687..dc6901255dc91 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -387,7 +387,14 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 	xe_force_wake_init_gt(gt, gt_to_fw(gt));
+ 	spin_lock_init(&gt->global_invl_lock);
+ 
+-	return 0;
++	/*
++	 * Only after this point can GT-specific MMIO operations
++	 * (including things like communication with the GuC)
++	 * be performed.
++	 */
++	xe_gt_mmio_init(gt);
++
++	return xe_uc_init_noalloc(&gt->uc);
+ }
+ 
+ static void dump_pat_on_error(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 709c219c6a5b1..89aa4598bf3c4 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -299,21 +299,11 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
+-static int vf_guc_init(struct xe_guc *guc)
++static int vf_guc_init_noalloc(struct xe_guc *guc)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	int err;
+ 
+-	xe_guc_comm_init_early(guc);
+-
+-	err = xe_guc_ct_init(&guc->ct);
+-	if (err)
+-		return err;
+-
+-	err = xe_guc_relay_init(&guc->relay);
+-	if (err)
+-		return err;
+-
+ 	err = xe_gt_sriov_vf_bootstrap(gt);
+ 	if (err)
+ 		return err;
+@@ -325,6 +315,35 @@ static int vf_guc_init(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
++int xe_guc_init_noalloc(struct xe_guc *guc)
++{
++	struct xe_device *xe = guc_to_xe(guc);
++	struct xe_gt *gt = guc_to_gt(guc);
++	int ret;
++
++	xe_guc_comm_init_early(guc);
++
++	ret = xe_guc_ct_init_noalloc(&guc->ct);
++	if (ret)
++		goto out;
++
++	ret = xe_guc_relay_init_noalloc(&guc->relay);
++	if (ret)
++		goto out;
++
++	if (IS_SRIOV_VF(xe)) {
++		ret = vf_guc_init_noalloc(guc);
++		if (ret)
++			goto out;
++	}
++
++	return 0;
++
++out:
++	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
++	return ret;
++}
++
+ int xe_guc_init(struct xe_guc *guc)
+ {
+ 	struct xe_device *xe = guc_to_xe(guc);
+@@ -334,13 +353,13 @@ int xe_guc_init(struct xe_guc *guc)
+ 	guc->fw.type = XE_UC_FW_TYPE_GUC;
+ 	ret = xe_uc_fw_init(&guc->fw);
+ 	if (ret)
+-		goto out;
++		return ret;
+ 
+ 	if (!xe_uc_fw_is_enabled(&guc->fw))
+ 		return 0;
+ 
+ 	if (IS_SRIOV_VF(xe)) {
+-		ret = vf_guc_init(guc);
++		ret = xe_guc_ct_init(&guc->ct);
+ 		if (ret)
+ 			goto out;
+ 		return 0;
+@@ -362,10 +381,6 @@ int xe_guc_init(struct xe_guc *guc)
+ 	if (ret)
+ 		goto out;
+ 
+-	ret = xe_guc_relay_init(&guc->relay);
+-	if (ret)
+-		goto out;
+-
+ 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOADABLE);
+ 
+ 	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini_hw, guc);
+@@ -374,8 +389,6 @@ int xe_guc_init(struct xe_guc *guc)
+ 
+ 	guc_init_params(guc);
+ 
+-	xe_guc_comm_init_early(guc);
+-
+ 	return 0;
+ 
+ out:
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 58338be445585..965bf72912009 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -26,6 +26,7 @@
+ struct drm_printer;
+ 
+ void xe_guc_comm_init_early(struct xe_guc *guc);
++int xe_guc_init_noalloc(struct xe_guc *guc);
+ int xe_guc_init(struct xe_guc *guc);
+ int xe_guc_init_post_hwconfig(struct xe_guc *guc);
+ int xe_guc_post_load_init(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 4870af1c5a900..7e6b6986d0be4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -203,12 +203,10 @@ static void primelockdep(struct xe_guc_ct *ct)
+ 	fs_reclaim_release(GFP_KERNEL);
+ }
+ 
+-int xe_guc_ct_init(struct xe_guc_ct *ct)
++int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_gt *gt = ct_to_gt(ct);
+-	struct xe_tile *tile = gt_to_tile(gt);
+-	struct xe_bo *bo;
+ 	int err;
+ 
+ 	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+@@ -234,6 +232,23 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 
+ 	primelockdep(ct);
+ 
++	err = drmm_add_action_or_reset(&xe->drm, guc_ct_fini, ct);
++	if (err)
++		return err;
++
++	xe_gt_assert(gt, ct->state == XE_GUC_CT_STATE_NOT_INITIALIZED);
++	ct->state = XE_GUC_CT_STATE_DISABLED;
++	return 0;
++}
++ALLOW_ERROR_INJECTION(xe_guc_ct_init_noalloc, ERRNO); /* See xe_pci_probe() */
++
++int xe_guc_ct_init(struct xe_guc_ct *ct)
++{
++	struct xe_device *xe = ct_to_xe(ct);
++	struct xe_gt *gt = ct_to_gt(ct);
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_bo *bo;
++
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+@@ -242,13 +257,6 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 		return PTR_ERR(bo);
+ 
+ 	ct->bo = bo;
+-
+-	err = drmm_add_action_or_reset(&xe->drm, guc_ct_fini, ct);
+-	if (err)
+-		return err;
+-
+-	xe_gt_assert(gt, ct->state == XE_GUC_CT_STATE_NOT_INITIALIZED);
+-	ct->state = XE_GUC_CT_STATE_DISABLED;
+ 	return 0;
+ }
+ ALLOW_ERROR_INJECTION(xe_guc_ct_init, ERRNO); /* See xe_pci_probe() */
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 82c4ae458dda3..9f28fc135890d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -11,6 +11,7 @@
+ struct drm_printer;
+ struct xe_device;
+ 
++int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
+ int xe_guc_ct_init(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
+index 8f62de026724c..b778d0e0253de 100644
+--- a/drivers/gpu/drm/xe/xe_guc_relay.c
++++ b/drivers/gpu/drm/xe/xe_guc_relay.c
+@@ -322,7 +322,7 @@ static void __fini_relay(struct drm_device *drm, void *arg)
+ }
+ 
+ /**
+- * xe_guc_relay_init - Initialize a &xe_guc_relay
++ * xe_guc_relay_init_noalloc - Initialize a &xe_guc_relay
+  * @relay: the &xe_guc_relay to initialize
+  *
+  * Initialize remaining members of &xe_guc_relay that may depend
+@@ -330,7 +330,7 @@ static void __fini_relay(struct drm_device *drm, void *arg)
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_guc_relay_init(struct xe_guc_relay *relay)
++int xe_guc_relay_init_noalloc(struct xe_guc_relay *relay)
+ {
+ 	const int XE_RELAY_MEMPOOL_MIN_NUM = 1;
+ 	struct xe_device *xe = relay_to_xe(relay);
+@@ -356,7 +356,7 @@ int xe_guc_relay_init(struct xe_guc_relay *relay)
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, __fini_relay, relay);
+ }
+-ALLOW_ERROR_INJECTION(xe_guc_relay_init, ERRNO); /* See xe_pci_probe() */
++ALLOW_ERROR_INJECTION(xe_guc_relay_init_noalloc, ERRNO); /* See xe_pci_probe() */
+ 
+ static u32 to_relay_error(int err)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_relay.h b/drivers/gpu/drm/xe/xe_guc_relay.h
+index 385429aa188ab..e0afff4542cfc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_relay.h
++++ b/drivers/gpu/drm/xe/xe_guc_relay.h
+@@ -11,7 +11,7 @@
+ 
+ struct xe_guc_relay;
+ 
+-int xe_guc_relay_init(struct xe_guc_relay *relay);
++int xe_guc_relay_init_noalloc(struct xe_guc_relay *relay);
+ 
+ int xe_guc_relay_send_to_pf(struct xe_guc_relay *relay,
+ 			    const u32 *msg, u32 len, u32 *buf, u32 buf_size);
+diff --git a/drivers/gpu/drm/xe/xe_huc.h b/drivers/gpu/drm/xe/xe_huc.h
+index fa1c45e704432..bc6f93028c2b6 100644
+--- a/drivers/gpu/drm/xe/xe_huc.h
++++ b/drivers/gpu/drm/xe/xe_huc.h
+@@ -17,6 +17,7 @@ enum xe_huc_auth_types {
+ 	XE_HUC_AUTH_TYPES_COUNT
+ };
+ 
++int xe_huc_init_noalloc(struct xe_huc *huc);
+ int xe_huc_init(struct xe_huc *huc);
+ int xe_huc_init_post_hwconfig(struct xe_huc *huc);
+ int xe_huc_upload(struct xe_huc *huc);
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 0d073a9987c2e..45d0c2f26754c 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -32,6 +32,27 @@ uc_to_xe(struct xe_uc *uc)
+ }
+ 
+ /* Should be called once at driver load only */
++int xe_uc_init_noalloc(struct xe_uc *uc)
++{
++	int ret;
++
++	/*
++	 * We call the GuC/HuC/GSC init functions even if GuC submission is off
++	 * to correctly move our tracking of the FW state to "disabled".
++	 */
++	ret = xe_guc_init_noalloc(&uc->guc);
++	if (ret)
++		goto err;
++
++	/* HuC and GSC have no early dependencies and can be completely initialised during full xe_uc_init(). */
++
++	return 0;
++
++err:
++	xe_gt_err(uc_to_gt(uc), "Failed to early initialize uC (%pe)\n", ERR_PTR(ret));
++	return ret;
++}
++
+ int xe_uc_init(struct xe_uc *uc)
+ {
+ 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+index 506517c113339..650e95585b4ba 100644
+--- a/drivers/gpu/drm/xe/xe_uc.h
++++ b/drivers/gpu/drm/xe/xe_uc.h
+@@ -8,6 +8,7 @@
+ 
+ struct xe_uc;
+ 
++int xe_uc_init_noalloc(struct xe_uc *uc);
+ int xe_uc_init(struct xe_uc *uc);
+ int xe_uc_init_hwconfig(struct xe_uc *uc);
+ int xe_uc_init_post_hwconfig(struct xe_uc *uc);
+-- 
+2.45.2
+
