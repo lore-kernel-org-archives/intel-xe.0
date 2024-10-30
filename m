@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25EC2D6B6DC
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 22:07:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 066D6D6B6DD
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 22:13:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7D4610E806;
-	Wed, 30 Oct 2024 22:07:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pymgKQqx";
-	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE14E10E806;
- Wed, 30 Oct 2024 22:07:41 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id D1679A435A6;
- Wed, 30 Oct 2024 22:05:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2195DC4CECE;
- Wed, 30 Oct 2024 22:07:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1730326060;
- bh=FGBXaMTs0zoZtuIJw76pQkmdmDElPzZuxay8K6IRs+M=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=pymgKQqxDWszTJEoGeU8SOxQXzSUDVj057M2/sGjtLFYJttHMz/9aSEyG9uEWshEx
- BZOsy13EfwLb3MxEWqHyDkKiERyJ7dN/vrGPYzUfkAIISMXHt65w6YgmNg3PWBRi3M
- jo4aN5OxjQ9jf+Nqo3Dd6a3LL+gTrg4tYNFL/yNQjWtny7MhIoBc11YHSs4a8nXt0i
- Ya2zIbvL8QOMwLzkZrrxkXkBLOLjS/gs0Ps8vu7HAzSG5YOAMfF5E11fIMtqnQGoDq
- ugDndL4kZm7pvqCaoQAiBV9DY3wxrlMa/cHBqAqpxeNXoqMo5nlRXkwyB/BaYRXNlx
- gwGxXiMQUL2yA==
-Date: Wed, 30 Oct 2024 17:07:38 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Logan Gunthorpe <logang@deltatee.com>
-Cc: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v2 1/5] PCI/P2PDMA: Don't enforce ACS check for functions
- of same device
-Message-ID: <20241030220738.GA1221922@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB47310E809;
+	Wed, 30 Oct 2024 22:13:36 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76B6710E809;
+ Wed, 30 Oct 2024 22:13:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7e146e2f-5d7c-4f28-b801-360795b4cae7@deltatee.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/guc=3A_Fix_dereference_?=
+ =?utf-8?q?before_NULL_check_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Everest K.C." <everestkc@everestkc.com.np>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 30 Oct 2024 22:13:35 -0000
+Message-ID: <173032641548.1364410.1188515808542403669@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241023233356.5479-1-everestkc@everestkc.com.np>
+In-Reply-To: <20241023233356.5479-1-everestkc@everestkc.com.np>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,35 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 30, 2024 at 03:20:02PM -0600, Logan Gunthorpe wrote:
-> On 2024-10-30 12:46, Bjorn Helgaas wrote:
-> > On Fri, Oct 25, 2024 at 06:57:37AM +0000, Kasireddy, Vivek wrote:
-> > In the PCIe world, I don't think a TLP can "loop back" to another
-> > function on the same device.
-> 
-> I'm not sure if the spec says anything that specifically denies this.
+== Series Details ==
 
-I'm not a hardware guy and I don't know if there's a direct statement
-about it, but if a Downstream Port supports ACS, it must support ACS
-P2P Request Redirect (PCIe r6.0, sec 6.12.1.1), which specifically
-applies to peer-to-peer TLPs.
+Series: drm/xe/guc: Fix dereference before NULL check (rev6)
+URL   : https://patchwork.freedesktop.org/series/139890/
+State : success
 
-If peer-to-peer TLPs appear on the link, the Downstream Port will see
-them and act on them, e.g., either route them upstream (if P2P Request
-Redirect is enabled) or back downstream.  I don't think the VF could
-act on them directly via a loopback path because that would lead to
-duplicate writes and duplicate Completions for reads.
+== Summary ==
 
-> But it seems to me that it would be possible for a multifunction device
-> to handle a transfer to a neighbouring function internally and not
-> actually involve the PCIe fabric. This seems like something we'd want to
-> support if and when such a device were to be created.
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc5-xe/build
+lib/modules/6.12.0-rc5-xe/modules.alias.bin
+lib/modules/6.12.0-rc5-xe/modules.builtin
+lib/modules/6.12.0-rc5-xe/modules.softdep
+lib/modules/6.12.0-rc5-xe/modules.alias
+lib/modules/6.12.0-rc5-xe/modules.order
+lib/modules/6.12.0-rc5-xe/modules.symbols
+lib/modules/6.12.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730326408:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1730326408:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-If peer-to-peer transactions are handled internally, an SR-IOV device
-other than an RCiEP is required to support ACS with P2P Egress Control
-(sec 7.7.11) and P2P Request Redirect (sec 7.7.11.2).
 
-Bjorn
