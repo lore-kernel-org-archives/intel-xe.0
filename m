@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E29CD3A67D
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 09:24:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE97D2AB2C
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 09:26:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1753F10E76D;
-	Wed, 30 Oct 2024 09:24:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CgfT7aCQ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 047FC10E766
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Oct 2024 09:24:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730280297; x=1761816297;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to;
- bh=vgzaCUtIpJOefIE0r8okk9e+pz91NvTLVGnJnliQ/4E=;
- b=CgfT7aCQoylwQCiL8Pts++BBtx8z/e/nSVm3ZjV6Ch7epeC2UQR/TiP9
- od9QpLI0ZeyCA21TWzH0BV60Q0nBvLGpng/kmA2ewjxq7fRtdMdY+O18i
- 5CMwzMRNFsKJPcj0rVrqID8juwKdqGB6ozp/mmnTFBODt6HVcpTNg23eq
- qZcSMg9Ymhh5MbjNac9GTTzEveleM7I8/pC40Bp8Z82GAYr8ljejHCfbU
- wAbGWBKRZQgW4iZ8e1MWCQLowZwVd7PjA/zaRkka059H6iRfXHh5r6eog
- VFPPvSgnNVwVbl1rSI7tyiMRSuIoALU9DX3FeNeZmXGEE3SpRjdk7syRn A==;
-X-CSE-ConnectionGUID: 8MLQyIxfRHeR5iL2DxmFEg==
-X-CSE-MsgGUID: /ioi5P7iS12WgEk+nq9+bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="55376782"
-X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208,217";a="55376782"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 02:24:57 -0700
-X-CSE-ConnectionGUID: OVSu1Qj0TDall7PmtYZXwg==
-X-CSE-MsgGUID: NaAg9UojRIScTnwXGVz96A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208,217";a="81894171"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.197.87])
- ([10.245.197.87])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 02:24:55 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E73E10E76B;
+	Wed, 30 Oct 2024 09:26:34 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98A0C10E76B;
+ Wed, 30 Oct 2024 09:26:33 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="------------JqqBHxgzw0YV0mQ5nZ4PQFvZ"
-Message-ID: <cb3304b6-cedb-46f2-9869-4f652f150b7a@linux.intel.com>
-Date: Wed, 30 Oct 2024 10:24:42 +0100
+ boundary="===============1345262967555940982=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] drm/xe: Add trace to lrc timestamp update
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20241029214351.776293-1-lucas.demarchi@intel.com>
- <20241029214351.776293-2-lucas.demarchi@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20241029214351.776293-2-lucas.demarchi@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/dp=3A_Limit_max_compres?=
+ =?utf-8?q?sed_bpp_to_18_when_forcing_DSC?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 30 Oct 2024 09:26:33 -0000
+Message-ID: <173028039361.1363062.12993582133712676421@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241030084100.1361689-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241030084100.1361689-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,283 +36,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------JqqBHxgzw0YV0mQ5nZ4PQFvZ
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+--===============1345262967555940982==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/dp: Limit max compressed bpp to 18 when forcing DSC
+URL   : https://patchwork.freedesktop.org/series/140716/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f_BAT -> xe-pw-140716v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-140716v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
+    - bat-pvc-2:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3295])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+    - bat-atsm-2:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3295])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
+    - bat-adlp-7:         [PASS][5] -> [INCOMPLETE][6] ([Intel XE#2874]) +1 other test incomplete
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
+
+  
+  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
+  [Intel XE#3295]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3295
 
 
-On 10/29/2024 10:43 PM, Lucas De Marchi wrote:
-> Help debugging when LRC timestamp is updated for a exec queue.
->
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile       |  1 +
->  drivers/gpu/drm/xe/xe_lrc.c       |  3 ++
->  drivers/gpu/drm/xe/xe_trace_lrc.c |  9 ++++++
->  drivers/gpu/drm/xe/xe_trace_lrc.h | 52 +++++++++++++++++++++++++++++++
->  4 files changed, 65 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.c
->  create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.h
->
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index bc7a04ce69fd0..21d69935c3365 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -101,6 +101,7 @@ xe-y += xe_bb.o \
->  	xe_trace.o \
->  	xe_trace_bo.o \
->  	xe_trace_guc.o \
-> +	xe_trace_lrc.o \
->  	xe_ttm_sys_mgr.o \
->  	xe_ttm_stolen_mgr.o \
->  	xe_ttm_vram_mgr.o \
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 4f64c7f4e68de..4b65da77c6e09 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -25,6 +25,7 @@
->  #include "xe_map.h"
->  #include "xe_memirq.h"
->  #include "xe_sriov.h"
-> +#include "xe_trace_lrc.h"
->  #include "xe_vm.h"
->  #include "xe_wa.h"
->  
-> @@ -1758,5 +1759,7 @@ u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
->  
->  	lrc->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
->  
-> +	trace_xe_lrc_update_timestamp(lrc, *old_ts);
-> +
->  	return lrc->ctx_timestamp;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.c b/drivers/gpu/drm/xe/xe_trace_lrc.c
-> new file mode 100644
-> index 0000000000000..ab9b7e2970bc2
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_trace_lrc.c
-> @@ -0,0 +1,9 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#ifndef __CHECKER__
-> +#define CREATE_TRACE_POINTS
-> +#include "xe_trace_lrc.h"
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
-> new file mode 100644
-> index 0000000000000..5c669a0b21808
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
-> @@ -0,0 +1,52 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#undef TRACE_SYSTEM
-> +#define TRACE_SYSTEM xe
-> +
-> +#if !defined(_XE_TRACE_LRC_H_) || defined(TRACE_HEADER_MULTI_READ)
-> +#define _XE_TRACE_LRC_H_
-> +
-> +#include <linux/tracepoint.h>
-> +#include <linux/types.h>
-> +
-> +#include "xe_gt_types.h"
-> +#include "xe_lrc.h"
-> +#include "xe_lrc_types.h"
-> +
-> +#define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)->fence_ctx.gt)->drm.dev)
-> +
-> +TRACE_EVENT(xe_lrc_update_timestamp,
-> +	    TP_PROTO(struct xe_lrc *lrc, uint32_t old),
-> +	    TP_ARGS(lrc, old),
-> +	    TP_STRUCT__entry(
-> +		     __field(struct xe_lrc *, lrc)
-> +		     __field(u32, old)
-> +		     __field(u32, new)
-> +		     __string(name, lrc->fence_ctx.name)
-> +		     __string(device_id, __dev_name_lrc(lrc))
-> +	    ),
-> +
-> +	    TP_fast_assign(
-> +		   __entry->lrc	= lrc;
-> +		   __entry->old = old;
-> +		   __entry->new = lrc->ctx_timestamp;
-> +		   __assign_str(name);
-> +		   __assign_str(device_id);
-> +		   ),
-> +	    TP_printk("lrc=:%p lrc->name=%s old=%u new=%u device_id:%s",
-> +		      __entry->lrc, __get_str(name),
-> +		      __entry->old, __entry->new,
-> +		      __get_str(device_id))
-> +);
-> +
-> +#endif
-> +
-> +/* This part must be outside protection */
-> +#undef TRACE_INCLUDE_PATH
-> +#undef TRACE_INCLUDE_FILE
-> +#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
-> +#define TRACE_INCLUDE_FILE xe_trace_lrc
-> +#include <trace/define_trace.h>
---------------JqqBHxgzw0YV0mQ5nZ4PQFvZ
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Build changes
+-------------
+
+  * Linux: xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f -> xe-pw-140716v1
+
+  IGT_8088: 0030d5bc92b8e4ac991db1c88af1f0ad7593812a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f: b97473387ce132222c9b71f7cf39c2cd814cbb6f
+  xe-pw-140716v1: 140716v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/index.html
+
+--===============1345262967555940982==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 10/29/2024 10:43 PM, Lucas De Marchi
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20241029214351.776293-2-lucas.demarchi@intel.com">
-      <pre wrap="" class="moz-quote-pre">Help debugging when LRC timestamp is updated for a exec queue.
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-Reviewed-by: Jonathan Cavitt <a class="moz-txt-link-rfc2396E" href="mailto:jonathan.cavitt@intel.com">&lt;jonathan.cavitt@intel.com&gt;</a>
-Signed-off-by: Lucas De Marchi <a class="moz-txt-link-rfc2396E" href="mailto:lucas.demarchi@intel.com">&lt;lucas.demarchi@intel.com&gt;</a></pre>
-    </blockquote>
-    <span style="padding: 0px; tab-size: 8; white-space: pre-wrap;"
-    class="hljs diff colorediffs language-diff">
-Reviewed-by: Nirmoy Das </span><a class="moz-txt-link-rfc2396E"
-    href="mailto:nirmoy.das@intel.com" style="white-space: pre-wrap;">&lt;nirmoy.das@intel.com&gt;</a><span
-    style="padding: 0px; tab-size: 8; white-space: pre-wrap;"
-    class="hljs diff colorediffs language-diff"></span>
-    <blockquote type="cite"
-      cite="mid:20241029214351.776293-2-lucas.demarchi@intel.com">
-      <pre wrap="" class="moz-quote-pre">
----
- drivers/gpu/drm/xe/Makefile       |  1 +
- drivers/gpu/drm/xe/xe_lrc.c       |  3 ++
- drivers/gpu/drm/xe/xe_trace_lrc.c |  9 ++++++
- drivers/gpu/drm/xe/xe_trace_lrc.h | 52 +++++++++++++++++++++++++++++++
- 4 files changed, 65 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.c
- create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index bc7a04ce69fd0..21d69935c3365 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -101,6 +101,7 @@ xe-y += xe_bb.o \
- 	xe_trace.o \
- 	xe_trace_bo.o \
- 	xe_trace_guc.o \
-+	xe_trace_lrc.o \
- 	xe_ttm_sys_mgr.o \
- 	xe_ttm_stolen_mgr.o \
- 	xe_ttm_vram_mgr.o \
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 4f64c7f4e68de..4b65da77c6e09 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -25,6 +25,7 @@
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_sriov.h"
-+#include "xe_trace_lrc.h"
- #include "xe_vm.h"
- #include "xe_wa.h"
- 
-@@ -1758,5 +1759,7 @@ u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
- 
- 	lrc-&gt;ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
- 
-+	trace_xe_lrc_update_timestamp(lrc, *old_ts);
-+
- 	return lrc-&gt;ctx_timestamp;
- }
-diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.c b/drivers/gpu/drm/xe/xe_trace_lrc.c
-new file mode 100644
-index 0000000000000..ab9b7e2970bc2
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_trace_lrc.c
-@@ -0,0 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __CHECKER__
-+#define CREATE_TRACE_POINTS
-+#include "xe_trace_lrc.h"
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
-new file mode 100644
-index 0000000000000..5c669a0b21808
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
-@@ -0,0 +1,52 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#undef TRACE_SYSTEM
-+#define TRACE_SYSTEM xe
-+
-+#if !defined(_XE_TRACE_LRC_H_) || defined(TRACE_HEADER_MULTI_READ)
-+#define _XE_TRACE_LRC_H_
-+
-+#include &lt;linux/tracepoint.h&gt;
-+#include &lt;linux/types.h&gt;
-+
-+#include "xe_gt_types.h"
-+#include "xe_lrc.h"
-+#include "xe_lrc_types.h"
-+
-+#define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)-&gt;fence_ctx.gt)-&gt;drm.dev)
-+
-+TRACE_EVENT(xe_lrc_update_timestamp,
-+	    TP_PROTO(struct xe_lrc *lrc, uint32_t old),
-+	    TP_ARGS(lrc, old),
-+	    TP_STRUCT__entry(
-+		     __field(struct xe_lrc *, lrc)
-+		     __field(u32, old)
-+		     __field(u32, new)
-+		     __string(name, lrc-&gt;fence_ctx.name)
-+		     __string(device_id, __dev_name_lrc(lrc))
-+	    ),
-+
-+	    TP_fast_assign(
-+		   __entry-&gt;lrc	= lrc;
-+		   __entry-&gt;old = old;
-+		   __entry-&gt;new = lrc-&gt;ctx_timestamp;
-+		   __assign_str(name);
-+		   __assign_str(device_id);
-+		   ),
-+	    TP_printk("lrc=:%p lrc-&gt;name=%s old=%u new=%u device_id:%s",
-+		      __entry-&gt;lrc, __get_str(name),
-+		      __entry-&gt;old, __entry-&gt;new,
-+		      __get_str(device_id))
-+);
-+
-+#endif
-+
-+/* This part must be outside protection */
-+#undef TRACE_INCLUDE_PATH
-+#undef TRACE_INCLUDE_FILE
-+#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
-+#define TRACE_INCLUDE_FILE xe_trace_lrc
-+#include &lt;trace/define_trace.h&gt;
-</pre>
-    </blockquote>
-  </body>
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Limit max compressed bpp to 18 when forcing DSC</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140716/">https://patchwork.freedesktop.org/series/140716/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f_BAT -&gt; xe-pw-140716v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-140716v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3295">Intel XE#3295</a>)</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3295">Intel XE#3295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140716v1/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f -&gt; xe-pw-140716v1</li>
+</ul>
+<p>IGT_8088: 0030d5bc92b8e4ac991db1c88af1f0ad7593812a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2140-b97473387ce132222c9b71f7cf39c2cd814cbb6f: b97473387ce132222c9b71f7cf39c2cd814cbb6f<br />
+  xe-pw-140716v1: 140716v1</p>
+
+</body>
 </html>
 
---------------JqqBHxgzw0YV0mQ5nZ4PQFvZ--
+--===============1345262967555940982==--
