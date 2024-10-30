@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8145AD6B6DD
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 22:17:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C233D6B6DD
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Oct 2024 22:39:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DC2E10E809;
-	Wed, 30 Oct 2024 22:17:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3C2810E809;
+	Wed, 30 Oct 2024 22:39:29 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5F0F10E809;
- Wed, 30 Oct 2024 22:17:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 840C210E809;
+ Wed, 30 Oct 2024 22:39:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7265526640931134866=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/guc=3A_Fix_derefe?=
- =?utf-8?q?rence_before_NULL_check_=28rev6=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Fix_dereference_be?=
+ =?utf-8?q?fore_NULL_check_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Everest K.C." <everestkc@everestkc.com.np>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Oct 2024 22:17:15 -0000
-Message-ID: <173032663580.1364656.12717832541555502904@2413ebb6fbb6>
+Date: Wed, 30 Oct 2024 22:39:28 -0000
+Message-ID: <173032796853.1364410.17203539859406437559@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241023233356.5479-1-everestkc@everestkc.com.np>
 In-Reply-To: <20241023233356.5479-1-everestkc@everestkc.com.np>
@@ -40,6 +40,11 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7265526640931134866==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe/guc: Fix dereference before NULL check (rev6)
@@ -48,26 +53,89 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c245557007af0a1c23da00c47732ae1dadda7dd3
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2147-c245557007af0a1c23da00c47732ae1dadda7dd3_BAT -> xe-pw-139890v6_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2147-c245557007af0a1c23da00c47732ae1dadda7dd3 -> xe-pw-139890v6
+
+  IGT_8089: 2339a396e8c38ba1582a6fc18fe4f7ed178979cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2147-c245557007af0a1c23da00c47732ae1dadda7dd3: c245557007af0a1c23da00c47732ae1dadda7dd3
+  xe-pw-139890v6: 139890v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v6/index.html
+
+--===============7265526640931134866==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix dereference before NULL check (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139890/">https://patchwork.freedesktop.org/series/139890/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139890v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2147-c245557007af0a1c23da00c47732ae1dadda7dd3_BAT -&gt; xe-pw-139890v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2147-c245557007af0a1c23da00c47732ae1dadda7dd3 -&gt; xe-pw-139890v6</li>
+</ul>
+<p>IGT_8089: 2339a396e8c38ba1582a6fc18fe4f7ed178979cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2147-c245557007af0a1c23da00c47732ae1dadda7dd3: c245557007af0a1c23da00c47732ae1dadda7dd3<br />
+  xe-pw-139890v6: 139890v6</p>
+
+</body>
+</html>
+
+--===============7265526640931134866==--
