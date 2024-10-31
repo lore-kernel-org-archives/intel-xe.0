@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 521D1D767EF
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 17:07:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD28D767F4
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 18:10:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09FBA10E41D;
-	Thu, 31 Oct 2024 17:07:07 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A73A110E417;
- Thu, 31 Oct 2024 17:07:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3837153120812041480=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53D0710E90C;
+	Thu, 31 Oct 2024 18:10:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Au/rdhBJ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66C8610E03D
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Oct 2024 18:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730398222; x=1761934222;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Pk3a+05XGOMdPPPt1aJRCfhcKxtW+JkNMZymJFt+gSo=;
+ b=Au/rdhBJCuOGndRmhBDIwFtNtc3p8AZUFhIwaUlvcWgMspKJq0czMNfw
+ qTojSG8FXP0ob5SWDZI366vhDcGuqx4rPs2EZE1SkkeJEr/B+uVM1QOAo
+ nNYo581oNshYh60NG89os7dGO9ADaNLyyhXwRUBjnyvc9TOHqT9RjPW1Q
+ A+K38mc44U6m8BVrmp+vRQemR9nmE6R95rSkI4pDgKh65Z1AStuvj7Qe2
+ WTOgQt3XArKIZAO8MVWWu6vFivUTVYbIoOiNxSvyqJrz+vLqnJSS/sP8U
+ yRzOX3DEpgog3Huxp5Owtq0GIcbFaVloA6zM8WlGJWqRgY0S10irhBN/7 A==;
+X-CSE-ConnectionGUID: l8Q8CvhaS5KAmYHgJGal0Q==
+X-CSE-MsgGUID: IpGl0TblTrCXiWw1lrnfxQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41255866"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41255866"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 11:10:22 -0700
+X-CSE-ConnectionGUID: H4CYlbFyRsCBtBcNam9Cng==
+X-CSE-MsgGUID: kulEsTCvQK22TbTMz1rUng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="86637556"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 11:10:21 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com
+Subject: [PATCH v6 0/8] Fix non-contiguous VRAM BO access in Xe
+Date: Thu, 31 Oct 2024 11:10:40 -0700
+Message-Id: <20241031181048.2948948-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Avoid_unnecessary_OOM_?=
- =?utf-8?q?kills_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 31 Oct 2024 17:07:06 -0000
-Message-ID: <173039442667.1385523.4360739726998687717@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241031153732.164995-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20241031153732.164995-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,167 +62,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3837153120812041480==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fully reviewed and resending for final CI.
 
-== Series Details ==
+Dropping non-visible patch for now as it a bit larger, not strickly
+required to unblock EU debug, and be sent independently in a follow up.
 
-Series: drm/xe: Avoid unnecessary OOM kills (rev2)
-URL   : https://patchwork.freedesktop.org/series/140118/
-State : success
+Matt
 
-== Summary ==
+Matthew Brost (8):
+  drm/xe: Add xe_bo_vm_access
+  drm/ttm: Add ttm_bo_access
+  drm/xe: Add xe_ttm_access_memory
+  drm/xe: Take PM ref in delayed snapshot capture worker
+  drm/xe/display: Update intel_bo_read_from_page to use ttm_bo_access
+  drm/xe: Use ttm_bo_access in xe_vm_snapshot_capture_delayed
+  drm/xe: Set XE_BO_FLAG_PINNED in migrate selftest BOs
+  drm/xe: Only allow contiguous BOs to use xe_bo_vmap
 
-CI Bug Log - changes from xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932_BAT -> xe-pw-140118v2_BAT
-====================================================
+ drivers/gpu/drm/ttm/ttm_bo_util.c     | 86 +++++++++++++++++++++++
+ drivers/gpu/drm/ttm/ttm_bo_vm.c       | 65 +-----------------
+ drivers/gpu/drm/xe/display/intel_bo.c | 25 +------
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 13 ++--
+ drivers/gpu/drm/xe/xe_bo.c            | 99 +++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_devcoredump.c   |  6 ++
+ drivers/gpu/drm/xe/xe_vm.c            | 17 ++---
+ include/drm/ttm/ttm_bo.h              |  2 +
+ 8 files changed, 197 insertions(+), 116 deletions(-)
 
-Summary
--------
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140118v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2871]) +2 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4] ([Intel XE#877])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [PASS][5] -> [SKIP][6] ([Intel XE#455]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
-    - bat-lnl-1:          [DMESG-WARN][7] ([Intel XE#2687]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  
-  [Intel XE#2687]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687
-  [Intel XE#2871]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932 -> xe-pw-140118v2
-
-  IGT_8091: 8091
-  xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932: 9c4962db90300e1d8daca8ed54195bc31d0ee932
-  xe-pw-140118v2: 140118v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/index.html
-
---===============3837153120812041480==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Avoid unnecessary OOM kills (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140118/">https://patchwork.freedesktop.org/series/140118/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932_BAT -&gt; xe-pw-140118v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140118v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) +2 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2687">Intel XE#2687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140118v2/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932 -&gt; xe-pw-140118v2</li>
-</ul>
-<p>IGT_8091: 8091<br />
-  xe-2152-9c4962db90300e1d8daca8ed54195bc31d0ee932: 9c4962db90300e1d8daca8ed54195bc31d0ee932<br />
-  xe-pw-140118v2: 140118v2</p>
-
-</body>
-</html>
-
---===============3837153120812041480==--
