@@ -4,74 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 543F8E6B241
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 10:06:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EB54E6B243
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 10:06:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1432810E954;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFAAF10E968;
 	Fri,  1 Nov 2024 10:06:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ezxZLXRH";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="PUOWpMLU";
 	dkim-atps=neutral
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
- [209.85.215.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E22B10E071;
- Tue, 29 Oct 2024 06:18:11 +0000 (UTC)
-Received: by mail-pg1-f177.google.com with SMTP id
- 41be03b00d2f7-7ea9739647bso3591623a12.0; 
- Mon, 28 Oct 2024 23:18:11 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
+ [209.85.221.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E9A10E8CD
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Oct 2024 15:13:14 +0000 (UTC)
+Received: by mail-wr1-f53.google.com with SMTP id
+ ffacd0b85a97d-37ec4e349f4so653188f8f.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Oct 2024 08:13:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1730182691; x=1730787491; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JbH+MxlZZP0jfdF1t+NhFG6akIfHUreHIb4HeUjiq8Y=;
- b=ezxZLXRHdIFkHK7/kBci1qz19mC/9EhBzOxdiaByGbA7X5mT3AFuXhTEHIvT/0t5MP
- 5EttXjrYavFvgxW4Ec/6HuSgfn6jqjwVlJpsLgn/swjr+6R3QTyrZmSwp2x8m1Pi/myI
- I63D2D4K67xIpCNoDUONU2HjFQ0C0OEzcHVEHmRO9Ac1CNSVEZLwyz8TZhvt1n3t9TeE
- xDX30pj4y5OztKeQOuRW7q/a43ytVgTUack59vXXN6WC2sUTmS9LTPVu7T5XbjYHe+es
- 97JDuMatY6NckqW3ftMWUanKKbQqMLPu5e9Y7B+rQXD4m8LPzaEOMn+L9SrvkLb0yv5k
- Hx1w==
+ d=linaro.org; s=google; t=1730387593; x=1730992393; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=LCHAA65MmVVFpwvzylnSVqRrMzyJQ2PBeQVwuG34xXo=;
+ b=PUOWpMLUgGW9UUCG1MqCuy3m2AJieI9QVTOVszE+eRRU6TqSYrZwbH+Tcu4Gf8DVix
+ +RGY0SH/0CB1nO/vitPEFLuHE2/ChjLro89qCoFH+B3fT/R23LpEGsLIaWgOMu43Fsb+
+ fBtmxqrNotlDyWHJngiicaOcCST3OAmSnVneSxW49C6gSlZSbe8xwqPevsqoZXSDlxhZ
+ CQ6IzsI78AKIDn/4wsOtQ8fxsSioZMsx9HdEmJPN7AF73YxyX3w1D/wlPg57P6Awe3WL
+ 2QydbQxHLdS0r+r3VWpBstoTMVX3FuNt5INFagvAS6uTFA6wk23BlN+rZPU03kPpz641
+ /Sjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730182691; x=1730787491;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1730387593; x=1730992393;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=JbH+MxlZZP0jfdF1t+NhFG6akIfHUreHIb4HeUjiq8Y=;
- b=tZxcUnrlS70VzN09ykZtjBE+T/cI6UGteNb8B/tqSKUPNIUcon3bBDwWMtLELjo0ry
- AVFX7sm/ugRbHy/Iv1FF5AL//vGwa9G3VpOXtXZ9XKZ7+L9uiPw9LEMCkmXdCiaoBn+K
- vkNP/TusGCdUXHc0DgPiYVNOn3lo7lCouFyjzbXESd4JWiMkOpc5eL2IySAaEPrnSq90
- 5gf6pqpBV5Vj7SVPEqcyARv+hmn3duy7+TOOkhIOY+EhOjq/7VJeWPdDITXQazfIGD8J
- yu1mqgOWFho93DIKu56pADexajouN4Stwi4hNjNHEvugK/5NanzkLWXzh3x9jL9qOOo4
- kWXw==
+ bh=LCHAA65MmVVFpwvzylnSVqRrMzyJQ2PBeQVwuG34xXo=;
+ b=ewigRb0GW7yqMAi1YhqzzsYcj8HjoKHJPXqj7ceUwt/8ZdNPusxCz9C/MsJglbBxYK
+ dGkIKwF8X/NHCocBrYK1UV+YGNQO9MvO2DncI3Gxf7WO00ODwc5VBQCFXv5G/IGoxhNB
+ va/6u/zksq3KO/UwYZ03ZBaaZR0qLNAEBI2ELdi3STJ6TO1dHzOLcmZt0M3fQ7bj2Z8z
+ 1LPIACnGFUAQD/4K4Hj8YaawmEZZP407GGD+34UjTtDkrrvy56L1znkOQfYJplGOl9Y8
+ 1Ohvi8P5WKz3Yoq8f9OEzv7xhkuls3A0NVZq2ePtkyOG3XwfVPIZOKIHsHin1AzrMzKe
+ f6Lg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVez8iz75IC+AG79v+XSUK1E47rRkEVtUnLLJOwClSRLDG9d3Yeq5nvsH6yT+IcnTHHop4VQWC61Zk=@lists.freedesktop.org,
- AJvYcCXMi2jARwOS0KMttYR+i0IsTH1hEvfn7ipoTR07X/dn+1UpXGxQ5hjnQC1x6nbzMIddtzUsbbf4N48=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwkxgHzNFTyfWTJ18r5yY28SW2D+q42Dtn2f7c9ruc/ZcAw1yuR
- Bo++CXr8XY/J7HTKekJvbfrOPBkAWLiTIEpwj379laqmSpNe1xjPKUw8yYomniKBjiZzAA957m8
- P7K3UU+0l+1ITzv/Q8WR9T4DbqOE=
-X-Google-Smtp-Source: AGHT+IEakR8+6KFEHZc1bHgt3VBR9Z5XpuWlN6ZYFkC6UU38ogv3Y7zZUo33OohAhhDzC6sTqSsezfL4MOPl/EAohnc=
-X-Received: by 2002:a17:90b:315:b0:2e2:ba35:356c with SMTP id
- 98e67ed59e1d1-2e8f11dceb8mr11682733a91.39.1730182691042; Mon, 28 Oct 2024
- 23:18:11 -0700 (PDT)
+ AJvYcCWbZzyz/LQm1+BmKvgkQNaVGuepITuMtWf/TCEmjj6EKGTFu71y30diz35CEgiXMil45lWp3KRiXQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzrR+RsHgSGyQCLVSpvhZ5YuQQLIAHzNQ1Fne2L505vhcvKJnQs
+ VqHsACOrm4Ae7faenxMw1mUfhTasmu0IDOWPCrwW9GI62j+dV+zmuQ1JvQuoUAY=
+X-Google-Smtp-Source: AGHT+IGLAhJViAJsWNEjJ1x0ZrUiOA5rP+aDAfisAGK0oMbFmg09U56thBBAHPC/VibMF55iqNG64w==
+X-Received: by 2002:a05:6000:2c8:b0:37c:d1bc:2666 with SMTP id
+ ffacd0b85a97d-381c7a472f7mr268493f8f.4.1730387593293; 
+ Thu, 31 Oct 2024 08:13:13 -0700 (PDT)
+Received: from [127.0.1.1] ([82.76.168.176]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-381c10e734csm2418920f8f.60.2024.10.31.08.13.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 31 Oct 2024 08:13:11 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Thu, 31 Oct 2024 17:12:46 +0200
+Subject: [PATCH RFC 2/4] drm/nouveau/dp: Use the generic helper to control
+ LTTPR transparent mode
 MIME-Version: 1.0
-References: <20241027045752.10530-1-gye976@gmail.com>
- <53slkiaabzxkr4npxjgc32igwnspzyohvswwhooc4nfzdjw547@q3nnf3wblgfd>
-In-Reply-To: <53slkiaabzxkr4npxjgc32igwnspzyohvswwhooc4nfzdjw547@q3nnf3wblgfd>
-From: gyeyoung <gye976@gmail.com>
-Date: Tue, 29 Oct 2024 15:17:59 +0900
-Message-ID: <CAKbEznsv9yH9vYSqhCi0gJt-oww3R5t0YWP_YtpTF-=CvgzWkw@mail.gmail.com>
-Subject: Re: [PATCH] drm/xe: Fix build error for XE_IOCTL_DBG macro
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Oded Gabbay <ogabbay@kernel.org>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-2-cafbb9855f40@linaro.org>
+References: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org>
+In-Reply-To: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1382; i=abel.vesa@linaro.org; 
+ h=from:subject:message-id;
+ bh=qTo25L6lJakOHs7bQLmqHAn1KYMaDHnpIwjy2cJNPvM=; 
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnI5559Yxkmuow38QV8wabJ2bKSot6NxTaSLYmN
+ g2nH0RwB6yJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZyOeeQAKCRAbX0TJAJUV
+ VmDHD/481bhsfTSCoMir4f/4gp6iKjR2jI9+OveNVVHlg1D6Tz0vDg0quYA7KScPdxZ3d5uVuXw
+ enHzdvlUtqxwUehaxfa9hA+1rZGtCLCHDeUYXk6jLzdYLUoa9Hs7M2qC4nuB9aSM4+9LrGwTnvN
+ rhgbrUi4sFu/T7ilSm1kAYGc+YrU2kZSQ3YRrqL99tABGDJ1AnVCA2n3V/9D6YFBPn2xKXze/ab
+ EAYGV4PMF9VTNEUO2hISo22WRF4cn1GydxAvOlkT23AATf0jrfkd3M9UkC/xMDuGAaJwBWamHPl
+ sOhIuytjO+xJXPqyvnOtjg/jTs8EJozYqt2jxDV4L7Ht42ZecgOCp796FAg+0pEBYe1f6HXhtQy
+ Yl0Sr2AKrrQLiEvciNjSwPniDR6cDNpHd4YvuA+D/Ufd9s4S4bnT0LkIxz2hS/9hyggj/Lyyl5u
+ m9d/tn+1dxPtExVusFCpQ39E6mORcrXo5obxWLBwQwWOyXoBkgi2LCb8keBkEwL2nxYgNh7xN6E
+ zvjxgTJQFmwlqQMUrLUR0rkou9XaCK08ynC2TtPtJ4RuAGJLxwvq4myWFgBXvS1zWNctzb9nf1u
+ zdTSnqFWgEvIAEuhA3J86aVorFmH2PcymJNqPIlknYCiMZdzaCUkngv+Hjr9HvF77kbPUyBVaNL
+ xfveNb5Mpb1506Q==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 X-Mailman-Approved-At: Fri, 01 Nov 2024 10:06:55 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,60 +115,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your review, I missed how && work.
-I will revise a patch that print only when cond is true.
+LTTPRs operating modes are defined by the DisplayPort standard and the
+generic framework now provides a helper to switch between them.
+So use the drm generic helper instead as it makes the code a bit cleaner.
 
-sincerely,
-Gyeyoung baek
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_dp.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-On Tue, Oct 29, 2024 at 4:47=E2=80=AFAM Lucas De Marchi
-<lucas.demarchi@intel.com> wrote:
->
-> On Sun, Oct 27, 2024 at 01:57:52PM +0900, Gyeyoung Baek wrote:
-> >In the previous code, there is build error.
-> >if CONFIG_DRM_USE_DYNAMIC_DEBUG is set,
-> >'drm_dbg' function is replaced with '__dynamic_func_call_cls',
-> >which is replaced with a do while statement.
-> >
-> >The problem is that,
-> >XE_IOCTL_DBG uses this function for conditional expression.
-> >
-> >so I fix the expression to be compatible with the do while statement,
-> >by referring to "https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html=
-".
-> >
-> >Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
-> >---
-> > drivers/gpu/drm/xe/xe_macros.h | 6 +++---
-> > 1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> >diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macr=
-os.h
-> >index daf56c846d03..58a9d1e33502 100644
-> >--- a/drivers/gpu/drm/xe/xe_macros.h
-> >+++ b/drivers/gpu/drm/xe/xe_macros.h
-> >@@ -11,8 +11,8 @@
-> > #define XE_WARN_ON WARN_ON
-> >
-> > #define XE_IOCTL_DBG(xe, cond) \
-> >-      ((cond) && (drm_dbg(&(xe)->drm, \
-> >-                          "Ioctl argument check failed at %s:%d: %s", \
-> >-                          __FILE__, __LINE__, #cond), 1))
-> >+      ({drm_dbg(&(xe)->drm, \
-> >+              "Ioctl argument check failed at %s:%d: %s", \
-> >+              __FILE__, __LINE__, #cond); (cond); })
->
-> but this would print the debug message regardless of the cond being
-> true. Previously this would enter the condition if cond && 1 (due to the
-> comma operator use), but printing the message was shortcut when cond was
-> false.
->
-> It looks like keeping cond outside and the statement expr to cover only
-> the call to drm_dbg would work.
->
-> Lucas De Marchi
->
-> > #endif
-> >--
-> >2.34.1
-> >
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index bcda0105160f1450df855281e0d932606a5095dd..80264e6186246903fa037861fe37493646de0c6e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -80,15 +80,12 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_connector,
+ 		int nr = drm_dp_lttpr_count(outp->dp.lttpr.caps);
+ 
+ 		if (nr) {
+-			drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE,
+-						DP_PHY_REPEATER_MODE_TRANSPARENT);
++			drm_dp_lttpr_set_transparent_mode(aux, true);
+ 
+ 			if (nr > 0) {
+-				ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE,
+-							      DP_PHY_REPEATER_MODE_NON_TRANSPARENT);
++				ret = drm_dp_lttpr_set_transparent_mode(aux, false);
+ 				if (ret != 1) {
+-					drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE,
+-								DP_PHY_REPEATER_MODE_TRANSPARENT);
++					drm_dp_lttpr_set_transparent_mode(aux, true);
+ 				} else {
+ 					outp->dp.lttpr.nr = nr;
+ 				}
+
+-- 
+2.34.1
+
