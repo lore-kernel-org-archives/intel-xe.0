@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 346FBD767D8
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 15:43:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4E95D767D8
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 15:43:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFC6710E8D1;
-	Thu, 31 Oct 2024 15:43:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 899F110E8D1;
+	Thu, 31 Oct 2024 15:43:44 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4BC10E8D1;
- Thu, 31 Oct 2024 15:43:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2337910E8D1;
+ Thu, 31 Oct 2024 15:43:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Add_functions_?=
- =?utf-8?q?to_save_and_restore_VF_LMEM_and_CCS_data_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PF=3A_Add_functions_to_sa?=
+ =?utf-8?q?ve_and_restore_VF_LMEM_and_CCS_data_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lukasz Laguna" <lukasz.laguna@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 31 Oct 2024 15:43:31 -0000
-Message-ID: <173038941111.1385187.7167446014017882671@2413ebb6fbb6>
+Date: Thu, 31 Oct 2024 15:43:44 -0000
+Message-ID: <173038942413.1385187.15039260111193111597@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241031151725.28315-1-lukasz.laguna@intel.com>
 In-Reply-To: <20241031151725.28315-1-lukasz.laguna@intel.com>
@@ -44,16 +44,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: PF: Add functions to save and restore VF LMEM and CCS data (rev2)
 URL   : https://patchwork.freedesktop.org/series/140050/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9c4962db9030 drm-tip: 2024y-10m-31d-14h-28m-38s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/migrate: Add function for raw copy of VRAM and CCS
-Applying: drm/xe/bo: Add trylock helper for buffer objects
-Applying: drm/xe/pf: Add functions to save and restore VF LMEM and CCS data
-Applying: drm/xe/pf: Allow to view and replace VF LMEM and CCS state over debugfs
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 17cf5f14e8fbe87314a0950cbbcd836db73566e6
+Author: Lukasz Laguna <lukasz.laguna@intel.com>
+Date:   Thu Oct 31 16:17:25 2024 +0100
+
+    drm/xe/pf: Allow to view and replace VF LMEM and CCS state over debugfs
+    
+    For feature enabling and testing purposes, allow to save VF LMEM and CCS
+    state and to replace it using debugfs blob file, but only under strict
+    debug config.
+    
+    Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
++ /mt/dim checkpatch 9c4962db90300e1d8daca8ed54195bc31d0ee932 drm-intel
+0b962ba28081 drm/xe/migrate: Add function for raw copy of VRAM and CCS
+61fb208e64ff drm/xe/bo: Add trylock helper for buffer objects
+a3fa5cd1b00c drm/xe/pf: Add functions to save and restore VF LMEM and CCS data
+17cf5f14e8fb drm/xe/pf: Allow to view and replace VF LMEM and CCS state over debugfs
+-:154: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#154: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:413:
++	smem_bo = xe_bo_create_pin_map(xe, NULL, NULL, PAGE_ALIGN(chunk_size), ttm_bo_type_kernel,
++				      XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+
+-:179: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#179: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:438:
++			xe_gt_sriov_dbg(gt, "Failed to copy the entire chunk (copied bytes: %ld, expected: %lu)\n",
++				ret, chunk_size);
+
+-:209: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#209: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:468:
++	smem_bo = xe_bo_create_pin_map(xe, NULL, NULL, PAGE_ALIGN(count), ttm_bo_type_kernel,
++				      XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+
+total: 0 errors, 0 warnings, 3 checks, 323 lines checked
 
 
