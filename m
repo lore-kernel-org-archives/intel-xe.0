@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53F68D767D8
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 15:37:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 346FBD767D8
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 15:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22FCB10E8D2;
-	Thu, 31 Oct 2024 15:37:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X9WHRB5W";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 962E310E8D2
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Oct 2024 15:37:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730389067; x=1761925067;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uCF3ZPMvptUeOY5juxz2InrvvCaROyR/sumlwacTo/A=;
- b=X9WHRB5WWDMVcEPdNLuXj51TGAAaSZipU376iDTZz/6eePr4l/GSUwtg
- xvZV81DeAvekTUWRiHp2JxxX8LTadNU+OqxhWl6wxIqu7PJd9ohrmW3Zv
- zQJCx3A0umGzl7/1nR9wDYMNu+Va91AbgFXKH6Lm6yQ2/W8Pk4DDRgq9b
- Bgk77e6CWYcdGb0yK26rX4jXt3dYdz7G4eJjqaEKr9pPZLrshQam8SLvy
- OgAAVsX/UTUjWMsIIPnjex6VQyI+TOJ8t7zgajFmqPpbFJPaQBuXojPxj
- BzGzIJrFP9ge2hb51wc84JwCWsj6JWfB1n89wUiToY2/L8gpmgqVJmema w==;
-X-CSE-ConnectionGUID: 62qriroWS0ac+lBnGF62ug==
-X-CSE-MsgGUID: RB15VImUQLSzVEX628kdnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30089084"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30089084"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 08:37:47 -0700
-X-CSE-ConnectionGUID: lrFGZ6QHTNW07w/GiuyQ0A==
-X-CSE-MsgGUID: tn21VkZ8QzCeg3+kIJ3mXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="87446048"
-Received: from carterle-desk.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.213])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 08:37:46 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 2/2] drm/xe: Don't unnecessarily invoke the OOM killer on
- multiple binds
-Date: Thu, 31 Oct 2024 16:37:32 +0100
-Message-ID: <20241031153732.164995-3-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241031153732.164995-1-thomas.hellstrom@linux.intel.com>
-References: <20241031153732.164995-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFC6710E8D1;
+	Thu, 31 Oct 2024 15:43:31 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4BC10E8D1;
+ Thu, 31 Oct 2024 15:43:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Add_functions_?=
+ =?utf-8?q?to_save_and_restore_VF_LMEM_and_CCS_data_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lukasz Laguna" <lukasz.laguna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 31 Oct 2024 15:43:31 -0000
+Message-ID: <173038941111.1385187.7167446014017882671@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241031151725.28315-1-lukasz.laguna@intel.com>
+In-Reply-To: <20241031151725.28315-1-lukasz.laguna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,69 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Multiple single-ioctl binds can be split up into multiple bind
-ioctls, reducing the memory required to hold the bind array.
+== Series Details ==
 
-So rather than allowing the OOM killer to be invoked, return
--ENOMEM or -ENOBUFS to user-space to take corrective action.
+Series: PF: Add functions to save and restore VF LMEM and CCS data (rev2)
+URL   : https://patchwork.freedesktop.org/series/140050/
+State : success
 
-v2:
-- Add __GFP_NOWARN to __GFP_RETRY_MAYFAIL allocations to avoid
-  spamming the kernel log if a recoverable allocation fails.
+== Summary ==
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2701
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v1
----
- drivers/gpu/drm/xe/xe_vm.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9c4962db9030 drm-tip: 2024y-10m-31d-14h-28m-38s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/migrate: Add function for raw copy of VRAM and CCS
+Applying: drm/xe/bo: Add trylock helper for buffer objects
+Applying: drm/xe/pf: Add functions to save and restore VF LMEM and CCS data
+Applying: drm/xe/pf: Allow to view and replace VF LMEM and CCS state over debugfs
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c99380271de6..624133fae5f5 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -733,7 +733,7 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
- 		vops->pt_update_ops[i].ops =
- 			kmalloc_array(vops->pt_update_ops[i].num_ops,
- 				      sizeof(*vops->pt_update_ops[i].ops),
--				      GFP_KERNEL);
-+				      GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
- 		if (!vops->pt_update_ops[i].ops)
- 			return array_of_binds ? -ENOBUFS : -ENOMEM;
- 	}
-@@ -2733,7 +2733,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 
- 		*bind_ops = kvmalloc_array(args->num_binds,
- 					   sizeof(struct drm_xe_vm_bind_op),
--					   GFP_KERNEL | __GFP_ACCOUNT);
-+					   GFP_KERNEL | __GFP_ACCOUNT |
-+					   __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
- 		if (!*bind_ops)
- 			return args->num_binds > 1 ? -ENOBUFS : -ENOMEM;
- 
-@@ -2973,14 +2974,16 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 
- 	if (args->num_binds) {
- 		bos = kvcalloc(args->num_binds, sizeof(*bos),
--			       GFP_KERNEL | __GFP_ACCOUNT);
-+			       GFP_KERNEL | __GFP_ACCOUNT |
-+			       __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
- 		if (!bos) {
- 			err = -ENOMEM;
- 			goto release_vm_lock;
- 		}
- 
- 		ops = kvcalloc(args->num_binds, sizeof(*ops),
--			       GFP_KERNEL | __GFP_ACCOUNT);
-+			       GFP_KERNEL | __GFP_ACCOUNT |
-+			       __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
- 		if (!ops) {
- 			err = -ENOMEM;
- 			goto release_vm_lock;
--- 
-2.46.2
 
