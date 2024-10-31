@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65A3DE68955
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 11:36:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 648A1E68978
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Oct 2024 11:38:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18FF310E3F6;
-	Thu, 31 Oct 2024 11:36:34 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44E8910E3F6;
- Thu, 31 Oct 2024 11:36:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4358366838729532147=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B99510E3F9;
+	Thu, 31 Oct 2024 11:38:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7klQdVs";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4C1810E3F6;
+ Thu, 31 Oct 2024 11:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730374722; x=1761910722;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MgCJf/ONKMtTscMnUn/3v2oeEHj9O1SBmVKf/YHzq3M=;
+ b=W7klQdVsNQAWwOinm2/pBxL8pMJHEH5jYbWb5MqHG8U0hMeARxYKATuS
+ gGmEQmcToZZ4i12xRChDAd2eaaPM8bJbLR8hyT0Vu1/6CmmUWhQln5OA2
+ MsWbOsSP+f+O8ZQsE1nngS5wAcnruja5uPlYmHUoneyhHL3aVjJcZytt2
+ zi+JQhpWY7WzrQzZ2ROKatX//pXHJnWGoHxn6P/n/61uxhAk2xTswThZi
+ OOj4LHN78Tq5E1pteiW3WVio2OJyO3AgLC5Tlb5N+PW+mqnm4J6iccMeK
+ 0Za56H7NlY7XIAoxQscrbZGMfJ0wj+1oginE/QZFWTc49BXlwdL0sksMH g==;
+X-CSE-ConnectionGUID: tRX9KxSCRnidoBnyALXjsQ==
+X-CSE-MsgGUID: fXVY76joTgattqJHbj8W+g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="40682195"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="40682195"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:38:41 -0700
+X-CSE-ConnectionGUID: X1eXbxl2SAmLjm2bjylM8g==
+X-CSE-MsgGUID: fsqUVzl5TyyC3tNj7b1MIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="82724562"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.204])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:38:40 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/6] drm/i915/display: make all i915_drv.h includes explicit
+Date: Thu, 31 Oct 2024 13:38:30 +0200
+Message-Id: <cover.1730374470.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_i915=3A_do_not_NULL_deref?=
- =?utf-8?q?_hdmi_attached=5Fconnector?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sergey Senozhatsky" <senozhatsky@chromium.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 31 Oct 2024 11:36:33 -0000
-Message-ID: <173037459325.1365305.11552656109126300707@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241031105145.2140590-1-senozhatsky@chromium.org>
-In-Reply-To: <20241031105145.2140590-1-senozhatsky@chromium.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,151 +64,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4358366838729532147==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Drop all implicit includes of i915_drv.h via other headers in display
+code, and make the includes explicit.
 
-== Series Details ==
+With this, we can use:
 
-Series: drm: i915: do not NULL deref hdmi attached_connector
-URL   : https://patchwork.freedesktop.org/series/140760/
-State : success
+$ git grep '#include "i915_drv.h"' -- drivers/gpu/drm/i915/display/
 
-== Summary ==
+to track the progress of struct drm_i915_private -> struct intel_display
+conversion, and in general the progress of breaking ties with everything
+that comes out of i915_drv.h. Before this, removing the i915_drv.h
+includes was meaningless, because we'd always get it through some other
+route.
 
-CI Bug Log - changes from xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf_BAT -> xe-pw-140760v1_BAT
-====================================================
+BR,
+Jani.
 
-Summary
--------
+Jani Nikula (6):
+  drm/i915/gvt: always pass struct intel_display * to register macros
+  drm/i915: extract intel_uncore_trace.[ch]
+  drm/i915/display: add intel_display_conversion.c to hide stuff better
+  drm/i915/uncore: add to_intel_uncore() and use it
+  drm/i915/display: add struct drm_device to struct intel_display
+    conversion function
+  drm/i915/display: drop i915_drv.h include from intel_display_trace.h
 
-  **SUCCESS**
+ drivers/gpu/drm/i915/Makefile                 |  2 +
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  1 +
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  1 +
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  1 +
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  1 +
+ .../gpu/drm/i915/display/intel_backlight.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_color.c    |  1 +
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +
+ drivers/gpu/drm/i915/display/intel_de.h       |  8 +-
+ .../i915/display/intel_display_conversion.c   | 14 ++++
+ .../i915/display/intel_display_conversion.h   | 10 ++-
+ .../drm/i915/display/intel_display_debugfs.c  |  1 +
+ .../drm/i915/display/intel_display_trace.h    |  2 +-
+ .../drm/i915/display/intel_display_types.h    |  3 +-
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
+ .../gpu/drm/i915/display/intel_dpt_common.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  1 +
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |  1 +
+ .../gpu/drm/i915/display/intel_pch_display.c  |  1 +
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  1 +
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |  1 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  1 +
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         | 17 ++--
+ drivers/gpu/drm/i915/gvt/display.c            | 80 ++++++++++---------
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         | 21 ++---
+ drivers/gpu/drm/i915/gvt/handlers.c           | 44 +++++-----
+ drivers/gpu/drm/i915/i915_trace.h             | 28 -------
+ drivers/gpu/drm/i915/intel_uncore.c           |  7 +-
+ drivers/gpu/drm/i915/intel_uncore.h           |  2 +
+ drivers/gpu/drm/i915/intel_uncore_trace.c     |  7 ++
+ drivers/gpu/drm/i915/intel_uncore_trace.h     | 49 ++++++++++++
+ drivers/gpu/drm/i915/vlv_suspend.c            |  1 +
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  5 ++
+ .../{i915_trace.h => intel_uncore_trace.h}    |  0
+ 47 files changed, 221 insertions(+), 110 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_conversion.c
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.c
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.h
+ rename drivers/gpu/drm/xe/compat-i915-headers/{i915_trace.h => intel_uncore_trace.h} (100%)
 
-  No regressions found.
+-- 
+2.39.5
 
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140760v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#2871]) -> [PASS][2] +2 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-adlp-7:         [SKIP][5] ([Intel XE#455]) -> [PASS][6] +3 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2871]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf -> xe-pw-140760v1
-
-  IGT_8091: 8091
-  xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf: d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf
-  xe-pw-140760v1: 140760v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/index.html
-
---===============4358366838729532147==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: i915: do not NULL deref hdmi attached_connector</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140760/">https://patchwork.freedesktop.org/series/140760/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf_BAT -&gt; xe-pw-140760v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140760v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2871">Intel XE#2871</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140760v1/bat-adlp-7/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf -&gt; xe-pw-140760v1</li>
-</ul>
-<p>IGT_8091: 8091<br />
-  xe-2150-d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf: d9e9e1b912c1ade4d9a46403c691ff3a13d8caaf<br />
-  xe-pw-140760v1: 140760v1</p>
-
-</body>
-</html>
-
---===============4358366838729532147==--
