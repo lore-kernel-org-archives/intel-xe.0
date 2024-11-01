@@ -4,57 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C23EE6F069
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 15:11:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72381E6F069
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 15:47:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E72810E083;
-	Fri,  1 Nov 2024 15:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E28D10E2F7;
+	Fri,  1 Nov 2024 15:47:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MzyJt6mL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fyj1IDPl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA1310E083;
- Fri,  1 Nov 2024 15:11:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBE2910E2F7
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 15:47:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730473910; x=1762009910;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DdnClrusLW1Q/CdOT9VrFELGEP1Lntp0ezKXbw8n7oM=;
- b=MzyJt6mLyGFUwGvudhiB+MR/t+jng+mtemP9uVmj6qMlrvO+6VTmZ9rc
- DLq3wI85ODfNfWJM0w/EYv/2KTQ1OaimNnlpkOucakVeiph/XaUQ2CR09
- hF9P8/r04JAOlLGo3/HLjsh1ov08cxDoUMeZ3+c9/JTBzERfmHiwz10Bb
- fvuyL7QeOsEIvMObAwX8w4gQFYvjK/ymT35VdVB4lc7BXKLVEaYPRqnf5
- jXzyGm5QTsdNp+k8SyLhWSLcUazlgdjnp6s1aeBUYkLwcROE8RNATXu5W
- IHvXKOoiinMKr3RqLGWJeX11JdjrTa8AzPkeUT+nDAIVFbdjsIaqD02IC w==;
-X-CSE-ConnectionGUID: DklqHsCgRVG2pv69573PBQ==
-X-CSE-MsgGUID: D5FRJcUvSn6/gf0SdAQucw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="30355061"
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="30355061"
+ t=1730476074; x=1762012074;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=AOazqsJhbHZrN6Q+6wXU3I5rUJsHklV7FFQ3ZUld8qc=;
+ b=Fyj1IDPl5baM2UxSWSCEQxI41nlXbJw9nqTh1xRZyc73IYP9yYVz7Tc1
+ CMDtYIVcstD0arhuRJ3Qh+qy4O8yOppQxE8+sbYCP+eGhvdxaqWam+rB8
+ sAykz8HBRcPDHgGCfDA4KxCd3syxuHzDvyUe/PB7T95E8fWLHRWrbQfEu
+ fh0T6ugVkHi83MHpcNwxBm5uLr/cKyP6SYs9M5poMvA049/S/xK5I34bN
+ KQH2Fl7BU+/nEL0QVkeGR/gmCHGmpCdlWENDBBbXnEYNOrbKXjNCHmD7p
+ RCK7rMZNm1x6TJhY32tEdNWGAsvanIKrlT0k+8pILlAzMYwKAEPj3+BOD w==;
+X-CSE-ConnectionGUID: bxykWo25SUaOgsvzU5+9Ig==
+X-CSE-MsgGUID: LEOPsG4ZRF26tlc+rBG0pw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="30457477"
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="30457477"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 08:11:50 -0700
-X-CSE-ConnectionGUID: TcNLLywCRaK7U4/11O+2fQ==
-X-CSE-MsgGUID: rihDgMHBQdy22N9ugkY7RA==
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 08:47:52 -0700
+X-CSE-ConnectionGUID: Xo/1sJcrQtaPTb4sjjuV1Q==
+X-CSE-MsgGUID: lgPsXhq7T8eaw/zyAwosjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="113820866"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 08:11:48 -0700
-Date: Fri, 1 Nov 2024 17:12:21 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com
-Subject: Re: [PATCH v2] drm/i915/psr: WA for panels stating bad link status
- after PSR is enabled
-Message-ID: <ZyTv1aNCoUVZYBFH@ideak-desk.fi.intel.com>
-References: <20241029122415.1789528-1-jouni.hogander@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="113829064"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 01 Nov 2024 08:47:52 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 1 Nov 2024 08:47:51 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 1 Nov 2024 08:47:51 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.48) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 1 Nov 2024 08:47:51 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yNxLt06N3wKJHrAlMnwvnBc2xq69lfdQFIA0oHAOdlfvyglg+XxC3gvAxhN4YLuwTsXJOsQO8mTIqfu9s4gQIpKqR123SeUoKmNSa3Ms9bFnm600+Qxw8vzKfKJWMnRSKHrmAsiKsthibuteROWLEgxX39Kml5UyEPds1cXAQmQkCRzRT6a0TSzoc8TzqAeI4kUeIihqlx4LBJZ+HggWnJ40HpoFNpEcBXp/Y6TBdBeW+jnSN9i2WitxV0LLAQk8A+DCUS1ocz1LsmL8GdxW40X+Gb3JQCjCx+1qPJtdxGacCNhyB2nH+ZgHUxh4IYGE5d+iw9yB+POrW6D4jhWdxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AOazqsJhbHZrN6Q+6wXU3I5rUJsHklV7FFQ3ZUld8qc=;
+ b=J91GJMLleBjQQwhpmpBaDfjZ/wE1jZUa8uuGi7dmY8c4DRcS/5YJL2op9xlEDk9isKDLq57UdIxhlvcb7XBUeilblBeUp8vl9+/uEDpbU5B0Ji5imoz2fBVn1tjB5EQIAareaaES3XRtoaD1/r6WicuYzBuqjgDTWQ/bgQllJgw9fczPVLem8S+L+uC2OiH0KwdDtVDfJ3Ddob7k3iK6Lr+h38h631tbJn1akErn9i+ewlIudHD+cGxZVhPV1zDhIUwv73kEuDIumQwWJhq7QzIy5Cv2+uuz/f/l5ego1HkkLPcpzDEyk/qOnbAgz5qS1QdEEvhNlJQafd2BbNqgRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CY8PR11MB6818.namprd11.prod.outlook.com (2603:10b6:930:62::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.20; Fri, 1 Nov
+ 2024 15:47:49 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8114.015; Fri, 1 Nov 2024
+ 15:47:49 +0000
+Date: Fri, 1 Nov 2024 10:47:45 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Nirmoy Das <nirmoy.das@linux.intel.com>
+CC: Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, 
+ <intel-xe@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>, 
+ Matthew Brost <matthew.brost@intel.com>, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>, <stable@vger.kernel.org>, John Harrison
+ <John.C.Harrison@intel.com>
+Subject: Re: [PATCH v5 1/3] drm/xe: Move LNL scheduling WA to xe_device.h
+Message-ID: <lrn2h5h3abeplsmbfv3z52pgtd6gxmc4zgmee6g2yl2gbqakjf@sf5ydtmk5rqr>
+References: <20241029120117.449694-1-nirmoy.das@intel.com>
+ <afd4adf1-5220-40ff-816e-da588b74fadc@intel.com>
+ <65a8fa25-0c14-4251-ad22-8f4b31be0d4e@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241029122415.1789528-1-jouni.hogander@intel.com>
+In-Reply-To: <65a8fa25-0c14-4251-ad22-8f4b31be0d4e@linux.intel.com>
+X-ClientProxiedBy: MW4PR04CA0361.namprd04.prod.outlook.com
+ (2603:10b6:303:81::6) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CY8PR11MB6818:EE_
+X-MS-Office365-Filtering-Correlation-Id: de2b7022-4650-4d0e-6a18-08dcfa8c8979
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EJQpQyQQphtY5pp9WXtHu8soQxQrwpHv1i4RsqYdyYLthg55MD6Q0NskaslF?=
+ =?us-ascii?Q?fQYVOlp0tvuyASThHOMSxdEMjjYhA7EV/5Op/pnunnNtdoryVrwwIpu58ysu?=
+ =?us-ascii?Q?9+6DHu625eTBw3zlKw/Nzxr1/M4QHDZKt3iGtbxZKHWdMgWH1dgaRHEtlrko?=
+ =?us-ascii?Q?P8PSxGgnYnqHXjfjvKsg5KRIS9a6okvoeSyDu5kkQB+M6AhUWdfe3XzuRO5D?=
+ =?us-ascii?Q?5b5HpgTCxNsS0B+vDVsksuodqAAKBztGWr4WfhEIZrdhlfgIbX8o4io+hNv1?=
+ =?us-ascii?Q?YhuIIXP6PmhqD8telznrotdCm+TOex1+ektD7MkKvUl/2cT75qXgFr5zQeBR?=
+ =?us-ascii?Q?XuVVMfOtJzNeSkSdNzjnhNRggEdEiL+0v0ULWdcpawNEzUbdWViMQS3Iv3+8?=
+ =?us-ascii?Q?9w7iJZBBV+c4ph36RCUJKXS61HEhOGA2egVvyvCYRjO7OA/4FXK3wJFwstKc?=
+ =?us-ascii?Q?6RvwXvACkZKRCgnkhocRNsiCYKXP42+s+osoTIjtPxAisE1uvJnWSnLn0bzQ?=
+ =?us-ascii?Q?M+w0kbTBnP+y6u+Xl8Ka47sQG5Ri3Enmdgmnbj5dk8/zeAVUHyoy3+pqOQJ/?=
+ =?us-ascii?Q?NRa0/9VekS1pYPt5/0O9joHcg7atIRWEYp4uKFCxAoqOpk+RR88p9ikjm0iL?=
+ =?us-ascii?Q?1m9LTdvrZQKSUS89SMTqYpqNSK1MW4Pi9lhgJXV+iuKB5BvMhF/N2t4T86Wt?=
+ =?us-ascii?Q?CzYHGdtRivFWyW2y5Gr8hOhFN/DDW6npsAXW8ovKYJafn5dosz2mdk3BcNnE?=
+ =?us-ascii?Q?cPYJ+9zPb/W9UcMlIs1VL7AneXr5DBYGVSyP42lrbpW36xw8p+1syZQNlA90?=
+ =?us-ascii?Q?ii6s+LojIVNzU/MlanYaoxvlqm3kqR2KtaNEAF+FwJoKqNqBPVrAGLpU+oqU?=
+ =?us-ascii?Q?TUFDDspaFx/KsvuynVDrwprsqDjrXMjioFD9j71Q8D68D0/hcD4Wfk+Lun08?=
+ =?us-ascii?Q?/UGlsU36yRXeTWbBdxbkt0SXvLCL716tN0AEkw1TUtadOfC5nDFDrwPmfThI?=
+ =?us-ascii?Q?CXf9EmF0KhVwD1xyFBjcbKoN0gJXsG9Wli7dIVsaXqhlfg8akoWRyImagBQE?=
+ =?us-ascii?Q?3I1Cyw0In07DFsqfUOBrN/CY+yRysCj7+ukss2y/mWF8Lhn8bW3eLcKW6HRn?=
+ =?us-ascii?Q?ritni6b0CB7cPIeP77ondeBquelwEIZM7ms/rAP+vcfiFGC0YBuv6Xy8uHHK?=
+ =?us-ascii?Q?+UA2jeslXGX1qkj1g2QknhOd4B8/6gmdq/E+ZUSqIHxrBohQz4VWMbszIkRZ?=
+ =?us-ascii?Q?f9rvdHc/13dPzxMzL/CrbQ6sFfepInY4Kib5IrbYFAlhp4kTUQ41HB03G8rJ?=
+ =?us-ascii?Q?A1yqhHKzPdpUsKkuDUS4EnX+?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vOc7uzXx3uS9v2cMjxZhOqC0ehWKH6gkavRqTrPJSj+TKRMQmvQ1AkE+tx7N?=
+ =?us-ascii?Q?55QLDq+Diws+y/yPRuzxQOZn16bcL2qr9B2/ptOoG6ycq4ZeNQB6JhFjdZLZ?=
+ =?us-ascii?Q?CwfJrsayCQk8lUHeM8XsbILqEgHGJcu3KnP6HR+oL1EfpzVPGjQsNw5BnUW2?=
+ =?us-ascii?Q?unToCVsMr2j4vw8v9Oeu8RuwiT8xnYYxPxRndPW/jrFZLjSRjhCIGQuIfEmM?=
+ =?us-ascii?Q?thvgy8gevq+gmEtfV7HJa6okY0Wkmc4X7AMvoUyIvMaZb9P4bUDLlK94XEcV?=
+ =?us-ascii?Q?McrMy3ZLat6R/re/1mO8ajWEAarpORIn/aQUBFHnHQPtaGhHq8OKVOeK37Mp?=
+ =?us-ascii?Q?LdSS3QoMwV5JwO59SyLQvQjL0/SxFUzGBJyg9HrFhCaLJe2Bzg3Dt14Qv/25?=
+ =?us-ascii?Q?ufmNZ1sJ7disT/eDg+vfcYMIlcrt0rwQYn+gIZ0IwdXwdwxQfVg8CKltCmNR?=
+ =?us-ascii?Q?O7V0A7izs5lPQfgkPEGSeBsBD2O4xskGAwDoETEjqEBg1fcUazLhuUPUe5L1?=
+ =?us-ascii?Q?/Ex7RYf1EhxMpWdUjUf8Js+kQXnO7AcfMvbsyLOw86j3wxX9moO2UoYLoIn/?=
+ =?us-ascii?Q?H6dGY1DgEeT3+dUn0hDWW045lzqHR+T7PI/5ulKpU7KKhYUf9rgCZZSJuR+s?=
+ =?us-ascii?Q?dtl61UqUtWjmxDc8D6FeldW/C976i+IVkvxEjrxvmW3aWMnSIJdGEazE7ua/?=
+ =?us-ascii?Q?sFWYOFR16IKga2MeVgvZUJ8LGDNdUafVbmLwNyoZgR2fzoQsJaQhlGqx8tXi?=
+ =?us-ascii?Q?tMejNZRP5/QrR8kR7VrEWuDfYv+OqE2KVt2SvqUnocvY/W8aaPoEcNZs9pav?=
+ =?us-ascii?Q?4qbwSGoMzLowOvY/P2qas6qNtIa+vNJWmFr36kjeOADUN/lGaG25FIcxUSny?=
+ =?us-ascii?Q?TtLoFH5G68hQ8Ntdsi/1hfgcmxb1cSsnqc9rMo97rkWc/w+U6yvC6hCYEu3p?=
+ =?us-ascii?Q?HNj2E9Gufm/k4ff93kdHuAA1Ds/JT7mD1lG3iVvpGxx1XZb55m84fwdjsQKs?=
+ =?us-ascii?Q?BpwXuV92f2r9HGCBtGF72K5xf8xEKJsJ6VH8tmS/bnYIK+c6JR17MK9qrfrO?=
+ =?us-ascii?Q?x84oQQRFF3eHg5RjtKKZja0Yo2AhJ7u0A8uOia41FkcByqgQNBrKJkxgJwpP?=
+ =?us-ascii?Q?wFmIrdrqJReuOTcRxzxq6yST2AojMJABYjT65VhNZcRwQQCl9S4toeEgPLzl?=
+ =?us-ascii?Q?waXZMAkjodkzcldgmkV9L68eI8HqGiiikR49HDxjZOxNAs1exq2F0wqBY+Nn?=
+ =?us-ascii?Q?ciQG0EPFXkF6vPdkmaE76PAE1OEhEQniY6c2Yfjm+hqgnGM0kkK95jHhzFP+?=
+ =?us-ascii?Q?NfVUrCn/ojbQBXzqBx/ryJLrUTxTRTjhoz83Ri+irjFm+wcO3C2jPQ11+xA6?=
+ =?us-ascii?Q?BnyonMKbjqasVAYiB9JzB/LIGCYLHS1j0jvevEx6GljGJaqr4eexBEp52Qpn?=
+ =?us-ascii?Q?L+UrwbdWsKBrlqD7YymqXir4IzA8hdI082Z6Zb5aGtEcXtFwpOzifa3pfh/b?=
+ =?us-ascii?Q?RfrWcAHH/bp6ENRc2mwDufKvbh1+ALXzf9V9aB5vhZB5PvkNVgtegqrWLxaE?=
+ =?us-ascii?Q?p9qpRWWW68ZceZKXm9xN88N0V1GYjXnBCglaVBYkovrdhutxicDR2Rc0UYvM?=
+ =?us-ascii?Q?CQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: de2b7022-4650-4d0e-6a18-08dcfa8c8979
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 15:47:49.0492 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0R6bK7rCmjzXc+zRpD3QODjiXOyaL77Ch8ETzz0XQ0jMkQLQnEwN7YmzFzKbGR3SH3LbewN94WZ428LOzd1do47qESzuCKeD7JsOo561uhE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6818
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,182 +176,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 29, 2024 at 02:24:15PM +0200, Jouni Högander wrote:
-> We are currently seeing unexpected link trainings with several different
-> eDP panels. These are caused by these panels stating bad link status in
-> their dpcd registers. This can be observed by doing following test:
-> 
-> 1. Boot up without Xe module loaded
-> 
-> 2. Load Xe module with PSR disabled:
->     $ modprobe xe  enable_psr=0
-> 
-> 3. Read panel link status register
->     $ dpcd_reg read --offset 0x200e --count=1
->     0x200e:  00
-> 
-> 4. Enable PSR, sleep for 2 seconds and disable PSR again:
-> 
->     $ echo 0x1 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
->     $ echo "-1" > /sys/kernel/debug/dri/0000:00:02.0/xe_params/enable_psr
->     $ echo 0x0 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
->     $ sleep 2
->     $ cat /sys/kernel/debug/dri/0/i915_edp_psr_status | grep status
->     $ echo 0x1 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
->     Source PSR/PanelReplay status: DEEP_SLEEP [0x80310030]
-> 
-> 5. Now read panel link status registers again:
->     $ dpcd_reg read --offset 0x200e --count=1
->     0x200e:  80
-> 
-> Workaround this by not trusting link status registers after PSR is enabled
-> until first short pulse interrupt is received.
-> 
-> v2:
->   - clear link_ok flag on pipe disable
->   - remove useless comment
->   - modify intel_dp_needs_link_retrain return statement
-> 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+On Fri, Nov 01, 2024 at 02:44:13PM +0100, Nirmoy Das wrote:
+>
+>On 11/1/2024 2:21 PM, Matthew Auld wrote:
+>> On 29/10/2024 12:01, Nirmoy Das wrote:
+>>> Move LNL scheduling WA to xe_device.h so this can be used in other
+>>> places without needing keep the same comment about removal of this WA
+>>> in the future. The WA, which flushes work or workqueues, is now wrapped
+>>> in macros and can be reused wherever needed.
+>>>
+>>> Cc: Badal Nilawar <badal.nilawar@intel.com>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> cc: <stable@vger.kernel.org> # v6.11+
+>>> Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>
+>
+>Thanks for reviewing the series, Matt!
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-I have some nits below, but the patch looks ok regardless so the Rb
-applies with or without those addressed.
+and pushed to drm-xe-next, thanks.
 
-> ---
->  .../drm/i915/display/intel_display_types.h    |  2 +
->  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      | 40 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_psr.h      |  1 +
->  4 files changed, 45 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2bb1fa64da2f..f0b7d7262961 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1618,6 +1618,8 @@ struct intel_psr {
->  	u32 dc3co_exit_delay;
->  	struct delayed_work dc3co_work;
->  	u8 entry_setup_frames;
-> +
-> +	bool link_ok;
->  };
->  
->  struct intel_dp {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 9dd4610c749a..2212a9d97121 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5011,7 +5011,8 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
->  		return true;
->  
->  	/* Retrain if link not ok */
-> -	return !intel_dp_link_ok(intel_dp, link_status);
-> +	return !intel_dp_link_ok(intel_dp, link_status) &&
-> +		!intel_psr_link_ok(intel_dp);
->  }
->  
->  bool intel_dp_has_connector(struct intel_dp *intel_dp,
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 880ea845207f..7695225b3745 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -2013,6 +2013,15 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
->  	intel_dp->psr.enabled = true;
->  	intel_dp->psr.paused = false;
->  
-> +	/*
-> +	 * Link_ok is sticky and set here on PSR enable. We can assume link
-> +	 * training is complete as we never continue to PSR enable with
-> +	 * untrained link. Link_ok is kept as set until first short pulse
-> +	 * interrupt. This is targeted to workaround panels stating bad link
-> +	 * after PSR is enabled.
-> +	 */
-> +	intel_dp->psr.link_ok = true;
-> +
->  	intel_psr_activate(intel_dp);
->  }
->  
-> @@ -2172,6 +2181,8 @@ void intel_psr_disable(struct intel_dp *intel_dp,
->  
->  	intel_psr_disable_locked(intel_dp);
->  
-> +	intel_dp->psr.link_ok = false;
-> +
->  	mutex_unlock(&intel_dp->psr.lock);
->  	cancel_work_sync(&intel_dp->psr.work);
->  	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
-> @@ -3462,6 +3473,8 @@ void intel_psr_short_pulse(struct intel_dp *intel_dp)
->  
->  	mutex_lock(&psr->lock);
->  
-> +	psr->link_ok = false;
-> +
->  	if (!psr->enabled)
->  		goto exit;
->  
-> @@ -3521,6 +3534,33 @@ bool intel_psr_enabled(struct intel_dp *intel_dp)
->  	return ret;
->  }
->  
-> +/**
-> + * intel_psr_link_ok - return psr->link_ok
-
-The above could explain a bit more.
-
-> + * @intel_dp: struct intel_dp
-> + *
-> + * We are seeing unexpected link re-trainings with some panels. This is caused
-> + * by panel stating bad link status after PSR is enabled. Code checking link
-> + * status can call this to ensure it can ignore bad link status stated by the
-> + * panel I.e. if panel is stating bad link and intel_psr_link_ok is stating link
-> + * is ok caller should rely on latter.
-> + *
-> + * Return value of link_ok
-
-And the above one-liner too.
-
-> + */
-> +bool intel_psr_link_ok(struct intel_dp *intel_dp)
-> +{
-> +	bool ret;
-> +
-> +	if ((!CAN_PSR(intel_dp) && !CAN_PANEL_REPLAY(intel_dp)) ||
-> +	    !intel_dp_is_edp(intel_dp))
-
-IIUC psr.link_ok would never get set if !CAN_PSR() &&
-!CAN_PANEL_REPLAY(), so could just rely on psr.link_ok being always
-valid if intel_dp_is_edp()?
-
-> +		return false;
-> +
-> +	mutex_lock(&intel_dp->psr.lock);
-> +	ret = intel_dp->psr.link_ok;
-> +	mutex_unlock(&intel_dp->psr.lock);
-> +
-> +	return ret;
-> +}
-> +
->  /**
->   * intel_psr_lock - grab PSR lock
->   * @crtc_state: the crtc state
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-> index 5f26f61f82aa..956be263c09e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
-> @@ -59,6 +59,7 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
->  void intel_psr_pause(struct intel_dp *intel_dp);
->  void intel_psr_resume(struct intel_dp *intel_dp);
->  bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
-> +bool intel_psr_link_ok(struct intel_dp *intel_dp);
->  
->  void intel_psr_lock(const struct intel_crtc_state *crtc_state);
->  void intel_psr_unlock(const struct intel_crtc_state *crtc_state);
-> -- 
-> 2.34.1
-> 
+Lucas De Marchi
