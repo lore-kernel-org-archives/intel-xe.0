@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCE3CE674A7
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 06:28:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDE98E67491
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 06:33:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 897FA10E961;
-	Fri,  1 Nov 2024 06:28:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q+XA+z40";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85DAA10E961;
- Fri,  1 Nov 2024 06:27:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730442480; x=1761978480;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Fy1pWas8xAXQvA2Xqw8cZBAJ/zJPREXvenJ6EGIpFcc=;
- b=Q+XA+z40iks5PdNx11+TXHH00GzfqJxKvmxoHRvF8cdCzhDRQIbVscqx
- 1xouBSHytBnf96wEQyp5l02FfK7By4TNp68rkIkbQmNPFvi7oOhwc//BZ
- KrzYYKYZx4k39l6IAWj+o3qSLG6vZhzSFK9Vbp8fGhF56IUfHQ8q9mD3y
- d22nTtuMeTTWtNA0JjxDzhP9iWYbF72kWt2D7SzOHKxl+LluaztDAo1Ov
- Mz4eoDlJwkjyp0B4nUcNNXqKQWVLsvv4JuusU+GhMjrEsI/YhPnObH1bZ
- 3e+QXoshRRRaIpsWq7ErkZA7VbDiY5WxyODXjQoOlwSGiJtZzhTZvNNJc A==;
-X-CSE-ConnectionGUID: OMfGTaSpTqmYTiSnkG5FUw==
-X-CSE-MsgGUID: gyYBqlDrSCS1aXXO0qGDGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41306095"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41306095"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 23:28:00 -0700
-X-CSE-ConnectionGUID: dOqfpWXmS9CsZsJELH4x0A==
-X-CSE-MsgGUID: GjQGBsMvQLG+RzpvxcCb7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="87648599"
-Received: from ksztyber-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.3])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 23:27:58 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 7/7] drm/i915/display: Generate PSR frame change event on
- cursor update
-Date: Fri,  1 Nov 2024 08:27:28 +0200
-Message-Id: <20241101062728.3865980-8-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241101062728.3865980-1-jouni.hogander@intel.com>
-References: <20241101062728.3865980-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FD5610E1BB;
+	Fri,  1 Nov 2024 06:33:40 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53B7F10E1BB;
+ Fri,  1 Nov 2024 06:33:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_trans_push_mecha?=
+ =?utf-8?q?nism_to_generate_frame_change_event_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 01 Nov 2024 06:33:39 -0000
+Message-ID: <173044281933.1386901.17520731053462890929@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241101062728.3865980-1-jouni.hogander@intel.com>
+In-Reply-To: <20241101062728.3865980-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,48 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On LunarLake and onwards we are using vrr send push mechanism to trigger
-frame change event. Due to this we need to trigger it using
-intel_vrr_psr_send_push provided by VRR code on legacy cursor update.
+== Series Details ==
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Series: Use trans push mechanism to generate frame change event (rev2)
+URL   : https://patchwork.freedesktop.org/series/139831/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 9ba77970dab7..5617781e9c58 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -25,6 +25,7 @@
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
- #include "intel_vblank.h"
-+#include "intel_vrr.h"
- #include "skl_watermark.h"
- 
- /* Cursor formats */
-@@ -798,6 +799,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		to_intel_crtc_state(crtc->base.state);
- 	struct intel_crtc_state *new_crtc_state;
- 	struct intel_vblank_evade_ctx evade;
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	int ret;
- 
- 	/*
-@@ -917,6 +919,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		intel_plane_disable_arm(NULL, plane, crtc_state);
- 	}
- 
-+	if (crtc_state->has_psr)
-+		intel_vrr_psr_send_push(crtc, cpu_transcoder);
-+
- 	local_irq_enable();
- 
- 	intel_psr_unlock(crtc_state);
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 73837e0500d4 drm-tip: 2024y-11m-01d-05h-17m-37s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/psr: Add TRANS_PUSH register bit definition for PSR
+Applying: drm/i915/vrr: Do not overwrite TRANS_PUSH PSR Frame Change Enable
+Applying: drm/i915/vrr: Use TRANS_PUSH mechanism for PSR frame change
+Applying: drm/i915/psr: Rename psr_force_hw_tracking_exit as psr_force_exit
+Applying: drm/i915/psr: Simplify frontbuffer invalidate/flush callbacks
+Applying: drm/i915/psr: Add VRR send push interface for PSR usage
+Applying: drm/i915/display: Generate PSR frame change event on cursor update
+
 
