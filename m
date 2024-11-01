@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BC8CE674A6
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 05:50:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41C19E674A9
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 06:27:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39C4810E0D1;
-	Fri,  1 Nov 2024 05:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3F5810E1BB;
+	Fri,  1 Nov 2024 06:27:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BYhtyIWh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G00buVKi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B20110E0D1
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 05:50:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECB8710E1BB;
+ Fri,  1 Nov 2024 06:27:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730440203; x=1761976203;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=1io0Y0XACQ6ydQ0JR+SsZ9P297QJL86pU7ZJiylAzXs=;
- b=BYhtyIWha4k+otIgJ/M7v1YfPivrqC8WOurWC77dEVXcTfCL4hovY6f9
- L99bEQjjoIcFetesuxHFZcGKPRbUNWwDuKYjcaFrq32ytuhauEoPe8KCP
- f8vBdgs9xbzRSlVPtth9tNYNlMOXNg1w6/8A5nEIvaFbolTYh859M+2GR
- DLFtPLebT3t1Sekzgnu6220/oJ7Q2rmohl7MjgyI1s4hAUC1ruvI/eeCw
- mDDRvnbU8P3rbEeI0a4cEEfihqV+i+xkHrGWPKYhpmOzzYsO0q8AOGmUD
- eRyXxMR5cL+BGEI9YsFjol+h3erqpslLPjaRq3UsRhJnq1CJnIyzuXKOT A==;
-X-CSE-ConnectionGUID: 0ntnKRmFQjavG/yC0Mtl2Q==
-X-CSE-MsgGUID: C4iFzG3aQySX9p8v0v2QoQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="30316276"
-X-IronPort-AV: E=Sophos;i="6.11,248,1725346800"; d="scan'208";a="30316276"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 22:50:03 -0700
-X-CSE-ConnectionGUID: OzY2CfrqREODIMLltA8fxQ==
-X-CSE-MsgGUID: wwc1YxR5QnuY/oEBRh8+wA==
+ t=1730442469; x=1761978469;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=membmhDCeha2zvBfRl6Rc3/Z/FrM51fgKWu7HBM3IMA=;
+ b=G00buVKiinVIziPKF/nFC+Fir7fd3YL8lrHjdZnC4UZnmFtrzvckUcbV
+ 2jqXaH49d669+g3CCJ1+ge1zD13r0lejCA8Mk7YksFK5hxduf+3HAQ0OL
+ +PqZ8/VUAYMH0RUV9i/HfVh3WGZVWq8rTnUtes+emmkYGgQHynLm8Z/Og
+ qZxjvYz6bOWqaSZVxf8mh85U93p7TvS0YfRLHA24CvZpo5eyL6nlX4VGj
+ iX+GaUw4eq6CfxtlwReQw4iOHxgdcv9dQI8swiEbpZ3vFBT8C5IFBtS+y
+ /Y0kaSq0ar88vf88FuBhUrVwxILjebEOQi4MWuqNU5vt6G7Lzce5HYWXM A==;
+X-CSE-ConnectionGUID: MxMvcGAYQDa9J4FsJC6V0Q==
+X-CSE-MsgGUID: OyGtraAOQ1CX6T05+QLayw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41306057"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41306057"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 23:27:49 -0700
+X-CSE-ConnectionGUID: C9V7i+B5SY6IcjfnKMJcQQ==
+X-CSE-MsgGUID: 3i24X6cHQb2AirPV5jZvyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,248,1725346800"; d="scan'208";a="83297660"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 22:50:00 -0700
-Date: Fri, 1 Nov 2024 07:49:57 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, John Harrison <John.C.Harrison@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Subject: Re: [PATCH 0/2] drm/xe: devcoredump documentation
-Message-ID: <ZyRsBZ1hl8zg2voX@black.fi.intel.com>
-References: <20241031182916.1441987-1-lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="87648562"
+Received: from ksztyber-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.3])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 23:27:47 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 0/7] Use trans push mechanism to generate frame change event
+Date: Fri,  1 Nov 2024 08:27:21 +0200
+Message-Id: <20241101062728.3865980-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241031182916.1441987-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,13 +68,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 31, 2024 at 11:29:14AM -0700, Lucas De Marchi wrote:
-> Improve our kernel-doc and wire it up to the documentation.
-> 
-> Lucas De Marchi (2):
->   drm/xe: Improve devcoredump documentation
->   drm/xe: Wire up devcoredump in documentation
+Currently we are using "automatic" frame change event generation. The
+event is generated by any access to plane or pipe registers.
 
-For the series,
+We have option to use "PSR PR Frame Change Enable" bit in TRANS_PUSH
+register to enable frame change event generation on trans push. When
+this bit is set "automatic" frame change event generation doesn't work
+anymore.
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+This patch set is taking trans push mechanism into use.
+
+NOTE: Patches add vrr.trans_push_enabled into intel_crtc and stores
+trans push vrr and psr enable bits in trans_push_enabled. There is no
+need for additional locking as it's taken care by psr mutex.
+
+v2: implement intel_vrr_trans_push_enabled_set_clear and use that
+    instead of rmw
+
+Jouni Högander (7):
+  drm/i915/psr: Add TRANS_PUSH register bit definition for PSR
+  drm/i915/vrr: Do not overwrite TRANS_PUSH PSR Frame Change Enable
+  drm/i915/vrr: Use TRANS_PUSH mechanism for PSR frame change
+  drm/i915/psr: Rename psr_force_hw_tracking_exit as psr_force_exit
+  drm/i915/psr: Simplify frontbuffer invalidate/flush callbacks
+  drm/i915/psr: Add VRR send push interface for PSR usage
+  drm/i915/display: Generate PSR frame change event on cursor update
+
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  5 ++
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 83 ++++++-------------
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 81 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_vrr.h      |  6 ++
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  1 +
+ 6 files changed, 115 insertions(+), 63 deletions(-)
+
+-- 
+2.34.1
+
