@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EE95E6F06E
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 16:47:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A03BAE6F070
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 17:02:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36A6B10E9E1;
-	Fri,  1 Nov 2024 16:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EDED10E9EA;
+	Fri,  1 Nov 2024 17:02:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CLAf31BE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0YjqvPB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B26910E9E1
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 16:47:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE4EE10E9EA
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 17:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730479671; x=1762015671;
- h=date:from:to:cc:subject:message-id;
- bh=CR1CyBMtmV4/pZxEZBTYSgUhAzYN2T/oc9VkJgEuhOk=;
- b=CLAf31BEoWe/mu9UUqxMeNsm3LLIGCJLdD4tXKMHr+TV6MIXqtS0nvvR
- y+teppuPEzOWLtkxON7dQtnlyjJxsE4IC534qmD6akxfutygiyzvSrO/B
- hQTiDe3AHz+fDERU7V2PBmi9AslezZ+/2akWaZ4WStCGV28ZJjSNVR20f
- aPVVwrv/qrickJcRJCqOntmg2SPosrP/YLHeALhgjemjwCzTQRc/yUdtf
- GMCpTDFHqEpvhVPCbGGPb9mJAkNQsfbkToaaO+HnEoXCgFL9E4V2tbaOt
- m/53qXthm+QMs5Yd1HC0RuZbvrR33EkTxvI7v+2xG+HaP5HjatXfrtFX6 Q==;
-X-CSE-ConnectionGUID: xIgeBA3ETKSJzXcKjWA4/A==
-X-CSE-MsgGUID: /PRT2ubhSyqILsgZ0u3xtQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="17879840"
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="17879840"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 09:47:50 -0700
-X-CSE-ConnectionGUID: 6yR7AyiDQ0qjqn9VRp6Bfw==
-X-CSE-MsgGUID: 3sXfqrv7TgiGk1qbrXBreg==
+ t=1730480528; x=1762016528;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J40Lx5PkVjBAsCue8XxWUgNPguPtTpsuQOEz36qQdO8=;
+ b=a0YjqvPBaxG5RODkgubGUz61CLKRKO/esTpCKrsFT7ioBKuKB2I1dFiO
+ neOd3NP52bDWrdErSvOtAInsv+Oa0HGoyCElWyBPD/j+hvaWk2+gM/t8z
+ 9pdYoOoQXl0MqkMPkE7f6yjFA7Uwy5zZ4Wz453oi1cG2h5vm9QfnVjQo4
+ xAW2yAPGTI2ztjCtONcWqry459JqF+GuyHNNV1xv5KhuUAxIynNZj04YX
+ xlPOyLrx7P6FH7G2fr8gU3opCIB66t6F0NV1VvJZ2FRpst993+PYB0ntR
+ 16M4Lmo99DnRsyShDMGJo+oaQqPnejpKYdH1eArUwOYpFvnYFbuuuGXIl g==;
+X-CSE-ConnectionGUID: O4/q0xcTSrOdFPY0wFxIyg==
+X-CSE-MsgGUID: RRN6u821RRCHvUdjqlgBrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="34046381"
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="34046381"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 10:02:08 -0700
+X-CSE-ConnectionGUID: JzsmVjjqSAC8RHjw1Vs2cg==
+X-CSE-MsgGUID: 4HbODXIrSOS0kE1zbuXd9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="82892642"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by orviesa009.jf.intel.com with ESMTP; 01 Nov 2024 09:47:49 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t6uoN-000hmI-12;
- Fri, 01 Nov 2024 16:47:47 +0000
-Date: Sat, 02 Nov 2024 00:46:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- fe05cee4d9533892210e1ee90147175d87e7c053
-Message-ID: <202411020038.K5DVRGPZ-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="82938075"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.34])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 10:02:07 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v2] drm/xe: improve hibernation on igpu
+Date: Fri,  1 Nov 2024 17:01:57 +0000
+Message-ID: <20241101170156.213490-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.47.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,138 +66,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: fe05cee4d9533892210e1ee90147175d87e7c053  drm/xe: Don't short circuit TDR on jobs not started
+The GGTT looks to be stored inside stolen memory on igpu which is not
+treated as normal RAM.  The core kernel skips this memory range when
+creating the hibernation image, therefore when coming back from
+hibernation the GGTT programming is lost. This seems to cause issues
+with broken resume where GuC FW fails to load:
 
-elapsed time: 1031m
+[drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 10ms, freq = 1250MHz (req 1300MHz), done = -1
+[drm] *ERROR* GT0: load failed: status: Reset = 0, BootROM = 0x50, UKernel = 0x00, MIA = 0x00, Auth = 0x01
+[drm] *ERROR* GT0: firmware signature verification failed
+[drm] *ERROR* CRITICAL: Xe has declared device 0000:00:02.0 as wedged.
 
-configs tested: 119
-configs skipped: 4
+Current GGTT users are kernel internal and tracked as pinned, so it
+should be possible to hook into the existing save/restore logic that we
+use for dgpu, where the actual evict is skipped but on restore we
+importantly restore the GGTT programming.  This has been confirmed to
+fix hibernation on at least ADL and MTL, though likely all igpu
+platforms are affected.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+This also means we have a hole in our testing, where the existing s4
+tests only really test the driver hooks, and don't go as far as actually
+rebooting and restoring from the hibernation image and in turn powering
+down RAM (and therefore losing the contents of stolen).
 
-tested configs:
-alpha                             allnoconfig    gcc-14.1.0
-alpha                            allyesconfig    clang-20
-arc                              allmodconfig    clang-20
-arc                               allnoconfig    gcc-14.1.0
-arc                              allyesconfig    clang-20
-arc                          axs103_defconfig    gcc-14.1.0
-arc                    vdk_hs38_smp_defconfig    gcc-14.1.0
-arm                              allmodconfig    clang-20
-arm                               allnoconfig    gcc-14.1.0
-arm                              allyesconfig    clang-20
-arm                         assabet_defconfig    clang-20
-arm                          ep93xx_defconfig    clang-20
-arm                          exynos_defconfig    clang-20
-arm                            hisi_defconfig    clang-20
-arm                            hisi_defconfig    gcc-14.1.0
-arm                        keystone_defconfig    clang-20
-arm                         s5pv210_defconfig    clang-20
-arm                        vexpress_defconfig    clang-20
-arm64                            allmodconfig    clang-20
-arm64                             allnoconfig    gcc-14.1.0
-csky                              allnoconfig    gcc-14.1.0
-hexagon                          allmodconfig    clang-20
-hexagon                           allnoconfig    gcc-14.1.0
-hexagon                          allyesconfig    clang-20
-i386                             allmodconfig    clang-19
-i386                              allnoconfig    clang-19
-i386                             allyesconfig    clang-19
-i386        buildonly-randconfig-001-20241101    gcc-12
-i386        buildonly-randconfig-002-20241101    gcc-12
-i386        buildonly-randconfig-003-20241101    gcc-12
-i386        buildonly-randconfig-004-20241101    gcc-12
-i386        buildonly-randconfig-005-20241101    gcc-12
-i386        buildonly-randconfig-006-20241101    gcc-12
-i386                                defconfig    clang-19
-i386                  randconfig-001-20241101    gcc-12
-i386                  randconfig-002-20241101    gcc-12
-i386                  randconfig-003-20241101    gcc-12
-i386                  randconfig-004-20241101    gcc-12
-i386                  randconfig-005-20241101    gcc-12
-i386                  randconfig-006-20241101    gcc-12
-i386                  randconfig-011-20241101    gcc-12
-i386                  randconfig-012-20241101    gcc-12
-i386                  randconfig-013-20241101    gcc-12
-i386                  randconfig-014-20241101    gcc-12
-i386                  randconfig-015-20241101    gcc-12
-i386                  randconfig-016-20241101    gcc-12
-loongarch                        allmodconfig    gcc-14.1.0
-loongarch                         allnoconfig    gcc-14.1.0
-loongarch                 loongson3_defconfig    clang-20
-m68k                             allmodconfig    gcc-14.1.0
-m68k                              allnoconfig    gcc-14.1.0
-m68k                             allyesconfig    gcc-14.1.0
-m68k                           virt_defconfig    clang-20
-microblaze                       allmodconfig    gcc-14.1.0
-microblaze                        allnoconfig    gcc-14.1.0
-microblaze                       allyesconfig    gcc-14.1.0
-mips                              allnoconfig    gcc-14.1.0
-mips                        maltaup_defconfig    gcc-14.1.0
-nios2                             allnoconfig    gcc-14.1.0
-openrisc                          allnoconfig    clang-20
-openrisc                         allyesconfig    gcc-14.1.0
-openrisc                            defconfig    gcc-12
-openrisc                 simple_smp_defconfig    gcc-14.1.0
-parisc                           allmodconfig    gcc-14.1.0
-parisc                            allnoconfig    clang-20
-parisc                           allyesconfig    gcc-14.1.0
-parisc                              defconfig    gcc-12
-powerpc                    adder875_defconfig    clang-20
-powerpc                          allmodconfig    gcc-14.1.0
-powerpc                           allnoconfig    clang-20
-powerpc                          allyesconfig    gcc-14.1.0
-powerpc                    amigaone_defconfig    gcc-14.1.0
-powerpc                     asp8347_defconfig    gcc-14.1.0
-powerpc                      cm5200_defconfig    clang-20
-powerpc               mpc834x_itxgp_defconfig    clang-20
-powerpc                 mpc836x_rdk_defconfig    clang-20
-powerpc                  mpc866_ads_defconfig    gcc-14.1.0
-powerpc                      pcm030_defconfig    gcc-14.1.0
-powerpc                     sequoia_defconfig    clang-20
-riscv                            allmodconfig    gcc-14.1.0
-riscv                             allnoconfig    clang-20
-riscv                            allyesconfig    gcc-14.1.0
-riscv                               defconfig    gcc-12
-riscv                    nommu_virt_defconfig    gcc-14.1.0
-s390                             alldefconfig    gcc-14.1.0
-s390                             allmodconfig    gcc-14.1.0
-s390                              allnoconfig    clang-20
-s390                             allyesconfig    gcc-14.1.0
-s390                                defconfig    gcc-12
-sh                               allmodconfig    gcc-14.1.0
-sh                                allnoconfig    gcc-14.1.0
-sh                               allyesconfig    gcc-14.1.0
-sh                                  defconfig    gcc-12
-sh                               j2_defconfig    gcc-14.1.0
-sh                            migor_defconfig    clang-20
-sh                          rsk7269_defconfig    gcc-14.1.0
-sh                           se7206_defconfig    clang-20
-sh                           se7343_defconfig    clang-20
-sh                        sh7785lcr_defconfig    gcc-14.1.0
-sh                            titan_defconfig    gcc-14.1.0
-sparc                            allmodconfig    gcc-14.1.0
-sparc64                             defconfig    gcc-12
-um                               allmodconfig    clang-20
-um                                allnoconfig    clang-20
-um                               allyesconfig    clang-20
-um                                  defconfig    gcc-12
-um                             i386_defconfig    gcc-12
-um                           x86_64_defconfig    gcc-12
-x86_64                            allnoconfig    clang-19
-x86_64                           allyesconfig    clang-19
-x86_64                              defconfig    clang-19
-x86_64                                  kexec    clang-19
-x86_64                                  kexec    gcc-12
-x86_64                               rhel-8.3    gcc-12
-x86_64                           rhel-8.3-bpf    clang-19
-x86_64                         rhel-8.3-kunit    clang-19
-x86_64                           rhel-8.3-ltp    clang-19
-x86_64                          rhel-8.3-rust    clang-19
-xtensa                            allnoconfig    gcc-14.1.0
+v2 (Brost)
+ - Remove extra newline and drop unnecessary parentheses.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3275
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 37 ++++++++++++++------------------
+ drivers/gpu/drm/xe/xe_bo_evict.c |  6 ------
+ 2 files changed, 16 insertions(+), 27 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8286cbc23721..549866da5cd1 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -952,7 +952,10 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+ 	if (WARN_ON(!xe_bo_is_pinned(bo)))
+ 		return -EINVAL;
+ 
+-	if (WARN_ON(xe_bo_is_vram(bo) || !bo->ttm.ttm))
++	if (WARN_ON(xe_bo_is_vram(bo)))
++		return -EINVAL;
++
++	if (WARN_ON(!bo->ttm.ttm && !xe_bo_is_stolen(bo)))
+ 		return -EINVAL;
+ 
+ 	if (!mem_type_is_vram(place->mem_type))
+@@ -1774,6 +1777,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 
+ int xe_bo_pin(struct xe_bo *bo)
+ {
++	struct ttm_place *place = &bo->placements[0];
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	int err;
+ 
+@@ -1804,8 +1808,6 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	 */
+ 	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
+ 	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
+-		struct ttm_place *place = &(bo->placements[0]);
+-
+ 		if (mem_type_is_vram(place->mem_type)) {
+ 			xe_assert(xe, place->flags & TTM_PL_FLAG_CONTIGUOUS);
+ 
+@@ -1813,13 +1815,12 @@ int xe_bo_pin(struct xe_bo *bo)
+ 				       vram_region_gpu_offset(bo->ttm.resource)) >> PAGE_SHIFT;
+ 			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
+ 		}
++	}
+ 
+-		if (mem_type_is_vram(place->mem_type) ||
+-		    bo->flags & XE_BO_FLAG_GGTT) {
+-			spin_lock(&xe->pinned.lock);
+-			list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
+-			spin_unlock(&xe->pinned.lock);
+-		}
++	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
++		spin_lock(&xe->pinned.lock);
++		list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
++		spin_unlock(&xe->pinned.lock);
+ 	}
+ 
+ 	ttm_bo_pin(&bo->ttm);
+@@ -1867,24 +1868,18 @@ void xe_bo_unpin_external(struct xe_bo *bo)
+ 
+ void xe_bo_unpin(struct xe_bo *bo)
+ {
++	struct ttm_place *place = &bo->placements[0];
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 
+ 	xe_assert(xe, !bo->ttm.base.import_attach);
+ 	xe_assert(xe, xe_bo_is_pinned(bo));
+ 
+-	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
+-	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
+-		struct ttm_place *place = &(bo->placements[0]);
+-
+-		if (mem_type_is_vram(place->mem_type) ||
+-		    bo->flags & XE_BO_FLAG_GGTT) {
+-			spin_lock(&xe->pinned.lock);
+-			xe_assert(xe, !list_empty(&bo->pinned_link));
+-			list_del_init(&bo->pinned_link);
+-			spin_unlock(&xe->pinned.lock);
+-		}
++	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
++		spin_lock(&xe->pinned.lock);
++		xe_assert(xe, !list_empty(&bo->pinned_link));
++		list_del_init(&bo->pinned_link);
++		spin_unlock(&xe->pinned.lock);
+ 	}
+-
+ 	ttm_bo_unpin(&bo->ttm);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 32043e1e5a86..b01bc20eb90b 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -34,9 +34,6 @@ int xe_bo_evict_all(struct xe_device *xe)
+ 	u8 id;
+ 	int ret;
+ 
+-	if (!IS_DGFX(xe))
+-		return 0;
+-
+ 	/* User memory */
+ 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
+ 		struct ttm_resource_manager *man =
+@@ -125,9 +122,6 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+ 	struct xe_bo *bo;
+ 	int ret;
+ 
+-	if (!IS_DGFX(xe))
+-		return 0;
+-
+ 	spin_lock(&xe->pinned.lock);
+ 	for (;;) {
+ 		bo = list_first_entry_or_null(&xe->pinned.evicted,
+-- 
+2.47.0
+
