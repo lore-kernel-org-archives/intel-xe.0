@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BBF4E6F069
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 15:07:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C23EE6F069
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 15:11:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB49F10E083;
-	Fri,  1 Nov 2024 15:07:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E72810E083;
+	Fri,  1 Nov 2024 15:11:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GtfR4LnH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MzyJt6mL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF8110E083
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 15:07:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA1310E083;
+ Fri,  1 Nov 2024 15:11:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730473659; x=1762009659;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=v2Kp1OcgbGvnRJVHRqzCmn69+N/Qe88ztMVY/zNGmyQ=;
- b=GtfR4LnH4JVvSEdK8IL8xcv0NBA/qZ4z16ioDD1uXCxZmehmx2S1OWGU
- F0oExqF2PaCjPAb4O/VrAfxATzxkoAqaOm809SV5BI6gPrHFCLr0/9ex7
- tOzEgnOH3k6/bvBAVdf0qWFeleOx1Aa/KGw3aWuJgQhpVz4hFp2ZwaX61
- Dyy6ovq1pI8isGJjHmZfJCH1sBcJGKjeU1kfofABLBn+OR8HkPeCg0HD1
- MgDWZW6VwV86NquBbBESyXcTcTmQmQlfMkbD6e8q2YvVw3VewA7PfnWGi
- fmOctGx0UpOeHsTzeJBVWOi3CjL0HvmjMtN250jVPAZ8HafhmkLPwVAEt A==;
-X-CSE-ConnectionGUID: /gH3l9kZTIqq0UjFUVLz7w==
-X-CSE-MsgGUID: nJ3DlGIDTD6oSoedWiV0SA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="55639760"
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="55639760"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 08:07:39 -0700
-X-CSE-ConnectionGUID: J1Z7oQ4ZSUeEZxzJUZKkIw==
-X-CSE-MsgGUID: HXhUgCtFRxi+56T+Kg9CCQ==
+ t=1730473910; x=1762009910;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DdnClrusLW1Q/CdOT9VrFELGEP1Lntp0ezKXbw8n7oM=;
+ b=MzyJt6mLyGFUwGvudhiB+MR/t+jng+mtemP9uVmj6qMlrvO+6VTmZ9rc
+ DLq3wI85ODfNfWJM0w/EYv/2KTQ1OaimNnlpkOucakVeiph/XaUQ2CR09
+ hF9P8/r04JAOlLGo3/HLjsh1ov08cxDoUMeZ3+c9/JTBzERfmHiwz10Bb
+ fvuyL7QeOsEIvMObAwX8w4gQFYvjK/ymT35VdVB4lc7BXKLVEaYPRqnf5
+ jXzyGm5QTsdNp+k8SyLhWSLcUazlgdjnp6s1aeBUYkLwcROE8RNATXu5W
+ IHvXKOoiinMKr3RqLGWJeX11JdjrTa8AzPkeUT+nDAIVFbdjsIaqD02IC w==;
+X-CSE-ConnectionGUID: DklqHsCgRVG2pv69573PBQ==
+X-CSE-MsgGUID: D5FRJcUvSn6/gf0SdAQucw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="30355061"
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="30355061"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 08:11:50 -0700
+X-CSE-ConnectionGUID: TcNLLywCRaK7U4/11O+2fQ==
+X-CSE-MsgGUID: rihDgMHBQdy22N9ugkY7RA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="83423422"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 08:07:37 -0700
-Date: Fri, 1 Nov 2024 17:07:34 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, John Harrison <John.C.Harrison@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe: Improve devcoredump documentation
-Message-ID: <ZyTutrXXD73sofRo@black.fi.intel.com>
-References: <20241031182916.1441987-1-lucas.demarchi@intel.com>
- <20241031182916.1441987-2-lucas.demarchi@intel.com>
- <ZyRrisQfc_59rrK-@black.fi.intel.com>
- <4kw2zzb76m42zbisvsy2fu52q2litchy6dfl4hyrmvze5u5dvk@hjs2pdynjemd>
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="113820866"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 08:11:48 -0700
+Date: Fri, 1 Nov 2024 17:12:21 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com
+Subject: Re: [PATCH v2] drm/i915/psr: WA for panels stating bad link status
+ after PSR is enabled
+Message-ID: <ZyTv1aNCoUVZYBFH@ideak-desk.fi.intel.com>
+References: <20241029122415.1789528-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <4kw2zzb76m42zbisvsy2fu52q2litchy6dfl4hyrmvze5u5dvk@hjs2pdynjemd>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241029122415.1789528-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,85 +66,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 01, 2024 at 07:44:37AM -0500, Lucas De Marchi wrote:
-> On Fri, Nov 01, 2024 at 07:47:54AM +0200, Raag Jadav wrote:
-> > On Thu, Oct 31, 2024 at 11:29:15AM -0700, Lucas De Marchi wrote:
-> > 
-> > ...
-> > 
-> > > - * Snapshot at hang:
-> > > - * The 'data' file is printed with a drm_printer pointer at devcoredump read
-> > > - * time. For this reason, we need to take snapshots from when the hang has
-> > > - * happened, and not only when the user is reading the file. Otherwise the
-> > > - * information is outdated since the resets might have happened in between.
-> > > + * The following characteristics are observed by xe when creating a device
-> > > + * coredump:
-> > >   *
-> > > - * 'First' failure snapshot:
-> > > - * In general, the first hang is the most critical one since the following hangs
-> > > - * can be a consequence of the initial hang. For this reason we only take the
-> > > - * snapshot of the 'first' failure and ignore subsequent calls of this function,
-> > > - * at least while the coredump device is alive. Dev_coredump has a delayed work
-> > > - * queue that will eventually delete the device and free all the dump
-> > > - * information.
-> > > + * **Snapshot at hang**:
-> > > + *   The 'data' file contains a snapshot of the HW state at the time the hang
-> > > + *   happened. Due to the driver recovering from resets/crashes, it may not
-> > > + *   correspond to the state of when the file is read by userspace.
-> > 
-> > Does that mean the devcoredump will be present even after a successful recovery?
+On Tue, Oct 29, 2024 at 02:24:15PM +0200, Jouni Högander wrote:
+> We are currently seeing unexpected link trainings with several different
+> eDP panels. These are caused by these panels stating bad link status in
+> their dpcd registers. This can be observed by doing following test:
 > 
-> yes.... if it's not succesful then it's moved to the wedged state. Easy
-> way to test is running this:
+> 1. Boot up without Xe module loaded
 > 
-> 	xe_exec_threads --r threads-hang-basic
+> 2. Load Xe module with PSR disabled:
+>     $ modprobe xe  enable_psr=0
 > 
-> You should see something like this in your dmesg:
+> 3. Read panel link status register
+>     $ dpcd_reg read --offset 0x200e --count=1
+>     0x200e:  00
 > 
-> 	[IGT] xe_exec_threads: starting subtest threads-hang-basic
-> 	xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=rcs, logical_mask: 0x1, guc_id=34
-> 	xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=bcs, logical_mask: 0x1, guc_id=32
-> 	xe 0000:00:02.0: [drm] GT1: Engine reset: engine_class=vcs, logical_mask: 0x1, guc_id=18
-> 	xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=34, flags=0x0 in xe_exec_threads [2636]
-> 	xe 0000:00:02.0: [drm] GT1: Engine reset: engine_class=vecs, logical_mask: 0x1, guc_id=17
-> 	xe 0000:00:02.0: [drm] GT1: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=18, flags=0x0 in xe_exec_threads [2636]
-> 	xe 0000:00:02.0: [drm] Xe device coredump has been created
-> -->	xe 0000:00:02.0: [drm] Check your /sys/class/drm/card0/device/devcoredump/data
-> 	xe 0000:00:02.0: [drm] GT1: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=17, flags=0x0 in xe_exec_threads [2636]
-> 	xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=32, flags=0x0 in xe_exec_threads [2636]
-> 	xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=ccs, logical_mask: 0x1, guc_id=27
-> 	xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=27, flags=0x0 in xe_exec_threads [2636]
-> 	[IGT] xe_exec_threads: finished subtest threads-hang-basic, SUCCESS
+> 4. Enable PSR, sleep for 2 seconds and disable PSR again:
 > 
+>     $ echo 0x1 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
+>     $ echo "-1" > /sys/kernel/debug/dri/0000:00:02.0/xe_params/enable_psr
+>     $ echo 0x0 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
+>     $ sleep 2
+>     $ cat /sys/kernel/debug/dri/0/i915_edp_psr_status | grep status
+>     $ echo 0x1 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
+>     Source PSR/PanelReplay status: DEEP_SLEEP [0x80310030]
 > 
-> If you run it again, it won't overwrite the previous dump, until user
-> cleans the previous dump or the timeout on the kernel side fires to
-> release it.
+> 5. Now read panel link status registers again:
+>     $ dpcd_reg read --offset 0x200e --count=1
+>     0x200e:  80
+> 
+> Workaround this by not trusting link status registers after PSR is enabled
+> until first short pulse interrupt is received.
+> 
+> v2:
+>   - clear link_ok flag on pipe disable
+>   - remove useless comment
+>   - modify intel_dp_needs_link_retrain return statement
+> 
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 
-Yes, which I think we're covering at later point in "First failure only".
-So maybe establishing the mechanism itself before explaining reset/recovery
-would be a bit neater...
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-> From a distro-integration pov, I think it should have a udev rule that
-> fires when a devcoredump is created so the dump is copied to persistent
-> storage. Just like it happens with cpu coredump (see systemd-coredump)
+I have some nits below, but the patch looks ok regardless so the Rb
+applies with or without those addressed.
+
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 40 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_psr.h      |  1 +
+>  4 files changed, 45 insertions(+), 1 deletion(-)
 > 
-> > Perhaps moving the 'release' part to above paragraph will add required context.
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 2bb1fa64da2f..f0b7d7262961 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1618,6 +1618,8 @@ struct intel_psr {
+>  	u32 dc3co_exit_delay;
+>  	struct delayed_work dc3co_work;
+>  	u8 entry_setup_frames;
+> +
+> +	bool link_ok;
+>  };
+>  
+>  struct intel_dp {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 9dd4610c749a..2212a9d97121 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5011,7 +5011,8 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
+>  		return true;
+>  
+>  	/* Retrain if link not ok */
+> -	return !intel_dp_link_ok(intel_dp, link_status);
+> +	return !intel_dp_link_ok(intel_dp, link_status) &&
+> +		!intel_psr_link_ok(intel_dp);
+>  }
+>  
+>  bool intel_dp_has_connector(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 880ea845207f..7695225b3745 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2013,6 +2013,15 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>  	intel_dp->psr.enabled = true;
+>  	intel_dp->psr.paused = false;
+>  
+> +	/*
+> +	 * Link_ok is sticky and set here on PSR enable. We can assume link
+> +	 * training is complete as we never continue to PSR enable with
+> +	 * untrained link. Link_ok is kept as set until first short pulse
+> +	 * interrupt. This is targeted to workaround panels stating bad link
+> +	 * after PSR is enabled.
+> +	 */
+> +	intel_dp->psr.link_ok = true;
+> +
+>  	intel_psr_activate(intel_dp);
+>  }
+>  
+> @@ -2172,6 +2181,8 @@ void intel_psr_disable(struct intel_dp *intel_dp,
+>  
+>  	intel_psr_disable_locked(intel_dp);
+>  
+> +	intel_dp->psr.link_ok = false;
+> +
+>  	mutex_unlock(&intel_dp->psr.lock);
+>  	cancel_work_sync(&intel_dp->psr.work);
+>  	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
+> @@ -3462,6 +3473,8 @@ void intel_psr_short_pulse(struct intel_dp *intel_dp)
+>  
+>  	mutex_lock(&psr->lock);
+>  
+> +	psr->link_ok = false;
+> +
+>  	if (!psr->enabled)
+>  		goto exit;
+>  
+> @@ -3521,6 +3534,33 @@ bool intel_psr_enabled(struct intel_dp *intel_dp)
+>  	return ret;
+>  }
+>  
+> +/**
+> + * intel_psr_link_ok - return psr->link_ok
+
+The above could explain a bit more.
+
+> + * @intel_dp: struct intel_dp
+> + *
+> + * We are seeing unexpected link re-trainings with some panels. This is caused
+> + * by panel stating bad link status after PSR is enabled. Code checking link
+> + * status can call this to ensure it can ignore bad link status stated by the
+> + * panel I.e. if panel is stating bad link and intel_psr_link_ok is stating link
+> + * is ok caller should rely on latter.
+> + *
+> + * Return value of link_ok
+
+And the above one-liner too.
+
+> + */
+> +bool intel_psr_link_ok(struct intel_dp *intel_dp)
+> +{
+> +	bool ret;
+> +
+> +	if ((!CAN_PSR(intel_dp) && !CAN_PANEL_REPLAY(intel_dp)) ||
+> +	    !intel_dp_is_edp(intel_dp))
+
+IIUC psr.link_ok would never get set if !CAN_PSR() &&
+!CAN_PANEL_REPLAY(), so could just rely on psr.link_ok being always
+valid if intel_dp_is_edp()?
+
+> +		return false;
+> +
+> +	mutex_lock(&intel_dp->psr.lock);
+> +	ret = intel_dp->psr.link_ok;
+> +	mutex_unlock(&intel_dp->psr.lock);
+> +
+> +	return ret;
+> +}
+> +
+>  /**
+>   * intel_psr_lock - grab PSR lock
+>   * @crtc_state: the crtc state
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+> index 5f26f61f82aa..956be263c09e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+> @@ -59,6 +59,7 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
+>  void intel_psr_pause(struct intel_dp *intel_dp);
+>  void intel_psr_resume(struct intel_dp *intel_dp);
+>  bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
+> +bool intel_psr_link_ok(struct intel_dp *intel_dp);
+>  
+>  void intel_psr_lock(const struct intel_crtc_state *crtc_state);
+>  void intel_psr_unlock(const struct intel_crtc_state *crtc_state);
+> -- 
+> 2.34.1
 > 
-> not sure I follow. Are you suggesting to swap the order of "First
-> failure only" and "Snapshot at hang" ?
-
-... in whichever way you think is best.
-
-> > > + * **First failure only**:
-> > > + *   In general, the first hang is the most critical one since the following
-> > > + *   hangs can be a consequence of the initial hang. For this reason a snapshot
-> > > + *   is taken only for the first failure. Until the devcoredump is released by
-> > > + *   userspace or kernel, all subsequent hangs do not override the snapshot nor
-> > > + *   create new ones. Devcoredump has a delayed work queue that will eventually
-> > > + *   delete the file node and free all the dump information.
-
-Raag
