@@ -4,35 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3D8EE6B26B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 12:58:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8314E6B271
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 13:09:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AFE810E2C0;
-	Fri,  1 Nov 2024 12:58:38 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7016010E2C0;
- Fri,  1 Nov 2024 12:58:37 +0000 (UTC)
-Received: from 91-155-254-188.elisa-laajakaista.fi ([91.155.254.188]
- helo=[192.168.100.133])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1t6rEZ-00000001FUk-1Pfe; Fri, 01 Nov 2024 14:58:35 +0200
-Message-ID: <39ca0bca034ed369700b2ecc1b1a411c824bd3b0.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Date: Fri, 01 Nov 2024 14:58:33 +0200
-In-Reply-To: <20241021222744.294371-9-gustavo.sousa@intel.com>
-References: <20241021222744.294371-1-gustavo.sousa@intel.com>
- <20241021222744.294371-9-gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9047810E2C0;
+	Fri,  1 Nov 2024 13:09:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hF7E9D+y";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C72EA10E2C0
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 13:09:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730466583; x=1762002583;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=reakP3ivrLQGrTRqXyXOwZgMJId6xDbJYj5i2WrirW4=;
+ b=hF7E9D+yMZZ1mKdEY40jaU0KHhMoaJ7usV9LGKFiK9xd5CBPwhH0v1Y1
+ nSpeXSUQ8kvmPHg5ktj1fi1MgONwKD016L12bgf0zfKmYUJcazfVy1WN7
+ UED9NYUfnDwyb/QnjAmM0gVuDTh5I8CShupyjoGAW3dK4vxf5N0bcoGSg
+ xPEMGAiBMCTAe+cRIA0T2omQQSuTYhxK/vKUXZu8TOoCeQkq8oRbkX141
+ ymw0VUS/HH7sojHDrMPwakZiIwkHpgyganEUTwLYxZBVB4+Aw6DVGWl7O
+ fi71WeoKoi6jlZgWq5iPkpcrErth9xFXgwvje/7/QyxjctnZmV6k93r5c Q==;
+X-CSE-ConnectionGUID: +QlE2juNSc6WX1SD9RoY0Q==
+X-CSE-MsgGUID: vnTTY3lLTHuZGwW1BSTj/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29998144"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29998144"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 06:09:43 -0700
+X-CSE-ConnectionGUID: vW5n8xsnQR+WNDs5auGGvA==
+X-CSE-MsgGUID: 1c28ztoUTWeaTITZQ9Steg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,249,1725346800"; d="scan'208";a="83088007"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.196.144])
+ ([10.245.196.144])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 06:09:39 -0700
+Message-ID: <5aa82883-bc68-47d2-8e4b-120f760a8e11@linux.intel.com>
+Date: Fri, 1 Nov 2024 14:09:36 +0100
 MIME-Version: 1.0
-Subject: Re: [PATCH 08/13] drm/i915/dmc_wl: Allow simpler syntax for single
- reg in range tables
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] drm/xe: Move LNL scheduling WA to xe_device.h
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Badal Nilawar <badal.nilawar@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org,
+ John Harrison <John.C.Harrison@Intel.com>
+References: <20241029120117.449694-1-nirmoy.das@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20241029120117.449694-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,68 +74,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2024-10-21 at 19:27 -0300, Gustavo Sousa wrote:
-> Allow simpler syntax for defining entries for single registers in range
-> tables. That makes them easier to type as well as to read, allowing one
-> to quickly tell whether a range actually refers to a single register or
-> a "true range".
->=20
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+ping!
+
+On 10/29/2024 1:01 PM, Nirmoy Das wrote:
+> Move LNL scheduling WA to xe_device.h so this can be used in other
+> places without needing keep the same comment about removal of this WA
+> in the future. The WA, which flushes work or workqueues, is now wrapped
+> in macros and can be reused wherever needed.
+>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> cc: <stable@vger.kernel.org> # v6.11+
+> Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 118 ++++++++++----------
->  1 file changed, 60 insertions(+), 58 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/dr=
-m/i915/display/intel_dmc_wl.c
-> index 8bf2f32be859..6992ce654e75 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> @@ -54,82 +54,82 @@ static struct intel_dmc_wl_range lnl_wl_range[] =3D {
->  };
-> =20
->  static struct intel_dmc_wl_range xe3lpd_dc5_dc6_wl_ranges[] =3D {
-> -	{ .start =3D 0x45500, .end =3D 0x45500 }, /* DC_STATE_SEL */
-> +	{ .start =3D 0x45500 }, /* DC_STATE_SEL */
->  	{ .start =3D 0x457a0, .end =3D 0x457b0 }, /* DC*_RESIDENCY_COUNTER */
-> -	{ .start =3D 0x45504, .end =3D 0x45504 }, /* DC_STATE_EN */
-> +	{ .start =3D 0x45504 }, /* DC_STATE_EN */
->  	{ .start =3D 0x45400, .end =3D 0x4540c }, /* PWR_WELL_CTL_* */
-> -	{ .start =3D 0x454f0, .end =3D 0x454f0 }, /* RETENTION_CTRL */
-> +	{ .start =3D 0x454f0 }, /* RETENTION_CTRL */
-> =20
->  	/* DBUF_CTL_* */
-> -	{ .start =3D 0x44300, .end =3D 0x44300 },
-> -	{ .start =3D 0x44304, .end =3D 0x44304 },
-> -	{ .start =3D 0x44f00, .end =3D 0x44f00 },
-> -	{ .start =3D 0x44f04, .end =3D 0x44f04 },
-> -	{ .start =3D 0x44fe8, .end =3D 0x44fe8 },
-> -	{ .start =3D 0x45008, .end =3D 0x45008 },
-> +	{ .start =3D 0x44300 },
-> +	{ .start =3D 0x44304 },
-> +	{ .start =3D 0x44f00 },
-> +	{ .start =3D 0x44f04 },
-> +	{ .start =3D 0x44fe8 },
-> +	{ .start =3D 0x45008 },
-> =20
-> -	{ .start =3D 0x46070, .end =3D 0x46070 }, /* CDCLK_PLL_ENABLE */
-> -	{ .start =3D 0x46000, .end =3D 0x46000 }, /* CDCLK_CTL */
-> -	{ .start =3D 0x46008, .end =3D 0x46008 }, /* CDCLK_SQUASH_CTL */
-> +	{ .start =3D 0x46070 }, /* CDCLK_PLL_ENABLE */
-> +	{ .start =3D 0x46000 }, /* CDCLK_CTL */
-> +	{ .start =3D 0x46008 }, /* CDCLK_SQUASH_CTL */
-
-Many of these are probably actually ranges.  I'm not a HW guy, but
-these are probably blocks that need the wakelock and it just happens
-that many of those addresses are actually not used, but would need a
-wakelock if they were used?
-
-IOW, e.g. all these DBUF_CTL registers are probably in the same range
-that needs wakelocks (i.e. 0x44300-0x46fff)? Do we really need to
-define many of these individually?
-
-This is related to the previous patch as well, but I decided to comment
-it here because it becomes clearer.
-
---
-Cheers,
-Luca.
+>  drivers/gpu/drm/xe/xe_device.h | 14 ++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc_ct.c | 11 +----------
+>  2 files changed, 15 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+> index 4c3f0ebe78a9..f1fbfe916867 100644
+> --- a/drivers/gpu/drm/xe/xe_device.h
+> +++ b/drivers/gpu/drm/xe/xe_device.h
+> @@ -191,4 +191,18 @@ void xe_device_declare_wedged(struct xe_device *xe);
+>  struct xe_file *xe_file_get(struct xe_file *xef);
+>  void xe_file_put(struct xe_file *xef);
+>  
+> +/*
+> + * Occasionally it is seen that the G2H worker starts running after a delay of more than
+> + * a second even after being queued and activated by the Linux workqueue subsystem. This
+> + * leads to G2H timeout error. The root cause of issue lies with scheduling latency of
+> + * Lunarlake Hybrid CPU. Issue disappears if we disable Lunarlake atom cores from BIOS
+> + * and this is beyond xe kmd.
+> + *
+> + * TODO: Drop this change once workqueue scheduling delay issue is fixed on LNL Hybrid CPU.
+> + */
+> +#define LNL_FLUSH_WORKQUEUE(wq__) \
+> +	flush_workqueue(wq__)
+> +#define LNL_FLUSH_WORK(wrk__) \
+> +	flush_work(wrk__)
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 1b5d8fb1033a..703b44b257a7 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -1018,17 +1018,8 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>  
+>  	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
+>  
+> -	/*
+> -	 * Occasionally it is seen that the G2H worker starts running after a delay of more than
+> -	 * a second even after being queued and activated by the Linux workqueue subsystem. This
+> -	 * leads to G2H timeout error. The root cause of issue lies with scheduling latency of
+> -	 * Lunarlake Hybrid CPU. Issue dissappears if we disable Lunarlake atom cores from BIOS
+> -	 * and this is beyond xe kmd.
+> -	 *
+> -	 * TODO: Drop this change once workqueue scheduling delay issue is fixed on LNL Hybrid CPU.
+> -	 */
+>  	if (!ret) {
+> -		flush_work(&ct->g2h_worker);
+> +		LNL_FLUSH_WORK(&ct->g2h_worker);
+>  		if (g2h_fence.done) {
+>  			xe_gt_warn(gt, "G2H fence %u, action %04x, done\n",
+>  				   g2h_fence.seqno, action[0]);
