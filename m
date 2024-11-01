@@ -4,61 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3FA9E6B245
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 11:47:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11BB5E6B243
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 11:48:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9778710E9B7;
-	Fri,  1 Nov 2024 11:47:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MV2hDc+M";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBC6810E9B8;
- Fri,  1 Nov 2024 11:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730461676; x=1761997676;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=X8S0eKO7OEtk7uEtze88lcEDfJiOg0jgEvrEfL3DSlw=;
- b=MV2hDc+M5zeqihaYuC89a1h5CxyugfRmJo1vAT0jOqhomSH/Pk3fHnep
- Bt4VQXK3tTZpa4gPD4aDKZ7xtLqMhsWGhKO50jNjn77vqiUTqC1mHkg5a
- ugUs1sWwd/vXeUj6sh+QpXoX/4AaSdFsfzs1sJgTdVOkYZMxi67O4dD26
- gUlYb8/QlDBCHStuH3gQtTz6OZvShXd2OUz5nRWImRiKCVuJmyWjAKBOR
- v8k2YCrtt1UMon+bHgjmcP+mfh1mRs1LqeA49iJcyK8yTDgOdD+r7tiys
- hoJ0H4yQC0TNuERPFS+AAmSeVGonS697jnBq4EHYn+6vGKEC2pqWO6k+7 A==;
-X-CSE-ConnectionGUID: AAqS/qFESxKyoK7i76wYbQ==
-X-CSE-MsgGUID: AcCeTGQDS3y6onoiJeMdtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41324558"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41324558"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 04:47:55 -0700
-X-CSE-ConnectionGUID: 59GjTT1xTN2SzKDIjFD+3g==
-X-CSE-MsgGUID: TrgEMChUT5S95L+20ptetA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,249,1725346800"; d="scan'208";a="82626598"
-Received: from carterle-desk.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.239])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 04:47:53 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Paulo Zanoni <paulo.r.zanoni@intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org
-Subject: [PATCH v12 8/8] drm/xe: Increase the XE_PL_TT watermark
-Date: Fri,  1 Nov 2024 12:47:19 +0100
-Message-ID: <20241101114719.3225-9-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241101114719.3225-1-thomas.hellstrom@linux.intel.com>
-References: <20241101114719.3225-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDEFD10E9AE;
+	Fri,  1 Nov 2024 11:48:08 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB2010E9A9;
+ Fri,  1 Nov 2024 11:48:07 +0000 (UTC)
+Received: from 91-155-254-188.elisa-laajakaista.fi ([91.155.254.188]
+ helo=[192.168.100.133])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1t6q8L-00000001EUA-0mNV; Fri, 01 Nov 2024 13:48:05 +0200
+Message-ID: <1e8bd9159c588c6481edbb7e1b173dc0d60c8d00.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
+Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Date: Fri, 01 Nov 2024 13:48:03 +0200
+In-Reply-To: <20241021222744.294371-4-gustavo.sousa@intel.com>
+References: <20241021222744.294371-1-gustavo.sousa@intel.com>
+ <20241021222744.294371-4-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 03/13] drm/i915/dmc_wl: Check for non-zero refcount in
+ release work
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,43 +47,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The XE_PL_TT watermark was set to 50% of system memory.
-The idea behind that was unclear since the net effect is that
-TT memory will be evicted to TTM_PL_SYSTEM memory if that
-watermark is exceeded, requiring PPGTT rebinds and dma
-remapping. But there is no similar watermark for TTM_PL_1SYSTEM
-memory.
+On Mon, 2024-10-21 at 19:27 -0300, Gustavo Sousa wrote:
+> When the DMC wakelock refcount reaches zero, we know that there are no
+> users and that we can do the actual release operation on the hardware,
+> which is queued with a delayed work. The idea of the delayed work is to
+> avoid performing the release if a new lock user appears (i.e. refcount
+> gets incremented) in a very short period of time.
+>=20
+> Based on the above, the release work should bail out if refcount is
+> non-zero (meaning new lock users appeared in the meantime), but our
+> current code actually does the opposite: it bails when refcount is zero.
+> That means that the wakelock is not released when it should be; and
+> that, when the work is not canceled in time, it ends up being releasing
+> when it should not.
+>=20
+> Fix that by inverting the condition.
+>=20
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/dr=
+m/i915/display/intel_dmc_wl.c
+> index 8056a3c8666c..c298aef89449 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> @@ -72,8 +72,11 @@ static void intel_dmc_wl_work(struct work_struct *work=
+)
+> =20
+>  	spin_lock_irqsave(&wl->lock, flags);
+> =20
+> -	/* Bail out if refcount reached zero while waiting for the spinlock */
+> -	if (!refcount_read(&wl->refcount))
+> +	/*
+> +	 * Bail out if refcount became non-zero while waiting for the spinlock,
+> +	 * meaning that the lock is now taken again.
+> +	 */
+> +	if (refcount_read(&wl->refcount))
+>  		goto out_unlock;
+> =20
+>  	__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, DMC_WAKELOCK_CTL_REQ, 0=
+);
 
-The TTM functionality that tries to swap out system memory to
-shmem objects if a 50% limit of total system memory is reached
-is orthogonal to this, and with the shrinker added, it's no
-longer in effect.
+Oh, this was probably hard to catch.  I think this is a buggy leftover
+from my earlier implementations where I was decreasing the refcount
+only here.
 
-Replace the 50% TTM_PL_TT limit with a 100% limit, in effect
-allowing all graphics memory to be bound to the device unless it
-has been swapped out by the shrinker.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-index 9844a8edbfe1..d38b91872da3 100644
---- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-@@ -108,9 +108,8 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
- 	u64 gtt_size;
- 
- 	si_meminfo(&si);
-+	/* Potentially restrict amount of TT memory here. */
- 	gtt_size = (u64)si.totalram * si.mem_unit;
--	/* TTM limits allocation of all TTM devices by 50% of system memory */
--	gtt_size /= 2;
- 
- 	man->use_tt = true;
- 	man->func = &xe_ttm_sys_mgr_func;
--- 
-2.46.2
-
+--
+Cheers,
+Luca.
