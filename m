@@ -4,161 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D95E6F07D
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 19:15:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3034E6F07D
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 19:19:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 918A410E176;
-	Fri,  1 Nov 2024 19:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1A7710E209;
+	Fri,  1 Nov 2024 19:19:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E6G/aJN7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BIcHiv4i";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7E610E176
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 19:15:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EE5F10E209
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Nov 2024 19:19:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730488553; x=1762024553;
+ t=1730488770; x=1762024770;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=wvUFdIq0eeHUXiJQfw6DryWkheeFA+d7s0pPX9n4NIU=;
- b=E6G/aJN7+ORbaODkU7JFWgBQRo15xfeaXe/PyqmsTKxqrEL2xZgnAnIe
- 5B2vAJL7smd/fkIk+tAFEuCKGFDEUtBFDniTLK4ygW3i2AAPe0EsVh5xg
- 9i2jzagFz0skRkES9a7A8eiKugBM3Caf6KvOgv0MBBoxJfPDCtlSlfSwU
- eYiYf7nRfXnDPjMGBnLw5eA5H+DrXc+y+dV102nDjNS5qiTsUzxLYIF/j
- Fcg9Eg+XlJqn/qKtbV5DPWMkQAcM+URKF+VuPmv3FNp/KKgmR0tbuSj8m
- tWbavVPZAWmTf66C3J2a8/Hx1imFXxcDPb22mpqFuzT8T8ToKIo9U0oid Q==;
-X-CSE-ConnectionGUID: PU+pN4x4R1q4IME4w98Opg==
-X-CSE-MsgGUID: NdGsMIqLS8GPGEJu/HRpVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="41658796"
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="41658796"
+ bh=4W6i9D2fyZds9vQ1A1M2dcAUvg/98MBxPobBLC3miQg=;
+ b=BIcHiv4iL5JS0W233oMZ8rxGhZrNY97FeS91OaRAthgCnRINOE7Bi9ut
+ AU963TwqluoI+QrsWAOUpNhONQ3FEVpk2lcLvP839qYRXJFF3QryBhnwz
+ 9XSAqrzhbF7re5+a12eaU9u5n7auF+2Dp4SV24Fy4GgAz0d8D2GMd6Msk
+ YGjYBzS/rel1L0uY82UYSCojwrllOOl7SSYKu4EkeK3PpUgs+d33O0Rif
+ PswDGodMMQM7nt0/9TBmIAc8Z5SdCO8mqW9joE8rRO05PGPMYsRzRIo+m
+ hUHAjzdJ17JuflXKHivHUOiEZlfZBAM944nsmFwAzgTRoPOuQvxQRvLFF g==;
+X-CSE-ConnectionGUID: rDWHC+vxQXKzlsKYZQW+3A==
+X-CSE-MsgGUID: +fI5lxuGQ26q2fYt0CnbCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11243"; a="41659191"
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="41659191"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 12:15:53 -0700
-X-CSE-ConnectionGUID: RmSXyFccS7uk2Tg5nQd+lw==
-X-CSE-MsgGUID: OiIAu8+0SmGma+pILaBvLQ==
+ 01 Nov 2024 12:19:30 -0700
+X-CSE-ConnectionGUID: eodkdIxPRFyKrIT0E7NBAg==
+X-CSE-MsgGUID: 3RVRcqhrRrycapbQKhEHgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="83498229"
+X-IronPort-AV: E=Sophos;i="6.11,250,1725346800"; d="scan'208";a="83500093"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
  by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Nov 2024 12:15:53 -0700
+ 01 Nov 2024 12:19:29 -0700
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 1 Nov 2024 12:15:52 -0700
+ 15.1.2507.39; Fri, 1 Nov 2024 12:19:28 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 1 Nov 2024 12:15:52 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 1 Nov 2024 12:19:28 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.42) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 1 Nov 2024 12:15:52 -0700
+ 15.1.2507.39; Fri, 1 Nov 2024 12:19:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tL5W40nwxNHVqodwb2bb7vIhOVdxN6pWfFE4RStNIIPyvgGueA7dQheBDkb/pIGogKqjNYr+j7KWlcI28IlO27xvLyhPACLStLbmsPRreUKlqhaMtO16LD6PqtQuIVKVTozgEUCOk/zkUM7cQOpIt/I3eiyi8AINYausDSb65IcUzlLUnfpP/kygGSamPwVPphKSQV6UKK+xEuDtOogINC/shlGMQ6nvpWlwoOSYRywNluIFOaKGk0KFwa5r0RA3sJ1fnHtxD72h05qf2Hhwr/q64pmQamUIn8apltSNSpyl3achclW7VKZ9O7BvRGEbVonp5INli1rloGgHU8v0mQ==
+ b=s9DMBXmPxjIuU3zy55JtASxzvclHKKvsQO40LMfu4mZ+6ihcIfuvFzamCYYF8J8prxbbIBUVQi/viB1/UzVrQkNbh431KYNcfEh1msnHxhFj5aW5jpHkd5Wzx2IDGlke3ItG8ijeSOdE2kZ4gBo1iGbsssqo9xzaAQ4QZGJeQ1aC5xHueHFBOPe3kitJ3vDbVgh2tF9j5wWdxJTWcGxVF91BXe3vDmaB3C58bBEQflFlJIOh/GREsueQcNIdfn1KZ0wHbwfCbpmbH/9zrsqYBsIQx/42uxaw0C0g9cUtg3xWeQWAqLuUd4KTcmcxCmEzYcMo6Tc0vOU6QUt6IbUjog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kRbgUw0nbCMrBmch/ztlu7+V2egxbszpWFe91rkB10Y=;
- b=wUnKR2C3pt+S2HLuzmpU3Gc9Ed0P+1DUAnvOs3D5f/A1sPASvXbnW2ah6ZNRP1yAZCdy08MHGn77TWFWyOov+fFbVCM68BNTcxwd+8imMthqNJrsFE1INQAuWGk2aSWqySe7WEwVrjYagG9SRFGvwfMh3R+j4aqygiMFqSHLWz+WQan4XBrDcIi58mzlhFPpwVd7jRuka6D2j0YNyUkZhIUH9N5AQemmtEWlFVBrQoW/rhNfVtsmSZ0Bt3LxjXSx+x/BW9P0U/+Fx6uX/rGQTvBExmNLP0wxYLN7hmHHsbVd8I8jS/Zl/nufT3/HFkzicXWmDtJtzjF3mqZkliWz7g==
+ bh=KsxxlH81iTQgkdXiwSyt0r2DOXaxKD2ojdgzvV3ws+Y=;
+ b=JVyfTBh2oKxW4a2M31D2EHBIqm+ARUecHukTfq4Pn4bP6JUBktOYV4zTBg8P4U8dTvRLmPunnXnq66x07GorKPOCX/jhhPPmcYRnJqYtB0q4z5WempEk3ZtH+BQ2q1K2+E9JbvcjD1JSbTbgVjnkICuQ54lHEqS+NzSZN810CMCX/HLvw98dJgC7Y7Rpd6lsoaGaxysmgHwQEw8yKivjaalF+sSCjb/78heTKrdAvWFfb36fT0fXIHHuZfZn7ghextgf6RaqDt2QHcbUF3eNX4civbLg5RWKZOBJ+VTFrdkyGqv+1PbszPrzw17QCIChoXHIhR8hPcjEQ1xKCik/yA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA0PR11MB4573.namprd11.prod.outlook.com (2603:10b6:806:98::20)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by IA0PR11MB7791.namprd11.prod.outlook.com (2603:10b6:208:401::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.23; Fri, 1 Nov
- 2024 19:15:49 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8114.015; Fri, 1 Nov 2024
- 19:15:49 +0000
-Date: Fri, 1 Nov 2024 12:16:19 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>,
- <stable@vger.kernel.org>, <ulisses.furquim@intel.com>
-Subject: Re: [PATCH v2] drm/xe: improve hibernation on igpu
-Message-ID: <ZyUpAwD3jzlW+hbA@lstrano-desk.jf.intel.com>
-References: <20241101170156.213490-2-matthew.auld@intel.com>
- <o3edyxjyz4fd5n53dmi2hntoacioufr3rqelxpn5mkbp6vvaue@v4nxwlz6gpte>
-Content-Type: text/plain; charset="us-ascii"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.32; Fri, 1 Nov
+ 2024 19:19:25 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8114.015; Fri, 1 Nov 2024
+ 19:19:25 +0000
+Date: Fri, 1 Nov 2024 14:19:22 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+CC: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, =?utf-8?B?Sm9zw6k=?= Roberto de Souza
+ <jose.souza@intel.com>
+Subject: Re: [PATCH 1/2] drm/xe: Improve devcoredump documentation
+Message-ID: <dpxgkdqk4xlqfezu2xdig63di2nbsim3einoyf4uqytygfxttx@n32pwkzfpg2y>
+References: <20241031182916.1441987-1-lucas.demarchi@intel.com>
+ <20241031182916.1441987-2-lucas.demarchi@intel.com>
+ <ZyRrisQfc_59rrK-@black.fi.intel.com>
+ <4kw2zzb76m42zbisvsy2fu52q2litchy6dfl4hyrmvze5u5dvk@hjs2pdynjemd>
+ <ZyTutrXXD73sofRo@black.fi.intel.com>
+ <49fb16e0-8cf9-4d2c-b783-1ad851bf9dd0@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <o3edyxjyz4fd5n53dmi2hntoacioufr3rqelxpn5mkbp6vvaue@v4nxwlz6gpte>
-X-ClientProxiedBy: MW4PR04CA0214.namprd04.prod.outlook.com
- (2603:10b6:303:87::9) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <49fb16e0-8cf9-4d2c-b783-1ad851bf9dd0@intel.com>
+X-ClientProxiedBy: MW4P222CA0027.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:303:114::32) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4573:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc19d3f6-c865-41e2-b9c2-08dcfaa99856
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA0PR11MB7791:EE_
+X-MS-Office365-Filtering-Correlation-Id: 085abff5-79cf-4fb4-a7ff-08dcfaaa1934
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bhIGsRT9EnYhs4pURanGQYYx39DeUiunpM3KUcQ9j1xws680IexDkpxtiinf?=
- =?us-ascii?Q?uPg7Y6TO/A52GT0/4hE0TVB8Oa1HOpLcGRKWk9oHvkOEQzozDh5rvUTVjiUC?=
- =?us-ascii?Q?cirnsAHHa900GO3o3QoRWkhuij4n4BxhoekkRf9LqfRSCW8tw/f1AHE/Boto?=
- =?us-ascii?Q?AiUDhlt9XAkLt4WiYckeDzaiud3LYjFvZtYCKUTDJSwvVVSVGngbOqT2aWW5?=
- =?us-ascii?Q?heuV8bmM/WRzMhxbCv29BJBD72TS5oBubMvgSLM9hJW3GlrQuWQnXFV0AbFD?=
- =?us-ascii?Q?H4d6x3Hl6YYuKmc10VS9eAZwO6FZYGI7NfLh1b+8bB5EokFS/kECz43ruOIF?=
- =?us-ascii?Q?RWHm2OQF137uHqHb7n3viHHIrY8Eu4jDmar9rv+jpmC9P2y1kIGYxm7US7iy?=
- =?us-ascii?Q?4KIg0Q2y09aU7xQ1uGnfldVwDgV6o7IkWVaN1kdfh609Gav12ATmv4Cb7Oei?=
- =?us-ascii?Q?daJlgNz3ULglJGiuv7/f0tf4cJXtJSVEOZPmc7yHrA/s4jm/di3rAKVwBADa?=
- =?us-ascii?Q?I7bJxjXk9Qn21hnUo9adk8cDlsi2Je0erFhh7MdxAn5ohewAi1Nd0nftV3pP?=
- =?us-ascii?Q?D/LFk+gZKdcmJDD6LB3PdLvc6Na59z0xe5ywLa5bJJkKJ624J5MvXJ4XCeoE?=
- =?us-ascii?Q?3Pa4mK8mjvxkVrK0S5+Ovz0WfjrzCEILuvkWFyeqo4oVO/U7fUshHt+aGyFv?=
- =?us-ascii?Q?SIeUH2j2X72DuS7JquE5pj62EJhw5w047IndQQF6UO6AZ6pHEaVO+M2bo8HS?=
- =?us-ascii?Q?5k4yWqGYcZ0xCZGPMWWv2r+rghjNhE5AW8YekMYiSp9Pap/e91BthMtb7zh6?=
- =?us-ascii?Q?m2rzS60+kNlEFn7ziN8+BpH5H6+1phDt2pvtIDs0+ik3XV5eMym/ML/9ytMn?=
- =?us-ascii?Q?bBNjI4E9UXWvC/fZ+A3/kb63KH8b+AN6ZKQQs0dQPc1ckBO6uc2I18ihnmEU?=
- =?us-ascii?Q?a3HhIpahyj+VoBiHMPwqHhncXbMmZKxVi+BXdr7K9lMgz89JZ3jWS+NanOT7?=
- =?us-ascii?Q?YbWhtC3N9fyoNvb+j1CbPMx3eYYcToMAB0GiEW2WcDxSjxBzfSgmTqlnMYOF?=
- =?us-ascii?Q?Ew61NUAr48PzCQqDrQVSEsJdJcuLuiSeN86/ylYYyx05IPivX+gCyqwAZYot?=
- =?us-ascii?Q?pZcDdIjJlw8HBjxTnUzhYuBeDIAWoFMQn47ztY5p4mFnVcf++oPzNzFY2icz?=
- =?us-ascii?Q?6C9s4JOXZy29KiTbpFlTnkYYF6T843ZkzBlStX2EapPSvX41rqssruE5Z+bX?=
- =?us-ascii?Q?+yXE9+OYnvcQLVWZPCkW?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3O9mxVZiafroKtYdxkq1w3LAZ0O/G0f1YLNXOB7YGOp+0UFN51Z+dZFO6ZXV?=
+ =?us-ascii?Q?+GOOndSNdq2ZfmKjhkM/0KkICBpJn9Dv4msfukiZPQN7O3PoNKAHV3z9QDfE?=
+ =?us-ascii?Q?ew3KPgpO423BJY/s/6VXBPK0xMQ0oITarbKQ357KwtGl91o3jL7eL2We3/tD?=
+ =?us-ascii?Q?ucusxxO7kwnoDXH7TOyH1HBCqDBs9yzchTyQafWM/dI1NngPUBMNR92aIufS?=
+ =?us-ascii?Q?LtyjCEbbozMv+96Np04Gy3cE01gUF2i9ja+HfolWLzaETQQsSq5c799ufSSS?=
+ =?us-ascii?Q?+gHWjF7bJjLUPQQibH38VUjf8OdUZFqAlp5m9kLMgFTrL0uUK8It17kCzwHM?=
+ =?us-ascii?Q?V/qiOV7jG89Bw8zUi1sf8tMkQDhF3Ojo5pB9zj8U1YOHpG3tic3MxZ9g0ApM?=
+ =?us-ascii?Q?lKU17yebqCnTcu2WfGKPqOFWxXlDXfjgHU4t05TGA2Y2OrKkbgsZasUh0N1h?=
+ =?us-ascii?Q?nAM/x5h5OP8VjOC/gNYc5+adpXFNoq/TOXnAx0ajEsxHTdF7yTQoz+6omiB+?=
+ =?us-ascii?Q?Rony3gx3xGDSdLdmz6BNTjdfbJiJ+s9tZuKeZHwcHNjcBdZ3hmDJ/1qN8TIW?=
+ =?us-ascii?Q?jUS7ss0q3TMNAU4H5dmL1q+3J+3e0+CssuGjIVD8AShY4U7FXK3n1KoahoJi?=
+ =?us-ascii?Q?31mtPxX0a8sxpqmMBWuvExYCOMq2iB9qRp9TyJHzvkorrJMFwINO++OQ9e1F?=
+ =?us-ascii?Q?jwbw2TogcsGDcKJPr9a7lGoDu/IHbGH2jm7IadygjIJRR3+HUMdvT6rUKypL?=
+ =?us-ascii?Q?EcRZ9vPEoGn9m2QrLiaZg5b8raoGyd7d8bm7dDILFDGkQE/gOlG2qSLxSJ0U?=
+ =?us-ascii?Q?jvxIFn77yoxNzQhuba1WzBSh72hk99ywiy7SCxmVYYjuMh4ucLv8jemwcV2f?=
+ =?us-ascii?Q?1fVpF/TsM4ZEWbKIOazvJxLPQvtZh3MUcDhw1KuoHZn2TCFX1Q2ONF6bhkXL?=
+ =?us-ascii?Q?N0bopvL2nofAXqkKXbHlhHd1OHXx4bWBtE6EC2cRbo5VGntY7X52rshL7Lrt?=
+ =?us-ascii?Q?JJf/zS68HwuGaWMX/xSMqCB085EXw2LNIKuygw+KsEL28Nmr/g0F1fUh/QJV?=
+ =?us-ascii?Q?ODmYUeaYHLzl/QVab4Dn1oaygDHzOCB5UevmXAW6uLDboHeZu7eX/nC9hjdM?=
+ =?us-ascii?Q?Cil6a2yQgUU19QWEtTDOqunbFG5TZ9CXGbukM5Gc/EoV5go9oV6+QRigDTbL?=
+ =?us-ascii?Q?w5NSkgqT2uzlS5zXxzuZk5drHLxsxKBYmQAGXONoozIs9t+jTaon6EycJqmV?=
+ =?us-ascii?Q?JQvDr5lLjxZrm0b0CHx6g4gnTcXjY5X7ttudeRAw+JzrcNgD7u9wIb9A8QD+?=
+ =?us-ascii?Q?H/w4y35DlqIGCHs+ZX0B7/lt?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LjJSZtU8HqBgQxouYKwTc9dq6HN25fxShjhKiMQSDy9lHizkbnnIsikDuDlp?=
- =?us-ascii?Q?eaOoQhLOVdOUcDODM3PuUABD9i4t/NocAjnSmVXvxGIYqUPo+9XDRMJZ77d6?=
- =?us-ascii?Q?kPblvXpXT8jJD0bb0mOnEipV2/6r2MB2+DPHETDpCrQdckocum/I7t6ScNzd?=
- =?us-ascii?Q?xoa2mu/ezNtsJpT7ZCeAeiZJhZaY6HdQ7/u0iFmPKTZQXiXGLhs/NBag13z6?=
- =?us-ascii?Q?uUaSx7eUNPUJEXy/v9/cbqRBZEuCi/ZlbN3kFddheJGD5dJIU2Swp37/rSus?=
- =?us-ascii?Q?whoZrQZA7b/u7VXfGgn/6GmrKpt9DhaSoCycPxtWzsy+GajdYwwM2WEaETqx?=
- =?us-ascii?Q?pDgOudKC7aX6bpi8Q4G1jBYWyUwzplk6E1pbKwsFX4L+MXWBoaefuBsjVXEN?=
- =?us-ascii?Q?jn4+mr68LPu7nUvIneNyuWlTSa8aj90qd2fh+kz2UTq+DGQJRigSsWoaQcD5?=
- =?us-ascii?Q?ytPA09fbbN1Owjx4e0wjFVWBy6YekzFHq4bw9kOZb3WxtAsAdSLw/fzzpFAQ?=
- =?us-ascii?Q?A9g4kXRoLeN7Kk7H072jPMawzkdQ4zrA3ou03wMwjhLn4HL1MMHwJ5GeuZ8T?=
- =?us-ascii?Q?5HgkkSfzQLykU5pobDGwsV/mrryXZztdNm0fds4uyZc5ujTTsM7U9kBxFUJb?=
- =?us-ascii?Q?uEorcoPLrPsHKwQXo/WJFrT9OqRehKmIOhINh8YJy0QsacMecAD2k73ml8G9?=
- =?us-ascii?Q?ExyYGZlu50U3Bsktb0J+xwdATVYyLYfxMX6BxvmZGKNdbrPeCf0/z+LOD1Dp?=
- =?us-ascii?Q?/3Yu+v4rU6qNKjgBlPDqd1o0ETyK7Ow35hyM4uMRIpzy/WBSVcZrrp1a/zlk?=
- =?us-ascii?Q?A3jLmx57cjXTt1H+bRI2aJi05fI8nqrbyQCg1zq189pwnh5hcb61vtSn81+8?=
- =?us-ascii?Q?r4hGBqvhkABH0sUZV08JNbR6YEBCl1UgGrtPjPRDCEmzFd6WAT/0QZf8r07s?=
- =?us-ascii?Q?G6HdWwAq7s8fW6t0FJof6vKSdwQN4XpTkZSLVrXyK9hFBXvGhJ2/IZvVKn1A?=
- =?us-ascii?Q?4nRR90h2AORHUpiTAAR+tmVo2BpXdbPvtC/K5ddk+Xpdifh8rrwOWL6zTKCI?=
- =?us-ascii?Q?uarjHm+0XFBHG69sRaOyGay/D0C4EOtm7Vauh8AruJ9JMXS3eYOnR0FvAu1y?=
- =?us-ascii?Q?x80bpQmvdaQUSrp3QkpQRDRzZEDF6tsEXL2zR4Q7xyvNh0JhUBb20hSJU4X6?=
- =?us-ascii?Q?GE28R4fD9QfVsksyjojC+GHoFFvY9cZuMGrq7fZ/nkGiAZOGfkppXn2jPtyJ?=
- =?us-ascii?Q?YPfB9kZlEhMaMNXHDA/zW99zgWVrVcGEWL+DesvtcXqoj1+q3IXGDoqr9Wbe?=
- =?us-ascii?Q?C7hNd1gVAA2CpngYCBuat0Dih+SD5ZNuyacLC/oiVvz26bIqNIHSCuWM0vbx?=
- =?us-ascii?Q?Qtx/e9G0buw4A75iauo+slMKo0TRVT8hxIUeglF+7X0PTuxFyi3idvv/JktG?=
- =?us-ascii?Q?vI66Jh5dUgg16J4aeeEnuD8CSdOz3ZebevHXlLTU2t9W+nN5q+fP37iKRb9O?=
- =?us-ascii?Q?fptLYOxSFEBeVaDeJE9FA6SMTDpru5ycxqYO8Y8H+5nhaRuMr0wYNFHS63G/?=
- =?us-ascii?Q?385QNCS5mvx+BZTK5zie62oGMzxlX+4fILOrrshN5Ni4TPKGT4+Tvfz0cZ2o?=
- =?us-ascii?Q?MQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc19d3f6-c865-41e2-b9c2-08dcfaa99856
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lVf8wmN/uTzz51rg2exd0M5AInrX5gfvWwqWzRQgpiwEf2vtdHHhecuGze/j?=
+ =?us-ascii?Q?WyRlqRCV4Z+x7gbBfWgeTXkgakRQs/rdJ64bdLKoOacJRzHeGav7YwUMavRa?=
+ =?us-ascii?Q?76I2rW70vLuYuHxN3KBQMun1tkRdGzNfLE/VnLP59LfadC/35mxoYD1UOPkF?=
+ =?us-ascii?Q?ZQnXm0onDqNWEP3ki4wWpsZVtQZyRObysW6D+L8fUviKEc3keqH0ZvBhyr1m?=
+ =?us-ascii?Q?1rrlcaqRScl7G7/jaIJVmS+nirtp3EOX9lBV6Td/RED3Helui68Q/IS41kge?=
+ =?us-ascii?Q?j/ied4LhANmTyC8dnPoVQ6Lw5q6JKKiOn9tfukv8oETGDZU0u09JP4heHtkB?=
+ =?us-ascii?Q?XKLQpV2HhqQg8tls4jrvHjMOFVw4hp0lhuJdGPaCE5rWVQga3nvPAa8yoflI?=
+ =?us-ascii?Q?NyakVqtCmGQHR4SXGGdnteEOrjiHq/mC3wr0sjd5+DkQJDE3j7VvIqxsKUbm?=
+ =?us-ascii?Q?qRdo+3KoegGYPZ8WLw5tV5VC1WtBtojVeJEMdpSWI0DVWqtq+uyTvdVL+O6J?=
+ =?us-ascii?Q?tbkLVIR2hzFQhMA8ObunTJKwJwCmEj/45ZlH9XEu8LIqd3OKuOVk+pRs0+ls?=
+ =?us-ascii?Q?WxkkCm6IRLEu9GvrRQPH3hGlkIZIkZD2y/T0241dKgOFpw3nWp3F4+c5MhoZ?=
+ =?us-ascii?Q?0xt+rIMQm7tg7vEioFUBCyYZdKv/J7Vd0Aa30GUnM5eqG3Tuph9xEH1U8//5?=
+ =?us-ascii?Q?Tcj+7yST/5JPE3dWcLajnZADhQTTblxBrcNu4NpV46w792EEnl9AINFbjeUC?=
+ =?us-ascii?Q?b6D1nIlVmNt6jHue6Lfdgxoqg/e3mHMJlX0tCd1C72Ts6fnUygVgluB00YLJ?=
+ =?us-ascii?Q?Pqh7WvV8jfffsEyCiZfsRVsJBoEjYxl7Lr0PPrlsVKSjdyKTfCwAhthtAhaZ?=
+ =?us-ascii?Q?jFcQAqcwwEs4UgyXbsfZBLvS8k6RsWtaiGpqTR+XuyHGu0ryAK92/kMNxpsj?=
+ =?us-ascii?Q?9JabJatFF8ooyu1qb7wCtK0DW57WaoOmVnkrs6/bhWzia+PBIc2Vx+lldAU7?=
+ =?us-ascii?Q?+jCo1YZzXwpZPjpZZJH+nXYuDRl+m81MGG9CSSnRvWrehDVcKn4gtOrGJf0Q?=
+ =?us-ascii?Q?vwISj0ssvJGmMdIho9ZsGsJSWBrXYBRiaU1aF4U4RybyHn/tcIbdv4qKz/ln?=
+ =?us-ascii?Q?TmBHFltSoMIKtxp5zcZS5YRXR7OJm1gqkftcjPH99wKA+SOrCvG2T9Gx1L/P?=
+ =?us-ascii?Q?OOghXtMTj7JmVsVz4etliNtIfoRTli45bmdC9wfnttEG4EC1Hp/2dWDJE/tb?=
+ =?us-ascii?Q?efkelqQlUKXKqe4HJT1F9jF7E7MO7Ow/aJdP8ljT6Y5H0ZkH08cHSmGEBaCS?=
+ =?us-ascii?Q?BJjBbRy9jZVOGZRoj5Oj5h5fjBkwWtTtwpsUYq0UzCaMpdTWoNleq02H/6qy?=
+ =?us-ascii?Q?+a1VE2VMHLgE8wfkQsCtnSr+L31tRcnJKp5CdTy0zeY/YLCLLAYq2IP2NaYX?=
+ =?us-ascii?Q?VYSSPDcvTn04Y8JIhUXHxfwgYcPnl8ZltGg0FqpJ5vfwfQkYdMr/vf7gYm5K?=
+ =?us-ascii?Q?03s9teLf4bCYuglgaDZTABTnB+lxxPqCtlm84BQtjo3Q+yoEj2xoJmIDoLMc?=
+ =?us-ascii?Q?6Xc64whs6C2FTeDB97ky6xVdLwTJBOJ9jwRlvHIlbGZnDkuMCTx++Lz4i8Xq?=
+ =?us-ascii?Q?CQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 085abff5-79cf-4fb4-a7ff-08dcfaaa1934
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 19:15:49.3853 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 19:19:25.6367 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: puazDSyPeV6howqcCyt/V/YyOa618tlCNGt9nBQQMXuku4M7XFmuSq6KG581rphfrB5BRfNYxi74+VQJWjq+1g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4573
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2Vrble+R2vo7NvN0yLPv4ZAYsIMv8DPim89xH7fnAm+bgHIL5XPw0SGKj7idnImq4/oJsm+NT4MDXSnDGJb22jqW/z1sYTeW0dsEcAq/DQI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7791
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,209 +180,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 01, 2024 at 12:38:19PM -0500, Lucas De Marchi wrote:
-> On Fri, Nov 01, 2024 at 05:01:57PM +0000, Matthew Auld wrote:
-> > The GGTT looks to be stored inside stolen memory on igpu which is not
-> > treated as normal RAM.  The core kernel skips this memory range when
-> > creating the hibernation image, therefore when coming back from
-> 
-> can you add the log for e820 mapping to confirm?
-> 
-> > hibernation the GGTT programming is lost. This seems to cause issues
-> > with broken resume where GuC FW fails to load:
-> > 
-> > [drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 10ms, freq = 1250MHz (req 1300MHz), done = -1
-> > [drm] *ERROR* GT0: load failed: status: Reset = 0, BootROM = 0x50, UKernel = 0x00, MIA = 0x00, Auth = 0x01
-> > [drm] *ERROR* GT0: firmware signature verification failed
-> > [drm] *ERROR* CRITICAL: Xe has declared device 0000:00:02.0 as wedged.
-> 
-> it seems the message above is cut short. Just above these lines don't
-> you have a log with __xe_guc_upload? Which means: we actually upload the
-> firmware again to stolen and it doesn't matter that we lost it when
-> hibernating.
-> 
+On Fri, Nov 01, 2024 at 11:39:59AM -0700, John Harrison wrote:
+>On 11/1/2024 08:07, Raag Jadav wrote:
+>>On Fri, Nov 01, 2024 at 07:44:37AM -0500, Lucas De Marchi wrote:
+>>>On Fri, Nov 01, 2024 at 07:47:54AM +0200, Raag Jadav wrote:
+>>>>On Thu, Oct 31, 2024 at 11:29:15AM -0700, Lucas De Marchi wrote:
+>>>>
+>>>>...
+>>>>
+>>>>>- * Snapshot at hang:
+>>>>>- * The 'data' file is printed with a drm_printer pointer at devcoredump read
+>>>>>- * time. For this reason, we need to take snapshots from when the hang has
+>>>>>- * happened, and not only when the user is reading the file. Otherwise the
+>>>>>- * information is outdated since the resets might have happened in between.
+>>>>>+ * The following characteristics are observed by xe when creating a device
+>>>>>+ * coredump:
+>>>>>   *
+>>>>>- * 'First' failure snapshot:
+>>>>>- * In general, the first hang is the most critical one since the following hangs
+>>>>>- * can be a consequence of the initial hang. For this reason we only take the
+>>>>>- * snapshot of the 'first' failure and ignore subsequent calls of this function,
+>>>>>- * at least while the coredump device is alive. Dev_coredump has a delayed work
+>>>>>- * queue that will eventually delete the device and free all the dump
+>>>>>- * information.
+>>>>>+ * **Snapshot at hang**:
+>>>>>+ *   The 'data' file contains a snapshot of the HW state at the time the hang
+>>>>>+ *   happened. Due to the driver recovering from resets/crashes, it may not
+>>>>>+ *   correspond to the state of when the file is read by userspace.
+>>>>Does that mean the devcoredump will be present even after a successful recovery?
+>>>yes.... if it's not succesful then it's moved to the wedged state. Easy
+>>>way to test is running this:
+>>>
+>>>	xe_exec_threads --r threads-hang-basic
+>>>
+>>>You should see something like this in your dmesg:
+>>>
+>>>	[IGT] xe_exec_threads: starting subtest threads-hang-basic
+>>>	xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=rcs, logical_mask: 0x1, guc_id=34
+>>>	xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=bcs, logical_mask: 0x1, guc_id=32
+>>>	xe 0000:00:02.0: [drm] GT1: Engine reset: engine_class=vcs, logical_mask: 0x1, guc_id=18
+>>>	xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=34, flags=0x0 in xe_exec_threads [2636]
+>>>	xe 0000:00:02.0: [drm] GT1: Engine reset: engine_class=vecs, logical_mask: 0x1, guc_id=17
+>>>	xe 0000:00:02.0: [drm] GT1: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=18, flags=0x0 in xe_exec_threads [2636]
+>>>	xe 0000:00:02.0: [drm] Xe device coredump has been created
+>>>-->	xe 0000:00:02.0: [drm] Check your /sys/class/drm/card0/device/devcoredump/data
+>>>	xe 0000:00:02.0: [drm] GT1: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=17, flags=0x0 in xe_exec_threads [2636]
+>>>	xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=32, flags=0x0 in xe_exec_threads [2636]
+>>>	xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=ccs, logical_mask: 0x1, guc_id=27
+>>>	xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=4294967169, lrc_seqno=4294967169, guc_id=27, flags=0x0 in xe_exec_threads [2636]
+>>>	[IGT] xe_exec_threads: finished subtest threads-hang-basic, SUCCESS
+>>>
+>>>
+>>>If you run it again, it won't overwrite the previous dump, until user
+>>>cleans the previous dump or the timeout on the kernel side fires to
+>>>release it.
+>>Yes, which I think we're covering at later point in "First failure only".
+>>So maybe establishing the mechanism itself before explaining reset/recovery
+>>would be a bit neater...
+>>
+>>> From a distro-integration pov, I think it should have a udev rule that
+>>>fires when a devcoredump is created so the dump is copied to persistent
+>>>storage. Just like it happens with cpu coredump (see systemd-coredump)
+>>>
+>>>>Perhaps moving the 'release' part to above paragraph will add required context.
+>>>not sure I follow. Are you suggesting to swap the order of "First
+>>>failure only" and "Snapshot at hang" ?
+>>... in whichever way you think is best.
+>Note that 'snapshot at hang' and 'first failure only' are totally 
+>separate concepts. And neither explains the release mechanism. 
+>Reversing the order of the descriptions would be incorrect, IMHO.
+>
+>The point of 'snapshot at hang' is to say that the universe continues 
+>existing after the snapshot is taken. It is not just that the driver 
+>recovers but that it keeps processing new work. In an active system, 
+>it is extremely unlikely the system state (hardware or software) would 
+>match what is in the snapshot by the time the user is able to read the 
+>snapshot out. That has nothing to do with when or if the snapshot is 
+>released, nor with how many snapshots are taken.
+>
+>The point of 'first failure only' is that only one snapshot is taken 
+>at a time. If there are multiple back to back hangs then only the 
+>first will generate a snapshot. Further snapshots will only be created 
+>for new hangs after the existing snapshot has been 'released'. And I'm 
+>not seeing mention of how to release the snapshot? It would be good to 
+>add a quick comment about that.
 
-The image is always uploaded. The upload logic uses a GGTT address to
-find firmware image in SRAM...
+does this look better for y'all?
 
-See snippet from uc_fw_xfer:
+  * The following characteristics are observed by xe when creating a device       
+  * coredump:                                                                     
+  *                                                                               
+  * **Snapshot at hang**:                                                         
+  *   The 'data' file contains a snapshot of the HW state at the time the hang    
+  *   happened. Due to the driver recovering from resets/crashes, it may not      
+  *   correspond to the state of when the file is read by userspace.              
+  *                                                                               
+  * **Coredump release**:                                                         
+  *   After a coredump is generated, it stays in kernel mmory until released by   
+  *   userpace by writing anything to it, or after an internal timer expires. The 
+  *   exact timeout may vary and should not be relied upon. Example to release    
+  *   a coredump:                                                                 
+  *                                                                               
+  *   .. code-block:: shell                                                       
+  *                                                                               
+  *      $ > /sys/class/drm/card0/device/devcoredump/data                         
+  *                                                                               
+  * **First failure only**:                                                       
+  *   In general, the first hang is the most critical one since the following     
+  *   hangs can be a consequence of the initial hang. For this reason a snapshot  
+  *   is taken only for the first failure. Until the devcoredump is released by   
+  *   userspace or kernel, all subsequent hangs do not override the snapshot nor  
+  *   create new ones. Devcoredump has a delayed work queue that will eventually  
+  *   delete the file node and free all the dump information.
 
-821         /* Set the source address for the uCode */
-822         src_offset = uc_fw_ggtt_offset(uc_fw) + uc_fw->css_offset;
-823         xe_mmio_write32(mmio, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
-824         xe_mmio_write32(mmio, DMA_ADDR_0_HIGH,
-825                         upper_32_bits(src_offset) | DMA_ADDRESS_SPACE_GGTT);
 
-If the GGTT mappings are in stolen and not restored we will not be
-uploading the correct data for the image.
-
-See the gitlab issue, this has been confirmed to fix a real problem from
-a customer.
-
-Matt
-
-> It'd be good to know the size of the rsa key in the failing scenarios.
-> 
-> Also it seems this is also reproduced in DG2 and I wonder if it's the
-> same issue or something different:
-> 
-> 	[drm:__xe_guc_upload.isra.0 [xe]] GT0: load still in progress, timeouts = 0, freq = 1700MHz (req 2050MHz), status = 0x00000064 [0x32/00]
-> 	[drm:__xe_guc_upload.isra.0 [xe]] GT0: load still in progress, timeouts = 0, freq = 1700MHz (req 2050MHz), status = 0x00000072 [0x39/00]
-> 	[drm:__xe_guc_upload.isra.0 [xe]] GT0: load still in progress, timeouts = 0, freq = 1700MHz (req 2050MHz), status = 0x00000086 [0x43/00]
-> 	[drm] *ERROR* GT0: load failed: status = 0x400000A0, time = 5ms, freq = 1700MHz (req 2050MHz), done = -1
-> 	[drm] *ERROR* GT0: load failed: status: Reset = 0, BootROM = 0x50, UKernel = 0x00, MIA = 0x00, Auth = 0x01
-> 	[drm] *ERROR* GT0: firmware signature verification failed
-> 
-> Cc Ulisses.
-> 
-> > 
-> > Current GGTT users are kernel internal and tracked as pinned, so it
-> > should be possible to hook into the existing save/restore logic that we
-> > use for dgpu, where the actual evict is skipped but on restore we
-> > importantly restore the GGTT programming.  This has been confirmed to
-> > fix hibernation on at least ADL and MTL, though likely all igpu
-> > platforms are affected.
-> > 
-> > This also means we have a hole in our testing, where the existing s4
-> > tests only really test the driver hooks, and don't go as far as actually
-> > rebooting and restoring from the hibernation image and in turn powering
-> > down RAM (and therefore losing the contents of stolen).
-> 
-> yeah, the problem is that enabling it to go through the entire sequence
-> we reproduce all kind of issues in other parts of the kernel and userspace
-> env leading to flaky tests that are usually red in CI. The most annoying
-> one is the network not coming back so we mark the test as failure
-> (actually abort. since we stop running everything).
-> 
-> 
-> > 
-> > v2 (Brost)
-> > - Remove extra newline and drop unnecessary parentheses.
-> > 
-> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3275
-> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.8+
-> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > drivers/gpu/drm/xe/xe_bo.c       | 37 ++++++++++++++------------------
-> > drivers/gpu/drm/xe/xe_bo_evict.c |  6 ------
-> > 2 files changed, 16 insertions(+), 27 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > index 8286cbc23721..549866da5cd1 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -952,7 +952,10 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
-> > 	if (WARN_ON(!xe_bo_is_pinned(bo)))
-> > 		return -EINVAL;
-> > 
-> > -	if (WARN_ON(xe_bo_is_vram(bo) || !bo->ttm.ttm))
-> > +	if (WARN_ON(xe_bo_is_vram(bo)))
-> > +		return -EINVAL;
-> > +
-> > +	if (WARN_ON(!bo->ttm.ttm && !xe_bo_is_stolen(bo)))
-> > 		return -EINVAL;
-> > 
-> > 	if (!mem_type_is_vram(place->mem_type))
-> > @@ -1774,6 +1777,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
-> > 
-> > int xe_bo_pin(struct xe_bo *bo)
-> > {
-> > +	struct ttm_place *place = &bo->placements[0];
-> > 	struct xe_device *xe = xe_bo_device(bo);
-> > 	int err;
-> > 
-> > @@ -1804,8 +1808,6 @@ int xe_bo_pin(struct xe_bo *bo)
-> > 	 */
-> > 	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
-> > 	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
-> > -		struct ttm_place *place = &(bo->placements[0]);
-> > -
-> > 		if (mem_type_is_vram(place->mem_type)) {
-> > 			xe_assert(xe, place->flags & TTM_PL_FLAG_CONTIGUOUS);
-> > 
-> > @@ -1813,13 +1815,12 @@ int xe_bo_pin(struct xe_bo *bo)
-> > 				       vram_region_gpu_offset(bo->ttm.resource)) >> PAGE_SHIFT;
-> > 			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
-> > 		}
-> > +	}
-> > 
-> > -		if (mem_type_is_vram(place->mem_type) ||
-> > -		    bo->flags & XE_BO_FLAG_GGTT) {
-> > -			spin_lock(&xe->pinned.lock);
-> > -			list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
-> > -			spin_unlock(&xe->pinned.lock);
-> > -		}
-> > +	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
-> 
-> should this test for devmem so we restore everything rather than just
-> ggtt?
-> 
-> Lucas De Marchi
-> 
-> > +		spin_lock(&xe->pinned.lock);
-> > +		list_add_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
-> > +		spin_unlock(&xe->pinned.lock);
-> > 	}
-> > 
-> > 	ttm_bo_pin(&bo->ttm);
-> > @@ -1867,24 +1868,18 @@ void xe_bo_unpin_external(struct xe_bo *bo)
-> > 
-> > void xe_bo_unpin(struct xe_bo *bo)
-> > {
-> > +	struct ttm_place *place = &bo->placements[0];
-> > 	struct xe_device *xe = xe_bo_device(bo);
-> > 
-> > 	xe_assert(xe, !bo->ttm.base.import_attach);
-> > 	xe_assert(xe, xe_bo_is_pinned(bo));
-> > 
-> > -	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
-> > -	    bo->flags & XE_BO_FLAG_INTERNAL_TEST)) {
-> > -		struct ttm_place *place = &(bo->placements[0]);
-> > -
-> > -		if (mem_type_is_vram(place->mem_type) ||
-> > -		    bo->flags & XE_BO_FLAG_GGTT) {
-> > -			spin_lock(&xe->pinned.lock);
-> > -			xe_assert(xe, !list_empty(&bo->pinned_link));
-> > -			list_del_init(&bo->pinned_link);
-> > -			spin_unlock(&xe->pinned.lock);
-> > -		}
-> > +	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
-> > +		spin_lock(&xe->pinned.lock);
-> > +		xe_assert(xe, !list_empty(&bo->pinned_link));
-> > +		list_del_init(&bo->pinned_link);
-> > +		spin_unlock(&xe->pinned.lock);
-> > 	}
-> > -
-> > 	ttm_bo_unpin(&bo->ttm);
-> > }
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-> > index 32043e1e5a86..b01bc20eb90b 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo_evict.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-> > @@ -34,9 +34,6 @@ int xe_bo_evict_all(struct xe_device *xe)
-> > 	u8 id;
-> > 	int ret;
-> > 
-> > -	if (!IS_DGFX(xe))
-> > -		return 0;
-> > -
-> > 	/* User memory */
-> > 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
-> > 		struct ttm_resource_manager *man =
-> > @@ -125,9 +122,6 @@ int xe_bo_restore_kernel(struct xe_device *xe)
-> > 	struct xe_bo *bo;
-> > 	int ret;
-> > 
-> > -	if (!IS_DGFX(xe))
-> > -		return 0;
-> > -
-> > 	spin_lock(&xe->pinned.lock);
-> > 	for (;;) {
-> > 		bo = list_first_entry_or_null(&xe->pinned.evicted,
-> > -- 
-> > 2.47.0
-> > 
+Lucas De Marchi
