@@ -4,38 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19D6AE6B240
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 11:04:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B812EE6B243
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Nov 2024 11:09:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D888D10E9A3;
-	Fri,  1 Nov 2024 11:04:28 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB4DC10E9A4;
- Fri,  1 Nov 2024 11:04:27 +0000 (UTC)
-Received: from 91-155-254-188.elisa-laajakaista.fi ([91.155.254.188]
- helo=[192.168.100.133])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1t6pS3-00000001ENf-3xPw; Fri, 01 Nov 2024 13:04:24 +0200
-Message-ID: <9479e5a964c97ab3b3b0a334fb760cf3945f3e22.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Date: Fri, 01 Nov 2024 13:04:22 +0200
-In-Reply-To: <172959450980.3700.12071321081236598428@gjsousa-mobl2>
-References: <20241021222744.294371-1-gustavo.sousa@intel.com>
- <20241021222744.294371-3-gustavo.sousa@intel.com>
- <87wmi0v5u3.fsf@intel.com>
- <172959450980.3700.12071321081236598428@gjsousa-mobl2>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA4810E9A0;
+	Fri,  1 Nov 2024 11:09:30 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E2BB10E9A0;
+ Fri,  1 Nov 2024 11:09:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [PATCH 02/13] drm/i915/dmc_wl: Use non-sleeping variant of MMIO
- wait
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/dp=3A_Rework_LTTPR_transpa?=
+ =?utf-8?q?rent_mode_handling_and_add_support_to_msm_driver?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Abel Vesa" <abel.vesa@linaro.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 01 Nov 2024 11:09:29 -0000
+Message-ID: <173045936911.1387145.9054029519394644932@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org>
+In-Reply-To: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,72 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-10-22 at 07:55 -0300, Gustavo Sousa wrote:
-> Quoting Jani Nikula (2024-10-22 06:34:44-03:00)
-> > On Mon, 21 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> > > Some display MMIO transactions for offsets in the range that requires
-> > > the DMC wakelock happen in atomic context (this has been confirmed
-> > > during tests on PTL). That means that we need to use a non-sleeping
-> > > variant of MMIO waiting function.
-> > >=20
-> > > Implement __intel_de_wait_for_register_atomic_nowl() and use it when
-> > > waiting for acknowledgment of acquire/release.
-> > >=20
-> > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_de.h     | 11 +++++++++++
-> > >  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 20 ++++++++++++-------=
--
-> > >  2 files changed, 23 insertions(+), 8 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/dr=
-m/i915/display/intel_de.h
-> > > index e017cd4a8168..4116783a62dd 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_de.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> > > @@ -121,6 +121,17 @@ ____intel_de_wait_for_register_nowl(struct intel=
-_display *display,
-> > >  }
-> > >  #define __intel_de_wait_for_register_nowl(p,...) ____intel_de_wait_f=
-or_register_nowl(__to_intel_display(p), __VA_ARGS__)
-> > > =20
-> > > +static inline int
-> > > +____intel_de_wait_for_register_atomic_nowl(struct intel_display *dis=
-play,
-> > > +                                           i915_reg_t reg,
-> > > +                                           u32 mask, u32 value,
-> > > +                                           unsigned int fast_timeout=
-_us)
-> > > +{
-> > > +        return __intel_wait_for_register(__to_uncore(display), reg, =
-mask,
-> > > +                                         value, fast_timeout_us, 0, =
-NULL);
-> > > +}
-> > > +#define __intel_de_wait_for_register_atomic_nowl(p,...) ____intel_de=
-_wait_for_register_atomic_nowl(__to_intel_display(p), __VA_ARGS__)
-> > > +
-> >=20
-> > There's no need to add the wrapper when all users pass struct
-> > intel_display. And we don't want new users that pass i915.
->=20
-> Ah, okay. Thanks.
->=20
-> >=20
-> > And why are we adding new stuff and users with double underscores?
->=20
-> Well, this is a no-wakelock variant and it shouldn't be used broadly. I
-> believe that was the motivation of all "__intel_de_*nowl" variants being
-> prefixed with the underscores.
+== Series Details ==
 
-Yes, that's exactly the idea in the code I added earlier.  The double
-underscore is used for non-locking functions that are called by their
-locking versions.  And should only be used elsewhere in very specific
-cases.
+Series: drm/dp: Rework LTTPR transparent mode handling and add support to msm driver
+URL   : https://patchwork.freedesktop.org/series/140802/
+State : success
 
---
-Cheers,
-Luca.
+== Summary ==
+
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc5-xe/build
+lib/modules/6.12.0-rc5-xe/modules.alias.bin
+lib/modules/6.12.0-rc5-xe/modules.builtin
+lib/modules/6.12.0-rc5-xe/modules.softdep
+lib/modules/6.12.0-rc5-xe/modules.alias
+lib/modules/6.12.0-rc5-xe/modules.order
+lib/modules/6.12.0-rc5-xe/modules.symbols
+lib/modules/6.12.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730459362:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1730459362:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
