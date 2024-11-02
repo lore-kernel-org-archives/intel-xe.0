@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD593D1BDC2
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 16:15:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A04A8D1BDC5
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 16:15:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AD4610E3E3;
-	Mon,  4 Nov 2024 16:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69AFB10E47F;
+	Mon,  4 Nov 2024 16:15:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gDwMM43W";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QT6DUo/+";
 	dkim-atps=neutral
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E912F10E0FE;
- Sat,  2 Nov 2024 00:47:35 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-20bb39d97d1so23596325ad.2; 
- Fri, 01 Nov 2024 17:47:35 -0700 (PDT)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+ [209.85.210.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFBF910E226;
+ Sat,  2 Nov 2024 02:22:22 +0000 (UTC)
+Received: by mail-pf1-f177.google.com with SMTP id
+ d2e1a72fcca58-7206304f93aso2408316b3a.0; 
+ Fri, 01 Nov 2024 19:22:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1730508455; x=1731113255; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1730514142; x=1731118942; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=rKbz4vSUus6EYp9VxKs8/XhL54cjrUbDh/ERsiQ6PtM=;
- b=gDwMM43WJCKfCQGgExYl4UnpvVF7OjmgY5nSQx0fDttdDfwQySG+gVAxuUJtS3XQZP
- H1LvFWuVYqOAHl+J8Ggz0ZIq7QXiXatOJe44q0BIAQ50Kpp6n5/zjMg412I8LFZOdP7e
- Caj9ihvSt9a8qWuoAEeZwrlCe+DnOYFzK5WTSsCl+0qQ/4ytRt//FpZrFb6ArWyXCulU
- KK1El8Hj3jZ5nbijiKwepBIhFd7eeIvvnBL8wFxRmqJudgYYMcsNiiba8xfrA56at1r0
- A+9u0bKnvAzsYqORnFQZqSFXvOZTlLse9ts2IuBdhcGFcDMELYGEbdQ51StxG8eMz2Tb
- EE7Q==
+ bh=bXcmHSC56/ByVBCx/WoZJC+GVyQ+I9bFtyJEnrciFRM=;
+ b=QT6DUo/+TtUPWNB6fZkDr38AHQ1kxanHfY3kXl2WTMrbl9Koar38KNY5tN2KJCLrpf
+ 1GXiW3+ENdPSFeFjSpLNPBTC4zoOZ4yuneQqta15WwpImwNhh0WShmdIKy/JpnAcnWPH
+ wb/UnZX/VpSY2WIDH1RqmTE0S0yChN5ZK2y9CQzkQfg76HQXDY63eXAwU/acmSOj/w/a
+ nhydqVHCIqKndWYdKrdfQ9SDp0X8NVBacF8fFGrdlFRvLlmHru4+bG1hBGsrvi3Ka1Fy
+ NesIkUkKOP8pCHuEWEPkB3GW/BApPq8lHn9xHIhNZYXOqGQNFyUcAtszqQIXpTIJREkZ
+ 9tKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730508455; x=1731113255;
+ d=1e100.net; s=20230601; t=1730514142; x=1731118942;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=rKbz4vSUus6EYp9VxKs8/XhL54cjrUbDh/ERsiQ6PtM=;
- b=qRM7cCL60MjVaHOJspoUWMvF/79U1lGJWVIlGjfrmboZGUaP9wAOzM3Ci+ggvcKXif
- xf88e1LpmwLUpVEWijVTfzd7UTjIZooObZWxgzGCRF0fpq6x1m87ZdkCan0PrVV1d3r/
- 5ARgX/ut47es7RmMje98ueZD+D9QpPfKaiOjE9Vqwp8gwNDaLfvSAzy2bQAYpEI6uwc/
- 3MeogfPGG6r7S/G60Zhh0b+fjoidw/LA/sD7rMBVWjeygBxifZHEUEG/nnR044lZiO4N
- iGhP6/3sK96xfoveWOa2QJhMjV5s1Nyke4Ma0xp88bXjPFvN8q1WcW2Muzv9FB45H6pp
- 0Y2w==
+ bh=bXcmHSC56/ByVBCx/WoZJC+GVyQ+I9bFtyJEnrciFRM=;
+ b=aE8dnU8ydbr8AoKeShN1Oz0hKLGLNCwtufACaX/uHqkh9B05AQ4s9T1Mx0vOeIErn1
+ Q5UUs2zd9833qMn0nE/rl9AO74ur1qu4CgbCUviA+9lcEufD1rpFfU37NLWa6LqBfsZP
+ QXkKs+ySn9oGugBztH7V5ytySf0mz//6XKREgDzA6EBaU7qPBSRw9GxvjgjtjBRVsb6i
+ q1o+N4RHBB9SdfOurfsTYXm1/GNWDVc+4AwOJZh0CS3Qv38o/FolUJl7aw1oiccFG+bT
+ bQD0Ya1OtM/zHFcMGg8qwC5bZDIfKd4qRSUe2Sb5kaNXJ0cqXNcQWHvT9k64ey0N+Sib
+ 2WTg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVSCgsZtAXczUW9nEBUM77ZYUSaCSjdO0oemEa9sAk1hzPdSOQOIZXrVC4KFUdjZZfIfkxmUIp5/f0=@lists.freedesktop.org,
- AJvYcCXAXzDdSTDcf7yYlTWxaJjQE8DdECpW7U4f16drF6GN2rL8BmfQT1mtDpdQeD6o68mqWh6erqfSBJ4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwC/9CJotkdnWAkaC/Nt06V67t4DOQeueUUGjz0qNceAxd4LJeG
- 9ci4UwX0FEYUfcsx+5BbRmZOBto3TDXF4so2r5hSsPti1jPnZhuo
-X-Google-Smtp-Source: AGHT+IGfT+QrJhbzaGTno6I8tz8KNSs8v9qGiYh0kUt05lcdKhZ8kcN06zRDkuNtCztnf0KF3rr1yw==
-X-Received: by 2002:a17:902:ce83:b0:20c:d578:d712 with SMTP id
- d9443c01a7336-210f770832bmr161707145ad.59.1730508455235; 
- Fri, 01 Nov 2024 17:47:35 -0700 (PDT)
+ AJvYcCUZRMZ32oT5As1J/YFwbpPkD7KtH3xaJN/iHMljijUKF3g3WRrz7HKspJORIbz+Z0FAHBwBKczdfcw=@lists.freedesktop.org,
+ AJvYcCWc0uPV6qYJy04vcmC2EOZu+z0jvFDp3RqACDb+bQkgbVWQiDyciLjMNsVceYmQvQapxW8WZRsScE8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy5Ixtcuvpxeq0xvYu5RAEDIJOVDvt88/911IOKtPah3daJ3wgY
+ yHYTfaFKnmW3VVQQFEUxovIT/TltoPggg/JKGjFEVVSdeNrh+lxP
+X-Google-Smtp-Source: AGHT+IEHigW4MYYWdNAxbx5bIv2fu2U6puZvygq0xmtIkT7iCcQH7EHK42vEZXwu43CanE6Fs3xNPw==
+X-Received: by 2002:a05:6a00:1746:b0:71e:fb4:6c98 with SMTP id
+ d2e1a72fcca58-720c99dca77mr8600897b3a.23.1730514142299; 
+ Fri, 01 Nov 2024 19:22:22 -0700 (PDT)
 Received: from gye-ThinkPad-T590.. ([59.16.200.168])
  by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2e92fa0f6edsm5642971a91.1.2024.11.01.17.47.31
+ d2e1a72fcca58-720bc205582sm3363387b3a.88.2024.11.01.19.22.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Nov 2024 17:47:34 -0700 (PDT)
+ Fri, 01 Nov 2024 19:22:22 -0700 (PDT)
 From: Gyeyoung Baek <gye976@gmail.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -66,9 +66,9 @@ To: Lucas De Marchi <lucas.demarchi@intel.com>,
  Simona Vetter <simona@ffwll.ch>
 Cc: Gyeyoung Baek <gye976@gmail.com>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] drm/xe: Fix build error for XE_IOCTL_DBG macro
-Date: Sat,  2 Nov 2024 09:47:22 +0900
-Message-Id: <20241102004722.124772-1-gye976@gmail.com>
+Subject: [PATCH v4] drm/xe: Fix build error for XE_IOCTL_DBG macro
+Date: Sat,  2 Nov 2024 11:22:03 +0900
+Message-Id: <20241102022204.155039-1-gye976@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -122,17 +122,18 @@ by referring to "https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html".
 
 v2: I modified this to print when only cond is true.
 v3: Modify to evaluate cond only once.
+v4: There was a mistake in v3, send this again.
 
 Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_macros.h | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_macros.h | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
-index daf56c846d03..b956acbe4000 100644
+index daf56c846d03..51ac8faa8975 100644
 --- a/drivers/gpu/drm/xe/xe_macros.h
 +++ b/drivers/gpu/drm/xe/xe_macros.h
-@@ -10,9 +10,11 @@
+@@ -10,9 +10,13 @@
  
  #define XE_WARN_ON WARN_ON
  
@@ -140,8 +141,6 @@ index daf56c846d03..b956acbe4000 100644
 -	((cond) && (drm_dbg(&(xe)->drm, \
 -			    "Ioctl argument check failed at %s:%d: %s", \
 -			    __FILE__, __LINE__, #cond), 1))
--
--#endif
 +#define XE_IOCTL_DBG(xe, cond) ({					\
 +	int cond__ = !!(cond);						\
 +	if (cond__)                                           		\
@@ -150,6 +149,8 @@ index daf56c846d03..b956acbe4000 100644
 +			__FILE__, __LINE__, #cond);                    	\
 +	cond__;                                                        	\
 +})
+ 
+ #endif
 -- 
 2.34.1
 
