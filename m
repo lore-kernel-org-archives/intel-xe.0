@@ -4,75 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A04A8D1BDC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9FC7D1BDC0
 	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 16:15:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69AFB10E47F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EAEF10E480;
 	Mon,  4 Nov 2024 16:15:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QT6DUo/+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kuYzN4Re";
 	dkim-atps=neutral
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFBF910E226;
- Sat,  2 Nov 2024 02:22:22 +0000 (UTC)
-Received: by mail-pf1-f177.google.com with SMTP id
- d2e1a72fcca58-7206304f93aso2408316b3a.0; 
- Fri, 01 Nov 2024 19:22:22 -0700 (PDT)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF3FA10E20E;
+ Sat,  2 Nov 2024 00:01:14 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-20cceb8d8b4so15941715ad.1; 
+ Fri, 01 Nov 2024 17:01:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1730514142; x=1731118942; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=bXcmHSC56/ByVBCx/WoZJC+GVyQ+I9bFtyJEnrciFRM=;
- b=QT6DUo/+TtUPWNB6fZkDr38AHQ1kxanHfY3kXl2WTMrbl9Koar38KNY5tN2KJCLrpf
- 1GXiW3+ENdPSFeFjSpLNPBTC4zoOZ4yuneQqta15WwpImwNhh0WShmdIKy/JpnAcnWPH
- wb/UnZX/VpSY2WIDH1RqmTE0S0yChN5ZK2y9CQzkQfg76HQXDY63eXAwU/acmSOj/w/a
- nhydqVHCIqKndWYdKrdfQ9SDp0X8NVBacF8fFGrdlFRvLlmHru4+bG1hBGsrvi3Ka1Fy
- NesIkUkKOP8pCHuEWEPkB3GW/BApPq8lHn9xHIhNZYXOqGQNFyUcAtszqQIXpTIJREkZ
- 9tKw==
+ d=gmail.com; s=20230601; t=1730505674; x=1731110474; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=tQlnDsBGBd5CAx+c3fZXd9BvBPvh5/l0g6m2gnycK5Y=;
+ b=kuYzN4Re0MdiCWwlh1jIzah26UdcbPb6wEqjWEevh2TOydp6nyST7aDTGfrNsv2wNX
+ g0tlhSfy61ZHU2ltxHafRVUqEs+E5jaw8XfF4y23AUvKle2HPEqx4+RXUG0u8gk+R/Jz
+ XdcUBYXWRLnHW0tI3kIPkhv6DNNXWkcriPQkf+pHYI+egZtgOaJqxICvnW/PcAdUEDUN
+ jwSYCuX0I5z9AdC4iCGMqfq/4l/RxJuYVLQk4yEN3oWG/AU7hmvV8H0wonjAIfC14QkO
+ ePTaMqdK5JI5eTr5iFFJIUcN0HjiwT615Kq/cAFZ9TbxqGrDBHJISNWNk+ZuuMh97fgJ
+ jhNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730514142; x=1731118942;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ d=1e100.net; s=20230601; t=1730505674; x=1731110474;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=bXcmHSC56/ByVBCx/WoZJC+GVyQ+I9bFtyJEnrciFRM=;
- b=aE8dnU8ydbr8AoKeShN1Oz0hKLGLNCwtufACaX/uHqkh9B05AQ4s9T1Mx0vOeIErn1
- Q5UUs2zd9833qMn0nE/rl9AO74ur1qu4CgbCUviA+9lcEufD1rpFfU37NLWa6LqBfsZP
- QXkKs+ySn9oGugBztH7V5ytySf0mz//6XKREgDzA6EBaU7qPBSRw9GxvjgjtjBRVsb6i
- q1o+N4RHBB9SdfOurfsTYXm1/GNWDVc+4AwOJZh0CS3Qv38o/FolUJl7aw1oiccFG+bT
- bQD0Ya1OtM/zHFcMGg8qwC5bZDIfKd4qRSUe2Sb5kaNXJ0cqXNcQWHvT9k64ey0N+Sib
- 2WTg==
+ bh=tQlnDsBGBd5CAx+c3fZXd9BvBPvh5/l0g6m2gnycK5Y=;
+ b=uYPZshNX83DRp0R7ujwa4cJ4hJ5WhEqT8FWsxh2q9kB78GJc7UVDbss65iFn+R3t+3
+ ulPqR0CwihyMwwcfjeP6FnA12N0OFVtiz0adyEz4Lc4tT3ZDFnsCmQ9rBmMFMWh9ZPcn
+ 0StZPenq6TkIBjGrxOBUcC+otUT9UFCPeeNtzD5HeafzQkK0h/SsTPHsNXRIK344AM+9
+ xga03sj4qEoipwQgmFVxDKmqvziloALxUQ0kXjoR6y9+IFkEZANYO+/iie5+lHBIPVRC
+ HkQExXlpCSC8AzbDViDWGORiP1IkkTvRZInHbj1bGunS0wOoC3c9WmW7hKYY01riOTQn
+ JUiw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUZRMZ32oT5As1J/YFwbpPkD7KtH3xaJN/iHMljijUKF3g3WRrz7HKspJORIbz+Z0FAHBwBKczdfcw=@lists.freedesktop.org,
- AJvYcCWc0uPV6qYJy04vcmC2EOZu+z0jvFDp3RqACDb+bQkgbVWQiDyciLjMNsVceYmQvQapxW8WZRsScE8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy5Ixtcuvpxeq0xvYu5RAEDIJOVDvt88/911IOKtPah3daJ3wgY
- yHYTfaFKnmW3VVQQFEUxovIT/TltoPggg/JKGjFEVVSdeNrh+lxP
-X-Google-Smtp-Source: AGHT+IEHigW4MYYWdNAxbx5bIv2fu2U6puZvygq0xmtIkT7iCcQH7EHK42vEZXwu43CanE6Fs3xNPw==
-X-Received: by 2002:a05:6a00:1746:b0:71e:fb4:6c98 with SMTP id
- d2e1a72fcca58-720c99dca77mr8600897b3a.23.1730514142299; 
- Fri, 01 Nov 2024 19:22:22 -0700 (PDT)
-Received: from gye-ThinkPad-T590.. ([59.16.200.168])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-720bc205582sm3363387b3a.88.2024.11.01.19.22.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Nov 2024 19:22:22 -0700 (PDT)
-From: Gyeyoung Baek <gye976@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Gyeyoung Baek <gye976@gmail.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4] drm/xe: Fix build error for XE_IOCTL_DBG macro
-Date: Sat,  2 Nov 2024 11:22:03 +0900
-Message-Id: <20241102022204.155039-1-gye976@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ AJvYcCWLZQEKjI0F1el4n+AjsxGWlV4zVUnBg7L/vQalZOYfSDlSTR7kU7AG6FZAp9M/JSP/uJOCsHxoIG4=@lists.freedesktop.org,
+ AJvYcCWb38BQTFoKJeX/N2DmU0kJGal4ujKDOineXgvhVcshsqw0lvIqVb2XrBsaGn95k7ROOL5kmvZevn4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy4/b7mibTCoUJe2y1agWB/wZcNZ0VPaR4iQlV3kwdeSgPwfhV6
+ 8srAAlelhfmIiBHTNd3+Fg6o0R3E4OdPl30Nc33910wznA71+2HxNcUcVtOj9AuiIiNpNsGbVuX
+ nWjjWqLFxabIxSh4Su3pW6Zx1oHs=
+X-Google-Smtp-Source: AGHT+IEnrcAVcZXkp/niZpYU2l8IpIjNYvOacuB+pzIpPD3b46rCkHvlbrWia7qukikf0ww499n9eAGJYXsuaqXBQrE=
+X-Received: by 2002:a17:903:2a8b:b0:20b:6c1e:1e13 with SMTP id
+ d9443c01a7336-21119468f38mr80067875ad.23.1730505674296; Fri, 01 Nov 2024
+ 17:01:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20241029084859.135172-1-gye976@gmail.com>
+ <6um3enfackjotwj2ikhvpbnyq3ocro34b5iahx72yhzfxemjsn@xqnovtxzsapb>
+In-Reply-To: <6um3enfackjotwj2ikhvpbnyq3ocro34b5iahx72yhzfxemjsn@xqnovtxzsapb>
+From: gyeyoung <gye976@gmail.com>
+Date: Sat, 2 Nov 2024 09:01:02 +0900
+Message-ID: <CAKbEznuRLDwDhuYi3WwWR7GWbvu0oBCB53UF_4Yr+FpScYmWDA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/xe: Fix build error for XE_IOCTL_DBG macro
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Oded Gabbay <ogabbay@kernel.org>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 04 Nov 2024 16:15:06 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,69 +85,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-if CONFIG_DRM_USE_DYNAMIC_DEBUG is set,
-'drm_dbg' function is replaced with '__dynamic_func_call_cls',
-which is replaced with a do while statement.
-so in the previous code, there are the following build errors.
+> >--- a/drivers/gpu/drm/xe/xe_macros.h
+> >+++ b/drivers/gpu/drm/xe/xe_macros.h
+> >@@ -11,8 +11,12 @@
+> > #define XE_WARN_ON WARN_ON
+> >
+> > #define XE_IOCTL_DBG(xe, cond) \
+> >-      ((cond) && (drm_dbg(&(xe)->drm, \
+> >-                          "Ioctl argument check failed at %s:%d: %s", \
+> >-                          __FILE__, __LINE__, #cond), 1))
+> >+({ \
+> >+      if ((cond)) \
+> >+              drm_dbg(&(xe)->drm, \
+> >+                      "Ioctl argument check failed at %s:%d: %s", \
+> >+                      __FILE__, __LINE__, #cond); \
+> >+      (cond); \
+>
+> there's a double cond evaluation here and given any expression can be
+> given to XE_IOCTL_DBG(), this doens't look very safe. I think this would
+> be safer as:
+>
+> #define XE_IOCTL_DBG(xe, cond) ({                                       \
+>          int cond__ = !!(cond);                                          \
+>          if (cond__)                                                     \
+>                  drm_dbg(&(xe)->drm,                                     \
+>                          "Ioctl argument check failed at %s:%d: %s",     \
+>                          __FILE__, __LINE__, #cond);                     \
+>          cond__;                                                         \
+> })
+>
+> as it then evaluates cond just once. Also the generated code seems to be
+> sane compared to what we had before too.
+>
 
-include/linux/dynamic_debug.h:221:58: error: expected expression before ‘do’
-  221 | #define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {   \
-      |                                                          ^~
-include/linux/dynamic_debug.h:248:9: note: in expansion of macro ‘__dynamic_func_call_cls’
-  248 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~~~~~~~~~~~~
-include/drm/drm_print.h:425:9: note: in expansion of macro ‘_dynamic_func_call_cls’
-  425 |         _dynamic_func_call_cls(cat, fmt, __drm_dev_dbg,         \
-      |         ^~~~~~~~~~~~~~~~~~~~~~
-include/drm/drm_print.h:504:9: note: in expansion of macro ‘drm_dev_dbg’
-  504 |         drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~
-include/drm/drm_print.h:522:33: note: in expansion of macro ‘drm_dbg_driver’
-  522 | #define drm_dbg(drm, fmt, ...)  drm_dbg_driver(drm, fmt, ##__VA_ARGS__)
-      |                                 ^~~~~~~~~~~~~~
-drivers/gpu/drm/xe/xe_macros.h:14:21: note: in expansion of macro ‘drm_dbg’
-   14 |         ((cond) && (drm_dbg(&(xe)->drm, \
-      |                     ^~~~~~~
-drivers/gpu/drm/xe/xe_bo.c:2029:13: note: in expansion of macro ‘XE_IOCTL_DBG’
- 2029 |         if (XE_IOCTL_DBG(xe, !gem_obj))
+Yes, if (cond) has operator like ++, it will be a bug. I miss that...
+I will revise a patch again by referring to your review, thanks.
 
-the problem is that,
-XE_IOCTL_DBG uses this function for conditional expr.
+> And I also needed this to build-test:
+>
+> | diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+> | index 08cfea04e22bd..82585d442f017 100644
+> | --- a/drivers/gpu/drm/drm_print.c
+> | +++ b/drivers/gpu/drm/drm_print.c
+> | @@ -215,9 +215,8 @@ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
+> |  {
+> |         const struct drm_device *drm = p->arg;
+> |         const struct device *dev = drm ? drm->dev : NULL;
+> | -       enum drm_debug_category category = p->category;
+> |
+> | -       if (!__drm_debug_enabled(category))
+> | +       if (!__drm_debug_enabled(p->category))
+> |                 return;
+> |
+> |         __drm_dev_vprintk(dev, KERN_DEBUG, p->origin, p->prefix, vaf);
+>
+> as otherwise it complains category is unused.
+>
 
-so I fix the expr to be compatible with the do while statement,
-by referring to "https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html".
+I also submitted a seperate patch to fix '__drm_debug_enabled' macro,
+from '#define __drm_debug_enabled(category)  true'
+to     '#define __drm_debug_enabled(category)  ({ void(category);  true; })'
+This removes the build error caused by the unused 'category', too.
 
-v2: I modified this to print when only cond is true.
-v3: Modify to evaluate cond only once.
-v4: There was a mistake in v3, send this again.
+Anyway, it can be build. I tested both cases.
+I realize now that these two patches should have been submitted as a
+patch series
+I'm sorry for my mistakes.
 
-Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
----
- drivers/gpu/drm/xe/xe_macros.h | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+Thanks,
+Gyeyoung Baek
 
-diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
-index daf56c846d03..51ac8faa8975 100644
---- a/drivers/gpu/drm/xe/xe_macros.h
-+++ b/drivers/gpu/drm/xe/xe_macros.h
-@@ -10,9 +10,13 @@
- 
- #define XE_WARN_ON WARN_ON
- 
--#define XE_IOCTL_DBG(xe, cond) \
--	((cond) && (drm_dbg(&(xe)->drm, \
--			    "Ioctl argument check failed at %s:%d: %s", \
--			    __FILE__, __LINE__, #cond), 1))
-+#define XE_IOCTL_DBG(xe, cond) ({					\
-+	int cond__ = !!(cond);						\
-+	if (cond__)                                           		\
-+		drm_dbg(&(xe)->drm,                                    	\
-+			"Ioctl argument check failed at %s:%d: %s",	\
-+			__FILE__, __LINE__, #cond);                    	\
-+	cond__;                                                        	\
-+})
- 
- #endif
--- 
-2.34.1
-
+> Lucas De Marchi
