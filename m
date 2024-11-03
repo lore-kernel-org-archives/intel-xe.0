@@ -4,57 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B52E0E6F09A
-	for <intel-xe@archiver.kernel.org>; Sun,  3 Nov 2024 12:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FC1BD1118C
+	for <intel-xe@archiver.kernel.org>; Sun,  3 Nov 2024 20:16:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA98A10E253;
-	Sun,  3 Nov 2024 12:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E24C10E294;
+	Sun,  3 Nov 2024 20:16:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AX+I5GiQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SJRsNUGD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 667A910E004;
- Sun,  3 Nov 2024 12:38:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42C0B10E170
+ for <intel-xe@lists.freedesktop.org>; Sun,  3 Nov 2024 20:16:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730637498; x=1762173498;
- h=message-id:subject:from:to:cc:date:
- content-transfer-encoding:mime-version;
- bh=bU4fKySm1biDz5zmusm+2eXhSVGLV8JBn+X9xHaNk+w=;
- b=AX+I5GiQqm3FBHSKoVqVac1fUXRN+urW2yGffzKFuUKAcvyvKEBUGGjK
- 2/7mFgBKUHb61+p3R8oYxWtwWczyt5r9DKps0fTR6YhCYNOAW4JFYBoAY
- q67buebNZtM5wU3eZAOICLqzKVzuUafRynZoxrcAsAvik0FjCuwQppG7n
- pOtewDmywvl4fdTB4mVPGbHr0ebf26cXWy397Lhc91/u7NTnLxXEvk22A
- n2a+6kyxLBGwgn6iGnlVOQmG+w2waZcLSqoa8t4JIGnAgU7K5d9LEj+cf
- SXtchZ2JGRcihUtm2A8MOQU7oUaO3f3SLNVFZvmGkuIcUIEH4Wy9XlC+h w==;
-X-CSE-ConnectionGUID: /zfQCMYfSIumZFwqkXt6Zg==
-X-CSE-MsgGUID: RXxI4iqSRTqu9HOYFoc3hQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30519121"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30519121"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2024 04:38:15 -0800
-X-CSE-ConnectionGUID: 8gvFAGFLRwmOFTXrDsBicA==
-X-CSE-MsgGUID: tXaUNw4uQpiWR/VV5cYYXw==
+ t=1730665006; x=1762201006;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6IpKbX/j4ImFbOruNrNn0oNLO8QCOYBqOsn7cqqtvWw=;
+ b=SJRsNUGD5ocu/xsH58eH4Co76HE8ZK/v8ZmKgHNK/PdwH0oBawdFo+GG
+ 1RvzB5PZwDe1IH3g5pil4FNoWDHZwTSmebKtqajNESLiwt8MrG4dnbN7E
+ x+BdJndfhDXbao1R0Ej0RXZ+6XZwlFjS6r8YinQ6ClU/EhnhEoJSv1hFM
+ zoXzpWHDyz/3f33cbgjNQO1T3H8Nt4RBssHY+x5xcqZerUkLPV78acDce
+ OIRtBKNmC6JIUrNKcqaTwQUwZw3/NMnTCXLs8fKa11XDcicIq9ApXThoE
+ wHUHe6Y6EwFC/QA6DG/nmomz/ljc5EoNBby6sv1JJyFywcF5mXmQnEfxV w==;
+X-CSE-ConnectionGUID: VzXUmzSZTDCDKg/t/53PBw==
+X-CSE-MsgGUID: dYgAPlPbRoSK9QJXCtwpPw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11245"; a="30462110"
+X-IronPort-AV: E=Sophos;i="6.11,255,1725346800"; d="scan'208";a="30462110"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2024 12:16:45 -0800
+X-CSE-ConnectionGUID: HWnuguq8TiS21nTqmG8UwQ==
+X-CSE-MsgGUID: W2hop5Y6TXC7CN3Lz10Uyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,255,1725346800"; d="scan'208";a="88215514"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO [10.245.246.3])
- ([10.245.246.3])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2024 04:38:14 -0800
-Message-ID: <ce4c83dfa93e22487ed80e855318cd8f92a054f2.camel@linux.intel.com>
-Subject: Merging the xe / ttm shrinker series?
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Sun, 03 Nov 2024 13:38:11 +0100
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.11,255,1725346800"; d="scan'208";a="87982571"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.85.128])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2024 12:16:45 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 0/2] PF: Expose access to the VF GGTT PTEs over debugfs
+Date: Sun,  3 Nov 2024 21:16:31 +0100
+Message-Id: <20241103201633.1859-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,12 +64,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Christian,
+The access to the VF GGTT PTEs is needed for early enabling and testing
+of the VF save/restore feature.
 
-The TTM shrinker series is now at v12 with all patches R-B:d.
+Michal Wajdeczko (2):
+  drm/xe: Add read/write debugfs helpers for GGTT node
+  drm/xe/pf: Expose access to the VF GGTT PTEs over debugfs
 
-Ack to merge through drm-xe-next?
+ drivers/gpu/drm/xe/xe_ggtt.c                | 178 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h                |   7 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  62 +++++++
+ 3 files changed, 247 insertions(+)
 
-Thanks,
-Thomas
+-- 
+2.43.0
 
