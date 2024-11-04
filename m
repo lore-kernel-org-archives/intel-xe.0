@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8074DD1BDF6
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 21:34:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA23FD1BDF7
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 21:34:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C0C410E4E0;
-	Mon,  4 Nov 2024 21:34:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E04310E4E1;
+	Mon,  4 Nov 2024 21:34:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZSH8j5Y4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PwWXEDoq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFAB410E4E0
- for <intel-xe@lists.freedesktop.org>; Mon,  4 Nov 2024 21:34:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCA0E10E4E0
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Nov 2024 21:34:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730756096; x=1762292096;
+ t=1730756097; x=1762292097;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5xq2DHs1CwoGvV51EKhPl9cRWBtovErkV+hrHL7TJ+w=;
- b=ZSH8j5Y4/DVJwPVU2/HnqkFPjQTTwuhDamvegl+zcSXZ2vPgXf+VQI7s
- YOF/EM7qpJ2qDWjlCBdDZ56Mvjn8uP8kW5AN53tf6dw5J/a5mO/D1Xchm
- P2oCn5nX/EA9A8HeCxQZoeqNCN2YacbRfjuhK/MBxJ9ZremprEboy4in9
- CdmHgn3638TuJbuBwiCdINz+HUdcnGvF2Ms0K0Zm7PwrjliWkDWZCCvwD
- HJC+O8AEE5N/LMN/jV9/g3BIRk1QCl2qa8H2W35cgWRS9Qn/yd+LQPGq1
- wQEuqB9nQ1kylmP06ACd6/pjbFvp7F1WrzC9bdMieLo20EW9U3kzkEqim w==;
-X-CSE-ConnectionGUID: tZ3eWvMjSVC1yo6yEXdVjA==
-X-CSE-MsgGUID: XnAF4b+5R06gccmCP2yXcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30638529"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30638529"
+ bh=EdOaVvEzuspU+Ub16o3oB1B/OTxvbnm8C6grlwE0wjQ=;
+ b=PwWXEDoqo+TN8+lF2+NDKYVdb4wqr5GHCGKrg72SHPZrMCEMdbfS/sTj
+ oOMogCT5KjY0ixI7RTqyarI5JqQtoW7kSVtfbKJbZ1GkseOxJ/JkFFGuT
+ CmLx9reEGBeFX8Nw/SbhMN0S6JvKKREAP/HTdqWMAfJy3YGbunzKsGaNW
+ d0FOd7RAsDRIWeA2/Jn8i8pju5uD3XAf43eHCDMcQUULxysPBe90I5ldw
+ feRCpwpwrNWGJJm4SBw2Gz2enknLcJUkYLeVKg/XQGEVYD+lP4RV7UcZQ
+ iUJ8F4NZO7m7rIsTTfm9MgmZzmjEFhagKCAhgUW1ToYQFkCX/T3o8Q5JS A==;
+X-CSE-ConnectionGUID: 568gEp0kT66lcSsM+w1TWQ==
+X-CSE-MsgGUID: 74xKdu9MSRO5bSCW/LdRNg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30638530"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30638530"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 13:34:55 -0800
-X-CSE-ConnectionGUID: ZkAhclKUT5+bhNxJmBrGgA==
-X-CSE-MsgGUID: 1Y9JFsMPTBq+kCyurcA87w==
+ 04 Nov 2024 13:34:57 -0800
+X-CSE-ConnectionGUID: OWv5hddBSPGUiOVyaMTg8g==
+X-CSE-MsgGUID: 8IJ8A8AqQ8Ku4edwQESAFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; d="scan'208";a="84208449"
+X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; d="scan'208";a="84208455"
 Received: from gkczarna.igk.intel.com ([10.102.139.130])
- by orviesa007.jf.intel.com with ESMTP; 04 Nov 2024 13:34:55 -0800
+ by orviesa007.jf.intel.com with ESMTP; 04 Nov 2024 13:34:56 -0800
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>
-Subject: [PATCH v6 3/5] drm/xe/vf: Send RESFIX_DONE message at end of VF
- restore
-Date: Mon,  4 Nov 2024 22:34:47 +0100
-Message-Id: <20241104213449.1455694-4-tomasz.lis@intel.com>
+Subject: [PATCH v6 4/5] drm/xe/vf: Start post-migration fixups with
+ provisinoning query
+Date: Mon,  4 Nov 2024 22:34:48 +0100
+Message-Id: <20241104213449.1455694-5-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241104213449.1455694-1-tomasz.lis@intel.com>
 References: <20241104213449.1455694-1-tomasz.lis@intel.com>
@@ -67,176 +67,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-After restore, GuC will not answer to any messages from VF KMD until
-fixups are applied. When that is done, VF KMD sends RESFIX_DONE
-message to GuC, at which point GuC resumes normal operation.
+During post-migration recovery, only MMIO communication to GuC is
+allowed. The VF KMD needs to use that channel to ask for the new
+provisioning, which includes a new GGTT range assigned to the VF.
 
-This patch implements sending the RESFIX_DONE message at end of
-post-migration recovery.
-
-v2: keep pm ref during whole recovery, style fixes (Michal)
-v3: assert removal to separate patch, debug message per GuC instead
-  of one, comments changes (Michal)
-v4: improve one debug message (Michal)
+v2: query config only instead of handshake; no need to get pm ref as
+ it's now kept through whole recovery (Michal)
+v3: switched names of 'err' and 'ret'  (Michal)
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 38 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 38 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h           |  1 +
- drivers/gpu/drm/xe/xe_sriov_vf.c              | 18 +++++++++
- 4 files changed, 95 insertions(+)
+ drivers/gpu/drm/xe/xe_sriov_vf.c | 36 ++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
-index b6a1852749dd..0b28659d94e9 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
-@@ -501,6 +501,44 @@
- #define VF2GUC_VF_RESET_RESPONSE_MSG_LEN		GUC_HXG_RESPONSE_MSG_MIN_LEN
- #define VF2GUC_VF_RESET_RESPONSE_MSG_0_MBZ		GUC_HXG_RESPONSE_MSG_0_DATA0
- 
-+/**
-+ * DOC: VF2GUC_NOTIFY_RESFIX_DONE
-+ *
-+ * This action is used by VF to notify the GuC that the VF KMD has completed
-+ * post-migration recovery steps.
-+ *
-+ * This message must be sent as `MMIO HXG Message`_.
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 27:16 | DATA0 = MBZ                                                  |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  15:0 | ACTION = _`GUC_ACTION_VF2GUC_NOTIFY_RESFIX_DONE` = 0x5508    |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  27:0 | DATA0 = MBZ                                                  |
-+ *  +---+-------+--------------------------------------------------------------+
-+ */
-+#define GUC_ACTION_VF2GUC_NOTIFY_RESFIX_DONE		0x5508u
-+
-+#define VF2GUC_NOTIFY_RESFIX_DONE_REQUEST_MSG_LEN	GUC_HXG_REQUEST_MSG_MIN_LEN
-+#define VF2GUC_NOTIFY_RESFIX_DONE_REQUEST_MSG_0_MBZ	GUC_HXG_REQUEST_MSG_0_DATA0
-+
-+#define VF2GUC_NOTIFY_RESFIX_DONE_RESPONSE_MSG_LEN	GUC_HXG_RESPONSE_MSG_MIN_LEN
-+#define VF2GUC_NOTIFY_RESFIX_DONE_RESPONSE_MSG_0_MBZ	GUC_HXG_RESPONSE_MSG_0_DATA0
-+
- /**
-  * DOC: VF2GUC_QUERY_SINGLE_KLV
-  *
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 0e330eb93822..cca5d5732802 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -224,6 +224,44 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt)
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index db9441f303f5..954177e5333f 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -25,6 +25,31 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+ 	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
  }
  
-+static int guc_action_vf_notify_resfix_done(struct xe_guc *guc)
-+{
-+	u32 request[GUC_HXG_REQUEST_MSG_MIN_LEN] = {
-+		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
-+		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
-+		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_ACTION_VF2GUC_NOTIFY_RESFIX_DONE),
-+	};
-+	int ret;
-+
-+	ret = xe_guc_mmio_send(guc, request, ARRAY_SIZE(request));
-+
-+	return ret > 0 ? -EPROTO : ret;
-+}
-+
 +/**
-+ * xe_gt_sriov_vf_notify_resfix_done - Notify GuC about resource fixups apply completed.
-+ * @gt: the &xe_gt struct instance linked to target GuC
++ * vf_post_migration_requery_guc - Re-query GuC for current VF provisioning.
++ * @xe: the &xe_device struct instance
++ *
++ * After migration, we need to re-query all VF configuration to make sure
++ * they match previous provisioning. Note that most of VF provisioning
++ * shall be the same, except GGTT range, since GGTT is not virtualized per-VF.
 + *
 + * Returns: 0 if the operation completed successfully, or a negative error
 + * code otherwise.
 + */
-+int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt)
-+{
-+	struct xe_guc *guc = &gt->uc.guc;
-+	int err;
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	err = guc_action_vf_notify_resfix_done(guc);
-+	if (unlikely(err))
-+		xe_gt_sriov_err(gt, "Failed to notify GuC about resource fixup done (%pe)\n",
-+				ERR_PTR(err));
-+	else
-+		xe_gt_sriov_dbg_verbose(gt, "sent GuC resource fixup done\n");
-+
-+	return err;
-+}
-+
- static int guc_action_query_single_klv(struct xe_guc *guc, u32 key,
- 				       u32 *value, u32 value_len)
- {
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 9959a296b221..912d20814261 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -17,6 +17,7 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
- int xe_gt_sriov_vf_connect(struct xe_gt *gt);
- int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
- int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
-+int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
- void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
- 
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 2fe49296a79d..db9441f303f5 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -8,6 +8,8 @@
- #include "xe_assert.h"
- #include "xe_device.h"
- #include "xe_gt_sriov_printk.h"
-+#include "xe_gt_sriov_vf.h"
-+#include "xe_pm.h"
- #include "xe_sriov.h"
- #include "xe_sriov_printk.h"
- #include "xe_sriov_vf.h"
-@@ -23,10 +25,26 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
- 	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
- }
- 
-+/*
-+ * Notify all GuCs about resource fixups apply finished.
-+ */
-+static void vf_post_migration_notify_resfix_done(struct xe_device *xe)
++static int vf_post_migration_requery_guc(struct xe_device *xe)
 +{
 +	struct xe_gt *gt;
 +	unsigned int id;
++	int err, ret = 0;
 +
 +	for_each_gt(gt, xe, id) {
-+		xe_gt_sriov_vf_notify_resfix_done(gt);
++		err = xe_gt_sriov_vf_query_config(gt);
++		ret = ret ?: err;
 +	}
++
++	return ret;
 +}
 +
+ /*
+  * Notify all GuCs about resource fixups apply finished.
+  */
+@@ -40,12 +65,23 @@ static void vf_post_migration_notify_resfix_done(struct xe_device *xe)
+ 
  static void vf_post_migration_recovery(struct xe_device *xe)
  {
++	int err;
++
  	drm_dbg(&xe->drm, "migration recovery in progress\n");
-+	xe_pm_runtime_get(xe);
+ 	xe_pm_runtime_get(xe);
++	err = vf_post_migration_requery_guc(xe);
++	if (unlikely(err))
++		goto fail;
++
  	/* FIXME: add the recovery steps */
-+	vf_post_migration_notify_resfix_done(xe);
-+	xe_pm_runtime_put(xe);
+ 	vf_post_migration_notify_resfix_done(xe);
+ 	xe_pm_runtime_put(xe);
  	drm_notice(&xe->drm, "migration recovery ended\n");
++	return;
++fail:
++	xe_pm_runtime_put(xe);
++	drm_err(&xe->drm, "migration recovery failed (%pe)\n", ERR_PTR(err));
++	xe_device_declare_wedged(xe);
  }
  
+ static void migration_worker_func(struct work_struct *w)
 -- 
 2.25.1
 
