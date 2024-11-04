@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D2B4D111A0
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 04:08:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18EBD111A0
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 04:18:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183D010E376;
-	Mon,  4 Nov 2024 04:08:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+pfBchy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCCD10E375;
- Mon,  4 Nov 2024 04:08:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730693322; x=1762229322;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WpEJJk+woD0RIyqomlC3adId50zxPFjqbokXA8WUWqs=;
- b=h+pfBchys6mxPOX1IsGHcKtH2ANZQ+Uy2zdI9iTs8Vtm0GYb8fZBDFcj
- 6Y0PBH3ZhINJq0j4AkLOcp/Uelhtj32F8DHLjUAS7OHpfXcp0oUXSVY1P
- PFckns8fAGdA9wXPJQj8tbRSXF+AFTGt3axERoG+5zxpH7B/OI+GF0jhb
- gnn8PiW3blgxkcPTMTEKq43dr6qto4y9lySnugX26zn/54HSIqdUJ6Fvd
- Vyvnw+c4m7q0yC7BpfKNwX2VKK11gQ0I2Aks/fPzhY8Qr48zCBu/kRBEb
- KhjkLoUZciYpmztBAtUgD7fW4p21l6Tpyze0mZfJ14K5UhIVn+uL/DmRu A==;
-X-CSE-ConnectionGUID: 0b+UWNuBRRiUGU7SrHyouw==
-X-CSE-MsgGUID: mB+J1gSkQ2GlZ/KLUHQ/pA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11245"; a="34165999"
-X-IronPort-AV: E=Sophos;i="6.11,256,1725346800"; d="scan'208";a="34165999"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2024 20:08:42 -0800
-X-CSE-ConnectionGUID: JlWK396mQOy8K7km4gfN6g==
-X-CSE-MsgGUID: TYBPngEMQiSA2RhKP0L5tg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,256,1725346800"; d="scan'208";a="83636897"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa008.fm.intel.com with ESMTP; 03 Nov 2024 20:08:40 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>,
- Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [RESEND PATCHv2 3/3] drm/i915/dp: Include the time taken by AUX Tx
- for timeout
-Date: Mon,  4 Nov 2024 09:28:59 +0530
-Message-Id: <20241104035859.3796797-3-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241104035859.3796797-1-arun.r.murthy@intel.com>
-References: <20241104035859.3796797-1-arun.r.murthy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 717F410E047;
+	Mon,  4 Nov 2024 04:18:28 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31DC010E047;
+ Mon,  4 Nov 2024 04:18:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/hdcp=3A_Fix_when_the_?=
+ =?utf-8?q?first_read_and_write_are_retried?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 04 Nov 2024 04:18:27 -0000
+Message-ID: <173069390719.1389949.12160725630146409472@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241104035951.517837-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241104035951.517837-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,37 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As per DP spec the timeout for LANE_CHANNEL_EQ_DONE is 400ms. But this
-timeout value is exclusively for the Aux RD Interval and excludes the
-time consumed for the AUX Tx (i.e reading/writing FFE presets). Add
-another 50ms for these AUX Tx to the 400ms timeout.
-Ref: "Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence" of
-DP2.1a spec.
+== Series Details ==
 
-Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915/hdcp: Fix when the first read and write are retried
+URL   : https://patchwork.freedesktop.org/series/140853/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index a48a70ca4fb3..ea9b4730a176 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1414,7 +1414,7 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
- 	}
- 
- 	/* Time budget for the LANEx_EQ_DONE Sequence */
--	deadline = jiffies + msecs_to_jiffies_timeout(400);
-+	deadline = jiffies + msecs_to_jiffies_timeout(450);
- 
- 	for (try = 0; try < max_tries; try++) {
- 		fsleep(delay_us);
--- 
-2.25.1
+== Summary ==
+
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/acp/snd-soc-acpi-amd-match.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-ptl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.12.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.12.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.12.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.12.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.12.0-rc6-xe/build
+lib/modules/6.12.0-rc6-xe/modules.alias.bin
+lib/modules/6.12.0-rc6-xe/modules.builtin
+lib/modules/6.12.0-rc6-xe/modules.softdep
+lib/modules/6.12.0-rc6-xe/modules.alias
+lib/modules/6.12.0-rc6-xe/modules.order
+lib/modules/6.12.0-rc6-xe/modules.symbols
+lib/modules/6.12.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1730693899:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1730693899:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
