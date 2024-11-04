@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA0ECD1BDF3
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 21:07:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7FCED1BDF3
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 21:07:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A36110E09E;
-	Mon,  4 Nov 2024 21:07:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82DC410E0C8;
+	Mon,  4 Nov 2024 21:07:18 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7971D10E09E;
- Mon,  4 Nov 2024 21:07:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9BBF10E0C8;
+ Mon,  4 Nov 2024 21:07:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_drm-ne?=
- =?utf-8?q?xt_merge?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_drm-next_me?=
+ =?utf-8?q?rge?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 04 Nov 2024 21:07:04 -0000
-Message-ID: <173075442448.1408486.12143524440291433018@2413ebb6fbb6>
+Date: Mon, 04 Nov 2024 21:07:17 -0000
+Message-ID: <173075443795.1408486.10607817659756420498@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241104183104.2265275-1-lucas.demarchi@intel.com>
 In-Reply-To: <20241104183104.2265275-1-lucas.demarchi@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0a6cc4357ae4 drm-tip: 2024y-11m-04d-12h-52m-56s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix drm-next merge
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+30ab6715fc09baee6cc14cb3c89ad8858688d474
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f32d222e1733bd6682a42825323c06943db651f3
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Mon Nov 4 10:31:04 2024 -0800
+
+    drm/xe: Fix drm-next merge
+    
+    Fix merge in commit c787c2901e2c ("Merge drm/drm-next into
+    drm-xe-next"). That workaround needs to be done only once.
+    
+    Fixes: c787c2901e2c ("Merge drm/drm-next into drm-xe-next")
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 0a6cc4357ae4d824f909468ca1deed28ae5ac96f drm-intel
+f32d222e1733 drm/xe: Fix drm-next merge
 
 
