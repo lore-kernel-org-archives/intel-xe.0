@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0CC4D1BDF3
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 20:56:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44D35D1BDF4
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 20:59:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80BFD10E4C5;
-	Mon,  4 Nov 2024 20:56:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D4D010E4CF;
+	Mon,  4 Nov 2024 20:59:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bmCp/2kH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nBHvfkVt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1139310E4C5
- for <intel-xe@lists.freedesktop.org>; Mon,  4 Nov 2024 20:56:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A63C210E4C5
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Nov 2024 20:59:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730753800; x=1762289800;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p7au9wTx9WNrbi8ICZVY27CdsKS/nv5PxvixA4Gv+RA=;
- b=bmCp/2kHX5BI5sWAoJxS9yshiPdcLt1aMiHoQX/i/m8h20HRVz0izTPX
- Vcxczhs49t/R3bdu2BCcld/xn1mzuyxTfGnbzUKw4wKnQmQf7VweFKjYn
- X3kceqDay3qr2jLL47vt4o20dtlOmKU5z851eJKBb0UQRgucZCsDjLoP2
- 5F0Vw79WYsPRTgYeoKXdnleZaLPWGdCs3S9iTQZB6uw60ULMBCldY2rQz
- cbv4j4MAGkvoTI+rZ4/wCd3d9oiEYpdLeZJ53RFiQ/SRu2swe+7XDg6/i
- IN8V8MnUFqKVyweI2sTsL+KdjJ372ILTALQ/9WpKftaPj+w7XHTy7f+ZO w==;
-X-CSE-ConnectionGUID: 3Po1SU4MQ0+XX2dq1veXTQ==
-X-CSE-MsgGUID: xgjIK9dFScSeHAYy3Dax7A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30635367"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30635367"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 12:56:40 -0800
-X-CSE-ConnectionGUID: cgcI5sL4Qx+XuD2Z/8ejoQ==
-X-CSE-MsgGUID: kNbJsMrXQJeP8jI6rpUlbA==
+ t=1730753989; x=1762289989;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Dh0zJjwdPeEaKs077SjNl5ZtX8iY9/SyGZw5TRMxAUw=;
+ b=nBHvfkVtzcSTP1ZctmBv407ioVMFGGHtmLSKO63PqrasCK2ryY7Jj8tD
+ krBgBenqqvt+ymtFGSpBZjCJBmwIJWVCQDcfjidfQpDU55GbUGbsPd+Va
+ R9npJTT0jSVUmnIO0uEdIaJ5vj4JU1UXZj7Kbt5Eb4eOL/dz1LBWGQ7ty
+ otWhAkHdCh0c6dNdlRZ48jf18N3gMGrDoe4899O9nvTCCVAVNBtxbkOBT
+ N1CDopGHzAi3MoD/vnuB95STsL/KoLwBNPadXXAbGsCf/BO8oEHzlObxz
+ L4ZY6JBrXFj9PQHf1GEUX7jkKqDtjvQyTS/DUuf1nuf1JyQf+U6Rbfk3J Q==;
+X-CSE-ConnectionGUID: pfpUWFe6QAKAkapXBBgERQ==
+X-CSE-MsgGUID: OZ3/SCoVQ+ivMPkM4pnOkQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="18092983"
+X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; d="scan'208";a="18092983"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2024 12:59:48 -0800
+X-CSE-ConnectionGUID: Q/NruEpsRX+Y25RHCW28ow==
+X-CSE-MsgGUID: 8XmmnITQRzmV512rivhdkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="88525551"
-Received: from ilevi-mobl.ger.corp.intel.com ([10.245.146.70])
- by orviesa003.jf.intel.com with ESMTP; 04 Nov 2024 12:56:38 -0800
-From: Ilia Levi <ilia.levi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: ilia.levi@intel.com, niranjana.vishwanathapura@intel.com,
- koby.elbaz@intel.com, yaron.avizrat@intel.com,
- Dani Liberman <dliberman@habana.ai>
-Subject: [PATCH 3/3] drm/xe/uapi: Support requesting unique MSI-X for exec
- queue
-Date: Mon,  4 Nov 2024 22:56:17 +0200
-Message-ID: <20241104205619.1410-4-ilia.levi@intel.com>
-X-Mailer: git-send-email 2.47.0.windows.2
-In-Reply-To: <20241104205619.1410-1-ilia.levi@intel.com>
-References: <20241104205619.1410-1-ilia.levi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; d="scan'208";a="83888788"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa008.fm.intel.com with ESMTP; 04 Nov 2024 12:59:47 -0800
+Received: from [10.246.2.9] (mwajdecz-MOBL.ger.corp.intel.com [10.246.2.9])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 540FB28794;
+ Mon,  4 Nov 2024 20:59:45 +0000 (GMT)
+Message-ID: <4b55bbc6-87f1-4ede-9bf8-961d25a42878@intel.com>
+Date: Mon, 4 Nov 2024 21:59:44 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/5] drm/xe/vf: Document SRIOV VF restore flow
+To: "Lis, Tomasz" <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+References: <20241029193956.1043614-1-tomasz.lis@intel.com>
+ <20241029193956.1043614-3-tomasz.lis@intel.com>
+ <36cdd46a-0105-4a59-b78d-3968be1f43de@intel.com>
+ <93405f27-bc0e-4c48-97d7-d972bc1ee8e2@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <93405f27-bc0e-4c48-97d7-d972bc1ee8e2@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,240 +73,268 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dani Liberman <dliberman@habana.ai>
 
-Unique MSI-X per exec queue will improve the performance of the
-IRQ handler. In case no MSI-X is available, the uAPI will return
--EBUSY error and the user would be able to execute the uAPI again
-without the flag (fallback to default MSI-X).
 
-Co-authored-by: Ilia Levi <ilia.levi@intel.com>
-Signed-off-by: Dani Liberman <dliberman@habana.ai>
----
- drivers/gpu/drm/xe/xe_exec_queue.c       | 58 ++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
- drivers/gpu/drm/xe/xe_irq_msix.c         | 26 +++++++++++
- drivers/gpu/drm/xe/xe_irq_msix.h         |  1 +
- include/uapi/drm/xe_drm.h                |  8 +++-
- 5 files changed, 89 insertions(+), 6 deletions(-)
+On 04.11.2024 19:46, Lis, Tomasz wrote:
+> 
+> On 03.11.2024 22:21, Michal Wajdeczko wrote:
+>>
+>> On 29.10.2024 20:39, Tomasz Lis wrote:
+>>> This adds a documentation chapter, containing high level flow
+>>> of VF restore procedure.
+>>>
+>>> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_sriov_vf.h | 93 ++++++++++++++++++++++++++++++++
+>>>   1 file changed, 93 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/
+>>> xe_sriov_vf.h
+>>> index 7b8622cff2b7..22683dd643f8 100644
+>>> --- a/drivers/gpu/drm/xe/xe_sriov_vf.h
+>>> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+>>> @@ -8,6 +8,99 @@
+>>>     struct xe_device;
+>>>   +/**
+>>> + * DOC: VF restore procedure in PF KMD and VF KMD
+>>> + *
+>>> + * Restoring previously saved state of a VF is one of core features of
+>>> + * SR-IOV. All major VM Management applications allow saving and
+>>> restoring
+>>> + * the VM state, and doing that to a VM which uses SRIOV VF as one of
+>>> + * the accessible devices requires support from KMD on both PF and
+>>> VF side.
+>>> + * VMM initiates all required operations through VFIO module, which
+>>> then
+>>> + * translates them into PF KMD calls. This description will focus on
+>>> these
+>>> + * calls, leaving out the module which initiates these steps (VFIO).
+>>> + *
+>>> + * In order to start the restore procedure, GuC needs to keep the VF in
+>>> + * proper state. The PF driver can ensure VF entered this state by
+>>> + * performing Function Level Reset on said VF. The FLR procedure
+>>> ends with
+>>> + * GuC sending message `GUC_PF_NOTIFY_VF_FLR_DONE`, and then the actual
+>>> + * restore can begin.
+>> hmm, I would do some rewording here, as it's not that VF_FLR_DONE
+>> message is a prerequisite for the restore flow, it's that VF must be in
+>> VF_READY state, which will be once the VF is successfully provisioned.
+>>
+>> The FLR is required only if the VF was previously used.
+> Will do. Though for what I understand, creation of a VF includes a FLR
+> as well.
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 73d71acd6c7d..184131184dda 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -12,10 +12,12 @@
- #include <uapi/drm/xe_drm.h>
- 
- #include "xe_device.h"
-+#include "xe_drv.h"
- #include "xe_gt.h"
- #include "xe_hw_engine_class_sysfs.h"
- #include "xe_hw_engine_group.h"
- #include "xe_hw_fence.h"
-+#include "xe_irq_msix.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_migrate.h"
-@@ -34,8 +36,46 @@ enum xe_exec_queue_sched_prop {
- static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
- 				      u64 extensions, int ext_number);
- 
-+static int xe_exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q, bool unique_msix)
-+{
-+	u16 msix;
-+	int ret = 0;
-+
-+	if (!xe_device_has_msix(xe))
-+		return 0;
-+
-+	if (!unique_msix) {
-+		q->msix = xe->irq.msix.default_msix;
-+		return 0;
-+	}
-+
-+	ret = xe_irq_msix_request_irq(xe, xe_irq_msix_hwe_handler, q,
-+				      DRIVER_NAME "-exec-queue", true, &msix);
-+	if (ret < 0) {
-+		drm_dbg(&xe->drm, "Can't allocate unique MSI-X to exec queue (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	q->msix = msix;
-+
-+	return 0;
-+}
-+
-+static void xe_exec_queue_msix_fini(struct xe_exec_queue *q)
-+{
-+	struct xe_device *xe = gt_to_xe(q->gt);
-+
-+	if (!xe_device_has_msix(xe))
-+		return;
-+
-+	if (q->msix && q->msix != xe->irq.msix.default_msix)
-+		xe_irq_msix_free_irq(xe, q->msix);
-+}
-+
- static void __xe_exec_queue_free(struct xe_exec_queue *q)
- {
-+	xe_exec_queue_msix_fini(q);
-+
- 	if (q->vm)
- 		xe_vm_put(q->vm);
- 
-@@ -68,7 +108,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	q->gt = gt;
- 	q->class = hwe->class;
- 	q->width = width;
--	q->msix = xe->irq.msix.default_msix;
-+	err = xe_exec_queue_msix_init(xe, q, flags & EXEC_QUEUE_FLAG_UNIQUE_MSIX);
-+	if (err) {
-+		kfree(q);
-+		return ERR_PTR(err);
-+	}
-+
- 	q->logical_mask = logical_mask;
- 	q->fence_irq = &gt->fence_irq[hwe->class];
- 	q->ring_ops = gt->ring_ops[hwe->class];
-@@ -536,13 +581,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	struct xe_gt *gt;
- 	struct xe_tile *tile;
- 	struct xe_exec_queue *q = NULL;
-+	u32 flags = 0;
- 	u32 logical_mask;
- 	u32 id;
- 	u32 len;
- 	int err;
- 
--	if (XE_IOCTL_DBG(xe, args->flags) ||
--	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
- 	len = args->width * args->num_placements;
-@@ -558,6 +603,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
- 		return -EINVAL;
- 
-+	if (args->flags & DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT)
-+		flags |= EXEC_QUEUE_FLAG_UNIQUE_MSIX;
-+
- 	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
- 		if (XE_IOCTL_DBG(xe, args->width != 1) ||
- 		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
-@@ -566,8 +614,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 
- 		for_each_tile(tile, xe, id) {
- 			struct xe_exec_queue *new;
--			u32 flags = EXEC_QUEUE_FLAG_VM;
- 
-+			flags |= EXEC_QUEUE_FLAG_VM;
- 			if (id)
- 				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
- 
-@@ -614,7 +662,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 		}
- 
- 		q = xe_exec_queue_create(xe, vm, logical_mask,
--					 args->width, hwe, 0,
-+					 args->width, hwe, flags,
- 					 args->extensions);
- 		up_read(&vm->lock);
- 		xe_vm_put(vm);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 19fd66d59dd7..047a3fae849f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -85,6 +85,8 @@ struct xe_exec_queue {
- #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
- /* kernel exec_queue only, set priority to highest level */
- #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
-+/* queue with unique msix interrupt */
-+#define EXEC_QUEUE_FLAG_UNIQUE_MSIX		BIT(5)
- 
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_irq_msix.c b/drivers/gpu/drm/xe/xe_irq_msix.c
-index f873bcfe5283..53d05aafb2a7 100644
---- a/drivers/gpu/drm/xe/xe_irq_msix.c
-+++ b/drivers/gpu/drm/xe/xe_irq_msix.c
-@@ -9,6 +9,7 @@
- 
- #include "xe_device.h"
- #include "xe_drv.h"
-+#include "xe_exec_queue_types.h"
- #include "xe_guc.h"
- #include "xe_memirq.h"
- 
-@@ -67,6 +68,23 @@ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
- 	return IRQ_HANDLED;
- }
- 
-+/**
-+ * xe_irq_msix_hwe_handler - MSI-X IRQ handler for hw engines
-+ * @irq: the irq raised
-+ * @arg: the exec queue that raised the interrupt
-+ *
-+ * In MSI-X mode command streamers raise an interrupt only as a result of
-+ * MI_USER_INTERRUPT and MI_FLUSH_DW_NOTIFY commands.
-+ */
-+irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg)
-+{
-+	struct xe_exec_queue *q = arg;
-+
-+	xe_memirq_hwe_handler(&gt_to_tile(q->hwe->gt)->memirq, q->hwe);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static int xe_irq_msix_alloc_vector(struct xe_device *xe, void *irq_buf,
- 				    bool dynamic_msix, u16 *msix)
- {
-@@ -133,6 +151,14 @@ void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
- 	int irq;
- 	void *irq_buf;
- 
-+	/*
-+	 * When removing the driver this function can be called twice for each msix that was
-+	 * allocated for exec queue. First from irq_uninstall() and then from exec queue free.
-+	 * Hence, it is possible that the xarray was already destroyed or the entry was removed.
-+	 */
-+	if (xa_empty(&xe->irq.msix.indexes))
-+		return;
-+
- 	irq_buf = xa_load(&xe->irq.msix.indexes, msix);
- 	if (!irq_buf)
- 		return;
-diff --git a/drivers/gpu/drm/xe/xe_irq_msix.h b/drivers/gpu/drm/xe/xe_irq_msix.h
-index a9c8ce18172e..04619d991b10 100644
---- a/drivers/gpu/drm/xe/xe_irq_msix.h
-+++ b/drivers/gpu/drm/xe/xe_irq_msix.h
-@@ -17,5 +17,6 @@ void xe_irq_msix_synchronize_irq(struct xe_device *xe);
- int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
- 			    const char *name, bool dynamic_msix, u16 *msix);
- void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix);
-+irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg);
- 
- #endif
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 4a8a4a63e99c..5f32553b14fb 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1123,7 +1123,13 @@ struct drm_xe_exec_queue_create {
- 	/** @vm_id: VM to use for this exec queue */
- 	__u32 vm_id;
- 
--	/** @flags: MBZ */
-+	/*
-+	 * When creating exec queue in MSIX platforms, the user can request a unique MSIX interrupt
-+	 * for the irq handler. If there is no available MSIX, -EBUSY will be returned.
-+	 */
-+#define	DRM_XE_EXEC_QUEUE_CREATE_FLAG_UNIQUE_INTERRUPT_HINT (0x1 << 0)
-+
-+	/** @flags: create queue flags */
- 	__u32 flags;
- 
- 	/** @exec_queue_id: Returned exec queue ID */
--- 
-2.43.2
+not really, VFs FLR are triggered on demand _after_ they were enabled
+
+>>
+>>> + *
+>>> + * During VF Restore, state of several resources is restored. These may
+>>> + * include local memory content (system memory is restored by VMM
+>>> itself),
+>>> + * values of MMIO registers, stateless compression metadata and others.
+>>> + * The final resource which also needs restoring is state of the VF
+>>> + * submission maintained within GuC. For that,
+>>> `GUC_PF_OPCODE_VF_RESTORE`
+>>> + * message is used, with reference to the state blob to be consumed by
+>>> + * GuC.
+>>> + *
+>>> + * Next, when VFIO is asked to set the VM into running state, the PF
+>>> driver
+>>> + * sends `GUC_PF_TRIGGER_VF_RESUME` to GuC. When sent after restore,
+>>> this
+>>> + * changes VF state within GuC to `VF_RESFIX_BLOCKED` rather than the
+>>> + * usual `VF_RUNNING`. At this point GuC triggers an interrupt to
+>>> inform
+>>> + * the VF KMD within the VM that it was migrated.
+>>> + *
+>>> + * As soon as Virtual GPU of the VM starts, the VF driver within
+>>> receives
+>>> + * the MIGRATED interrupt and schedules post-migration recovery worker.
+>>> + * That worker queries GuC for new provisioning (using MMIO
+>>> communication),
+>>> + * and applies fixups to any non-virtualized resources used by the VF.
+>>> + *
+>>> + * When the VF driver is ready to continue operation on the newly
+>>> connected
+>>> + * hardware, it sends `VF2GUC_NOTIFY_RESFIX_DONE` which causes it to
+>>> + * enter the long awaited `VF_RUNNING` state, and therefore start
+>>> handling
+>>> + * CTB messages and scheduling workloads from the VF::
+>>> + *
+>> nit: maybe this would look little nicer with leading lines like:
+> 
+> no, it's not a matter of nice look. The lines start thin if the
+> component does not currently participate in the execution.
+> 
+> Since it's not a proper diagram and just simplified ASCII art, we do not
+> start the flow correctly with an actor initiating everything. So
+> starting the lines thin would misrepresent the flow.
+
+starting diagram in the middle of the flow is also incorrect
+
+> 
+>>
+>>> + *      PF                            
+>>> GuC                              VF
+>>             |                               |
+>>> + *     [ ]                            
+>>> [ ]                              |
+>>> + *     [ ] GUC_PF_NOTIFY_VF_FLR_DONE  
+>>> [ ]                              |
+>> nit: this label should be aligned to the right, closer to GuC
+> this is a "return" label. These labels are bound to the position of arrow.
+
+FLR_DONE is still a separate G2H EVENT, not a return RESPONSE G2H that
+would justify the 'return' label
+
+>>
+>>> + *     [ ] <---------------------------
+>>> [ ]                              |
+>> but IMO the whole diagram should start here, as it's about the restore
+>> flow, not the FLR flow (which is just a prerequisite, like a VF
+>> re-provisioning, that also must happen before the restore)
+>>
+>> if you really want to include prerequisite steps in diagram then maybe
+>> do it like this:
+>>
+>>            PF                             GuC
+>>             |                               |
+>>            [ ] VF provisioning/FLR          |
+>>            [ ] --------------------------> [ ]
+>>            [ ]                             [ ]--- VF_READY
+>>            [ ]                             [ ]<---|
+>>             |                               |
+> 
+> This is not ok because provisioning would need return arrow, it's not a
+> one-way notify.
+
+it was just an example ;)
+
+> 
+> Will just delete.
+
++1
+
+> 
+>>
+>>
+>>> + *     [ ]                              |
+>>>                                |
+>>> + *     [ ] PF loads resources from the  |
+>>>                                |
+>>> + *     [ ]------- saved image supplied  |
+>>>                                |
+>>> + *     [ ]      |                       |
+>>>                                |
+>>> + *     [ ] <-----                       |
+>>>                                |
+>>> + *     [ ]                              |
+>>>                                |
+>>> + *     [ ] GUC_PF_OPCODE_VF_RESTORE     |
+>>>                                |
+>>> + *     [ ]--------------------------->
+>>> [ ]                              |
+>>> + *     [ ]                             [ ]  GuC loads contexts and
+>>> CTB  |
+>>> + *     [ ]                             [ ]------- state from
+>>> image      |
+>> maybe also say that GuC moves VF to VF_RESFIX_PAUSED state?
+> 
+> The documentation is to explain kernel workings, not GuC states. So I
+> don't really like putting all the GuC states here, especially because
+> KMD doesn't even track all of them.
+
+but you already included other GuC states in diagram, so just be consistent
+
+> 
+> ..But it does make sense at this point, especially because I will have
+> to add VF_READY_PAUSED as well. So, will add.
+
++1
+
+> 
+>>
+>>> + *     [ ]                             [ ]      |
+>>>                        |
+>>> + *     [ ] success                     [ ] <-----
+>>>                        |
+>>> + *     [ ] <---------------------------
+>>> [ ]                              |
+>>> + *     [ ]                              |
+>>>                                |
+>>> + *     [ ] GUC_PF_TRIGGER_VF_RESUME     |
+>>>                                |
+>>> + *     [ ]--------------------------->
+>>> [ ]                              |
+>>> + *     [ ]                             [ ]  GuC sets new VF state
+>>> to    |
+>>> + *     [ ]                             [ ]-------
+>>> VF_RESFIX_BLOCKED     |
+>>> + *     [ ]                             [ ]      |
+>>>                        |
+>>> + *     [ ]                             [ ] <-----
+>>>                        |
+>>> + *     [ ]                            
+>>> [ ]                              |
+>>> + *     [ ]                             [ ]
+>>> GUC_INTR_SW_INT_0            |
+>>> + *     [ ] success                    
+>>> [ ]---------------------------> [ ]
+>>> + *     [ ] <---------------------------
+>>> [ ]                             [ ]
+>>> + *      |                               |     
+>>> VF2GUC_QUERY_SINGLE_KLV [ ]
+>>> + *      |                              [ ]
+>>> <---------------------------[ ]
+>>> + *      |                             
+>>> [ ]                             [ ]
+>>> + *      |                              [ ]        new VF
+>>> provisioning  [ ]
+>>> + *      |                             
+>>> [ ]---------------------------> [ ]
+>>> + *      |                               |
+>>>                               [ ]
+>>> + *      |                               |       VF driver applies
+>>> post [ ]
+>>> + *      |                               |      migration fixups
+>>> -------[ ]
+>>> + *      |                               |                       |
+>>>       [ ]
+>>> + *      |                               |                      
+>>> -----> [ ]
+>>> + *      |                               |
+>>>                               [ ]
+>>> + *      |                               |   
+>>> VF2GUC_NOTIFY_RESFIX_DONE [ ]
+>>> + *      |                              [ ]
+>>> <---------------------------[ ]
+>>> + *      |                             
+>>> [ ]                             [ ]
+>>> + *      |                              [ ]  GuC sets new VF state
+>>> to   [ ]
+>>> + *      |                              [ ]-------
+>>> VF_READY             [ ]
+>> this should say VF_RUNNING state
+> 
+> ack
+> 
+> -Tomasz
+> 
+>>> + *      |                              [ ]      |
+>>>                       [ ]
+>>> + *      |                              [ ] <-----
+>>>                       [ ]
+>>> + *      |                              [ ]                    
+>>> success [ ]
+>>> + *      |                             
+>>> [ ]---------------------------> [ ]
+>>> + *      |                               |
+>>>                                |
+>>> + *      |                               |
+>>>                                |
+>>> + */
+>>> +
+>>>   void xe_sriov_vf_init_early(struct xe_device *xe);
+>>>   void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
+>>>   
 
