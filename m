@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E811D1BDD0
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 17:20:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 077ECD1BDD2
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 17:20:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E090610E496;
-	Mon,  4 Nov 2024 17:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C13BB10E48E;
+	Mon,  4 Nov 2024 17:20:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iOe0oyU6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JzURb1+X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9847310E494;
- Mon,  4 Nov 2024 17:20:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9AB310E48E;
+ Mon,  4 Nov 2024 17:20:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730740830; x=1762276830;
+ t=1730740842; x=1762276842;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lI6o+pXsYuB58P7h+6NgACsPx+tEO8QJsRZBfFxWq6w=;
- b=iOe0oyU6cdFMXQYyXPXLfsCLP06D3ZAUeToaES0Rsfqn29+6d/h1KddB
- 5Kkv3cnH3csO2CvlBZ/OWOW44KxuiBhZoOs1nEZ1emOAQ6wtGzQ5lpAMx
- 3Krn5WBkmpMA+MZOTrNNgS6WzB+/oFhAblkpi5cX3HN4QhE+BnA1ebqD5
- muJOK8kGn+QIOzx9ItIdwuCNf6mJvSoGIg64c+1bCbZiqAKec2sFDgvOk
- pTx+9QuK+4WYsytTMywMjW1zrdiO9h0w/KSn6Gud2lXntR7W4m7zxzfoo
- Kh70WnzyimyPQdMr5Xf1SxJX9y65VtDvIA5sx7wbC9o0slRt6WO1iksNL A==;
-X-CSE-ConnectionGUID: BsqTo6edRUKs/VJ4+aLh0g==
-X-CSE-MsgGUID: 4ZKFsyxGSiCGqQL4YJjarQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30563965"
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="30563965"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:26 -0800
-X-CSE-ConnectionGUID: 3vJ3PdsUTBeE8jwxiduGQg==
-X-CSE-MsgGUID: 2bXWwN9LTZ+7nBZtZey4Wg==
+ bh=VPphU6qHLCduHzwZF8um3wyYahO1gR95dnMs7La4RpQ=;
+ b=JzURb1+XuAlUkUS2c2iNzcyA6kYz86mfpMRQib+rLKDFk8u8nJaGK+0+
+ aJ6c1iLn582QODEaDa2SogDC45ZjrvaijaXdGaFXRIP+P7we/K/KC1qVf
+ U2hF6bWSqeJHLI5h6JpFsXq7c3uXMy49aLCMDT34CFvYTqukuG3BXYoNZ
+ shzUygLXqL5F+3j/wGzv4kvFBp7jirKJAXGFEXx9tnE7RqxKO0AM9Smw6
+ nHfXDetFVUz6h7qw2gyPu7Cmtc1Yud8ccZ4ZpkXzprRRqAOQ2hC4BVtos
+ qsa1GeCpqKvKCPXrsU63oYgnp3tkk0ZCDJbQfSeTLGfNL9aIgIdmg/O8G Q==;
+X-CSE-ConnectionGUID: 6VNT18qWRsWYIJJenXAT9Q==
+X-CSE-MsgGUID: xQSRHTM2RUOka0fCGrlLZg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="18070908"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="18070908"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2024 09:20:41 -0800
+X-CSE-ConnectionGUID: /jagrA1OSQG0FOIe8dJI1A==
+X-CSE-MsgGUID: rhBnJzhFTT6yPgEUcYuPGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83815841"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83841290"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.33])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:24 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2024 09:20:40 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 11/15] drm/i915/display: convert HAS_ULTRAJOINER() to struct
- intel_display
-Date: Mon,  4 Nov 2024 19:19:25 +0200
-Message-Id: <ea4d7f4694ba92c87b00258cd9786d668a09c313.1730740629.git.jani.nikula@intel.com>
+Subject: [PATCH 14/15] drm/i915/display: pass struct pci_dev * to
+ intel_display_device_probe()
+Date: Mon,  4 Nov 2024 19:19:28 +0200
+Message-Id: <ad1b3446adc741cf94051efa5d69e7a82f6aee87.1730740629.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
 References: <cover.1730740629.git.jani.nikula@intel.com>
@@ -70,114 +70,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert HAS_ULTRAJOINER() to struct intel_display. Do minimal drive-by
-conversions to struct intel_display in the callers while at it.
+Convert intel_display_device_probe() to accept struct pci_dev * instead
+of struct drm_i915_private *. Return struct intel_display * in
+preparation of allocating the memory of it later.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c         | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c |  4 ++--
- drivers/gpu/drm/i915/display/intel_display_device.h  |  6 +++---
- drivers/gpu/drm/i915/display/intel_dp.c              |  5 ++---
- 4 files changed, 13 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.c | 10 ++++++----
+ drivers/gpu/drm/i915/display/intel_display_device.h |  4 ++--
+ drivers/gpu/drm/i915/i915_driver.c                  |  2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c    |  2 +-
+ drivers/gpu/drm/xe/display/xe_display.c             |  5 +++--
+ 5 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f53611e83502..a3924bbb0d2a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3746,12 +3746,13 @@ static u8 fixup_ultrajoiner_secondary_pipes(u8 ultrajoiner_primary_pipes,
- static void enabled_ultrajoiner_pipes(struct drm_i915_private *i915,
- 				      u8 *primary_pipes, u8 *secondary_pipes)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index aabf6ece40c4..8ba1b4652ca9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -16,6 +16,7 @@
+ #include "intel_display_params.h"
+ #include "intel_display_power.h"
+ #include "intel_display_reg_defs.h"
++#include "intel_display_types.h"
+ #include "intel_fbc.h"
+ #include "intel_step.h"
+ 
+@@ -1569,10 +1570,9 @@ static void display_platforms_or(struct intel_display_platforms *dst,
+ 	bitmap_or(dst->bitmap, dst->bitmap, src->bitmap, display_platforms_num_bits());
+ }
+ 
+-void intel_display_device_probe(struct drm_i915_private *i915)
++struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
  {
-+	struct intel_display *display = &i915->display;
- 	struct intel_crtc *crtc;
+-	struct intel_display *display = &i915->display;
+-	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	struct intel_display *display = to_intel_display(pdev);
+ 	const struct intel_display_device_info *info;
+ 	struct intel_display_ip_ver ip_ver = {};
+ 	const struct platform_desc *desc;
+@@ -1649,10 +1649,12 @@ void intel_display_device_probe(struct drm_i915_private *i915)
+ 		 DISPLAY_RUNTIME_INFO(display)->ip.rel,
+ 		 step != STEP_NONE ? intel_step_name(step) : "N/A");
  
- 	*primary_pipes = 0;
- 	*secondary_pipes = 0;
+-	return;
++	return display;
  
--	if (!HAS_ULTRAJOINER(i915))
-+	if (!HAS_ULTRAJOINER(display))
- 		return;
+ no_display:
+ 	DISPLAY_INFO(display) = &no_display;
++
++	return display;
+ }
  
- 	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
-@@ -8310,11 +8311,12 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 
- static int max_dotclock(struct drm_i915_private *i915)
- {
--	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
-+	struct intel_display *display = &i915->display;
-+	int max_dotclock = display->cdclk.max_dotclk_freq;
- 
--	if (HAS_ULTRAJOINER(i915))
-+	if (HAS_ULTRAJOINER(display))
- 		max_dotclock *= 4;
--	else if (HAS_UNCOMPRESSED_JOINER(i915) || HAS_BIGJOINER(i915))
-+	else if (HAS_UNCOMPRESSED_JOINER(display) || HAS_BIGJOINER(display))
- 		max_dotclock *= 2;
- 
- 	return max_dotclock;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 11aff485d8fa..2874867aae2b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1331,7 +1331,7 @@ static ssize_t i915_joiner_write(struct file *file,
- {
- 	struct seq_file *m = file->private_data;
- 	struct intel_connector *connector = m->private;
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
- 	int force_joined_pipes = 0;
- 	int ret;
- 
-@@ -1349,7 +1349,7 @@ static ssize_t i915_joiner_write(struct file *file,
- 		connector->force_joined_pipes = force_joined_pipes;
- 		break;
- 	case 4:
--		if (HAS_ULTRAJOINER(i915)) {
-+		if (HAS_ULTRAJOINER(display)) {
- 			connector->force_joined_pipes = force_joined_pipes;
- 			break;
- 		}
+ void intel_display_device_remove(struct intel_display *display)
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index e1e718fced3c..548256401d0a 100644
+index 01e3cc0fde4b..e1398689cda5 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -178,9 +178,9 @@ struct intel_display_platforms {
- #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
- 					  BIT(trans)) != 0)
- #define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >= 13)
--#define HAS_ULTRAJOINER(i915)		((DISPLAY_VER(i915) >= 20 || \
--					  (IS_DGFX(i915) && DISPLAY_VER(i915) == 14)) && \
--					 HAS_DSC(i915))
-+#define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
-+					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
-+					 HAS_DSC(__display))
- #define HAS_VRR(i915)			(DISPLAY_VER(i915) >= 11)
- #define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >= 13)
- #define HAS_CMRR(i915)			(DISPLAY_VER(i915) >= 20)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a27da96d2c60..7d65945c9563 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1333,16 +1333,15 @@ int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
- 			      int hdisplay, int clock)
+@@ -12,9 +12,9 @@
+ #include "intel_display_conversion.h"
+ #include "intel_display_limits.h"
+ 
+-struct drm_i915_private;
+ struct drm_printer;
+ struct intel_display;
++struct pci_dev;
+ 
+ /*
+  * Display platforms and subplatforms. Keep platforms in display version based
+@@ -288,7 +288,7 @@ struct intel_display_device_info {
+ };
+ 
+ bool intel_display_device_enabled(struct intel_display *display);
+-void intel_display_device_probe(struct drm_i915_private *i915);
++struct intel_display *intel_display_device_probe(struct pci_dev *pdev);
+ void intel_display_device_remove(struct intel_display *display);
+ void intel_display_device_info_runtime_init(struct intel_display *display);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 596aaf940d0c..310c0a2e9e26 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -732,7 +732,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	/* Set up device info and initial runtime info. */
+ 	intel_device_info_driver_create(i915, pdev->device, match_info);
+ 
+-	intel_display_device_probe(i915);
++	intel_display_device_probe(pdev);
+ 
+ 	return i915;
+ }
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index ae57eb03dfca..a77e5b26542c 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -180,7 +180,7 @@ struct drm_i915_private *mock_gem_device(void)
+ 	/* Set up device info and initial runtime info. */
+ 	intel_device_info_driver_create(i915, pdev->device, &mock_info);
+ 
+-	intel_display_device_probe(i915);
++	intel_display_device_probe(pdev);
+ 
+ 	dev_pm_domain_set(&pdev->dev, &pm_domain);
+ 	pm_runtime_enable(&pdev->dev);
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 9b8acf2074e0..60ff48604e3b 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -502,13 +502,14 @@ static void display_device_remove(struct drm_device *dev, void *arg)
+ 
+ int xe_display_probe(struct xe_device *xe)
  {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
+-	struct intel_display *display = &xe->display;
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	struct intel_display *display;
+ 	int err;
  
- 	if (connector->force_joined_pipes)
- 		return connector->force_joined_pipes;
+ 	if (!xe->info.probe_display)
+ 		goto no_display;
  
--	if (HAS_ULTRAJOINER(i915) &&
-+	if (HAS_ULTRAJOINER(display) &&
- 	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 4))
- 		return 4;
+-	intel_display_device_probe(xe);
++	display = intel_display_device_probe(pdev);
  
--	if ((HAS_BIGJOINER(i915) || HAS_UNCOMPRESSED_JOINER(i915)) &&
-+	if ((HAS_BIGJOINER(display) || HAS_UNCOMPRESSED_JOINER(display)) &&
- 	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 2))
- 		return 2;
- 
+ 	err = drmm_add_action_or_reset(&xe->drm, display_device_remove, display);
+ 	if (err)
 -- 
 2.39.5
 
