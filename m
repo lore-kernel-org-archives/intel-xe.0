@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64267D132A3
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 09:37:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96F22D132A2
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Nov 2024 09:45:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F0310E3BB;
-	Mon,  4 Nov 2024 09:37:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6017B10E2AC;
+	Mon,  4 Nov 2024 09:45:08 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94E7B10E3BB;
- Mon,  4 Nov 2024 09:37:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7272459110495904054=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B95010E2AC;
+ Mon,  4 Nov 2024 09:45:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
- =?utf-8?q?rm/i915/xe3lpd=3A_Disable_HDCP_Line_Rekeying_for_Xe3?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/psr=3A_Impl?=
+ =?utf-8?q?ement_WA_to_help_reach_PC10_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 04 Nov 2024 09:37:53 -0000
-Message-ID: <173071307360.1390606.8458023598838195348@2413ebb6fbb6>
+Date: Mon, 04 Nov 2024 09:45:07 -0000
+Message-ID: <173071350730.1390867.17071428556507990481@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241104083143.631760-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241104083143.631760-1-suraj.kandpal@intel.com>
+References: <20241104091257.731388-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241104091257.731388-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,135 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7272459110495904054==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915/xe3lpd: Disable HDCP Line Rekeying for Xe3
-URL   : https://patchwork.freedesktop.org/series/140864/
+Series: drm/i915/psr: Implement WA to help reach PC10 (rev4)
+URL   : https://patchwork.freedesktop.org/series/139512/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6_BAT -> xe-pw-140864v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140864v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [FAIL][1] ([Intel XE#886]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140864v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#1861]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140864v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d0f69798668e drm-tip: 2024y-11m-04d-08h-29m-38s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/psr: Implement WA to help reach PC10
 
 
-Build changes
--------------
-
-  * Linux: xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6 -> xe-pw-140864v1
-
-  IGT_8091: 8091
-  xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6: e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6
-  xe-pw-140864v1: 140864v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140864v1/index.html
-
---===============7272459110495904054==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/xe3lpd: Disable HDCP Line Rekeying for Xe3</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140864/">https://patchwork.freedesktop.org/series/140864/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140864v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140864v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6_BAT -&gt; xe-pw-140864v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140864v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140864v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140864v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6 -&gt; xe-pw-140864v1</li>
-</ul>
-<p>IGT_8091: 8091<br />
-  xe-2153-e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6: e1ed3c4d5631c655c0b97dd481b5334d67ccc8e6<br />
-  xe-pw-140864v1: 140864v1</p>
-
-</body>
-</html>
-
---===============7272459110495904054==--
