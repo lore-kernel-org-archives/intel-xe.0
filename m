@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0C47D3E774
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 21:36:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61491D3E773
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 21:56:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 653F010E2DA;
-	Tue,  5 Nov 2024 21:36:22 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A53C510E2DA;
- Tue,  5 Nov 2024 21:36:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0537894211820282597=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25E2110E0F9;
+	Tue,  5 Nov 2024 21:56:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jn+3c1Uu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAC310E0F9
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 21:56:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730843805; x=1762379805;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=OpzWjyV3rIH7zAjuVPBVPJssipvFGxAdFdR80eaIuRg=;
+ b=jn+3c1UuVF1AuKXIzNO/oqFoSWXp3I7RMyg4TFdSXv5grrMajDBfvql5
+ 2+Chh0N09LUVr/XF8uTyo6HaBItqWV+GuT7YRytl4O8Fb7AXp8Ggk55Iq
+ tpUyw9gEBplUzB8S/4lbiMOzWBS1j0fa1OBVkJZ5TUZ8Cy3WgaqO1JMNb
+ h1whrpwzlfCvMFYJhnjAemmtRVie/2z8YW19k8zelUiJIGU+laN9pFIKk
+ enovMk+UbSZ93+XhZz9TPvlazyKKWRnCeYdS8OooIJ7emahVPio7yPZkp
+ TtWwncqzJ3PetpxAGNN01uqt+RJawuvAftL136dNvriNS/TyEF0A5fCbI g==;
+X-CSE-ConnectionGUID: ygjsZPblTKehMv1c8CtcBw==
+X-CSE-MsgGUID: 8Oi10uFvQb+DNSs8nCRjmw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30390943"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30390943"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 13:56:30 -0800
+X-CSE-ConnectionGUID: /9GSrcjoTrmAJLldcFx+zw==
+X-CSE-MsgGUID: AZib4mkVToaV7bUsGG6hNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="88682675"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.146.158])
+ ([10.245.146.158])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 13:56:24 -0800
+Message-ID: <ddc74c9d-97a0-4700-8b0b-4bfa8eb64b49@linux.intel.com>
+Date: Tue, 5 Nov 2024 22:56:19 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_GuC=3A_Improve_handling_of_the_m?=
- =?utf-8?q?alformed_G2H_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Take job list lock in xe_sched_first_pending_job
+To: Matthew Brost <matthew.brost@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 05 Nov 2024 21:36:20 -0000
-Message-ID: <173084258063.1414110.1479547210641638027@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241105173032.1947-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20241105173032.1947-1-michal.wajdeczko@intel.com>
+References: <20241105160327.2970277-1-nirmoy.das@intel.com>
+ <Zypa9M+p2+4RZ3Oa@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <Zypa9M+p2+4RZ3Oa@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +67,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0537894211820282597==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 11/5/2024 6:50 PM, Matthew Brost wrote:
+> On Tue, Nov 05, 2024 at 05:03:27PM +0100, Nirmoy Das wrote:
+>> Access to the pending_list should always happens under job_list_lock.
+>>
+>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Is this showing up in any bug reports? The only user of this function is
+> guc_exec_queue_stop which as stopped the scheduler worker so I think
+> accessing to the pending_list is in fact safe without this lock. This is
+> however a micro-optimization in a non-hot path which I think is frowned
+> upon.
 
-Series: GuC: Improve handling of the malformed G2H (rev2)
-URL   : https://patchwork.freedesktop.org/series/140958/
-State : success
+This showed up in coverity report so no real bug report. Also agree that with current usage this won't
 
-== Summary ==
+cause any issue so avoided adding Cc to stable.
 
-CI Bug Log - changes from xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0_BAT -> xe-pw-140958v2_BAT
-====================================================
+>
+> So I think with above the fixes tag is not strickly required.
 
-Summary
--------
+I will remove the Fixes tag before merging.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140958v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#1861])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
+>
+> For the patch though:
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 
-Build changes
--------------
+Thanks,
 
-  * Linux: xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0 -> xe-pw-140958v2
+Nirmoy
 
-  IGT_8098: 8098
-  xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0: 1051f5a468c5531923b01ba67999e502ce47a6b0
-  xe-pw-140958v2: 140958v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v2/index.html
-
---===============0537894211820282597==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GuC: Improve handling of the malformed G2H (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140958/">https://patchwork.freedesktop.org/series/140958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0_BAT -&gt; xe-pw-140958v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140958v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0 -&gt; xe-pw-140958v2</li>
-</ul>
-<p>IGT_8098: 8098<br />
-  xe-2169-1051f5a468c5531923b01ba67999e502ce47a6b0: 1051f5a468c5531923b01ba67999e502ce47a6b0<br />
-  xe-pw-140958v2: 140958v2</p>
-
-</body>
-</html>
-
---===============0537894211820282597==--
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_gpu_scheduler.h | 10 ++++++++--
+>>  1 file changed, 8 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+>> index 64b2ae6839db..c250ea773491 100644
+>> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+>> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+>> @@ -71,8 +71,14 @@ static inline void xe_sched_add_pending_job(struct xe_gpu_scheduler *sched,
+>>  static inline
+>>  struct xe_sched_job *xe_sched_first_pending_job(struct xe_gpu_scheduler *sched)
+>>  {
+>> -	return list_first_entry_or_null(&sched->base.pending_list,
+>> -					struct xe_sched_job, drm.list);
+>> +	struct xe_sched_job *job;
+>> +
+>> +	spin_lock(&sched->base.job_list_lock);
+>> +	job = list_first_entry_or_null(&sched->base.pending_list,
+>> +				       struct xe_sched_job, drm.list);
+>> +	spin_unlock(&sched->base.job_list_lock);
+>> +
+>> +	return job;
+>>  }
+>>  
+>>  static inline int
+>> -- 
+>> 2.46.0
+>>
