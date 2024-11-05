@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81AB2D12692
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 11:51:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64437D12698
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 12:02:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B26610E05B;
-	Tue,  5 Nov 2024 11:51:07 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED77C10E05B;
- Tue,  5 Nov 2024 11:51:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3329110E28C;
+	Tue,  5 Nov 2024 12:02:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QBV9Ge6b";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F99E10E28C
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 12:02:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730808134; x=1762344134;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=D6jfgjItakhEHiUWDvXLQAtra13k6PeE2eIN6cgCeik=;
+ b=QBV9Ge6bMxgkiIj5pfakRrSKel0FNMEKsDQHhvkvumN+KyH3vsBGZ3DS
+ wsiFzPkBnPyGQq0DU7Le7ohWTgZDfrfBWqMOPy++eP6NORRUcwhJOVcty
+ YS93i7CUZoPy6ymQy1k2/U9ZCmtKtOr3tTzZHTE5YxLIAOg49jn5VOXAF
+ nYU2Ble19+DC91QsT4t33axn8hZKPWIyVhrUcrH9eJ33VpPKx3timC6uO
+ yF5aVNgown6ExW69eBvAo6zrjSAavy3Ioep4/zL2w/DxdDS4wlx5KeHl9
+ sM0fqyvQM/A+bu1myQsWvB2S1gVlfwOz3zxpqH3tF1txvfGtbkgsBohOl A==;
+X-CSE-ConnectionGUID: tC4zU5qxTpKswRNCiNqFSQ==
+X-CSE-MsgGUID: 58D1lVndQUyJuNI5Mvn/tg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30772800"
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="30772800"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 04:02:13 -0800
+X-CSE-ConnectionGUID: qc7mCMIYRz6XbSlp0p9cQQ==
+X-CSE-MsgGUID: WPf7tQ5fQd6Fd9c6+l/8Yw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="89128254"
+Received: from spandruv-desk1.amr.corp.intel.com (HELO
+ gjsousa-mobl2.corp.amr.intel.com) ([10.125.109.238])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 04:02:12 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] [CI] drm/i915/dmc: Test Xe2LPD DMC v2.23
+Date: Tue,  5 Nov 2024 09:01:48 -0300
+Message-ID: <20241105120159.18286-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_conv?=
- =?utf-8?q?ert_display_feature_helpers_to_struct_intel=5Fdisplay_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 05 Nov 2024 11:51:05 -0000
-Message-ID: <173080746596.1411752.10902592459335510@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1730740629.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +61,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+NOT TO BE REVIEWED/MERGED
 
-Series: drm/i915/display: convert display feature helpers to struct intel_display (rev2)
-URL   : https://patchwork.freedesktop.org/series/140887/
-State : warning
+Hardcode path to DMC firmware for CI purposes only.
 
-== Summary ==
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 913062707a924df0837c0d9eb9745ba52fd92958
-/root/linux/maintainer-tools/dim: line 2068: sparse: command not found
-Sparse version: 
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 87bdacfd9edf..76a33d12dee9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -116,7 +116,7 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
+ #define XE3LPD_DMC_PATH			DMC_PATH(xe3lpd)
+ MODULE_FIRMWARE(XE3LPD_DMC_PATH);
+ 
+-#define XE2LPD_DMC_PATH			DMC_PATH(xe2lpd)
++#define XE2LPD_DMC_PATH			"i915/xe2lpd_dmc_ver2_23.bin"
+ MODULE_FIRMWARE(XE2LPD_DMC_PATH);
+ 
+ #define BMG_DMC_PATH			DMC_PATH(bmg)
+-- 
+2.47.0
 
