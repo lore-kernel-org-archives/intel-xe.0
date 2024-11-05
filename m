@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA07DD3177E
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 18:37:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F35EED33A38
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 18:54:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B962710E5FA;
-	Tue,  5 Nov 2024 18:37:30 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 576EA10E5FA;
- Tue,  5 Nov 2024 18:37:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5755955095682745588=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB4BF10E425;
+	Tue,  5 Nov 2024 18:54:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kbd46BZb";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DE3F10E425;
+ Tue,  5 Nov 2024 18:54:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730832885; x=1762368885;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=HnIhjXn+3tMcjxxONQA9JgAJKDfI3DFtV12kkkR7S4s=;
+ b=kbd46BZbg4ZE4J2M4BYoxxbqM32u/iGsCpein/E/X1vmfU0a5sV2Fgth
+ Zd/1+9FB0yzZxRMjT+xebRcFPklSsIA42dx87hAJsnu7pogQEsxYJEnTu
+ 5szcPXvN0guG6k5qQvfhrCj8sdao7BLtsDrcBvO6s9xG+r5ewSfRzTnxR
+ yWdfnqhhL+AcJgO8APyN4vcVU/prQwnZ7VR6cyfbn5q1KMDFUuMr9mkvW
+ WX6QFwk5uE2FbUxZcz/nON+cmxKM5go1BW/IMOonCtfM7ea/mtow5kFk6
+ rtnQ9zZIeZGtFsvyZvGR/5Tz/FQZcJ6MpakE0/VAv1D47jRWn9LpoZNmi Q==;
+X-CSE-ConnectionGUID: 5PnvZs0SQP+gaOXA3gPINg==
+X-CSE-MsgGUID: FfvLML9rTiW5OrB8VcuUeQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30773814"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30773814"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 10:54:45 -0800
+X-CSE-ConnectionGUID: EY0UCMsgT+2Zyn0HkBJtGw==
+X-CSE-MsgGUID: 0wb334ZhQJS0I6pSXqsLGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="88923147"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+ by orviesa003.jf.intel.com with ESMTP; 05 Nov 2024 10:54:43 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1t8OhM-000mMR-2n;
+ Tue, 05 Nov 2024 18:54:40 +0000
+Date: Wed, 6 Nov 2024 02:53:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@intel.com
+Subject: Re: [PATCH 15/15] drm/i915/display: add mobile platform group
+Message-ID: <202411060217.jLvmbe0Z-lkp@intel.com>
+References: <e9277a5635fc02106ca69b9071928c2249323500.1730740629.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_GuC=3A_Improve_handling_of_the_m?=
- =?utf-8?q?alformed_G2H?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 05 Nov 2024 18:37:29 -0000
-Message-ID: <173083184935.1413687.6728735168960153688@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241105173032.1947-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20241105173032.1947-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e9277a5635fc02106ca69b9071928c2249323500.1730740629.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +66,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5755955095682745588==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Jani,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: GuC: Improve handling of the malformed G2H
-URL   : https://patchwork.freedesktop.org/series/140958/
-State : success
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on next-20241105]
+[cannot apply to drm-xe/drm-xe-next linus/master drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.12-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-display-identify-discrete-graphics/20241105-012305
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/e9277a5635fc02106ca69b9071928c2249323500.1730740629.git.jani.nikula%40intel.com
+patch subject: [PATCH 15/15] drm/i915/display: add mobile platform group
+config: x86_64-randconfig-123-20241105 (https://download.01.org/0day-ci/archive/20241106/202411060217.jLvmbe0Z-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241106/202411060217.jLvmbe0Z-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from xe-2168-b925cb281e79b763990ed64267ef82a87ace5060_BAT -> xe-pw-140958v1_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411060217.jLvmbe0Z-lkp@intel.com/
 
-Summary
--------
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/i915/display/intel_display_device.c:469:40: sparse: sparse: symbol 'snb_display' was not declared. Should it be static?
+   drivers/gpu/drm/i915/display/intel_display_device.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/xarray.h, ...):
+   include/linux/page-flags.h:237:46: sparse: sparse: self-comparison always evaluates to false
+   include/linux/page-flags.h:237:46: sparse: sparse: self-comparison always evaluates to false
+   drivers/gpu/drm/i915/display/intel_display_device.c:555:25: sparse: sparse: Initializer entry defined twice
+   drivers/gpu/drm/i915/display/intel_display_device.c:556:25: sparse:   also defined here
+   drivers/gpu/drm/i915/display/intel_display_device.c:608:25: sparse: sparse: Initializer entry defined twice
+   drivers/gpu/drm/i915/display/intel_display_device.c:609:25: sparse:   also defined here
+   drivers/gpu/drm/i915/display/intel_display_device.c:857:17: sparse: sparse: Initializer entry defined twice
+   drivers/gpu/drm/i915/display/intel_display_device.c:859:17: sparse:   also defined here
+   drivers/gpu/drm/i915/display/intel_display_device.c:1065:17: sparse: sparse: Initializer entry defined twice
+   drivers/gpu/drm/i915/display/intel_display_device.c:1070:18: sparse:   also defined here
+   drivers/gpu/drm/i915/display/intel_display_device.c:1108:17: sparse: sparse: Initializer entry defined twice
+   drivers/gpu/drm/i915/display/intel_display_device.c:1110:18: sparse:   also defined here
+   drivers/gpu/drm/i915/display/intel_display_device.c:1346:9: sparse: sparse: Initializer entry defined twice
+   drivers/gpu/drm/i915/display/intel_display_device.c:1348:10: sparse:   also defined here
+   drivers/gpu/drm/i915/display/intel_display_device.c:1355:9: sparse: sparse: Initializer entry defined twice
+   drivers/gpu/drm/i915/display/intel_display_device.c:1356:10: sparse:   also defined here
 
-  **SUCCESS**
+vim +/snb_display +469 drivers/gpu/drm/i915/display/intel_display_device.c
 
-  No regressions found.
+   468	
+ > 469	const struct intel_display_device_info snb_display = {
+   470		.has_hotplug = 1,
+   471		I9XX_PIPE_OFFSETS,
+   472		I9XX_CURSOR_OFFSETS,
+   473		ILK_COLORS,
+   474	
+   475		.__runtime_defaults.ip.ver = 6,
+   476		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
+   477		.__runtime_defaults.cpu_transcoder_mask =
+   478		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
+   479		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
+   480		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+   481	};
+   482	
 
-  
-
-Participating hosts (9 -> 9)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-140958v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-lnl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#886]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2168-b925cb281e79b763990ed64267ef82a87ace5060/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#1861])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2168-b925cb281e79b763990ed64267ef82a87ace5060/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:
-    - bat-dg2-oem2:       [PASS][5] -> [INCOMPLETE][6] ([Intel XE#2874]) +1 other test incomplete
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2168-b925cb281e79b763990ed64267ef82a87ace5060/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html
-
-  
-  [Intel XE#1861]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861
-  [Intel XE#2874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * IGT: IGT_8097 -> IGT_8098
-  * Linux: xe-2168-b925cb281e79b763990ed64267ef82a87ace5060 -> xe-pw-140958v1
-
-  IGT_8097: 2e7c8e4b88a50e33e10d6c13286818aa833bef9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8098: 8098
-  xe-2168-b925cb281e79b763990ed64267ef82a87ace5060: b925cb281e79b763990ed64267ef82a87ace5060
-  xe-pw-140958v1: 140958v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/index.html
-
---===============5755955095682745588==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GuC: Improve handling of the malformed G2H</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140958/">https://patchwork.freedesktop.org/series/140958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2168-b925cb281e79b763990ed64267ef82a87ace5060_BAT -&gt; xe-pw-140958v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 9)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-140958v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2168-b925cb281e79b763990ed64267ef82a87ace5060/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2168-b925cb281e79b763990ed64267ef82a87ace5060/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1861">Intel XE#1861</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2168-b925cb281e79b763990ed64267ef82a87ace5060/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140958v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo@xe_bo_shrink_kunit.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2874">Intel XE#2874</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8097 -&gt; IGT_8098</li>
-<li>Linux: xe-2168-b925cb281e79b763990ed64267ef82a87ace5060 -&gt; xe-pw-140958v1</li>
-</ul>
-<p>IGT_8097: 2e7c8e4b88a50e33e10d6c13286818aa833bef9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8098: 8098<br />
-  xe-2168-b925cb281e79b763990ed64267ef82a87ace5060: b925cb281e79b763990ed64267ef82a87ace5060<br />
-  xe-pw-140958v1: 140958v1</p>
-
-</body>
-</html>
-
---===============5755955095682745588==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
