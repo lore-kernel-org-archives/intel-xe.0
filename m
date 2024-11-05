@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6852D2C122
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 15:25:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3847BD2B941
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Nov 2024 15:48:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59A9B10E406;
-	Tue,  5 Nov 2024 15:25:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3ADC10E5D3;
+	Tue,  5 Nov 2024 15:48:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JuTmMTLY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l6x7tVcy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3D9B10E406
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Nov 2024 15:25:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44B8F10E5D1;
+ Tue,  5 Nov 2024 15:48:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730820356; x=1762356356;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=xGzT/Ebj1gvz/tvrWd02fh71CoWvqW7kR/9/Z2VDUBw=;
- b=JuTmMTLY7VbwwOmeR3ykYNXhh5H7y6jkfNWYuFXue2ybDqeGh1wTT/Fi
- LHfTxPe4sqQVLPFEEas6bykiTGN5CHI3vAerfuvIzHIo49mjKYtuLe39G
- 3ag5r9ZcRnheyJBeOOtALhbWy6wkrJAxobVA7ZiL/IhrkJwRh6Ll9roVM
- w8BzN+u5x7lKLipN19UZPN2Zq8J8cJbDZpWaCwHCQaca1GSJ4V8NC5DM2
- jT3NYeV/p0THh9tzxKkrptbUPnwO4v5vG+CR+X1A15s1Ra4evqlPkFg6p
- xvwja0sTAQYp/9L2jbESKxzQgjyzCUM28iDb+WqjdDCScr2oDq/t2vrqt g==;
-X-CSE-ConnectionGUID: 7LyRozgLSzGwDyrJx9uLfQ==
-X-CSE-MsgGUID: CDuQ/qjmTsCy/BIKkix57Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="41946452"
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="41946452"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 07:25:55 -0800
-X-CSE-ConnectionGUID: 2d9QMop5S3CEB7uerX6tHQ==
-X-CSE-MsgGUID: iH/y4LPdRBy5liVuycGaCQ==
+ t=1730821716; x=1762357716;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=YT2JKa3kkPwuB0xLRZSA+kBWJ8dFFCSXUhXIgwTnLYg=;
+ b=l6x7tVcy0ak/w4te1gkSeoV9PIVAN7C55MIpYuOqTZ/6TZIBz0zGohX1
+ JEEeFqnEwktNyKb2CHpET1ljThUvJ1gmdv7M0WcwCEWDl/SjYQeOL3kIj
+ EebVl8lhJXNHtAsxygeF8YNeU9+LiydxKCuXDTkFoh30lzSaBGqwuil2j
+ ps5vIwudXXIYoAC2UrUmg81jxbRW3mU7V3VvvMeryIqDUH8FMpFmG0pwt
+ Ls44TbPQrt0T/GAkOzIn/j+CwJzfbPYAYE0xsCTqIqp++f4nH6wB34OAX
+ m7oFmI8VRAPQsxAyE6hQMOO6T5eyWxPky8IYimpoD0BOt106qezShijMv w==;
+X-CSE-ConnectionGUID: /8+YMI4JSw2CrpwR4IPsoQ==
+X-CSE-MsgGUID: 9IYO+dVWTC+nE3do026h1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="41171351"
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="41171351"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 07:48:36 -0800
+X-CSE-ConnectionGUID: mg9MxA7gQzqkUGtbGoL4pg==
+X-CSE-MsgGUID: CWHrvgKFT9WCa6N7Egz2Pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="84456969"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa007.jf.intel.com with ESMTP; 05 Nov 2024 07:25:54 -0800
-Received: from [10.245.120.199] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.120.199])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 059442FC5A;
- Tue,  5 Nov 2024 15:25:51 +0000 (GMT)
-Message-ID: <e88b6d0e-c433-42f4-896b-cad5da2b061b@intel.com>
-Date: Tue, 5 Nov 2024 16:25:50 +0100
+X-IronPort-AV: E=Sophos;i="6.11,260,1725346800"; d="scan'208";a="83955804"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 05 Nov 2024 07:48:34 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1t8LnE-000mBv-18;
+ Tue, 05 Nov 2024 15:48:32 +0000
+Date: Tue, 5 Nov 2024 23:47:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 2/9] drm/xe/display: Add intel_plane_initial_vblank_wait
+Message-ID: <202411052327.1vYXqtrV-lkp@intel.com>
+References: <20241105121857.17389-2-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe: Add read/write debugfs helpers for GGTT node
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20241103201633.1859-1-michal.wajdeczko@intel.com>
- <20241103201633.1859-2-michal.wajdeczko@intel.com>
- <Zylrsw40oX0fGVU2@lstrano-desk.jf.intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <Zylrsw40oX0fGVU2@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241105121857.17389-2-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,264 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matt,
+Hi Maarten,
 
-On 05.11.2024 01:49, Matthew Brost wrote:
-> On Sun, Nov 03, 2024 at 09:16:32PM +0100, Michal Wajdeczko wrote:
->> In upcoming patch we want to allow copying and updating PTEs of
->> some GGTT nodes over debugfs. Add simple helpers for that.
->>
-> 
-> On the surface it very much looks like are reinventing something that
-> almost certainly already exists or if it doesn't we should try to do
-> this in a common way. Have you looked for any similar code to this in
-> the kernel.
+kernel test robot noticed the following build errors:
 
-There are similar copy functions in sound subsystem [1] under CONFIG_SND
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on next-20241105]
+[cannot apply to linus/master drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.12-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-	int copy_to_user_fromio();
-	int copy_from_user_toio();
+url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-xe-display-Add-intel_plane_initial_vblank_wait/20241105-202047
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20241105121857.17389-2-maarten.lankhorst%40linux.intel.com
+patch subject: [PATCH 2/9] drm/xe/display: Add intel_plane_initial_vblank_wait
+config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241105/202411052327.1vYXqtrV-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241105/202411052327.1vYXqtrV-lkp@intel.com/reproduce)
 
-and some time ago [2] I was trying to define generic read function
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411052327.1vYXqtrV-lkp@intel.com/
 
-	ssize_t simple_read_from_iomem()
+All error/warnings (new ones prefixed by >>):
 
-but that didn't get any traction at all, so this time decided to start
-with local functions, as otherwise we will not move forward.
+>> drivers/gpu/drm/i915/display/intel_plane_initial.c:17:1: warning: parameter names (without types) in function declaration
+      17 | void intel_plane_initial_vblank_wait(plane);(struct intel_plane *plane)
+         | ^~~~
+>> drivers/gpu/drm/i915/display/intel_plane_initial.c:17:46: error: expected identifier or '(' before 'struct'
+      17 | void intel_plane_initial_vblank_wait(plane);(struct intel_plane *plane)
+         |                                              ^~~~~~
+   drivers/gpu/drm/i915/display/intel_plane_initial.c: In function 'intel_initial_plane_config':
+>> drivers/gpu/drm/i915/display/intel_plane_initial.c:448:25: error: implicit declaration of function 'intel_initial_vblank_wait'; did you mean 'intel_plane_initial_vblank_wait'? [-Werror=implicit-function-declaration]
+     448 |                         intel_initial_vblank_wait(crtc);
+         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~
+         |                         intel_plane_initial_vblank_wait
+   cc1: some warnings being treated as errors
 
-Note that some other attempt to make code common [3] also actually ended
-with local solution [4] that was merged to drm-xe-next.
 
-I'm more than happy to define those new helper functions in fs/libfs.c
-but without wider usage this will be just another dead series like [5].
+vim +17 drivers/gpu/drm/i915/display/intel_plane_initial.c
 
-Michal
+    16	
+  > 17	void intel_plane_initial_vblank_wait(plane);(struct intel_plane *plane)
+    18	{
+    19		struct intel_crtc *crtc = intel_crtc_for_pipe(to_intel_display(plane), plane->pipe);
+    20	
+    21		intel_crtc_wait_for_next_vblank(crtc);
+    22	}
+    23	
 
-[1]
-https://elixir.bootlin.com/linux/v6.11.6/source/include/sound/core.h#L269
-
-[2] https://patchwork.freedesktop.org/series/133507/
-
-[3] https://patchwork.freedesktop.org/series/133123/#rev1
-[4] https://patchwork.freedesktop.org/series/133123/#rev3
-
-[5]
-https://lore.kernel.org/lkml/20240214214654.1700-1-michal.wajdeczko@intel.com/T/#u
-
-> 
-> Matt
-> 
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_ggtt.c | 178 +++++++++++++++++++++++++++++++++++
->>  drivers/gpu/drm/xe/xe_ggtt.h |   7 ++
->>  2 files changed, 185 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index 558fac8bb6fb..e003f5f51ac6 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -838,3 +838,181 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
->>  
->>  	return total;
->>  }
->> +
->> +#ifdef CONFIG_DEBUG_FS
->> +
->> +static size_t copy_iomem_to_user_by_chunk(void __user *to, const void __iomem *from,
->> +					  size_t count, void *buf, size_t size)
->> +{
->> +	size_t chunk;
->> +	size_t rem;
->> +
->> +	while (count) {
->> +		chunk = umin(count, size);
->> +		memcpy_fromio(buf, from, chunk);
->> +		rem = copy_to_user(to, buf, chunk);
->> +		count -= chunk - rem;
->> +		if (rem)
->> +			break;
->> +		from += chunk;
->> +		to += chunk;
->> +	}
->> +
->> +	return count;
->> +}
->> +
->> +static size_t copy_iomem_to_user(void __user *to, const void __iomem *from, size_t count)
->> +{
->> +	char chunk[64];
->> +	size_t size;
->> +	size_t rem;
->> +	void *buf;
->> +
->> +	if (!count)
->> +		return 0;
->> +
->> +	size = count > sizeof(chunk) ? umin(PAGE_SIZE, count) : 0;
->> +	buf = size ? kmalloc(size, GFP_NOWAIT | __GFP_NORETRY) : NULL;
->> +	if (buf) {
->> +		rem = copy_iomem_to_user_by_chunk(to, from, count, buf, size);
->> +		kfree(buf);
->> +		return rem;
->> +	}
->> +
->> +	return copy_iomem_to_user_by_chunk(to, from, count, chunk, sizeof(chunk));
->> +}
->> +
->> +static ssize_t simple_read_from_iomem(void __user *to, size_t count, loff_t *ppos,
->> +				      const void __iomem *from, size_t available)
->> +{
->> +	loff_t pos = *ppos;
->> +	size_t rem;
->> +
->> +	if (pos < 0)
->> +		return -EINVAL;
->> +	if (pos >= available || !count)
->> +		return 0;
->> +	if (count > available - pos)
->> +		count = available - pos;
->> +
->> +	rem = copy_iomem_to_user(to, from + pos, count);
->> +	if (rem == count)
->> +		return -EFAULT;
->> +
->> +	count -= rem;
->> +	*ppos = pos + count;
->> +	return count;
->> +}
->> +
->> +/**
->> + * xe_ggtt_node_read() - Copy PTEs from the GGTT node to the user space buffer
->> + * @node: the GGTT node to read from
->> + * @buf: the user space buffer to read to
->> + * @count: the maximum number of bytes to read
->> + * @ppos: the current position
->> + *
->> + * Return: On success, the number of bytes read is returned and the offset
->> + * @ppos is advanced by this number, or negative value is returned on error.
->> + */
->> +ssize_t xe_ggtt_node_read(struct xe_ggtt_node *node, char __user *buf,
->> +			  size_t count, loff_t *ppos)
->> +{
->> +	if (!xe_ggtt_node_allocated(node))
->> +		return 0;
->> +
->> +	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.start, XE_PAGE_SIZE));
->> +	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.size, XE_PAGE_SIZE));
->> +
->> +	return simple_read_from_iomem(buf, count, ppos,
->> +				      &node->ggtt->gsm[node->base.start / XE_PAGE_SIZE],
->> +				      size_mul(sizeof(u64), node->base.size / XE_PAGE_SIZE));
->> +}
->> +
->> +static size_t copy_iomem_from_user_by_chunk(void __iomem *to, const void __user *from,
->> +					    size_t count, void *buf, size_t size)
->> +{
->> +	size_t chunk;
->> +	size_t rem;
->> +
->> +	while (count) {
->> +		chunk = umin(count, size);
->> +		rem = copy_from_user(buf, from, chunk);
->> +		memcpy_toio(to, buf, chunk - rem);
->> +		count -= chunk - rem;
->> +		if (rem)
->> +			break;
->> +		from += chunk;
->> +		to += chunk;
->> +	}
->> +
->> +	return count;
->> +}
->> +
->> +static size_t copy_iomem_from_user(void __iomem *to, const void __user *from, size_t count)
->> +{
->> +	char chunk[64];
->> +	size_t size;
->> +	size_t rem;
->> +	void *buf;
->> +
->> +	if (!count)
->> +		return 0;
->> +
->> +	size = count > sizeof(chunk) ? umin(PAGE_SIZE, count) : 0;
->> +	buf = size ? kmalloc(size, GFP_NOWAIT | __GFP_NORETRY) : NULL;
->> +	if (buf) {
->> +		rem = copy_iomem_from_user_by_chunk(to, from, count, buf, size);
->> +		kfree(buf);
->> +		return rem;
->> +	}
->> +
->> +	return copy_iomem_from_user_by_chunk(to, from, count, chunk, sizeof(chunk));
->> +}
->> +
->> +static ssize_t simple_write_to_iomem(void __iomem *to, size_t available, loff_t *ppos,
->> +				     const void __user *from, size_t count)
->> +{
->> +	loff_t pos = *ppos;
->> +	size_t rem;
->> +
->> +	if (pos < 0)
->> +		return -EINVAL;
->> +	if (pos >= available || !count)
->> +		return 0;
->> +	if (count > available - pos)
->> +		count = available - pos;
->> +
->> +	rem = copy_iomem_from_user(to + pos, from, count);
->> +	if (rem == count)
->> +		return -EFAULT;
->> +
->> +	count -= rem;
->> +	*ppos = pos + count;
->> +	return count;
->> +}
->> +
->> +/**
->> + * xe_ggtt_node_write() - Update PTEs of the GGTT node using data from the user space buffer
->> + * @node: the GGTT node to write to
->> + * @buf: the user space buffer to read from
->> + * @count: the maximum number of bytes to read
->> + * @ppos: the current position
->> + *
->> + * Return: On success, the number of bytes written is returned and the offset
->> + * @ppos is advanced by this number, or negative value is returned on error.
->> + */
->> +ssize_t xe_ggtt_node_write(struct xe_ggtt_node *node, const char __user *buf,
->> +			   size_t count, loff_t *ppos)
->> +{
->> +	if (!xe_ggtt_node_allocated(node))
->> +		return -ENXIO;
->> +
->> +	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.start, XE_PAGE_SIZE));
->> +	xe_tile_assert(node->ggtt->tile, IS_ALIGNED(node->base.size, XE_PAGE_SIZE));
->> +
->> +	return simple_write_to_iomem(&node->ggtt->gsm[node->base.start / XE_PAGE_SIZE],
->> +				     size_mul(sizeof(u64), node->base.size / XE_PAGE_SIZE),
->> +				     ppos, buf, count);
->> +}
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
->> index 27e7d67de004..64746e23053e 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.h
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
->> @@ -34,6 +34,13 @@ u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare);
->>  int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p);
->>  u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer *p);
->>  
->> +#ifdef CONFIG_DEBUG_FS
->> +ssize_t xe_ggtt_node_read(struct xe_ggtt_node *node, char __user *buf,
->> +			  size_t count, loff_t *pos);
->> +ssize_t xe_ggtt_node_write(struct xe_ggtt_node *node, const char __user *buf,
->> +			   size_t count, loff_t *pos);
->> +#endif
->> +
->>  #ifdef CONFIG_PCI_IOV
->>  void xe_ggtt_assign(const struct xe_ggtt_node *node, u16 vfid);
->>  #endif
->> -- 
->> 2.43.0
->>
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
